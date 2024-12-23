@@ -61,7 +61,7 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/cfg/env.h"
 
-#include "logger/logger.hpp"
+#include "RobloxModLoader/logger/logger.hpp"
 
 // clang-format on
 

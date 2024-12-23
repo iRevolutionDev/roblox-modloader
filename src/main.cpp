@@ -1,4 +1,5 @@
 #include "common.hpp"
+#include "mod_manager.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
 	if (dwReason == DLL_PROCESS_ATTACH) {
@@ -10,6 +11,7 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
 
 			LOG_INFO("Initializing Roblox Mod Loader...");
 
+			const auto mod_manager_instance = std::make_shared<mod_manager>();
 
 			g_running = true;
 			while (g_running) {
