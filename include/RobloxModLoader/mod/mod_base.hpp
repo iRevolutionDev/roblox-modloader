@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+#include "RobloxModLoader/common.hpp"
+
 struct metadata {
     const std::string name{};
     const std::string version{};
@@ -8,9 +10,9 @@ struct metadata {
     const std::string description{};
 };
 
-class mod {
+class mod_base {
 public:
-    using start_type = mod*(*)();
+    using start_type = mod_base*(*)();
     using uninstall_type = void(*)();
 
     std::string name{};
@@ -19,8 +21,9 @@ public:
     std::string description{};
     uninstall_type uninstall_mod_func{};
 
-    mod();
-    virtual ~mod();
+    RML_API mod_base();
 
-    virtual void on_load() = 0;
+    RML_API virtual ~mod_base();
+
+    RML_API virtual void on_load() = 0;
 };

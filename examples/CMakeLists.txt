@@ -12,8 +12,14 @@ foreach (EXAMPLE_DIR ${EXAMPLES_DIRS})
         file(GLOB_RECURSE EXAMPLES_FILES ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/*.hpp)
         target_sources(${EXAMPLE_DIR} PRIVATE ${EXAMPLES_FILES})
 
-        target_include_directories(${EXAMPLE_DIR} PRIVATE "${PROJECT_SOURCE_DIR}/include")
-        target_link_libraries(${EXAMPLE_DIR} ${PROJECT_NAME}_interface)
+        target_include_directories(${EXAMPLE_DIR} PRIVATE
+            "${PROJECT_SOURCE_DIR}/include"
+            "${PROJECT_SOURCE_DIR}/src"
+        )
+        target_link_libraries(${EXAMPLE_DIR}
+                ${PROJECT_NAME}_interface
+                spdlog
+        )
     else ()
         message(STATUS "Skipping ${EXAMPLE_DIR}")
     endif ()

@@ -1,5 +1,6 @@
+#include "common.hpp"
 #include "mod_manager.hpp"
-#include "RobloxModLoader/mod/mod.hpp"
+#include "RobloxModLoader/mod/mod_base.hpp"
 #include <filesystem>
 #include <Windows.h>
 
@@ -24,18 +25,18 @@ void mod_manager::unload_mods() {
     mods.clear();
 }
 
-void mod_manager::load_mod(const std::shared_ptr<mod> &mod_instance) {
+void mod_manager::load_mod(const std::shared_ptr<mod_base> &mod) {
     std::lock_guard lock(mods_mutex);
-    mods.push_back(mod_instance);
-    mod_instance->on_load();
+    mods.push_back(mod);
+    mod->on_load();
 }
 
-void mod_manager::register_mod(const std::shared_ptr<mod> &mod_instance) {
+void mod_manager::register_mod(const std::shared_ptr<mod_base> &mod_instance) {
     std::lock_guard lock(mods_mutex);
     mods.push_back(mod_instance);
 }
 
-void mod_manager::unregister_mod(const std::shared_ptr<mod> &mod_instance) {
+void mod_manager::unregister_mod(const std::shared_ptr<mod_base> &mod_instance) {
     std::lock_guard lock(mods_mutex);
     mods.erase(std::ranges::remove(mods, mod_instance).begin(), mods.end());
 }
@@ -57,8 +58,8 @@ void mod_manager::load_mods_from_directory(const std::filesystem::path &director
                 continue;
             }
 
-            const auto start_mod_func = reinterpret_cast<mod::start_type>(GetProcAddress(dll_module, "start_mod"));
-            const auto uninstall_mod_func = reinterpret_cast<mod::uninstall_type>(GetProcAddress(
+            const auto start_mod_func = reinterpret_cast<mod_base::start_type>(GetProcAddress(dll_module, "start_mod"));
+            const auto uninstall_mod_func = reinterpret_cast<mod_base::uninstall_type>(GetProcAddress(
                 dll_module, "uninstall_mod"));
 
             if (!start_mod_func || !uninstall_mod_func) {
@@ -69,7 +70,7 @@ void mod_manager::load_mods_from_directory(const std::filesystem::path &director
 
             const auto mod_instance = start_mod_func();
             mod_instance->uninstall_mod_func = uninstall_mod_func;
-            register_mod(std::shared_ptr<mod>(mod_instance));
+            register_mod(std::shared_ptr<mod_base>(mod_instance));
             mod_instance->on_load();
         }
     }

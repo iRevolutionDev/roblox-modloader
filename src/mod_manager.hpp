@@ -3,7 +3,7 @@
 #include <memory>
 #include <mutex>
 #include <filesystem>
-#include "RobloxModLoader/mod/mod.hpp"
+#include "RobloxModLoader/mod/mod_base.hpp"
 
 class mod_manager {
 public:
@@ -15,15 +15,15 @@ public:
 
     void unload_mods();
 
-    void load_mod(const std::shared_ptr<mod> &mod_instance);
+    void load_mod(const std::shared_ptr<mod_base> &mod_instance);
 
-    void register_mod(const std::shared_ptr<mod> &mod_instance);
+    void register_mod(const std::shared_ptr<mod_base> &mod_instance);
 
-    void unregister_mod(const std::shared_ptr<mod> &mod_instance);
+    void unregister_mod(const std::shared_ptr<mod_base> &mod_instance);
 
     void load_mods_from_directory(const std::filesystem::path &directory_path);
 
-    std::vector<std::shared_ptr<mod> > mods;
+    std::vector<std::shared_ptr<mod_base> > mods;
     std::mutex mods_mutex;
 };
 
