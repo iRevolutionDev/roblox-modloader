@@ -4,6 +4,24 @@
 #include "spdlog/sinks/daily_file_sink.h"
 #include "spdlog/sinks/msvc_sink.h"
 #include "spdlog/async.h"
+#include <atomic>
+
+namespace {
+    struct global_logger_holder {
+        static std::atomic<std::shared_ptr<spdlog::logger> > logger;
+    };
+
+    std::atomic<std::shared_ptr<spdlog::logger> > global_logger_holder::logger;
+}
+
+std::shared_ptr<spdlog::logger> global_logger() {
+    auto logger = global_logger_holder::logger.load();
+    if (!logger) {
+        logger::init();
+        logger = global_logger_holder::logger.load();
+    }
+    return logger;
+}
 
 void logger::open_console() {
     AllocConsole();
@@ -20,7 +38,6 @@ void logger::init() {
     spdlog::set_pattern("[%T] [%^%L%$] [%n] [%s:%#] %v");
 
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-
     auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/roblox_modloader.log", 0, 0);
     auto msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
 
@@ -34,7 +51,7 @@ void logger::init() {
     new_logger->flush_on(spdlog::level::debug);
     new_logger->set_pattern("[%T] [%^%L%$] [%s:%#] %v");
 
-    g_logger = new_logger;
+    global_logger_holder::logger.store(new_logger);
 }
 
 void logger::set_async_mode() {

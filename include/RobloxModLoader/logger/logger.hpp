@@ -2,11 +2,11 @@
 
 #define LOGGER_NAME "roblox_modloader"
 
-#define LOG_INFO(...) SPDLOG_LOGGER_INFO(g_logger, __VA_ARGS__)
-#define LOG_WARN(...) SPDLOG_LOGGER_WARN(g_logger, __VA_ARGS__)
-#define LOG_ERROR(...) SPDLOG_LOGGER_ERROR(g_logger, __VA_ARGS__)
-#define LOG_DEBUG(...) SPDLOG_LOGGER_DEBUG(g_logger, __VA_ARGS__)
-#define LOG_TRACE(...) SPDLOG_LOGGER_TRACE(g_logger, __VA_ARGS__)
+#define LOG_INFO(...) SPDLOG_LOGGER_INFO(global_logger(), __VA_ARGS__)
+#define LOG_WARN(...) SPDLOG_LOGGER_WARN(global_logger(), __VA_ARGS__)
+#define LOG_ERROR(...) SPDLOG_LOGGER_ERROR(global_logger(), __VA_ARGS__)
+#define LOG_DEBUG(...) SPDLOG_LOGGER_DEBUG(global_logger(), __VA_ARGS__)
+#define LOG_TRACE(...) SPDLOG_LOGGER_TRACE(global_logger(), __VA_ARGS__)
 
 #define LOG_INFO_CLASS(...) SPDLOG_LOGGER_INFO(logger::get_logger(logger::strip_class_prefix(typeid(*this).name())), __VA_ARGS__)
 #define LOG_WARN_CLASS(...) SPDLOG_LOGGER_WARN(logger::get_logger(logger::strip_class_prefix(typeid(*this).name())), __VA_ARGS__)
@@ -27,4 +27,4 @@ public:
     static void set_async_mode();
 };
 
-inline std::shared_ptr<spdlog::logger> g_logger{};
+std::shared_ptr<spdlog::logger> global_logger();

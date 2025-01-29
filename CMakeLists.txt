@@ -13,17 +13,32 @@ include(scripts/spdlog.cmake)
 # Source files
 message(STATUS "Roblox ModLoader")
 file(GLOB_RECURSE SRC_MAIN
-    "${SRC_DIR}/**.hpp"
-    "${SRC_DIR}/**.h"
-    "${SRC_DIR}/**.cpp"
-    "${SRC_DIR}/**.cc"
-    "${SRC_DIR}/**.cxx"
-    "${SRC_DIR}/**.asm"
+        "${SRC_DIR}/**.hpp"
+        "${SRC_DIR}/**.h"
+        "${SRC_DIR}/**.cpp"
+        "${SRC_DIR}/**.cc"
+        "${SRC_DIR}/**.cxx"
+        "${SRC_DIR}/**.asm"
 )
 
 file(GLOB_RECURSE PUBLIC_HEADER_FILES
-    "${PUBLIC_HEADER_DIR}/**.hpp"
+        "${PUBLIC_HEADER_DIR}/**.hpp"
 )
+
+# Libraries
+add_library(${PROJECT_NAME} MODULE "${SRC_MAIN}" "${PUBLIC_HEADER_FILES}")
+add_library(${PROJECT_NAME}_interface INTERFACE)
+
+# Exclude main.cpp from interface target
+file(GLOB_RECURSE SRC_MAIN_INTERFACE
+        "${SRC_DIR}/**.hpp"
+        "${SRC_DIR}/**.h"
+        "${SRC_DIR}/**.cpp"
+        "${SRC_DIR}/**.cc"
+        "${SRC_DIR}/**.cxx"
+        "${SRC_DIR}/**.asm"
+)
+list(FILTER SRC_MAIN_INTERFACE EXCLUDE REGEX "${SRC_DIR}/main.cpp")
 
 # Compiler options
 if (MSVC)
@@ -35,10 +50,6 @@ else ()
     add_compile_options(-m32)
 endif ()
 
-# Libraries
-add_library(${PROJECT_NAME} MODULE "${SRC_MAIN}" "${PUBLIC_HEADER_FILES}")
-add_library(${PROJECT_NAME}_interface INTERFACE)
-
 set_target_properties(${PROJECT_NAME}_interface PROPERTIES LINKER_LANGUAGE CXX)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 23)
@@ -47,14 +58,14 @@ source_group(TREE ${SRC_DIR} PREFIX "src" FILES ${SRC_MAIN})
 
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE
-    "${SRC_DIR}"
-    "${PUBLIC_HEADER_DIR}"
-    "${spdlog_SOURCE_DIR}"
+        "${SRC_DIR}"
+        "${PUBLIC_HEADER_DIR}"
+        "${spdlog_SOURCE_DIR}"
 )
 
 target_include_directories(${PROJECT_NAME}_interface INTERFACE
-    "${PUBLIC_HEADER_DIR}"
-    "${spdlog_SOURCE_DIR}"
+        "${PUBLIC_HEADER_DIR}"
+        "${spdlog_SOURCE_DIR}"
 )
 
 # Precompile headers
@@ -62,11 +73,11 @@ target_precompile_headers(${PROJECT_NAME} PRIVATE "${SRC_DIR}/common.hpp")
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    spdlog
+        spdlog
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC ${PROJECT_NAME}_interface
-    spdlog
+        spdlog
 )
 
 # Add subdirectory
@@ -77,22 +88,22 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY COMPILE_WARNING_AS_ERROR ON)
 
 # Compile definitions
 add_compile_definitions(${PROJECT_NAME}
-    "_CRT_SECURE_NO_WARNINGS"
-    "NOMINMAX"
-    "WIN32_LEAN_AND_MEAN"
+        "_CRT_SECURE_NO_WARNINGS"
+        "NOMINMAX"
+        "WIN32_LEAN_AND_MEAN"
 )
 
 # Optimizations
 if (MSVC)
     if (OPTIMIZE)
         set(CMAKE_MODULE_LINKER_FLAGS
-            "${CMAKE_MODULE_LINKER_FLAGS} /LTCG /OPT:REF,ICF /GUARD:NO")
+                "${CMAKE_MODULE_LINKER_FLAGS} /LTCG /OPT:REF,ICF /GUARD:NO")
 
         set(CMAKE_CXX_FLAGS_RELWITHDEBINFO
-            "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /O2 /Oi /Ot /Oy /Ob3 /sdl- /GL /GF /GS- /Gw")
+                "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /O2 /Oi /Ot /Oy /Ob3 /sdl- /GL /GF /GS- /Gw")
         string(REPLACE "/Ob1" "/Ob3" CMAKE_CXX_FLAGS_RELWITHDEBINFO ${CMAKE_CXX_FLAGS_RELWITHDEBINFO})
     else ()
-        add_compile_definitions(YIM_DEV)
+        add_compile_definitions(${PROJECT_NAME} "DEBUG")
     endif ()
 endif ()
 
@@ -102,4 +113,4 @@ if (MSVC AND WIN32 AND NOT MSVC_VERSION VERSION_LESS 142)
 endif ()
 
 # Ensure interface target compiles source files
-target_sources(${PROJECT_NAME}_interface INTERFACE ${SRC_MAIN})
+target_sources(${PROJECT_NAME}_interface INTERFACE ${SRC_MAIN_INTERFACE})

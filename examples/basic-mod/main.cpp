@@ -16,10 +16,9 @@ public:
     }
 
     ~basic_mod() override {
-    };
+    }
 
     void on_load() override {
-        //LOG_INFO("LOADED: {}", name);
     }
 };
 
