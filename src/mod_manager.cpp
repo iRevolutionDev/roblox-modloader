@@ -72,6 +72,8 @@ void mod_manager::load_mods_from_directory(const std::filesystem::path &director
             mod_instance->uninstall_mod_func = uninstall_mod_func;
             register_mod(std::shared_ptr<mod_base>(mod_instance));
             mod_instance->on_load();
+
+            LOG_INFO("Loaded mod: {} ({} v{})", mod_instance->name, mod_instance->author, mod_instance->version);
         }
     }
 }

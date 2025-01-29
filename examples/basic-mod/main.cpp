@@ -1,6 +1,5 @@
 #include <string>
 #include <memory>
-#include <iostream>
 
 #include <spdlog/spdlog.h>
 
@@ -20,7 +19,7 @@ public:
     };
 
     void on_load() override {
-        LOG_INFO("LOADED: {}", name);
+        //LOG_INFO("LOADED: {}", name);
     }
 };
 
