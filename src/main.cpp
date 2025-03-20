@@ -1,4 +1,4 @@
-#include "common.hpp"
+#include "RobloxModLoader/common.hpp"
 #include "mod_manager.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {

@@ -1,4 +1,4 @@
-#include "common.hpp"
+#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
 
 mod_base::mod_base() {

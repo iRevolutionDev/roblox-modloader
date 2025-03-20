@@ -1,4 +1,4 @@
-#include "common.hpp"
+#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/logger/logger.hpp"
 #include "spdlog/sinks/stdout_color_sinks-inl.h"
 #include "spdlog/sinks/daily_file_sink.h"

@@ -1,4 +1,4 @@
-#include "common.hpp"
+#include "RobloxModLoader/common.hpp"
 #include "mod_manager.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
 #include <filesystem>

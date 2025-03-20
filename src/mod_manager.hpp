@@ -1,8 +1,6 @@
 #pragma once
-#include <vector>
-#include <memory>
-#include <mutex>
-#include <filesystem>
+
+#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
 
 class mod_manager {

@@ -68,8 +68,7 @@ target_include_directories(${PROJECT_NAME}_interface INTERFACE
         "${spdlog_SOURCE_DIR}"
 )
 
-# Precompile headers
-target_precompile_headers(${PROJECT_NAME} PRIVATE "${SRC_DIR}/common.hpp")
+target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/RobloxModLoader/common.hpp")
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
