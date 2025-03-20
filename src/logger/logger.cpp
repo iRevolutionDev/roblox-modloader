@@ -5,13 +5,43 @@
 #include "spdlog/sinks/msvc_sink.h"
 #include "spdlog/async.h"
 #include <atomic>
+#include <filesystem>
+#include <vector>
 
 namespace {
     struct global_logger_holder {
         static std::atomic<std::shared_ptr<spdlog::logger> > logger;
+        static std::shared_ptr<spdlog::sinks::stdout_color_sink_mt> console_sink;
+        static std::shared_ptr<spdlog::sinks::daily_file_sink_mt> file_sink;
+        static std::shared_ptr<spdlog::sinks::msvc_sink_mt> msvc_sink;
     };
 
     std::atomic<std::shared_ptr<spdlog::logger> > global_logger_holder::logger;
+    std::shared_ptr<spdlog::sinks::stdout_color_sink_mt> global_logger_holder::console_sink;
+    std::shared_ptr<spdlog::sinks::daily_file_sink_mt> global_logger_holder::file_sink;
+    std::shared_ptr<spdlog::sinks::msvc_sink_mt> global_logger_holder::msvc_sink;
+
+    void ensure_log_directory() {
+        std::filesystem::create_directories("logs");
+    }
+
+    void init_sinks() {
+        if (!global_logger_holder::console_sink) {
+            global_logger_holder::console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+            global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(
+                "logs/roblox_modloader.log", 0, 0);
+            global_logger_holder::msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
+        }
+    }
+
+    std::vector<spdlog::sink_ptr> get_shared_sinks() {
+        init_sinks();
+        return {
+            global_logger_holder::console_sink,
+            global_logger_holder::file_sink,
+            global_logger_holder::msvc_sink
+        };
+    }
 }
 
 std::shared_ptr<spdlog::logger> global_logger() {
@@ -33,29 +63,22 @@ void logger::open_console() {
 
 void logger::init() {
     open_console();
-
+    ensure_log_directory();
     set_async_mode();
-    spdlog::set_pattern("[%T] [%^%L%$] [%n] [%s:%#] %v");
 
-    auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-    auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/roblox_modloader.log", 0, 0);
-    auto msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
+    const auto sinks = get_shared_sinks();
+    const auto new_logger = std::make_shared<spdlog::logger>("roblox_modloader", sinks.begin(), sinks.end());
 
-    const auto new_logger = std::make_shared<spdlog::logger>("roblox_modloader",
-                                                             spdlog::sinks_init_list{
-                                                                 console_sink, file_sink, msvc_sink
-                                                             });
     register_logger(new_logger);
-
     new_logger->set_level(spdlog::level::debug);
     new_logger->flush_on(spdlog::level::debug);
-    new_logger->set_pattern("[%T] [%^%L%$] [%s:%#] %v");
+    new_logger->set_pattern("[%T] [%^%L%$] [%n] %v");
 
     global_logger_holder::logger.store(new_logger);
 }
 
 void logger::set_async_mode() {
-    spdlog::init_thread_pool(8192, 1); // queue with 8192 items and 1 backing thread.
+    spdlog::init_thread_pool(8192, 1);
 }
 
 std::string logger::strip_class_prefix(const std::string &name) {
@@ -70,17 +93,15 @@ std::shared_ptr<spdlog::logger> logger::get_logger(const std::string &name) {
         return existing_logger;
     }
 
-    auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-
-    auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/roblox_modloader.log", 0, 0);
-    auto msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
-
-    auto new_logger = std::make_shared<spdlog::logger>(name, spdlog::sinks_init_list{
-                                                           console_sink, file_sink, msvc_sink
-                                                       });
+    ensure_log_directory();
+    const auto sinks = get_shared_sinks();
+    auto new_logger = std::make_shared<spdlog::logger>(name, sinks.begin(), sinks.end());
 
     new_logger->set_level(spdlog::level::debug);
     new_logger->flush_on(spdlog::level::debug);
+    new_logger->set_pattern("[%T] [%^%L%$] [%n] %v");
+
+    register_logger(new_logger);
 
     return new_logger;
 }
