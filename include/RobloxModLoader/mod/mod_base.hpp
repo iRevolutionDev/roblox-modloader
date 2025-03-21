@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "events.hpp"
 #include "RobloxModLoader/common.hpp"
 
 struct metadata {
@@ -26,4 +26,17 @@ public:
     RML_API virtual ~mod_base();
 
     RML_API virtual void on_load() = 0;
+
+    void set_event_manager(events::EventManager *manager);
+
+protected:
+    template<typename T>
+    void register_event_handler(events::EventManager::EventHandler<T> handler) {
+        if (event_manager) {
+            event_manager->registerHandler<T>(handler);
+        }
+    }
+
+private:
+    events::EventManager *event_manager{nullptr};
 };

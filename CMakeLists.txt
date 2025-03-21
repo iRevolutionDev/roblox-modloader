@@ -9,6 +9,7 @@ set(PUBLIC_HEADER_DIR "${PROJECT_SOURCE_DIR}/include")
 # Fetch packages
 message(STATUS "Fetching packages...")
 include(scripts/spdlog.cmake)
+include(scripts/minhook.cmake)
 
 # Source files
 message(STATUS "Roblox ModLoader")
@@ -61,11 +62,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         "${SRC_DIR}"
         "${PUBLIC_HEADER_DIR}"
         "${spdlog_SOURCE_DIR}"
+        "${minhook_SOURCE_DIR}/include"
 )
 
 target_include_directories(${PROJECT_NAME}_interface INTERFACE
         "${PUBLIC_HEADER_DIR}"
         "${spdlog_SOURCE_DIR}"
+        "${minhook_SOURCE_DIR}/include"
 )
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/RobloxModLoader/common.hpp")
@@ -73,10 +76,12 @@ target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/i
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
         spdlog
+        minhook
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC ${PROJECT_NAME}_interface
         spdlog
+        minhook
 )
 
 # Add subdirectory
@@ -86,10 +91,11 @@ add_subdirectory(examples)
 set_property(TARGET ${PROJECT_NAME} PROPERTY COMPILE_WARNING_AS_ERROR ON)
 
 # Compile definitions
-add_compile_definitions(${PROJECT_NAME}
-        "_CRT_SECURE_NO_WARNINGS"
-        "NOMINMAX"
-        "WIN32_LEAN_AND_MEAN"
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+        ROBLOX_MODLOADER_EXPORTS
+        _CRT_SECURE_NO_WARNINGS
+        NOMINMAX
+        WIN32_LEAN_AND_MEAN
 )
 
 # Optimizations

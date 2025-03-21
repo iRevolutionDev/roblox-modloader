@@ -1,12 +1,20 @@
+#pragma once
+
 #ifndef COMMON_INC
 #define COMMON_INC
 
 // clang-format off
 
-#include <sdkddkver.h>
+#ifndef NOMINMAX
+    #define NOMINMAX
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN
+#endif
+
 #include <winsock2.h>
 #include <windows.h>
-#include <d3d11.h>
 
 #include <cinttypes>
 #include <cstddef>

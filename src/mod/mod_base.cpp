@@ -9,3 +9,7 @@ mod_base::mod_base() {
 
 mod_base::~mod_base() {
 }
+
+void mod_base::set_event_manager(events::EventManager* manager) {
+    event_manager = manager;
+}

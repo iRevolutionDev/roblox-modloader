@@ -19,6 +19,7 @@ foreach (EXAMPLE_DIR ${EXAMPLES_DIRS})
         target_link_libraries(${EXAMPLE_DIR}
                 ${PROJECT_NAME}_interface
                 spdlog
+                minhook
         )
     else ()
         message(STATUS "Skipping ${EXAMPLE_DIR}")
