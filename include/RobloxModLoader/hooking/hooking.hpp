@@ -25,7 +25,7 @@ struct hooks {
 	static void render_perform(RenderView *this_ptr, uintptr_t mainFramebuffer, double timeJobStart);
 
 	static void render_view(uintptr_t *scene_manager, uintptr_t *context, uintptr_t *mainFrameBuffer, uintptr_t *camera,
-	                        unsigned int viewWidth, unsigned int viewHeight);
+	                        uintptr_t *a5, unsigned int viewWidth, unsigned int viewHeight);
 };
 
 class minhook_keepalive {
