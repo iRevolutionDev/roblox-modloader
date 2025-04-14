@@ -6,11 +6,26 @@
 #include "vtable_hook.hpp"
 #include "call_hook.hpp"
 #include "RobloxModLoader/mod/events.hpp"
+#include "RobloxModLoader/roblox/adorn_render.hpp"
+#include "RobloxModLoader/roblox/render_view.hpp"
 
 struct hooks {
 	static uint64_t *on_authentication(uint64_t *_this, uint64_t doc_panel_provider, uint64_t q_image_provider);
 
 	static bool is_internal();
+
+	static std::uintptr_t *build_summary(uintptr_t *_this, std::uintptr_t *out);
+
+	static void render_pass_2d(uintptr_t *_this, AdornRender *adorn, uintptr_t *graphics_metric);
+
+	static void render_pass_3d(uintptr_t *_this, AdornRender *adorn);
+
+	static void render_prepare(RenderView *this_ptr, uintptr_t metric, bool updateViewport);
+
+	static void render_perform(RenderView *this_ptr, uintptr_t mainFramebuffer, double timeJobStart);
+
+	static void render_view(uintptr_t *scene_manager, uintptr_t *context, uintptr_t *mainFrameBuffer, uintptr_t *camera,
+	                        unsigned int viewWidth, unsigned int viewHeight);
 };
 
 class minhook_keepalive {

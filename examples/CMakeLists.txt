@@ -20,6 +20,7 @@ foreach (EXAMPLE_DIR ${EXAMPLES_DIRS})
                 ${PROJECT_NAME}_interface
                 spdlog
                 minhook
+                ZLIB::ZLIB
         )
     else ()
         message(STATUS "Skipping ${EXAMPLE_DIR}")

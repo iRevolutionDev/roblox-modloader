@@ -56,9 +56,9 @@ void mod_manager::unregister_mod(const std::shared_ptr<mod_base> &mod_instance) 
     mods.erase(std::ranges::remove(mods, mod_instance).begin(), mods.end());
 }
 
-void mod_manager::set_event_manager(events::EventManager* manager) {
+void mod_manager::set_event_manager(events::EventManager *manager) {
     event_manager = manager;
-    // Atualiza os mods existentes com o novo manager
+
     std::lock_guard lock(mods_mutex);
     for (const auto &mod: mods) {
         mod->set_event_manager(manager);
@@ -67,7 +67,7 @@ void mod_manager::set_event_manager(events::EventManager* manager) {
 
 void mod_manager::load_mods_from_directory(const std::filesystem::path &directory_path) {
     LOG_INFO("Loading mods from: {}", directory_path.string());
-    
+
     if (!exists(directory_path)) {
         LOG_WARN("Directory does not exist: {}", directory_path.string());
         create_directories(directory_path);
@@ -79,9 +79,9 @@ void mod_manager::load_mods_from_directory(const std::filesystem::path &director
         if (entry.path().extension() == ".dll") {
             const auto &dll_path = entry.path();
             LOG_INFO("Found mod DLL: {}", dll_path.string());
-            
+
             const auto dll_module = LoadLibraryExW(dll_path.c_str(), nullptr,
-                                               LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+                                                   LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
 
             if (!dll_module) {
                 const auto error = GetLastError();
@@ -105,6 +105,5 @@ void mod_manager::load_mods_from_directory(const std::filesystem::path &director
         }
     }
 
-    // Agora que todos os mods estão registrados, inicializa-os
     load_mods();
 }

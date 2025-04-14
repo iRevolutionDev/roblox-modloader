@@ -1,5 +1,6 @@
 #include "RobloxModLoader/common.hpp"
 #include "mod_manager.hpp"
+#include "pointers.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
 #include "RobloxModLoader/mod/events.hpp"
 
@@ -23,6 +24,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
 
             mod_manager_instance->set_event_manager(event_manager_instance.get());
             LOG_INFO("Event Manager set in Mod Manager.");
+
+            const auto pointers_instance = std::make_shared<pointers>();
+            LOG_INFO("Pointers initialized.");
 
             const auto hooking_instance = std::make_shared<hooking>();
             LOG_INFO("Hooking initialized.");

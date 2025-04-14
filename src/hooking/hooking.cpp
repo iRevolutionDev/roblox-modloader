@@ -1,6 +1,8 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
 
+#include "pointers.hpp"
+
 hooking::hooking() {
 	LOG_INFO("Initializing hooking");
 
@@ -8,12 +10,9 @@ hooking::hooking() {
 		detour_hook_helper.m_detour_hook->set_target_and_create_hook(detour_hook_helper.m_on_hooking_available());
 	}
 
-	// auto authentication_func = reinterpret_cast<uintptr_t>(GetModuleHandleA(nullptr)) + 0x54A9800;
-	const auto on_authentication = reinterpret_cast<uintptr_t>(GetModuleHandleA(nullptr)) + 0x54AA1D0;
-	detour_hook_helper::add<hooks::on_authentication>("AUTH", reinterpret_cast<void *>(on_authentication));
-
-	const auto is_internal = reinterpret_cast<uintptr_t>(GetModuleHandleA(nullptr)) + 0x40EA280;
-	detour_hook_helper::add<hooks::is_internal>("IS_INTERNAL", reinterpret_cast<void *>(is_internal));
+	detour_hook_helper::add<hooks::render_prepare>("RENDER_PREPARE", g_pointers->m_roblox_pointers.m_render_prepare);
+	detour_hook_helper::add<hooks::render_perform>("RENDER_PERFORM", g_pointers->m_roblox_pointers.m_render_perform);
+	detour_hook_helper::add<hooks::render_view>("RENDER_VIEW", g_pointers->m_roblox_pointers.m_render_view);
 
 	g_hooking = this;
 }

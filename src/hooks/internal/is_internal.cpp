@@ -2,5 +2,5 @@
 #include "RobloxModLoader/hooking/hooking.hpp"
 
 bool hooks::is_internal() {
-    return true;
+    return false;
 }
