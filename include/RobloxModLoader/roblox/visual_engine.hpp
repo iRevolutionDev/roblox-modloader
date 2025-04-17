@@ -6,31 +6,21 @@ class VertexStreamer;
 
 class VisualEngine {
 private:
-    char pad_0000[0x84];
+    char pad_0000[0xA8];
 
 public:
     Device *device;
 
 private:
-    char pad_0008[0x8];
+    char pad_00B0[0x670];
 
 public:
-    char renderCameras[0x60];
-
-private:
-    char pad_00F0[0x638];
-
-public:
+    uintptr_t* dataModel;
     AdornRender *adornRender;
-
-private:
-    char pad_0730[0x10];
-
-public:
     VertexStreamer *vertexStreamer;
 
 private:
-    char pad_0744[0x4];
+    char pad_0744[0x8];
 
 public:
     float width;
