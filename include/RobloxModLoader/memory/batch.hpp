@@ -103,14 +103,15 @@ namespace memory
 					std::lock_guard<std::mutex> lock(s_entry_mutex); // Acquire a lock on the mutex to synchronize access.
 
 					std::invoke(std::move(entry.m_on_signature_found), result.value());
-					LOG_INFO("Found '%s' RobloxStudioBeta.exe+%X", entry.m_name,
+
+					LOG_INFO("Found '{}' RobloxStudioBeta.exe+{:X}", entry.m_name,
 						result.value().as<DWORD64>() - region.begin().as<DWORD64>());
 
 					return true;
 				}
 			}
 
-			LOG_INFO("Failed to find '%s'.", entry.m_name);
+			LOG_INFO("Failed to find '{}'.", entry.m_name);
 
 			return false;
 		}
