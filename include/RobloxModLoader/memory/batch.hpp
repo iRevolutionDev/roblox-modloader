@@ -104,7 +104,7 @@ namespace memory
 
 					std::invoke(std::move(entry.m_on_signature_found), result.value());
 
-					LOG_INFO("Found '{}' RobloxStudioBeta.exe+{:X}", entry.m_name,
+					LOG_INFO("Found '{}' RobloxStudioBeta.exe+0x{:X}", entry.m_name,
 						result.value().as<DWORD64>() - region.begin().as<DWORD64>());
 
 					return true;
