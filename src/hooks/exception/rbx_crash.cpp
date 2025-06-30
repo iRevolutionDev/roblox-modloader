@@ -8,9 +8,18 @@
 void log_crash_stack_trace() {
     LOG_ERROR("=== ROBLOX CRASH STACK TRACE ===");
 
-    const auto process = GetCurrentProcess();
+    HANDLE process = nullptr;
+    if (!DuplicateHandle(GetCurrentProcess(), GetCurrentProcess(), GetCurrentProcess(),
+                         &process, PROCESS_ALL_ACCESS, FALSE, 0)) {
+        LOG_ERROR("Failed to duplicate process handle: {}", GetLastError());
+        process = GetCurrentProcess();
+    }
+
     if (!SymInitialize(process, nullptr, TRUE)) {
-        LOG_ERROR("Failed to initialize symbol handler for crash trace: {}", GetLastError());
+        LOG_ERROR("Failed to initialize symbol handler: {}", GetLastError());
+        if (process != GetCurrentProcess()) {
+            CloseHandle(process);
+        }
         return;
     }
 
@@ -29,18 +38,15 @@ void log_crash_stack_trace() {
         symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         symbol->MaxNameLen = MAX_SYM_NAME;
 
-        DWORD value{};
-        DWORD *pValue = &value;
+        DWORD64 displacement = 0;
 
-        if (SymFromAddr(process, address, nullptr, symbol) &&
-            ((*pValue = symbol->Address - address)) &&
-            SymFromAddr(process, address, reinterpret_cast<PDWORD64>(pValue), symbol)) {
+        if (SymFromAddr(process, address, &displacement, symbol)) {
             const auto module_name = memory::module_utils::get_module_name_from_address(address);
             const auto roblox_base = memory::module_utils::get_roblox_studio_base();
             const auto rebased_addr = memory::module_utils::get_roblox_studio_rebased_address(address, roblox_base);
 
-            LOG_ERROR("[Crash Frame {}] Inside {} @ 0x{:016X} ({}) | Studio Rebase: 0x{:016X}",
-                      i, symbol->Name, address, module_name, rebased_addr);
+            LOG_ERROR("[Crash Frame {}] Inside {} @ 0x{:016X} ({}) | Studio Rebase: 0x{:016X} | Displacement: +0x{:X}",
+                      i, symbol->Name, address, module_name, rebased_addr, displacement);
         } else {
             const auto module_name = memory::module_utils::get_module_name_from_address(address);
             const auto roblox_base = memory::module_utils::get_roblox_studio_base();
@@ -51,13 +57,18 @@ void log_crash_stack_trace() {
         }
     }
 
-    std::stringstream stack_chain;
+    auto stack_chain = std::stringstream();
     for (WORD i = 0; i < frame_count; ++i) {
         stack_chain << std::hex << "0x" << reinterpret_cast<uintptr_t>(stack[i]);
         if (i < frame_count - 1) {
             stack_chain << " -> ";
         }
     }
+
+    if (stack_chain.str().empty()) {
+        stack_chain << "No stack trace available";
+    }
+
     LOG_ERROR("Crash Stack Chain: {}", stack_chain.str());
 
     SymCleanup(process);
@@ -113,8 +124,8 @@ void hooks::rbx_crash(const char *type, const char *message) {
                 "RobloxModLoader - Roblox Crash Detected",
                 MB_OK | MB_ICONERROR);
 
-    LOG_ERROR("Waiting 60 seconds before allowing Roblox to continue...");
-    std::this_thread::sleep_for(std::chrono::seconds(60));
+    LOG_ERROR("Waiting 5 seconds before allowing Roblox to continue...");
+    std::this_thread::sleep_for(std::chrono::seconds(5));
 
     LOG_INFO("Roblox crash handler completed, allowing execution to continue");
 }
