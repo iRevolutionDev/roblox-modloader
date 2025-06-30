@@ -14,8 +14,29 @@ mod_manager::~mod_manager() {
 
 void mod_manager::initialize() {
     LOG_INFO("Initializing ModManager...");
-    load_mods_from_directory(std::filesystem::current_path() / "RobloxModLoader" / "mods");
+    const auto module_dir = get_module_directory();
+    load_mods_from_directory(module_dir / "RobloxModLoader" / "mods");
     LOG_INFO("ModManager initialized.");
+}
+
+std::filesystem::path mod_manager::get_module_directory() {
+    HMODULE hModule = nullptr;
+
+    if (!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                            reinterpret_cast<LPCWSTR>(&get_module_directory), &hModule)) {
+        LOG_ERROR("Failed to get module handle: {}", GetLastError());
+        return std::filesystem::current_path();
+    }
+
+    wchar_t module_path[MAX_PATH];
+    if (GetModuleFileNameW(hModule, module_path, MAX_PATH) == 0) {
+        LOG_ERROR("Failed to get module filename: {}", GetLastError());
+        return std::filesystem::current_path();
+    }
+
+    std::filesystem::path module_dir = std::filesystem::path(module_path).parent_path();
+    LOG_DEBUG("Module directory: {}", module_dir.string());
+    return module_dir;
 }
 
 void mod_manager::load_mods() {

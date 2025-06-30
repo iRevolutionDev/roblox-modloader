@@ -30,6 +30,8 @@ public:
     std::mutex mods_mutex;
 
 private:
+    static std::filesystem::path get_module_directory();
+
     events::EventManager *event_manager{nullptr};
 };
 
