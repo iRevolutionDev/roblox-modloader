@@ -14,6 +14,9 @@ hooking::hooking() {
 	detour_hook_helper::add<hooks::render_prepare>("RENDER_PREPARE", g_pointers->m_roblox_pointers.m_render_prepare);
 	detour_hook_helper::add<hooks::render_perform>("RENDER_PERFORM", g_pointers->m_roblox_pointers.m_render_perform);
 	detour_hook_helper::add<hooks::render_view>("RENDER_VIEW", g_pointers->m_roblox_pointers.m_render_view);
+	detour_hook_helper::add<hooks::on_window_create>("ON_WINDOW_CREATE",
+	                                                 g_pointers->m_roblox_pointers.m_on_window_create);
+
 
 	g_hooking = this;
 }

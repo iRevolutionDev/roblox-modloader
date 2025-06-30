@@ -35,7 +35,15 @@ constexpr auto pointers::get_roblox_batch() {
             [](const memory::handle ptr) {
                 g_pointers->m_roblox_pointers.m_render_view = ptr.as<PVOID>();
             },
-        }
+        },
+    {
+        // On Window Create
+        "OWC",
+            "48 89 5C 24 ?? 48 89 74 24 ?? 48 89 4C 24 ?? 57 41 54 41 55 41 56 41 57 48 81 EC ?? ?? ?? ?? 49 8B D1",
+            [](const memory::handle ptr) {
+                g_pointers->m_roblox_pointers.m_on_window_create = ptr.as<PVOID>();
+            },
+    }
     >();
 
     // clang-format on

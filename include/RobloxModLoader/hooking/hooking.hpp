@@ -1,6 +1,8 @@
 #pragma once
 
 #include <MinHook.h>
+#include <qmap.h>
+
 #include "detour_hook.hpp"
 #include "vmt_hook.hpp"
 #include "vtable_hook.hpp"
@@ -8,6 +10,8 @@
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/roblox/adorn_render.hpp"
 #include "RobloxModLoader/roblox/render_view.hpp"
+
+class QWidget;
 
 struct hooks {
 	static void rbx_crash(const char *type, const char *message);
@@ -26,6 +30,10 @@ struct hooks {
 
 	static void render_view(uintptr_t *scene_manager, uintptr_t *context, uintptr_t *mainFrameBuffer, uintptr_t *camera,
 	                        uintptr_t *a5, unsigned int viewWidth, unsigned int viewHeight);
+
+	static void on_window_create(QWidget *window, uintptr_t a1, uintptr_t a2, uintptr_t a3, uintptr_t a4, uintptr_t a5,
+	                             uintptr_t a6, uintptr_t a7, uintptr_t a8, uintptr_t a9, uintptr_t a10,
+	                             uintptr_t a11);
 };
 
 class minhook_keepalive {

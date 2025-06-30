@@ -18,6 +18,8 @@ struct roblox_pointers {
 
   // Scene Manager Render View
   PVOID m_render_view;
+
+  PVOID m_on_window_create;
 };
 #pragma pack(pop)
 static_assert(sizeof(roblox_pointers) % 8 == 0, "Pointers are not properly aligned");

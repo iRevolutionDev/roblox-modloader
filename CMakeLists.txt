@@ -12,6 +12,12 @@ include(scripts/spdlog.cmake)
 include(scripts/minhook.cmake)
 include(scripts/zlib.cmake)
 
+set(CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64")
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+
 # Source files
 message(STATUS "Roblox ModLoader")
 file(GLOB_RECURSE SRC_MAIN
@@ -65,6 +71,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         "${spdlog_SOURCE_DIR}"
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
+        ${Qt5Core_INCLUDE_DIRS}
+        ${Qt5Gui_INCLUDE_DIRS}
+        ${Qt5Widgets_INCLUDE_DIRS}
 )
 
 target_include_directories(${PROJECT_NAME}_interface INTERFACE
@@ -72,7 +81,11 @@ target_include_directories(${PROJECT_NAME}_interface INTERFACE
         "${spdlog_SOURCE_DIR}"
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
+        ${Qt5Core_INCLUDE_DIRS}
+        ${Qt5Gui_INCLUDE_DIRS}
+        ${Qt5Widgets_INCLUDE_DIRS}
 )
+target_compile_definitions(${PROJECT_NAME} PRIVATE ${Qt5Core_DEFINITIONS} ${Qt5Gui_DEFINITIONS} ${Qt5Widgets_DEFINITIONS})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/RobloxModLoader/common.hpp")
 
@@ -102,6 +115,41 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
         NOMINMAX
         WIN32_LEAN_AND_MEAN
 )
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE QT_WIDGETS_LIB QT_GUI_LIB QT_CORE_LIB)
+
+set(QT_LIBS_DIR "${CMAKE_PREFIX_PATH}/lib")
+find_library(QT5_CORE_LIB Qt5Core PATHS ${QT_LIBS_DIR} NO_DEFAULT_PATH REQUIRED)
+find_library(QT5_GUI_LIB Qt5Gui PATHS ${QT_LIBS_DIR} NO_DEFAULT_PATH REQUIRED)
+find_library(QT5_WIDGETS_LIB Qt5Widgets PATHS ${QT_LIBS_DIR} NO_DEFAULT_PATH REQUIRED)
+
+find_library(QT5_WINMAIN_LIB qtmain PATHS ${QT_LIBS_DIR} NO_DEFAULT_PATH REQUIRED)
+find_library(QT5_PLATFORM_SUPPORT_LIB Qt5PlatformSupport PATHS ${QT_LIBS_DIR} NO_DEFAULT_PATH)
+
+message(STATUS "Qt5Core lib: ${QT5_CORE_LIB}")
+message(STATUS "Qt5Gui lib: ${QT5_GUI_LIB}")
+message(STATUS "Qt5Widgets lib: ${QT5_WIDGETS_LIB}")
+
+if (MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /INCLUDE:_main")
+endif ()
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        ${QT5_CORE_LIB}
+        ${QT5_GUI_LIB}
+        ${QT5_WIDGETS_LIB}
+        ${QT5_WINMAIN_LIB}
+)
+
+if (WIN32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_PREFIX_PATH}/bin/Qt5Core.dll"
+            "${CMAKE_PREFIX_PATH}/bin/Qt5Gui.dll"
+            "${CMAKE_PREFIX_PATH}/bin/Qt5Widgets.dll"
+            $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    )
+endif ()
 
 # Optimizations
 if (MSVC)
