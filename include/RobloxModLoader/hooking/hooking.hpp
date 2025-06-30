@@ -14,8 +14,6 @@ struct hooks {
 
 	static uint64_t *on_authentication(uint64_t *_this, uint64_t doc_panel_provider, uint64_t q_image_provider);
 
-	static bool is_internal();
-
 	static std::uintptr_t *build_summary(uintptr_t *_this, std::uintptr_t *out);
 
 	static void render_pass_2d(uintptr_t *_this, AdornRender *adorn, uintptr_t *graphics_metric);
