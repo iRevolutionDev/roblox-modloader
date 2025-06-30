@@ -3,6 +3,7 @@
 #include "pointers.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
 #include "RobloxModLoader/mod/events.hpp"
+#include "RobloxModLoader/exception/exception_filter.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
     if (dwReason == DLL_PROCESS_ATTACH) {
@@ -12,6 +13,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
         g_main_thread = CreateThread(nullptr, 0, [](PVOID) -> DWORD {
             logger::init();
             LOG_INFO("Initializing Roblox Mod Loader...");
+
+            exception_filter::exception_handler::initialize();
+            LOG_INFO("Exception handler initialized.");
 
             const auto event_manager_instance = std::make_shared<events::EventManager>();
             LOG_INFO("Event Manager initialized.");
@@ -38,6 +42,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
             while (g_running) {
                 std::this_thread::sleep_for(1s);
             }
+
+            exception_filter::exception_handler::shutdown();
+            LOG_INFO("Exception handler shutdown.");
 
             CloseHandle(g_main_thread);
             FreeLibraryAndExitThread(g_hinstance, 0);

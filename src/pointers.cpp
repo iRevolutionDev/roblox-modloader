@@ -5,10 +5,17 @@
 constexpr auto pointers::get_roblox_batch() {
     // clang-format off
     constexpr auto batch_and_hash = memory::make_batch<
-        // Render Perform
         {
+            "RBXCRASH",
+            "48 89 5C 24 ? 48 89 7C 24 ? 55 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B FA 48 8B D9 48 8B 05 ? ? ? ? 48 85 C0",
+            [](const memory::handle ptr) {
+                g_pointers->m_roblox_pointers.m_rbx_crash = ptr.as<PVOID>();
+            },
+        },
+        // Render Perform
+         {
             "RP",
-            "48 8B C4 48 89 58 ?? 44 89 48 ?? 4C 89 40 ?? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ?? ?? ?? ?? 48 81 EC ?? ?? ?? ?? 0F 29 70 ?? 0F 29 78 ?? 44 0F 29 50",
+            "48 8B C4 48 89 58 ? 44 89 48 ? 4C 89 40 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70 ? 0F 29 78",
             [](const memory::handle ptr) {
                 g_pointers->m_roblox_pointers.m_render_perform = ptr.as<PVOID>();
             },

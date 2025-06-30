@@ -10,6 +10,7 @@ class HashTable;
 // needed for serialization of the pointers cache
 #pragma pack(push, 1)
 struct roblox_pointers {
+  PVOID m_rbx_crash;
   PVOID m_render_prepare;
   PVOID m_render_perform;
   PVOID m_render_pass_2d;

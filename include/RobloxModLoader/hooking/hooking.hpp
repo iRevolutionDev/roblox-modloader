@@ -10,6 +10,8 @@
 #include "RobloxModLoader/roblox/render_view.hpp"
 
 struct hooks {
+	static void rbx_crash(const char *type, const char *message);
+
 	static uint64_t *on_authentication(uint64_t *_this, uint64_t doc_panel_provider, uint64_t q_image_provider);
 
 	static bool is_internal();
