@@ -4,6 +4,7 @@
 #include "RobloxModLoader/hooking/hooking.hpp"
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/exception/exception_filter.hpp"
+#include "utils/directory_utils.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
     if (dwReason == DLL_PROCESS_ATTACH) {
@@ -11,7 +12,14 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
 
         g_hinstance = hModule;
         g_main_thread = CreateThread(nullptr, 0, [](PVOID) -> DWORD {
+            const auto config_path = directory_utils::get_module_directory() / "RobloxModLoader" / "config.toml";
+            if (const auto config_result = rml::config::initialize(config_path, true); !config_result) {
+                std::cerr << "Failed to initialize configuration system" << std::endl;
+                return 1;
+            }
+
             logger::init();
+
             LOG_INFO("Initializing Roblox Mod Loader...");
 
             exception_filter::exception_handler::initialize();
@@ -42,6 +50,10 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
             while (g_running) {
                 std::this_thread::sleep_for(1s);
             }
+
+            // Shutdown configuration system
+            rml::config::shutdown();
+            LOG_INFO("Configuration system shutdown.");
 
             exception_filter::exception_handler::shutdown();
             LOG_INFO("Exception handler shutdown.");

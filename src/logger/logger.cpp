@@ -54,27 +54,63 @@ std::shared_ptr<spdlog::logger> global_logger() {
 }
 
 void logger::open_console() {
-    AllocConsole();
+    static bool console_allocated = false;
 
-    freopen_s(reinterpret_cast<FILE **>(stdout), "CONOUT$", "w", stdout);
-    freopen_s(reinterpret_cast<FILE **>(stdin), "CONIN$", "r", stdin);
-    freopen_s(reinterpret_cast<FILE **>(stderr), "CONOUT$", "w", stderr);
+    if (console_allocated) {
+        return;
+    }
+
+    if (const auto &config = rml::config::get_config_manager().get_core_config(); !config.logging.enable_console) {
+        return;
+    }
+
+    if (AllocConsole()) {
+        console_allocated = true;
+        freopen_s(reinterpret_cast<FILE **>(stdout), "CONOUT$", "w", stdout);
+        freopen_s(reinterpret_cast<FILE **>(stdin), "CONIN$", "r", stdin);
+        freopen_s(reinterpret_cast<FILE **>(stderr), "CONOUT$", "w", stderr);
+    }
 }
 
 void logger::init() {
+    static bool logger_initialized = false;
+
+    if (logger_initialized) {
+        return;
+    }
+
+#if IS_RML
     open_console();
+#endif
     ensure_log_directory();
-    set_async_mode();
+
+    try {
+        if (const auto &config = rml::config::get_config_manager().get_core_config(); config.logging.
+            enable_async_logging) {
+            set_async_mode();
+        }
+    } catch (...) {
+        set_async_mode();
+    }
 
     const auto sinks = get_shared_sinks();
     const auto new_logger = std::make_shared<spdlog::logger>("roblox_modloader", sinks.begin(), sinks.end());
 
-    register_logger(new_logger);
-    new_logger->set_level(spdlog::level::debug);
-    new_logger->flush_on(spdlog::level::debug);
+    spdlog::register_logger(new_logger);
+
+    try {
+        const auto &config = rml::config::get_config_manager().get_core_config();
+        new_logger->set_level(static_cast<spdlog::level::level_enum>(config.logging.level));
+        new_logger->flush_on(static_cast<spdlog::level::level_enum>(config.logging.level));
+    } catch (...) {
+        new_logger->set_level(spdlog::level::debug);
+        new_logger->flush_on(spdlog::level::debug);
+    }
+
     new_logger->set_pattern("[%T] [%^%L%$] [%n] %v");
 
     global_logger_holder::logger.store(new_logger);
+    logger_initialized = true;
 }
 
 void logger::set_async_mode() {
@@ -101,7 +137,7 @@ std::shared_ptr<spdlog::logger> logger::get_logger(const std::string &name) {
     new_logger->flush_on(spdlog::level::debug);
     new_logger->set_pattern("[%T] [%^%L%$] [%n] %v");
 
-    register_logger(new_logger);
+    spdlog::register_logger(new_logger);
 
     return new_logger;
 }

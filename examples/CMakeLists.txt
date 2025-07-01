@@ -13,8 +13,8 @@ foreach (EXAMPLE_DIR ${EXAMPLES_DIRS})
         target_sources(${EXAMPLE_DIR} PRIVATE ${EXAMPLES_FILES})
 
         target_include_directories(${EXAMPLE_DIR} PRIVATE
-            "${PROJECT_SOURCE_DIR}/include"
-            "${PROJECT_SOURCE_DIR}/src"
+                "${PROJECT_SOURCE_DIR}/include"
+                "${PROJECT_SOURCE_DIR}/src"
         )
         target_link_libraries(${EXAMPLE_DIR}
                 ${PROJECT_NAME}_interface

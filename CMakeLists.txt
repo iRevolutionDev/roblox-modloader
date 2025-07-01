@@ -11,6 +11,7 @@ message(STATUS "Fetching packages...")
 include(scripts/spdlog.cmake)
 include(scripts/minhook.cmake)
 include(scripts/zlib.cmake)
+include(scripts/toml.cmake)
 
 # Source files
 message(STATUS "Roblox ModLoader")
@@ -65,6 +66,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         "${spdlog_SOURCE_DIR}"
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
+        "${tomlplusplus_SOURCE_DIR}/include"
 )
 
 target_include_directories(${PROJECT_NAME}_interface INTERFACE
@@ -72,6 +74,7 @@ target_include_directories(${PROJECT_NAME}_interface INTERFACE
         "${spdlog_SOURCE_DIR}"
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
+        "${tomlplusplus_SOURCE_DIR}/include"
 )
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/RobloxModLoader/common.hpp")
@@ -102,6 +105,8 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
         NOMINMAX
         WIN32_LEAN_AND_MEAN
 )
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE IS_RML=1)
 
 # Optimizations
 if (MSVC)

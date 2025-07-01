@@ -30,7 +30,13 @@
 
 #include <atomic>
 #include <mutex>
+#include <shared_mutex>
+#include <condition_variable>
+#include <functional>
+#include <future>
+#include <limits>
 #include <thread>
+#include <ranges>
 
 #include <memory>
 #include <new>
@@ -58,6 +64,7 @@
 #include <optional>
 #include <variant>
 #include <array>
+#include <concepts>
 
 #include <format>
 
@@ -70,7 +77,10 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/cfg/env.h"
 
+#include <toml++/toml.hpp>
+
 #include "RobloxModLoader/logger/logger.hpp"
+#include "RobloxModLoader/config/config.hpp"
 
 // clang-format on
 
