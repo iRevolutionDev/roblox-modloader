@@ -37,6 +37,9 @@
 #include <limits>
 #include <thread>
 #include <ranges>
+#include <expected>
+#include <span>
+#include <queue>
 
 #include <memory>
 #include <new>
@@ -71,6 +74,9 @@
 #include <dwmapi.h>
 #include <tchar.h>
 #include <uxtheme.h>
+
+#include <dbghelp.h>
+#include <Psapi.h>
 
 #include <tlhelp32.h>
 

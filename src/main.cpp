@@ -4,6 +4,7 @@
 #include "RobloxModLoader/hooking/hooking.hpp"
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/exception/exception_filter.hpp"
+#include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include "utils/directory_utils.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
@@ -36,6 +37,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
 
             mod_manager_instance->set_event_manager(event_manager_instance.get());
             LOG_INFO("Event Manager set in Mod Manager.");
+
+            const auto rtti_manager_instance = std::make_shared<memory::rtti::rtti_manager>();
+            LOG_INFO("RTTI Scanner initialized.");
 
             const auto pointers_instance = std::make_shared<pointers>();
             LOG_INFO("Pointers initialized.");
