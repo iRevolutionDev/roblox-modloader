@@ -38,4 +38,5 @@ private:
     void **m_table;
     std::unique_ptr<void *[]> m_backup_table;
     std::unique_ptr<void *[]> m_hook_table;
+    DWORD m_old_protect;
 };
