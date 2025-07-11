@@ -149,7 +149,7 @@ namespace memory::rtti {
                     auto *col = *current;
                     if (!col) continue;
 
-                    if (validate_and_process_rtti(col, base_address)) {
+                    if (validate_and_process_rtti(current, col, base_address)) {
                         ++found_count;
                     }
                 } catch (...) {
@@ -161,7 +161,8 @@ namespace memory::rtti {
         return found_count;
     }
 
-    bool scanner::validate_and_process_rtti(complete_object_locator *col, std::uint8_t *base_address) const {
+    bool scanner::validate_and_process_rtti(complete_object_locator **pointer_col, complete_object_locator *col,
+                                            std::uint8_t *base_address) const {
         if (!col || !m_section_data) {
             return false;
         }
@@ -206,7 +207,7 @@ namespace memory::rtti {
             }
 
             auto rtti = std::make_unique<rtti_info>(
-                reinterpret_cast<void **>(col),
+                reinterpret_cast<void **>(pointer_col) + 1,
                 col,
                 type_desc,
                 class_hierarchy,

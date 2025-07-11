@@ -117,6 +117,22 @@ namespace memory::rtti {
          */
         [[nodiscard]] static std::string demangle_name(const char *mangled_name);
 
+        /**
+         * @brief Get class hierarchy descriptor
+         * @return Class hierarchy descriptor pointer
+         */
+        [[nodiscard]] class_hierarchy_descriptor *get_class_hierarchy_descriptor() const noexcept {
+            return m_class_hierarchy_descriptor;
+        }
+
+        /**
+         * @brief Get base class descriptor
+         * @return Base class descriptor pointer
+         */
+        [[nodiscard]] base_class_descriptor *get_base_class_descriptor() const noexcept {
+            return m_base_class_descriptor;
+        }
+
     private:
         void **m_virtual_function_table;
         complete_object_locator *m_complete_object_locator;
@@ -186,11 +202,13 @@ namespace memory::rtti {
 
         /**
          * @brief Validate and process potential RTTI structure
+         * @param pointer_col Pointer to complete object locator candidate
          * @param col Complete object locator candidate
          * @param base_address Process base address
          * @return true if valid RTTI structure
          */
         [[nodiscard]] bool validate_and_process_rtti(
+            complete_object_locator **pointer_col,
             complete_object_locator *col,
             std::uint8_t *base_address
         ) const;
