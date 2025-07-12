@@ -12,6 +12,7 @@ include(scripts/spdlog.cmake)
 include(scripts/minhook.cmake)
 include(scripts/zlib.cmake)
 include(scripts/toml.cmake)
+include(scripts/luau.cmake)
 
 # Source files
 message(STATUS "Roblox ModLoader")
@@ -67,6 +68,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
         "${tomlplusplus_SOURCE_DIR}/include"
+
+        "${Luau.Compiler}"
+        "${Luau.Ast}"
+        "${Luau.VM}"
+        "${Luau.VM.Internals}"
+        "${Luau.EqSat}"
+        "${Luau.CodeGen}"
 )
 
 target_include_directories(${PROJECT_NAME}_interface INTERFACE
@@ -75,6 +83,13 @@ target_include_directories(${PROJECT_NAME}_interface INTERFACE
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
         "${tomlplusplus_SOURCE_DIR}/include"
+
+        "${Luau.Compiler}"
+        "${Luau.Ast}"
+        "${Luau.VM}"
+        "${Luau.VM.Internals}"
+        "${Luau.EqSat}"
+        "${Luau.CodeGen}"
 )
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/RobloxModLoader/common.hpp")
@@ -84,12 +99,26 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
         spdlog
         minhook
         ZLIB::ZLIB
+
+        Luau.Compiler
+        Luau.Ast
+        Luau.VM
+        Luau.VM.Internals
+        Luau.EqSat
+        Luau.CodeGen
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC ${PROJECT_NAME}_interface
         spdlog
         minhook
         ZLIB::ZLIB
+
+        Luau.Compiler
+        Luau.Ast
+        Luau.VM
+        Luau.VM.Internals
+        Luau.EqSat
+        Luau.CodeGen
 )
 
 # Add subdirectory

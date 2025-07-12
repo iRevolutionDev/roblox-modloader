@@ -7,6 +7,7 @@
 #include "call_hook.hpp"
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/roblox/adorn_render.hpp"
+#include "RobloxModLoader/roblox/job.hpp"
 #include "RobloxModLoader/roblox/render_view.hpp"
 
 struct hooks {
@@ -22,10 +23,20 @@ struct hooks {
 
 	static void render_prepare(RenderView *this_ptr, uintptr_t metric, bool updateViewport);
 
-	static void render_perform(RenderView *this_ptr, uintptr_t mainFramebuffer, double timeJobStart);
+	static void render_perform(RenderView *this_ptr, double timeJobStart, uintptr_t *frame_buffer, uintptr_t a4);
 
 	static void render_view(uintptr_t *scene_manager, uintptr_t *context, uintptr_t *mainFrameBuffer, uintptr_t *camera,
 	                        uintptr_t *a5, unsigned int viewWidth, unsigned int viewHeight);
+
+	static void on_job_step(void **this_ptr, uintptr_t time_metrics);
+
+	static void on_job_destroy(void **this_ptr);
+
+	static void resume_waiting_scripts(uintptr_t *script_context, int expiration_time);
+
+	static void light_grid_update_perform(void *this_ptr, uintptr_t unk, void *unk2, uintptr_t unk3);
+
+	static uintptr_t profile_log(uintptr_t token, uint64_t tick, uint64_t begin, uintptr_t *log);
 };
 
 class minhook_keepalive {
@@ -107,6 +118,7 @@ public:
 private:
 	bool m_enabled{};
 	minhook_keepalive m_minhook_keepalive;
+	std::unordered_map<JobKind, std::unique_ptr<vtable_hook> > m_jobs_hook;
 
 	static inline std::vector<detour_hook_helper> m_detour_hook_helpers;
 };

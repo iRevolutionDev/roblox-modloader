@@ -5,6 +5,8 @@
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/exception/exception_filter.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
+#include "RobloxModLoader/roblox/job_manager.hpp"
+#include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "utils/directory_utils.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
@@ -43,6 +45,12 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
 
             const auto pointers_instance = std::make_shared<pointers>();
             LOG_INFO("Pointers initialized.");
+
+            const auto rbx_task_scheduler_instance = std::make_shared<RBX::TaskScheduler>();
+            LOG_INFO("Roblox Task Scheduler initialized.");
+
+            const auto job_manager_instance = std::make_shared<rml::jobs::JobManager>();
+            LOG_INFO("Job Manager initialized.");
 
             const auto hooking_instance = std::make_shared<hooking>();
             LOG_INFO("Hooking initialized.");

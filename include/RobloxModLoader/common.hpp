@@ -88,6 +88,12 @@
 #include "RobloxModLoader/logger/logger.hpp"
 #include "RobloxModLoader/config/config.hpp"
 
+// Luau
+#include <lua.h>
+#include <lualib.h>
+#include <luau/Compiler.h>
+#include <luau/CodeGen.h>
+
 // clang-format on
 
 using namespace std::chrono_literals;
