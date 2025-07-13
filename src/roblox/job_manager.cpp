@@ -1,6 +1,7 @@
 #include "RobloxModLoader/roblox/job_manager.hpp"
 
 #include "jobs/data_model_watcher_job.hpp"
+#include "jobs/scripting/luau_waiting_script_job.hpp"
 
 namespace rml::jobs {
     class JobManager::LambdaJob final : public JobBase {
@@ -79,6 +80,7 @@ namespace rml::jobs {
         g_job_manager = this;
 
         register_job<DataModelWatcherJob>();
+        register_job<LuauWaitingScriptJob>();
     }
 
     JobManager::~JobManager() {

@@ -1,14 +1,22 @@
 #pragma once
-#include "RobloxModLoader/roblox/job.hpp"
-#include "RobloxModLoader/common.hpp"
-#include <unordered_map>
-#include <vector>
-#include <shared_mutex>
+#include "job.hpp"
+
+namespace rml {
+    enum class JobKind : std::uint8_t;
+    struct JobExecutionContext;
+}
 
 namespace RBX {
+    class DataModel;
+
     class TaskScheduler final {
     public:
-        using JobPtr = std::unique_ptr<IJob>;
+        typedef enum {
+            Done,
+            Stepped,
+        } StepResult;
+
+        using JobPtr = std::unique_ptr<rml::IJob>;
         using JobId = std::uint64_t;
 
         TaskScheduler();
@@ -29,13 +37,13 @@ namespace RBX {
 
         bool unregister_job(std::string_view job_name) noexcept;
 
-        void execute_jobs_for_kind(const JobExecutionContext &context) noexcept;
+        void execute_jobs_for_kind(const rml::JobExecutionContext &context) noexcept;
 
-        std::optional<std::reference_wrapper<IJob> > get_job(JobId job_id) const noexcept;
+        std::optional<std::reference_wrapper<rml::IJob> > get_job(JobId job_id) const noexcept;
 
-        std::optional<std::reference_wrapper<IJob> > get_job(std::string_view job_name) const noexcept;
+        std::optional<std::reference_wrapper<rml::IJob> > get_job(std::string_view job_name) const noexcept;
 
-        std::vector<JobId> get_jobs_by_kind(JobKind kind) const noexcept;
+        std::vector<JobId> get_jobs_by_kind(rml::JobKind kind) const noexcept;
 
         std::size_t get_job_count() const noexcept;
 
@@ -50,17 +58,21 @@ namespace RBX {
 
         void reset_stats() noexcept;
 
-        std::uintptr_t get_roblox_scheduler() const noexcept;
-
         std::uintptr_t get_roblox_job_by_name(std::string_view name) const noexcept;
 
         void shutdown() noexcept;
 
         bool is_shutdown() const noexcept;
 
-        std::optional<JobKind> get_job_kind_from_vtable(void **vtable) const noexcept;
+        std::optional<rml::JobKind> get_job_kind_from_vtable(void **vtable) const noexcept;
 
-        std::optional<void **> get_vtable_for_job_kind(JobKind kind) const noexcept;
+        std::optional<void **> get_vtable_for_job_kind(rml::JobKind kind) const noexcept;
+
+        void set_data_model(const DataModel *data_model);
+
+        const DataModel *get_data_model() const noexcept {
+            return m_data_model;
+        }
 
     private:
         struct JobEntry {
@@ -75,16 +87,18 @@ namespace RBX {
         };
 
         mutable std::shared_mutex m_jobs_mutex;
+        std::mutex m_data_model_mutex;
+
         std::unordered_map<JobId, JobEntry> m_jobs;
         std::unordered_map<std::string, JobId> m_name_to_id;
         std::atomic<JobId> m_next_job_id{1};
 
-        std::uintptr_t m_roblox_scheduler;
-
         std::atomic<bool> m_shutdown_requested{false};
 
-        std::unordered_map<void **, JobKind> m_vtable_to_kind;
-        std::unordered_map<JobKind, void **> m_kind_to_vtable;
+        std::unordered_map<void **, rml::JobKind> m_vtable_to_kind;
+        std::unordered_map<rml::JobKind, void **> m_kind_to_vtable;
+
+        const DataModel *m_data_model;
 
         void initialize() noexcept;
 
@@ -94,7 +108,7 @@ namespace RBX {
 
         JobId generate_job_id() noexcept;
 
-        void execute_job_with_stats(JobEntry &entry, const JobExecutionContext &context) noexcept;
+        void execute_job_with_stats(JobEntry &entry, const rml::JobExecutionContext &context) noexcept;
     };
 }
 

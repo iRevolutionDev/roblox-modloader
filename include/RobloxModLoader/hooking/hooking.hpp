@@ -9,6 +9,11 @@
 #include "RobloxModLoader/roblox/adorn_render.hpp"
 #include "RobloxModLoader/roblox/job.hpp"
 #include "RobloxModLoader/roblox/render_view.hpp"
+#include "RobloxModLoader/roblox/task_scheduler.hpp"
+
+namespace RBX {
+	class TaskSchedulerJob;
+}
 
 struct hooks {
 	static void rbx_crash(const char *type, const char *message);
@@ -28,7 +33,7 @@ struct hooks {
 	static void render_view(uintptr_t *scene_manager, uintptr_t *context, uintptr_t *mainFrameBuffer, uintptr_t *camera,
 	                        uintptr_t *a5, unsigned int viewWidth, unsigned int viewHeight);
 
-	static void on_job_step(void **this_ptr, uintptr_t time_metrics);
+	static RBX::TaskScheduler::StepResult on_job_step(void **this_ptr, const RBX::Stats &time_metrics);
 
 	static void on_job_destroy(void **this_ptr);
 
@@ -118,7 +123,7 @@ public:
 private:
 	bool m_enabled{};
 	minhook_keepalive m_minhook_keepalive;
-	std::unordered_map<JobKind, std::unique_ptr<vtable_hook> > m_jobs_hook;
+	std::unordered_map<rml::JobKind, std::unique_ptr<vtable_hook> > m_jobs_hook;
 
 	static inline std::vector<detour_hook_helper> m_detour_hook_helpers;
 };

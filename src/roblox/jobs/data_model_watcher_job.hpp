@@ -1,6 +1,14 @@
 #pragma once
 #include "RobloxModLoader/roblox/job_base.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/roblox/task_scheduler.hpp"
+
+namespace RBX {
+    enum class DataModelType;
+}
+
+namespace RBX {
+    class DataModel;
+}
 
 namespace rml::jobs {
     class DataModelWatcherJob final : public JobBase {
@@ -26,8 +34,11 @@ namespace rml::jobs {
 
         static constexpr std::string_view JOB_NAME = "DataModelWatcher";
 
-        std::uintptr_t get_current_data_model() const noexcept;
+        static void on_data_model_changed(const RBX::DataModel *old_data_model,
+                                          const RBX::DataModel *new_data_model);
 
-        void on_data_model_changed(std::uintptr_t old_dm, std::uintptr_t new_dm) noexcept;
+        std::unordered_map<RBX::DataModelType, RBX::DataModel *> m_data_models;
+        std::unordered_map<RBX::DataModelType, std::chrono::steady_clock::time_point> m_data_model_last_time_stepped;
+        std::chrono::steady_clock::time_point m_last_check = std::chrono::high_resolution_clock::now();
     };
 }

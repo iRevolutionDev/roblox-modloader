@@ -8,7 +8,9 @@
 hooking::hooking() {
 	LOG_INFO("Initializing hooking");
 
-	for (const auto kind: {JobKind::Heartbeat, JobKind::Physics, JobKind::WaitingHybridScripts, JobKind::Render}) {
+	for (const auto kind: {
+		     rml::JobKind::Heartbeat, rml::JobKind::Physics, rml::JobKind::WaitingHybridScripts, rml::JobKind::Render
+	     }) {
 		const auto vtable = g_task_scheduler->get_vtable_for_job_kind(kind);
 
 		if (!vtable.has_value()) {

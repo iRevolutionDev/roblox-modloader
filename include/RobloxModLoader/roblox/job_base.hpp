@@ -1,4 +1,5 @@
 #pragma once
+#include "data_model_job.hpp"
 #include "RobloxModLoader/roblox/job.hpp"
 #include "RobloxModLoader/common.hpp"
 

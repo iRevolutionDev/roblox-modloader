@@ -1,22 +1,17 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
+#include "RobloxModLoader/roblox/job.hpp"
 #include "pointers.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include <array>
 #include <utility>
 
 namespace RBX {
-    TaskScheduler::TaskScheduler()
-        : m_roblox_scheduler(0) {
+    TaskScheduler::TaskScheduler() {
         g_task_scheduler = this;
-
-        if (g_pointers && g_pointers->m_roblox_pointers.get_scheduler) {
-            m_roblox_scheduler = g_pointers->m_roblox_pointers.get_scheduler();
-        }
 
         initialize();
         initialize_vtable_mappings();
-        LOG_INFO("[TaskScheduler] Initialized with Roblox scheduler at 0x{:X}", m_roblox_scheduler);
     }
 
     TaskScheduler::~TaskScheduler() {
@@ -87,7 +82,7 @@ namespace RBX {
         return unregister_job(job_id);
     }
 
-    void TaskScheduler::execute_jobs_for_kind(const JobExecutionContext &context) noexcept {
+    void TaskScheduler::execute_jobs_for_kind(const rml::JobExecutionContext &context) noexcept {
         if (m_shutdown_requested.load(std::memory_order_acquire)) {
             return;
         }
@@ -119,7 +114,7 @@ namespace RBX {
         }
     }
 
-    std::optional<std::reference_wrapper<IJob> > TaskScheduler::get_job(JobId job_id) const noexcept {
+    std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(JobId job_id) const noexcept {
         std::shared_lock lock(m_jobs_mutex);
 
         const auto it = m_jobs.find(job_id);
@@ -130,7 +125,7 @@ namespace RBX {
         return std::nullopt;
     }
 
-    std::optional<std::reference_wrapper<IJob> > TaskScheduler::get_job(std::string_view job_name) const noexcept {
+    std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(std::string_view job_name) const noexcept {
         std::shared_lock lock(m_jobs_mutex);
 
         const auto name_it = m_name_to_id.find(std::string(job_name));
@@ -145,12 +140,12 @@ namespace RBX {
         return std::nullopt;
     }
 
-    std::vector<TaskScheduler::JobId> TaskScheduler::get_jobs_by_kind(JobKind kind) const noexcept {
+    std::vector<TaskScheduler::JobId> TaskScheduler::get_jobs_by_kind(rml::JobKind kind) const noexcept {
         std::vector<JobId> result;
         std::shared_lock lock(m_jobs_mutex);
 
         for (const auto &[job_id, entry]: m_jobs) {
-            if (has_job_kind(entry.job->get_target_kind(), kind) || kind == JobKind::Custom) {
+            if (has_job_kind(entry.job->get_target_kind(), kind) || kind == rml::JobKind::Custom) {
                 result.push_back(job_id);
             }
         }
@@ -181,25 +176,21 @@ namespace RBX {
         }
     }
 
-    std::uintptr_t TaskScheduler::get_roblox_scheduler() const noexcept {
-        return m_roblox_scheduler;
-    }
-
     std::uintptr_t TaskScheduler::get_roblox_job_by_name(std::string_view name) const noexcept {
-        if (!m_roblox_scheduler) {
-            return 0;
-        }
-
-        const auto *current_job = *reinterpret_cast<std::uintptr_t **>(m_roblox_scheduler + 0x134);
-        const auto *end_job = *reinterpret_cast<std::uintptr_t **>(m_roblox_scheduler + 0x138);
-
-        while (*current_job != *end_job) {
-            const auto *job_name_ptr = reinterpret_cast<std::string *>(*current_job + 0x10);
-            if (job_name_ptr && *job_name_ptr == name) {
-                return *current_job;
-            }
-            current_job += 2;
-        }
+        // if (!m_roblox_scheduler) {
+        //     return 0;
+        // }
+        //
+        // const auto *current_job = *reinterpret_cast<std::uintptr_t **>(m_roblox_scheduler + 0x134);
+        // const auto *end_job = *reinterpret_cast<std::uintptr_t **>(m_roblox_scheduler + 0x138);
+        //
+        // while (*current_job != *end_job) {
+        //     const auto *job_name_ptr = reinterpret_cast<std::string *>(*current_job + 0x10);
+        //     if (job_name_ptr && *job_name_ptr == name) {
+        //         return *current_job;
+        //     }
+        //     current_job += 2;
+        // }
 
         return 0;
     }
@@ -223,7 +214,7 @@ namespace RBX {
         return m_shutdown_requested.load(std::memory_order_acquire);
     }
 
-    std::optional<JobKind> TaskScheduler::get_job_kind_from_vtable(void **vtable) const noexcept {
+    std::optional<rml::JobKind> TaskScheduler::get_job_kind_from_vtable(void **vtable) const noexcept {
         if (const auto it = m_vtable_to_kind.find(vtable); it != m_vtable_to_kind.end()) {
             return it->second;
         }
@@ -231,23 +222,30 @@ namespace RBX {
         return std::nullopt;
     }
 
-    std::optional<void **> TaskScheduler::get_vtable_for_job_kind(JobKind kind) const noexcept {
+    std::optional<void **> TaskScheduler::get_vtable_for_job_kind(rml::JobKind kind) const noexcept {
         if (const auto it = m_kind_to_vtable.find(kind); it != m_kind_to_vtable.end()) {
             return it->second;
         }
         return std::nullopt;
     }
 
+    void TaskScheduler::set_data_model(const DataModel *data_model) {
+        std::unique_lock lock(m_data_model_mutex);
+
+        m_data_model = data_model;
+        LOG_DEBUG("[TaskScheduler] Data model set to {}", data_model ? data_model->get_name() : "null");
+    }
+
     void TaskScheduler::initialize() noexcept {
     }
 
     void TaskScheduler::initialize_vtable_mappings() noexcept {
-        static constexpr std::array<std::pair<std::string_view, JobKind>, 4> known_job_classes{
+        static constexpr std::array<std::pair<std::string_view, rml::JobKind>, 4> known_job_classes{
             {
-                {"RBX::HeartbeatTask", JobKind::Heartbeat},
-                {"RBX::PhysicsJob", JobKind::Physics},
-                {"RBX::ScriptContextFacets::WaitingHybridScriptsJob", JobKind::WaitingHybridScripts},
-                {"RBX::Studio::RenderJob", JobKind::Render}
+                {"RBX::HeartbeatTask", rml::JobKind::Heartbeat},
+                {"RBX::PhysicsJob", rml::JobKind::Physics},
+                {"RBX::ScriptContextFacets::WaitingHybridScriptsJob", rml::JobKind::WaitingHybridScripts},
+                {"RBX::Studio::RenderJob", rml::JobKind::Render}
             }
         };
 
@@ -284,7 +282,7 @@ namespace RBX {
 
         auto it = m_jobs.begin();
         while (it != m_jobs.end()) {
-            if (it->second.job->get_state() == JobState::Destroyed) {
+            if (it->second.job->get_state() == rml::JobState::Destroyed) {
                 const auto job_name = it->second.job->get_name();
                 m_name_to_id.erase(std::string(job_name));
                 it = m_jobs.erase(it);
@@ -299,7 +297,7 @@ namespace RBX {
         return m_next_job_id.fetch_add(1, std::memory_order_relaxed);
     }
 
-    void TaskScheduler::execute_job_with_stats(JobEntry &entry, const JobExecutionContext &context) noexcept {
+    void TaskScheduler::execute_job_with_stats(JobEntry &entry, const rml::JobExecutionContext &context) noexcept {
         const auto start_time = std::chrono::steady_clock::now();
 
         try {
