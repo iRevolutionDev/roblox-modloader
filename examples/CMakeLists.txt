@@ -21,6 +21,7 @@ foreach (EXAMPLE_DIR ${EXAMPLES_DIRS})
                 spdlog
                 minhook
                 ZLIB::ZLIB
+
                 "${Luau.Compiler}"
                 "${Luau.Ast}"
                 "${Luau.VM}"

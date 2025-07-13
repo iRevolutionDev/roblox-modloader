@@ -16,6 +16,8 @@ struct roblox_pointers {
   PVOID m_render_pass_2d;
   PVOID m_render_pass_3d;
 
+  PVOID m_profile_log;
+
   // Scene Manager Render View
   PVOID m_render_view;
 
@@ -25,6 +27,7 @@ struct roblox_pointers {
   PVOID resume_waiting_scripts;
 
   // Lua Functions
+  functions::luau_execute luau_execute;
   functions::luau_load luau_load;
   functions::luaE_newthread luaE_newthread;
   functions::lua_pushvalue lua_pushvalue;
@@ -32,6 +35,7 @@ struct roblox_pointers {
   functions::freeblock freeblock;
   functions::lua_newthread lua_newthread;
 
+  functions::task_defer task_defer;
   functions::get_global_state get_global_state;
 };
 #pragma pack(pop)

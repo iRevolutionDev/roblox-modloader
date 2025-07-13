@@ -12,6 +12,7 @@ include(scripts/spdlog.cmake)
 include(scripts/minhook.cmake)
 include(scripts/zlib.cmake)
 include(scripts/toml.cmake)
+include(scripts/tracy.cmake)
 include(scripts/luau.cmake)
 
 # Source files
@@ -68,6 +69,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
         "${tomlplusplus_SOURCE_DIR}/include"
+        "${tracy_SOURCE_DIR}/public"
 
         "${Luau.Compiler}"
         "${Luau.Ast}"
@@ -83,6 +85,7 @@ target_include_directories(${PROJECT_NAME}_interface INTERFACE
         "${minhook_SOURCE_DIR}/include"
         "${zlib_SOURCE_DIR}"
         "${tomlplusplus_SOURCE_DIR}/include"
+        "${tracy_SOURCE_DIR}/public"
 
         "${Luau.Compiler}"
         "${Luau.Ast}"
@@ -99,6 +102,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
         spdlog
         minhook
         ZLIB::ZLIB
+        Tracy::TracyClient
 
         Luau.Compiler
         Luau.Ast
@@ -112,6 +116,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC ${PROJECT_NAME}_interface
         spdlog
         minhook
         ZLIB::ZLIB
+        Tracy::TracyClient
 
         Luau.Compiler
         Luau.Ast
