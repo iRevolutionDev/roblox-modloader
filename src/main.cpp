@@ -7,6 +7,7 @@
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include "RobloxModLoader/roblox/job_manager.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
+#include "RobloxModLoader/luau/script_manager.hpp"
 #include "utils/directory_utils.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
@@ -54,6 +55,14 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
 
             const auto hooking_instance = std::make_shared<hooking>();
             LOG_INFO("Hooking initialized.");
+
+            const auto script_manager = std::make_shared<rml::luau::ScriptManager>();
+            LOG_INFO("Script Manager initialized.");
+
+            const auto module_dir = directory_utils::get_module_directory();
+            const auto mods_directory = module_dir / "RobloxModLoader" / "mods";
+            script_manager->load_mod_scripts(mods_directory);
+            LOG_INFO("Mod scripts loaded.");
 
             g_hooking->enable();
             LOG_INFO("Hooking enabled.");

@@ -1,10 +1,15 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/job.hpp"
+#include "RobloxModLoader/luau/script_engine.hpp"
 #include "pointers.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
+#include "mod_manager.hpp"
 #include <array>
 #include <utility>
+#include <thread>
+
+#include "RobloxModLoader/roblox/script_context.hpp"
 
 namespace RBX {
     TaskScheduler::TaskScheduler() {
@@ -49,7 +54,7 @@ namespace RBX {
         }
     }
 
-    bool TaskScheduler::unregister_job(JobId job_id) noexcept {
+    bool TaskScheduler::unregister_job(const JobId job_id) noexcept {
         std::unique_lock lock(m_jobs_mutex);
 
         const auto it = m_jobs.find(job_id);
@@ -109,23 +114,29 @@ namespace RBX {
         }
 
         static std::atomic<std::uint64_t> cleanup_counter{0};
-        if (cleanup_counter.fetch_add(1) % 100 == 0) {
+        const auto current_count = cleanup_counter.fetch_add(1);
+
+        if (current_count % 100 == 0) {
             cleanup_finished_jobs();
+        }
+
+        if (current_count % 500 == 0) {
+            cleanup_orphaned_script_engines();
         }
     }
 
-    std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(JobId job_id) const noexcept {
+    std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(const JobId job_id) const noexcept {
         std::shared_lock lock(m_jobs_mutex);
 
-        const auto it = m_jobs.find(job_id);
-        if (it != m_jobs.end()) {
+        if (const auto it = m_jobs.find(job_id); it != m_jobs.end()) {
             return std::ref(*it->second.job);
         }
 
         return std::nullopt;
     }
 
-    std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(std::string_view job_name) const noexcept {
+    std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(
+        const std::string_view job_name) const noexcept {
         std::shared_lock lock(m_jobs_mutex);
 
         const auto name_it = m_name_to_id.find(std::string(job_name));
@@ -158,7 +169,7 @@ namespace RBX {
         return m_jobs.size();
     }
 
-    std::optional<TaskScheduler::JobStats> TaskScheduler::get_job_stats(JobId job_id) const noexcept {
+    std::optional<TaskScheduler::JobStats> TaskScheduler::get_job_stats(const JobId job_id) const noexcept {
         std::shared_lock lock(m_jobs_mutex);
 
         if (const auto it = m_jobs.find(job_id); it != m_jobs.end()) {
@@ -171,32 +182,17 @@ namespace RBX {
     void TaskScheduler::reset_stats() noexcept {
         std::unique_lock lock(m_jobs_mutex);
 
-        for (auto &[_, entry]: m_jobs) {
+        for (auto &entry: m_jobs | std::views::values) {
             entry.stats = JobStats{};
         }
     }
 
-    std::uintptr_t TaskScheduler::get_roblox_job_by_name(std::string_view name) const noexcept {
-        // if (!m_roblox_scheduler) {
-        //     return 0;
-        // }
-        //
-        // const auto *current_job = *reinterpret_cast<std::uintptr_t **>(m_roblox_scheduler + 0x134);
-        // const auto *end_job = *reinterpret_cast<std::uintptr_t **>(m_roblox_scheduler + 0x138);
-        //
-        // while (*current_job != *end_job) {
-        //     const auto *job_name_ptr = reinterpret_cast<std::string *>(*current_job + 0x10);
-        //     if (job_name_ptr && *job_name_ptr == name) {
-        //         return *current_job;
-        //     }
-        //     current_job += 2;
-        // }
-
-        return 0;
-    }
-
     void TaskScheduler::shutdown() noexcept {
+        LOG_INFO("[TaskScheduler] Shutting down TaskScheduler...");
+
         m_shutdown_requested.store(true, std::memory_order_release);
+
+        shutdown_script_engines();
 
         std::unique_lock lock(m_jobs_mutex);
 
@@ -222,21 +218,121 @@ namespace RBX {
         return std::nullopt;
     }
 
-    std::optional<void **> TaskScheduler::get_vtable_for_job_kind(rml::JobKind kind) const noexcept {
+    std::optional<void **> TaskScheduler::get_vtable_for_job_kind(const rml::JobKind kind) const noexcept {
         if (const auto it = m_kind_to_vtable.find(kind); it != m_kind_to_vtable.end()) {
             return it->second;
         }
         return std::nullopt;
     }
 
-    void TaskScheduler::set_data_model(const DataModel *data_model) {
-        std::unique_lock lock(m_data_model_mutex);
+    void TaskScheduler::set_data_model(const DataModelType type, const DataModel *data_model,
+                                       ScriptContext *script_context) {
+        const DataModel *old_data_model = nullptr; {
+            std::shared_lock lock(m_data_model_mutex);
+            if (const auto it = m_data_models.find(type); it != m_data_models.end()) {
+                old_data_model = it->second;
+            }
+        }
 
-        m_data_model = data_model;
-        LOG_DEBUG("[TaskScheduler] Data model set to {}", data_model ? data_model->get_name() : "null");
+        if (old_data_model && old_data_model != data_model) {
+            LOG_INFO("[TaskScheduler] DataModel type {} changed, cleaning up old instance",
+                     static_cast<int>(type));
+            cleanup_script_engine(type);
+        } {
+            std::unique_lock lock(m_data_model_mutex);
+            if (data_model) {
+                m_data_models[type] = data_model;
+            } else {
+                m_data_models.erase(type);
+            }
+        }
+
+        if (data_model) {
+            create_or_get_script_engine(type, script_context);
+        }
+    }
+
+    const DataModel *TaskScheduler::get_data_model_by_type(const DataModelType type) noexcept {
+        std::shared_lock lock(m_data_model_mutex);
+
+        const auto it = m_data_models.find(type);
+        if (it == m_data_models.end()) return nullptr;
+
+        return it->second;
+    }
+
+    std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(DataModelType data_model_type) {
+        std::shared_lock lock(m_script_engines_mutex);
+
+        if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end()) {
+            return it->second;
+        }
+
+        return nullptr;
     }
 
     void TaskScheduler::initialize() noexcept {
+        LOG_INFO("[TaskScheduler] Initializing TaskScheduler...");
+
+        m_script_engines.clear();
+
+        LOG_INFO("[TaskScheduler] TaskScheduler initialized successfully.");
+    }
+
+    std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::create_or_get_script_engine(
+        DataModelType data_model_type, ScriptContext *script_context) {
+        std::unique_lock lock(m_script_engines_mutex);
+
+        if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end()) {
+            return it->second;
+        }
+
+        LOG_INFO("[TaskScheduler] Creating ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+
+        if (!script_context) {
+            return nullptr;
+        }
+        const auto global_state = script_context->get_global_state();
+        const auto rL = lua_newthread(global_state);
+        const auto L = lua_newthread(global_state);
+
+        rml::luau::ScriptContext::Context options{
+            .L = L,
+            .rL = rL,
+        };
+
+        auto script_engine = std::make_shared<rml::luau::ScriptEngine>(options);
+
+        if (!script_engine->initialize()) {
+            LOG_ERROR("[TaskScheduler] Failed to initialize ScriptEngine for DataModel type: {}",
+                      static_cast<int>(data_model_type));
+            return nullptr;
+        }
+
+        m_script_engines[data_model_type] = script_engine;
+
+        LOG_INFO("[TaskScheduler] ScriptEngine created successfully for DataModel type: {}",
+                 static_cast<int>(data_model_type));
+
+        return script_engine;
+    }
+
+    void TaskScheduler::shutdown_script_engines() noexcept {
+        std::unique_lock lock(m_script_engines_mutex);
+
+        LOG_INFO("[TaskScheduler] Shutting down all ScriptEngines...");
+
+        for (auto &[data_model_type, engine]: m_script_engines) {
+            if (engine) {
+                LOG_INFO("[TaskScheduler] Shutting down ScriptEngine for DataModel type: {}",
+                         static_cast<int>(data_model_type));
+                engine->shutdown();
+            }
+        }
+
+        m_script_engines.clear();
+
+        LOG_INFO("[TaskScheduler] All ScriptEngines shut down successfully.");
     }
 
     void TaskScheduler::initialize_vtable_mappings() noexcept {
@@ -320,5 +416,61 @@ namespace RBX {
         entry.stats.average_execution_time = entry.stats.total_execution_time /
                                              std::max(entry.stats.executions, 1ULL);
         entry.last_execution = end_time;
+    }
+
+    void TaskScheduler::cleanup_data_model(DataModelType data_model_type) {
+        LOG_INFO("[TaskScheduler] Cleaning up DataModel type: {}", static_cast<int>(data_model_type));
+        cleanup_script_engine(data_model_type); {
+            std::unique_lock lock(m_data_model_mutex);
+            m_data_models.erase(data_model_type);
+        }
+
+        LOG_INFO("[TaskScheduler] DataModel type {} cleanup completed", static_cast<int>(data_model_type));
+    }
+
+    void TaskScheduler::cleanup_script_engine(DataModelType data_model_type) {
+        LOG_INFO("[TaskScheduler] Cleaning up ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+
+        std::shared_ptr<rml::luau::ScriptEngine> engine_to_cleanup; {
+            std::unique_lock lock(m_script_engines_mutex);
+            if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end()) {
+                engine_to_cleanup = it->second;
+                m_script_engines.erase(it);
+            }
+        }
+
+        if (!engine_to_cleanup) return;
+
+        std::thread([engine = std::move(engine_to_cleanup), data_model_type]() {
+            try {
+                LOG_INFO("[TaskScheduler] Shutting down ScriptEngine for DataModel type: {}",
+                         static_cast<int>(data_model_type));
+                engine->shutdown();
+                LOG_INFO("[TaskScheduler] ScriptEngine shutdown completed for DataModel type: {}",
+                         static_cast<int>(data_model_type));
+            } catch (const std::exception &e) {
+                LOG_ERROR("[TaskScheduler] Error shutting down ScriptEngine for DataModel type {}: {}",
+                          static_cast<int>(data_model_type), e.what());
+            }
+        }).detach();
+    }
+
+    void TaskScheduler::cleanup_orphaned_script_engines() {
+        std::vector<DataModelType> orphaned_types; {
+            std::shared_lock engines_lock(m_script_engines_mutex);
+            std::shared_lock models_lock(m_data_model_mutex);
+
+            for (const auto &data_model_type: m_script_engines | std::views::keys) {
+                if (auto it = m_data_models.find(data_model_type); it == m_data_models.end() || it->second == nullptr) {
+                    orphaned_types.push_back(data_model_type);
+                }
+            }
+        }
+
+        for (const auto &orphaned_type: orphaned_types) {
+            LOG_WARN("[TaskScheduler] Found orphaned ScriptEngine for DataModel type: {}, cleaning up",
+                     static_cast<int>(orphaned_type));
+            cleanup_script_engine(orphaned_type);
+        }
     }
 }

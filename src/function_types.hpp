@@ -1,10 +1,11 @@
 #pragma once
 
 #include "lua.h"
+#include "RobloxModLoader/roblox/util/standard_out.hpp"
 
 namespace functions {
     using get_scheduler = uintptr_t(*)();
-    using print = void(__fastcall *)(int level, const char *fmt, ...);
+    using print = void(__fastcall *)(RBX::MessageType level, const char *fmt, ...);
     using luaH_new = void *(__fastcall *)(void *L, int32_t narray, int32_t nhash);
     using freeblock = void(__fastcall *)(lua_State *L, int32_t sizeClass, void *block);
     using lua_pushvalue = void(__fastcall *)(lua_State *L, int idx);

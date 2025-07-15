@@ -85,6 +85,13 @@ namespace rml::config {
             std::filesystem::path assets_path{"assets"};
         } resources;
 
+        struct DataModelContext {
+            std::vector<std::string> standalone;
+            std::vector<std::string> edit;
+            std::vector<std::string> client;
+            std::vector<std::string> server;
+        } datamodel_context;
+
         std::unordered_map<std::string, ConfigValue> custom_settings;
     };
 

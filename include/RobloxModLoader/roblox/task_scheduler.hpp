@@ -1,5 +1,6 @@
 #pragma once
 #include "job.hpp"
+#include "RobloxModLoader/luau/script_engine.hpp"
 
 namespace rml {
     enum class JobKind : std::uint8_t;
@@ -7,6 +8,8 @@ namespace rml {
 }
 
 namespace RBX {
+    class ScriptContext;
+    enum class DataModelType;
     class DataModel;
 
     class TaskScheduler final {
@@ -58,8 +61,6 @@ namespace RBX {
 
         void reset_stats() noexcept;
 
-        std::uintptr_t get_roblox_job_by_name(std::string_view name) const noexcept;
-
         void shutdown() noexcept;
 
         bool is_shutdown() const noexcept;
@@ -68,11 +69,20 @@ namespace RBX {
 
         std::optional<void **> get_vtable_for_job_kind(rml::JobKind kind) const noexcept;
 
-        void set_data_model(const DataModel *data_model);
+        void set_data_model(DataModelType type, const DataModel *data_model, ScriptContext *script_context);
 
-        const DataModel *get_data_model() const noexcept {
-            return m_data_model;
-        }
+        const DataModel *get_data_model_by_type(DataModelType type) noexcept;
+
+        std::shared_ptr<rml::luau::ScriptEngine> get_script_engine(DataModelType data_model_type);
+
+        std::shared_ptr<rml::luau::ScriptEngine> create_or_get_script_engine(
+            DataModelType data_model_type, ScriptContext *script_context);
+
+        void cleanup_data_model(DataModelType data_model_type);
+
+        void cleanup_script_engine(DataModelType data_model_type);
+
+        void cleanup_orphaned_script_engines();
 
     private:
         struct JobEntry {
@@ -87,7 +97,11 @@ namespace RBX {
         };
 
         mutable std::shared_mutex m_jobs_mutex;
-        std::mutex m_data_model_mutex;
+        std::shared_mutex m_data_model_mutex;
+        mutable std::shared_mutex m_script_engines_mutex;
+
+        std::unordered_map<DataModelType, const DataModel *> m_data_models;
+        std::unordered_map<DataModelType, std::shared_ptr<rml::luau::ScriptEngine> > m_script_engines;
 
         std::unordered_map<JobId, JobEntry> m_jobs;
         std::unordered_map<std::string, JobId> m_name_to_id;
@@ -98,8 +112,6 @@ namespace RBX {
         std::unordered_map<void **, rml::JobKind> m_vtable_to_kind;
         std::unordered_map<rml::JobKind, void **> m_kind_to_vtable;
 
-        const DataModel *m_data_model;
-
         void initialize() noexcept;
 
         void initialize_vtable_mappings() noexcept;
@@ -108,7 +120,12 @@ namespace RBX {
 
         JobId generate_job_id() noexcept;
 
-        void execute_job_with_stats(JobEntry &entry, const rml::JobExecutionContext &context) noexcept;
+        static void execute_job_with_stats(JobEntry &entry, const rml::JobExecutionContext &context) noexcept;
+
+        void setup_script_engine_environment(std::shared_ptr<rml::luau::ScriptEngine> engine,
+                                             DataModelType data_model_type);
+
+        void shutdown_script_engines() noexcept;
     };
 }
 

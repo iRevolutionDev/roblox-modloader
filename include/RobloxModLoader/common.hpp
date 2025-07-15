@@ -70,6 +70,9 @@
 #include <concepts>
 
 #include <format>
+#include <regex>
+#include <stop_token>
+#include <cstdio>
 
 #include <dwmapi.h>
 #include <tchar.h>

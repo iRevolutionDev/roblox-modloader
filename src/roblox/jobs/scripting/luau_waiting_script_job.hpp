@@ -2,6 +2,10 @@
 #include "RobloxModLoader/roblox/job_base.hpp"
 #include "RobloxModLoader/common.hpp"
 
+namespace RBX {
+    class ScriptContext;
+}
+
 namespace rml::jobs {
     class LuauWaitingScriptJob final : public JobBase {
     public:

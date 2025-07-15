@@ -15,6 +15,7 @@ struct roblox_pointers {
   PVOID m_render_perform;
   PVOID m_render_pass_2d;
   PVOID m_render_pass_3d;
+  functions::print print;
 
   PVOID m_profile_log;
 

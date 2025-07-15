@@ -1,5 +1,9 @@
 #pragma once
 #include "instance.hpp"
 
-class ScriptContext : public Instance {
-};
+namespace RBX {
+    class ScriptContext : public Instance {
+    public:
+        lua_State *get_global_state();
+    };
+}
