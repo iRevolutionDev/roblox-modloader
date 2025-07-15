@@ -4,7 +4,7 @@
 
 namespace RBX {
     DataModelType DataModel::get_type() const {
-        return static_cast<DataModelType>(*reinterpret_cast<int32_t *>(reinterpret_cast<std::uintptr_t>(this) + 0x328));
+        return static_cast<DataModelType>(*reinterpret_cast<int32_t *>(reinterpret_cast<std::uintptr_t>(this) + 0x330));
     }
 
     bool DataModel::is_initialized() const {
