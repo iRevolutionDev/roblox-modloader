@@ -1,7 +1,9 @@
+#include "RobloxModLoader/common.hpp"
+#include "lstate.h"
+#include "lobject.h"
 #include "RobloxModLoader/luau/script_context.hpp"
-
-#include "out/build/x64-Debug/_deps/luau-src/VM/src/lstate.h"
 #include "RobloxModLoader/roblox/luau/roblox_extra_space.hpp"
+#include "RobloxModLoader/roblox/security/script_permissions.hpp"
 
 namespace rml::luau {
     ScriptContext::ScriptContext(const Context context)
@@ -69,8 +71,32 @@ namespace rml::luau {
         extra_space->context.identity = identity;
         extra_space->capabilities = capabilities;
 
-        LOG_DEBUG("Set thread identity to {} with capabilities {}", identity, capabilities);
+        LOG_INFO("Set thread identity to {} with capabilities 0x{:X}", static_cast<int>(identity), capabilities);
     }
+
+    void ScriptContext::elevate_closure(const Closure *closure, const std::uint64_t capabilities) noexcept {
+        if (!closure || closure->isC) {
+            LOG_ERROR("Cannot elevate closure: Invalid closure or C function");
+            return;
+        }
+
+        auto *security = new std::uint64_t[1]{};
+        *security = static_cast<std::uint64_t>(capabilities);
+
+        set_proto(closure->l.p, security);
+    }
+
+    void ScriptContext::set_proto(Proto *proto, std::uint64_t *security) noexcept {
+        proto->userdata = static_cast<void *>(security);
+        for (int i = 0; i < proto->sizep; ++i) {
+            if (proto->p == nullptr || i < 0 || i >= proto->sizep) {
+                continue;
+            }
+
+            set_proto(proto->p[i], security);
+        }
+    }
+
 
     std::size_t ScriptContext::get_memory_usage() const noexcept {
         return m_memory_usage.load(std::memory_order_relaxed);

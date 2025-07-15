@@ -263,6 +263,11 @@ namespace rml::luau {
 
             ScriptContext::set_thread_identity(context->L, context->security_level, RBX::Security::FULL_CAPABILITIES);
 
+            ScriptContext::elevate_closure(
+                static_cast<const Closure *>(lua_topointer(context->L, -1)),
+                RBX::Security::FULL_CAPABILITIES
+            );
+
             execute_script(context);
             return true;
         } catch (const std::exception &e) {

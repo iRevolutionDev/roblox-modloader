@@ -35,6 +35,8 @@ hooking::hooking() {
 	detour_hook_helper::add<hooks::render_view>("RENDER_VIEW", g_pointers->m_roblox_pointers.m_render_view);
 	detour_hook_helper::add<hooks::resume_waiting_scripts>("RESUME_WAITING_SCRIPTS",
 	                                                       g_pointers->m_roblox_pointers.resume_waiting_scripts);
+	detour_hook_helper::add<hooks::luau_load>("LUAU_LOAD",
+	                                          g_pointers->m_roblox_pointers.luau_load);
 	/*detour_hook_helper::add<hooks::profile_log>("PROFILE_BEGIN",
 	                                            g_pointers->m_roblox_pointers.m_profile_log);*/
 

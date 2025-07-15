@@ -1,10 +1,12 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
-
 namespace RBX::Security {
+    enum Capabilities : std::uint64_t;
     enum class Permissions : std::uint32_t;
 }
+
+struct Closure;
+struct Proto;
 
 namespace rml::luau {
     class ScriptContext final {
@@ -48,6 +50,10 @@ namespace rml::luau {
 
         static void set_thread_identity(const lua_State *L, RBX::Security::Permissions identity,
                                         std::uint64_t capabilities) noexcept;
+
+        static void elevate_closure(const Closure *closure, std::uint64_t capabilities) noexcept;
+
+        static void set_proto(Proto *proto, std::uint64_t *security) noexcept;
 
         [[nodiscard]] std::size_t get_memory_usage() const noexcept;
 
