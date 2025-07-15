@@ -37,6 +37,9 @@
 #include <limits>
 #include <thread>
 #include <ranges>
+#include <expected>
+#include <span>
+#include <queue>
 
 #include <memory>
 #include <new>
@@ -67,10 +70,16 @@
 #include <concepts>
 
 #include <format>
+#include <regex>
+#include <stop_token>
+#include <cstdio>
 
 #include <dwmapi.h>
 #include <tchar.h>
 #include <uxtheme.h>
+
+#include <dbghelp.h>
+#include <Psapi.h>
 
 #include <tlhelp32.h>
 
@@ -81,6 +90,12 @@
 
 #include "RobloxModLoader/logger/logger.hpp"
 #include "RobloxModLoader/config/config.hpp"
+
+// Luau
+#include <lua.h>
+#include <lualib.h>
+#include <luau/Compiler.h>
+#include <luau/CodeGen.h>
 
 // clang-format on
 

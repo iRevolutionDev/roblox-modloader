@@ -4,6 +4,10 @@
 #include "RobloxModLoader/hooking/hooking.hpp"
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/exception/exception_filter.hpp"
+#include "RobloxModLoader/memory/rtti_scanner.hpp"
+#include "RobloxModLoader/roblox/job_manager.hpp"
+#include "RobloxModLoader/roblox/task_scheduler.hpp"
+#include "RobloxModLoader/luau/script_manager.hpp"
 #include "utils/directory_utils.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
@@ -37,11 +41,28 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
             mod_manager_instance->set_event_manager(event_manager_instance.get());
             LOG_INFO("Event Manager set in Mod Manager.");
 
+            const auto rtti_manager_instance = std::make_shared<memory::rtti::rtti_manager>();
+            LOG_INFO("RTTI Scanner initialized.");
+
             const auto pointers_instance = std::make_shared<pointers>();
             LOG_INFO("Pointers initialized.");
 
+            const auto rbx_task_scheduler_instance = std::make_shared<RBX::TaskScheduler>();
+            LOG_INFO("Roblox Task Scheduler initialized.");
+
+            const auto job_manager_instance = std::make_shared<rml::jobs::JobManager>();
+            LOG_INFO("Job Manager initialized.");
+
             const auto hooking_instance = std::make_shared<hooking>();
             LOG_INFO("Hooking initialized.");
+
+            const auto script_manager = std::make_shared<rml::luau::ScriptManager>();
+            LOG_INFO("Script Manager initialized.");
+
+            const auto module_dir = directory_utils::get_module_directory();
+            const auto mods_directory = module_dir / "RobloxModLoader" / "mods";
+            script_manager->load_mod_scripts(mods_directory);
+            LOG_INFO("Mod scripts loaded.");
 
             g_hooking->enable();
             LOG_INFO("Hooking enabled.");

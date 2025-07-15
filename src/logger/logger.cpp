@@ -7,6 +7,9 @@
 #include <atomic>
 #include <filesystem>
 #include <vector>
+#include <string>
+
+#include "utils/directory_utils.hpp"
 
 namespace {
     struct global_logger_holder {
@@ -22,14 +25,18 @@ namespace {
     std::shared_ptr<spdlog::sinks::msvc_sink_mt> global_logger_holder::msvc_sink;
 
     void ensure_log_directory() {
-        std::filesystem::create_directories("logs");
+        const auto root = directory_utils::get_module_directory();
+
+        std::filesystem::create_directories(root / "logs");
     }
 
     void init_sinks() {
         if (!global_logger_holder::console_sink) {
+            const auto root = directory_utils::get_module_directory();
+
             global_logger_holder::console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
             global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(
-                "logs/roblox_modloader.log", 0, 0);
+                root.generic_string() + "/logs/roblox_modloader.log", 0, 0);
             global_logger_holder::msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
         }
     }

@@ -232,6 +232,47 @@ namespace rml::config::serialization {
         resources_table.insert_or_assign("assets_path", mod_config.resources.assets_path.string());
         table.insert_or_assign("resources", std::move(resources_table));
 
+        // DataModel contexts configuration
+        toml::table datamodel_table;
+        toml::table context_table;
+
+        if (!mod_config.datamodel_context.standalone.empty()) {
+            toml::array standalone_array;
+            for (const auto &script: mod_config.datamodel_context.standalone) {
+                standalone_array.push_back(script);
+            }
+            context_table.insert_or_assign("standalone", std::move(standalone_array));
+        }
+
+        if (!mod_config.datamodel_context.edit.empty()) {
+            toml::array edit_array;
+            for (const auto &script: mod_config.datamodel_context.edit) {
+                edit_array.push_back(script);
+            }
+            context_table.insert_or_assign("edit", std::move(edit_array));
+        }
+
+        if (!mod_config.datamodel_context.client.empty()) {
+            toml::array client_array;
+            for (const auto &script: mod_config.datamodel_context.client) {
+                client_array.push_back(script);
+            }
+            context_table.insert_or_assign("client", std::move(client_array));
+        }
+
+        if (!mod_config.datamodel_context.server.empty()) {
+            toml::array server_array;
+            for (const auto &script: mod_config.datamodel_context.server) {
+                server_array.push_back(script);
+            }
+            context_table.insert_or_assign("server", std::move(server_array));
+        }
+
+        if (!context_table.empty()) {
+            datamodel_table.insert_or_assign("context", std::move(context_table));
+            table.insert_or_assign("datamodel", std::move(datamodel_table));
+        }
+
         // Custom settings
         if (!mod_config.custom_settings.empty()) {
             toml::table custom_table;
@@ -308,6 +349,52 @@ namespace rml::config::serialization {
                 if (const auto assets_node = resources_table["assets_path"]) {
                     if (const auto assets_str = assets_node.value<std::string>()) {
                         mod_config.resources.assets_path = std::filesystem::path(*assets_str);
+                    }
+                }
+            }
+
+            // DataModel contexts configuration
+            if (const auto datamodel_node = table["datamodel"]; datamodel_node && datamodel_node.is_table()) {
+                const auto &datamodel_table = *datamodel_node.as_table();
+
+                if (const auto context_node = datamodel_table["context"]; context_node && context_node.is_table()) {
+                    const auto &context_table = *context_node.as_table();
+
+                    if (const auto standalone_node = context_table["standalone"];
+                        standalone_node && standalone_node.is_array()) {
+                        const auto &standalone_array = *standalone_node.as_array();
+                        for (const auto &item: standalone_array) {
+                            if (const auto script_str = item.value<std::string>()) {
+                                mod_config.datamodel_context.standalone.push_back(*script_str);
+                            }
+                        }
+                    }
+
+                    if (const auto edit_node = context_table["edit"]; edit_node && edit_node.is_array()) {
+                        const auto &edit_array = *edit_node.as_array();
+                        for (const auto &item: edit_array) {
+                            if (const auto script_str = item.value<std::string>()) {
+                                mod_config.datamodel_context.edit.push_back(*script_str);
+                            }
+                        }
+                    }
+
+                    if (const auto client_node = context_table["client"]; client_node && client_node.is_array()) {
+                        const auto &client_array = *client_node.as_array();
+                        for (const auto &item: client_array) {
+                            if (const auto script_str = item.value<std::string>()) {
+                                mod_config.datamodel_context.client.push_back(*script_str);
+                            }
+                        }
+                    }
+
+                    if (const auto server_node = context_table["server"]; server_node && server_node.is_array()) {
+                        const auto &server_array = *server_node.as_array();
+                        for (const auto &item: server_array) {
+                            if (const auto script_str = item.value<std::string>()) {
+                                mod_config.datamodel_context.server.push_back(*script_str);
+                            }
+                        }
                     }
                 }
             }
