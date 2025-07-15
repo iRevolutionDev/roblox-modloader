@@ -1,6 +1,8 @@
 #include "RobloxModLoader/common.hpp"
 #include "mod_manager.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
+#include "RobloxModLoader/config/config.hpp"
+#include "RobloxModLoader/config/config_helpers.hpp"
 #include <filesystem>
 #include <Windows.h>
 
@@ -96,9 +98,44 @@ void mod_manager::load_mods_from_directory(const std::filesystem::path &director
         return;
     }
 
-    for (const auto &entry: std::filesystem::directory_iterator(directory_path)) {
-        if (entry.path().extension() == ".dll") {
-            const auto &dll_path = entry.path();
+    for (const auto &mod_entry: std::filesystem::directory_iterator(directory_path)) {
+        if (!mod_entry.is_directory()) {
+            continue;
+        }
+
+        const auto mod_directory = mod_entry.path();
+        const auto mod_name = mod_directory.filename().string();
+        const auto native_directory = mod_directory / "native";
+
+        LOG_INFO("Processing mod directory: {}", mod_name);
+
+        if (!std::filesystem::exists(native_directory)) {
+            LOG_WARN("No native directory found for mod: {}", mod_name);
+            continue;
+        }
+
+        if (const auto config_path = mod_directory / "mod.toml"; std::filesystem::exists(config_path)) {
+            LOG_INFO("Found mod.toml for mod: {}", mod_name);
+            if (const auto config_result = rml::config::helpers::load_mod_config_from_file(mod_name, config_path); !
+                config_result) {
+                LOG_ERROR("Failed to load configuration for mod: {}", mod_name);
+                continue;
+            }
+
+            if (!rml::config::is_mod_enabled(mod_name)) {
+                LOG_INFO("Mod '{}' is disabled, skipping", mod_name);
+                continue;
+            }
+        } else {
+            LOG_WARN("No config.toml found for mod: {}, using default settings", mod_name);
+        }
+
+        for (const auto &dll_entry: std::filesystem::directory_iterator(native_directory)) {
+            if (dll_entry.path().extension() != ".dll") {
+                continue;
+            }
+
+            const auto &dll_path = dll_entry.path();
             LOG_INFO("Found mod DLL: {}", dll_path.string());
 
             const auto dll_module = LoadLibraryExW(dll_path.c_str(), nullptr,
