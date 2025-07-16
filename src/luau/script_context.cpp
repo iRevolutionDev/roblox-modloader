@@ -51,10 +51,6 @@ namespace rml::luau {
         return m_context.L;
     }
 
-    lua_State *ScriptContext::get_main_state() const noexcept {
-        return m_context.rL;
-    }
-
     void ScriptContext::set_thread_identity(const lua_State *L, const RBX::Security::Permissions identity,
                                             const std::uint64_t capabilities) noexcept {
         if (!L) {
@@ -76,27 +72,30 @@ namespace rml::luau {
 
     void ScriptContext::elevate_closure(const Closure *closure, const std::uint64_t capabilities) noexcept {
         if (!closure || closure->isC) {
-            LOG_ERROR("Cannot elevate closure: Invalid closure or C function");
             return;
         }
 
-        auto *security = new std::uint64_t[1]{};
-        *security = static_cast<std::uint64_t>(capabilities);
+        auto *security = new std::uint64_t();
+        *security = capabilities;
 
         set_proto(closure->l.p, security);
     }
 
     void ScriptContext::set_proto(Proto *proto, std::uint64_t *security) noexcept {
-        proto->userdata = static_cast<void *>(security);
-        for (int i = 0; i < proto->sizep; ++i) {
-            if (proto->p == nullptr || i < 0 || i >= proto->sizep) {
-                continue;
-            }
+        if (!proto) {
+            return;
+        }
 
-            set_proto(proto->p[i], security);
+        proto->userdata = static_cast<void *>(security);
+
+        if (proto->sizep <= 0 || !proto->p) return;
+
+        for (int i = 0; i < proto->sizep; ++i) {
+            if (proto->p[i]) {
+                set_proto(proto->p[i], security);
+            }
         }
     }
-
 
     std::size_t ScriptContext::get_memory_usage() const noexcept {
         return m_memory_usage.load(std::memory_order_relaxed);

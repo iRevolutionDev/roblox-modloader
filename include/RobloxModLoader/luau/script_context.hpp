@@ -13,7 +13,6 @@ namespace rml::luau {
     public:
         struct Context {
             lua_State *L{nullptr};
-            lua_State *rL{nullptr};
         };
 
     private:
@@ -42,8 +41,6 @@ namespace rml::luau {
 
         [[nodiscard]] lua_State *get_thread_state() const noexcept;
 
-        [[nodiscard]] lua_State *get_main_state() const noexcept;
-
         Context get_context() const noexcept {
             return m_context;
         }
@@ -55,8 +52,13 @@ namespace rml::luau {
 
         static void set_proto(Proto *proto, std::uint64_t *security) noexcept;
 
+        void cleanup_capability_pointers() noexcept;
+
         [[nodiscard]] std::size_t get_memory_usage() const noexcept;
 
         [[nodiscard]] bool is_initialized() const noexcept;
+
+        static std::vector<std::uint64_t *> closure_capability_pointers;
+        static std::mutex capability_pointers_mutex;
     };
 }

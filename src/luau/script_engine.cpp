@@ -75,7 +75,7 @@ namespace rml::luau {
             [source_code = std::string(source_code)](lua_State *L) -> int {
                 constexpr auto compilation_opts = Luau::CompileOptions{
                     .optimizationLevel = 1,
-                    .debugLevel = 1,
+                    .debugLevel = 2,
                 };
 
                 const auto bytecode = Luau::compile(source_code, compilation_opts);
@@ -187,12 +187,13 @@ namespace rml::luau {
             }
 
             auto context = std::make_unique<ScriptScheduler::ExecutionContext>();
-            context->rL = m_context->get_thread_state();
-            context->L = m_context->get_main_state();
+            context->L = lua_newthread(m_context->get_thread_state());
             context->chunk_name = std::string(chunk_name);
             context->security_level = security_level;
             context->priority = ScriptScheduler::Priority::Normal;
             context->scheduled_time = std::chrono::steady_clock::now();
+
+            ScriptContext::set_thread_identity(context->L, context->security_level, RBX::Security::FULL_CAPABILITIES);
 
             const auto start_time = std::chrono::high_resolution_clock::now();
 

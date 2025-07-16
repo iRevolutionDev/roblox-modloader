@@ -16,7 +16,6 @@ namespace rml::luau {
 
         struct Context {
             lua_State *L = nullptr;
-            lua_State *rL = nullptr;
         };
 
         struct ExecutionResult {

@@ -292,13 +292,12 @@ namespace RBX {
         if (!script_context) {
             return nullptr;
         }
+
         const auto global_state = script_context->get_global_state();
-        const auto rL = lua_newthread(global_state);
         const auto L = lua_newthread(global_state);
 
         rml::luau::ScriptContext::Context options{
             .L = L,
-            .rL = rL,
         };
 
         auto script_engine = std::make_shared<rml::luau::ScriptEngine>(options);

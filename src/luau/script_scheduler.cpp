@@ -261,8 +261,6 @@ namespace rml::luau {
                 return false;
             }
 
-            ScriptContext::set_thread_identity(context->L, context->security_level, RBX::Security::FULL_CAPABILITIES);
-
             ScriptContext::elevate_closure(
                 static_cast<const Closure *>(lua_topointer(context->L, -1)),
                 RBX::Security::FULL_CAPABILITIES
@@ -366,6 +364,7 @@ namespace rml::luau {
             m_total_executed.fetch_add(1, std::memory_order_relaxed);
         } catch ([[maybe_unused]] const std::exception &e) {
             context->completion_promise.set_exception(std::current_exception());
+            LOG_ERROR("Exception during script execution: {}", e.what());
         }
 
         m_currently_executing.fetch_sub(1, std::memory_order_relaxed);
