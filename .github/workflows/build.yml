@@ -1,0 +1,62 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        config: [Debug, RelWithDebInfo]
+        
+    name: Build (${{ matrix.config }})
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        
+    - name: Setup MSVC
+      uses: microsoft/setup-msbuild@v2
+      
+    - name: Cache CMake dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          build/_deps
+          build/cpm-package-lock.cmake
+        key: cmake-deps-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'scripts/*.cmake') }}
+        restore-keys: |
+          cmake-deps-${{ runner.os }}-
+          
+    - name: Configure CMake
+      run: cmake -B build -G "Visual Studio 17 2022" -A x64
+      
+    - name: Build
+      run: cmake --build build --config ${{ matrix.config }} --parallel 4
+      
+    - name: Test DLL load
+      run: |
+        $dllPath = "build\${{ matrix.config }}\roblox_modloader.dll"
+        if (Test-Path $dllPath) {
+          Write-Host "✅ DLL built successfully: $dllPath"
+          $size = (Get-Item $dllPath).Length
+          Write-Host "DLL size: $([Math]::Round($size / 1KB, 2)) KB"
+        } else {
+          Write-Host "❌ DLL not found at expected path"
+          exit 1
+        }
+      shell: pwsh
+      
+    - name: Upload DLL artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: roblox-modloader-${{ matrix.config }}
+        path: |
+          build/${{ matrix.config }}/roblox_modloader.dll
+          build/${{ matrix.config }}/roblox_modloader.pdb
+        retention-days: 7
