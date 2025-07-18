@@ -1,7 +1,3 @@
-#define WIN32_LEAN_AND_MEAN
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-#define _WINSOCKAPI_
-
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
 

@@ -1,33 +1,35 @@
-include(FetchContent)
+include(cmake/CPM.cmake)
 
-message("MinHook")
-FetchContent_Declare(
-        minhook
-        GIT_REPOSITORY https://github.com/TsudaKageyu/minhook.git
+CPMAddPackage(
+        NAME minhook
+        GITHUB_REPOSITORY TsudaKageyu/minhook
         GIT_TAG master
-        GIT_PROGRESS TRUE
+        DOWNLOAD_ONLY YES
 )
 
-FetchContent_GetProperties(minhook)
-if(NOT minhook_POPULATED)
-    FetchContent_Populate(minhook)
-    
+if (minhook_ADDED)
     set(MINHOOK_SRC
-        "${minhook_SOURCE_DIR}/src/buffer.c"
-        "${minhook_SOURCE_DIR}/src/hook.c"
-        "${minhook_SOURCE_DIR}/src/trampoline.c"
-        "${minhook_SOURCE_DIR}/src/hde/hde32.c"
-        "${minhook_SOURCE_DIR}/src/hde/hde64.c"
-    )
-    
-    add_library(minhook STATIC ${MINHOOK_SRC})
-    target_include_directories(minhook PUBLIC 
-        "${minhook_SOURCE_DIR}/include"
-        "${minhook_SOURCE_DIR}/src"
-        "${minhook_SOURCE_DIR}/src/hde"
+            "${minhook_SOURCE_DIR}/src/buffer.c"
+            "${minhook_SOURCE_DIR}/src/hook.c"
+            "${minhook_SOURCE_DIR}/src/trampoline.c"
+            "${minhook_SOURCE_DIR}/src/hde/hde32.c"
+            "${minhook_SOURCE_DIR}/src/hde/hde64.c"
     )
 
-    if(MSVC)
+    add_library(minhook STATIC ${MINHOOK_SRC})
+
+    target_include_directories(minhook PUBLIC
+            "${minhook_SOURCE_DIR}/include"
+            "${minhook_SOURCE_DIR}/src"
+            "${minhook_SOURCE_DIR}/src/hde"
+    )
+
+    if (MSVC)
         target_compile_options(minhook PRIVATE /W3)
-    endif()
-endif()
+        set_target_properties(minhook PROPERTIES
+                COMPILE_WARNING_AS_ERROR OFF
+        )
+    endif ()
+
+    set_target_properties(minhook PROPERTIES FOLDER "External/MinHook")
+endif ()

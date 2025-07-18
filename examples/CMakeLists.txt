@@ -4,32 +4,43 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-file(GLOB EXAMPLES_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*) # Get all directories in the current directory
-foreach (EXAMPLE_DIR ${EXAMPLES_DIRS})
-    if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/main.cpp)
-        message(STATUS "Adding ${EXAMPLE_DIR}")
-        add_library(${EXAMPLE_DIR} MODULE ${EXAMPLE_DIR}/main.cpp)
-        file(GLOB_RECURSE EXAMPLES_FILES ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/*.hpp)
-        target_sources(${EXAMPLE_DIR} PRIVATE ${EXAMPLES_FILES})
+function(create_mod_target MOD_NAME MOD_DIR)
+    message(STATUS "Creating mod: ${MOD_NAME}")
 
-        target_include_directories(${EXAMPLE_DIR} PRIVATE
-                "${PROJECT_SOURCE_DIR}/include"
-                "${PROJECT_SOURCE_DIR}/src"
-        )
-        target_link_libraries(${EXAMPLE_DIR}
-                ${PROJECT_NAME}_interface
-                spdlog
-                minhook
-                ZLIB::ZLIB
+    file(GLOB_RECURSE MOD_SOURCES CONFIGURE_DEPENDS
+            "${MOD_DIR}/*.cpp"
+            "${MOD_DIR}/*.hpp"
+            "${MOD_DIR}/*.h"
+    )
 
-                Luau.Compiler
-                Luau.Ast
-                Luau.VM
-                Luau.VM.Internals
-                Luau.EqSat
-                Luau.CodeGen
-        )
+    add_library(${MOD_NAME} MODULE ${MOD_SOURCES})
+
+    set_target_properties(${MOD_NAME} PROPERTIES
+            CXX_STANDARD 23
+            CXX_STANDARD_REQUIRED ON
+            CXX_EXTENSIONS OFF
+            COMPILE_WARNING_AS_ERROR ON
+            FOLDER "Examples"
+    )
+
+    setup_compiler_flags(${MOD_NAME})
+
+    target_link_libraries(${MOD_NAME} PRIVATE
+            ${PROJECT_NAME}_interface
+    )
+
+    source_group(TREE ${MOD_DIR} PREFIX "src" FILES ${MOD_SOURCES})
+endfunction()
+
+file(GLOB EXAMPLE_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
+
+foreach (EXAMPLE_DIR ${EXAMPLE_DIRS})
+    if (IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR} AND
+            EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/main.cpp)
+
+        create_mod_target(${EXAMPLE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR})
+
     else ()
-        message(STATUS "Skipping ${EXAMPLE_DIR}")
+        message(STATUS "Skipping ${EXAMPLE_DIR} (not a valid mod directory)")
     endif ()
 endforeach ()

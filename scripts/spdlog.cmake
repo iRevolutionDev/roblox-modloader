@@ -1,10 +1,12 @@
-include(FetchContent)
+include(cmake/CPM.cmake)
 
-message("SPDLOG")
-FetchContent_Declare(
-        spdlog
-        GIT_REPOSITORY https://github.com/gabime/spdlog.git
-        GIT_TAG v1.15.0
-        GIT_PROGRESS TRUE
+CPMAddPackage(
+        NAME spdlog
+        VERSION 1.15.0
+        GITHUB_REPOSITORY gabime/spdlog
+        OPTIONS
+        "SPDLOG_BUILD_SHARED OFF"
+        "SPDLOG_BUILD_EXAMPLE OFF"
+        "SPDLOG_BUILD_TESTS OFF"
+        "SPDLOG_INSTALL OFF"
 )
-FetchContent_MakeAvailable(spdlog)
