@@ -267,8 +267,8 @@ namespace rml::luau::environment {
         lua_pushstring(L, "");
         lua_setfield(L, -2, "path");
 
-        lua_newtable(L);
-        lua_setfield(L, -2, "dependencies");
+        // lua_newtable(L);
+        // lua_setfield(L, -2, "dependencies");
 
         lua_setfield(L, -2, "mod");
     }
