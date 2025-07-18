@@ -3,6 +3,7 @@
 #include "pointers.hpp"
 #include "RobloxModLoader/luau/script_context.hpp"
 #include "RobloxModLoader/luau/script_scheduler.hpp"
+#include "RobloxModLoader/luau/environment/environment.hpp"
 
 namespace rml::luau {
     ScriptEngine::ScriptEngine(ScriptContext::Context context)
@@ -72,7 +73,7 @@ namespace rml::luau {
         const std::string_view chunk_name,
         const RBX::Security::Permissions security_level) const noexcept {
         return execute_internal(
-            [source_code = std::string(source_code)](lua_State *L) -> int {
+            [source_code = std::string(source_code), chunk_name](lua_State *L) -> int {
                 constexpr auto compilation_opts = Luau::CompileOptions{
                     .optimizationLevel = 1,
                     .debugLevel = 2,
@@ -85,9 +86,52 @@ namespace rml::luau {
                     return -1;
                 }
 
-                return g_pointers->m_roblox_pointers.luau_load(L, "=rml_script", bytecode.data(), bytecode.size(), 0);
+                const auto chunk_name_str = std::format("={}", chunk_name);
+
+                return g_pointers->m_roblox_pointers.luau_load(L, chunk_name_str.c_str(), bytecode.data(),
+                                                               bytecode.size(), 0);
             },
             chunk_name,
+            security_level
+        );
+    }
+
+    std::future<ScriptEngine::ExecutionResult> ScriptEngine::execute_script_with_context(
+        const std::string_view source_code,
+        const std::string_view chunk_name,
+        const std::string &mod_name,
+        const std::string &mod_version,
+        const std::string &mod_description,
+        const std::string &mod_author,
+        const std::filesystem::path &mod_path,
+        const std::vector<std::string> &mod_dependencies,
+        const RBX::Security::Permissions security_level) const noexcept {
+        return execute_internal_with_context(
+            [source_code = std::string(source_code), chunk_name](lua_State *L) -> int {
+                constexpr auto compilation_opts = Luau::CompileOptions{
+                    .optimizationLevel = 1,
+                    .debugLevel = 2,
+                };
+
+                const auto bytecode = Luau::compile(source_code, compilation_opts);
+
+                if (bytecode.empty()) {
+                    lua_pushstring(L, "Failed to compile source code");
+                    return -1;
+                }
+
+                const auto chunk_name_str = std::format("={}", chunk_name);
+
+                return g_pointers->m_roblox_pointers.luau_load(L, chunk_name_str.c_str(), bytecode.data(),
+                                                               bytecode.size(), 0);
+            },
+            chunk_name,
+            mod_name,
+            mod_version,
+            mod_description,
+            mod_author,
+            mod_path,
+            mod_dependencies,
             security_level
         );
     }
@@ -173,6 +217,78 @@ namespace rml::luau {
     std::future<ScriptEngine::ExecutionResult> ScriptEngine::execute_internal(
         const std::function<int(lua_State *)> &loader,
         const std::string_view chunk_name,
+        const RBX::Security::Permissions security_level) const noexcept {
+        auto promise = std::make_shared<std::promise<ExecutionResult> >();
+        auto future = promise->get_future();
+
+        try {
+            if (!is_running()) {
+                promise->set_value(ExecutionResult{
+                    .success = false,
+                    .error_message = "Execution engine is not running"
+                });
+                return future;
+            }
+
+            auto context = std::make_unique<ScriptScheduler::ExecutionContext>();
+            context->L = lua_newthread(m_context->get_thread_state());
+            context->chunk_name = std::string(chunk_name);
+            context->security_level = security_level;
+            context->priority = ScriptScheduler::Priority::Normal;
+            context->scheduled_time = std::chrono::steady_clock::now();
+
+            ScriptContext::set_thread_identity(context->L, context->security_level, RBX::Security::FULL_CAPABILITIES);
+
+            const auto start_time = std::chrono::high_resolution_clock::now();
+
+            if (const int load_result = loader(context->L); load_result != LUA_OK) {
+                const std::string error_msg = lua_tostring(context->L, -1);
+
+                promise->set_value(ExecutionResult{
+                    .success = false,
+                    .error_message = error_msg
+                });
+                return future;
+            }
+
+            auto completion_future = m_scheduler->schedule_script(std::move(context));
+
+            std::thread([promise, completion_future = std::move(completion_future), start_time]() mutable {
+                try {
+                    completion_future.wait();
+                    const auto end_time = std::chrono::high_resolution_clock::now();
+
+                    promise->set_value(ExecutionResult{
+                        .success = true,
+                        .execution_time = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                            end_time - start_time)
+                    });
+                } catch (const std::exception &e) {
+                    promise->set_value(ExecutionResult{
+                        .success = false,
+                        .error_message = e.what()
+                    });
+                }
+            }).detach();
+        } catch (const std::exception &e) {
+            promise->set_value(ExecutionResult{
+                .success = false,
+                .error_message = std::format("Internal execution error: {}", e.what())
+            });
+        }
+
+        return future;
+    }
+
+    std::future<ScriptEngine::ExecutionResult> ScriptEngine::execute_internal_with_context(
+        const std::function<int(lua_State *)> &loader,
+        const std::string_view chunk_name,
+        const std::string &mod_name,
+        const std::string &mod_version,
+        const std::string &mod_description,
+        const std::string &mod_author,
+        const std::filesystem::path &mod_path,
+        const std::vector<std::string> &mod_dependencies,
         RBX::Security::Permissions security_level) const noexcept {
         auto promise = std::make_shared<std::promise<ExecutionResult> >();
         auto future = promise->get_future();
@@ -194,6 +310,17 @@ namespace rml::luau {
             context->scheduled_time = std::chrono::steady_clock::now();
 
             ScriptContext::set_thread_identity(context->L, context->security_level, RBX::Security::FULL_CAPABILITIES);
+
+            const environment::RMLProvider::ModContext mod_context{
+                .mod_name = mod_name,
+                .mod_version = mod_version,
+                .mod_description = mod_description,
+                .mod_author = mod_author,
+                .mod_path = mod_path,
+                .mod_dependencies = mod_dependencies
+            };
+
+            environment::RMLProvider::set_mod_context(context->L, mod_context);
 
             const auto start_time = std::chrono::high_resolution_clock::now();
 
