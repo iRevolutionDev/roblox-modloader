@@ -126,7 +126,9 @@ jobs:
           if [ -f "dwmapi.dll" ]; then
             sha256sum dwmapi.dll >> sha256.checksum
           fi
-          echo "build_sha=$(cat sha256.checksum)" >> $GITHUB_OUTPUT
+          echo "build_sha<<EOF" >> $GITHUB_OUTPUT
+          cat sha256.checksum >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
           cat sha256.checksum
 
       - name: Nightly Release
