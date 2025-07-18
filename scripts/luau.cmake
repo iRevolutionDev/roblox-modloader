@@ -8,3 +8,6 @@ FetchContent_Declare(
         GIT_PROGRESS TRUE
 )
 FetchContent_MakeAvailable(luau)
+
+set(LUAU_BUILD_CLI OFF)
+set(LUAU_BUILD_TESTS OFF)
