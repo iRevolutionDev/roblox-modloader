@@ -305,12 +305,12 @@ namespace rml::luau::environment {
             lua_pushstring(L, context.mod_path.string().c_str());
             lua_setfield(L, -2, "path");
 
-            lua_newtable(L);
-            for (size_t i = 0; i < context.mod_dependencies.size(); ++i) {
-                lua_pushstring(L, context.mod_dependencies[i].c_str());
-                lua_rawseti(L, -2, static_cast<lua_Integer>(i + 1));
-            }
-            lua_setfield(L, -2, "dependencies");
+            // lua_newtable(L);
+            // for (size_t i = 0; i < context.mod_dependencies.size(); ++i) {
+            //     lua_pushstring(L, context.mod_dependencies[i].c_str());
+            //     lua_rawseti(L, -2, static_cast<lua_Integer>(i + 1));
+            // }
+            // lua_setfield(L, -2, "dependencies");
 
             lua_setglobal(L, "_RML_MOD_CONTEXT");
 
