@@ -215,11 +215,11 @@ uintptr_t hooks::profile_log(uintptr_t token, uint64_t tick, uint64_t begin, uin
 				return result;
 			}
 
-			TracyCZone(ctx, true)
-			TracyCZoneName(ctx, t_profile_cache.name.c_str(), t_profile_cache.name.size());
+			//TracyCZone(ctx, true)
+			/*TracyCZoneName(ctx, t_profile_cache.name.c_str(), t_profile_cache.name.size());
 			TracyCZoneColor(ctx, t_profile_cache.color);
 
-			t_contexts.push_context(context_key, ctx);
+			t_contexts.push_context(context_key, ctx);*/
 		}
 	} catch (...) {
 		return result;
