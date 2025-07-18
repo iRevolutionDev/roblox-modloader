@@ -19,102 +19,102 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
 
-    - name: Setup MSVC
-      uses: microsoft/setup-msbuild@v2
+      - name: Setup MSVC
+        uses: microsoft/setup-msbuild@v2
 
-    - name: Setup Clang
-      uses: egor-tensin/setup-clang@v1
-      with:
-        version: latest
-        platform: x64
+      - name: Setup Clang
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: latest
+          platform: x64
 
-    - name: Setup Ninja
-      uses: seanmiddleditch/gha-setup-ninja@master
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
 
-    - name: Get version
-      id: version
-      run: |
-        if ("${{ github.event_name }}" -eq "workflow_dispatch") {
-          $version = "${{ github.event.inputs.tag }}"
-        } else {
-          $version = "${{ github.ref_name }}"
-        }
-        $version_clean = $version -replace '^v', ''
-        echo "version=$version" >> $env:GITHUB_OUTPUT
-        echo "version_clean=$version_clean" >> $env:GITHUB_OUTPUT
-        echo "Version: $version"
-      shell: powershell
-
-    - name: Build with MSVC (Release)
-      run: |
-        cmake -B build-msvc -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
-        cmake --build build-msvc --config ${{ env.BUILD_TYPE }} --parallel
-
-    - name: Build with Clang (Release)
-      run: |
-        cmake -B build-clang -G "Ninja" -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-        cmake --build build-clang --parallel
-
-    - name: Create release package
-      run: |
-        New-Item -ItemType Directory -Force -Path "release/RobloxModLoader"
-        New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/mods"
-        New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/examples"
-        New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/docs"
-        
-        Copy-Item "build-msvc/${{ env.BUILD_TYPE }}/roblox_modloader.dll" "release/RobloxModLoader/"
-        
-        if (Test-Path "build-msvc/examples") {
-          Get-ChildItem "build-msvc/examples" -Recurse -Filter "*.dll" | ForEach-Object {
-            $relativePath = $_.FullName.Substring((Resolve-Path "build-msvc/examples").Path.Length + 1)
-            $destPath = "release/RobloxModLoader/examples/$relativePath"
-            $destDir = Split-Path $destPath -Parent
-            New-Item -ItemType Directory -Force -Path $destDir
-            Copy-Item $_.FullName $destPath
+      - name: Get version
+        id: version
+        run: |
+          if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+            $version = "${{ github.event.inputs.tag }}"
+          } else {
+            $version = "${{ github.ref_name }}"
           }
-        }
-        
-        Copy-Item "README.md" "release/RobloxModLoader/"
-        if (Test-Path "docs") {
-          Copy-Item "docs/*" "release/RobloxModLoader/docs/" -Recurse -Force
-        }
-        
-        if (Test-Path "examples") {
-          Copy-Item "examples/*.lua" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
-          Copy-Item "examples/*.luau" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
-          Copy-Item "examples/*.toml" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
-        }
-        
-        Compress-Archive -Path "release/RobloxModLoader" -DestinationPath "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" -Force
-        
-        $hash = Get-FileHash "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" -Algorithm SHA256
-        "$($hash.Hash)  roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" | Out-File -FilePath "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256" -Encoding ASCII
-      shell: powershell
+          $version_clean = $version -replace '^v', ''
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+          echo "version_clean=$version_clean" >> $env:GITHUB_OUTPUT
+          echo "Version: $version"
+        shell: powershell
 
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-        tag: ${{ steps.version.outputs.version }}
-        name: "Roblox ModLoader ${{ steps.version.outputs.version }}"
-        bodyFile: ${{ steps.changelog.outputs.changelog_file }}
-        artifacts: |
-          roblox-modloader-${{ steps.version.outputs.version_clean }}.zip
-          roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256
-        draft: false
-        prerelease: ${{ contains(steps.version.outputs.version, 'alpha') || contains(steps.version.outputs.version, 'beta') || contains(steps.version.outputs.version, 'rc') }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build with MSVC (Release)
+        run: |
+          cmake -B build-msvc -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+          cmake --build build-msvc --config ${{ env.BUILD_TYPE }} --parallel
 
-    - name: Upload release artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: release-artifacts-${{ steps.version.outputs.version_clean }}
-        path: |
-          roblox-modloader-${{ steps.version.outputs.version_clean }}.zip
-          roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256
-        retention-days: 90
+      - name: Build with Clang (Release)
+        run: |
+          cmake -B build-clang -G "Ninja" -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          cmake --build build-clang --parallel
+
+      - name: Create release package
+        run: |
+          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader"
+          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/mods"
+          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/examples"
+          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/docs"
+          
+          Copy-Item "build-msvc/${{ env.BUILD_TYPE }}/roblox_modloader.dll" "release/RobloxModLoader/"
+          
+          if (Test-Path "build-msvc/examples") {
+            Get-ChildItem "build-msvc/examples" -Recurse -Filter "*.dll" | ForEach-Object {
+              $relativePath = $_.FullName.Substring((Resolve-Path "build-msvc/examples").Path.Length + 1)
+              $destPath = "release/RobloxModLoader/examples/$relativePath"
+              $destDir = Split-Path $destPath -Parent
+              New-Item -ItemType Directory -Force -Path $destDir
+              Copy-Item $_.FullName $destPath
+            }
+          }
+          
+          Copy-Item "README.md" "release/RobloxModLoader/"
+          if (Test-Path "docs") {
+            Copy-Item "docs/*" "release/RobloxModLoader/docs/" -Recurse -Force
+          }
+          
+          if (Test-Path "examples") {
+            Copy-Item "examples/*.lua" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
+            Copy-Item "examples/*.luau" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
+            Copy-Item "examples/*.toml" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
+          }
+          
+          Compress-Archive -Path "release/RobloxModLoader" -DestinationPath "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" -Force
+          
+          $hash = Get-FileHash "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" -Algorithm SHA256
+          "$($hash.Hash)  roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" | Out-File -FilePath "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256" -Encoding ASCII
+        shell: powershell
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.version.outputs.version }}
+          name: "Roblox ModLoader ${{ steps.version.outputs.version }}"
+          bodyFile: ${{ steps.changelog.outputs.changelog_file }}
+          artifacts: |
+            roblox-modloader-${{ steps.version.outputs.version_clean }}.zip
+            roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.version, 'alpha') || contains(steps.version.outputs.version, 'beta') || contains(steps.version.outputs.version, 'rc') }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts-${{ steps.version.outputs.version_clean }}
+          path: |
+            roblox-modloader-${{ steps.version.outputs.version_clean }}.zip
+            roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256
+          retention-days: 90

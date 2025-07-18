@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.22.1)
 
-project(roblox_modloader LANGUAGES CXX C ASM VERSION 0.1.0 DESCRIPTION "Roblox ModLoader")
+project(roblox_modloader LANGUAGES CXX C ASM ASM_MASM RC VERSION 0.1.0 DESCRIPTION "Roblox ModLoader")
+
+option(BUILD_PROXY_GENERATOR "Build the proxy generator tool" ON)
+option(BUILD_PROXY_DLL "Build the dwmapi.dll proxy automatically" ON)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -112,5 +115,63 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY COMPILE_WARNING_AS_ERROR ON)
 set_property(TARGET ${PROJECT_NAME}_core PROPERTY COMPILE_WARNING_AS_ERROR ON)
 
 set_target_properties(${PROJECT_NAME}_interface PROPERTIES FOLDER "Core")
+
+if (BUILD_PROXY_GENERATOR)
+    add_subdirectory(proxy_generator)
+endif ()
+
+if (BUILD_PROXY_DLL AND BUILD_PROXY_GENERATOR)
+    set(PROXY_OUTPUT_DIR "${CMAKE_BINARY_DIR}/proxy_generated")
+
+    get_filename_component(DLL_NAME "C:/Windows/System32/dwmapi.dll" NAME_WE)
+
+    add_custom_target(generate_dwmapi_proxy
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${PROXY_OUTPUT_DIR}
+            COMMAND $<TARGET_FILE:proxy_generator> "C:/Windows/System32/dwmapi.dll" ${PROXY_OUTPUT_DIR}
+            DEPENDS proxy_generator
+            COMMENT "Generating dwmapi.dll proxy files"
+            VERBATIM
+    )
+
+    add_custom_command(
+            OUTPUT ${PROXY_OUTPUT_DIR}/dllmain.cpp ${PROXY_OUTPUT_DIR}/${DLL_NAME}.def ${PROXY_OUTPUT_DIR}/${DLL_NAME}.asm ${PROXY_OUTPUT_DIR}/proxy.rc
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${PROXY_OUTPUT_DIR}
+            COMMAND $<TARGET_FILE:proxy_generator> "C:/Windows/System32/dwmapi.dll" ${PROXY_OUTPUT_DIR}
+            DEPENDS proxy_generator
+            COMMENT "Generating dwmapi.dll proxy source files"
+            VERBATIM
+    )
+
+    add_library(dwmapi_proxy SHARED
+            ${PROXY_OUTPUT_DIR}/dllmain.cpp
+            ${PROXY_OUTPUT_DIR}/${DLL_NAME}.def
+            ${PROXY_OUTPUT_DIR}/${DLL_NAME}.asm
+            ${PROXY_OUTPUT_DIR}/proxy.rc
+    )
+
+    enable_language(RC)
+
+    set_target_properties(dwmapi_proxy PROPERTIES
+            OUTPUT_NAME ${DLL_NAME}
+            SUFFIX ".dll"
+            LINK_FLAGS "/DEF:${PROXY_OUTPUT_DIR}/${DLL_NAME}.def"
+            FOLDER "Proxy"
+    )
+
+    add_dependencies(${PROJECT_NAME} dwmapi_proxy)
+
+    target_link_libraries(dwmapi_proxy PRIVATE
+            user32
+            kernel32
+    )
+
+    target_compile_definitions(dwmapi_proxy PRIVATE
+            WIN32_LEAN_AND_MEAN
+            NOMINMAX
+    )
+
+    message(STATUS "dwmapi.dll proxy will be built automatically with the main project")
+    message(STATUS "Proxy DLL will be output to: ${CMAKE_BINARY_DIR}/${DLL_NAME}.dll")
+endif ()
 
 add_subdirectory(examples)

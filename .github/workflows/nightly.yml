@@ -60,6 +60,7 @@ jobs:
           path: |
             build/Release/roblox_modloader.dll
             build/Release/roblox_modloader.pdb
+            build-proxy/Release/dwmapi.dll
 
       - name: Generate Build Info
         id: var
@@ -122,6 +123,9 @@ jobs:
         id: build_sha
         run: |
           sha256sum roblox_modloader.dll > sha256.checksum
+          if [ -f "dwmapi.dll" ]; then
+            sha256sum dwmapi.dll >> sha256.checksum
+          fi
           echo "build_sha=$(cat sha256.checksum)" >> $GITHUB_OUTPUT
           cat sha256.checksum
 
@@ -146,9 +150,14 @@ jobs:
 
             If you use this build you are on your own, no warranty is provided.
 
+            **Includes:**
+            - `roblox_modloader.dll` - Main mod loader library
+            - `dwmapi.dll` - Proxy DLL for injection (if available)
+
             Full Commit Hash:
             ```
             ${{ needs.build_nightly.outputs.full_sha }}
             ```
           files: |
             roblox_modloader.dll
+            dwmapi.dll
