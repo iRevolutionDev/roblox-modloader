@@ -22,12 +22,12 @@ foreach (EXAMPLE_DIR ${EXAMPLES_DIRS})
                 minhook
                 ZLIB::ZLIB
 
-                "${Luau.Compiler}"
-                "${Luau.Ast}"
-                "${Luau.VM}"
-                "${Luau.VM.Internals}"
-                "${Luau.EqSat}"
-                "${Luau.CodeGen}"
+                Luau.Compiler
+                Luau.Ast
+                Luau.VM
+                Luau.VM.Internals
+                Luau.EqSat
+                Luau.CodeGen
         )
     else ()
         message(STATUS "Skipping ${EXAMPLE_DIR}")

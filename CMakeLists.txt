@@ -71,12 +71,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         "${tomlplusplus_SOURCE_DIR}/include"
         "${tracy_SOURCE_DIR}/public"
 
-        "${Luau.Compiler}"
-        "${Luau.Ast}"
-        "${Luau.VM}"
-        "${Luau.VM.Internals}"
-        "${Luau.EqSat}"
-        "${Luau.CodeGen}"
+        "${luau_SOURCE_DIR}/Compiler/include"
+        "${luau_SOURCE_DIR}/Ast/include"
+        "${luau_SOURCE_DIR}/VM/include"
+        "${luau_SOURCE_DIR}/VM/src"
+        "${luau_SOURCE_DIR}/EqSat/include"
+        "${luau_SOURCE_DIR}/CodeGen/include"
+        "${luau_SOURCE_DIR}/Common/include"
 )
 
 target_include_directories(${PROJECT_NAME}_interface INTERFACE
@@ -87,12 +88,13 @@ target_include_directories(${PROJECT_NAME}_interface INTERFACE
         "${tomlplusplus_SOURCE_DIR}/include"
         "${tracy_SOURCE_DIR}/public"
 
-        "${Luau.Compiler}"
-        "${Luau.Ast}"
-        "${Luau.VM}"
-        "${Luau.VM.Internals}"
-        "${Luau.EqSat}"
-        "${Luau.CodeGen}"
+        "${luau_SOURCE_DIR}/Compiler/include"
+        "${luau_SOURCE_DIR}/Ast/include"
+        "${luau_SOURCE_DIR}/VM/include"
+        "${luau_SOURCE_DIR}/VM/src"
+        "${luau_SOURCE_DIR}/EqSat/include"
+        "${luau_SOURCE_DIR}/CodeGen/include"
+        "${luau_SOURCE_DIR}/Common/include"
 )
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/RobloxModLoader/common.hpp")
