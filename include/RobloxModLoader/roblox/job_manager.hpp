@@ -39,6 +39,14 @@ namespace rml::jobs {
             }
         }
 
+        template<JobImplementation JobType, typename... Args>
+        void register_job_and_ignore(Args &&... args) noexcept {
+            auto result = register_job<JobType>(std::forward<Args>(args)...);
+            if (!result) {
+                LOG_ERROR("Failed to register job: {}", result.error());
+            }
+        }
+
         /**
          * @brief Register a lambda-based job
          * @param name Job name
