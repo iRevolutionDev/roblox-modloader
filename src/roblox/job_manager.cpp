@@ -79,8 +79,8 @@ namespace rml::jobs {
     JobManager::JobManager() {
         g_job_manager = this;
 
-        register_job<DataModelWatcherJob>();
-        register_job<LuauWaitingScriptJob>();
+        register_job_and_ignore<DataModelWatcherJob>();
+        register_job_and_ignore<LuauWaitingScriptJob>();
     }
 
     JobManager::~JobManager() {
