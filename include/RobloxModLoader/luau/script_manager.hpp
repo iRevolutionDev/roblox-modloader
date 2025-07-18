@@ -19,6 +19,13 @@ namespace rml::luau {
         std::string pattern;
         std::filesystem::path full_path;
         std::string content;
+
+        std::string mod_name;
+        std::string mod_version;
+        std::string mod_description;
+        std::string mod_author;
+        std::filesystem::path mod_path;
+        std::vector<std::string> mod_dependencies;
     };
 
     struct ModScriptContext {
@@ -74,7 +81,8 @@ namespace rml::luau {
 
         [[nodiscard]] static std::vector<ScriptInfo> resolve_script_patterns(
             const std::filesystem::path &scripts_directory,
-            const std::vector<std::string> &patterns);
+            const std::vector<std::string> &patterns,
+            const config::ModConfig &mod_config);
 
         [[nodiscard]] static std::string load_script_content(const std::filesystem::path &script_path);
 

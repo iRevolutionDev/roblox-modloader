@@ -2,6 +2,8 @@
 #include "lstate.h"
 #include "lobject.h"
 #include "RobloxModLoader/luau/script_context.hpp"
+
+#include "RobloxModLoader/luau/environment/environment.hpp"
 #include "RobloxModLoader/roblox/luau/roblox_extra_space.hpp"
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
 
@@ -19,6 +21,9 @@ namespace rml::luau {
             std::unique_lock lock(m_state_mutex);
 
             m_is_initialized.store(true, std::memory_order_release);
+
+            // Setup all global providers
+            environment::setup_lua_environment(m_context.L);
 
             LOG_INFO("Execution context initialized successfully");
             return true;

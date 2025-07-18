@@ -19,3 +19,14 @@ std::filesystem::path directory_utils::get_module_directory() {
     std::filesystem::path module_dir = std::filesystem::path(module_path).parent_path();
     return module_dir;
 }
+
+std::filesystem::path directory_utils::get_executable_directory() {
+    wchar_t exe_path[MAX_PATH];
+    if (GetModuleFileNameW(nullptr, exe_path, MAX_PATH) == 0) {
+        std::cerr << "Failed to get executable filename: " << GetLastError() << std::endl;
+        return std::filesystem::current_path();
+    }
+
+    std::filesystem::path exe_dir = std::filesystem::path(exe_path).parent_path();
+    return exe_dir;
+}

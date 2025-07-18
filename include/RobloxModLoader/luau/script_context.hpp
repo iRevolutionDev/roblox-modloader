@@ -52,8 +52,6 @@ namespace rml::luau {
 
         static void set_proto(Proto *proto, std::uint64_t *security) noexcept;
 
-        void cleanup_capability_pointers() noexcept;
-
         [[nodiscard]] std::size_t get_memory_usage() const noexcept;
 
         [[nodiscard]] bool is_initialized() const noexcept;

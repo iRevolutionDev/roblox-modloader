@@ -3,6 +3,7 @@
 #include "RobloxModLoader/config/config.hpp"
 #include "RobloxModLoader/config/config_helpers.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
+#include "RobloxModLoader/luau/environment/environment.hpp"
 #include "pointers.hpp"
 
 namespace rml::luau {
@@ -20,6 +21,10 @@ namespace rml::luau {
 
     void ScriptManager::initialize() {
         LOG_INFO("Initializing mod script manager...");
+
+        // Initialize environment providers
+        environment::initialize_default_providers();
+
         if (config::is_debug_mode()) {
             m_hot_reload_enabled = true;
             LOG_INFO("Hot reload enabled in debug mode");
@@ -33,6 +38,9 @@ namespace rml::luau {
 
         std::unique_lock lock(m_scripts_mutex);
         m_loaded_mods.clear();
+
+        // Shutdown environment providers
+        environment::shutdown_providers();
 
         LOG_INFO("Mod script manager shutdown complete");
     }
@@ -97,28 +105,29 @@ namespace rml::luau {
 
         // Load scripts for each DataModel context
         if (!mod_config.datamodel_context.standalone.empty()) {
-            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.standalone);
+            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.standalone,
+                                                   mod_config);
             mod_context.scripts_by_context[RBX::DataModelType::Standalone] = std::move(scripts);
             LOG_INFO("Loaded {} standalone scripts for mod: {}",
                      mod_context.scripts_by_context[RBX::DataModelType::Standalone].size(), mod_config.name);
         }
 
         if (!mod_config.datamodel_context.edit.empty()) {
-            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.edit);
+            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.edit, mod_config);
             mod_context.scripts_by_context[RBX::DataModelType::Edit] = std::move(scripts);
             LOG_INFO("Loaded {} edit scripts for mod: {}",
                      mod_context.scripts_by_context[RBX::DataModelType::Edit].size(), mod_config.name);
         }
 
         if (!mod_config.datamodel_context.client.empty()) {
-            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.client);
+            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.client, mod_config);
             mod_context.scripts_by_context[RBX::DataModelType::Client] = std::move(scripts);
             LOG_INFO("Loaded {} client scripts for mod: {}",
                      mod_context.scripts_by_context[RBX::DataModelType::Client].size(), mod_config.name);
         }
 
         if (!mod_config.datamodel_context.server.empty()) {
-            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.server);
+            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.server, mod_config);
             mod_context.scripts_by_context[RBX::DataModelType::Server] = std::move(scripts);
             LOG_INFO("Loaded {} server scripts for mod: {}",
                      mod_context.scripts_by_context[RBX::DataModelType::Server].size(), mod_config.name);
@@ -189,7 +198,8 @@ namespace rml::luau {
 
     std::vector<ScriptInfo> ScriptManager::resolve_script_patterns(
         const std::filesystem::path &scripts_directory,
-        const std::vector<std::string> &patterns) {
+        const std::vector<std::string> &patterns,
+        const config::ModConfig &mod_config) {
         std::vector<ScriptInfo> scripts;
 
         for (const auto &pattern: patterns) {
@@ -199,6 +209,13 @@ namespace rml::luau {
                 script_info.pattern = pattern;
                 script_info.full_path = file_path;
                 script_info.content = load_script_content(file_path);
+
+                script_info.mod_name = mod_config.name;
+                script_info.mod_version = mod_config.version;
+                script_info.mod_description = mod_config.description;
+                script_info.mod_author = mod_config.author;
+                script_info.mod_path = scripts_directory.parent_path();
+                //script_info.mod_dependencies = mod_config.dependencies; TODO: Future support for dependencies
 
                 if (!script_info.content.empty()) {
                     scripts.push_back(std::move(script_info));
@@ -362,9 +379,15 @@ namespace rml::luau {
         }
 
         try {
-            auto future = engine->execute_script(
+            auto future = engine->execute_script_with_context(
                 script_info.content,
-                chunk_name
+                chunk_name,
+                script_info.mod_name,
+                script_info.mod_version,
+                script_info.mod_description,
+                script_info.mod_author,
+                script_info.mod_path,
+                script_info.mod_dependencies
             );
 
             std::thread execution_thread([future = std::move(future), script_info]() mutable {
