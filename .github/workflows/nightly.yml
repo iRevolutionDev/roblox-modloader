@@ -60,7 +60,7 @@ jobs:
           path: |
             build/Release/roblox_modloader.dll
             build/Release/roblox_modloader.pdb
-            build-proxy/Release/dwmapi.dll
+            build/Release/dwmapi.dll
 
       - name: Generate Build Info
         id: var
