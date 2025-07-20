@@ -27,6 +27,8 @@ public:
 
     RML_API virtual void on_load() = 0;
 
+    RML_API virtual void on_unload() = 0;
+
     void set_event_manager(events::EventManager *manager);
 
 protected:

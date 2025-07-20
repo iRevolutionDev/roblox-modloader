@@ -53,6 +53,12 @@ void mod_manager::load_mods() {
 
 void mod_manager::unload_mods() {
     std::lock_guard lock(mods_mutex);
+    for (const auto &mod_instance: mods) {
+        if (mod_instance->uninstall_mod_func) {
+            mod_instance->uninstall_mod_func();
+        }
+        mod_instance->on_unload();
+    }
     mods.clear();
 }
 

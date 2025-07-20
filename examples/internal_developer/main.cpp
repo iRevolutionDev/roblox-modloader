@@ -79,7 +79,7 @@ public:
         logger->info("Successfully hooked is_internal function");
     }
 
-    void on_unload() {
+    void on_unload() override {
         logger->info("Internal Developer Mod unloading");
 
         if (target_function) {
