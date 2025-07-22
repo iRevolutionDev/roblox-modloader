@@ -53,10 +53,11 @@ endfunction()
 
 function(setup_core_dependencies target_name access_level)
     target_link_libraries(${target_name} ${access_level}
-            spdlog
+            spdlog::spdlog
             minhook
             ZLIB::ZLIB
             Tracy::TracyClient
+            nlohmann_json::nlohmann_json
     )
 
     target_include_directories(${target_name} ${access_level}
@@ -65,5 +66,6 @@ function(setup_core_dependencies target_name access_level)
             "${zlib_SOURCE_DIR}"
             "${tomlplusplus_SOURCE_DIR}/include"
             "${tracy_SOURCE_DIR}/public"
+            "${nlohmann_json_SOURCE_DIR}/include"
     )
 endfunction()

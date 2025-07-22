@@ -10,7 +10,7 @@ struct metadata {
     const std::string description{};
 };
 
-class mod_base {
+class RML_EXPORT mod_base {
 public:
     using start_type = mod_base*(*)();
     using uninstall_type = void(*)();
@@ -21,13 +21,16 @@ public:
     std::string description{};
     uninstall_type uninstall_mod_func{};
 
-    RML_API mod_base();
+    mod_base();
 
-    RML_API virtual ~mod_base();
+    virtual ~mod_base();
 
-    RML_API virtual void on_load() = 0;
+    virtual void on_load() = 0;
 
-    RML_API virtual void on_unload() = 0;
+    virtual void on_unload() = 0;
+
+    virtual void on_script_manager_load() {
+    }
 
     void set_event_manager(events::EventManager *manager);
 

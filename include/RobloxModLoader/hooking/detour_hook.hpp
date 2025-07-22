@@ -2,7 +2,7 @@
 
 #include <string>
 
-class detour_hook {
+class RML_EXPORT detour_hook {
 public:
     explicit detour_hook();
 

@@ -70,7 +70,7 @@ public:
 
 	void disable();
 
-	class detour_hook_helper {
+	class RML_EXPORT detour_hook_helper {
 		friend hooking;
 
 		using ret_ptr_fn = std::function<void*()>;

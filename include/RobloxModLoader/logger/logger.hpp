@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/rml_export.hpp"
+
 #define LOGGER_NAME "roblox_modloader"
 
 #define LOG_INFO(...) SPDLOG_LOGGER_INFO(global_logger(), __VA_ARGS__)
@@ -20,11 +22,11 @@ public:
 
     static void init();
 
-    static std::shared_ptr<spdlog::logger> get_logger(const std::string &name);
+    RML_EXPORT static std::shared_ptr<spdlog::logger> get_logger(const std::string &name);
 
-    static std::string strip_class_prefix(const std::string &name);
+    RML_EXPORT static std::string strip_class_prefix(const std::string &name);
 
-    static void set_async_mode();
+    RML_EXPORT static void set_async_mode();
 };
 
-std::shared_ptr<spdlog::logger> global_logger();
+RML_EXPORT std::shared_ptr<spdlog::logger> global_logger();

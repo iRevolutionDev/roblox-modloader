@@ -4,7 +4,7 @@
 #include "range.hpp"
 
 namespace memory {
-	class module : public range {
+	class RML_EXPORT module : public range {
 	public:
 		explicit module(const std::string_view name);
 

@@ -79,6 +79,7 @@ namespace rml::luau::environment {
 
     template<typename Derived>
     void GlobalProvider<Derived>::end_table_registration(lua_State *L) noexcept {
+        
     }
 
     class GlobalsRegistry::Impl {

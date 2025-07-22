@@ -1,5 +1,7 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/luau/script_manager.hpp"
+
+#include "mod_manager.hpp"
 #include "RobloxModLoader/config/config.hpp"
 #include "RobloxModLoader/config/config_helpers.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
@@ -28,6 +30,16 @@ namespace rml::luau {
         if (config::is_debug_mode()) {
             m_hot_reload_enabled = true;
             LOG_INFO("Hot reload enabled in debug mode");
+        }
+
+        for (const auto &mod: g_mod_manager->mods) {
+            try {
+                mod->on_script_manager_load();
+            } catch (const std::exception &e) {
+                LOG_ERROR("Mod '{}' failed to load scripts: {}", mod->name, e.what());
+            } catch (...) {
+                LOG_ERROR("Mod '{}' failed to load scripts with unknown error", mod->name);
+            }
         }
 
         LOG_INFO("Mod script manager initialized successfully");
@@ -113,21 +125,24 @@ namespace rml::luau {
         }
 
         if (!mod_config.datamodel_context.edit.empty()) {
-            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.edit, mod_config);
+            auto scripts =
+                    resolve_script_patterns(scripts_directory, mod_config.datamodel_context.edit, mod_config);
             mod_context.scripts_by_context[RBX::DataModelType::Edit] = std::move(scripts);
             LOG_INFO("Loaded {} edit scripts for mod: {}",
                      mod_context.scripts_by_context[RBX::DataModelType::Edit].size(), mod_config.name);
         }
 
         if (!mod_config.datamodel_context.client.empty()) {
-            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.client, mod_config);
+            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.client,
+                                                   mod_config);
             mod_context.scripts_by_context[RBX::DataModelType::Client] = std::move(scripts);
             LOG_INFO("Loaded {} client scripts for mod: {}",
                      mod_context.scripts_by_context[RBX::DataModelType::Client].size(), mod_config.name);
         }
 
         if (!mod_config.datamodel_context.server.empty()) {
-            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.server, mod_config);
+            auto scripts = resolve_script_patterns(scripts_directory, mod_config.datamodel_context.server,
+                                                   mod_config);
             mod_context.scripts_by_context[RBX::DataModelType::Server] = std::move(scripts);
             LOG_INFO("Loaded {} server scripts for mod: {}",
                      mod_context.scripts_by_context[RBX::DataModelType::Server].size(), mod_config.name);
@@ -203,7 +218,8 @@ namespace rml::luau {
         std::vector<ScriptInfo> scripts;
 
         for (const auto &pattern: patterns) {
-            for (const auto matching_files = find_matching_files(scripts_directory, {pattern}); const auto &file_path:
+            for (const auto matching_files = find_matching_files(scripts_directory, {pattern}); const auto &
+                 file_path:
                  matching_files) {
                 ScriptInfo script_info;
                 script_info.pattern = pattern;

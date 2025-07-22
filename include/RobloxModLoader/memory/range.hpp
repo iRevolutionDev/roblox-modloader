@@ -7,7 +7,7 @@
 #include <vector>
 
 namespace memory {
-	class range {
+	class RML_EXPORT range {
 	public:
 		range(handle base, std::size_t size);
 

@@ -316,8 +316,7 @@ namespace rml::luau {
                 .mod_version = mod_version,
                 .mod_description = mod_description,
                 .mod_author = mod_author,
-                .mod_path = mod_path,
-                .mod_dependencies = mod_dependencies
+                .mod_path = mod_path
             };
 
             environment::RMLProvider::set_mod_context(context->L, mod_context);

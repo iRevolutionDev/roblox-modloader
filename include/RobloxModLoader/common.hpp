@@ -97,6 +97,8 @@
 #include <luau/Compiler.h>
 #include <luau/CodeGen.h>
 
+#include "rml_export.hpp"
+
 // clang-format on
 
 using namespace std::chrono_literals;
@@ -104,9 +106,5 @@ using namespace std::chrono_literals;
 inline HINSTANCE g_hinstance{};
 inline HANDLE g_main_thread{};
 inline std::atomic_bool g_running{false};
-
-#ifndef RML_API
-#define RML_API __declspec(dllexport)
-#endif
 
 #endif
