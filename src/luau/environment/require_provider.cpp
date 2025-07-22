@@ -11,8 +11,33 @@
 
 
 namespace rml::luau::environment {
+    namespace require_impl {
+        StateCache &get_cache_for_state(lua_State *L) {
+            std::lock_guard lock(g_cache_mutex);
+            return g_state_caches[L];
+        }
+
+        void cleanup_cache_for_state(lua_State *L) {
+            std::lock_guard lock(g_cache_mutex);
+            if (const auto it = g_state_caches.find(L); it != g_state_caches.end()) {
+                for (const auto &ref: it->second.module_cache | std::views::values) {
+                    if (ref != LUA_NOREF) {
+                        lua_unref(L, ref);
+                    }
+                }
+                if (it->second.original_require_ref != LUA_NOREF) {
+                    lua_unref(L, it->second.original_require_ref);
+                }
+                g_state_caches.erase(it);
+                LOG_DEBUG("Cleaned up require cache for lua_State: {}", static_cast<void*>(L));
+            }
+        }
+    }
+
     bool RequireProvider::register_globals(lua_State *L) noexcept {
         try {
+            auto &[module_cache, original_require_ref] = require_impl::get_cache_for_state(L);
+
             lua_getglobal(L, "require");
             if (lua_isfunction(L, -1)) {
                 // THIS IS SO BAD, BUT I DON'T KNOW HOW TO DO IT BETTER
@@ -22,7 +47,7 @@ namespace rml::luau::environment {
                     TValue *slot = luaH_setnum(L, reg, g->registryfree);
                     setnvalue(slot, 0);
                 }
-                require_impl::g_original_require_ref = lua_ref(L, -1);
+                original_require_ref = lua_ref(L, -1);
 
                 lua_pop(L, 1);
             } else {
@@ -31,6 +56,8 @@ namespace rml::luau::environment {
             }
             lua_pushcfunction(L, custom_require, "require");
             lua_setglobal(L, "require");
+
+            LOG_DEBUG("RequireProvider registered for lua_State: {}", static_cast<void*>(L));
             return true;
         } catch (const std::exception &e) {
             LOG_ERROR("Failed to register RequireProvider globals: {}", e.what());
@@ -40,6 +67,8 @@ namespace rml::luau::environment {
 
     int RequireProvider::custom_require(lua_State *L) {
         try {
+            auto &[module_cache, original_require_ref] = require_impl::get_cache_for_state(L);
+
             // Check if is the roblox instance
             if (lua_gettop(L) < 1 || lua_isuserdata(L, 1)) {
                 return original_require(L);
@@ -52,9 +81,10 @@ namespace rml::luau::environment {
 
             const std::string module_name = lua_tostring(L, 1);
 
-            if (const auto cache_it = require_impl::g_module_cache.find(module_name);
-                cache_it != require_impl::g_module_cache.end()) {
+            if (const auto cache_it = module_cache.find(module_name);
+                cache_it != module_cache.end()) {
                 lua_rawgeti(L, LUA_REGISTRYINDEX, cache_it->second);
+                LOG_DEBUG("Found cached module '{}' for lua_State: {}", module_name, static_cast<void*>(L));
                 return 1;
             }
 
@@ -116,7 +146,9 @@ namespace rml::luau::environment {
 
             lua_pushvalue(L, -1);
             const int ref = lua_ref(L, -1);
-            require_impl::g_module_cache[module_name] = ref;
+            module_cache[module_name] = ref;
+
+            LOG_DEBUG("Cached module '{}' with ref {} for lua_State: {}", module_name, ref, static_cast<void*>(L));
 
             return 1;
         } catch (const std::exception &e) {
@@ -127,11 +159,13 @@ namespace rml::luau::environment {
     }
 
     int RequireProvider::original_require(lua_State *L) {
-        if (require_impl::g_original_require_ref == LUA_NOREF) {
+        auto &cache = require_impl::get_cache_for_state(L);
+
+        if (cache.original_require_ref == LUA_NOREF) {
             luaL_error(L, "Original require function not available");
             return 0;
         }
-        lua_rawgeti(L, LUA_REGISTRYINDEX, require_impl::g_original_require_ref);
+        lua_rawgeti(L, LUA_REGISTRYINDEX, cache.original_require_ref);
 
         lua_insert(L, 1);
 

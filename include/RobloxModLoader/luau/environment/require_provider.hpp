@@ -30,7 +30,16 @@ namespace rml::luau::environment {
     };
 
     namespace require_impl {
-        inline std::unordered_map<std::string, int> g_module_cache;
-        inline int g_original_require_ref = LUA_REFNIL;
+        struct StateCache {
+            std::unordered_map<std::string, int> module_cache;
+            int original_require_ref = LUA_NOREF;
+        };
+
+        inline std::unordered_map<lua_State *, StateCache> g_state_caches;
+        inline std::mutex g_cache_mutex;
+
+        StateCache &get_cache_for_state(lua_State *L);
+
+        void cleanup_cache_for_state(lua_State *L);
     }
 }
