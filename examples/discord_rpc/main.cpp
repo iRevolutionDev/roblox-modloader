@@ -62,73 +62,81 @@ private:
         const auto &bridge = BridgeProvider::instance();
 
         bridge->register_native_function(
-            "discord_rpc", "update_activity",
-            [this](const LuaParameters &params) -> LuaParameters {
-                if (const auto table = std::get_if<LuaTable>(&params[0]);
-                    table && table->has_key("state") && table->has_key("details")) {
-                    const auto state = table->get<std::string>("state", "Developing in Studio");
-                    const auto details = table->get<std::string>("details", "Building experiences");
-                    const auto large_image = table->get<std::string>("large_image");
-                    const auto large_image_text = table->get<std::string>("large_image_text", "Roblox Studio");
-                    const auto small_image = table->get<std::string>("small_image");
-                    const auto small_image_text = table->get<std::string>("small_image_text", "With ModLoader");
-                    const auto start_time_str = table->get<std::string>("start_timestamp", "now");
-                    const auto type_str = table->get<std::string>("type", "Playing");
+                    "discord_rpc", "update_activity",
+                    [this](const LuaParameters &params) -> LuaParameters {
+                        if (const auto table = std::get_if<LuaTable>(&params[0]);
+                            table && table->has_key("state") && table->has_key("details")) {
+                            const auto state = table->get<std::string>("state", "Developing in Studio");
+                            const auto details = table->get<std::string>("details", "Building experiences");
+                            const auto large_image = table->get<std::string>("large_image");
+                            const auto large_image_text = table->get<std::string>("large_image_text", "Roblox Studio");
+                            const auto small_image = table->get<std::string>("small_image");
+                            const auto small_image_text = table->get<std::string>("small_image_text", "With ModLoader");
+                            const auto start_time_str = table->get<std::string>("start_timestamp", "now");
+                            const auto type_str = table->get<std::string>("type", "Playing");
 
-                    std::chrono::steady_clock::time_point start_time;
-                    if (start_time_str == "now") {
-                        start_time = std::chrono::steady_clock::now();
-                    } else {
-                        try {
-                            start_time = std::chrono::steady_clock::time_point(
-                                std::chrono::seconds(std::stoll(start_time_str))
-                            );
-                        } catch (...) {
-                            logger->warn("Invalid start_time value, using current time");
-                            start_time = std::chrono::steady_clock::now();
+                            std::chrono::steady_clock::time_point start_time;
+                            if (start_time_str == "now") {
+                                start_time = std::chrono::steady_clock::now();
+                            } else {
+                                try {
+                                    start_time = std::chrono::steady_clock::time_point(
+                                        std::chrono::seconds(std::stoll(start_time_str))
+                                    );
+                                } catch (...) {
+                                    logger->warn("Invalid start_time value, using current time");
+                                    start_time = std::chrono::steady_clock::now();
+                                }
+                            }
+
+                            discord_integration::ActivityDetails activity;
+                            activity.state = state;
+                            activity.details = details;
+
+                            activity.large_image_key = large_image.empty()
+                                                           ? "studio"
+                                                           : large_image;
+                            activity.large_image_text = large_image_text.empty() ? "Roblox Studio" : large_image_text;
+
+                            activity.small_image_key = small_image.empty() ? "modloader_icon" : small_image;
+                            activity.small_image_text = small_image_text.empty() ? "With ModLoader" : small_image_text;
+
+                            activity.start_timestamp = std::chrono::duration_cast<std::chrono::seconds>(
+                                start_time.time_since_epoch()
+                            ).count();
+
+                            activity.type = discord_integration::activity_from_string(type_str);
+
+                            discord_sdk->update_activity(activity);
                         }
-                    }
 
-                    discord_integration::ActivityDetails activity;
-                    activity.state = state;
-                    activity.details = details;
-
-                    activity.large_image_key = large_image.empty()
-                                                   ? "studio"
-                                                   : large_image;
-                    activity.large_image_text = large_image_text.empty() ? "Roblox Studio" : large_image_text;
-
-                    activity.small_image_key = small_image.empty() ? "modloader_icon" : small_image;
-                    activity.small_image_text = small_image_text.empty() ? "With ModLoader" : small_image_text;
-
-                    activity.start_timestamp = std::chrono::duration_cast<std::chrono::seconds>(
-                        start_time.time_since_epoch()
-                    ).count();
-
-                    activity.type = discord_integration::activity_from_string(type_str);
-
-                    discord_sdk->update_activity(activity);
-                }
-
-                return {false};
-            });
+                        return {false};
+                    })
+                .transform_error([this](const std::string &error) {
+                    logger->error("Failed to update Discord activity: {}", error);
+                    return LuaParameters{false};
+                });
 
         bridge->register_native_function(
-            "discord_rpc", "clear_activity",
-            [this](const LuaParameters &params) -> LuaParameters {
-                if (params.size() != 0) {
-                    return {false};
-                }
+                    "discord_rpc", "clear_activity",
+                    [this](const LuaParameters &params) -> LuaParameters {
+                        if (params.size() != 0) {
+                            return {false};
+                        }
 
-                if (discord_sdk && discord_sdk->is_initialized()) {
-                    discord_sdk->clear_activity();
-                    logger->info("Cleared Discord activity");
-                    return {true};
-                }
+                        if (discord_sdk && discord_sdk->is_initialized()) {
+                            discord_sdk->clear_activity();
+                            logger->info("Cleared Discord activity");
+                            return {true};
+                        }
 
-                logger->warn("Discord SDK not initialized, cannot clear activity");
-                return {false};
-            });
+                        logger->warn("Discord SDK not initialized, cannot clear activity");
+                        return {false};
+                    })
+                .transform_error([this](const std::string &error) {
+                    logger->error("Failed to clear Discord activity: {}", error);
+                    return LuaParameters{false};
+                });
     }
 
     void setup_default_activity() const {
