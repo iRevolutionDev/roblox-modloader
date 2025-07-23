@@ -12,47 +12,47 @@ namespace rml::luau::environment {
     class LuaTable {
     public:
         LuaTable() = default;
-        
+
         template<typename T>
-        T get(const std::string& key, const T& default_value = T{}) const {
+        T get(const std::string &key, const T &default_value = T{}) const {
             auto it = data_.find(key);
             if (it == data_.end()) {
                 return default_value;
             }
-            
+
             if constexpr (std::is_same_v<T, std::string>) {
-                if (const auto* str_val = std::get_if<std::string>(&it->second)) {
+                if (const auto *str_val = std::get_if<std::string>(&it->second)) {
                     return *str_val;
                 }
             } else if constexpr (std::is_same_v<T, double>) {
-                if (const auto* num_val = std::get_if<double>(&it->second)) {
+                if (const auto *num_val = std::get_if<double>(&it->second)) {
                     return *num_val;
                 }
             } else if constexpr (std::is_same_v<T, bool>) {
-                if (const auto* bool_val = std::get_if<bool>(&it->second)) {
+                if (const auto *bool_val = std::get_if<bool>(&it->second)) {
                     return *bool_val;
                 }
             }
-            
+
             return default_value;
         }
-        
-        bool has_key(const std::string& key) const {
+
+        bool has_key(const std::string &key) const {
             return data_.find(key) != data_.end();
         }
-        
-        void set(const std::string& key, const std::variant<std::string, double, bool, std::nullptr_t>& value) {
+
+        void set(const std::string &key, const std::variant<std::string, double, bool, std::nullptr_t> &value) {
             data_[key] = value;
         }
-        
+
         size_t size() const { return data_.size(); }
         bool empty() const { return data_.empty(); }
-        
+
         auto begin() const { return data_.begin(); }
         auto end() const { return data_.end(); }
-        
+
     private:
-        std::unordered_map<std::string, std::variant<std::string, double, bool, std::nullptr_t>> data_;
+        std::unordered_map<std::string, std::variant<std::string, double, bool, std::nullptr_t> > data_;
     };
 
     using LuaValue = std::variant<std::string, double, bool, std::nullptr_t, LuaTable>;
@@ -137,7 +137,7 @@ namespace rml::luau::environment {
 
         bool register_globals(lua_State *L) noexcept override;
 
-        RML_EXPORT BridgeResult<void> register_native_function(
+        RML_EXPORT [[nodiscard]] BridgeResult<void> register_native_function(
             std::string_view mod_name,
             std::string_view function_name,
             NativeFunctionCallback callback) override;
@@ -147,7 +147,7 @@ namespace rml::luau::environment {
             std::string_view function_name,
             const LuaParameters &parameters) const override;
 
-        RML_EXPORT BridgeResult<void> set_shared_data(
+        RML_EXPORT [[nodiscard]] BridgeResult<void> set_shared_data(
             std::string_view key,
             const LuaValue &value) override;
 
@@ -158,7 +158,7 @@ namespace rml::luau::environment {
             std::string_view event_name,
             EventCallback callback) override;
 
-        RML_EXPORT BridgeResult<void> trigger_event(
+        RML_EXPORT [[nodiscard]] BridgeResult<void> trigger_event(
             std::string_view event_name,
             const LuaParameters &data) override;
 
