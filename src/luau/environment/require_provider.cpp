@@ -121,9 +121,8 @@ namespace rml::luau::environment {
                     }
                     lua_pop(L, 1);
 
-                    const std::string expected_path = std::format("{}/scripts/{}.{lua,luau}",
-                                                                  mod_path, module_name.substr(6), mod_path,
-                                                                  module_name.substr(6));
+                    const std::string expected_path = std::format("{}/scripts/{}.[lua,luau]",
+                                                                  mod_path, module_name.substr(6));
                     luaL_error(L, "Module '%s' not found. Expected at: %s", module_name.c_str(), expected_path.c_str());
                     return 0;
                 }

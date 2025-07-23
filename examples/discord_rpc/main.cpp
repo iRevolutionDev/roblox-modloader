@@ -61,7 +61,7 @@ private:
     void setup_luau_communication() const {
         const auto &bridge = BridgeProvider::instance();
 
-        bridge->register_native_function(
+        auto _ = bridge->register_native_function(
                     "discord_rpc", "update_activity",
                     [this](const LuaParameters &params) -> LuaParameters {
                         if (const auto table = std::get_if<LuaTable>(&params[0]);
@@ -117,7 +117,7 @@ private:
                     return LuaParameters{false};
                 });
 
-        bridge->register_native_function(
+        auto _2 = bridge->register_native_function(
                     "discord_rpc", "clear_activity",
                     [this](const LuaParameters &params) -> LuaParameters {
                         if (params.size() != 0) {
