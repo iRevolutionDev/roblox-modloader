@@ -224,7 +224,11 @@ namespace rml::luau::environment {
     }
 
     void RMLProvider::register_core_namespace(lua_State *L) noexcept {
-        lua_newtable(L);
+        lua_getglobal(L, NAME.data());
+        if (!lua_istable(L, -1)) {
+            lua_pop(L, 1);
+            lua_newtable(L);
+        }
 
         register_logger_table(L);
 

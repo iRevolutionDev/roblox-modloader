@@ -4,6 +4,7 @@
 #include "globals_registry.hpp"
 #include "rml_provider.hpp"
 #include "require_provider.hpp"
+#include "bridge_provider.hpp"
 
 namespace rml::luau::environment {
     inline void initialize_default_providers() noexcept {
@@ -11,6 +12,7 @@ namespace rml::luau::environment {
 
         RML_REGISTER_GLOBAL_PROVIDER(RequireProvider);
         RML_REGISTER_GLOBAL_PROVIDER(RMLProvider);
+        RML_REGISTER_GLOBAL_PROVIDER(BridgeProvider);
 
         const auto stats = GlobalsRegistry::instance().get_statistics();
         LOG_INFO("Initialized {} global providers", stats.total_providers);
