@@ -15,6 +15,7 @@ namespace rml::luau::environment {
             std::string mod_author;
             std::filesystem::path mod_path;
             std::vector<std::string> mod_dependencies;
+            lua_State *mod_thread = nullptr;
         };
 
         bool register_globals(lua_State *L) noexcept override;

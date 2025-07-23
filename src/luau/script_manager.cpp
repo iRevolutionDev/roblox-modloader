@@ -49,6 +49,11 @@ namespace rml::luau {
         LOG_INFO("Shutting down mod script manager...");
 
         std::unique_lock lock(m_scripts_mutex);
+
+        for (auto &mod_context: m_loaded_mods) {
+            cleanup_mod_thread(mod_context);
+        }
+
         m_loaded_mods.clear();
 
         // Shutdown environment providers
@@ -153,7 +158,7 @@ namespace rml::luau {
     }
 
     void ScriptManager::execute_scripts_for_context(RBX::DataModelType data_model_type) {
-        std::shared_lock lock(m_scripts_mutex);
+        std::unique_lock lock(m_scripts_mutex);
 
         LOG_INFO("Executing scripts for DataModel type: {}", static_cast<int>(data_model_type));
 
@@ -167,12 +172,21 @@ namespace rml::luau {
                 continue;
             }
 
-            LOG_INFO("Scheduling {} scripts for mod: {} (DataModel type: {})",
+            if (!mod_context.mod_thread) {
+                mod_context.mod_thread = create_mod_thread(data_model_type, mod_context.mod_name);
+                if (!mod_context.mod_thread) {
+                    LOG_ERROR("Failed to create dedicated thread for mod: {}", mod_context.mod_name);
+                    continue;
+                }
+                LOG_INFO("Created dedicated sandboxed thread for mod: {}", mod_context.mod_name);
+            }
+
+            LOG_INFO("Scheduling {} scripts for mod: {} (DataModel type: {}) using dedicated thread",
                      it->second.size(), mod_context.mod_name, static_cast<int>(data_model_type));
 
             for (auto &script_info: it->second) {
                 try {
-                    schedule_script(data_model_type, script_info);
+                    schedule_script_with_mod_thread(data_model_type, script_info, mod_context.mod_thread);
                 } catch (const std::exception &e) {
                     LOG_ERROR("Failed to schedule script '{}' for mod '{}': {}",
                               script_info.pattern, mod_context.mod_name, e.what());
@@ -203,6 +217,9 @@ namespace rml::luau {
         }
 
         const auto mod_directory = it->mod_path;
+
+        cleanup_mod_thread(*it);
+
         m_loaded_mods.erase(it);
 
         lock.unlock();
@@ -395,15 +412,19 @@ namespace rml::luau {
         }
 
         try {
+            const auto mod_context = environment::RMLProvider::ModContext{
+                .mod_name = script_info.mod_name,
+                .mod_version = script_info.mod_version,
+                .mod_description = script_info.mod_description,
+                .mod_author = script_info.mod_author,
+                .mod_path = script_info.mod_path,
+                .mod_dependencies = script_info.mod_dependencies
+            };
+
             auto future = engine->execute_script_with_context(
                 script_info.content,
                 chunk_name,
-                script_info.mod_name,
-                script_info.mod_version,
-                script_info.mod_description,
-                script_info.mod_author,
-                script_info.mod_path,
-                script_info.mod_dependencies
+                mod_context
             );
 
             std::thread execution_thread([future = std::move(future), script_info]() mutable {
@@ -444,5 +465,171 @@ namespace rml::luau {
             std::fprintf(stderr, "Critical logging error for script: %s\n",
                          script_info.full_path.string().c_str());
         }
+    }
+
+    void ScriptManager::schedule_script_with_mod_thread(const RBX::DataModelType data_model_type,
+                                                        const ScriptInfo &script_info,
+                                                        lua_State *mod_thread) {
+        if (!g_task_scheduler) {
+            LOG_ERROR("TaskScheduler not available, cannot schedule script: {}",
+                      script_info.full_path.string());
+            return;
+        }
+
+        if (!mod_thread) {
+            LOG_ERROR("Mod thread is null, cannot schedule script: {}",
+                      script_info.full_path.string());
+            return;
+        }
+
+        const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+        if (!engine) {
+            return;
+        }
+
+        const auto chunk_name = script_info.full_path.filename().string();
+
+        LOG_DEBUG("Scheduling script via ScriptEngine using dedicated mod thread: {}",
+                  script_info.full_path.string());
+
+        execute_script_async_with_mod_thread(engine, script_info, chunk_name, mod_thread);
+    }
+
+    void ScriptManager::execute_script_async_with_mod_thread(const std::shared_ptr<ScriptEngine> &engine,
+                                                             const ScriptInfo &script_info,
+                                                             const std::string &chunk_name,
+                                                             lua_State *mod_thread) noexcept {
+        if (!engine) [[unlikely]] {
+            log_script_error(script_info, "Script engine is null");
+            return;
+        }
+
+        if (!mod_thread) [[unlikely]] {
+            log_script_error(script_info, "Mod thread is null");
+            return;
+        }
+
+        try {
+            auto future = execute_script_in_mod_thread(engine, script_info, chunk_name, mod_thread);
+
+            std::thread execution_thread([future = std::move(future), script_info]() mutable {
+                try {
+                    const auto result = future.get();
+                    handle_script_result(script_info, result);
+                } catch (const std::exception &e) {
+                    log_script_error(script_info, std::format("Exception during execution: {}", e.what()));
+                } catch (...) {
+                    log_script_error(script_info, "Unknown exception during execution");
+                }
+            });
+
+            execution_thread.detach();
+        } catch (const std::exception &e) {
+            log_script_error(script_info, std::format("Failed to schedule script: {}", e.what()));
+        } catch (...) {
+            log_script_error(script_info, "Unknown error during script scheduling");
+        }
+    }
+
+    std::future<ScriptEngine::ExecutionResult> ScriptManager::execute_script_in_mod_thread(
+        const std::shared_ptr<ScriptEngine> &engine,
+        const ScriptInfo &script_info,
+        const std::string &chunk_name,
+        lua_State *mod_thread) noexcept {
+        try {
+            auto script_thread = lua_newthread(mod_thread);
+
+            auto loader = [&script_info, &chunk_name, script_thread](lua_State *) -> int {
+                const auto compile_result = ScriptEngine::compile_script(script_info.content);
+                if (!compile_result) {
+                    LOG_ERROR("Failed to compile script '{}': {}",
+                              script_info.full_path.string(), compile_result.error());
+                    return LUA_ERRSYNTAX;
+                }
+
+                const auto &bytecode = compile_result.value();
+                const auto chunk_name_str = std::format("={}", chunk_name);
+
+                return g_pointers->m_roblox_pointers.luau_load(
+                    script_thread,
+                    chunk_name_str.c_str(),
+                    reinterpret_cast<const char *>(bytecode.data()),
+                    bytecode.size(),
+                    0
+                );
+            };
+
+            const auto mod_context = environment::RMLProvider::ModContext{
+                .mod_name = script_info.mod_name,
+                .mod_version = script_info.mod_version,
+                .mod_description = script_info.mod_description,
+                .mod_author = script_info.mod_author,
+                .mod_path = script_info.mod_path,
+                .mod_dependencies = script_info.mod_dependencies,
+                .mod_thread = script_thread
+            };
+
+            return engine->execute_internal_with_context(
+                loader,
+                chunk_name,
+                mod_context,
+                RBX::Security::Permissions::RobloxEngine
+            );
+        } catch (const std::exception &e) {
+            LOG_ERROR("Exception in execute_script_in_mod_thread: {}", e.what());
+            std::promise<ScriptEngine::ExecutionResult> promise;
+            promise.set_value(ScriptEngine::ExecutionResult{
+                .success = false,
+                .error_message = std::format("Exception: {}", e.what())
+            });
+            return promise.get_future();
+        }
+    }
+
+    lua_State *ScriptManager::create_mod_thread(RBX::DataModelType data_model_type,
+                                                const std::string &mod_name) noexcept {
+        try {
+            if (!g_task_scheduler) {
+                LOG_ERROR("TaskScheduler not available, cannot create mod thread for: {}", mod_name);
+                return nullptr;
+            }
+
+            const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+            if (!engine) {
+                LOG_ERROR("ScriptEngine not available for DataModel type {}, cannot create mod thread for: {}",
+                          static_cast<int>(data_model_type), mod_name);
+                return nullptr;
+            }
+
+            const auto &context = engine->get_context();
+            const auto global_state = context.get_thread_state();
+            if (!global_state) {
+                LOG_ERROR("Global Lua state not available, cannot create mod thread for: {}", mod_name);
+                return nullptr;
+            }
+
+            const auto mod_thread = lua_newthread(global_state);
+            if (!mod_thread) {
+                LOG_ERROR("Failed to create Lua thread for mod: {}", mod_name);
+                return nullptr;
+            }
+
+            luaL_sandboxthread(mod_thread); // Isolates mod context
+
+            return mod_thread;
+        } catch (const std::exception &e) {
+            LOG_ERROR("Exception while creating mod thread for '{}': {}", mod_name, e.what());
+            return nullptr;
+        } catch (...) {
+            LOG_ERROR("Unknown exception while creating mod thread for: {}", mod_name);
+            return nullptr;
+        }
+    }
+
+    void ScriptManager::cleanup_mod_thread(ModScriptContext &mod_context) noexcept {
+        if (!mod_context.mod_thread) return;
+
+        LOG_INFO("Cleaned up Lua thread for mod: {}", mod_context.mod_name);
+        mod_context.mod_thread = nullptr;
     }
 }

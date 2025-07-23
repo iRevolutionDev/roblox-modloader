@@ -99,12 +99,7 @@ namespace rml::luau {
     std::future<ScriptEngine::ExecutionResult> ScriptEngine::execute_script_with_context(
         const std::string_view source_code,
         const std::string_view chunk_name,
-        const std::string &mod_name,
-        const std::string &mod_version,
-        const std::string &mod_description,
-        const std::string &mod_author,
-        const std::filesystem::path &mod_path,
-        const std::vector<std::string> &mod_dependencies,
+        const environment::RMLProvider::ModContext &mod_context,
         const RBX::Security::Permissions security_level) const noexcept {
         return execute_internal_with_context(
             [source_code = std::string(source_code), chunk_name](lua_State *L) -> int {
@@ -126,12 +121,7 @@ namespace rml::luau {
                                                                bytecode.size(), 0);
             },
             chunk_name,
-            mod_name,
-            mod_version,
-            mod_description,
-            mod_author,
-            mod_path,
-            mod_dependencies,
+            mod_context,
             security_level
         );
     }
@@ -283,13 +273,8 @@ namespace rml::luau {
     std::future<ScriptEngine::ExecutionResult> ScriptEngine::execute_internal_with_context(
         const std::function<int(lua_State *)> &loader,
         const std::string_view chunk_name,
-        const std::string &mod_name,
-        const std::string &mod_version,
-        const std::string &mod_description,
-        const std::string &mod_author,
-        const std::filesystem::path &mod_path,
-        const std::vector<std::string> &mod_dependencies,
-        RBX::Security::Permissions security_level) const noexcept {
+        const environment::RMLProvider::ModContext &mod_context,
+        const RBX::Security::Permissions security_level) const noexcept {
         auto promise = std::make_shared<std::promise<ExecutionResult> >();
         auto future = promise->get_future();
 
@@ -303,21 +288,15 @@ namespace rml::luau {
             }
 
             auto context = std::make_unique<ScriptScheduler::ExecutionContext>();
-            context->L = lua_newthread(m_context->get_thread_state());
+            context->L = mod_context.mod_thread
+                             ? mod_context.mod_thread
+                             : lua_newthread(m_context->get_thread_state());
             context->chunk_name = std::string(chunk_name);
             context->security_level = security_level;
             context->priority = ScriptScheduler::Priority::Normal;
             context->scheduled_time = std::chrono::steady_clock::now();
 
             ScriptContext::set_thread_identity(context->L, context->security_level, RBX::Security::FULL_CAPABILITIES);
-
-            const environment::RMLProvider::ModContext mod_context{
-                .mod_name = mod_name,
-                .mod_version = mod_version,
-                .mod_description = mod_description,
-                .mod_author = mod_author,
-                .mod_path = mod_path
-            };
 
             environment::RMLProvider::set_mod_context(context->L, mod_context);
 

@@ -49,10 +49,16 @@ namespace rml::luau::environment {
                 }
                 original_require_ref = lua_ref(L, -1);
 
+                if (original_require_ref == LUA_NOREF) {
+                    LOG_WARN("Failed to store original require function reference for lua_State: {}",
+                             static_cast<void*>(L));
+                }
+
                 lua_pop(L, 1);
             } else {
                 lua_pop(L, 1);
-                LOG_WARN("Original require function not found or not a function");
+                LOG_WARN("Original require function not found or not a function for lua_State: {}",
+                         static_cast<void*>(L));
             }
             lua_pushcfunction(L, custom_require, "require");
             lua_setglobal(L, "require");
@@ -103,6 +109,24 @@ namespace rml::luau::environment {
             }
 
             if (resolved_path.empty() || !file_exists(resolved_path)) {
+                if (module_name.starts_with("@self/")) {
+                    lua_getglobal(L, "_RML_MOD_CONTEXT");
+                    std::string mod_path = "Unknown";
+                    if (lua_istable(L, -1)) {
+                        lua_getfield(L, -1, "path");
+                        if (lua_isstring(L, -1)) {
+                            mod_path = lua_tostring(L, -1);
+                        }
+                        lua_pop(L, 1);
+                    }
+                    lua_pop(L, 1);
+
+                    const std::string expected_path = std::format("{}/scripts/{}.{lua,luau}",
+                                                                  mod_path, module_name.substr(6), mod_path,
+                                                                  module_name.substr(6));
+                    luaL_error(L, "Module '%s' not found. Expected at: %s", module_name.c_str(), expected_path.c_str());
+                    return 0;
+                }
                 return original_require(L);
             }
 

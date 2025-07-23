@@ -8,6 +8,7 @@
 #include <string_view>
 
 #include "pointers.hpp"
+#include "script_engine.hpp"
 #include "RobloxModLoader/roblox/util/standard_out.hpp"
 
 namespace RBX {
@@ -15,6 +16,8 @@ namespace RBX {
 }
 
 namespace rml::luau {
+    class ScriptEngine;
+
     struct ScriptInfo {
         std::string pattern;
         std::filesystem::path full_path;
@@ -32,6 +35,7 @@ namespace rml::luau {
         std::string mod_name;
         std::filesystem::path mod_path;
         std::unordered_map<RBX::DataModelType, std::vector<ScriptInfo> > scripts_by_context;
+        lua_State *mod_thread{nullptr};
         bool loaded{false};
     };
 
@@ -93,11 +97,31 @@ namespace rml::luau {
             const std::filesystem::path &directory,
             const std::vector<std::string> &patterns);
 
+        [[nodiscard]] static lua_State *create_mod_thread(RBX::DataModelType data_model_type,
+                                                          const std::string &mod_name) noexcept;
+
+        static void cleanup_mod_thread(ModScriptContext &mod_context) noexcept;
+
+        [[nodiscard]] static std::future<ScriptEngine::ExecutionResult> execute_script_in_mod_thread(
+            const std::shared_ptr<ScriptEngine> &engine,
+            const ScriptInfo &script_info,
+            const std::string &chunk_name,
+            lua_State *mod_thread) noexcept;
+
         static void schedule_script(RBX::DataModelType data_model_type, const ScriptInfo &script_info);
+
+        static void schedule_script_with_mod_thread(RBX::DataModelType data_model_type,
+                                                    const ScriptInfo &script_info,
+                                                    lua_State *mod_thread);
 
         static void execute_script_async(const std::shared_ptr<class ScriptEngine> &engine,
                                          const ScriptInfo &script_info,
                                          const std::string &chunk_name) noexcept;
+
+        static void execute_script_async_with_mod_thread(const std::shared_ptr<class ScriptEngine> &engine,
+                                                         const ScriptInfo &script_info,
+                                                         const std::string &chunk_name,
+                                                         lua_State *mod_thread) noexcept;
 
         template<typename ResultType>
         static void handle_script_result(const ScriptInfo &script_info,

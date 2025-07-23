@@ -300,6 +300,8 @@ namespace RBX {
             .L = L,
         };
 
+        luaL_sandboxthread(L);
+
         auto script_engine = std::make_shared<rml::luau::ScriptEngine>(options);
 
         if (!script_engine->initialize()) {

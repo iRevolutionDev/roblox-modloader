@@ -3,6 +3,7 @@
 #include "RobloxModLoader/common.hpp"
 #include "script_context.hpp"
 #include "script_scheduler.hpp"
+#include "environment/rml_provider.hpp"
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
 
 namespace rml::luau {
@@ -51,13 +52,15 @@ namespace rml::luau {
         [[nodiscard]] std::future<ExecutionResult> execute_script_with_context(
             std::string_view source_code,
             std::string_view chunk_name,
-            const std::string &mod_name,
-            const std::string &mod_version,
-            const std::string &mod_description,
-            const std::string &mod_author,
-            const std::filesystem::path &mod_path,
-            const std::vector<std::string> &mod_dependencies,
+            const environment::RMLProvider::ModContext &mod_context,
             RBX::Security::Permissions security_level = RBX::Security::Permissions::RobloxEngine
+        ) const noexcept;
+
+        [[nodiscard]] std::future<ExecutionResult> execute_internal_with_context(
+            const std::function<int(lua_State *)> &loader,
+            std::string_view chunk_name,
+            const environment::RMLProvider::ModContext &mod_context,
+            RBX::Security::Permissions security_level
         ) const noexcept;
 
         [[nodiscard]] std::future<ExecutionResult> execute_bytecode(
@@ -95,18 +98,6 @@ namespace rml::luau {
         [[nodiscard]] std::future<ExecutionResult> execute_internal(
             const std::function<int(lua_State *)> &loader,
             std::string_view chunk_name,
-            RBX::Security::Permissions security_level
-        ) const noexcept;
-
-        [[nodiscard]] std::future<ExecutionResult> execute_internal_with_context(
-            const std::function<int(lua_State *)> &loader,
-            std::string_view chunk_name,
-            const std::string &mod_name,
-            const std::string &mod_version,
-            const std::string &mod_description,
-            const std::string &mod_author,
-            const std::filesystem::path &mod_path,
-            const std::vector<std::string> &mod_dependencies,
             RBX::Security::Permissions security_level
         ) const noexcept;
     };
