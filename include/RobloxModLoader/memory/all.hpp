@@ -9,3 +9,4 @@
 #include "signature.hpp"
 #include "pe_parser.hpp"
 #include "rtti_scanner.hpp"
+#include "rtti_utils.hpp"

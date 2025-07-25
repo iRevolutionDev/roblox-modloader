@@ -1,12 +1,15 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
+#include "RobloxModLoader/memory/rtti_utils.hpp"
 
 #include <immintrin.h>
 #include <dbghelp.h>
+#include <algorithm>
 
 #pragma comment(lib, "dbghelp.lib")
 
 namespace memory::rtti {
+
     const __m128i scanner::RTTI_PATTERN = _mm_setr_epi8(
         0x48, 0x8D, 0x05, 0x00, 0x00, 0x00, 0x00, // lea rax,[rip+offset]
         0x48, 0x89, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
@@ -28,8 +31,23 @@ namespace memory::rtti {
         if (!mangled_name) {
             return {};
         }
+        if (!utils::is_memory_readable(mangled_name, 1)) {
+            LOG_DEBUG("Access violation when reading mangled name");
+            return {};
+        }
 
-        std::array<char, 256> output{};
+        if (!utils::is_symbol_safe_to_demangle(mangled_name)) {
+            LOG_TRACE("Skipping unsafe symbol: {}", mangled_name);
+            return {};
+        }
+
+        size_t name_length;
+        if (!utils::validate_symbol_memory_access(mangled_name, name_length)) {
+            LOG_DEBUG("Invalid symbol memory access for: {}", mangled_name);
+            return {};
+        }
+
+        std::array<char, utils::config::OUTPUT_BUFFER_SIZE> output{};
 
         const char *name_to_process = mangled_name;
         if (mangled_name[0] == '.') {
@@ -40,13 +58,16 @@ namespace memory::rtti {
                                 UNDNAME_32_BIT_DECODE | UNDNAME_NO_MS_KEYWORDS |
                                 UNDNAME_NO_LEADING_UNDERSCORES;
 
-        if (!UnDecorateSymbolName(name_to_process, output.data(),
-                                  output.size(), flags)) {
-            LOG_DEBUG("Failed to demangle symbol: {}", mangled_name);
+        const DWORD result = utils::safe_undecorate_symbol(name_to_process, output.data(), output.size(), flags);
+        if (result != ERROR_SUCCESS) {
+            if (result != ERROR_INVALID_PARAMETER) {
+                LOG_ERROR("Failed to demangle symbol: {} (error: {})", mangled_name, result);
+            }
             return {};
         }
 
-        return std::string(output.data());
+        output[output.size() - 1] = '\0';
+        return output.data();
     }
 
     scanner::scanner() {
@@ -203,6 +224,11 @@ namespace memory::rtti {
 
             const std::string class_name = rtti_info::demangle_name(type_desc->name);
             if (class_name.empty()) {
+                return false;
+            }
+
+            if (!pointer_col || !*pointer_col) {
+                LOG_DEBUG("Invalid pointer to complete object locator for class: {}", class_name);
                 return false;
             }
 
