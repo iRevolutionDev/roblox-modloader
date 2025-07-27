@@ -4,18 +4,6 @@
 #include <algorithm>
 
 namespace memory::rtti::utils {
-    bool is_memory_readable(const void *ptr, size_t size) noexcept {
-        __try {
-            const auto *test_ptr = static_cast<volatile char *>(const_cast<void *>(ptr));
-            for (size_t i = 0; i < size; ++i) {
-                [[maybe_unused]] const volatile char test = test_ptr[i];
-            }
-            return true;
-        } __except (EXCEPTION_EXECUTE_HANDLER) {
-            return false;
-        }
-    }
-
     bool contains_problematic_patterns(std::string_view symbol) noexcept {
         return std::ranges::any_of(config::PROBLEMATIC_PATTERNS,
                                    [symbol](const std::string_view pattern) {
@@ -64,22 +52,18 @@ namespace memory::rtti::utils {
     }
 
     bool validate_symbol_memory_access(const char *mangled_name, size_t &out_length) noexcept {
-        if (!is_memory_readable(mangled_name, 1)) {
+        if (!mangled_name) {
             return false;
         }
 
+        // Quick length calculation without expensive memory checks
         size_t length = 0;
         const char *ptr = mangled_name;
-        while (length < config::MAX_NAME_LENGTH && is_memory_readable(ptr, 1) && *ptr != '\0') {
-            ++ptr;
-            ++length;
-        }
-
+        
+        // Use strnlen_s for safer length calculation with bounds
+        length = strnlen_s(mangled_name, config::MAX_NAME_LENGTH);
+        
         if (length == 0 || length >= config::MAX_NAME_LENGTH) {
-            return false;
-        }
-
-        if (!is_memory_readable(mangled_name, length + 1)) {
             return false;
         }
 

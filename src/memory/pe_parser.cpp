@@ -1,6 +1,8 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/memory/pe_parser.hpp"
 
+#include "RobloxModLoader/memory/rtti_utils.hpp"
+
 namespace memory::pe {
     bool parser::parse(std::shared_ptr<process_info> info) {
         try {
@@ -27,6 +29,7 @@ namespace memory::pe {
         if (!target_sections) return false;
 
         return std::ranges::any_of(*target_sections, [&offset](const auto &section) {
+            if (!section) return false;
             return offset >= section->start && offset < section->end;
         });
     }
@@ -74,11 +77,22 @@ namespace memory::pe {
             return false;
         }
 
+        if (dos_header->e_lfanew < 0 || dos_header->e_lfanew > 0x10000) {
+            LOG_ERROR("Invalid PE header offset: 0x{:X}", dos_header->e_lfanew);
+            return false;
+        }
+
         const auto nt_headers = reinterpret_cast<const IMAGE_NT_HEADERS *>(
             base + dos_header->e_lfanew
         );
+
         if (nt_headers->Signature != IMAGE_NT_SIGNATURE) {
             LOG_ERROR("Invalid NT signature");
+            return false;
+        }
+
+        if (nt_headers->FileHeader.NumberOfSections > 200) {
+            LOG_ERROR("Unreasonable number of sections: {}", nt_headers->FileHeader.NumberOfSections);
             return false;
         }
 
@@ -98,6 +112,11 @@ namespace memory::pe {
 
             const auto virtual_address = section_header.VirtualAddress;
             const auto virtual_size = section_header.Misc.VirtualSize;
+
+            if (virtual_size > 500 * 1024 * 1024) {
+                LOG_WARN("Section {} too large ({} bytes), skipping", section_name, virtual_size);
+                continue;
+            }
 
             const ibo32 start_offset(static_cast<std::int32_t>(virtual_address));
             const ibo32 end_offset(static_cast<std::int32_t>(virtual_address + virtual_size));

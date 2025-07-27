@@ -9,7 +9,6 @@
 #pragma comment(lib, "dbghelp.lib")
 
 namespace memory::rtti {
-
     const __m128i scanner::RTTI_PATTERN = _mm_setr_epi8(
         0x48, 0x8D, 0x05, 0x00, 0x00, 0x00, 0x00, // lea rax,[rip+offset]
         0x48, 0x89, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
@@ -29,10 +28,6 @@ namespace memory::rtti {
 
     std::string rtti_info::demangle_name(const char *mangled_name) {
         if (!mangled_name) {
-            return {};
-        }
-        if (!utils::is_memory_readable(mangled_name, 1)) {
-            LOG_DEBUG("Access violation when reading mangled name");
             return {};
         }
 
@@ -152,7 +147,7 @@ namespace memory::rtti {
     std::size_t scanner::scan_rtti_patterns(std::uint8_t *base_address) const {
         std::size_t found_count = 0;
 
-        if (!m_section_data || !m_section_data->rdata_sections) {
+        if (!m_section_data || !m_section_data->rdata_sections || !base_address) {
             LOG_ERROR("Invalid section data");
             return 0;
         }
@@ -165,16 +160,23 @@ namespace memory::rtti {
             auto *start = section->start.as<complete_object_locator **>(base_address);
             auto *end = section->end.as<complete_object_locator **>(base_address);
 
-            for (auto *current = start; current < end; ++current) {
-                try {
-                    auto *col = *current;
-                    if (!col) continue;
+            if (!start || !end || start >= end) {
+                LOG_DEBUG("Invalid section bounds for: {}", section->name);
+                continue;
+            }
 
-                    if (validate_and_process_rtti(current, col, base_address)) {
-                        ++found_count;
-                    }
-                } catch (...) {
-                    continue;
+            const auto section_size = reinterpret_cast<std::uintptr_t>(end) - reinterpret_cast<std::uintptr_t>(start);
+            if (section_size > 100 * 1024 * 1024) { // 100MB limit
+                LOG_WARN("Section {} too large ({} bytes), skipping", section->name, section_size);
+                continue;
+            }
+
+            for (auto *current = start; current < end; ++current) {
+                auto *col = *current;
+                if (!col) continue;
+
+                if (validate_and_process_rtti(current, col, base_address)) {
+                    ++found_count;
                 }
             }
         }
@@ -184,80 +186,94 @@ namespace memory::rtti {
 
     bool scanner::validate_and_process_rtti(complete_object_locator **pointer_col, complete_object_locator *col,
                                             std::uint8_t *base_address) const {
-        if (!col || !m_section_data) {
+        if (!col || !m_section_data || !base_address || !pointer_col) {
             return false;
         }
 
-        try {
-            if (!pe::parser::is_address_in_section(col, m_section_data->rdata_sections)) {
-                return false;
-            }
-
-            if (!pe::parser::is_ibo_in_section(col->type_descriptor_offset, m_section_data->data_sections)) {
-                return false;
-            }
-
-            if (!pe::parser::is_ibo_in_section(col->class_hierarchy_offset, m_section_data->rdata_sections)) {
-                return false;
-            }
-
-            auto *type_desc = col->type_descriptor_offset.as<type_descriptor *>(base_address);
-            if (!type_desc || !type_desc->name) {
-                return false;
-            }
-
-            auto *class_hierarchy = col->class_hierarchy_offset.as<class_hierarchy_descriptor *>(base_address);
-            if (!class_hierarchy) {
-                return false;
-            }
-
-            if (!pe::parser::is_ibo_in_section(class_hierarchy->base_class_array_offset,
-                                               m_section_data->rdata_sections)) {
-                return false;
-            }
-
-            auto *base_class = class_hierarchy->base_class_array_offset.as<base_class_descriptor *>(
-                base_address);
-            if (!base_class) {
-                return false;
-            }
-
-            const std::string class_name = rtti_info::demangle_name(type_desc->name);
-            if (class_name.empty()) {
-                return false;
-            }
-
-            if (!pointer_col || !*pointer_col) {
-                LOG_DEBUG("Invalid pointer to complete object locator for class: {}", class_name);
-                return false;
-            }
-
-            auto rtti = std::make_unique<rtti_info>(
-                reinterpret_cast<void **>(pointer_col) + 1,
-                col,
-                type_desc,
-                class_hierarchy,
-                base_class
-            );
-
-            s_class_rtti_map.emplace(class_name, std::move(rtti));
-
-            LOG_TRACE("Found RTTI for class: {}", class_name);
-            return true;
-        } catch ([[maybe_unused]] const std::exception &e) {
-            LOG_DEBUG("RTTI validation failed: {}", e.what());
+        if (!pe::parser::is_address_in_section(col, m_section_data->rdata_sections)) {
             return false;
         }
-        catch (...) {
+
+        if (col->signature != 0 && col->signature != 1) {
             return false;
         }
+
+        if (!pe::parser::is_ibo_in_section(col->type_descriptor_offset, m_section_data->data_sections)) {
+            return false;
+        }
+
+        auto *type_desc = col->type_descriptor_offset.as<type_descriptor *>(base_address);
+        if (!type_desc) {
+            return false;
+        }
+
+        if (!type_desc->name) {
+            return false;
+        }
+
+        if (!pe::parser::is_ibo_in_section(col->class_hierarchy_offset, m_section_data->rdata_sections)) {
+            return false;
+        }
+
+        auto *class_hierarchy = col->class_hierarchy_offset.as<class_hierarchy_descriptor *>(base_address);
+        if (!class_hierarchy) {
+            return false;
+        }
+
+        if (class_hierarchy->signature != 0 && class_hierarchy->signature != 1) {
+            return false;
+        }
+
+        if (class_hierarchy->num_base_classes > 100) {
+            return false;
+        }
+
+        if (!pe::parser::is_ibo_in_section(class_hierarchy->base_class_array_offset,
+                                           m_section_data->rdata_sections)) {
+            return false;
+        }
+
+        auto *base_class = class_hierarchy->base_class_array_offset.as<base_class_descriptor *>(base_address);
+        if (!base_class) {
+            return false;
+        }
+
+        const std::string class_name = rtti_info::demangle_name(type_desc->name);
+        if (class_name.empty()) {
+            return false;
+        }
+
+        if (!*pointer_col) {
+            LOG_DEBUG("Invalid dereferenced complete object locator for class: {}", class_name);
+            return false;
+        }
+
+        auto *vft_ptr = reinterpret_cast<void **>(pointer_col) + 1;
+        if (!vft_ptr) {
+            LOG_DEBUG("Invalid VFT pointer for class: {}", class_name);
+            return false;
+        }
+
+        auto rtti = std::make_unique<rtti_info>(
+            vft_ptr,
+            col,
+            type_desc,
+            class_hierarchy,
+            base_class
+        );
+
+        s_class_rtti_map.emplace(class_name, std::move(rtti));
+
+        LOG_TRACE("Found RTTI for class: {}", class_name);
+        return true;
     }
 
     rtti_manager::rtti_manager() {
         g_rtti_manager = this;
-        m_scanner = std::make_unique<scanner>();
-
+        
         LOG_INFO("Initializing RTTI manager...");
+
+        m_scanner = std::make_unique<scanner>();
 
         if (!m_scanner->scan()) {
             LOG_ERROR("Initial RTTI scan failed");

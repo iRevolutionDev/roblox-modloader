@@ -132,10 +132,12 @@ namespace memory::pe {
          */
         template<typename T>
         [[nodiscard]] static bool is_address_in_section(T *address, const sections *target_sections) noexcept {
-            if (!target_sections) return false;
+            if (!target_sections || !address) return false;
 
             const auto addr_value = reinterpret_cast<std::uintptr_t>(address);
             return std::ranges::any_of(*target_sections, [addr_value](const auto &section) {
+                if (!section) return false;
+
                 const auto start_addr = section->start.template as<std::uintptr_t>();
                 const auto end_addr = section->end.template as<std::uintptr_t>();
                 return addr_value >= start_addr && addr_value < end_addr;

@@ -22,8 +22,6 @@ namespace memory::rtti::utils {
         };
     }
 
-    [[nodiscard]] bool is_memory_readable(const void *ptr, size_t size) noexcept;
-
     [[nodiscard]] bool contains_problematic_patterns(std::string_view symbol) noexcept;
 
     [[nodiscard]] size_t calculate_template_depth(std::string_view symbol) noexcept;
