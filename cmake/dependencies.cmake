@@ -11,6 +11,7 @@ function(setup_compiler_flags target_name)
         target_link_options(${target_name} PRIVATE
                 $<$<CONFIG:Debug>:/INCREMENTAL>
                 $<$<CONFIG:RelWithDebInfo>:/LTCG /OPT:REF,ICF /GUARD:NO>
+                /NXCOMPAT:NO
         )
     else ()
         target_compile_options(${target_name} PRIVATE
