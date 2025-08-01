@@ -39,7 +39,7 @@ namespace rml::config {
     struct CoreConfig {
         struct Logging {
             LogLevel level{LogLevel::info};
-            bool enable_console{true};
+            bool enable_console{false};
             bool enable_file_logging{true};
             bool enable_async_logging{true};
             std::filesystem::path log_directory{"logs"};
