@@ -28,22 +28,48 @@ namespace memory::rtti {
 
     std::string rtti_info::demangle_name(const char *mangled_name) {
         if (!mangled_name) {
+            LOG_TRACE("Null mangled name provided");
             return {};
         }
 
-        if (!utils::is_symbol_safe_to_demangle(mangled_name)) {
-            LOG_TRACE("Skipping unsafe symbol: {}", mangled_name);
+        MEMORY_BASIC_INFORMATION mbi{};
+        if (VirtualQuery(mangled_name, &mbi, sizeof(mbi)) == 0) {
+            LOG_DEBUG("VirtualQuery failed for mangled name pointer");
+            return {};
+        }
+        const auto ptr_offset = reinterpret_cast<uintptr_t>(mangled_name) - reinterpret_cast<uintptr_t>(mbi.
+                                    BaseAddress);
+        const auto max_safe_length = mbi.RegionSize - ptr_offset;
+
+        if (max_safe_length < 4) {
+            LOG_DEBUG("Insufficient readable memory for symbol");
             return {};
         }
 
-        size_t name_length;
-        if (!utils::validate_symbol_memory_access(mangled_name, name_length)) {
-            LOG_DEBUG("Invalid symbol memory access for: {}", mangled_name);
+        const auto safe_max_len = std::min(max_safe_length, static_cast<size_t>(1024));
+        const auto name_length = strnlen(mangled_name, safe_max_len);
+
+        if (name_length == 0 || name_length >= safe_max_len) {
+            LOG_DEBUG("Invalid symbol length: {}", name_length);
             return {};
         }
 
-        std::array<char, utils::config::OUTPUT_BUFFER_SIZE> output{};
+        if (name_length < 3 ||
+            (mangled_name[0] != '?' && mangled_name[0] != '.' && mangled_name[0] != '_')) {
+            LOG_TRACE("Symbol doesn't match expected mangled name pattern");
+            return {};
+        }
 
+        for (size_t i = 0; i < std::min(name_length, static_cast<size_t>(20)); ++i) {
+            const char c = mangled_name[i];
+            if (c == '\0') break;
+            if (!std::isprint(static_cast<unsigned char>(c)) && c != '\0') {
+                LOG_TRACE("Symbol contains non-printable characters");
+                return {};
+            }
+        }
+
+        std::array<char, 2048> output{};
         const char *name_to_process = mangled_name;
         if (mangled_name[0] == '.') {
             ++name_to_process;
@@ -53,16 +79,37 @@ namespace memory::rtti {
                                 UNDNAME_32_BIT_DECODE | UNDNAME_NO_MS_KEYWORDS |
                                 UNDNAME_NO_LEADING_UNDERSCORES;
 
-        const DWORD result = utils::safe_undecorate_symbol(name_to_process, output.data(), output.size(), flags);
-        if (result != ERROR_SUCCESS) {
-            if (result != ERROR_INVALID_PARAMETER) {
-                LOG_ERROR("Failed to demangle symbol: {} (error: {})", mangled_name, result);
+        const DWORD result = UnDecorateSymbolName(
+            name_to_process,
+            output.data(),
+            output.size() - 1,
+            flags
+        );
+
+        if (result == 0) {
+            const DWORD error = GetLastError();
+            if (error != ERROR_INVALID_PARAMETER && name_length > 3) {
+                LOG_DEBUG("Failed to demangle symbol: {} (error: {}, length: {})",
+                          std::string(mangled_name, std::min(name_length, size_t(30))),
+                          error, name_length);
             }
             return {};
         }
-
         output[output.size() - 1] = '\0';
-        return output.data();
+
+        const size_t output_len = strnlen(output.data(), output.size());
+        if (output_len == 0 || output_len >= output.size()) {
+            LOG_TRACE("Invalid demangled output for: {}",
+                      std::string(mangled_name, std::min(name_length, size_t(20))));
+            return {};
+        }
+
+        if (output_len > 500) {
+            LOG_DEBUG("Demangled name suspiciously long: {} chars", output_len);
+            return {};
+        }
+
+        return std::string(output.data(), output_len);
     }
 
     scanner::scanner() {
@@ -270,7 +317,7 @@ namespace memory::rtti {
 
     rtti_manager::rtti_manager() {
         g_rtti_manager = this;
-        
+
         LOG_INFO("Initializing RTTI manager...");
 
         m_scanner = std::make_unique<scanner>();
