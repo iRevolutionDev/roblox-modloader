@@ -67,9 +67,10 @@ namespace rml::jobs {
             return;
         }
 
-        LOG_INFO("DataModel changed from 0x{:X} to 0x{:X}",
+        LOG_INFO("DataModel changed from 0x{:X} to 0x{:X} by {}",
                  old_data_model ? reinterpret_cast<uintptr_t>(old_data_model) : 0,
-                 new_data_model ? reinterpret_cast<uintptr_t>(new_data_model) : 0);
+                 new_data_model ? reinterpret_cast<uintptr_t>(new_data_model) : 0,
+                 new_data_model ? std::to_underlying(new_data_model->get_type()) : 0);
 
         g_task_scheduler->set_data_model(new_data_model->get_type(), new_data_model, script_context);
 
