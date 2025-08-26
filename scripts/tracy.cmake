@@ -11,7 +11,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(tracy)
 
 if (WIN32)
-    set(TRACY_ENABLE 1 CACHE BOOL "Enable Tracy profiler")
+    set(TRACY_ENABLE 0 CACHE BOOL "Enable Tracy profiler")
     set(TRACY_SYMBOL_OFFLINE_RESOLVE 1 CACHE BOOL "Enable offline symbol resolving for Tracy profiler")
     set(TRACY_CALLSTACK 10 CACHE BOOL "Enable callstack support for Tracy profiler")
     set(TRACY_FIBERS 1 CACHE BOOL "Enable fiber context support for Tracy profiler")

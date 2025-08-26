@@ -22,7 +22,7 @@ include(scripts/spdlog.cmake)
 include(scripts/minhook.cmake)
 include(scripts/zlib.cmake)
 include(scripts/toml.cmake)
-include(scripts/tracy.cmake)
+#include(scripts/tracy.cmake)
 include(scripts/luau.cmake)
 include(scripts/json.cmake)
 
@@ -93,7 +93,7 @@ target_include_directories(RobloxModLoader INTERFACE
         # Include all dependency headers that common.hpp needs
         "$<BUILD_INTERFACE:${spdlog_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${tomlplusplus_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${tracy_SOURCE_DIR}/public>"
+        #"$<BUILD_INTERFACE:${tracy_SOURCE_DIR}/public>"
         "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${minhook_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/Compiler/include>"
@@ -106,7 +106,7 @@ target_link_libraries(RobloxModLoader INTERFACE
         spdlog::spdlog
         nlohmann_json::nlohmann_json
         tomlplusplus::tomlplusplus
-        Tracy::TracyClient
+        #Tracy::TracyClient
         minhook
         Luau.Compiler
         Luau.Ast
