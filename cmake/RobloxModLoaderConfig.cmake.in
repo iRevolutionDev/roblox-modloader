@@ -42,17 +42,17 @@ if(NOT TARGET tomlplusplus::tomlplusplus)
     FetchContent_MakeAvailable(tomlplusplus)
 endif()
 
-if(NOT TARGET Tracy::TracyClient)
-    FetchContent_Declare(
-        tracy
-        GIT_REPOSITORY https://github.com/wolfpld/tracy
-        GIT_TAG v0.11.0
-        GIT_PROGRESS TRUE
-    )
-    set(TRACY_ENABLE OFF CACHE BOOL "Enable Tracy profiling" FORCE)
-    set(TRACY_ON_DEMAND ON CACHE BOOL "Tracy on-demand profiling" FORCE)
-    FetchContent_MakeAvailable(tracy)
-endif()
+#if(NOT TARGET Tracy::TracyClient)
+#    FetchContent_Declare(
+#        tracy
+#        GIT_REPOSITORY https://github.com/wolfpld/tracy
+#        GIT_TAG v0.11.0
+#        GIT_PROGRESS TRUE
+#    )
+#    set(TRACY_ENABLE OFF CACHE BOOL "Enable Tracy profiling" FORCE)
+#    set(TRACY_ON_DEMAND ON CACHE BOOL "Tracy on-demand profiling" FORCE)
+#    FetchContent_MakeAvailable(tracy)
+#endif()
 
 if(NOT TARGET Luau.VM)
     set(LUAU_BUILD_CLI OFF CACHE BOOL "Build Luau CLI" FORCE)
