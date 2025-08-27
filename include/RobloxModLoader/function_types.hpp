@@ -1,0 +1,29 @@
+#pragma once
+
+#include "lua.h"
+#include "RobloxModLoader/roblox/util/standard_out.hpp"
+#include <string>
+
+namespace RBX::Security {
+    enum class Identity : std::uint64_t;
+}
+
+namespace functions {
+    using get_scheduler = uintptr_t(*)();
+    using print = void(__fastcall *)(RBX::MessageType level, const char *fmt, ...);
+    using luaH_new = void *(__fastcall *)(void *L, int32_t narray, int32_t nhash);
+    using freeblock = void(__fastcall *)(lua_State *L, int32_t sizeClass, void *block);
+    using lua_pushvalue = void*(__fastcall *)(lua_State *L, int idx);
+    using luaE_newthread = lua_State *(__fastcall *)(lua_State *L);
+    using luau_execute = void(__fastcall *)(lua_State *L);
+    using luau_load = lua_Status(__fastcall*)(lua_State *L, const char *chunkname, const char *data, size_t size,
+                                              int env);
+    using lua_setfield = void(__fastcall *)(lua_State *L, int idx, const char *k);
+    using luaD_rawrunprotected = int(__fastcall *)(lua_State *L, void (*PFunc)(lua_State *, void *), void *ud);
+    using lua_newthread = lua_State *(__fastcall *)(lua_State *L);
+    using luaD_throw = void(__fastcall *)(lua_State *L, int errcode);
+    using get_global_state = lua_State *(__fastcall *)(void *script_context, const RBX::Security::Identity *identity,
+                                                       const uint64_t *script);
+    using creator_create_by_name = uint64_t*(__fastcall *)(uint64_t *instance, std::string &name, uint32_t creator_role);
+    using task_defer = int(__fastcall *)(lua_State *L);
+}

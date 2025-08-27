@@ -6,7 +6,8 @@
 #include "RobloxModLoader/config/config_helpers.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/luau/environment/environment.hpp"
-#include "pointers.hpp"
+
+#include "lobject.h"
 
 namespace rml::luau {
     ScriptManager::ScriptManager() {
@@ -41,6 +42,19 @@ namespace rml::luau {
                 LOG_ERROR("Mod '{}' failed to load scripts with unknown error", mod->name);
             }
         }
+
+        const auto lua_state = luaL_newstate();
+
+        try {
+#undef luaO_nilobject
+            g_pointers->m_roblox_pointers.luaO_nilobject = g_pointers->m_roblox_pointers.lua_pushvalue(lua_state, 1);
+            const auto table = g_pointers->m_roblox_pointers.luaH_new(lua_state, 0, 0);
+            g_pointers->m_roblox_pointers.luaH_dummynode = static_cast<LuaTable *>(table)->node;
+        } catch (const std::exception &ex) {
+            LOG_ERROR("Failed to initialize Roblox pointers: {}", ex.what());
+        }
+
+        lua_close(lua_state);
 
         LOG_INFO("Mod script manager initialized successfully");
     }
@@ -489,8 +503,14 @@ namespace rml::luau {
 
         const auto chunk_name = script_info.full_path.filename().string();
 
-        LOG_DEBUG("Scheduling script via ScriptEngine using dedicated mod thread: {}",
-                  script_info.full_path.string());
+        LOG_INFO("Scheduling script via ScriptEngine using dedicated mod thread: {} {}",
+                 script_info.full_path.string(), static_cast<int>(data_model_type));
+
+        LOG_INFO("DataModel type: 0x{:X}, DataModel 0x{:X}",
+                 static_cast<int>(data_model_type),
+                 g_task_scheduler->get_data_model_by_type(data_model_type)
+                 ? reinterpret_cast<uintptr_t>(g_task_scheduler->get_data_model_by_type(data_model_type))
+                 : 0);
 
         execute_script_async_with_mod_thread(engine, script_info, chunk_name, mod_thread);
     }

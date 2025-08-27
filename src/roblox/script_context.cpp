@@ -1,10 +1,12 @@
+#include "RobloxModLoader/luau/script_context.hpp"
+
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 
 #include "pointers.hpp"
 
 namespace RBX {
-    lua_State *ScriptContext::get_global_state() {
+    lua_State *ScriptContext::get_global_state(const Security::Identity identity) {
         if (!g_pointers) return nullptr;
 
         if (!g_pointers->m_roblox_pointers.get_global_state) {
@@ -12,7 +14,6 @@ namespace RBX {
             return nullptr;
         }
 
-        constexpr auto identity = 0ull;
         constexpr auto script = 0ull;
 
         return g_pointers->m_roblox_pointers.get_global_state(

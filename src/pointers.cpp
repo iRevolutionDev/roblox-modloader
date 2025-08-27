@@ -67,21 +67,21 @@ constexpr auto pointers::get_roblox_batch() {
         },
          {
              "LUAE_NEWTHREAD",
-             "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 56 41 57 48 81 EC ? ? ? ? 49 8B E9 4D 8B F0",
+             "48 89 5C 24 ? 57 48 83 EC ? 44 0F B6 41 ? BA",
              [](const memory::handle ptr) {
                  g_pointers->m_roblox_pointers.luaE_newthread = ptr.as<functions::luaE_newthread>();
              },
          },
          {
              "LUA_PUSHVALUE",
-             "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 56 41 57 48 81 EC ? ? ? ? 49 8B E9",
+             "48 89 5C 24 ? 57 48 83 EC ? F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 85 FF 7E ? 48 8B 43 ? 48 8B CF 48 C1 E1",
              [](const memory::handle ptr) {
                  g_pointers->m_roblox_pointers.lua_pushvalue = ptr.as<functions::lua_pushvalue>();
              },
          },
          {
              "LUAH_NEW",
-             "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 56 41 57",
+             "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 48 83 EC ? 41 8B F0 8B EA 44 0F B6 41",
              [](const memory::handle ptr) {
                  g_pointers->m_roblox_pointers.luaH_new = ptr.as<functions::luaH_new>();
              },
@@ -100,9 +100,30 @@ constexpr auto pointers::get_roblox_batch() {
                  g_pointers->m_roblox_pointers.lua_newthread = ptr.as<functions::lua_newthread>();
              }
          },
+        {
+                "LUAD_RAWRUNPROTECTED",
+                "48 89 4C 24 ? 48 83 EC ? 48 8B C2 49 8B D0 FF D0 33 C0 EB 04 8B 44 24 48 48 83 C4 ? C3",
+                [](const memory::handle ptr) {
+                    g_pointers->m_roblox_pointers.luaD_rawrunprotected = ptr.as<functions::luaD_rawrunprotected>();
+                }
+            },
+        {
+            "LUAD_THROW",
+                "48 83 EC ? 44 8B C2 48 8B D1 48 8D 4C 24",
+                [](const memory::handle ptr) {
+                    g_pointers->m_roblox_pointers.luaD_throw = ptr.as<functions::luaD_throw>();
+                }
+        },
+        {
+            "LUA_SETFIELD",
+                "48 89 5C 24 ? 57 48 83 EC ? 4D 8B D0 48 8B F9 85 D2 7E ? 4C 8B 49 ? 48 8D 1D ? ? ? ? 49 83 C1 ? 48 63 D2 48 C1 E2 ? 4C 03 CA 4C 3B 49 ? 49 0F 42 D9 EB ? 81 FA ? ? ? ? 7E ? 48 63 DA 48 C1 E3 ? 48 03 59 ? EB ? E8 ? ? ? ? 48 8B D8 49 C7 C0",
+                [](const memory::handle ptr) {
+                    g_pointers->m_roblox_pointers.lua_setfield = ptr.as<functions::lua_setfield>();
+            }
+        },
          {
              "GET_GLOBALSTATE",
-             "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 05 ? ? ? ? 8B 10 03 D0 89 54 24 ? 03 40 ? 89 44 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 48 89 5C 24",
+             "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 05 ? ? ? ? 8B 10 03 D0 89 54 24 ? 03 40 ? 89 44 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 40 53",
              [](const memory::handle ptr) {
                  g_pointers->m_roblox_pointers.get_global_state = ptr.as<functions::get_global_state>();
              }
@@ -126,6 +147,13 @@ constexpr auto pointers::get_roblox_batch() {
             "40 55 56 57 41 56 48 83 EC ? 48 8B 05",
             [](const memory::handle ptr) {
                 g_pointers->m_roblox_pointers.m_profile_log = ptr.as<PVOID>();
+            },
+        },
+        {
+            "CREATOR_CREATE_BY_NAME",
+            "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 41 8B F8 48 8B F1",
+            [](const memory::handle ptr) {
+                g_pointers->m_roblox_pointers.creator_create_by_name = ptr.as<functions::creator_create_by_name>();
             },
         }
     >();
@@ -156,4 +184,12 @@ pointers::pointers() {
 
 pointers::~pointers() {
     g_pointers = nullptr;
+}
+
+roblox_pointers *get_roblox_pointers() {
+    if (!g_pointers) {
+        throw std::runtime_error("Pointers not initialized");
+    }
+
+    return &g_pointers->m_roblox_pointers;
 }

@@ -100,6 +100,10 @@ target_include_directories(RobloxModLoader INTERFACE
         "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/Ast/include>"
         "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/VM/include>"
         "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/Common/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Compiler/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Ast/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/VM/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Common/include>"
 )
 
 target_link_libraries(RobloxModLoader INTERFACE

@@ -67,7 +67,9 @@ namespace rml::luau::environment {
         }
 
     protected:
-        static void register_function(lua_State *L, std::string_view name, lua_CFunction func) noexcept;
+        static void register_function(lua_State *L, std::string_view name, lua_CFunction func) noexcept {
+            LuaFunctionRegistry::register_function_safe(L, name, func);
+        }
 
         static void register_table(lua_State *L, std::string_view name) noexcept;
 

@@ -4,6 +4,7 @@
 #include "script_context.hpp"
 #include "script_scheduler.hpp"
 #include "environment/rml_provider.hpp"
+#include "environment/environment_context.hpp"
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
 
 namespace rml::luau {
@@ -29,6 +30,7 @@ namespace rml::luau {
     private:
         std::unique_ptr<ScriptContext> m_context;
         std::unique_ptr<ScriptScheduler> m_scheduler;
+        std::shared_ptr<environment::EnvironmentContext> m_environmentContext;
         std::atomic<bool> m_is_running{false};
         std::atomic<bool> m_is_destroyed{false};
 
@@ -93,6 +95,9 @@ namespace rml::luau {
         };
 
         [[nodiscard]] Statistics get_statistics() const noexcept;
+
+        [[nodiscard]] std::shared_ptr<environment::EnvironmentContext> get_environment_context() const noexcept;
+        void set_environment_context(std::shared_ptr<environment::EnvironmentContext> context) noexcept;
 
     private:
         [[nodiscard]] std::future<ExecutionResult> execute_internal(

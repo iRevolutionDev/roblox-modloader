@@ -1,6 +1,5 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/roblox/util/standard_out.hpp"
-
 #include "pointers.hpp"
 
 void RBX::StandardOut::printf(const MessageType message_type, const char *format, ...) {

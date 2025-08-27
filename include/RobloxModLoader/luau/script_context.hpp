@@ -3,6 +3,7 @@
 namespace RBX::Security {
     enum Capabilities : std::uint64_t;
     enum class Permissions : std::uint32_t;
+    enum class Identity : std::uint64_t;
 }
 
 struct Closure;

@@ -68,4 +68,11 @@ namespace RBX::Security {
         RobloxExecutor = 7,
         RobloxEngine = 8,
     };
+
+    enum class Identity : std::uint64_t {
+        Default = 0,
+        StudioPlugin = 1,
+        RobloxScript = 2,
+        RobloxEngine = 3, // This is also used by the ElevatedStudioPlugin
+    };
 }
