@@ -30,6 +30,11 @@ namespace rml::luau {
                 return false;
             }
 
+            if (!m_environmentContext) {
+                m_environmentContext = std::make_shared<environment::EnvironmentContext>(nullptr);
+                LOG_INFO("Created EnvironmentContext for ScriptEngine");
+            }
+
             m_is_running.store(true, std::memory_order_release);
 
             LOG_INFO("Luau execution engine initialized successfully");
@@ -49,6 +54,12 @@ namespace rml::luau {
             }
 
             LOG_INFO("Shutting down Luau execution engine...");
+
+            if (m_environmentContext) {
+                m_environmentContext->destroy_context();
+                m_environmentContext.reset();
+                LOG_DEBUG("EnvironmentContext destroyed during shutdown");
+            }
 
             m_is_running.store(false, std::memory_order_release);
 
@@ -339,5 +350,15 @@ namespace rml::luau {
         }
 
         return future;
+    }
+
+    std::shared_ptr<environment::EnvironmentContext> ScriptEngine::get_environment_context() const noexcept {
+        std::shared_lock lock(m_state_mutex);
+        return m_environmentContext;
+    }
+
+    void ScriptEngine::set_environment_context(std::shared_ptr<environment::EnvironmentContext> context) noexcept {
+        std::unique_lock lock(m_state_mutex);
+        m_environmentContext = std::move(context);
     }
 }

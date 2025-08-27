@@ -33,12 +33,6 @@ namespace rml::luau::environment {
     }
 
     template<typename Derived>
-    void GlobalProvider<Derived>::register_function(lua_State *L, const std::string_view name,
-                                                    const lua_CFunction func) noexcept {
-        LuaFunctionRegistry::register_function_safe(L, name, func);
-    }
-
-    template<typename Derived>
     void GlobalProvider<Derived>::register_table(lua_State *L, const std::string_view name) noexcept {
         lua_newtable(L);
         lua_setglobal(L, name.data());
@@ -79,7 +73,6 @@ namespace rml::luau::environment {
 
     template<typename Derived>
     void GlobalProvider<Derived>::end_table_registration(lua_State *L) noexcept {
-        
     }
 
     class GlobalsRegistry::Impl {

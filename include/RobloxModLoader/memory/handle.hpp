@@ -1,4 +1,5 @@
 #pragma once
+#include "RobloxModLoader/common.hpp"
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>

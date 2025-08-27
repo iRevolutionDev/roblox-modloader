@@ -2,13 +2,14 @@
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/job.hpp"
 #include "RobloxModLoader/luau/script_engine.hpp"
-#include "pointers.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include "mod_manager.hpp"
 #include <array>
 #include <utility>
 #include <thread>
 
+#include "lstate.h"
+#include "RobloxModLoader/luau/environment/closures_provider.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 
 namespace RBX {
@@ -271,6 +272,18 @@ namespace RBX {
         return nullptr;
     }
 
+    std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(lua_State *L) {
+        std::shared_lock lock(m_script_engines_mutex);
+
+        for (const auto &engine: m_script_engines | std::views::values) {
+            if (engine && engine->get_context().get_thread_state()->global == L->global) {
+                return engine;
+            }
+        }
+
+        return nullptr;
+    }
+
     void TaskScheduler::initialize() noexcept {
         LOG_INFO("[TaskScheduler] Initializing TaskScheduler...");
 
@@ -293,13 +306,15 @@ namespace RBX {
             return nullptr;
         }
 
-        const auto global_state = script_context->get_global_state();
+        // TODO: Get the right identity based on the DataModel type
+        const auto global_state = script_context->get_global_state(Security::Identity::RobloxEngine);
         const auto L = lua_newthread(global_state);
 
         rml::luau::ScriptContext::Context options{
             .L = L,
         };
 
+        rml::luau::environment::ClosuresProvider::register_roblox_globals(L);
         luaL_sandboxthread(L);
 
         auto script_engine = std::make_shared<rml::luau::ScriptEngine>(options);

@@ -42,13 +42,13 @@ function(setup_luau_dependencies target_name access_level)
     )
 
     target_include_directories(${target_name} ${access_level}
-            "${luau_SOURCE_DIR}/Compiler/include"
-            "${luau_SOURCE_DIR}/Ast/include"
-            "${luau_SOURCE_DIR}/VM/include"
-            "${luau_SOURCE_DIR}/VM/src"
-            "${luau_SOURCE_DIR}/EqSat/include"
-            "${luau_SOURCE_DIR}/CodeGen/include"
-            "${luau_SOURCE_DIR}/Common/include"
+            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Compiler/include"
+            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Ast/include"
+            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/VM/include"
+            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/VM/src"
+            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/EqSat/include"
+            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/CodeGen/include"
+            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Common/include"
     )
 endfunction()
 
