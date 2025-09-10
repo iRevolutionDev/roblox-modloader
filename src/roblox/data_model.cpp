@@ -4,7 +4,8 @@
 
 namespace RBX {
     DataModelType DataModel::get_type() const {
-        return static_cast<DataModelType>(*reinterpret_cast<int32_t *>(reinterpret_cast<std::uintptr_t>(this) + 0x330));
+        return static_cast<DataModelType>(*reinterpret_cast<uint32_t *>(
+            reinterpret_cast<std::uintptr_t>(this) + 0x328));
     }
 
     bool DataModel::is_initialized() const {
@@ -23,7 +24,7 @@ namespace RBX {
         }
 
         // Job has fake data model then I need to offset it to the real data model.
-        const auto data_model = reinterpret_cast<uintptr_t>(fake_data_model.get()) + 0x1A0;
+        const auto data_model = reinterpret_cast<uintptr_t>(fake_data_model.get()) + 0x1A8;
 
         return reinterpret_cast<DataModel *>(data_model);
     }
