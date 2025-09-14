@@ -56,7 +56,7 @@ namespace rml::jobs {
     }
 
     void DataModelWatcherJob::on_data_model_changed(const RBX::DataModel *old_data_model,
-                                                    const RBX::DataModel *new_data_model,
+                                                    RBX::DataModel *new_data_model,
                                                     RBX::ScriptContext *script_context) {
         if (g_task_scheduler == nullptr) {
             LOG_ERROR("TaskScheduler is null, cannot set new DataModel.");

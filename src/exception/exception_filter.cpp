@@ -14,6 +14,9 @@ namespace exception_filter {
             LOG_WARN("Exception handler already initialized");
             return;
         }
+
+        SetErrorMode(SEM_FAILCRITICALERRORS);
+
         m_previous_filter = SetUnhandledExceptionFilter(unhandled_exception_filter);
         m_initialized = true;
 
@@ -32,7 +35,7 @@ namespace exception_filter {
         LOG_INFO("Exception handler shutdown successfully");
     }
 
-    long exception_handler::unhandled_exception_filter(PEXCEPTION_POINTERS exception_pointers) {
+    long exception_handler::unhandled_exception_filter(const PEXCEPTION_POINTERS exception_pointers) {
         thread_local bool in_exception_handler = false;
         if (in_exception_handler) {
             return EXCEPTION_CONTINUE_SEARCH;

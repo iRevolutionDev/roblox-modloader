@@ -69,7 +69,7 @@ namespace RBX {
 
         std::optional<void **> get_vtable_for_job_kind(rml::JobKind kind) const noexcept;
 
-        void set_data_model(DataModelType type, const DataModel *data_model, ScriptContext *script_context);
+        void set_data_model(DataModelType type, DataModel *data_model, ScriptContext *script_context);
 
         const DataModel *get_data_model_by_type(DataModelType type) noexcept;
 

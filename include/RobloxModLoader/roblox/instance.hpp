@@ -2,7 +2,7 @@
 #include <memory>
 #include <vector>
 
-class ClassDescriptor; // for now, I'll do the reflection later.
+#include "reflection/object.hpp"
 
 class Instance : public std::enable_shared_from_this<Instance> {
 public:
@@ -32,4 +32,6 @@ public:
     std::shared_ptr<Instance> current() {
         return shared_from_this();
     }
+
+    std::string get_full_name();
 };
