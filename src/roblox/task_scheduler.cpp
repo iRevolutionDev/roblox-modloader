@@ -10,6 +10,7 @@
 
 #include "lstate.h"
 #include "RobloxModLoader/luau/environment/closures_provider.hpp"
+#include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 
 namespace RBX {
@@ -226,7 +227,7 @@ namespace RBX {
         return std::nullopt;
     }
 
-    void TaskScheduler::set_data_model(const DataModelType type, const DataModel *data_model,
+    void TaskScheduler::set_data_model(const DataModelType type, DataModel *data_model,
                                        ScriptContext *script_context) {
         const DataModel *old_data_model = nullptr; {
             std::shared_lock lock(m_data_model_mutex);
