@@ -33,7 +33,7 @@ namespace rml::jobs {
         static constexpr std::string_view JOB_NAME = "DataModelWatcher";
 
         static void on_data_model_changed(const RBX::DataModel *old_data_model,
-                                          const RBX::DataModel *new_data_model,
+                                          RBX::DataModel *new_data_model,
                                           RBX::ScriptContext *script_context);
 
         void check_and_cleanup_stale_data_models();
