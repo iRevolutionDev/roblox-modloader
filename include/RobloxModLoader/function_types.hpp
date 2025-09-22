@@ -24,6 +24,7 @@ namespace functions {
     using luaD_throw = void(__fastcall *)(lua_State *L, int errcode);
     using get_global_state = lua_State *(__fastcall *)(void *script_context, const RBX::Security::Identity *identity,
                                                        const uint64_t *script);
-    using creator_create_by_name = uint64_t*(__fastcall *)(uint64_t *instance, std::string &name, uint32_t creator_role);
+    using creator_create_by_name = uintptr_t(*)(uintptr_t *out, const std::string &name, uint32_t creator_role);
+    using instance_bridge_push = void(__fastcall *)(lua_State *L, uintptr_t instance);
     using task_defer = int(__fastcall *)(lua_State *L);
 }

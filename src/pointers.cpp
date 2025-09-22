@@ -155,6 +155,13 @@ constexpr auto pointers::get_roblox_batch() {
             [](const memory::handle ptr) {
                 g_pointers->m_roblox_pointers.creator_create_by_name = ptr.as<functions::creator_create_by_name>();
             },
+        },
+        {
+            "INSTANCE_BRIDGE_PUSH",
+            "48 89 5C 24 ? 57 48 83 EC ? 48 8B FA 48 8B D9 E8 ? ? ? ? 48 8B CB 84 C0 74 ? 48 8B D7",
+            [](const memory::handle ptr) {
+                g_pointers->m_roblox_pointers.instance_bridge_push = ptr.as<functions::instance_bridge_push>();
+            },
         }
     >();
 

@@ -57,6 +57,7 @@ struct roblox_pointers {
     functions::get_global_state get_global_state;
 
     functions::creator_create_by_name creator_create_by_name;
+    functions::instance_bridge_push instance_bridge_push;
 };
 #pragma pack(pop)
 static_assert(sizeof(roblox_pointers) % 8 == 0, "Pointers are not properly aligned");
