@@ -5,7 +5,10 @@ function(setup_compiler_flags target_name)
         target_compile_options(${target_name} PRIVATE
                 /bigobj
                 /utf-8
-                /MD
+                $<$<CONFIG:Debug>:/MDd>
+                $<$<CONFIG:Release>:/MD>
+                $<$<CONFIG:RelWithDebInfo>:/MD>
+                $<$<CONFIG:MinSizeRel>:/MD>
                 $<$<CONFIG:Debug>:/ZI>
                 $<$<CONFIG:RelWithDebInfo>:/O2 /Oi /Ot /Oy /Ob3 /sdl- /GL /GF /GS- /Gw>
         )
