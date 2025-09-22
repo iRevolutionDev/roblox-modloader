@@ -3,7 +3,7 @@
 #include "pointers.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
 #include "RobloxModLoader/mod/events.hpp"
-#include "RobloxModLoader/exception/exception_filter.hpp"
+#include "RobloxModLoader/exception/crash_dumper.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include "RobloxModLoader/roblox/job_manager.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
@@ -26,7 +26,8 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
 
             LOG_INFO("Initializing Roblox Mod Loader...");
 
-            exception_filter::exception_handler::initialize();
+            auto crash_dumper_instance = std::make_shared<exception_filter::CrashDumper>();
+            crash_dumper_instance->enable();
             LOG_INFO("Exception handler initialized.");
 
             const auto event_manager_instance = std::make_shared<events::EventManager>();
@@ -76,7 +77,7 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpRese
             rml::config::shutdown();
             LOG_INFO("Configuration system shutdown.");
 
-            exception_filter::exception_handler::shutdown();
+            crash_dumper_instance.reset();
             LOG_INFO("Exception handler shutdown.");
 
             CloseHandle(g_main_thread);

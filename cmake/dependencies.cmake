@@ -5,6 +5,7 @@ function(setup_compiler_flags target_name)
         target_compile_options(${target_name} PRIVATE
                 /bigobj
                 /utf-8
+                /MD
                 $<$<CONFIG:Debug>:/ZI>
                 $<$<CONFIG:RelWithDebInfo>:/O2 /Oi /Ot /Oy /Ob3 /sdl- /GL /GF /GS- /Gw>
         )
@@ -59,6 +60,7 @@ function(setup_core_dependencies target_name access_level)
             ZLIB::ZLIB
             #Tracy::TracyClient
             nlohmann_json::nlohmann_json
+            PolyHook_2
     )
 
     target_include_directories(${target_name} ${access_level}
@@ -68,5 +70,6 @@ function(setup_core_dependencies target_name access_level)
             "${tomlplusplus_SOURCE_DIR}/include"
             #"${tracy_SOURCE_DIR}/public"
             "${nlohmann_json_SOURCE_DIR}/include"
+            "${polyhook2_SOURCE_DIR}"
     )
 endfunction()

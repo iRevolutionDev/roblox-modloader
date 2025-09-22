@@ -25,6 +25,7 @@ include(scripts/toml.cmake)
 #include(scripts/tracy.cmake)
 include(scripts/luau.cmake)
 include(scripts/json.cmake)
+include(scripts/polyhooks.cmake)
 
 include(cmake/dependencies.cmake)
 
@@ -69,6 +70,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
             FOLDER "ModLoader"
             COMPILE_WARNING_AS_ERROR ON
             ENABLE_EXPORTS ON
+            MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
     )
 
     target_precompile_headers(roblox_modloader PRIVATE
@@ -96,14 +98,11 @@ target_include_directories(RobloxModLoader INTERFACE
         #"$<BUILD_INTERFACE:${tracy_SOURCE_DIR}/public>"
         "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${minhook_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/Compiler/include>"
-        "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/Ast/include>"
-        "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/VM/include>"
-        "$<BUILD_INTERFACE:${luau_SOURCE_DIR}/Common/include>"
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Compiler/include>"
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Ast/include>"
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/VM/include>"
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Common/include>"
+        "$<BUILD_INTERFACE:${polyhook2_SOURCE_DIR}>"
 )
 
 target_link_libraries(RobloxModLoader INTERFACE
@@ -112,6 +111,7 @@ target_link_libraries(RobloxModLoader INTERFACE
         tomlplusplus::tomlplusplus
         #Tracy::TracyClient
         minhook
+        PolyHook_2
         Luau.Compiler
         Luau.Ast
         Luau.VM
