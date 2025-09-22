@@ -61,7 +61,7 @@ function(create_roblox_mod MOD_NAME MOD_DIR)
                 $<$<CONFIG:RelWithDebInfo>:/LTCG /OPT:REF,ICF /GUARD:NO>
         )
     endif ()
-    
+
     source_group(TREE ${MOD_DIR} PREFIX "src" FILES ${MOD_SOURCES})
 
     message(STATUS "Created mod target: ${MOD_NAME}")
