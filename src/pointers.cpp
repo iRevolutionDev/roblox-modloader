@@ -123,7 +123,7 @@ constexpr auto pointers::get_roblox_batch() {
         },
          {
              "GET_GLOBALSTATE",
-             "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 05 ? ? ? ? 8B C8 2B 08 89 4C 24 ? 2B 40 ? 89 44 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 40 53",
+             "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 05 ? ? ? ? ? ? 2B C8 89 4C 24 ? 8B 48 ? 2B C8 89 4C 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 ? ? ? ? ? ? ? ? ? ? ? ? ? ? 40 53",
              [](const memory::handle ptr) {
                  g_pointers->m_roblox_pointers.get_global_state = ptr.as<functions::get_global_state>();
              }
@@ -149,13 +149,13 @@ constexpr auto pointers::get_roblox_batch() {
                 g_pointers->m_roblox_pointers.m_profile_log = ptr.as<PVOID>();
             },
         },
-        {
-            "CREATOR_CREATE_BY_NAME",
-            "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 41 8B F8 48 8B F1",
-            [](const memory::handle ptr) {
-                g_pointers->m_roblox_pointers.creator_create_by_name = ptr.as<functions::creator_create_by_name>();
-            },
-        },
+        // {
+        //     "CREATOR_CREATE_BY_NAME",
+        //     "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 41 8B F8 48 8B F1",
+        //     [](const memory::handle ptr) {
+        //         g_pointers->m_roblox_pointers.creator_create_by_name = ptr.as<functions::creator_create_by_name>();
+        //     },
+        // },
         {
             "INSTANCE_BRIDGE_PUSH",
             "48 89 5C 24 ? 57 48 83 EC ? 48 8B FA 48 8B D9 E8 ? ? ? ? 48 8B CB 84 C0 74 ? 48 8B D7",
