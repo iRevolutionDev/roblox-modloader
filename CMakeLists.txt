@@ -132,6 +132,16 @@ target_compile_definitions(RobloxModLoader INTERFACE
         $<$<CONFIG:Debug>:DEBUG>
 )
 
+if (DEFINED ENV{ROBLOX_STUDIO_PATH} AND NOT "$ENV{ROBLOX_STUDIO_PATH}" STREQUAL "")
+    add_custom_command(TARGET roblox_modloader POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:roblox_modloader>
+            "$ENV{ROBLOX_STUDIO_PATH}/$<TARGET_FILE_NAME:roblox_modloader>"
+            COMMENT "Copying roblox_modloader.dll to $ENV{ROBLOX_STUDIO_PATH}"
+    )
+endif ()
+
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     if (ROBLOX_MODLOADER_BUILD_PROXY_GENERATOR)
         add_subdirectory(proxy_generator)
