@@ -10,6 +10,7 @@
 
 #include "lstate.h"
 #include "RobloxModLoader/luau/environment/closures_provider.hpp"
+#include "RobloxModLoader/luau/environment/debug_provider.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 
@@ -316,6 +317,7 @@ namespace RBX {
         };
 
         rml::luau::environment::ClosuresProvider::register_roblox_globals(L);
+    	rml::luau::environment::DebugProvider::register_debug_table(L);
         luaL_sandboxthread(L);
 
         auto script_engine = std::make_shared<rml::luau::ScriptEngine>(options);
