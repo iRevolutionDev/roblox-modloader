@@ -152,7 +152,7 @@ static BytecodeRegTypeInfo* findRegType(BytecodeTypeInfo& info, uint8_t reg, int
     auto b = info.regTypes.begin() + info.regTypeOffsets[reg];
     auto e = info.regTypes.begin() + info.regTypeOffsets[reg + 1];
 
-    // Doen't have info
+    // Doesn't have info
     if (b == e)
         return nullptr;
 
@@ -634,7 +634,7 @@ void buildBytecodeBlocks(IrFunction& function, const std::vector<uint8_t>& jumpT
 
         int target = getJumpTarget(*pc, uint32_t(i));
 
-        // Implicit fallthroughs terminate the block and might start a new one
+        // Implicit fallthrough terminate the block and might start a new one
         if (target >= 0 && !isFastCall(op))
         {
             bcBlocks.back().finishpc = i;
@@ -689,6 +689,7 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
         for (int i = proto->numparams; i < proto->maxstacksize; ++i)
             regTags[i] = LBC_TYPE_ANY;
 
+        // Namecall instruction has a hook which specifies the result of the next call instruction
         LuauBytecodeType knownNextCallResult = LBC_TYPE_ANY;
 
         for (int i = block.startpc; i <= block.finishpc;)
@@ -771,10 +772,16 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
             }
             case LOP_GETTABLE:
             {
+                int ra = LUAU_INSN_A(*pc);
                 int rb = LUAU_INSN_B(*pc);
                 int rc = LUAU_INSN_C(*pc);
+
+                regTags[ra] = LBC_TYPE_ANY;
+
                 bcType.a = regTags[rb];
                 bcType.b = regTags[rc];
+
+                bcType.result = regTags[ra];
                 break;
             }
             case LOP_SETTABLE:
@@ -825,14 +832,28 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
             case LOP_SETTABLEKS:
             {
                 int rb = LUAU_INSN_B(*pc);
+
                 bcType.a = regTags[rb];
                 bcType.b = LBC_TYPE_STRING;
                 break;
             }
             case LOP_GETTABLEN:
+            {
+                int ra = LUAU_INSN_A(*pc);
+                int rb = LUAU_INSN_B(*pc);
+
+                regTags[ra] = LBC_TYPE_ANY;
+
+                bcType.a = regTags[rb];
+                bcType.b = LBC_TYPE_NUMBER;
+
+                bcType.result = regTags[ra];
+                break;
+            }
             case LOP_SETTABLEN:
             {
                 int rb = LUAU_INSN_B(*pc);
+
                 bcType.a = regTags[rb];
                 bcType.b = LBC_TYPE_NUMBER;
                 break;
@@ -1106,12 +1127,16 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
                 int ra = LUAU_INSN_A(call);
 
                 applyBuiltinCall(LuauBuiltinFunction(bfid), bcType);
+
                 regTags[ra + 1] = bcType.a;
                 regTags[ra + 2] = bcType.b;
                 regTags[ra + 3] = bcType.c;
                 regTags[ra] = bcType.result;
 
                 refineRegType(bcTypeInfo, ra, i, bcType.result);
+
+                // Fastcall failure fallback is skipped from result propagation
+                i += skip;
                 break;
             }
             case LOP_FASTCALL1:
@@ -1130,6 +1155,9 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
                 regTags[ra] = bcType.result;
 
                 refineRegType(bcTypeInfo, ra, i, bcType.result);
+
+                // Fastcall failure fallback is skipped from result propagation
+                i += skip;
                 break;
             }
             case LOP_FASTCALL2:
@@ -1148,6 +1176,9 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
                 regTags[ra] = bcType.result;
 
                 refineRegType(bcTypeInfo, ra, i, bcType.result);
+
+                // Fastcall failure fallback is skipped from result propagation
+                i += skip;
                 break;
             }
             case LOP_FASTCALL3:
@@ -1163,11 +1194,14 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
                 applyBuiltinCall(LuauBuiltinFunction(bfid), bcType);
 
                 regTags[LUAU_INSN_B(*pc)] = bcType.a;
-                regTags[aux & 0xff] = bcType.b;
-                regTags[(aux >> 8) & 0xff] = bcType.c;
+                regTags[LUAU_INSN_AUX_A(aux)] = bcType.b;
+                regTags[LUAU_INSN_AUX_B(aux)] = bcType.c;
                 regTags[ra] = bcType.result;
 
                 refineRegType(bcTypeInfo, ra, i, bcType.result);
+
+                // Fastcall failure fallback is skipped from result propagation
+                i += skip;
                 break;
             }
             case LOP_FORNPREP:
@@ -1278,6 +1312,13 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
                 break;
             }
             case LOP_GETGLOBAL:
+            {
+                int ra = LUAU_INSN_A(*pc);
+
+                regTags[ra] = LBC_TYPE_ANY;
+                bcType.result = regTags[ra];
+                break;
+            }
             case LOP_SETGLOBAL:
             case LOP_RETURN:
             case LOP_JUMP:
@@ -1300,12 +1341,45 @@ void analyzeBytecodeTypes(IrFunction& function, const HostIrHooks& hostHooks)
             case LOP_FORGLOOP:
             case LOP_FORGPREP_NEXT:
             case LOP_FORGPREP_INEXT:
+                break;
             case LOP_AND:
-            case LOP_ANDK:
             case LOP_OR:
+            {
+                int ra = LUAU_INSN_A(*pc);
+                int rb = LUAU_INSN_B(*pc);
+                int rc = LUAU_INSN_C(*pc);
+
+                bcType.a = regTags[rb];
+                bcType.b = regTags[rc];
+
+                regTags[ra] = LBC_TYPE_ANY;
+                bcType.result = regTags[ra];
+                break;
+            }
+            case LOP_ANDK:
             case LOP_ORK:
+            {
+                int ra = LUAU_INSN_A(*pc);
+                int rb = LUAU_INSN_B(*pc);
+                int kc = LUAU_INSN_C(*pc);
+
+                bcType.a = regTags[rb];
+                bcType.b = getBytecodeConstantTag(proto, kc);
+
+                regTags[ra] = LBC_TYPE_ANY;
+                bcType.result = regTags[ra];
+                break;
+            }
             case LOP_COVERAGE:
+                break;
             case LOP_GETIMPORT:
+            {
+                int ra = LUAU_INSN_A(*pc);
+
+                regTags[ra] = LBC_TYPE_ANY;
+                bcType.result = regTags[ra];
+                break;
+            }
             case LOP_CAPTURE:
             case LOP_PREPVARARGS:
             case LOP_GETVARARGS:

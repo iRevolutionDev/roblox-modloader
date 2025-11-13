@@ -63,6 +63,10 @@ bool isWithinComment(const std::vector<Comment>& commentLocations, Position pos)
 bool isWithinComment(const SourceModule& sourceModule, Position pos);
 bool isWithinComment(const ParseResult& result, Position pos);
 
+bool isWithinHotComment(const std::vector<HotComment>& hotComments, Position pos);
+bool isWithinHotComment(const SourceModule& sourceModule, Position pos);
+bool isWithinHotComment(const ParseResult& result, Position pos);
+
 struct RequireCycle
 {
     Location location;
@@ -155,6 +159,8 @@ struct Module
     void clonePublicInterface_DEPRECATED(NotNull<BuiltinTypes> builtinTypes, InternalErrorReporter& ice);
 
     void clonePublicInterface(NotNull<BuiltinTypes> builtinTypes, InternalErrorReporter& ice, SolverMode mode);
+
+    bool constraintGenerationDidNotComplete = true;
 };
 
 } // namespace Luau

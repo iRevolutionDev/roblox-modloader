@@ -56,14 +56,14 @@ checkresults({ true, 42 }, pcall(setmetatable({}, { __call = function(self, arg)
 checkerror(pcall(function() local a = nil / 5 end))
 checkerror(pcall(function() select(-100) end))
 
-if not limitedstack then
+do
 	-- complex error tests - stack overflow, and stack overflow through pcall
 	function stackinfinite() return stackinfinite() end
 	checkerror(pcall(stackinfinite))
 
 	function stackover() return pcall(stackover) end
 	local res = {pcall(stackover)}
-	assert(#res == 200) -- stack limit (MAXCCALLS) is 200
+	assert(#res == 10000) -- stack limit (LUAI_MAXCALLS is 20000 and we use 2 calls per recursion)
 end
 
 -- yield tests
@@ -146,7 +146,14 @@ checkresults({ true, false, "fail" }, coroutine.resume(co))
 
 -- stack overflow needs to happen at the call limit
 local calllimit = 20000
-function recurse(n) return n <= 1 and 1 or recurse(n-1) + 1 end
+function recurse(n)
+	return n <= 1 and 1 or recurse(n-1) + 1
+end
+
+function yieldandrecurse(n)
+	coroutine.yield()
+	recurse(n)
+end
 
 -- we use one frame for top-level function and one frame is the service frame for coroutines
 assert(recurse(calllimit - 2) == calllimit - 2)
@@ -167,6 +174,26 @@ checkresults({ false, "not enough memory" }, xpcall(function() table.create(1e6)
 checkresults({ false, "oops" }, xpcall(function() table.create(1e6) end, function(e) return "oops" end))
 checkresults({ false, "error in error handling" }, xpcall(function() error("oops") end, function(e) table.create(1e6) end))
 checkresults({ false, "not enough memory" }, xpcall(function() table.create(1e6) end, function(e) table.create(1e6) end))
+
+-- Same tests as above are performed using the pcall continuation
+local yieldwithsameresult = coroutine.wrap(function()
+	-- xpcall handler runs in context of the stack frame, but this works just fine since we allow extra stack consumption past stack overflow
+	checkresults({ false, "ok" }, xpcall(yieldandrecurse, function() return string.reverse("ko") end, calllimit - 2))
+
+	-- however, if xpcall handler itself runs out of extra stack space, we get "error in error handling"
+	checkresults({ false, "error in error handling" }, xpcall(yieldandrecurse, function() return recurse(calllimit) end, calllimit - 2))
+
+	-- simulate OOM and make sure we can catch it with pcall or xpcall
+	checkresults({ false, "not enough memory" }, pcall(function() coroutine.yield(); table.create(1e6) end))
+	checkresults({ false, "not enough memory" }, xpcall(function() coroutine.yield(); table.create(1e6) end, function(e) return e end))
+	checkresults({ false, "oops" }, xpcall(function() coroutine.yield(); table.create(1e6) end, function(e) return "oops" end))
+	checkresults({ false, "error in error handling" }, xpcall(function() coroutine.yield(); error("oops") end, function(e) table.create(1e6) end))
+	checkresults({ false, "not enough memory" }, xpcall(function() coroutine.yield(); table.create(1e6) end, function(e) table.create(1e6) end))
+
+	return 1
+end)
+
+while yieldwithsameresult() ~= 1 do end
 
 co = coroutine.create(function() table.create(1e6) end)
 coroutine.resume(co)
@@ -265,7 +292,26 @@ if not limitedstack then
 		coroutine.wrap(foo)()   -- call another coroutine
 	end
 	checkerror(pcall(foo)) -- triggers C stack overflow
-	assert(count + 1 == 200) -- stack limit (MAXCCALLS) is 200, -1 for first pcall
+	assert(count == 200) -- stack limit (MAXCCALLS) is 200
+end
+
+-- protected and regular calls without C stack limit
+do
+	local function regularadd(depth: number, a: number, b: number): number
+		if depth == 0 then return 1 end
+
+		return a + regularadd(depth - 1, b, a + b)
+	end
+
+	local function protectedadd(depth: number, a: number, b: number): number
+		if depth == 0 then return 1 end
+
+		local result, s = pcall(protectedadd, depth - 1, b, a + b)
+		assert(result)
+		return a + s
+	end
+
+	assert(regularadd(2000, 0, 1) == protectedadd(2000, 0, 1))
 end
 
 return 'OK'

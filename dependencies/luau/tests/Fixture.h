@@ -186,7 +186,13 @@ struct Fixture
     LoadDefinitionFileResult loadDefinition(const std::string& source, bool forAutocomplete = false);
     // TODO: test theory about dynamic dispatch
     NotNull<BuiltinTypes> getBuiltins();
+    const BuiltinTypeFunctions& getBuiltinTypeFunctions();
     virtual Frontend& getFrontend();
+
+    // On platforms that support it, adjust our internal stack guard to
+    // limit how much address space we should use before we blow up.  We
+    // use this to test the stack guard itself.
+    void limitStackSize(size_t size);
 
 private:
     bool hasDumpedErrors = false;
@@ -198,6 +204,8 @@ protected:
 
     TypeArena simplifierArena;
     SimplifierPtr simplifier{nullptr, nullptr};
+
+    std::vector<ScopedFastInt> dynamicScopedInts;
 };
 
 struct BuiltinsFixture : Fixture

@@ -92,6 +92,10 @@ struct FunctionCallConstraint
     TypeId fn;
     TypePackId argsPack;
     TypePackId result;
+
+    // callSite can be nullptr in the case that this constraint was
+    // synthetically generated from some other constraint. eg
+    // IterableConstraint.
     class AstExprCall* callSite = nullptr;
     std::vector<std::optional<TypeId>> discriminantTypes;
 
@@ -112,21 +116,6 @@ struct FunctionCheckConstraint
     TypePackId argsPack;
 
     class AstExprCall* callSite = nullptr;
-    NotNull<DenseHashMap<const AstExpr*, TypeId>> astTypes;
-    NotNull<DenseHashMap<const AstExpr*, TypeId>> astExpectedTypes;
-};
-
-// table_check expectedType exprType
-//
-// If `expectedType` is a table type and `exprType` is _also_ a table type,
-// propogate the member types of `expectedType` into the types of `exprType`.
-// This is used to implement bidirectional inference on table assignment.
-// Also see: FunctionCheckConstraint.
-struct TableCheckConstraint
-{
-    TypeId expectedType;
-    TypeId exprType;
-    AstExprTable* table = nullptr;
     NotNull<DenseHashMap<const AstExpr*, TypeId>> astTypes;
     NotNull<DenseHashMap<const AstExpr*, TypeId>> astExpectedTypes;
 };
@@ -303,6 +292,15 @@ struct PushFunctionTypeConstraint
     bool isSelf;
 };
 
+struct PushTypeConstraint
+{
+    TypeId expectedType;
+    TypeId targetType;
+    NotNull<DenseHashMap<const AstExpr*, TypeId>> astTypes;
+    NotNull<DenseHashMap<const AstExpr*, TypeId>> astExpectedTypes;
+    NotNull<const AstExpr> expr;
+};
+
 using ConstraintV = Variant<
     SubtypeConstraint,
     PackSubtypeConstraint,
@@ -321,9 +319,9 @@ using ConstraintV = Variant<
     ReduceConstraint,
     ReducePackConstraint,
     EqualityConstraint,
-    TableCheckConstraint,
     SimplifyConstraint,
-    PushFunctionTypeConstraint>;
+    PushFunctionTypeConstraint,
+    PushTypeConstraint>;
 
 struct Constraint
 {

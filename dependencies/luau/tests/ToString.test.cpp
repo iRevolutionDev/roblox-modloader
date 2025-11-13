@@ -14,8 +14,6 @@ using namespace Luau;
 
 LUAU_FASTFLAG(LuauRecursiveTypeParameterRestriction)
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauSolverAgnosticStringification)
-LUAU_FASTFLAG(LuauExplicitSkipBoundTypes)
 LUAU_FASTFLAG(LuauReduceSetTypeStackPressure)
 
 TEST_SUITE_BEGIN("ToString");
@@ -48,7 +46,6 @@ TEST_CASE_FIXTURE(Fixture, "bound_types")
 
 TEST_CASE_FIXTURE(Fixture, "free_types")
 {
-    ScopedFastFlag sff{FFlag::LuauSolverAgnosticStringification, true};
     DOES_NOT_PASS_NEW_SOLVER_GUARD();
 
     CheckResult result = check("local a");
@@ -59,7 +56,6 @@ TEST_CASE_FIXTURE(Fixture, "free_types")
 
 TEST_CASE_FIXTURE(Fixture, "free_types_stringify_the_same_regardless_of_solver")
 {
-    ScopedFastFlag sff{FFlag::LuauSolverAgnosticStringification, true};
     TypeArena a;
     TypeId t =
         a.addType(FreeType{getFrontend().globals.globalScope.get(), getFrontend().builtinTypes->neverType, getFrontend().builtinTypes->unknownType});
@@ -73,10 +69,7 @@ TEST_CASE_FIXTURE(Fixture, "cyclic_table")
     TableType* tableOne = getMutable<TableType>(&cyclicTable);
     tableOne->props["self"] = {&cyclicTable};
 
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ("t1 where t1 = {| self: t1 |}", toString(&cyclicTable));
-    else
-        CHECK_EQ("t1 where t1 = { self: t1 }", toString(&cyclicTable));
+    CHECK_EQ("t1 where t1 = {| self: t1 |}", toString(&cyclicTable));
 }
 
 TEST_CASE_FIXTURE(Fixture, "named_table")
@@ -94,18 +87,12 @@ TEST_CASE_FIXTURE(Fixture, "empty_table")
         local a: {}
     )");
 
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ("{  }", toString(requireType("a")));
-    else
-        CHECK_EQ("{|  |}", toString(requireType("a")));
+    CHECK_EQ("{  }", toString(requireType("a")));
 
     // Should stay the same with useLineBreaks enabled
     ToStringOptions opts;
     opts.useLineBreaks = true;
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ("{  }", toString(requireType("a"), opts));
-    else
-        CHECK_EQ("{|  |}", toString(requireType("a"), opts));
+    CHECK_EQ("{  }", toString(requireType("a"), opts));
 }
 
 TEST_CASE_FIXTURE(Fixture, "table_respects_use_line_break")
@@ -117,24 +104,14 @@ TEST_CASE_FIXTURE(Fixture, "table_respects_use_line_break")
     ToStringOptions opts;
     opts.useLineBreaks = true;
 
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(
-            "{\n"
-            "    anotherProp: number,\n"
-            "    prop: string,\n"
-            "    thirdProp: boolean\n"
-            "}",
-            toString(requireType("a"), opts)
-        );
-    else
-        CHECK_EQ(
-            "{|\n"
-            "    anotherProp: number,\n"
-            "    prop: string,\n"
-            "    thirdProp: boolean\n"
-            "|}",
-            toString(requireType("a"), opts)
-        );
+    CHECK_EQ(
+        "{\n"
+        "    anotherProp: number,\n"
+        "    prop: string,\n"
+        "    thirdProp: boolean\n"
+        "}",
+        toString(requireType("a"), opts)
+    );
 }
 
 TEST_CASE_FIXTURE(Fixture, "nil_or_nil_is_nil_not_question_mark")
@@ -164,10 +141,7 @@ TEST_CASE_FIXTURE(Fixture, "metatable")
     Type table{TypeVariant(TableType())};
     Type metatable{TypeVariant(TableType())};
     Type mtv{TypeVariant(MetatableType{&table, &metatable})};
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ("{ @metatable {|  |}, {|  |} }", toString(&mtv));
-    else
-        CHECK_EQ("{ @metatable {  }, {  } }", toString(&mtv));
+    CHECK_EQ("{ @metatable {|  |}, {|  |} }", toString(&mtv));
 }
 
 TEST_CASE_FIXTURE(Fixture, "named_metatable")
@@ -233,8 +207,8 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "exhaustive_toString_of_cyclic_table")
     {
         CHECK_EQ(
             "t2 where "
-            "t1 = { __index: t1, __mul: ((t2, number) -> t2) & ((t2, t2) -> t2), new: () -> t2 } ; "
-            "t2 = { @metatable t1, {| x: number, y: number, z: number |} }",
+            "t1 = {| __index: t1, __mul: ((t2, number) -> t2) & ((t2, t2) -> t2), new: () -> t2 |} ; "
+            "t2 = { @metatable t1, { x: number, y: number, z: number } }",
             a
         );
     }
@@ -359,10 +333,7 @@ TEST_CASE_FIXTURE(Fixture, "quit_stringifying_table_type_when_length_is_exceeded
     ToStringOptions o;
     o.exhaustive = false;
     o.maxTableLength = 40;
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(toString(&tv, o), "{| a: number, b: number, c: number, d: number, e: number, ... 10 more ... |}");
-    else
-        CHECK_EQ(toString(&tv, o), "{ a: number, b: number, c: number, d: number, e: number, ... 10 more ... }");
+    CHECK_EQ(toString(&tv, o), "{| a: number, b: number, c: number, d: number, e: number, ... 10 more ... |}");
 }
 
 TEST_CASE_FIXTURE(Fixture, "stringifying_table_type_is_still_capped_when_exhaustive")
@@ -376,10 +347,7 @@ TEST_CASE_FIXTURE(Fixture, "stringifying_table_type_is_still_capped_when_exhaust
     ToStringOptions o;
     o.exhaustive = true;
     o.maxTableLength = 40;
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(toString(&tv, o), "{| a: number, b: number, c: number, d: number, e: number, ... 2 more ... |}");
-    else
-        CHECK_EQ(toString(&tv, o), "{ a: number, b: number, c: number, d: number, e: number, ... 2 more ... }");
+    CHECK_EQ(toString(&tv, o), "{| a: number, b: number, c: number, d: number, e: number, ... 2 more ... |}");
 }
 
 TEST_CASE_FIXTURE(Fixture, "quit_stringifying_type_when_length_is_exceeded")
@@ -461,10 +429,7 @@ TEST_CASE_FIXTURE(Fixture, "stringifying_table_type_correctly_use_matching_table
 
     ToStringOptions o;
     o.maxTableLength = 40;
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(toString(&tv, o), "{ a: number, b: number, c: number, d: number, e: number, ... 5 more ... }");
-    else
-        CHECK_EQ(toString(&tv, o), "{| a: number, b: number, c: number, d: number, e: number, ... 5 more ... |}");
+    CHECK_EQ(toString(&tv, o), "{ a: number, b: number, c: number, d: number, e: number, ... 5 more ... }");
 }
 
 TEST_CASE_FIXTURE(Fixture, "stringifying_cyclic_union_type_bails_early")
@@ -495,10 +460,7 @@ TEST_CASE_FIXTURE(Fixture, "stringifying_array_uses_array_syntax")
     CHECK_EQ("{string}", toString(Type{ttv}));
 
     ttv.props["A"] = {getBuiltins()->numberType};
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ("{ [number]: string, A: number }", toString(Type{ttv}));
-    else
-        CHECK_EQ("{| [number]: string, A: number |}", toString(Type{ttv}));
+    CHECK_EQ("{ [number]: string, A: number }", toString(Type{ttv}));
 
     ttv.props.clear();
     ttv.state = TableState::Unsealed;
@@ -655,16 +617,8 @@ TEST_CASE_FIXTURE(Fixture, "toString_the_boundTo_table_type_contained_within_a_T
     TypePackVar tpv2{TypePack{{&tv2}}};
 
 
-    if (FFlag::LuauSolverV2)
-    {
-        CHECK_EQ("{ hello: number, world: number }", toString(&tpv1));
-        CHECK_EQ("{ hello: number, world: number }", toString(&tpv2));
-    }
-    else
-    {
-        CHECK_EQ("{| hello: number, world: number |}", toString(&tpv1));
-        CHECK_EQ("{| hello: number, world: number |}", toString(&tpv2));
-    }
+    CHECK_EQ("{ hello: number, world: number }", toString(&tpv1));
+    CHECK_EQ("{ hello: number, world: number }", toString(&tpv2));
 }
 
 TEST_CASE_FIXTURE(Fixture, "no_parentheses_around_return_type_if_pack_has_an_empty_head_link")
@@ -695,10 +649,7 @@ TEST_CASE_FIXTURE(Fixture, "no_parentheses_around_cyclic_function_type_in_union"
 
 TEST_CASE_FIXTURE(Fixture, "no_parentheses_around_cyclic_function_type_in_intersection")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauExplicitSkipBoundTypes, true},
-        {FFlag::LuauReduceSetTypeStackPressure, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauReduceSetTypeStackPressure, true};
 
     CheckResult result = check(R"(
         function f() return f end
@@ -906,15 +857,15 @@ TEST_CASE_FIXTURE(Fixture, "tostring_error_mismatch")
                    "type, and `string` is not exactly `number`";
     else
         expected = "Type\n\t"
-                   "'{| a: number, b: string, c: {| d: string |} |}'\n"
+                   "'{ a: number, b: string, c: { d: string } }'\n"
                    "could not be converted into\n\t"
-                   "'{| a: number, b: string, c: {| d: number |} |}'\n"
+                   "'{ a: number, b: string, c: { d: number } }'\n"
                    "caused by:\n  "
                    "Property 'c' is not compatible.\n"
                    "Type\n\t"
-                   "'{| d: string |}'\n"
+                   "'{ d: string }'\n"
                    "could not be converted into\n\t"
-                   "'{| d: number |}'\n"
+                   "'{ d: number }'\n"
                    "caused by:\n  "
                    "Property 'd' is not compatible.\n"
                    "Type 'string' could not be converted into 'number' in an invariant context";
@@ -976,10 +927,7 @@ TEST_CASE_FIXTURE(Fixture, "cycle_rooted_in_a_pack")
 
     packPtr->head[0] = theTable;
 
-    if (FFlag::LuauSolverV2)
-        CHECK("tp1 where tp1 = { read BaseField: unknown, read BaseMethod: (tp1) -> () }, number" == toString(thePack));
-    else
-        CHECK("tp1 where tp1 = {| BaseField: unknown, BaseMethod: (tp1) -> () |}, number" == toString(thePack));
+    CHECK("tp1 where tp1 = { read BaseField: unknown, read BaseMethod: (tp1) -> () }, number" == toString(thePack));
 }
 
 TEST_CASE_FIXTURE(Fixture, "correct_stringification_user_defined_type_functions")

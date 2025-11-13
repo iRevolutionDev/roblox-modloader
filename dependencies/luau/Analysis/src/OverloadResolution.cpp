@@ -7,14 +7,13 @@
 #include "Luau/Type.h"
 #include "Luau/TypeFunction.h"
 #include "Luau/TypePack.h"
+#include "Luau/TypePath.h"
 #include "Luau/TypeUtils.h"
 #include "Luau/Unifier2.h"
 
 LUAU_FASTFLAG(LuauLimitUnification)
-LUAU_FASTFLAG(LuauReturnMappedGenericPacksFromSubtyping2)
-LUAU_FASTFLAG(LuauSubtypingGenericsDoesntUseVariance)
-LUAU_FASTFLAG(LuauVariadicAnyPackShouldBeErrorSuppressing)
-LUAU_FASTFLAG(LuauSubtypingReportGenericBoundMismatches)
+LUAU_FASTFLAG(LuauSubtypingReportGenericBoundMismatches2)
+LUAU_FASTFLAG(LuauPassBindableGenericsByReference)
 
 namespace Luau
 {
@@ -43,53 +42,32 @@ OverloadResolver::OverloadResolver(
 {
 }
 
-std::pair<OverloadResolver::Analysis, TypeId> OverloadResolver::selectOverload(TypeId ty, TypePackId argsPack, bool useFreeTypeBounds)
+std::pair<OverloadResolver::Analysis, TypeId> OverloadResolver::selectOverload(
+    TypeId ty,
+    TypePackId argsPack,
+    NotNull<DenseHashSet<TypeId>> uniqueTypes,
+    bool useFreeTypeBounds
+)
 {
-    auto tryOne = [&](TypeId f)
-    {
-        if (auto ftv = get<FunctionType>(f))
-        {
-            Subtyping::Variance variance = subtyping.variance;
-            subtyping.variance = Subtyping::Variance::Contravariant;
-            SubtypingResult r;
-            if (FFlag::LuauSubtypingGenericsDoesntUseVariance)
-            {
-                std::vector<TypeId> generics;
-                generics.reserve(ftv->generics.size());
-                for (TypeId g : ftv->generics)
-                {
-                    g = follow(g);
-                    if (get<GenericType>(g))
-                        generics.emplace_back(g);
-                }
-                r = subtyping.isSubtype(
-                    argsPack, ftv->argTypes, scope, !generics.empty() ? std::optional<std::vector<TypeId>>{generics} : std::nullopt
-                );
-            }
-            else
-                r = subtyping.isSubtype(argsPack, ftv->argTypes, scope);
-            subtyping.variance = variance;
-
-            if (!useFreeTypeBounds && !r.assumedConstraints.empty())
-                return false;
-
-            if (r.isSubtype)
-                return true;
-        }
-
-        return false;
-    };
-
     TypeId t = follow(ty);
 
-    if (tryOne(ty))
-        return {Analysis::Ok, ty};
-
-    if (auto it = get<IntersectionType>(t))
+    if (const FunctionType* fn = get<FunctionType>(t))
+    {
+        if (testFunctionTypeForOverloadSelection(fn, uniqueTypes, argsPack, useFreeTypeBounds))
+            return {Analysis::Ok, ty};
+        else
+            return {Analysis::OverloadIsNonviable, ty};
+    }
+    else if (auto it = get<IntersectionType>(t))
     {
         for (TypeId component : it)
         {
-            if (tryOne(component))
+            const FunctionType* fn = get<FunctionType>(follow(component));
+            // Only consider function overloads with compatible arities
+            if (!fn || !isArityCompatible(argsPack, fn->argTypes, builtinTypes))
+                continue;
+
+            if (testFunctionTypeForOverloadSelection(fn, uniqueTypes, argsPack, useFreeTypeBounds))
                 return {Analysis::Ok, component};
         }
     }
@@ -97,14 +75,20 @@ std::pair<OverloadResolver::Analysis, TypeId> OverloadResolver::selectOverload(T
     return {Analysis::OverloadIsNonviable, ty};
 }
 
-void OverloadResolver::resolve(TypeId fnTy, const TypePack* args, AstExpr* selfExpr, const std::vector<AstExpr*>* argExprs)
+void OverloadResolver::resolve(
+    TypeId fnTy,
+    const TypePack* args,
+    AstExpr* selfExpr,
+    const std::vector<AstExpr*>* argExprs,
+    NotNull<DenseHashSet<TypeId>> uniqueTypes
+)
 {
     fnTy = follow(fnTy);
 
     auto it = get<IntersectionType>(fnTy);
     if (!it)
     {
-        auto [analysis, errors] = checkOverload(fnTy, args, selfExpr, argExprs);
+        auto [analysis, errors] = checkOverload(fnTy, args, selfExpr, argExprs, uniqueTypes);
         add(analysis, fnTy, std::move(errors));
         return;
     }
@@ -114,7 +98,18 @@ void OverloadResolver::resolve(TypeId fnTy, const TypePack* args, AstExpr* selfE
         if (resolution.find(ty) != resolution.end())
             continue;
 
-        auto [analysis, errors] = checkOverload(ty, args, selfExpr, argExprs);
+        if (const FunctionType* fn = get<FunctionType>(follow(ty)))
+        {
+            // If the overload isn't arity compatible, report the mismatch and don't do more work
+            const TypePackId argPack = arena->addTypePack(*args);
+            if (!isArityCompatible(argPack, fn->argTypes, builtinTypes))
+            {
+                add(ArityMismatch, ty, {});
+                continue;
+            }
+        }
+
+        auto [analysis, errors] = checkOverload(ty, args, selfExpr, argExprs, uniqueTypes);
         add(analysis, ty, std::move(errors));
     }
 }
@@ -151,7 +146,8 @@ std::optional<ErrorVec> OverloadResolver::testIsSubtype(const Location& location
 
 std::optional<ErrorVec> OverloadResolver::testIsSubtype(const Location& location, TypePackId subTy, TypePackId superTy)
 {
-    auto r = subtyping.isSubtype(subTy, superTy, scope);
+    auto r = FFlag::LuauPassBindableGenericsByReference ? subtyping.isSubtype(subTy, superTy, scope, {})
+                                                        : subtyping.isSubtype_DEPRECATED(subTy, superTy, scope);
     ErrorVec errors;
 
     if (r.normalizationTooComplex)
@@ -184,6 +180,7 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload(
     const TypePack* args,
     AstExpr* fnLoc,
     const std::vector<AstExpr*>* argExprs,
+    NotNull<DenseHashSet<TypeId>> uniqueTypes,
     bool callMetamethodOk
 )
 {
@@ -193,7 +190,7 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload(
     if (get<AnyType>(fnTy) || get<ErrorType>(fnTy) || get<NeverType>(fnTy))
         return {Ok, {}};
     else if (auto fn = get<FunctionType>(fnTy))
-        return checkOverload_(fnTy, fn, args, fnLoc, argExprs); // Intentionally split to reduce the stack pressure of this function.
+        return checkOverload_(fnTy, fn, args, fnLoc, argExprs, uniqueTypes); // Intentionally split to reduce the stack pressure of this function.
     else if (auto callMm = findMetatableEntry(builtinTypes, discard, fnTy, "__call", callLoc); callMm && callMetamethodOk)
     {
         // Calling a metamethod forwards the `fnTy` as self.
@@ -203,7 +200,7 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload(
         std::vector<AstExpr*> withSelfExprs = *argExprs;
         withSelfExprs.insert(withSelfExprs.begin(), fnLoc);
 
-        return checkOverload(*callMm, &withSelf, fnLoc, &withSelfExprs, /*callMetamethodOk=*/false);
+        return checkOverload(*callMm, &withSelf, fnLoc, &withSelfExprs, uniqueTypes, /*callMetamethodOk=*/false);
     }
     else
         return {TypeIsNotAFunction, {}}; // Intentionally empty. We can just fabricate the type error later on.
@@ -257,12 +254,83 @@ void OverloadResolver::maybeEmplaceError(
     }
 }
 
+bool OverloadResolver::isArityCompatible(const TypePackId candidate, const TypePackId desired, NotNull<BuiltinTypes> builtinTypes) const
+{
+    auto [candidateHead, candidateTail] = flatten(candidate);
+    auto [desiredHead, desiredTail] = flatten(desired);
+
+    // Handle mismatched head sizes
+    if (candidateHead.size() < desiredHead.size())
+    {
+        if (candidateTail)
+            return true; // A tail can fill in remaining values
+
+        // If the candidate is shorter than desired and has no tail, it can only match if the extra desired args are all optional
+        for (size_t i = candidateHead.size(); i < desiredHead.size(); ++i)
+        {
+            if (const TypeId ty = follow(desiredHead[i]); !isOptionalType(ty, builtinTypes))
+                return false;
+        }
+    }
+
+    if (desiredTail && candidateHead.size() <= desiredHead.size() && !candidateTail)
+    {
+        // A non-tail candidate can't match a desired tail unless the tail accepts nils
+        // We don't allow generic packs to implicitly accept an empty pack here
+        TypePackId desiredTailTP = follow(*desiredTail);
+
+        if (desiredTailTP == builtinTypes->unknownTypePack || desiredTailTP == builtinTypes->anyTypePack)
+            return true;
+
+        if (const VariadicTypePack* vtp = get<VariadicTypePack>(desiredTailTP))
+            return vtp->ty == builtinTypes->nilType;
+
+        return false;
+    }
+
+    // There aren't any other failure conditions; we don't care if we pass more args than needed
+
+    return true;
+}
+
+bool OverloadResolver::testFunctionTypeForOverloadSelection(
+    const FunctionType* ftv,
+    NotNull<DenseHashSet<TypeId>> uniqueTypes,
+    TypePackId argsPack,
+    bool useFreeTypeBounds
+)
+{
+    Subtyping::Variance variance = subtyping.variance;
+    subtyping.variance = Subtyping::Variance::Contravariant;
+    subtyping.uniqueTypes = uniqueTypes;
+    std::vector<TypeId> generics;
+    generics.reserve(ftv->generics.size());
+    for (TypeId g : ftv->generics)
+    {
+        g = follow(g);
+        if (get<GenericType>(g))
+            generics.emplace_back(g);
+    }
+    SubtypingResult r = FFlag::LuauPassBindableGenericsByReference ? subtyping.isSubtype(argsPack, ftv->argTypes, scope, generics)
+                                                                   : subtyping.isSubtype_DEPRECATED(argsPack, ftv->argTypes, scope, generics);
+    subtyping.variance = variance;
+
+    if (!useFreeTypeBounds && !r.assumedConstraints.empty())
+        return false;
+
+    if (r.isSubtype)
+        return true;
+
+    return false;
+}
+
 std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload_(
     TypeId fnTy,
     const FunctionType* fn,
     const TypePack* args,
     AstExpr* fnExpr,
-    const std::vector<AstExpr*>* argExprs
+    const std::vector<AstExpr*>* argExprs,
+    NotNull<DenseHashSet<TypeId>> uniqueTypes
 )
 {
     TypeFunctionContext context{arena, builtinTypes, scope, simplifier, normalizer, typeFunctionRuntime, ice, limits};
@@ -274,6 +342,7 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload_
     TypePackId typ = arena->addTypePack(*args);
 
     TypeId prospectiveFunction = arena->addType(FunctionType{typ, builtinTypes->anyTypePack});
+    subtyping.uniqueTypes = uniqueTypes;
     SubtypingResult sr = subtyping.isSubtype(fnTy, prospectiveFunction, scope);
 
     if (sr.isSubtype)
@@ -331,61 +400,47 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload_
                 }
             }
 
+            // All unsatisfied arguments are supertypes of nil.  This overload is a valid match.
             return {Analysis::Ok, {}};
         }
 
-        if (FFlag::LuauReturnMappedGenericPacksFromSubtyping2)
+        const bool subPathArgTail = matchesPrefix(Path({TypePath::PackField::Arguments, TypePath::PackField::Tail}), reason.subPath);
+        const bool superPathArgs = matchesPrefix(Path(TypePath::PackField::Arguments), reason.superPath);
+        const TypePath::Component& lastSubComponent = reason.subPath.components.back();
+        const bool subEndsInGenericPackMapping = get_if<TypePath::GenericPackMapping>(&lastSubComponent) != nullptr;
+
+        // If the function's argument list ends with a generic pack, and
+        // the subtype test failed because of that, we need to check the
+        // pack that the generic was mapped to in order to report an
+        // accurate CountMismatch error.
+        if (subPathArgTail && superPathArgs && subEndsInGenericPackMapping)
         {
-            // If we have an arity mismatch with generic type pack parameters, then subPath matches Args :: Tail :: ...
-            // and superPath matches Args :: ...
-            if (reason.subPath.components.size() >= 2 && reason.subPath.components[0] == TypePath::PackField::Arguments &&
-                reason.subPath.components[1] == TypePath::PackField::Tail && reason.superPath.components.size() >= 1 &&
-                reason.superPath.components[0] == TypePath::PackField::Arguments)
+            const TypePack requiredMappedArgs = traverseForFlattenedPack(fnTy, reason.subPath, builtinTypes, arena);
+            const std::vector<TypeId> prospectiveHead = flatten(typ).first;
+
+            const size_t requiredHeadSize = requiredMappedArgs.head.size();
+            const size_t prospectiveHeadSize = prospectiveHead.size();
+
+            if (prospectiveHeadSize != requiredHeadSize)
             {
-                if (const auto [requiredHead, requiredTail] = flatten(fn->argTypes); requiredTail)
-                {
-                    if (const auto genericTail = get<GenericTypePack>(follow(requiredTail)); genericTail)
-                    {
-                        // Get the concrete type pack the generic is mapped to
-                        const auto mappedGenHead = flatten(*requiredTail, sr.mappedGenericPacks).first;
-
-                        const auto prospectiveHead = flatten(typ).first;
-
-                        // We're just doing arity checking here
-                        // We've flattened the type packs, so we can check prospectiveHead = requiredHead + mappedGenHead
-                        // Super path reasoning is just args, so we can ignore the tails
-                        const size_t neededHeadSize = requiredHead.size() + mappedGenHead.size();
-                        const size_t prospectiveHeadSize = prospectiveHead.size();
-                        if (prospectiveHeadSize != neededHeadSize)
-                        {
-                            TypeError error{fnExpr->location, CountMismatch{neededHeadSize, std::nullopt, prospectiveHeadSize, CountMismatch::Arg}};
-
-                            return {Analysis::ArityMismatch, {error}};
-                        }
+                TypeError error{
+                    fnExpr->location,
+                    CountMismatch{
+                        requiredHeadSize,
+                        requiredMappedArgs.tail.has_value() ? std::nullopt : std::optional{requiredHeadSize},
+                        prospectiveHeadSize,
+                        CountMismatch::Arg
                     }
-                }
-            }
+                };
 
-            else if (reason.subPath == TypePath::Path{{TypePath::PackField::Arguments, TypePath::PackField::Tail}} &&
-                     reason.superPath == justArguments)
-            {
-                // We have an arity mismatch if the argument tail is a generic type pack
-                if (auto fnArgs = get<TypePack>(fn->argTypes))
-                {
-                    if (get<GenericTypePack>(fnArgs->tail))
-                    {
-                        auto [minParams, optMaxParams] = getParameterExtents(TxnLog::empty(), fn->argTypes);
-                        TypeError error{fnExpr->location, CountMismatch{minParams, optMaxParams, args->head.size(), CountMismatch::Arg}};
-
-                        return {Analysis::ArityMismatch, {std::move(error)}};
-                    }
-                }
+                return {Analysis::ArityMismatch, {std::move(error)}};
             }
         }
     }
 
     ErrorVec errors;
 
+    // Translate SubtypingReasonings into TypeErrors that could be reported.
     for (const SubtypingReasoning& reason : sr.reasoning)
     {
         /* The return type of our prospective function is always
@@ -409,45 +464,13 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload_
                           : argExprs->size() != 0        ? argExprs->back()->location
                                                          : fnExpr->location;
 
-            std::optional<TypeId> failedSubTy = FFlag::LuauReturnMappedGenericPacksFromSubtyping2
-                                                    ? traverseForType(fnTy, reason.subPath, builtinTypes, NotNull{&sr.mappedGenericPacks}, arena)
-                                                    : traverseForType_DEPRECATED(fnTy, reason.subPath, builtinTypes);
-            std::optional<TypeId> failedSuperTy =
-                FFlag::LuauReturnMappedGenericPacksFromSubtyping2
-                    ? traverseForType(prospectiveFunction, reason.superPath, builtinTypes, NotNull{&sr.mappedGenericPacks}, arena)
-                    : traverseForType_DEPRECATED(prospectiveFunction, reason.superPath, builtinTypes);
+            std::optional<TypeId> failedSubTy = traverseForType(fnTy, reason.subPath, builtinTypes, arena);
 
-            if (FFlag::LuauReturnMappedGenericPacksFromSubtyping2)
-                maybeEmplaceError(&errors, argLocation, &reason, failedSubTy, failedSuperTy);
-            else if (failedSubTy && failedSuperTy)
-            {
-                switch (shouldSuppressErrors(normalizer, *failedSubTy).orElse(shouldSuppressErrors(normalizer, *failedSuperTy)))
-                {
-                case ErrorSuppression::Suppress:
-                    break;
-                case ErrorSuppression::NormalizationFailed:
-                    errors.emplace_back(argLocation, NormalizationTooComplex{});
-                    // intentionally fallthrough here since we couldn't prove this was error-suppressing
-                    [[fallthrough]];
-                case ErrorSuppression::DoNotSuppress:
-                    // TODO extract location from the SubtypingResult path and argExprs
-                    switch (reason.variance)
-                    {
-                    case SubtypingVariance::Covariant:
-                    case SubtypingVariance::Contravariant:
-                        errors.emplace_back(argLocation, TypeMismatch{*failedSubTy, *failedSuperTy, TypeMismatch::CovariantContext});
-                        break;
-                    case SubtypingVariance::Invariant:
-                        errors.emplace_back(argLocation, TypeMismatch{*failedSubTy, *failedSuperTy, TypeMismatch::InvariantContext});
-                        break;
-                    default:
-                        LUAU_ASSERT(0);
-                        break;
-                    }
-                }
-            }
+            std::optional<TypeId> failedSuperTy = traverseForType(prospectiveFunction, reason.superPath, builtinTypes, arena);
+
+            maybeEmplaceError(&errors, argLocation, &reason, failedSubTy, failedSuperTy);
         }
-        else if (FFlag::LuauReturnMappedGenericPacksFromSubtyping2 && reason.superPath.components.size() > 1)
+        else if (reason.superPath.components.size() > 1)
         {
             // traverseForIndex only has a value if path is of form [...PackSlice, Index]
             if (const auto index =
@@ -463,20 +486,15 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload_
                     LUAU_ASSERT(false);
                     argLocation = fnExpr->location;
                 }
-                std::optional<TypeId> failedSubTy = traverseForType(fnTy, reason.subPath, builtinTypes, NotNull{&sr.mappedGenericPacks}, arena);
-                std::optional<TypeId> failedSuperTy =
-                    traverseForType(prospectiveFunction, reason.superPath, builtinTypes, NotNull{&sr.mappedGenericPacks}, arena);
+                std::optional<TypeId> failedSubTy = traverseForType(fnTy, reason.subPath, builtinTypes, arena);
+                std::optional<TypeId> failedSuperTy = traverseForType(prospectiveFunction, reason.superPath, builtinTypes, arena);
                 maybeEmplaceError(&errors, argLocation, &reason, failedSubTy, failedSuperTy);
             }
         }
 
-        std::optional<TypePackId> failedSubPack = FFlag::LuauReturnMappedGenericPacksFromSubtyping2
-                                                      ? traverseForPack(fnTy, reason.subPath, builtinTypes, NotNull{&sr.mappedGenericPacks}, arena)
-                                                      : traverseForPack_DEPRECATED(fnTy, reason.subPath, builtinTypes);
-        std::optional<TypePackId> failedSuperPack =
-            FFlag::LuauReturnMappedGenericPacksFromSubtyping2
-                ? traverseForPack(prospectiveFunction, reason.superPath, builtinTypes, NotNull{&sr.mappedGenericPacks}, arena)
-                : traverseForPack_DEPRECATED(prospectiveFunction, reason.superPath, builtinTypes);
+        std::optional<TypePackId> failedSubPack = traverseForPack(fnTy, reason.subPath, builtinTypes, arena);
+
+        std::optional<TypePackId> failedSuperPack = traverseForPack(prospectiveFunction, reason.superPath, builtinTypes, arena);
 
         if (failedSubPack && failedSuperPack)
         {
@@ -489,12 +507,9 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload_
                 argLocation = argExprs->at(argExprs->size() - 1)->location;
 
             // TODO extract location from the SubtypingResult path and argExprs
-            if (FFlag::LuauVariadicAnyPackShouldBeErrorSuppressing)
-            {
-                auto errorSuppression = shouldSuppressErrors(normalizer, *failedSubPack).orElse(shouldSuppressErrors(normalizer, *failedSuperPack));
-                if (errorSuppression == ErrorSuppression::Suppress)
-                    break;
-            }
+            auto errorSuppression = shouldSuppressErrors(normalizer, *failedSubPack).orElse(shouldSuppressErrors(normalizer, *failedSuperPack));
+            if (errorSuppression == ErrorSuppression::Suppress)
+                break;
 
             switch (reason.variance)
             {
@@ -514,7 +529,7 @@ std::pair<OverloadResolver::Analysis, ErrorVec> OverloadResolver::checkOverload_
         }
     }
 
-    if (FFlag::LuauSubtypingReportGenericBoundMismatches)
+    if (FFlag::LuauSubtypingReportGenericBoundMismatches2)
     {
         for (GenericBoundsMismatch& mismatch : sr.genericBoundsMismatches)
             errors.emplace_back(fnExpr->location, std::move(mismatch));
@@ -555,7 +570,6 @@ void OverloadResolver::add(Analysis analysis, TypeId ty, ErrorVec&& errors)
         nonFunctions.push_back(ty);
         break;
     case ArityMismatch:
-        LUAU_ASSERT(!errors.empty());
         arityMismatches.emplace_back(ty, std::move(errors));
         break;
     case OverloadIsNonviable:
@@ -582,7 +596,9 @@ static std::optional<TypeId> selectOverload(
 {
     auto resolver =
         std::make_unique<OverloadResolver>(builtinTypes, arena, simplifier, normalizer, typeFunctionRuntime, scope, iceReporter, limits, location);
-    auto [status, overload] = resolver->selectOverload(fn, argsPack, /*useFreeTypeBounds*/ false);
+
+    DenseHashSet<TypeId> uniqueTypes{nullptr};
+    auto [status, overload] = resolver->selectOverload(fn, argsPack, NotNull{&uniqueTypes}, /*useFreeTypeBounds*/ false);
 
     if (status == OverloadResolver::Analysis::Ok)
         return overload;
@@ -635,12 +651,12 @@ SolveResult solveFunctionCall(
     {
         switch (unifyResult)
         {
-            case Luau::UnifyResult::Ok:
-                break;
-            case Luau::UnifyResult::OccursCheckFailed:
-                return {SolveResult::CodeTooComplex};
-            case Luau::UnifyResult::TooComplex:
-                return {SolveResult::OccursCheckFailed};
+        case Luau::UnifyResult::Ok:
+            break;
+        case Luau::UnifyResult::OccursCheckFailed:
+            return {SolveResult::CodeTooComplex};
+        case Luau::UnifyResult::TooComplex:
+            return {SolveResult::OccursCheckFailed};
         }
     }
     else

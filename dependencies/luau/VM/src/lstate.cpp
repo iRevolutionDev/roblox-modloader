@@ -111,6 +111,7 @@ lua_State* luaE_newthread(lua_State* L)
 {
     if (get_roblox_pointers()->luaE_newthread != nullptr)
         return get_roblox_pointers()->luaE_newthread(L);
+
     lua_State* L1 = luaM_newgco(L, lua_State, sizeof(lua_State), L->activememcat);
     luaC_init(L, L1, LUA_TTHREAD);
     preinit_state(L1, L->global);

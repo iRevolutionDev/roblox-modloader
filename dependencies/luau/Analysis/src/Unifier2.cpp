@@ -20,10 +20,11 @@
 LUAU_FASTINT(LuauTypeInferIterationLimit)
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
 
-LUAU_FASTFLAG(LuauEagerGeneralization4)
+LUAU_FASTFLAG(LuauIndividualRecursionLimits)
+LUAU_DYNAMIC_FASTINTVARIABLE(LuauUnifierRecursionLimit, 100)
+
 LUAU_FASTFLAG(LuauEmplaceNotPushBack)
 LUAU_FASTFLAGVARIABLE(LuauLimitUnification)
-LUAU_FASTFLAGVARIABLE(LuauUnifyShortcircuitSomeIntersectionsAndUnions)
 
 namespace Luau
 {
@@ -92,11 +93,8 @@ static bool areCompatible(TypeId left, TypeId right)
 // returns `true` if `ty` is irressolvable and should be added to `incompleteSubtypes`.
 static bool isIrresolvable(TypeId ty)
 {
-    if (FFlag::LuauEagerGeneralization4)
-    {
-        if (auto tfit = get<TypeFunctionInstanceType>(ty); tfit && tfit->state != TypeFunctionInstanceState::Unsolved)
-            return false;
-    }
+    if (auto tfit = get<TypeFunctionInstanceType>(ty); tfit && tfit->state != TypeFunctionInstanceState::Unsolved)
+        return false;
 
     return get<BlockedType>(ty) || get<TypeFunctionInstanceType>(ty);
 }
@@ -113,7 +111,7 @@ Unifier2::Unifier2(NotNull<TypeArena> arena, NotNull<BuiltinTypes> builtinTypes,
     , scope(scope)
     , ice(ice)
     , limits(TypeCheckLimits{}) // TODO: typecheck limits in unifier2
-    , recursionLimit(FInt::LuauTypeInferRecursionLimit)
+    , recursionLimit(FFlag::LuauIndividualRecursionLimits ? DFInt::LuauUnifierRecursionLimit : FInt::LuauTypeInferRecursionLimit)
     , uninhabitedTypeFunctions(nullptr)
 {
 }
@@ -130,7 +128,7 @@ Unifier2::Unifier2(
     , scope(scope)
     , ice(ice)
     , limits(TypeCheckLimits{}) // TODO: typecheck limits in unifier2
-    , recursionLimit(FInt::LuauTypeInferRecursionLimit)
+    , recursionLimit(FFlag::LuauIndividualRecursionLimits ? DFInt::LuauUnifierRecursionLimit : FInt::LuauTypeInferRecursionLimit)
     , uninhabitedTypeFunctions(uninhabitedTypeFunctions)
 {
 }
@@ -371,18 +369,11 @@ UnifyResult Unifier2::unify_(TypeId subTy, const FunctionType* superFn)
 
         for (TypePackId genericPack : subFn->genericPacks)
         {
-            if (FFlag::LuauEagerGeneralization4)
-            {
-                if (FFlag::LuauEagerGeneralization4)
-                    genericPack = follow(genericPack);
+            genericPack = follow(genericPack);
 
-                // TODO: Clip this follow() with LuauEagerGeneralization4
-                const GenericTypePack* gen = get<GenericTypePack>(follow(genericPack));
-                if (gen)
-                    genericPackSubstitutions[genericPack] = freshTypePack(scope, gen->polarity);
-            }
-            else
-                genericPackSubstitutions[genericPack] = arena->freshTypePack(scope);
+            const GenericTypePack* gen = get<GenericTypePack>(genericPack);
+            if (gen)
+                genericPackSubstitutions[genericPack] = freshTypePack(scope, gen->polarity);
         }
     }
 
@@ -407,15 +398,12 @@ UnifyResult Unifier2::unify_(const UnionType* subUnion, TypeId superTy)
 
 UnifyResult Unifier2::unify_(TypeId subTy, const UnionType* superUnion)
 {
-    if (FFlag::LuauUnifyShortcircuitSomeIntersectionsAndUnions)
+    subTy = follow(subTy);
+    // T <: T | U1 | U2 | ... | Un is trivially true, so we don't gain any information by unifying
+    for (const auto superOption : superUnion)
     {
-        subTy = follow(subTy);
-        // T <: T | U1 | U2 | ... | Un is trivially true, so we don't gain any information by unifying
-        for (const auto superOption : superUnion)
-        {
-            if (subTy == superOption)
-                return UnifyResult::Ok;
-        }
+        if (subTy == superOption)
+            return UnifyResult::Ok;
     }
 
     UnifyResult result = UnifyResult::Ok;
@@ -432,15 +420,12 @@ UnifyResult Unifier2::unify_(TypeId subTy, const UnionType* superUnion)
 
 UnifyResult Unifier2::unify_(const IntersectionType* subIntersection, TypeId superTy)
 {
-    if (FFlag::LuauUnifyShortcircuitSomeIntersectionsAndUnions)
+    superTy = follow(superTy);
+    // T & I1 & I2 & ... & In <: T is trivially true, so we don't gain any information by unifying
+    for (const auto subOption : subIntersection)
     {
-        superTy = follow(superTy);
-        // T & I1 & I2 & ... & In <: T is trivially true, so we don't gain any information by unifying
-        for (const auto subOption : subIntersection)
-        {
-            if (superTy == subOption)
-                return UnifyResult::Ok;
-        }
+        if (superTy == subOption)
+            return UnifyResult::Ok;
     }
 
     UnifyResult result = UnifyResult::Ok;
@@ -512,12 +497,10 @@ UnifyResult Unifier2::unify_(TableType* subTable, const TableType* superTable)
     {
         result &= unify_(subTable->indexer->indexType, superTable->indexer->indexType);
         result &= unify_(subTable->indexer->indexResultType, superTable->indexer->indexResultType);
-        if (FFlag::LuauEagerGeneralization4)
-        {
-            // FIXME: We can probably do something more efficient here.
-            result &= unify_(superTable->indexer->indexType, subTable->indexer->indexType);
-            result &= unify_(superTable->indexer->indexResultType, subTable->indexer->indexResultType);
-        }
+
+        // FIXME: We can probably do something more efficient here.
+        result &= unify_(superTable->indexer->indexType, subTable->indexer->indexType);
+        result &= unify_(superTable->indexer->indexResultType, subTable->indexer->indexResultType);
     }
 
     if (!subTable->indexer && subTable->state == TableState::Unsealed && superTable->indexer)
@@ -705,10 +688,7 @@ UnifyResult Unifier2::unify_(TypePackId subTp, TypePackId superTp)
 
     // right-pad the subpack with nils if `superPack` is larger since that's what a function call does
     if (subTypes.size() < maxLength)
-    {
-        for (size_t i = 0; i <= maxLength - subTypes.size(); i++)
-            subTypes.push_back(builtinTypes->nilType);
-    }
+        subTypes.resize(maxLength, builtinTypes->nilType);
 
     if (subTypes.size() < maxLength || superTypes.size() < maxLength)
         return UnifyResult::Ok;

@@ -13,10 +13,9 @@
 #include <algorithm>
 
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauEagerGeneralization4)
 LUAU_FASTFLAGVARIABLE(LuauTidyTypeUtils)
 LUAU_FASTFLAG(LuauEmplaceNotPushBack)
-LUAU_FASTFLAGVARIABLE(LuauVariadicAnyPackShouldBeErrorSuppressing)
+LUAU_FASTFLAG(LuauPushTypeConstraint2)
 
 namespace Luau
 {
@@ -383,7 +382,7 @@ TypePack extendTypePack(
 
             return result;
         }
-        else if (auto etp = getMutable<ErrorTypePack>(pack))
+        else if (getMutable<ErrorTypePack>(pack))
         {
             while (result.head.size() < length)
                 result.head.push_back(builtinTypes->errorType);
@@ -506,13 +505,10 @@ ErrorSuppression shouldSuppressErrors(NotNull<Normalizer> normalizer, TypePackId
 {
     // Flatten t where t = ...any will produce a type pack [ {}, t]
     // which trivially fails the tail check below, which is why we need to special case here
-    if (FFlag::LuauVariadicAnyPackShouldBeErrorSuppressing)
+    if (auto tpId = get<VariadicTypePack>(follow(tp)))
     {
-        if (auto tpId = get<VariadicTypePack>(follow(tp)))
-        {
-            if (get<AnyType>(follow(tpId->ty)))
-                return ErrorSuppression::Suppress;
-        }
+        if (get<AnyType>(follow(tpId->ty)))
+            return ErrorSuppression::Suppress;
     }
 
     auto [tys, tail] = flatten(tp);
@@ -598,14 +594,6 @@ private:
     NotNull<std::vector<TypeId>> toBlock_;
 };
 
-std::vector<TypeId> findBlockedTypesIn(AstExprTable* expr, NotNull<DenseHashMap<const AstExpr*, TypeId>> astTypes)
-{
-    std::vector<TypeId> toBlock;
-    BlockedTypeInLiteralVisitor v{astTypes, NotNull{&toBlock}};
-    expr->visit(&v);
-    return toBlock;
-}
-
 std::vector<TypeId> findBlockedArgTypesIn(AstExprCall* expr, NotNull<DenseHashMap<const AstExpr*, TypeId>> astTypes)
 {
     std::vector<TypeId> toBlock;
@@ -639,8 +627,6 @@ void trackInteriorFreeType(Scope* scope, TypeId ty)
 void trackInteriorFreeTypePack(Scope* scope, TypePackId tp)
 {
     LUAU_ASSERT(tp);
-    if (!FFlag::LuauEagerGeneralization4)
-        return;
 
     for (; scope; scope = scope->parent.get())
     {
@@ -723,6 +709,9 @@ std::optional<TypeId> extractMatchingTableType(std::vector<TypeId>& tables, Type
                         return ty;
                     }
                 }
+
+                if (FFlag::LuauPushTypeConstraint2 && fastIsSubtype(propType, expectedType))
+                    return ty;
             }
         }
     }
@@ -752,6 +741,32 @@ AstExpr* unwrapGroup(AstExpr* expr)
         expr = group->expr;
 
     return expr;
+}
+
+bool isOptionalType(TypeId ty, NotNull<BuiltinTypes> builtinTypes)
+{
+    ty = follow(ty);
+
+    if (ty == builtinTypes->nilType || ty == builtinTypes->anyType || ty == builtinTypes->unknownType)
+        return true;
+    else if (const PrimitiveType* pt = get<PrimitiveType>(ty))
+        return pt->type == PrimitiveType::NilType;
+    else if (const UnionType* ut = get<UnionType>(ty))
+    {
+        for (TypeId option : ut)
+        {
+            option = follow(option);
+
+            if (option == builtinTypes->nilType || option == builtinTypes->anyType || option == builtinTypes->unknownType)
+                return true;
+            else if (const PrimitiveType* pt = get<PrimitiveType>(option); pt && pt->type == PrimitiveType::NilType)
+                return true;
+        }
+
+        return false;
+    }
+
+    return false;
 }
 
 bool isApproximatelyFalsyType(TypeId ty)
@@ -906,7 +921,35 @@ TypeId addUnion(NotNull<TypeArena> arena, NotNull<BuiltinTypes> builtinTypes, st
     return ub.build();
 }
 
+ContainsAnyGeneric::ContainsAnyGeneric()
+    : TypeOnceVisitor("ContainsAnyGeneric", /* skipBoundTypes */ true)
+{
+}
+bool ContainsAnyGeneric::visit(TypeId ty)
+{
+    found = found || is<GenericType>(ty);
+    return !found;
+}
 
+bool ContainsAnyGeneric::visit(TypePackId ty)
+{
+    found = found || is<GenericTypePack>(follow(ty));
+    return !found;
+}
+
+bool ContainsAnyGeneric::hasAnyGeneric(TypeId ty)
+{
+    ContainsAnyGeneric cg;
+    cg.traverse(ty);
+    return cg.found;
+}
+
+bool ContainsAnyGeneric::hasAnyGeneric(TypePackId tp)
+{
+    ContainsAnyGeneric cg;
+    cg.traverse(tp);
+    return cg.found;
+}
 
 
 } // namespace Luau

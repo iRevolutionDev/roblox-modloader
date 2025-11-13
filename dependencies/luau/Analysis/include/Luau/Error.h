@@ -87,6 +87,15 @@ struct CannotExtendTable
     bool operator==(const CannotExtendTable& rhs) const;
 };
 
+struct CannotCompareUnrelatedTypes
+{
+    TypeId left;
+    TypeId right;
+    AstExprBinary::Op op;
+
+    bool operator==(const CannotCompareUnrelatedTypes& rhs) const;
+};
+
 struct OnlyTablesCanHaveMethods
 {
     TypeId tableType;
@@ -526,12 +535,28 @@ struct GenericBoundsMismatch
     bool operator==(const GenericBoundsMismatch& rhs) const;
 };
 
+// Error when referencing a type function without providing explicit generics.
+//
+//  type function create_table_with_key()
+//      local tbl = types.newtable()
+//      tbl:setproperty(types.singleton "key", types.unionof(types.string, types.singleton(nil)))
+//      return tbl
+//  end
+//  local a: create_table_with_key = {}
+//           ^^^^^^^^^^^^^^^^^^^^^ This should have `<>` at the end.
+//
+struct UnappliedTypeFunction
+{
+    bool operator==(const UnappliedTypeFunction& rhs) const;
+};
+
 using TypeErrorData = Variant<
     TypeMismatch,
     UnknownSymbol,
     UnknownProperty,
     NotATable,
     CannotExtendTable,
+    CannotCompareUnrelatedTypes,
     OnlyTablesCanHaveMethods,
     DuplicateTypeDefinition,
     CountMismatch,
@@ -583,7 +608,9 @@ using TypeErrorData = Variant<
     GenericTypePackCountMismatch,
     MultipleNonviableOverloads,
     RecursiveRestraintViolation,
-    GenericBoundsMismatch>;
+    GenericBoundsMismatch,
+    UnappliedTypeFunction>;
+
 
 struct TypeErrorSummary
 {

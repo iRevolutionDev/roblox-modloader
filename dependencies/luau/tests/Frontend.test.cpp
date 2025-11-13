@@ -55,10 +55,17 @@ struct NaiveFileResolver : NullFileResolver
 
 struct FrontendFixture : BuiltinsFixture
 {
-    FrontendFixture()
+    FrontendFixture() = default;
+
+    Frontend& getFrontend() override
     {
-        addGlobalBinding(getFrontend().globals, "game", getBuiltins()->anyType, "@test");
-        addGlobalBinding(getFrontend().globals, "script", getBuiltins()->anyType, "@test");
+        if (frontend)
+            return *frontend;
+
+        Frontend& f = BuiltinsFixture::getFrontend();
+        addGlobalBinding(f.globals, "game", f.builtinTypes->anyType, "@test");
+        addGlobalBinding(f.globals, "script", f.builtinTypes->anyType, "@test");
+        return *frontend;
     }
 };
 
@@ -136,10 +143,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "automatically_check_dependent_scripts")
     auto bExports = first(bModule->returnType);
     REQUIRE(!!bExports);
 
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ("{ b_value: number }", toString(*bExports));
-    else
-        CHECK_EQ("{| b_value: number |}", toString(*bExports));
+    CHECK_EQ("{ b_value: number }", toString(*bExports));
 }
 
 TEST_CASE_FIXTURE(FrontendFixture, "automatically_check_cyclically_dependent_scripts")
@@ -283,10 +287,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "nocheck_cycle_used_by_checked")
     std::optional<TypeId> cExports = first(cModule->returnType);
     REQUIRE(bool(cExports));
 
-    if (FFlag::LuauSolverV2)
-        CHECK("{ a: { hello: any }, b: { hello: any } }" == toString(*cExports));
-    else
-        CHECK("{| a: {| hello: any |}, b: {| hello: any |} |}" == toString(*cExports));
+    CHECK("{ a: { hello: any }, b: { hello: any } }" == toString(*cExports));
 }
 
 TEST_CASE_FIXTURE(FrontendFixture, "cycle_detection_disabled_in_nocheck")
@@ -457,32 +458,20 @@ return {mod_b = 2}
     LUAU_REQUIRE_ERRORS(resultB);
 
     TypeId tyB = requireExportedType("game/B", "btype");
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(toString(tyB, opts), "{ x: number }");
-    else
-        CHECK_EQ(toString(tyB, opts), "{| x: number |}");
+    CHECK_EQ(toString(tyB, opts), "{ x: number }");
 
     TypeId tyA = requireExportedType("game/A", "atype");
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(toString(tyA, opts), "{ x: any }");
-    else
-        CHECK_EQ(toString(tyA, opts), "{| x: any |}");
+    CHECK_EQ(toString(tyA, opts), "{ x: any }");
 
     getFrontend().markDirty("game/B");
     resultB = getFrontend().check("game/B");
     LUAU_REQUIRE_ERRORS(resultB);
 
     tyB = requireExportedType("game/B", "btype");
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(toString(tyB, opts), "{ x: number }");
-    else
-        CHECK_EQ(toString(tyB, opts), "{| x: number |}");
+    CHECK_EQ(toString(tyB, opts), "{ x: number }");
 
     tyA = requireExportedType("game/A", "atype");
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ(toString(tyA, opts), "{ x: any }");
-    else
-        CHECK_EQ(toString(tyA, opts), "{| x: any |}");
+    CHECK_EQ(toString(tyA, opts), "{ x: any }");
 }
 
 TEST_CASE_FIXTURE(FrontendFixture, "dont_reparse_clean_file_when_linting")
@@ -555,10 +544,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "recheck_if_dependent_script_is_dirty")
     auto bExports = first(bModule->returnType);
     REQUIRE(!!bExports);
 
-    if (FFlag::LuauSolverV2)
-        CHECK_EQ("{ b_value: string }", toString(*bExports));
-    else
-        CHECK_EQ("{| b_value: string |}", toString(*bExports));
+    CHECK_EQ("{ b_value: string }", toString(*bExports));
 }
 
 TEST_CASE_FIXTURE(FrontendFixture, "mark_non_immediate_reverse_deps_as_dirty")
@@ -899,7 +885,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "it_should_be_safe_to_stringify_errors_when_f
     }
     else
         REQUIRE_EQ(
-            "Table type 'a' not compatible with type '{| Count: number |}' because the former is missing field 'Count'", toString(result.errors[0])
+            "Table type 'a' not compatible with type '{ Count: number }' because the former is missing field 'Count'", toString(result.errors[0])
         );
 }
 

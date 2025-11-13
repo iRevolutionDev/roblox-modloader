@@ -1,7 +1,7 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 #include "Luau/BuiltinDefinitions.h"
 
-LUAU_FASTFLAGVARIABLE(LuauTypeCheckerVectorLerp)
+LUAU_FASTFLAGVARIABLE(LuauTypeCheckerVectorLerp2)
 
 namespace Luau
 {
@@ -30,7 +30,7 @@ declare function tostring<T>(value: T): string
 declare function tonumber<T>(value: T, radix: number?): number?
 
 declare function rawequal<T1, T2>(a: T1, b: T2): boolean
-declare function rawget<K, V>(tab: {[K]: V}, k: K): V
+declare function rawget<K, V>(tab: {[K]: V}, k: K): V?
 declare function rawset<K, V>(tab: {[K]: V}, k: K, v: V): {[K]: V}
 declare function rawlen<K, V>(obj: {[K]: V} | string): number
 
@@ -284,7 +284,7 @@ declare vector: {
     clamp: @checked (vec: vector, min: vector, max: vector) -> vector,
     max: @checked (vector, ...vector) -> vector,
     min: @checked (vector, ...vector) -> vector,
-    lerp: @checked (vec1: vector, vec2: vector, t: number) -> number,
+    lerp: @checked (vec1: vector, vec2: vector, t: number) -> vector,
 
     zero: vector,
     one: vector,
@@ -334,7 +334,7 @@ std::string getBuiltinDefinitionSource()
     result += kBuiltinDefinitionDebugSrc;
     result += kBuiltinDefinitionUtf8Src;
     result += kBuiltinDefinitionBufferSrc;
-    if (FFlag::LuauTypeCheckerVectorLerp)
+    if (FFlag::LuauTypeCheckerVectorLerp2)
     {
         result += kBuiltinDefinitionVectorSrc;
     }

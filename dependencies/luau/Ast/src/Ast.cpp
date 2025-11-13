@@ -4,8 +4,6 @@
 #include "Luau/Common.h"
 #include "Luau/StringUtils.h"
 
-LUAU_FASTFLAG(LuauParametrizedAttributeSyntax)
-
 namespace Luau
 {
 
@@ -22,20 +20,7 @@ static AstAttr* findAttributeInArray(const AstArray<AstAttr*> attributes, AstAtt
 
 static bool hasAttributeInArray(const AstArray<AstAttr*> attributes, AstAttr::Type attributeType)
 {
-    if (FFlag::LuauParametrizedAttributeSyntax)
-    {
-        return findAttributeInArray(attributes, attributeType) != nullptr;
-    }
-    else
-    {
-        for (const auto attribute : attributes)
-        {
-            if (attribute->type == attributeType)
-                return true;
-        }
-
-        return false;
-    }
+    return findAttributeInArray(attributes, attributeType) != nullptr;
 }
 
 static void visitTypeList(AstVisitor* visitor, const AstTypeList& list)
@@ -54,6 +39,14 @@ AstAttr::AstAttr(const Location& location, Type type, AstArray<AstExpr*> args)
 {
 }
 
+AstAttr::AstAttr(const Location& location, Type type, AstArray<AstExpr*> args, AstName name)
+    : AstNode(ClassIndex(), location)
+    , type(type)
+    , args(args)
+    , name(name)
+{
+}
+
 void AstAttr::visit(AstVisitor* visitor)
 {
     visitor->visit(this);
@@ -64,18 +57,24 @@ AstAttr::DeprecatedInfo AstAttr::deprecatedInfo() const
     AstAttr::DeprecatedInfo info;
     info.deprecated = type == AstAttr::Type::Deprecated;
 
-    if (info.deprecated && args.size > 0)
+    if (info.deprecated && args.size > 0 && args.data[0]->is<AstExprTable>())
     {
         AstExprTable* table = args.data[0]->as<AstExprTable>();
         if (auto useValue = table->getRecord("use"))
         {
-            AstArray<char> use = (*useValue)->as<AstExprConstantString>()->value;
-            info.use = {{use.data, use.size}};
+            if ((*useValue)->is<AstExprConstantString>())
+            {
+                AstArray<char> use = (*useValue)->as<AstExprConstantString>()->value;
+                info.use = {{use.data, use.size}};
+            }
         }
         if (auto reasonValue = table->getRecord("reason"))
         {
-            AstArray<char> reason = (*reasonValue)->as<AstExprConstantString>()->value;
-            info.reason = {{reason.data, reason.size}};
+            if ((*reasonValue)->is<AstExprConstantString>())
+            {
+                AstArray<char> reason = (*reasonValue)->as<AstExprConstantString>()->value;
+                info.reason = {{reason.data, reason.size}};
+            }
         }
     }
 

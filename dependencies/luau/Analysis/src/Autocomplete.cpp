@@ -40,13 +40,17 @@ AutocompleteResult autocomplete(Frontend& frontend, const ModuleName& moduleName
         globalScope = frontend.globalsForAutocomplete.globalScope.get();
 
     TypeArena typeArena;
-    if (isWithinComment(*sourceModule, position))
+    bool isInHotComment = isWithinHotComment(*sourceModule, position);
+    if (isWithinComment(*sourceModule, position) && !isInHotComment)
         return {};
 
     std::vector<AstNode*> ancestry = findAncestryAtPositionForAutocomplete(*sourceModule, position);
     LUAU_ASSERT(!ancestry.empty());
     ScopePtr startScope = findScopeAtPosition(*module, position);
-    return autocomplete_(module, builtinTypes, &typeArena, ancestry, globalScope, startScope, position, frontend.fileResolver, std::move(callback));
+
+    return autocomplete_(
+        module, builtinTypes, &typeArena, ancestry, globalScope, startScope, position, frontend.fileResolver, std::move(callback), isInHotComment
+    );
 }
 
 } // namespace Luau

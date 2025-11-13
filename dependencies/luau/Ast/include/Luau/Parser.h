@@ -136,7 +136,6 @@ private:
         const TempVector<AstAttr*>& attributes,
         const AstArray<AstExpr*>& args
     );
-    std::optional<AstAttr::Type> validateAttribute_DEPRECATED(const char* attributeName, const TempVector<AstAttr*>& attributes);
 
     // attribute ::= '@' NAME
     void parseAttribute(TempVector<AstAttr*>& attribute);
@@ -347,6 +346,7 @@ private:
     // check that parser is at lexeme/symbol, move to next lexeme/symbol on success, report failure and continue on failure
     bool expectAndConsume(char value, const char* context = nullptr);
     bool expectAndConsume(Lexeme::Type type, const char* context = nullptr);
+    bool expectAndConsumeFailWithLookahead(Lexeme::Type type, const char* context);
     void expectAndConsumeFail(Lexeme::Type type, const char* context);
 
     struct MatchLexeme
@@ -366,7 +366,7 @@ private:
     bool expectMatchAndConsumeRecover(char value, const MatchLexeme& begin, bool searchForMissing);
 
     bool expectMatchEndAndConsume(Lexeme::Type type, const MatchLexeme& begin);
-    void expectMatchEndAndConsumeFail(Lexeme::Type type, const MatchLexeme& begin);
+    bool expectMatchEndAndConsumeFailWithLookahead(Lexeme::Type type, const MatchLexeme& begin);
 
     template<typename T>
     AstArray<T> copy(const T* data, std::size_t size);
@@ -399,8 +399,12 @@ private:
     // `astErrorLocation` is associated with the AstTypeError created
     // It can be useful to have different error locations so that the parse error can include the next lexeme, while the AstTypeError can precisely
     // define the location (possibly of zero size) where a type annotation is expected.
-    AstTypeError* reportMissingTypeError(const Location& parseErrorLocation, const Location& astErrorLocation, const char* format, ...)
-        LUAU_PRINTF_ATTR(4, 5);
+    AstTypeError* reportMissingTypeError(
+        const Location& parseErrorLocation,
+        const Location& astErrorLocation,
+        const char* format,
+        ...
+    ) LUAU_PRINTF_ATTR(4, 5);
 
     AstExpr* reportFunctionArgsError(AstExpr* func, bool self);
     void reportAmbiguousCallError();

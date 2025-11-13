@@ -5,17 +5,18 @@
 #include "Luau/AstQuery.h"
 #include "Luau/Common.h"
 #include "Luau/Type.h"
+#include "ScopedFlags.h"
 #include "doctest.h"
 
 #include "Luau/Normalize.h"
-#include "Luau/BuiltinDefinitions.h"
+#include <memory>
 
 LUAU_FASTFLAG(LuauSolverV2)
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
 LUAU_FASTINT(LuauNormalizeIntersectionLimit)
 LUAU_FASTINT(LuauNormalizeUnionLimit)
-LUAU_FASTFLAG(LuauNormalizationReorderFreeTypeIntersect)
-LUAU_FASTFLAG(LuauReturnMappedGenericPacksFromSubtyping2)
+LUAU_FASTFLAG(LuauNormalizerUnionTyvarsTakeMaxSize)
+
 using namespace Luau;
 
 namespace
@@ -102,9 +103,10 @@ TEST_CASE_FIXTURE(IsSubtypeFixture, "variadic_functions_with_no_head")
     CHECK(!isSubtype(a, b));
 }
 
-#if 0
 TEST_CASE_FIXTURE(IsSubtypeFixture, "variadic_function_with_head")
 {
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
+
     check(R"(
         local a: (...number) -> ()
         local b: (number, number) -> ()
@@ -116,7 +118,6 @@ TEST_CASE_FIXTURE(IsSubtypeFixture, "variadic_function_with_head")
     CHECK(!isSubtype(b, a));
     CHECK(isSubtype(a, b));
 }
-#endif
 
 TEST_CASE_FIXTURE(IsSubtypeFixture, "union")
 {
@@ -251,9 +252,10 @@ TEST_CASE_FIXTURE(IsSubtypeFixture, "tables")
     CHECK(!isSubtype(b, d));
 }
 
-#if 0
 TEST_CASE_FIXTURE(IsSubtypeFixture, "table_indexers_are_invariant")
 {
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
+
     check(R"(
         local a: {[string]: number}
         local b: {[string]: any}
@@ -273,6 +275,8 @@ TEST_CASE_FIXTURE(IsSubtypeFixture, "table_indexers_are_invariant")
 
 TEST_CASE_FIXTURE(IsSubtypeFixture, "mismatched_indexers")
 {
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
+
     check(R"(
         local a: {x: number}
         local b: {[string]: number}
@@ -290,6 +294,7 @@ TEST_CASE_FIXTURE(IsSubtypeFixture, "mismatched_indexers")
     CHECK(isSubtype(b, c));
 }
 
+#if 0
 TEST_CASE_FIXTURE(IsSubtypeFixture, "cyclic_table")
 {
     check(R"(
@@ -453,17 +458,13 @@ struct NormalizeFixture : Fixture
     TypeArena arena;
     InternalErrorReporter iceHandler;
     UnifierSharedState unifierState{&iceHandler};
-    Normalizer normalizer{&arena, getBuiltins(), NotNull{&unifierState}, FFlag::LuauSolverV2 ? SolverMode::New : SolverMode::Old};
-    Scope globalScope{getBuiltins()->anyTypePack};
 
-    NormalizeFixture()
-    {
-        registerHiddenTypes(getFrontend());
-    }
+    NormalizeFixture() {}
 
     std::shared_ptr<const NormalizedType> toNormalizedType(const std::string& annotation, int expectedErrors = 0)
     {
-        normalizer.clearCaches();
+        getFrontend();
+        normalizer->clearCaches();
         CheckResult result = check("type _Res = " + annotation);
         LUAU_REQUIRE_ERROR_COUNT(expectedErrors, result);
 
@@ -477,22 +478,65 @@ struct NormalizeFixture : Fixture
             REQUIRE(alias);
             TypeId* originalTy = getMainModule()->astResolvedTypes.find(alias->type);
             REQUIRE(originalTy);
-            return normalizer.normalize(*originalTy);
+            return normalizer->normalize(*originalTy);
         }
         else
         {
             std::optional<TypeId> ty = lookupType("_Res");
             REQUIRE(ty);
-            return normalizer.normalize(*ty);
+            return normalizer->normalize(*ty);
         }
+    }
+
+    std::shared_ptr<const NormalizedType> normalize(TypeId ty)
+    {
+        // Force the frontend;
+        getFrontend();
+        return normalizer->normalize(ty);
+    }
+
+    TypeId typeFromNormal(const NormalizedType& norm)
+    {
+        // Force the fontend
+        getFrontend();
+        return normalizer->typeFromNormal(norm);
+    }
+
+    bool isInhabited(const NormalizedType* norm)
+    {
+        return normalizer->isInhabited(norm) == NormalizationResult::True;
     }
 
     TypeId normal(const std::string& annotation)
     {
+        // Force the frontend;
+        getFrontend();
         std::shared_ptr<const NormalizedType> norm = toNormalizedType(annotation);
         REQUIRE(norm);
-        return normalizer.typeFromNormal(*norm);
+        return normalizer->typeFromNormal(*norm);
     }
+
+    Frontend& getFrontend() override
+    {
+        if (frontend)
+            return *frontend;
+
+        Frontend& f = Fixture::getFrontend();
+        globalScope = std::make_unique<Scope>(f.builtinTypes->anyTypePack);
+        normalizer = std::make_unique<Normalizer>(&arena, f.builtinTypes, NotNull{&unifierState}, f.getLuauSolverMode());
+        registerHiddenTypes(f);
+
+        return *frontend;
+    }
+
+    Scope* getGlobalScope()
+    {
+        return globalScope.get();
+    }
+
+private:
+    std::unique_ptr<Normalizer> normalizer = nullptr;
+    std::unique_ptr<Scope> globalScope = nullptr;
 };
 
 TEST_SUITE_BEGIN("Normalize");
@@ -608,14 +652,14 @@ TEST_CASE_FIXTURE(NormalizeFixture, "intersect_error")
 {
     std::shared_ptr<const NormalizedType> norm = toNormalizedType(R"(string & AAA)", 1);
     REQUIRE(norm);
-    CHECK("*error-type*" == toString(normalizer.typeFromNormal(*norm)));
+    CHECK("*error-type*" == toString(typeFromNormal(*norm)));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "intersect_not_error")
 {
     std::shared_ptr<const NormalizedType> norm = toNormalizedType(R"(string & Not<)", 1);
     REQUIRE(norm);
-    CHECK("*error-type*" == toString(normalizer.typeFromNormal(*norm)));
+    CHECK("*error-type*" == toString(typeFromNormal(*norm)));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "union_of_union")
@@ -690,7 +734,7 @@ TEST_CASE_FIXTURE(NormalizeFixture, "union_function_and_top_function")
 
 TEST_CASE_FIXTURE(NormalizeFixture, "negated_function_is_anything_except_a_function")
 {
-    CHECK("(boolean | buffer | class | number | string | table | thread)?" == toString(normal(R"(
+    CHECK("(boolean | buffer | number | string | table | thread | userdata)?" == toString(normal(R"(
         Not<fun>
     )")));
 }
@@ -707,15 +751,15 @@ TEST_CASE_FIXTURE(NormalizeFixture, "trivial_intersection_inhabited")
     TypeId a = arena.addType(FunctionType{getBuiltins()->emptyTypePack, getBuiltins()->anyTypePack, std::nullopt, false});
     TypeId c = arena.addType(IntersectionType{{a, a}});
 
-    std::shared_ptr<const NormalizedType> n = normalizer.normalize(c);
+    std::shared_ptr<const NormalizedType> n = normalize(c);
     REQUIRE(n);
 
-    CHECK(normalizer.isInhabited(n.get()) == NormalizationResult::True);
+    CHECK(isInhabited(n.get()));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "bare_negated_boolean")
 {
-    CHECK("(buffer | class | function | number | string | table | thread)?" == toString(normal(R"(
+    CHECK("(buffer | function | number | string | table | thread | userdata)?" == toString(normal(R"(
         Not<boolean>
     )")));
 }
@@ -761,7 +805,10 @@ TEST_CASE_FIXTURE(Fixture, "cyclic_table_normalizes_sensibly")
     LUAU_REQUIRE_NO_ERRORS(result);
 
     TypeId ty = requireType("Cyclic");
-    CHECK_EQ("t1 where t1 = { get: () -> t1 }", toString(ty, {true}));
+    if (FFlag::LuauSolverV2)
+        CHECK_EQ("t1 where t1 = { get: () -> t1 }", toString(ty, {true}));
+    else
+        CHECK_EQ("t1 where t1 = {| get: () -> t1 |}", toString(ty, {true}));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "skip_force_normal_on_external_types")
@@ -808,10 +855,7 @@ TEST_CASE_FIXTURE(NormalizeFixture, "narrow_union_of_extern_types_with_intersect
 
 TEST_CASE_FIXTURE(NormalizeFixture, "intersection_of_metatables_where_the_metatable_is_top_or_bottom")
 {
-    if (FFlag::LuauSolverV2)
-        CHECK("{ @metatable *error-type*, {  } }" == toString(normal("Mt<{}, any> & Mt<{}, err>")));
-    else
-        CHECK("{ @metatable *error-type*, {|  |} }" == toString(normal("Mt<{}, any> & Mt<{}, err>")));
+    CHECK("{ @metatable *error-type*, {  } }" == toString(normal("Mt<{}, any> & Mt<{}, err>")));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "recurring_intersection")
@@ -824,10 +868,10 @@ TEST_CASE_FIXTURE(NormalizeFixture, "recurring_intersection")
     std::optional<TypeId> t = lookupType("B");
     REQUIRE(t);
 
-    std::shared_ptr<const NormalizedType> nt = normalizer.normalize(*t);
+    std::shared_ptr<const NormalizedType> nt = normalize(*t);
     REQUIRE(nt);
 
-    CHECK("any" == toString(normalizer.typeFromNormal(*nt)));
+    CHECK("any" == toString(typeFromNormal(*nt)));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_union")
@@ -837,10 +881,10 @@ TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_union")
     TypeId u = arena.addType(UnionType{{getBuiltins()->numberType, t}});
     asMutable(t)->ty.emplace<IntersectionType>(IntersectionType{{getBuiltins()->anyType, u}});
 
-    std::shared_ptr<const NormalizedType> nt = normalizer.normalize(t);
+    std::shared_ptr<const NormalizedType> nt = normalize(t);
     REQUIRE(nt);
 
-    CHECK("number" == toString(normalizer.typeFromNormal(*nt)));
+    CHECK("number" == toString(typeFromNormal(*nt)));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_union_of_intersection")
@@ -851,9 +895,9 @@ TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_union_of_intersection")
     TypeId unionTy = arena.addType(UnionType{{getBuiltins()->stringType, intersectTy}});
     asMutable(boundTy)->reassign(Type{BoundType{unionTy}});
 
-    std::shared_ptr<const NormalizedType> nt = normalizer.normalize(unionTy);
+    std::shared_ptr<const NormalizedType> nt = normalize(unionTy);
 
-    CHECK("string" == toString(normalizer.typeFromNormal(*nt)));
+    CHECK("string" == toString(typeFromNormal(*nt)));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_intersection_of_unions")
@@ -864,9 +908,9 @@ TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_intersection_of_unions")
     TypeId intersectionTy = arena.addType(IntersectionType{{getBuiltins()->stringType, unionTy}});
     asMutable(boundTy)->reassign(Type{BoundType{intersectionTy}});
 
-    std::shared_ptr<const NormalizedType> nt = normalizer.normalize(intersectionTy);
+    std::shared_ptr<const NormalizedType> nt = normalize(intersectionTy);
 
-    CHECK("string" == toString(normalizer.typeFromNormal(*nt)));
+    CHECK("string" == toString(typeFromNormal(*nt)));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "crazy_metatable")
@@ -878,9 +922,10 @@ TEST_CASE_FIXTURE(NormalizeFixture, "negations_of_extern_types")
 {
     createSomeExternTypes(getFrontend());
     CHECK("(Parent & ~Child) | Unrelated" == toString(normal("(Parent & Not<Child>) | Unrelated")));
-    CHECK("((class & ~Child) | boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<Child>")));
+
+    CHECK("((userdata & ~Child) | boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<Child>")));
     CHECK("never" == toString(normal("Not<Parent> & Child")));
-    CHECK("((class & ~Parent) | Child | boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<Parent> | Child")));
+    CHECK("((userdata & ~Parent) | Child | boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<Parent> | Child")));
     CHECK("(boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<cls>")));
     CHECK(
         "(Parent | Unrelated | boolean | buffer | function | number | string | table | thread)?" ==
@@ -904,17 +949,14 @@ TEST_CASE_FIXTURE(NormalizeFixture, "extern_types_and_never")
 TEST_CASE_FIXTURE(NormalizeFixture, "top_table_type")
 {
     CHECK("table" == toString(normal("{} | tbl")));
-    if (FFlag::LuauSolverV2)
-        CHECK("{  }" == toString(normal("{} & tbl")));
-    else
-        CHECK("{|  |}" == toString(normal("{} & tbl")));
+    CHECK("{  }" == toString(normal("{} & tbl")));
     CHECK("never" == toString(normal("number & tbl")));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "negations_of_tables")
 {
     CHECK(nullptr == toNormalizedType("Not<{}>", FFlag::LuauSolverV2 ? 1 : 0));
-    CHECK("(boolean | buffer | class | function | number | string | thread)?" == toString(normal("Not<tbl>")));
+    CHECK("(boolean | buffer | function | number | string | thread | userdata)?" == toString(normal("Not<tbl>")));
     CHECK("table" == toString(normal("Not<Not<tbl>>")));
 }
 
@@ -922,25 +964,25 @@ TEST_CASE_FIXTURE(NormalizeFixture, "normalize_blocked_types")
 {
     Type blocked{BlockedType{}};
 
-    std::shared_ptr<const NormalizedType> norm = normalizer.normalize(&blocked);
+    std::shared_ptr<const NormalizedType> norm = normalize(&blocked);
 
-    CHECK_EQ(normalizer.typeFromNormal(*norm), &blocked);
+    CHECK_EQ(typeFromNormal(*norm), &blocked);
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "normalize_is_exactly_number")
 {
-    std::shared_ptr<const NormalizedType> number = normalizer.normalize(getBuiltins()->numberType);
+    std::shared_ptr<const NormalizedType> number = normalize(getBuiltins()->numberType);
     // 1. all types for which Types::number say true for, NormalizedType::isExactlyNumber should say true as well
     CHECK(Luau::isNumber(getBuiltins()->numberType) == number->isExactlyNumber());
     // 2. isExactlyNumber should handle cases like `number & number`
     TypeId intersection = arena.addType(IntersectionType{{getBuiltins()->numberType, getBuiltins()->numberType}});
-    std::shared_ptr<const NormalizedType> normIntersection = normalizer.normalize(intersection);
+    std::shared_ptr<const NormalizedType> normIntersection = normalize(intersection);
     CHECK(normIntersection->isExactlyNumber());
 
     // 3. isExactlyNumber should reject things that are definitely not precisely numbers `number | any`
 
     TypeId yoonion = arena.addType(UnionType{{getBuiltins()->anyType, getBuiltins()->numberType}});
-    std::shared_ptr<const NormalizedType> unionIntersection = normalizer.normalize(yoonion);
+    std::shared_ptr<const NormalizedType> unionIntersection = normalize(yoonion);
     CHECK(!unionIntersection->isExactlyNumber());
 }
 
@@ -949,7 +991,7 @@ TEST_CASE_FIXTURE(NormalizeFixture, "normalize_unknown")
     auto nt = toNormalizedType("Not<string> | Not<number>");
     CHECK(nt);
     CHECK(nt->isUnknown());
-    CHECK(toString(normalizer.typeFromNormal(*nt)) == "unknown");
+    CHECK(toString(typeFromNormal(*nt)) == "unknown");
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "read_only_props")
@@ -978,18 +1020,18 @@ TEST_CASE_FIXTURE(NormalizeFixture, "read_only_props_3")
 
 TEST_CASE_FIXTURE(NormalizeFixture, "final_types_are_cached")
 {
-    std::shared_ptr<const NormalizedType> na1 = normalizer.normalize(getBuiltins()->numberType);
-    std::shared_ptr<const NormalizedType> na2 = normalizer.normalize(getBuiltins()->numberType);
+    std::shared_ptr<const NormalizedType> na1 = normalize(getBuiltins()->numberType);
+    std::shared_ptr<const NormalizedType> na2 = normalize(getBuiltins()->numberType);
 
     CHECK(na1 == na2);
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "non_final_types_can_be_normalized_but_are_not_cached")
 {
-    TypeId a = arena.freshType(getBuiltins(), &globalScope);
+    TypeId a = arena.freshType(getBuiltins(), getGlobalScope());
 
-    std::shared_ptr<const NormalizedType> na1 = normalizer.normalize(a);
-    std::shared_ptr<const NormalizedType> na2 = normalizer.normalize(a);
+    std::shared_ptr<const NormalizedType> na1 = normalize(a);
+    std::shared_ptr<const NormalizedType> na2 = normalize(a);
 
     CHECK(na1 != na2);
 }
@@ -998,9 +1040,9 @@ TEST_CASE_FIXTURE(NormalizeFixture, "intersect_with_not_unknown")
 {
     TypeId notUnknown = arena.addType(NegationType{getBuiltins()->unknownType});
     TypeId type = arena.addType(IntersectionType{{getBuiltins()->numberType, notUnknown}});
-    std::shared_ptr<const NormalizedType> normalized = normalizer.normalize(type);
+    std::shared_ptr<const NormalizedType> normalized = normalize(type);
 
-    CHECK("never" == toString(normalizer.typeFromNormal(*normalized.get())));
+    CHECK("never" == toString(typeFromNormal(*normalized.get())));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_stack_overflow_1")
@@ -1013,7 +1055,7 @@ TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_stack_overflow_1")
     asMutable(t1)->ty.get_if<TableType>()->props = {{"foo", Property::readonly(t2)}};
     asMutable(t2)->ty.get_if<TableType>()->props = {{"foo", Property::readonly(t1)}};
 
-    std::shared_ptr<const NormalizedType> normalized = normalizer.normalize(t3);
+    std::shared_ptr<const NormalizedType> normalized = normalize(t3);
     CHECK(normalized);
 }
 
@@ -1027,7 +1069,7 @@ TEST_CASE_FIXTURE(NormalizeFixture, "cyclic_stack_overflow_2")
     asMutable(t1)->ty.get_if<TableType>()->props = {{"foo", Property::readonly(t3)}};
     asMutable(t2)->ty.get_if<TableType>()->props = {{"foo", Property::readonly(t1)}};
 
-    std::shared_ptr<const NormalizedType> normalized = normalizer.normalize(t3);
+    std::shared_ptr<const NormalizedType> normalized = normalize(t3);
     CHECK(normalized);
 }
 
@@ -1039,17 +1081,19 @@ TEST_CASE_FIXTURE(NormalizeFixture, "truthy_table_property_and_optional_table_wi
     TypeId t1 = arena.addType(TableType{TableType::Props{{"x", getBuiltins()->truthyType}}, std::nullopt, TypeLevel{}, TableState::Sealed});
 
     // { x: number? }?
-    TypeId t2 = arena.addType(UnionType{
-        {arena.addType(TableType{TableType::Props{{"x", getBuiltins()->optionalNumberType}}, std::nullopt, TypeLevel{}, TableState::Sealed}),
-         getBuiltins()->nilType}
-    });
+    TypeId t2 = arena.addType(
+        UnionType{
+            {arena.addType(TableType{TableType::Props{{"x", getBuiltins()->optionalNumberType}}, std::nullopt, TypeLevel{}, TableState::Sealed}),
+             getBuiltins()->nilType}
+        }
+    );
 
     TypeId intersection = arena.addType(IntersectionType{{t2, t1}});
 
-    auto norm = normalizer.normalize(intersection);
+    auto norm = normalize(intersection);
     REQUIRE(norm);
 
-    TypeId ty = normalizer.typeFromNormal(*norm);
+    TypeId ty = typeFromNormal(*norm);
     CHECK("{ x: number }" == toString(ty));
 }
 
@@ -1059,37 +1103,54 @@ TEST_CASE_FIXTURE(NormalizeFixture, "free_type_and_not_truthy")
         {FFlag::LuauSolverV2, true}, // Only because it affects the stringification of free types
     };
 
-    TypeId freeTy = arena.freshType(getBuiltins(), &globalScope);
+    TypeId freeTy = arena.freshType(getBuiltins(), getGlobalScope());
     TypeId notTruthy = arena.addType(NegationType{getBuiltins()->truthyType}); // ~~(false?)
 
     TypeId intersectionTy = arena.addType(IntersectionType{{freeTy, notTruthy}}); // 'a & ~~(false?)
 
-    auto norm = normalizer.normalize(intersectionTy);
+    auto norm = normalize(intersectionTy);
     REQUIRE(norm);
 
-    TypeId result = normalizer.typeFromNormal(*norm);
+    TypeId result = typeFromNormal(*norm);
 
     CHECK("'a & (false?)" == toString(result));
 }
 
 TEST_CASE_FIXTURE(NormalizeFixture, "free_type_intersection_ordering")
 {
-    ScopedFastFlag sff[] = {
-        {FFlag::LuauSolverV2, true}, // Affects stringification of free types.
-        {FFlag::LuauNormalizationReorderFreeTypeIntersect, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true}; // Affects stringification of free types.
 
-    TypeId freeTy = arena.freshType(getBuiltins(), &globalScope);
+    TypeId freeTy = arena.freshType(getBuiltins(), getGlobalScope());
     TypeId orderA = arena.addType(IntersectionType{{freeTy, getBuiltins()->stringType}});
-    auto normA = normalizer.normalize(orderA);
+    auto normA = normalize(orderA);
     REQUIRE(normA);
-    CHECK_EQ("'a & string", toString(normalizer.typeFromNormal(*normA)));
+    CHECK_EQ("'a & string", toString(typeFromNormal(*normA)));
 
     TypeId orderB = arena.addType(IntersectionType{{getBuiltins()->stringType, freeTy}});
-    auto normB = normalizer.normalize(orderB);
+    auto normB = normalize(orderB);
     REQUIRE(normB);
-    // Prior to LuauNormalizationReorderFreeTypeIntersect this became `never` :skull:
-    CHECK_EQ("'a & string", toString(normalizer.typeFromNormal(*normB)));
+    CHECK_EQ("'a & string", toString(typeFromNormal(*normB)));
+}
+
+TEST_CASE_FIXTURE(NormalizeFixture, "tyvar_limit_one_sided_intersection" * doctest::timeout(0.5))
+{
+    ScopedFastFlag _{FFlag::LuauNormalizerUnionTyvarsTakeMaxSize, true}; // Affects stringification of free types.
+
+    std::vector<TypeId> options;
+    for (auto i = 0; i < 120; i++)
+        options.push_back(arena.freshType(getBuiltins(), getGlobalScope()));
+
+    TypeId target = arena.addType(IntersectionType{
+        {
+            getBuiltins()->unknownType,
+            arena.addType(UnionType{std::move(options)})
+        },
+    });
+
+    // If we try to normalize 120 free variables against `unknown`, then exit
+    // early and claim we've hit the limit.
+    auto norm = normalize(target);
+    REQUIRE(!norm);
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "normalizer_should_be_able_to_detect_cyclic_tables_and_not_stack_overflow")
@@ -1216,13 +1277,11 @@ do end
         InternalCompilerError
     );
 }
+
 #if 0
 TEST_CASE_FIXTURE(BuiltinsFixture, "fuzz_union_type_pack_cycle")
 {
-    ScopedFastFlag sff[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauReturnMappedGenericPacksFromSubtyping2, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
     ScopedFastInt sfi{FInt::LuauTypeInferRecursionLimit, 0};
 
     // FIXME CLI-153131: This is constructing a cyclic type pack

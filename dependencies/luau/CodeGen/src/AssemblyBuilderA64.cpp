@@ -594,6 +594,47 @@ void AssemblyBuilderA64::faddp(RegisterA64 dst, RegisterA64 src)
     placeR1("faddp", dst, src, 0b011'11110'0'0'11000'01101'10 | ((dst.kind == KindA64::d) << 12));
 }
 
+void AssemblyBuilderA64::fmla(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2)
+{
+    // There is no scalar version of FMLA instruction
+    // Vector instruction is used for both cases with proper sz bit.
+
+    //                Q U        Sz  Rm    Opcode Rn    Rd
+    uint32_t op = 0b0'0'0'011100'0'1'00000'110011'00000'00000;
+    const uint32_t QBit = 1 << 30;
+    const uint32_t SzBit = 1 << 22;
+
+    if (dst.kind == KindA64::d)
+    {
+        CODEGEN_ASSERT(src1.kind == KindA64::d && src2.kind == KindA64::d);
+
+        if (logText)
+            logAppend(" %-12sd%d,d%d,d%d\n", "fmla", dst.index, src1.index, src2.index);
+
+        place(dst.index | (src1.index << 5) | (src2.index << 16) | op | QBit | SzBit);
+    }
+    else if (dst.kind == KindA64::s)
+    {
+        CODEGEN_ASSERT(src1.kind == KindA64::s && src2.kind == KindA64::s);
+
+        if (logText)
+            logAppend(" %-12ss%d,s%d,s%d\n", "fmla", dst.index, src1.index, src2.index);
+
+        place(dst.index | (src1.index << 5) | (src2.index << 16) | op);
+    }
+    else
+    {
+        CODEGEN_ASSERT(dst.kind == KindA64::q && src1.kind == KindA64::q && src2.kind == KindA64::q);
+
+        if (logText)
+            logAppend(" %-12sv%d.4s,v%d.4s,v%d.4s\n", "fmla", dst.index, src1.index, src2.index);
+
+        place(dst.index | (src1.index << 5) | (src2.index << 16) | op | QBit);
+    }
+
+    commit();
+}
+
 void AssemblyBuilderA64::fadd(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2)
 {
     if (dst.kind == KindA64::d)
@@ -766,6 +807,32 @@ void AssemblyBuilderA64::dup_4s(RegisterA64 dst, RegisterA64 src, uint8_t index)
 
         place(dst.index | (src.index << 5) | (op << 10) | (index << 19));
     }
+
+    commit();
+}
+
+void AssemblyBuilderA64::fcmeq_4s(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2)
+{
+    if (logText)
+        logAppend(" %-12sv%d.4s,v%d.4s,v%d.4s\n", "fcmeq", dst.index, src1.index, src2.index);
+
+    //                Q U      ESz Rm    Opcode Rn    Rd
+    uint32_t op = 0b0'1'0'01110001'00000'111001'00000'00000;
+
+    place(dst.index | (src1.index << 5) | (src2.index << 16) | op);
+
+    commit();
+}
+
+void AssemblyBuilderA64::bit(RegisterA64 dst, RegisterA64 src, RegisterA64 mask)
+{
+    if (logText)
+        logAppend(" %-12sv%d.16b,v%d.16b,v%d.16b\n", "bit", dst.index, src.index, mask.index);
+
+    //                Q U          Rm    Opcode Rn    Rd
+    uint32_t op = 0b0'1'1'01110101'00000'000111'00000'00000;
+
+    place(dst.index | (src.index << 5) | (mask.index << 16) | op);
 
     commit();
 }
