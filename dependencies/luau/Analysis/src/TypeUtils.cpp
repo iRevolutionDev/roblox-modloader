@@ -2,6 +2,7 @@
 #include "Luau/TypeUtils.h"
 
 #include "Luau/Common.h"
+#include "Luau/IterativeTypeVisitor.h"
 #include "Luau/Normalize.h"
 #include "Luau/Scope.h"
 #include "Luau/Simplify.h"
@@ -13,9 +14,8 @@
 #include <algorithm>
 
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAGVARIABLE(LuauTidyTypeUtils)
-LUAU_FASTFLAG(LuauEmplaceNotPushBack)
-LUAU_FASTFLAG(LuauPushTypeConstraint2)
+LUAU_FASTFLAGVARIABLE(LuauContainsAnyGenericDoesntTraverseIntoExtern)
+LUAU_FASTFLAG(LuauAnalysisUsesSolverMode)
 
 namespace Luau
 {
@@ -45,71 +45,6 @@ bool occursCheck(TypeId needle, TypeId haystack)
     return false;
 }
 
-// FIXME: Property is quite large.
-//
-// Returning it on the stack like this isn't great. We'd like to just return a
-// const Property*, but we mint a property of type any if the subject type is
-// any.
-std::optional<Property> findTableProperty(NotNull<BuiltinTypes> builtinTypes, ErrorVec& errors, TypeId ty, const std::string& name, Location location)
-{
-    if (get<AnyType>(ty))
-        return Property::rw(ty);
-
-    if (const TableType* tableType = getTableType(ty))
-    {
-        const auto& it = tableType->props.find(name);
-        if (it != tableType->props.end())
-            return it->second;
-    }
-
-    std::optional<TypeId> mtIndex = findMetatableEntry(builtinTypes, errors, ty, "__index", location);
-    int count = 0;
-    while (mtIndex)
-    {
-        TypeId index = follow(*mtIndex);
-
-        if (count >= 100)
-            return std::nullopt;
-
-        ++count;
-
-        if (const auto& itt = getTableType(index))
-        {
-            const auto& fit = itt->props.find(name);
-            if (fit != itt->props.end())
-            {
-                if (FFlag::LuauSolverV2)
-                {
-                    if (fit->second.readTy)
-                        return fit->second.readTy;
-                    else
-                        return fit->second.writeTy;
-                }
-                else
-                    return fit->second.type_DEPRECATED();
-            }
-        }
-        else if (const auto& itf = get<FunctionType>(index))
-        {
-            std::optional<TypeId> r = first(follow(itf->retTypes));
-            if (!r)
-                return builtinTypes->nilType;
-            else
-                return *r;
-        }
-        else if (get<AnyType>(index))
-            return builtinTypes->anyType;
-        else if (FFlag::LuauEmplaceNotPushBack)
-            errors.emplace_back(location, GenericError{"__index should either be a function or table. Got " + toString(index)});
-        else
-            errors.push_back(TypeError{location, GenericError{"__index should either be a function or table. Got " + toString(index)}});
-
-        mtIndex = findMetatableEntry(builtinTypes, errors, *mtIndex, "__index", location);
-    }
-
-    return std::nullopt;
-}
-
 std::optional<TypeId> findMetatableEntry(
     NotNull<BuiltinTypes> builtinTypes,
     ErrorVec& errors,
@@ -132,25 +67,17 @@ std::optional<TypeId> findMetatableEntry(
     const TableType* mtt = getTableType(unwrapped);
     if (!mtt)
     {
-        if (FFlag::LuauEmplaceNotPushBack)
-            errors.emplace_back(location, GenericError{"Metatable was not a table"});
-        else
-            errors.push_back(TypeError{location, GenericError{"Metatable was not a table"}});
+        errors.emplace_back(location, GenericError{"Metatable was not a table"});
         return std::nullopt;
     }
 
     auto it = mtt->props.find(entry);
     if (it != mtt->props.end())
     {
-        if (FFlag::LuauTidyTypeUtils || FFlag::LuauSolverV2)
-        {
-            if (it->second.readTy)
-                return it->second.readTy;
-            else
-                return it->second.writeTy;
-        }
+        if (it->second.readTy)
+            return it->second.readTy;
         else
-            return it->second.type_DEPRECATED();
+            return it->second.writeTy;
     }
     else
         return std::nullopt;
@@ -161,10 +88,11 @@ std::optional<TypeId> findTablePropertyRespectingMeta(
     ErrorVec& errors,
     TypeId ty,
     const std::string& name,
-    Location location
+    Location location,
+    bool useNewSolver
 )
 {
-    return findTablePropertyRespectingMeta(builtinTypes, errors, ty, name, ValueContext::RValue, location);
+    return findTablePropertyRespectingMeta(builtinTypes, errors, ty, name, ValueContext::RValue, location, useNewSolver);
 }
 
 std::optional<TypeId> findTablePropertyRespectingMeta(
@@ -173,7 +101,8 @@ std::optional<TypeId> findTablePropertyRespectingMeta(
     TypeId ty,
     const std::string& name,
     ValueContext context,
-    Location location
+    Location location,
+    bool useNewSolver
 )
 {
     if (get<AnyType>(ty))
@@ -184,18 +113,13 @@ std::optional<TypeId> findTablePropertyRespectingMeta(
         const auto& it = tableType->props.find(name);
         if (it != tableType->props.end())
         {
-            if (FFlag::LuauTidyTypeUtils || FFlag::LuauSolverV2)
+            switch (context)
             {
-                switch (context)
-                {
-                case ValueContext::RValue:
-                    return it->second.readTy;
-                case ValueContext::LValue:
-                    return it->second.writeTy;
-                }
+            case ValueContext::RValue:
+                return it->second.readTy;
+            case ValueContext::LValue:
+                return it->second.writeTy;
             }
-            else
-                return it->second.type_DEPRECATED();
         }
     }
 
@@ -215,7 +139,25 @@ std::optional<TypeId> findTablePropertyRespectingMeta(
             const auto& fit = itt->props.find(name);
             if (fit != itt->props.end())
             {
-                if (FFlag::LuauSolverV2)
+                // This is only used in the old solver?
+                if (FFlag::LuauAnalysisUsesSolverMode)
+                {
+                    if (useNewSolver)
+                    {
+                        switch (context)
+                        {
+                        case ValueContext::RValue:
+                            return fit->second.readTy;
+                        case ValueContext::LValue:
+                            return fit->second.writeTy;
+                        }
+                    }
+                    else
+                    {
+                        return fit->second.readTy;
+                    }
+                }
+                else if (FFlag::LuauSolverV2)
                 {
                     switch (context)
                     {
@@ -239,10 +181,8 @@ std::optional<TypeId> findTablePropertyRespectingMeta(
         }
         else if (get<AnyType>(index))
             return builtinTypes->anyType;
-        else if (FFlag::LuauEmplaceNotPushBack)
-            errors.emplace_back(location, GenericError{"__index should either be a function or table. Got " + toString(index)});
         else
-            errors.push_back(TypeError{location, GenericError{"__index should either be a function or table. Got " + toString(index)}});
+            errors.emplace_back(location, GenericError{"__index should either be a function or table. Got " + toString(index)});
 
         mtIndex = findMetatableEntry(builtinTypes, errors, *mtIndex, "__index", location);
     }
@@ -348,11 +288,9 @@ TypePack extendTypePack(
             TypePack newPack;
             newPack.tail = arena.freshTypePack(ftp->scope, ftp->polarity);
 
-            if (FFlag::LuauTidyTypeUtils)
-                trackInteriorFreeTypePack(ftp->scope, *newPack.tail);
+            trackInteriorFreeTypePack(ftp->scope, *newPack.tail);
 
-            if (FFlag::LuauTidyTypeUtils || FFlag::LuauSolverV2)
-                result.tail = newPack.tail;
+            result.tail = newPack.tail;
             size_t overridesIndex = 0;
             while (result.head.size() < length)
             {
@@ -363,14 +301,9 @@ TypePack extendTypePack(
                 }
                 else
                 {
-                    if (FFlag::LuauTidyTypeUtils || FFlag::LuauSolverV2)
-                    {
-                        FreeType ft{ftp->scope, builtinTypes->neverType, builtinTypes->unknownType, ftp->polarity};
-                        t = arena.addType(ft);
-                        trackInteriorFreeType(ftp->scope, t);
-                    }
-                    else
-                        t = arena.freshType(builtinTypes, ftp->scope);
+                    FreeType ft{ftp->scope, builtinTypes->neverType, builtinTypes->unknownType, ftp->polarity};
+                    t = arena.addType(ft);
+                    trackInteriorFreeType(ftp->scope, t);
                 }
 
                 newPack.head.push_back(t);
@@ -710,7 +643,7 @@ std::optional<TypeId> extractMatchingTableType(std::vector<TypeId>& tables, Type
                     }
                 }
 
-                if (FFlag::LuauPushTypeConstraint2 && fastIsSubtype(propType, expectedType))
+                if (fastIsSubtype(propType, expectedType))
                     return ty;
             }
         }
@@ -925,6 +858,12 @@ ContainsAnyGeneric::ContainsAnyGeneric()
     : TypeOnceVisitor("ContainsAnyGeneric", /* skipBoundTypes */ true)
 {
 }
+
+bool ContainsAnyGeneric::visit(TypeId ty, const ExternType&)
+{
+    return !FFlag::LuauContainsAnyGenericDoesntTraverseIntoExtern;
+}
+
 bool ContainsAnyGeneric::visit(TypeId ty)
 {
     found = found || is<GenericType>(ty);
@@ -949,6 +888,65 @@ bool ContainsAnyGeneric::hasAnyGeneric(TypePackId tp)
     ContainsAnyGeneric cg;
     cg.traverse(tp);
     return cg.found;
+}
+
+struct ContainsGenerics : public IterativeTypeVisitor
+{
+    NotNull<DenseHashSet<const void*>> generics;
+
+    explicit ContainsGenerics(NotNull<DenseHashSet<const void*>> generics)
+        : IterativeTypeVisitor("ContainsGenerics", /* skipBoundTypes */ true)
+        , generics{generics}
+    {
+    }
+
+    bool found = false;
+
+    bool visit(TypeId ty) override
+    {
+        return !found;
+    }
+
+    bool visit(TypeId ty, const GenericType&) override
+    {
+        found |= generics->contains(ty);
+        return true;
+    }
+
+    bool visit(TypeId ty, const TypeFunctionInstanceType&) override
+    {
+        return !found;
+    }
+
+    bool visit(TypePackId tp, const GenericTypePack&) override
+    {
+        found |= generics->contains(tp);
+        return !found;
+    }
+};
+
+bool containsGeneric(TypeId ty, NotNull<DenseHashSet<const void*>> generics)
+{
+    ContainsGenerics cg{generics};
+    cg.run(ty);
+    return cg.found;
+}
+
+bool containsGeneric(TypePackId ty, NotNull<DenseHashSet<const void*>> generics)
+{
+    ContainsGenerics cg{generics};
+    cg.run(ty);
+    return cg.found;
+}
+
+bool isBlocked(TypeId ty)
+{
+    ty = follow(ty);
+
+    if (auto tfit = get<TypeFunctionInstanceType>(ty))
+        return tfit->state == TypeFunctionInstanceState::Unsolved;
+
+    return is<BlockedType, PendingExpansionType>(ty);
 }
 
 

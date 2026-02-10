@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Luau/Config.h"
+#include "Luau/ConfigResolver.h"
 #include "Luau/GlobalTypes.h"
 #include "Luau/Module.h"
 #include "Luau/ModuleResolver.h"
@@ -235,7 +236,16 @@ struct Frontend
     );
 
     std::optional<CheckResult> getCheckResult(const ModuleName& name, bool accumulateNested, bool forAutocomplete = false);
-    std::vector<ModuleName> getRequiredScripts(const ModuleName& name);
+    std::vector<ModuleName> getRequiredScripts(const ModuleName& name, const TypeCheckLimits& limits);
+
+    TypeId parseType(
+        NotNull<Allocator> allocator,
+        NotNull<AstNameTable> nameTable,
+        NotNull<InternalErrorReporter> iceHandler,
+        TypeCheckLimits limits,
+        NotNull<TypeArena> arena,
+        std::string_view source
+    );
 
 private:
     ModulePtr check(
@@ -249,12 +259,13 @@ private:
         TypeCheckLimits typeCheckLimits
     );
 
-    std::pair<SourceNode*, SourceModule*> getSourceNode(const ModuleName& name);
+    std::pair<SourceNode*, SourceModule*> getSourceNode(const ModuleName& name, const TypeCheckLimits& limits);
     SourceModule parse(const ModuleName& name, std::string_view src, const ParseOptions& parseOptions);
 
     bool parseGraph(
         std::vector<ModuleName>& buildQueue,
         const ModuleName& root,
+        const TypeCheckLimits& limits,
         bool forAutocomplete,
         std::function<bool(const ModuleName&)> canSkip = {}
     );

@@ -125,28 +125,36 @@ public:
     void vaddss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
 
     void vsubsd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vsubss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vsubps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vmulsd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vmulss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vmulps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vdivsd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vdivss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vdivps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
 
     void vandps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vandpd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vandnpd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
 
+    void vxorps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vxorpd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vorps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vorpd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
 
     void vucomisd(OperandX64 src1, OperandX64 src2);
+    void vucomiss(OperandX64 src1, OperandX64 src2);
 
     void vcvttsd2si(OperandX64 dst, OperandX64 src);
     void vcvtsi2sd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vcvtsi2ss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vcvtsd2ss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vcvtss2sd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
 
     void vroundsd(OperandX64 dst, OperandX64 src1, OperandX64 src2, RoundingModeX64 roundingMode); // inexact
+    void vroundss(OperandX64 dst, OperandX64 src1, OperandX64 src2, RoundingModeX64 roundingMode); // inexact
+    void vroundps(OperandX64 dst, OperandX64 src, RoundingModeX64 roundingMode);                   // inexact
 
     void vsqrtpd(OperandX64 dst, OperandX64 src);
     void vsqrtps(OperandX64 dst, OperandX64 src);
@@ -163,19 +171,24 @@ public:
     void vmovups(OperandX64 dst, OperandX64 src);
     void vmovq(OperandX64 lhs, OperandX64 rhs);
 
+    void vmaxps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vmaxsd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vmaxss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vminps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vminsd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vminss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
 
     void vcmpeqsd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vcmpltsd(OperandX64 dst, OperandX64 src1, OperandX64 src2);
+    void vcmpltss(OperandX64 dst, OperandX64 src1, OperandX64 src2);
     void vcmpeqps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
 
     void vblendvps(RegisterX64 dst, RegisterX64 src1, OperandX64 src2, RegisterX64 mask);
     void vblendvpd(RegisterX64 dst, RegisterX64 src1, OperandX64 src2, RegisterX64 mask);
-    void vblendvpd_DEPRECATED(RegisterX64 dst, RegisterX64 src1, OperandX64 mask, RegisterX64 src3);
 
     void vpshufps(RegisterX64 dst, RegisterX64 src1, OperandX64 src2, uint8_t shuffle);
     void vpinsrd(RegisterX64 dst, RegisterX64 src1, OperandX64 src2, uint8_t offset);
+    void vpextrd(RegisterX64 dst, RegisterX64 src, uint8_t offset);
 
     void vdpps(OperandX64 dst, OperandX64 src1, OperandX64 src2, uint8_t mask);
     void vfmadd213ps(OperandX64 dst, OperandX64 src1, OperandX64 src2);
@@ -209,6 +222,7 @@ public:
 
     void logAppend(const char* fmt, ...) LUAU_PRINTF_ATTR(2, 3);
 
+    // Code size is measured in 'code' array units - uint8_t on x64 and uint32_t on arm64
     uint32_t getCodeSize() const;
 
     unsigned getInstructionCount() const;

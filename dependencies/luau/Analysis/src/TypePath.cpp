@@ -16,10 +16,9 @@
 #include <optional>
 #include <sstream>
 
-LUAU_FASTFLAG(LuauSolverV2);
-LUAU_FASTFLAG(LuauEmplaceNotPushBack)
-LUAU_FASTFLAGVARIABLE(LuauConsiderErrorSuppressionInTypes)
-LUAU_FASTFLAG(LuauNewNonStrictBetterCheckedFunctionErrorMessage)
+LUAU_FASTFLAG(LuauSolverV2)
+LUAU_FASTFLAG(LuauAnalysisUsesSolverMode)
+LUAU_FASTFLAG(LuauSubtypingMissingPropertiesAsNil)
 
 // Maximum number of steps to follow when traversing a path. May not always
 // equate to the number of components in a path, depending on the traversal
@@ -181,127 +180,85 @@ Path PathBuilder::build()
 
 PathBuilder& PathBuilder::readProp(std::string name)
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(Property{std::move(name), true});
-    else
-        components.push_back(Property{std::move(name), true});
+    components.emplace_back(Property{std::move(name), true});
     return *this;
 }
 
 PathBuilder& PathBuilder::writeProp(std::string name)
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(Property{std::move(name), false});
-    else
-        components.push_back(Property{std::move(name), false});
+    components.emplace_back(Property{std::move(name), false});
     return *this;
 }
 
 PathBuilder& PathBuilder::prop(std::string name)
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(Property{std::move(name)});
-    else
-        components.push_back(Property{std::move(name)});
+    components.emplace_back(Property{std::move(name)});
     return *this;
 }
 
 PathBuilder& PathBuilder::index(size_t i)
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(Index{i});
-    else
-        components.push_back(Index{i});
+    components.emplace_back(Index{i});
     return *this;
 }
 
 PathBuilder& PathBuilder::mt()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(TypeField::Metatable);
-    else
-        components.push_back(TypeField::Metatable);
+    components.emplace_back(TypeField::Metatable);
     return *this;
 }
 
 PathBuilder& PathBuilder::lb()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(TypeField::LowerBound);
-    else
-        components.push_back(TypeField::LowerBound);
+    components.emplace_back(TypeField::LowerBound);
     return *this;
 }
 
 PathBuilder& PathBuilder::ub()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(TypeField::UpperBound);
-    else
-        components.push_back(TypeField::UpperBound);
+    components.emplace_back(TypeField::UpperBound);
     return *this;
 }
 
 PathBuilder& PathBuilder::indexKey()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(TypeField::IndexLookup);
-    else
-        components.push_back(TypeField::IndexLookup);
+    components.emplace_back(TypeField::IndexLookup);
     return *this;
 }
 
 PathBuilder& PathBuilder::indexValue()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(TypeField::IndexResult);
-    else
-        components.push_back(TypeField::IndexResult);
+    components.emplace_back(TypeField::IndexResult);
     return *this;
 }
 
 PathBuilder& PathBuilder::negated()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(TypeField::Negated);
-    else
-        components.push_back(TypeField::Negated);
+    components.emplace_back(TypeField::Negated);
     return *this;
 }
 
 PathBuilder& PathBuilder::variadic()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(TypeField::Variadic);
-    else
-        components.push_back(TypeField::Variadic);
+    components.emplace_back(TypeField::Variadic);
     return *this;
 }
 
 PathBuilder& PathBuilder::args()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(PackField::Arguments);
-    else
-        components.push_back(PackField::Arguments);
+    components.emplace_back(PackField::Arguments);
     return *this;
 }
 
 PathBuilder& PathBuilder::rets()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(PackField::Returns);
-    else
-        components.push_back(PackField::Returns);
+    components.emplace_back(PackField::Returns);
     return *this;
 }
 
 PathBuilder& PathBuilder::tail()
 {
-    if (FFlag::LuauEmplaceNotPushBack)
-        components.emplace_back(PackField::Tail);
-    else
-        components.push_back(PackField::Tail);
+    components.emplace_back(PackField::Tail);
     return *this;
 }
 
@@ -424,7 +381,7 @@ struct TraversalState
         if (prop)
         {
             std::optional<TypeId> maybeType;
-            if (FFlag::LuauSolverV2)
+            if (FFlag::LuauAnalysisUsesSolverMode || FFlag::LuauSolverV2)
                 maybeType = property.isRead ? prop->readTy : prop->writeTy;
             else
                 maybeType = prop->type_DEPRECATED();
@@ -448,7 +405,7 @@ struct TraversalState
         {
             bool updatedCurrent = false;
 
-            if (FFlag::LuauConsiderErrorSuppressionInTypes && get<ErrorType>(*currentType))
+            if (get<ErrorType>(*currentType))
             {
                 encounteredErrorSuppression = true;
                 return false;
@@ -457,66 +414,41 @@ struct TraversalState
             if (auto u = get<UnionType>(*currentType))
             {
                 auto it = begin(u);
-                if (FFlag::LuauConsiderErrorSuppressionInTypes)
+                // We want to track the index that updates the current type with `idx` while still iterating through the entire union to check for
+                // error types with `it`.
+                size_t idx = 0;
+                for (auto it = begin(u); it != end(u); ++it)
                 {
-                    // We want to track the index that updates the current type with `idx` while still iterating through the entire union to check for error types with `it`.
-                    size_t idx = 0;
-                    for (auto it = begin(u); it != end(u); ++it)
-                    {
-                        if (get<ErrorType>(*it))
-                            encounteredErrorSuppression = true;
-                        if (idx == index.index)
-                        {
-                            updateCurrent(*it);
-                            updatedCurrent = true;
-                        }
-                        ++idx;
-                    }
-                }
-                else
-                {
-                    std::advance(it, index.index);
-
-                    if (it != end(u))
+                    if (get<ErrorType>(*it))
+                        encounteredErrorSuppression = true;
+                    if (idx == index.index)
                     {
                         updateCurrent(*it);
-                        return true;
+                        updatedCurrent = true;
                     }
+                    ++idx;
                 }
             }
             else if (auto i = get<IntersectionType>(*currentType))
             {
                 auto it = begin(i);
-                if (FFlag::LuauConsiderErrorSuppressionInTypes)
+                // We want to track the index that updates the current type with `idx` while still iterating through the entire intersection to check
+                // for error types with `it`.
+                size_t idx = 0;
+                for (auto it = begin(i); it != end(i); ++it)
                 {
-                    // We want to track the index that updates the current type with `idx` while still iterating through the entire intersection to check for error types with `it`.
-                    size_t idx = 0;
-                    for (auto it = begin(i); it != end(i); ++it)
-                    {
-                        if (get<ErrorType>(*it))
-                            encounteredErrorSuppression = true;
-                        if (idx == index.index)
-                        {
-                            updateCurrent(*it);
-                            updatedCurrent = true;
-                        }
-                        ++idx;
-                    }
-                }
-                else
-                {
-                    std::advance(it, index.index);
-
-                    if (it != end(i))
+                    if (get<ErrorType>(*it))
+                        encounteredErrorSuppression = true;
+                    if (idx == index.index)
                     {
                         updateCurrent(*it);
-                        return true;
+                        updatedCurrent = true;
                     }
+                    ++idx;
                 }
             }
 
-            if (FFlag::LuauConsiderErrorSuppressionInTypes)
-                return updatedCurrent;
+            return updatedCurrent;
         }
         else
         {
@@ -724,7 +656,7 @@ std::string toString(const TypePath::Path& path, bool prefixDot)
         if constexpr (std::is_same_v<T, TypePath::Property>)
         {
             result << '[';
-            if (FFlag::LuauSolverV2)
+            if (FFlag::LuauAnalysisUsesSolverMode || FFlag::LuauSolverV2)
             {
                 if (c.isRead)
                     result << "read ";
@@ -863,44 +795,14 @@ std::string toStringHuman(const TypePath::Path& path)
         }
         else if constexpr (std::is_same_v<T, TypePath::Index>)
         {
-            if (FFlag::LuauNewNonStrictBetterCheckedFunctionErrorMessage)
-            {
-                if (state == State::Initial && !last)
-                    result << "in" << ' ';
-                else if (state == State::PendingIs)
-                    result << ' ' << "has" << ' ';
-                else if (state == State::Property)
-                    result << '`' << ' ' << "has" << ' ';
+            if (state == State::Initial && !last)
+                result << "in" << ' ';
+            else if (state == State::PendingIs)
+                result << ' ' << "has" << ' ';
+            else if (state == State::Property)
+                result << '`' << ' ' << "has" << ' ';
 
-                result << "the " << toHumanReadableIndex(c.index);
-            }
-            else
-            {
-                size_t humanIndex = c.index + 1;
-
-                if (state == State::Initial && !last)
-                    result << "in" << ' ';
-                else if (state == State::PendingIs)
-                    result << ' ' << "has" << ' ';
-                else if (state == State::Property)
-                    result << '`' << ' ' << "has" << ' ';
-
-                result << "the " << humanIndex;
-                switch (humanIndex)
-                {
-                case 1:
-                    result << "st";
-                    break;
-                case 2:
-                    result << "nd";
-                    break;
-                case 3:
-                    result << "rd";
-                    break;
-                default:
-                    result << "th";
-                }
-            }
+            result << "the " << toHumanReadableIndex(c.index);
 
             switch (c.variant)
             {
@@ -1094,7 +996,11 @@ std::optional<TypeOrPack> traverse(const TypePackId root, const Path& path, cons
 {
     TraversalState state(follow(root), builtinTypes, arena);
     if (traverse(state, path))
+    {
+        if (state.encounteredErrorSuppression)
+            return builtinTypes->errorType;
         return state.current;
+    }
     else
         return std::nullopt;
 }
@@ -1113,7 +1019,7 @@ std::optional<TypeId> traverseForType(const TypeId root, const Path& path, const
     TraversalState state(follow(root), builtinTypes, arena);
     if (traverse(state, path))
     {
-        if (FFlag::LuauConsiderErrorSuppressionInTypes && state.encounteredErrorSuppression)
+        if (state.encounteredErrorSuppression)
             return builtinTypes->errorType;
 
         const TypeId* ty = get<TypeId>(state.current);
@@ -1133,7 +1039,7 @@ std::optional<TypeId> traverseForType(
     TraversalState state(follow(root), builtinTypes, arena);
     if (traverse(state, path))
     {
-        if (FFlag::LuauConsiderErrorSuppressionInTypes && state.encounteredErrorSuppression)
+        if (state.encounteredErrorSuppression)
             return builtinTypes->errorType;
         const TypeId* ty = get<TypeId>(state.current);
         return ty ? std::make_optional(*ty) : std::nullopt;
@@ -1152,7 +1058,7 @@ std::optional<TypePackId> traverseForPack(
     TraversalState state(follow(root), builtinTypes, arena);
     if (traverse(state, path))
     {
-        if (FFlag::LuauConsiderErrorSuppressionInTypes && state.encounteredErrorSuppression)
+        if (state.encounteredErrorSuppression)
             return builtinTypes->errorTypePack;
         const TypePackId* ty = get<TypePackId>(state.current);
         return ty ? std::make_optional(*ty) : std::nullopt;
@@ -1171,7 +1077,7 @@ std::optional<TypePackId> traverseForPack(
     TraversalState state(follow(root), builtinTypes, arena);
     if (traverse(state, path))
     {
-        if (FFlag::LuauConsiderErrorSuppressionInTypes && state.encounteredErrorSuppression)
+        if (state.encounteredErrorSuppression)
             return builtinTypes->errorTypePack;
         const TypePackId* ty = get<TypePackId>(state.current);
         return ty ? std::make_optional(*ty) : std::nullopt;

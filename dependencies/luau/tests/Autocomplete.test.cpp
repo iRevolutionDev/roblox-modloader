@@ -21,8 +21,7 @@ LUAU_DYNAMIC_FASTINT(LuauSubtypingRecursionLimit)
 LUAU_FASTFLAG(LuauTraceTypesInNonstrictMode2)
 LUAU_FASTFLAG(LuauSetMetatableDoesNotTimeTravel)
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
-LUAU_FASTFLAG(LuauUnfinishedRepeatAncestryFix)
-LUAU_FASTFLAG(LuauAutocompleteAttributes)
+LUAU_FASTFLAG(LuauAutocompleteSingletonsInIndexer)
 
 using namespace Luau;
 
@@ -4375,9 +4374,6 @@ foo(@1)
 
 TEST_CASE_FIXTURE(ACFixture, "anonymous_autofilled_generic_type_pack_vararg")
 {
-    // CLI-116932 - Autocomplete on a anonymous function in a function argument should not recommend a function with a generic parameter.
-    if (FFlag::LuauSolverV2)
-        return;
     check(R"(
 local function foo<A>(a: (...A) -> number, ...: A)
 	return a(...)
@@ -4387,6 +4383,48 @@ foo(@1)
     )");
 
     const std::optional<std::string> EXPECTED_INSERT = "function(...): number  end";
+
+    auto ac = autocomplete('1');
+
+    REQUIRE(ac.entryMap.count(kGeneratedAnonymousFunctionEntryName) == 1);
+    CHECK(ac.entryMap[kGeneratedAnonymousFunctionEntryName].kind == Luau::AutocompleteEntryKind::GeneratedFunction);
+    CHECK(ac.entryMap[kGeneratedAnonymousFunctionEntryName].typeCorrect == Luau::TypeCorrectKind::Correct);
+    REQUIRE(ac.entryMap[kGeneratedAnonymousFunctionEntryName].insertText);
+    CHECK_EQ(EXPECTED_INSERT, *ac.entryMap[kGeneratedAnonymousFunctionEntryName].insertText);
+}
+
+TEST_CASE_FIXTURE(ACFixture, "anonymous_autofilled_generic_named_arg")
+{
+    check(R"(
+local function foo<A>(f: (a: A) -> number, a: A)
+	return f(a)
+end
+
+foo(@1)
+    )");
+
+    const std::optional<std::string> EXPECTED_INSERT = "function(a): number  end";
+
+    auto ac = autocomplete('1');
+
+    REQUIRE(ac.entryMap.count(kGeneratedAnonymousFunctionEntryName) == 1);
+    CHECK(ac.entryMap[kGeneratedAnonymousFunctionEntryName].kind == Luau::AutocompleteEntryKind::GeneratedFunction);
+    CHECK(ac.entryMap[kGeneratedAnonymousFunctionEntryName].typeCorrect == Luau::TypeCorrectKind::Correct);
+    REQUIRE(ac.entryMap[kGeneratedAnonymousFunctionEntryName].insertText);
+    CHECK_EQ(EXPECTED_INSERT, *ac.entryMap[kGeneratedAnonymousFunctionEntryName].insertText);
+}
+
+TEST_CASE_FIXTURE(ACFixture, "anonymous_autofilled_generic_return_type")
+{
+    check(R"(
+local function foo<A>(f: () -> A)
+	return f()
+end
+
+foo(@1)
+    )");
+
+    const std::optional<std::string> EXPECTED_INSERT = "function()  end";
 
     auto ac = autocomplete('1');
 
@@ -4872,8 +4910,6 @@ TEST_CASE_FIXTURE(ACFixture, "autocomplete_suggest_hot_comments")
 
 TEST_CASE_FIXTURE(ACFixture, "autocomplete_method_in_unfinished_repeat_body_eof")
 {
-    ScopedFastFlag sff{FFlag::LuauUnfinishedRepeatAncestryFix, true};
-
     check(R"(local t = {}
         function t:Foo() end
         repeat
@@ -4887,8 +4923,6 @@ TEST_CASE_FIXTURE(ACFixture, "autocomplete_method_in_unfinished_repeat_body_eof"
 
 TEST_CASE_FIXTURE(ACFixture, "autocomplete_method_in_unfinished_repeat_body_not_eof")
 {
-    ScopedFastFlag sff{FFlag::LuauUnfinishedRepeatAncestryFix, true};
-
     check(R"(local t = {}
         function t:Foo() end
         repeat
@@ -4916,8 +4950,6 @@ TEST_CASE_FIXTURE(ACFixture, "autocomplete_method_in_unfinished_while_body")
 
 TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_empty_attribute")
 {
-    ScopedFastFlag sff[]{{FFlag::LuauAutocompleteAttributes, true}};
-
     check(R"(
         \@@1
         function foo() return 42 end
@@ -4931,8 +4963,6 @@ TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_empty_attribute")
 
 TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_deprecated_attribute")
 {
-    ScopedFastFlag sff[]{{FFlag::LuauAutocompleteAttributes, true}};
-
     check(R"(
         \@dep@1
         function foo() return 42 end
@@ -4946,8 +4976,6 @@ TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_deprecated_attribute")
 
 TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_empty_braced_attribute")
 {
-    ScopedFastFlag sff[]{{FFlag::LuauAutocompleteAttributes, true}};
-
     check(R"(
         \@[@1]
         function foo() return 42 end
@@ -4961,8 +4989,6 @@ TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_empty_braced_attribute")
 
 TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_deprecated_braced_attribute")
 {
-    ScopedFastFlag sff[]{{FFlag::LuauAutocompleteAttributes, true}};
-
     check(R"(
         \@[dep@1]
         function foo() return 42 end
@@ -4972,6 +4998,22 @@ TEST_CASE_FIXTURE(ACBuiltinsFixture, "autocomplete_deprecated_braced_attribute")
     CHECK_EQ(ac.entryMap.count("deprecated"), 1);
     CHECK_EQ(ac.entryMap.count("checked"), 1);
     CHECK_EQ(ac.entryMap.count("native"), 1);
+}
+
+TEST_CASE_FIXTURE(ACFixture, "autocomplete_using_indexer_with_singleton_keys")
+{
+    ScopedFastFlag _{FFlag::LuauAutocompleteSingletonsInIndexer, true};
+
+    check(R"(
+        type List = "Val1" | "Val2" | "Val3"
+        local Table: { [List]: boolean }
+        local _ = Table.@1
+    )");
+
+    auto ac = autocomplete('1');
+    CHECK_EQ(ac.entryMap.count("Val1"), 1);
+    CHECK_EQ(ac.entryMap.count("Val2"), 1);
+    CHECK_EQ(ac.entryMap.count("Val3"), 1);
 }
 
 TEST_SUITE_END();

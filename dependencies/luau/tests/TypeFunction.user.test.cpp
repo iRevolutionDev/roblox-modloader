@@ -1,5 +1,7 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 
+#include "Luau/Error.h"
+
 #include "ClassFixture.h"
 #include "Fixture.h"
 
@@ -8,8 +10,16 @@
 using namespace Luau;
 
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(DebugLuauEqSatSimplification)
-LUAU_FASTFLAG(LuauUnknownGlobalFixSuggestion)
+LUAU_FASTFLAG(LuauMorePermissiveNewtableType)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(LuauUserTypeFunctionsNoUninhabitedError)
+LUAU_FASTFLAG(LuauUnionofIntersectionofFlattens)
+LUAU_FASTFLAG(LuauTypeFunctionSupportsFrozen)
+LUAU_FASTFLAG(LuauSubtypingMissingPropertiesAsNil)
+LUAU_FASTFLAG(LuauTypeFunctionDeserializationShouldNotCrashOnGenericPacks)
+LUAU_FASTFLAG(LuauDontIncludeVarargWithAnnotation)
+LUAU_FASTFLAG(LuauTypeCheckerUdtfRenameClassToExtern)
+LUAU_FASTFLAG(LuauUdtfIndirectAliases)
 
 TEST_SUITE_BEGIN("UserDefinedTypeFunctionTests");
 
@@ -404,8 +414,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_optional_works_on_unions")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_union_methods_work")
 {
-    if (!FFlag::LuauSolverV2)
-        return;
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         type function getunion()
@@ -429,6 +438,124 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_union_methods_work")
     TypeMismatch* tm = get<TypeMismatch>(result.errors[0]);
     REQUIRE(tm);
     CHECK(toString(tm->givenType) == "boolean | number | string");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_flatten_on_unionof")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag sff{FFlag::LuauUnionofIntersectionofFlattens, true};
+
+    CheckResult result = check(R"(
+        type function foobar()
+            local tys = { types.string, types.number, types.never, types.boolean, types.singleton(nil) }
+            local result = types.never
+            for _, ty in tys do
+                result = types.unionof(result, ty)
+            end
+            return result
+        end
+        -- forcing an error here to check the exact type of the union
+        local function ok(idx: foobar<>): never return idx end
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    TypeMismatch* tm = get<TypeMismatch>(result.errors[0]);
+    REQUIRE(tm);
+    CHECK(toString(tm->givenType) == "(boolean | number | string)?");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_flatten_on_unionof_empty")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag sff{FFlag::LuauUnionofIntersectionofFlattens, true};
+
+    CheckResult result = check(R"(
+        type function foobar()
+            return types.unionof()
+        end
+
+        local f: foobar<>
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+    CHECK(toString(requireType("f")) == "never");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_flatten_on_unionof_two_things")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag sff{FFlag::LuauUnionofIntersectionofFlattens, true};
+
+    CheckResult result = check(R"(
+        type function foobar()
+            return types.unionof(types.string, types.never)
+        end
+        -- forcing an error here to check the exact type of the union
+        local function ok(idx: foobar<>): never return idx end
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    TypeMismatch* tm = get<TypeMismatch>(result.errors[0]);
+    REQUIRE(tm);
+    CHECK(toString(tm->givenType) == "string");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_flatten_on_intersectionof")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag sff{FFlag::LuauUnionofIntersectionofFlattens, true};
+
+    CheckResult result = check(R"(
+        type function foobar()
+            local tys = { types.string, types.number, types.unknown, types.boolean }
+            local result = types.unknown
+            for _, ty in tys do
+                result = types.intersectionof(result, ty)
+            end
+            return result
+        end
+
+        local f: foobar<>
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+    CHECK(toString(requireType("f")) == "boolean & number & string");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_flatten_on_intersectionof_empty")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag sff{FFlag::LuauUnionofIntersectionofFlattens, true};
+
+    CheckResult result = check(R"(
+        type function foobar()
+            return types.intersectionof()
+        end
+
+        local f: foobar<>
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+    CHECK(toString(requireType("f")) == "unknown");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_flatten_on_intersectionof_two_things")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag sff{FFlag::LuauUnionofIntersectionofFlattens, true};
+
+    CheckResult result = check(R"(
+        type function foobar()
+            return types.intersectionof(types.unknown, types.string)
+        end
+        -- forcing an error here to check the exact type of the union
+        local function ok(idx: foobar<>): never return idx end
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    TypeMismatch* tm = get<TypeMismatch>(result.errors[0]);
+    REQUIRE(tm);
+    CHECK(toString(tm->givenType) == "string");
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_intersection_serialization_works")
@@ -526,7 +653,10 @@ local function ok(idx: pass<number>): number return idx end
 local function notok(idx: fail<number>): never return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(
         toString(result.errors[0]) ==
         R"('fail' type function errored at runtime: [string "fail"]:7: type.inner: cannot call inner method on non-negation type: `number` type)"
@@ -550,6 +680,27 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_table_serialization_works")
     TypeMismatch* tm = get<TypeMismatch>(result.errors[0]);
     REQUIRE(tm);
     CHECK(toString(tm->givenType) == "{ [string]: number, boolean: boolean, number: number }");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_newtable_can_do_readonly_or_writeonly_types")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag sff{FFlag::LuauMorePermissiveNewtableType, true};
+
+    CheckResult result = check(R"(
+        type function gettable()
+            return types.newtable{[types.singleton("foo")] = { read = types.number }, [types.singleton("bar")] = { write = types.string }}
+        end
+
+        -- forcing an error here to check the exact type of the table
+        local function ok(idx: gettable<>): never return idx end
+    )");
+
+    // FIXME(CLI-178738): The first error should not exist, only the one described above.
+    LUAU_REQUIRE_ERROR_COUNT(2, result);
+    TypeMismatch* tm = get<TypeMismatch>(result.errors[1]);
+    REQUIRE(tm);
+    CHECK(toString(tm->givenType) == "{ write bar: string, read foo: number }");
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_table_methods_work")
@@ -839,7 +990,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_createtable_bad_metatable")
         local function bad(arg: badmetatable<>) end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
     UserDefinedTypeFunctionError* e = get<UserDefinedTypeFunctionError>(result.errors[0]);
     REQUIRE(e);
     CHECK(
@@ -892,7 +1046,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_user_error_is_reported")
         local function ok(idx: errors_if_string<string>): nil return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
     UserDefinedTypeFunctionError* e = get<UserDefinedTypeFunctionError>(result.errors[0]);
     REQUIRE(e);
     CHECK(e->message == "'errors_if_string' type function errored at runtime: [string \"errors_if_string\"]:5: We are in a math class! not english");
@@ -910,7 +1067,11 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_type_overrides_call_metamethod")
         local function ok(idx: hello<string>): nil return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
+
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
     UserDefinedTypeFunctionError* e = get<UserDefinedTypeFunctionError>(result.errors[0]);
     REQUIRE(e);
     CHECK(e->message == "'hello' type function errored at runtime: [string \"hello\"]:3: userdata");
@@ -952,7 +1113,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_function_type_cant_call_get_props")
         local function ok(idx: hello<() -> ()>): nil return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result); // There are 2 type function uninhabited error, 2 user defined type function error
     UserDefinedTypeFunctionError* e = get<UserDefinedTypeFunctionError>(result.errors[0]);
     REQUIRE(e);
     CHECK(
@@ -1007,7 +1171,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_calling_each_other_2")
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_calling_each_other_3")
 {
     ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
-    ScopedFastFlag unknownGlobalFixSuggestion{FFlag::LuauUnknownGlobalFixSuggestion, true};
 
     CheckResult result = check(R"(
         -- this function should not see 'fourth' function when invoked from 'third' that sees it
@@ -1029,7 +1192,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_calling_each_other_3")
         end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(5, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(3, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(5, result);
     CHECK(toString(result.errors[0]) == R"(Unknown global 'fourth'; consider assigning to it first)");
     CHECK(toString(result.errors[1]) == R"('third' type function errored at runtime: [string "first"]:4: attempt to call a nil value)");
 }
@@ -1057,7 +1223,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_calling_each_other_unordered")
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_no_shared_state")
 {
     ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
-    ScopedFastFlag unknownGlobalFixSuggestion{FFlag::LuauUnknownGlobalFixSuggestion, true};
 
     CheckResult result = check(R"(
         type function foo()
@@ -1077,10 +1242,15 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_no_shared_state")
     )");
 
     // We are only checking first errors, others are mostly duplicates
-    LUAU_REQUIRE_ERROR_COUNT(9, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(5, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(9, result);
     CHECK(toString(result.errors[0]) == R"(Unknown global 'glob'; consider assigning to it first)");
     CHECK(toString(result.errors[1]) == R"('bar' type function errored at runtime: [string "foo"]:4: attempt to modify a readonly table)");
-    CHECK(toString(result.errors[2]) == R"(Type function instance bar<"x"> is uninhabited)");
+
+    if (!FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        CHECK(toString(result.errors[2]) == R"(Type function instance bar<"x"> is uninhabited)");
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_math_reset")
@@ -1130,7 +1300,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_optionify")
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_calling_illegal_global")
 {
     ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
-    ScopedFastFlag unknownGlobalFixSuggestion{FFlag::LuauUnknownGlobalFixSuggestion, true};
 
     CheckResult result = check(R"(
         type function illegal(arg)
@@ -1143,7 +1312,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_calling_illegal_global")
     )");
 
     // We are only checking first errors, others are mostly duplicates
-    LUAU_REQUIRE_ERROR_COUNT(5, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(3, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(5, result);
     CHECK(toString(result.errors[0]) == R"(Unknown global 'gcinfo'; consider assigning to it first)");
     CHECK(
         toString(result.errors[1]) ==
@@ -1251,7 +1423,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "no_type_methods_on_types")
         local function ok(tbl: test<number>): never return tbl end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"('test' type function errored at runtime: [string "test"]:3: attempt to call a nil value)");
 }
 
@@ -1266,7 +1441,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "no_types_functions_on_type")
         local function ok(tbl: test<number>): never return tbl end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"('test' type function errored at runtime: [string "test"]:3: attempt to call a nil value)");
 }
 
@@ -1283,7 +1461,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "no_metatable_writes")
         local function ok(tbl: test<number>): never return tbl end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"('test' type function errored at runtime: [string "test"]:4: attempt to index nil with 'is')");
 }
 
@@ -1298,7 +1479,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "no_eq_field")
         local function ok(tbl: test<number>): never return tbl end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"('test' type function errored at runtime: [string "test"]:3: attempt to call a nil value)");
 }
 
@@ -1318,9 +1502,19 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "tag_field")
 
     LUAU_REQUIRE_ERROR_COUNT(3, result);
 
-    CHECK(toString(result.errors[0]) == "Type '\"number\"' could not be converted into 'never'");
-    CHECK(toString(result.errors[1]) == "Type '\"string\"' could not be converted into 'never'");
-    CHECK(toString(result.errors[2]) == "Type '\"table\"' could not be converted into 'never'");
+
+    if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        CHECK("Expected this to be unreachable, but got '\"number\"'" == toString(result.errors[0]));
+        CHECK("Expected this to be unreachable, but got '\"string\"'" == toString(result.errors[1]));
+        CHECK("Expected this to be unreachable, but got '\"table\"'" == toString(result.errors[2]));
+    }
+    else
+    {
+        CHECK(toString(result.errors[0]) == "Type '\"number\"' could not be converted into 'never'");
+        CHECK(toString(result.errors[1]) == "Type '\"string\"' could not be converted into 'never'");
+        CHECK(toString(result.errors[2]) == "Type '\"table\"' could not be converted into 'never'");
+    }
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "metatable_serialization")
@@ -1348,7 +1542,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "metatable_serialization")
     )");
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
-    CHECK(toString(result.errors[0]) == R"(Type '{ @metatable { ma: boolean }, { a: number } }' could not be converted into 'number')");
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK(toString(result.errors[0]) == R"(Expected this to be 'number', but got '{ @metatable { ma: boolean }, { a: number } }')");
+    else
+        CHECK(toString(result.errors[0]) == R"(Type '{ @metatable { ma: boolean }, { a: number } }' could not be converted into 'number')");
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "nonstrict_mode")
@@ -1480,11 +1677,17 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "print_to_error_plus_error")
         local a: t0<string>
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(3, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Where does this go)");
     CHECK(toString(result.errors[1]) == R"(string)");
     CHECK(toString(result.errors[2]) == R"('t0' type function errored at runtime: [string "t0"]:5: test)");
-    CHECK(toString(result.errors[3]) == R"(Type function instance t0<string> is uninhabited)");
+
+    if (!FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        CHECK(toString(result.errors[3]) == R"(Type function instance t0<string> is uninhabited)");
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "print_to_error_plus_no_result")
@@ -1499,11 +1702,16 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "print_to_error_plus_no_result")
         local a: t0<string>
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(3, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Where does this go)");
     CHECK(toString(result.errors[1]) == R"(string)");
     CHECK(toString(result.errors[2]) == R"('t0' type function: returned a non-type value)");
-    CHECK(toString(result.errors[3]) == R"(Type function instance t0<string> is uninhabited)");
+
+    if (!FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        CHECK(toString(result.errors[3]) == R"(Type function instance t0<string> is uninhabited)");
 }
 
 TEST_CASE_FIXTURE(ExternTypeFixture, "udtf_generic_serialization_1")
@@ -1829,7 +2037,10 @@ end
 local function ok(idx: get<>): false return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(
         toString(result.errors[0]) ==
         R"('get' type function errored at runtime: [string "get"]:4: types.newfunction: generic type cannot follow a generic pack)"
@@ -1848,7 +2059,10 @@ end
 local function ok(idx: get<>): false return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Generic type 'T' is not in a scope of the active generic function)");
 }
 
@@ -1869,7 +2083,10 @@ end
 local function ok(idx: get<>): false return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Generic type 'U' is not in a scope of the active generic function)");
 }
 
@@ -1885,7 +2102,10 @@ end
 local function ok(idx: get<>): false return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Duplicate type parameter 'T')");
 }
 
@@ -1901,7 +2121,10 @@ end
 local function ok(idx: get<>): false return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Duplicate type parameter 'T')");
 }
 
@@ -1917,7 +2140,10 @@ end
 local function ok(idx: get<>): false return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Generic type pack 'U...' cannot be placed in a type position)");
 }
 
@@ -1933,7 +2159,10 @@ end
 local function ok(idx: get<>): false return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"(Generic type pack 'U...' is not in a scope of the active generic function)");
 }
 
@@ -1956,27 +2185,6 @@ local function ok(idx: pass<test>): (number, ...string) -> (string, ...number) r
     )");
 
     LUAU_REQUIRE_NO_ERRORS(result);
-}
-
-TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_eqsat_opaque")
-{
-    if (!FFlag::LuauSolverV2)
-        return;
-
-    ScopedFastFlag sffs[] = {{FFlag::DebugLuauEqSatSimplification, true}};
-
-    CheckResult _ = check(R"(
-        type function t0(a)
-            error("test")
-        end
-        local v: t0<string & number>
-    )");
-    TypeArena arena;
-    auto ty = requireType("v");
-    auto simplifier = EqSatSimplification::newSimplifier(NotNull{&arena}, getBuiltins());
-    auto simplified = eqSatSimplify(NotNull{simplifier.get()}, ty);
-    REQUIRE(simplified);
-    CHECK_EQ("t0<number & string>", toString(simplified->result)); // NOLINT(bugprone-unchecked-optional-access)
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "udtf_singleton_equality_bool")
@@ -2242,6 +2450,62 @@ local y: foo<{b: number}> = { b = 2 }
     CHECK(toString(requireType("y"), ToStringOptions{true}) == "{ b: number }?");
 }
 
+TEST_CASE_FIXTURE(BuiltinsFixture, "type_alias_call_indirect")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag luauUdtfIndirectAliases{FFlag::LuauUdtfIndirectAliases, true};
+
+    CheckResult result = check(R"(
+type Test<T> = T?
+
+type function foo(t)
+    return Test(t)
+end
+
+type function bar(t)
+    return foo(t)
+end
+
+local x: bar<{a: number}> = { a = 2 }
+local y: bar<{b: number}> = { b = 2 }
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+
+    CHECK(toString(requireType("x"), ToStringOptions{true}) == "{ a: number }?");
+    CHECK(toString(requireType("y"), ToStringOptions{true}) == "{ b: number }?");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "type_alias_call_indirect_levels")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag luauUdtfIndirectAliases{FFlag::LuauUdtfIndirectAliases, true};
+
+    CheckResult result = check(R"(
+type Test<T> = T?
+
+type function foo(t)
+    return Test(t)
+end
+
+do
+    type function bar(t)
+        return foo(t)
+    end
+
+    local x: bar<{a: number}> = { a = 2 }
+    local y: bar<{b: number}> = { b = 2 }
+
+    print(x, y)
+end
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+
+    CHECK(toString(requireTypeAtPosition(Position{15, 10}), ToStringOptions{true}) == "{ a: number }?");
+    CHECK(toString(requireTypeAtPosition(Position{15, 13}), ToStringOptions{true}) == "{ b: number }?");
+}
+
 TEST_CASE_FIXTURE(BuiltinsFixture, "type_alias_values")
 {
     ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
@@ -2261,6 +2525,34 @@ local y: foo<string> = "a"
 
     CHECK(toString(requireType("x"), ToStringOptions{true}) == "{ a: number }?");
     CHECK(toString(requireType("y"), ToStringOptions{true}) == "string | { a: number }");
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "type_alias_unordered")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+    ScopedFastFlag luauUdtfIndirectAliases{FFlag::LuauUdtfIndirectAliases, true};
+
+    CheckResult result = check(R"(
+type function foobar(ty)
+    if ty:is("number") then
+        return ty
+    end
+    return TableOf(ty)
+end
+
+type TableOf<T> = { prop: T }
+
+type ShouldBeNumber = foobar<number>
+type ShouldBeTableOfString = foobar<string>
+
+local x: ShouldBeNumber = 2
+local y: ShouldBeTableOfString = { prop = "a" }
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+
+    CHECK(toString(requireType("x"), ToStringOptions{true}) == "number");
+    CHECK(toString(requireType("y"), ToStringOptions{true}) == "{ prop: string }");
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "type_alias_call_with_reduction")
@@ -2314,10 +2606,45 @@ local y: Test.foo<{ a: string }> = "x"
     CHECK(toString(requireType("y")) == R"(string)");
 }
 
+TEST_CASE_FIXTURE(BuiltinsFixture, "type_alias_implicit_export_indirect")
+{
+    if (!FFlag::LuauSolverV2)
+        return;
+
+    ScopedFastFlag luauUdtfIndirectAliases{FFlag::LuauUdtfIndirectAliases, true};
+
+    fileResolver.source["game/A"] = R"(
+type Test<T> = rawget<T, "a">
+
+type function foo(t)
+    return Test(t)
+end
+
+export type function bar(t)
+    return foo(t)
+end
+
+local x: bar<{ a: number }> = 2
+return {}
+    )";
+
+    CheckResult aResult = getFrontend().check("game/A");
+    LUAU_REQUIRE_NO_ERRORS(aResult);
+
+    CHECK(toString(requireType("game/A", "x")) == R"(number)");
+
+    CheckResult bResult = check(R"(
+local Test = require(game.A);
+local y: Test.bar<{ a: string }> = "x"
+    )");
+    LUAU_REQUIRE_NO_ERRORS(bResult);
+
+    CHECK(toString(requireType("y")) == R"(string)");
+}
+
 TEST_CASE_FIXTURE(ExternTypeFixture, "type_alias_not_too_many_globals")
 {
     ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
-    ScopedFastFlag unknownGlobalFixSuggestion{FFlag::LuauUnknownGlobalFixSuggestion, true};
 
     CheckResult result = check(R"(
 type function get()
@@ -2326,7 +2653,10 @@ end
 local function ok(idx: get<>): number return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(5, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(3, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(5, result);
     CHECK(toString(result.errors[0]) == R"(Unknown global 'number'; consider assigning to it first)");
 }
 
@@ -2344,7 +2674,10 @@ end
 local function ok(idx: get<>): number return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
     CHECK(toString(result.errors[0]) == R"('get' type function errored at runtime: [string "get"]:5: not enough arguments to call)");
 }
 
@@ -2382,8 +2715,14 @@ end
 local function ok(idx: get<>): number return idx end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(4, result);
-    CHECK(toString(result.errors[1]) == R"(Type function instance get<> is uninhabited)");
+    if (FFlag::LuauUserTypeFunctionsNoUninhabitedError)
+        LUAU_REQUIRE_ERROR_COUNT(2, result);
+    else
+        LUAU_REQUIRE_ERROR_COUNT(4, result);
+    CHECK(
+        toString(result.errors[0]) ==
+        R"('get' type function errored at runtime: [string "get"]:5: failed to reduce type function with: Type function instance setmetatable<number, string> is uninhabited)"
+    );
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "type_alias_unreferenced_do_not_block")
@@ -2564,6 +2903,120 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "oss_1887_basic_match")
 
     LUAU_REQUIRE_ERROR_COUNT(1, results);
     LUAU_REQUIRE_ERROR(results, UnappliedTypeFunction);
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "typeof_into_type_function_should_not_crash")
+{
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
+    ScopedFastFlag noCrash{FFlag::LuauTypeFunctionDeserializationShouldNotCrashOnGenericPacks, true};
+    ScopedFastFlag noErrors[] = {
+        {FFlag::LuauUserTypeFunctionsNoUninhabitedError, true},
+        {FFlag::LuauDontIncludeVarargWithAnnotation, true},
+    };
+
+    CheckResult results = check(R"(
+        type function identity(t: type)
+            return t
+        end
+
+        type func<parameters...> = typeof(function(...: parameters...) end)
+        local whomp: <T>(arg1: T) -> identity<T>
+        whomp(function(...) end :: func<any>)
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(results);
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "externs_are_extern")
+{
+    ScopedFastFlag _[] = {{FFlag::LuauSolverV2, true}, {FFlag::LuauTypeCheckerUdtfRenameClassToExtern, true}};
+
+    loadDefinition(R"(
+        declare extern type Bar with
+        end
+    )");
+
+    CheckResult results = check(R"(
+        type function foo(t: type)
+            assert(t.tag == "extern")
+            return t
+        end
+
+        type T = foo<Bar>
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(results);
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "type_functions_cannot_try_to_mutate_type_aliases")
+{
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
+    ScopedFastFlag frozen{FFlag::LuauTypeFunctionSupportsFrozen, true};
+    ScopedFastFlag noDupeError{FFlag::LuauUserTypeFunctionsNoUninhabitedError, true};
+
+    CheckResult result = check(R"(
+        type myType = {}
+
+        type function create_table_with_key()
+            myType:setproperty(types.singleton "key", types.optional(types.number))
+            return myType
+        end
+        local my_tbl: create_table_with_key<> = {key = "123"}
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(2, result);
+    CHECK(
+        toString(result.errors[0]) ==
+        R"('create_table_with_key' type function errored at runtime: [string "create_table_with_key"]:5: type.setproperty: cannot be called to mutate a frozen type, use `types.copy` to make a copy)"
+    );
+    auto err = get<TypeMismatch>(result.errors[1]);
+    REQUIRE(err);
+    CHECK_EQ("{ key: string }", toString(err->givenType));
+    CHECK_EQ("create_table_with_key<>", toString(err->wantedType));
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "type_functions_can_mutate_cloned_type_aliases")
+{
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
+    ScopedFastFlag frozen{FFlag::LuauTypeFunctionSupportsFrozen, true};
+
+    CheckResult result = check(R"(
+        type myType = { woof: string }
+
+        type function create_table_with_key()
+            local tbl = types.copy(myType)
+            tbl:setproperty(types.singleton "key", types.optional(types.number))
+            return tbl
+        end
+        local my_tbl: create_table_with_key<> = { key = 123, woof = "woof" }
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(result);
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "oss2164_table_subtyping_bug")
+{
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
+    ScopedFastFlag fix{FFlag::LuauSubtypingMissingPropertiesAsNil, true};
+
+    CheckResult results = check(R"(
+        export type function tblpartial(tbl: type)
+            assert(tbl:is("table"), "tblpartial can only be applied to tables")
+            local new = types.newtable()
+
+            for k, v in tbl:properties() do
+                local read = assert(v.read, "properties cannot be write-only")
+                new:setreadproperty(k, types.optional(read))
+            end
+
+            return new
+        end
+
+        local function tblmerge<T>(base: T, override: tblpartial<T>): T error("unimplemented") end
+        tblmerge({ a = 1 }, {}) -- Type '{  }' could not be converted into '{ read a: number? }'
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(results);
 }
 
 TEST_SUITE_END();

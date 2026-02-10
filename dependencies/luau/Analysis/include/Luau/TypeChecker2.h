@@ -3,15 +3,15 @@
 #pragma once
 
 #include "Luau/Common.h"
-#include "Luau/EqSatSimplification.h"
 #include "Luau/Error.h"
 #include "Luau/Normalize.h"
 #include "Luau/NotNull.h"
 #include "Luau/Subtyping.h"
 #include "Luau/Type.h"
 #include "Luau/TypeFwd.h"
-#include "Luau/TypeOrPack.h"
 #include "Luau/TypeUtils.h"
+
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
 
 namespace Luau
 {
@@ -45,7 +45,7 @@ struct Reasonings
         // sort the reasons here to achieve a stable error
         // stringification.
         std::sort(reasons.begin(), reasons.end());
-        std::string allReasons = "\nthis is because ";
+        std::string allReasons = (FFlag::LuauBetterTypeMismatchErrors && reasons.size() < 2) ? "\n" : "\nthis is because ";
         for (const std::string& reason : reasons)
         {
             if (reasons.size() > 1)
@@ -61,7 +61,6 @@ struct Reasonings
 
 void check(
     NotNull<BuiltinTypes> builtinTypes,
-    NotNull<Simplifier> simplifier,
     NotNull<TypeFunctionRuntime> typeFunctionRuntime,
     NotNull<UnifierSharedState> unifierState,
     NotNull<TypeCheckLimits> limits,
@@ -73,7 +72,6 @@ void check(
 struct TypeChecker2
 {
     NotNull<BuiltinTypes> builtinTypes;
-    NotNull<Simplifier> simplifier;
     NotNull<TypeFunctionRuntime> typeFunctionRuntime;
     DcrLogger* logger;
     const NotNull<TypeCheckLimits> limits;
@@ -93,7 +91,6 @@ struct TypeChecker2
 
     TypeChecker2(
         NotNull<BuiltinTypes> builtinTypes,
-        NotNull<Simplifier> simplifier,
         NotNull<TypeFunctionRuntime> typeFunctionRuntime,
         NotNull<UnifierSharedState> unifierState,
         NotNull<TypeCheckLimits> limits,
@@ -106,6 +103,9 @@ struct TypeChecker2
     void reportError(TypeErrorData data, const Location& location);
     Reasonings explainReasonings(TypeId subTy, TypeId superTy, Location location, const SubtypingResult& r);
     Reasonings explainReasonings(TypePackId subTp, TypePackId superTp, Location location, const SubtypingResult& r);
+
+    bool testIsSubtype(TypeId subTy, TypeId superTy, Location location);
+    bool testIsSubtype(TypePackId subTy, TypePackId superTy, Location location);
 
 private:
     static bool allowsNoReturnValues(const TypePackId tp);
@@ -173,6 +173,7 @@ private:
     void visit(AstExprTypeAssertion* expr);
     void visit(AstExprIfElse* expr);
     void visit(AstExprInterpString* interpString);
+    void visit(AstExprInstantiate* explicitTypeInstantiation);
     void visit(AstExprError* expr);
     TypeId flattenPack(TypePackId pack);
     void visitGenerics(AstArray<AstGenericType*> generics, AstArray<AstGenericTypePack*> genericPacks);
@@ -197,9 +198,6 @@ private:
     bool testLiteralOrAstTypeIsSubtype(AstExpr* expr, TypeId expectedType);
 
     bool testPotentialLiteralIsSubtype(AstExpr* expr, TypeId expectedType);
-
-    bool testIsSubtype(TypeId subTy, TypeId superTy, Location location);
-    bool testIsSubtype(TypePackId subTy, TypePackId superTy, Location location);
 
     void maybeReportSubtypingError(TypeId subTy, TypeId superTy, const Location& location);
     // Tests whether subTy is a subtype of superTy in the context of a function iterator for a for-in statement.
@@ -232,6 +230,8 @@ private:
     DenseHashSet<std::string> warnedGlobals{""};
 
     void suggestAnnotations(AstExprFunction* expr, TypeId ty);
+
+    void checkTypeInstantiation(AstExpr* baseFunctionExpr, TypeId fnType, const Location& location, const AstArray<AstTypeOrPack>& typeArguments);
 
     void diagnoseMissingTableKey(UnknownProperty* utk, TypeErrorData& data) const;
     bool isErrorSuppressing(Location loc, TypeId ty);

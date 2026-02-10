@@ -13,6 +13,8 @@
 
 #define PCG32_INC 105
 
+LUAU_FASTFLAGVARIABLE(LuauMathSeedEncode)
+
 static uint32_t pcg32_random(uint64_t* state)
 {
     uint64_t oldstate = *state;
@@ -427,6 +429,30 @@ static int math_lerp(lua_State* L)
     return 1;
 }
 
+static int math_isnan(lua_State* L)
+{
+    double x = luaL_checknumber(L, 1);
+
+    lua_pushboolean(L, isnan(x));
+    return 1;
+}
+
+static int math_isinf(lua_State* L)
+{
+    double x = luaL_checknumber(L, 1);
+
+    lua_pushboolean(L, isinf(x));
+    return 1;
+}
+
+static int math_isfinite(lua_State* L)
+{
+    double x = luaL_checknumber(L, 1);
+
+    lua_pushboolean(L, isfinite(x));
+    return 1;
+}
+
 static const luaL_Reg mathlib[] = {
     {"abs", math_abs},
     {"acos", math_acos},
@@ -462,6 +488,9 @@ static const luaL_Reg mathlib[] = {
     {"round", math_round},
     {"map", math_map},
     {"lerp", math_lerp},
+    {"isnan", math_isnan},
+    {"isinf", math_isinf},
+    {"isfinite", math_isfinite},
     {NULL, NULL},
 };
 
@@ -470,13 +499,14 @@ static const luaL_Reg mathlib[] = {
 */
 int luaopen_math(lua_State* L)
 {
-    uint64_t seed = uintptr_t(L);
+    uint64_t seed = FFlag::LuauMathSeedEncode ? lua_encodepointer(L, uintptr_t(L)) : uintptr_t(L);
     seed ^= time(NULL);
     seed ^= clock();
 
     pcg32_seed(&L->global->rngstate, seed);
 
     luaL_register(L, LUA_MATHLIBNAME, mathlib);
+
     lua_pushnumber(L, PI);
     lua_setfield(L, -2, "pi");
     lua_pushnumber(L, HUGE_VAL);

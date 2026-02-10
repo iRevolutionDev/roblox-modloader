@@ -276,8 +276,8 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_of_value_a_via_typeof_with_assignment")
     }
     else
     {
-        CHECK_EQ(*getBuiltins()->numberType, *requireType("a"));
-        CHECK_EQ(*getBuiltins()->numberType, *requireType("b"));
+        CHECK("number" == toString(requireType("a")));
+        CHECK("number" == toString(requireType("b")));
 
         LUAU_REQUIRE_ERROR_COUNT(1, result);
         CHECK_EQ(
@@ -934,6 +934,19 @@ TEST_CASE_FIXTURE(Fixture, "instantiation_clone_has_to_follow")
     )");
 
     LUAU_REQUIRE_ERRORS(result);
+}
+
+TEST_CASE_FIXTURE(Fixture, "unifier3_supertail_covariant_with_sub")
+{
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
+
+    CheckResult result = check(R"(
+        local function fib(n)
+            return n + fib(n)
+        end
+    )");
+
+    CHECK_EQ("<a>(a) -> t1 where t1 = add<a, t1>", toString(requireType("fib")));
 }
 
 TEST_SUITE_END();

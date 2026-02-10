@@ -15,8 +15,8 @@
 #include "Luau/TypePack.h"
 #include "Luau/VisitType.h"
 
-LUAU_FASTFLAGVARIABLE(LuauReduceSetTypeStackPressure)
 LUAU_FASTINTVARIABLE(LuauGenericCounterMaxDepth, 15)
+LUAU_FASTINTVARIABLE(LuauGenericCounterMaxSteps, 1500)
 
 namespace Luau
 {
@@ -238,57 +238,39 @@ struct TypeCacher : TypeOnceVisitor
     DenseHashSet<TypePackId> uncacheablePacks{nullptr};
 
     explicit TypeCacher(NotNull<DenseHashSet<TypeId>> cachedTypes)
-        : TypeOnceVisitor("TypeCacher", /* skipBoundTypes */ FFlag::LuauReduceSetTypeStackPressure)
+        : TypeOnceVisitor("TypeCacher", /* skipBoundTypes */ true)
         , cachedTypes(cachedTypes)
     {
     }
 
     void cache(TypeId ty) const
     {
-        if (FFlag::LuauReduceSetTypeStackPressure)
-            cachedTypes->insert(follow(ty));
-        else
-            cachedTypes->insert(ty);
+        cachedTypes->insert(follow(ty));
     }
 
     bool isCached(TypeId ty) const
     {
-        if (FFlag::LuauReduceSetTypeStackPressure)
-            return cachedTypes->contains(follow(ty));
-
-        return cachedTypes->contains(ty);
+        return cachedTypes->contains(follow(ty));
     }
 
     void markUncacheable(TypeId ty)
     {
-        if (FFlag::LuauReduceSetTypeStackPressure)
-            uncacheable.insert(follow(ty));
-        else
-            uncacheable.insert(ty);
+        uncacheable.insert(follow(ty));
     }
 
     void markUncacheable(TypePackId tp)
     {
-        if (FFlag::LuauReduceSetTypeStackPressure)
-            uncacheablePacks.insert(follow(tp));
-        else
-            uncacheablePacks.insert(tp);
+        uncacheablePacks.insert(follow(tp));
     }
 
     bool isUncacheable(TypeId ty) const
     {
-        if (FFlag::LuauReduceSetTypeStackPressure)
-            return uncacheable.contains(follow(ty));
-
-        return uncacheable.contains(ty);
+        return uncacheable.contains(follow(ty));
     }
 
     bool isUncacheable(TypePackId tp) const
     {
-        if (FFlag::LuauReduceSetTypeStackPressure)
-            return uncacheablePacks.contains(follow(tp));
-
-        return uncacheablePacks.contains(tp);
+        return uncacheablePacks.contains(follow(tp));
     }
 
     bool visit(TypeId ty) override
@@ -298,15 +280,6 @@ struct TypeCacher : TypeOnceVisitor
         // cacheable.
         LUAU_ASSERT(false);
         LUAU_UNREACHABLE();
-    }
-
-    bool visit(TypeId ty, const BoundType& btv) override
-    {
-        LUAU_ASSERT(!FFlag::LuauReduceSetTypeStackPressure);
-        traverse(btv.boundTo);
-        if (isUncacheable(btv.boundTo))
-            markUncacheable(ty);
-        return false;
     }
 
     bool visit(TypeId ty, const FreeType& ft) override
@@ -968,7 +941,7 @@ struct GenericCounter : TypeVisitor
     };
 
     // This traversal does need to walk into types multiple times because we
-    // care about generics that are only refererd to once. If a type is present
+    // care about generics that are only referred to once. If a type is present
     // more than once, however, we don't care exactly how many times, so we also
     // track counts in our "seen set."
     DenseHashMap<TypeId, size_t> seenCounts{nullptr};
@@ -979,7 +952,7 @@ struct GenericCounter : TypeVisitor
 
     Polarity polarity = Polarity::Positive;
 
-    int depth = 0;
+    int steps = 0;
     bool hitLimits = false;
 
     explicit GenericCounter(NotNull<DenseHashSet<TypeId>> cachedTypes)
@@ -990,25 +963,20 @@ struct GenericCounter : TypeVisitor
 
     void checkLimits()
     {
-        if (FFlag::LuauReduceSetTypeStackPressure && depth > FInt::LuauGenericCounterMaxDepth)
-            hitLimits = true;
+        steps++;
+        hitLimits |= steps > FInt::LuauGenericCounterMaxSteps;
     }
 
     bool visit(TypeId ty) override
     {
         checkLimits();
-        return !FFlag::LuauReduceSetTypeStackPressure || !hitLimits;
+        return !hitLimits;
     }
 
 
     bool visit(TypeId ty, const FunctionType& ft) override
     {
-        std::optional<RecursionCounter> rc{std::nullopt};
-        if (FFlag::LuauReduceSetTypeStackPressure)
-        {
-            rc.emplace(&depth);
-            checkLimits();
-        }
+        checkLimits();
 
         if (ty->persistent)
             return false;
@@ -1029,12 +997,7 @@ struct GenericCounter : TypeVisitor
 
     bool visit(TypeId ty, const TableType& tt) override
     {
-        std::optional<RecursionCounter> rc{std::nullopt};
-        if (FFlag::LuauReduceSetTypeStackPressure)
-        {
-            rc.emplace(&depth);
-            checkLimits();
-        }
+        checkLimits();
 
         if (ty->persistent)
             return false;
@@ -1167,7 +1130,7 @@ void pruneUnnecessaryGenerics(
 
     counter.traverse(ty);
 
-    if (!FFlag::LuauReduceSetTypeStackPressure || !counter.hitLimits)
+    if (!counter.hitLimits)
     {
         for (const auto& [generic, state] : counter.generics)
         {
@@ -1192,7 +1155,7 @@ void pruneUnnecessaryGenerics(
                 return true;
             seen.insert(ty);
 
-            if (!FFlag::LuauReduceSetTypeStackPressure || !counter.hitLimits)
+            if (!counter.hitLimits)
             {
                 auto state = counter.generics.find(ty);
                 if (state && state->count == 0)
@@ -1206,7 +1169,7 @@ void pruneUnnecessaryGenerics(
     functionTy->generics.erase(it, functionTy->generics.end());
 
 
-    if (!FFlag::LuauReduceSetTypeStackPressure || !counter.hitLimits)
+    if (!counter.hitLimits)
     {
         for (const auto& [genericPack, state] : counter.genericPacks)
         {
@@ -1227,7 +1190,7 @@ void pruneUnnecessaryGenerics(
                 return true;
             seen2.insert(tp);
 
-            if (!FFlag::LuauReduceSetTypeStackPressure || !counter.hitLimits)
+            if (!counter.hitLimits)
             {
                 auto state = counter.genericPacks.find(tp);
                 if (state && state->count == 0)

@@ -9,7 +9,6 @@
 #include "Luau/ConstraintSolver.h"
 #include "Luau/DataFlowGraph.h"
 #include "Luau/DcrLogger.h"
-#include "Luau/EqSatSimplification.h"
 #include "Luau/ExpectedTypeVisitor.h"
 #include "Luau/FileResolver.h"
 #include "Luau/NonStrictTypeChecker.h"
@@ -18,6 +17,7 @@
 #include "Luau/Scope.h"
 #include "Luau/TimeTrace.h"
 #include "Luau/TypeArena.h"
+#include "Luau/TypeCheckLimits.h"
 #include "Luau/TypeChecker2.h"
 #include "Luau/TypeInfer.h"
 #include "Luau/VisitType.h"
@@ -40,10 +40,8 @@ LUAU_FASTFLAGVARIABLE(DebugLuauLogSolverToJsonFile)
 LUAU_FASTFLAGVARIABLE(DebugLuauForbidInternalTypes)
 LUAU_FASTFLAGVARIABLE(DebugLuauForceStrictMode)
 LUAU_FASTFLAGVARIABLE(DebugLuauForceNonStrictMode)
-LUAU_FASTFLAGVARIABLE(LuauUseWorkspacePropToChooseSolver)
 LUAU_FASTFLAGVARIABLE(DebugLuauAlwaysShowConstraintSolvingIncomplete)
-LUAU_FASTFLAG(LuauEmplaceNotPushBack)
-LUAU_FASTFLAG(LuauNoConstraintGenRecursionLimitIce)
+LUAU_FASTFLAG(LuauStandaloneParseType)
 
 namespace Luau
 {
@@ -396,12 +394,9 @@ std::vector<RequireCycle> getRequireCycles(
 
         if (!cycle.empty())
         {
-            if (FFlag::LuauEmplaceNotPushBack)
-                result.emplace_back(RequireCycle{depLocation, std::move(cycle)});
-            else
-                result.push_back({depLocation, std::move(cycle)});
-
-            // note: if we didn't find a cycle, all nodes that we've seen don't depend [transitively] on start
+            result.emplace_back(
+                RequireCycle{depLocation, std::move(cycle)}
+            ); // note: if we didn't find a cycle, all nodes that we've seen don't depend [transitively] on start
             // so it's safe to *only* clear seen vector when we find a cycle
             // if we don't do it, we will not have correct reporting for some cycles
             seen.clear();
@@ -418,6 +413,20 @@ double getTimestamp()
 }
 
 } // namespace
+
+static TypeCheckLimits makeTypeCheckLimits(const FrontendOptions& options)
+{
+    TypeCheckLimits limits;
+
+    if (options.moduleTimeLimitSec)
+        limits.finishTime = TimeTrace::getClock() + *options.moduleTimeLimitSec;
+    else
+        limits.finishTime = std::nullopt;
+
+    limits.cancellationToken = options.cancellationToken;
+
+    return limits;
+}
 
 Frontend::Frontend(FileResolver* fileResolver, ConfigResolver* configResolver, const FrontendOptions& options)
     : useNewLuauSolver(FFlag::LuauSolverV2 ? SolverMode::New : SolverMode::Old)
@@ -439,12 +448,7 @@ void Frontend::setLuauSolverMode(SolverMode mode)
 
 SolverMode Frontend::getLuauSolverMode() const
 {
-    if (FFlag::LuauUseWorkspacePropToChooseSolver)
-        return useNewLuauSolver.load();
-    else if (FFlag::LuauSolverV2)
-        return SolverMode::New;
-    else
-        return SolverMode::Old;
+    return useNewLuauSolver.load();
 }
 
 void Frontend::parse(const ModuleName& name)
@@ -456,7 +460,7 @@ void Frontend::parse(const ModuleName& name)
         return;
 
     std::vector<ModuleName> buildQueue;
-    parseGraph(buildQueue, name, false);
+    parseGraph(buildQueue, name, {}, false);
 }
 
 void Frontend::parseModules(const std::vector<ModuleName>& names)
@@ -480,6 +484,7 @@ void Frontend::parseModules(const std::vector<ModuleName>& names)
         parseGraph(
             queue,
             name,
+            {},
             false,
             [&seen](const ModuleName& name)
             {
@@ -504,7 +509,7 @@ CheckResult Frontend::check(const ModuleName& name, std::optional<FrontendOption
         return std::move(*result);
 
     std::vector<ModuleName> buildQueue;
-    bool cycleDetected = parseGraph(buildQueue, name, frontendOptions.forAutocomplete);
+    bool cycleDetected = parseGraph(buildQueue, name, makeTypeCheckLimits(frontendOptions), frontendOptions.forAutocomplete);
 
     DenseHashSet<Luau::ModuleName> seen{{}};
     std::vector<BuildQueueItem> buildQueueItems;
@@ -583,6 +588,7 @@ std::vector<ModuleName> Frontend::checkQueuedModules(
         bool cycleDetected = parseGraph(
             queue,
             name,
+            makeTypeCheckLimits(frontendOptions),
             frontendOptions.forAutocomplete,
             [&seen](const ModuleName& name)
             {
@@ -783,7 +789,7 @@ std::optional<CheckResult> Frontend::getCheckResult(const ModuleName& name, bool
     return checkResult;
 }
 
-std::vector<ModuleName> Frontend::getRequiredScripts(const ModuleName& name)
+std::vector<ModuleName> Frontend::getRequiredScripts(const ModuleName& name, const TypeCheckLimits& limits)
 {
     RequireTraceResult require = requireTrace[name];
     if (isDirty(name))
@@ -793,12 +799,12 @@ std::vector<ModuleName> Frontend::getRequiredScripts(const ModuleName& name)
         {
             return {};
         }
-        const Config& config = configResolver->getConfig(name);
+        const Config& config = configResolver->getConfig(name, limits);
         ParseOptions opts = config.parseOptions;
         opts.captureComments = true;
         SourceModule result = parse(name, source->source, opts);
         result.type = source->type;
-        require = traceRequires(fileResolver, result.root, name);
+        require = traceRequires(fileResolver, result.root, name, limits);
     }
     std::vector<std::string> requiredModuleNames;
     requiredModuleNames.reserve(require.requireList.size());
@@ -812,6 +818,7 @@ std::vector<ModuleName> Frontend::getRequiredScripts(const ModuleName& name)
 bool Frontend::parseGraph(
     std::vector<ModuleName>& buildQueue,
     const ModuleName& root,
+    const TypeCheckLimits& limits,
     bool forAutocomplete,
     std::function<bool(const ModuleName&)> canSkip
 )
@@ -833,7 +840,7 @@ bool Frontend::parseGraph(
     bool cyclic = false;
 
     {
-        auto [sourceNode, _] = getSourceNode(root);
+        auto [sourceNode, _] = getSourceNode(root, limits);
         if (sourceNode)
             stack.push_back(sourceNode);
     }
@@ -908,7 +915,7 @@ bool Frontend::parseGraph(
                     }
                 }
 
-                auto [sourceNode, _] = getSourceNode(dep);
+                auto [sourceNode, _] = getSourceNode(dep, limits);
                 if (sourceNode)
                 {
                     stack.push_back(sourceNode);
@@ -948,7 +955,7 @@ void Frontend::addBuildQueueItems(
 
         BuildQueueItem data{moduleName, fileResolver->getHumanReadableModuleName(moduleName), sourceNode, sourceModule};
 
-        data.config = configResolver->getConfig(moduleName);
+        data.config = configResolver->getConfig(moduleName, makeTypeCheckLimits(frontendOptions));
         data.environmentScope = getModuleEnvironment(*sourceModule, data.config, frontendOptions.forAutocomplete);
         data.recordJsonLog = FFlag::DebugLuauLogSolverToJson;
 
@@ -993,12 +1000,7 @@ void Frontend::checkBuildQueueItem(BuildQueueItem& item)
     double timestamp = getTimestamp();
     const std::vector<RequireCycle>& requireCycles = item.requireCycles;
 
-    TypeCheckLimits typeCheckLimits;
-
-    if (item.options.moduleTimeLimitSec)
-        typeCheckLimits.finishTime = TimeTrace::getClock() + *item.options.moduleTimeLimitSec;
-    else
-        typeCheckLimits.finishTime = std::nullopt;
+    TypeCheckLimits typeCheckLimits = makeTypeCheckLimits(item.options);
 
     // TODO: This is a dirty ad hoc solution for autocomplete timeouts
     // We are trying to dynamically adjust our existing limits to lower total typechecking time under the limit
@@ -1015,8 +1017,6 @@ void Frontend::checkBuildQueueItem(BuildQueueItem& item)
         else
             typeCheckLimits.unifierIterationLimit = std::nullopt;
     }
-
-    typeCheckLimits.cancellationToken = item.options.cancellationToken;
 
     if (item.options.forAutocomplete)
     {
@@ -1144,11 +1144,7 @@ void Frontend::checkBuildQueueItem(BuildQueueItem& item)
     ErrorVec parseErrors;
 
     for (const ParseError& pe : sourceModule.parseErrors)
-        if (FFlag::LuauEmplaceNotPushBack)
-            parseErrors.emplace_back(pe.getLocation(), item.name, SyntaxError{pe.what()});
-        else
-            parseErrors.push_back(TypeError{pe.getLocation(), item.name, SyntaxError{pe.what()}});
-
+        parseErrors.emplace_back(pe.getLocation(), item.name, SyntaxError{pe.what()});
     module->errors.insert(module->errors.begin(), parseErrors.begin(), parseErrors.end());
 
     item.module = module;
@@ -1490,7 +1486,6 @@ ModulePtr check(
     unifierState.counters.iterationLimit = limits.unifierIterationLimit.value_or(FInt::LuauTypeInferIterationLimit);
 
     Normalizer normalizer{&module->internalTypes, builtinTypes, NotNull{&unifierState}, SolverMode::New};
-    SimplifierPtr simplifier = newSimplifier(NotNull{&module->internalTypes}, builtinTypes);
     TypeFunctionRuntime typeFunctionRuntime{iceHandler, NotNull{&limits}};
 
     typeFunctionRuntime.allowEvaluation = true;
@@ -1498,7 +1493,6 @@ ModulePtr check(
     ConstraintGenerator cg{
         module,
         NotNull{&normalizer},
-        NotNull{simplifier.get()},
         NotNull{&typeFunctionRuntime},
         moduleResolver,
         builtinTypes,
@@ -1513,12 +1507,10 @@ ModulePtr check(
 
     ConstraintSet constraintSet = cg.run(sourceModule.root);
     module->errors = std::move(constraintSet.errors);
-    if (FFlag::LuauNoConstraintGenRecursionLimitIce)
-        module->constraintGenerationDidNotComplete = cg.recursionLimitMet;
+    module->constraintGenerationDidNotComplete = cg.recursionLimitMet;
 
     ConstraintSolver cs{
         NotNull{&normalizer},
-        NotNull{simplifier.get()},
         NotNull{&typeFunctionRuntime},
         module,
         moduleResolver,
@@ -1585,7 +1577,6 @@ ModulePtr check(
             case Mode::Nonstrict:
                 Luau::checkNonStrict(
                     builtinTypes,
-                    NotNull{simplifier.get()},
                     NotNull{&typeFunctionRuntime},
                     iceHandler,
                     NotNull{&unifierState},
@@ -1599,14 +1590,7 @@ ModulePtr check(
                 // fallthrough intentional
             case Mode::Strict:
                 Luau::check(
-                    builtinTypes,
-                    NotNull{simplifier.get()},
-                    NotNull{&typeFunctionRuntime},
-                    NotNull{&unifierState},
-                    NotNull{&limits},
-                    logger.get(),
-                    sourceModule,
-                    module.get()
+                    builtinTypes, NotNull{&typeFunctionRuntime}, NotNull{&unifierState}, NotNull{&limits}, logger.get(), sourceModule, module.get()
                 );
                 break;
             case Mode::NoCheck:
@@ -1674,10 +1658,7 @@ ModulePtr check(
 
 
     unfreeze(module->interfaceTypes);
-    if (FFlag::LuauUseWorkspacePropToChooseSolver)
-        module->clonePublicInterface(builtinTypes, *iceHandler, SolverMode::New);
-    else
-        module->clonePublicInterface_DEPRECATED(builtinTypes, *iceHandler);
+    module->clonePublicInterface(builtinTypes, *iceHandler, SolverMode::New);
 
     // It would be nice if we could freeze the arenas before doing type
     // checking, but we'll have to do some work to get there.
@@ -1770,7 +1751,7 @@ ModulePtr Frontend::check(
 }
 
 // Read AST into sourceModules if necessary.  Trace require()s.  Report parse errors.
-std::pair<SourceNode*, SourceModule*> Frontend::getSourceNode(const ModuleName& name)
+std::pair<SourceNode*, SourceModule*> Frontend::getSourceNode(const ModuleName& name, const TypeCheckLimits& limits)
 {
     auto it = sourceNodes.find(name);
     if (it != sourceNodes.end() && !it->second->hasDirtySourceModule())
@@ -1801,14 +1782,14 @@ std::pair<SourceNode*, SourceModule*> Frontend::getSourceNode(const ModuleName& 
         return {nullptr, nullptr};
     }
 
-    const Config& config = configResolver->getConfig(name);
+    const Config& config = configResolver->getConfig(name, limits);
     ParseOptions opts = config.parseOptions;
     opts.captureComments = true;
     SourceModule result = parse(name, source->source, opts);
     result.type = source->type;
 
     RequireTraceResult& require = requireTrace[name];
-    require = traceRequires(fileResolver, result.root, name);
+    require = traceRequires(fileResolver, result.root, name, limits);
 
     std::shared_ptr<SourceNode>& sourceNode = sourceNodes[name];
 
@@ -2041,6 +2022,63 @@ void Frontend::clearBuiltinEnvironments()
 {
     environments.clear();
     builtinDefinitions.clear();
+}
+
+TypeId Frontend::parseType(
+    NotNull<Allocator> allocator,
+    NotNull<AstNameTable> nameTable,
+    NotNull<InternalErrorReporter> iceHandler,
+    TypeCheckLimits limits,
+    NotNull<TypeArena> arena,
+    std::string_view source
+)
+{
+    ParseNodeResult<AstType> parseResult = Parser::parseType(source.data(), source.size(), *nameTable, *allocator);
+
+    if (!parseResult.root)
+        iceHandler->ice("Frontend::parseType was given an unparseable type");
+
+    if (!parseResult.errors.empty())
+        iceHandler->ice("Frontend::parseType error: " + parseResult.errors.front().getMessage());
+
+    ModulePtr module = std::make_shared<Module>();
+
+    UnifierSharedState unifierState{iceHandler};
+    unifierState.counters.recursionLimit = FInt::LuauTypeInferRecursionLimit;
+    unifierState.counters.iterationLimit = limits.unifierIterationLimit.value_or(FInt::LuauTypeInferIterationLimit);
+
+    Normalizer normalizer{arena, builtinTypes, NotNull{&unifierState}, SolverMode::New};
+
+    TypeFunctionRuntime typeFunctionRuntime{iceHandler, NotNull{&limits}};
+    typeFunctionRuntime.allowEvaluation = true;
+
+    NullModuleResolver moduleResolver;
+
+    DataFlowGraph dfg = DataFlowGraphBuilder::empty(NotNull{&module->defArena}, NotNull{&module->keyArena});
+
+    ConstraintGenerator cg{
+        module,
+        NotNull{&normalizer},
+        NotNull{&typeFunctionRuntime},
+        NotNull{&moduleResolver},
+        builtinTypes,
+        iceHandler,
+        globals.globalScope,
+        globals.globalScope,
+        nullptr,
+        nullptr,
+        NotNull{&dfg},
+        {}
+    };
+
+    TypeId t = cg.resolveType(globals.globalScope, parseResult.root, false);
+
+    if (!cg.constraints.empty())
+    {
+        iceHandler->ice("Not yet implemented: parseType cannot reduce other type aliases");
+    }
+
+    return t;
 }
 
 } // namespace Luau

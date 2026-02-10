@@ -9,10 +9,8 @@
 
 using namespace Luau;
 
-LUAU_FASTFLAG(LuauNoMoreComparisonTypeFunctions)
 
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
-LUAU_FASTFLAG(LuauNoOrderingTypeFunctions)
 
 TEST_SUITE_BEGIN("DefinitionTests");
 
@@ -504,8 +502,8 @@ TEST_CASE_FIXTURE(Fixture, "class_definition_indexer")
 
     REQUIRE(bool(etv->indexer));
 
-    CHECK_EQ(*etv->indexer->indexType, *getBuiltins()->numberType);
-    CHECK_EQ(*etv->indexer->indexResultType, *getBuiltins()->stringType);
+    CHECK("number" == toString(etv->indexer->indexType));
+    CHECK("string" == toString(etv->indexer->indexResultType));
 
     CHECK_EQ(toString(requireType("y")), "string");
 }
@@ -575,8 +573,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "cli_142285_reduce_minted_union_func")
 {
     ScopedFastFlag sff[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauNoMoreComparisonTypeFunctions, true},
-        {FFlag::LuauNoOrderingTypeFunctions, true},
     };
 
     CheckResult result = check(R"(

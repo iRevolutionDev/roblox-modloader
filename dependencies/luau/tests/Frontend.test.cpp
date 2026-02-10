@@ -1,8 +1,10 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 #include "Luau/AstQuery.h"
 #include "Luau/BuiltinDefinitions.h"
+#include "Luau/Common.h"
 #include "Luau/DenseHash.h"
 #include "Luau/Frontend.h"
+#include "Luau/Parser.h"
 #include "Luau/RequireTracer.h"
 
 #include "Fixture.h"
@@ -14,14 +16,16 @@
 using namespace Luau;
 
 LUAU_FASTFLAG(LuauSolverV2);
+LUAU_FASTFLAG(LuauStandaloneParseType)
 LUAU_FASTFLAG(DebugLuauFreezeArena)
 LUAU_FASTFLAG(DebugLuauMagicTypes)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
 
 namespace
 {
 struct NaiveFileResolver : NullFileResolver
 {
-    std::optional<ModuleInfo> resolveModule(const ModuleInfo* context, AstExpr* expr) override
+    std::optional<ModuleInfo> resolveModule(const ModuleInfo* context, AstExpr* expr, const TypeCheckLimits& limits) override
     {
         if (AstExprGlobal* g = expr->as<AstExprGlobal>())
         {
@@ -67,6 +71,20 @@ struct FrontendFixture : BuiltinsFixture
         addGlobalBinding(f.globals, "script", f.builtinTypes->anyType, "@test");
         return *frontend;
     }
+
+    Allocator allocator_;
+    NotNull<Allocator> allocator{&allocator_};
+
+    AstNameTable nameTable_{allocator_};
+    NotNull<AstNameTable> nameTable{&nameTable_};
+
+    TypeArena arena_;
+    NotNull<TypeArena> arena{&arena_};
+
+    TypeId parseType(std::string_view src)
+    {
+        return getFrontend().parseType(allocator, nameTable, NotNull{&getFrontend().iceHandler}, TypeCheckLimits{}, arena, src);
+    }
 };
 
 TEST_SUITE_BEGIN("FrontendTest");
@@ -79,7 +97,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "find_a_require")
 
     NaiveFileResolver naiveFileResolver;
 
-    auto res = traceRequires(&naiveFileResolver, program, "");
+    auto res = traceRequires(&naiveFileResolver, program, "", {});
     CHECK_EQ(1, res.requireList.size());
     CHECK_EQ(res.requireList[0].first, "Modules/Foo/Bar");
 }
@@ -95,7 +113,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "find_a_require_inside_a_function")
 
     NaiveFileResolver naiveFileResolver;
 
-    auto res = traceRequires(&naiveFileResolver, program, "");
+    auto res = traceRequires(&naiveFileResolver, program, "", {});
     CHECK_EQ(1, res.requireList.size());
 }
 
@@ -120,7 +138,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "real_source")
 
     NaiveFileResolver naiveFileResolver;
 
-    auto res = traceRequires(&naiveFileResolver, program, "");
+    auto res = traceRequires(&naiveFileResolver, program, "", {});
     CHECK_EQ(8, res.requireList.size());
 }
 
@@ -1242,7 +1260,10 @@ TEST_CASE_FIXTURE(FrontendFixture, "parse_only")
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
     CHECK_EQ("game/Gui/Modules/A", result.errors[0].moduleName);
-    CHECK_EQ("Type 'string' could not be converted into 'number'", toString(result.errors[0]));
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ("Expected this to be 'number', but got 'string'", toString(result.errors[0]));
+    else
+        CHECK_EQ("Type 'string' could not be converted into 'number'", toString(result.errors[0]));
 }
 
 TEST_CASE_FIXTURE(FrontendFixture, "markdirty_early_return")
@@ -1430,14 +1451,14 @@ TEST_CASE_FIXTURE(FrontendFixture, "get_required_scripts")
 
     // isDirty(name) is true, getRequiredScripts should not hit the cache.
     getFrontend().markDirty("game/workspace/MyScript");
-    std::vector<ModuleName> requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript");
+    std::vector<ModuleName> requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript", {});
     REQUIRE(requiredScripts.size() == 2);
     CHECK(requiredScripts[0] == "game/workspace/MyModuleScript");
     CHECK(requiredScripts[1] == "game/workspace/MyModuleScript2");
 
     // Call getFrontend().check first, then getRequiredScripts should hit the cache because isDirty(name) is false.
     getFrontend().check("game/workspace/MyScript");
-    requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript");
+    requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript", {});
     REQUIRE(requiredScripts.size() == 2);
     CHECK(requiredScripts[0] == "game/workspace/MyModuleScript");
     CHECK(requiredScripts[1] == "game/workspace/MyModuleScript2");
@@ -1458,7 +1479,7 @@ TEST_CASE_FIXTURE(FrontendFixture, "get_required_scripts_dirty")
     )";
 
     getFrontend().check("game/workspace/MyScript");
-    std::vector<ModuleName> requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript");
+    std::vector<ModuleName> requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript", {});
     REQUIRE(requiredScripts.size() == 0);
 
     fileResolver.source["game/workspace/MyScript"] = R"(
@@ -1466,11 +1487,11 @@ TEST_CASE_FIXTURE(FrontendFixture, "get_required_scripts_dirty")
         MyModuleScript.myPrint()
     )";
 
-    requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript");
+    requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript", {});
     REQUIRE(requiredScripts.size() == 0);
 
     getFrontend().markDirty("game/workspace/MyScript");
-    requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript");
+    requiredScripts = getFrontend().getRequiredScripts("game/workspace/MyScript", {});
     REQUIRE(requiredScripts.size() == 1);
     CHECK(requiredScripts[0] == "game/workspace/MyModuleScript");
 }
@@ -1822,6 +1843,39 @@ TEST_CASE_FIXTURE(FrontendFixture, "queue_check_propagates_ice")
     getFrontend().queueModuleCheck("MainModule");
 
     CHECK_THROWS_AS(getFrontend().checkQueuedModules(), InternalCompilerError);
+}
+
+TEST_CASE_FIXTURE(FrontendFixture, "parse_just_a_type")
+{
+    std::string src = "(number, string) -> boolean?";
+
+    TypeArena arena;
+    Allocator allocator;
+    AstNameTable names{allocator};
+
+    BuiltinTypes builtinTypes;
+    InternalErrorReporter iceHandler;
+    TypeCheckLimits limits;
+
+    TypeId ty = getFrontend().parseType(NotNull{&allocator}, NotNull{&names}, NotNull{&iceHandler}, limits, NotNull{&arena}, src);
+
+    CHECK("(number, string) -> boolean?" == toString(ty));
+}
+
+TEST_CASE_FIXTURE(FrontendFixture, "parse_types")
+{
+    ScopedFastFlag sff{FFlag::LuauStandaloneParseType, true};
+
+    const TypeId ty1 = parseType("(number, boolean?) -> string");
+    CHECK("(number, boolean?) -> string" == toString(ty1));
+
+    CHECK_THROWS_AS(parseType("illegal Luau Syntax here"), InternalCompilerError);
+
+    const TypeId ty3 = parseType("blah<blahblah, number>");
+    CHECK(get<ErrorType>(ty3));
+
+    CHECK_THROWS_AS(parseType("number, boolean?) -> string"), InternalCompilerError);
+    CHECK_THROWS_AS(parseType("{size: number?"), InternalCompilerError);
 }
 
 TEST_SUITE_END();

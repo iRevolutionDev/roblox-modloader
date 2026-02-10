@@ -249,11 +249,55 @@ end
 assert(pcall(fuzzfail24) == false)
 
 local function fuzzfail25(...)
+  local _ = fill
+  while {[_ + _]={[bit32.bxor(65535,65535,_)]=bit32.bxor(-1610607103,65535,65535,_),},_=bit32.bxor(-1610607103,65535,65535,_),[538973697]=_,[_]=_,} do
+  end
+end
+
+assert(pcall(fuzzfail25) == false)
+
+local function fuzzfail26(...)
+  local loops = 10
+  for l0 in pcall,function<A...>(...):any
+      for _ in xpcall,_,_,_ do
+      end
+      function _():any
+      end
+      l0,l0._G,l0 = _,_
+    end do
+    function _<Q...>():any
+      l0,l0 = 0,{}
+      _()
+    end
+
+    loops -= 1
+    if loops == 0 then break end
+  end
+  return true
+end
+
+assert(pcall(fuzzfail26))
+
+local function fuzzfail27(...)
+  for _ = 1,67 do
+    assert(_, _ .. _ or _, {x=_ .. _ // _ .. _ or _ .. _,})
+  end
+end
+
+assert(pcall(fuzzfail27))
+
+local function fuzzfail28(...)
   _,_.n0,_,_,_[_ // _],_[_ + _ % _],_,_,_,_,l255,_,_,_,_,_,_,_,_,_[_],_,_,_ = table.insert("")
   _,_.n0,_,_,_[_ // _],_[_ + _ % _],_,_,_,_,l255,_,_,_,_,_,_,_,_,_[_],_,_,_ = table.insert("")
 end
 
-assert(pcall(fuzzfail25) == false)
+assert(pcall(fuzzfail28) == false)
+
+local function fuzzfail29(...)
+  return (vector.create(335572085, 4, 5) // 2) == ...
+end
+
+assert(fuzzfail29() == false)
 
 local function arraySizeInv1()
   local t = {1, 2, nil, nil, nil, nil, nil, nil, nil, true}
@@ -488,6 +532,15 @@ local function bufferbounds(zero)
 end
 
 bufferbounds(0)
+
+local function bufferboundsmerge1(b12: buffer, a: number, ...)
+  local r1 = buffer.readi32(b12, a + 8) + buffer.readi32(b12, a + 4) + buffer.readi32(b12, a + 0)
+  assert(r1 == 0)
+
+  assert(is_native())
+end
+
+bufferboundsmerge1(buffer.create(12), 0)
 
 function deadStoreChecks1()
   local a = 1.0

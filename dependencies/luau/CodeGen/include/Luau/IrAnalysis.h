@@ -25,7 +25,7 @@ void updateLastUseLocations(IrFunction& function, const std::vector<uint32_t>& s
 uint32_t getNextInstUse(IrFunction& function, uint32_t targetInstIdx, uint32_t startInstIdx);
 
 // Returns how many values are coming into the block (live in) and how many are coming out of the block (live out)
-std::pair<uint32_t, uint32_t> getLiveInOutValueCount(IrFunction& function, IrBlock& block);
+std::pair<uint32_t, uint32_t> getLiveInOutValueCount(IrFunction& function, IrBlock& start, bool visitChain);
 uint32_t getLiveInValueCount(IrFunction& function, IrBlock& block);
 uint32_t getLiveOutValueCount(IrFunction& function, IrBlock& block);
 
@@ -84,7 +84,14 @@ struct CfgInfo
     // VM registers captured by nested closures
     // This set can never have an active variadic sequence
     RegisterSet captured;
+
+    // VM registers defined in any block
+    // Lowest variadic sequence start is stored to mark variadic writes
+    RegisterSet written;
 };
+
+// Calculate lists of block predecessors and successors
+void computeCfgBlockEdges(IrFunction& function);
 
 // A quick refresher on dominance and dominator trees:
 // * If A is a dominator of B (A dom B), you can never execute B without executing A first

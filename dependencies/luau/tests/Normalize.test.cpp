@@ -15,7 +15,6 @@ LUAU_FASTFLAG(LuauSolverV2)
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
 LUAU_FASTINT(LuauNormalizeIntersectionLimit)
 LUAU_FASTINT(LuauNormalizeUnionLimit)
-LUAU_FASTFLAG(LuauNormalizerUnionTyvarsTakeMaxSize)
 
 using namespace Luau;
 
@@ -31,16 +30,8 @@ struct IsSubtypeFixture : Fixture
         if (!module->hasModuleScope())
             FAIL("isSubtype: module scope data is not available");
 
-        SimplifierPtr simplifier = newSimplifier(NotNull{&module->internalTypes}, getBuiltins());
-
         return ::Luau::isSubtype(
-            a,
-            b,
-            NotNull{module->getModuleScope().get()},
-            getBuiltins(),
-            NotNull{simplifier.get()},
-            ice,
-            FFlag::LuauSolverV2 ? SolverMode::New : SolverMode::Old
+            a, b, NotNull{module->getModuleScope().get()}, getBuiltins(), ice, FFlag::LuauSolverV2 ? SolverMode::New : SolverMode::Old
         );
     }
 };
@@ -764,7 +755,7 @@ TEST_CASE_FIXTURE(NormalizeFixture, "bare_negated_boolean")
     )")));
 }
 
-TEST_CASE_FIXTURE(Fixture, "higher_order_function")
+TEST_CASE_FIXTURE(Fixture, "higher_order_function_normalization")
 {
     check(R"(
         function apply(f, x)
@@ -925,7 +916,9 @@ TEST_CASE_FIXTURE(NormalizeFixture, "negations_of_extern_types")
 
     CHECK("((userdata & ~Child) | boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<Child>")));
     CHECK("never" == toString(normal("Not<Parent> & Child")));
-    CHECK("((userdata & ~Parent) | Child | boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<Parent> | Child")));
+    CHECK(
+        "((userdata & ~Parent) | Child | boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<Parent> | Child"))
+    );
     CHECK("(boolean | buffer | function | number | string | table | thread)?" == toString(normal("Not<cls>")));
     CHECK(
         "(Parent | Unrelated | boolean | buffer | function | number | string | table | thread)?" ==
@@ -1134,18 +1127,15 @@ TEST_CASE_FIXTURE(NormalizeFixture, "free_type_intersection_ordering")
 
 TEST_CASE_FIXTURE(NormalizeFixture, "tyvar_limit_one_sided_intersection" * doctest::timeout(0.5))
 {
-    ScopedFastFlag _{FFlag::LuauNormalizerUnionTyvarsTakeMaxSize, true}; // Affects stringification of free types.
-
     std::vector<TypeId> options;
     for (auto i = 0; i < 120; i++)
         options.push_back(arena.freshType(getBuiltins(), getGlobalScope()));
 
-    TypeId target = arena.addType(IntersectionType{
-        {
-            getBuiltins()->unknownType,
-            arena.addType(UnionType{std::move(options)})
-        },
-    });
+    TypeId target = arena.addType(
+        IntersectionType{
+            {getBuiltins()->unknownType, arena.addType(UnionType{std::move(options)})},
+        }
+    );
 
     // If we try to normalize 120 free variables against `unknown`, then exit
     // early and claim we've hit the limit.

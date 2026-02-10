@@ -6,7 +6,6 @@
 #include "Luau/RecursionCounter.h"
 #include "Luau/Scope.h"
 #include "Luau/StringUtils.h"
-#include "Luau/TimeTrace.h"
 #include "Luau/ToString.h"
 #include "Luau/TypePack.h"
 #include "Luau/TypeUtils.h"
@@ -21,8 +20,9 @@ LUAU_FASTFLAGVARIABLE(LuauInstantiateInSubtyping)
 LUAU_FASTFLAGVARIABLE(LuauTransitiveSubtyping)
 LUAU_FASTFLAG(LuauSolverV2)
 LUAU_FASTFLAGVARIABLE(LuauFixIndexerSubtypingOrdering)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
 LUAU_FASTFLAGVARIABLE(LuauUnifierRecursionOnRestart)
-LUAU_FASTFLAG(LuauNormalizerStepwiseFuel)
+LUAU_FASTFLAGVARIABLE(LuauUnifierDoesntReferToNewSolver)
 
 namespace Luau
 {
@@ -1190,26 +1190,13 @@ TypePackId Unifier::tryApplyOverloadedFunction(TypeId function, const Normalized
                     {
                         innerState->log.clear();
                         innerState->tryUnify_(*result, ftv->retTypes);
-                        if (FFlag::LuauNormalizerStepwiseFuel)
-                        {
-                            if (innerState->errors.empty())
-                                log.concat(std::move(innerState->log));
-                            // Annoyingly, since we don't support intersection of generic type packs,
-                            // the intersection may fail. We rather arbitrarily use the first matching overload
-                            // in that case.
-                            else if (std::optional<TypePackId> intersect = normalizer->intersectionOfTypePacks(*result, ftv->retTypes))
-                                result = intersect;
-                        }
-                        else
-                        {
-                            if (innerState->errors.empty())
-                                log.concat(std::move(innerState->log));
-                            // Annoyingly, since we don't support intersection of generic type packs,
-                            // the intersection may fail. We rather arbitrarily use the first matching overload
-                            // in that case.
-                            else if (std::optional<TypePackId> intersect = normalizer->intersectionOfTypePacks_INTERNAL(*result, ftv->retTypes))
-                                result = intersect;
-                        }
+                        if (innerState->errors.empty())
+                            log.concat(std::move(innerState->log));
+                        // Annoyingly, since we don't support intersection of generic type packs,
+                        // the intersection may fail. We rather arbitrarily use the first matching overload
+                        // in that case.
+                        else if (std::optional<TypePackId> intersect = normalizer->intersectionOfTypePacks(*result, ftv->retTypes))
+                            result = intersect;
                     }
                     else
                         result = ftv->retTypes;
@@ -1510,7 +1497,7 @@ void Unifier::tryUnify_(TypePackId subTp, TypePackId superTp, bool isFunctionCal
 
         auto mkFreshType = [this](Scope* scope, TypeLevel level)
         {
-            if (FFlag::LuauSolverV2)
+            if (FFlag::LuauSolverV2 || FFlag::LuauUnifierDoesntReferToNewSolver)
                 return freshType(NotNull{types}, builtinTypes, scope);
             else
                 return types->freshType(builtinTypes, scope, level);
@@ -2209,7 +2196,8 @@ void Unifier::tryUnifyScalarShape(TypeId subTy, TypeId superTy, bool reversed)
 
     auto fail = [&](std::optional<TypeError> e)
     {
-        std::string reason = "The former's metatable does not satisfy the requirements.";
+        std::string reason = FFlag::LuauBetterTypeMismatchErrors ? "The given type's metatable does not satisfy the requirements."
+                                                                 : "The former's metatable does not satisfy the requirements.";
         if (e)
             reportError(location, TypeMismatch{osuperTy, osubTy, std::move(reason), std::move(e), mismatchContext()});
         else
@@ -2231,7 +2219,7 @@ void Unifier::tryUnifyScalarShape(TypeId subTy, TypeId superTy, bool reversed)
             child->tryUnify_(ty, superTy);
 
             // To perform subtype <: free table unification, we have tried to unify (subtype's metatable) <: free table
-            // There is a chance that it was unified with the origial subtype, but then, (subtype's metatable) <: subtype could've failed
+            // There is a chance that it was unified with the original subtype, but then, (subtype's metatable) <: subtype could've failed
             // Here we check if we have a new supertype instead of the original free table and try original subtype <: new supertype check
             TypeId newSuperTy = child->log.follow(superTy);
 
@@ -2634,7 +2622,7 @@ void Unifier::tryUnifyWithAny(TypePackId subTy, TypePackId anyTp)
 
 std::optional<TypeId> Unifier::findTablePropertyRespectingMeta(TypeId lhsType, Name name)
 {
-    return Luau::findTablePropertyRespectingMeta(builtinTypes, errors, lhsType, name, location);
+    return Luau::findTablePropertyRespectingMeta(builtinTypes, errors, lhsType, name, location, /* useNewSolver */ false);
 }
 
 TxnLog Unifier::combineLogsIntoUnion(std::vector<TxnLog> logs)

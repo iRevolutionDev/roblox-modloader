@@ -17,7 +17,7 @@ class ParseError : public std::exception
 public:
     ParseError(const Location& location, std::string message);
 
-    virtual const char* what() const throw();
+    const char* what() const throw() override;
 
     const Location& getLocation() const;
     const std::string& getMessage() const;
@@ -34,7 +34,7 @@ class ParseErrors : public std::exception
 public:
     ParseErrors(std::vector<ParseError> errors);
 
-    virtual const char* what() const throw();
+    const char* what() const throw() override;
 
     const std::vector<ParseError>& getErrors() const;
 
@@ -71,9 +71,10 @@ struct ParseResult
     CstNodeMap cstNodeMap{nullptr};
 };
 
-struct ParseExprResult
+template<typename Node>
+struct ParseNodeResult
 {
-    AstExpr* expr;
+    Node* root;
     size_t lines = 0;
 
     std::vector<HotComment> hotcomments;

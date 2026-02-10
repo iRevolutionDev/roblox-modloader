@@ -12,6 +12,9 @@
 
 #include <string.h>
 
+LUAU_FASTFLAG(LuauCodegenBlockSafeEnv)
+LUAU_FASTFLAG(LuauCodegenSetBlockEntryState2)
+
 namespace Luau
 {
 namespace CodeGen
@@ -36,10 +39,13 @@ static bool hasTypedParameters(const BytecodeTypeInfo& typeInfo)
     return false;
 }
 
-static void buildArgumentTypeChecks(IrBuilder& build)
+static void buildArgumentTypeChecks(IrBuilder& build, IrOp entry)
 {
-    const BytecodeTypeInfo& typeInfo = build.function.bcTypeInfo;
+    const BytecodeTypeInfo& typeInfo = FFlag::LuauCodegenSetBlockEntryState2 ? build.function.bcOriginalTypeInfo : build.function.bcTypeInfo;
     CODEGEN_ASSERT(hasTypedParameters(typeInfo));
+
+    if (FFlag::LuauCodegenSetBlockEntryState2)
+        build.function.blockOp(entry).flags |= kBlockFlagEntryArgCheck;
 
     for (size_t i = 0; i < typeInfo.argumentTypes.size(); i++)
     {
@@ -62,6 +68,9 @@ static void buildArgumentTypeChecks(IrBuilder& build)
             build.inst(IrCmd::JUMP_EQ_TAG, load, build.constTag(LUA_TNIL), nextCheck, fallbackCheck);
 
             build.beginBlock(fallbackCheck);
+
+            if (FFlag::LuauCodegenSetBlockEntryState2)
+                build.function.blockOp(fallbackCheck).flags |= kBlockFlagEntryArgCheck;
         }
 
         switch (tag)
@@ -111,7 +120,11 @@ static void buildArgumentTypeChecks(IrBuilder& build)
         if (optional)
         {
             build.inst(IrCmd::JUMP, nextCheck);
+
             build.beginBlock(nextCheck);
+
+            if (FFlag::LuauCodegenSetBlockEntryState2)
+                build.function.blockOp(nextCheck).flags |= kBlockFlagEntryArgCheck;
         }
     }
 
@@ -148,7 +161,7 @@ void IrBuilder::buildFunctionIr(Proto* proto)
     {
         beginBlock(entry);
 
-        buildArgumentTypeChecks(*this);
+        buildArgumentTypeChecks(*this, entry);
 
         inst(IrCmd::JUMP, blockAtInst(0));
     }
@@ -172,7 +185,20 @@ void IrBuilder::buildFunctionIr(Proto* proto)
 
         // Begin new block at this instruction if it was in the bytecode or requested during translation
         if (instIndexToBlock[i] != kNoAssociatedBlockIndex)
-            beginBlock(blockAtInst(i));
+        {
+            if (FFlag::LuauCodegenBlockSafeEnv)
+            {
+                IrOp block = blockAtInst(i);
+
+                beginBlock(block);
+
+                function.blockOp(block).startpc = uint32_t(i);
+            }
+            else
+            {
+                beginBlock(blockAtInst(i));
+            }
+        }
 
         // Numeric for loops require additional processing to maintain loop stack
         // Notably, this must be performed even when the block is dead so that we maintain the pairing FORNPREP-FORNLOOP
@@ -660,7 +686,22 @@ void IrBuilder::loadAndCheckTag(IrOp loc, uint8_t tag, IrOp fallback)
     inst(IrCmd::CHECK_TAG, inst(IrCmd::LOAD_TAG, loc), constTag(tag), fallback);
 }
 
-void IrBuilder::clone(const IrBlock& source, bool removeCurrentTerminator)
+void IrBuilder::checkSafeEnv(int pcpos)
+{
+    IrBlock& active = function.blocks[activeBlockIdx];
+
+    // If the block start is associated with a bytecode position, we can perform an early safeenv check
+    if (active.startpc != kBlockNoStartPc)
+    {
+        // If the block hasn't cleared the safeenv flag yet, we can still set it at block entry
+        if ((active.flags & kBlockFlagSafeEnvClear) == 0)
+            active.flags |= kBlockFlagSafeEnvCheck;
+    }
+
+    inst(IrCmd::CHECK_SAFE_ENV, vmExit(pcpos));
+}
+
+void IrBuilder::clone(std::vector<uint32_t> sourceIdxs, bool removeCurrentTerminator)
 {
     DenseHashMap<uint32_t, uint32_t> instRedir{~0u};
 
@@ -675,48 +716,43 @@ void IrBuilder::clone(const IrBlock& source, bool removeCurrentTerminator)
         }
     };
 
-    if (removeCurrentTerminator && inTerminatedBlock)
+    for (uint32_t sourceIdx : sourceIdxs)
     {
-        IrBlock& active = function.blocks[activeBlockIdx];
-        IrInst& term = function.instructions[active.finish];
+        const IrBlock& source = function.blocks[sourceIdx];
 
-        kill(function, term);
-        inTerminatedBlock = false;
-    }
-
-    for (uint32_t index = source.start; index <= source.finish; index++)
-    {
-        CODEGEN_ASSERT(index < function.instructions.size());
-        IrInst clone = function.instructions[index];
-
-        // Skip pseudo instructions to make clone more compact, but validate that they have no users
-        if (isPseudo(clone.cmd))
+        if (removeCurrentTerminator && inTerminatedBlock)
         {
-            CODEGEN_ASSERT(clone.useCount == 0);
-            continue;
+            IrBlock& active = function.blocks[activeBlockIdx];
+            IrInst& term = function.instructions[active.finish];
+
+            kill(function, term);
+            inTerminatedBlock = false;
         }
 
-        redirect(clone.a);
-        redirect(clone.b);
-        redirect(clone.c);
-        redirect(clone.d);
-        redirect(clone.e);
-        redirect(clone.f);
-        redirect(clone.g);
+        for (uint32_t index = source.start; index <= source.finish; index++)
+        {
+            CODEGEN_ASSERT(index < function.instructions.size());
+            IrInst clone = function.instructions[index];
 
-        addUse(function, clone.a);
-        addUse(function, clone.b);
-        addUse(function, clone.c);
-        addUse(function, clone.d);
-        addUse(function, clone.e);
-        addUse(function, clone.f);
-        addUse(function, clone.g);
+            // Skip pseudo instructions to make clone more compact, but validate that they have no users
+            if (isPseudo(clone.cmd))
+            {
+                CODEGEN_ASSERT(clone.useCount == 0);
+                continue;
+            }
 
-        // Instructions that referenced the original will have to be adjusted to use the clone
-        instRedir[index] = uint32_t(function.instructions.size());
+            for (auto& op : clone.ops)
+                redirect(op);
 
-        // Reconstruct the fresh clone
-        inst(clone.cmd, clone.a, clone.b, clone.c, clone.d, clone.e, clone.f, clone.g);
+            for (auto& op : clone.ops)
+                addUse(function, op);
+
+            // Instructions that referenced the original will have to be adjusted to use the clone
+            instRedir[index] = uint32_t(function.instructions.size());
+
+            // Reconstruct the fresh clone
+            inst(clone.cmd, clone.ops);
+        }
     }
 }
 
@@ -792,43 +828,48 @@ IrOp IrBuilder::cond(IrCondition cond)
 
 IrOp IrBuilder::inst(IrCmd cmd)
 {
-    return inst(cmd, {}, {}, {}, {}, {}, {});
+    return inst(cmd, {});
 }
 
 IrOp IrBuilder::inst(IrCmd cmd, IrOp a)
 {
-    return inst(cmd, a, {}, {}, {}, {}, {});
+    return inst(cmd, {a});
 }
 
 IrOp IrBuilder::inst(IrCmd cmd, IrOp a, IrOp b)
 {
-    return inst(cmd, a, b, {}, {}, {}, {});
+    return inst(cmd, {a, b});
 }
 
 IrOp IrBuilder::inst(IrCmd cmd, IrOp a, IrOp b, IrOp c)
 {
-    return inst(cmd, a, b, c, {}, {}, {});
+    return inst(cmd, {a, b, c});
 }
 
 IrOp IrBuilder::inst(IrCmd cmd, IrOp a, IrOp b, IrOp c, IrOp d)
 {
-    return inst(cmd, a, b, c, d, {}, {});
+    return inst(cmd, {a, b, c, d});
 }
 
 IrOp IrBuilder::inst(IrCmd cmd, IrOp a, IrOp b, IrOp c, IrOp d, IrOp e)
 {
-    return inst(cmd, a, b, c, d, e, {});
+    return inst(cmd, {a, b, c, d, e});
 }
 
 IrOp IrBuilder::inst(IrCmd cmd, IrOp a, IrOp b, IrOp c, IrOp d, IrOp e, IrOp f)
 {
-    return inst(cmd, a, b, c, d, e, f, {});
+    return inst(cmd, {a, b, c, d, e, f});
 }
 
 IrOp IrBuilder::inst(IrCmd cmd, IrOp a, IrOp b, IrOp c, IrOp d, IrOp e, IrOp f, IrOp g)
 {
+    return inst(cmd, {a, b, c, d, e, f, g});
+}
+
+IrOp IrBuilder::inst(IrCmd cmd, std::initializer_list<IrOp> ops)
+{
     uint32_t index = uint32_t(function.instructions.size());
-    function.instructions.push_back({cmd, a, b, c, d, e, f, g});
+    function.instructions.push_back({cmd, ops});
 
     CODEGEN_ASSERT(!inTerminatedBlock);
 
@@ -836,6 +877,34 @@ IrOp IrBuilder::inst(IrCmd cmd, IrOp a, IrOp b, IrOp c, IrOp d, IrOp e, IrOp f, 
     {
         function.blocks[activeBlockIdx].finish = index;
         inTerminatedBlock = true;
+    }
+
+    if (FFlag::LuauCodegenBlockSafeEnv && canInvalidateSafeEnv(cmd))
+    {
+        // Mark that block has instruction with this flag
+        function.blocks[activeBlockIdx].flags |= kBlockFlagSafeEnvClear;
+    }
+
+    return {IrOpKind::Inst, index};
+}
+
+IrOp IrBuilder::inst(IrCmd cmd, const IrOps& ops)
+{
+    uint32_t index = uint32_t(function.instructions.size());
+    function.instructions.push_back({cmd, ops});
+
+    CODEGEN_ASSERT(!inTerminatedBlock);
+
+    if (isBlockTerminator(cmd))
+    {
+        function.blocks[activeBlockIdx].finish = index;
+        inTerminatedBlock = true;
+    }
+
+    if (FFlag::LuauCodegenBlockSafeEnv && canInvalidateSafeEnv(cmd))
+    {
+        // Mark that block has instruction with this flag
+        function.blocks[activeBlockIdx].flags |= kBlockFlagSafeEnvClear;
     }
 
     return {IrOpKind::Inst, index};

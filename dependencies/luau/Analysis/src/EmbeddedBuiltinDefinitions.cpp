@@ -1,7 +1,9 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 #include "Luau/BuiltinDefinitions.h"
 
-LUAU_FASTFLAGVARIABLE(LuauTypeCheckerVectorLerp2)
+LUAU_FASTFLAGVARIABLE(LuauUseTopTableForTableClearAndIsFrozen)
+LUAU_FASTFLAGVARIABLE(LuauTypeCheckerUdtfRenameClassToExtern)
+LUAU_FASTFLAGVARIABLE(LuauMorePermissiveNewtableType)
 
 namespace Luau
 {
@@ -128,6 +130,10 @@ declare math: {
     round: @checked (n: number) -> number,
     map: @checked (x: number, inmin: number, inmax: number, outmin: number, outmax: number) -> number,
     lerp: @checked (a: number, b: number, t: number) -> number,
+
+    isnan: @checked (x: number) -> boolean,
+    isinf: @checked (x: number) -> boolean,
+    isfinite: @checked (x: number) -> boolean,
 }
 
 )BUILTIN_SRC";
@@ -179,8 +185,7 @@ declare coroutine: {
 }
 
 )BUILTIN_SRC";
-
-static constexpr const char* kBuiltinDefinitionTableSrc = R"BUILTIN_SRC(
+static constexpr const char* kBuiltinDefinitionTableSrc_DEPRECATED = R"BUILTIN_SRC(
 
 declare table: {
     concat: <V>(t: {V}, sep: string?, i: number?, j: number?) -> string,
@@ -202,6 +207,32 @@ declare table: {
     clear: <K, V>(table: {[K]: V}) -> (),
 
     isfrozen: <K, V>(t: {[K]: V}) -> boolean,
+}
+
+)BUILTIN_SRC";
+
+static constexpr const char* kBuiltinDefinitionTableSrc = R"BUILTIN_SRC(
+
+declare table: {
+    concat: <V>(t: {V}, sep: string?, i: number?, j: number?) -> string,
+    insert: (<V>(t: {V}, value: V) -> ()) & (<V>(t: {V}, pos: number, value: V) -> ()),
+    maxn: <V>(t: {V}) -> number,
+    remove: <V>(t: {V}, number?) -> V?,
+    sort: <V>(t: {V}, comp: ((V, V) -> boolean)?) -> (),
+    create: <V>(count: number, value: V?) -> {V},
+    find: <V>(haystack: {V}, needle: V, init: number?) -> number?,
+
+    unpack: <V>(list: {V}, i: number?, j: number?) -> ...V,
+    pack: <V>(...V) -> { n: number, [number]: V },
+
+    getn: <V>(t: {V}) -> number,
+    foreach: <K, V>(t: {[K]: V}, f: (K, V) -> ()) -> (),
+    foreachi: <V>({V}, (number, V) -> ()) -> (),
+
+    move: <V>(src: {V}, a: number, b: number, t: number, dst: {V}?) -> {V},
+
+    clear: (table: {}) -> (),
+    isfrozen: (t: {}) -> boolean,
 }
 
 )BUILTIN_SRC";
@@ -292,36 +323,6 @@ declare vector: {
 
 )BUILTIN_SRC";
 
-static const char* const kBuiltinDefinitionVectorSrc_DEPRECATED = R"BUILTIN_SRC(
-
--- While vector would have been better represented as a built-in primitive type, type solver extern type handling covers most of the properties
-declare extern type vector with
-    x: number
-    y: number
-    z: number
-end
-
-declare vector: {
-    create: @checked (x: number, y: number, z: number?) -> vector,
-    magnitude: @checked (vec: vector) -> number,
-    normalize: @checked (vec: vector) -> vector,
-    cross: @checked (vec1: vector, vec2: vector) -> vector,
-    dot: @checked (vec1: vector, vec2: vector) -> number,
-    angle: @checked (vec1: vector, vec2: vector, axis: vector?) -> number,
-    floor: @checked (vec: vector) -> vector,
-    ceil: @checked (vec: vector) -> vector,
-    abs: @checked (vec: vector) -> vector,
-    sign: @checked (vec: vector) -> vector,
-    clamp: @checked (vec: vector, min: vector, max: vector) -> vector,
-    max: @checked (vector, ...vector) -> vector,
-    min: @checked (vector, ...vector) -> vector,
-
-    zero: vector,
-    one: vector,
-}
-
-)BUILTIN_SRC";
-
 std::string getBuiltinDefinitionSource()
 {
     std::string result = kBuiltinDefinitionBaseSrc;
@@ -330,24 +331,77 @@ std::string getBuiltinDefinitionSource()
     result += kBuiltinDefinitionMathSrc;
     result += kBuiltinDefinitionOsSrc;
     result += kBuiltinDefinitionCoroutineSrc;
-    result += kBuiltinDefinitionTableSrc;
-    result += kBuiltinDefinitionDebugSrc;
-    result += kBuiltinDefinitionUtf8Src;
-    result += kBuiltinDefinitionBufferSrc;
-    if (FFlag::LuauTypeCheckerVectorLerp2)
+    if (FFlag::LuauUseTopTableForTableClearAndIsFrozen)
     {
-        result += kBuiltinDefinitionVectorSrc;
+        result += kBuiltinDefinitionTableSrc;
     }
     else
     {
-        result += kBuiltinDefinitionVectorSrc_DEPRECATED;
+        result += kBuiltinDefinitionTableSrc_DEPRECATED;
     }
+    result += kBuiltinDefinitionDebugSrc;
+    result += kBuiltinDefinitionUtf8Src;
+    result += kBuiltinDefinitionBufferSrc;
+    result += kBuiltinDefinitionVectorSrc;
 
     return result;
 }
 
 // TODO: split into separate tagged unions when the new solver can appropriately handle that.
 static constexpr const char* kBuiltinDefinitionTypeMethodSrc = R"BUILTIN_SRC(
+
+export type type = {
+    tag: "nil" | "unknown" | "never" | "any" | "boolean" | "number" | "string" | "buffer" | "thread" |
+         "singleton" | "negation" | "union" | "intersection" | "table" | "function" | "extern" | "generic",
+
+    is: (self: type, arg: string) -> boolean,
+
+    -- for singleton type
+    value: (self: type) -> (string | boolean | nil),
+
+    -- for negation type
+    inner: (self: type) -> type,
+
+    -- for union and intersection types
+    components: (self: type) -> {type},
+
+    -- for table type
+    setproperty: (self: type, key: type, value: type?) -> (),
+    setreadproperty: (self: type, key: type, value: type?) -> (),
+    setwriteproperty: (self: type, key: type, value: type?) -> (),
+    readproperty: (self: type, key: type) -> type?,
+    writeproperty: (self: type, key: type) -> type?,
+    properties: (self: type) -> { [type]: { read: type?, write: type? } },
+    setindexer: (self: type, index: type, result: type) -> (),
+    setreadindexer: (self: type, index: type, result: type) -> (),
+    setwriteindexer: (self: type, index: type, result: type) -> (),
+    indexer: (self: type) -> { index: type, readresult: type, writeresult: type }?,
+    readindexer: (self: type) -> { index: type, result: type }?,
+    writeindexer: (self: type) -> { index: type, result: type }?,
+    setmetatable: (self: type, arg: type) -> (),
+    metatable: (self: type) -> type?,
+
+    -- for function type
+    setparameters: (self: type, head: {type}?, tail: type?) -> (),
+    parameters: (self: type) -> { head: {type}?, tail: type? },
+    setreturns: (self: type, head: {type}?, tail: type? ) -> (),
+    returns: (self: type) -> { head: {type}?, tail: type? },
+    setgenerics: (self: type, {type}?) -> (),
+    generics: (self: type) -> {type},
+
+    -- for class type
+    -- 'properties', 'metatable', 'indexer', 'readindexer' and 'writeindexer' are shared with table type
+    readparent: (self: type) -> type?,
+    writeparent: (self: type) -> type?,
+
+    -- for generic type
+    name: (self: type) -> string?,
+    ispack: (self: type) -> boolean,
+}
+
+)BUILTIN_SRC";
+
+static constexpr const char* kBuiltinDefinitionTypeMethodSrc_DEPRECATED = R"BUILTIN_SRC(
 
 export type type = {
     tag: "nil" | "unknown" | "never" | "any" | "boolean" | "number" | "string" | "buffer" | "thread" |
@@ -418,6 +472,30 @@ declare types: {
     negationof: @checked (arg: type) -> type,
     unionof: @checked (...type) -> type,
     intersectionof: @checked (...type) -> type,
+    newtable: @checked (props: {[type]: type} | {[type]: { read: type?, write: type? } }?, indexer: { index: type, readresult: type, writeresult: type }?, metatable: type?) -> type,
+    newfunction: @checked (parameters: { head: {type}?, tail: type? }?, returns: { head: {type}?, tail: type? }?, generics: {type}?) -> type,
+    copy: @checked (arg: type) -> type,
+}
+)BUILTIN_SRC";
+
+static constexpr const char* kBuiltinDefinitionTypesLibSrc_DEPRECATED = R"BUILTIN_SRC(
+
+declare types: {
+    unknown: type,
+    never: type,
+    any: type,
+    boolean: type,
+    number: type,
+    string: type,
+    thread: type,
+    buffer: type,
+
+    singleton: @checked (arg: string | boolean | nil) -> type,
+    optional: @checked (arg: type) -> type,
+    generic: @checked (name: string, ispack: boolean?) -> type,
+    negationof: @checked (arg: type) -> type,
+    unionof: @checked (...type) -> type,
+    intersectionof: @checked (...type) -> type,
     newtable: @checked (props: {[type]: type} | {[type]: { read: type, write: type } } | nil, indexer: { index: type, readresult: type, writeresult: type }?, metatable: type?) -> type,
     newfunction: @checked (parameters: { head: {type}?, tail: type? }?, returns: { head: {type}?, tail: type? }?, generics: {type}?) -> type,
     copy: @checked (arg: type) -> type,
@@ -427,10 +505,17 @@ declare types: {
 
 std::string getTypeFunctionDefinitionSource()
 {
+    std::string result;
 
-    std::string result = kBuiltinDefinitionTypeMethodSrc;
+    if (FFlag::LuauTypeCheckerUdtfRenameClassToExtern)
+        result += kBuiltinDefinitionTypeMethodSrc;
+    else
+        result += kBuiltinDefinitionTypeMethodSrc_DEPRECATED;
 
-    result += kBuiltinDefinitionTypesLibSrc;
+    if (FFlag::LuauMorePermissiveNewtableType)
+        result += kBuiltinDefinitionTypesLibSrc;
+    else
+        result += kBuiltinDefinitionTypesLibSrc_DEPRECATED;
 
     return result;
 }

@@ -1,5 +1,6 @@
 // This file is part of the Luau programming language and is licensed under MIT License; see LICENSE.txt for details
 
+#include "Luau/Instantiation2.h"
 #include "Luau/TypeFwd.h"
 #include "Luau/TypePath.h"
 
@@ -16,8 +17,7 @@
 #include <initializer_list>
 
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauPassBindableGenericsByReference)
-LUAU_FASTFLAG(LuauConsiderErrorSuppressionInTypes)
+LUAU_FASTFLAG(LuauMorePreciseErrorSuppression)
 
 using namespace Luau;
 
@@ -67,13 +67,11 @@ struct SubtypeFixture : Fixture
     TypeArena arena;
     InternalErrorReporter iceReporter;
     UnifierSharedState sharedState{&ice};
-    SimplifierPtr simplifier = newSimplifier(NotNull{&arena}, getBuiltins());
     Normalizer normalizer{&arena, getBuiltins(), NotNull{&sharedState}, FFlag::LuauSolverV2 ? SolverMode::New : SolverMode::Old};
     TypeCheckLimits limits;
     TypeFunctionRuntime typeFunctionRuntime{NotNull{&iceReporter}, NotNull{&limits}};
 
     ScopedFastFlag sff{FFlag::LuauSolverV2, true};
-    ScopedFastFlag sff1{FFlag::LuauPassBindableGenericsByReference, true};
 
     ScopePtr rootScope{new Scope(getBuiltins()->emptyTypePack)};
     ScopePtr moduleScope{new Scope(rootScope)};
@@ -83,9 +81,7 @@ struct SubtypeFixture : Fixture
 
     Subtyping mkSubtyping()
     {
-        return Subtyping{
-            getBuiltins(), NotNull{&arena}, NotNull{simplifier.get()}, NotNull{&normalizer}, NotNull{&typeFunctionRuntime}, NotNull{&iceReporter}
-        };
+        return Subtyping{getBuiltins(), NotNull{&arena}, NotNull{&normalizer}, NotNull{&typeFunctionRuntime}, NotNull{&iceReporter}};
     }
 
     TypePackId pack(std::initializer_list<TypeId> tys)
@@ -1444,7 +1440,6 @@ TEST_CASE_FIXTURE(SubtypeFixture, "(number, number...) <!: (number, string...)")
 
 TEST_CASE_FIXTURE(SubtypeFixture, "subtyping_reasonings_check_for_error_suppression_in_union_type_path")
 {
-    ScopedFastFlag sff{FFlag::LuauConsiderErrorSuppressionInTypes, true};
     TypeId subTy = arena.addType(UnionType{{getBuiltins()->numberType, getBuiltins()->errorType}});
     TypeId superTy = getBuiltins()->booleanType;
     SubtypingResult result = isSubtype(subTy, superTy);
@@ -1468,8 +1463,6 @@ TEST_CASE_FIXTURE(SubtypeFixture, "subtyping_reasonings_check_for_error_suppress
 
 TEST_CASE_FIXTURE(SubtypeFixture, "subtyping_reasonings_check_for_error_suppression_in_intersect_type_path")
 {
-    ScopedFastFlag sff{FFlag::LuauConsiderErrorSuppressionInTypes, true};
-
     TypeId subTy = getBuiltins()->booleanType;
     TypeId superTy = arena.addType(IntersectionType{{getBuiltins()->numberType, getBuiltins()->errorType}});
     SubtypingResult result = isSubtype(subTy, superTy);
@@ -1775,9 +1768,9 @@ TEST_CASE_FIXTURE(SubtypeFixture, "substitute_a_generic_for_a_negation")
     // <A, B>(x: A, y: B) -> (A & ~(false?)) | B
     // (~(false?), ~(false?)) -> (~(false?) & ~(false?)) | ~(false?)
 
-    TypeId aTy = arena.addType(GenericType{"A"});
+    TypeId aTy = arena.addType(GenericType{"A", Polarity::Mixed});
     getMutable<GenericType>(aTy)->scope = moduleScope.get();
-    TypeId bTy = arena.addType(GenericType{"B"});
+    TypeId bTy = arena.addType(GenericType{"B", Polarity::Mixed});
     getMutable<GenericType>(bTy)->scope = moduleScope.get();
 
     TypeId genericFunctionTy = arena.addType(
@@ -1818,6 +1811,70 @@ function bindAction(callback: ActionCallback)
 end
 )");
     LUAU_REQUIRE_NO_ERRORS(res);
+}
+
+TEST_CASE_FIXTURE(SubtypeFixture, "table_test_is_suppressing_if_all_mismatches_are_suppressing")
+{
+    ScopedFastFlag sff{FFlag::LuauMorePreciseErrorSuppression, true};
+
+    TypeId tableOne = parseType("{foo: any, bar: any}");
+    TypeId tableTwo = parseType("{foo: number, bar: string}");
+
+    SubtypingResult sr = subtyping.isSubtype(tableOne, tableTwo, NotNull{rootScope.get()});
+
+    CHECK(!sr.isSubtype);
+    CHECK(sr.isErrorSuppressing);
+}
+
+TEST_CASE_FIXTURE(SubtypeFixture, "table_test_is_non_suppressing_if_any_mismatches_are_non_suppressing")
+{
+    ScopedFastFlag sff{FFlag::LuauMorePreciseErrorSuppression, true};
+
+    TypeId tableOne = parseType("{foo: any, bar: string, baz: any}");
+    TypeId tableTwo = parseType("{foo: number, bar: number, baz: boolaen}");
+
+    SubtypingResult sr = subtyping.isSubtype(tableOne, tableTwo, NotNull{rootScope.get()});
+
+    CHECK(!sr.isSubtype);
+    CHECK(!sr.isErrorSuppressing);
+}
+
+TEST_CASE_FIXTURE(SubtypeFixture, "weird_cyclic_instantiation")
+{
+    TypeArena arena;
+    Scope scope(getBuiltins()->anyTypePack);
+
+    TypeId genericT = arena.addType(GenericType{"T", Polarity::Mixed});
+
+    TypeId idTy = arena.addType(
+        FunctionType{/* generics */ {genericT},
+                     /* genericPacks */ {},
+                     /* argTypes */ arena.addTypePack({genericT}),
+                     /* retTypes */ arena.addTypePack({genericT})}
+    );
+
+    DenseHashMap<TypeId, TypeId> genericSubstitutions{nullptr};
+    DenseHashMap<TypePackId, TypePackId> genericPackSubstitutions{nullptr};
+
+    TypeId freeTy = arena.freshType(getBuiltins(), &scope);
+    FreeType* ft = getMutable<FreeType>(freeTy);
+    REQUIRE(ft);
+    ft->lowerBound = idTy;
+    ft->upperBound = getBuiltins()->unknownType;
+
+    genericSubstitutions[genericT] = freeTy;
+
+    CHECK("<T>(T) -> T" == toString(idTy));
+
+    std::optional<TypeId> res = instantiate2(
+        &arena, std::move(genericSubstitutions), std::move(genericPackSubstitutions), NotNull{&subtyping}, NotNull{rootScope.get()}, idTy
+    );
+
+    // Substitutions should not mutate the original type!
+    CHECK("<T>(T) -> T" == toString(idTy));
+
+    REQUIRE(res);
+    CHECK("<T>(T) -> T" == toString(*res));
 }
 
 TEST_SUITE_END();

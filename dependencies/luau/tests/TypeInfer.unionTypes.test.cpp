@@ -8,6 +8,8 @@
 
 using namespace Luau;
 
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(LuauMorePreciseErrorSuppression)
 LUAU_FASTFLAG(LuauSolverV2)
 
 TEST_SUITE_BEGIN("UnionTypes");
@@ -537,15 +539,31 @@ end
 
     if (FFlag::LuauSolverV2)
     {
-
-        CHECK_EQ(
-            toString(result.errors[0]),
-            "Type 'X | Y | Z' could not be converted into '{ w: number }'; \n"
-            "this is because \n\t"
-            " * the 1st component of the union is `X`, which is not a subtype of `{ w: number }`\n\t"
-            " * the 2nd component of the union is `Y`, which is not a subtype of `{ w: number }`\n\t"
-            " * the 3rd component of the union is `Z`, which is not a subtype of `{ w: number }`"
-        );
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK_EQ(
+                toString(result.errors[0]),
+                "Expected this to be '{ w: number }', but got 'X | Y | Z'; \n"
+                "this is because \n\t"
+                " * the 1st component of the union is `X`, which is not a subtype of `{ w: number }`\n\t"
+                " * the 2nd component of the union is `Y`, which is not a subtype of `{ w: number }`\n\t"
+                " * the 3rd component of the union is `Z`, which is not a subtype of `{ w: number }`"
+            );
+        else
+            CHECK_EQ(
+                toString(result.errors[0]),
+                "Type 'X | Y | Z' could not be converted into '{ w: number }'; \n"
+                "this is because \n\t"
+                " * the 1st component of the union is `X`, which is not a subtype of `{ w: number }`\n\t"
+                " * the 2nd component of the union is `Y`, which is not a subtype of `{ w: number }`\n\t"
+                " * the 3rd component of the union is `Z`, which is not a subtype of `{ w: number }`"
+            );
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        CHECK_EQ(toString(result.errors[0]), R"(Expected this to be '{ w: number }', but got 'X | Y | Z'
+caused by:
+  Not all union options are compatible.
+Table type 'X' not compatible with type '{ w: number }' because the former is missing field 'w')");
     }
     else
     {
@@ -569,8 +587,27 @@ TEST_CASE_FIXTURE(Fixture, "error_detailed_union_all")
     )");
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
-    if (FFlag::LuauSolverV2)
-        CHECK(toString(result.errors[0]) == "Type '{ w: number }' could not be converted into 'X | Y | Z'");
+    if (FFlag::LuauSolverV2 && FFlag::LuauMorePreciseErrorSuppression)
+    {
+        // clang-format off
+        const std::string expected =
+            "Expected this to be 'X | Y | Z', but got '{ w: number }'; \n"
+            "this is because \n"
+            "\t * the 1st component of the union is `X`, and `{ w: number }` is not a subtype of `X`\n"
+            "\t * the 2nd component of the union is `Y`, and `{ w: number }` is not a subtype of `Y`\n"
+            "\t * the 3rd component of the union is `Z`, and `{ w: number }` is not a subtype of `Z`\n";
+        // clang-format on
+        CHECK_LONG_STRINGS_EQ(expected, toString(result.errors[0]));
+    }
+    else if (FFlag::LuauSolverV2)
+    {
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK(toString(result.errors[0]) == "Expected this to be 'X | Y | Z', but got '{ w: number }'");
+        else
+            CHECK(toString(result.errors[0]) == "Type '{ w: number }' could not be converted into 'X | Y | Z'");
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ(toString(result.errors[0]), R"(Expected this to be 'X | Y | Z', but got 'a'; none of the union options are compatible)");
     else
         CHECK_EQ(toString(result.errors[0]), R"(Type 'a' could not be converted into 'X | Y | Z'; none of the union options are compatible)");
 }
@@ -586,6 +623,14 @@ local a: X? = { w = 4 }
     LUAU_REQUIRE_ERROR_COUNT(1, result);
     if (FFlag::LuauSolverV2)
         CHECK("Table type '{ w: number }' not compatible with type 'X' because the former is missing field 'x'" == toString(result.errors[0]));
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        const std::string expected = R"(Expected this to be 'X?', but got 'a'
+caused by:
+  None of the union options are compatible. For example:
+Table type 'a' not compatible with type 'X' because the former is missing field 'x')";
+        CHECK_EQ(expected, toString(result.errors[0]));
+    }
     else
     {
         const std::string expected = R"(Type 'a' could not be converted into 'X?'
@@ -673,10 +718,16 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "table_union_write_indirect")
     LUAU_REQUIRE_ERROR_COUNT(1, result);
     // NOTE: union normalization will improve this message
 
-    const std::string expected = "Type\n\t"
-                                 "'(string) -> number'"
-                                 "\ncould not be converted into\n\t"
-                                 "'((number) -> string) | ((number) -> string)'; none of the union options are compatible";
+    const std::string expected = FFlag::LuauBetterTypeMismatchErrors
+                                     ? "Expected this to be\n\t"
+                                       "'((number) -> string) | ((number) -> string)'"
+                                       "\nbut got\n\t"
+                                       "'(string) -> number'"
+                                       "; none of the union options are compatible"
+                                     : "Type\n\t"
+                                       "'(string) -> number'"
+                                       "\ncould not be converted into\n\t"
+                                       "'((number) -> string) | ((number) -> string)'; none of the union options are compatible";
     CHECK_EQ(expected, toString(result.errors[0]));
 }
 
@@ -743,10 +794,17 @@ TEST_CASE_FIXTURE(Fixture, "union_of_functions_mentioning_generics")
     )");
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
-    CHECK_EQ(
-        toString(result.errors[0]),
-        "Type '(a) -> a?' could not be converted into '((b) -> b) | ((b?) -> nil)'; none of the union options are compatible"
-    );
+
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ(
+            toString(result.errors[0]),
+            "Expected this to be '((b) -> b) | ((b?) -> nil)', but got '(a) -> a?'; none of the union options are compatible"
+        );
+    else
+        CHECK_EQ(
+            toString(result.errors[0]),
+            "Type '(a) -> a?' could not be converted into '((b) -> b) | ((b?) -> nil)'; none of the union options are compatible"
+        );
 }
 
 TEST_CASE_FIXTURE(Fixture, "union_of_functions_mentioning_generic_typepacks")
@@ -764,10 +822,16 @@ TEST_CASE_FIXTURE(Fixture, "union_of_functions_mentioning_generic_typepacks")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    const std::string expected = "Type\n\t"
-                                 "'(number, a...) -> (number?, a...)'"
-                                 "\ncould not be converted into\n\t"
-                                 "'((number) -> number) | ((number?, a...) -> (number?, a...))'; none of the union options are compatible";
+    const std::string expected = FFlag::LuauBetterTypeMismatchErrors
+                                     ? "Expected this to be\n\t"
+                                       "'((number) -> number) | ((number?, a...) -> (number?, a...))'"
+                                       "\nbut got\n\t"
+                                       "'(number, a...) -> (number?, a...)'"
+                                       "; none of the union options are compatible"
+                                     : "Type\n\t"
+                                       "'(number, a...) -> (number?, a...)'"
+                                       "\ncould not be converted into\n\t"
+                                       "'((number) -> number) | ((number?, a...) -> (number?, a...))'; none of the union options are compatible";
     CHECK_EQ(expected, toString(result.errors[0]));
 }
 
@@ -784,10 +848,16 @@ TEST_CASE_FIXTURE(Fixture, "union_of_functions_with_mismatching_arg_arities")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    const std::string expected = "Type\n\t"
-                                 "'(number) -> number?'"
-                                 "\ncould not be converted into\n\t"
-                                 "'((number) -> nil) | ((number, string?) -> number)'; none of the union options are compatible";
+    const std::string expected = FFlag::LuauBetterTypeMismatchErrors
+                                     ? "Expected this to be\n\t"
+                                       "'((number) -> nil) | ((number, string?) -> number)'"
+                                       "\nbut got\n\t"
+                                       "'(number) -> number?'"
+                                       "; none of the union options are compatible"
+                                     : "Type\n\t"
+                                       "'(number) -> number?'"
+                                       "\ncould not be converted into\n\t"
+                                       "'((number) -> nil) | ((number, string?) -> number)'; none of the union options are compatible";
     CHECK_EQ(expected, toString(result.errors[0]));
 }
 
@@ -804,10 +874,16 @@ TEST_CASE_FIXTURE(Fixture, "union_of_functions_with_mismatching_result_arities")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    const std::string expected = "Type\n\t"
-                                 "'() -> number | string'"
-                                 "\ncould not be converted into\n\t"
-                                 "'(() -> (string, string)) | (() -> number)'; none of the union options are compatible";
+    const std::string expected = FFlag::LuauBetterTypeMismatchErrors
+                                     ? "Expected this to be\n\t"
+                                       "'(() -> (string, string)) | (() -> number)'"
+                                       "\nbut got\n\t"
+                                       "'() -> number | string'"
+                                       "; none of the union options are compatible"
+                                     : "Type\n\t"
+                                       "'() -> number | string'"
+                                       "\ncould not be converted into\n\t"
+                                       "'(() -> (string, string)) | (() -> number)'; none of the union options are compatible";
     CHECK_EQ(expected, toString(result.errors[0]));
 }
 
@@ -824,10 +900,16 @@ TEST_CASE_FIXTURE(Fixture, "union_of_functions_with_variadics")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    const std::string expected = "Type\n\t"
-                                 "'(...nil) -> (...number?)'"
-                                 "\ncould not be converted into\n\t"
-                                 "'((...string?) -> (...number)) | ((...string?) -> nil)'; none of the union options are compatible";
+    const std::string expected = FFlag::LuauBetterTypeMismatchErrors
+                                     ? "Expected this to be\n\t"
+                                       "'((...string?) -> (...number)) | ((...string?) -> nil)'"
+                                       "\nbut got\n\t"
+                                       "'(...nil) -> (...number?)'"
+                                       "; none of the union options are compatible"
+                                     : "Type\n\t"
+                                       "'(...nil) -> (...number?)'"
+                                       "\ncould not be converted into\n\t"
+                                       "'((...string?) -> (...number)) | ((...string?) -> nil)'; none of the union options are compatible";
     CHECK_EQ(expected, toString(result.errors[0]));
 }
 
@@ -841,13 +923,41 @@ TEST_CASE_FIXTURE(Fixture, "union_of_functions_with_mismatching_arg_variadics")
      )");
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
-    if (FFlag::LuauSolverV2)
+    if (FFlag::LuauSolverV2 && FFlag::LuauMorePreciseErrorSuppression)
     {
-        const std::string expected = "Type\n\t"
-                                     "'(number) -> ()'"
-                                     "\ncould not be converted into\n\t"
-                                     "'((...number?) -> ()) | ((number?) -> ())'";
+        // clang-format off
+        const std::string expected =
+            "Expected this to be\n"
+            "\t'((...number?) -> ()) | ((number?) -> ())'\n"
+            "but got\n"
+            "\t'(number) -> ()'; \n"
+            "this is because \n"
+            "\t * it takes `number` and in the 2nd component of the union, the function takes a tail of `...number?`, and `number` is not a supertype of `...number?`\n"
+            "\t * it takes the 1st entry in the type pack is `number` and in the 1st component of the union, the function takes the 1st entry in the type pack which has the 2nd component of the union as `nil`, and `number` is not a supertype of `nil`"
+        ;
+        // clang-format on
+
+        CHECK_LONG_STRINGS_EQ(expected, toString(result.errors[0]));
+    }
+    else if (FFlag::LuauSolverV2)
+    {
+        const std::string expected = FFlag::LuauBetterTypeMismatchErrors ? "Expected this to be\n\t"
+                                                                           "'((...number?) -> ()) | ((number?) -> ())'"
+                                                                           "\nbut got\n\t"
+                                                                           "'(number) -> ()'"
+                                                                         : "Type\n\t"
+                                                                           "'(number) -> ()'"
+                                                                           "\ncould not be converted into\n\t"
+                                                                           "'((...number?) -> ()) | ((number?) -> ())'";
         CHECK(expected == toString(result.errors[0]));
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        const std::string expected = R"(Expected this to be
+	'((...number?) -> ()) | ((number?) -> ())'
+but got
+	'(number) -> ()'; none of the union options are compatible)";
+        CHECK_EQ(expected, toString(result.errors[0]));
     }
     else
     {
@@ -872,10 +982,16 @@ TEST_CASE_FIXTURE(Fixture, "union_of_functions_with_mismatching_result_variadics
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    const std::string expected = "Type\n\t"
-                                 "'() -> (number?, ...number)'"
-                                 "\ncould not be converted into\n\t"
-                                 "'(() -> (...number)) | (() -> number)'; none of the union options are compatible";
+    const std::string expected = FFlag::LuauBetterTypeMismatchErrors
+                                     ? "Expected this to be\n\t"
+                                       "'(() -> (...number)) | (() -> number)'"
+                                       "\nbut got\n\t"
+                                       "'() -> (number?, ...number)'"
+                                       "; none of the union options are compatible"
+                                     : "Type\n\t"
+                                       "'() -> (number?, ...number)'"
+                                       "\ncould not be converted into\n\t"
+                                       "'(() -> (...number)) | (() -> number)'; none of the union options are compatible";
     CHECK_EQ(expected, toString(result.errors[0]));
 }
 

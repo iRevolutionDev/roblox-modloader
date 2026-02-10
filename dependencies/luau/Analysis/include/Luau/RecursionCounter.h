@@ -37,4 +37,13 @@ struct RecursionLimiter : RecursionCounter
     RecursionLimiter(const std::string& system, int* count, int limit);
 };
 
+struct NonExceptionalRecursionLimiter : RecursionCounter
+{
+    NativeStackGuard nativeStackGuard;
+
+    bool isOk(int limit) const;
+
+    NonExceptionalRecursionLimiter(int* count);
+};
+
 } // namespace Luau

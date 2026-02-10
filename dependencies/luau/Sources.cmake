@@ -6,11 +6,14 @@ target_sources(Luau.Common PRIVATE
     Common/include/Luau/DenseHash.h
     Common/include/Luau/ExperimentalFlags.h
     Common/include/Luau/HashUtil.h
+    Common/include/Luau/SmallVector.h
     Common/include/Luau/StringUtils.h
+    Common/include/Luau/TimeTrace.h
     Common/include/Luau/Variant.h
     Common/include/Luau/VecDeque.h
 
     Common/src/StringUtils.cpp
+    Common/src/TimeTrace.cpp
 )
 
 # Luau.Ast Sources
@@ -25,7 +28,6 @@ target_sources(Luau.Ast PRIVATE
     Ast/include/Luau/Parser.h
     Ast/include/Luau/ParseResult.h
     Ast/include/Luau/PrettyPrinter.h
-    Ast/include/Luau/TimeTrace.h
 
     Ast/src/Allocator.cpp
     Ast/src/Ast.cpp
@@ -35,7 +37,6 @@ target_sources(Luau.Ast PRIVATE
     Ast/src/Location.cpp
     Ast/src/Parser.cpp
     Ast/src/PrettyPrinter.cpp
-    Ast/src/TimeTrace.cpp
 )
 
 # Luau.Compiler Sources
@@ -60,6 +61,7 @@ target_sources(Luau.Compiler PRIVATE
     Compiler/src/CostModel.h
     Compiler/src/TableShape.h
     Compiler/src/Types.h
+    Compiler/src/Utils.h
     Compiler/src/ValueTracking.h
 )
 
@@ -193,7 +195,6 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/include/Luau/Def.h
     Analysis/include/Luau/Documentation.h
     Analysis/include/Luau/Error.h
-    Analysis/include/Luau/EqSatSimplification.h
     Analysis/include/Luau/ExpectedTypeVisitor.h
     Analysis/include/Luau/FileResolver.h
     Analysis/include/Luau/FragmentAutocomplete.h
@@ -205,6 +206,7 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/include/Luau/Instantiation.h
     Analysis/include/Luau/Instantiation2.h
     Analysis/include/Luau/IostreamHelpers.h
+    Analysis/include/Luau/IterativeTypeVisitor.h
     Analysis/include/Luau/JsonEmitter.h
     Analysis/include/Luau/Linter.h
     Analysis/include/Luau/LValue.h
@@ -223,8 +225,10 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/include/Luau/Scope.h
     Analysis/include/Luau/Set.h
     Analysis/include/Luau/Simplify.h
+    Analysis/include/Luau/StructuralTypeEquality.h
     Analysis/include/Luau/Substitution.h
     Analysis/include/Luau/Subtyping.h
+    Analysis/include/Luau/SubtypingUnifier.h
     Analysis/include/Luau/SubtypingVariance.h
     Analysis/include/Luau/Symbol.h
     Analysis/include/Luau/TableLiteralInference.h
@@ -256,6 +260,8 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/include/Luau/UnifierSharedState.h
     Analysis/include/Luau/UserDefinedTypeFunction.h
     Analysis/include/Luau/VisitType.h
+    Analysis/include/Luau/IterativeTypeVisitor.h
+    Analysis/include/Luau/IterativeTypeFunctionTypeVisitor.h
 
     Analysis/src/Anyification.cpp
     Analysis/src/ApplyTypeFunction.cpp
@@ -275,7 +281,6 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/src/Def.cpp
     Analysis/src/EmbeddedBuiltinDefinitions.cpp
     Analysis/src/Error.cpp
-    Analysis/src/EqSatSimplification.cpp
     Analysis/src/ExpectedTypeVisitor.cpp
     Analysis/src/FileResolver.cpp
     Analysis/src/FragmentAutocomplete.cpp
@@ -287,6 +292,8 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/src/Instantiation.cpp
     Analysis/src/Instantiation2.cpp
     Analysis/src/IostreamHelpers.cpp
+    Analysis/src/IterativeTypeVisitor.cpp
+    Analysis/src/IterativeTypeFunctionTypeVisitor.cpp
     Analysis/src/JsonEmitter.cpp
     Analysis/src/Linter.cpp
     Analysis/src/LValue.cpp
@@ -300,8 +307,10 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/src/RequireTracer.cpp
     Analysis/src/Scope.cpp
     Analysis/src/Simplify.cpp
+    Analysis/src/StructuralTypeEquality.cpp
     Analysis/src/Substitution.cpp
     Analysis/src/Subtyping.cpp
+    Analysis/src/SubtypingUnifier.cpp
     Analysis/src/Symbol.cpp
     Analysis/src/TableLiteralInference.cpp
     Analysis/src/ToDot.cpp
@@ -327,19 +336,6 @@ target_sources(Luau.Analysis PRIVATE
     Analysis/src/Unifier.cpp
     Analysis/src/Unifier2.cpp
     Analysis/src/UserDefinedTypeFunction.cpp
-)
-
-# Luau.EqSat Sources
-target_sources(Luau.EqSat PRIVATE
-    EqSat/include/Luau/EGraph.h
-    EqSat/include/Luau/Id.h
-    EqSat/include/Luau/Language.h
-    EqSat/include/Luau/LanguageHash.h
-    EqSat/include/Luau/Slice.h
-    EqSat/include/Luau/UnionFind.h
-
-    EqSat/src/Id.cpp
-    EqSat/src/UnionFind.cpp
 )
 
 # Luau.VM Sources
@@ -473,10 +469,6 @@ if(TARGET Luau.UnitTest)
         tests/CostModel.test.cpp
         tests/DataFlowGraph.test.cpp
         tests/DenseHash.test.cpp
-        tests/EqSat.language.test.cpp
-        tests/EqSat.propositional.test.cpp
-        tests/EqSat.slice.test.cpp
-        tests/EqSatSimplification.test.cpp
         tests/Error.test.cpp
         tests/Fixture.cpp
         tests/Fixture.h
@@ -485,7 +477,6 @@ if(TARGET Luau.UnitTest)
         tests/Generalization.test.cpp
         tests/InferPolarity.test.cpp
         tests/InsertionOrderedMap.test.cpp
-        tests/Instantiation2.test.cpp
         tests/IostreamOptional.h
         tests/IrBuilder.test.cpp
         tests/IrCallWrapperX64.test.cpp
@@ -525,6 +516,7 @@ if(TARGET Luau.UnitTest)
         tests/TypeInfer.cfa.test.cpp
         tests/TypeInfer.classes.test.cpp
         tests/TypeInfer.definitions.test.cpp
+        tests/TypeInfer.typeInstantiations.test.cpp
         tests/TypeInfer.functions.test.cpp
         tests/TypeInfer.generics.test.cpp
         tests/TypeInfer.intersectionTypes.test.cpp
@@ -593,11 +585,13 @@ if(TARGET Luau.Require)
     Require/include/Luau/RequireNavigator.h
 
     # Internal headers
+    Require/src/AliasCycleTracker.h
     Require/src/Navigation.h
     Require/src/PathUtilities.h
     Require/src/RequireImpl.h
 
     # Source files
+    Require/src/AliasCycleTracker.cpp
     Require/src/Navigation.cpp
     Require/src/PathUtilities.cpp
     Require/src/Require.cpp

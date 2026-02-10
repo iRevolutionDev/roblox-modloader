@@ -15,9 +15,10 @@
 
 using namespace Luau;
 
+LUAU_FASTFLAG(LuauIndexInMetatableSubtyping)
+LUAU_FASTFLAG(LuauPushTypeConstraintLambdas3)
 LUAU_FASTFLAG(LuauSolverV2)
 LUAU_FASTFLAG(LuauTrackFreeInteriorTypePacks)
-LUAU_FASTFLAG(LuauIndexInMetatableSubtyping)
 
 TEST_SUITE_BEGIN("TypeInferOOP");
 
@@ -26,7 +27,16 @@ TEST_CASE_FIXTURE(Fixture, "dont_suggest_using_colon_rather_than_dot_if_not_defi
     CheckResult result = check(R"(
         local someTable = {}
 
+        local function abs(x: number)
+            if x < 0 then
+                return -x
+            else
+                return x
+            end
+        end
+
         someTable.Function1 = function(Arg1)
+            abs(Arg1)
         end
 
         someTable.Function1() -- Argument count mismatch
@@ -41,7 +51,17 @@ TEST_CASE_FIXTURE(Fixture, "dont_suggest_using_colon_rather_than_dot_if_it_wont_
     CheckResult result = check(R"(
         local someTable = {}
 
+        local function abs(x: number)
+            if x < 0 then
+                return -x
+            else
+                return x
+            end
+        end
+
         someTable.Function2 = function(Arg1, Arg2)
+            abs(Arg1)
+            abs(Arg2)
         end
 
         someTable.Function2() -- Argument count mismatch
@@ -147,6 +167,39 @@ TEST_CASE_FIXTURE(Fixture, "inferring_hundreds_of_self_calls_should_not_suffocat
         CHECK_GE(80, module->internalTypes.types.size());
     else
         CHECK_GE(50, module->internalTypes.types.size());
+}
+
+TEST_CASE_FIXTURE(Fixture, "pass_too_many_arguments")
+{
+    ScopedFastFlag sff[] = {
+        {FFlag::LuauSolverV2, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
+    };
+
+    CheckResult result = check(R"(
+        type T = {
+            method: (T, number) -> number
+        }
+
+        function makeT(): T
+            return {
+                method=function(self, number)
+                    return number * 2
+                end
+            }
+        end
+
+        local a = makeT()
+        a:method(5, 7)
+    )");
+
+    LUAU_CHECK_ERROR_COUNT(1, result);
+
+    const CountMismatch* countMismatch = get<CountMismatch>(result.errors.at(0));
+    REQUIRE_MESSAGE(countMismatch, "Expected CountMismatch but got " << result.errors.at(0));
+
+    CHECK(countMismatch->expected == 2);
+    CHECK(countMismatch->actual == 3);
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "object_constructor_can_refer_to_method_of_self")
@@ -744,7 +797,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "metatable_field_precedence_for_subtyping")
     auto err = get<TypeMismatch>(results.errors[0]);
     REQUIRE(err);
     CHECK_EQ("{ read foo: string }", toString(err->wantedType, {/* exhaustive */ true}));
-    CHECK_EQ("{ @metatable { __index: { bar: boolean, foo: string } }, { foo: number } }", toString(err->givenType, { /* exhaustive */ true}));
+    CHECK_EQ("{ @metatable { __index: { bar: boolean, foo: string } }, { foo: number } }", toString(err->givenType, {/* exhaustive */ true}));
 }
 
 TEST_SUITE_END();

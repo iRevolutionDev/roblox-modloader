@@ -23,16 +23,12 @@ LUAU_FASTFLAG(LuauInstantiateInSubtyping)
 LUAU_FASTFLAG(LuauFixIndexerSubtypingOrdering)
 LUAU_FASTFLAG(DebugLuauAssertOnForcedConstraint)
 LUAU_FASTINT(LuauPrimitiveInferenceInTableLimit)
-LUAU_FASTFLAG(LuauNoScopeShallNotSubsumeAll)
-LUAU_FASTFLAG(LuauExtendSealedTableUpperBounds)
-LUAU_FASTFLAG(LuauSubtypingReportGenericBoundMismatches2)
-LUAU_FASTFLAG(LuauPushTypeConstraint2)
-LUAU_FASTFLAG(LuauCacheDuplicateHasPropConstraints)
-LUAU_FASTFLAG(LuauPushTypeConstraintIntersection)
-LUAU_FASTFLAG(LuauPushTypeConstraintSingleton)
-LUAU_FASTFLAG(LuauPushTypeConstraintLambdas)
-LUAU_FASTFLAG(LuauGetmetatableError)
-LUAU_FASTFLAG(LuauSuppressIndexingIntoError)
+LUAU_FASTFLAG(LuauPushTypeConstraintLambdas3)
+LUAU_FASTFLAG(LuauMarkUnscopedGenericsAsSolved)
+LUAU_FASTFLAG(LuauUseFastSubtypeForIndexerWithName)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(LuauFixIndexingUnionWithNonTable)
+LUAU_FASTFLAG(LuauSubtypingMissingPropertiesAsNil)
 
 TEST_SUITE_BEGIN("TableTests");
 
@@ -321,7 +317,7 @@ TEST_CASE_FIXTURE(Fixture, "call_method")
     )");
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    CHECK_EQ(*getBuiltins()->numberType, *requireType("a"));
+    CHECK("number" == toString(requireType("a")));
 }
 
 TEST_CASE_FIXTURE(Fixture, "call_method_with_explicit_self_argument")
@@ -522,27 +518,43 @@ TEST_CASE_FIXTURE(Fixture, "table_param_width_subtyping_3")
         T:method()
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(1, result);
-
-    CHECK(result.errors[0].location == Location{Position{6, 8}, Position{6, 9}});
-
-    if (FFlag::LuauSolverV2)
-        CHECK(toString(result.errors[0]) == "Type 'T' could not be converted into '{ read baz: unknown }'");
+    if (FFlag::LuauSolverV2 && FFlag::LuauSubtypingMissingPropertiesAsNil)
+    {
+        // This does not error because `baz` in the method is being inferred as having the type `unknown`, which is an optional type.
+        // Specifically, `T` has the type `{ bar: string, method: ... }` and `method` has the type `function({ read baz: unknown }) -> ()`.
+        // In this case, `T` functions as a valid argument type for `method` because it will always read `baz` as `nil` which is a subtype of
+        // `unknown.` This is safe because in order to do anything with that value, the function body _must_ do some kind of conditional testing.
+        LUAU_REQUIRE_NO_ERRORS(result);
+    }
     else
     {
-        TypeError& err = result.errors[0];
-        MissingProperties* error = get<MissingProperties>(err);
-        REQUIRE_MESSAGE(error != nullptr, "Expected MissingProperties but got " << toString(err));
-        REQUIRE(error->properties.size() == 1);
+        LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-        CHECK_EQ("baz", error->properties[0]);
+        CHECK(result.errors[0].location == Location{Position{6, 8}, Position{6, 9}});
+        if (FFlag::LuauSolverV2)
+        {
 
-        // TODO(rblanckaert): Revist when we can bind self at function creation time
-        /*
-        CHECK_EQ(err->location,
-            (Location{ Position{4, 22}, Position{4, 30} })
-        );
-        */
+            if (FFlag::LuauBetterTypeMismatchErrors)
+                CHECK(toString(result.errors[0]) == "Expected this to be '{ read baz: unknown }', but got 'T'");
+            else
+                CHECK(toString(result.errors[0]) == "Type 'T' could not be converted into '{ read baz: unknown }'");
+        }
+        else
+        {
+            TypeError& err = result.errors[0];
+            MissingProperties* error = get<MissingProperties>(err);
+            REQUIRE_MESSAGE(error != nullptr, "Expected MissingProperties but got " << toString(err));
+            REQUIRE(error->properties.size() == 1);
+
+            CHECK_EQ("baz", error->properties[0]);
+
+            // TODO(rblanckaert): Revist when we can bind self at function creation time
+            /*
+              CHECK_EQ(err->location,
+              (Location{ Position{4, 22}, Position{4, 30} })
+              );
+            */
+        }
     }
 }
 
@@ -656,8 +668,8 @@ TEST_CASE_FIXTURE(Fixture, "infer_array")
 
     REQUIRE(bool(ttv->indexer));
 
-    CHECK_EQ(*ttv->indexer->indexType, *getBuiltins()->numberType);
-    CHECK_EQ(*ttv->indexer->indexResultType, *getBuiltins()->stringType);
+    CHECK("number" == toString(ttv->indexer->indexType));
+    CHECK("string" == toString(ttv->indexer->indexResultType));
 }
 
 /* This is a bit weird.
@@ -754,7 +766,7 @@ TEST_CASE_FIXTURE(Fixture, "indexers_quantification_2")
 
     CHECK_EQ(argType->state, retType->state);
 
-    REQUIRE_EQ(*argVec[0], *retVec[0]);
+    CHECK(argVec[0] == retVec[0]);
 }
 
 TEST_CASE_FIXTURE(Fixture, "infer_indexer_from_array_like_table")
@@ -771,8 +783,8 @@ TEST_CASE_FIXTURE(Fixture, "infer_indexer_from_array_like_table")
     REQUIRE(bool(ttv->indexer));
     const TableIndexer& indexer = *ttv->indexer;
 
-    CHECK_EQ(*getBuiltins()->numberType, *indexer.indexType);
-    CHECK_EQ(*getBuiltins()->stringType, *indexer.indexResultType);
+    CHECK("number" == toString(indexer.indexType));
+    CHECK("string" == toString(indexer.indexResultType));
 }
 
 TEST_CASE_FIXTURE(Fixture, "infer_indexer_from_value_property_in_literal")
@@ -830,8 +842,8 @@ TEST_CASE_FIXTURE(Fixture, "infer_indexer_from_its_variable_type_and_unifiable")
     REQUIRE_MESSAGE(tTy != nullptr, "Expected a table but got " << toString(t2Ty));
 
     REQUIRE(tTy->indexer);
-    CHECK_EQ(*getBuiltins()->numberType, *tTy->indexer->indexType);
-    CHECK_EQ(*getBuiltins()->stringType, *tTy->indexer->indexResultType);
+    CHECK("number" == toString(tTy->indexer->indexType));
+    CHECK("string" == toString(tTy->indexer->indexResultType));
 }
 
 TEST_CASE_FIXTURE(Fixture, "indexer_mismatch")
@@ -853,7 +865,7 @@ TEST_CASE_FIXTURE(Fixture, "indexer_mismatch")
     CHECK(toString(tm->wantedType) == "{number}");
     CHECK(toString(tm->givenType) == "{ [string]: string }");
 
-    CHECK_NE(*t1, *t2);
+    CHECK(toString(t1) != toString(t2));
 }
 
 TEST_CASE_FIXTURE(Fixture, "infer_indexer_from_its_function_return_type")
@@ -912,9 +924,13 @@ TEST_CASE_FIXTURE(Fixture, "sealed_table_indexers_must_unify")
 
     if (FFlag::LuauSolverV2)
     {
-        std::string expected = "Type '{number}' could not be converted into '{string}'; \n"
-                               "this is because the result of indexing is `number` in the former type and `string` in the latter type, "
-                               "and `number` is not exactly `string`";
+        std::string expected = FFlag::LuauBetterTypeMismatchErrors
+                                   ? "Expected this to be '{string}', but got '{number}'; \n"
+                                     "the result of indexing is `number` in the latter type and `string` in the former type, "
+                                     "and `number` is not exactly `string`"
+                                   : "Type '{number}' could not be converted into '{string}'; \n"
+                                     "this is because the result of indexing is `number` in the former type and `string` in the latter type, "
+                                     "and `number` is not exactly `string`";
         auto actual = toString(result.errors[0]);
         CHECK_EQ(expected, actual);
     }
@@ -951,7 +967,7 @@ TEST_CASE_FIXTURE(Fixture, "infer_type_when_indexing_from_a_table_indexer")
 
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    CHECK_EQ(*getBuiltins()->stringType, *requireType("s"));
+    CHECK("string" == toString(requireType("s")));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "indexing_from_a_table_should_prefer_properties_when_possible")
@@ -977,13 +993,13 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "indexing_from_a_table_should_prefer_properti
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    CHECK_EQ(*getBuiltins()->stringType, *requireType("a1"));
-    CHECK_EQ(*getBuiltins()->stringType, *requireType("a2"));
+    CHECK("string" == toString(requireType("a1")));
+    CHECK("string" == toString(requireType("a2")));
 
-    CHECK_EQ(*getBuiltins()->numberType, *requireType("b1"));
-    CHECK_EQ(*getBuiltins()->numberType, *requireType("b2"));
+    CHECK("number" == toString(requireType("b1")));
+    CHECK("number" == toString(requireType("b2")));
 
-    CHECK_EQ(*getBuiltins()->numberType, *requireType("c"));
+    CHECK("number" == toString(requireType("c")));
 
     CHECK_MESSAGE(nullptr != get<TypeMismatch>(result.errors[0]), "Expected a TypeMismatch but got " << result.errors[0]);
 }
@@ -1058,7 +1074,7 @@ TEST_CASE_FIXTURE(Fixture, "assigning_to_an_unsealed_table_with_string_literal_s
     REQUIRE(a.readTy);
     TypeId propertyA = *a.readTy;
     REQUIRE(propertyA != nullptr);
-    CHECK_EQ(*getBuiltins()->stringType, *propertyA);
+    CHECK("string" == toString(propertyA));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "oop_indexer_works")
@@ -1081,7 +1097,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "oop_indexer_works")
 
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    CHECK_EQ(*getBuiltins()->stringType, *requireType("words"));
+    CHECK("string" == toString(requireType("words")));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "indexer_table")
@@ -1094,7 +1110,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "indexer_table")
 
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    CHECK_EQ(*getBuiltins()->stringType, *requireType("b"));
+    CHECK("string" == toString(requireType("b")));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "indexer_fn")
@@ -1105,7 +1121,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "indexer_fn")
     )");
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    CHECK_EQ(*getBuiltins()->numberType, *requireType("b"));
+    CHECK("number" == toString(requireType("b")));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "meta_add")
@@ -1139,7 +1155,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "meta_add_inferred")
 
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    CHECK_EQ(*requireType("a"), *requireType("c"));
+    CHECK(follow(requireType("a")) == follow(requireType("c")));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "meta_add_both_ways")
@@ -1156,8 +1172,8 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "meta_add_both_ways")
     LUAU_REQUIRE_NO_ERRORS(result);
 
     CHECK_EQ("Vector", toString(requireType("a")));
-    CHECK_EQ(*requireType("a"), *requireType("b"));
-    CHECK_EQ(*requireType("a"), *requireType("c"));
+    CHECK(follow(requireType("a")) == follow(requireType("b")));
+    CHECK(follow(requireType("a")) == follow(requireType("c")));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "meta_add_both_ways_lti")
@@ -1180,8 +1196,8 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "meta_add_both_ways_lti")
     LUAU_REQUIRE_NO_ERRORS(result);
 
     CHECK_EQ("Vector", toString(requireType("a")));
-    CHECK_EQ(*requireType("a"), *requireType("b"));
-    CHECK_EQ(*requireType("a"), *requireType("c"));
+    CHECK(follow(requireType("a")) == follow(requireType("b")));
+    CHECK(follow(requireType("a")) == follow(requireType("c")));
 }
 
 // This test exposed a bug where we let go of the "seen" stack while unifying table types
@@ -1247,10 +1263,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "oop_polymorphic")
 
     LUAU_REQUIRE_NO_ERRORS(result);
 
-    CHECK_EQ(*getBuiltins()->booleanType, *requireType("alive"));
-    CHECK_EQ(*getBuiltins()->stringType, *requireType("movement"));
-    CHECK_EQ(*getBuiltins()->stringType, *requireType("name"));
-    CHECK_EQ(*getBuiltins()->numberType, *requireType("speed"));
+    CHECK("boolean" == toString(requireType("alive")));
+    CHECK("string" == toString(requireType("movement")));
+    CHECK("string" == toString(requireType("name")));
+    CHECK("number" == toString(requireType("speed")));
 }
 
 TEST_CASE_FIXTURE(Fixture, "user_defined_table_types_are_named")
@@ -1405,6 +1421,8 @@ TEST_CASE_FIXTURE(Fixture, "defining_a_self_method_for_a_local_unsealed_table_is
 // This unit test could be flaky if the fix has regressed.
 TEST_CASE_FIXTURE(Fixture, "pass_incompatible_union_to_a_generic_table_without_crashing")
 {
+    ScopedFastFlag sff{FFlag::LuauSolverV2, false};
+
     CheckResult result = check(R"(
         -- must be in this specific order, and with (roughly) those exact properties!
         type A = {x: number, [any]: any} | {}
@@ -1456,7 +1474,7 @@ TEST_CASE_FIXTURE(Fixture, "found_like_key_in_table_function_call")
     REQUIRE(error);
 
     TypeId t = requireType("t");
-    CHECK_EQ(*t, *error->table);
+    CHECK(toString(t) == toString(error->table));
     CHECK_EQ("fOo", error->key);
 
     auto candidates = error->candidates;
@@ -1481,7 +1499,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "found_like_key_in_table_property_access")
     REQUIRE(error);
 
     TypeId t = requireType("t");
-    CHECK_EQ(*t, *error->table);
+    CHECK(toString(t) == toString(error->table));
     CHECK_EQ("x", error->key);
 
     auto candidates = error->candidates;
@@ -1506,7 +1524,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "found_multiple_like_keys")
     REQUIRE(error);
 
     TypeId t = requireType("t");
-    CHECK_EQ(*t, *error->table);
+    CHECK(toString(t) == toString(error->table));
     CHECK_EQ("foo", error->key);
 
     auto candidates = error->candidates;
@@ -1536,7 +1554,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "dont_suggest_exact_match_keys")
     REQUIRE(error);
 
     TypeId t = requireType("t");
-    CHECK_EQ(*t, *error->table);
+    CHECK(follow(t) == follow(error->table));
     CHECK_EQ("Foo", error->key);
 
     auto candidates = error->candidates;
@@ -1557,7 +1575,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "getmetatable_returns_pointer_to_metatable")
         local returnedMT = getmetatable(t)
     )");
 
-    CHECK_EQ(*requireType("mt"), *requireType("returnedMT"));
+    CHECK(follow(requireType("mt")) == follow(requireType("returnedMT")));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "metatable_mismatch_should_fail")
@@ -1581,8 +1599,8 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "metatable_mismatch_should_fail")
 
     TypeMismatch* tm = get<TypeMismatch>(result.errors[0]);
     REQUIRE(tm);
-    CHECK_EQ(*tm->wantedType, *requireType("t1"));
-    CHECK_EQ(*tm->givenType, *requireType("t2"));
+    CHECK(tm->wantedType == requireType("t1"));
+    CHECK(tm->givenType == requireType("t2"));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "property_lookup_through_tabletypevar_metatable")
@@ -1623,7 +1641,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "missing_metatable_for_sealed_tables_do_not_g
 
     TypeId a = requireType("a");
     TypeId t = requireType("t");
-    CHECK_NE(*a, *t);
+    CHECK(toString(a) != toString(t));
 
     TypeError te = result.errors[0];
     TypeMismatch* tm = get<TypeMismatch>(te);
@@ -1788,10 +1806,14 @@ TEST_CASE_FIXTURE(Fixture, "table_subtyping_with_missing_props_dont_report_multi
 
     if (FFlag::LuauSolverV2)
     {
-        std::string expected = "Type\n\t"
-                               "'{ x: number }'\n"
-                               "could not be converted into\n\t"
-                               "'{ x: number, y: number, z: number }'";
+        std::string expected = FFlag::LuauBetterTypeMismatchErrors ? "Expected this to be\n\t"
+                                                                     "'{ x: number, y: number, z: number }'"
+                                                                     "\nbut got\n\t"
+                                                                     "'{ x: number }'"
+                                                                   : "Type\n\t"
+                                                                     "'{ x: number }'\n"
+                                                                     "could not be converted into\n\t"
+                                                                     "'{ x: number, y: number, z: number }'";
         CHECK_EQ(expected, toString(result.errors[0]));
     }
     else
@@ -1884,10 +1906,16 @@ TEST_CASE_FIXTURE(Fixture, "type_mismatch_on_massive_table_is_cut_short")
     CHECK("{ a: number, b: number, c: number, d: number, e: number, ... 1 more ... }" == toString(requireType("t")));
     CHECK_EQ("number", toString(tm->givenType));
 
-    CHECK_EQ(
-        "Type 'number' could not be converted into '{ a: number, b: number, c: number, d: number, e: number, ... 1 more ... }'",
-        toString(result.errors[0])
-    );
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ(
+            "Expected this to be '{ a: number, b: number, c: number, d: number, e: number, ... 1 more ... }', but got 'number'",
+            toString(result.errors[0])
+        );
+    else
+        CHECK_EQ(
+            "Type 'number' could not be converted into '{ a: number, b: number, c: number, d: number, e: number, ... 1 more ... }'",
+            toString(result.errors[0])
+        );
 }
 
 TEST_CASE_FIXTURE(Fixture, "ok_to_set_nil_even_on_non_lvalue_base_expr")
@@ -1921,7 +1949,10 @@ TEST_CASE_FIXTURE(Fixture, "ok_to_set_nil_even_on_non_lvalue_base_expr")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
     CHECK_EQ(Location{{2, 27}, {2, 30}}, result.errors[0].location);
-    CHECK_EQ("Type 'nil' could not be converted into 'boolean'", toString(result.errors[0]));
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ("Expected this to be 'boolean', but got 'nil'", toString(result.errors[0]));
+    else
+        CHECK_EQ("Type 'nil' could not be converted into 'boolean'", toString(result.errors[0]));
 
     loadDefinition(R"(
         declare class FancyHashtable
@@ -1946,7 +1977,10 @@ TEST_CASE_FIXTURE(Fixture, "ok_to_set_nil_even_on_non_lvalue_base_expr")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
     CHECK_EQ(result.errors[0].location, Location{{2, 31}, {2, 34}});
-    CHECK_EQ(toString(result.errors[0]), "Type 'nil' could not be converted into 'string'");
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ("Expected this to be 'string', but got 'nil'", toString(result.errors[0]));
+    else
+        CHECK_EQ(toString(result.errors[0]), "Type 'nil' could not be converted into 'string'");
 }
 
 TEST_CASE_FIXTURE(Fixture, "ok_to_set_nil_on_generic_map")
@@ -2312,10 +2346,7 @@ TEST_CASE_FIXTURE(Fixture, "invariant_table_properties_means_instantiating_table
 {
     // Old Solver Bug: We have to turn off InstantiateInSubtyping in the old solver as we don't invariantly
     // compare functions inside of table properties
-    ScopedFastFlag sff[] = {
-        {FFlag::LuauSubtypingReportGenericBoundMismatches2, true},
-        {FFlag::LuauInstantiateInSubtyping, FFlag::LuauSolverV2},
-    };
+    ScopedFastFlag sff{FFlag::LuauInstantiateInSubtyping, FFlag::LuauSolverV2};
 
     CheckResult result = check(R"(
         --!strict
@@ -2353,9 +2384,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "table_insert_should_cope_with_optional_prope
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "table_insert_should_cope_with_optional_properties_in_strict")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true}, {FFlag::LuauNoScopeShallNotSubsumeAll, true}, {FFlag::LuauSubtypingReportGenericBoundMismatches2, true}
-    };
+    ScopedFastFlag sffs[] = {{FFlag::LuauSolverV2, true}};
 
     CheckResult result = check(R"(
         --!strict
@@ -2384,11 +2413,26 @@ local b: B = a
 
     if (FFlag::LuauSolverV2)
     {
-        CHECK(
-            "Type 'A' could not be converted into 'B'; \n"
-            "this is because accessing `y` results in `number` in the former type and `string` in the latter type, and `number` is not exactly "
-            "`string`" == toString(result.errors.at(0))
-        );
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK(
+                "Expected this to be 'B', but got 'A'; \n"
+                "accessing `y` results in `number` in the latter type and `string` in the former type, and `number` is not exactly "
+                "`string`" == toString(result.errors.at(0))
+            );
+        else
+            CHECK(
+                "Type 'A' could not be converted into 'B'; \n"
+                "this is because accessing `y` results in `number` in the former type and `string` in the latter type, and `number` is not exactly "
+                "`string`" == toString(result.errors.at(0))
+            );
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        const std::string expected = R"(Expected this to be exactly 'B', but got 'A'
+caused by:
+  Property 'y' is not compatible.
+Expected this to be exactly 'string', but got 'number')";
+        CHECK_EQ(expected, toString(result.errors[0]));
     }
     else
     {
@@ -2417,11 +2461,29 @@ local b: B = a
 
     if (FFlag::LuauSolverV2)
     {
-        CHECK(
-            "Type 'A' could not be converted into 'B'; \n"
-            "this is because accessing `b.y` results in `number` in the former type and `string` in the latter type, and `number` is not exactly "
-            "`string`" == toString(result.errors.at(0))
-        );
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK(
+                "Expected this to be 'B', but got 'A'; \n"
+                "accessing `b.y` results in `number` in the latter type and `string` in the former type, and `number` is not exactly "
+                "`string`" == toString(result.errors.at(0))
+            );
+        else
+            CHECK(
+                "Type 'A' could not be converted into 'B'; \n"
+                "this is because accessing `b.y` results in `number` in the former type and `string` in the latter type, and `number` is not exactly "
+                "`string`" == toString(result.errors.at(0))
+            );
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        const std::string expected = R"(Expected this to be exactly 'B', but got 'A'
+caused by:
+  Property 'b' is not compatible.
+Expected this to be exactly 'BS', but got 'AS'
+caused by:
+  Property 'y' is not compatible.
+Expected this to be exactly 'string', but got 'number')";
+        CHECK_EQ(expected, toString(result.errors[0]));
     }
     else
     {
@@ -2441,6 +2503,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "error_detailed_metatable_prop")
     ScopedFastFlag sff[] = {
         {FFlag::LuauInstantiateInSubtyping, true},
     };
+
     CheckResult result = check(R"(
 local a1 = setmetatable({ x = 2, y = 3 }, { __call = function(s) end });
 local b1 = setmetatable({ x = 2, y = "hello" }, { __call = function(s) end });
@@ -2451,8 +2514,16 @@ local b2 = setmetatable({ x = 2, y = 4 }, { __call = function(s, t) end });
 local c2: typeof(a2) = b2
     )");
 
-    const std::string expected1 =
-        R"(Type 'b1' could not be converted into 'a1'
+    const std::string expected1 = FFlag::LuauBetterTypeMismatchErrors ? R"(Expected this to be 'a1', but got 'b1'
+caused by:
+  Expected this to be exactly
+	'{| x: number, y: number |}'
+but got
+	'{| x: number, y: string |}'
+caused by:
+  Property 'y' is not compatible.
+Expected this to be exactly 'number', but got 'string')"
+                                                                      : R"(Type 'b1' could not be converted into 'a1'
 caused by:
   Type
 	'{| x: number, y: string |}'
@@ -2461,8 +2532,19 @@ could not be converted into
 caused by:
   Property 'y' is not compatible.
 Type 'string' could not be converted into 'number' in an invariant context)";
-    const std::string expected2 =
-        R"(Type 'b2' could not be converted into 'a2'
+    const std::string expected2 = FFlag::LuauBetterTypeMismatchErrors ? R"(Expected this to be 'a2', but got 'b2'
+caused by:
+  Expected this to be exactly
+	'{| __call: <a>(a) -> () |}'
+but got
+	'{| __call: <a, b>(a, b) -> () |}'
+caused by:
+  Property '__call' is not compatible.
+Expected this to be exactly
+	'<a>(a) -> ()'
+but got
+	'<a, b>(a, b) -> ()'; different number of generic type parameters)"
+                                                                      : R"(Type 'b2' could not be converted into 'a2'
 caused by:
   Type
 	'{| __call: <a, b>(a, b) -> () |}'
@@ -2485,50 +2567,34 @@ could not be converted into
         //
         // Second, nil <: unknown, so we consider that parameter to be optional.
         LUAU_REQUIRE_ERROR_COUNT(1, result);
-        CHECK(
-            "Type 'b1' could not be converted into 'a1'; \n"
-            "this is because in the table portion, accessing `y` results in `string` in the former type and `number` in the latter type, and "
-            "`string` is not exactly `number`" == toString(result.errors[0])
-        );
+        if (FFlag::LuauBetterTypeMismatchErrors)
+        {
+            CHECK(
+                "Expected this to be 'a1', but got 'b1'; \n"
+                "in the table portion, accessing `y` results in `string` in the latter type and `number` in the former type, and "
+                "`string` is not exactly `number`" == toString(result.errors[0])
+            );
+        }
+        else
+        {
+            CHECK(
+                "Type 'b1' could not be converted into 'a1'; \n"
+                "this is because in the table portion, accessing `y` results in `string` in the former type and `number` in the latter type, and "
+                "`string` is not exactly `number`" == toString(result.errors[0])
+            );
+        }
     }
     else if (FFlag::LuauInstantiateInSubtyping)
     {
         LUAU_REQUIRE_ERROR_COUNT(2, result);
         CHECK_EQ(expected1, toString(result.errors[0]));
-
-        const std::string expected3 = R"(Type 'b2' could not be converted into 'a2'
-caused by:
-  Type
-	'{| __call: <a, b>(a, b) -> () |}'
-could not be converted into
-	'{| __call: <a>(a) -> () |}'
-caused by:
-  Property '__call' is not compatible.
-Type
-	'<a, b>(a, b) -> ()'
-could not be converted into
-	'<a>(a) -> ()'; different number of generic type parameters)";
-
         CHECK_EQ(expected2, toString(result.errors[1]));
     }
     else
     {
         LUAU_REQUIRE_ERROR_COUNT(2, result);
         CHECK_EQ(expected1, toString(result.errors[0]));
-
-        std::string expected3 = R"(Type 'b2' could not be converted into 'a2'
-caused by:
-  Type
-	'{ __call: (a, b) -> () }'
-could not be converted into
-	'{ __call: <a>(a) -> () }'
-caused by:
-  Property '__call' is not compatible.
-Type
-	'(a, b) -> ()'
-could not be converted into
-	'<a>(a) -> ()'; different number of generic type parameters)";
-        CHECK_EQ(expected3, toString(result.errors[1]));
+        CHECK_EQ(expected2, toString(result.errors[1]));
     }
 }
 
@@ -2546,11 +2612,30 @@ TEST_CASE_FIXTURE(Fixture, "error_detailed_indexer_key")
 
     if (FFlag::LuauSolverV2)
     {
-        CHECK(
-            "Type 'A' could not be converted into 'B'; \n"
-            "this is because the index type is `number` in the former type and `string` in the latter type, and `number` is not exactly `string`" ==
-            toString(result.errors[0])
-        );
+        if (FFlag::LuauBetterTypeMismatchErrors)
+        {
+            CHECK(
+                "Expected this to be 'B', but got 'A'; \n"
+                "the index type is `number` in the latter type and `string` in the former type, and `number` is not exactly `string`" ==
+                toString(result.errors[0])
+            );
+        }
+        else
+        {
+            CHECK(
+                "Type 'A' could not be converted into 'B'; \n"
+                "this is because the index type is `number` in the former type and `string` in the latter type, and `number` is not exactly "
+                "`string`" == toString(result.errors[0])
+            );
+        }
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        const std::string expected = R"(Expected this to be exactly 'B', but got 'A'
+caused by:
+  Property '[indexer key]' is not compatible.
+Expected this to be exactly 'string', but got 'number')";
+        CHECK_EQ(expected, toString(result.errors[0]));
     }
     else
     {
@@ -2576,11 +2661,26 @@ TEST_CASE_FIXTURE(Fixture, "error_detailed_indexer_value")
 
     if (FFlag::LuauSolverV2)
     {
-        CHECK(
-            "Type 'A' could not be converted into 'B'; \n"
-            "this is because the result of indexing is `number` in the former type and `string` in the latter type, and `number` is not exactly "
-            "`string`" == toString(result.errors[0])
-        );
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK(
+                "Expected this to be 'B', but got 'A'; \n"
+                "the result of indexing is `number` in the latter type and `string` in the former type, and `number` is not exactly `string`" ==
+                toString(result.errors[0])
+            );
+        else
+            CHECK(
+                "Type 'A' could not be converted into 'B'; \n"
+                "this is because the result of indexing is `number` in the former type and `string` in the latter type, and `number` is not exactly "
+                "`string`" == toString(result.errors[0])
+            );
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        const std::string expected = R"(Expected this to be exactly 'B', but got 'A'
+caused by:
+  Property '[indexer value]' is not compatible.
+Expected this to be exactly 'string', but got 'number')";
+        CHECK_EQ(expected, toString(result.errors[0]));
     }
     else
     {
@@ -2627,11 +2727,28 @@ local y: number = tmp.p.y
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
     if (FFlag::LuauSolverV2)
-        CHECK(
-            "Type 'tmp' could not be converted into 'HasSuper'; \n"
-            "this is because accessing `p` results in `{ x: number, y: number }` in the former type and `Super` in the latter type, and `{ x: "
-            "number, y: number }` is not exactly `Super`" == toString(result.errors[0])
-        );
+    {
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK(
+                "Expected this to be 'HasSuper', but got 'tmp'; \n"
+                "accessing `p` results in `{ x: number, y: number }` in the latter type and `Super` in the former type, and `{ x: "
+                "number, y: number }` is not exactly `Super`" == toString(result.errors[0])
+            );
+        else
+            CHECK(
+                "Type 'tmp' could not be converted into 'HasSuper'; \n"
+                "this is because accessing `p` results in `{ x: number, y: number }` in the former type and `Super` in the latter type, and `{ x: "
+                "number, y: number }` is not exactly `Super`" == toString(result.errors[0])
+            );
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        const std::string expected = R"(Expected this to be exactly 'HasSuper', but got 'tmp'
+caused by:
+  Property 'p' is not compatible.
+Table type '{| x: number, y: number |}' not compatible with type 'Super' because the former has extra field 'y')";
+        CHECK_EQ(expected, toString(result.errors[0]));
+    }
     else
     {
         const std::string expected = R"(Type 'tmp' could not be converted into 'HasSuper'
@@ -2783,11 +2900,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "give_up_after_one_metatable_index_look_up")
 
 TEST_CASE_FIXTURE(Fixture, "confusing_indexing")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintIntersection, true},
-    };
-
     CheckResult result = check(R"(
         type T = {} & {p: number | string}
         local function f(t: T)
@@ -2907,7 +3019,7 @@ TEST_CASE_FIXTURE(Fixture, "table_length")
     LUAU_REQUIRE_NO_ERRORS(result);
 
     CHECK(nullptr != get<TableType>(requireType("t")));
-    CHECK_EQ(*getBuiltins()->numberType, *requireType("s"));
+    CHECK("number" == toString(requireType("s")));
 }
 
 TEST_CASE_FIXTURE(Fixture, "nil_assign_doesnt_hit_indexer")
@@ -3209,8 +3321,10 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "dont_crash_when_setmetatable_does_not_produc
 
     if (FFlag::LuauSolverV2)
     {
-        // CLI-114665: Generic parameters should not also be optional.
-        LUAU_REQUIRE_NO_ERRORS(result);
+        LUAU_REQUIRE_ERROR_COUNT(1, result);
+        const CountMismatch* cm = get<CountMismatch>(result.errors.at(0));
+        CHECK(cm->actual == 1);
+        CHECK(cm->expected == 2);
     }
     else
     {
@@ -3592,9 +3706,18 @@ TEST_CASE_FIXTURE(Fixture, "mixed_tables_with_implicit_numbered_keys")
     else
     {
         LUAU_REQUIRE_ERROR_COUNT(3, result);
-        CHECK_EQ("Type 'number' could not be converted into 'string'", toString(result.errors[0]));
-        CHECK_EQ("Type 'number' could not be converted into 'string'", toString(result.errors[1]));
-        CHECK_EQ("Type 'number' could not be converted into 'string'", toString(result.errors[2]));
+        if (FFlag::LuauBetterTypeMismatchErrors)
+        {
+            CHECK_EQ("Expected this to be 'string', but got 'number'", toString(result.errors[0]));
+            CHECK_EQ("Expected this to be 'string', but got 'number'", toString(result.errors[1]));
+            CHECK_EQ("Expected this to be 'string', but got 'number'", toString(result.errors[2]));
+        }
+        else
+        {
+            CHECK_EQ("Type 'number' could not be converted into 'string'", toString(result.errors[0]));
+            CHECK_EQ("Type 'number' could not be converted into 'string'", toString(result.errors[1]));
+            CHECK_EQ("Type 'number' could not be converted into 'string'", toString(result.errors[2]));
+        }
     }
 }
 
@@ -3719,6 +3842,36 @@ TEST_CASE_FIXTURE(Fixture, "scalar_is_not_a_subtype_of_a_compatible_polymorphic_
         CHECK("typeof(string)" == toString(tm4->givenType));
         CHECK("t1 where t1 = { read absolutely_no_scalar_has_this_method: (t1) -> (a...) }" == toString(tm4->wantedType));
     }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        LUAU_REQUIRE_ERROR_COUNT(3, result);
+
+        const std::string expected1 =
+            R"(Expected this to be 't1 where t1 = {- absolutely_no_scalar_has_this_method: (t1) -> (a...) -}', but got 'string'
+caused by:
+  The given type's metatable does not satisfy the requirements.
+Table type 'typeof(string)' not compatible with type 't1 where t1 = {- absolutely_no_scalar_has_this_method: (t1) -> (a...) -}' because the former is missing field 'absolutely_no_scalar_has_this_method')";
+        CHECK_EQ(expected1, toString(result.errors[0]));
+
+        const std::string expected2 =
+            R"(Expected this to be 't1 where t1 = {- absolutely_no_scalar_has_this_method: (t1) -> (a...) -}', but got '"bar"'
+caused by:
+  The given type's metatable does not satisfy the requirements.
+Table type 'typeof(string)' not compatible with type 't1 where t1 = {- absolutely_no_scalar_has_this_method: (t1) -> (a...) -}' because the former is missing field 'absolutely_no_scalar_has_this_method')";
+        CHECK_EQ(expected2, toString(result.errors[1]));
+
+        const std::string expected3 = R"(Expected this to be
+	't1 where t1 = {- absolutely_no_scalar_has_this_method: (t1) -> (a...) -}'
+but got
+	'"bar" | "baz"'
+caused by:
+  Not all union options are compatible.
+Expected this to be 't1 where t1 = {- absolutely_no_scalar_has_this_method: (t1) -> (a...) -}', but got '"bar"'
+caused by:
+  The given type's metatable does not satisfy the requirements.
+Table type 'typeof(string)' not compatible with type 't1 where t1 = {- absolutely_no_scalar_has_this_method: (t1) -> (a...) -}' because the former is missing field 'absolutely_no_scalar_has_this_method')";
+        CHECK_EQ(expected3, toString(result.errors[2]));
+    }
     else
     {
         LUAU_REQUIRE_ERROR_COUNT(3, result);
@@ -3787,6 +3940,19 @@ TEST_CASE_FIXTURE(Fixture, "a_free_shape_cannot_turn_into_a_scalar_if_it_is_not_
         );
         CHECK(toString(result.errors[2]) == "Parameter 's' is required to be a subtype of 'string' here.");
         CHECK_EQ("(never) -> string", toString(requireType("f")));
+    }
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        LUAU_REQUIRE_ERROR_COUNT(1, result);
+
+        const std::string expected =
+            R"(Expected this to be 'string', but got 't1 where t1 = {+ absolutely_no_scalar_has_this_method: (t1) -> (a, b...) +}'
+caused by:
+  The given type's metatable does not satisfy the requirements.
+Table type 'typeof(string)' not compatible with type 't1 where t1 = {+ absolutely_no_scalar_has_this_method: (t1) -> (a, b...) +}' because the former is missing field 'absolutely_no_scalar_has_this_method')";
+        CHECK_EQ(expected, toString(result.errors[0]));
+
+        CHECK_EQ("<a, b...>(t1) -> string where t1 = {+ absolutely_no_scalar_has_this_method: (t1) -> (a, b...) +}", toString(requireType("f")));
     }
     else
     {
@@ -4032,6 +4198,8 @@ _ = {_,}
 
 TEST_CASE_FIXTURE(Fixture, "when_augmenting_an_unsealed_table_with_an_indexer_apply_the_correct_scope_to_the_indexer_type")
 {
+    ScopedFastFlag _{FFlag::LuauUseFastSubtypeForIndexerWithName, true};
+
     CheckResult result = check(R"(
         local events = {}
         local mockObserveEvent = function(_, key, callback)
@@ -4054,11 +4222,18 @@ TEST_CASE_FIXTURE(Fixture, "when_augmenting_an_unsealed_table_with_an_indexer_ap
     REQUIRE(tt->indexer);
 
     if (FFlag::LuauSolverV2)
+    {
+        // CLI-181302: There's something bizarre going on in this test, but I
+        // think the new solver is doing the right thing.
+        LUAU_REQUIRE_ERROR_COUNT(1, result);
         CHECK("unknown" == toString(tt->indexer->indexType));
+        CHECK(get<OptionalValueAccess>(result.errors[0]));
+    }
     else
+    {
+        LUAU_REQUIRE_NO_ERRORS(result);
         CHECK("string" == toString(tt->indexer->indexType));
-
-    LUAU_REQUIRE_NO_ERRORS(result);
+    }
 }
 
 TEST_CASE_FIXTURE(Fixture, "dont_extend_unsealed_tables_in_rvalue_position")
@@ -4989,21 +5164,31 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "subtyping_with_a_metatable_table_path")
         end
     )");
 
-    LUAU_REQUIRE_ERROR_COUNT(3, result);
+    LUAU_REQUIRE_ERROR_COUNT(4, result);
 
     // We shouldn't allow `setmetatable()` to type check
-    CHECK_EQ(result.errors[0].location, Location{{2, 21}, {2, 43}});
-    CHECK_EQ("Type function instance setmetatable<nil, nil> is uninhabited", toString(result.errors[0]));
+    CHECK(result.errors.at(0).location == Location{{2, 21}, {2, 43}});
+    CHECK("Type function instance setmetatable<nil, nil> is uninhabited" == toString(result.errors.at(0)));
 
-    CHECK_EQ(result.errors[1].location, Location{{3, 8}, {5, 11}});
-    CHECK_EQ("Type function instance setmetatable<nil, nil> is uninhabited", toString(result.errors[1]));
+    CHECK(result.errors.at(1).location == Location{{2, 28}, {2, 40}});
+    CHECK("Argument count mismatch. Function expects 2 arguments, but none are specified" == toString(result.errors.at(1)));
 
-    CHECK_EQ(
-        "Type pack '{ @metatable {  }, {  } & {  } }' could not be converted into 'setmetatable<nil, nil>'; \n"
-        "this is because the 1st entry in the type pack is `{ @metatable {  }, {  } & {  } }` and in the 1st entry in the type packreduces to "
-        "`never`, and `{ @metatable {  }, {  } & {  } }` is not a subtype of `never`",
-        toString(result.errors[2])
-    );
+    CHECK(result.errors.at(2).location == Location{{3, 8}, {5, 11}});
+    CHECK("Type function instance setmetatable<nil, nil> is uninhabited" == toString(result.errors.at(2)));
+
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK(
+            "Expected this to be 'setmetatable<nil, nil>', but got '{ @metatable {  }, {  } & {  } }'; \n"
+            "the 1st entry in the type pack is `{ @metatable {  }, {  } & {  } }` and in the 1st entry in the type packreduces to "
+            "`never`, and `{ @metatable {  }, {  } & {  } }` is not a subtype of `never`" == toString(result.errors.at(3))
+        );
+    else
+        CHECK(
+            "Type pack '{ @metatable {  }, {  } & {  } }' could not be converted into 'setmetatable<nil, nil>'; \n"
+            "this is because the 1st entry in the type pack is `{ @metatable {  }, {  } & {  } }` and in the 1st entry in the type packreduces "
+            "to "
+            "`never`, and `{ @metatable {  }, {  } & {  } }` is not a subtype of `never`" == toString(result.errors.at(3))
+        );
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "metatable_union_type")
@@ -5420,7 +5605,7 @@ TEST_CASE_FIXTURE(Fixture, "deeply_nested_classish_inference")
 
 TEST_CASE_FIXTURE(Fixture, "bigger_nested_table_causes_big_type_error")
 {
-    ScopedFastFlag sffs[] = {{FFlag::LuauSolverV2, true}, {FFlag::LuauPushTypeConstraint2, true}};
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
 
     auto result = check(R"(
         type File = {
@@ -5800,10 +5985,7 @@ TEST_CASE_FIXTURE(Fixture, "narrow_table_literal_check_call_singleton")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "oss_1450")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-    };
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
 
     CheckResult results = check(R"(
         local keycodes = {
@@ -5941,7 +6123,6 @@ TEST_CASE_FIXTURE(Fixture, "free_types_with_sealed_table_upper_bounds_can_still_
 {
     ScopedFastFlag sff[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauExtendSealedTableUpperBounds, true},
     };
 
     CheckResult result = check(R"(
@@ -6009,8 +6190,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "oss_1935")
 
 TEST_CASE_FIXTURE(Fixture, "result_like_tagged_union")
 {
-    ScopedFastFlag _{FFlag::LuauPushTypeConstraint2, true};
-
     LUAU_REQUIRE_NO_ERRORS(check(R"(
 --!strict
 local function retry(func: (...any) -> ...any): { type: "ok", value: any } | { type: "failed" }
@@ -6029,11 +6208,7 @@ return retry
 
 TEST_CASE_FIXTURE(Fixture, "oss_1924")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintSingleton, true},
-    };
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         local t: { [string]: "s" } = {
@@ -6050,8 +6225,6 @@ TEST_CASE_FIXTURE(Fixture, "oss_1924")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "cli_167052")
 {
-    ScopedFastFlag _{FFlag::LuauPushTypeConstraint2, true};
-
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         local Children = newproxy()
         local Macro: { [ string | typeof(Children) ]: true } = {
@@ -6068,7 +6241,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "cli_167052")
 
 TEST_CASE_FIXTURE(Fixture, "duplicate_prop_references_share_same_result_type_and_constraint")
 {
-    ScopedFastFlag sff{FFlag::LuauCacheDuplicateHasPropConstraints, true};
     CheckResult result = check(R"(
 local tbl = {}
 function f(x : number) : () end
@@ -6100,9 +6272,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "table_insert_array_of_any")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "bad_insert_type_mismatch")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true}, {FFlag::LuauSubtypingReportGenericBoundMismatches2, true}, {FFlag::LuauNoScopeShallNotSubsumeAll, true}
-    };
+    ScopedFastFlag sffs[] = {{FFlag::LuauSolverV2, true}};
 
     CheckResult result = check(R"(
         local function doInsert(t: { string })
@@ -6130,11 +6300,7 @@ TEST_CASE_FIXTURE(Fixture, "string_indexer_satisfies_read_only_property")
 
 TEST_CASE_FIXTURE(Fixture, "bidirectional_inference_works_through_intersections")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintIntersection, true},
-    };
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
 
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         type x = {} & ({ state: "1" } | { state: "2" })
@@ -6144,11 +6310,7 @@ TEST_CASE_FIXTURE(Fixture, "bidirectional_inference_works_through_intersections"
 
 TEST_CASE_FIXTURE(Fixture, "bidirectional_inference_intersection_other_intersection_example")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintIntersection, true},
-    };
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
 
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         type A = { foo: "a" }
@@ -6223,8 +6385,7 @@ TEST_CASE_FIXTURE(Fixture, "array_of_callbacks_bidirectionally_inferred")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintLambdas, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
         {FFlag::DebugLuauAssertOnForcedConstraint, true},
     };
 
@@ -6247,8 +6408,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "oss_1483")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintLambdas, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
         {FFlag::DebugLuauAssertOnForcedConstraint, true},
     };
 
@@ -6270,8 +6430,7 @@ TEST_CASE_FIXTURE(Fixture, "oss_1910")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintLambdas, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
         {FFlag::DebugLuauAssertOnForcedConstraint, true},
     };
 
@@ -6293,8 +6452,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "bidirectional_inference_variadic_type_pack")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintLambdas, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
         {FFlag::DebugLuauAssertOnForcedConstraint, true},
     };
 
@@ -6318,9 +6476,7 @@ TEST_CASE_FIXTURE(Fixture, "table_with_intersection_containing_lambda")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintLambdas, true},
-        {FFlag::LuauPushTypeConstraintIntersection, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
         {FFlag::DebugLuauAssertOnForcedConstraint, true},
     };
 
@@ -6340,13 +6496,11 @@ TEST_CASE_FIXTURE(Fixture, "table_with_intersection_containing_lambda")
         }
     )"));
 
-    CHECK_EQ("{ foo: string }", toString(requireTypeAtPosition({10, 28}), { /* exhaustive */ true}));
+    CHECK_EQ("{ foo: string }", toString(requireTypeAtPosition({10, 28}), {/* exhaustive */ true}));
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "cli_174304_allow_getmetatable_error_and_table")
 {
-    ScopedFastFlag _{FFlag::LuauGetmetatableError, true};
-
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         local function instanceof(tbl: any, class: any): boolean
             if typeof(tbl) ~= "table" then
@@ -6374,8 +6528,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "cli_174304_allow_getmetatable_error_and_tabl
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "allow_indexing_into_error_or_not_nil")
 {
-    ScopedFastFlag _{FFlag::LuauSuppressIndexingIntoError, true};
-
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         --!strict
         local function f(i: number, ...)
@@ -6391,13 +6543,25 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "allow_indexing_into_error_or_not_nil")
     )"));
 }
 
+TEST_CASE_FIXTURE(BuiltinsFixture, "show_not_a_table_error_when_indexing_into_non_table")
+{
+    ScopedFastFlag _{FFlag::LuauFixIndexingUnionWithNonTable, true};
+
+    CheckResult result = check(R"(
+        --!strict
+        local function f(t: number | boolean)
+            t[0] = "huh"
+        end
+    )");
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    CHECK(get<NotATable>(result.errors[0]));
+}
+
 TEST_CASE_FIXTURE(BuiltinsFixture, "oss_1684")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauPushTypeConstraint2, true},
-        {FFlag::LuauPushTypeConstraintLambdas, true},
-        {FFlag::LuauPushTypeConstraintIntersection, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
         {FFlag::DebugLuauAssertOnForcedConstraint, true},
     };
 
@@ -6421,8 +6585,122 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "oss_1684")
     )");
 
     LUAU_REQUIRE_ERROR_COUNT(3, result);
-    for (const auto& e: result.errors)
+    for (const auto& e : result.errors)
         CHECK(get<TypeMismatch>(e));
 }
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "oss_2094_push_type_constraint_should_always_complete")
+{
+    ScopedFastFlag sffs[] = {
+        {FFlag::LuauSolverV2, true},
+        {FFlag::LuauMarkUnscopedGenericsAsSolved, true},
+        {FFlag::DebugLuauAssertOnForcedConstraint, true},
+    };
+
+    LUAU_REQUIRE_NO_ERRORS(check(R"(
+        type Interface<T> = {
+            _t: T,
+        }
+
+        type function TypeFn(t: type): type
+            return t
+        end
+
+        local function new<T>(t: T): Interface<TypeFn<T>>
+            return {
+                _t = nil :: any,
+            }
+        end
+    )"));
+}
+
+TEST_CASE_FIXTURE(Fixture, "table_access_indexer_via_name_expr")
+{
+    ScopedFastFlag sffs[] = {
+        {FFlag::LuauSolverV2, true},
+        {FFlag::LuauUseFastSubtypeForIndexerWithName, true},
+    };
+
+    LUAU_REQUIRE_NO_ERRORS(check(R"(
+        --!strict
+        type List = "Val1" | "Val2" | "Val3"
+        local Table: { [List]: boolean }
+        local _ = Table.Val1
+    )"));
+
+    CHECK_EQ("boolean", toString(requireType("_")));
+}
+
+TEST_CASE_FIXTURE(Fixture, "table_access_indexer_fails_with_missing_key")
+{
+    ScopedFastFlag sffs[] = {
+        {FFlag::LuauSolverV2, true},
+        {FFlag::LuauUseFastSubtypeForIndexerWithName, true},
+    };
+
+    auto result = check(R"(
+        --!strict
+        type List = "Val2" | "Val3"
+        local Table: { [List]: boolean }
+        local _ = Table.Val1
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    CHECK(get<UnknownProperty>(result.errors[0]));
+    CHECK_EQ("any", toString(requireType("_")));
+}
+
+TEST_CASE_FIXTURE(Fixture, "cli_184926_bidi_inference_pushes_into_lambda_return_type")
+{
+    ScopedFastFlag sffs[] = {
+        {FFlag::LuauSolverV2, true},
+        {FFlag::LuauPushTypeConstraintLambdas3, true},
+        {FFlag::DebugLuauAssertOnForcedConstraint, true},
+    };
+
+    LUAU_REQUIRE_NO_ERRORS(check(R"(
+        type MyType = { Func: (transformFunction: () -> ({number})) -> () }
+
+        local myValue = {} :: MyType
+
+        myValue.Func(function() return {} end)
+    )"));
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "do_not_allow_laundering")
+{
+    ScopedFastFlag sffs[] = {
+        {FFlag::LuauSolverV2, true},
+        {FFlag::LuauSubtypingMissingPropertiesAsNil, true},
+    };
+
+    CheckResult result = check(R"(
+        --!strict
+        local function foo(t: {}): { x: nil }
+            return t
+        end
+
+        local t: { x: number } = { x = 42 }
+        local laundered = foo(t) -- via width subtyping
+        laundered.x = nil
+        assert(type(t) == "number")
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+
+}
+
+TEST_CASE_FIXTURE(Fixture, "table_inference_one_incorrect_member")
+{
+    CheckResult result = check(R"(
+        local function makeTable(x): { x: number, y: string }
+            return { x = x, y = true }
+        end
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    CHECK_EQ("(number) -> { x: number, y: string }", toString(requireType("makeTable")));
+}
+
 
 TEST_SUITE_END();

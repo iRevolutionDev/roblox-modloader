@@ -9,19 +9,11 @@
 #include "doctest.h"
 
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(DebugLuauEqSatSimplification)
 LUAU_FASTFLAG(LuauFunctionCallsAreNotNilable)
-LUAU_FASTFLAG(LuauRefineNoRefineAlways)
-LUAU_FASTFLAG(LuauRefineDistributesOverUnions)
-LUAU_FASTFLAG(LuauSubtypingReportGenericBoundMismatches2)
-LUAU_FASTFLAG(LuauNoMoreComparisonTypeFunctions)
-LUAU_FASTFLAG(LuauNumericUnaryOpsDontProduceNegationRefinements)
-LUAU_FASTFLAG(LuauNoOrderingTypeFunctions)
-LUAU_FASTFLAG(LuauConsiderErrorSuppressionInTypes)
-LUAU_FASTFLAG(LuauAddRefinementToAssertions)
-LUAU_FASTFLAG(LuauEnqueueUnionsOfDistributedTypeFunctions)
 LUAU_FASTFLAG(DebugLuauAssertOnForcedConstraint)
-LUAU_FASTFLAG(LuauNormalizationPreservesAny)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(LuauTypeCheckerUdtfRenameClassToExtern)
+LUAU_FASTFLAG(LuauUnionOfTablesPreservesReadWrite)
 
 using namespace Luau;
 
@@ -521,21 +513,30 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "call_an_incompatible_function_after_using_ty
         end
     )");
 
-    if (FFlag::LuauSolverV2 && FFlag::LuauConsiderErrorSuppressionInTypes)
+    if (FFlag::LuauSolverV2)
     {
         LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-        CHECK("Type 'string' could not be converted into 'number'" == toString(result.errors[0]));
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK("Expected this to be 'number', but got 'string'" == toString(result.errors[0]));
+        else
+            CHECK("Type 'string' could not be converted into 'number'" == toString(result.errors[0]));
         CHECK(Location{{7, 18}, {7, 19}} == result.errors[0].location);
     }
     else
     {
         LUAU_REQUIRE_ERROR_COUNT(2, result);
 
-        CHECK("Type 'string' could not be converted into 'number'" == toString(result.errors[0]));
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK("Expected this to be 'number', but got 'string'" == toString(result.errors[0]));
+        else
+            CHECK("Type 'string' could not be converted into 'number'" == toString(result.errors[0]));
         CHECK(Location{{7, 18}, {7, 19}} == result.errors[0].location);
 
-        CHECK("Type 'string' could not be converted into 'number'" == toString(result.errors[1]));
+        if (FFlag::LuauBetterTypeMismatchErrors)
+            CHECK("Expected this to be 'number', but got 'string'" == toString(result.errors[1]));
+        else
+            CHECK("Type 'string' could not be converted into 'number'" == toString(result.errors[1]));
         CHECK(Location{{13, 18}, {13, 19}} == result.errors[1].location);
     }
 }
@@ -574,14 +575,7 @@ TEST_CASE_FIXTURE(Fixture, "truthy_constraint_on_properties")
 
     if (FFlag::LuauSolverV2)
     {
-        if (FFlag::DebugLuauEqSatSimplification)
-        {
-            CHECK("{ x: number }" == toString(requireTypeAtPosition({4, 23})));
-        }
-        else
-        {
-            CHECK("{ read x: number, write x: number? }" == toString(requireTypeAtPosition({4, 23})));
-        }
+        CHECK("{ read x: number, write x: number? }" == toString(requireTypeAtPosition({4, 23})));
         CHECK("number" == toString(requireTypeAtPosition({5, 26})));
     }
 
@@ -717,8 +711,11 @@ TEST_CASE_FIXTURE(Fixture, "free_type_is_equal_to_an_lvalue")
         // FIXME: This type either comes out as string? or (string?) & unknown
         // depending on which tests are run and in which order. I'm not sure
         // where the nondeterminism is coming from.
-        // CHECK(toString(requireTypeAtPosition({3, 36})) == "string?"); // a == b
-        CHECK(canonicalize(requireTypeAtPosition({3, 36})) == "string?"); // a == b
+        TypeArena arena;
+        UnifierSharedState state{NotNull{&getFrontend().iceHandler}};
+        Normalizer normalizer{&arena, getBuiltins(), NotNull{&state}, SolverMode::New};
+        auto a = normalizer.normalize(requireTypeAtPosition({3, 36}));
+        CHECK(toString(normalizer.typeFromNormal(*a)) == "string?"); // a == b
     }
     else
     {
@@ -1693,6 +1690,7 @@ TEST_CASE_FIXTURE(RefinementExternTypeFixture, "asserting_optional_properties_sh
 
 TEST_CASE_FIXTURE(RefinementExternTypeFixture, "asserting_non_existent_properties_should_not_refine_extern_types_to_never")
 {
+    ScopedFastFlag sff = {FFlag::LuauTypeCheckerUdtfRenameClassToExtern, true};
 
     CheckResult result = check(R"(
         local weld: WeldConstraint = nil :: any
@@ -1704,7 +1702,7 @@ TEST_CASE_FIXTURE(RefinementExternTypeFixture, "asserting_non_existent_propertie
     )");
 
     LUAU_REQUIRE_ERRORS(result);
-    CHECK_EQ(toString(result.errors[0]), "Key 'Part8' not found in class 'WeldConstraint'");
+    CHECK_EQ(toString(result.errors[0]), "Key 'Part8' not found in external type 'WeldConstraint'");
 
     CHECK_EQ("WeldConstraint", toString(requireTypeAtPosition({3, 15})));
     if (FFlag::LuauSolverV2)
@@ -1715,8 +1713,6 @@ TEST_CASE_FIXTURE(RefinementExternTypeFixture, "asserting_non_existent_propertie
 
 TEST_CASE_FIXTURE(RefinementExternTypeFixture, "x_is_not_instance_or_else_not_part")
 {
-    ScopedFastFlag sff{FFlag::LuauRefineDistributesOverUnions, true};
-
     CheckResult result = check(R"(
         local function f(x: Part | Folder | string)
             if typeof(x) ~= "Instance" or not x:IsA("Part") then
@@ -2243,8 +2239,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "luau_polyfill_isindexkey_refine_conjunction"
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauNoMoreComparisonTypeFunctions, true},
-        {FFlag::LuauNoOrderingTypeFunctions, true},
     };
 
     CheckResult result = check(R"(
@@ -2263,8 +2257,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "check_refinement_to_primitive_and_compare")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauNoMoreComparisonTypeFunctions, true},
-        {FFlag::LuauNoOrderingTypeFunctions, true},
     };
 
     CheckResult result = check(R"(
@@ -2279,8 +2271,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "check_refinement_to_primitive_and_compare")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "luau_polyfill_isindexkey_refine_conjunction_variant")
 {
-    ScopedFastFlag _{FFlag::LuauNoOrderingTypeFunctions, true};
-
     // FIXME CLI-141364: An underlying bug in normalization means the type of
     // `isIndexKey` is platform dependent.
     CheckResult result = check(R"(
@@ -2564,25 +2554,6 @@ TEST_CASE_FIXTURE(RefinementExternTypeFixture, "typeof_instance_isa_refinement")
     CHECK_EQ("string", toString(requireTypeAtPosition({8, 28})));
 }
 
-TEST_CASE_FIXTURE(BuiltinsFixture, "remove_recursive_upper_bound_when_generalizing")
-{
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::DebugLuauEqSatSimplification, true},
-    };
-
-    LUAU_REQUIRE_NO_ERRORS(check(R"(
-        local t = {"hello"}
-        local v = t[2]
-        if type(v) == "nil" then
-            local foo = v
-        end
-    )"));
-
-    // FIXME CLI-114134.  We need to simplify types more consistently.
-    CHECK_EQ("nil & string & unknown", toString(requireTypeAtPosition({4, 24})));
-}
-
 TEST_CASE_FIXTURE(BuiltinsFixture, "nonnil_refinement_on_generic")
 {
     CheckResult result = check(R"(
@@ -2851,10 +2822,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "refine_by_no_refine_should_always_reduce")
     // how we report constraint solving incomplete errors revealed that this
     // test would always fail to solve all constraints, except under eager
     // generalization.
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauRefineNoRefineAlways, true},
-    };
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         function foo(t): boolean return true end
@@ -2924,7 +2892,6 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "refinements_from_and_should_not_refine_to_ne
 {
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauRefineDistributesOverUnions, true},
     };
 
     loadDefinition(R"(
@@ -2976,7 +2943,6 @@ TEST_CASE_FIXTURE(Fixture, "len_operator_in_if_is_just_a_proposition")
 {
     ScopedFastFlag _[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauNumericUnaryOpsDontProduceNegationRefinements, true},
     };
 
     CheckResult result = check(R"(
@@ -2994,7 +2960,6 @@ TEST_CASE_FIXTURE(Fixture, "unm_operator_is_just_a_proposition")
 {
     ScopedFastFlag _[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauNumericUnaryOpsDontProduceNegationRefinements, true},
     };
 
     CheckResult result = check(R"(
@@ -3052,10 +3017,7 @@ TEST_CASE_FIXTURE(Fixture, "oss_1517_equality_doesnt_add_nil")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "typeof_refinement_context")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauAddRefinementToAssertions, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         --!strict
@@ -3072,10 +3034,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "typeof_refinement_context")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "assert_and_typeof_refinement_context")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauAddRefinementToAssertions, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         --!strict
@@ -3090,10 +3049,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "assert_and_typeof_refinement_context")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "foo_call_should_not_refine")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauAddRefinementToAssertions, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         --!strict
@@ -3112,14 +3068,13 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "foo_call_should_not_refine")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "assert_call_should_not_refine_despite_typeof")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauAddRefinementToAssertions, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         --!strict
-        local function foo(_: any) end
+        local function foo(_: any)
+            return true
+        end
 
         local function f(x: unknown)
             if typeof(x) == "table" then
@@ -3134,10 +3089,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "assert_call_should_not_refine_despite_typeof
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "non_conditional_context_in_if_should_not_refine")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauAddRefinementToAssertions, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         local function bing(_: any) end
@@ -3157,7 +3109,6 @@ TEST_CASE_FIXTURE(Fixture, "type_function_reduction_with_union_type_application"
     ScopedFastFlag sffs[] = {
         {FFlag::LuauSolverV2, true},
         {FFlag::DebugLuauAssertOnForcedConstraint, true},
-        {FFlag::LuauEnqueueUnionsOfDistributedTypeFunctions, true},
     };
 
     LUAU_REQUIRE_NO_ERRORS(check(R"(
@@ -3185,8 +3136,6 @@ TEST_CASE_FIXTURE(Fixture, "type_function_reduction_with_union_type_application"
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "refine_any_and_unknown_should_still_be_any")
 {
-    ScopedFastFlag _{FFlag::LuauNormalizationPreservesAny, true};
-
     LUAU_REQUIRE_NO_ERRORS(check(R"(
         local REACT_FRAGMENT_TYPE = (nil :: any)
         local function typeOf(object: any)
@@ -3198,6 +3147,74 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "refine_any_and_unknown_should_still_be_any")
                 return __type
                     and typeof(__type) == "table"
                     and __type["$$typeof"]
+            end
+        end
+    )"));
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "cli_181100_fast_track_refinement_against_unknown")
+{
+    ScopedFastFlag sffs[] = {
+        {FFlag::LuauSolverV2, true},
+        {FFlag::DebugLuauAssertOnForcedConstraint, true},
+    };
+
+    LUAU_REQUIRE_NO_ERRORS(check(R"(
+        --!strict
+
+        local Class = {}
+        Class.__index = Class
+
+        type Class = setmetatable<{ A: number }, typeof(Class)>
+
+        function Class.Foo(x: Class, y: Class, z: Class)
+            if y == z then
+                return
+            end
+            local bar = y.A
+            print(bar)
+        end
+    )"));
+
+    CHECK_EQ("number", toString(requireTypeAtPosition({13, 19})));
+}
+
+TEST_CASE_FIXTURE(BuiltinsFixture, "cli_181549_refined_string_should_be_subtype_of_string")
+{
+    ScopedFastFlag _{FFlag::LuauSolverV2, true};
+
+    LUAU_REQUIRE_NO_ERRORS(check(Mode::Nonstrict, R"(
+      local hello : string = "world"
+
+      if hello == "" then
+          return
+      end
+
+      string.find(hello, "bye")
+    )"));
+}
+
+TEST_CASE_FIXTURE(Fixture, "cli_184413_refinement_of_union_of_read_types_is_read_type")
+{
+    ScopedFastFlag _{FFlag::LuauUnionOfTablesPreservesReadWrite, true};
+
+    LUAU_REQUIRE_NO_ERRORS(check(R"(
+        export type States = "Closed" | "Closing" | "Opening" | "Open"
+        export type MyType<A = any> = {
+            State: States,
+            IsOpen: boolean,
+            Open: (self: MyType<A>) -> (),
+        }
+
+        local value = {} :: MyType
+
+        function value:Open()
+            if self.IsOpen == true then
+            elseif self.State == "Closing" or self.State == "Opening" then
+                -- Prior, this line errored as we were erroneously refining
+                -- `self` with `{ State: "Closing" | "Opening" }` rather
+                -- than `{ read State: "Closing" | "Opening" }
+                self:Open()
             end
         end
     )"));

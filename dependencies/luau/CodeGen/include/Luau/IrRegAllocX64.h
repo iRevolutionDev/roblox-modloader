@@ -54,9 +54,7 @@ struct IrRegAllocX64
 
     unsigned findSpillStackSlot(IrValueKind valueKind);
 
-    IrOp getRestoreOp(const IrInst& inst) const;
-    bool hasRestoreOp(const IrInst& inst) const;
-    OperandX64 getRestoreAddress(const IrInst& inst, IrOp restoreOp);
+    OperandX64 getRestoreAddress(const IrInst& inst, ValueRestoreLocation restoreLocation);
 
     // Register used by instruction is about to be freed, have to find a way to restore value later
     void preserve(IrInst& inst);
@@ -66,6 +64,9 @@ struct IrRegAllocX64
     void preserveAndFreeInstValues();
 
     uint32_t findInstructionWithFurthestNextUse(const std::array<uint32_t, 16>& regInstUsers) const;
+
+    bool isExtraSpillSlot(unsigned slot) const;
+    int getExtraSpillAddressOffset(unsigned slot) const;
 
     void assertFree(RegisterX64 reg) const;
     void assertAllFree() const;
@@ -83,8 +84,9 @@ struct IrRegAllocX64
     std::array<uint32_t, 16> xmmInstUsers;
     uint8_t usableXmmRegCount = 0;
 
-    std::bitset<256> usedSpillSlots;
-    unsigned maxUsedSlot = 0;
+    std::bitset<512> usedSpillSlotHalfs; // A bit for every stack slot split in 4 byte halfs
+    unsigned maxUsedSlot = 0;            // Maximum number of 8 byte stack slots used
+
     unsigned nextSpillId = 1;
     std::vector<IrSpillX64> spills;
 };

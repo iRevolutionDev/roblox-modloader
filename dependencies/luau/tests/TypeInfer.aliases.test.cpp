@@ -10,7 +10,8 @@
 using namespace Luau;
 
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauInitializeDefaultGenericParamsAtProgramPoint)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(LuauDisallowRedefiningBuiltinTypes)
 
 TEST_SUITE_BEGIN("TypeAliases");
 
@@ -214,7 +215,10 @@ TEST_CASE_FIXTURE(Fixture, "generic_aliases")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
     CHECK(result.errors[0].location == Location{{4, 37}, {4, 42}});
-    CHECK_EQ("Type 'string' could not be converted into 'number'", toString(result.errors[0]));
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ("Expected this to be 'number', but got 'string'", toString(result.errors[0]));
+    else
+        CHECK_EQ("Type 'string' could not be converted into 'number'", toString(result.errors[0]));
 }
 
 TEST_CASE_FIXTURE(Fixture, "dependent_generic_aliases")
@@ -230,7 +234,10 @@ TEST_CASE_FIXTURE(Fixture, "dependent_generic_aliases")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
     CHECK(result.errors[0].location == Location{{4, 43}, {4, 48}});
-    CHECK_EQ("Type 'string' could not be converted into 'number'", toString(result.errors[0]));
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ("Expected this to be 'number', but got 'string'", toString(result.errors[0]));
+    else
+        CHECK_EQ("Type 'string' could not be converted into 'number'", toString(result.errors[0]));
 }
 
 TEST_CASE_FIXTURE(Fixture, "mutually_recursive_generic_aliases")
@@ -1280,8 +1287,6 @@ export type t0<t0,t10,t10,t109> = t0
 
 TEST_CASE_FIXTURE(Fixture, "evaluating_generic_default_type_shouldnt_ice")
 {
-    ScopedFastFlag sff{FFlag::LuauInitializeDefaultGenericParamsAtProgramPoint, true};
-
     auto result = check(R"(
 local A = {}
 type B<T = typeof(A)> = unknown
@@ -1298,8 +1303,6 @@ type B<T = typeof(A)> = unknown
 
 TEST_CASE_FIXTURE(Fixture, "evaluating_generic_default_type_pack_shouldnt_ice")
 {
-    ScopedFastFlag sff{FFlag::LuauInitializeDefaultGenericParamsAtProgramPoint, true};
-
     auto result = check(R"(
 local A = {}
 type B<T... = ...typeof(A)> = unknown
@@ -1318,7 +1321,6 @@ TEST_CASE_FIXTURE(Fixture, "evaluating_generic_default_type_for_symbol_before_de
 {
     ScopedFastFlag sff[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauInitializeDefaultGenericParamsAtProgramPoint, true},
     };
 
     auto result = check(R"(
@@ -1334,7 +1336,6 @@ TEST_CASE_FIXTURE(Fixture, "evaluating_generic_default_type_pack_for_symbol_befo
 {
     ScopedFastFlag sff[] = {
         {FFlag::LuauSolverV2, true},
-        {FFlag::LuauInitializeDefaultGenericParamsAtProgramPoint, true},
     };
 
     auto result = check(R"(
@@ -1346,6 +1347,16 @@ local A = {}
     LUAU_CHECK_ERROR(result, UnknownSymbol);
 }
 
+TEST_CASE_FIXTURE(BuiltinsFixture, "dont_allow_redefining_builtin_types")
+{
+    ScopedFastFlag _{FFlag::LuauDisallowRedefiningBuiltinTypes, true};
+    auto result = check(R"(
+        type number = string
+    )");
+
+    LUAU_REQUIRE_ERROR_COUNT(1, result);
+    LUAU_CHECK_ERROR(result, DuplicateTypeDefinition);
+}
 
 
 TEST_SUITE_END();

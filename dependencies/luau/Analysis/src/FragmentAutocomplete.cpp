@@ -5,7 +5,6 @@
 #include "Luau/AstQuery.h"
 #include "Luau/Autocomplete.h"
 #include "Luau/Common.h"
-#include "Luau/EqSatSimplification.h"
 #include "Luau/ExpectedTypeVisitor.h"
 #include "Luau/ModuleResolver.h"
 #include "Luau/Parser.h"
@@ -31,9 +30,7 @@ LUAU_FASTINT(LuauTypeInferIterationLimit);
 LUAU_FASTINT(LuauTarjanChildLimit)
 
 LUAU_FASTFLAGVARIABLE(DebugLogFragmentsFromAutocomplete)
-LUAU_FASTFLAG(LuauUseWorkspacePropToChooseSolver)
 LUAU_FASTFLAGVARIABLE(LuauFragmentRequiresCanBeResolvedToAModule)
-LUAU_FASTFLAGVARIABLE(LuauForInRangesConsiderInLocation)
 
 namespace Luau
 {
@@ -165,9 +162,9 @@ Location getFragmentLocation(AstStat* nearestStatement, const Position& cursorPo
                 return nonEmpty;
             else
             {
-                    auto completeableExtents = Location{forStat->location.begin, forStat->doLocation.begin};
-                    if (completeableExtents.containsClosed(cursorPosition))
-                        return nonEmpty;
+                auto completeableExtents = Location{forStat->location.begin, forStat->doLocation.begin};
+                if (completeableExtents.containsClosed(cursorPosition))
+                    return nonEmpty;
 
                 return empty;
             }
@@ -187,7 +184,7 @@ Location getFragmentLocation(AstStat* nearestStatement, const Position& cursorPo
                     else
                     {
                         // [for ... in ... do] - the cursor can either be between [for ... in] or [in ... do]
-                        if (FFlag::LuauForInRangesConsiderInLocation && cursorPosition < forIn->inLocation.begin)
+                        if (cursorPosition < forIn->inLocation.begin)
                             return nonEmpty;
                         else
                             return Location{forIn->inLocation.begin, cursorPosition};
@@ -648,7 +645,7 @@ void cloneTypesFromFragment(
     UsageFinder f{dfg};
     program->visit(&f);
     // These are defs that have been mentioned. find the appropriate lvalue type and rvalue types and place them in the scope
-    // First - any locals that have been mentioned in the fragment need to be placed in the bindings and lvalueTypes secionts.
+    // First - any locals that have been mentioned in the fragment need to be placed in the bindings and lvalueTypes sections.
 
     for (const auto& d : f.mentionedDefs)
     {
@@ -756,14 +753,6 @@ void cloneTypesFromFragment(
     // Finally, clone the returnType on the staleScope. This helps avoid potential leaks of free types.
     if (staleScope->returnType)
         destScope->returnType = Luau::cloneIncremental(staleScope->returnType, *destArena, cloneState, destScope);
-}
-
-static FrontendModuleResolver& getModuleResolver_DEPRECATED(Frontend& frontend, std::optional<FrontendOptions> options)
-{
-    if (FFlag::LuauSolverV2 || !options)
-        return frontend.moduleResolver;
-
-    return options->forAutocomplete ? frontend.moduleResolverForAutocomplete : frontend.moduleResolver;
 }
 
 static FrontendModuleResolver& getModuleResolver(Frontend& frontend, std::optional<FrontendOptions> options)
@@ -1139,8 +1128,6 @@ FragmentTypeCheckResult typecheckFragment_(
     DataFlowGraph dfg = DataFlowGraphBuilder::build(root, NotNull{&incrementalModule->defArena}, NotNull{&incrementalModule->keyArena}, iceHandler);
     reportWaypoint(reporter, FragmentAutocompleteWaypoint::DfgBuildEnd);
 
-    SimplifierPtr simplifier = newSimplifier(NotNull{&incrementalModule->internalTypes}, frontend.builtinTypes);
-
     // IncrementalModule gets moved at the end of the function, so capturing it here will cause SIGSEGV.
     // We'll capture just the name instead, since that's all we need to clean up the requireTrace at the end
     ScopedExit scopedExit{[&, name = incrementalModule->name]()
@@ -1149,7 +1136,7 @@ FragmentTypeCheckResult typecheckFragment_(
                           }};
 
     if (FFlag::LuauFragmentRequiresCanBeResolvedToAModule)
-        frontend.requireTrace[incrementalModule->name] = traceRequires(frontend.fileResolver, root, incrementalModule->name);
+        frontend.requireTrace[incrementalModule->name] = traceRequires(frontend.fileResolver, root, incrementalModule->name, limits);
 
 
     FrontendModuleResolver& resolver = getModuleResolver(frontend, opts);
@@ -1158,7 +1145,6 @@ FragmentTypeCheckResult typecheckFragment_(
     ConstraintGenerator cg{
         incrementalModule,
         NotNull{&normalizer},
-        NotNull{simplifier.get()},
         NotNull{&typeFunctionRuntime},
         NotNull{&resolver},
         frontend.builtinTypes,
@@ -1206,7 +1192,6 @@ FragmentTypeCheckResult typecheckFragment_(
     /// Initialize the constraint solver and run it
     ConstraintSolver cs{
         NotNull{&normalizer},
-        NotNull{simplifier.get()},
         NotNull{&typeFunctionRuntime},
         NotNull(cg.rootScope),
         borrowConstraints(cg.constraints),
@@ -1304,16 +1289,12 @@ FragmentTypeCheckResult typecheckFragment__DEPRECATED(
     DataFlowGraph dfg = DataFlowGraphBuilder::build(root, NotNull{&incrementalModule->defArena}, NotNull{&incrementalModule->keyArena}, iceHandler);
     reportWaypoint(reporter, FragmentAutocompleteWaypoint::DfgBuildEnd);
 
-    SimplifierPtr simplifier = newSimplifier(NotNull{&incrementalModule->internalTypes}, frontend.builtinTypes);
-
-    FrontendModuleResolver& resolver =
-        FFlag::LuauUseWorkspacePropToChooseSolver ? getModuleResolver(frontend, opts) : getModuleResolver_DEPRECATED(frontend, opts);
+    FrontendModuleResolver& resolver = getModuleResolver(frontend, opts);
     std::shared_ptr<Scope> freshChildOfNearestScope = std::make_shared<Scope>(nullptr);
     /// Contraint Generator
     ConstraintGenerator cg{
         incrementalModule,
         NotNull{&normalizer},
-        NotNull{simplifier.get()},
         NotNull{&typeFunctionRuntime},
         NotNull{&resolver},
         frontend.builtinTypes,
@@ -1361,7 +1342,6 @@ FragmentTypeCheckResult typecheckFragment__DEPRECATED(
     /// Initialize the constraint solver and run it
     ConstraintSolver cs{
         NotNull{&normalizer},
-        NotNull{simplifier.get()},
         NotNull{&typeFunctionRuntime},
         NotNull(cg.rootScope),
         borrowConstraints(cg.constraints),
@@ -1426,8 +1406,7 @@ std::pair<FragmentTypeCheckStatus, FragmentTypeCheckResult> typecheckFragment(
     if (!frontend.allModuleDependenciesValid(moduleName, opts && opts->forAutocomplete))
         return {FragmentTypeCheckStatus::SkipAutocomplete, {}};
 
-    FrontendModuleResolver& resolver =
-        FFlag::LuauUseWorkspacePropToChooseSolver ? getModuleResolver(frontend, opts) : getModuleResolver_DEPRECATED(frontend, opts);
+    FrontendModuleResolver& resolver = getModuleResolver(frontend, opts);
     ModulePtr module = resolver.getModule(moduleName);
     if (!module)
     {

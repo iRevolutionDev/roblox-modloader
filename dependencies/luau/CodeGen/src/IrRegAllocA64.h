@@ -40,6 +40,7 @@ struct IrRegAllocA64
     void freeLastUseReg(IrInst& target, uint32_t index);
     void freeLastUseRegs(const IrInst& inst, uint32_t index);
 
+    void freeTemp(RegisterA64 reg);
     void freeTempRegs();
 
     // Spills all live registers that outlive current instruction; all allocated registers are assumed to be undefined
@@ -74,10 +75,15 @@ struct IrRegAllocA64
         int8_t slot;
     };
 
+    void restore(const Spill& s, RegisterA64 reg);
+
     // Spills the selected register
     void spill(Set& set, uint32_t index, uint32_t targetInstIdx);
 
     uint32_t findInstructionWithFurthestNextUse(Set& set) const;
+
+    bool isExtraSpillSlot(unsigned slot) const;
+    int getExtraSpillAddressOffset(unsigned slot) const;
 
     Set& getSet(KindA64 kind);
 
@@ -92,7 +98,8 @@ struct IrRegAllocA64
     std::vector<Spill> spills;
 
     // which 8-byte slots are free
-    uint32_t freeSpillSlots = 0;
+    uint32_t freeSpillSlots_DEPRECATED = 0;
+    uint64_t freeSpillSlots_NEW = 0;
 
     bool error = false;
 };

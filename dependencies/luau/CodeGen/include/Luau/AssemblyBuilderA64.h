@@ -44,10 +44,20 @@ public:
     void sub(RegisterA64 dst, RegisterA64 src1, uint16_t src2);
     void neg(RegisterA64 dst, RegisterA64 src);
 
+    // Prevent implicit conversions from happening
+    template<typename T>
+    void add(RegisterA64 dst, RegisterA64 src1, T src2) = delete;
+    template<typename T>
+    void sub(RegisterA64 dst, RegisterA64 src1, T src2) = delete;
+
     // Comparisons
     // Note: some arithmetic instructions also have versions that update flags (ADDS etc) but we aren't using them atm
     void cmp(RegisterA64 src1, RegisterA64 src2);
     void cmp(RegisterA64 src1, uint16_t src2);
+
+    template<typename T>
+    void cmp(RegisterA64 src1, T src2) = delete; // Prevent implicit conversions from happening
+
     void csel(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2, ConditionA64 cond);
     void cset(RegisterA64 dst, ConditionA64 cond);
 
@@ -121,15 +131,23 @@ public:
     // Address of embedded data
     void adr(RegisterA64 dst, const void* ptr, size_t size);
     void adr(RegisterA64 dst, uint64_t value);
+    void adr(RegisterA64 dst, float value);
     void adr(RegisterA64 dst, double value);
+
+    template<typename T>
+    void adr(RegisterA64 dst, T value) = delete; // Prevent implicit conversions from happening
 
     // Address of code (label)
     void adr(RegisterA64 dst, Label& label);
 
     // Floating-point scalar/vector moves
-    // Note: constant must be compatible with immediate floating point moves (see isFmovSupported)
+    // Note: constant must be compatible with immediate floating point moves (see isFmovSupportedFp64/isFmovSupportedFp32)
     void fmov(RegisterA64 dst, RegisterA64 src);
     void fmov(RegisterA64 dst, double src);
+    void fmov(RegisterA64 dst, float src);
+
+    template<typename T>
+    void fmov(RegisterA64 dst, T src) = delete; // Prevent implicit conversions from happening
 
     // Floating-point scalar/vector math
     void fabs(RegisterA64 dst, RegisterA64 src);
@@ -146,9 +164,12 @@ public:
     void ins_4s(RegisterA64 dst, RegisterA64 src, uint8_t index);
     void ins_4s(RegisterA64 dst, uint8_t dstIndex, RegisterA64 src, uint8_t srcIndex);
     void dup_4s(RegisterA64 dst, RegisterA64 src, uint8_t index);
+    void umov_4s(RegisterA64 dst, RegisterA64 src, uint8_t index);
 
     void fcmeq_4s(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2);
+    void fcmgt_4s(RegisterA64 dst, RegisterA64 src1, RegisterA64 src2);
     void bit(RegisterA64 dst, RegisterA64 src, RegisterA64 mask);
+    void bif(RegisterA64 dst, RegisterA64 src, RegisterA64 mask);
 
     // Floating-point rounding and conversions
     void frinta(RegisterA64 dst, RegisterA64 src);
@@ -189,6 +210,7 @@ public:
 
     void logAppend(const char* fmt, ...) LUAU_PRINTF_ATTR(2, 3);
 
+    // Code size is measured in 'code' array units - uint8_t on x64 and uint32_t on arm64
     uint32_t getCodeSize() const;
 
     unsigned getInstructionCount() const;
@@ -210,7 +232,8 @@ public:
     static bool isMaskSupported(uint32_t mask);
 
     // Check if fmov can be used to synthesize a constant
-    static bool isFmovSupported(double value);
+    static bool isFmovSupportedFp64(double value);
+    static bool isFmovSupportedFp32(float value);
 
 private:
     // Instruction archetypes

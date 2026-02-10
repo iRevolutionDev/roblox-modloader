@@ -47,13 +47,8 @@ void updateUseCounts(IrFunction& function)
 
     for (IrInst& inst : instructions)
     {
-        checkOp(inst.a);
-        checkOp(inst.b);
-        checkOp(inst.c);
-        checkOp(inst.d);
-        checkOp(inst.e);
-        checkOp(inst.f);
-        checkOp(inst.g);
+        for (IrOp& op : inst.ops)
+            checkOp(op);
     }
 }
 
@@ -61,8 +56,8 @@ void updateLastUseLocations(IrFunction& function, const std::vector<uint32_t>& s
 {
     std::vector<IrInst>& instructions = function.instructions;
 
-#if defined(CODEGEN_ASSERTENABLED)
-    // Last use assignements should be called only once
+#if defined(LUAU_ASSERTENABLED)
+    // Last use assignments should be called only once
     for (IrInst& inst : instructions)
         CODEGEN_ASSERT(inst.lastUse == 0);
 #endif
@@ -92,13 +87,8 @@ void updateLastUseLocations(IrFunction& function, const std::vector<uint32_t>& s
             if (isPseudo(inst.cmd))
                 continue;
 
-            checkOp(inst.a);
-            checkOp(inst.b);
-            checkOp(inst.c);
-            checkOp(inst.d);
-            checkOp(inst.e);
-            checkOp(inst.f);
-            checkOp(inst.g);
+            for (IrOp& op : inst.ops)
+                checkOp(op);
         }
     }
 }
@@ -115,26 +105,9 @@ uint32_t getNextInstUse(IrFunction& function, uint32_t targetInstIdx, uint32_t s
         if (isPseudo(inst.cmd))
             continue;
 
-        if (inst.a.kind == IrOpKind::Inst && inst.a.index == targetInstIdx)
-            return i;
-
-        if (inst.b.kind == IrOpKind::Inst && inst.b.index == targetInstIdx)
-            return i;
-
-        if (inst.c.kind == IrOpKind::Inst && inst.c.index == targetInstIdx)
-            return i;
-
-        if (inst.d.kind == IrOpKind::Inst && inst.d.index == targetInstIdx)
-            return i;
-
-        if (inst.e.kind == IrOpKind::Inst && inst.e.index == targetInstIdx)
-            return i;
-
-        if (inst.f.kind == IrOpKind::Inst && inst.f.index == targetInstIdx)
-            return i;
-
-        if (inst.g.kind == IrOpKind::Inst && inst.g.index == targetInstIdx)
-            return i;
+        for (IrOp& op : inst.ops)
+            if (op.kind == IrOpKind::Inst && op.index == targetInstIdx)
+                return i;
     }
 
     // There must be a next use since there is the last use location
@@ -142,38 +115,62 @@ uint32_t getNextInstUse(IrFunction& function, uint32_t targetInstIdx, uint32_t s
     return targetInst.lastUse;
 }
 
-std::pair<uint32_t, uint32_t> getLiveInOutValueCount(IrFunction& function, IrBlock& block)
+std::pair<uint32_t, uint32_t> getLiveInOutValueCount(IrFunction& function, IrBlock& start, bool visitChain)
 {
+    // TODO: the function is not called often, but having a small vector would help here
+    std::vector<uint32_t> blocks;
+
+    if (visitChain)
+    {
+        for (IrBlock* block = &start; block; block = tryGetNextBlockInChain(function, *block))
+            blocks.push_back(function.getBlockIndex(*block));
+    }
+    else
+    {
+        blocks.push_back(function.getBlockIndex(start));
+    }
+
     uint32_t liveIns = 0;
     uint32_t liveOuts = 0;
 
-    auto checkOp = [&](IrOp op)
+    for (uint32_t blockIdx : blocks)
     {
-        if (op.kind == IrOpKind::Inst)
+        const IrBlock& block = function.blocks[blockIdx];
+
+        // If an operand refers to something inside the current block chain, it completes the instruction we marked as 'live out'
+        // If it refers to something outside, it has to be a 'live in'
+        auto checkOp = [&function, &blocks, &liveIns, &liveOuts](IrOp op)
         {
-            if (op.index >= block.start && op.index <= block.finish)
-                liveOuts--;
-            else
+            if (op.kind == IrOpKind::Inst)
+            {
+                for (uint32_t blockIdx : blocks)
+                {
+                    const IrBlock& block = function.blocks[blockIdx];
+
+                    if (op.index >= block.start && op.index <= block.finish)
+                    {
+                        CODEGEN_ASSERT(liveOuts != 0);
+                        liveOuts--;
+                        return;
+                    }
+                }
+
                 liveIns++;
+            }
+        };
+
+        for (uint32_t instIdx = block.start; instIdx <= block.finish; instIdx++)
+        {
+            IrInst& inst = function.instructions[instIdx];
+
+            if (isPseudo(inst.cmd))
+                continue;
+
+            liveOuts += inst.useCount;
+
+            for (IrOp& op : inst.ops)
+                checkOp(op);
         }
-    };
-
-    for (uint32_t instIdx = block.start; instIdx <= block.finish; instIdx++)
-    {
-        IrInst& inst = function.instructions[instIdx];
-
-        if (isPseudo(inst.cmd))
-            continue;
-
-        liveOuts += inst.useCount;
-
-        checkOp(inst.a);
-        checkOp(inst.b);
-        checkOp(inst.c);
-        checkOp(inst.d);
-        checkOp(inst.e);
-        checkOp(inst.f);
-        checkOp(inst.g);
     }
 
     return std::make_pair(liveIns, liveOuts);
@@ -181,12 +178,12 @@ std::pair<uint32_t, uint32_t> getLiveInOutValueCount(IrFunction& function, IrBlo
 
 uint32_t getLiveInValueCount(IrFunction& function, IrBlock& block)
 {
-    return getLiveInOutValueCount(function, block).first;
+    return getLiveInOutValueCount(function, block, false).first;
 }
 
 uint32_t getLiveOutValueCount(IrFunction& function, IrBlock& block)
 {
-    return getLiveInOutValueCount(function, block).second;
+    return getLiveInOutValueCount(function, block, false).second;
 }
 
 void requireVariadicSequence(RegisterSet& sourceRs, const RegisterSet& defRs, uint8_t varargStart)
@@ -430,6 +427,29 @@ static void computeCfgLiveInOutRegSets(IrFunction& function)
         }
     }
 
+    // Collect data on all registers that are written
+    function.cfg.written.regs.reset();
+
+    for (size_t blockIdx = 0; blockIdx < function.blocks.size(); blockIdx++)
+    {
+        const IrBlock& block = function.blocks[blockIdx];
+
+        if (block.kind == IrBlockKind::Dead)
+            continue;
+
+        RegisterSet& defRs = info.def[blockIdx];
+
+        function.cfg.written.regs |= defRs.regs;
+
+        if (defRs.varargSeq)
+        {
+            if (!function.cfg.written.varargSeq || defRs.varargStart < function.cfg.written.varargStart)
+                function.cfg.written.varargStart = defRs.varargStart;
+
+            function.cfg.written.varargSeq = true;
+        }
+    }
+
     // If Proto data is available, validate that entry block arguments match required registers
     if (function.proto)
     {
@@ -442,7 +462,7 @@ static void computeCfgLiveInOutRegSets(IrFunction& function)
     }
 }
 
-static void computeCfgBlockEdges(IrFunction& function)
+void computeCfgBlockEdges(IrFunction& function)
 {
     CfgInfo& info = function.cfg;
 
@@ -492,13 +512,8 @@ static void computeCfgBlockEdges(IrFunction& function)
                 }
             };
 
-            checkOp(inst.a);
-            checkOp(inst.b);
-            checkOp(inst.c);
-            checkOp(inst.d);
-            checkOp(inst.e);
-            checkOp(inst.f);
-            checkOp(inst.g);
+            for (const IrOp& op : inst.ops)
+                checkOp(op);
         }
     }
 

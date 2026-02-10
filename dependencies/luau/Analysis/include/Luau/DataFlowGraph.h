@@ -112,6 +112,8 @@ struct DataFlowGraphBuilder
         NotNull<struct InternalErrorReporter> handle
     );
 
+    static DataFlowGraph empty(NotNull<DefArena> defArena, NotNull<RefinementKeyArena> keyArena);
+
 private:
     DataFlowGraphBuilder(NotNull<DefArena> defArena, NotNull<RefinementKeyArena> keyArena);
 
@@ -182,13 +184,17 @@ private:
     DataFlowResult visitExpr(AstExprCall* c);
     DataFlowResult visitExpr(AstExprIndexName* i);
     DataFlowResult visitExpr(AstExprIndexExpr* i);
+
     DataFlowResult visitExpr(AstExprFunction* f);
+    DataFlowResult visitFunction(AstExprFunction* f, NotNull<DfgScope> signatureScope);
+
     DataFlowResult visitExpr(AstExprTable* t);
     DataFlowResult visitExpr(AstExprUnary* u);
     DataFlowResult visitExpr(AstExprBinary* b);
     DataFlowResult visitExpr(AstExprTypeAssertion* t);
     DataFlowResult visitExpr(AstExprIfElse* i);
     DataFlowResult visitExpr(AstExprInterpString* i);
+    DataFlowResult visitExpr(AstExprInstantiate* i);
     DataFlowResult visitExpr(AstExprError* error);
 
     void visitLValue(AstExpr* e, DefId incomingDef);

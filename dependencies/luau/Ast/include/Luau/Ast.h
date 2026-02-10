@@ -118,6 +118,13 @@ struct AstTypeList
     AstTypePack* tailType = nullptr;
 };
 
+// Don't have Luau::Variant available, it's a bit of an overhead, but a plain struct is nice to use
+struct AstTypeOrPack
+{
+    AstType* type = nullptr;
+    AstTypePack* typePack = nullptr;
+};
+
 using AstArgumentName = std::pair<AstName, Location>; // TODO: remove and replace when we get a common struct for this pair instead of AstName
 
 extern int gAstRttiIndex;
@@ -415,11 +422,22 @@ class AstExprCall : public AstExpr
 public:
     LUAU_RTTI(AstExprCall)
 
-    AstExprCall(const Location& location, AstExpr* func, const AstArray<AstExpr*>& args, bool self, const Location& argLocation);
+    AstExprCall(
+        const Location& location,
+        AstExpr* func,
+        const AstArray<AstExpr*>& args,
+        bool self,
+        const AstArray<AstTypeOrPack>& explicitTypes,
+        const Location& argLocation
+    );
 
     void visit(AstVisitor* visitor) override;
 
     AstExpr* func;
+    // These will only be filled in specifically `t:f<<A, B>>()`.
+    // In `f<<A, B>>()`, this is parsed as `f<<A, B>>` as an expression,
+    // which is then called.
+    AstArray<AstTypeOrPack> typeArguments;
     AstArray<AstExpr*> args;
     bool self;
     Location argLocation;
@@ -640,6 +658,20 @@ public:
     /// `strings` will always have one more element than `expressions`.
     AstArray<AstArray<char>> strings;
     AstArray<AstExpr*> expressions;
+};
+
+// f<<T>>
+class AstExprInstantiate : public AstExpr
+{
+public:
+    LUAU_RTTI(AstExprInstantiate)
+
+    AstExprInstantiate(const Location& location, AstExpr* expr, AstArray<AstTypeOrPack> typePack);
+
+    void visit(AstVisitor* visitor) override;
+
+    AstExpr* expr;
+    AstArray<AstTypeOrPack> typeArguments;
 };
 
 class AstStatBlock : public AstStat
@@ -1071,13 +1103,6 @@ public:
     }
 };
 
-// Don't have Luau::Variant available, it's a bit of an overhead, but a plain struct is nice to use
-struct AstTypeOrPack
-{
-    AstType* type = nullptr;
-    AstTypePack* typePack = nullptr;
-};
-
 class AstTypeReference : public AstType
 {
 public:
@@ -1430,6 +1455,10 @@ public:
         return visit(static_cast<AstExpr*>(node));
     }
     virtual bool visit(class AstExprInterpString* node)
+    {
+        return visit(static_cast<AstExpr*>(node));
+    }
+    virtual bool visit(class AstExprInstantiate* node)
     {
         return visit(static_cast<AstExpr*>(node));
     }

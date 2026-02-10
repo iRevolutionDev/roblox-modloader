@@ -14,7 +14,8 @@ using namespace Luau;
 
 LUAU_FASTFLAG(LuauRecursiveTypeParameterRestriction)
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauReduceSetTypeStackPressure)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
+LUAU_FASTFLAG(LuauToStringDecomposition)
 
 TEST_SUITE_BEGIN("ToString");
 
@@ -482,7 +483,7 @@ TEST_CASE_FIXTURE(Fixture, "generic_packs_are_stringified_differently_from_gener
     TypePackVar tpv{GenericTypePack{"a"}};
     CHECK_EQ(toString(&tpv), "a...");
 
-    Type tv{GenericType{"a"}};
+    Type tv{GenericType{"a", Polarity::Mixed}};
     CHECK_EQ(toString(&tv), "a");
 }
 
@@ -649,8 +650,6 @@ TEST_CASE_FIXTURE(Fixture, "no_parentheses_around_cyclic_function_type_in_union"
 
 TEST_CASE_FIXTURE(Fixture, "no_parentheses_around_cyclic_function_type_in_intersection")
 {
-    ScopedFastFlag sff{FFlag::LuauReduceSetTypeStackPressure, true};
-
     CheckResult result = check(R"(
         function f() return f end
         local a: ((number) -> ()) & typeof(f)
@@ -848,13 +847,34 @@ TEST_CASE_FIXTURE(Fixture, "tostring_error_mismatch")
     )");
 
     std::string expected;
-    if (FFlag::LuauSolverV2)
+    if (FFlag::LuauSolverV2 && FFlag::LuauBetterTypeMismatchErrors)
+        expected = "Expected this to be\n\t"
+                   "'{ a: number, b: string, c: { d: number } }'\n"
+                   "but got\n\t"
+                   "'{ a: number, b: string, c: { d: string } }'; \n"
+                   "accessing `c.d` results in `string` in the latter type and `number` in the former "
+                   "type, and `string` is not exactly `number`";
+    else if (FFlag::LuauSolverV2)
         expected = "Type\n\t"
                    "'{ a: number, b: string, c: { d: string } }'\n"
                    "could not be converted into\n\t"
                    "'{ a: number, b: string, c: { d: number } }'; \n"
                    "this is because accessing `c.d` results in `string` in the former type and `number` in the latter "
                    "type, and `string` is not exactly `number`";
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+        expected = "Expected this to be exactly\n\t"
+                   "'{ a: number, b: string, c: { d: number } }'\n"
+                   "but got\n\t"
+                   "'{ a: number, b: string, c: { d: string } }'\n"
+                   "caused by:\n  "
+                   "Property 'c' is not compatible.\n"
+                   "Expected this to be exactly\n\t"
+                   "'{ d: number }'\n"
+                   "but got\n\t"
+                   "'{ d: string }'\n"
+                   "caused by:\n  "
+                   "Property 'd' is not compatible.\n"
+                   "Expected this to be exactly 'number', but got 'string'";
     else
         expected = "Type\n\t"
                    "'{ a: number, b: string, c: { d: string } }'\n"
@@ -945,6 +965,129 @@ TEST_CASE_FIXTURE(Fixture, "correct_stringification_user_defined_type_functions"
 
     if (FFlag::LuauSolverV2)
         CHECK_EQ(toString(&tv, {}), "woohoo<number>");
+}
+
+TEST_CASE_FIXTURE(Fixture, "record_type_compositions_table")
+{
+    ScopedFastFlag _{FFlag::LuauToStringDecomposition, true};
+
+    CheckResult checkResult = check(R"(
+        type Table = {}
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(checkResult);
+
+    ToStringOptions opts;
+
+    TypeId ty = requireTypeAlias("Table");
+    ToStringResult result = toStringDetailed(ty, opts);
+
+    REQUIRE_EQ(result.typeSpans.size(), 1);
+
+    auto [startPos, endPos, recordedTy] = result.typeSpans[0];
+    CHECK_EQ(startPos, 0);
+    CHECK_EQ(endPos, 5);
+    CHECK_EQ(recordedTy, ty);
+}
+
+TEST_CASE_FIXTURE(Fixture, "record_type_compositions_union_intersection")
+{
+    ScopedFastFlag _{FFlag::LuauToStringDecomposition, true};
+
+    CheckResult checkResult = check(R"(
+        type TableA = {}
+        type TableB = {}
+
+        type Composite1 = TableA | TableB
+        type Composite2 = TableA & TableB
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(checkResult);
+
+    ToStringOptions opts;
+
+    for (const auto& aliasName : {"Composite1", "Composite2"})
+    {
+        TypeId ty = requireTypeAlias(aliasName);
+        ToStringResult result = toStringDetailed(ty, opts);
+
+        REQUIRE_EQ(result.typeSpans.size(), 2);
+
+        auto [startPosA, endPosA, recordedTyA] = result.typeSpans[0];
+        CHECK_EQ(startPosA, 0);
+        CHECK_EQ(endPosA, 6);
+        CHECK_EQ(recordedTyA, requireTypeAlias("TableA"));
+
+        auto [startPosB, endPosB, recordedTyB] = result.typeSpans[1];
+        CHECK_EQ(startPosB, 9);
+        CHECK_EQ(endPosB, 15);
+        CHECK_EQ(recordedTyB, requireTypeAlias("TableB"));
+    }
+}
+
+TEST_CASE_FIXTURE(Fixture, "record_type_compositions_union_handle_resorted_results")
+{
+    ScopedFastFlag _{FFlag::LuauToStringDecomposition, true};
+
+    CheckResult checkResult = check(R"(
+        type Zebra = {}
+        type Alpha = {}
+
+        type Composite = Zebra | Alpha
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(checkResult);
+
+    ToStringOptions opts;
+
+    TypeId ty = requireTypeAlias("Composite");
+    ToStringResult result = toStringDetailed(ty, opts);
+
+    CHECK_EQ(result.name, "Alpha | Zebra");
+
+    REQUIRE_EQ(result.typeSpans.size(), 2);
+
+    auto [startPosAlpha, endPosAlpha, recordedTyAlpha] = result.typeSpans[0];
+    CHECK_EQ(startPosAlpha, 0);
+    CHECK_EQ(endPosAlpha, 5);
+    CHECK_EQ(recordedTyAlpha, requireTypeAlias("Alpha"));
+
+    auto [startPosZebra, endPosZebra, recordedTyZebra] = result.typeSpans[1];
+    CHECK_EQ(startPosZebra, 8);
+    CHECK_EQ(endPosZebra, 13);
+    CHECK_EQ(recordedTyZebra, requireTypeAlias("Zebra"));
+}
+
+
+TEST_CASE_FIXTURE(Fixture, "record_type_compositions_generic")
+{
+    ScopedFastFlag _{FFlag::LuauToStringDecomposition, true};
+
+    CheckResult checkResult = check(R"(
+        type Object = {}
+        type Box<T> = { inner: T }
+
+        local x: Box<Object>
+    )");
+
+    LUAU_REQUIRE_NO_ERRORS(checkResult);
+
+    ToStringOptions opts;
+
+    TypeId ty = requireType("x");
+    ToStringResult result = toStringDetailed(ty, opts);
+
+    REQUIRE_EQ(result.typeSpans.size(), 2);
+
+    auto [startPosBox, endPosBox, recordedTyBox] = result.typeSpans[0];
+    CHECK_EQ(startPosBox, 0);
+    CHECK_EQ(endPosBox, 3);
+    CHECK_EQ(recordedTyBox, ty);
+
+    auto [startPosObject, endPosObject, recordedTyObject] = result.typeSpans[1];
+    CHECK_EQ(startPosObject, 4);
+    CHECK_EQ(endPosObject, 10);
+    CHECK_EQ(recordedTyObject, requireTypeAlias("Object"));
 }
 
 TEST_SUITE_END();

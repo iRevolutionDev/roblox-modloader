@@ -9,8 +9,6 @@
 #include <algorithm>
 #include <stdexcept>
 
-LUAU_FASTFLAGVARIABLE(LuauOccursCheckInCommit)
-
 namespace Luau
 {
 
@@ -169,7 +167,7 @@ void TxnLog::concatAsUnion(TxnLog rhs, NotNull<TypeArena> arena)
 
 // Like follow(), but only takes a single step.
 //
-// This is potentailly performance sensitive, so we use nullptr rather than an
+// This is potentially performance sensitive, so we use nullptr rather than an
 // optional<TypeId> for the return type here.
 static TypeId followOnce(TxnLog& log, TypeId ty)
 {
@@ -228,12 +226,7 @@ void TxnLog::commit()
         {
             const TypeId unfollowed = &rep.get()->pending;
 
-            if (FFlag::LuauOccursCheckInCommit)
-            {
-                if (!occurs(*this, unfollowed, ty))
-                    asMutable(ty)->reassign(*unfollowed);
-            }
-            else
+            if (!occurs(*this, unfollowed, ty))
                 asMutable(ty)->reassign(*unfollowed);
         }
     }

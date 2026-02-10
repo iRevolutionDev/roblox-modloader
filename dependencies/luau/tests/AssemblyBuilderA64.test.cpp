@@ -7,6 +7,9 @@
 
 #include <string.h>
 
+LUAU_FASTFLAG(LuauCodegenUpvalueLoadProp2)
+LUAU_FASTFLAG(LuauCodegenUintToFloat)
+
 using namespace Luau::CodeGen;
 using namespace Luau::CodeGen::A64;
 
@@ -106,10 +109,10 @@ TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "Binary")
     SINGLE_COMPARE(tst(x0, x1), 0xEA01001F);
 
     // reg, imm
-    SINGLE_COMPARE(add(x3, x7, 78), 0x910138E3);
-    SINGLE_COMPARE(add(w3, w7, 78), 0x110138E3);
-    SINGLE_COMPARE(sub(w3, w7, 78), 0x510138E3);
-    SINGLE_COMPARE(cmp(w0, 42), 0x7100A81F);
+    SINGLE_COMPARE(add(x3, x7, uint16_t(78)), 0x910138E3);
+    SINGLE_COMPARE(add(w3, w7, uint16_t(78)), 0x110138E3);
+    SINGLE_COMPARE(sub(w3, w7, uint16_t(78)), 0x510138E3);
+    SINGLE_COMPARE(cmp(w0, uint16_t(42)), 0x7100A81F);
 }
 
 TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "BinaryExtended")
@@ -331,11 +334,11 @@ TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "StackOps")
     SINGLE_COMPARE(mov(x0, sp), 0x910003E0);
     SINGLE_COMPARE(mov(sp, x0), 0x9100001F);
 
-    SINGLE_COMPARE(add(sp, sp, 4), 0x910013FF);
-    SINGLE_COMPARE(sub(sp, sp, 4), 0xD10013FF);
+    SINGLE_COMPARE(add(sp, sp, uint16_t(4)), 0x910013FF);
+    SINGLE_COMPARE(sub(sp, sp, uint16_t(4)), 0xD10013FF);
 
-    SINGLE_COMPARE(add(x0, sp, 4), 0x910013E0);
-    SINGLE_COMPARE(sub(sp, x0, 4), 0xD100101F);
+    SINGLE_COMPARE(add(x0, sp, uint16_t(4)), 0x910013E0);
+    SINGLE_COMPARE(sub(sp, x0, uint16_t(4)), 0xD100101F);
 
     SINGLE_COMPARE(ldr(x0, mem(sp, 8)), 0xF94007E0);
     SINGLE_COMPARE(str(x0, mem(sp, 8)), 0xF90007E0);
@@ -381,24 +384,36 @@ TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "AddressOfLabel")
 
 TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "FPBasic")
 {
+    ScopedFastFlag luauCodegenUpvalueLoadProp{FFlag::LuauCodegenUpvalueLoadProp2, true};
+
     SINGLE_COMPARE(fmov(d0, d1), 0x1E604020);
     SINGLE_COMPARE(fmov(d0, x1), 0x9E670020);
+    SINGLE_COMPARE(fmov(x3, d2), 0x9E660043);
 }
 
 TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "FPMath")
 {
+    ScopedFastFlag luauCodegenUintToFloat{FFlag::LuauCodegenUintToFloat, true};
+
     SINGLE_COMPARE(fabs(d1, d2), 0x1E60C041);
+    SINGLE_COMPARE(fabs(s1, s2), 0x1E20C041);
+    SINGLE_COMPARE(fabs(q1, q2), 0x4EA0F841);
     SINGLE_COMPARE(fadd(d1, d2, d3), 0x1E632841);
     SINGLE_COMPARE(fadd(s29, s29, s28), 0x1E3C2BBD);
+    SINGLE_COMPARE(fadd(q29, q29, q28), 0x4E3CD7BD);
     SINGLE_COMPARE(fdiv(d1, d2, d3), 0x1E631841);
     SINGLE_COMPARE(fdiv(s29, s29, s28), 0x1E3C1BBD);
+    SINGLE_COMPARE(fdiv(q29, q29, q28), 0x6E3CFFBD);
     SINGLE_COMPARE(fmul(d1, d2, d3), 0x1E630841);
     SINGLE_COMPARE(fmul(s29, s29, s28), 0x1E3C0BBD);
+    SINGLE_COMPARE(fmul(q29, q29, q28), 0x6E3CDFBD);
     SINGLE_COMPARE(fneg(d1, d2), 0x1E614041);
     SINGLE_COMPARE(fneg(s30, s30), 0x1E2143DE);
+    SINGLE_COMPARE(fneg(q30, q30), 0x6EA0FBDE);
     SINGLE_COMPARE(fsqrt(d1, d2), 0x1E61C041);
     SINGLE_COMPARE(fsub(d1, d2, d3), 0x1E633841);
     SINGLE_COMPARE(fsub(s29, s29, s28), 0x1E3C3BBD);
+    SINGLE_COMPARE(fsub(q29, q29, q28), 0x4EBCD7BD);
 
     SINGLE_COMPARE(faddp(s29, s28), 0x7E30DB9D);
     SINGLE_COMPARE(faddp(d29, d28), 0x7E70DB9D);
@@ -406,6 +421,14 @@ TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "FPMath")
     SINGLE_COMPARE(frinta(d1, d2), 0x1E664041);
     SINGLE_COMPARE(frintm(d1, d2), 0x1E654041);
     SINGLE_COMPARE(frintp(d1, d2), 0x1E64C041);
+
+    SINGLE_COMPARE(frinta(s1, s2), 0x1E264041);
+    SINGLE_COMPARE(frintm(s1, s2), 0x1E254041);
+    SINGLE_COMPARE(frintp(s1, s2), 0x1E24C041);
+
+    SINGLE_COMPARE(frinta(q1, q2), 0x6E218841);
+    SINGLE_COMPARE(frintm(q1, q2), 0x4E219841);
+    SINGLE_COMPARE(frintp(q1, q2), 0x4EA18841);
 
     SINGLE_COMPARE(fcvt(s1, d2), 0x1E624041);
     SINGLE_COMPARE(fcvt(d1, s2), 0x1E22C041);
@@ -417,8 +440,11 @@ TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "FPMath")
 
     SINGLE_COMPARE(scvtf(d1, w2), 0x1E620041);
     SINGLE_COMPARE(scvtf(d1, x2), 0x9E620041);
+
     SINGLE_COMPARE(ucvtf(d1, w2), 0x1E630041);
     SINGLE_COMPARE(ucvtf(d1, x2), 0x9E630041);
+    SINGLE_COMPARE(ucvtf(s1, w2), 0x1E230041);
+    SINGLE_COMPARE(ucvtf(s1, x2), 0x9E230041);
 
     CHECK(check(
         [](AssemblyBuilderA64& build)
@@ -466,28 +492,36 @@ TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "FPInsertExtract")
     SINGLE_COMPARE(ins_4s(q31, 0, q29, 0), 0x6E0407BF);
     SINGLE_COMPARE(dup_4s(s29, q31, 2), 0x5E1407FD);
     SINGLE_COMPARE(dup_4s(q29, q30, 0), 0x4E0407DD);
+    SINGLE_COMPARE(umov_4s(w1, q30, 3), 0x0E1C3FC1);
+    SINGLE_COMPARE(umov_4s(w13, q1, 1), 0x0E0C3C2D);
+
+    SINGLE_COMPARE(bit(q1, q2, q3), 0x6EA31C41);
+    SINGLE_COMPARE(bif(q1, q2, q3), 0x6EE31C41);
 }
 
 TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "FPCompare")
 {
     SINGLE_COMPARE(fcmp(d0, d1), 0x1E612000);
     SINGLE_COMPARE(fcmpz(d1), 0x1E602028);
+
+    SINGLE_COMPARE(fcmeq_4s(q1, q2, q3), 0x4E23E441);
+    SINGLE_COMPARE(fcmgt_4s(q1, q2, q3), 0x6EA3E441);
 }
 
 TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "FPImm")
 {
-    SINGLE_COMPARE(fmov(d0, 0), 0x2F00E400);
+    SINGLE_COMPARE(fmov(d0, 0.0), 0x2F00E400);
     SINGLE_COMPARE(fmov(d0, 0.125), 0x1E681000);
     SINGLE_COMPARE(fmov(d0, -0.125), 0x1E781000);
     SINGLE_COMPARE(fmov(d0, 1.9375), 0x1E6FF000);
 
-    SINGLE_COMPARE(fmov(q0, 0), 0x4F000400);
+    SINGLE_COMPARE(fmov(q0, 0.0), 0x4F000400);
     SINGLE_COMPARE(fmov(q0, 0.125), 0x4F02F400);
     SINGLE_COMPARE(fmov(q0, -0.125), 0x4F06F400);
     SINGLE_COMPARE(fmov(q0, 1.9375), 0x4F03F7E0);
 
-    CHECK(!AssemblyBuilderA64::isFmovSupported(-0.0));
-    CHECK(!AssemblyBuilderA64::isFmovSupported(0.12389));
+    CHECK(!AssemblyBuilderA64::isFmovSupportedFp64(-0.0));
+    CHECK(!AssemblyBuilderA64::isFmovSupportedFp64(0.12389));
 }
 
 TEST_CASE_FIXTURE(AssemblyBuilderA64Fixture, "AddressOffsetSize")
@@ -549,12 +583,12 @@ TEST_CASE("LogTest")
 {
     AssemblyBuilderA64 build(/* logText= */ true);
 
-    build.add(sp, sp, 4);
+    build.add(sp, sp, uint16_t(4));
     build.add(w0, w1, w2);
     build.add(x0, x1, x2, 2);
     build.add(x0, x1, x2, -2);
-    build.add(w7, w8, 5);
-    build.add(x7, x8, 5);
+    build.add(w7, w8, uint16_t(5));
+    build.add(x7, x8, uint16_t(5));
     build.ldr(x7, x8);
     build.ldr(x7, mem(x8, 8));
     build.ldr(x7, mem(x8, x9));
@@ -596,6 +630,7 @@ TEST_CASE("LogTest")
     build.ins_4s(q31, 1, q29, 2);
     build.dup_4s(s29, q31, 2);
     build.dup_4s(q29, q30, 0);
+    build.umov_4s(w1, q30, 3);
     build.fmul(q0, q1, q2);
 
     build.fcmeq_4s(q2, q0, q1);
@@ -642,6 +677,7 @@ TEST_CASE("LogTest")
  ins         v31.s[1],v29.s[2]
  dup         s29,v31.s[2]
  dup         v29.4s,v30.s[0]
+ umov        w1,v30.s[3]
  fmul        v0.4s,v1.4s,v2.4s
  fcmeq       v2.4s,v0.4s,v1.4s
  bit         v1.16b,v0.16b,v2.16b

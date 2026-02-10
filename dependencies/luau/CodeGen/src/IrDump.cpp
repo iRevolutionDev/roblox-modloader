@@ -137,6 +137,10 @@ const char* getCmdName(IrCmd cmd)
         return "ADD_INT";
     case IrCmd::SUB_INT:
         return "SUB_INT";
+    case IrCmd::SEXTI8_INT:
+        return "SEXTI8_INT";
+    case IrCmd::SEXTI16_INT:
+        return "SEXTI16_INT";
     case IrCmd::ADD_NUM:
         return "ADD_NUM";
     case IrCmd::SUB_NUM:
@@ -167,12 +171,38 @@ const char* getCmdName(IrCmd cmd)
         return "ABS_NUM";
     case IrCmd::SIGN_NUM:
         return "SIGN_NUM";
+    case IrCmd::ADD_FLOAT:
+        return "ADD_FLOAT";
+    case IrCmd::SUB_FLOAT:
+        return "SUB_FLOAT";
+    case IrCmd::MUL_FLOAT:
+        return "MUL_FLOAT";
+    case IrCmd::DIV_FLOAT:
+        return "DIV_FLOAT";
+    case IrCmd::MIN_FLOAT:
+        return "MIN_FLOAT";
+    case IrCmd::MAX_FLOAT:
+        return "MAX_FLOAT";
+    case IrCmd::UNM_FLOAT:
+        return "UNM_FLOAT";
+    case IrCmd::FLOOR_FLOAT:
+        return "FLOOR_FLOAT";
+    case IrCmd::CEIL_FLOAT:
+        return "CEIL_FLOAT";
+    case IrCmd::SQRT_FLOAT:
+        return "SQRT_FLOAT";
+    case IrCmd::ABS_FLOAT:
+        return "ABS_FLOAT";
+    case IrCmd::SIGN_FLOAT:
+        return "SIGN_FLOAT";
     case IrCmd::SELECT_NUM:
         return "SELECT_NUM";
     case IrCmd::MULADD_NUM:
         return "MULADD_NUM";
     case IrCmd::SELECT_VEC:
         return "SELECT_VEC";
+    case IrCmd::SELECT_IF_TRUTHY:
+        return "SELECT_IF_TRUTHY";
     case IrCmd::ADD_VEC:
         return "ADD_VEC";
     case IrCmd::SUB_VEC:
@@ -181,12 +211,26 @@ const char* getCmdName(IrCmd cmd)
         return "MUL_VEC";
     case IrCmd::DIV_VEC:
         return "DIV_VEC";
-    case IrCmd::UNM_VEC:
-        return "UNM_VEC";
-    case IrCmd::DOT_VEC:
-        return "DOT_VEC";
+    case IrCmd::IDIV_VEC:
+        return "IDIV_VEC";
     case IrCmd::MULADD_VEC:
         return "MULADD_VEC";
+    case IrCmd::UNM_VEC:
+        return "UNM_VEC";
+    case IrCmd::MIN_VEC:
+        return "MIN_VEC";
+    case IrCmd::MAX_VEC:
+        return "MAX_VEC";
+    case IrCmd::FLOOR_VEC:
+        return "FLOOR_VEC";
+    case IrCmd::CEIL_VEC:
+        return "CEIL_VEC";
+    case IrCmd::ABS_VEC:
+        return "ABS_VEC";
+    case IrCmd::DOT_VEC:
+        return "DOT_VEC";
+    case IrCmd::EXTRACT_VEC:
+        return "EXTRACT_VEC";
     case IrCmd::NOT_ANY:
         return "NOT_ANY";
     case IrCmd::CMP_ANY:
@@ -211,6 +255,8 @@ const char* getCmdName(IrCmd cmd)
         return "JUMP_EQ_POINTER";
     case IrCmd::JUMP_CMP_NUM:
         return "JUMP_CMP_NUM";
+    case IrCmd::JUMP_CMP_FLOAT:
+        return "JUMP_CMP_FLOAT";
     case IrCmd::JUMP_FORN_LOOP_COND:
         return "JUMP_FORN_LOOP_COND";
     case IrCmd::JUMP_SLOT_MATCH:
@@ -235,14 +281,22 @@ const char* getCmdName(IrCmd cmd)
         return "INT_TO_NUM";
     case IrCmd::UINT_TO_NUM:
         return "UINT_TO_NUM";
+    case IrCmd::UINT_TO_FLOAT:
+        return "UINT_TO_FLOAT";
     case IrCmd::NUM_TO_INT:
         return "NUM_TO_INT";
     case IrCmd::NUM_TO_UINT:
         return "NUM_TO_UINT";
-    case IrCmd::NUM_TO_VEC:
-        return "NUM_TO_VEC";
+    case IrCmd::FLOAT_TO_NUM:
+        return "FLOAT_TO_NUM";
+    case IrCmd::NUM_TO_FLOAT:
+        return "NUM_TO_FLOAT";
+    case IrCmd::FLOAT_TO_VEC:
+        return "FLOAT_TO_VEC";
     case IrCmd::TAG_VECTOR:
         return "TAG_VECTOR";
+    case IrCmd::TRUNCATE_UINT:
+        return "TRUNCATE_UINT";
     case IrCmd::ADJUST_STACK_TO_REG:
         return "ADJUST_STACK_TO_REG";
     case IrCmd::ADJUST_STACK_TO_TOP:
@@ -291,6 +345,8 @@ const char* getCmdName(IrCmd cmd)
         return "CHECK_BUFFER_LEN";
     case IrCmd::CHECK_USERDATA_TAG:
         return "CHECK_USERDATA_TAG";
+    case IrCmd::CHECK_CMP_INT:
+        return "CHECK_CMP_INT";
     case IrCmd::INTERRUPT:
         return "INTERRUPT";
     case IrCmd::CHECK_GC:
@@ -433,22 +489,13 @@ void toString(IrToStringContext& ctx, const IrInst& inst, uint32_t index)
 
     ctx.result.append(getCmdName(inst.cmd));
 
-    auto checkOp = [&ctx](IrOp op, const char* sep)
+    for (size_t i = 0; i < inst.ops.size(); i++)
     {
-        if (op.kind != IrOpKind::None)
-        {
-            ctx.result.append(sep);
-            toString(ctx, op);
-        }
-    };
-
-    checkOp(inst.a, " ");
-    checkOp(inst.b, ", ");
-    checkOp(inst.c, ", ");
-    checkOp(inst.d, ", ");
-    checkOp(inst.e, ", ");
-    checkOp(inst.f, ", ");
-    checkOp(inst.g, ", ");
+        if (inst.ops[i].kind == IrOpKind::None)
+            continue;
+        ctx.result.append(i == 0 ? " " : ", ");
+        toString(ctx, inst.ops[i]);
+    }
 }
 
 void toString(IrToStringContext& ctx, const IrBlock& block, uint32_t index)
@@ -700,7 +747,7 @@ static void appendRegisterSet(IrToStringContext& ctx, const RegisterSet& rs, con
     }
 }
 
-static RegisterSet getJumpTargetExtraLiveIn(IrToStringContext& ctx, const IrBlock& block, uint32_t blockIdx, const IrInst& inst)
+static RegisterSet getJumpTargetExtraLiveIn(IrToStringContext& ctx, const IrBlock& block, uint32_t blockIdx, IrInst& inst)
 {
     RegisterSet extraRs;
 
@@ -711,20 +758,14 @@ static RegisterSet getJumpTargetExtraLiveIn(IrToStringContext& ctx, const IrBloc
 
     // Find first block argument, for guard instructions (isNonTerminatingJump), that's the first and only one
     CODEGEN_ASSERT(isNonTerminatingJump(inst.cmd));
-    IrOp op = inst.a;
+    IrOp op = OP_A(inst);
 
-    if (inst.b.kind == IrOpKind::Block)
-        op = inst.b;
-    else if (inst.c.kind == IrOpKind::Block)
-        op = inst.c;
-    else if (inst.d.kind == IrOpKind::Block)
-        op = inst.d;
-    else if (inst.e.kind == IrOpKind::Block)
-        op = inst.e;
-    else if (inst.f.kind == IrOpKind::Block)
-        op = inst.f;
-    else if (inst.g.kind == IrOpKind::Block)
-        op = inst.g;
+    for (size_t i = 1; i < inst.ops.size(); i++)
+        if (inst.ops[i].kind == IrOpKind::Block)
+        {
+            op = inst.ops[i];
+            break;
+        }
 
     if (op.kind == IrOpKind::Block && op.index < ctx.cfg.in.size())
     {
@@ -739,14 +780,7 @@ static RegisterSet getJumpTargetExtraLiveIn(IrToStringContext& ctx, const IrBloc
     return extraRs;
 }
 
-void toStringDetailed(
-    IrToStringContext& ctx,
-    const IrBlock& block,
-    uint32_t blockIdx,
-    const IrInst& inst,
-    uint32_t instIdx,
-    IncludeUseInfo includeUseInfo
-)
+void toStringDetailed(IrToStringContext& ctx, const IrBlock& block, uint32_t blockIdx, IrInst& inst, uint32_t instIdx, IncludeUseInfo includeUseInfo)
 {
     size_t start = ctx.result.size();
 
@@ -799,7 +833,7 @@ void toStringDetailed(
 )
 {
     // Report captured registers for entry block
-    if (includeRegFlowInfo == IncludeRegFlowInfo::Yes && block.useCount == 0 && block.kind != IrBlockKind::Dead && ctx.cfg.captured.regs.any())
+    if (includeRegFlowInfo == IncludeRegFlowInfo::Yes && isEntryBlock(block) && ctx.cfg.captured.regs.any())
     {
         append(ctx.result, "; captured regs: ");
         appendRegisterSet(ctx, ctx.cfg.captured, ", ");
@@ -877,7 +911,7 @@ void toStringDetailed(
     }
 }
 
-std::string toString(const IrFunction& function, IncludeUseInfo includeUseInfo)
+std::string toString(IrFunction& function, IncludeUseInfo includeUseInfo)
 {
     std::string result;
     IrToStringContext ctx{result, function.blocks, function.constants, function.cfg, function.proto};
@@ -897,10 +931,13 @@ std::string toString(const IrFunction& function, IncludeUseInfo includeUseInfo)
             continue;
         }
 
+        if ((block.flags & kBlockFlagSafeEnvCheck) != 0)
+            append(ctx.result, "   implicit CHECK_SAFE_ENV exit(%u)\n", block.startpc);
+
         // To allow dumping blocks that are still being constructed, we can't rely on terminator and need a bounds check
         for (uint32_t index = block.start; index <= block.finish && index < uint32_t(function.instructions.size()); index++)
         {
-            const IrInst& inst = function.instructions[index];
+            IrInst& inst = function.instructions[index];
 
             // Skip pseudo instructions unless they are still referenced
             if (isPseudo(inst.cmd) && inst.useCount == 0)
@@ -910,13 +947,20 @@ std::string toString(const IrFunction& function, IncludeUseInfo includeUseInfo)
             toStringDetailed(ctx, block, uint32_t(i), inst, index, includeUseInfo);
         }
 
+        if (block.expectedNextBlock != ~0u)
+        {
+            append(ctx.result, "; glued to: ");
+            toString(ctx, ctx.blocks[block.expectedNextBlock], block.expectedNextBlock);
+            append(ctx.result, "\n");
+        }
+
         append(ctx.result, "\n");
     }
 
     return result;
 }
 
-std::string dump(const IrFunction& function)
+std::string dump(IrFunction& function)
 {
     std::string result = toString(function, IncludeUseInfo::Yes);
 
@@ -1016,13 +1060,8 @@ std::string toDot(const IrFunction& function, bool includeInst)
                 }
             };
 
-            checkOp(inst.a);
-            checkOp(inst.b);
-            checkOp(inst.c);
-            checkOp(inst.d);
-            checkOp(inst.e);
-            checkOp(inst.f);
-            checkOp(inst.g);
+            for (auto& op : inst.ops)
+                checkOp(op);
         }
     }
 

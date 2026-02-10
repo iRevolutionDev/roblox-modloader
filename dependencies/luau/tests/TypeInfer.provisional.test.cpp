@@ -12,14 +12,12 @@
 using namespace Luau;
 
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(DebugLuauEqSatSimplification)
 LUAU_FASTINT(LuauNormalizeCacheLimit)
 LUAU_FASTINT(LuauTarjanChildLimit)
 LUAU_FASTINT(LuauTypeInferIterationLimit)
 LUAU_FASTINT(LuauTypeInferRecursionLimit)
 LUAU_FASTINT(LuauTypeInferTypePackLoopLimit)
-LUAU_FASTFLAG(LuauNoMoreComparisonTypeFunctions)
-LUAU_FASTFLAG(LuauAddRefinementToAssertions)
+LUAU_FASTFLAG(LuauBetterTypeMismatchErrors)
 
 TEST_SUITE_BEGIN("ProvisionalTests");
 
@@ -70,20 +68,8 @@ TEST_CASE_FIXTURE(Fixture, "typeguard_inference_incomplete")
         end
     )";
 
-    const std::string expectedWithEqSat = R"(
-        function f(a:{fn:()->(unknown,...unknown)}): ()
-            if type(a) == 'boolean' then
-                local a1:{fn:()->(unknown,...unknown)}&boolean=a
-            elseif a.fn() then
-                local a2:{fn:()->(unknown,...unknown)}&negate<boolean>=a
-            end
-        end
-    )";
-
-    if (FFlag::LuauSolverV2 && !FFlag::DebugLuauEqSatSimplification)
+    if (FFlag::LuauSolverV2)
         CHECK_EQ(expectedWithNewSolver, decorateWithTypes(code));
-    else if (FFlag::LuauSolverV2 && FFlag::DebugLuauEqSatSimplification)
-        CHECK_EQ(expectedWithEqSat, decorateWithTypes(code));
     else
         CHECK_EQ(expected, decorateWithTypes(code));
 }
@@ -226,7 +212,10 @@ TEST_CASE_FIXTURE(Fixture, "while_body_are_also_refined")
 
     LUAU_REQUIRE_ERROR_COUNT(1, result);
 
-    CHECK_EQ("Type 'Node<T>?' could not be converted into 'Node<T>'", toString(result.errors[0]));
+    if (FFlag::LuauBetterTypeMismatchErrors)
+        CHECK_EQ("Expected this to be 'Node<T>', but got 'Node<T>?'", toString(result.errors[0]));
+    else
+        CHECK_EQ("Type 'Node<T>?' could not be converted into 'Node<T>'", toString(result.errors[0]));
 }
 
 // Originally from TypeInfer.test.cpp.
@@ -614,12 +603,14 @@ return wrapStrictTable(Constants, "Constants")
     ModulePtr m = getFrontend().moduleResolver.getModule("game/B");
     REQUIRE(m);
 
-    std::optional<TypeId> result = first(m->returnType);
-    REQUIRE(result);
     if (FFlag::LuauSolverV2)
-        CHECK_EQ("unknown", toString(*result));
+        CHECK_EQ("*error-type*", toString(m->returnType));
     else
+    {
+        std::optional<TypeId> result = first(m->returnType);
+        REQUIRE(result);
         CHECK_MESSAGE(get<AnyType>(*result), *result);
+    }
 }
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "generic_type_leak_to_module_interface_variadic")
@@ -656,13 +647,14 @@ return wrapStrictTable(Constants, "Constants")
     ModulePtr m = getFrontend().moduleResolver.getModule("game/B");
     REQUIRE(m);
 
-    std::optional<TypeId> result = first(m->returnType);
-    REQUIRE(result);
-
     if (FFlag::LuauSolverV2)
-        CHECK("unknown" == toString(*result));
+        CHECK_EQ("*error-type*", toString(m->returnType));
     else
+    {
+        std::optional<TypeId> result = first(m->returnType);
+        REQUIRE(result);
         CHECK("any" == toString(*result));
+    }
 }
 
 namespace
@@ -671,15 +663,13 @@ struct IsSubtypeFixture : Fixture
 {
     bool isSubtype(TypeId a, TypeId b)
     {
-        SimplifierPtr simplifier = newSimplifier(NotNull{&getMainModule()->internalTypes}, getBuiltins());
-
         ModulePtr module = getMainModule();
         REQUIRE(module);
 
         if (!module->hasModuleScope())
             FAIL("isSubtype: module scope data is not available");
 
-        return ::Luau::isSubtype(a, b, NotNull{module->getModuleScope().get()}, getBuiltins(), NotNull{simplifier.get()}, ice, SolverMode::New);
+        return ::Luau::isSubtype(a, b, NotNull{module->getModuleScope().get()}, getBuiltins(), ice, SolverMode::New);
     }
 };
 } // namespace
@@ -849,6 +839,19 @@ TEST_CASE_FIXTURE(Fixture, "assign_table_with_refined_property_with_a_similar_ty
 
     if (FFlag::LuauSolverV2)
         LUAU_REQUIRE_NO_ERRORS(result); // This is wrong.  We should be rejecting this assignment.
+    else if (FFlag::LuauBetterTypeMismatchErrors)
+    {
+        LUAU_REQUIRE_ERROR_COUNT(1, result);
+        const std::string expected =
+            R"(Expected this to be exactly
+	'{ x: number }'
+but got
+	'{ x: number? }'
+caused by:
+  Property 'x' is not compatible.
+Expected this to be exactly 'number', but got 'number?')";
+        CHECK_EQ(expected, toString(result.errors[0]));
+    }
     else
     {
         LUAU_REQUIRE_ERROR_COUNT(1, result);
@@ -1302,8 +1305,6 @@ TEST_CASE_FIXTURE(Fixture, "table_containing_non_final_type_is_erroneously_cache
 // CLI-111113
 TEST_CASE_FIXTURE(Fixture, "we_cannot_infer_functions_that_return_inconsistently")
 {
-    ScopedFastFlag sff{FFlag::LuauNoMoreComparisonTypeFunctions, true};
-
     CheckResult result = check(R"(
         function find_first<T>(tbl: {T}, el)
             for i, e in tbl do
@@ -1404,7 +1405,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "function_indexer_satisfies_reading_property"
     LUAU_REQUIRE_ERROR_COUNT(1, result);
     auto err = get<TypeMismatch>(result.errors[0]);
     REQUIRE(err);
-    CHECK_EQ("{ @metatable { __index: (unknown, string) -> number }, {  } }", toString(err->givenType, { /* exhaustive */ true}));
+    CHECK_EQ("{ @metatable { __index: (unknown, string) -> number }, {  } }", toString(err->givenType, {/* exhaustive */ true}));
     CHECK_EQ("{ read X: number }", toString(err->wantedType));
 }
 
@@ -1430,10 +1431,7 @@ TEST_CASE_FIXTURE(Fixture, "unification_inferring_never_for_refined_param")
 
 TEST_CASE_FIXTURE(BuiltinsFixture, "assert_and_many_nested_typeof_contexts")
 {
-    ScopedFastFlag sffs[] = {
-        {FFlag::LuauSolverV2, true},
-        {FFlag::LuauAddRefinementToAssertions, true},
-    };
+    ScopedFastFlag sff{FFlag::LuauSolverV2, true};
 
     CheckResult result = check(R"(
         local foo: unknown = nil :: any
@@ -1476,7 +1474,33 @@ TEST_CASE_FIXTURE(Fixture, "indexing_union_of_indexers")
             return t[true]
         end
     )"));
+}
 
+TEST_CASE_FIXTURE(BuiltinsFixture, "unions_should_work_with_bidirectional_typechecking")
+{
+    ScopedFastFlag newSolver{FFlag::LuauSolverV2, true};
+
+    CheckResult result = check(R"(
+        type dog = { name: string }
+        local function bark(arg: { [dog]: dog | { left: dog?, right: dog? } })
+            -- do something
+            return arg
+        end
+
+        local molly: dog = { name = "molly" }
+        local draco: dog = { name = "draco" }
+        local cindy: dog = { name = "cindy" }
+        local laika: dog = { name = "laika" }
+
+        -- this should work because they should match with the left-right dog variant with optionals!
+        bark{ [molly] = { left = laika }, [draco] = { right = cindy } }
+    )");
+
+
+    // FIXME(CLI-178738): This should actually be no errors.
+    LUAU_REQUIRE_ERROR_COUNT(2, result);
+    CHECK(get<TypeMismatch>(result.errors[0]));
+    CHECK(get<TypeMismatch>(result.errors[1]));
 }
 
 TEST_SUITE_END();

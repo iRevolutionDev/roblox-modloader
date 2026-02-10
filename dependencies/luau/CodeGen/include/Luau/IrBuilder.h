@@ -32,10 +32,11 @@ struct IrBuilder
     void beginBlock(IrOp block);
 
     void loadAndCheckTag(IrOp loc, uint8_t tag, IrOp fallback);
+    void checkSafeEnv(int pcpos);
 
     // Clones all instructions into the current block
     // Source block that is cloned cannot use values coming in from a predecessor
-    void clone(const IrBlock& source, bool removeCurrentTerminator);
+    void clone(std::vector<uint32_t> sourceIdxs, bool removeCurrentTerminator);
 
     IrOp undef();
 
@@ -48,6 +49,8 @@ struct IrBuilder
 
     IrOp cond(IrCondition cond);
 
+    IrOp inst(IrCmd cmd, const IrOps& ops);
+    IrOp inst(IrCmd cmd, std::initializer_list<IrOp> ops);
     IrOp inst(IrCmd cmd);
     IrOp inst(IrCmd cmd, IrOp a);
     IrOp inst(IrCmd cmd, IrOp a, IrOp b);
