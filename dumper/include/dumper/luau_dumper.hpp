@@ -1,0 +1,66 @@
+#pragma once
+
+#include "assembly_analyzer.hpp"
+
+#include <cstdint>
+#include <map>
+#include <string>
+#include <vector>
+
+namespace dumper
+{
+	class pointers;
+	class AssemblyAnalyzer;
+
+	struct FieldInfo
+	{
+		std::string name;
+		std::size_t offset;
+		std::size_t size;
+		std::string type;
+	};
+
+	struct StructInfo
+	{
+		std::string name;
+		std::size_t size;
+		std::vector<FieldInfo> fields;
+	};
+
+	struct Proto
+	{
+		uint64_t linedefined;
+	};
+
+	class LuauDumper
+	{
+	public:
+		explicit LuauDumper(std::unique_ptr<pointers>& pointers);
+		~LuauDumper() = default;
+
+		bool analyze();
+
+		const std::map<std::string, StructInfo>& get_structures() const;
+
+		const StructInfo* find_structure(const std::string& name) const;
+
+	private:
+		std::map<std::string, StructInfo> m_structures;
+		uintptr_t m_base_address;
+		std::unique_ptr<pointers> m_pointers;
+
+		bool analyze_lua_state();
+		bool analyze_table();
+		bool analyze_closure();
+		bool analyze_proto();
+		bool analyze_upval();
+		bool analyze_tvalue();
+		bool analyze_global_state();
+
+		bool generate_offsets();
+
+	private:
+		Proto m_proto;
+	};
+
+}

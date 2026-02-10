@@ -4,6 +4,7 @@ project(RobloxModLoader LANGUAGES CXX C ASM ASM_MASM RC VERSION 0.1.0 DESCRIPTIO
 
 option(ROBLOX_MODLOADER_BUILD_PROXY_GENERATOR "Build the proxy generator tool" ON)
 option(ROBLOX_MODLOADER_BUILD_PROXY_DLL "Build the dwmapi.dll proxy automatically" ON)
+option(ROBLOX_MODLOADER_BUILD_DUMPER "Build the Luau structures dumper tool" ON)
 option(ROBLOX_MODLOADER_BUILD_EXAMPLES "Build example mods" ON)
 option(ROBLOX_MODLOADER_INSTALL "Install RobloxModLoader" OFF)
 
@@ -145,6 +146,10 @@ endif ()
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     if (ROBLOX_MODLOADER_BUILD_PROXY_GENERATOR)
         add_subdirectory(proxy_generator)
+    endif ()
+
+    if (ROBLOX_MODLOADER_BUILD_DUMPER)
+        add_subdirectory(dumper)
     endif ()
 
     if (ROBLOX_MODLOADER_BUILD_PROXY_DLL AND ROBLOX_MODLOADER_BUILD_PROXY_GENERATOR)
