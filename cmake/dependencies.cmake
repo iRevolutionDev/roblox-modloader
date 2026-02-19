@@ -41,7 +41,6 @@ function(setup_luau_dependencies target_name access_level)
             Luau.Ast
             Luau.VM
             Luau.VM.Internals
-            Luau.EqSat
             Luau.CodeGen
     )
 
@@ -50,7 +49,6 @@ function(setup_luau_dependencies target_name access_level)
             "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Ast/include"
             "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/VM/include"
             "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/VM/src"
-            "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/EqSat/include"
             "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/CodeGen/include"
             "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/luau/Common/include"
     )
