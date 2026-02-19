@@ -117,7 +117,6 @@ target_link_libraries(RobloxModLoader INTERFACE
         Luau.Ast
         Luau.VM
         Luau.VM.Internals
-        Luau.EqSat
         Luau.CodeGen
         $<$<TARGET_EXISTS:roblox_modloader>:roblox_modloader>
 )
