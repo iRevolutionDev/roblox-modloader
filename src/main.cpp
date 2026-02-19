@@ -10,7 +10,7 @@
 #include "RobloxModLoader/luau/script_manager.hpp"
 #include "utils/directory_utils.hpp"
 
-BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lpReserved) {
+BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_reserved) {
     if (dwReason == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hModule);
 

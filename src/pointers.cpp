@@ -1,9 +1,11 @@
-#include "RobloxModLoader/common.hpp"
 #include "pointers.hpp"
+
+#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/memory/all.hpp"
 
-constexpr auto pointers::get_roblox_batch() {
-    // clang-format off
+constexpr auto pointers::get_roblox_batch()
+{
+	// clang-format off
     constexpr auto batch_and_hash = memory::make_batch<
         {
             "RBXCRASH",
@@ -123,14 +125,14 @@ constexpr auto pointers::get_roblox_batch() {
         },
          {
              "GET_GLOBALSTATE",
-             "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 05 ? ? ? ? 8B C8 ? ? 89 4C 24 ? 33 40 ? 89 44 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 40 53",
+             "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 83 C0 ? ? ? 03 D0 89 54 24 ? 03 40 ? 89 44 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 ? ? 40 53",
              [](const memory::handle ptr) {
                  g_pointers->m_roblox_pointers.get_global_state = ptr.as<functions::get_global_state>();
              }
          },
         {
             "TASK_DEFER",
-            "48 89 5C 24 ? 48 89 6C 24 ? 56 57 41 56 48 81 EC ? ? ? ? 48 8B F1 33 FF 40 38 3D",
+            "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 8B F1 33 FF 40 38 3D",
             [](const memory::handle ptr) {
                 g_pointers->m_roblox_pointers.task_defer = ptr.as<functions::task_defer>();
             },
@@ -165,38 +167,39 @@ constexpr auto pointers::get_roblox_batch() {
         }
     >();
 
-    // clang-format on
+	// clang-format on
 
-    return batch_and_hash;
+	return batch_and_hash;
 }
 
-pointers::pointers() {
-    g_pointers = this;
+pointers::pointers()
+{
+	g_pointers = this;
 
-    const auto roblox_region = memory::module("RobloxStudioBeta.exe");
-    const auto [m_roblox_batch, m_hash] = get_roblox_batch();
+	const auto roblox_region            = memory::module("RobloxStudioBeta.exe");
+	const auto [m_roblox_batch, m_hash] = get_roblox_batch();
 
-    constexpr cstxpr_str roblox_batch_name{"roblox"};
+	constexpr cstxpr_str roblox_batch_name{"roblox"};
 
-    run_batch<roblox_batch_name>(
-        m_roblox_batch,
-        roblox_region
-    );
+	run_batch<roblox_batch_name>(m_roblox_batch, roblox_region);
 
-    m_hwnd = GetForegroundWindow();
+	m_hwnd = GetForegroundWindow();
 
-    if (!m_hwnd)
-        throw std::runtime_error("Failed to find Roblox Studio window");
+	if (!m_hwnd)
+		throw std::runtime_error("Failed to find Roblox Studio window");
 }
 
-pointers::~pointers() {
-    g_pointers = nullptr;
+pointers::~pointers()
+{
+	g_pointers = nullptr;
 }
 
-roblox_pointers *get_roblox_pointers() {
-    if (!g_pointers) {
-        throw std::runtime_error("Pointers not initialized");
-    }
+roblox_pointers* get_roblox_pointers()
+{
+	if (!g_pointers)
+	{
+		throw std::runtime_error("Pointers not initialized");
+	}
 
-    return &g_pointers->m_roblox_pointers;
+	return &g_pointers->m_roblox_pointers;
 }
