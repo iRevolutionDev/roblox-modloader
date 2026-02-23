@@ -23,5 +23,6 @@ namespace dumper
 		uintptr_t gc{};
 		uintptr_t page{};
 		uintptr_t propagatemark{};
+		uintptr_t luaF_newLclosure{};
 	};
 }

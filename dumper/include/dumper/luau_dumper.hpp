@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <map>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace dumper
@@ -18,6 +19,7 @@ namespace dumper
 		std::size_t offset;
 		std::size_t size;
 		std::string type;
+		int64_t adjustment = 0;
 	};
 
 	struct StructInfo
@@ -30,6 +32,7 @@ namespace dumper
 	struct Proto
 	{
 		uint64_t linedefined;
+		uint64_t execdata;
 	};
 
 	class LuauDumper
@@ -49,7 +52,11 @@ namespace dumper
 		uintptr_t m_base_address;
 		std::unique_ptr<pointers> m_pointers;
 
+		void apply_common_header(StructInfo& structure) const;
+		static bool has_field(const StructInfo& structure, std::string_view field_name, std::size_t offset);
+
 		bool analyze_lua_state();
+		bool analyze_common();
 		bool analyze_table();
 		bool analyze_closure();
 		bool analyze_proto();

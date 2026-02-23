@@ -65,6 +65,12 @@ void dumper_main()
 			spdlog::info("Genny offsets generated successfully");
 		}
 
+		spdlog::info("Generating canonical JSON layout...");
+		if (generator.generate(dumper.get_structures(), output_dir / "luau_layout.json", dumper::OutputFormat::JSON))
+		{
+			spdlog::info("Canonical JSON layout generated successfully");
+		}
+
 		spdlog::info("=== Dump completed successfully! ===");
 		spdlog::info("Files saved in: {}", output_dir.string());
 

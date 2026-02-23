@@ -12,7 +12,7 @@ namespace dumper
 		constexpr auto batch_and_hash = memory::make_batch<
 			{
 				"LUAF_FREEPROTO",
-				"48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 44 0F B6 4A",
+				"48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 44 0F B6 4A ? 49 8B F0",
 				[](const memory::handle ptr) {
 					g_dumper_pointers->m_luau_functions.luaF_freeproto = ptr.as<uintptr_t>();
 				},
@@ -26,7 +26,7 @@ namespace dumper
 			},
 			{
 				"THREAD",
-					"48 83 EC ? 8B 42 ? 4C 8D 4A",
+					"40 53 55 41 54 48 83 EC ? 44 8B 4A",
 					[](const memory::handle ptr) {
 						g_dumper_pointers->m_luau_functions.thread = ptr.as<uintptr_t>();
 				},
@@ -50,6 +50,13 @@ namespace dumper
 				"48 83 EC ? 48 8B 59 ? 48 8B F9 80 4B",
 				[](const memory::handle ptr) {
 					g_dumper_pointers->m_luau_functions.propagatemark = ptr.as<uintptr_t>();
+				},
+			},
+			{
+				"LUAF_NEWLCLOSURE",
+				"48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 48 83 EC ? 8B EA 49 8B F8",
+				[](const memory::handle ptr) {
+					g_dumper_pointers->m_luau_functions.luaF_newLclosure = ptr.as<uintptr_t>();
 				},
 			}
         >();

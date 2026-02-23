@@ -12,7 +12,11 @@ namespace dumper
 	class AssemblyAnalyzer
 	{
 	public:
+		static constexpr uint64_t invalid_displacement = UINT64_MAX;
+
 		static uint64_t get_displacement(uintptr_t instruction_address);
+
+		static uint64_t get_immediate(uintptr_t instruction_address);
 
 		static uint64_t find_next_instruction(uintptr_t start_address, ZydisMnemonic_ instruction, int skip_count = 0);
 

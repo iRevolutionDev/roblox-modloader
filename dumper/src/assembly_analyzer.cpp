@@ -15,7 +15,7 @@ namespace dumper
 
 		if (!ReadProcessMemory(GetCurrentProcess(), reinterpret_cast<LPCVOID>(instruction_address), buffer, sizeof(buffer), &bytes_read) || bytes_read == 0)
 		{
-			return 0;
+			return invalid_displacement;
 		}
 
 		ZydisDecodedInstruction instruction;
@@ -23,21 +23,18 @@ namespace dumper
 
 		if (!ZYAN_SUCCESS(ZydisDecoderDecodeFull(&decoder, buffer, bytes_read, &instruction, operands)))
 		{
-			return 0;
+			return invalid_displacement;
 		}
 
 		for (uint32_t i = 0; i < instruction.operand_count; i++)
 		{
 			if (const ZydisDecodedOperand& op = operands[i]; op.type == ZYDIS_OPERAND_TYPE_MEMORY)
 			{
-				if (op.mem.disp.value != 0)
-				{
-					return static_cast<uint32_t>(op.mem.disp.value);
-				}
+				return static_cast<uint64_t>(op.mem.disp.value);
 			}
 		}
 
-		return 0;
+		return invalid_displacement;
 	}
 	uint64_t AssemblyAnalyzer::find_next_instruction(uintptr_t start_address, ZydisMnemonic_ instruction, int skip_count)
 	{
@@ -71,6 +68,38 @@ namespace dumper
 		}
 
 		return 0;
+	}
+
+	uint64_t AssemblyAnalyzer::get_immediate(uintptr_t instruction_address)
+	{
+		ZydisDecoder decoder;
+		ZydisDecoderInit(&decoder, ZYDIS_MACHINE_MODE_LONG_64, ZYDIS_STACK_WIDTH_64);
+
+		uint8_t buffer[32];
+		SIZE_T bytes_read;
+
+		if (!ReadProcessMemory(GetCurrentProcess(), reinterpret_cast<LPCVOID>(instruction_address), buffer, sizeof(buffer), &bytes_read) || bytes_read == 0)
+		{
+			return invalid_displacement;
+		}
+
+		ZydisDecodedInstruction instruction;
+		ZydisDecodedOperand operands[ZYDIS_MAX_OPERAND_COUNT];
+
+		if (!ZYAN_SUCCESS(ZydisDecoderDecodeFull(&decoder, buffer, bytes_read, &instruction, operands)))
+		{
+			return invalid_displacement;
+		}
+
+		for (uint32_t i = 0; i < instruction.operand_count; i++)
+		{
+			if (const ZydisDecodedOperand& op = operands[i]; op.type == ZYDIS_OPERAND_TYPE_IMMEDIATE)
+			{
+				return op.imm.is_signed ? static_cast<uint64_t>(op.imm.value.s) : op.imm.value.u;
+			}
+		}
+
+		return invalid_displacement;
 	}
 
 	bool AssemblyAnalyzer::is_valid_code_pointer(const uintptr_t ptr)
