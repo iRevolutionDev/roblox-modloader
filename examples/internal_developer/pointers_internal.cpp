@@ -1,13 +1,15 @@
-#include "RobloxModLoader/common.hpp"
 #include "pointers_internal.hpp"
+
+#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/memory/all.hpp"
 
-constexpr auto pointers_internal::get_roblox_batch() {
-    // clang-format off
+constexpr auto pointers_internal::get_roblox_batch()
+{
+	// clang-format off
     constexpr auto batch_and_hash = memory::make_batch<
         {
             "IS_INTERNAL",
-            "E8 ? ? ? ? 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? ? 84 C0 48 0F 45 CA 48 8D 05 ? ? ? ? 48 89 45 ? 48 C7 45 ? ? ? ? ? 48 89 5D",
+            "E8 ? ? ? ? 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? ? 84 C0 48 0F 45 CA 48 8D 05 ? ? ? ? 48 89 45 ? 48 C7 45 ? ? ? ? ? 48 8D 45",
             [](const memory::handle ptr) {
                 const auto call_offset = ptr.add(1).as<std::int32_t*>();
                 const auto target_address = ptr.add(5).add(*call_offset);
@@ -28,30 +30,29 @@ constexpr auto pointers_internal::get_roblox_batch() {
         }
     >();
 
-    // clang-format on
+	// clang-format on
 
-    return batch_and_hash;
+	return batch_and_hash;
 }
 
-pointers_internal::pointers_internal() {
-    g_pointers_internal = this;
+pointers_internal::pointers_internal()
+{
+	g_pointers_internal = this;
 
-    const auto roblox_region = memory::module("RobloxStudioBeta.exe");
-    const auto [m_roblox_batch, m_hash] = get_roblox_batch();
+	const auto roblox_region            = memory::module("RobloxStudioBeta.exe");
+	const auto [m_roblox_batch, m_hash] = get_roblox_batch();
 
-    constexpr cstxpr_str roblox_batch_name{"roblox"};
+	constexpr cstxpr_str roblox_batch_name{"roblox"};
 
-    run_batch<roblox_batch_name>(
-        m_roblox_batch,
-        roblox_region
-    );
+	run_batch<roblox_batch_name>(m_roblox_batch, roblox_region);
 
-    m_hwnd = GetForegroundWindow();
+	m_hwnd = GetForegroundWindow();
 
-    if (!m_hwnd)
-        throw std::runtime_error("Failed to find Roblox Studio window");
+	if (!m_hwnd)
+		throw std::runtime_error("Failed to find Roblox Studio window");
 }
 
-pointers_internal::~pointers_internal() {
-    g_pointers_internal = nullptr;
+pointers_internal::~pointers_internal()
+{
+	g_pointers_internal = nullptr;
 }
