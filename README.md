@@ -2,17 +2,29 @@
 
 A powerful mod loader that revolutionizes Roblox Studio development with native C++/C# mods and internal Luau scripting capabilities.
 
+> [!NOTE]
+> This project is still in development and may contain bugs or incomplete features.
+
+> [!WARNING]
+> Roblox changed (shuffled) the internal layout of Luau’s structs a few months ago, so the in-memory structures we relied on no longer line up. Because of that I’m building a static-analysis [dumper](https://github.com/revolutionxk/roblox-modloader/tree/develop/dumper) to reconstruct the correct structs and offsets so scripting support can work again. Luau/internal scripting is temporarily disabled while I finish that—native C++/C# mods keep working normally. I’ll re-enable scripting once the [dumper](https://github.com/revolutionxk/roblox-modloader/tree/develop/dumper) produces a stable, reliable mapping.
+
+## Cross-Platform Support
+
+- [x] Windows
+- [ ] macOS (planned)
+- [ ] Linux Vinegar (planned)
+
 ## Quick Start
 
 ### Installation
 
 #### Launcher Setup
-1. Download the latest release from the [releases page](https://github.com/iRevolutionDev/rml-launcher/releases)
+1. Download the latest release from the [releases page](https://github.com/revolutionxk/rml-launcher/releases)
 2. Run the installer and follow the prompts to set up the launcher
 3. Launch Roblox Studio through the launcher to automatically load the mod loader and your mods
 
 #### Manual Setup
-1. Download the latest release from the [releases page](https://github.com/iRevolutionDev/roblox-modloader/releases)
+1. Download the latest release from the [releases page](https://github.com/revolutionxk/roblox-modloader/releases)
 2. Extract the archive to your desired location
 3. Copy `dwmapi.dll` to your Roblox Studio installation directory (usually `%LOCALAPPDATA%\Roblox Studio`)
 4. Create a `RobloxModLoader` folder next to `dwmapi.dll`
@@ -43,7 +55,7 @@ Create a new CMake project and link against RobloxModLoader:
 ```cmake
 FetchContent_Declare(
         rml
-        GIT_REPOSITORY https://github.com/iRevolutionDev/roblox-modloader.git
+        GIT_REPOSITORY https://github.com/revolutionxk/roblox-modloader.git
         GIT_TAG v0.12.2
         GIT_PROGRESS TRUE
 )
@@ -143,7 +155,7 @@ local result = bridge:call("OtherMod", "getData", "some_parameter")
 
 ```powershell
 # Clone the repository
-git clone https://github.com/iRevolutionDev/roblox-modloader.git
+git clone https://github.com/revolutionxk/roblox-modloader.git
 cd roblox-modloader
 
 # Configure with Visual Studio generator
@@ -270,9 +282,9 @@ This software is provided for educational and research purposes. Users are respo
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/iRevolutionDev/roblox-modloader/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/iRevolutionDev/roblox-modloader/discussions)
-- **Wiki**: [Project Wiki](https://github.com/iRevolutionDev/roblox-modloader/wiki)
+- **Issues**: [GitHub Issues](https://github.com/revolutionxk/roblox-modloader/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/revolutionxk/roblox-modloader/discussions)
+- **Wiki**: [Project Wiki](https://github.com/revolutionxk/roblox-modloader/wiki)
 
 ---
 
