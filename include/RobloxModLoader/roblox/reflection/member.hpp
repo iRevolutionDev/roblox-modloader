@@ -39,6 +39,10 @@ private:
     std::byte pad_0000[0x40];
 
 public:
+    const Collection &get_descriptors() const {
+        return descriptors;
+    }
+
     MemberDescriptorType *find_descriptor(const char *name) const {
         for (auto descriptor: descriptors) {
             if (strcmp(descriptor->name.data(), name) == 0) {

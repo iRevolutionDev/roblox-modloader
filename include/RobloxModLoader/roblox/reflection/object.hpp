@@ -14,8 +14,29 @@ class ClassDescriptor :
         public MemberDescriptorContainer<FunctionDescriptor>,
         public MemberDescriptorContainer<YieldFunctionDescriptor> {
 public:
+    using PropertyDescriptors = MemberDescriptorContainer<PropertyDescriptor>::Collection;
+    using FunctionDescriptors = MemberDescriptorContainer<FunctionDescriptor>::Collection;
+    using YieldFunctionDescriptors = MemberDescriptorContainer<YieldFunctionDescriptor>::Collection;
+    using EventDescriptors = MemberDescriptorContainer<EventDescriptor>::Collection;
+
     const ClassDescriptor &get_descriptor() const {
         return *this;
+    }
+
+    const PropertyDescriptors &property_descriptors() const {
+        return MemberDescriptorContainer<PropertyDescriptor>::get_descriptors();
+    }
+
+    const FunctionDescriptors &function_descriptors() const {
+        return MemberDescriptorContainer<FunctionDescriptor>::get_descriptors();
+    }
+
+    const YieldFunctionDescriptors &yield_function_descriptors() const {
+        return MemberDescriptorContainer<YieldFunctionDescriptor>::get_descriptors();
+    }
+
+    const EventDescriptors &event_descriptors() const {
+        return MemberDescriptorContainer<EventDescriptor>::get_descriptors();
     }
 
     PropertyDescriptor *find_property_descriptor(const char *name) const {
