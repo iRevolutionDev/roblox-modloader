@@ -38,13 +38,13 @@ constexpr auto pointers::get_roblox_batch()
                  g_pointers->m_roblox_pointers.m_render_view = ptr.as<PVOID>();
              },
          },
-         {
-             "GET_SCHEDULER",
-             "40 53 48 83 EC ? BB ? ? ? ? E8 ? ? ? ? 8B 0D ? ? ? ? 84 C0 65 48 8B 04 25 ? ? ? ? 48 8B 0C C8 8B 04 0B 74 ? 39 05 ? ? ? ? 7E ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 83 3D ? ? ? ? ? 75 ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 89 05 ? ? ? ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8B 05 ? ? ? ? 0F B6 40",
-             [](const memory::handle ptr) {
-                 g_pointers->m_roblox_pointers.get_scheduler = ptr.as<functions::get_scheduler>();
-             },
-         },
+         // {
+         //     "GET_SCHEDULER",
+         //     "40 53 48 83 EC ? BB ? ? ? ? E8 ? ? ? ? 8B 0D ? ? ? ? 84 C0 65 48 8B 04 25 ? ? ? ? 48 8B 0C C8 8B 04 0B 74 ? 39 05 ? ? ? ? 7E ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 83 3D ? ? ? ? ? 75 ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 89 05 ? ? ? ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8B 05 ? ? ? ? 0F B6 40",
+         //     [](const memory::handle ptr) {
+         //         g_pointers->m_roblox_pointers.get_scheduler = ptr.as<functions::get_scheduler>();
+         //     },
+         // },
         {
             "PRINT",
             "48 8B C4 48 89 50 ? 4C 89 40 ? 4C 89 48 ? 53 48 83 EC ? 8B D9",
@@ -123,20 +123,20 @@ constexpr auto pointers::get_roblox_batch()
                     g_pointers->m_roblox_pointers.lua_setfield = ptr.as<functions::lua_setfield>();
             }
         },
-         {
-             "GET_GLOBALSTATE",
-             "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 83 C0 ? ? ? 03 D0 89 54 24 ? 03 40 ? 89 44 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 ? ? 40 53",
-             [](const memory::handle ptr) {
-                 g_pointers->m_roblox_pointers.get_global_state = ptr.as<functions::get_global_state>();
-             }
-         },
-        {
-            "TASK_DEFER",
-            "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 8B F1 33 FF 40 38 3D",
-            [](const memory::handle ptr) {
-                g_pointers->m_roblox_pointers.task_defer = ptr.as<functions::task_defer>();
-            },
-        },
+        // {
+        //     "GET_GLOBALSTATE",
+        //     "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 8B F8 48 8B F2 48 8B D9 8B 81 ? ? ? ? 90 83 F8 ? 7C ? 48 8D 05 ? ? ? ? 48 89 44 24 ? 48 8B 54 24 ? 48 81 EA ? ? ? ? 33 C9 E8 ? ? ? ? 90 48 8D 8B ? ? ? ? 4C 8B C7 48 8B D6 E8 ? ? ? ? 48 83 C0 ? ? ? 03 D0 89 54 24 ? 03 40 ? 89 44 24 ? 48 8B 44 24 ? 48 8B 5C 24 ? 48 8B 74 24 ? 48 83 C4 ? 5F C3 ? ? 40 53",
+        //     [](const memory::handle ptr) {
+        //         g_pointers->m_roblox_pointers.get_global_state = ptr.as<functions::get_global_state>();
+        //     }
+        // },
+        // {
+        //     "TASK_DEFER",
+        //     "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 8B F1 33 FF 40 38 3D",
+        //     [](const memory::handle ptr) {
+        //         g_pointers->m_roblox_pointers.task_defer = ptr.as<functions::task_defer>();
+        //     },
+        // },
         {
         "RESUME_WAITING_SCRIPS",
             "48 89 4C 24 ? 53 56 57 41 54 41 55 41 56 41 57 48 81 EC ? ? ? ? 0F 29 B4 24 ? ? ? ? 4C 8B E9",
