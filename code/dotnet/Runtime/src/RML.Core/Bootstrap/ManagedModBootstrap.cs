@@ -1,16 +1,13 @@
 using System.Runtime.InteropServices;
-using RobloxModLoader.Managed.Api;
+using RML.Core.Api;
 
-namespace RobloxModLoader.Managed.Bootstrap;
+namespace RML.Core.Bootstrap;
 
 public static class ManagedModBootstrap
 {
     private static IMod? _current;
 
-    public static void Register(IMod mod)
-    {
-        _current = mod;
-    }
+    public static void Register(IMod mod) => _current = mod;
 
     public static int InitializeManaged(nint modRootUtf8, nint generatedOutputUtf8)
     {
@@ -26,10 +23,7 @@ public static class ManagedModBootstrap
         return _current.Initialize(context);
     }
 
-    public static void ShutdownManaged()
-    {
-        _current?.Shutdown();
-    }
+    public static void ShutdownManaged() => _current?.Shutdown();
 }
 
 public static class ManagedModBootstrapExports

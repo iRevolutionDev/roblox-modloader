@@ -1,6 +1,6 @@
-using RobloxModLoader.Managed.Api;
+using RML.Core.Api;
 
-namespace RobloxModLoader.Managed.Modding;
+namespace RML.Core.Modding;
 
 public abstract class ModBase : IMod
 {

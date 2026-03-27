@@ -1,16 +1,16 @@
-using RobloxModLoader.Managed.Api;
-using RobloxModLoader.Managed.Modding;
+using RML.Core.Api;
+using RML.Core.Modding;
 using System.Runtime.InteropServices;
 
-namespace ExampleManagedMod;
+namespace ExampleMod;
 
 [RmlMod("dotnet-example", "1.0.0", Author = "Revolution", Description = "Example managed mod for RobloxModLoader")]
-public sealed class ExampleMod : ModBase
+public sealed class Mod : ModBase
 {
     [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern int MessageBoxW(IntPtr hWnd, string lpText, string lpCaption, uint uType);
 
-    public override int Initialize(ManagedModContext context)
+    public override int Initialize(ModContext context)
     {
         Directory.CreateDirectory(context.GeneratedOutputDirectory);
         File.AppendAllText(

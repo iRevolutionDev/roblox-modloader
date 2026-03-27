@@ -1,8 +1,8 @@
 using System.Reflection;
 using System.Runtime.Loader;
-using RobloxModLoader.Managed.Api;
+using RML.Core.Api;
 
-namespace RobloxModLoader.Managed.Internal;
+namespace RML.Core.Internal;
 
 internal sealed class ManagedModLoadContext(string assemblyPath) :
     AssemblyLoadContext(name: Path.GetFileNameWithoutExtension(assemblyPath), isCollectible: true)

@@ -1,35 +1,26 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
-using RobloxModLoader.Managed.Api;
-using RobloxModLoader.Managed.Internal;
-using RobloxModLoader.Managed.Modding;
+using RML.Core.Api;
+using RML.Core.Internal;
+using RML.Core.Modding;
 
-namespace RobloxModLoader.Managed.Host;
+namespace RML.Core.Host;
 
 public static class ManagedRuntimeHost
 {
     [UnmanagedCallersOnly]
-    public static int rml_initialize(nint modsRootUtf8, nint generatedRootUtf8)
-    {
-        return ManagedRuntimeCore.Initialize(modsRootUtf8, generatedRootUtf8);
-    }
+    public static int rml_initialize(nint modsRootUtf8, nint generatedRootUtf8) => ManagedRuntimeCore.Initialize(modsRootUtf8, generatedRootUtf8);
 
     [UnmanagedCallersOnly]
-    public static int rml_load_mod(nint assemblyPathUtf8)
-    {
-        return ManagedRuntimeCore.LoadMod(assemblyPathUtf8);
-    }
+    public static int rml_load_mod(nint assemblyPathUtf8) => ManagedRuntimeCore.LoadMod(assemblyPathUtf8);
 
     [UnmanagedCallersOnly]
-    public static int rml_unload_mod(nint assemblyPathUtf8)
-    {
-        return ManagedRuntimeCore.UnloadMod(assemblyPathUtf8);
-    }
+    public static int rml_unload_mod(nint assemblyPathUtf8) => ManagedRuntimeCore.UnloadMod(assemblyPathUtf8);
 }
 
 internal static class ManagedRuntimeCore
 {
-    private static readonly Dictionary<string, (ManagedModLoadContext Context, IMod Mod)> Mods = new(StringComparer.OrdinalIgnoreCase);
+    private static readonly Dictionary<string, (ManagedModLoadContext Context, IMod Mod)> _mods = new(StringComparer.OrdinalIgnoreCase);
 
     private static string _modsRoot = string.Empty;
     private static string _generatedRoot = string.Empty;
@@ -78,7 +69,7 @@ internal static class ManagedRuntimeCore
             return -1;
         }
 
-        if (Mods.ContainsKey(assemblyPath))
+        if (_mods.ContainsKey(assemblyPath))
         {
             UnloadModInternal(assemblyPath);
         }
@@ -152,7 +143,7 @@ internal static class ManagedRuntimeCore
                 return initCode;
             }
 
-            Mods[assemblyPath] = (context, modInstance);
+            _mods[assemblyPath] = (context, modInstance);
             return 0;
         }
         catch (Exception ex)
@@ -165,7 +156,7 @@ internal static class ManagedRuntimeCore
 
     private static int UnloadModInternal(string assemblyPath)
     {
-        if (string.IsNullOrWhiteSpace(assemblyPath) || !Mods.TryGetValue(assemblyPath, out var entry))
+        if (string.IsNullOrWhiteSpace(assemblyPath) || !_mods.TryGetValue(assemblyPath, out var entry))
         {
             return -1;
         }
@@ -179,7 +170,7 @@ internal static class ManagedRuntimeCore
             // Ignore managed mod shutdown exceptions to guarantee unload attempt.
         }
 
-        Mods.Remove(assemblyPath);
+        _mods.Remove(assemblyPath);
         entry.Context.Unload();
 
         for (var i = 0; i < 4; i++)

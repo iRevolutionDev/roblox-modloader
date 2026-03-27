@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/eng/" />
+  <Folder Name="/src/">
+    <Project Path="src/RML.Core/RML.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tools/" />
+  <Folder Name="/_SolutionItems/">
+    <File Path=".editorconfig" />
+  </Folder>
+</Solution>

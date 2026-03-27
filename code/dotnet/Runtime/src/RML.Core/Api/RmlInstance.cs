@@ -1,6 +1,4 @@
-using RobloxModLoader.Managed.Native;
-
-namespace RobloxModLoader.Managed.Api;
+namespace RML.Core.Api;
 
 public readonly struct RmlInstance(nint nativeHandle)
 {
@@ -20,15 +18,15 @@ public readonly struct RmlInstance(nint nativeHandle)
         var arg2 = args.Length > 2 ? args[2] : 0UL;
         var arg3 = args.Length > 3 ? args[3] : 0UL;
 
-        return RmlNative.ReflectionInvoke(NativeHandle, functionName, arg0, arg1, arg2, arg3, (uint)args.Length);
+        return RmlNative.Reflection.Invoke(NativeHandle, functionName, arg0, arg1, arg2, arg3, (uint)args.Length);
     }
 
     public ulong GetProperty(string propertyName)
-        => RmlNative.ReflectionGetProperty(NativeHandle, propertyName);
+        => RmlNative.Reflection.GetProperty(NativeHandle, propertyName);
 
     public ulong SetProperty(string propertyName, ulong value)
-        => RmlNative.ReflectionSetProperty(NativeHandle, propertyName, value);
+        => RmlNative.Reflection.SetProperty(NativeHandle, propertyName, value);
 
     public ulong GetClassDescriptorAddress()
-        => RmlNative.InstanceGetClassDescriptor(NativeHandle);
+        => RmlNative.Instance.GetClassDescriptor(NativeHandle);
 }

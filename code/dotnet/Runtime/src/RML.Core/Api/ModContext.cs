@@ -1,4 +1,4 @@
-namespace RobloxModLoader.Managed.Api;
+namespace RML.Core.Api;
 
 public sealed class ModContext(string modRoot, string generatedOutputDirectory)
 {

@@ -1,4 +1,4 @@
-namespace RobloxModLoader.Managed.Api;
+namespace RML.Core.Api;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class ModMetadataAttribute(string name, string author, string version, string description = "") : Attribute
