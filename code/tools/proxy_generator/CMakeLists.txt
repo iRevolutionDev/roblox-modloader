@@ -2,9 +2,11 @@ cmake_minimum_required(VERSION 3.25)
 
 enable_language(RC)
 
+set(PROXY_GENERATOR_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+
 add_executable(proxy_generator
-        main.cpp
-        proxy.rc
+        ${PROXY_GENERATOR_SOURCE_DIR}/main.cpp
+        ${PROXY_GENERATOR_SOURCE_DIR}/proxy.rc
 )
 
 target_compile_features(proxy_generator PRIVATE cxx_std_23)
@@ -78,4 +80,9 @@ endif ()
 install(TARGETS proxy_generator
         RUNTIME DESTINATION bin
         COMPONENT Tools
+)
+
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/exports/"
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/RobloxModLoader/tools/proxy_generator/exports
+        FILES_MATCHING PATTERN "*.exports"
 )

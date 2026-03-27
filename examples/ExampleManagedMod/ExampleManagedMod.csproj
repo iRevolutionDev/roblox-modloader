@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\managed\RobloxModLoader.Managed\RobloxModLoader.Managed.csproj" />
+    <ProjectReference Include="..\..\code\dotnet\RML.Core\RobloxModLoader.Managed.csproj" />
   </ItemGroup>
 
   <ItemGroup>
