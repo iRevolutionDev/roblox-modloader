@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef COMMON_INC
-#define COMMON_INC
+	#define COMMON_INC
 
 // clang-format off
 
@@ -13,8 +13,14 @@
     #define WIN32_LEAN_AND_MEAN
 #endif
 
-#include <winsock2.h>
-#include <windows.h>
+#if defined(_WIN32)
+	#include <winsock2.h>
+	#include <Windows.h>
+#else
+	#include <dlfcn.h>
+	#include <limits.h>
+	#include <unistd.h>
+#endif
 
 #include <cinttypes>
 #include <cstddef>
