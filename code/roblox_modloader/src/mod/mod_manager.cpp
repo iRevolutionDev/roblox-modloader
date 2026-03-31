@@ -4,6 +4,7 @@
 #include "RobloxModLoader/config/config.hpp"
 #include "RobloxModLoader/config/config_helpers.hpp"
 #include "dotnet/dotnet_mod_loader.hpp"
+#include "native/native_mod_loader.hpp"
 #include "utils/directory.hpp"
 
 #include <algorithm>
@@ -23,6 +24,8 @@ namespace rml
 
 		const auto runtime_path = utils::directory::get_runtime_directory();
 
+
+		register_loader(std::make_unique<native::NativeModLoader>(), {"native"});
 		register_loader(std::make_unique<dotnet::DotnetModLoader>(runtime_path, mods_path.value() / "dotnet"), {"dotnet"});
 
 		for (auto mod_dir : std::filesystem::directory_iterator(mods_path.value()))
@@ -144,7 +147,7 @@ namespace rml
 		return (*loader)->unload(path);
 	}
 
-	std::expected<void, std::string> ModManager::reload(const std::filesystem::path& path)
+	std::expected<void, std::string> ModManager::reload(const std::filesystem::path& path) const
 	{
 		const auto loader = find_loader_for_path(path);
 		if (!loader.has_value())

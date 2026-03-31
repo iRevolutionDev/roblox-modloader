@@ -1,39 +1,70 @@
 #pragma once
 #include "RobloxModLoader/common.hpp"
-
 #include "range.hpp"
 
-namespace memory {
-	class RML_EXPORT module : public range {
+namespace memory
+{
+	class RML_EXPORT module : public range
+	{
 	public:
-		explicit module(const std::string_view name);
+		explicit module(std::string& name);
 
-		/**
-		 * @brief Get the export address of the current module given a symbol name
-		 * 
-		 * @param symbol_name 
-		 * @return memory::handle 
-		 */
-		memory::handle get_export(std::string_view symbol_name);
+		explicit module(std::filesystem::path path);
 
-		bool loaded() const;
+		module(const module&)            = delete;
+		module& operator=(const module&) = delete;
+		module(module&&)                 = delete;
+		module& operator=(module&&)      = delete;
+		~module()                        = default;
+		[[nodiscard]] bool loaded() const noexcept;
+		[[nodiscard]] size_t size() const noexcept;
 
-		size_t size() const;
+		[[nodiscard]] const std::string& name() const noexcept
+		{
+			return m_name;
+		}
 
-		/**
-		 * @brief Waits till the given module is loaded.
-		 * 
-		 * @param time Time to wait before giving up.
-		 * @return true 
-		 * @return false 
-		 */
-		bool wait_for_module(std::optional<std::chrono::high_resolution_clock::duration> time = std::nullopt);
+		/// Full filesystem path (only set in by-path mode).
+		[[nodiscard]] const std::optional<std::filesystem::path>& path() const noexcept
+		{
+			return m_path;
+		}
 
-	protected:
-		bool try_get_module();
+		[[nodiscard]] handle get_export(std::string_view symbol_name) const;
+
+		/// Spin-wait until the module appears in the process.
+		bool wait_for_module(std::optional<std::chrono::steady_clock::duration> timeout = std::nullopt);
+
+		/// Load the module into the process.
+		///   by-name mode → LoadLibrary(name)   uses OS search order
+		///   by-path mode → LoadLibrary(path)   loads the exact file
+		[[nodiscard]] std::expected<void, std::string> attach();
+
+		/// Release the reference acquired by attach().
+		[[nodiscard]] std::expected<void, std::string> detach();
 
 	private:
-		const std::string_view m_name;
-		bool m_loaded;
+		bool try_get_module_locked();
+		void reset_state_locked() noexcept;
+
+#if defined(RML_LINUX)
+		struct PhdrSearchCtx
+		{
+			const char* search_name   = nullptr;
+			std::uintptr_t found_base = 0;
+			std::size_t found_size    = 0;
+		};
+		static int phdr_callback(struct ::dl_phdr_info*, size_t, void*) noexcept;
+#endif
+
+		mutable std::mutex m_mtx;
+
+		std::string m_name;                          // base name for lookups
+		std::optional<std::filesystem::path> m_path; // full path (by-path mode)
+		
+		bool m_loaded = false;
+
+		void* m_attached_handle = nullptr;
+		bool m_attached_owner   = false;
 	};
 }

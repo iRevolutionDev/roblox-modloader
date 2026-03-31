@@ -34,7 +34,7 @@ namespace rml::dotnet
 		m_initialize = *init;
 		m_load_mod   = *load;
 		m_unload_mod = *unload;
-		m_shutdown = *shutdown;
+		m_shutdown   = *shutdown;
 
 		auto* table     = m_registry.table();
 		const auto root = mods_root.string();
