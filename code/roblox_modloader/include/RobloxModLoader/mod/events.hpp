@@ -22,6 +22,15 @@ namespace events {
         }
     };
 
+    struct DataModelChangedEvent final : EventBase {
+        uint64_t old_data_model;
+        uint64_t new_data_model;
+        int data_model_type;
+
+        DataModelChangedEvent(uint64_t old_dm, uint64_t new_dm, int type)
+            : old_data_model(old_dm), new_data_model(new_dm), data_model_type(type) {}
+    };
+
     class EventManager {
     public:
         EventManager();

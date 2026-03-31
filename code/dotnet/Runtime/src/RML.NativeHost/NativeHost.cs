@@ -1,0 +1,163 @@
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.Loader;
+
+namespace RML.NativeHost;
+
+internal static class NativeHost
+{
+    private static Assembly? _coreAssembly;
+    private static AssemblyLoadContext? _coreAssemblyLoadContext;
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    public static int Initialize(IntPtr modsRootPtr, IntPtr interopTablePtr)
+    {
+        try
+        {
+            var modsRoot = Marshal.PtrToStringUTF8(modsRootPtr) ?? throw new ArgumentNullException(nameof(modsRootPtr));
+
+            var hostDirectory = Path.GetDirectoryName(typeof(NativeHost).Assembly.Location)!;
+            var corePath = Path.Combine(hostDirectory, "RML.Core.dll");
+
+            _coreAssemblyLoadContext = new CoreLoadContext(corePath);
+            _coreAssembly = _coreAssemblyLoadContext.LoadFromAssemblyPath(corePath);
+
+            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
+                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
+
+            var initializeMethod = entryType.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static) ??
+                                   throw new InvalidOperationException(
+                                       "Failed to find RML.Core.EntryPoint.Initialize method");
+
+            var result = (int)initializeMethod.Invoke(null, [modsRoot, interopTablePtr])!;
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[RML.NativeHost] Initialization failed: {ex}");
+            return -1;
+        }
+    }
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    public static void Shutdown()
+    {
+        try
+        {
+            if (_coreAssembly is null)
+            {
+                Console.Error.WriteLine("[RML.NativeHost] Shutdown called without successful initialization");
+                return;
+            }
+
+            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
+                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
+
+            var shutdownMethod = entryType.GetMethod("Shutdown", BindingFlags.Public | BindingFlags.Static) ??
+                                 throw new InvalidOperationException(
+                                     "Failed to find RML.Core.EntryPoint.Shutdown method");
+
+            shutdownMethod.Invoke(null, null);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[RML.NativeHost] Shutdown failed: {ex}");
+        }
+        finally
+        {
+            _coreAssemblyLoadContext?.Unload();
+        }
+    }
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    public static int LoadMod(IntPtr assemblyPathPtr)
+    {
+        try
+        {
+            if (_coreAssembly is null)
+            {
+                Console.Error.WriteLine("[RML.NativeHost] LoadMod called without successful initialization");
+                return -1;
+            }
+
+            var assemblyPath = Marshal.PtrToStringUTF8(assemblyPathPtr) ??
+                               throw new ArgumentNullException(nameof(assemblyPathPtr));
+
+            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
+                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
+
+            var loadModMethod = entryType.GetMethod("LoadMod", BindingFlags.Public | BindingFlags.Static) ??
+                                throw new InvalidOperationException(
+                                    "Failed to find RML.Core.EntryPoint.LoadMod method");
+
+            loadModMethod.Invoke(null, [assemblyPath]);
+
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[RML.NativeHost] LoadMod failed: {ex}");
+            return -1;
+        }
+    }
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    public static int UnloadMod(IntPtr assemblyPathPtr)
+    {
+        try
+        {
+            if (_coreAssembly is null)
+            {
+                Console.Error.WriteLine("[RML.NativeHost] UnloadMod called without successful initialization");
+                return -1;
+            }
+
+            var assemblyPath = Marshal.PtrToStringUTF8(assemblyPathPtr) ??
+                               throw new ArgumentNullException(nameof(assemblyPathPtr));
+
+            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
+                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
+
+            var unloadModMethod = entryType.GetMethod("UnloadMod", BindingFlags.Public | BindingFlags.Static) ??
+                                  throw new InvalidOperationException(
+                                      "Failed to find RML.Core.EntryPoint.UnloadMod method");
+
+            unloadModMethod.Invoke(null, [assemblyPath]);
+
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[RML.NativeHost] UnloadMod failed: {ex}");
+            return -1;
+        }
+    }
+
+    private sealed class CoreLoadContext : AssemblyLoadContext
+    {
+        private readonly AssemblyDependencyResolver _resolver;
+
+        public CoreLoadContext(string mainAssemblyPath) : base("RML.Core", false) =>
+            _resolver = new AssemblyDependencyResolver(mainAssemblyPath);
+
+        protected override Assembly? Load(AssemblyName assemblyName)
+        {
+            var path = _resolver.ResolveAssemblyToPath(assemblyName);
+            return path is not null ? LoadFromAssemblyPath(path) : null;
+        }
+
+        protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)
+        {
+            var path = _resolver.ResolveUnmanagedDllToPath(unmanagedDllName);
+            return path is not null ? LoadUnmanagedDllFromPath(path) : IntPtr.Zero;
+        }
+    }
+
+    private delegate int InitializeDelegate(IntPtr modsRootPtr, IntPtr interopTablePtr, int interopTableSize);
+
+    private delegate int LoadModDelegate(IntPtr assemblyPathPtr);
+
+    private delegate int UnloadModDelegate(IntPtr assemblyPathPtr);
+}

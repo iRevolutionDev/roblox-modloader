@@ -1,5 +1,6 @@
 #include "data_model_watcher_job.hpp"
 
+#include "../../mod/mod_manager.hpp"
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/luau/script_manager.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
@@ -81,11 +82,33 @@ namespace rml::jobs
 
 		const auto data_model_type = new_data_model->get_type();
 
-		LOG_INFO("New DataModel type: {}, executing context scripts", static_cast<int>(data_model_type));
+		LOG_INFO("New DataModel type: {}, notifying mods and scripts", static_cast<int>(data_model_type));
 
+		if (events::g_event_manager)
+		{
+			events::DataModelChangedEvent ev(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
+			events::g_event_manager->emit(ev);
+		}
+
+		// if (g_mod_manager)
+		// {
+		// 	try
+		// 	{
+		// 		g_mod_manager->notify_managed_datamodel_changed(old_data_model, new_data_model, data_model_type);
+		// 	}
+		// 	catch (const std::exception& e)
+		// 	{
+		// 		LOG_ERROR("Failed to notify managed mods of DataModel change: {}", e.what());
+		// 	}
+		// }
+
+		// Execute Luau scripts that registered for this DataModel context
 		try
 		{
-			//luau::g_script_manager->execute_scripts_for_context(data_model_type);
+			if (luau::g_script_manager)
+			{
+				luau::g_script_manager->execute_scripts_for_context(data_model_type);
+			}
 			LOG_INFO("Successfully triggered mod scripts for DataModel type: {}", static_cast<int>(data_model_type));
 		}
 		catch (const std::exception& e)

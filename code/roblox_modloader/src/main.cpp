@@ -6,9 +6,9 @@
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/roblox/job_manager.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
-#include "mod_manager.hpp"
+#include "mod/mod_manager.hpp"
 #include "pointers.hpp"
-#include "utils/directory_utils.hpp"
+#include "utils/directory.hpp"
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_reserved)
 {
@@ -21,7 +21,7 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 		    nullptr,
 		    0,
 		    [](PVOID) -> DWORD {
-			    const auto config_path = directory_utils::get_module_directory() / "RobloxModLoader" / "config.toml";
+			    const auto config_path = rml::utils::directory::get_mod_loader_directory() / "config.toml";
 			    if (const auto config_result = rml::config::initialize(config_path, true); !config_result)
 			    {
 				    std::cerr << "Failed to initialize configuration system" << std::endl;
@@ -39,14 +39,8 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 			    const auto event_manager_instance = std::make_shared<events::EventManager>();
 			    LOG_INFO("Event Manager initialized.");
 
-			    const auto mod_manager_instance = std::make_shared<mod_manager>();
+			    const auto mod_manager = std::make_unique<rml::ModManager>();
 			    LOG_INFO("Mod Manager created.");
-
-			    mod_manager_instance->initialize();
-			    LOG_INFO("Mods initialized.");
-
-			    mod_manager_instance->set_event_manager(event_manager_instance.get());
-			    LOG_INFO("Event Manager set in Mod Manager.");
 
 			    const auto rtti_manager_instance = std::make_shared<memory::rtti::rtti_manager>();
 			    LOG_INFO("RTTI Scanner initialized.");

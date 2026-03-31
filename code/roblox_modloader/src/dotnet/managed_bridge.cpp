@@ -1,127 +1,75 @@
-#include "RobloxModLoader/dotnet/managed_bridge.hpp"
+#include "managed_bridge.hpp"
 
-#include "RobloxModLoader/roblox/instance.hpp"
-#include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
-#include "RobloxModLoader/roblox/reflection/object.hpp"
-#include "RobloxModLoader/roblox/reflection/property_descriptor.hpp"
+#include "RobloxModLoader/common.hpp"
 
-#include <filesystem>
-#include <string>
-
-namespace
+namespace rml::dotnet
 {
-#if defined(_WIN32)
-	using invoke0_t = std::uint64_t(__fastcall*)(void*);
-	using invoke1_t = std::uint64_t(__fastcall*)(void*, std::uint64_t);
-	using invoke2_t = std::uint64_t(__fastcall*)(void*, std::uint64_t, std::uint64_t);
-	using invoke3_t = std::uint64_t(__fastcall*)(void*, std::uint64_t, std::uint64_t, std::uint64_t);
-	using invoke4_t = std::uint64_t(__fastcall*)(void*, std::uint64_t, std::uint64_t, std::uint64_t, std::uint64_t);
-
-	using get_property_t = std::uint64_t(__fastcall*)(void*);
-	using set_property_t = std::uint64_t(__fastcall*)(void*, std::uint64_t);
-#else
-	using invoke0_t = std::uint64_t (*)(void*);
-	using invoke1_t = std::uint64_t (*)(void*, std::uint64_t);
-	using invoke2_t = std::uint64_t (*)(void*, std::uint64_t, std::uint64_t);
-	using invoke3_t = std::uint64_t (*)(void*, std::uint64_t, std::uint64_t, std::uint64_t);
-	using invoke4_t = std::uint64_t (*)(void*, std::uint64_t, std::uint64_t, std::uint64_t, std::uint64_t);
-
-	using get_property_t = std::uint64_t (*)(void*);
-	using set_property_t = std::uint64_t (*)(void*, std::uint64_t);
-#endif
-
-	ClassDescriptor* get_class_descriptor_from_instance(void* instance_ptr)
+	namespace
 	{
-		if (!instance_ptr)
-		{
-			return nullptr;
-		}
-
-		const auto* instance = static_cast<Instance*>(instance_ptr);
-		return instance->class_descriptor;
-	}
-}
-
-extern "C"
-{
-	std::uint64_t rml_reflection_invoke(void* instance_ptr, const char* function_name, const std::uint64_t arg0, const std::uint64_t arg1, const std::uint64_t arg2, const std::uint64_t arg3, const std::uint32_t arg_count)
-	{
-		auto* class_descriptor = get_class_descriptor_from_instance(instance_ptr);
-		if (!class_descriptor || !function_name)
-		{
-			return 0;
-		}
-
-		auto* function_descriptor = class_descriptor->find_function_descriptor(function_name);
-		if (!function_descriptor)
-		{
-			return 0;
-		}
-
-		const auto function_ptr = function_descriptor->get_bound_function<std::uintptr_t>();
-		if (!function_ptr)
-		{
-			return 0;
-		}
-
-		switch (arg_count)
-		{
-		case 0: return reinterpret_cast<invoke0_t>(function_ptr)(instance_ptr);
-		case 1: return reinterpret_cast<invoke1_t>(function_ptr)(instance_ptr, arg0);
-		case 2: return reinterpret_cast<invoke2_t>(function_ptr)(instance_ptr, arg0, arg1);
-		case 3: return reinterpret_cast<invoke3_t>(function_ptr)(instance_ptr, arg0, arg1, arg2);
-		default: return reinterpret_cast<invoke4_t>(function_ptr)(instance_ptr, arg0, arg1, arg2, arg3);
-		}
+		constexpr std::wstring_view k_type     = L"RML.NativeHost.NativeHost, RML.NativeHost";
+		constexpr std::wstring_view k_init     = L"Initialize";
+		constexpr std::wstring_view k_load     = L"LoadMod";
+		constexpr std::wstring_view k_unload   = L"UnloadMod";
+		constexpr std::wstring_view k_shutdown = L"Shutdown";
 	}
 
-	std::uint64_t rml_reflection_get_property(void* instance_ptr, const char* property_name)
+	std::expected<void, std::string> ManagedBridge::initialize(const std::filesystem::path& native_host_dll, const std::filesystem::path& mods_root)
 	{
-		auto* class_descriptor = get_class_descriptor_from_instance(instance_ptr);
-		if (!class_descriptor || !property_name)
-		{
-			return 0;
-		}
+		auto init = m_runtime.get_function<InitFn>(native_host_dll, k_type, k_init);
+		if (!init)
+			return std::unexpected(init.error());
 
-		auto* property_descriptor = class_descriptor->find_property_descriptor(property_name);
-		if (!property_descriptor)
-		{
-			return 0;
-		}
+		auto load = m_runtime.get_function<LoadModFn>(native_host_dll, k_type, k_load);
+		if (!load)
+			return std::unexpected(load.error());
 
-		const auto getter = property_descriptor->getter<std::uintptr_t>();
-		if (!getter)
-		{
-			return 0;
-		}
+		auto unload = m_runtime.get_function<UnloadFn>(native_host_dll, k_type, k_unload);
+		if (!unload)
+			return std::unexpected(unload.error());
 
-		return reinterpret_cast<get_property_t>(getter)(instance_ptr);
+		auto shutdown = m_runtime.get_function<ShutdownFn>(native_host_dll, k_type, k_shutdown);
+		if (!shutdown)
+			return std::unexpected(shutdown.error());
+
+		m_initialize = *init;
+		m_load_mod   = *load;
+		m_unload_mod = *unload;
+		m_shutdown = *shutdown;
+
+		auto* table     = m_registry.table();
+		const auto root = mods_root.string();
+
+		if (int32_t rc = m_initialize(root.c_str(), table); rc != 0)
+			return std::unexpected(std::format("rml_initialize returned {}", rc));
+
+		LOG_INFO("[ManagedBridge] C# side initialized");
+		return {};
 	}
 
-	std::uint64_t rml_reflection_set_property(void* instance_ptr, const char* property_name, std::uint64_t value_ptr_or_value)
+	std::expected<void, std::string> ManagedBridge::load_mod(const std::filesystem::path& path) const
 	{
-		auto* class_descriptor = get_class_descriptor_from_instance(instance_ptr);
-		if (!class_descriptor || !property_name)
-		{
-			return 0;
-		}
+		if (!m_load_mod)
+			return std::unexpected("Bridge not initialized");
 
-		auto* property_descriptor = class_descriptor->find_property_descriptor(property_name);
-		if (!property_descriptor)
-		{
-			return 0;
-		}
-
-		const auto setter = property_descriptor->setter<std::uintptr_t>();
-		if (!setter)
-		{
-			return 0;
-		}
-
-		return reinterpret_cast<set_property_t>(setter)(instance_ptr, value_ptr_or_value);
+		const auto p = path.string();
+		if (int32_t rc = m_load_mod(p.c_str()); rc != 0)
+			return std::unexpected(std::format("rml_load_mod failed for '{}' rc={}", path.filename().string(), rc));
+		return {};
 	}
 
-	std::uint64_t rml_instance_get_class_descriptor(void* instance_ptr)
+	std::expected<void, std::string> ManagedBridge::unload_mod(const std::filesystem::path& path) const
 	{
-		return reinterpret_cast<std::uint64_t>(get_class_descriptor_from_instance(instance_ptr));
+		const auto p = path.string();
+
+		m_unload_mod(p.c_str());
+
+		return {};
 	}
-}
+
+	std::expected<void, std::string> ManagedBridge::shutdown() const
+	{
+		if (m_shutdown)
+			m_shutdown();
+		return {};
+	}
+} // namespace rml::dotnet

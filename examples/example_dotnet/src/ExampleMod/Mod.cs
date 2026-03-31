@@ -1,28 +1,24 @@
+using System.Runtime.InteropServices;
 using RML.Core.Api;
 using RML.Core.Modding;
-using System.Runtime.InteropServices;
 
 namespace ExampleMod;
 
 [RmlMod("dotnet-example", "1.0.0", Author = "Revolution", Description = "Example managed mod for RobloxModLoader")]
-public sealed class Mod : ModBase
+public sealed class Mod : IMod
 {
-    [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    private static extern int MessageBoxW(IntPtr hWnd, string lpText, string lpCaption, uint uType);
-
-    public override int Initialize(ModContext context)
+    public int OnLoad()
     {
-        Directory.CreateDirectory(context.GeneratedOutputDirectory);
-        File.AppendAllText(
-            Path.Combine(context.GeneratedOutputDirectory, "example_mod.log"),
-            $"[{DateTime.UtcNow:O}] ExampleManagedMod initialized at {context.ModRoot}{Environment.NewLine}");
-
-        MessageBoxW(IntPtr.Zero, "Hello from ExampleManagedMod!", "ExampleManagedMod", 0);
-
+        MessageBoxW(IntPtr.Zero, "Hello from the example mod!", "Example Mod", 0);
+        Console.WriteLine("Hello from the example mod!");
         return 0;
     }
 
-    public override void Shutdown()
+    public void OnUnload()
     {
+        Console.WriteLine("Goodbye from the example mod!");
     }
+
+    [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern int MessageBoxW(IntPtr hWnd, string lpText, string lpCaption, uint uType);
 }

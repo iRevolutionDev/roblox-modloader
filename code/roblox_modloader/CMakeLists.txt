@@ -2,23 +2,13 @@ set(ROBLOX_MODLOADER_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(ROBLOX_MODLOADER_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 set(MODLOADER_SOURCES
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/main.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/mod_manager.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/pointers.cpp"
+        "${ROBLOX_MODLOADER_SOURCE_DIR}/main.cpp"
+        "${ROBLOX_MODLOADER_SOURCE_DIR}/pointers.cpp"
 )
 
 file(GLOB_RECURSE MODLOADER_SUBDIRS CONFIGURE_DEPENDS
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/config/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/dotnet/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/exception/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/hooking/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/hooks/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/logger/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/luau/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/memory/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/mod/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/roblox/*.cpp"
-    "${ROBLOX_MODLOADER_SOURCE_DIR}/utils/*.cpp"
+        "${ROBLOX_MODLOADER_SOURCE_DIR}/**/*.cpp"
+        "${ROBLOX_MODLOADER_SOURCE_DIR}/**/*.hpp"
 )
 
 list(APPEND MODLOADER_SOURCES ${MODLOADER_SUBDIRS})
@@ -33,76 +23,76 @@ setup_dotnet_hosting(roblox_modloader PRIVATE)
 
 if (UNIX AND NOT APPLE)
     target_link_libraries(roblox_modloader PRIVATE dl)
-endif()
+endif ()
 
 target_include_directories(roblox_modloader PRIVATE
-    "${ROBLOX_MODLOADER_SOURCE_DIR}"
-    "${ROBLOX_MODLOADER_INCLUDE_DIR}"
+        "${ROBLOX_MODLOADER_SOURCE_DIR}"
+        "${ROBLOX_MODLOADER_INCLUDE_DIR}"
 )
 
 set_target_properties(roblox_modloader PROPERTIES
-    CXX_STANDARD 23
-    CXX_STANDARD_REQUIRED ON
-    CXX_EXTENSIONS OFF
-    FOLDER "ModLoader"
-    # Disable treating warnings as errors to avoid MSVC C2220 for third-party headers
-    COMPILE_WARNING_AS_ERROR OFF
-    ENABLE_EXPORTS ON
-    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+        CXX_STANDARD 23
+        CXX_STANDARD_REQUIRED ON
+        CXX_EXTENSIONS OFF
+        FOLDER "ModLoader"
+        # Disable treating warnings as errors to avoid MSVC C2220 for third-party headers
+        COMPILE_WARNING_AS_ERROR OFF
+        ENABLE_EXPORTS ON
+        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
 )
 
 target_precompile_headers(roblox_modloader PRIVATE
-    "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/common.hpp"
+        "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/common.hpp"
 )
 
 include(GenerateExportHeader)
 generate_export_header(roblox_modloader
-    EXPORT_FILE_NAME "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/rml_export.hpp"
-    EXPORT_MACRO_NAME "RML_EXPORT"
-    NO_EXPORT_MACRO_NAME "RML_NO_EXPORT"
-    DEPRECATED_MACRO_NAME "RML_DEPRECATED"
+        EXPORT_FILE_NAME "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/rml_export.hpp"
+        EXPORT_MACRO_NAME "RML_EXPORT"
+        NO_EXPORT_MACRO_NAME "RML_NO_EXPORT"
+        DEPRECATED_MACRO_NAME "RML_DEPRECATED"
 )
 
 add_library(RobloxModLoader INTERFACE)
 add_library(RobloxModLoader::RobloxModLoader ALIAS RobloxModLoader)
 
 target_include_directories(RobloxModLoader INTERFACE
-    "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_INCLUDE_DIR}>"
-    "$<INSTALL_INTERFACE:include>"
-    "$<BUILD_INTERFACE:${spdlog_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${tomlplusplus_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${minhook_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Compiler/include>"
-    "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Ast/include>"
-    "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/VM/include>"
-    "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Common/include>"
-    "$<BUILD_INTERFACE:${polyhook2_SOURCE_DIR}>"
+        "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_INCLUDE_DIR}>"
+        "$<INSTALL_INTERFACE:include>"
+        "$<BUILD_INTERFACE:${spdlog_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${tomlplusplus_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${minhook_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Compiler/include>"
+        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Ast/include>"
+        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/VM/include>"
+        "$<BUILD_INTERFACE:${LUAU_SOURCE_DIR}/Common/include>"
+        "$<BUILD_INTERFACE:${polyhook2_SOURCE_DIR}>"
 )
 
 target_link_libraries(RobloxModLoader INTERFACE
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    tomlplusplus::tomlplusplus
-    minhook
-    PolyHook_2
-    Luau.Compiler
-    Luau.Ast
-    Luau.VM
-    Luau.VM.Internals
-    Luau.CodeGen
-    $<$<TARGET_EXISTS:roblox_modloader>:roblox_modloader>
+        spdlog::spdlog
+        nlohmann_json::nlohmann_json
+        tomlplusplus::tomlplusplus
+        minhook
+        PolyHook_2
+        Luau.Compiler
+        Luau.Ast
+        Luau.VM
+        Luau.VM.Internals
+        Luau.CodeGen
+        $<$<TARGET_EXISTS:roblox_modloader>:roblox_modloader>
 )
 
 target_compile_features(RobloxModLoader INTERFACE cxx_std_23)
 
 target_compile_definitions(RobloxModLoader INTERFACE
-    _CRT_SECURE_NO_WARNINGS
-    NOMINMAX
-    WIN32_LEAN_AND_MEAN
-    IS_RML=1
-    TOML_EXCEPTIONS=0
-    $<$<CONFIG:Debug>:DEBUG>
+        _CRT_SECURE_NO_WARNINGS
+        NOMINMAX
+        WIN32_LEAN_AND_MEAN
+        IS_RML=1
+        TOML_EXCEPTIONS=0
+        $<$<CONFIG:Debug>:DEBUG>
 )
 
 setup_dotnet_hosting(RobloxModLoader INTERFACE)
@@ -112,49 +102,58 @@ set(RML_LUA_LIBS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/resources/luau")
 if (ROBLOX_MODLOADER_INSTALL)
     include(GNUInstallDirs)
     install(DIRECTORY "${RML_LUA_LIBS_DIR}/"
-        DESTINATION ${CMAKE_INSTALL_DATADIR}/RobloxModLoader/libraries
-        FILES_MATCHING PATTERN "*.luau"
+            DESTINATION ${CMAKE_INSTALL_DATADIR}/RobloxModLoader/libraries
+            FILES_MATCHING PATTERN "*.luau"
     )
-endif()
+endif ()
 
 if (WIN32 AND TARGET roblox_modloader AND DEFINED ENV{ROBLOX_STUDIO_PATH} AND NOT "$ENV{ROBLOX_STUDIO_PATH}" STREQUAL "")
     add_custom_command(TARGET roblox_modloader POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/libraries"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/libraries"
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${RML_LUA_LIBS_DIR}"
             "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/libraries"
-        COMMENT "Copying runtime Luau libraries to RobloxModLoader/libraries"
-        VERBATIM
+            COMMENT "Copying runtime Luau libraries to RobloxModLoader/libraries"
+            VERBATIM
     )
 
     if (RML_DOTNET_RUNTIME_ROOT AND EXISTS "${RML_DOTNET_RUNTIME_ROOT}")
         add_custom_command(TARGET roblox_modloader POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime"
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${RML_DOTNET_RUNTIME_ROOT}"
-            "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime/dotnet"
-            COMMENT "Copying bundled .NET runtime to RobloxModLoader/runtime/dotnet"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${RML_DOTNET_RUNTIME_ROOT}"
+                "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime/dotnet"
+                COMMENT "Copying bundled .NET runtime to RobloxModLoader/runtime/dotnet"
         )
-    endif()
+    endif ()
 
     if (RML_DOTNET_GLOBAL_RUNTIME_CONFIG AND EXISTS "${RML_DOTNET_GLOBAL_RUNTIME_CONFIG}")
         add_custom_command(TARGET roblox_modloader POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime"
-            COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${RML_DOTNET_GLOBAL_RUNTIME_CONFIG}"
-            "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime/RobloxModLoader.runtimeconfig.json"
-            COMMENT "Copying global .NET runtimeconfig to RobloxModLoader/runtime"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime"
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${RML_DOTNET_GLOBAL_RUNTIME_CONFIG}"
+                "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime/RobloxModLoader.runtimeconfig.json"
+                COMMENT "Copying global .NET runtimeconfig to RobloxModLoader/runtime"
         )
-    endif()
+    endif ()
 
     if (RML_DOTNET_NETHOST_RUNTIME_BINARY AND EXISTS "${RML_DOTNET_NETHOST_RUNTIME_BINARY}")
         get_filename_component(RML_NETHOST_RUNTIME_NAME "${RML_DOTNET_NETHOST_RUNTIME_BINARY}" NAME)
         add_custom_command(TARGET roblox_modloader POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime"
-            COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${RML_DOTNET_NETHOST_RUNTIME_BINARY}"
-            "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime/${RML_NETHOST_RUNTIME_NAME}"
-            COMMENT "Copying nethost runtime binary to RobloxModLoader/runtime"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime"
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${RML_DOTNET_NETHOST_RUNTIME_BINARY}"
+                "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader/runtime/${RML_NETHOST_RUNTIME_NAME}"
+                COMMENT "Copying nethost runtime binary to RobloxModLoader/runtime"
         )
-    endif()
-endif()
+    endif ()
+    
+    add_custom_command(TARGET roblox_modloader POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:roblox_modloader>
+            "$ENV{ROBLOX_STUDIO_PATH}/$<TARGET_FILE_NAME:roblox_modloader>"
+            COMMENT "Copying built roblox_modloader DLL to RobloxModLoader root"
+            VERBATIM
+    )
+endif ()

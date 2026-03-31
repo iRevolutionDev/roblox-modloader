@@ -1,5 +1,6 @@
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 
+#include "../mod/mod_manager.hpp"
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/luau/environment/closures_provider.hpp"
 #include "RobloxModLoader/luau/environment/debug_provider.hpp"
@@ -9,7 +10,6 @@
 #include "RobloxModLoader/roblox/job.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 #include "lstate.h"
-#include "mod_manager.hpp"
 
 #include <array>
 #include <thread>

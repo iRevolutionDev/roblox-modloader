@@ -1,12 +1,11 @@
-#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/luau/script_manager.hpp"
 
-#include "mod_manager.hpp"
+#include "../mod/mod_manager.hpp"
+#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/config/config.hpp"
 #include "RobloxModLoader/config/config_helpers.hpp"
-#include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/luau/environment/environment.hpp"
-
+#include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "lobject.h"
 
 namespace rml::luau {
@@ -33,15 +32,15 @@ namespace rml::luau {
             LOG_INFO("Hot reload enabled in debug mode");
         }
 
-        for (const auto &mod: g_mod_manager->mods) {
-            try {
-                mod->on_script_manager_load();
-            } catch (const std::exception &e) {
-                LOG_ERROR("Mod '{}' failed to load scripts: {}", mod->name, e.what());
-            } catch (...) {
-                LOG_ERROR("Mod '{}' failed to load scripts with unknown error", mod->name);
-            }
-        }
+        // for (const auto &mod: g_mod_manager->mods) {
+        //     try {
+        //         mod->on_script_manager_load();
+        //     } catch (const std::exception &e) {
+        //         LOG_ERROR("Mod '{}' failed to load scripts: {}", mod->name, e.what());
+        //     } catch (...) {
+        //         LOG_ERROR("Mod '{}' failed to load scripts with unknown error", mod->name);
+        //     }
+        // }
 
         const auto lua_state = luaL_newstate();
 
