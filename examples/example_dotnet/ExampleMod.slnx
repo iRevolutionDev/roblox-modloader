@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/eng/" />
+  <Folder Name="/src/">
+    <Project Path="../../code/dotnet/Roblox/src/Roblox/Roblox.csproj" />
+    <Project Path="../../code/dotnet/Runtime/src/RML.Core/RML.Core.csproj" />
+    <Project Path="../../code/dotnet/Runtime/src/RML.Interop/RML.Interop.csproj" />
+    <Project Path="src/ExampleMod/ExampleMod.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tools/" />
+</Solution>

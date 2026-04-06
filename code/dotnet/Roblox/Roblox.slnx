@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Roblox/Roblox.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Roblox.TypeGenerator/Roblox.TypeGenerator.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RootNamespace>ExampleMod</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\code\dotnet\Runtime\src\RML.Core\RML.Core.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="DiscordRichPresence" Version="1.6.1.70"/>
+    </ItemGroup>
+</Project>
