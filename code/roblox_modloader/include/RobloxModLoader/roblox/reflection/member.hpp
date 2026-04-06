@@ -1,70 +1,155 @@
 #pragma once
 
+#include "RobloxModLoader/roblox/security/script_permissions.hpp"
 #include "descriptor.hpp"
-#include "dense_hash.hpp"
 
-class ClassDescriptor;
+#include <string_view>
+#include <unordered_map>
 
-struct StringHashPredicate {
-    size_t operator()(const char *s) const;
-};
+namespace RBX::Reflection
+{
+	class ClassDescriptor;
 
-struct StringEqualPredicate {
-    bool operator()(const char *lhs, const char *rhs) const {
-        return strcmp(lhs, rhs) == 0;
-    }
-};
+	template<typename T>
+	struct Vector
+	{
+		using value_type     = T;
+		using iterator       = T*;
+		using const_iterator = T*;
 
-template<typename MemberDescriptorType>
-class MemberDescriptorContainer {
-    static bool compare(const MemberDescriptorType *a, const MemberDescriptorType *b) {
-        return a->Name < b->Name;
-    }
+		T* m_data;
+		std::size_t m_size;
+		std::size_t m_capacity;
 
-public:
-    class Collection : public std::vector<MemberDescriptorType *> {
-    };
+		[[nodiscard]] std::size_t size() const noexcept
+		{
+			return m_size;
+		}
+		[[nodiscard]] std::size_t capacity() const noexcept
+		{
+			return m_capacity;
+		}
+		[[nodiscard]] bool empty() const noexcept
+		{
+			return m_size == 0;
+		}
+		[[nodiscard]] T* data() const noexcept
+		{
+			return m_data;
+		}
 
-    typedef DenseHashMap<const char *, MemberDescriptorType *, StringHashPredicate, StringEqualPredicate>
-    DescriptorLookup;
+		[[nodiscard]] T* begin() const noexcept
+		{
+			return m_data;
+		}
+		[[nodiscard]] T* end() const noexcept
+		{
+			return m_data + m_size;
+		}
 
-protected:
-    Collection descriptors;
-    DescriptorLookup descriptorLookup;
+		T& operator[](std::size_t i) const noexcept
+		{
+			return m_data[i];
+		}
+		[[nodiscard]] T& at(std::size_t i) const noexcept
+		{
+			return m_data[i];
+		}
+	};
 
-    std::vector<MemberDescriptorContainer *> derivedContainers;
-    MemberDescriptorContainer *const base;
+	struct StringHashPredicate
+	{
+		size_t operator()(const char* s) const;
+	};
 
-private:
-    std::byte pad_0000[0x40];
+	struct StringEqualPredicate
+	{
+		bool operator()(const char* lhs, const char* rhs) const
+		{
+			return strcmp(lhs, rhs) == 0;
+		}
+	};
 
-public:
-    const Collection &get_descriptors() const {
-        return descriptors;
-    }
+	template<typename MemberDescriptorType>
+	class MemberDescriptorContainer
+	{
+	public:
+		using Collection = Vector<MemberDescriptorType*>;
 
-    MemberDescriptorType *find_descriptor(const char *name) const {
-        for (auto descriptor: descriptors) {
-            if (strcmp(descriptor->name.data(), name) == 0) {
-                return descriptor;
-            }
-        }
-        return nullptr;
-    }
-};
+		using ConstIterator = MemberDescriptorType**;
+		using Iterator      = MemberDescriptorType**;
 
-class MemberDescriptor : public Descriptor {
-public:
-    static void (*member_hiding_hook)(MemberDescriptor *, MemberDescriptor *);
+	private:
+		using ResolvedLookup = std::unordered_map<std::string_view, MemberDescriptorType*>;
 
-private:
-    std::byte pad_0028[0x8];
+	protected:
+		Collection descriptors;
+		char _descriptor_lookup_pad[0x48];
 
-public:
-    const std::string &category;
-    const ClassDescriptor &owner;
+	public:
+		const Collection& get_descriptors() const
+		{
+			return descriptors;
+		}
 
-protected:
-    virtual ~MemberDescriptor() {
-    }
-};
+		ConstIterator descriptors_begin() const noexcept
+		{
+			return descriptors.begin();
+		}
+		ConstIterator descriptors_end() const noexcept
+		{
+			return descriptors.end();
+		}
+
+		std::size_t descriptor_size() const
+		{
+			return descriptors.size();
+		}
+
+		MemberDescriptorType* find_descriptor(const char* name) const
+		{
+			for (MemberDescriptorType* descriptor : descriptors)
+			{
+				if (!descriptor)
+				{
+					continue;
+				}
+
+				if (descriptor->name == name)
+				{
+					return descriptor;
+				}
+			}
+			return nullptr;
+		}
+
+		ConstIterator members_begin(const void*) const
+		{
+			return descriptors_begin();
+		}
+		ConstIterator members_end(const void*) const
+		{
+			return descriptors_end();
+		}
+		Iterator members_begin(void*) const
+		{
+			return descriptors_begin();
+		}
+		Iterator members_end(void*) const
+		{
+			return descriptors_end();
+		}
+	};
+
+	class MemberDescriptor : public Descriptor
+	{
+	public:
+		static void (*member_hiding_hook)(MemberDescriptor*, MemberDescriptor*);
+		const std::string_view& category;
+		const ClassDescriptor& owner;
+		const Security::Permissions security;
+
+	protected:
+		virtual ~MemberDescriptor() = default;
+	};
+}

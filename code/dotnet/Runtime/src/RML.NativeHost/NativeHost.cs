@@ -160,4 +160,32 @@ internal static class NativeHost
     private delegate int LoadModDelegate(IntPtr assemblyPathPtr);
 
     private delegate int UnloadModDelegate(IntPtr assemblyPathPtr);
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    public static int NotifyDataModelChanged(ulong oldDataModelPtr, ulong newDataModelPtr, int dataModelType)
+    {
+        try
+        {
+            if (_coreAssembly is null)
+            {
+                Console.Error.WriteLine("[RML.NativeHost] NotifyDataModelChanged called without successful initialization");
+                return -1;
+            }
+
+            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
+                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
+
+            var notifyMethod = entryType.GetMethod("NotifyDataModelChanged", BindingFlags.Public | BindingFlags.Static) ??
+                               throw new InvalidOperationException(
+                                   "Failed to find RML.Core.EntryPoint.NotifyDataModelChanged method");
+
+            notifyMethod.Invoke(null, [oldDataModelPtr, newDataModelPtr, dataModelType]);
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[RML.NativeHost] NotifyDataModelChanged failed: {ex}");
+            return -1;
+        }
+    }
 }

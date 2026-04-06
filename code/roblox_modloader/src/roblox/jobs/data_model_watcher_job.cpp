@@ -8,6 +8,7 @@
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/waiting_hybrid_scripts_job.hpp"
 #include "pointers.hpp"
+#include "dotnet/dotnet_mod_loader.hpp"
 
 namespace rml::jobs
 {
@@ -88,6 +89,19 @@ namespace rml::jobs
 		{
 			events::DataModelChangedEvent ev(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
 			events::g_event_manager->emit(ev);
+		}
+
+		// Notify managed (.NET) mods about the change if the bridge is initialized
+		if (rml::dotnet::g_dotnet_mod_loader)
+		{
+			try
+			{
+				rml::dotnet::g_dotnet_mod_loader->notify_data_model_changed(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
+			}
+			catch (const std::exception &e)
+			{
+				LOG_WARN("Failed to notify managed mods of DataModel change: {}", e.what());
+			}
 		}
 
 		// if (g_mod_manager)

@@ -1,100 +1,486 @@
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
+using System.Text;
+
 using TypeGenerator.APITypes;
 
 namespace TypeGenerator.Generators;
 
-internal sealed class ClassGenerator
+internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataReader metadata, ApiDocsReader apiDocs)
 {
-    private readonly string _outputDirectory;
-    private readonly ReflectionMetadataReader _metadata;
-
-    public ClassGenerator(string outputDirectory, ReflectionMetadataReader metadata)
+    private static readonly HashSet<string> _sBaseClasses = new(StringComparer.Ordinal)
     {
-        _outputDirectory = outputDirectory;
-        _metadata = metadata;
-    }
+        "Object",
+    };
 
     public void Generate(List<Class> classes)
     {
+        var byName = new Dictionary<string, Class>(StringComparer.Ordinal);
+        foreach (var c in classes.Where(c => !string.IsNullOrEmpty(c.Name)))
+        {
+            byName[c.Name] = c;
+        }
+
         foreach (var c in classes)
         {
-            var className = Utility.ToPascalIdentifier(c.Name);
-            var filePath = Path.Combine(_outputDirectory, className + ".cs");
-            using var sw = File.CreateText(filePath);
-            sw.WriteLine("// Auto-generated class wrapper");
-            sw.WriteLine("using RML.Core.Api;");
-            sw.WriteLine("using System;");
-            sw.WriteLine();
-            sw.WriteLine("namespace Roblox");
-            sw.WriteLine("{");
-
-            var classDesc = _metadata.ReadClassDesc(c.Name);
-            if (!string.IsNullOrEmpty(classDesc))
+            if (string.IsNullOrEmpty(c.Name))
             {
-                sw.WriteLine("    /// <summary>");
-                sw.WriteLine($"    /// {classDesc}");
-                sw.WriteLine("    /// </summary>");
+                continue;
             }
 
-            sw.WriteLine($"    public sealed class {className}");
-            sw.WriteLine("    {");
-            sw.WriteLine("        public RmlInstance Instance { get; }");
-            sw.WriteLine();
-            sw.WriteLine($"        public {className}(RmlInstance instance) => Instance = instance;");
-            sw.WriteLine();
+            var isBase = _sBaseClasses.Contains(c.Name);
 
-            if (c.Members != null)
+            if (isBase)
             {
-                foreach (var member in c.Members)
-                {
-                    if (string.IsNullOrEmpty(member.Name)) continue;
-                    var memberName = Utility.ToPascalIdentifier(member.Name);
-
-                    switch (member)
-                    {
-                        case Property prop:
-                        {
-                            var desc = _metadata.ReadMemberDesc(c.Name, prop.Name ?? string.Empty);
-                            if (!string.IsNullOrEmpty(desc))
-                            {
-                                sw.WriteLine("        /// <summary>");
-                                sw.WriteLine($"        /// {desc}");
-                                sw.WriteLine("        /// </summary>");
-                            }
-
-                            sw.WriteLine($"        public ulong {memberName}");
-                            sw.WriteLine("        {");
-                            sw.WriteLine($"            get => Instance.GetProperty(\"{member.Name}\");");
-                            sw.WriteLine($"            set => Instance.SetProperty(\"{member.Name}\", value);");
-                            sw.WriteLine("        }");
-                            sw.WriteLine();
-                            break;
-                        }
-                        case Function fn:
-                        {
-                            var desc = _metadata.ReadMemberDesc(c.Name, fn.Name ?? string.Empty);
-                            if (!string.IsNullOrEmpty(desc))
-                            {
-                                sw.WriteLine("        /// <summary>");
-                                sw.WriteLine($"        /// {desc}");
-                                sw.WriteLine("        /// </summary>");
-                            }
-
-                            sw.WriteLine($"        public ulong {memberName}(params ulong[] args) => Instance.Invoke(\"{member.Name}\", args);");
-                            sw.WriteLine();
-                            break;
-                        }
-                        default:
-                            // skip callbacks/events for now
-                            break;
-                    }
-                }
+                WriteBaseClassPartial(c, byName);
             }
-
-            sw.WriteLine("    }");
-            sw.WriteLine("}");
+            else
+            {
+                WriteGeneratedClass(c, byName);
+            }
         }
     }
+    
+    private void WriteGeneratedClass(Class c, Dictionary<string, Class> byName)
+    {
+        var className = Utility.ToPascalIdentifier(c.Name);
+        var filePath  = Path.Combine(outputDirectory, className + ".cs");
+        using var sw  = new StreamWriter(filePath, append: false, Encoding.UTF8);
+
+        var superclass = ResolveSuperclass(c, byName);
+
+        WriteFileHeader(sw);
+        
+        var classDoc = apiDocs.GetClass(c.Name);
+        var classDescFallback = metadata.ReadClassDesc(c.Name);
+        WriteXmlClassDoc(sw, c.Name, classDoc, classDescFallback, indent: 4);
+
+        sw.WriteLine($"    [RobloxClass(\"{c.Name}\")]");
+        
+        bool hasSubclasses = c.Subclasses is { Count: > 0 };
+        string modifier    = "public";
+
+        sw.WriteLine($"    {modifier} class {className} : {superclass}");
+        sw.WriteLine("    {");
+
+        WriteConstructorAndFactory(sw, className, c.Name);
+
+        if (c.Members != null)
+        {
+            WriteMembers(sw, c, byName);
+        }
+
+        sw.WriteLine("    }");
+        sw.WriteLine("}");
+    }
+    
+    private void WriteBaseClassPartial(Class c, Dictionary<string, Class> byName)
+    {
+        if (c.Members is null || c.Members.Count == 0)
+        {
+            return;
+        }
+
+        var className = Utility.ToPascalIdentifier(c.Name);
+        var filePath  = Path.Combine(outputDirectory, className + ".Members.cs");
+        using var sw  = new StreamWriter(filePath, append: false, Encoding.UTF8);
+
+        sw.WriteLine("// <auto-generated/> — DO NOT EDIT MANUALLY.");
+        sw.WriteLine("// This file contains API members auto-generated from the Roblox API dump.");
+        sw.WriteLine("// Hand-written members live in src/Roblox/{className}.cs (partial).");
+        sw.WriteLine("using System;");
+        sw.WriteLine();
+        sw.WriteLine("namespace Roblox");
+        sw.WriteLine("{");
+
+        var classDoc = apiDocs.GetClass(c.Name);
+        var classDescFallback = metadata.ReadClassDesc(c.Name);
+        WriteXmlClassDoc(sw, c.Name, classDoc, classDescFallback, indent: 4);
+
+        sw.WriteLine($"    public partial class {className}");
+        sw.WriteLine("    {");
+
+        WriteMembers(sw, c, byName);
+
+        sw.WriteLine("    }");
+        sw.WriteLine("}");
+    }
+    
+    private void WriteMembers(StreamWriter sw, Class c, Dictionary<string, Class> byName)
+    {
+        if (c.Members is null)
+        {
+            return;
+        }
+
+        var winners = new Dictionary<string, MemberBase>(StringComparer.Ordinal);
+
+        foreach (var member in c.Members)
+        {
+            if (string.IsNullOrEmpty(member.Name))
+                continue;
+
+            var csName = Utility.ToPascalIdentifier(member.Name);
+
+            if (!winners.TryGetValue(csName, out var existing))
+            {
+                winners[csName] = member;
+                continue;
+            }
+
+            bool existingDeprecated = existing.IsDeprecated;
+            bool memberDeprecated   = member.IsDeprecated;
+            if (existingDeprecated && !memberDeprecated)
+            {
+                winners[csName] = member;
+                continue;
+            }
+            if (memberDeprecated && !existingDeprecated)
+                continue;
+
+            bool existingPascal = char.IsUpper(existing.Name![0]);
+            bool memberPascal   = !string.IsNullOrEmpty(member.Name) && char.IsUpper(member.Name[0]);
+            if (!existingPascal && memberPascal)
+                winners[csName] = member;
+        }
+
+        foreach (var (rawCsName, member) in winners)
+        {
+            var csName = rawCsName == c.Name
+                ? member switch
+                {
+                    Property  => rawCsName + "Value",
+                    Function  => rawCsName + "Func",
+                    Event     => rawCsName + "Event",
+                    Callback  => rawCsName + "Callback",
+                    _         => rawCsName + "Member",
+                }
+                : rawCsName;
+
+            switch (member)
+            {
+                case Property prop:
+                    WriteProperty(sw, c, prop, csName);
+                    break;
+
+                case Function fn:
+                    WriteFunction(sw, c, fn, csName, byName);
+                    break;
+
+                case Event evt:
+                    WriteEventStub(sw, c, evt, csName);
+                    break;
+
+                case Callback cb:
+                    WriteCallbackStub(sw, c, cb, csName);
+                    break;
+            }
+        }
+    }
+    
+    private void WriteProperty(StreamWriter sw, Class c, Property prop, string memberName)
+    {
+        var memberDoc     = apiDocs.GetMember(c.Name, prop.Name ?? string.Empty);
+        var descFallback  = metadata.ReadMemberDesc(c.Name, prop.Name ?? string.Empty);
+        var readOnly  = IsReadOnly(prop);
+        var writeOnly = IsWriteOnly(prop);
+        var csType    = TypeMapper.ToCSharp(prop.ValueType, nullable: true);
+
+        WriteXmlMemberDoc(sw, c.Name, prop.Name ?? string.Empty, memberDoc, descFallback,
+            parameters: null, returnCsType: null,
+            defaultValue: IsUsableDefault(prop.Default) ? prop.Default : null, indent: 8);
+
+        if (readOnly)
+        {
+            sw.WriteLine($"        public {csType} {memberName}");
+            sw.WriteLine("        {");
+            sw.WriteLine($"            get => global::Roblox.Reflection.GetProperty<{csType}>(this, \"{prop.Name?.Replace("\"", "\\\"")}\");"); // STUDIO BULLSHIT
+            sw.WriteLine("        }");
+        }
+        else if (writeOnly)
+        {
+            sw.WriteLine($"        public {csType} {memberName}");
+            sw.WriteLine("        {");
+            sw.WriteLine($"            set => global::Roblox.Reflection.SetProperty<{csType}>(this, \"{prop.Name?.Replace("\"", "\\\"")}\", value);"); // STUDIO BULLSHIT
+            sw.WriteLine("        }");
+        }
+        else
+        {
+            sw.WriteLine($"        public {csType} {memberName}");
+            sw.WriteLine("        {");
+            sw.WriteLine($"            get => global::Roblox.Reflection.GetProperty<{csType}>(this, \"{prop.Name?.Replace("\"", "\\\"")}\");");
+            sw.WriteLine($"            set => global::Roblox.Reflection.SetProperty<{csType}>(this, \"{prop.Name?.Replace("\"", "\\\"")}\", value);"); // STUDIO BULLSHIT
+            sw.WriteLine("        }");
+        }
+
+        sw.WriteLine();
+    }
+    
+    private void WriteFunction(
+        StreamWriter sw,
+        Class c,
+        Function fn,
+        string memberName,
+        Dictionary<string, Class> byName)
+    {
+        ApiDoc? memberDoc  = apiDocs.GetMember(c.Name, fn.Name ?? string.Empty);
+        var descFallback = metadata.ReadMemberDesc(c.Name, fn.Name ?? string.Empty);
+        var returnType = TypeMapper.ReturnType(fn.ReturnType, nullable: true);
+        var @params    = BuildParameterList(fn.Parameters);
+        var args       = BuildArgumentList(fn.Parameters);
+        var isVoid     = TypeMapper.IsVoid(returnType);
+
+        WriteXmlMemberDoc(sw, c.Name, fn.Name ?? string.Empty, memberDoc, descFallback,
+            parameters: fn.Parameters, returnCsType: isVoid ? null : returnType, defaultValue: null, indent: 8);
+
+        var callExpr = isVoid
+            ? $"global::Roblox.Reflection.Invoke<object?>(this, \"{fn.Name}\"{args})"
+            : $"global::Roblox.Reflection.Invoke<{returnType}>(this, \"{fn.Name}\"{args})";
+
+        if (isVoid)
+        {
+            sw.WriteLine($"        public void {memberName}({@params})");
+            sw.WriteLine($"            => {callExpr};");
+        }
+        else
+        {
+            sw.WriteLine($"        public {returnType} {memberName}({@params})");
+            sw.WriteLine($"            => {callExpr};");
+        }
+        
+        sw.WriteLine();
+    }
+    
+
+    private void WriteEventStub(StreamWriter sw, Class c, Event evt, string memberName)
+    {
+        var memberDoc    = apiDocs.GetMember(c.Name, evt.Name ?? string.Empty);
+        var descFallback = metadata.ReadMemberDesc(c.Name, evt.Name ?? string.Empty);
+        WriteXmlMemberDoc(sw, c.Name, evt.Name ?? string.Empty, memberDoc, descFallback,
+            parameters: null, returnCsType: null, defaultValue: null, indent: 8,
+            extraNote: "Event binding is not yet implemented in the native layer.");
+        sw.WriteLine($"        // public event Action? {memberName}; // TODO: native event binding");
+        sw.WriteLine();
+    }
+
+    private void WriteCallbackStub(StreamWriter sw, Class c, Callback cb, string memberName)
+    {
+        var memberDoc    = apiDocs.GetMember(c.Name, cb.Name ?? string.Empty);
+        var descFallback = metadata.ReadMemberDesc(c.Name, cb.Name ?? string.Empty);
+        WriteXmlMemberDoc(sw, c.Name, cb.Name ?? string.Empty, memberDoc, descFallback,
+            parameters: null, returnCsType: null, defaultValue: null, indent: 8,
+            extraNote: "Callback binding is not yet implemented in the native layer.");
+        sw.WriteLine($"        // public Func<object?>? {memberName}; // TODO: native callback binding");
+        sw.WriteLine();
+    }
+    
+    private static void WriteConstructorAndFactory(StreamWriter sw, string className, string robloxName)
+    {
+        sw.WriteLine($"        /// <summary>Wraps an existing native Roblox instance identified by <paramref name=\"handle\"/>.</summary>");
+        sw.WriteLine($"        /// <param name=\"handle\">Native pointer to the underlying Roblox {robloxName}.</param>");
+        sw.WriteLine($"        /// <exception cref=\"ArgumentException\">Thrown when <paramref name=\"handle\"/> is zero.</exception>");
+        sw.WriteLine($"        internal {className}(nuint handle) : base(handle) {{ }}");
+        sw.WriteLine();
+        sw.WriteLine($"        /// <summary>");
+        sw.WriteLine($"        /// Creates a <see cref=\"{className}\"/> wrapper from a native handle, or returns");
+        sw.WriteLine($"        /// <see langword=\"null\"/> when <paramref name=\"handle\"/> is zero.");
+        sw.WriteLine($"        /// </summary>");
+        sw.WriteLine($"        public static {className}? FromHandle(nuint handle)");
+        sw.WriteLine($"            => handle == 0 ? null : new {className}(handle);");
+        sw.WriteLine();
+    }
+    
+    private static void WriteFileHeader(StreamWriter sw)
+    {
+        sw.WriteLine("// <auto-generated/> — DO NOT EDIT MANUALLY.");
+        sw.WriteLine("// Generated by Roblox.TypeGenerator from the Roblox API dump.");
+        sw.WriteLine("// Re-run the generator tool to pick up API changes.");
+        sw.WriteLine("using System;");
+        sw.WriteLine();
+        sw.WriteLine("namespace Roblox");
+        sw.WriteLine("{");
+    }
+
+    private static void WriteXmlClassDoc(
+        StreamWriter sw,
+        string className,
+        ApiDoc? apiDoc,
+        string? fallbackDesc,
+        int indent)
+    {
+        var pad     = new string(' ', indent);
+        var summary = ApiDocsReader.HtmlToXmlDoc(apiDoc?.Documentation) ?? EscapeXml(fallbackDesc ?? string.Empty);
+
+        if (string.IsNullOrEmpty(summary) && apiDoc == null)
+            return;
+
+        sw.WriteLine($"{pad}/// <summary>");
+        if (!string.IsNullOrEmpty(summary))
+            sw.WriteLine($"{pad}/// {summary}");
+        else
+            sw.WriteLine($"{pad}/// Roblox <c>{EscapeXml(className)}</c> class.");
+        sw.WriteLine($"{pad}/// </summary>");
+
+        if (!string.IsNullOrEmpty(apiDoc?.LearnMoreLink))
+            sw.WriteLine($"{pad}/// <seealso href=\"{apiDoc!.LearnMoreLink}\"/>");
+    }
+
+    private static void WriteXmlMemberDoc(
+        StreamWriter sw,
+        string className,
+        string memberName,
+        ApiDoc? apiDoc,
+        string? fallbackDesc,
+        List<Parameter>? parameters,
+        string? returnCsType,
+        string? defaultValue,
+        int indent,
+        string? extraNote = null)
+    {
+        var pad     = new string(' ', indent);
+        var summary = ApiDocsReader.HtmlToXmlDoc(apiDoc?.Documentation) ?? EscapeXml(fallbackDesc ?? string.Empty);
+
+        bool hasContent = !string.IsNullOrEmpty(summary)
+                       || parameters?.Count > 0
+                       || !string.IsNullOrEmpty(returnCsType)
+                       || !string.IsNullOrEmpty(defaultValue)
+                       || !string.IsNullOrEmpty(extraNote)
+                       || !string.IsNullOrEmpty(apiDoc?.LearnMoreLink);
+
+        if (!hasContent) return;
+
+        sw.WriteLine($"{pad}/// <summary>");
+        if (!string.IsNullOrEmpty(summary))
+            sw.WriteLine($"{pad}/// {summary}");
+        else
+            sw.WriteLine($"{pad}/// <c>{EscapeXml(className)}.{EscapeXml(memberName)}</c>");
+        if (!string.IsNullOrEmpty(defaultValue))
+            sw.WriteLine($"{pad}/// <para><b>Default:</b> <c>{EscapeXml(defaultValue)}</c></para>");
+        if (!string.IsNullOrEmpty(extraNote))
+            sw.WriteLine($"{pad}/// <para><b>Note:</b> {EscapeXml(extraNote)}</para>");
+        sw.WriteLine($"{pad}/// </summary>");
+
+        if (parameters != null)
+        {
+            foreach (var p in parameters)
+            {
+                var pName = LowerFirst(Utility.ToPascalIdentifier(p.Name ?? "arg"));
+                var pType = EscapeXml(TypeMapper.ToCSharp(p.Type, nullable: true));
+                sw.WriteLine($"{pad}/// <param name=\"{pName}\">A <c>{pType}</c> value.</param>");
+            }
+        }
+
+        if (!string.IsNullOrEmpty(returnCsType) && !TypeMapper.IsVoid(returnCsType))
+            sw.WriteLine($"{pad}/// <returns>A <c>{EscapeXml(returnCsType)}</c> value returned by the engine.</returns>");
+
+        if (!string.IsNullOrEmpty(apiDoc?.LearnMoreLink))
+            sw.WriteLine($"{pad}/// <seealso href=\"{apiDoc!.LearnMoreLink}\"/>");
+    }
+    
+    private static string BuildParameterList(List<Parameter>? parameters)
+    {
+        if (parameters is null || parameters.Count == 0) return string.Empty;
+
+        var parts = new List<string>(parameters.Count);
+        var usedNames = new HashSet<string>(StringComparer.Ordinal);
+
+        foreach (var p in parameters)
+        {
+            var rawName  = Utility.ToPascalIdentifier(p.Name ?? "arg");
+            var argName  = EnsureUnique(LowerFirst(rawName), usedNames);
+            var argType  = TypeMapper.ToCSharp(p.Type, nullable: true);
+            parts.Add($"{argType} {argName}");
+        }
+
+        return string.Join(", ", parts);
+    }
+
+    private static string BuildArgumentList(List<Parameter>? parameters)
+    {
+        if (parameters is null || parameters.Count == 0) return string.Empty;
+
+        var usedNames = new HashSet<string>(StringComparer.Ordinal);
+        var names = new List<string>(parameters.Count);
+
+        foreach (var p in parameters)
+        {
+            var rawName = Utility.ToPascalIdentifier(p.Name ?? "arg");
+            names.Add(EnsureUnique(LowerFirst(rawName), usedNames));
+        }
+
+        return ", " + string.Join(", ", names);
+    }
+    
+    private static string ResolveSuperclass(Class c, Dictionary<string, Class> byName)
+    {
+        if (c.Superclass == "<<<Object>>>")
+            return "global::Roblox.Object";
+
+        return Utility.ToPascalIdentifier(c.Superclass);
+    }
+    
+    private static bool IsReadOnly(Property prop)
+    {
+        return false;
+    }
+
+    private static bool IsWriteOnly(Property prop) => false;
+    
+    private static bool IsUsableDefault(string? value)
+        => !string.IsNullOrEmpty(value)
+        && !value.StartsWith("__api_dump_", StringComparison.Ordinal);
+
+    private static string EscapeXml(string? s)
+    {
+        if (s is null)
+        {
+            return string.Empty;
+        }
+
+        return s.Replace("&", "&amp;")
+                .Replace("<", "&lt;")
+                .Replace(">", "&gt;")
+                .Replace("\"", "&quot;")
+                .Replace("'", "&apos;");
+    }
+
+    private static string LowerFirst(string s)
+    {
+        if (string.IsNullOrEmpty(s))
+        {
+            return s;
+        }
+
+        return char.ToLowerInvariant(s[0]) + s[1..];
+    }
+
+    private static string EnsureUnique(string name, HashSet<string> used)
+    {
+        if (_sKeywords.Contains(name))
+        {
+            name = "@" + name;
+        }
+
+        if (used.Add(name))
+        {
+            return name;
+        }
+
+        var i = 2;
+        string candidate;
+        do { candidate = name + i++; } while (!used.Add(candidate));
+        return candidate;
+    }
+
+    private static readonly HashSet<string> _sKeywords = new(StringComparer.Ordinal)
+    {
+        "abstract","as","base","bool","break","byte","case","catch","char","checked",
+        "class","const","continue","decimal","default","delegate","do","double","else",
+        "enum","event","explicit","extern","false","finally","fixed","float","for",
+        "foreach","goto","if","implicit","in","int","interface","internal","is","lock",
+        "long","namespace","new","null","object","operator","out","override","params",
+        "private","protected","public","readonly","ref","return","sbyte","sealed",
+        "short","sizeof","stackalloc","static","string","struct","switch","this",
+        "throw","true","try","typeof","uint","ulong","unchecked","unsafe","ushort",
+        "using","virtual","void","volatile","while",
+    };
 }
+

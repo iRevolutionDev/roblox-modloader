@@ -11,11 +11,16 @@ internal static class Program
     public static async Task<int> Main(string[] args)
     {
         string? output = null;
-        for (int i = 0; i < args.Length; i++)
+        for (var i = 0; i < args.Length; i++)
         {
-            if (args[i] == "-o" || args[i] == "--output")
+            if (args[i] != "-o" && args[i] != "--output")
             {
-                if (i + 1 < args.Length) output = args[++i];
+                continue;
+            }
+
+            if (i + 1 < args.Length)
+            {
+                output = args[++i];
             }
         }
 
@@ -25,19 +30,27 @@ internal static class Program
             return 1;
         }
 
-        Directory.CreateDirectory(Path.Combine(output, "Generated"));
-        Directory.CreateDirectory(Path.Combine(output, "Generated", "Classes"));
+        var generatedDir = Path.Combine(output, "Generated");
+        var classesDir   = Path.Combine(generatedDir, "Classes");
+        Directory.CreateDirectory(generatedDir);
+        Directory.CreateDirectory(classesDir);
 
-        var dump = await StudioAPI.GetDump();
+        Console.WriteLine("Fetching Roblox API dump and reflection metadata…");
+
+        var dump       = await StudioAPI.GetDump();
         var reflection = await StudioAPI.GetReflectionMetadata();
-
-        var enumsPath = Path.Combine(output, "Generated", "Enums.cs");
+        var apiDocs    = await StudioAPI.GetApiDocs();
+        
+        var enumsPath    = Path.Combine(generatedDir, "Enums.cs");
         var enumGenerator = new EnumGenerator(enumsPath);
-        enumGenerator.Generate(dump.Enums ?? Enumerable.Empty<TypeGenerator.APITypes.EnumType>());
+        enumGenerator.Generate(dump.Enums ?? Enumerable.Empty<APITypes.EnumType>());
+        Console.WriteLine($"  Enums   → {enumsPath}");
+        
+        var classList = dump.Classes?.ToList() ?? [];
 
-        var classesDir = Path.Combine(output, "Generated", "Classes");
-        var classGenerator = new ClassGenerator(classesDir, reflection);
-        classGenerator.Generate(dump.Classes?.ToList() ?? new System.Collections.Generic.List<TypeGenerator.APITypes.Class>());
+        var classGenerator = new ClassGenerator(classesDir, reflection, apiDocs);
+        classGenerator.Generate(classList);
+        Console.WriteLine($"  Classes → {classesDir}  ({classList.Count} entries processed)");
 
         Console.WriteLine("Type generation finished.");
         return 0;

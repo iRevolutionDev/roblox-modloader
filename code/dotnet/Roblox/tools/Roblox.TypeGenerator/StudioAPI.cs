@@ -21,6 +21,12 @@ internal static class StudioAPI
         return new ReflectionMetadataReader(body);
     }
 
+    public static async Task<ApiDocsReader> GetApiDocs()
+    {
+        var body = await Request("api-docs/en-us.json");
+        return new ApiDocsReader(body);
+    }
+
     private static async Task<string> Request(string endpoint)
     {
         using HttpClient client = new HttpClient();
@@ -29,3 +35,4 @@ internal static class StudioAPI
         return await response.Content.ReadAsStringAsync();
     }
 }
+

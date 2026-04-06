@@ -14,6 +14,11 @@ public static class EntryPoint
         return 0;
     }
 
+    public static void NotifyDataModelChanged(ulong oldDataModelPtr, ulong newDataModelPtr, int dataModelType)
+    {
+        ModLoader.OnDataModelChanged(oldDataModelPtr, newDataModelPtr, (Roblox.DataModelType)dataModelType);
+    }
+
     public static void LoadMod(string dllPath)
     {
         ModLoader.LoadMod(dllPath);

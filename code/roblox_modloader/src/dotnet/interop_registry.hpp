@@ -1,5 +1,5 @@
 #pragma once
-#include <expected>
+#include <cstdint>
 
 namespace rml::dotnet
 {
@@ -8,10 +8,13 @@ namespace rml::dotnet
 		uint32_t version;
 		uint32_t size;
 
-		// Reflection
 		uint64_t(__cdecl* reflection_invoke)(uintptr_t instance, const char* function_name, uint64_t arg0, uint64_t arg1, uint64_t arg2, uint64_t arg3, uint32_t arg_count);
+
 		uint64_t(__cdecl* reflection_get_property)(uintptr_t instance, const char* property_name);
+
 		uint64_t(__cdecl* reflection_set_property)(uintptr_t instance, const char* property_name, uint64_t value);
+
+		uintptr_t(__cdecl* instance_get_class_descriptor)(uintptr_t instance);
 
 		void(__cdecl* managed_log)(int32_t level, const char* utf8, int32_t len);
 	};

@@ -5,6 +5,8 @@ using RML.Core.Api;
 using RML.Core.Internal;
 using RML.Core.Modding;
 
+using Roblox;
+
 namespace RML.Core;
 
 internal static class ModLoader
@@ -34,7 +36,7 @@ internal static class ModLoader
 
             var modType = assembly.GetTypes()
                 .FirstOrDefault(t =>
-                    t.GetCustomAttribute<RmlModAttribute>() is not null && t.IsAssignableTo(typeof(IMod)) &&
+                    t.GetCustomAttribute<ModAttribute>() is not null && t.IsAssignableTo(typeof(IMod)) &&
                     !t.IsAbstract);
 
             if (modType is null)
@@ -45,8 +47,25 @@ internal static class ModLoader
             }
 
             var mod = (IMod)Activator.CreateInstance(modType)!;
-            mod.OnLoad();
-            _mods[path] = new ModInfo(context, mod);
+
+            var attr = modType.GetCustomAttribute<ModAttribute>();
+            var loadIn = attr?.LoadInDataModels;
+
+            var info = new ModInfo(context, mod, loadIn);
+            _mods[path] = info;
+
+            if (loadIn == null || loadIn.Length == 0)
+            {
+                try
+                {
+                    mod.OnLoad();
+                    info.Initialized = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error while calling OnLoad for mod at {path}: {e}");
+                }
+            }
         }
         catch (Exception e)
         {
@@ -65,7 +84,10 @@ internal static class ModLoader
 
         try
         {
-            modInfo.Instance.OnUnload();
+            if (modInfo.Initialized)
+            {
+                modInfo.Instance.OnUnload();
+            }
         }
         catch (Exception e)
         {
@@ -93,6 +115,88 @@ internal static class ModLoader
         }
     }
 
+    internal static void OnDataModelChanged(ulong oldDataModelPtr, ulong newDataModelPtr, DataModelType dataModelType)
+    {
+        var oldModel = DataModel.FromHandle((nuint)oldDataModelPtr);
+        var newModel = DataModel.FromHandle((nuint)newDataModelPtr);
+
+        foreach (var kv in _mods.ToArray())
+        {
+            var modInfo = kv.Value;
+
+            // var interested = modInfo.LoadInDataModels;
+            // if (interested == null || interested.Length == 0)
+            //     continue;
+            //
+            // if (!interested.Contains(dataModelType))
+            //     continue;
+
+            if (newModel != null)
+            {
+                if (!modInfo.Initialized)
+                {
+                    try
+                    {
+                        modInfo.Instance.Game = newModel;
+                        modInfo.Instance.OnLoad();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Error while calling OnLoad for mod: {e}");
+                    }
+
+                    modInfo.Initialized = true;
+                }
+                else
+                {
+                    // update reference
+                    modInfo.Instance.Game = newModel;
+                }
+
+                if (modInfo.Instance is IDataModelAware aware)
+                {
+                    try
+                    {
+                        aware.OnDataModelLoaded(newModel, dataModelType);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Error in IDataModelAware.OnDataModelLoaded: {e}");
+                    }
+                }
+            }
+            else
+            {
+                if (modInfo.Instance is IDataModelAware aware)
+                {
+                    try
+                    {
+                        aware.OnDataModelUnloaded(oldModel, dataModelType);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Error in IDataModelAware.OnDataModelUnloaded: {e}");
+                    }
+                }
+
+                if (modInfo.Initialized)
+                {
+                    try
+                    {
+                        modInfo.Instance.OnUnload();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Error while calling OnUnload for mod: {e}");
+                    }
+
+                    modInfo.Instance.Game = null;
+                    modInfo.Initialized = false;
+                }
+            }
+        }
+    }
+
     private static IEnumerable<Assembly> GetCurrentAlcAssemblies()
     {
         var currentAlc = AssemblyLoadContext.GetLoadContext(
@@ -100,5 +204,19 @@ internal static class ModLoader
         return currentAlc?.Assemblies ?? [];
     }
 
-    private record ModInfo(AssemblyLoadContext Context, IMod Instance);
+    private class ModInfo
+    {
+        public ModInfo(AssemblyLoadContext context, IMod instance, DataModelType[]? loadIn)
+        {
+            Context = context;
+            Instance = instance;
+            LoadInDataModels = loadIn;
+            Initialized = false;
+        }
+
+        public AssemblyLoadContext Context { get; }
+        public IMod Instance { get; }
+        public DataModelType[]? LoadInDataModels { get; }
+        public bool Initialized { get; set; }
+    }
 }

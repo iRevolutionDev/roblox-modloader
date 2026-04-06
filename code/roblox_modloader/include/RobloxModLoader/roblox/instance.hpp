@@ -1,37 +1,36 @@
 #pragma once
+#include "object.hpp"
+#include "reflection/object.hpp"
+
 #include <memory>
 #include <vector>
 
-#include "reflection/object.hpp"
+namespace RBX
+{
+	using namespace Reflection;
 
-class Instance : public std::enable_shared_from_this<Instance> {
-public:
-    void *vtable;
-    ClassDescriptor *class_descriptor;
+	class Instance : public Object
+	{
+		std::byte pad_0048[0x30];
 
-private:
-    std::byte pad_0048[0x30];
+	public:
+		Instance* parent;
 
-public:
-    Instance *parent;
+	private:
+		std::byte pad_0058[0x20];
 
-private:
-    std::byte pad_0058[0x20];
+	public:
+		std::string_view name;
 
-public:
-    std::string_view name;
+		// shared_ptr causes some crashes because has invalid reference count TODO: fix it later
+		std::shared_ptr<std::vector<std::shared_ptr<Instance> > > children;
 
-    // shared_ptr causes some crashes because has invalid reference count TODO: fix it later
-    std::shared_ptr<std::vector<std::shared_ptr<Instance> > > children;
+		template<typename T = Instance>
+		T* as()
+		{
+			return static_cast<T*>(this);
+		}
 
-    template<typename T = Instance>
-    T *as() {
-        return static_cast<T *>(this);
-    }
-
-    std::shared_ptr<Instance> current() {
-        return shared_from_this();
-    }
-
-    std::string get_full_name();
-};
+		std::string get_full_name();
+	};
+}

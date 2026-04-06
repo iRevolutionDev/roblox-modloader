@@ -32,6 +32,11 @@ public abstract class MemberBase
     public string MemberType { get; set; }
     public string? Name { get; set; }
     public string? Description { get; set; }
+
+    [JsonConverter(typeof(StringTagsConverter))]
+    public List<string>? Tags { get; set; }
+
+    public bool IsDeprecated => Tags?.Contains("Deprecated", StringComparer.Ordinal) == true;
 }
 
 public class Callback : MemberBase
@@ -43,14 +48,16 @@ public sealed class Event : Callback { }
 
 public sealed class Function : Callback
 {
-    public List<ValueType>? ReturnType { get; set; }
+    [JsonConverter(typeof(RobloxValueTypeFlexConverter))]
+    public RobloxValueType? ReturnType { get; set; }
 }
 
 public sealed class Property : MemberBase
 {
     public string? Category { get; set; }
     public string? Default { get; set; }
-    public ValueType? ValueType { get; set; }
+    [JsonConverter(typeof(RobloxValueTypeFlexConverter))]
+    public RobloxValueType? ValueType { get; set; }
 }
 
 public sealed class Class
@@ -62,7 +69,7 @@ public sealed class Class
     public string? Description { get; set; }
 }
 
-public sealed class ValueType
+public sealed class RobloxValueType
 {
     public string Category { get; set; }
     public string Name { get; set; }
@@ -71,7 +78,123 @@ public sealed class ValueType
 public sealed class Parameter
 {
     public string Name { get; set; }
-    public ValueType Type { get; set; }
+    public RobloxValueType Type { get; set; }
+}
+
+internal sealed class RobloxValueTypeFlexConverter : JsonConverter<RobloxValueType?>
+{
+    public override RobloxValueType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
+        if (reader.TokenType == JsonTokenType.StartArray)
+        {
+            RobloxValueType? result = null;
+            while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
+            {
+                if (result is null && reader.TokenType == JsonTokenType.StartObject)
+                {
+                    result = ReadObject(ref reader, options);
+                }
+                else
+                {
+                    reader.Skip();
+                }
+            }
+            return result;
+        }
+
+        if (reader.TokenType == JsonTokenType.StartObject)
+        {
+            return ReadObject(ref reader, options);
+        }
+
+        reader.Skip();
+        return null;
+    }
+
+    private static RobloxValueType ReadObject(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    {
+        string? category = null;
+        string? name = null;
+
+        while (reader.Read() && reader.TokenType != JsonTokenType.EndObject)
+        {
+            if (reader.TokenType != JsonTokenType.PropertyName)
+            {
+                continue;
+            }
+
+            var propName = reader.GetString();
+            reader.Read();
+
+            if (string.Equals(propName, "Category", StringComparison.OrdinalIgnoreCase))
+            {
+                category = reader.GetString();
+            }
+            else if (string.Equals(propName, "Name", StringComparison.OrdinalIgnoreCase))
+            {
+                name = reader.GetString();
+            }
+            else
+            {
+                reader.Skip();
+            }
+        }
+
+        return new RobloxValueType { Category = category ?? string.Empty, Name = name ?? string.Empty };
+    }
+
+    public override void Write(Utf8JsonWriter writer, RobloxValueType? value, JsonSerializerOptions options)
+    {
+        if (value is null) { writer.WriteNullValue(); return; }
+        writer.WriteStartObject();
+        writer.WriteString("Category", value.Category);
+        writer.WriteString("Name", value.Name);
+        writer.WriteEndObject();
+    }
+}
+
+internal sealed class StringTagsConverter : JsonConverter<List<string>?>
+{
+    public override List<string>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
+        if (reader.TokenType != JsonTokenType.StartArray) { reader.Skip(); return null; }
+
+        var result = new List<string>();
+        while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                result.Add(reader.GetString()!);
+            }
+            else
+            {
+                reader.Skip();
+            }
+        }
+        return result;
+    }
+
+    public override void Write(Utf8JsonWriter writer, List<string>? value, JsonSerializerOptions options)
+    {
+        if (value is null) { writer.WriteNullValue(); return; }
+        writer.WriteStartArray();
+        foreach (var s in value)
+        {
+            writer.WriteStringValue(s);
+        }
+
+        writer.WriteEndArray();
+    }
 }
 
 public class MemberConverter : JsonConverter<MemberBase>
@@ -92,9 +215,6 @@ public class MemberConverter : JsonConverter<MemberBase>
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, MemberBase value, JsonSerializerOptions options)
-    {
-        JsonSerializer.Serialize(writer, value, value.GetType(), options);
-    }
+    public override void Write(Utf8JsonWriter writer, MemberBase value, JsonSerializerOptions options) => JsonSerializer.Serialize(writer, value, value.GetType(), options);
 }
 #pragma warning restore CS8618

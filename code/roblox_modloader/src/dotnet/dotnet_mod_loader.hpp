@@ -4,13 +4,16 @@
 #include "managed_bridge.hpp"
 #include "mod/imod_loader.hpp"
 
+#include <cstdint>
+
 namespace rml::dotnet
 {
-
 	class DotnetModLoader final : public IModLoader
 	{
 	public:
 		explicit DotnetModLoader(const std::filesystem::path& runtime_path, const std::filesystem::path& mods_root);
+
+		void notify_data_model_changed(uint64_t old_dm, uint64_t new_dm, int32_t dm_type) const;
 
 		[[nodiscard]] std::expected<void, std::string> load(const std::filesystem::path& path) override;
 		[[nodiscard]] std::expected<void, std::string> unload(const std::filesystem::path& path) override;
@@ -35,4 +38,5 @@ namespace rml::dotnet
 		bool m_initialized{false};
 	};
 
+	inline DotnetModLoader* g_dotnet_mod_loader{};
 }

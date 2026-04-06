@@ -1,6 +1,5 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/Roblox.Reflection/Roblox.Reflection.csproj" />
     <Project Path="src/Roblox/Roblox.csproj" />
   </Folder>
   <Folder Name="/tools/">
