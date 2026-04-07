@@ -14,14 +14,6 @@ namespace RBX::Reflection
 
 	class PropertyDescriptor : public MemberDescriptor
 	{
-		unsigned m_is_public : 1;
-		unsigned m_is_editable : 1;
-		unsigned m_can_replicate : 1;
-		unsigned m_can_xml_read : 1;
-		unsigned m_can_xml_write : 1;
-		unsigned m_is_scriptable : 1;
-		unsigned m_always_clone : 1;
-
 	public:
 		typedef Property ConstMember;
 		typedef Property Member;
@@ -45,9 +37,23 @@ namespace RBX::Reflection
 			PUBLIC_REPLICATE      = 1 + 2 + 0 + 0 + 0,  // isPublic, canReplicate
 		};
 
+	private:
+		char padding[0x20];
+
+	public:
 		const Type& type;
 		const bool m_is_enum;
 
+	private:
+		unsigned m_is_public : 1;
+		unsigned m_is_editable : 1;
+		unsigned m_can_replicate : 1;
+		unsigned m_can_xml_read : 1;
+		unsigned m_can_xml_write : 1;
+		unsigned m_is_scriptable : 1;
+		unsigned m_always_clone : 1;
+
+	public:
 		[[nodiscard]] bool is_public() const
 		{
 			return m_is_public != 0;
@@ -91,21 +97,48 @@ namespace RBX::Reflection
 			return this != &other;
 		}
 
-		virtual bool is_read_only() const  = 0;
-		virtual bool is_write_only() const = 0;
+		virtual bool is_read_only() const = 0;
 
-		virtual bool equal_values(const DescribedBase* a, const DescribedBase* b) const = 0;
+		virtual bool is_write_only() const        = 0;
+		virtual bool has_variant_accessor() const = 0;
+		virtual bool can_interpolate() const      = 0;
 
-		virtual void get_variant(const DescribedBase* instance, Variant& value) const = 0;
-		virtual void set_variant(DescribedBase* instance, const Variant& value) const = 0;
+		virtual void get_from_variant_accessor(DescribedBase* instance, Variant& out) const = 0;
 
-		virtual void copy_value(const DescribedBase* source, DescribedBase* destination) const = 0;
+		virtual void get_from_variant_accessor(const DescribedBase* instance, Variant& out) const  = 0;
+		virtual void set_via_variant_accessor(DescribedBase* instance, const Variant& value) const = 0;
 
 		virtual int get_data_size(const DescribedBase* instance) const = 0;
 
-		virtual bool has_string_value() const                                                 = 0;
-		virtual std::string get_string_value(const DescribedBase* instance) const             = 0;
-		virtual bool set_string_value(DescribedBase* instance, const std::string& text) const = 0;
+		virtual int _vt09_unknown_() const  = 0;
+		virtual bool _vt10_unknown_() const = 0;
+		virtual bool _vt11_unknown_() const = 0;
+		virtual int _vt12_unknown_() const  = 0;
+		virtual void _vt13_unknown_() const = 0;
+
+		virtual bool equal_values(const DescribedBase* a, const DescribedBase* b) const = 0;
+
+		virtual bool equals_typed_value(const DescribedBase* instance) const = 0;
+
+		virtual void get_variant(const DescribedBase* instance, Variant& out) const       = 0;
+		virtual void get_variant_xml(const DescribedBase* instance, Variant& out) const   = 0;
+		virtual void set_variant(DescribedBase* instance, const Variant& value) const     = 0;
+		virtual void set_variant_xml(DescribedBase* instance, const Variant& value) const = 0;
+
+		virtual void copy_value(const DescribedBase* source, DescribedBase* destination) const = 0;
+
+		virtual int get_raw_data_size(const DescribedBase* instance) const = 0;
+		virtual bool is_xml_serializable() const                           = 0;
+		virtual bool has_string_value() const                              = 0;
+		virtual Name get_string_value(const DescribedBase* instance) const;
+		virtual bool set_string_value(DescribedBase* instance, const std::string& text) const;
+		virtual bool is_type(const Type& type) const = 0;
+
+		virtual void notify_xml_change(const DescribedBase* instance) const               = 0;
+		virtual void serialize(DescribedBase* instance, unsigned format, void* ctx) const = 0;
+
+		virtual void lua_get(lua_State* L, const DescribedBase* instance) const = 0;
+		virtual void lua_set(lua_State* L, DescribedBase* instance) const       = 0;
 	};
 
 	template<typename V>
@@ -118,10 +151,30 @@ namespace RBX::Reflection
 			virtual ~GetSet()                                                               = default;
 			[[nodiscard]] virtual bool is_read_only() const                                 = 0;
 			[[nodiscard]] virtual bool is_write_only() const                                = 0;
-			virtual V get(const DescribedBase* object) const                                = 0;
-			virtual void set(DescribedBase* object, const V& value) const                   = 0;
+			virtual V get(const DescribedBase* instance) const                              = 0;
+			virtual void set(DescribedBase* instance, const V& value) const                 = 0;
 			virtual bool equal_values(const DescribedBase* a, const DescribedBase* b) const = 0;
 			virtual bool equals_value(const DescribedBase* instance, const V& value) const  = 0;
+		};
+
+		class VariantAccessor
+		{
+		public:
+			virtual ~VariantAccessor()                                  = default;
+			virtual V get(DescribedBase* instance) const                = 0;
+			virtual V get(const DescribedBase* instance) const          = 0;
+			virtual void set(DescribedBase* instance, const V& v) const = 0;
+			virtual int data_size(const DescribedBase* instance) const  = 0;
+			virtual bool feature_check() const                          = 0;
+		};
+
+		class XmlLuaAccessor
+		{
+		public:
+			virtual ~XmlLuaAccessor()                                                      = default;
+			virtual bool capability_check() const                                          = 0;
+			virtual void notify(const DescribedBase* instance) const                       = 0;
+			virtual void serialize(DescribedBase* instance, unsigned fmt, void* ctx) const = 0;
 		};
 
 	private:
@@ -129,13 +182,14 @@ namespace RBX::Reflection
 
 	protected:
 		std::unique_ptr<GetSet> get_set;
+		std::unique_ptr<VariantAccessor> m_variant_accessor;
+		std::unique_ptr<XmlLuaAccessor> m_xml_accessor;
 
 	public:
 		[[nodiscard]] bool is_read_only() const override
 		{
 			return get_set ? get_set->is_read_only() : true;
 		}
-
 		[[nodiscard]] bool is_write_only() const override
 		{
 			return get_set ? get_set->is_write_only() : true;
@@ -206,17 +260,18 @@ namespace RBX::Reflection
 		}
 		[[nodiscard]] std::string get_string_value() const
 		{
-			return descriptor->get_string_value(instance);
+			return descriptor->get_string_value(instance).c_str();
 		}
 	};
 
 	class Property : public ConstProperty
 	{
 	public:
-		inline Property(const PropertyDescriptor& descriptor, DescribedBase* instance) :
+		inline Property(const PropertyDescriptor& descriptor, const DescribedBase* instance) :
 		    ConstProperty(descriptor, instance)
 		{
 		}
+
 		inline Property(const Property& other) :
 		    ConstProperty(*other.descriptor, other.instance)
 		{
@@ -227,6 +282,7 @@ namespace RBX::Reflection
 			this->instance   = other.instance;
 			return *this;
 		}
+
 		inline bool operator==(const Property& other) const
 		{
 			return this->descriptor == other.descriptor && this->instance == other.instance;
@@ -252,5 +308,78 @@ namespace RBX::Reflection
 		{
 			return descriptor->set_string_value(const_cast<DescribedBase*>(instance), text);
 		}
+	};
+
+	class RefPropertyDescriptor : public PropertyDescriptor
+	{
+		typedef PropertyDescriptor Super;
+
+	public:
+		virtual DescribedBase* get_ref_value(const DescribedBase* instance) const              = 0;
+		virtual void set_ref_value(DescribedBase* instance, DescribedBase* value) const        = 0;
+		virtual void set_ref_value_unsafe(DescribedBase* instance, DescribedBase* value) const = 0;
+
+		virtual int get_data_size(const DescribedBase* instance) const
+		{
+			return 0;
+		}
+
+		static bool has_string_value()
+		{
+			return false;
+		}
+
+		Name get_string_value(const DescribedBase* instance) const
+		{
+			return Super::get_string_value(instance);
+		}
+
+		bool set_string_value(DescribedBase* instance, const std::string& text) const
+		{
+			return Super::set_string_value(instance, text);
+		}
+
+
+		static bool is_ref_property_descriptor(const Type& type)
+		{
+			return type.tag == "Ref";
+		}
+
+		static bool is_ref_property_descriptor(const PropertyDescriptor& descriptor)
+		{
+			return is_ref_property_descriptor(descriptor.type);
+		}
+	};
+
+	class InstanceHandle
+	{
+		std::shared_ptr<DescribedBase> m_target;
+
+	public:
+		InstanceHandle() = default;
+		explicit InstanceHandle(DescribedBase* target);
+		explicit InstanceHandle(const std::shared_ptr<DescribedBase>& target) :
+		    m_target(target)
+		{
+		}
+		InstanceHandle(const InstanceHandle& other) = default;
+
+		InstanceHandle& operator=(const InstanceHandle& value) = default;
+		InstanceHandle& operator=(const std::shared_ptr<DescribedBase>& value)
+		{
+			m_target = value;
+			return *this;
+		}
+
+		[[nodiscard]] std::shared_ptr<DescribedBase> target() const
+		{
+			return m_target;
+		}
+	};
+
+	class IIDREF
+	{
+		friend class IReferenceBinder;
+		virtual void assign(DescribedBase* propertyOwner, const InstanceHandle& handle) const = 0;
 	};
 }

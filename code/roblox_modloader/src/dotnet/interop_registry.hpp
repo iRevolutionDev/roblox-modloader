@@ -17,6 +17,8 @@ namespace rml::dotnet
 		uintptr_t(__cdecl* instance_get_class_descriptor)(uintptr_t instance);
 
 		void(__cdecl* managed_log)(int32_t level, const char* utf8, int32_t len);
+
+		void(__cdecl* free_string)(const char* str);
 	};
 
 	inline constexpr uint32_t RML_INTEROP_VERSION = 1;

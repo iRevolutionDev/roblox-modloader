@@ -16,7 +16,7 @@ public sealed class ExampleMod : IMod, IDataModelAware
     public void OnDataModelLoaded(DataModel dataModel, DataModelType dataModelType)
     {
         Console.WriteLine($"[DOTNET]: DataModel loaded: {dataModelType}");
-        Console.WriteLine($"[DOTNET]: DataModel root name: {dataModel.Workspace?.Name}");
+        Console.WriteLine($"[DOTNET]: DataModel root name: {dataModel.RunService?.Name}");
         // Console.WriteLine($"[DOTNET]: DataModel root name: {dataModel.ClassName}");
     }
 

@@ -42,11 +42,10 @@ namespace RBX::Reflection
 			{
 			}
 
-			static Attributes deprecated(const Functionality flags, const ClassDescriptor* preferred)
+			static Attributes deprecated(const Functionality flags)
 			{
 				Attributes result(flags);
 				result.is_deprecated = true;
-				result.preferred     = preferred;
 				return result;
 			}
 		};
@@ -66,8 +65,10 @@ namespace RBX::Reflection
 		using EventDescriptors         = MemberDescriptorContainer<EventDescriptor>::Collection;
 		using CallbackDescriptors      = MemberDescriptorContainer<CallbackDescriptor>::Collection;
 
-		const RBX::Security::Permissions security;
-		
+		// Layout: Descriptor(0x28) + 5×MemberDescriptorContainer(0x60) = 0x208
+		// ClassDescriptor own fields begin at 0x208; security is the first field.
+		const Security::Permissions security;
+
 		ClassDescriptor* const base;
 		ClassDescriptors derived_classes;
 		const unsigned replicate_type : 2;

@@ -42,8 +42,18 @@ namespace rml::dotnet
 			if (!property_descriptor)
 				return 0;
 
-			// if (property_descriptor->has_string_value())
-			// 	return 0;
+			if (property_descriptor->type.name == "string")
+			{
+				// IDK WHY STD::STRING DOESN'T WORKS ON ROBLOX BUT IT DOESN'T SO WE HAVE TO DO THIS BS
+				const auto value = property_descriptor->get_string_value(instance);
+				return reinterpret_cast<uint64_t>(strdup(value.c_str()));
+			}
+
+			if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
+			{
+				const auto* ref_desc = static_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
+				return reinterpret_cast<uint64_t>(ref_desc->get_ref_value(instance));
+			}
 
 			const auto property = RBX::Property(*property_descriptor, instance);
 			return property.get<uint64_t>();
@@ -58,9 +68,12 @@ namespace rml::dotnet
 			if (!property_descriptor)
 				return 0;
 
-			// Same ABI hazard as get: don't call set<uint64_t>() on string properties.
-			// if (property_descriptor->has_string_value())
-			// 	return 0;
+			if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
+			{
+				const auto* ref_desc = static_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
+				ref_desc->set_ref_value(instance, reinterpret_cast<RBX::Reflection::DescribedBase*>(value));
+				return 1;
+			}
 
 			auto property = RBX::Property(*property_descriptor, instance);
 
@@ -68,43 +81,8 @@ namespace rml::dotnet
 			return 1;
 		};
 
-		// v2: dedicated string property accessors
-		// table.reflection_get_string_property = [](const uintptr_t instance_ptr, const char* property_name) -> const char* {
-		// 	auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
-		// 	if (!instance)
-		// 		return nullptr;
-		//
-		// 	const auto property_descriptor = instance->get_descriptor().find_property_in_hierarchy(property_name);
-		// 	if (!property_descriptor || !property_descriptor->has_string_value())
-		// 		return nullptr;
-		//
-		// 	const std::string str = property_descriptor->get_string_value(instance);
-		//
-		// 	// Allocate with malloc so the .NET caller can free it via Marshal.FreeHGlobal
-		// 	auto* buf = static_cast<char*>(std::malloc(str.size() + 1));
-		// 	if (!buf)
-		// 		return nullptr;
-		//
-		// 	std::memcpy(buf, str.c_str(), str.size() + 1);
-		// 	return buf;
-		// };
-		//
-		// table.reflection_set_string_property = [](const uintptr_t instance_ptr, const char* property_name, const char* value) -> bool {
-		// 	auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
-		// 	if (!instance || !value)
-		// 		return false;
-		//
-		// 	const auto property_descriptor = instance->get_descriptor().find_property_in_hierarchy(property_name);
-		// 	if (!property_descriptor || !property_descriptor->has_string_value())
-		// 		return false;
-		//
-		// 	return property_descriptor->set_string_value(instance, std::string(value));
-		// };
-		//
-		// table.instance_get_class_descriptor = [](const uintptr_t instance_ptr) -> uintptr_t {
-		// 	if (const auto* instance = reinterpret_cast<const RBX::Instance*>(instance_ptr); !instance)
-		// 		return 0;
-		// 	return 0;
-		// };
+		table.free_string = [](const char* str) {
+			free(const_cast<char*>(str));
+		};
 	}
 } // namespace rml::dotnet

@@ -13,19 +13,9 @@ namespace RBX::Reflection
 		struct Attributes
 		{
 			bool is_deprecated;
-			const Descriptor* preferred; // used if isDeprecated
 			Attributes() :
-			    is_deprecated(false),
-			    preferred(nullptr)
+			    is_deprecated(false)
 			{
-			}
-
-			static Attributes deprecated(const Descriptor& preferred)
-			{
-				Attributes result;
-				result.is_deprecated = true;
-				result.preferred     = &preferred;
-				return result;
 			}
 
 			static Attributes deprecated()
@@ -41,14 +31,13 @@ namespace RBX::Reflection
 		const Name& name;
 		std::unique_ptr<bool> is_replicable;
 		std::unique_ptr<bool> is_outdated;
-		
+
 		const Attributes attributes;
-		char _descriptor_pad[16];
 
 		virtual ~Descriptor()
 		{
 		}
 	};
 
-	static_assert(sizeof(Descriptor) == 0x40, "Descriptor binary layout mismatch: expected 64 bytes.");
+	static_assert(sizeof(Descriptor) == 0x28, "Descriptor binary layout mismatch: expected 40 bytes.");
 }

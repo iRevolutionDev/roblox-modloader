@@ -26,6 +26,12 @@ public static unsafe class Interop
         Table = table;
     }
 
+    public static void FreeNativeString(nint ptr)
+    {
+        if (ptr == nint.Zero || !IsInitialized || Table == null || Table->FreeString == null)
+            return;
+        Table->FreeString((sbyte*)ptr);
+    }
 
     public class Reflection
     {

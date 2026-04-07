@@ -144,6 +144,7 @@ public static unsafe class Reflection
 
             var ptr = new IntPtr((long)res);
             var s = Marshal.PtrToStringUTF8(ptr);
+            Interop.FreeNativeString(ptr);
             return (T)((object?)s)!;
         }
 

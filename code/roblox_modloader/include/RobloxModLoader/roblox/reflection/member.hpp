@@ -83,8 +83,9 @@ namespace RBX::Reflection
 		using ResolvedLookup = std::unordered_map<std::string_view, MemberDescriptorType*>;
 
 	protected:
+		char _descriptor_pre_pad[0x18];
 		Collection descriptors;
-		char _descriptor_lookup_pad[0x48];
+		char _descriptor_post_pad[0x30];
 
 	public:
 		const Collection& get_descriptors() const
@@ -145,7 +146,7 @@ namespace RBX::Reflection
 	{
 	public:
 		static void (*member_hiding_hook)(MemberDescriptor*, MemberDescriptor*);
-		const std::string_view& category;
+		const Name& category;
 		const ClassDescriptor& owner;
 		const Security::Permissions security;
 
