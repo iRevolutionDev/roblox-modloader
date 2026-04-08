@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/roblox/util/G3DCore.h"
+#include "enum_descriptor.hpp"
 #include "member.hpp"
 #include "type.hpp"
 
@@ -9,73 +11,95 @@ class Function;
 
 namespace RBX::Reflection
 {
+	class DescribedBase;
+
 	class FunctionDescriptor : public MemberDescriptor
 	{
 	public:
 		typedef Function ConstMember;
 		typedef Function Member;
 
-		enum Kind : std::uint32_t
+		class Arguments
 		{
-			Kind_Default = 0,
-			Kind_Custom  = 1,
+		public:
+			Variant return_value;
+
+			virtual size_t size() const = 0;
+
+			virtual bool get_varint(int index, Variant& value) const                        = 0;
+			virtual bool get_bool(int index, bool& value) const                             = 0;
+			virtual bool get_long(int index, long& value) const                             = 0;
+			virtual bool get_double(int index, double& value) const                         = 0;
+			virtual bool get_string(int index, std::string& value) const                    = 0;
+			virtual bool get_vector3_int16(int index, Vector3int16& value) const            = 0;
+			virtual bool get_region3_int16(int index, void* value) const                    = 0;
+			virtual bool get_vector3(int index, Vector3& value) const                       = 0;
+			virtual bool get_region3(int index, void* value) const                          = 0;
+			virtual bool get_rect(int index, Rect2D& value) const                           = 0;
+			virtual bool get_object(int index, std::shared_ptr<DescribedBase>& value) const = 0;
+			virtual bool get_enum(int index, const EnumDescriptor& desc, int& value) const  = 0;
 		};
 
-	protected:
-		SignatureDescriptor signature;
-		Kind kind;
+		enum Kind : std::uint32_t
+		{
+			Default = 0,
+			Custom  = 1,
+		};
 
-	public:
-		const SignatureDescriptor& get_signature() const
+		virtual int invoke_lua(DescribedBase* instance, lua_State*) const
+		{
+			return 0;
+		}
+
+		// Roblox interns totally fucked up this function, so we have to call it directly instead of through the vtable. ;-(
+		// everything would be easier if they had chosen agnostic
+		virtual void invoke(DescribedBase* instance, Arguments& arguments, lua_State* L) const = 0;
+
+		[[nodiscard]] const SignatureDescriptor& get_signature() const noexcept
 		{
 			return signature;
 		}
 
-		Kind get_kind() const
+		[[nodiscard]] Kind get_kind() const noexcept
 		{
 			return kind;
 		}
 
-		template<typename T = uintptr_t>
-		T get_bound_function()
+	protected:
+		SignatureDescriptor signature;
+		Kind kind;
+	};
+
+	class Function
+	{
+	protected:
+		const FunctionDescriptor* m_descriptor;
+		DescribedBase* m_instance;
+
+	public:
+		Function(const FunctionDescriptor& descriptor, DescribedBase* instance) :
+		    m_descriptor(&descriptor),
+		    m_instance(instance)
 		{
-			return *reinterpret_cast<T*>(reinterpret_cast<uintptr_t>(this) + 0x88);
 		}
 
-		template<typename Return>
-		Return invoke()
+		Function(const Function& other) = default;
+
+		Function& operator=(const Function& other) = default;
+
+		[[nodiscard]] const Name& name() const
 		{
-			return get_bound_function<Return>();
+			return m_descriptor->name;
 		}
 
-		template<typename Return = std::uint64_t, typename This>
-		Return invoke(This* this_ptr)
+		[[nodiscard]] const FunctionDescriptor* descriptor() const
 		{
-			return invoke<Return(__fastcall*)(This*)>()(this_ptr);
+			return m_descriptor;
 		}
 
-		template<typename Return = std::uint64_t, typename This, typename Arg0>
-		Return invoke(This* this_ptr, Arg0 a0)
+		void invoke(FunctionDescriptor::Arguments& arguments, lua_State* L) const
 		{
-			return invoke<Return(__fastcall*)(This*, Arg0)>()(this_ptr, a0);
-		}
-
-		template<typename Return = std::uint64_t, typename This, typename Arg0, typename Arg1>
-		Return invoke(This* this_ptr, Arg0 a0, Arg1 a1)
-		{
-			return invoke<Return(__fastcall*)(This*, Arg0, Arg1)>()(this_ptr, a0, a1);
-		}
-
-		template<typename Return = std::uint64_t, typename This, typename Arg0, typename Arg1, typename Arg2>
-		Return invoke(This* this_ptr, Arg0 a0, Arg1 a1, Arg2 a2)
-		{
-			return invoke<Return(__fastcall*)(This*, Arg0, Arg1, Arg2)>()(this_ptr, a0, a1, a2);
-		}
-
-		template<typename Return = std::uint64_t, typename This, typename Arg0, typename Arg1, typename Arg2, typename Arg3>
-		Return invoke(This* this_ptr, Arg0 a0, Arg1 a1, Arg2 a2, Arg3 a3)
-		{
-			return invoke<Return(__fastcall*)(This*, Arg0, Arg1, Arg2, Arg3)>()(this_ptr, a0, a1, a2, a3);
+			return m_descriptor->invoke(m_instance, arguments, L);
 		}
 	};
 }

@@ -29,7 +29,10 @@ public static unsafe class Interop
     public static void FreeNativeString(nint ptr)
     {
         if (ptr == nint.Zero || !IsInitialized || Table == null || Table->FreeString == null)
+        {
             return;
+        }
+
         Table->FreeString((sbyte*)ptr);
     }
 
@@ -51,172 +54,122 @@ public static unsafe class Interop
             return (sbyte*)ptr;
         }
 
-        public static ulong Invoke(void* instance, string methodName, params object[] args)
+        public static InteropVariant Invoke(void* instance, string methodName, params object[]? args)
         {
             if (!IsInitialized || Table == null || Table->ReflectionInvoke == null)
             {
-                throw new InvalidOperationException("Interop table is not initialized or reflection is unavailable.");
+                throw new InvalidOperationException(
+                    "Interop table is not initialized or ReflectionInvoke is unavailable.");
             }
 
-            if (methodName is null)
+            ArgumentNullException.ThrowIfNull(methodName);
+
+            var nameS = GetCachedMemberName(methodName);
+            var argCount = args?.Length ?? 0;
+            InteropVariant result = default;
+
+            if (argCount == 0)
             {
-                throw new ArgumentNullException(nameof(methodName));
+                Table->ReflectionInvoke(instance, nameS, null, 0, &result);
+                return result;
             }
 
-            var allocated = new IntPtr[5];
-            var allocCount = 0;
+            var tempPtrs = stackalloc nint[argCount];
+            var tempPtrCount = 0;
+            var argVariants = stackalloc InteropVariant[argCount];
 
             try
             {
-                var nameS = GetCachedMemberName(methodName);
-
-                ulong a0 = 0, a1 = 0, a2 = 0, a3 = 0;
-                uint argCount = 0;
-
-                if (args != null)
+                for (var i = 0; i < argCount; i++)
                 {
-                    for (var i = 0; i < args.Length && i < 4; ++i)
-                    {
-                        var arg = args[i];
-                        ulong val = 0;
-
-                        if (arg == null)
-                        {
-                            val = 0;
-                        }
-                        else if (arg is string s)
-                        {
-                            var b = Encoding.UTF8.GetBytes(s);
-                            var p = Marshal.AllocHGlobal(b.Length + 1);
-                            Marshal.Copy(b, 0, p, b.Length);
-                            Marshal.WriteByte(p + b.Length, 0);
-                            allocated[allocCount++] = p;
-                            val = (ulong)p.ToInt64();
-                        }
-                        else if (arg is IntPtr ip)
-                        {
-                            val = (ulong)ip.ToInt64();
-                        }
-                        else if (arg is UIntPtr uip)
-                        {
-                            val = uip.ToUInt64();
-                        }
-                        else if (arg is bool b)
-                        {
-                            val = b ? 1UL : 0UL;
-                        }
-                        else if (arg is double dd)
-                        {
-                            val = (ulong)BitConverter.DoubleToInt64Bits(dd);
-                        }
-                        else if (arg is float ff)
-                        {
-                            val = BitConverter.SingleToUInt32Bits(ff);
-                        }
-                        else if (arg is Enum)
-                        {
-                            val = Convert.ToUInt64(arg);
-                        }
-                        else
-                        {
-                            try
-                            {
-                                val = Convert.ToUInt64(arg);
-                            }
-                            catch
-                            {
-                                if (arg is nint ni)
-                                {
-                                    val = (ulong)ni;
-                                }
-                                else if (arg is nuint nui)
-                                {
-                                    val = nui;
-                                }
-                                else
-                                {
-                                    val = 0;
-                                }
-                            }
-                        }
-
-                        switch (i)
-                        {
-                            case 0: a0 = val; break;
-                            case 1: a1 = val; break;
-                            case 2: a2 = val; break;
-                            case 3: a3 = val; break;
-                        }
-
-                        argCount++;
-                    }
+                    argVariants[i] = BuildVariant(args![i], tempPtrs, ref tempPtrCount);
                 }
 
-                var fn = Table->ReflectionInvoke;
-                if (fn == null)
-                {
-                    throw new InvalidOperationException("ReflectionInvoke function pointer is null.");
-                }
-
-                var res = fn(instance, nameS, a0, a1, a2, a3, argCount);
-                return res;
+                Table->ReflectionInvoke(instance, nameS, argVariants, (uint)argCount, &result);
+                return result;
             }
             finally
             {
-                for (var i = 0; i < allocCount; ++i)
+                for (var i = 0; i < tempPtrCount; i++)
                 {
-                    if (allocated[i] != IntPtr.Zero)
+                    if (tempPtrs[i] != 0)
                     {
-                        Marshal.FreeHGlobal(allocated[i]);
+                        Marshal.FreeHGlobal(tempPtrs[i]);
                     }
                 }
             }
         }
 
-        public static ulong GetProperty(void* instance, string propertyName)
+        public static InteropVariant GetProperty(void* instance, string propertyName)
         {
             if (!IsInitialized || Table == null || Table->ReflectionGetProperty == null)
             {
-                throw new InvalidOperationException("Interop table is not initialized or reflection is unavailable.");
+                throw new InvalidOperationException(
+                    "Interop table is not initialized or ReflectionGetProperty is unavailable.");
             }
 
-            if (propertyName is null)
-            {
-                throw new ArgumentNullException(nameof(propertyName));
-            }
+            ArgumentNullException.ThrowIfNull(propertyName);
 
             var nameS = GetCachedMemberName(propertyName);
-
-            var fn = Table->ReflectionGetProperty;
-            if (fn == null)
-            {
-                throw new InvalidOperationException("ReflectionGetProperty function pointer is null.");
-            }
-
-            return fn(instance, nameS);
+            InteropVariant result = default;
+            Table->ReflectionGetProperty(instance, nameS, &result);
+            return result;
         }
 
-        public static ulong SetProperty(void* instance, string propertyName, ulong value)
+        public static void SetProperty(void* instance, string propertyName, InteropVariant value)
         {
             if (!IsInitialized || Table == null || Table->ReflectionSetProperty == null)
             {
-                throw new InvalidOperationException("Interop table is not initialized or reflection is unavailable.");
+                throw new InvalidOperationException(
+                    "Interop table is not initialized or ReflectionSetProperty is unavailable.");
             }
 
-            if (propertyName is null)
-            {
-                throw new ArgumentNullException(nameof(propertyName));
-            }
+            ArgumentNullException.ThrowIfNull(propertyName);
 
             var nameS = GetCachedMemberName(propertyName);
+            Table->ReflectionSetProperty(instance, nameS, &value);
+        }
 
-            var fn = Table->ReflectionSetProperty;
-            if (fn == null)
+        private static InteropVariant BuildVariant(object? arg, nint* tempPtrs, ref int tempPtrCount)
+        {
+            if (arg is null)
             {
-                throw new InvalidOperationException("ReflectionSetProperty function pointer is null.");
+                return default;
             }
 
-            return fn(instance, nameS, value);
+            return arg switch
+            {
+                string s => BuildStringVariant(s, tempPtrs, ref tempPtrCount),
+                bool b => InteropVariant.FromBool(b),
+                double d => InteropVariant.FromDouble(d),
+                float f => InteropVariant.FromFloat(f),
+                Enum e => InteropVariant.FromInt64(Convert.ToInt64(e)),
+                nuint nu => InteropVariant.FromPointer(nu),
+                nint ni => InteropVariant.FromPointer((nuint)ni),
+                _ => new InteropVariant { Tag = InteropVariant.Tags.Int64, AsInt64 = ToInt64Fallback(arg) }
+            };
+        }
+
+        private static InteropVariant BuildStringVariant(string s, nint* tempPtrs, ref int tempPtrCount)
+        {
+            var bytes = Encoding.UTF8.GetBytes(s);
+            var p = Marshal.AllocHGlobal(bytes.Length + 1);
+            Marshal.Copy(bytes, 0, p, bytes.Length);
+            Marshal.WriteByte(p + bytes.Length, 0);
+            tempPtrs[tempPtrCount++] = p;
+            return InteropVariant.FromString((nuint)(ulong)p);
+        }
+
+        private static long ToInt64Fallback(object arg)
+        {
+            try
+            {
+                return Convert.ToInt64(arg);
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

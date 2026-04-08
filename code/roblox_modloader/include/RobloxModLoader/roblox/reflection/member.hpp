@@ -74,10 +74,31 @@ namespace RBX::Reflection
 	class MemberDescriptorContainer
 	{
 	public:
-		using Collection = Vector<MemberDescriptorType*>;
+		struct CollectionEntry
+		{
+			MemberDescriptorType* descriptor;
+			uint64_t              unk;
+		};
+		using Collection = Vector<CollectionEntry>;
 
-		using ConstIterator = MemberDescriptorType**;
-		using Iterator      = MemberDescriptorType**;
+		struct ConstIterator
+		{
+			const CollectionEntry* ptr;
+
+			MemberDescriptorType* operator*() const noexcept { return ptr->descriptor; }
+			ConstIterator& operator++() noexcept { ++ptr; return *this; }
+			bool operator!=(const ConstIterator& o) const noexcept { return ptr != o.ptr; }
+		};
+		using Iterator = ConstIterator;
+
+		struct DescriptorView
+		{
+			ConstIterator m_begin, m_end;
+			ConstIterator begin() const noexcept { return m_begin; }
+			ConstIterator end() const noexcept { return m_end; }
+			[[nodiscard]] std::size_t size() const noexcept { return static_cast<std::size_t>(m_end.ptr - m_begin.ptr); }
+			[[nodiscard]] bool empty() const noexcept { return m_begin.ptr == m_end.ptr; }
+		};
 
 	private:
 		using ResolvedLookup = std::unordered_map<std::string_view, MemberDescriptorType*>;
@@ -93,13 +114,18 @@ namespace RBX::Reflection
 			return descriptors;
 		}
 
+		DescriptorView get_descriptor_view() const noexcept
+		{
+			return {descriptors_begin(), descriptors_end()};
+		}
+
 		ConstIterator descriptors_begin() const noexcept
 		{
-			return descriptors.begin();
+			return {descriptors.begin()};
 		}
 		ConstIterator descriptors_end() const noexcept
 		{
-			return descriptors.end();
+			return {descriptors.end()};
 		}
 
 		std::size_t descriptor_size() const
@@ -109,16 +135,11 @@ namespace RBX::Reflection
 
 		MemberDescriptorType* find_descriptor(const char* name) const
 		{
-			for (MemberDescriptorType* descriptor : descriptors)
+			for (const CollectionEntry& entry : descriptors)
 			{
-				if (!descriptor)
+				if (entry.descriptor && entry.descriptor->name == name)
 				{
-					continue;
-				}
-
-				if (descriptor->name == name)
-				{
-					return descriptor;
+					return entry.descriptor;
 				}
 			}
 			return nullptr;
@@ -141,11 +162,12 @@ namespace RBX::Reflection
 			return descriptors_end();
 		}
 	};
-
+	
 	class MemberDescriptor : public Descriptor
 	{
 	public:
 		static void (*member_hiding_hook)(MemberDescriptor*, MemberDescriptor*);
+
 		const Name& category;
 		const ClassDescriptor& owner;
 		const Security::Permissions security;

@@ -59,14 +59,15 @@ namespace RBX::Reflection
 
 		typedef Vector<ClassDescriptor*> ClassDescriptors;
 
-		using PropertyDescriptors      = MemberDescriptorContainer<PropertyDescriptor>::Collection;
-		using FunctionDescriptors      = MemberDescriptorContainer<FunctionDescriptor>::Collection;
-		using YieldFunctionDescriptors = MemberDescriptorContainer<YieldFunctionDescriptor>::Collection;
-		using EventDescriptors         = MemberDescriptorContainer<EventDescriptor>::Collection;
-		using CallbackDescriptors      = MemberDescriptorContainer<CallbackDescriptor>::Collection;
+		using PropertyDescriptors      = MemberDescriptorContainer<PropertyDescriptor>::DescriptorView;
+		using FunctionDescriptors      = MemberDescriptorContainer<FunctionDescriptor>::DescriptorView;
+		using YieldFunctionDescriptors = MemberDescriptorContainer<YieldFunctionDescriptor>::DescriptorView;
+		using EventDescriptors         = MemberDescriptorContainer<EventDescriptor>::DescriptorView;
+		using CallbackDescriptors      = MemberDescriptorContainer<CallbackDescriptor>::DescriptorView;
 
-		// Layout: Descriptor(0x28) + 5×MemberDescriptorContainer(0x60) = 0x208
-		// ClassDescriptor own fields begin at 0x208; security is the first field.
+	private:
+		char padding[24]; // some boolean?
+	public:
 		const Security::Permissions security;
 
 		ClassDescriptor* const base;
@@ -140,29 +141,29 @@ namespace RBX::Reflection
 			return *this;
 		}
 
-		const PropertyDescriptors& property_descriptors() const
+		PropertyDescriptors property_descriptors() const
 		{
-			return MemberDescriptorContainer<PropertyDescriptor>::get_descriptors();
+			return MemberDescriptorContainer<PropertyDescriptor>::get_descriptor_view();
 		}
 
-		const FunctionDescriptors& function_descriptors() const
+		FunctionDescriptors function_descriptors() const
 		{
-			return MemberDescriptorContainer<FunctionDescriptor>::get_descriptors();
+			return MemberDescriptorContainer<FunctionDescriptor>::get_descriptor_view();
 		}
 
-		const YieldFunctionDescriptors& yield_function_descriptors() const
+		YieldFunctionDescriptors yield_function_descriptors() const
 		{
-			return MemberDescriptorContainer<YieldFunctionDescriptor>::get_descriptors();
+			return MemberDescriptorContainer<YieldFunctionDescriptor>::get_descriptor_view();
 		}
 
-		const EventDescriptors& event_descriptors() const
+		EventDescriptors event_descriptors() const
 		{
-			return MemberDescriptorContainer<EventDescriptor>::get_descriptors();
+			return MemberDescriptorContainer<EventDescriptor>::get_descriptor_view();
 		}
 
-		const CallbackDescriptors& callback_descriptors() const
+		CallbackDescriptors callback_descriptors() const
 		{
-			return MemberDescriptorContainer<CallbackDescriptor>::get_descriptors();
+			return MemberDescriptorContainer<CallbackDescriptor>::get_descriptor_view();
 		}
 
 		PropertyDescriptor* find_property_descriptor(const char* name) const
@@ -230,7 +231,7 @@ namespace RBX::Reflection
 				auto cls       = this;
 				while (cls)
 				{
-					for (T* desc : static_cast<const MemberDescriptorContainer<T>*>(cls)->get_descriptors())
+					for (T* desc : static_cast<const MemberDescriptorContainer<T>*>(cls)->get_descriptor_view())
 					{
 						if (desc)
 						{

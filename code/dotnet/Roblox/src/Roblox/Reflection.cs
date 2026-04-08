@@ -23,8 +23,8 @@ public static unsafe class Reflection
             throw new ArgumentException("Instance handle is null", nameof(handle));
         }
 
-        var res = Interop.Reflection.Invoke((void*)handle, methodName, args);
-        return ConvertResult<T>(res);
+        var variant = Interop.Reflection.Invoke((void*)handle, methodName, args);
+        return ConvertResult<T>(variant);
     }
 
     public static T? GetProperty<T>(Object @object, string propertyName)
@@ -42,8 +42,8 @@ public static unsafe class Reflection
             throw new ArgumentException("Instance handle is null", nameof(handle));
         }
 
-        var res = Interop.Reflection.GetProperty((void*)handle, propertyName);
-        return ConvertResult<T>(res);
+        var variant = Interop.Reflection.GetProperty((void*)handle, propertyName);
+        return ConvertResult<T>(variant);
     }
 
     public static void SetProperty<T>(Object @object, string propertyName, T value)
@@ -62,14 +62,13 @@ public static unsafe class Reflection
             throw new ArgumentException("Instance handle is null", nameof(handle));
         }
 
-        var strPtr = IntPtr.Zero;
         try
         {
-            ulong nativeVal;
+            InteropVariant variantValue;
 
             if (value is null)
             {
-                nativeVal = 0;
+                variantValue = default;
             }
             else
             {
@@ -77,72 +76,66 @@ public static unsafe class Reflection
                 {
                     case string s:
                     {
-                        var b = Encoding.UTF8.GetBytes(s);
-                        strPtr = Marshal.AllocHGlobal(b.Length + 1);
+                        var b      = Encoding.UTF8.GetBytes(s);
+                        var strPtr = Marshal.AllocHGlobal(b.Length + 1);
                         Marshal.Copy(b, 0, strPtr, b.Length);
                         Marshal.WriteByte(strPtr + b.Length, 0);
-                        nativeVal = (ulong)strPtr.ToInt64();
-                        break;
+                        variantValue = InteropVariant.FromString((nuint)(ulong)strPtr);
+                        Interop.Reflection.SetProperty((void*)handle, propertyName, variantValue);
+                        Marshal.FreeHGlobal(strPtr);
+                        return;
                     }
                     case Object inst:
-                        nativeVal = inst.Handle;
-                        break;
-                    case IntPtr ip:
-                        nativeVal = (ulong)ip.ToInt64();
-                        break;
-                    case UIntPtr uip:
-                        nativeVal = uip.ToUInt64();
+                        variantValue = InteropVariant.FromPointer(inst.Handle);
                         break;
                     case bool bb:
-                        nativeVal = bb ? 1UL : 0UL;
+                        variantValue = InteropVariant.FromBool(bb);
                         break;
                     case double dd:
-                        nativeVal = (ulong)BitConverter.DoubleToInt64Bits(dd);
+                        variantValue = InteropVariant.FromDouble(dd);
                         break;
                     case float ff:
-                        nativeVal = BitConverter.SingleToUInt32Bits(ff);
+                        variantValue = InteropVariant.FromFloat(ff);
                         break;
                     case System.Enum:
-                        nativeVal = Convert.ToUInt64(value);
+                        variantValue = InteropVariant.FromInt64(Convert.ToInt64(value));
+                        break;
+                    case nuint nu:
+                        variantValue = InteropVariant.FromPointer(nu);
+                        break;
+                    case nint ni:
+                        variantValue = InteropVariant.FromPointer((nuint)ni);
                         break;
                     default:
-                        try
-                        {
-                            nativeVal = Convert.ToUInt64(value);
-                        }
-                        catch
-                        {
-                            nativeVal = value switch
-                            {
-                                nint ni => (ulong)ni,
-                                nuint nui => nui,
-                                _ => 0
-                            };
-                        }
-
+                        long raw;
+                        try   { raw = Convert.ToInt64(value); }
+                        catch { raw = 0; }
+                        variantValue = InteropVariant.FromInt64(raw);
                         break;
                 }
             }
 
-            Interop.Reflection.SetProperty((void*)handle, propertyName, nativeVal);
+            Interop.Reflection.SetProperty((void*)handle, propertyName, variantValue);
         }
-        catch (Exception e)
+        catch (Exception)
         {
         }
     }
 
-    private static T? ConvertResult<T>(ulong res)
+    private static T? ConvertResult<T>(InteropVariant variant)
     {
         Type t = typeof(T);
 
+        if (variant.Tag == InteropVariant.Tags.Null)
+            return default;
+
         if (t == typeof(string))
         {
-            if (res == 0)
-            {
-                return default!;
-            }
-
-            var ptr = new IntPtr((long)res);
+            if (variant.Tag != InteropVariant.Tags.String)
+                return default;
+            var ptr = new IntPtr((long)variant.AsPointer);
+            if (ptr == IntPtr.Zero)
+                return default;
             var s = Marshal.PtrToStringUTF8(ptr);
             Interop.FreeNativeString(ptr);
             return (T)((object?)s)!;
@@ -150,21 +143,15 @@ public static unsafe class Reflection
 
         if (typeof(Object).IsAssignableFrom(t))
         {
-            if (res == 0)
-            {
-                return default!;
-            }
+            if (variant.Tag != InteropVariant.Tags.Instance)
+                return default;
+            var handle = variant.AsPointer;
+            if (handle == 0)
+                return default;
 
-            // If T is exactly Object, wrap it generically.
-            // If T is a generated subclass with a static FromHandle(nuint) factory, call it.
-            var handle = (nuint)res;
             if (t == typeof(Object))
-            {
-                var inst = new Object(handle);
-                return (T)(object)inst;
-            }
+                return (T)(object)new Object(handle);
 
-            // Try to call the generated static FromHandle(nuint) factory on the target type.
             var fromHandle = t.GetMethod("FromHandle",
                 System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static,
                 null,
@@ -177,62 +164,60 @@ public static unsafe class Reflection
                 return result is null ? default! : (T)result;
             }
 
-            // Fallback: wrap as generic Object and cast.
             return (T)(object)new Object(handle);
         }
 
         if (t == typeof(bool))
         {
-            return (T)(object)(res != 0);
+            return variant.Tag == InteropVariant.Tags.Bool
+                ? (T)(object)variant.AsBool
+                : (T)(object)(variant.AsUInt64 != 0);
         }
 
         if (t == typeof(double))
         {
-            var bits = (long)res;
-            var d = BitConverter.Int64BitsToDouble(bits);
-            return (T)(object)d;
+            if (variant.Tag == InteropVariant.Tags.Double) return (T)(object)variant.AsDouble;
+            if (variant.Tag == InteropVariant.Tags.Float)  return (T)(object)(double)variant.AsFloat;
+            return (T)(object)BitConverter.Int64BitsToDouble(variant.AsInt64);
         }
 
         if (t == typeof(float))
         {
-            var u = (uint)res;
-            var f = BitConverter.Int32BitsToSingle((int)u);
-            return (T)(object)f;
+            if (variant.Tag == InteropVariant.Tags.Float) return (T)(object)variant.AsFloat;
+            return (T)(object)BitConverter.Int32BitsToSingle((int)(uint)variant.AsUInt64);
         }
 
         if (t.IsEnum)
         {
-            var underlying = Convert.ChangeType(res, System.Enum.GetUnderlyingType(t));
+            var underlying = Convert.ChangeType(variant.AsUInt64, System.Enum.GetUnderlyingType(t));
             return (T)System.Enum.ToObject(t, underlying);
         }
 
         if (t == typeof(object))
-        {
-            return (T)(object)res;
-        }
+            return (T)(object)variant.AsUInt64;
 
         if (t == typeof(byte) || t == typeof(sbyte) || t == typeof(short) || t == typeof(ushort) ||
             t == typeof(int) || t == typeof(uint) || t == typeof(long) || t == typeof(ulong) ||
             t == typeof(nint) || t == typeof(nuint))
         {
-            object boxed = res;
+            object boxed = variant.AsUInt64;
             return (T)Convert.ChangeType(boxed, t);
         }
 
         Type? nullableUnderlying = Nullable.GetUnderlyingType(t);
         if (nullableUnderlying != null)
         {
-            var boxed = Convert.ChangeType(res, nullableUnderlying);
+            var boxed = Convert.ChangeType(variant.AsUInt64, nullableUnderlying);
             return (T)boxed;
         }
 
         try
         {
-            return (T)Convert.ChangeType(res, t);
+            return (T)Convert.ChangeType(variant.AsUInt64, t);
         }
         catch (Exception ex)
         {
-            throw new InvalidCastException($"Cannot convert native result {res} to {t}", ex);
+            throw new InvalidCastException($"Cannot convert native result to {t}", ex);
         }
     }
 }

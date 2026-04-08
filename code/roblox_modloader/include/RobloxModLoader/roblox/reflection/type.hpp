@@ -28,10 +28,31 @@ namespace RBX::Reflection
 		}
 	};
 
+	template<typename T>
+	class TType : public Type
+	{
+		friend class Type;
+
+	protected:
+		explicit TType(const char* name) :
+		    Type(name, const_cast<T*>(nullptr))
+		{
+		}
+		TType(const char* name, const char* tag) :
+		    Type(name, tag, const_cast<T*>(nullptr))
+		{
+		}
+	};
+
 	class Variant
 	{
+		struct Storage
+		{
+			std::byte data[96]{};
+		};
+
 		const Type* m_type{nullptr};
-		alignas(8) std::byte m_data[96]{};
+		alignas(8) Storage m_storage;
 
 	public:
 		Variant()                          = default;
@@ -58,16 +79,21 @@ namespace RBX::Reflection
 			return m_type->is_enum;
 		}
 
+		[[nodiscard]] bool is_void() const noexcept
+		{
+			return m_type == nullptr;
+		}
+
 		template<typename T>
 		T* try_cast()
 		{
-			return reinterpret_cast<T*>(m_data);
+			return reinterpret_cast<T*>(m_storage.data);
 		}
 
 		template<typename T>
 		const T* try_cast() const
 		{
-			return reinterpret_cast<const T*>(m_data);
+			return reinterpret_cast<const T*>(m_storage.data);
 		}
 	};
 
@@ -96,37 +122,31 @@ namespace RBX::Reflection
 		}
 	};
 
-	struct SignatureDescriptor
+	class SignatureDescriptor
 	{
 		struct Item
 		{
-			const char* name;
-			const Type* type;
-			Variant default_value;
+			friend class SignatureDescriptor;
 
-			bool has_default_value() const
+			const Name* name;
+			const Type* type;
+			const Variant default_handle;
+
+			[[nodiscard]] bool has_default_value() const noexcept
 			{
-				return type && default_value.type() == *type;
+				return default_handle.type() != *type;
 			}
 		};
 
-		using Arguments = std::list<Item>;
+		typedef std::list<Item> Arguments;
 
-		const Type* result_type{nullptr};
-		Arguments arguments{};
+		Arguments arguments;
+		const Type* result_type;
 
-		[[nodiscard]] bool has_result() const
+	public:
+		[[nodiscard]] const Type* get_result_type() const noexcept
 		{
-			return result_type != nullptr;
-		}
-		[[nodiscard]] bool has_arguments() const
-		{
-			return !arguments.empty();
-		}
-
-		[[nodiscard]] std::size_t argument_count() const
-		{
-			return arguments.size();
+			return result_type;
 		}
 	};
 }
