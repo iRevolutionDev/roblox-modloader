@@ -1,6 +1,7 @@
 
 #include "roblox_interop_provider.hpp"
 
+#include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "dotnet_arguments.hpp"
 
 #include <RobloxModLoader/roblox/instance.hpp>
@@ -26,19 +27,21 @@ namespace rml::dotnet
 				out_result->as_uint64 = 0;
 			}
 
-			const auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
+			auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
 			if (!instance)
 				return;
 
-			if (const auto* descriptor = instance->get_descriptor().find_function_in_hierarchy(function_name); !descriptor)
+			const auto* descriptor = instance->get_descriptor().find_function_in_hierarchy(function_name);
+			if (!descriptor)
 				return;
 
-			const DotNetArguments arguments{args, arg_count};
+			DotNetArguments arguments{args, arg_count};
 
-			// TODO: I need to call the function directly
+			const auto function = RBX::Function(*descriptor, instance);
+			const auto ret      = function.invoke(arguments);
 
 			if (out_result)
-				write_return_value(arguments.return_value, *out_result);
+				write_return_value(ret, *out_result);
 		};
 
 		table.reflection_get_property = [](const uintptr_t instance_ptr, const char* property_name, InteropVariant* out_value) {

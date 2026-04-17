@@ -135,6 +135,7 @@ namespace RBX::Reflection
 		virtual bool is_type(const Type& type) const = 0;
 
 		virtual void notify_xml_change(const DescribedBase* instance) const               = 0;
+		virtual void _vt28_unknown_() const                                               = 0;
 		virtual void serialize(DescribedBase* instance, unsigned format, void* ctx) const = 0;
 
 		virtual void lua_get(lua_State* L, const DescribedBase* instance) const = 0;
@@ -318,11 +319,6 @@ namespace RBX::Reflection
 		virtual DescribedBase* get_ref_value(const DescribedBase* instance) const              = 0;
 		virtual void set_ref_value(DescribedBase* instance, DescribedBase* value) const        = 0;
 		virtual void set_ref_value_unsafe(DescribedBase* instance, DescribedBase* value) const = 0;
-
-		virtual int get_data_size(const DescribedBase* instance) const
-		{
-			return 0;
-		}
 
 		static bool has_string_value()
 		{

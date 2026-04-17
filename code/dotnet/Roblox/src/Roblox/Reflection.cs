@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -23,7 +24,7 @@ public static unsafe class Reflection
             throw new ArgumentException("Instance handle is null", nameof(handle));
         }
 
-        var variant = Interop.Reflection.Invoke((void*)handle, methodName, args);
+        InteropVariant variant = Interop.Reflection.Invoke((void*)handle, methodName, args);
         return ConvertResult<T>(variant);
     }
 
@@ -42,7 +43,7 @@ public static unsafe class Reflection
             throw new ArgumentException("Instance handle is null", nameof(handle));
         }
 
-        var variant = Interop.Reflection.GetProperty((void*)handle, propertyName);
+        InteropVariant variant = Interop.Reflection.GetProperty((void*)handle, propertyName);
         return ConvertResult<T>(variant);
     }
 
@@ -76,7 +77,7 @@ public static unsafe class Reflection
                 {
                     case string s:
                     {
-                        var b      = Encoding.UTF8.GetBytes(s);
+                        var b = Encoding.UTF8.GetBytes(s);
                         var strPtr = Marshal.AllocHGlobal(b.Length + 1);
                         Marshal.Copy(b, 0, strPtr, b.Length);
                         Marshal.WriteByte(strPtr + b.Length, 0);
@@ -108,8 +109,15 @@ public static unsafe class Reflection
                         break;
                     default:
                         long raw;
-                        try   { raw = Convert.ToInt64(value); }
-                        catch { raw = 0; }
+                        try
+                        {
+                            raw = Convert.ToInt64(value);
+                        }
+                        catch
+                        {
+                            raw = 0;
+                        }
+
                         variantValue = InteropVariant.FromInt64(raw);
                         break;
                 }
@@ -127,15 +135,23 @@ public static unsafe class Reflection
         Type t = typeof(T);
 
         if (variant.Tag == InteropVariant.Tags.Null)
+        {
             return default;
+        }
 
         if (t == typeof(string))
         {
             if (variant.Tag != InteropVariant.Tags.String)
+            {
                 return default;
+            }
+
             var ptr = new IntPtr((long)variant.AsPointer);
             if (ptr == IntPtr.Zero)
+            {
                 return default;
+            }
+
             var s = Marshal.PtrToStringUTF8(ptr);
             Interop.FreeNativeString(ptr);
             return (T)((object?)s)!;
@@ -144,16 +160,23 @@ public static unsafe class Reflection
         if (typeof(Object).IsAssignableFrom(t))
         {
             if (variant.Tag != InteropVariant.Tags.Instance)
+            {
                 return default;
+            }
+
             var handle = variant.AsPointer;
             if (handle == 0)
+            {
                 return default;
+            }
 
             if (t == typeof(Object))
+            {
                 return (T)(object)new Object(handle);
+            }
 
-            var fromHandle = t.GetMethod("FromHandle",
-                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static,
+            MethodInfo? fromHandle = t.GetMethod("FromHandle",
+                BindingFlags.Public | BindingFlags.Static,
                 null,
                 new[] { typeof(nuint) },
                 null);
@@ -176,14 +199,26 @@ public static unsafe class Reflection
 
         if (t == typeof(double))
         {
-            if (variant.Tag == InteropVariant.Tags.Double) return (T)(object)variant.AsDouble;
-            if (variant.Tag == InteropVariant.Tags.Float)  return (T)(object)(double)variant.AsFloat;
+            if (variant.Tag == InteropVariant.Tags.Double)
+            {
+                return (T)(object)variant.AsDouble;
+            }
+
+            if (variant.Tag == InteropVariant.Tags.Float)
+            {
+                return (T)(object)(double)variant.AsFloat;
+            }
+
             return (T)(object)BitConverter.Int64BitsToDouble(variant.AsInt64);
         }
 
         if (t == typeof(float))
         {
-            if (variant.Tag == InteropVariant.Tags.Float) return (T)(object)variant.AsFloat;
+            if (variant.Tag == InteropVariant.Tags.Float)
+            {
+                return (T)(object)variant.AsFloat;
+            }
+
             return (T)(object)BitConverter.Int32BitsToSingle((int)(uint)variant.AsUInt64);
         }
 
@@ -194,7 +229,9 @@ public static unsafe class Reflection
         }
 
         if (t == typeof(object))
+        {
             return (T)(object)variant.AsUInt64;
+        }
 
         if (t == typeof(byte) || t == typeof(sbyte) || t == typeof(short) || t == typeof(ushort) ||
             t == typeof(int) || t == typeof(uint) || t == typeof(long) || t == typeof(ulong) ||

@@ -5,8 +5,6 @@
 #include "member.hpp"
 #include "type.hpp"
 
-#include <cstdint>
-
 class Function;
 
 namespace RBX::Reflection
@@ -22,7 +20,7 @@ namespace RBX::Reflection
 		class Arguments
 		{
 		public:
-			Variant return_value;
+			uint64_t return_value;
 
 			virtual size_t size() const = 0;
 
@@ -38,6 +36,9 @@ namespace RBX::Reflection
 			virtual bool get_rect(int index, Rect2D& value) const                           = 0;
 			virtual bool get_object(int index, std::shared_ptr<DescribedBase>& value) const = 0;
 			virtual bool get_enum(int index, const EnumDescriptor& desc, int& value) const  = 0;
+
+			// Generic type
+			virtual void* get(int index) const = 0;
 		};
 
 		enum Kind : std::uint32_t
@@ -65,9 +66,17 @@ namespace RBX::Reflection
 			return kind;
 		}
 
+		template<typename T>
+		[[nodiscard]] T* native_func_ptr() const noexcept
+		{
+			return static_cast<T*>(invoke_func_ptr);
+		}
+
 	protected:
 		SignatureDescriptor signature;
 		Kind kind;
+		void* invoke_func_ptr;
+		std::intptr_t bound_this_delta;
 	};
 
 	class Function
@@ -97,9 +106,60 @@ namespace RBX::Reflection
 			return m_descriptor;
 		}
 
-		void invoke(FunctionDescriptor::Arguments& arguments, lua_State* L) const
+		uint64_t invoke(FunctionDescriptor::Arguments& arguments) const
 		{
-			return m_descriptor->invoke(m_instance, arguments, L);
+			using fn_t = uint64_t(DescribedBase*, uint64_t&, ...);
+			switch (arguments.size())
+			{
+			case 0: return m_descriptor->native_func_ptr<fn_t>()(m_instance, arguments.return_value);
+			case 1: return m_descriptor->native_func_ptr<fn_t>()(m_instance, arguments.return_value, arguments.get(1));
+			case 2:
+				return m_descriptor->native_func_ptr<fn_t>()(m_instance,
+				    arguments.return_value,
+				    arguments.get(1),
+				    arguments.get(2));
+			case 3:
+				return m_descriptor->native_func_ptr<fn_t>()(m_instance,
+				    arguments.return_value,
+				    arguments.get(1),
+				    arguments.get(2),
+				    arguments.get(3));
+			case 4:
+				return m_descriptor->native_func_ptr<fn_t>()(m_instance,
+				    arguments.return_value,
+				    arguments.get(1),
+				    arguments.get(2),
+				    arguments.get(3),
+				    arguments.get(4));
+			case 5:
+				return m_descriptor->native_func_ptr<fn_t>()(m_instance,
+				    arguments.return_value,
+				    arguments.get(1),
+				    arguments.get(2),
+				    arguments.get(3),
+				    arguments.get(4),
+				    arguments.get(5));
+			case 6:
+				return m_descriptor->native_func_ptr<fn_t>()(m_instance,
+				    arguments.return_value,
+				    arguments.get(1),
+				    arguments.get(2),
+				    arguments.get(3),
+				    arguments.get(4),
+				    arguments.get(5),
+				    arguments.get(6));
+			case 7:
+				return m_descriptor->native_func_ptr<fn_t>()(m_instance,
+				    arguments.return_value,
+				    arguments.get(1),
+				    arguments.get(2),
+				    arguments.get(3),
+				    arguments.get(4),
+				    arguments.get(5),
+				    arguments.get(6),
+				    arguments.get(7));
+			default: throw std::runtime_error("Too many arguments");
+			}
 		}
 	};
 }

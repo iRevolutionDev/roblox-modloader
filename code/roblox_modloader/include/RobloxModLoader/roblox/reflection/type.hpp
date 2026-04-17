@@ -1,12 +1,11 @@
 #pragma once
 
 #include "descriptor.hpp"
+#include "member.hpp"
 
 #include <cstddef>
-#include <list>
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 namespace RBX::Reflection
 {
@@ -48,7 +47,7 @@ namespace RBX::Reflection
 	{
 		struct Storage
 		{
-			std::byte data[96]{};
+			std::byte data[88]{};
 		};
 
 		const Type* m_type{nullptr};
@@ -134,19 +133,28 @@ namespace RBX::Reflection
 
 			[[nodiscard]] bool has_default_value() const noexcept
 			{
-				return default_handle.type() != *type;
+				return !default_handle.is_void();
 			}
 		};
 
-		typedef std::list<Item> Arguments;
+		struct ResultItem
+		{
+			const Type* type;
+			std::uint64_t _unk0;
+		};
 
-		Arguments arguments;
-		const Type* result_type;
+		Vector<Item> m_arguments;
+		Vector<ResultItem> m_result_types;
 
 	public:
-		[[nodiscard]] const Type* get_result_type() const noexcept
+		[[nodiscard]] const Vector<Item>& arguments() const noexcept
 		{
-			return result_type;
+			return m_arguments;
+		}
+
+		[[nodiscard]] const Vector<ResultItem>& result_types() const noexcept
+		{
+			return m_result_types;
 		}
 	};
 }

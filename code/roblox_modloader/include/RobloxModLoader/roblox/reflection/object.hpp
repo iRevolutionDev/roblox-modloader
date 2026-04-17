@@ -235,8 +235,6 @@ namespace RBX::Reflection
 					{
 						if (desc)
 						{
-							LOG_INFO("Caching {}", typeid(T).name());
-							LOG_INFO("Caching {}::{}", cls->name.c_str(), desc->name.c_str());
 							map.emplace(desc->name.c_str(), desc);
 						}
 					}

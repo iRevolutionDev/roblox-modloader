@@ -1,14 +1,13 @@
 #pragma once
-#include "interop_registry.hpp"
-
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
+#include "interop_registry.hpp"
 
 namespace rml::dotnet
 {
 	class DotNetArguments final : public RBX::Reflection::FunctionDescriptor::Arguments
 	{
 		const InteropVariant* m_args;
-		uint32_t              m_count;
+		uint32_t m_count;
 
 	public:
 		DotNetArguments(const InteropVariant* args, const uint32_t count) noexcept :
@@ -34,9 +33,9 @@ namespace rml::dotnet
 			const auto& v = m_args[index - 1];
 			switch (v.tag)
 			{
-				case InteropValueTag::Bool:  value = v.as_bool;       return true;
-				case InteropValueTag::Int64: value = v.as_int64 != 0; return true;
-				default: return false;
+			case InteropValueTag::Bool: value = v.as_bool; return true;
+			case InteropValueTag::Int64: value = v.as_int64 != 0; return true;
+			default: return false;
 			}
 		}
 
@@ -47,9 +46,9 @@ namespace rml::dotnet
 			const auto& v = m_args[index - 1];
 			switch (v.tag)
 			{
-				case InteropValueTag::Int64: value = static_cast<long>(v.as_int64); return true;
-				case InteropValueTag::Bool:  value = v.as_bool ? 1L : 0L;           return true;
-				default: return false;
+			case InteropValueTag::Int64: value = static_cast<long>(v.as_int64); return true;
+			case InteropValueTag::Bool: value = v.as_bool ? 1L : 0L; return true;
+			default: return false;
 			}
 		}
 
@@ -57,13 +56,12 @@ namespace rml::dotnet
 		{
 			if (!is_valid(index))
 				return false;
-			const auto& v = m_args[index - 1];
-			switch (v.tag)
+			switch (const auto& v = m_args[index - 1]; v.tag)
 			{
-				case InteropValueTag::Double: value = v.as_double;                     return true;
-				case InteropValueTag::Float:  value = v.as_float;                      return true;
-				case InteropValueTag::Int64:  value = static_cast<double>(v.as_int64); return true;
-				default: return false;
+			case InteropValueTag::Double: value = v.as_double; return true;
+			case InteropValueTag::Float: value = v.as_float; return true;
+			case InteropValueTag::Int64: value = static_cast<double>(v.as_int64); return true;
+			default: return false;
 			}
 		}
 
@@ -138,8 +136,9 @@ namespace rml::dotnet
 			if (v.tag != InteropValueTag::Instance)
 				return false;
 			auto* ptr = reinterpret_cast<RBX::Reflection::DescribedBase*>(v.as_instance);
-			value     = std::shared_ptr<RBX::Reflection::DescribedBase>(ptr, [](RBX::Reflection::DescribedBase*) {
-            });
+
+			value = std::shared_ptr<RBX::Reflection::DescribedBase>(ptr, [](RBX::Reflection::DescribedBase*) {
+			});
 			return true;
 		}
 
@@ -154,6 +153,15 @@ namespace rml::dotnet
 			return true;
 		}
 
+		[[nodiscard]] void* get([[maybe_unused]] const int index) const override
+		{
+			if (!is_valid(index))
+				return nullptr;
+
+			const auto& v = m_args[index - 1];
+			return reinterpret_cast<void*>(v.as_instance);
+		}
+
 	private:
 		[[nodiscard]] bool is_valid(const int index) const noexcept
 		{
@@ -161,25 +169,26 @@ namespace rml::dotnet
 		}
 	};
 
-	inline void write_return_value(const RBX::Reflection::Variant& ret, InteropVariant& out) noexcept
+	inline void write_return_value(const uint64_t ret, InteropVariant& out) noexcept
 	{
-		if (ret.is_void())
+		if (!ret)
 		{
-			out.tag      = InteropValueTag::Null;
+			out.tag       = InteropValueTag::Null;
 			out.as_uint64 = 0;
 			return;
 		}
 
-		if (ret.is_float())
+		// TODO: temp verify
+		if (ret % 8 == 0)
 		{
-			out.as_uint64 = 0;
-			out.tag       = InteropValueTag::Float;
-			out.as_float  = *ret.try_cast<float>();
-			return;
+			out.tag         = InteropValueTag::Instance;
+			out.as_instance = ret;
 		}
-
-		out.tag      = InteropValueTag::Int64;
-		out.as_uint64 = *ret.try_cast<uint64_t>();
+		else
+		{
+			out.tag       = InteropValueTag::Int64;
+			out.as_uint64 = ret;
+		}
 	}
 
 } // namespace rml::dotnet

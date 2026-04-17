@@ -9,8 +9,8 @@ namespace RBX::Reflection
 	class EnumDescriptor : public Type
 	{
 	public:
-		static std::vector<const EnumDescriptor*>::const_iterator begin();
-		static std::vector<const EnumDescriptor*>::const_iterator end();
+		static std::vector<const EnumDescriptor*>::const_iterator enum_begin();
+		static std::vector<const EnumDescriptor*>::const_iterator enum_end();
 		static size_t size()
 		{
 			return all_enums().size();

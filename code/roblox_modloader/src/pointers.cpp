@@ -7,13 +7,13 @@ constexpr auto pointers::get_roblox_batch()
 {
 	// clang-format off
     constexpr auto batch_and_hash = memory::make_batch<
-        {
-            "RBXCRASH",
-            "48 89 5C 24 ? 48 89 7C 24 ? 55 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B FA 48 8B D9 48 8B 05 ? ? ? ? 48 85 C0",
-            [](const memory::handle ptr) {
-                g_pointers->m_roblox_pointers.m_rbx_crash = ptr.as<PVOID>();
-            },
-        },
+        // {
+        //     "RBXCRASH",
+        //     "48 89 5C 24 ? 48 89 7C 24 ? 55 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B FA 48 8B D9 48 8B 05 ? ? ? ? 48 85 C0",
+        //     [](const memory::handle ptr) {
+        //         g_pointers->m_roblox_pointers.m_rbx_crash = ptr.as<PVOID>();
+        //     },
+        // },
         // Render Perform
          {
              "RP",
@@ -45,13 +45,13 @@ constexpr auto pointers::get_roblox_batch()
          //         g_pointers->m_roblox_pointers.get_scheduler = ptr.as<functions::get_scheduler>();
          //     },
          // },
-        {
-            "PRINT",
-            "48 8B C4 48 89 50 ? 4C 89 40 ? 4C 89 48 ? 53 48 83 EC ? 8B D9",
-            [](const memory::handle ptr) {
-                g_pointers->m_roblox_pointers.print = ptr.as<functions::print>();
-            },
-        },
+        // {
+        //     "PRINT",
+        //     "48 8B C4 48 89 50 ? 4C 89 40 ? 4C 89 48 ? 53 48 83 EC ? 8B D9",
+        //     [](const memory::handle ptr) {
+        //         g_pointers->m_roblox_pointers.print = ptr.as<functions::print>();
+        //     },
+        // },
          // Lua Functions
          {
              "LUA_LOAD",
