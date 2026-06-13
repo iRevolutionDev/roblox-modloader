@@ -27,10 +27,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array of associated StyleRules.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleBase#GetStyleRules"/>
-        public object? GetStyleRules()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStyleRules");
+        public IReadOnlyList<Instance> GetStyleRules()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetStyleRules");
 
         /// <summary>
         /// Inserts a new StyleRule into the array of rules.
@@ -45,10 +45,10 @@ namespace Roblox
         /// <summary>
         /// Similar to InsertStyleRule() but lets you declare and set multiple StyleRules at once.
         /// </summary>
-        /// <param name="rules">A <c>object?</c> value.</param>
+        /// <param name="rules">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleBase#SetStyleRules"/>
-        public object? SetStyleRules(object? rules)
+        public object? SetStyleRules(IReadOnlyList<Instance> rules)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetStyleRules", rules);
 
         /// <summary>

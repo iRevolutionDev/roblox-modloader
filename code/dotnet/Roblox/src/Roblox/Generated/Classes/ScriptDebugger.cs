@@ -79,9 +79,9 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptDebugger.GetBreakpoints</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBreakpoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBreakpoints");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetBreakpoints()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetBreakpoints");
 
         /// <summary>
         /// <c>ScriptDebugger.GetGlobals</c>
@@ -125,9 +125,9 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptDebugger.GetWatches</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetWatches()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetWatches");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetWatches()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetWatches");
 
         /// <summary>
         /// <c>ScriptDebugger.SetBreakpoint</c>

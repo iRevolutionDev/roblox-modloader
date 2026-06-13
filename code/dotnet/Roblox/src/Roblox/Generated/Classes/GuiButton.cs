@@ -170,10 +170,9 @@ namespace Roblox
         // public event Action? MouseButton2Up; // TODO: native event binding
 
         /// <summary>
-        /// Fires when a right-click is detected on desktop, long press detected on mobile, or triangle / Y activated in UI navigation mode on console. This function is not available yet.
+        /// <c>GuiButton.SecondaryActivated</c>
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#SecondaryActivated"/>
         // public event Action? SecondaryActivated; // TODO: native event binding
 
     }

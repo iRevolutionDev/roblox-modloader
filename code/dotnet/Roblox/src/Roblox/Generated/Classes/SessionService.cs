@@ -40,12 +40,26 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<string?>(this, "GenerateSessionInfoString", includeArbitrarySessions, includeTag, includeTimestamps, includeMetadata);
 
         /// <summary>
+        /// <c>SessionService.GetBreadcrumbs</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? GetBreadcrumbs()
+            => global::Roblox.Reflection.Invoke<object?>(this, "GetBreadcrumbs");
+
+        /// <summary>
         /// <c>SessionService.GetCreatedTimestampUtcMs</c>
         /// </summary>
         /// <param name="sid">A <c>string?</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long GetCreatedTimestampUtcMs(string? sid)
             => global::Roblox.Reflection.Invoke<long>(this, "GetCreatedTimestampUtcMs", sid);
+
+        /// <summary>
+        /// <c>SessionService.GetHistory</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? GetHistory()
+            => global::Roblox.Reflection.Invoke<object?>(this, "GetHistory");
 
         /// <summary>
         /// <c>SessionService.GetMetadata</c>
@@ -160,6 +174,12 @@ namespace Roblox
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         public object? SetSession(string? parentSid, string? childSid, string? tag, string? context)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetSession", parentSid, childSid, tag, context);
+
+        /// <summary>
+        /// <c>SessionService.SessionChanged</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? SessionChanged; // TODO: native event binding
 
     }
 }

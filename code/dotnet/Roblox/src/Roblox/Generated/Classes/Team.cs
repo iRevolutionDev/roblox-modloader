@@ -80,10 +80,10 @@ namespace Roblox
         /// <summary>
         /// Returns a list of Players who are assigned to the Team. A Player is considered assigned if their Player.Team property is equal to the Team and Player.Neutral is false.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#GetPlayers"/>
-        public object? GetPlayers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayers");
+        public IReadOnlyList<Instance> GetPlayers()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayers");
 
         /// <summary>
         /// Fires whenever a Player is assigned to the Team. A player is considered assigned if their Player.Team property is equal to the Team and Player.Neutral is false.

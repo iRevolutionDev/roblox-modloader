@@ -25,6 +25,16 @@ namespace Roblox
             => handle == 0 ? null : new MarketplaceService(handle);
 
         /// <summary>
+        /// <c>MarketplaceService.BindReceiptHandler</c>
+        /// </summary>
+        /// <param name="transactionType">A <c>Enum.ReceiptType</c> value.</param>
+        /// <param name="handler">A <c>object?</c> value.</param>
+        /// <param name="filter">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? BindReceiptHandler(Enum.ReceiptType transactionType, object? handler, object? filter)
+            => global::Roblox.Reflection.Invoke<object?>(this, "BindReceiptHandler", transactionType, handler, filter);
+
+        /// <summary>
         /// <c>MarketplaceService.ClearProductInfoCaches</c>
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -317,6 +327,14 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptSubscriptionPurchaseFinished", subscriptionId, didTryPurchasing);
 
         /// <summary>
+        /// <c>MarketplaceService.SignalRobuxTransferCompleted</c>
+        /// </summary>
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? SignalRobuxTransferCompleted(long userId)
+            => global::Roblox.Reflection.Invoke<object?>(this, "SignalRobuxTransferCompleted", userId);
+
+        /// <summary>
         /// <c>MarketplaceService.SignalServerLuaDialogClosed</c>
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
@@ -573,6 +591,16 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsBundleAsync", player, bundleId);
 
         /// <summary>
+        /// <c>MarketplaceService.PromptRobuxTransferAsync</c>
+        /// </summary>
+        /// <param name="sender">A <c>Player?</c> value.</param>
+        /// <param name="receiverUserId">A <c>long</c> value.</param>
+        /// <param name="amount">A <c>long</c> value.</param>
+        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        public string? PromptRobuxTransferAsync(Player? sender, long receiverUserId, long amount)
+            => global::Roblox.Reflection.Invoke<string?>(this, "PromptRobuxTransferAsync", sender, receiverUserId, amount);
+
+        /// <summary>
         /// Takes a list of product IDs and returns a personalized ordered list of those products.
         /// </summary>
         /// <param name="productIdentifiers">A <c>object?</c> value.</param>
@@ -690,6 +718,12 @@ namespace Roblox
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
         // public event Action? PromptBulkPurchaseRequested; // TODO: native event binding
+
+        /// <summary>
+        /// <c>MarketplaceService.PromptBulkPurchaseRequestedV2</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? PromptBulkPurchaseRequestedV2; // TODO: native event binding
 
         /// <summary>
         /// <c>MarketplaceService.PromptBundlePurchaseFinished</c>
@@ -811,6 +845,12 @@ namespace Roblox
         // public event Action? PromptRobloxSubscriptionPurchaseRequested; // TODO: native event binding
 
         /// <summary>
+        /// <c>MarketplaceService.PromptRobuxTransferRequested</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? PromptRobuxTransferRequested; // TODO: native event binding
+
+        /// <summary>
         /// Fires when a purchase prompt for a subscription is closed.
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
@@ -828,6 +868,12 @@ namespace Roblox
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
         // public event Action? PromptThirdPartyPurchaseRequested; // TODO: native event binding
+
+        /// <summary>
+        /// <c>MarketplaceService.RobuxTransferCompleted</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? RobuxTransferCompleted; // TODO: native event binding
 
         /// <summary>
         /// <c>MarketplaceService.ServerPurchaseVerification</c>

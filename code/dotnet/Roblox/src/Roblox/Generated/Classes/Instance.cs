@@ -299,10 +299,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array containing all of the instance's children.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetChildren"/>
-        public object? GetChildren()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetChildren");
+        public IReadOnlyList<Instance> GetChildren()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetChildren");
 
         /// <summary>
         /// Returns a coded string of the debug ID used internally by Roblox.
@@ -316,10 +316,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array containing all of the descendants of the instance.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetDescendants"/>
-        public object? GetDescendants()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDescendants");
+        public IReadOnlyList<Instance> GetDescendants()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDescendants");
 
         /// <summary>
         /// Returns a string describing the instance's ancestry.
@@ -396,10 +396,10 @@ namespace Roblox
         /// <c>Instance.QueryDescendants</c>
         /// </summary>
         /// <param name="selector">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#QueryDescendants"/>
-        public object? QueryDescendants(string? selector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "QueryDescendants", selector);
+        public IReadOnlyList<Instance> QueryDescendants(string? selector)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "QueryDescendants", selector);
 
         /// <summary>
         /// Deprecated: This item is deprecated in favor of Instance:Destroy() and Instance:ClearAllChildren(). If you must remove an object from the game, and wish to use the object later, set its Parent property to nil instead of using this method.Sets the object's Parent to nil, and does the same for all its descendants.
@@ -450,10 +450,10 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This item has been superseded by Instance:GetChildren() which should be used in all new work.Returns an array of the object's children.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#children"/>
-        public object? Children()
-            => global::Roblox.Reflection.Invoke<object?>(this, "children");
+        public IReadOnlyList<Instance> Children()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "children");
 
         /// <summary>
         /// Fires when the Instance.Parent property of the object or one of its ancestors is changed.

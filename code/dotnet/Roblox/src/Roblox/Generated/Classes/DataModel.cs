@@ -413,19 +413,18 @@ namespace Roblox
         /// Returns an array of Instances associated with the given content URL.
         /// </summary>
         /// <param name="url">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GetObjects"/>
-        public object? GetObjects(object? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetObjects", url);
+        public IReadOnlyList<Instance> GetObjects(object? url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjects", url);
 
         /// <summary>
         /// <c>DataModel.GetObjectsAllOrNone</c>
         /// </summary>
         /// <param name="url">A <c>object?</c> value.</param>
-        /// <param name="binaryFormatOnly">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetObjectsAllOrNone(object? url, bool binaryFormatOnly)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetObjectsAllOrNone", url, binaryFormatOnly);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetObjectsAllOrNone(object? url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjectsAllOrNone", url);
 
         /// <summary>
         /// <c>DataModel.GetObjectsList</c>
@@ -513,17 +512,17 @@ namespace Roblox
         /// <c>DataModel.GetObjectsAsync</c>
         /// </summary>
         /// <param name="url">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetObjectsAsync(object? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetObjectsAsync", url);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetObjectsAsync(object? url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjectsAsync", url);
 
         /// <summary>
         /// <c>DataModel.InsertObjectsAndJoinIfLegacyAsync</c>
         /// </summary>
         /// <param name="url">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertObjectsAndJoinIfLegacyAsync(object? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertObjectsAndJoinIfLegacyAsync", url);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> InsertObjectsAndJoinIfLegacyAsync(object? url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "InsertObjectsAndJoinIfLegacyAsync", url);
 
         /// <summary>
         /// Deprecated: This item is deprecated . Do not use it for new work.Fires when SetGearSettings is called with a different value for allowedGenres.

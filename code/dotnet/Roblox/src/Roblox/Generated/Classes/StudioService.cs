@@ -335,19 +335,19 @@ namespace Roblox
         /// Deprecated: Prompts the current Studio user to select files to add as Files.
         /// </summary>
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFiles"/>
-        public object? PromptImportFiles(object? fileTypeFilter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptImportFiles", fileTypeFilter);
+        public IReadOnlyList<Instance> PromptImportFiles(object? fileTypeFilter)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "PromptImportFiles", fileTypeFilter);
 
         /// <summary>
         /// Prompts the current Studio user to select files to add as Files.
         /// </summary>
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFilesAsync"/>
-        public object? PromptImportFilesAsync(object? fileTypeFilter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptImportFilesAsync", fileTypeFilter);
+        public IReadOnlyList<Instance> PromptImportFilesAsync(object? fileTypeFilter)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "PromptImportFilesAsync", fileTypeFilter);
 
         /// <summary>
         /// <c>StudioService.TryInstallPlugin</c>

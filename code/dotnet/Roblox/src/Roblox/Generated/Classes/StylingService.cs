@@ -40,9 +40,9 @@ namespace Roblox
         /// <c>StylingService.GetStyleSheetDerivesChain</c>
         /// </summary>
         /// <param name="styleSheet">A <c>StyleSheet?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStyleSheetDerivesChain(StyleSheet? styleSheet)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStyleSheetDerivesChain", styleSheet);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetStyleSheetDerivesChain(StyleSheet? styleSheet)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetStyleSheetDerivesChain", styleSheet);
 
         /// <summary>
         /// <c>StylingService.GetStyleSheetInfo</c>

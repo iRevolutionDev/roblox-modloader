@@ -139,6 +139,16 @@ namespace Roblox
         }
 
         /// <summary>
+        /// <c>SurfaceAppearance.ResampleMode</c>
+        /// <para><b>Default:</b> <c>Default</c></para>
+        /// </summary>
+        public Enum.ResamplerMode ResampleMode
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.ResamplerMode>(this, "ResampleMode");
+            set => global::Roblox.Reflection.SetProperty<Enum.ResamplerMode>(this, "ResampleMode", value);
+        }
+
+        /// <summary>
         /// Determines the apparent roughness across the surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#RoughnessMap"/>

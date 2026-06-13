@@ -46,6 +46,13 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<string?>(this, "GetPlaceJoinState");
 
         /// <summary>
+        /// <c>ExperienceService.GetQueuePosition</c>
+        /// </summary>
+        /// <returns>A <c>int</c> value returned by the engine.</returns>
+        public int GetQueuePosition()
+            => global::Roblox.Reflection.Invoke<int>(this, "GetQueuePosition");
+
+        /// <summary>
         /// <c>ExperienceService.LaunchExperience</c>
         /// </summary>
         /// <param name="params">A <c>object?</c> value.</param>
@@ -129,6 +136,12 @@ namespace Roblox
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
         // public event Action? PlaceJoinStateChanged; // TODO: native event binding
+
+        /// <summary>
+        /// <c>ExperienceService.QueuePositionChanged</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? QueuePositionChanged; // TODO: native event binding
 
     }
 }

@@ -36,6 +36,13 @@ namespace Roblox
         }
 
         /// <summary>
+        /// <c>GamepadService.AutoSelectGui</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? AutoSelectGui()
+            => global::Roblox.Reflection.Invoke<object?>(this, "AutoSelectGui");
+
+        /// <summary>
         /// Disables the gamepad cursor, if currently enabled.
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>

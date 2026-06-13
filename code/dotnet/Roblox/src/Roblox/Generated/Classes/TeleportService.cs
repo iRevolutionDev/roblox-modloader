@@ -147,13 +147,13 @@ namespace Roblox
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <param name="reservedServerAccessCode">A <c>string?</c> value.</param>
-        /// <param name="players">A <c>object?</c> value.</param>
+        /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="spawnName">A <c>string?</c> value.</param>
         /// <param name="teleportData">A <c>object?</c> value.</param>
         /// <param name="customLoadingScreen">A <c>Instance?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportToPrivateServer"/>
-        public object? TeleportToPrivateServer(long placeId, string? reservedServerAccessCode, object? players, string? spawnName, object? teleportData, Instance? customLoadingScreen)
+        public object? TeleportToPrivateServer(long placeId, string? reservedServerAccessCode, IReadOnlyList<Instance> players, string? spawnName, object? teleportData, Instance? customLoadingScreen)
             => global::Roblox.Reflection.Invoke<object?>(this, "TeleportToPrivateServer", placeId, reservedServerAccessCode, players, spawnName, teleportData, customLoadingScreen);
 
         /// <summary>
@@ -240,23 +240,23 @@ namespace Roblox
         /// The all-encompassing method to teleport a player or group of players from one server to another.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="players">A <c>object?</c> value.</param>
+        /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="teleportOptions">A <c>Instance?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportAsync"/>
-        public Instance? TeleportAsync(long placeId, object? players, Instance? teleportOptions)
+        public Instance? TeleportAsync(long placeId, IReadOnlyList<Instance> players, Instance? teleportOptions)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "TeleportAsync", placeId, players, teleportOptions);
 
         /// <summary>
         /// Teleports a group of Players to the same server of the place with the given PlaceId, returning the JobId of the server instance they were teleported to.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="players">A <c>object?</c> value.</param>
+        /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="teleportData">A <c>object?</c> value.</param>
         /// <param name="customLoadingScreen">A <c>Instance?</c> value.</param>
         /// <returns>A <c>string?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportPartyAsync"/>
-        public string? TeleportPartyAsync(long placeId, object? players, object? teleportData, Instance? customLoadingScreen)
+        public string? TeleportPartyAsync(long placeId, IReadOnlyList<Instance> players, object? teleportData, Instance? customLoadingScreen)
             => global::Roblox.Reflection.Invoke<string?>(this, "TeleportPartyAsync", placeId, players, teleportData, customLoadingScreen);
 
         /// <summary>

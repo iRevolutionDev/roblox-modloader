@@ -24,12 +24,6 @@ namespace Roblox
         public static ContextActionService? FromHandle(nuint handle)
             => handle == 0 ? null : new ContextActionService(handle);
 
-        public int NetcodeInputLatency
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "NetcodeInputLatency");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "NetcodeInputLatency", value);
-        }
-
         /// <summary>
         /// Bind user input to an action given an action handling function.
         /// </summary>
@@ -171,9 +165,9 @@ namespace Roblox
         /// <summary>
         /// <c>ContextActionService.GetInputContexts</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInputContexts()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputContexts");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetInputContexts()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputContexts");
 
         /// <summary>
         /// <c>ContextActionService.GetInputSchemaKeyCodeTree</c>

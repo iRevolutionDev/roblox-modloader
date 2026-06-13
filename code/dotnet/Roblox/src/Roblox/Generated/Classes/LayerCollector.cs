@@ -44,6 +44,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ResetOnSpawn", value);
         }
 
+        public bool TabKeyboardNavigation
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TabKeyboardNavigation");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "TabKeyboardNavigation", value);
+        }
+
         /// <summary>
         /// Controls how GuiObject.ZIndex behaves on all descendants of this LayerCollector.
         /// </summary>
@@ -59,9 +65,9 @@ namespace Roblox
         /// </summary>
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetGuiObjectsAtPosition(int x, int y)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetGuiObjectsAtPosition", x, y);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetGuiObjectsAtPosition(int x, int y)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsAtPosition", x, y);
 
         /// <summary>
         /// Deprecated: This method should not be used for new work.

@@ -206,10 +206,10 @@ namespace Roblox
         /// <summary>
         /// Intersects the given parts and returns the resulting IntersectOperation.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Intersect"/>
-        public Instance? Intersect(object? objects)
+        public Instance? Intersect(IReadOnlyList<Instance> objects)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "Intersect", objects);
 
         /// <summary>
@@ -247,11 +247,11 @@ namespace Roblox
         /// <summary>
         /// Negates the given parts and returns the resulting NegateOperations.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Negate"/>
-        public object? Negate(object? objects)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Negate", objects);
+        public IReadOnlyList<Instance> Negate(IReadOnlyList<Instance> objects)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Negate", objects);
 
         /// <summary>
         /// <c>Plugin.OnInvoke</c>
@@ -345,11 +345,11 @@ namespace Roblox
         /// <summary>
         /// Separates the given UnionOperations and returns the resulting parts.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Separate"/>
-        public object? Separate(object? objects)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Separate", objects);
+        public IReadOnlyList<Instance> Separate(IReadOnlyList<Instance> objects)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Separate", objects);
 
         /// <summary>
         /// <c>Plugin.SetItem</c>
@@ -404,10 +404,10 @@ namespace Roblox
         /// <summary>
         /// Unions the given parts and returns the resulting UnionOperation.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Union"/>
-        public Instance? Union(object? objects)
+        public Instance? Union(IReadOnlyList<Instance> objects)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "Union", objects);
 
         /// <summary>

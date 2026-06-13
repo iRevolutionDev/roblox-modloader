@@ -78,16 +78,6 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Sound.IsMutedForCapture</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool IsMutedForCapture
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsMutedForCapture");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsMutedForCapture", value);
-        }
-
-        /// <summary>
         /// Read-only property which returns true when the Sound is not playing.
         /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>

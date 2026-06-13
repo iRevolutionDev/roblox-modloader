@@ -40,10 +40,10 @@ namespace Roblox
         /// <c>PackageUIService.ConvertToPackageUpload</c>
         /// </summary>
         /// <param name="uploadUrl">A <c>string?</c> value.</param>
-        /// <param name="cloneInstances">A <c>object?</c> value.</param>
-        /// <param name="originalInstances">A <c>object?</c> value.</param>
+        /// <param name="cloneInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        /// <param name="originalInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ConvertToPackageUpload(string? uploadUrl, object? cloneInstances, object? originalInstances)
+        public object? ConvertToPackageUpload(string? uploadUrl, IReadOnlyList<Instance> cloneInstances, IReadOnlyList<Instance> originalInstances)
             => global::Roblox.Reflection.Invoke<object?>(this, "ConvertToPackageUpload", uploadUrl, cloneInstances, originalInstances);
 
         /// <summary>

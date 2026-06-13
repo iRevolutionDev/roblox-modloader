@@ -58,10 +58,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array containing all sub Poses that have been added to a Pose.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#GetSubPoses"/>
-        public object? GetSubPoses()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSubPoses");
+        public IReadOnlyList<Instance> GetSubPoses()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetSubPoses");
 
         /// <summary>
         /// Removes a sub Pose from the Pose by parenting it to nil.

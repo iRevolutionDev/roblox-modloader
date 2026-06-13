@@ -260,9 +260,10 @@ namespace Roblox
         // public event Action? Heartbeat; // TODO: native event binding
 
         /// <summary>
-        /// <c>RunService.Misprediction</c>
+        /// In the server authority model, fires during prediction when the engine detects that the client has diverged from the server's authoritative state. Intended for plugin-based debugging.
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Misprediction"/>
         // public event Action? Misprediction; // TODO: native event binding
 
         /// <summary>
@@ -307,9 +308,10 @@ namespace Roblox
         // public event Action? RobloxGuiFocusedChanged; // TODO: native event binding
 
         /// <summary>
-        /// <c>RunService.Rollback</c>
+        /// In the server authority model, this fires after rolling back the predicted state due to a misprediction, but before resimulation begins.
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Rollback"/>
         // public event Action? Rollback; // TODO: native event binding
 
         /// <summary>

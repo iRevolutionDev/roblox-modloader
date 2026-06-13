@@ -56,18 +56,18 @@ namespace Roblox
         /// <summary>
         /// Returns an array containing all KeyframeMarkers that have been added to the Keyframe.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#GetMarkers"/>
-        public object? GetMarkers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMarkers");
+        public IReadOnlyList<Instance> GetMarkers()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetMarkers");
 
         /// <summary>
         /// Returns an array containing all Poses that have been added to a Keyframe.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#GetPoses"/>
-        public object? GetPoses()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPoses");
+        public IReadOnlyList<Instance> GetPoses()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPoses");
 
         /// <summary>
         /// Removes a KeyframeMarker from the Keyframe by settings its Instance.Parent to nil.

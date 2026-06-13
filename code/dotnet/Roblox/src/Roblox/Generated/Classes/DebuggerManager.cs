@@ -44,9 +44,9 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerManager.GetDebuggers</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDebuggers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDebuggers");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetDebuggers()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDebuggers");
 
         /// <summary>
         /// <c>DebuggerManager.Resume</c>

@@ -1628,6 +1628,13 @@ namespace Roblox
             High = 2,
         }
 
+        public enum DeviceSimulatorScalingMode
+        {
+            ScaleToPhysicalSize = 0,
+            ActualResolution = 1,
+            FitToWindow = 2,
+        }
+
         public enum DeviceType
         {
             Unknown = 0,
@@ -3804,6 +3811,19 @@ namespace Roblox
             NeedPermission = 1,
         }
 
+        public enum ReceiptDecision
+        {
+            NotProcessedYet = 0,
+            Processed = 1,
+        }
+
+        public enum ReceiptType
+        {
+            DeveloperProduct = 0,
+            RobuxTransferSender = 1,
+            RobuxTransferReceiver = 2,
+        }
+
         public enum RecommendationActionType
         {
             AddReaction = 0,
@@ -4291,6 +4311,7 @@ namespace Roblox
         {
             Floor = 0,
             Ladder = 1,
+            ClassicLadder = 2,
         }
 
         public enum SensorUpdateType
@@ -5517,6 +5538,7 @@ namespace Roblox
             Unknown = 0,
             Migration = 1,
             CloseRoom = 2,
+            FAEUpdate = 3,
         }
 
         public enum VolumetricAudio

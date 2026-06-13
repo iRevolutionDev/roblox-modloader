@@ -60,9 +60,9 @@ namespace Roblox
         /// <summary>
         /// <c>InputContext.GetInputActions</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInputActions()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputActions");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetInputActions()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputActions");
 
         /// <summary>
         /// <c>InputContext.InputActionsChanged</c>

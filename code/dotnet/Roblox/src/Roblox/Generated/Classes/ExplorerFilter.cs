@@ -53,9 +53,9 @@ namespace Roblox
         /// <c>ExplorerFilter.GetSearchResults</c>
         /// </summary>
         /// <param name="maxCandidatesToExplore">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSearchResults(int maxCandidatesToExplore)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSearchResults", maxCandidatesToExplore);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetSearchResults(int maxCandidatesToExplore)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetSearchResults", maxCandidatesToExplore);
 
         /// <summary>
         /// <c>ExplorerFilter.HasMoreResults</c>

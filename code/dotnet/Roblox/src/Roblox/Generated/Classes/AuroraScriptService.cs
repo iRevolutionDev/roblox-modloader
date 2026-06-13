@@ -74,32 +74,32 @@ namespace Roblox
         /// <summary>
         /// <c>AuroraScriptService.getBehaviorObjects</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBehaviorObjects()
-            => global::Roblox.Reflection.Invoke<object?>(this, "getBehaviorObjects");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetBehaviorObjects()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "getBehaviorObjects");
 
         /// <summary>
         /// <c>AuroraScriptService.getBehaviors</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBehaviors()
-            => global::Roblox.Reflection.Invoke<object?>(this, "getBehaviors");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetBehaviors()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "getBehaviors");
 
         /// <summary>
         /// <c>AuroraScriptService.getBehaviorsForInstance</c>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBehaviorsForInstance(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "getBehaviorsForInstance", instance);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetBehaviorsForInstance(Instance? instance)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "getBehaviorsForInstance", instance);
 
         /// <summary>
         /// <c>AuroraScriptService.getInstancesForBehavior</c>
         /// </summary>
         /// <param name="behavior">A <c>AuroraScript?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInstancesForBehavior(AuroraScript? behavior)
-            => global::Roblox.Reflection.Invoke<object?>(this, "getInstancesForBehavior", behavior);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetInstancesForBehavior(AuroraScript? behavior)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "getInstancesForBehavior", behavior);
 
     }
 }

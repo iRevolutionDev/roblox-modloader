@@ -46,10 +46,10 @@ namespace Roblox
         /// Deprecated: This item has been superseded by a CollectionService tagging method. The equivalent function using the new method is CollectionService:GetTagged() which should be used in new work.Returns all instances of a given class which are in the DataModel.
         /// </summary>
         /// <param name="class">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetCollection"/>
-        public object? GetCollection(string? @class)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCollection", @class);
+        public IReadOnlyList<Instance> GetCollection(string? @class)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCollection", @class);
 
         /// <summary>
         /// Returns a signal that fires when a given tag is added to an instance.
@@ -73,10 +73,10 @@ namespace Roblox
         /// Returns an array of instances in the game with a given tag.
         /// </summary>
         /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetTagged"/>
-        public object? GetTagged(string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTagged", tag);
+        public IReadOnlyList<Instance> GetTagged(string? tag)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTagged", tag);
 
         /// <summary>
         /// Gets an array of all tags applied to a given instance.

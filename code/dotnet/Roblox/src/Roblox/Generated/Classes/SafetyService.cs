@@ -39,6 +39,48 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "DecodeAvatarMovementProto", avatarMovementProtoString);
 
         /// <summary>
+        /// <c>SafetyService.ReportCapturesUIClose</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportCapturesUIClose()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportCapturesUIClose");
+
+        /// <summary>
+        /// <c>SafetyService.ReportCapturesUIOpen</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportCapturesUIOpen()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportCapturesUIOpen");
+
+        /// <summary>
+        /// <c>SafetyService.ReportChatLineReportingClose</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportChatLineReportingClose()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatLineReportingClose");
+
+        /// <summary>
+        /// <c>SafetyService.ReportChatLineReportingOpen</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportChatLineReportingOpen()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatLineReportingOpen");
+
+        /// <summary>
+        /// <c>SafetyService.ReportChatSuspensionDialogClose</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportChatSuspensionDialogClose()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatSuspensionDialogClose");
+
+        /// <summary>
+        /// <c>SafetyService.ReportChatSuspensionDialogOpen</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportChatSuspensionDialogOpen()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatSuspensionDialogOpen");
+
+        /// <summary>
         /// <c>SafetyService.ReportMenuTabClose</c>
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -51,6 +93,20 @@ namespace Roblox
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         public object? ReportMenuTabOpen()
             => global::Roblox.Reflection.Invoke<object?>(this, "ReportMenuTabOpen");
+
+        /// <summary>
+        /// <c>SafetyService.ReportPartyChatWindowClose</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportPartyChatWindowClose()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportPartyChatWindowClose");
+
+        /// <summary>
+        /// <c>SafetyService.ReportPartyChatWindowOpen</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ReportPartyChatWindowOpen()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ReportPartyChatWindowOpen");
 
         /// <summary>
         /// <c>SafetyService.TakeScreenshot</c>

@@ -66,6 +66,16 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "NumBones", value);
         }
 
+        /// <summary>
+        /// <c>SlimAnimationDataEntity.RootIndex</c>
+        /// <para><b>Default:</b> <c>-1</c></para>
+        /// </summary>
+        public int RootIndex
+        {
+            get => global::Roblox.Reflection.GetProperty<int>(this, "RootIndex");
+            set => global::Roblox.Reflection.SetProperty<int>(this, "RootIndex", value);
+        }
+
         public byte[]? SlimInstanceHashes
         {
             get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "SlimInstanceHashes");

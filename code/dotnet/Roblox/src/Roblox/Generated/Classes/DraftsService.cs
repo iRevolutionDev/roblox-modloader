@@ -27,9 +27,9 @@ namespace Roblox
         /// <summary>
         /// <c>DraftsService.DiscardEdits</c>
         /// </summary>
-        /// <param name="scripts">A <c>object?</c> value.</param>
+        /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DiscardEdits(object? scripts)
+        public object? DiscardEdits(IReadOnlyList<Instance> scripts)
             => global::Roblox.Reflection.Invoke<object?>(this, "DiscardEdits", scripts);
 
         /// <summary>
@@ -44,64 +44,64 @@ namespace Roblox
         /// <c>DraftsService.GetEditors</c>
         /// </summary>
         /// <param name="script">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEditors(Instance? script)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEditors", script);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetEditors(Instance? script)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetEditors", script);
 
         /// <summary>
         /// <c>DraftsService.RestoreScripts</c>
         /// </summary>
-        /// <param name="scripts">A <c>object?</c> value.</param>
+        /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RestoreScripts(object? scripts)
+        public object? RestoreScripts(IReadOnlyList<Instance> scripts)
             => global::Roblox.Reflection.Invoke<object?>(this, "RestoreScripts", scripts);
 
         /// <summary>
         /// <c>DraftsService.ShowDiffsAgainstBase</c>
         /// </summary>
-        /// <param name="scripts">A <c>object?</c> value.</param>
+        /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowDiffsAgainstBase(object? scripts)
+        public object? ShowDiffsAgainstBase(IReadOnlyList<Instance> scripts)
             => global::Roblox.Reflection.Invoke<object?>(this, "ShowDiffsAgainstBase", scripts);
 
         /// <summary>
         /// <c>DraftsService.ShowDiffsAgainstServer</c>
         /// </summary>
-        /// <param name="scripts">A <c>object?</c> value.</param>
+        /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowDiffsAgainstServer(object? scripts)
+        public object? ShowDiffsAgainstServer(IReadOnlyList<Instance> scripts)
             => global::Roblox.Reflection.Invoke<object?>(this, "ShowDiffsAgainstServer", scripts);
 
         /// <summary>
         /// <c>DraftsService.ShowSourceDiffsAgainstCurrent</c>
         /// </summary>
         /// <param name="sources">A <c>object?</c> value.</param>
-        /// <param name="scripts">A <c>object?</c> value.</param>
+        /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowSourceDiffsAgainstCurrent(object? sources, object? scripts)
+        public object? ShowSourceDiffsAgainstCurrent(object? sources, IReadOnlyList<Instance> scripts)
             => global::Roblox.Reflection.Invoke<object?>(this, "ShowSourceDiffsAgainstCurrent", sources, scripts);
 
         /// <summary>
         /// <c>DraftsService.CommitEdits</c>
         /// </summary>
-        /// <param name="scripts">A <c>object?</c> value.</param>
+        /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CommitEdits(object? scripts)
+        public object? CommitEdits(IReadOnlyList<Instance> scripts)
             => global::Roblox.Reflection.Invoke<object?>(this, "CommitEdits", scripts);
 
         /// <summary>
         /// <c>DraftsService.GetDrafts</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDrafts()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDrafts");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetDrafts()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDrafts");
 
         /// <summary>
         /// <c>DraftsService.UpdateToLatestVersion</c>
         /// </summary>
-        /// <param name="scripts">A <c>object?</c> value.</param>
+        /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdateToLatestVersion(object? scripts)
+        public object? UpdateToLatestVersion(IReadOnlyList<Instance> scripts)
             => global::Roblox.Reflection.Invoke<object?>(this, "UpdateToLatestVersion", scripts);
 
         /// <summary>

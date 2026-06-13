@@ -135,10 +135,10 @@ namespace Roblox
         /// <summary>
         /// Returns a list of players currently using the Dialog.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#GetCurrentPlayers"/>
-        public object? GetCurrentPlayers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCurrentPlayers");
+        public IReadOnlyList<Instance> GetCurrentPlayers()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCurrentPlayers");
 
         /// <summary>
         /// <c>Dialog.SetGuiObject</c>

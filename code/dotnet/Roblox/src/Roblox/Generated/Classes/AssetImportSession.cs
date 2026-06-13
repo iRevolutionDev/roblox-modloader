@@ -46,18 +46,18 @@ namespace Roblox
         /// <summary>
         /// <c>AssetImportSession.GetKeyframeSequences</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetKeyframeSequences()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeyframeSequences");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetKeyframeSequences()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequences");
 
         /// <summary>
         /// <c>AssetImportSession.GetKeyframeSequencesForSelectedRestPose</c>
         /// </summary>
         /// <param name="modelInstance">A <c>Instance?</c> value.</param>
         /// <param name="restPoseSource">A <c>Enum.RestPoseModel</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetKeyframeSequencesForSelectedRestPose(Instance? modelInstance, Enum.RestPoseModel restPoseSource)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeyframeSequencesForSelectedRestPose", modelInstance, restPoseSource);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetKeyframeSequencesForSelectedRestPose(Instance? modelInstance, Enum.RestPoseModel restPoseSource)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequencesForSelectedRestPose", modelInstance, restPoseSource);
 
         /// <summary>
         /// <c>AssetImportSession.GetRigVisualization</c>

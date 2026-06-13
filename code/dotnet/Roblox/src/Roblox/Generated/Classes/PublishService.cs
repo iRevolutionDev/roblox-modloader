@@ -35,7 +35,7 @@ namespace Roblox
         /// <summary>
         /// <c>PublishService.CreateAssetAndWaitForAssetId</c>
         /// </summary>
-        /// <param name="instances">A <c>object?</c> value.</param>
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="operationId">A <c>string?</c> value.</param>
         /// <param name="creatorType">A <c>Enum.AssetCreatorType</c> value.</param>
         /// <param name="creatorId">A <c>long</c> value.</param>
@@ -44,7 +44,7 @@ namespace Roblox
         /// <param name="description">A <c>string?</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long CreateAssetAndWaitForAssetId(object? instances, string? operationId, Enum.AssetCreatorType creatorType, long creatorId, string? assetType, string? name, string? description, int expectedPrice)
+        public long CreateAssetAndWaitForAssetId(IReadOnlyList<Instance> instances, string? operationId, Enum.AssetCreatorType creatorType, long creatorId, string? assetType, string? name, string? description, int expectedPrice)
             => global::Roblox.Reflection.Invoke<long>(this, "CreateAssetAndWaitForAssetId", instances, operationId, creatorType, creatorId, assetType, name, description, expectedPrice);
 
         /// <summary>

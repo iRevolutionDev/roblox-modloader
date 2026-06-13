@@ -178,10 +178,10 @@ namespace Roblox
         /// <summary>
         /// Returns a list of Constraints connected to the attachment.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#GetConstraints"/>
-        public object? GetConstraints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetConstraints");
+        public IReadOnlyList<Instance> GetConstraints()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConstraints");
 
         /// <summary>
         /// Deprecated: This method is deprecated and should not be used in new work.Returns the value of the attachment's SecondaryAxis.

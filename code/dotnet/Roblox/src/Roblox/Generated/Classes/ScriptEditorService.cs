@@ -72,10 +72,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array of the currently open script documents, including the command bar.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#GetScriptDocuments"/>
-        public object? GetScriptDocuments()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetScriptDocuments");
+        public IReadOnlyList<Instance> GetScriptDocuments()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetScriptDocuments");
 
         /// <summary>
         /// <c>ScriptEditorService.IsAutocompleteCallbackRegistered</c>

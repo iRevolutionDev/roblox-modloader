@@ -23,9 +23,9 @@ namespace Roblox
         /// <summary>
         /// <c>CollaboratorsService.GetCollaboratorsList</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCollaboratorsList()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCollaboratorsList");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetCollaboratorsList()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCollaboratorsList");
 
         /// <summary>
         /// <c>CollaboratorsService.GetSelectionHighlightsEnabled</c>

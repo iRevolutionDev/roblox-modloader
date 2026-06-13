@@ -67,10 +67,10 @@ namespace Roblox
         /// <summary>
         /// <c>Selection.Add</c>
         /// </summary>
-        /// <param name="instancesToAdd">A <c>object?</c> value.</param>
+        /// <param name="instancesToAdd">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Add"/>
-        public object? Add(object? instancesToAdd)
+        public object? Add(IReadOnlyList<Instance> instancesToAdd)
             => global::Roblox.Reflection.Invoke<object?>(this, "Add", instancesToAdd);
 
         /// <summary>
@@ -92,27 +92,27 @@ namespace Roblox
         /// <summary>
         /// Returns an array of currently selected Instances in Roblox Studio.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Get"/>
-        public object? Get()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Get");
+        public IReadOnlyList<Instance> Get()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Get");
 
         /// <summary>
         /// <c>Selection.Remove</c>
         /// </summary>
-        /// <param name="instancesToRemove">A <c>object?</c> value.</param>
+        /// <param name="instancesToRemove">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Remove"/>
-        public object? Remove(object? instancesToRemove)
+        public object? Remove(IReadOnlyList<Instance> instancesToRemove)
             => global::Roblox.Reflection.Invoke<object?>(this, "Remove", instancesToRemove);
 
         /// <summary>
         /// Sets the currently selected objects in Roblox Studio to Instances in the given array.
         /// </summary>
-        /// <param name="selection">A <c>object?</c> value.</param>
+        /// <param name="selection">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Set"/>
-        public object? Set(object? selection)
+        public object? Set(IReadOnlyList<Instance> selection)
             => global::Roblox.Reflection.Invoke<object?>(this, "Set", selection);
 
         /// <summary>

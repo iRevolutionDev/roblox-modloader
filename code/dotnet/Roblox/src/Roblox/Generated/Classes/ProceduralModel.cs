@@ -5,6 +5,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>ProceduralModel</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel"/>
     [RobloxClass("ProceduralModel")]
     public class ProceduralModel : Model
     {
@@ -30,12 +34,20 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Dirty", value);
         }
 
+        /// <summary>
+        /// <c>ProceduralModel.GenerationError</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#GenerationError"/>
         public string? GenerationError
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "GenerationError");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "GenerationError", value);
         }
 
+        /// <summary>
+        /// <c>ProceduralModel.Generator</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#Generator"/>
         public ModuleScript? Generator
         {
             get => global::Roblox.Reflection.GetProperty<ModuleScript?>(this, "Generator");
@@ -46,6 +58,7 @@ namespace Roblox
         /// <c>ProceduralModel.Size</c>
         /// <para><b>Default:</b> <c>12, 12, 12</c></para>
         /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#Size"/>
         public global::System.Numerics.Vector3 Size
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Size");
@@ -56,6 +69,7 @@ namespace Roblox
         /// <c>ProceduralModel.ForceGeneration</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#ForceGeneration"/>
         public bool ForceGeneration()
             => global::Roblox.Reflection.Invoke<bool>(this, "ForceGeneration");
 
@@ -63,6 +77,7 @@ namespace Roblox
         /// <c>ProceduralModel.WaitForGenerationAsync</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#WaitForGenerationAsync"/>
         public bool WaitForGenerationAsync()
             => global::Roblox.Reflection.Invoke<bool>(this, "WaitForGenerationAsync");
 

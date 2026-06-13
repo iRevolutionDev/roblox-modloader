@@ -35,6 +35,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CanSend", value);
         }
 
+        public string? DisplayName
+        {
+            get => global::Roblox.Reflection.GetProperty<string?>(this, "DisplayName");
+            set => global::Roblox.Reflection.SetProperty<string?>(this, "DisplayName", value);
+        }
+
         /// <summary>
         /// UserId of the user represented by the TextSource.
         /// <para><b>Default:</b> <c>0</c></para>
@@ -54,6 +60,12 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "UserIdReplicated");
             set => global::Roblox.Reflection.SetProperty<long>(this, "UserIdReplicated", value);
+        }
+
+        public string? Username
+        {
+            get => global::Roblox.Reflection.GetProperty<string?>(this, "Username");
+            set => global::Roblox.Reflection.SetProperty<string?>(this, "Username", value);
         }
 
     }

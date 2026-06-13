@@ -200,10 +200,10 @@ namespace Roblox
         /// <summary>
         /// Returns all the Player objects that this model object is persistent for. Behavior varies based on whether this method is called from a Script or a LocalScript.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetPersistentPlayers"/>
-        public object? GetPersistentPlayers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPersistentPlayers");
+        public IReadOnlyList<Instance> GetPersistentPlayers()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPersistentPlayers");
 
         /// <summary>
         /// Deprecated: Returns the CFrame of the model's Model.PrimaryPart. This function will throw an error if no primary part exists for the Model.

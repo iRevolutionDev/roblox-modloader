@@ -180,10 +180,10 @@ namespace Roblox
         /// <summary>
         /// Deprecated: Returns how much the Camera needs to be pushed towards its Focus in order to make sure there is no obstructions between the Focus and CFrame.
         /// </summary>
-        /// <param name="ignoreList">A <c>object?</c> value.</param>
+        /// <param name="ignoreList">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#GetLargestCutoffDistance"/>
-        public float GetLargestCutoffDistance(object? ignoreList)
+        public float GetLargestCutoffDistance(IReadOnlyList<Instance> ignoreList)
             => global::Roblox.Reflection.Invoke<float>(this, "GetLargestCutoffDistance", ignoreList);
 
         /// <summary>
@@ -198,11 +198,11 @@ namespace Roblox
         /// Returns an array of BaseParts that are obscuring the lines of sight between the camera's CFrame and the cast points.
         /// </summary>
         /// <param name="castPoints">A <c>object?</c> value.</param>
-        /// <param name="ignoreList">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="ignoreList">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#GetPartsObscuringTarget"/>
-        public object? GetPartsObscuringTarget(object? castPoints, object? ignoreList)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPartsObscuringTarget", castPoints, ignoreList);
+        public IReadOnlyList<Instance> GetPartsObscuringTarget(object? castPoints, IReadOnlyList<Instance> ignoreList)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPartsObscuringTarget", castPoints, ignoreList);
 
         /// <summary>
         /// Returns the actual CFramewhere the Camera is being rendered, accounting for any roll applied and the impact of VR devices.

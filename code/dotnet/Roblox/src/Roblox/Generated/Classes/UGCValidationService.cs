@@ -205,12 +205,31 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "GetEditableMeshVerts", editableMesh);
 
         /// <summary>
+        /// <c>UGCValidationService.GetExpectedTposeRotation</c>
+        /// </summary>
+        /// <param name="jointLabel">A <c>Enum.RigLabel</c> value.</param>
+        /// <param name="partsFolder">A <c>Instance?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? GetExpectedTposeRotation(Enum.RigLabel jointLabel, Instance? partsFolder)
+            => global::Roblox.Reflection.Invoke<object?>(this, "GetExpectedTposeRotation", jointLabel, partsFolder);
+
+        /// <summary>
         /// <c>UGCValidationService.GetFacsDrivenJointNamesFromEditableMesh</c>
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         public object? GetFacsDrivenJointNamesFromEditableMesh(EditableMesh? editableMesh)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetFacsDrivenJointNamesFromEditableMesh", editableMesh);
+
+        /// <summary>
+        /// <c>UGCValidationService.GetLayeredClothingPostDeformationSize</c>
+        /// </summary>
+        /// <param name="accessory">A <c>Accessory?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="meshScale">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        public global::System.Numerics.Vector3 GetLayeredClothingPostDeformationSize(Accessory? accessory, EditableMesh? editableMesh, global::System.Numerics.Vector3 meshScale)
+            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetLayeredClothingPostDeformationSize", accessory, editableMesh, meshScale);
 
         /// <summary>
         /// <c>UGCValidationService.GetMaximalJointDistancesWithinFacs</c>
@@ -557,9 +576,9 @@ namespace Roblox
         /// </summary>
         /// <param name="url">A <c>object?</c> value.</param>
         /// <param name="assetFormat">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FetchAssetWithFormat(object? url, string? assetFormat)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FetchAssetWithFormat", url, assetFormat);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> FetchAssetWithFormat(object? url, string? assetFormat)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FetchAssetWithFormat", url, assetFormat);
 
         /// <summary>
         /// <c>UGCValidationService.GetMeshDataBinaryString</c>

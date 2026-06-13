@@ -47,6 +47,26 @@ namespace Roblox
         }
 
         /// <summary>
+        /// <c>ControllerPartSensor.LadderSearchHeight</c>
+        /// <para><b>Default:</b> <c>6</c></para>
+        /// </summary>
+        public float LadderSearchHeight
+        {
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LadderSearchHeight");
+            set => global::Roblox.Reflection.SetProperty<float>(this, "LadderSearchHeight", value);
+        }
+
+        /// <summary>
+        /// <c>ControllerPartSensor.LadderSearchOffset</c>
+        /// <para><b>Default:</b> <c>5</c></para>
+        /// </summary>
+        public float LadderSearchOffset
+        {
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LadderSearchOffset");
+            set => global::Roblox.Reflection.SetProperty<float>(this, "LadderSearchOffset", value);
+        }
+
+        /// <summary>
         /// The distance from the sensor's parent BasePart to use when sensing other parts.
         /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>

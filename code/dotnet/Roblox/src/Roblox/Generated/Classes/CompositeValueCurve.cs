@@ -38,10 +38,10 @@ namespace Roblox
         /// <summary>
         /// Returns the child curves with the given names for the CurveType of this CompositeValueCurve.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompositeValueCurve#GetComponentCurves"/>
-        public object? GetComponentCurves()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetComponentCurves");
+        public IReadOnlyList<Instance> GetComponentCurves()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetComponentCurves");
 
         /// <summary>
         /// Returns the sampled animated value at the passed time argument.

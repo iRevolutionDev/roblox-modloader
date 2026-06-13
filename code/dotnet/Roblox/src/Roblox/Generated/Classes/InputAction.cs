@@ -113,9 +113,9 @@ namespace Roblox
         /// <summary>
         /// <c>InputAction.GetInputBindings</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInputBindings()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputBindings");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetInputBindings()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputBindings");
 
         /// <summary>
         /// Returns the current state of the InputAction.

@@ -27,18 +27,18 @@ namespace Roblox
         /// <summary>
         /// Returns an array of other StyleSheets from which the StyleSheet is deriving StyleRules and token definitions.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleSheet#GetDerives"/>
-        public object? GetDerives()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDerives");
+        public IReadOnlyList<Instance> GetDerives()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDerives");
 
         /// <summary>
         /// Sets the StyleSheet to derive StyleRules and token definitions from one or more other StyleSheets.
         /// </summary>
-        /// <param name="derives">A <c>object?</c> value.</param>
+        /// <param name="derives">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleSheet#SetDerives"/>
-        public object? SetDerives(object? derives)
+        public object? SetDerives(IReadOnlyList<Instance> derives)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetDerives", derives);
 
     }

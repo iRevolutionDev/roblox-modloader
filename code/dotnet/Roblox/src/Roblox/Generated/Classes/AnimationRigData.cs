@@ -24,6 +24,10 @@ namespace Roblox
         public static AnimationRigData? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationRigData(handle);
 
+        /// <summary>
+        /// <c>AnimationRigData.Generic</c>
+        /// <para><b>Default:</b> <c>����</c></para>
+        /// </summary>
         public byte[]? Generic
         {
             get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "Generic");

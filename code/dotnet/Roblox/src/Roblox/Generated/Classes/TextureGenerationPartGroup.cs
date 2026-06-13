@@ -23,9 +23,9 @@ namespace Roblox
         /// <summary>
         /// <c>TextureGenerationPartGroup.GetInstances</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInstances()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInstances");
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetInstances()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInstances");
 
         /// <summary>
         /// <c>TextureGenerationPartGroup.GetMeshIdsHash</c>

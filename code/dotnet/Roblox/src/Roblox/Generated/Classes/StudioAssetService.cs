@@ -24,10 +24,10 @@ namespace Roblox
         /// <c>StudioAssetService.ConvertToPackageUpload</c>
         /// </summary>
         /// <param name="uploadUrl">A <c>string?</c> value.</param>
-        /// <param name="cloneInstances">A <c>object?</c> value.</param>
-        /// <param name="originalInstances">A <c>object?</c> value.</param>
+        /// <param name="cloneInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        /// <param name="originalInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ConvertToPackageUpload(string? uploadUrl, object? cloneInstances, object? originalInstances)
+        public object? ConvertToPackageUpload(string? uploadUrl, IReadOnlyList<Instance> cloneInstances, IReadOnlyList<Instance> originalInstances)
             => global::Roblox.Reflection.Invoke<object?>(this, "ConvertToPackageUpload", uploadUrl, cloneInstances, originalInstances);
 
         /// <summary>
@@ -61,11 +61,11 @@ namespace Roblox
         /// <summary>
         /// <c>StudioAssetService.ShowSaveToRoblox</c>
         /// </summary>
-        /// <param name="instances">A <c>object?</c> value.</param>
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="assetType">A <c>object?</c> value.</param>
         /// <param name="hasSubsequent">A <c>bool</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowSaveToRoblox(object? instances, object? assetType, bool hasSubsequent)
+        public object? ShowSaveToRoblox(IReadOnlyList<Instance> instances, object? assetType, bool hasSubsequent)
             => global::Roblox.Reflection.Invoke<object?>(this, "ShowSaveToRoblox", instances, assetType, hasSubsequent);
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace Roblox
         /// <summary>
         /// <c>StudioAssetService.DEPRECATED_SerializeInstances</c>
         /// </summary>
-        /// <param name="instances">A <c>object?</c> value.</param>
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? DEPRECATED_SerializeInstances(object? instances)
+        public string? DEPRECATED_SerializeInstances(IReadOnlyList<Instance> instances)
             => global::Roblox.Reflection.Invoke<string?>(this, "DEPRECATED_SerializeInstances", instances);
 
         /// <summary>
@@ -142,11 +142,11 @@ namespace Roblox
         /// <summary>
         /// <c>StudioAssetService.SerializeInstances</c>
         /// </summary>
-        /// <param name="instances">A <c>object?</c> value.</param>
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <param name="isPackage">A <c>bool</c> value.</param>
         /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? SerializeInstances(object? instances, long groupId, bool isPackage)
+        public string? SerializeInstances(IReadOnlyList<Instance> instances, long groupId, bool isPackage)
             => global::Roblox.Reflection.Invoke<string?>(this, "SerializeInstances", instances, groupId, isPackage);
 
         /// <summary>

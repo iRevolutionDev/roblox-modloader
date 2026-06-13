@@ -354,6 +354,15 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<bool>(this, "isFeatureEnabled", name);
 
         /// <summary>
+        /// <c>TestService.RequestValidationAsync</c>
+        /// </summary>
+        /// <param name="artifactType">A <c>string?</c> value.</param>
+        /// <param name="artifactName">A <c>string?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? RequestValidationAsync(string? artifactType, string? artifactName)
+            => global::Roblox.Reflection.Invoke<object?>(this, "RequestValidationAsync", artifactType, artifactName);
+
+        /// <summary>
         /// Deprecated: Runs scripts which are parented to TestService.
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>

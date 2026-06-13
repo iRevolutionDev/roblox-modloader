@@ -66,17 +66,5 @@ namespace Roblox
         /// </summary>
         // public event Action? UpdateClientFeatureTimeout; // TODO: native event binding
 
-        /// <summary>
-        /// <c>FeatureRestrictionManager.UpdateExperienceChatTimeout</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateExperienceChatTimeout; // TODO: native event binding
-
-        /// <summary>
-        /// <c>FeatureRestrictionManager.UpdateFeatureTimeout</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateFeatureTimeout; // TODO: native event binding
-
     }
 }

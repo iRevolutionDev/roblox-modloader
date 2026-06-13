@@ -63,6 +63,16 @@ namespace Roblox
         }
 
         /// <summary>
+        /// <c>LodDataEntity.EntityVisible</c>
+        /// <para><b>Default:</b> <c>true</c></para>
+        /// </summary>
+        public bool EntityVisible
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EntityVisible");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "EntityVisible", value);
+        }
+
+        /// <summary>
         /// <c>LodDataEntity.IsSlimEnabled</c>
         /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>

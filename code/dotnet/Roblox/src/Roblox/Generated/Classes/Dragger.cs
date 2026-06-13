@@ -38,10 +38,10 @@ namespace Roblox
         /// </summary>
         /// <param name="mousePart">A <c>Instance?</c> value.</param>
         /// <param name="pointOnMousePart">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dragger#MouseDown"/>
-        public object? MouseDown(Instance? mousePart, global::System.Numerics.Vector3 pointOnMousePart, object? parts)
+        public object? MouseDown(Instance? mousePart, global::System.Numerics.Vector3 pointOnMousePart, IReadOnlyList<Instance> parts)
             => global::Roblox.Reflection.Invoke<object?>(this, "MouseDown", mousePart, pointOnMousePart, parts);
 
         /// <summary>

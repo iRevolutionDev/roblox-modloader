@@ -73,9 +73,9 @@ namespace Roblox
         /// <summary>
         /// <c>ParabolaAdornment.FindPartOnParabola</c>
         /// </summary>
-        /// <param name="ignoreDescendentsTable">A <c>object?</c> value.</param>
+        /// <param name="ignoreDescendentsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FindPartOnParabola(object? ignoreDescendentsTable)
+        public object? FindPartOnParabola(IReadOnlyList<Instance> ignoreDescendentsTable)
             => global::Roblox.Reflection.Invoke<object?>(this, "FindPartOnParabola", ignoreDescendentsTable);
 
     }

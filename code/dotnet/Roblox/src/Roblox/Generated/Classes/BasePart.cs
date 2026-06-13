@@ -846,18 +846,18 @@ namespace Roblox
         /// Returns a table of parts connected to the object by any kind of rigid joint.
         /// </summary>
         /// <param name="recursive">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetConnectedParts"/>
-        public object? GetConnectedParts(bool recursive)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetConnectedParts", recursive);
+        public IReadOnlyList<Instance> GetConnectedParts(bool recursive)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedParts", recursive);
 
         /// <summary>
         /// Return all Joints or Constraints that is connected to this Part.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetJoints"/>
-        public object? GetJoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetJoints");
+        public IReadOnlyList<Instance> GetJoints()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetJoints");
 
         /// <summary>
         /// Returns the value of the Mass property.
@@ -886,10 +886,10 @@ namespace Roblox
         /// <summary>
         /// <c>BasePart.GetNoCollisionConstraints</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetNoCollisionConstraints"/>
-        public object? GetNoCollisionConstraints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetNoCollisionConstraints");
+        public IReadOnlyList<Instance> GetNoCollisionConstraints()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetNoCollisionConstraints");
 
         /// <summary>
         /// <c>BasePart.GetPhysicsCost</c>
@@ -917,10 +917,10 @@ namespace Roblox
         /// <summary>
         /// Returns a table of all BasePart.CanCollide true parts that intersect with this part.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetTouchingParts"/>
-        public object? GetTouchingParts()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTouchingParts");
+        public IReadOnlyList<Instance> GetTouchingParts()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTouchingParts");
 
         /// <summary>
         /// Returns the linear velocity of the part's assembly at the given position relative to this part.
@@ -987,34 +987,34 @@ namespace Roblox
         /// <summary>
         /// Note: It is highly recommended to use the newer GeometryService:IntersectAsync instead of this function. As well as having better performance and more features, the new function differs as follows: The output is an array of instances rather than a single instance. The input parts do not need to be parented to the scene, allowing for background operations. When the SplitApart option is set to true (default), each distinct body will be returned in its own PartOperation. All the returned parts are in the coordinate space of the main part, so their PVInstance.Origin positions are the same as the main part's. This keeps the vertices of the mesh in the same position relative to the object as before the operation, but it does also mean the (0, 0, 0) of a returned part is not necessarily at the center of its body. Creates a new IntersectOperation from the overlapping geometry of the part and the other parts in the given array.
         /// </summary>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity</c> value.</param>
         /// <param name="renderFidelity">A <c>Enum.RenderFidelity</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#IntersectAsync"/>
-        public Instance? IntersectAsync(object? parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
+        public Instance? IntersectAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "IntersectAsync", parts, collisionfidelity, renderFidelity);
 
         /// <summary>
         /// Note: It is highly recommended to use the newer GeometryService:UnionAsync instead of this function. As well as having better performance and more features, the new function differs as follows: The output is an array of instances rather than a single instance. The input parts do not need to be parented to the scene, allowing for background operations. When the SplitApart option is set to true (default), each distinct body will be returned in its own PartOperation. All the returned parts are in the coordinate space of the main part, so their PVInstance.Origin positions are the same as the main part's. This keeps the vertices of the mesh in the same position relative to the object as before the operation, but it does also mean the (0, 0, 0) of a returned part is not necessarily at the center of its body. Creates a new UnionOperation from the part, minus the geometry occupied by the parts in the given array.
         /// </summary>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity</c> value.</param>
         /// <param name="renderFidelity">A <c>Enum.RenderFidelity</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#SubtractAsync"/>
-        public Instance? SubtractAsync(object? parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
+        public Instance? SubtractAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "SubtractAsync", parts, collisionfidelity, renderFidelity);
 
         /// <summary>
         /// Note: It is highly recommended to use the newer GeometryService:UnionAsync instead of this function. As well as having better performance and more features, the new function differs as follows: The output is an array of instances rather than a single instance. The input parts do not need to be parented to the scene, allowing for background operations. When the SplitApart option is set to true (default), each distinct body will be returned in its own PartOperation. All the returned parts are in the coordinate space of the main part, so their PVInstance.Origin positions are the same as the main part's. This keeps the vertices of the mesh in the same position relative to the object as before the operation, but it does also mean the (0, 0, 0) of a returned part is not necessarily at the center of its body.Creates a new `UnionOperation` from the part, plus the geometry occupied by the parts in the given array.
         /// </summary>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity</c> value.</param>
         /// <param name="renderFidelity">A <c>Enum.RenderFidelity</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#UnionAsync"/>
-        public Instance? UnionAsync(object? parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
+        public Instance? UnionAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "UnionAsync", parts, collisionfidelity, renderFidelity);
 
         /// <summary>

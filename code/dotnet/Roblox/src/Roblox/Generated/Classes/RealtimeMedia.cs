@@ -51,9 +51,9 @@ namespace Roblox
         /// <c>RealtimeMedia.GetConnectedWires</c>
         /// </summary>
         /// <param name="pin">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetConnectedWires", pin);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
 
         /// <summary>
         /// <c>RealtimeMedia.GetInputPins</c>

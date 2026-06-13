@@ -6,7 +6,7 @@ using System;
 namespace Roblox
 {
     /// <summary>
-    /// Roblox <c>StyleQuery</c> class.
+    /// Instance used to set conditions such as "MaxSize" and "PreferredInput" for a StyleRule.
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery"/>
     [RobloxClass("StyleQuery")]
@@ -28,7 +28,6 @@ namespace Roblox
         /// <c>StyleQuery.AspectRatioRange</c>
         /// <para><b>Default:</b> <c>0 inf </c></para>
         /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#AspectRatioRange"/>
         public object? AspectRatioRange
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "AspectRatioRange");
@@ -42,7 +41,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>StyleQuery.IsActive</c>
+        /// A boolean that determines whether a StyleRule.Selector of @ will match the StyleQuery name.
         /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#IsActive"/>
@@ -56,7 +55,6 @@ namespace Roblox
         /// <c>StyleQuery.MaxSize</c>
         /// <para><b>Default:</b> <c>INF, INF</c></para>
         /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#MaxSize"/>
         public global::System.Numerics.Vector2 MaxSize
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MaxSize");
@@ -67,7 +65,6 @@ namespace Roblox
         /// <c>StyleQuery.MinSize</c>
         /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#MinSize"/>
         public global::System.Numerics.Vector2 MinSize
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MinSize");
@@ -78,7 +75,6 @@ namespace Roblox
         /// <c>StyleQuery.PreferredInput</c>
         /// <para><b>Default:</b> <c>KeyboardAndMouse</c></para>
         /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#PreferredInput"/>
         public Enum.PreferredInput PreferredInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.PreferredInput>(this, "PreferredInput");
@@ -89,7 +85,6 @@ namespace Roblox
         /// <c>StyleQuery.ReducedMotionEnabled</c>
         /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#ReducedMotionEnabled"/>
         public bool ReducedMotionEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotionEnabled");
@@ -100,7 +95,6 @@ namespace Roblox
         /// <c>StyleQuery.ViewportDisplaySize</c>
         /// <para><b>Default:</b> <c>Small</c></para>
         /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#ViewportDisplaySize"/>
         public Enum.DisplaySize ViewportDisplaySize
         {
             get => global::Roblox.Reflection.GetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize");
@@ -108,7 +102,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>StyleQuery.GetCondition</c>
+        /// Returns the value of a specific condition in the StyleQuery.
         /// </summary>
         /// <param name="name">A <c>string?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -117,7 +111,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "GetCondition", name);
 
         /// <summary>
-        /// <c>StyleQuery.GetConditions</c>
+        /// Returns a dictionary of key-value pairs describing the conditoins set on the StyleQuery.
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#GetConditions"/>
@@ -135,7 +129,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "SetCondition", name, value);
 
         /// <summary>
-        /// <c>StyleQuery.SetConditions</c>
+        /// Lets you declare and set multiple conditions of the StyleQuery at once.
         /// </summary>
         /// <param name="conditions">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>

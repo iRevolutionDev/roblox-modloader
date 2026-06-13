@@ -77,16 +77,6 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>AudioPlayer.IsMutedForCapture</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool IsMutedForCapture
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsMutedForCapture");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsMutedForCapture", value);
-        }
-
-        /// <summary>
         /// Denotes whether this AudioPlayer is currently playing or planning to play.
         /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
@@ -186,10 +176,11 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>AudioPlayer.Cancel</c>
+        /// Attempts to cancel a pre-planned future Play or Stop command.
         /// </summary>
         /// <param name="actionId">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Cancel"/>
         public bool Cancel(object? actionId)
             => global::Roblox.Reflection.Invoke<bool>(this, "Cancel", actionId);
 
@@ -197,10 +188,10 @@ namespace Roblox
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
         /// <param name="pin">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#GetConnectedWires"/>
-        public object? GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.

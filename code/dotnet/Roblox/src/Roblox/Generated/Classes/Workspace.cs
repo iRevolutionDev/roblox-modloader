@@ -260,8 +260,14 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.MeshPartHeadsAndAccessories>(this, "MeshPartHeadsAndAccessories", value);
         }
 
+        public Enum.RolloutState MeshStreamingAndImprovedLods
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "MeshStreamingAndImprovedLods");
+            set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "MeshStreamingAndImprovedLods", value);
+        }
+
         /// <summary>
-        /// <c>Workspace.ModelStreamingBehavior</c>
+        /// Controls how Models are replicated in experiences when instance streaming is enabled.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ModelStreamingBehavior"/>
         public Enum.ModelStreamingBehavior ModelStreamingBehavior
@@ -435,7 +441,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// Configures how the engine decides when to Stream content away from players.
+        /// Configures how the engine decides when to stream content away from players.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamOutBehavior"/>
         public Enum.StreamOutBehavior StreamOutBehavior
@@ -461,7 +467,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// Determines whether StreamingIntegrityMode is active.
+        /// Determines whether streaming integrity mode is active.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamingIntegrityMode"/>
         public Enum.StreamingIntegrityMode StreamingIntegrityMode
@@ -518,10 +524,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "ThrottleLevel", value);
         }
 
-        /// <summary>
-        /// <c>Workspace.TouchEventsUseCollisionGroups</c>
-        /// </summary>
-        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#TouchEventsUseCollisionGroups"/>
         public Enum.RolloutState TouchEventsUseCollisionGroups
         {
             get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "TouchEventsUseCollisionGroups");
@@ -573,10 +575,10 @@ namespace Roblox
         /// <summary>
         /// Deprecated: Goes through all BaseParts given, breaking any joints connected to these parts.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#BreakJoints"/>
-        public object? BreakJoints(object? objects)
+        public object? BreakJoints(IReadOnlyList<Instance> objects)
             => global::Roblox.Reflection.Invoke<object?>(this, "BreakJoints", objects);
 
         /// <summary>
@@ -649,20 +651,20 @@ namespace Roblox
         /// <summary>
         /// Creates joints between the specified Parts and any touching parts depending on the parts' surfaces and the specified joint creation mode.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="jointType">A <c>Enum.JointCreationMode</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#JoinToOutsiders"/>
-        public object? JoinToOutsiders(object? objects, Enum.JointCreationMode jointType)
+        public object? JoinToOutsiders(IReadOnlyList<Instance> objects, Enum.JointCreationMode jointType)
             => global::Roblox.Reflection.Invoke<object?>(this, "JoinToOutsiders", objects, jointType);
 
         /// <summary>
         /// Deprecated: Goes through all BaseParts given. If any part's side has a SurfaceType that can make a joint it will create a joint with any adjacent parts.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#MakeJoints"/>
-        public object? MakeJoints(object? objects)
+        public object? MakeJoints(IReadOnlyList<Instance> objects)
             => global::Roblox.Reflection.Invoke<object?>(this, "MakeJoints", objects);
 
         /// <summary>
@@ -700,10 +702,10 @@ namespace Roblox
         /// <summary>
         /// Breaks all joints between the specified BaseParts and other BaseParts.
         /// </summary>
-        /// <param name="objects">A <c>object?</c> value.</param>
+        /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#UnjoinFromOutsiders"/>
-        public object? UnjoinFromOutsiders(object? objects)
+        public object? UnjoinFromOutsiders(IReadOnlyList<Instance> objects)
             => global::Roblox.Reflection.Invoke<object?>(this, "UnjoinFromOutsiders", objects);
 
         /// <summary>

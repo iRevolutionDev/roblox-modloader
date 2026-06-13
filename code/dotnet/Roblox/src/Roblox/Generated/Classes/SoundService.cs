@@ -187,9 +187,10 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "GetListener");
 
         /// <summary>
-        /// <c>SoundService.GetMixerTime</c>
+        /// Returns the number of seconds since the audio engine began mixing.
         /// </summary>
         /// <returns>A <c>double</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#GetMixerTime"/>
         public double GetMixerTime()
             => global::Roblox.Reflection.Invoke<double>(this, "GetMixerTime");
 
@@ -220,26 +221,26 @@ namespace Roblox
         /// <param name="assetId">A <c>object?</c> value.</param>
         /// <param name="assetName">A <c>string?</c> value.</param>
         /// <param name="useSelection">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertAsset(object? assetId, string? assetName, bool useSelection)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertAsset", assetId, assetName, useSelection);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> InsertAsset(object? assetId, string? assetName, bool useSelection)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "InsertAsset", assetId, assetName, useSelection);
 
         /// <summary>
         /// Opens the attenuation curve editor in Studio for the provided AudioEmitter or AudioListener instances.
         /// </summary>
-        /// <param name="selectedCurveObjects">A <c>object?</c> value.</param>
+        /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#OpenAttenuationCurveEditor"/>
-        public object? OpenAttenuationCurveEditor(object? selectedCurveObjects)
+        public object? OpenAttenuationCurveEditor(IReadOnlyList<Instance> selectedCurveObjects)
             => global::Roblox.Reflection.Invoke<object?>(this, "OpenAttenuationCurveEditor", selectedCurveObjects);
 
         /// <summary>
         /// Opens the directional curve editor in Studio for the provided AudioEmitter or AudioListener instances.
         /// </summary>
-        /// <param name="selectedCurveObjects">A <c>object?</c> value.</param>
+        /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#OpenDirectionalCurveEditor"/>
-        public object? OpenDirectionalCurveEditor(object? selectedCurveObjects)
+        public object? OpenDirectionalCurveEditor(IReadOnlyList<Instance> selectedCurveObjects)
             => global::Roblox.Reflection.Invoke<object?>(this, "OpenDirectionalCurveEditor", selectedCurveObjects);
 
         /// <summary>

@@ -27,10 +27,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array of all instances currently involved in file synchronization.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceFileSyncService#GetAllInstances"/>
-        public object? GetAllInstances()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAllInstances");
+        public IReadOnlyList<Instance> GetAllInstances()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAllInstances");
 
         /// <summary>
         /// Returns the synchronization status of a specific instance.

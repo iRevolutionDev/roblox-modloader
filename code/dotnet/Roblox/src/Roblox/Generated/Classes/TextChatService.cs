@@ -119,6 +119,14 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "DisplayBubble", partOrCharacter, message);
 
         /// <summary>
+        /// <c>TextChatService.HasAllocatedUniverseChatContext</c>
+        /// </summary>
+        /// <param name="context">A <c>string?</c> value.</param>
+        /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        public bool HasAllocatedUniverseChatContext(string? context)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasAllocatedUniverseChatContext", context);
+
+        /// <summary>
         /// <c>TextChatService.SendEnableChatButtonClicked</c>
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -177,14 +185,6 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<bool>(this, "setModerationModeEnabled", userId, enabled);
 
         /// <summary>
-        /// <c>TextChatService.AllocateUniverseChatChannelAsync</c>
-        /// </summary>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool AllocateUniverseChatChannelAsync(string? context)
-            => global::Roblox.Reflection.Invoke<bool>(this, "AllocateUniverseChatChannelAsync", context);
-
-        /// <summary>
         /// Determines whether a user has permission to chat in experiences.
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
@@ -225,10 +225,10 @@ namespace Roblox
         /// <summary>
         /// Returns chat group IDs that indicate which players can synchronously text chat together.
         /// </summary>
-        /// <param name="players">A <c>object?</c> value.</param>
+        /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#GetChatGroupsAsync"/>
-        public object? GetChatGroupsAsync(object? players)
+        public object? GetChatGroupsAsync(IReadOnlyList<Instance> players)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetChatGroupsAsync", players);
 
         /// <summary>
@@ -246,6 +246,12 @@ namespace Roblox
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#BubbleDisplayed"/>
         // public event Action? BubbleDisplayed; // TODO: native event binding
+
+        /// <summary>
+        /// <c>TextChatService.ChatActionReceived</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? ChatActionReceived; // TODO: native event binding
 
         /// <summary>
         /// <c>TextChatService.ClientToServerMessageReplicateSignalV2</c>
@@ -286,6 +292,18 @@ namespace Roblox
         // public event Action? SendingMessage; // TODO: native event binding
 
         /// <summary>
+        /// <c>TextChatService.SendingUniverseChatMessage</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? SendingUniverseChatMessage; // TODO: native event binding
+
+        /// <summary>
+        /// <c>TextChatService.ServerToClientChatActionReplicateSignal</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? ServerToClientChatActionReplicateSignal; // TODO: native event binding
+
+        /// <summary>
         /// <c>TextChatService.ServerToClientMessageReplicateSignal</c>
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
@@ -298,10 +316,22 @@ namespace Roblox
         // public event Action? ServerToClientMessageReplicateSignalV2; // TODO: native event binding
 
         /// <summary>
+        /// <c>TextChatService.ServerToClientUniverseChatChannelAllocatedSignalV1</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? ServerToClientUniverseChatChannelAllocatedSignalV1; // TODO: native event binding
+
+        /// <summary>
         /// <c>TextChatService.ServerToClientUniverseChatMessageSignalV1</c>
         /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
         /// </summary>
         // public event Action? ServerToClientUniverseChatMessageSignalV1; // TODO: native event binding
+
+        /// <summary>
+        /// <c>TextChatService.UniverseChatChannelAllocated</c>
+        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// </summary>
+        // public event Action? UniverseChatChannelAllocated; // TODO: native event binding
 
         /// <summary>
         /// <c>TextChatService.UniverseChatMessageReceived</c>

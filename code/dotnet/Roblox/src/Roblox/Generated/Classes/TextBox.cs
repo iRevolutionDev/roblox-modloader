@@ -192,7 +192,7 @@ namespace Roblox
 
         /// <summary>
         /// Sets the text color that gets used when no text has been entered into the TextBox.
-        /// <para><b>Default:</b> <c>0.7, 0.7, 0.7</c></para>
+        /// <para><b>Default:</b> <c>0.5, 0.5, 0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#PlaceholderColor3"/>
         public object? PlaceholderColor3

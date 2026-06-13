@@ -78,10 +78,10 @@ namespace Roblox
         /// <c>AdService.RegisterDisclosureButton</c>
         /// </summary>
         /// <param name="disclosureButton">A <c>GuiButton?</c> value.</param>
-        /// <param name="immersiveBrandedAdId">A <c>string?</c> value.</param>
+        /// <param name="adIntegrationPlacementId">A <c>string?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterDisclosureButton(GuiButton? disclosureButton, string? immersiveBrandedAdId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterDisclosureButton", disclosureButton, immersiveBrandedAdId);
+        public object? RegisterDisclosureButton(GuiButton? disclosureButton, string? adIntegrationPlacementId)
+            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterDisclosureButton", disclosureButton, adIntegrationPlacementId);
 
         /// <summary>
         /// <c>AdService.ReturnToPublisherExperience</c>

@@ -5,6 +5,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>GeneratedFolder</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeneratedFolder"/>
     [RobloxClass("GeneratedFolder")]
     public class GeneratedFolder : Folder
     {
@@ -25,6 +29,7 @@ namespace Roblox
         /// </summary>
         /// <param name="part">A <c>BasePart?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeneratedFolder#SetPrimaryPart"/>
         public object? SetPrimaryPart(BasePart? part)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetPrimaryPart", part);
 

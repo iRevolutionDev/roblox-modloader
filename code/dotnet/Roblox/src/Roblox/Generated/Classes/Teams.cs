@@ -27,10 +27,10 @@ namespace Roblox
         /// <summary>
         /// Returns a table containing the game's Team objects. Will only return Team objects that are parented to the Teams service.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Teams#GetTeams"/>
-        public object? GetTeams()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTeams");
+        public IReadOnlyList<Instance> GetTeams()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTeams");
 
         /// <summary>
         /// Deprecated: This function has been deprecated and no longer functions correctly. It should not be used. Developers should instead implement their own team sorting systems.Evens the number of people on each team. This function does not work correctly and should not be used.

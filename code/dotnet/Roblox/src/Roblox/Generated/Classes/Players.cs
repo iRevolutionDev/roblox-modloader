@@ -185,10 +185,10 @@ namespace Roblox
         /// <summary>
         /// Returns a table of all presently connected Player objects.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetPlayers"/>
-        public object? GetPlayers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayers");
+        public IReadOnlyList<Instance> GetPlayers()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayers");
 
         /// <summary>
         /// <c>Players.ReportAbuse</c>
@@ -287,10 +287,10 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This item has been superseded by Players:GetPlayers() which should be used in all new work.Returns a list of players in an experience.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#players"/>
-        public object? PlayersFunc()
-            => global::Roblox.Reflection.Invoke<object?>(this, "players");
+        public IReadOnlyList<Instance> PlayersFunc()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "players");
 
         /// <summary>
         /// Bans users from your experience, with options to specify duration, reason, whether the ban applies to the entire universe or just the current place, and more. This method is enabled and disabled by the Players.BanningEnabled property, which you can toggle in Studio.

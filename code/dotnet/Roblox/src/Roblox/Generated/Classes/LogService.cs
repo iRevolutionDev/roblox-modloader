@@ -25,12 +25,22 @@ namespace Roblox
             => handle == 0 ? null : new LogService(handle);
 
         /// <summary>
-        /// Clears the Roblox Studio output window.
+        /// Clears Roblox Studio's Output window.
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#ClearOutput"/>
         public object? ClearOutput()
             => global::Roblox.Reflection.Invoke<object?>(this, "ClearOutput");
+
+        /// <summary>
+        /// Logs a message at the MessageType.MessageError level and throws a structured error with optional context.
+        /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="context">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Error"/>
+        public object? Error(string? message, object? context)
+            => global::Roblox.Reflection.Invoke<object?>(this, "Error", message, context);
 
         /// <summary>
         /// <c>LogService.ExecuteScript</c>
@@ -48,12 +58,43 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "GetHttpResultHistory");
 
         /// <summary>
-        /// Returns a table of tables, each with the message string, message type, and timestamp of a message that the client displays in the output window.
+        /// Returns a table of tables, each with the message string, message type, and timestamp of a message that the client displays in the Output window.
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#GetLogHistory"/>
         public object? GetLogHistory()
             => global::Roblox.Reflection.Invoke<object?>(this, "GetLogHistory");
+
+        /// <summary>
+        /// Logs a message at the MessageType.MessageInfo level with optional structured context.
+        /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="context">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Info"/>
+        public object? Info(string? message, object? context)
+            => global::Roblox.Reflection.Invoke<object?>(this, "Info", message, context);
+
+        /// <summary>
+        /// Logs a message at the specified level with optional structured context.
+        /// </summary>
+        /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="context">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Log"/>
+        public object? Log(Enum.MessageType messageType, string? message, object? context)
+            => global::Roblox.Reflection.Invoke<object?>(this, "Log", messageType, message, context);
+
+        /// <summary>
+        /// Logs a message at the MessageType.MessageOutput level with optional structured context.
+        /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="context">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Output"/>
+        public object? Output(string? message, object? context)
+            => global::Roblox.Reflection.Invoke<object?>(this, "Output", message, context);
 
         /// <summary>
         /// <c>LogService.RequestHttpResultApproved</c>
@@ -75,6 +116,16 @@ namespace Roblox
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         public object? RequestServerOutput()
             => global::Roblox.Reflection.Invoke<object?>(this, "RequestServerOutput");
+
+        /// <summary>
+        /// Logs a message at the MessageType.MessageWarning level with optional structured context.
+        /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="context">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Warn"/>
+        public object? Warn(string? message, object? context)
+            => global::Roblox.Reflection.Invoke<object?>(this, "Warn", message, context);
 
         /// <summary>
         /// <c>LogService.HttpResultOut</c>

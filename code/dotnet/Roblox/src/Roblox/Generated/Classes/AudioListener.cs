@@ -103,10 +103,10 @@ namespace Roblox
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
         /// <param name="pin">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetConnectedWires"/>
-        public object? GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
 
         /// <summary>
         /// Gets the distance attenuation curve that the AudioListener is using, or an empty table if it's using the default curve.
@@ -127,10 +127,10 @@ namespace Roblox
         /// <summary>
         /// Lists all AudioEmitters that this listener is capable of hearing.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetInteractingEmitters"/>
-        public object? GetInteractingEmitters()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInteractingEmitters");
+        public IReadOnlyList<Instance> GetInteractingEmitters()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInteractingEmitters");
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.

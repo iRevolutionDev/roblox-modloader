@@ -26,12 +26,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "BufferFullInputCount", value);
         }
 
-        public bool EnableInputLatencyMaxResimFrames
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableInputLatencyMaxResimFrames");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableInputLatencyMaxResimFrames", value);
-        }
-
         public double HashRoundingPoint
         {
             get => global::Roblox.Reflection.GetProperty<double>(this, "HashRoundingPoint");
@@ -48,12 +42,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "InputDropRate");
             set => global::Roblox.Reflection.SetProperty<float>(this, "InputDropRate", value);
-        }
-
-        public int InputLatencyMaxResimFrames
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "InputLatencyMaxResimFrames");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "InputLatencyMaxResimFrames", value);
         }
 
         public bool LockStepIdOffset
@@ -165,9 +153,9 @@ namespace Roblox
         /// <c>AuroraService.StepPhysics</c>
         /// </summary>
         /// <param name="worldSteps">A <c>int</c> value.</param>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StepPhysics(int worldSteps, object? parts)
+        public object? StepPhysics(int worldSteps, IReadOnlyList<Instance> parts)
             => global::Roblox.Reflection.Invoke<object?>(this, "StepPhysics", worldSteps, parts);
 
         /// <summary>

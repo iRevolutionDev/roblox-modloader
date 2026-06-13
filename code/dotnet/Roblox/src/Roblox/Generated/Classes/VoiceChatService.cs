@@ -213,10 +213,10 @@ namespace Roblox
         /// <summary>
         /// Returns chat group IDs that indicate which players can voice chat together.
         /// </summary>
-        /// <param name="players">A <c>object?</c> value.</param>
+        /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#GetChatGroupsAsync"/>
-        public object? GetChatGroupsAsync(object? players)
+        public object? GetChatGroupsAsync(IReadOnlyList<Instance> players)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetChatGroupsAsync", players);
 
         /// <summary>

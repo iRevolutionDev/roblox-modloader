@@ -103,10 +103,10 @@ namespace Roblox
         /// <summary>
         /// Returns a list of LocalizationTable objects used for localizing core scripts.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationService#GetCorescriptLocalizations"/>
-        public object? GetCorescriptLocalizations()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCorescriptLocalizations");
+        public IReadOnlyList<Instance> GetCorescriptLocalizations()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCorescriptLocalizations");
 
         /// <summary>
         /// <c>LocalizationService.GetIsLoadingInternalTranslations</c>

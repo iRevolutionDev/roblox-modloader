@@ -37,10 +37,10 @@ namespace Roblox
         /// <summary>
         /// Returns the CustomEventReceivers that are connected to the CustomEvent.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#GetAttachedReceivers"/>
-        public object? GetAttachedReceivers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAttachedReceivers");
+        public IReadOnlyList<Instance> GetAttachedReceivers()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAttachedReceivers");
 
         /// <summary>
         /// Sets the value of the CustomEvent and fires the CustomEventReceiver.SourceValueChanged event for all connected CustomEventReceiver|receivers.

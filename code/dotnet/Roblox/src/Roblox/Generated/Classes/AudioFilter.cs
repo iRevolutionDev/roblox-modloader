@@ -93,10 +93,10 @@ namespace Roblox
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
         /// <param name="pin">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#GetConnectedWires"/>
-        public object? GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
 
         /// <summary>
         /// Returns the magnitude response of the filter at the given frequency.

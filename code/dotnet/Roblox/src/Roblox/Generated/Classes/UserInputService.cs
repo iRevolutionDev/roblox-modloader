@@ -340,10 +340,10 @@ namespace Roblox
         /// Returns an array of InputObjects for all available inputs on the given gamepad, representing each input's last input state.
         /// </summary>
         /// <param name="gamepadNum">A <c>Enum.UserInputType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetGamepadState"/>
-        public object? GetGamepadState(Enum.UserInputType gamepadNum)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetGamepadState", gamepadNum);
+        public IReadOnlyList<Instance> GetGamepadState(Enum.UserInputType gamepadNum)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGamepadState", gamepadNum);
 
         /// <summary>
         /// Returns an image for the requested KeyCode.
@@ -357,10 +357,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array of InputObjects associated with the keys currently being pressed down.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetKeysPressed"/>
-        public object? GetKeysPressed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeysPressed");
+        public IReadOnlyList<Instance> GetKeysPressed()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeysPressed");
 
         /// <summary>
         /// Returns the UserInputType associated with the user's most recent input.
@@ -373,10 +373,10 @@ namespace Roblox
         /// <summary>
         /// Returns an array of InputObjects associated with the mouse buttons currently being held down.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetMouseButtonsPressed"/>
-        public object? GetMouseButtonsPressed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMouseButtonsPressed");
+        public IReadOnlyList<Instance> GetMouseButtonsPressed()
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetMouseButtonsPressed");
 
         /// <summary>
         /// Returns the change, in pixels, of the position of the player's Mouse in the last rendered frame. Only works if the mouse is locked.

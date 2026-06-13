@@ -101,6 +101,14 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "ScheduleNotification", userId, alertId, alertMsg, minutesToFire);
 
         /// <summary>
+        /// <c>NotificationService.SubscribeToRccEventNamespace</c>
+        /// </summary>
+        /// <param name="eventNamespace">A <c>string?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? SubscribeToRccEventNamespace(string? eventNamespace)
+            => global::Roblox.Reflection.Invoke<object?>(this, "SubscribeToRccEventNamespace", eventNamespace);
+
+        /// <summary>
         /// <c>NotificationService.SwitchedToAppShellFeature</c>
         /// </summary>
         /// <param name="appShellFeature">A <c>Enum.AppShellFeature</c> value.</param>

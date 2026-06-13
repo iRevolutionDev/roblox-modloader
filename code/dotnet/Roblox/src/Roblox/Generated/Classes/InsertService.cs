@@ -215,17 +215,17 @@ namespace Roblox
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="format">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadAssetWithFormat(long assetId, string? format)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadAssetWithFormat", assetId, format);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> LoadAssetWithFormat(long assetId, string? format)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "LoadAssetWithFormat", assetId, format);
 
         /// <summary>
         /// <c>InsertService.LoadPackageAssetAsync</c>
         /// </summary>
         /// <param name="url">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadPackageAssetAsync(object? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadPackageAssetAsync", url);
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> LoadPackageAssetAsync(object? url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "LoadPackageAssetAsync", url);
 
         /// <summary>
         /// <c>InsertService.InternalDelete</c>

@@ -28,10 +28,10 @@ namespace Roblox
         /// Returns a table of all presently connected Player objects whose Player.PartyId property matches the passed partyId.
         /// </summary>
         /// <param name="partyId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GetPlayersByPartyId"/>
-        public object? GetPlayersByPartyId(string? partyId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayersByPartyId", partyId);
+        public IReadOnlyList<Instance> GetPlayersByPartyId(string? partyId)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayersByPartyId", partyId);
 
         /// <summary>
         /// Hides the calling player's self view.

@@ -34,6 +34,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<BubbleChatMessageProperties?>(this, "BubbleChatMessageProperties", value);
         }
 
+        public string? ChatActionType
+        {
+            get => global::Roblox.Reflection.GetProperty<string?>(this, "ChatActionType");
+            set => global::Roblox.Reflection.SetProperty<string?>(this, "ChatActionType", value);
+        }
+
         /// <summary>
         /// <c>TextChatMessage.ChatWindowMessageProperties</c>
         /// </summary>

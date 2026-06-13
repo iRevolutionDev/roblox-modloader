@@ -23,9 +23,9 @@ namespace Roblox
         /// <summary>
         /// <c>LanguageService.GetCapabilitiesUsedInPackageAsync</c>
         /// </summary>
-        /// <param name="instances">A <c>object?</c> value.</param>
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCapabilitiesUsedInPackageAsync(object? instances)
+        public object? GetCapabilitiesUsedInPackageAsync(IReadOnlyList<Instance> instances)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetCapabilitiesUsedInPackageAsync", instances);
 
     }

@@ -31,9 +31,9 @@ namespace Roblox
         /// <summary>
         /// <c>TextureGenerationService.CreatePartGroup</c>
         /// </summary>
-        /// <param name="instances">A <c>object?</c> value.</param>
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>TextureGenerationPartGroup?</c> value returned by the engine.</returns>
-        public TextureGenerationPartGroup? CreatePartGroup(object? instances)
+        public TextureGenerationPartGroup? CreatePartGroup(IReadOnlyList<Instance> instances)
             => global::Roblox.Reflection.Invoke<TextureGenerationPartGroup?>(this, "CreatePartGroup", instances);
 
         /// <summary>
