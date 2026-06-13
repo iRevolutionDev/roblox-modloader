@@ -38,7 +38,10 @@
       "displayName": "Visual Studio 2022",
       "description": "Visual Studio 2022 on Windows",
       "generator": "Visual Studio 17 2022",
-      "binaryDir": "${sourceDir}/build/vs2022"
+      "binaryDir": "${sourceDir}/build/vs2022",
+      "cacheVariables": {
+        "CMAKE_GENERATOR_TOOLSET": "v142"
+      }
     }
   ],
   "buildPresets": [
