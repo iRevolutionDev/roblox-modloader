@@ -38,7 +38,7 @@ namespace RBX::Reflection
 		};
 
 	private:
-		char padding[0x20];
+		char padding[0x28];
 
 	public:
 		const Type& type;

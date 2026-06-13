@@ -20,6 +20,7 @@ namespace exception_filter {
         bool m_enabled = false;
         bool m_full_memory_dump = false;
         void *m_previous_exception_filter = nullptr;
+        void *m_veh_handle = nullptr;
         std::unique_ptr<PLH::IatHook> m_set_unhandled_exception_filter_hook;
         uint64_t m_hook_trampoline = 0;
 
@@ -46,6 +47,8 @@ namespace exception_filter {
 
     private:
         static LONG WINAPI exception_handler(PEXCEPTION_POINTERS exception_pointers);
+
+        static LONG WINAPI vectored_exception_handler(PEXCEPTION_POINTERS exception_pointers);
 
         static LPTOP_LEVEL_EXCEPTION_FILTER WINAPI hooked_set_unhandled_exception_filter(
             LPTOP_LEVEL_EXCEPTION_FILTER filter);

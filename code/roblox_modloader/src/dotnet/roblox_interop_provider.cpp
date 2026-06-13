@@ -39,9 +39,10 @@ namespace rml::dotnet
 
 			const auto function = RBX::Function(*descriptor, instance);
 			const auto ret      = function.invoke(arguments);
+			const auto type     = descriptor->get_signature().first_result_type();
 
 			if (out_result)
-				write_return_value(ret, *out_result);
+				write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), *out_result);
 		};
 
 		table.reflection_get_property = [](const uintptr_t instance_ptr, const char* property_name, InteropVariant* out_value) {
@@ -107,6 +108,10 @@ namespace rml::dotnet
 
 		table.free_string = [](const char* str) {
 			free(const_cast<char*>(str));
+		};
+
+		table.free_native_ptr = [](const void* ptr) {
+			free(const_cast<void*>(ptr));
 		};
 	}
 } // namespace rml::dotnet

@@ -74,13 +74,13 @@ constexpr auto pointers::get_roblox_batch()
                  g_pointers->m_roblox_pointers.luaE_newthread = ptr.as<functions::luaE_newthread>();
              },
          },
-         {
-             "LUA_PUSHVALUE",
-             "48 89 5C 24 ? 57 48 83 EC ? F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 85 FF 7E ? 48 8B 43 ? 48 8B CF 48 C1 E1",
-             [](const memory::handle ptr) {
-                 g_pointers->m_roblox_pointers.lua_pushvalue = ptr.as<functions::lua_pushvalue>();
-             },
-         },
+         // {
+         //     "LUA_PUSHVALUE",
+         //     "48 89 5C 24 ? 57 48 83 EC ? F6 41 ? ? 48 8B D9 48 63 FA 74 ? 4C 8D 41 ? 48 8B D1 E8 ? ? ? ? 85 FF 7E ? 48 8B 43 ? 48 8B CF 48 C1 E1",
+         //     [](const memory::handle ptr) {
+         //         g_pointers->m_roblox_pointers.lua_pushvalue = ptr.as<functions::lua_pushvalue>();
+         //     },
+         // },
          {
              "LUAH_NEW",
              "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 48 83 EC ? 41 8B F0 8B EA 44 0F B6 41",
@@ -95,13 +95,13 @@ constexpr auto pointers::get_roblox_batch()
                  g_pointers->m_roblox_pointers.freeblock = ptr.as<functions::freeblock>();
              },
          },
-         {
-             "LUA_NEWTHREAD",
-             "48 89 5C 24 ? 57 48 83 EC ? 48 8B 51 ? 48 8B D9 48 8B 42",
-             [](const memory::handle ptr) {
-                 g_pointers->m_roblox_pointers.lua_newthread = ptr.as<functions::lua_newthread>();
-             }
-         },
+         // {
+         //     "LUA_NEWTHREAD",
+         //     "48 89 5C 24 ? 57 48 83 EC ? 48 8B 51 ? 48 8B D9 48 8B 42",
+         //     [](const memory::handle ptr) {
+         //         g_pointers->m_roblox_pointers.lua_newthread = ptr.as<functions::lua_newthread>();
+         //     }
+         // },
         {
                 "LUAD_RAWRUNPROTECTED",
                 "48 89 4C 24 ? 48 83 EC ? 48 8B C2 49 8B D0 FF D0 33 C0 EB 04 8B 44 24 48 48 83 C4 ? C3",

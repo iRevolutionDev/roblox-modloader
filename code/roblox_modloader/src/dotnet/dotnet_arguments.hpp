@@ -1,4 +1,5 @@
 #pragma once
+#include "RobloxModLoader/roblox/instance.hpp"
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "interop_registry.hpp"
 
@@ -6,14 +7,17 @@ namespace rml::dotnet
 {
 	class DotNetArguments final : public RBX::Reflection::FunctionDescriptor::Arguments
 	{
+		uint64_t m_return_value_hi;
 		const InteropVariant* m_args;
 		uint32_t m_count;
 
 	public:
 		DotNetArguments(const InteropVariant* args, const uint32_t count) noexcept :
+		    m_return_value_hi(0),
 		    m_args(args),
 		    m_count(count)
 		{
+			return_value = 0;
 		}
 
 		[[nodiscard]] size_t size() const override
@@ -169,8 +173,14 @@ namespace rml::dotnet
 		}
 	};
 
-	inline void write_return_value(const uint64_t ret, InteropVariant& out) noexcept
+	inline void write_return_value(const RBX::Reflection::Type* type, const uint64_t ret, const uint64_t ret_slot, const uintptr_t ret_slot_addr, InteropVariant& out) noexcept
 	{
+		if (!type)
+		{
+			out.tag       = InteropValueTag::Null;
+			out.as_uint64 = ret;
+			return;
+		}
 		if (!ret)
 		{
 			out.tag       = InteropValueTag::Null;
@@ -178,17 +188,45 @@ namespace rml::dotnet
 			return;
 		}
 
-		// TODO: temp verify
-		if (ret % 8 == 0)
+		if (type->name == "Instances")
 		{
-			out.tag         = InteropValueTag::Instance;
-			out.as_instance = ret;
+			out.tag = InteropValueTag::InstanceArray;
+
+			const auto* instances_sptr = reinterpret_cast<const std::shared_ptr<RBX::Instances>*>(ret_slot_addr);
+			if (!instances_sptr || !*instances_sptr || (*instances_sptr)->empty())
+			{
+				out.as_instance = 0;
+				return;
+			}
+
+			const auto& instances = **instances_sptr;
+			const auto count      = static_cast<uint32_t>(instances.size());
+
+			const auto buf_size = sizeof(uint64_t) + static_cast<size_t>(count) * sizeof(uintptr_t);
+			auto* buf           = static_cast<uint8_t*>(std::malloc(buf_size));
+			if (!buf)
+			{
+				out.as_instance = 0;
+				return;
+			}
+
+			auto* count_field = reinterpret_cast<uint32_t*>(buf);
+			auto* handles     = reinterpret_cast<uintptr_t*>(buf + sizeof(uint64_t));
+			uint32_t written  = 0;
+
+			for (const auto& element : instances)
+			{
+				if (const auto handle = reinterpret_cast<uintptr_t>(element.get()))
+					handles[written++] = handle;
+			}
+			*count_field = written;
+
+			out.as_instance = reinterpret_cast<uintptr_t>(buf);
+			return;
 		}
-		else
-		{
-			out.tag       = InteropValueTag::Int64;
-			out.as_uint64 = ret;
-		}
+
+		out.tag      = InteropValueTag::Int64;
+		out.as_int64 = static_cast<int64_t>(ret);
 	}
 
 } // namespace rml::dotnet

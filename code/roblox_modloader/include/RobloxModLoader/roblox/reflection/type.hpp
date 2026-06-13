@@ -4,6 +4,7 @@
 #include "member.hpp"
 
 #include <cstddef>
+#include <span>
 #include <string>
 #include <unordered_map>
 
@@ -140,21 +141,55 @@ namespace RBX::Reflection
 		struct ResultItem
 		{
 			const Type* type;
-			std::uint64_t _unk0;
+			std::uint64_t _unk0; // idk what's this
 		};
+		static_assert(sizeof(ResultItem) == 0x10);
 
-		Vector<Item> m_arguments;
-		Vector<ResultItem> m_result_types;
+		// i need to reverse more, but it's solve, im lazy
+		template<typename T>
+		struct LinkedList
+		{
+			T* m_begin{nullptr};
+			T* m_end{nullptr};
+			T* m_capacity{nullptr};
+
+			[[nodiscard]] bool empty() const noexcept
+			{
+				return m_begin == m_end;
+			}
+			[[nodiscard]] std::size_t size() const noexcept
+			{
+				return static_cast<std::size_t>(m_end - m_begin);
+			}
+			[[nodiscard]] T& front() const
+			{
+				return *m_begin;
+			}
+			[[nodiscard]] std::span<T> span() const noexcept
+			{
+				return {m_begin, m_end};
+			}
+		};
+		static_assert(sizeof(LinkedList<void*>) == 0x18);
+
+		LinkedList<Item> m_arguments;
+		LinkedList<ResultItem> m_result_types;
 
 	public:
-		[[nodiscard]] const Vector<Item>& arguments() const noexcept
+		[[nodiscard]] std::span<const Item> arguments() const noexcept
 		{
-			return m_arguments;
+			return m_arguments.span();
 		}
 
-		[[nodiscard]] const Vector<ResultItem>& result_types() const noexcept
+		[[nodiscard]] std::span<const ResultItem> result_types() const noexcept
 		{
-			return m_result_types;
+			return m_result_types.span();
+		}
+
+		[[nodiscard]] const Type* first_result_type() const noexcept
+		{
+			return m_result_types.empty() ? nullptr : m_result_types.front().type;
 		}
 	};
+	static_assert(sizeof(SignatureDescriptor) == 0x30);
 }

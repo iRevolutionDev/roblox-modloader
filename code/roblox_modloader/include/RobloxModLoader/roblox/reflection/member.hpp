@@ -162,7 +162,7 @@ namespace RBX::Reflection
 			return descriptors_end();
 		}
 	};
-	
+
 	class MemberDescriptor : public Descriptor
 	{
 	public:

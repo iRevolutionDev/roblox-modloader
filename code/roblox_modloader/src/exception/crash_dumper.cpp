@@ -29,6 +29,11 @@ namespace exception_filter {
         try {
             SetErrorMode(SEM_FAILCRITICALERRORS);
 
+            m_veh_handle = AddVectoredExceptionHandler(1, vectored_exception_handler);
+            if (!m_veh_handle) {
+                LOG_WARN("Failed to register Vectored Exception Handler");
+            }
+
             m_previous_exception_filter = SetUnhandledExceptionFilter(exception_handler);
             m_set_unhandled_exception_filter_hook = std::make_unique<PLH::IatHook>(
                 "kernel32.dll",
@@ -60,6 +65,11 @@ namespace exception_filter {
         }
 
         try {
+            if (m_veh_handle) {
+                RemoveVectoredExceptionHandler(m_veh_handle);
+                m_veh_handle = nullptr;
+            }
+
             if (m_set_unhandled_exception_filter_hook) {
                 m_set_unhandled_exception_filter_hook->unHook();
                 m_set_unhandled_exception_filter_hook.reset();
@@ -203,6 +213,52 @@ namespace exception_filter {
             LOG_ERROR("Exception occurred while creating crash dump");
             return false;
         }
+    }
+
+    LONG WINAPI CrashDumper::vectored_exception_handler(PEXCEPTION_POINTERS exception_pointers) {
+        const DWORD code = exception_pointers->ExceptionRecord->ExceptionCode;
+        constexpr DWORD NON_FATAL_CODES[] = {
+            0xE06D7363,
+            EXCEPTION_BREAKPOINT,
+            EXCEPTION_SINGLE_STEP,
+            DBG_PRINTEXCEPTION_C,
+            DBG_PRINTEXCEPTION_WIDE_C,
+            0x406D1388,
+        };
+        for (const DWORD non_fatal : NON_FATAL_CODES) {
+            if (code == non_fatal) {
+                return EXCEPTION_CONTINUE_SEARCH;
+            }
+        }
+
+        thread_local bool in_veh = false;
+        if (in_veh) {
+            return EXCEPTION_CONTINUE_SEARCH;
+        }
+        in_veh = true;
+
+        try {
+            LOG_ERROR("=== [VEH] CRITICAL EXCEPTION DETECTED (before Roblox handler) ===");
+            LOG_ERROR("[VEH] Exception Code: 0x{:08X}", code);
+            LOG_ERROR("[VEH] Exception Address: 0x{:016X}",
+                      reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
+
+            const auto dump_path = generate_dump_filename();
+            create_minidump(exception_pointers, dump_path);
+            log_exception_info(exception_pointers);
+            log_register_state(exception_pointers->ContextRecord);
+            log_stack_trace();
+
+            try {
+                global_logger()->flush();
+            } catch (...) {
+            }
+        } catch (...) {
+        }
+
+        in_veh = false;
+
+        return EXCEPTION_CONTINUE_SEARCH;
     }
 
     LONG WINAPI CrashDumper::exception_handler(PEXCEPTION_POINTERS exception_pointers) {

@@ -73,6 +73,7 @@ namespace RBX::Reflection
 		}
 
 	protected:
+		std::byte pad[0x8];
 		SignatureDescriptor signature;
 		Kind kind;
 		void* invoke_func_ptr;

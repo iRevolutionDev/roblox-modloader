@@ -9,6 +9,10 @@ namespace RBX
 {
 	using namespace Reflection;
 
+	class Instance;
+
+	using Instances = std::vector<std::shared_ptr<Instance>>;
+
 	class Instance : public Object
 	{
 		std::byte pad_0048[0x30];
@@ -23,7 +27,7 @@ namespace RBX
 		std::string_view name;
 
 		// shared_ptr causes some crashes because has invalid reference count TODO: fix it later
-		std::shared_ptr<std::vector<std::shared_ptr<Instance> > > children;
+		std::shared_ptr<std::vector<std::shared_ptr<Instance>>> children;
 
 		template<typename T = Instance>
 		T* as()
