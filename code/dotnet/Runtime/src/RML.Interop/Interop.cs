@@ -36,6 +36,16 @@ public static unsafe class Interop
         Table->FreeString((sbyte*)ptr);
     }
 
+    public static void FreeNativeArray(nint ptr)
+    {
+        if (ptr == nint.Zero || !IsInitialized || Table == null || Table->FreeNativePtr == null)
+        {
+            return;
+        }
+
+        Table->FreeNativePtr((void*)ptr);
+    }
+
     public class Reflection
     {
         private static readonly ConcurrentDictionary<string, nint> CachedMemberNames = new(StringComparer.Ordinal);

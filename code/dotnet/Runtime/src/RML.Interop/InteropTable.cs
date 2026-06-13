@@ -23,6 +23,7 @@ public struct InteropVariant
         public const byte Float = 4;
         public const byte String = 5;
         public const byte Instance = 6;
+        public const byte InstanceArray = 7;
     }
 
     public static InteropVariant FromBool(bool v) => new() { Tag = Tags.Bool, AsBool = v };
@@ -35,7 +36,7 @@ public struct InteropVariant
 
 internal static unsafe class NativeInterop
 {
-    public const int InteropTableVersion = 1;
+    public const int InteropTableVersion = 2;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct InteropTable
@@ -53,5 +54,6 @@ internal static unsafe class NativeInterop
 
         public delegate* unmanaged[Cdecl]<int, sbyte*, int, void> Log;
         public delegate* unmanaged[Cdecl]<sbyte*, void> FreeString;
+        public delegate* unmanaged[Cdecl]<void*, void> FreeNativePtr;
     }
 }

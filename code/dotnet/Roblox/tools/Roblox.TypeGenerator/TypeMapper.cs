@@ -66,6 +66,7 @@ internal static class TypeMapper
             "ProtectedString"   => $"string{suffix}",
             "QDir"              => $"string{suffix}",
             "QFont"             => $"string{suffix}",
+            "Instances"         => $"IReadOnlyList<Instance>",
             _                   => "object" + suffix,
         };
     }

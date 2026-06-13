@@ -157,6 +157,44 @@ public static unsafe class Reflection
             return (T)((object?)s)!;
         }
 
+        if (variant.Tag == InteropVariant.Tags.InstanceArray)
+        {
+            if (variant.AsPointer == 0)
+            {
+                return default;
+            }
+
+            var buf = (byte*)variant.AsPointer;
+            var count = *(uint*)buf;
+            var handles = (nuint*)(buf + (sizeof(uint) * 2) + sizeof(nuint));
+
+            var list = new List<Instance>((int)count);
+            for (var i = 0u; i < count; i++)
+            {
+                var handle = handles[i];
+                if (handle == 0)
+                {
+                    continue;
+                }
+
+                list.Add(new Instance(handle));
+            }
+
+            Interop.FreeNativeArray((nint)variant.AsPointer);
+
+            if (t == typeof(Instance[]) || (t.IsArray && t.GetElementType() == typeof(Instance)))
+            {
+                return (T)(object)list.ToArray();
+            }
+
+            if (t.IsAssignableFrom(typeof(List<Instance>)))
+            {
+                return (T)(object)list;
+            }
+
+            return default;
+        }
+
         if (typeof(Object).IsAssignableFrom(t))
         {
             if (variant.Tag != InteropVariant.Tags.Instance)
