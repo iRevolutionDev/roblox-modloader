@@ -95,12 +95,12 @@ namespace Roblox
 
         public enum AdEventType
         {
-            RewardedAdLoaded = 3,
-            RewardedAdGrant = 4,
-            RewardedAdUnloaded = 5,
             VideoLoaded = 0,
             VideoRemoved = 1,
             UserCompletedVideo = 2,
+            RewardedAdLoaded = 3,
+            RewardedAdGrant = 4,
+            RewardedAdUnloaded = 5,
         }
 
         public enum AdFormat
@@ -164,12 +164,12 @@ namespace Roblox
 
         public enum AlignType
         {
+            Parallel = 0,
+            Perpendicular = 1,
             PrimaryAxisParallel = 2,
             PrimaryAxisPerpendicular = 3,
             PrimaryAxisLookAt = 4,
             AllAxes = 5,
-            Parallel = 0,
-            Perpendicular = 1,
         }
 
         public enum AlphaMode
@@ -369,6 +369,12 @@ namespace Roblox
             Edit = 4,
         }
 
+        public enum AntiAliasing
+        {
+            Disabled = 0,
+            Enabled = 1,
+        }
+
         public enum AppLifecycleManagerState
         {
             Detached = 0,
@@ -390,6 +396,7 @@ namespace Roblox
             GamePageLoaded = 8,
             HomePageLoaded = 9,
             AvatarEditorPageLoaded = 10,
+            HomePageInteractive = 11,
         }
 
         public enum AppShellFeature
@@ -439,6 +446,12 @@ namespace Roblox
             None = 2,
             Loading = 3,
             TimedOut = 4,
+        }
+
+        public enum AssetRepresentation
+        {
+            FullLength = 0,
+            ShortPreview = 1,
         }
 
         public enum AssetType
@@ -505,6 +518,8 @@ namespace Roblox
             FaceMakeup = 88,
             LipMakeup = 89,
             EyeMakeup = 90,
+            VoxelFragment = 91,
+            AvatarBackground = 92,
         }
 
         public enum AssetTypeVerification
@@ -637,6 +652,7 @@ namespace Roblox
             FaceMakeup = 88,
             LipMakeup = 89,
             EyeMakeup = 90,
+            AvatarBackground = 92,
         }
 
         public enum AvatarChatServiceFeature
@@ -967,6 +983,8 @@ namespace Roblox
             PCBlock = 5,
             NotFound = 6,
             OutsideOwnerAgeBucket = 7,
+            NotAuthorized = 8,
+            OutsideAgeBucketTcPc = 9,
         }
 
         public enum CaptureGalleryPermission
@@ -1129,6 +1147,7 @@ namespace Roblox
             DeveloperUpdate = 3,
             ServerEmpty = 4,
             OutOfMemory = 5,
+            Moderation = 6,
         }
 
         public enum CollaboratorStatus
@@ -1145,6 +1164,7 @@ namespace Roblox
             Hull = 1,
             Box = 2,
             PreciseConvexDecomposition = 3,
+            Scalable = 4,
         }
 
         public enum CommandPermission
@@ -1329,6 +1349,13 @@ namespace Roblox
             DisconnectCollaboratorOwnerActionRequired = 312,
             DisconnectCollaboratorTooManyCollaborators = 313,
             DisconnectCollaboratorUnknownError = 314,
+            DisconnectCollaboratorRequestedEviction = 315,
+            DisconnectCollaboratorTrustedConnectionsRequiredPC = 316,
+            DisconnectRemoteAttestationUnsupported = 317,
+            DisconnectRemoteAttestationGeneralFailure = 318,
+            DisconnectRemoteAttestationTimeout = 319,
+            DisconnectRemoteAttestationOSOutOfDate = 320,
+            DisconnectRemoteAttestationBootValidationFailure = 321,
             PlacelaunchErrors = 512,
             PlacelaunchDisabled = 515,
             PlacelaunchError = 516,
@@ -1343,6 +1370,11 @@ namespace Roblox
             PlacelaunchPartyCannotFit = 528,
             PlacelaunchHttpError = 529,
             PlacelaunchUserPrivacyUnauthorized = 533,
+            PlacelaunchVipOwnerNotPresent = 541,
+            PlacelaunchAgeVerificationRequired = 542,
+            PlacelaunchParentalApprovalRequired = 543,
+            PlacelaunchCoreGated = 544,
+            PlacelaunchCollaborationCoreGated = 545,
             PlacelaunchCreatorBan = 600,
             PlacelaunchDeviceBlock = 601,
             PlacelaunchCustomMessage = 610,
@@ -1401,6 +1433,7 @@ namespace Roblox
             SelfView = 6,
             Captures = 7,
             AvatarSwitcher = 8,
+            ExperienceShop = 9,
         }
 
         public enum CreateAssetResult
@@ -1482,6 +1515,13 @@ namespace Roblox
             OrderedRemove = 16,
         }
 
+        public enum DebugBreakModeType
+        {
+            Never = 0,
+            Always = 1,
+            Unhandled = 2,
+        }
+
         public enum DebuggerEndReason
         {
             ClientRequest = 0,
@@ -1515,6 +1555,14 @@ namespace Roblox
             Exception = 3,
             SingleStep = 4,
             Entrypoint = 5,
+        }
+
+        public enum DebuggerResumeType
+        {
+            StepInto = 0,
+            StepOut = 1,
+            StepOver = 2,
+            Resume = 3,
         }
 
         public enum DebuggerStatus
@@ -1693,7 +1741,6 @@ namespace Roblox
         public enum DomainType
         {
             EXPERIENCE = 1,
-            GROUP = 2,
             OAUTH = 3,
         }
 
@@ -1793,6 +1840,15 @@ namespace Roblox
             Never = 2,
         }
 
+        public enum EngagementLevel
+        {
+            Unknown = 0,
+            Inactive = 1,
+            Low = 2,
+            Medium = 3,
+            High = 4,
+        }
+
         public enum EngineFolder
         {
             Screenshots = 0,
@@ -1809,6 +1865,15 @@ namespace Roblox
             Skip4 = 4,
             Skip8 = 5,
             Skip16 = 6,
+        }
+
+        public enum ExperienceActivationStatus
+        {
+            Unknown = 0,
+            New = 1,
+            Active = 2,
+            Lapsed = 3,
+            Reactivated = 4,
         }
 
         public enum ExperienceAuthScope
@@ -1862,7 +1927,7 @@ namespace Roblox
         public enum ExternalEditorMode
         {
             SystemDefault = 0,
-            CustomEditor = 1,
+            UserSelectedEditor = 1,
         }
 
         public enum FACSDataLod
@@ -1946,6 +2011,12 @@ namespace Roblox
         {
             ExperienceChat = 0,
             Communication = 1,
+        }
+
+        public enum FeedbackType
+        {
+            Feedback = 0,
+            PlayerSupport = 1,
         }
 
         public enum FieldOfViewMode
@@ -2459,6 +2530,7 @@ namespace Roblox
             Add = 3,
             Multiply = 4,
             AlphaBlend = 5,
+            NormalMapBlend = 6,
         }
 
         public enum InOut
@@ -2521,6 +2593,13 @@ namespace Roblox
         public enum IntermediateMeshGenerationResult
         {
             HighQualityMesh = 0,
+        }
+
+        public enum InternalVideoUsage
+        {
+            Default = 0,
+            WatchPage = 1,
+            HomeCarousel = 2,
         }
 
         public enum InterpolationThrottlingMode
@@ -2637,105 +2716,6 @@ namespace Roblox
             RightCurly = 125,
             Tilde = 126,
             Delete = 127,
-            KeypadZero = 256,
-            KeypadOne = 257,
-            KeypadTwo = 258,
-            KeypadThree = 259,
-            KeypadFour = 260,
-            KeypadFive = 261,
-            KeypadSix = 262,
-            KeypadSeven = 263,
-            KeypadEight = 264,
-            KeypadNine = 265,
-            KeypadPeriod = 266,
-            KeypadDivide = 267,
-            KeypadMultiply = 268,
-            KeypadMinus = 269,
-            KeypadPlus = 270,
-            KeypadEnter = 271,
-            KeypadEquals = 272,
-            Up = 273,
-            Down = 274,
-            Right = 275,
-            Left = 276,
-            Insert = 277,
-            Home = 278,
-            End = 279,
-            PageUp = 280,
-            PageDown = 281,
-            F1 = 282,
-            F2 = 283,
-            F3 = 284,
-            F4 = 285,
-            F5 = 286,
-            F6 = 287,
-            F7 = 288,
-            F8 = 289,
-            F9 = 290,
-            F10 = 291,
-            F11 = 292,
-            F12 = 293,
-            F13 = 294,
-            F14 = 295,
-            F15 = 296,
-            NumLock = 300,
-            CapsLock = 301,
-            ScrollLock = 302,
-            RightShift = 303,
-            LeftShift = 304,
-            RightControl = 305,
-            LeftControl = 306,
-            RightAlt = 307,
-            LeftAlt = 308,
-            RightMeta = 309,
-            LeftMeta = 310,
-            LeftSuper = 311,
-            RightSuper = 312,
-            Mode = 313,
-            Compose = 314,
-            Help = 315,
-            Print = 316,
-            SysReq = 317,
-            Break = 318,
-            Menu = 319,
-            Power = 320,
-            Euro = 321,
-            Undo = 322,
-            ButtonX = 1000,
-            ButtonY = 1001,
-            ButtonA = 1002,
-            ButtonB = 1003,
-            ButtonR1 = 1004,
-            ButtonL1 = 1005,
-            ButtonR2 = 1006,
-            ButtonL2 = 1007,
-            ButtonR3 = 1008,
-            ButtonL3 = 1009,
-            ButtonStart = 1010,
-            ButtonSelect = 1011,
-            DPadLeft = 1012,
-            DPadRight = 1013,
-            DPadUp = 1014,
-            DPadDown = 1015,
-            Thumbstick1 = 1016,
-            Thumbstick2 = 1017,
-            Thumbstick1Up = 1018,
-            Thumbstick1Down = 1019,
-            Thumbstick1Left = 1020,
-            Thumbstick1Right = 1021,
-            Thumbstick2Up = 1022,
-            Thumbstick2Down = 1023,
-            Thumbstick2Left = 1024,
-            Thumbstick2Right = 1025,
-            MouseLeftButton = 1026,
-            MouseRightButton = 1027,
-            MouseMiddleButton = 1028,
-            MousePosition = 1033,
-            Touch = 1034,
-            MouseWheel = 1035,
-            TrackpadPan = 1040,
-            TrackpadPinch = 1045,
-            MouseDelta = 1048,
             World0 = 160,
             World1 = 161,
             World2 = 162,
@@ -2832,10 +2812,111 @@ namespace Roblox
             World93 = 253,
             World94 = 254,
             World95 = 255,
+            KeypadZero = 256,
+            KeypadOne = 257,
+            KeypadTwo = 258,
+            KeypadThree = 259,
+            KeypadFour = 260,
+            KeypadFive = 261,
+            KeypadSix = 262,
+            KeypadSeven = 263,
+            KeypadEight = 264,
+            KeypadNine = 265,
+            KeypadPeriod = 266,
+            KeypadDivide = 267,
+            KeypadMultiply = 268,
+            KeypadMinus = 269,
+            KeypadPlus = 270,
+            KeypadEnter = 271,
+            KeypadEquals = 272,
+            Up = 273,
+            Down = 274,
+            Right = 275,
+            Left = 276,
+            Insert = 277,
+            Home = 278,
+            End = 279,
+            PageUp = 280,
+            PageDown = 281,
+            F1 = 282,
+            F2 = 283,
+            F3 = 284,
+            F4 = 285,
+            F5 = 286,
+            F6 = 287,
+            F7 = 288,
+            F8 = 289,
+            F9 = 290,
+            F10 = 291,
+            F11 = 292,
+            F12 = 293,
+            F13 = 294,
+            F14 = 295,
+            F15 = 296,
+            NumLock = 300,
+            CapsLock = 301,
+            ScrollLock = 302,
+            RightShift = 303,
+            LeftShift = 304,
+            RightControl = 305,
+            LeftControl = 306,
+            RightAlt = 307,
+            LeftAlt = 308,
+            RightMeta = 309,
+            LeftMeta = 310,
+            LeftSuper = 311,
+            RightSuper = 312,
+            Mode = 313,
+            Compose = 314,
+            Help = 315,
+            Print = 316,
+            SysReq = 317,
+            Break = 318,
+            Menu = 319,
+            Power = 320,
+            Euro = 321,
+            Undo = 322,
+            ButtonX = 1000,
+            ButtonY = 1001,
+            ButtonA = 1002,
+            ButtonB = 1003,
+            ButtonR1 = 1004,
+            ButtonL1 = 1005,
+            ButtonR2 = 1006,
+            ButtonL2 = 1007,
+            ButtonR3 = 1008,
+            ButtonL3 = 1009,
+            ButtonStart = 1010,
+            ButtonSelect = 1011,
+            DPadLeft = 1012,
+            DPadRight = 1013,
+            DPadUp = 1014,
+            DPadDown = 1015,
+            Thumbstick1 = 1016,
+            Thumbstick2 = 1017,
+            Thumbstick1Up = 1018,
+            Thumbstick1Down = 1019,
+            Thumbstick1Left = 1020,
+            Thumbstick1Right = 1021,
+            Thumbstick2Up = 1022,
+            Thumbstick2Down = 1023,
+            Thumbstick2Left = 1024,
+            Thumbstick2Right = 1025,
+            MouseLeftButton = 1026,
+            MouseRightButton = 1027,
+            MouseMiddleButton = 1028,
             MouseBackButton = 1029,
             MouseNoButton = 1030,
             MouseX = 1031,
             MouseY = 1032,
+            MousePosition = 1033,
+            TouchPosition = 1034,
+            MouseWheel = 1035,
+            TrackpadPan = 1040,
+            TrackpadPinch = 1045,
+            MouseDelta = 1048,
+            TouchDelta = 1049,
+            TouchPinch = 1050,
         }
 
         public enum KeyInterpolationMode
@@ -3098,6 +3179,11 @@ namespace Roblox
             Level02 = 3,
             Level03 = 4,
             Level04 = 5,
+            Level05 = 6,
+            Level06 = 7,
+            Level07 = 8,
+            Level08 = 9,
+            Level09 = 10,
         }
 
         public enum MeshPartHeadsAndAccessories
@@ -3220,13 +3306,6 @@ namespace Roblox
             AirFree = 4,
         }
 
-        public enum MoverConstraintRootBehaviorMode
-        {
-            Default = 0,
-            Disabled = 1,
-            Enabled = 2,
-        }
-
         public enum MuteState
         {
             Unmuted = 0,
@@ -3310,6 +3389,7 @@ namespace Roblox
             Avatar = 2,
             DynamicHead = 3,
             Shoes = 4,
+            Makeup = 5,
         }
 
         public enum OutputLayoutMode
@@ -3400,11 +3480,11 @@ namespace Roblox
         public enum PathStatus
         {
             Success = 0,
-            NoPath = 5,
             ClosestNoPath = 1,
             ClosestOutOfRange = 2,
             FailStartNotEmpty = 3,
             FailFinishNotEmpty = 4,
+            NoPath = 5,
         }
 
         public enum PathWaypointAction
@@ -3559,6 +3639,15 @@ namespace Roblox
             Unknown = 0,
             PlatformKick = 1,
             CreatorKick = 2,
+        }
+
+        public enum PlayerPlatformActivationStatus
+        {
+            Unknown = 0,
+            New = 1,
+            Active = 2,
+            Lapsed = 3,
+            Reactivated = 4,
         }
 
         public enum PlayerPlatformSpenderStatus
@@ -3859,6 +3948,21 @@ namespace Roblox
         {
             Private = 0,
             Public = 1,
+        }
+
+        public enum RecommendationPreferenceTargetType
+        {
+            User = 0,
+            Universe = 1,
+            CustomTag = 2,
+        }
+
+        public enum RecommendationPreferenceType
+        {
+            AddFollow = 0,
+            RemoveFollow = 1,
+            AddMute = 2,
+            RemoveMute = 3,
         }
 
         public enum RejectCharacterDeletions
@@ -4214,6 +4318,22 @@ namespace Roblox
             NoSpaceOnDevice = 3,
         }
 
+        public enum ScriptStoppedReason
+        {
+            Breakpoint = 0,
+            Exception = 1,
+            Pause = 2,
+            Step = 3,
+            Entry = 4,
+        }
+
+        public enum ScriptVariableScope
+        {
+            Local = 0,
+            Upvalue = 1,
+            Global = 2,
+        }
+
         public enum ScrollBarInset
         {
             None = 0,
@@ -4233,6 +4353,7 @@ namespace Roblox
             RunClientScript = 0,
             RunServerScript = 1,
             AccessOutsideWrite = 2,
+            AssetRequire = 3,
             LoadString = 4,
             ScriptGlobals = 5,
             CreateInstances = 6,
@@ -4245,6 +4366,7 @@ namespace Roblox
             CSG = 13,
             Chat = 14,
             Animation = 15,
+            Avatar = 16,
             Input = 17,
             Environment = 18,
             RemoteEvent = 19,
@@ -4281,8 +4403,6 @@ namespace Roblox
             AvatarBehavior = 50,
             AvatarAppearance = 51,
             LoadUnownedAsset = 52,
-            AssetRequire = 3,
-            Avatar = 16,
         }
 
         public enum SelectionBehavior
@@ -4311,7 +4431,8 @@ namespace Roblox
         {
             Floor = 0,
             Ladder = 1,
-            ClassicLadder = 2,
+            ClassicFloor = 2,
+            ClassicLadder = 3,
         }
 
         public enum SensorUpdateType
@@ -4365,6 +4486,16 @@ namespace Roblox
             RelativeXY = 0,
             RelativeXX = 1,
             RelativeYY = 2,
+        }
+
+        public enum SlimTintMode
+        {
+            None = 0,
+            LOD = 1,
+            Meshes = 2,
+            MeshResourcePtr = 3,
+            ContentId = 4,
+            Zone = 5,
         }
 
         public enum SolidPrimitiveType
@@ -4473,6 +4604,17 @@ namespace Roblox
         {
             FixedSize = 0,
             ScaledSize = 1,
+        }
+
+        public enum StudioAction
+        {
+            Undo = 0,
+            Redo = 1,
+            SelectAll = 2,
+            DeleteSelected = 3,
+            Copy = 61,
+            Cut = 62,
+            Paste = 63,
         }
 
         public enum StudioCaptureBufferStatus
@@ -4808,6 +4950,10 @@ namespace Roblox
             ColumnMajor = 1,
         }
 
+        public enum TagReplicability
+        {
+        }
+
         public enum TeamCreateErrorState
         {
             PlaceSizeTooLarge = 0,
@@ -4818,11 +4964,11 @@ namespace Roblox
 
         public enum Technology
         {
+            Legacy = 0,
             Voxel = 1,
             Compatibility = 2,
             ShadowMap = 3,
             Future = 4,
-            Legacy = 0,
             Unified = 5,
         }
 
@@ -5637,6 +5783,7 @@ namespace Roblox
             LayerCageFittedToBase = 12,
             LayerCageFittedToPrev = 13,
             PreWrapDeformerOuterCage = 14,
+            SkinningTransfer = 15,
         }
 
         public enum WrapTargetDebugMode
