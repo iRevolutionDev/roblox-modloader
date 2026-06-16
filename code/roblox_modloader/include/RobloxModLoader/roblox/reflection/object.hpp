@@ -6,6 +6,7 @@
 #include "event_descriptor.hpp"
 #include "function_descriptor.hpp"
 #include "member.hpp"
+#include "pointers.hpp"
 #include "property_descriptor.hpp"
 #include "yield_function_descriptor.hpp"
 
@@ -20,16 +21,16 @@ namespace RBX::Reflection
 	public:
 		enum Functionality
 		{
-			PERSISTENT                = 0x1 + 0x2 + 0x8 + 0x10,
-			PERSISTENT_PLAYER         = 0x1 + 0x4 + 0x8 + 0x10,
-			PERSISTENT_LOCAL          = 0x1 + 0x0 + 0x8 + 0x10,
-			RUNTIME                   = 0x1 + 0x2 + 0x0 + 0x10,
-			RUNTIME_PLAYER            = 0x1 + 0x4 + 0x0 + 0x10,
-			RUNTIME_LOCAL             = 0x1 + 0x0 + 0x0 + 0x10,
-			INTERNAL                  = 0x1 + 0x2 + 0x0 + 0x0,
-			INTERNAL_PLAYER           = 0x1 + 0x4 + 0x0 + 0x0,
-			INTERNAL_LOCAL            = 0x1 + 0x0 + 0x0 + 0x0,
-			PERSISTENT_HIDDEN         = 0x1 + 0x2 + 0x8 + 0x0,
+			PERSISTENT = 0x1 + 0x2 + 0x8 + 0x10,
+			PERSISTENT_PLAYER = 0x1 + 0x4 + 0x8 + 0x10,
+			PERSISTENT_LOCAL = 0x1 + 0x0 + 0x8 + 0x10,
+			RUNTIME = 0x1 + 0x2 + 0x0 + 0x10,
+			RUNTIME_PLAYER = 0x1 + 0x4 + 0x0 + 0x10,
+			RUNTIME_LOCAL = 0x1 + 0x0 + 0x0 + 0x10,
+			INTERNAL = 0x1 + 0x2 + 0x0 + 0x0,
+			INTERNAL_PLAYER = 0x1 + 0x4 + 0x0 + 0x0,
+			INTERNAL_LOCAL = 0x1 + 0x0 + 0x0 + 0x0,
+			PERSISTENT_HIDDEN = 0x1 + 0x2 + 0x8 + 0x0,
 			PERSISTENT_LOCAL_INTERNAL = 0x1 + 0x0 + 0x8 + 0x0,
 		};
 
@@ -52,18 +53,18 @@ namespace RBX::Reflection
 
 		enum ReplicationLevel
 		{
-			NEVER_REPLICATE    = 0,
+			NEVER_REPLICATE = 0,
 			STANDARD_REPLICATE = 1,
-			PLAYER_REPLICATE   = 2,
+			PLAYER_REPLICATE = 2,
 		};
 
 		typedef Vector<ClassDescriptor*> ClassDescriptors;
 
-		using PropertyDescriptors      = MemberDescriptorContainer<PropertyDescriptor>::DescriptorView;
-		using FunctionDescriptors      = MemberDescriptorContainer<FunctionDescriptor>::DescriptorView;
+		using PropertyDescriptors = MemberDescriptorContainer<PropertyDescriptor>::DescriptorView;
+		using FunctionDescriptors = MemberDescriptorContainer<FunctionDescriptor>::DescriptorView;
 		using YieldFunctionDescriptors = MemberDescriptorContainer<YieldFunctionDescriptor>::DescriptorView;
-		using EventDescriptors         = MemberDescriptorContainer<EventDescriptor>::DescriptorView;
-		using CallbackDescriptors      = MemberDescriptorContainer<CallbackDescriptor>::DescriptorView;
+		using EventDescriptors = MemberDescriptorContainer<EventDescriptor>::DescriptorView;
+		using CallbackDescriptors = MemberDescriptorContainer<CallbackDescriptor>::DescriptorView;
 
 	private:
 		char padding[24]; // some boolean?
@@ -217,57 +218,44 @@ namespace RBX::Reflection
 		}
 
 		template<typename T>
-		T* find_in_hierarchy(const char* name) const
+		T* find_descriptor(const char* name) const
 		{
-			using LookupMap = std::unordered_map<std::string_view, T*>;
-			static std::mutex s_mutex;
-			static std::unordered_map<const ClassDescriptor*, LookupMap> s_cache;
-
-			std::lock_guard lock(s_mutex);
-			auto [class_it, inserted] = s_cache.emplace(this, LookupMap{});
-			if (inserted)
+			auto atom = g_pointers->m_roblox_pointers.get_string_atom(name);
+			const auto desc = g_pointers->m_roblox_pointers.descriptor_lookup(reinterpret_cast<uint64_t>(this) + 0x250, &atom);
+			if (!desc || !*desc)
 			{
-				LookupMap& map = class_it->second;
-				auto cls       = this;
-				while (cls)
-				{
-					for (T* desc : static_cast<const MemberDescriptorContainer<T>*>(cls)->get_descriptor_view())
-					{
-						if (desc)
-						{
-							map.emplace(desc->name.c_str(), desc);
-						}
-					}
-					cls = cls->base;
-				}
+				LOG_WARN("[ClassDescriptor::find_descriptor] Failed to find descriptor '{}' in class '{}'",
+				    name,
+				    this->name.c_str());
+				return nullptr;
 			}
-			const auto it = class_it->second.find(std::string_view(name));
-			return it != class_it->second.end() ? it->second : nullptr;
+
+			return reinterpret_cast<T*>(*desc);
 		}
 
 		PropertyDescriptor* find_property_in_hierarchy(const char* name) const
 		{
-			return find_in_hierarchy<PropertyDescriptor>(name);
+			return find_descriptor<PropertyDescriptor>(name);
 		}
 
 		FunctionDescriptor* find_function_in_hierarchy(const char* name) const
 		{
-			return find_in_hierarchy<FunctionDescriptor>(name);
+			return find_descriptor<FunctionDescriptor>(name);
 		}
 
 		YieldFunctionDescriptor* find_yield_function_in_hierarchy(const char* name) const
 		{
-			return find_in_hierarchy<YieldFunctionDescriptor>(name);
+			return find_descriptor<YieldFunctionDescriptor>(name);
 		}
 
 		EventDescriptor* find_event_in_hierarchy(const char* name) const
 		{
-			return find_in_hierarchy<EventDescriptor>(name);
+			return find_descriptor<EventDescriptor>(name);
 		}
 
 		CallbackDescriptor* find_callback_in_hierarchy(const char* name) const
 		{
-			return find_in_hierarchy<CallbackDescriptor>(name);
+			return find_descriptor<CallbackDescriptor>(name);
 		}
 
 		bool operator==(const ClassDescriptor& other) const

@@ -15,19 +15,18 @@ namespace RBX
 
 	class Instance : public Object
 	{
-		std::byte pad_0048[0x30];
+		std::byte pad_0048[0x40];
 
 	public:
 		Instance* parent;
+		// shared_ptr causes some crashes because has invalid reference count TODO: fix it later
+		std::shared_ptr<std::vector<std::shared_ptr<Instance>>> children;
 
 	private:
-		std::byte pad_0058[0x20];
+		std::byte pad_0058[0x28];
 
 	public:
 		std::string_view name;
-
-		// shared_ptr causes some crashes because has invalid reference count TODO: fix it later
-		std::shared_ptr<std::vector<std::shared_ptr<Instance>>> children;
 
 		template<typename T = Instance>
 		T* as()

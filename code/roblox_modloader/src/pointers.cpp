@@ -164,7 +164,21 @@ constexpr auto pointers::get_roblox_batch()
             [](const memory::handle ptr) {
                 g_pointers->m_roblox_pointers.instance_bridge_push = ptr.as<functions::instance_bridge_push>();
             },
-        }
+        },
+		{
+			"DESCRIPTOR_LOOKUP",
+			"48 83 EC 18 ? ? ? 4C 8B D9 75",
+			[](const memory::handle ptr) {
+				g_pointers->m_roblox_pointers.descriptor_lookup = ptr.as<functions::descriptor_lookup>();
+			}
+		},
+		{
+			"GET_STRING_ATOM",
+			"48 89 5C 24 ? 57 48 83 EC 20 48 8B 1D ? ? ? ? 48 8B F9 48 85 DB",
+			[](const memory::handle ptr) {
+				g_pointers->m_roblox_pointers.get_string_atom = ptr.as<functions::get_string_atom>();
+			}
+		}
     >();
 
 	// clang-format on
@@ -176,7 +190,7 @@ pointers::pointers()
 {
 	g_pointers = this;
 
-	const auto roblox_region            = memory::module("RobloxStudioBeta.exe");
+	const auto roblox_region = memory::module("RobloxStudioBeta.exe");
 	const auto [m_roblox_batch, m_hash] = get_roblox_batch();
 
 	constexpr cstxpr_str roblox_batch_name{"roblox"};
