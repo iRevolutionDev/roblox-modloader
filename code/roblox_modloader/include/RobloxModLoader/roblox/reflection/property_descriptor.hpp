@@ -20,21 +20,21 @@ namespace RBX::Reflection
 
 		enum Functionality : unsigned
 		{
-			STANDARD              = 1 + 2 + 4 + 8 + 16, // isPublic, canReplicate, canXmlRead, canXmlWrite, isScriptable
-			NO_XML_WRITE          = 1 + 2 + 4 + 0 + 16, // isPublic, canReplicate, canXmlRead,              isScriptable
-			UI                    = 1 + 0 + 4 + 0 + 16, // isPublic,              canXmlRead,              isScriptable
-			SCRIPTING             = 1 + 2 + 0 + 0 + 16, // isPublic, canReplicate,                         isScriptable
-			STREAMING             = 0 + 2 + 4 + 8 + 0,  //           canReplicate, canXmlRead, canXmlWrite
-			CLUSTER               = 0 + 0 + 4 + 8 + 0,  //                         canXmlRead, canXmlWrite
-			LEGACY                = 0 + 0 + 4 + 0 + 0,  //                         canXmlRead
-			REPLICATE_ONLY        = 0 + 2 + 0 + 0 + 0,  //           canReplicate
-			LEGACY_SCRIPTING      = 0 + 0 + 4 + 0 + 16, //                         canXmlRead,              isScriptable
-			HIDDEN_SCRIPTING      = 0 + 0 + 0 + 0 + 16, //                                                  isScriptable
-			PUBLIC_SERIALIZED     = 1 + 0 + 4 + 8 + 0,  // isPublic,              canXmlRead, canXmlWrite
-			REPLICATE_CLONE       = 0 + 2 + 0 + 0 + 0 + 32, //        canReplicate,                        alwaysClone
+			STANDARD = 1 + 2 + 4 + 8 + 16,              // isPublic, canReplicate, canXmlRead, canXmlWrite, isScriptable
+			NO_XML_WRITE = 1 + 2 + 4 + 0 + 16,          // isPublic, canReplicate, canXmlRead,              isScriptable
+			UI = 1 + 0 + 4 + 0 + 16,                    // isPublic,              canXmlRead,              isScriptable
+			SCRIPTING = 1 + 2 + 0 + 0 + 16,             // isPublic, canReplicate,                         isScriptable
+			STREAMING = 0 + 2 + 4 + 8 + 0,              //           canReplicate, canXmlRead, canXmlWrite
+			CLUSTER = 0 + 0 + 4 + 8 + 0,                //                         canXmlRead, canXmlWrite
+			LEGACY = 0 + 0 + 4 + 0 + 0,                 //                         canXmlRead
+			REPLICATE_ONLY = 0 + 2 + 0 + 0 + 0,         //           canReplicate
+			LEGACY_SCRIPTING = 0 + 0 + 4 + 0 + 16,      //                         canXmlRead,              isScriptable
+			HIDDEN_SCRIPTING = 0 + 0 + 0 + 0 + 16,      //                                                  isScriptable
+			PUBLIC_SERIALIZED = 1 + 0 + 4 + 8 + 0,      // isPublic,              canXmlRead, canXmlWrite
+			REPLICATE_CLONE = 0 + 2 + 0 + 0 + 0 + 32,   //        canReplicate,                        alwaysClone
 			STANDARD_NO_REPLICATE = 1 + 0 + 4 + 8 + 16, // isPublic,              canXmlRead, canXmlWrite,  isScriptable
 			STANDARD_NO_SCRIPTING = 1 + 2 + 4 + 8 + 0,  // isPublic, canReplicate, canXmlRead, canXmlWrite
-			PUBLIC_REPLICATE      = 1 + 2 + 0 + 0 + 0,  // isPublic, canReplicate
+			PUBLIC_REPLICATE = 1 + 2 + 0 + 0 + 0,       // isPublic, canReplicate
 		};
 
 	private:
@@ -99,47 +99,47 @@ namespace RBX::Reflection
 
 		virtual bool is_read_only() const = 0;
 
-		virtual bool is_write_only() const        = 0;
+		virtual bool is_write_only() const = 0;
 		virtual bool has_variant_accessor() const = 0;
-		virtual bool can_interpolate() const      = 0;
+		virtual bool can_interpolate() const = 0;
 
 		virtual void get_from_variant_accessor(DescribedBase* instance, Variant& out) const = 0;
 
-		virtual void get_from_variant_accessor(const DescribedBase* instance, Variant& out) const  = 0;
+		virtual void get_from_variant_accessor(const DescribedBase* instance, Variant& out) const = 0;
 		virtual void set_via_variant_accessor(DescribedBase* instance, const Variant& value) const = 0;
 
 		virtual int get_data_size(const DescribedBase* instance) const = 0;
 
-		virtual int _vt09_unknown_() const  = 0;
+		virtual int _vt09_unknown_() const = 0;
 		virtual bool _vt10_unknown_() const = 0;
 		virtual bool _vt11_unknown_() const = 0;
-		virtual int _vt12_unknown_() const  = 0;
+		virtual int _vt12_unknown_() const = 0;
 		virtual void _vt13_unknown_() const = 0;
 
 		virtual bool equal_values(const DescribedBase* a, const DescribedBase* b) const = 0;
 
 		virtual bool equals_typed_value(const DescribedBase* instance) const = 0;
 
-		virtual void get_variant(const DescribedBase* instance, Variant& out) const       = 0;
-		virtual void get_variant_xml(const DescribedBase* instance, Variant& out) const   = 0;
-		virtual void set_variant(DescribedBase* instance, const Variant& value) const     = 0;
+		virtual void get_variant(const DescribedBase* instance, Variant& out) const = 0;
+		virtual void get_variant_xml(const DescribedBase* instance, Variant& out) const = 0;
+		virtual void set_variant(DescribedBase* instance, const Variant& value) const = 0;
 		virtual void set_variant_xml(DescribedBase* instance, const Variant& value) const = 0;
 
 		virtual void copy_value(const DescribedBase* source, DescribedBase* destination) const = 0;
 
 		virtual int get_raw_data_size(const DescribedBase* instance) const = 0;
-		virtual bool is_xml_serializable() const                           = 0;
-		virtual bool has_string_value() const                              = 0;
+		virtual bool is_xml_serializable() const = 0;
+		virtual bool has_string_value() const = 0;
 		virtual Name get_string_value(const DescribedBase* instance) const;
 		virtual bool set_string_value(DescribedBase* instance, const std::string& text) const;
 		virtual bool is_type(const Type& type) const = 0;
 
-		virtual void notify_xml_change(const DescribedBase* instance) const               = 0;
-		virtual void _vt28_unknown_() const                                               = 0;
+		virtual void notify_xml_change(const DescribedBase* instance) const = 0;
+		virtual void _vt28_unknown_() const = 0;
 		virtual void serialize(DescribedBase* instance, unsigned format, void* ctx) const = 0;
 
 		virtual void lua_get(lua_State* L, const DescribedBase* instance) const = 0;
-		virtual void lua_set(lua_State* L, DescribedBase* instance) const       = 0;
+		virtual void lua_set(lua_State* L, DescribedBase* instance) const = 0;
 	};
 
 	template<typename V>
@@ -149,37 +149,37 @@ namespace RBX::Reflection
 		class GetSet
 		{
 		public:
-			virtual ~GetSet()                                                               = default;
-			[[nodiscard]] virtual bool is_read_only() const                                 = 0;
-			[[nodiscard]] virtual bool is_write_only() const                                = 0;
-			virtual V get(const DescribedBase* instance) const                              = 0;
-			virtual void set(DescribedBase* instance, const V& value) const                 = 0;
+			virtual ~GetSet() = default;
+			[[nodiscard]] virtual bool is_read_only() const = 0;
+			[[nodiscard]] virtual bool is_write_only() const = 0;
+			virtual V get(const DescribedBase* instance) const = 0;
+			virtual void set(DescribedBase* instance, const V& value) const = 0;
 			virtual bool equal_values(const DescribedBase* a, const DescribedBase* b) const = 0;
-			virtual bool equals_value(const DescribedBase* instance, const V& value) const  = 0;
+			virtual bool equals_value(const DescribedBase* instance, const V& value) const = 0;
 		};
 
 		class VariantAccessor
 		{
 		public:
-			virtual ~VariantAccessor()                                  = default;
-			virtual V get(DescribedBase* instance) const                = 0;
-			virtual V get(const DescribedBase* instance) const          = 0;
+			virtual ~VariantAccessor() = default;
+			virtual V get(DescribedBase* instance) const = 0;
+			virtual V get(const DescribedBase* instance) const = 0;
 			virtual void set(DescribedBase* instance, const V& v) const = 0;
-			virtual int data_size(const DescribedBase* instance) const  = 0;
-			virtual bool feature_check() const                          = 0;
+			virtual int data_size(const DescribedBase* instance) const = 0;
+			virtual bool feature_check() const = 0;
 		};
 
 		class XmlLuaAccessor
 		{
 		public:
-			virtual ~XmlLuaAccessor()                                                      = default;
-			virtual bool capability_check() const                                          = 0;
-			virtual void notify(const DescribedBase* instance) const                       = 0;
+			virtual ~XmlLuaAccessor() = default;
+			virtual bool capability_check() const = 0;
+			virtual void notify(const DescribedBase* instance) const = 0;
 			virtual void serialize(DescribedBase* instance, unsigned fmt, void* ctx) const = 0;
 		};
 
 	private:
-		char padding[0x20];
+		char padding[0x18];
 
 	protected:
 		std::unique_ptr<GetSet> get_set;
@@ -280,7 +280,7 @@ namespace RBX::Reflection
 		inline Property& operator=(const Property& other)
 		{
 			this->descriptor = other.descriptor;
-			this->instance   = other.instance;
+			this->instance = other.instance;
 			return *this;
 		}
 
@@ -316,8 +316,8 @@ namespace RBX::Reflection
 		typedef PropertyDescriptor Super;
 
 	public:
-		virtual DescribedBase* get_ref_value(const DescribedBase* instance) const              = 0;
-		virtual void set_ref_value(DescribedBase* instance, DescribedBase* value) const        = 0;
+		virtual DescribedBase* get_ref_value(const DescribedBase* instance) const = 0;
+		virtual void set_ref_value(DescribedBase* instance, DescribedBase* value) const = 0;
 		virtual void set_ref_value_unsafe(DescribedBase* instance, DescribedBase* value) const = 0;
 
 		static bool has_string_value()
