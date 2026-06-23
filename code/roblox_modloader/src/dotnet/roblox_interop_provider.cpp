@@ -4,6 +4,7 @@
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "dotnet_arguments.hpp"
 #include "dotnet_event_descriptor.hpp"
+#include "dotnet_variant.hpp"
 
 #include <RobloxModLoader/roblox/instance.hpp>
 #include <RobloxModLoader/roblox/reflection/function_descriptor.hpp>
@@ -47,14 +48,12 @@ namespace rml::dotnet
 		};
 
 		table.reflection_get_property = [](const uintptr_t instance_ptr, const char* property_name, InteropVariant* out_value) {
-			if (out_value)
-			{
-				out_value->tag = InteropValueTag::Null;
-				out_value->as_uint64 = 0;
-			}
+			if (!out_value)
+				return;
+			*out_value = null_value();
 
 			const auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
-			if (!instance || !out_value)
+			if (!instance)
 				return;
 
 			const auto property_descriptor = instance->get_descriptor().find_property_in_hierarchy(property_name);
@@ -63,23 +62,19 @@ namespace rml::dotnet
 
 			if (property_descriptor->type.name == "string")
 			{
-				const auto value = property_descriptor->get_string_value(instance);
-				out_value->tag = InteropValueTag::String;
-				out_value->as_string = strdup(value.c_str());
+				*out_value = string_value(property_descriptor->get_string_value(instance).c_str());
 				return;
 			}
 
 			if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
 			{
 				const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
-				out_value->tag = InteropValueTag::Instance;
-				out_value->as_instance = reinterpret_cast<uintptr_t>(ref_desc->get_ref_value(instance));
+				*out_value = instance_value(reinterpret_cast<uintptr_t>(ref_desc->get_ref_value(instance)));
 				return;
 			}
 
 			const auto property = RBX::Property(*property_descriptor, instance);
-			out_value->tag = InteropValueTag::Int64;
-			out_value->as_uint64 = property.get<uint64_t>();
+			*out_value = int64_value(static_cast<int64_t>(property.get<uint64_t>()));
 		};
 
 		table.reflection_set_property = [](const uintptr_t instance_ptr, const char* property_name, const InteropVariant* value) {
