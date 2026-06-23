@@ -4,6 +4,9 @@
 #include "dotnet_variant.hpp"
 #include "interop_registry.hpp"
 
+#include <deque>
+#include <string>
+
 namespace rml::dotnet
 {
 	class DotNetArguments final : public RBX::Reflection::FunctionDescriptor::Arguments
@@ -11,6 +14,8 @@ namespace rml::dotnet
 		uint64_t m_return_value_hi;
 		const InteropVariant* m_args;
 		uint32_t m_count;
+
+		mutable std::deque<std::string> m_string_storage;
 
 	public:
 		DotNetArguments(const InteropVariant* args, const uint32_t count) noexcept :
@@ -108,12 +113,17 @@ namespace rml::dotnet
 			return true;
 		}
 
-		[[nodiscard]] void* get([[maybe_unused]] const int index) const override
+		[[nodiscard]] void* get(const int index) const override
 		{
 			if (!is_valid(index))
 				return nullptr;
-			
-			return reinterpret_cast<void*>(m_args[index - 1].as_instance);
+
+			const auto& v = m_args[index - 1];
+
+			if (v.tag == InteropValueTag::String)
+				return &m_string_storage.emplace_back(v.as_string ? v.as_string : "");
+
+			return reinterpret_cast<void*>(v.as_uint64);
 		}
 
 	private:

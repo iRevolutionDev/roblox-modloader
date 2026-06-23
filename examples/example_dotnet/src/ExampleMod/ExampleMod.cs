@@ -35,6 +35,9 @@ public sealed class ExampleMod : IMod, IDataModelAware
             Console.WriteLine($"[DOTNET]: PlaceId: {placeId}");
         });
 
+        var workspace = dataModel.GetService("Workspace");
+        Console.WriteLine($"[DOTNET]: Workspace name: {workspace?.Name ?? "null"}");
+
         if (dataModelType == DataModelType.Edit)
         {
             dataModel.Workspace.DescendantAdded += instance =>

@@ -130,7 +130,7 @@ namespace rml::dotnet
 
 	inline void write_return_value(const RBX::Reflection::Type* type, const uint64_t ret, [[maybe_unused]] const uint64_t ret_slot, const uintptr_t ret_slot_addr, InteropVariant& out) noexcept
 	{
-		if (!type || !ret)
+		if (!type)
 		{
 			out = null_value();
 			return;
@@ -170,6 +170,18 @@ namespace rml::dotnet
 			*count_field = written;
 
 			out.as_instance = reinterpret_cast<uintptr_t>(buf);
+			return;
+		}
+		
+		if (type->name == "Instance" || RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*type))
+		{
+			out = instance_value(*reinterpret_cast<const uintptr_t*>(ret_slot_addr));
+			return;
+		}
+
+		if (!ret)
+		{
+			out = null_value();
 			return;
 		}
 
