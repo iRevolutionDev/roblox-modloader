@@ -22,8 +22,9 @@ namespace RBX::Reflection
 		virtual void reserved_slot_3()
 		{
 		}
-		virtual void build_args(EventArguments& out)
+		virtual EventArguments* build_args(EventArguments& out)
 		{
+			return ::new (&out) EventArguments();
 		}
 
 		virtual void reserved_slot_5()
