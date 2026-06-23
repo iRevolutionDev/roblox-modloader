@@ -4,6 +4,7 @@
 #include "dotnet_variant.hpp"
 #include "interop_registry.hpp"
 
+#include <cstddef>
 #include <deque>
 #include <string>
 
@@ -11,7 +12,7 @@ namespace rml::dotnet
 {
 	class DotNetArguments final : public RBX::Reflection::FunctionDescriptor::Arguments
 	{
-		uint64_t m_return_value_hi;
+		std::byte m_return_value_tail[56]{};
 		const InteropVariant* m_args;
 		uint32_t m_count;
 
@@ -19,7 +20,6 @@ namespace rml::dotnet
 
 	public:
 		DotNetArguments(const InteropVariant* args, const uint32_t count) noexcept :
-		    m_return_value_hi(0),
 		    m_args(args),
 		    m_count(count)
 		{

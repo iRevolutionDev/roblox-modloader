@@ -139,43 +139,48 @@ namespace rml::dotnet
 		if (type->name == "Instances")
 		{
 			out.tag = InteropValueTag::InstanceArray;
+			out.as_instance = 0;
 
-			const auto* instances_sptr = reinterpret_cast<const std::shared_ptr<RBX::Instances>*>(ret_slot_addr);
-			if (!instances_sptr || !*instances_sptr || (*instances_sptr)->empty())
+			auto* slot = reinterpret_cast<std::shared_ptr<RBX::Instances>*>(ret_slot_addr);
+			if (const auto& instances_ptr = *slot; instances_ptr && !instances_ptr->empty())
 			{
-				out.as_instance = 0;
-				return;
+				const auto& instances = *instances_ptr;
+				const auto count = static_cast<uint32_t>(instances.size());
+				const auto buf_size = sizeof(uint64_t) + static_cast<size_t>(count) * sizeof(uintptr_t);
+
+				if (auto* buf = static_cast<uint8_t*>(std::malloc(buf_size)))
+				{
+					auto* count_field = reinterpret_cast<uint32_t*>(buf);
+					auto* handles = reinterpret_cast<uintptr_t*>(buf + sizeof(uint64_t));
+					uint32_t written = 0;
+
+					for (const auto& element : instances)
+					{
+						if (const auto handle = reinterpret_cast<uintptr_t>(element.get()))
+							handles[written++] = handle;
+					}
+					*count_field = written;
+					out.as_instance = reinterpret_cast<uintptr_t>(buf);
+				}
 			}
 
-			const auto& instances = **instances_sptr;
-			const auto count = static_cast<uint32_t>(instances.size());
-
-			const auto buf_size = sizeof(uint64_t) + static_cast<size_t>(count) * sizeof(uintptr_t);
-			auto* buf = static_cast<uint8_t*>(std::malloc(buf_size));
-			if (!buf)
-			{
-				out.as_instance = 0;
-				return;
-			}
-
-			auto* count_field = reinterpret_cast<uint32_t*>(buf);
-			auto* handles = reinterpret_cast<uintptr_t*>(buf + sizeof(uint64_t));
-			uint32_t written = 0;
-
-			for (const auto& element : instances)
-			{
-				if (const auto handle = reinterpret_cast<uintptr_t>(element.get()))
-					handles[written++] = handle;
-			}
-			*count_field = written;
-
-			out.as_instance = reinterpret_cast<uintptr_t>(buf);
+			std::destroy_at(slot);
 			return;
 		}
-		
+
 		if (type->name == "Instance" || RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*type))
 		{
-			out = instance_value(*reinterpret_cast<const uintptr_t*>(ret_slot_addr));
+			auto* slot = reinterpret_cast<std::shared_ptr<RBX::Instance>*>(ret_slot_addr);
+			out = instance_value(reinterpret_cast<uintptr_t>(slot->get()));
+			std::destroy_at(slot);
+			return;
+		}
+
+		if (type->name == "string")
+		{
+			auto* slot = reinterpret_cast<std::string*>(ret_slot_addr);
+			out = string_value(slot->c_str());
+			std::destroy_at(slot);
 			return;
 		}
 

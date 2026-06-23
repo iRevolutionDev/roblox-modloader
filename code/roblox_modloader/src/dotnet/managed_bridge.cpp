@@ -78,8 +78,10 @@ std::expected<void, std::string> ManagedBridge::notify_data_model_changed(uint64
 
 	std::expected<void, std::string> ManagedBridge::unload_mod(const std::filesystem::path& path) const
 	{
-		const auto p = path.string();
+		if (!m_unload_mod)
+			return std::unexpected("Bridge not initialized");
 
+		const auto p = path.string();
 		m_unload_mod(p.c_str());
 
 		return {};

@@ -89,6 +89,13 @@ namespace rml::dotnet
 			if (!property_descriptor)
 				return;
 
+			if (property_descriptor->type.name == "string")
+			{
+				if (value->tag == InteropValueTag::String && value->as_string)
+					property_descriptor->set_string_value(instance, value->as_string);
+				return;
+			}
+
 			if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
 			{
 				const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);

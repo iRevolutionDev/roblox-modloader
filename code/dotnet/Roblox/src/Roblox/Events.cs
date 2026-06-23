@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Loader;
 
 using RML.Interop;
 
@@ -12,6 +13,8 @@ internal static unsafe class EventManager
     private static readonly ConcurrentDictionary<(nuint Instance, string Event), Subscription> Subscriptions = new();
 
     private static readonly object SyncRoot = new();
+
+    private static readonly HashSet<AssemblyLoadContext> HookedContexts = new();
 
     public static void Add(nuint instanceHandle, string eventName, Delegate handler)
     {
@@ -46,6 +49,7 @@ internal static unsafe class EventManager
             }
 
             subscription.Handlers.Add(handler);
+            TrackHandlerContext(handler);
         }
     }
 
@@ -109,19 +113,33 @@ internal static unsafe class EventManager
         }
     }
 
+    private static readonly ConcurrentDictionary<MethodInfo, Type[]> ParameterTypeCache = new();
+
+    private static Type[] GetParameterTypes(MethodInfo method)
+        => ParameterTypeCache.GetOrAdd(method, static m =>
+        {
+            ParameterInfo[] ps = m.GetParameters();
+            var types = new Type[ps.Length];
+            for (var i = 0; i < ps.Length; i++)
+            {
+                types[i] = ps[i].ParameterType;
+            }
+
+            return types;
+        });
+
     private static void Dispatch(Delegate handler, InteropVariant* args, uint argCount)
     {
         try
         {
-            ParameterInfo[] parameters = handler.Method.GetParameters();
-            var managedArgs = new object?[parameters.Length];
+            Type[] parameterTypes = GetParameterTypes(handler.Method);
+            var managedArgs = new object?[parameterTypes.Length];
 
-            for (var i = 0; i < parameters.Length; i++)
+            for (var i = 0; i < parameterTypes.Length; i++)
             {
-                Type parameterType = parameters[i].ParameterType;
                 managedArgs[i] = i < argCount
-                    ? Reflection.ConvertVariant(args[i], parameterType)
-                    : DefaultValue(parameterType);
+                    ? Reflection.ConvertVariant(args[i], parameterTypes[i])
+                    : DefaultValue(parameterTypes[i]);
             }
 
             handler.DynamicInvoke(managedArgs);
@@ -134,6 +152,57 @@ internal static unsafe class EventManager
 
     private static object? DefaultValue(Type type)
         => type.IsValueType ? RuntimeHelpers.GetUninitializedObject(type) : null;
+
+    private static void TrackHandlerContext(Delegate handler)
+    {
+        Assembly? assembly = handler.Method.DeclaringType?.Assembly;
+        if (assembly is null)
+        {
+            return;
+        }
+
+        AssemblyLoadContext? context = AssemblyLoadContext.GetLoadContext(assembly);
+
+        if (context is null || !context.IsCollectible)
+        {
+            return;
+        }
+
+        if (HookedContexts.Add(context))
+        {
+            context.Unloading += OnContextUnloading;
+        }
+    }
+
+    private static void OnContextUnloading(AssemblyLoadContext context)
+    {
+        lock (SyncRoot)
+        {
+            RemoveForContext(context);
+            HookedContexts.Remove(context);
+        }
+    }
+
+    private static void RemoveForContext(AssemblyLoadContext context)
+    {
+        foreach ((var key, Subscription subscription) in Subscriptions.ToArray())
+        {
+            subscription.Handlers.RemoveAll(h =>
+            {
+                Assembly? assembly = h.Method.DeclaringType?.Assembly;
+                return assembly is not null && AssemblyLoadContext.GetLoadContext(assembly) == context;
+            });
+
+            if (subscription.Handlers.Count != 0)
+            {
+                continue;
+            }
+
+            Subscriptions.TryRemove(key, out _);
+            Interop.Reflection.EventDisconnect(subscription.NativeHandle);
+            subscription.Self.Free();
+        }
+    }
 
     private sealed class Subscription(nuint instanceHandle, string eventName)
     {
