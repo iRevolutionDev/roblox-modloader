@@ -245,6 +245,8 @@ namespace exception_filter
 		const DWORD code = exception_pointers->ExceptionRecord->ExceptionCode;
 		constexpr DWORD NON_FATAL_CODES[] = {
 		    0xE06D7363,
+		    0xE0434352,
+		    0x04242420,
 		    EXCEPTION_BREAKPOINT,
 		    EXCEPTION_SINGLE_STEP,
 		    DBG_PRINTEXCEPTION_C,
