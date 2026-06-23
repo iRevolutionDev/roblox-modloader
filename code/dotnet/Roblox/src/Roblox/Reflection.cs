@@ -1,4 +1,3 @@
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -141,169 +140,160 @@ public static unsafe class Reflection
 
     internal static object? ConvertResult(InteropVariant variant, Type t, bool freeNativeResources)
     {
-        if (variant.Tag == InteropVariant.Tags.Null)
+        while (true)
         {
-            return null;
-        }
-
-        if (t == typeof(string))
-        {
-            if (variant.Tag != InteropVariant.Tags.String)
+            if (variant.Tag == InteropVariant.Tags.Null)
             {
                 return null;
             }
 
-            var ptr = new IntPtr((long)variant.AsPointer);
-            if (ptr == IntPtr.Zero)
+            if (t == typeof(string))
             {
-                return null;
-            }
-
-            var s = Marshal.PtrToStringUTF8(ptr);
-            if (freeNativeResources)
-            {
-                Interop.FreeNativeString(ptr);
-            }
-
-            return s;
-        }
-
-        if (variant.Tag == InteropVariant.Tags.InstanceArray)
-        {
-            if (variant.AsPointer == 0)
-            {
-                return null;
-            }
-
-            var buf = (byte*)variant.AsPointer;
-            var count = *(uint*)buf;
-            var handles = (nuint*)(buf + sizeof(ulong));
-
-            var list = new List<Instance>((int)count);
-            for (var i = 0u; i < count; i++)
-            {
-                var handle = handles[i];
-                if (handle == 0)
+                if (variant.Tag != InteropVariant.Tags.String)
                 {
-                    continue;
+                    return null;
                 }
 
-                list.Add(new Instance(handle));
+                var ptr = new IntPtr((long)variant.AsPointer);
+                if (ptr == IntPtr.Zero)
+                {
+                    return null;
+                }
+
+                var s = Marshal.PtrToStringUTF8(ptr);
+                if (freeNativeResources)
+                {
+                    Interop.FreeNativeString(ptr);
+                }
+
+                return s;
             }
 
-            if (freeNativeResources)
+            if (variant.Tag == InteropVariant.Tags.InstanceArray)
             {
-                Interop.FreeNativeArray((nint)variant.AsPointer);
-            }
+                if (variant.AsPointer == 0)
+                {
+                    return null;
+                }
 
-            if (t == typeof(Instance[]) || (t.IsArray && t.GetElementType() == typeof(Instance)))
-            {
-                return list.ToArray();
-            }
+                var buf = (byte*)variant.AsPointer;
+                var count = *(uint*)buf;
+                var handles = (nuint*)(buf + sizeof(ulong));
 
-            if (t.IsAssignableFrom(typeof(List<Instance>)))
-            {
-                return list;
-            }
+                var list = new List<Instance>((int)count);
+                for (var i = 0u; i < count; i++)
+                {
+                    var handle = handles[i];
+                    if (handle == 0)
+                    {
+                        continue;
+                    }
 
-            return null;
-        }
+                    list.Add((Instance)RobloxTypeRegistry.Create(handle));
+                }
 
-        if (typeof(Object).IsAssignableFrom(t))
-        {
-            if (variant.Tag != InteropVariant.Tags.Instance)
-            {
+                if (freeNativeResources)
+                {
+                    Interop.FreeNativeArray((nint)variant.AsPointer);
+                }
+
+                if (t == typeof(Instance[]) || (t.IsArray && t.GetElementType() == typeof(Instance)))
+                {
+                    return list.ToArray();
+                }
+
+                if (t.IsAssignableFrom(typeof(List<Instance>)))
+                {
+                    return list;
+                }
+
                 return null;
             }
 
-            var handle = variant.AsPointer;
-            if (handle == 0)
+            if (typeof(Object).IsAssignableFrom(t))
             {
-                return null;
+                if (variant.Tag != InteropVariant.Tags.Instance)
+                {
+                    return null;
+                }
+
+                var handle = variant.AsPointer;
+                if (handle == 0)
+                {
+                    return null;
+                }
+
+                Object instance = RobloxTypeRegistry.Create(handle);
+                return t.IsInstanceOfType(instance) ? instance : RobloxTypeRegistry.CreateAs(t, handle);
             }
 
-            if (t == typeof(Object))
+            if (t == typeof(bool))
             {
-                return new Object(handle);
+                return variant.Tag == InteropVariant.Tags.Bool
+                    ? variant.AsBool
+                    : variant.AsUInt64 != 0;
             }
 
-            MethodInfo? fromHandle = t.GetMethod("FromHandle",
-                BindingFlags.Public | BindingFlags.Static,
-                null,
-                new[] { typeof(nuint) },
-                null);
-
-            if (fromHandle != null)
+            if (t == typeof(double))
             {
-                return fromHandle.Invoke(null, new object[] { handle });
+                if (variant.Tag == InteropVariant.Tags.Double)
+                {
+                    return variant.AsDouble;
+                }
+
+                if (variant.Tag == InteropVariant.Tags.Float)
+                {
+                    return (double)variant.AsFloat;
+                }
+
+                return BitConverter.Int64BitsToDouble(variant.AsInt64);
             }
 
-            return new Object(handle);
-        }
-
-        if (t == typeof(bool))
-        {
-            return variant.Tag == InteropVariant.Tags.Bool
-                ? variant.AsBool
-                : variant.AsUInt64 != 0;
-        }
-
-        if (t == typeof(double))
-        {
-            if (variant.Tag == InteropVariant.Tags.Double)
+            if (t == typeof(float))
             {
-                return variant.AsDouble;
+                if (variant.Tag == InteropVariant.Tags.Float)
+                {
+                    return variant.AsFloat;
+                }
+
+                return BitConverter.Int32BitsToSingle((int)(uint)variant.AsUInt64);
             }
 
-            if (variant.Tag == InteropVariant.Tags.Float)
+            if (t.IsEnum)
             {
-                return (double)variant.AsFloat;
+                var underlying = Convert.ChangeType(variant.AsUInt64, System.Enum.GetUnderlyingType(t));
+                return System.Enum.ToObject(t, underlying);
             }
 
-            return BitConverter.Int64BitsToDouble(variant.AsInt64);
-        }
-
-        if (t == typeof(float))
-        {
-            if (variant.Tag == InteropVariant.Tags.Float)
+            if (t == typeof(object))
             {
-                return variant.AsFloat;
+                return variant.AsUInt64;
             }
 
-            return BitConverter.Int32BitsToSingle((int)(uint)variant.AsUInt64);
-        }
+            if (t == typeof(byte) || t == typeof(sbyte) || t == typeof(short) || t == typeof(ushort) ||
+                t == typeof(int) || t == typeof(uint) || t == typeof(long) || t == typeof(ulong) || t == typeof(nint) ||
+                t == typeof(nuint))
+            {
+                return Convert.ChangeType(variant.AsUInt64, t);
+            }
 
-        if (t.IsEnum)
-        {
-            var underlying = Convert.ChangeType(variant.AsUInt64, System.Enum.GetUnderlyingType(t));
-            return System.Enum.ToObject(t, underlying);
-        }
+            Type? nullableUnderlying = Nullable.GetUnderlyingType(t);
+            if (nullableUnderlying != null)
+            {
+                t = nullableUnderlying;
+                continue;
+            }
 
-        if (t == typeof(object))
-        {
-            return variant.AsUInt64;
-        }
+            try
+            {
+                return Convert.ChangeType(variant.AsUInt64, t);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidCastException($"Cannot convert native result to {t}", ex);
+            }
 
-        if (t == typeof(byte) || t == typeof(sbyte) || t == typeof(short) || t == typeof(ushort) ||
-            t == typeof(int) || t == typeof(uint) || t == typeof(long) || t == typeof(ulong) ||
-            t == typeof(nint) || t == typeof(nuint))
-        {
-            return Convert.ChangeType(variant.AsUInt64, t);
-        }
-
-        Type? nullableUnderlying = Nullable.GetUnderlyingType(t);
-        if (nullableUnderlying != null)
-        {
-            return ConvertResult(variant, nullableUnderlying, freeNativeResources);
-        }
-
-        try
-        {
-            return Convert.ChangeType(variant.AsUInt64, t);
-        }
-        catch (Exception ex)
-        {
-            throw new InvalidCastException($"Cannot convert native result to {t}", ex);
+            break;
         }
     }
 }

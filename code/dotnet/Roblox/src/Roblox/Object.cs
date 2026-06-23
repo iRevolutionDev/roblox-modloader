@@ -32,4 +32,12 @@ public partial class Object
 
     protected internal void RemoveEventHandler(string eventName, Delegate handler)
         => EventManager.Remove(Handle, eventName, handler);
+
+    public bool IsA<T>() where T : Object => this is T;
+
+    public T? As<T>() where T : Object => this as T;
+
+    public T Cast<T>() where T : Object
+        => this as T ?? throw new InvalidCastException(
+            $"Instance of type '{GetType().Name}' is not a '{typeof(T).Name}'.");
 }
