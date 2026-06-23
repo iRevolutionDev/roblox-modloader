@@ -233,27 +233,27 @@ namespace RBX::Reflection
 			return reinterpret_cast<T*>(*desc);
 		}
 
-		PropertyDescriptor* find_property_in_hierarchy(const char* name) const
+		PropertyDescriptor* find_property(const char* name) const
 		{
 			return find_descriptor<PropertyDescriptor>(name);
 		}
 
-		FunctionDescriptor* find_function_in_hierarchy(const char* name) const
+		FunctionDescriptor* find_function(const char* name) const
 		{
 			return find_descriptor<FunctionDescriptor>(name);
 		}
 
-		YieldFunctionDescriptor* find_yield_function_in_hierarchy(const char* name) const
+		YieldFunctionDescriptor* find_yield_function(const char* name) const
 		{
 			return find_descriptor<YieldFunctionDescriptor>(name);
 		}
 
-		EventDescriptor* find_event_in_hierarchy(const char* name) const
+		EventDescriptor* find_event(const char* name) const
 		{
 			return find_descriptor<EventDescriptor>(name);
 		}
 
-		CallbackDescriptor* find_callback_in_hierarchy(const char* name) const
+		CallbackDescriptor* find_callback(const char* name) const
 		{
 			return find_descriptor<CallbackDescriptor>(name);
 		}

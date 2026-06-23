@@ -33,7 +33,7 @@ namespace rml::dotnet
 			if (!instance)
 				return;
 
-			const auto* descriptor = instance->get_descriptor().find_function_in_hierarchy(function_name);
+			const auto* descriptor = instance->get_descriptor().find_function(function_name);
 			if (!descriptor)
 				return;
 
@@ -56,7 +56,7 @@ namespace rml::dotnet
 			if (!instance)
 				return;
 
-			const auto property_descriptor = instance->get_descriptor().find_property_in_hierarchy(property_name);
+			const auto property_descriptor = instance->get_descriptor().find_property(property_name);
 			if (!property_descriptor)
 				return;
 
@@ -85,7 +85,7 @@ namespace rml::dotnet
 			if (!instance)
 				return;
 
-			const auto property_descriptor = instance->get_descriptor().find_property_in_hierarchy(property_name);
+			const auto property_descriptor = instance->get_descriptor().find_property(property_name);
 			if (!property_descriptor)
 				return;
 
@@ -110,7 +110,7 @@ namespace rml::dotnet
 			if (!instance)
 				return 0;
 
-			const auto* event_descriptor = instance->get_descriptor().find_event_in_hierarchy(event_name);
+			const auto* event_descriptor = instance->get_descriptor().find_event(event_name);
 			if (!event_descriptor)
 				return 0;
 
