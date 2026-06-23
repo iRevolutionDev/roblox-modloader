@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether or not the seat is usable. If set to true, the seat will act as a normal part.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Seat#Disabled"/>
         public bool Disabled
@@ -54,18 +53,6 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Seat#Sit"/>
         public object? Sit(Instance? humanoid)
             => global::Roblox.Reflection.Invoke<object?>(this, "Sit", humanoid);
-
-        /// <summary>
-        /// <c>Seat.RemoteCreateSeatWeld</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteCreateSeatWeld; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Seat.RemoteDestroySeatWeld</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteDestroySeatWeld; // TODO: native event binding
 
     }
 }

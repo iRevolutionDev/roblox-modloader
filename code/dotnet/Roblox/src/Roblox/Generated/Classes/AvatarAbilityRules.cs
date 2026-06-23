@@ -21,130 +21,78 @@ namespace Roblox
         public static AvatarAbilityRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarAbilityRules(handle);
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.CharacterControllerMode</c>
-        /// <para><b>Default:</b> <c>LegacyHumanoid</c></para>
-        /// </summary>
         public Enum.AvatarSettingsCharacterControllerMode CharacterControllerMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCharacterControllerMode>(this, "CharacterControllerMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCharacterControllerMode>(this, "CharacterControllerMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableClimbing</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableClimbing
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableClimbing");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableClimbing", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableCrouching</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableCrouching
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableCrouching");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableCrouching", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableFallingDown</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableFallingDown
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFallingDown");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableFallingDown", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableGettingUp</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableGettingUp
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableGettingUp");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableGettingUp", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableHolding</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableHolding
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableHolding");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableHolding", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableJumping</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableJumping
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableJumping");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableJumping", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableReaching</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableReaching
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableReaching");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableReaching", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableRunning</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableRunning
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableRunning");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableRunning", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableSitting</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableSitting
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSitting");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableSitting", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableSprinting</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableSprinting
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSprinting");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableSprinting", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableStrafing</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableStrafing
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableStrafing");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableStrafing", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAbilityRules.EnableSwimming</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EnableSwimming
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSwimming");

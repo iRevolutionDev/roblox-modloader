@@ -41,10 +41,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires immediately after a property of the object changes, with some limitations.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="property">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Object#Changed"/>
-        // public event Action? Changed; // TODO: native event binding
+        public event Action<string?>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
     }
 }

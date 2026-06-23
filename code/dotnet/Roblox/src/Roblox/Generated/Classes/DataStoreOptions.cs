@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the GlobalDataStore should work with all scopes.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreOptions#AllScopes"/>
         public bool AllScopes

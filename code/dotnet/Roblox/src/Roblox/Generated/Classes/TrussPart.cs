@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets what the truss looks like.
-        /// <para><b>Default:</b> <c>AlternatingSupports</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TrussPart#Style"/>
         public Enum.Style Style

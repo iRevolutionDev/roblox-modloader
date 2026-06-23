@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The constraint's axis alignment type.
-        /// <para><b>Default:</b> <c>AllAxes</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#AlignType"/>
         public Enum.AlignType AlignType
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The CFrame orientation with which the constraint will attempt to match the orientation of Attachment0.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#CFrame"/>
         public object? CFrame
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// A Vector3 world space location toward which the primary axis will attempt to align.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#LookAtPosition"/>
         public global::System.Numerics.Vector3 LookAtPosition
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum angular velocity the constraint can use to reach its goal.
-        /// <para><b>Default:</b> <c>INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#MaxAngularVelocity"/>
         public float MaxAngularVelocity
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum torque the constraint can use to reach its goal.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#MaxTorque"/>
         public float MaxTorque
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the constraint uses one or two attachments in calculating its goal.
-        /// <para><b>Default:</b> <c>TwoAttachment</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#Mode"/>
         public Enum.OrientationAlignmentMode Mode
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The direction of the goal's X axis, represented as a unit Vector3.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#PrimaryAxis"/>
         public global::System.Numerics.Vector3 PrimaryAxis
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the constraint's axes are affected by torque.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#PrimaryAxisOnly"/>
         public bool PrimaryAxisOnly
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the constraint applies torque only to Attachment0, or to both attachments in equal and opposite directions.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#ReactionTorqueEnabled"/>
         public bool ReactionTorqueEnabled
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how quickly the constraint reaches its goal. Higher values cause the attachment(s) to align more rapidly.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#Responsiveness"/>
         public float Responsiveness
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether torque is dependent on other properties, or if the physics solver reacts as quickly as possible to complete the alignment.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#RigidityEnabled"/>
         public bool RigidityEnabled
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// The direction of the goal's Y axis, represented as a unit Vector3.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#SecondaryAxis"/>
         public global::System.Numerics.Vector3 SecondaryAxis

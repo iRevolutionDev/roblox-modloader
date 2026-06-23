@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SyncScriptBuilder.CompileTarget</c>
-        /// <para><b>Default:</b> <c>CoreScript</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#CompileTarget"/>
         public Enum.CompileTarget CompileTarget
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SyncScriptBuilder.CoverageInfo</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#CoverageInfo"/>
         public bool CoverageInfo
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SyncScriptBuilder.DebugInfo</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#DebugInfo"/>
         public bool DebugInfo
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SyncScriptBuilder.PackAsSource</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#PackAsSource"/>
         public bool PackAsSource
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property should not be used for new work.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#RawBytecode"/>
         public bool RawBytecode

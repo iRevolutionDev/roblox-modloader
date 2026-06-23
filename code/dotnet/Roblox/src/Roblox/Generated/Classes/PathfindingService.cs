@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated, since the legacy pathfinding system using it has since been removed. Do not use it for new work.Sets the percent of a voxel has to be occupied to be considered empty. Defaults to 0.16.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService#EmptyCutoff"/>
         public float EmptyCutoff

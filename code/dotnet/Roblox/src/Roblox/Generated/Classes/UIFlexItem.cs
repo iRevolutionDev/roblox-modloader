@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// How the parent GuiObject grows or shrinks with available space in the flex layout container.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#FlexMode"/>
         public Enum.UIFlexMode FlexMode
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the amount the parent GuiObject grows relative to other items in the line. Applies only if FlexMode is set to UIFlexMode.Custom.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#GrowRatio"/>
         public float GrowRatio
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Cross-axis alignment of the specific parent GuiObject within the flex line.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#ItemLineAlignment"/>
         public Enum.ItemLineAlignment ItemLineAlignment
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the amount the parent GuiObject shrinks relative to other items in the line. Applies only if FlexMode is set to UIFlexMode.Custom.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#ShrinkRatio"/>
         public float ShrinkRatio

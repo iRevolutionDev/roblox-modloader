@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Image to draw for the adornment.
-        /// <para><b>Default:</b> <c>rbxasset://textures/SurfacesDefault.png</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageHandleAdornment#Image"/>
         public object? Image
@@ -44,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of the image in studs.
-        /// <para><b>Default:</b> <c>1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageHandleAdornment#Size"/>
         public global::System.Numerics.Vector2 Size

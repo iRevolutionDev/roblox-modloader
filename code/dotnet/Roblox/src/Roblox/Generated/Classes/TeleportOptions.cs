@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// A flag to indicate if a reserved server should be allocated and the players should then be teleported to this allocation.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportOptions#ShouldReserveServer"/>
         public bool ShouldReserveServer

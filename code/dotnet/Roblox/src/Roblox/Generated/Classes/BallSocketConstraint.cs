@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the BallSocketConstraint sets a limit on rotation based on UpperAngle.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the maximum frictional torque applied to keep its Attachments aligned.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#MaxFrictionTorque"/>
         public float MaxFrictionTorque
@@ -48,18 +46,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>BallSocketConstraint.MaxFrictionTorqueXml</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float MaxFrictionTorqueXml
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxFrictionTorqueXml");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "MaxFrictionTorqueXml", value);
-        }
-
-        /// <summary>
         /// The visualized radius of the BallSocketConstraint.
-        /// <para><b>Default:</b> <c>0.150000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#Radius"/>
         public float Radius
@@ -70,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// How elastic Attachments connected by a BallSocketConstraint will be when they reach the end of the range specified by UpperAngle when LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#Restitution"/>
         public float Restitution
@@ -81,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the BallSocketConstraint sets a limit on twist rotation based on TwistUpperAngle and TwistLowerAngle.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#TwistLimitsEnabled"/>
         public bool TwistLimitsEnabled
@@ -92,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the lower twist rotation limit of the BallSocketConstraint, as long as TwistLimitsEnabled is true.
-        /// <para><b>Default:</b> <c>-45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#TwistLowerAngle"/>
         public float TwistLowerAngle
@@ -103,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the upper twist rotation limit of the BallSocketConstraint, as long as TwistLimitsEnabled is true.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#TwistUpperAngle"/>
         public float TwistUpperAngle
@@ -114,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the upper rotation limit of the BallSocketConstraint, as long as LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#UpperAngle"/>
         public float UpperAngle

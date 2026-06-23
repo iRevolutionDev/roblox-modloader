@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates if the WeldConstraint is currently active in the world.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WeldConstraint#Active"/>
         public bool Active
@@ -37,28 +36,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>WeldConstraint.CFrame0</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
-        public object? CFrame0
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame0");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame0", value);
-        }
-
-        /// <summary>
-        /// <c>WeldConstraint.CFrame1</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
-        public object? CFrame1
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame1");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame1", value);
-        }
-
-        /// <summary>
         /// Toggles the constraint on and off.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WeldConstraint#Enabled"/>
         public bool Enabled
@@ -77,12 +55,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part0", value);
         }
 
-        public BasePart? Part0Internal
-        {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part0Internal");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part0Internal", value);
-        }
-
         /// <summary>
         /// The second part connected by the constraint.
         /// </summary>
@@ -91,22 +63,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part1");
             set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part1", value);
-        }
-
-        public BasePart? Part1Internal
-        {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part1Internal");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part1Internal", value);
-        }
-
-        /// <summary>
-        /// <c>WeldConstraint.State</c>
-        /// <para><b>Default:</b> <c>3</c></para>
-        /// </summary>
-        public int State
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "State");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "State", value);
         }
 
     }

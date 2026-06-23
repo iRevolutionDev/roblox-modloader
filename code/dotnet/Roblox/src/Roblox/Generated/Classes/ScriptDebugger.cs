@@ -21,36 +21,18 @@ namespace Roblox
         public static ScriptDebugger? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptDebugger(handle);
 
-        public string? CoreScriptIdentifier
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CoreScriptIdentifier");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CoreScriptIdentifier", value);
-        }
-
-        /// <summary>
-        /// <c>ScriptDebugger.CurrentLine</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int CurrentLine
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "CurrentLine");
             set => global::Roblox.Reflection.SetProperty<int>(this, "CurrentLine", value);
         }
 
-        /// <summary>
-        /// <c>ScriptDebugger.IsDebugging</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsDebugging
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDebugging");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsDebugging", value);
         }
 
-        /// <summary>
-        /// <c>ScriptDebugger.IsPaused</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsPaused
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPaused");
@@ -61,12 +43,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Script");
             set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Script", value);
-        }
-
-        public string? ScriptGuid
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ScriptGuid");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ScriptGuid", value);
         }
 
         /// <summary>
@@ -171,39 +147,69 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptDebugger.BreakpointAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BreakpointAdded; // TODO: native event binding
+        /// <param name="breakpoint">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? BreakpointAdded
+        {
+            add { if (value is not null) AddEventHandler("BreakpointAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("BreakpointAdded", value); }
+        }
 
         /// <summary>
         /// <c>ScriptDebugger.BreakpointRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BreakpointRemoved; // TODO: native event binding
+        /// <param name="breakpoint">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? BreakpointRemoved
+        {
+            add { if (value is not null) AddEventHandler("BreakpointRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("BreakpointRemoved", value); }
+        }
 
         /// <summary>
         /// <c>ScriptDebugger.EncounteredBreak</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? EncounteredBreak; // TODO: native event binding
+        /// <param name="line">A <c>int</c> value.</param>
+        /// <param name="breakReason">A <c>Enum.BreakReason</c> value.</param>
+        public event Action<int, Enum.BreakReason>? EncounteredBreak
+        {
+            add { if (value is not null) AddEventHandler("EncounteredBreak", value); }
+            remove { if (value is not null) RemoveEventHandler("EncounteredBreak", value); }
+        }
 
         /// <summary>
         /// <c>ScriptDebugger.Resuming</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Resuming; // TODO: native event binding
+        public event Action? Resuming
+        {
+            add { if (value is not null) AddEventHandler("Resuming", value); }
+            remove { if (value is not null) RemoveEventHandler("Resuming", value); }
+        }
 
         /// <summary>
         /// <c>ScriptDebugger.WatchAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? WatchAdded; // TODO: native event binding
+        /// <param name="watch">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? WatchAdded
+        {
+            add { if (value is not null) AddEventHandler("WatchAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("WatchAdded", value); }
+        }
 
         /// <summary>
         /// <c>ScriptDebugger.WatchRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? WatchRemoved; // TODO: native event binding
+        /// <param name="watch">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? WatchRemoved
+        {
+            add { if (value is not null) AddEventHandler("WatchRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("WatchRemoved", value); }
+        }
 
     }
 }

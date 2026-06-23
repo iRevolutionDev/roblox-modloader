@@ -27,17 +27,29 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the client successfully connects to a server. Returns a string showing the server's IP and port, and the client's ClientReplicator.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="peer">A <c>string?</c> value.</param>
+        /// <param name="replicator">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkClient#ConnectionAccepted"/>
-        // public event Action? ConnectionAccepted; // TODO: native event binding
+        public event Action<string?, Instance?>? ConnectionAccepted
+        {
+            add { if (value is not null) AddEventHandler("ConnectionAccepted", value); }
+            remove { if (value is not null) RemoveEventHandler("ConnectionAccepted", value); }
+        }
 
         /// <summary>
         /// Fired if the client fails to connect to the server.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="peer">A <c>string?</c> value.</param>
+        /// <param name="code">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkClient#ConnectionFailed"/>
-        // public event Action? ConnectionFailed; // TODO: native event binding
+        public event Action<string?, int>? ConnectionFailed
+        {
+            add { if (value is not null) AddEventHandler("ConnectionFailed", value); }
+            remove { if (value is not null) RemoveEventHandler("ConnectionFailed", value); }
+        }
 
     }
 }

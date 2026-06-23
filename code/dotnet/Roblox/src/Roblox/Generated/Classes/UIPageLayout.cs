@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether or not to animate transitions between pages.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Animated"/>
         public bool Animated
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether or not the page layout wraps around at the ends.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Circular"/>
         public bool Circular
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The easing direction to use when performing an animation.
-        /// <para><b>Default:</b> <c>Out</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#EasingDirection"/>
         public Enum.EasingDirection EasingDirection
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The easing style to use when performing an animation.
-        /// <para><b>Default:</b> <c>Back</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#EasingStyle"/>
         public Enum.EasingStyle EasingStyle
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the overrides of NextSelection{Up, Down, Left, Right}. Defaults to true.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#GamepadInputEnabled"/>
         public bool GamepadInputEnabled
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the amount that pages are separated from each other by.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Padding"/>
         public object? Padding
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the use of scroll wheel, in case that it is intended for something else. Defaults to true.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#ScrollWheelInputEnabled"/>
         public bool ScrollWheelInputEnabled
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls touch scrolling, in case this is a non-interactive layout. Defaults to true.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#TouchInputEnabled"/>
         public bool TouchInputEnabled
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// The length of the animation.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#TweenTime"/>
         public float TweenTime
@@ -170,24 +161,39 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a page comes into view, and is going to be rendered.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="page">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#PageEnter"/>
-        // public event Action? PageEnter; // TODO: native event binding
+        public event Action<Instance?>? PageEnter
+        {
+            add { if (value is not null) AddEventHandler("PageEnter", value); }
+            remove { if (value is not null) RemoveEventHandler("PageEnter", value); }
+        }
 
         /// <summary>
         /// Fires when a page leaves view, and will not be rendered.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="page">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#PageLeave"/>
-        // public event Action? PageLeave; // TODO: native event binding
+        public event Action<Instance?>? PageLeave
+        {
+            add { if (value is not null) AddEventHandler("PageLeave", value); }
+            remove { if (value is not null) RemoveEventHandler("PageLeave", value); }
+        }
 
         /// <summary>
         /// Fires when an animation to UIPageLayout.CurrentPage is completed without being canceled, and the view stops scrolling.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="currentPage">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Stopped"/>
-        // public event Action? Stopped; // TODO: native event binding
+        public event Action<Instance?>? Stopped
+        {
+            add { if (value is not null) AddEventHandler("Stopped", value); }
+            remove { if (value is not null) RemoveEventHandler("Stopped", value); }
+        }
 
     }
 }

@@ -115,31 +115,56 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the user completes an action. Parameters come from TryBeginRecording() and FinishRecording().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="displayName">A <c>object?</c> value.</param>
+        /// <param name="identifier">A <c>object?</c> value.</param>
+        /// <param name="operation">A <c>Enum.FinishRecordingOperation</c> value.</param>
+        /// <param name="finalOptions">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnRecordingFinished"/>
-        // public event Action? OnRecordingFinished; // TODO: native event binding
+        public event Action<string?, object?, object?, Enum.FinishRecordingOperation, object?>? OnRecordingFinished
+        {
+            add { if (value is not null) AddEventHandler("OnRecordingFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("OnRecordingFinished", value); }
+        }
 
         /// <summary>
         /// Fired when the user begins an action. Parameters come from TryBeginRecording().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="displayName">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnRecordingStarted"/>
-        // public event Action? OnRecordingStarted; // TODO: native event binding
+        public event Action<string?, object?>? OnRecordingStarted
+        {
+            add { if (value is not null) AddEventHandler("OnRecordingStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("OnRecordingStarted", value); }
+        }
 
         /// <summary>
         /// Fired when the user reverses the undo command. Waypoint describes the type action that has been redone.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="waypoint">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnRedo"/>
-        // public event Action? OnRedo; // TODO: native event binding
+        public event Action<string?>? OnRedo
+        {
+            add { if (value is not null) AddEventHandler("OnRedo", value); }
+            remove { if (value is not null) RemoveEventHandler("OnRedo", value); }
+        }
 
         /// <summary>
         /// Fired when the user undoes an action in studio. Waypoint describes the type action that has been undone.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="waypoint">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnUndo"/>
-        // public event Action? OnUndo; // TODO: native event binding
+        public event Action<string?>? OnUndo
+        {
+            add { if (value is not null) AddEventHandler("OnUndo", value); }
+            remove { if (value is not null) RemoveEventHandler("OnUndo", value); }
+        }
 
     }
 }

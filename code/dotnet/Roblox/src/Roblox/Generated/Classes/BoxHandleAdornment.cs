@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BoxHandleAdornment.Shading</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BoxHandleAdornment#Shading"/>
         public Enum.AdornShading Shading
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of the adornment.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BoxHandleAdornment#Size"/>
         public global::System.Numerics.Vector3 Size

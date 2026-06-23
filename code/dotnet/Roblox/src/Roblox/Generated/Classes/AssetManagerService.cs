@@ -218,21 +218,36 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetManagerService.AssetImportedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AssetImportedSignal; // TODO: native event binding
+        /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
+        /// <param name="assetId">A <c>string?</c> value.</param>
+        /// <param name="assetName">A <c>long</c> value.</param>
+        public event Action<Enum.AssetType, string?, long>? AssetImportedSignal
+        {
+            add { if (value is not null) AddEventHandler("AssetImportedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("AssetImportedSignal", value); }
+        }
 
         /// <summary>
         /// <c>AssetManagerService.ImportSessionFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ImportSessionFinished; // TODO: native event binding
+        public event Action? ImportSessionFinished
+        {
+            add { if (value is not null) AddEventHandler("ImportSessionFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("ImportSessionFinished", value); }
+        }
 
         /// <summary>
         /// <c>AssetManagerService.ImportSessionStarted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ImportSessionStarted; // TODO: native event binding
+        public event Action? ImportSessionStarted
+        {
+            add { if (value is not null) AddEventHandler("ImportSessionStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("ImportSessionStarted", value); }
+        }
 
     }
 }

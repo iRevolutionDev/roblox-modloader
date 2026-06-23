@@ -353,57 +353,101 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.OnImportFromRoblox</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnImportFromRoblox; // TODO: native event binding
+        /// <param name="assetType">A <c>string?</c> value.</param>
+        public event Action<string?>? OnImportFromRoblox
+        {
+            add { if (value is not null) AddEventHandler("OnImportFromRoblox", value); }
+            remove { if (value is not null) RemoveEventHandler("OnImportFromRoblox", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.OnOpenGameSettings</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnOpenGameSettings; // TODO: native event binding
+        /// <param name="pageIdentifier">A <c>string?</c> value.</param>
+        public event Action<string?>? OnOpenGameSettings
+        {
+            add { if (value is not null) AddEventHandler("OnOpenGameSettings", value); }
+            remove { if (value is not null) RemoveEventHandler("OnOpenGameSettings", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.OnOpenManagePackagePlugin</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnOpenManagePackagePlugin; // TODO: native event binding
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        public event Action<long, long>? OnOpenManagePackagePlugin
+        {
+            add { if (value is not null) AddEventHandler("OnOpenManagePackagePlugin", value); }
+            remove { if (value is not null) RemoveEventHandler("OnOpenManagePackagePlugin", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.OnPluginInstalledFromToolbox</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnPluginInstalledFromToolbox; // TODO: native event binding
+        public event Action? OnPluginInstalledFromToolbox
+        {
+            add { if (value is not null) AddEventHandler("OnPluginInstalledFromToolbox", value); }
+            remove { if (value is not null) RemoveEventHandler("OnPluginInstalledFromToolbox", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.OnPluginInstalledFromWeb</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnPluginInstalledFromWeb; // TODO: native event binding
+        /// <param name="pluginId">A <c>string?</c> value.</param>
+        public event Action<string?>? OnPluginInstalledFromWeb
+        {
+            add { if (value is not null) AddEventHandler("OnPluginInstalledFromWeb", value); }
+            remove { if (value is not null) RemoveEventHandler("OnPluginInstalledFromWeb", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.OnPublishAsPlugin</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnPublishAsPlugin; // TODO: native event binding
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        public event Action<IReadOnlyList<Instance>>? OnPublishAsPlugin
+        {
+            add { if (value is not null) AddEventHandler("OnPublishAsPlugin", value); }
+            remove { if (value is not null) RemoveEventHandler("OnPublishAsPlugin", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.OnSaveToRoblox</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnSaveToRoblox; // TODO: native event binding
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        public event Action<IReadOnlyList<Instance>>? OnSaveToRoblox
+        {
+            add { if (value is not null) AddEventHandler("OnSaveToRoblox", value); }
+            remove { if (value is not null) RemoveEventHandler("OnSaveToRoblox", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.PromptTransformPluginCheckEnable</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptTransformPluginCheckEnable; // TODO: native event binding
+        public event Action? PromptTransformPluginCheckEnable
+        {
+            add { if (value is not null) AddEventHandler("PromptTransformPluginCheckEnable", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptTransformPluginCheckEnable", value); }
+        }
 
         /// <summary>
         /// <c>StudioService.SaveLocallyAsComplete</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SaveLocallyAsComplete; // TODO: native event binding
+        /// <param name="success">A <c>bool</c> value.</param>
+        public event Action<bool>? SaveLocallyAsComplete
+        {
+            add { if (value is not null) AddEventHandler("SaveLocallyAsComplete", value); }
+            remove { if (value is not null) RemoveEventHandler("SaveLocallyAsComplete", value); }
+        }
 
     }
 }

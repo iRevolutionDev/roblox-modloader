@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the thickness of the boxes outlines, in studs.
-        /// <para><b>Default:</b> <c>0.150000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#LineThickness"/>
         public float LineThickness
@@ -36,10 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "LineThickness", value);
         }
 
-        /// <summary>
-        /// <c>SelectionBox.StudioSelectionBox</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool StudioSelectionBox
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "StudioSelectionBox");
@@ -58,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the box's surfaces.
-        /// <para><b>Default:</b> <c>0.0509804, 0.411765, 0.67451</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#SurfaceColor3"/>
         public object? SurfaceColor3
@@ -69,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the box's surfaces.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#SurfaceTransparency"/>
         public float SurfaceTransparency

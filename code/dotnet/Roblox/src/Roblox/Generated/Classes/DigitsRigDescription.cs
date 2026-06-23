@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Index1TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index1TposeAdjustment"/>
         public object? Index1TposeAdjustment
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Index2TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index2TposeAdjustment"/>
         public object? Index2TposeAdjustment
@@ -79,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Index3TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index3TposeAdjustment"/>
         public object? Index3TposeAdjustment
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.IndexRange</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#IndexRange"/>
         public global::System.Numerics.Vector3 IndexRange
@@ -101,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.IndexSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#IndexSize"/>
         public float IndexSize
@@ -122,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Middle1TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle1TposeAdjustment"/>
         public object? Middle1TposeAdjustment
@@ -143,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Middle2TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle2TposeAdjustment"/>
         public object? Middle2TposeAdjustment
@@ -164,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Middle3TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle3TposeAdjustment"/>
         public object? Middle3TposeAdjustment
@@ -175,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.MiddleRange</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#MiddleRange"/>
         public global::System.Numerics.Vector3 MiddleRange
@@ -186,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.MiddleSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#MiddleSize"/>
         public float MiddleSize
@@ -207,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Pinky1TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky1TposeAdjustment"/>
         public object? Pinky1TposeAdjustment
@@ -228,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Pinky2TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky2TposeAdjustment"/>
         public object? Pinky2TposeAdjustment
@@ -249,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Pinky3TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky3TposeAdjustment"/>
         public object? Pinky3TposeAdjustment
@@ -260,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.PinkyRange</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#PinkyRange"/>
         public global::System.Numerics.Vector3 PinkyRange
@@ -271,7 +257,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.PinkySize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#PinkySize"/>
         public float PinkySize
@@ -292,7 +277,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Ring1TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring1TposeAdjustment"/>
         public object? Ring1TposeAdjustment
@@ -313,7 +297,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Ring2TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring2TposeAdjustment"/>
         public object? Ring2TposeAdjustment
@@ -334,7 +317,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Ring3TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring3TposeAdjustment"/>
         public object? Ring3TposeAdjustment
@@ -345,7 +327,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.RingRange</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#RingRange"/>
         public global::System.Numerics.Vector3 RingRange
@@ -356,7 +337,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.RingSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#RingSize"/>
         public float RingSize
@@ -367,7 +347,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Side</c>
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Side"/>
         public Enum.DigitsRigDescriptionSide Side
@@ -388,7 +367,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Thumb1TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb1TposeAdjustment"/>
         public object? Thumb1TposeAdjustment
@@ -409,7 +387,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Thumb2TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb2TposeAdjustment"/>
         public object? Thumb2TposeAdjustment
@@ -430,7 +407,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.Thumb3TposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb3TposeAdjustment"/>
         public object? Thumb3TposeAdjustment
@@ -441,7 +417,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.ThumbRange</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#ThumbRange"/>
         public global::System.Numerics.Vector3 ThumbRange
@@ -452,7 +427,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DigitsRigDescription.ThumbSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#ThumbSize"/>
         public float ThumbSize

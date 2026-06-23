@@ -21,17 +21,5 @@ namespace Roblox
         public static FileSyncReplicationService? FromHandle(nuint handle)
             => handle == 0 ? null : new FileSyncReplicationService(handle);
 
-        /// <summary>
-        /// <c>FileSyncReplicationService.BroadcastPlayerSyncState</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? BroadcastPlayerSyncState; // TODO: native event binding
-
-        /// <summary>
-        /// <c>FileSyncReplicationService.UpdateSyncInstances</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateSyncInstances; // TODO: native event binding
-
     }
 }

@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum distance between a character and the ClickDetector or DragDetector for the player to be able to interact with it.
-        /// <para><b>Default:</b> <c>32</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MaxActivationDistance"/>
         public float MaxActivationDistance
@@ -57,38 +56,52 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>ClickDetector.MouseActionReplicated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? MouseActionReplicated; // TODO: native event binding
-
-        /// <summary>
         /// Fires when a player interacts with the parent of a ClickDetector or DragDetector.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoClicked">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseClick"/>
-        // public event Action? MouseClick; // TODO: native event binding
+        public event Action<Player?>? MouseClick
+        {
+            add { if (value is not null) AddEventHandler("MouseClick", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseClick", value); }
+        }
 
         /// <summary>
         /// Fires when the parent of a ClickDetector or DragDetector is hovered over by a player.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoHovered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseHoverEnter"/>
-        // public event Action? MouseHoverEnter; // TODO: native event binding
+        public event Action<Player?>? MouseHoverEnter
+        {
+            add { if (value is not null) AddEventHandler("MouseHoverEnter", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseHoverEnter", value); }
+        }
 
         /// <summary>
         /// Fires when a player's cursor hovers off the parent of a ClickDetector or DragDetector.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoHovered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseHoverLeave"/>
-        // public event Action? MouseHoverLeave; // TODO: native event binding
+        public event Action<Player?>? MouseHoverLeave
+        {
+            add { if (value is not null) AddEventHandler("MouseHoverLeave", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseHoverLeave", value); }
+        }
 
         /// <summary>
         /// Fires when a player right clicks their mouse cursor on a ClickDetector or DragDetector.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoClicked">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#RightMouseClick"/>
-        // public event Action? RightMouseClick; // TODO: native event binding
+        public event Action<Player?>? RightMouseClick
+        {
+            add { if (value is not null) AddEventHandler("RightMouseClick", value); }
+            remove { if (value is not null) RemoveEventHandler("RightMouseClick", value); }
+        }
 
     }
 }

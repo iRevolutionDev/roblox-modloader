@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets color used for the debug rendering. See WrapTarget.DebugMode.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget#Color"/>
         public object? Color
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Allows switching between different debugging visualization modes for cage meshes.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget#DebugMode"/>
         public Enum.WrapTargetDebugMode DebugMode
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines how much the body mesh can be compressed by clothing.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget#Stiffness"/>
         public float Stiffness

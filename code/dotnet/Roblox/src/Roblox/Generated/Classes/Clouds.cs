@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the material color of cloud particles.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Color"/>
         public object? Color
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines the cloud cover within the overall skyscape layer.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Cover"/>
         public float Cover
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the particulate density of clouds.
-        /// <para><b>Default:</b> <c>0.699999988</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Density"/>
         public float Density
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles rendering of the Clouds object.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Enabled"/>
         public bool Enabled

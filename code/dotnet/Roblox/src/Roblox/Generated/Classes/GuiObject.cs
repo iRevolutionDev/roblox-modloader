@@ -135,18 +135,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClipsDescendants", value);
         }
 
-        public int DragBeginConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DragBeginConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "DragBeginConnectionCount", value);
-        }
-
-        public int DragStoppedConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DragStoppedConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "DragStoppedConnectionCount", value);
-        }
-
         /// <summary>
         /// Deprecated: This property is deprecated. Use UIDragDetector instead, as it supports more input types and can be better customized.Determines whether a GuiObject (and its descendants) can be dragged around the screen.
         /// </summary>
@@ -195,36 +183,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "LayoutOrder");
             set => global::Roblox.Reflection.SetProperty<int>(this, "LayoutOrder", value);
-        }
-
-        public int MouseEnterConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseEnterConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseEnterConnectionCount", value);
-        }
-
-        public int MouseLeaveConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseLeaveConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseLeaveConnectionCount", value);
-        }
-
-        public int MouseMovedConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseMovedConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseMovedConnectionCount", value);
-        }
-
-        public int MouseWheelBackwardConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseWheelBackwardConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseWheelBackwardConnectionCount", value);
-        }
-
-        public int MouseWheelForwardConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseWheelForwardConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseWheelForwardConnectionCount", value);
         }
 
         /// <summary>
@@ -458,129 +416,234 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated. Use UIDragDetector instead, as it supports more input types and can be better customized.Fired when a player begins dragging the object.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="initialPosition">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#DragBegin"/>
-        // public event Action? DragBegin; // TODO: native event binding
+        public event Action<object?>? DragBegin
+        {
+            add { if (value is not null) AddEventHandler("DragBegin", value); }
+            remove { if (value is not null) RemoveEventHandler("DragBegin", value); }
+        }
 
         /// <summary>
         /// Deprecated: This property is deprecated. Use UIDragDetector instead, as it supports more input types and can be better customized.Fired when a player stops dragging the object.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#DragStopped"/>
-        // public event Action? DragStopped; // TODO: native event binding
+        public event Action<int, int>? DragStopped
+        {
+            add { if (value is not null) AddEventHandler("DragStopped", value); }
+            remove { if (value is not null) RemoveEventHandler("DragStopped", value); }
+        }
 
         /// <summary>
         /// Fired when a user begins interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc).
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#InputBegan"/>
-        // public event Action? InputBegan; // TODO: native event binding
+        public event Action<InputObject?>? InputBegan
+        {
+            add { if (value is not null) AddEventHandler("InputBegan", value); }
+            remove { if (value is not null) RemoveEventHandler("InputBegan", value); }
+        }
 
         /// <summary>
         /// Fired when a user changes how they're interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc).
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#InputChanged"/>
-        // public event Action? InputChanged; // TODO: native event binding
+        public event Action<InputObject?>? InputChanged
+        {
+            add { if (value is not null) AddEventHandler("InputChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("InputChanged", value); }
+        }
 
         /// <summary>
         /// Fired when a user stops interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc).
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#InputEnded"/>
-        // public event Action? InputEnded; // TODO: native event binding
+        public event Action<InputObject?>? InputEnded
+        {
+            add { if (value is not null) AddEventHandler("InputEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("InputEnded", value); }
+        }
 
         /// <summary>
         /// Fires when a user moves their mouse into a GUI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#MouseEnter"/>
-        // public event Action? MouseEnter; // TODO: native event binding
+        public event Action<int, int>? MouseEnter
+        {
+            add { if (value is not null) AddEventHandler("MouseEnter", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseEnter", value); }
+        }
 
         /// <summary>
         /// Fires when a user moves their mouse out of a GUI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#MouseLeave"/>
-        // public event Action? MouseLeave; // TODO: native event binding
+        public event Action<int, int>? MouseLeave
+        {
+            add { if (value is not null) AddEventHandler("MouseLeave", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseLeave", value); }
+        }
 
         /// <summary>
         /// Fires whenever a user moves their mouse while it is inside a GUI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#MouseMoved"/>
-        // public event Action? MouseMoved; // TODO: native event binding
+        public event Action<int, int>? MouseMoved
+        {
+            add { if (value is not null) AddEventHandler("MouseMoved", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseMoved", value); }
+        }
 
         /// <summary>
         /// Fires when a user scrolls their mouse wheel back when the mouse is over a GUI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#MouseWheelBackward"/>
-        // public event Action? MouseWheelBackward; // TODO: native event binding
+        public event Action<int, int>? MouseWheelBackward
+        {
+            add { if (value is not null) AddEventHandler("MouseWheelBackward", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseWheelBackward", value); }
+        }
 
         /// <summary>
         /// Fires when a user scrolls their mouse wheel forward when the mouse is over a GUI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#MouseWheelForward"/>
-        // public event Action? MouseWheelForward; // TODO: native event binding
+        public event Action<int, int>? MouseWheelForward
+        {
+            add { if (value is not null) AddEventHandler("MouseWheelForward", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseWheelForward", value); }
+        }
 
         /// <summary>
         /// Fired when the GuiObject is being focused on with the Gamepad selector.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#SelectionGained"/>
-        // public event Action? SelectionGained; // TODO: native event binding
+        public event Action? SelectionGained
+        {
+            add { if (value is not null) AddEventHandler("SelectionGained", value); }
+            remove { if (value is not null) RemoveEventHandler("SelectionGained", value); }
+        }
 
         /// <summary>
         /// Fired when the Gamepad selector stops focusing on the GuiObject.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#SelectionLost"/>
-        // public event Action? SelectionLost; // TODO: native event binding
+        public event Action? SelectionLost
+        {
+            add { if (value is not null) AddEventHandler("SelectionLost", value); }
+            remove { if (value is not null) RemoveEventHandler("SelectionLost", value); }
+        }
 
         /// <summary>
         /// Fires when the player starts, continues and stops long-pressing the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchLongPress"/>
-        // public event Action? TouchLongPress; // TODO: native event binding
+        public event Action<object?, Enum.UserInputState>? TouchLongPress
+        {
+            add { if (value is not null) AddEventHandler("TouchLongPress", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchLongPress", value); }
+        }
 
         /// <summary>
         /// Fires when the player moves their finger on the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="totalTranslation">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="velocity">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchPan"/>
-        // public event Action? TouchPan; // TODO: native event binding
+        public event Action<object?, global::System.Numerics.Vector2, global::System.Numerics.Vector2, Enum.UserInputState>? TouchPan
+        {
+            add { if (value is not null) AddEventHandler("TouchPan", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchPan", value); }
+        }
 
         /// <summary>
         /// Fires when the player performs a pinch or pull gesture using two fingers on the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="scale">A <c>float</c> value.</param>
+        /// <param name="velocity">A <c>float</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchPinch"/>
-        // public event Action? TouchPinch; // TODO: native event binding
+        public event Action<object?, float, float, Enum.UserInputState>? TouchPinch
+        {
+            add { if (value is not null) AddEventHandler("TouchPinch", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchPinch", value); }
+        }
 
         /// <summary>
         /// Fires when the player performs a rotation gesture using two fingers on the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="rotation">A <c>float</c> value.</param>
+        /// <param name="velocity">A <c>float</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchRotate"/>
-        // public event Action? TouchRotate; // TODO: native event binding
+        public event Action<object?, float, float, Enum.UserInputState>? TouchRotate
+        {
+            add { if (value is not null) AddEventHandler("TouchRotate", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchRotate", value); }
+        }
 
         /// <summary>
         /// Fires when the player performs a swipe gesture on the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="swipeDirection">A <c>Enum.SwipeDirection</c> value.</param>
+        /// <param name="numberOfTouches">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchSwipe"/>
-        // public event Action? TouchSwipe; // TODO: native event binding
+        public event Action<Enum.SwipeDirection, int>? TouchSwipe
+        {
+            add { if (value is not null) AddEventHandler("TouchSwipe", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchSwipe", value); }
+        }
 
         /// <summary>
         /// Fires when the player performs a tap gesture on the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchTap"/>
-        // public event Action? TouchTap; // TODO: native event binding
+        public event Action<object?>? TouchTap
+        {
+            add { if (value is not null) AddEventHandler("TouchTap", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchTap", value); }
+        }
 
     }
 }

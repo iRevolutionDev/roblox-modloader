@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// A number index, which refers to a specific class icon.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass#ExplorerImageIndex"/>
         public int ExplorerImageIndex
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how this class is sorted in the Explorer compared to other classes.
-        /// <para><b>Default:</b> <c>2147483647</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass#ExplorerOrder"/>
         public int ExplorerOrder
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether or not this object can be inserted through the Advanced Objects menu.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass#Insertable"/>
         public bool Insertable
@@ -68,10 +65,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "PreferredParent", value);
         }
 
-        /// <summary>
-        /// <c>ReflectionMetadataClass.ServiceVisibility</c>
-        /// <para><b>Default:</b> <c>Always</c></para>
-        /// </summary>
         public Enum.ServiceVisibility ServiceVisibility
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ServiceVisibility>(this, "ServiceVisibility");

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the radius of the bottom-left corner.
-        /// <para><b>Default:</b> <c>0, 8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#BottomLeftRadius"/>
         public object? BottomLeftRadius
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the radius of the bottom-right corner.
-        /// <para><b>Default:</b> <c>0, 8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#BottomRightRadius"/>
         public object? BottomRightRadius
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets all four corner radii at once and reads from TopLeftRadius.
-        /// <para><b>Default:</b> <c>0, 8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#CornerRadius"/>
         public object? CornerRadius
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the radius of the top-left corner.
-        /// <para><b>Default:</b> <c>0, 8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#TopLeftRadius"/>
         public object? TopLeftRadius
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the radius of the top-right corner.
-        /// <para><b>Default:</b> <c>0, 8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#TopRightRadius"/>
         public object? TopRightRadius

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how intense the effect is.
-        /// <para><b>Default:</b> <c>0.150000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChorusSoundEffect#Depth"/>
         public float Depth
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Percentage of the original sound that will be applied to the filter.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChorusSoundEffect#Mix"/>
         public float Mix
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// How frequently the pitch variation changes.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChorusSoundEffect#Rate"/>
         public float Rate

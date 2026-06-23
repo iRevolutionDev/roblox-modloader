@@ -55,15 +55,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>LocalStorageService.ItemWasSet</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ItemWasSet; // TODO: native event binding
+        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="value">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? ItemWasSet
+        {
+            add { if (value is not null) AddEventHandler("ItemWasSet", value); }
+            remove { if (value is not null) RemoveEventHandler("ItemWasSet", value); }
+        }
 
         /// <summary>
         /// <c>LocalStorageService.StoreWasCleared</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StoreWasCleared; // TODO: native event binding
+        public event Action? StoreWasCleared
+        {
+            add { if (value is not null) AddEventHandler("StoreWasCleared", value); }
+            remove { if (value is not null) RemoveEventHandler("StoreWasCleared", value); }
+        }
 
     }
 }

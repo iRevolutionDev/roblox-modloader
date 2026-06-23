@@ -21,10 +21,6 @@ namespace Roblox
         public static VideoDeviceInput? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoDeviceInput(handle);
 
-        /// <summary>
-        /// <c>VideoDeviceInput.Active</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Active
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
@@ -37,20 +33,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "CameraId", value);
         }
 
-        /// <summary>
-        /// <c>VideoDeviceInput.CaptureQuality</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.VideoDeviceCaptureQuality CaptureQuality
         {
             get => global::Roblox.Reflection.GetProperty<Enum.VideoDeviceCaptureQuality>(this, "CaptureQuality");
             set => global::Roblox.Reflection.SetProperty<Enum.VideoDeviceCaptureQuality>(this, "CaptureQuality", value);
         }
 
-        /// <summary>
-        /// <c>VideoDeviceInput.IsReady</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsReady
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReady");

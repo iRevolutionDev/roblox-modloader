@@ -92,10 +92,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires when TextChannel:DisplaySystemMessage() is invoked on the client, or when the client receives a valid TextChannel:SendAsync() response from the server.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="incomingMessage">A <c>TextChatMessage?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#MessageReceived"/>
-        // public event Action? MessageReceived; // TODO: native event binding
+        public event Action<TextChatMessage?>? MessageReceived
+        {
+            add { if (value is not null) AddEventHandler("MessageReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }
+        }
 
         /// <summary>
         /// Called when TextChannel is receiving an incoming message.

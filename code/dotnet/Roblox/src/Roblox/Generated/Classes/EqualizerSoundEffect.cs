@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The output volume of frequencies greater than 4000 Hz.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EqualizerSoundEffect#HighGain"/>
         public float HighGain
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The output volume of frequencies lower than 400 Hz.
-        /// <para><b>Default:</b> <c>-20</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EqualizerSoundEffect#LowGain"/>
         public float LowGain
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The output volume of frequencies between 400 and 4000 Hz.
-        /// <para><b>Default:</b> <c>-10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EqualizerSoundEffect#MidGain"/>
         public float MidGain

@@ -28,11 +28,5 @@ namespace Roblox
         public object? EndRemoteRomarkTest()
             => global::Roblox.Reflection.Invoke<object?>(this, "EndRemoteRomarkTest");
 
-        /// <summary>
-        /// <c>RomarkService.RomarkEndOfTest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RomarkEndOfTest; // TODO: native event binding
-
     }
 }

@@ -502,7 +502,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "GetUserSubscriptionStatusAsync", user, subscriptionId);
 
         /// <summary>
-        /// Returns the regionalized price level of a user, representing the recommended price for an item in their regional market.
+        /// Returns the regionalized price levels of users, representing the recommended price for an item in each user's regional market.
         /// </summary>
         /// <param name="userIds">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -676,294 +676,449 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<bool>(this, "UserOwnsGamePassAsync", userId, gamePassId);
 
         /// <summary>
-        /// <c>MarketplaceService.AssetTypePurchased</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? AssetTypePurchased; // TODO: native event binding
-
-        /// <summary>
         /// <c>MarketplaceService.ClientLuaDialogRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ClientLuaDialogRequested; // TODO: native event binding
+        /// <param name="arguments">A <c>object?</c> value.</param>
+        public event Action<object?>? ClientLuaDialogRequested
+        {
+            add { if (value is not null) AddEventHandler("ClientLuaDialogRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("ClientLuaDialogRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.ClientPurchaseSuccess</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ClientPurchaseSuccess; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.ConfirmPlayerHasRobloxSubscription</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ConfirmPlayerHasRobloxSubscription; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.ConfirmPlayerMembership</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ConfirmPlayerMembership; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.ConfirmUserSubscriptionPurchase</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ConfirmUserSubscriptionPurchase; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.LuaDialogCallbackSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? LuaDialogCallbackSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.MockConfirmUserSubscriptionPurchase</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? MockConfirmUserSubscriptionPurchase; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.MockPurchasePremium</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? MockPurchasePremium; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.MockPurchaseRobloxSubscription</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? MockPurchaseRobloxSubscription; // TODO: native event binding
+        /// <param name="ticket">A <c>string?</c> value.</param>
+        /// <param name="playerId">A <c>long</c> value.</param>
+        /// <param name="productId">A <c>long</c> value.</param>
+        public event Action<string?, long, long>? ClientPurchaseSuccess
+        {
+            add { if (value is not null) AddEventHandler("ClientPurchaseSuccess", value); }
+            remove { if (value is not null) RemoveEventHandler("ClientPurchaseSuccess", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.NativePurchaseFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? NativePurchaseFinished; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="productId">A <c>string?</c> value.</param>
+        /// <param name="wasPurchased">A <c>bool</c> value.</param>
+        public event Action<Instance?, string?, bool>? NativePurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("NativePurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("NativePurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.NativePurchaseFinishedWithLocalPlayer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? NativePurchaseFinishedWithLocalPlayer; // TODO: native event binding
+        /// <param name="productId">A <c>string?</c> value.</param>
+        /// <param name="wasPurchased">A <c>bool</c> value.</param>
+        public event Action<string?, bool>? NativePurchaseFinishedWithLocalPlayer
+        {
+            add { if (value is not null) AddEventHandler("NativePurchaseFinishedWithLocalPlayer", value); }
+            remove { if (value is not null) RemoveEventHandler("NativePurchaseFinishedWithLocalPlayer", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.OpenShopRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenShopRequested; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        public event Action<Player?>? OpenShopRequested
+        {
+            add { if (value is not null) AddEventHandler("OpenShopRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenShopRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PrepareCollectiblesPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PrepareCollectiblesPurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="expectedPrice">A <c>int</c> value.</param>
+        public event Action<Instance?, long, string?, string?, string?, int>? PrepareCollectiblesPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PrepareCollectiblesPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PrepareCollectiblesPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// Fires when a purchase prompt for bulk avatar items is closed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="status">A <c>Enum.MarketplaceBulkPurchasePromptStatus</c> value.</param>
+        /// <param name="results">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptBulkPurchaseFinished"/>
-        // public event Action? PromptBulkPurchaseFinished; // TODO: native event binding
+        public event Action<Instance?, Enum.MarketplaceBulkPurchasePromptStatus, object?>? PromptBulkPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptBulkPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptBulkPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptBulkPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptBulkPurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="displayData">A <c>object?</c> value.</param>
+        /// <param name="orderRequest">A <c>object?</c> value.</param>
+        /// <param name="purchaserRobuxBalance">A <c>long</c> value.</param>
+        /// <param name="orderTotalRobux">A <c>long</c> value.</param>
+        /// <param name="options">A <c>object?</c> value.</param>
+        public event Action<Instance?, object?, object?, long, long, object?>? PromptBulkPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptBulkPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptBulkPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptBulkPurchaseRequestedV2</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptBulkPurchaseRequestedV2; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="displayData">A <c>object?</c> value.</param>
+        /// <param name="orderRequest">A <c>object?</c> value.</param>
+        /// <param name="purchaserRobuxBalance">A <c>long</c> value.</param>
+        /// <param name="orderTotalRobux">A <c>long</c> value.</param>
+        /// <param name="options">A <c>object?</c> value.</param>
+        /// <param name="discountInformation">A <c>object?</c> value.</param>
+        public event Action<Instance?, object?, object?, long, long, object?, object?>? PromptBulkPurchaseRequestedV2
+        {
+            add { if (value is not null) AddEventHandler("PromptBulkPurchaseRequestedV2", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptBulkPurchaseRequestedV2", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptBundlePurchaseFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="bundleId">A <c>long</c> value.</param>
+        /// <param name="wasPurchased">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptBundlePurchaseFinished"/>
-        // public event Action? PromptBundlePurchaseFinished; // TODO: native event binding
+        public event Action<Instance?, long, bool>? PromptBundlePurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptBundlePurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptBundlePurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptBundlePurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptBundlePurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="bundleId">A <c>long</c> value.</param>
+        public event Action<Instance?, long>? PromptBundlePurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptBundlePurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptBundlePurchaseRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptCancelSubscriptionRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptCancelSubscriptionRequested; // TODO: native event binding
+        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        public event Action<string?>? PromptCancelSubscriptionRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptCancelSubscriptionRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptCancelSubscriptionRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptCollectibleBundlePurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptCollectibleBundlePurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="bundleId">A <c>long</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="expectedPrice">A <c>int</c> value.</param>
+        /// <param name="idempotencyKey">A <c>string?</c> value.</param>
+        /// <param name="purchaseAuthToken">A <c>string?</c> value.</param>
+        public event Action<Instance?, long, string?, string?, string?, int, string?, string?>? PromptCollectibleBundlePurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptCollectibleBundlePurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptCollectibleBundlePurchaseRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptCollectiblesPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptCollectiblesPurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="expectedPrice">A <c>int</c> value.</param>
+        /// <param name="idempotencyKey">A <c>string?</c> value.</param>
+        /// <param name="purchaseAuthToken">A <c>string?</c> value.</param>
+        public event Action<Instance?, long, string?, string?, string?, int, string?, string?>? PromptCollectiblesPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptCollectiblesPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptCollectiblesPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// Fires when a purchase prompt for a pass is closed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="gamePassId">A <c>long</c> value.</param>
+        /// <param name="wasPurchased">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptGamePassPurchaseFinished"/>
-        // public event Action? PromptGamePassPurchaseFinished; // TODO: native event binding
+        public event Action<Instance?, long, bool>? PromptGamePassPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptGamePassPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptGamePassPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptGamePassPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptGamePassPurchaseRequested; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.PromptNativePurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptNativePurchaseRequested; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.PromptNativePurchaseRequestedWithLocalPlayer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptNativePurchaseRequestedWithLocalPlayer; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.PromptNativePurchaseRequestedWithLocalPlayerWithPaymentSessionId</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptNativePurchaseRequestedWithLocalPlayerWithPaymentSessionId; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.PromptNativePurchaseRequestedWithPaymentSessionId</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptNativePurchaseRequestedWithPaymentSessionId; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="gamePassId">A <c>long</c> value.</param>
+        public event Action<Instance?, long>? PromptGamePassPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptGamePassPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptGamePassPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// Fires when a purchase prompt for Roblox Premium is closed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptPremiumPurchaseFinished"/>
-        // public event Action? PromptPremiumPurchaseFinished; // TODO: native event binding
+        public event Action? PromptPremiumPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptPremiumPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptPremiumPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptPremiumPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptPremiumPurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? PromptPremiumPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptPremiumPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptPremiumPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// Fires when a purchase prompt for a developer product is closed. Do not use this event to process purchases.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <param name="productId">A <c>long</c> value.</param>
+        /// <param name="isPurchased">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptProductPurchaseFinished"/>
-        // public event Action? PromptProductPurchaseFinished; // TODO: native event binding
+        public event Action<long, long, bool>? PromptProductPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptProductPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptProductPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptProductPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptProductPurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="productId">A <c>long</c> value.</param>
+        /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
+        /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
+        public event Action<Instance?, long, bool, Enum.CurrencyType>? PromptProductPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptProductPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptProductPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// Fires when a purchase prompt for an affiliate gear sale or other asset is closed. Does not fire for developer product or pass prompts.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="isPurchased">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptPurchaseFinished"/>
-        // public event Action? PromptPurchaseFinished; // TODO: native event binding
+        public event Action<Instance?, long, bool>? PromptPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptPurchaseRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
+        /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
+        public event Action<Instance?, long, bool, Enum.CurrencyType>? PromptPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptPurchaseRequestedV2</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptPurchaseRequestedV2; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
+        /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
+        /// <param name="idempotencyKey">A <c>string?</c> value.</param>
+        /// <param name="purchaseAuthToken">A <c>string?</c> value.</param>
+        public event Action<Instance?, long, bool, Enum.CurrencyType, string?, string?>? PromptPurchaseRequestedV2
+        {
+            add { if (value is not null) AddEventHandler("PromptPurchaseRequestedV2", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptPurchaseRequestedV2", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptRobloxPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptRobloxPurchaseRequested; // TODO: native event binding
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
+        public event Action<long, bool>? PromptRobloxPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptRobloxPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptRobloxPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// Fires when a purchase prompt for Roblox Plus is closed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="user">A <c>Player?</c> value.</param>
+        /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptRobloxSubscriptionPurchaseFinished"/>
-        // public event Action? PromptRobloxSubscriptionPurchaseFinished; // TODO: native event binding
+        public event Action<Player?, bool>? PromptRobloxSubscriptionPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptRobloxSubscriptionPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptRobloxSubscriptionPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptRobloxSubscriptionPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptRobloxSubscriptionPurchaseRequested; // TODO: native event binding
+        public event Action? PromptRobloxSubscriptionPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptRobloxSubscriptionPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptRobloxSubscriptionPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptRobuxTransferRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptRobuxTransferRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="jsonResponse">A <c>string?</c> value.</param>
+        public event Action<Instance?, string?>? PromptRobuxTransferRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptRobuxTransferRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptRobuxTransferRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptRobuxTransferSubscriptionUpsellRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptRobuxTransferSubscriptionUpsellRequested; // TODO: native event binding
+        public event Action? PromptRobuxTransferSubscriptionUpsellRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptRobuxTransferSubscriptionUpsellRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptRobuxTransferSubscriptionUpsellRequested", value); }
+        }
 
         /// <summary>
         /// Fires when a purchase prompt for a subscription is closed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="user">A <c>Player?</c> value.</param>
+        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptSubscriptionPurchaseFinished"/>
-        // public event Action? PromptSubscriptionPurchaseFinished; // TODO: native event binding
+        public event Action<Player?, string?, bool>? PromptSubscriptionPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptSubscriptionPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptSubscriptionPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.PromptSubscriptionPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptSubscriptionPurchaseRequested; // TODO: native event binding
-
-        /// <summary>
-        /// <c>MarketplaceService.PromptThirdPartyPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptThirdPartyPurchaseRequested; // TODO: native event binding
+        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        public event Action<string?>? PromptSubscriptionPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptSubscriptionPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptSubscriptionPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.RobuxTransferCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RobuxTransferCompleted; // TODO: native event binding
+        /// <param name="userId">A <c>long</c> value.</param>
+        public event Action<long>? RobuxTransferCompleted
+        {
+            add { if (value is not null) AddEventHandler("RobuxTransferCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("RobuxTransferCompleted", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.ServerPurchaseVerification</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerPurchaseVerification; // TODO: native event binding
+        /// <param name="serverResponseTable">A <c>object?</c> value.</param>
+        public event Action<object?>? ServerPurchaseVerification
+        {
+            add { if (value is not null) AddEventHandler("ServerPurchaseVerification", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerPurchaseVerification", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.ThirdPartyPurchaseFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ThirdPartyPurchaseFinished; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="productId">A <c>string?</c> value.</param>
+        /// <param name="receipt">A <c>string?</c> value.</param>
+        /// <param name="wasPurchased">A <c>bool</c> value.</param>
+        public event Action<Instance?, string?, string?, bool>? ThirdPartyPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("ThirdPartyPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("ThirdPartyPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>MarketplaceService.UserSubscriptionStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UserSubscriptionStatusChanged; // TODO: native event binding
+        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        public event Action<string?>? UserSubscriptionStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("UserSubscriptionStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("UserSubscriptionStatusChanged", value); }
+        }
 
         /// <summary>
         /// A callback to process receipts of developer product purchases.

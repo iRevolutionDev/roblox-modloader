@@ -21,10 +21,6 @@ namespace Roblox
         public static ConnectivityService? FromHandle(nuint handle)
             => handle == 0 ? null : new ConnectivityService(handle);
 
-        /// <summary>
-        /// <c>ConnectivityService.NetworkStatus</c>
-        /// <para><b>Default:</b> <c>Unknown</c></para>
-        /// </summary>
         public Enum.NetworkStatus NetworkStatus
         {
             get => global::Roblox.Reflection.GetProperty<Enum.NetworkStatus>(this, "NetworkStatus");

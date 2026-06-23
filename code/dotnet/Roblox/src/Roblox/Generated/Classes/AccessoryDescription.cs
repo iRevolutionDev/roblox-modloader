@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The AccessoryType of the Accessory referred to by this description.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#AccessoryType"/>
         public Enum.AccessoryType AccessoryType
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The asset ID that should be applied when applying this AccessoryDescription.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#AssetId"/>
         public long AssetId
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the Accessory is layered or rigid.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#IsLayered"/>
         public bool IsLayered
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The layered clothing sort order, if the Accessory is layered.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Order"/>
         public int Order
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The accessory adjustment position offset, if the Accessory is rigid.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The layered clothing puffiness, if the Accessory is layered.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Puffiness"/>
         public float Puffiness
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The accessory adjustment rotation offset, if the Accessory is rigid.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Rotation"/>
         public global::System.Numerics.Vector3 Rotation
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The accessory adjustment scale, if the Accessory is rigid.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Scale"/>
         public global::System.Numerics.Vector3 Scale

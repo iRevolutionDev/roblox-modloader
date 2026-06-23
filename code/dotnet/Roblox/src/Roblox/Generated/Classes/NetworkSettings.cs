@@ -105,12 +105,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<double>(this, "IncomingReplicationLag", value);
         }
 
-        public int OpenCertManagerDialog
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "OpenCertManagerDialog");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "OpenCertManagerDialog", value);
-        }
-
         /// <summary>
         /// Adds jitter to playtest connections in the client-to-server direction.
         /// </summary>

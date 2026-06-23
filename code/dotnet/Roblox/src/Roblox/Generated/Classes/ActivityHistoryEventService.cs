@@ -23,9 +23,16 @@ namespace Roblox
 
         /// <summary>
         /// <c>ActivityHistoryEventService.WriteActivityHistoryEventFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? WriteActivityHistoryEventFromStudio; // TODO: native event binding
+        /// <param name="eventType">A <c>int</c> value.</param>
+        /// <param name="resourceId">A <c>long</c> value.</param>
+        /// <param name="metadata">A <c>string?</c> value.</param>
+        public event Action<int, long, string?>? WriteActivityHistoryEventFromStudio
+        {
+            add { if (value is not null) AddEventHandler("WriteActivityHistoryEventFromStudio", value); }
+            remove { if (value is not null) RemoveEventHandler("WriteActivityHistoryEventFromStudio", value); }
+        }
 
     }
 }

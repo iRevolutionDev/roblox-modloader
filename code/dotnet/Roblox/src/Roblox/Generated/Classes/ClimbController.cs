@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The amount of time taken to reach the desired climb velocity from 0.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#AccelerationTime"/>
         public float AccelerationTime
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque used to keep the ControllerManager.RootPart aligned upright and aligned to the climbed surface.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#BalanceMaxTorque"/>
         public float BalanceMaxTorque
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angular speed used to align the ControllerManager.RootPart upright and with the climbed surface.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#BalanceSpeed"/>
         public float BalanceSpeed
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum force used by the climbing "motor" to move the ControllerManager.RootPart or keep it stationary.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#MoveMaxForce"/>
         public float MoveMaxForce

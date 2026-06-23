@@ -25,17 +25,5 @@ namespace Roblox
         public static HiddenSurfaceRemovalAsset? FromHandle(nuint handle)
             => handle == 0 ? null : new HiddenSurfaceRemovalAsset(handle);
 
-        public byte[]? HSRData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "HSRData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "HSRData", value);
-        }
-
-        public byte[]? HSRMeshIdData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "HSRMeshIdData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "HSRMeshIdData", value);
-        }
-
     }
 }

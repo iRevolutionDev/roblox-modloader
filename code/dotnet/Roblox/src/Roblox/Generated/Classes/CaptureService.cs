@@ -402,91 +402,146 @@ namespace Roblox
 
         /// <summary>
         /// Fires immediately before a capture begins.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="captureType">A <c>Enum.CaptureType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureBegan"/>
-        // public event Action? CaptureBegan; // TODO: native event binding
+        public event Action<Enum.CaptureType>? CaptureBegan
+        {
+            add { if (value is not null) AddEventHandler("CaptureBegan", value); }
+            remove { if (value is not null) RemoveEventHandler("CaptureBegan", value); }
+        }
 
         /// <summary>
         /// Fires after a capture finishes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="captureType">A <c>Enum.CaptureType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureEnded"/>
-        // public event Action? CaptureEnded; // TODO: native event binding
+        public event Action<Enum.CaptureType>? CaptureEnded
+        {
+            add { if (value is not null) AddEventHandler("CaptureEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("CaptureEnded", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.CaptureObjectSavedInternal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CaptureObjectSavedInternal; // TODO: native event binding
+        /// <param name="capture">A <c>Capture?</c> value.</param>
+        /// <param name="triggerSource">A <c>string?</c> value.</param>
+        public event Action<Capture?, string?>? CaptureObjectSavedInternal
+        {
+            add { if (value is not null) AddEventHandler("CaptureObjectSavedInternal", value); }
+            remove { if (value is not null) RemoveEventHandler("CaptureObjectSavedInternal", value); }
+        }
 
         /// <summary>
         /// Deprecated: This event has been superseded by the UserCaptureSaved event.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="captureInfo">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureSaved"/>
-        // public event Action? CaptureSaved; // TODO: native event binding
+        public event Action<object?>? CaptureSaved
+        {
+            add { if (value is not null) AddEventHandler("CaptureSaved", value); }
+            remove { if (value is not null) RemoveEventHandler("CaptureSaved", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.CaptureSavedInternal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CaptureSavedInternal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>CaptureService.OnCaptureAndMetadataSignatureResult</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnCaptureAndMetadataSignatureResult; // TODO: native event binding
+        /// <param name="captureInfo">A <c>object?</c> value.</param>
+        /// <param name="triggerSource">A <c>string?</c> value.</param>
+        public event Action<object?, string?>? CaptureSavedInternal
+        {
+            add { if (value is not null) AddEventHandler("CaptureSavedInternal", value); }
+            remove { if (value is not null) RemoveEventHandler("CaptureSavedInternal", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.OpenCapturePermissionsPrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenCapturePermissionsPrompt; // TODO: native event binding
+        /// <param name="promptId">A <c>long</c> value.</param>
+        /// <param name="captureGalleryPermission">A <c>Enum.CaptureGalleryPermission</c> value.</param>
+        public event Action<long, Enum.CaptureGalleryPermission>? OpenCapturePermissionsPrompt
+        {
+            add { if (value is not null) AddEventHandler("OpenCapturePermissionsPrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenCapturePermissionsPrompt", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.OpenSaveCapturesPrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenSaveCapturesPrompt; // TODO: native event binding
+        /// <param name="promptId">A <c>long</c> value.</param>
+        /// <param name="captures">A <c>object?</c> value.</param>
+        public event Action<long, object?>? OpenSaveCapturesPrompt
+        {
+            add { if (value is not null) AddEventHandler("OpenSaveCapturesPrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenSaveCapturesPrompt", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.OpenShareCapturePrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenShareCapturePrompt; // TODO: native event binding
-
-        /// <summary>
-        /// <c>CaptureService.RequestCaptureAndMetadataSignature</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestCaptureAndMetadataSignature; // TODO: native event binding
+        /// <param name="promptId">A <c>long</c> value.</param>
+        /// <param name="captureContent">A <c>object?</c> value.</param>
+        /// <param name="launchData">A <c>string?</c> value.</param>
+        public event Action<long, object?, string?>? OpenShareCapturePrompt
+        {
+            add { if (value is not null) AddEventHandler("OpenShareCapturePrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenShareCapturePrompt", value); }
+        }
 
         /// <summary>
         /// Fires when the user saves a capture.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="captureContentId">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#UserCaptureSaved"/>
-        // public event Action? UserCaptureSaved; // TODO: native event binding
+        public event Action<object?>? UserCaptureSaved
+        {
+            add { if (value is not null) AddEventHandler("UserCaptureSaved", value); }
+            remove { if (value is not null) RemoveEventHandler("UserCaptureSaved", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.UserVideoCaptureFailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UserVideoCaptureFailed; // TODO: native event binding
+        /// <param name="result">A <c>Enum.VideoCaptureResult</c> value.</param>
+        public event Action<Enum.VideoCaptureResult>? UserVideoCaptureFailed
+        {
+            add { if (value is not null) AddEventHandler("UserVideoCaptureFailed", value); }
+            remove { if (value is not null) RemoveEventHandler("UserVideoCaptureFailed", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.UserVideoCaptureStartFailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UserVideoCaptureStartFailed; // TODO: native event binding
+        /// <param name="result">A <c>Enum.VideoCaptureStartedResult</c> value.</param>
+        public event Action<Enum.VideoCaptureStartedResult>? UserVideoCaptureStartFailed
+        {
+            add { if (value is not null) AddEventHandler("UserVideoCaptureStartFailed", value); }
+            remove { if (value is not null) RemoveEventHandler("UserVideoCaptureStartFailed", value); }
+        }
 
         /// <summary>
         /// <c>CaptureService.VideoCaptureInProgress</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? VideoCaptureInProgress; // TODO: native event binding
+        /// <param name="isInProgress">A <c>bool</c> value.</param>
+        /// <param name="captureTrigger">A <c>string?</c> value.</param>
+        public event Action<bool, string?>? VideoCaptureInProgress
+        {
+            add { if (value is not null) AddEventHandler("VideoCaptureInProgress", value); }
+            remove { if (value is not null) RemoveEventHandler("VideoCaptureInProgress", value); }
+        }
 
     }
 }

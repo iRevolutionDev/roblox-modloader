@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the SurfaceGui will always be rendered on top of other 3D objects.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#AlwaysOnTop"/>
         public bool AlwaysOnTop
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the factor by which the SurfaceGui container's light is scaled when LightInfluence is 0.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#Brightness"/>
         public float Brightness
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The size of a "virtual screen" in "virtual pixels" which makes SurfaceGuis pixel-to-pixel compatible with ScreenGuis.
-        /// <para><b>Default:</b> <c>800, 600</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#CanvasSize"/>
         public global::System.Numerics.Vector2 CanvasSize
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether portions of GuiObjects that fall outside of the SurfaceGui canvas borders will be drawn.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#ClipsDescendants"/>
         public bool ClipsDescendants
@@ -69,10 +65,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClipsDescendants", value);
         }
 
-        /// <summary>
-        /// <c>SurfaceGui.HorizontalCurvature</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public float HorizontalCurvature
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "HorizontalCurvature");
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how much the SurfaceGui is influenced by environmental lighting.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#LightInfluence"/>
         public float LightInfluence
@@ -92,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how far away the SurfaceGui can be displayed before it stops rendering.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#MaxDistance"/>
         public float MaxDistance
@@ -103,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the density of pixels used for each world-space stud to render the contents of the SurfaceGui.
-        /// <para><b>Default:</b> <c>50</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#PixelsPerStud"/>
         public float PixelsPerStud
@@ -112,10 +101,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "PixelsPerStud", value);
         }
 
-        /// <summary>
-        /// <c>SurfaceGui.Shape</c>
-        /// <para><b>Default:</b> <c>Flat</c></para>
-        /// </summary>
         public Enum.SurfaceGuiShape Shape
         {
             get => global::Roblox.Reflection.GetProperty<Enum.SurfaceGuiShape>(this, "Shape");
@@ -124,7 +109,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the SurfaceGui will render at a fixed size or scale with its size in studs.
-        /// <para><b>Default:</b> <c>FixedSize</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#SizingMode"/>
         public Enum.SurfaceGuiSizingMode SizingMode
@@ -135,7 +119,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the distance in which left clicking starts acting on the SurfaceGui instead of for the held Tool.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#ToolPunchThroughDistance"/>
         public float ToolPunchThroughDistance
@@ -146,7 +129,6 @@ namespace Roblox
 
         /// <summary>
         /// Layers this SurfaceGui in relation to other SurfaceGuis on the same face.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#ZOffset"/>
         public float ZOffset

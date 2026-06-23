@@ -27,45 +27,63 @@ namespace Roblox
 
         /// <summary>
         /// <c>FeatureRestrictionManager.FeatureTimeoutAttempt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FeatureTimeoutAttempt; // TODO: native event binding
+        /// <param name="permanent">A <c>bool</c> value.</param>
+        /// <param name="startTime">A <c>long</c> value.</param>
+        /// <param name="duration">A <c>long</c> value.</param>
+        /// <param name="featureRestrictionAbuseVector">A <c>Enum.FeatureRestrictionAbuseVector</c> value.</param>
+        public event Action<bool, long, long, Enum.FeatureRestrictionAbuseVector>? FeatureTimeoutAttempt
+        {
+            add { if (value is not null) AddEventHandler("FeatureTimeoutAttempt", value); }
+            remove { if (value is not null) RemoveEventHandler("FeatureTimeoutAttempt", value); }
+        }
 
         /// <summary>
         /// <c>FeatureRestrictionManager.FeatureTimeoutRestored</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FeatureTimeoutRestored; // TODO: native event binding
-
-        /// <summary>
-        /// <c>FeatureRestrictionManager.RefreshFeatureRestrictions</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RefreshFeatureRestrictions; // TODO: native event binding
+        /// <param name="featureRestrictionAbuseVector">A <c>Enum.FeatureRestrictionAbuseVector</c> value.</param>
+        public event Action<Enum.FeatureRestrictionAbuseVector>? FeatureTimeoutRestored
+        {
+            add { if (value is not null) AddEventHandler("FeatureTimeoutRestored", value); }
+            remove { if (value is not null) RemoveEventHandler("FeatureTimeoutRestored", value); }
+        }
 
         /// <summary>
         /// <c>FeatureRestrictionManager.ShowFeatureInterventionDetails</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowFeatureInterventionDetails; // TODO: native event binding
+        /// <param name="featureRestrictionAbuseVector">A <c>Enum.FeatureRestrictionAbuseVector</c> value.</param>
+        public event Action<Enum.FeatureRestrictionAbuseVector>? ShowFeatureInterventionDetails
+        {
+            add { if (value is not null) AddEventHandler("ShowFeatureInterventionDetails", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowFeatureInterventionDetails", value); }
+        }
 
         /// <summary>
         /// <c>FeatureRestrictionManager.ShowFeatureInterventionDetailsV2</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowFeatureInterventionDetailsV2; // TODO: native event binding
+        /// <param name="featureRestrictionAbuseVector">A <c>Enum.FeatureRestrictionAbuseVector</c> value.</param>
+        /// <param name="isGameJoin">A <c>bool</c> value.</param>
+        public event Action<Enum.FeatureRestrictionAbuseVector, bool>? ShowFeatureInterventionDetailsV2
+        {
+            add { if (value is not null) AddEventHandler("ShowFeatureInterventionDetailsV2", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowFeatureInterventionDetailsV2", value); }
+        }
 
         /// <summary>
         /// <c>FeatureRestrictionManager.TimeoutChatAttempt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TimeoutChatAttempt; // TODO: native event binding
-
-        /// <summary>
-        /// <c>FeatureRestrictionManager.UpdateClientFeatureTimeout</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateClientFeatureTimeout; // TODO: native event binding
+        /// <param name="isPermanentTimeout">A <c>bool</c> value.</param>
+        /// <param name="endTime">A <c>long</c> value.</param>
+        public event Action<bool, long>? TimeoutChatAttempt
+        {
+            add { if (value is not null) AddEventHandler("TimeoutChatAttempt", value); }
+            remove { if (value is not null) RemoveEventHandler("TimeoutChatAttempt", value); }
+        }
 
     }
 }

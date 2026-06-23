@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets which sides the GUI handles will appear.
-        /// <para><b>Default:</b> <c>Right, Top, Back, Left, Bottom, Front</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#Faces"/>
         public int Faces
@@ -37,58 +36,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Handles.MouseButton1DownConnectionCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public int MouseButton1DownConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton1DownConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton1DownConnectionCount", value);
-        }
-
-        /// <summary>
-        /// <c>Handles.MouseButton1UpConnectionCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public int MouseButton1UpConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton1UpConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton1UpConnectionCount", value);
-        }
-
-        /// <summary>
-        /// <c>Handles.MouseDragConnectionCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public int MouseDragConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseDragConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseDragConnectionCount", value);
-        }
-
-        /// <summary>
-        /// <c>Handles.MouseEnterConnectionCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public int MouseEnterConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseEnterConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseEnterConnectionCount", value);
-        }
-
-        /// <summary>
-        /// <c>Handles.MouseLeaveConnectionCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public int MouseLeaveConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseLeaveConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseLeaveConnectionCount", value);
-        }
-
-        /// <summary>
         /// Sets the GUI style of the handles.
-        /// <para><b>Default:</b> <c>Resize</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#Style"/>
         public Enum.HandlesStyle Style
@@ -99,38 +47,64 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the left mouse button goes down on one of the GUI handles.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="face">A <c>Enum.NormalId</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#MouseButton1Down"/>
-        // public event Action? MouseButton1Down; // TODO: native event binding
+        public event Action<Enum.NormalId>? MouseButton1Down
+        {
+            add { if (value is not null) AddEventHandler("MouseButton1Down", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton1Down", value); }
+        }
 
         /// <summary>
         /// Fired when the left mouse button is released on one of the GUI handles.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="face">A <c>Enum.NormalId</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#MouseButton1Up"/>
-        // public event Action? MouseButton1Up; // TODO: native event binding
+        public event Action<Enum.NormalId>? MouseButton1Up
+        {
+            add { if (value is not null) AddEventHandler("MouseButton1Up", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton1Up", value); }
+        }
 
         /// <summary>
         /// Fired when the mouse moves while the MouseButton1Down event has fired, but the left mouse button has not been released yet.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="face">A <c>Enum.NormalId</c> value.</param>
+        /// <param name="distance">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#MouseDrag"/>
-        // public event Action? MouseDrag; // TODO: native event binding
+        public event Action<Enum.NormalId, float>? MouseDrag
+        {
+            add { if (value is not null) AddEventHandler("MouseDrag", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseDrag", value); }
+        }
 
         /// <summary>
         /// Fired when a mouse "enters" the GUI handle.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="face">A <c>Enum.NormalId</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#MouseEnter"/>
-        // public event Action? MouseEnter; // TODO: native event binding
+        public event Action<Enum.NormalId>? MouseEnter
+        {
+            add { if (value is not null) AddEventHandler("MouseEnter", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseEnter", value); }
+        }
 
         /// <summary>
         /// Fired when the mouse leaves the GUI handle.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="face">A <c>Enum.NormalId</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#MouseLeave"/>
-        // public event Action? MouseLeave; // TODO: native event binding
+        public event Action<Enum.NormalId>? MouseLeave
+        {
+            add { if (value is not null) AddEventHandler("MouseLeave", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseLeave", value); }
+        }
 
     }
 }

@@ -75,9 +75,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>TrackerLodController.UpdateState</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UpdateState; // TODO: native event binding
+        public event Action? UpdateState
+        {
+            add { if (value is not null) AddEventHandler("UpdateState", value); }
+            remove { if (value is not null) RemoveEventHandler("UpdateState", value); }
+        }
 
     }
 }

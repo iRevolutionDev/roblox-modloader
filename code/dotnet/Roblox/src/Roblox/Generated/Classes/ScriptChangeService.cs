@@ -23,33 +23,59 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ScriptAdded; // TODO: native event binding
+        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
+        public event Action<LuaSourceContainer?>? ScriptAdded
+        {
+            add { if (value is not null) AddEventHandler("ScriptAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("ScriptAdded", value); }
+        }
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptBeingRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ScriptBeingRemoved; // TODO: native event binding
+        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
+        public event Action<LuaSourceContainer?>? ScriptBeingRemoved
+        {
+            add { if (value is not null) AddEventHandler("ScriptBeingRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("ScriptBeingRemoved", value); }
+        }
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ScriptChanged; // TODO: native event binding
+        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
+        /// <param name="property">A <c>string?</c> value.</param>
+        public event Action<LuaSourceContainer?, string?>? ScriptChanged
+        {
+            add { if (value is not null) AddEventHandler("ScriptChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ScriptChanged", value); }
+        }
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptFullNameChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ScriptFullNameChanged; // TODO: native event binding
+        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
+        public event Action<LuaSourceContainer?>? ScriptFullNameChanged
+        {
+            add { if (value is not null) AddEventHandler("ScriptFullNameChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ScriptFullNameChanged", value); }
+        }
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptSourceChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ScriptSourceChanged; // TODO: native event binding
+        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
+        public event Action<LuaSourceContainer?>? ScriptSourceChanged
+        {
+            add { if (value is not null) AddEventHandler("ScriptSourceChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ScriptSourceChanged", value); }
+        }
 
     }
 }

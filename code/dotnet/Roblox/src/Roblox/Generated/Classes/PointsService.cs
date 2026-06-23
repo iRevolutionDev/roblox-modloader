@@ -63,10 +63,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when points have been successfully awarded to a player, while also passing along the updated balance of points the player has in the current game and all games.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <param name="pointsAwarded">A <c>int</c> value.</param>
+        /// <param name="userBalanceInGame">A <c>int</c> value.</param>
+        /// <param name="userTotalBalance">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#PointsAwarded"/>
-        // public event Action? PointsAwarded; // TODO: native event binding
+        public event Action<long, int, int, int>? PointsAwarded
+        {
+            add { if (value is not null) AddEventHandler("PointsAwarded", value); }
+            remove { if (value is not null) RemoveEventHandler("PointsAwarded", value); }
+        }
 
     }
 }

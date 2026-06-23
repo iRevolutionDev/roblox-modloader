@@ -5,13 +5,13 @@ namespace rml::dotnet
 {
 	enum class InteropValueTag : uint8_t
 	{
-		Null          = 0,
-		Bool          = 1,
-		Int64         = 2,
-		Double        = 3,
-		Float         = 4,
-		String        = 5,
-		Instance      = 6,
+		Null = 0,
+		Bool = 1,
+		Int64 = 2,
+		Double = 3,
+		Float = 4,
+		String = 5,
+		Instance = 6,
 		InstanceArray = 7,
 	};
 
@@ -29,6 +29,8 @@ namespace rml::dotnet
 		};
 	};
 
+	using ManagedEventCallback = void(__cdecl*)(void* state, const InteropVariant* args, uint32_t arg_count);
+
 	struct alignas(8) InteropTable
 	{
 		uint32_t version;
@@ -42,16 +44,20 @@ namespace rml::dotnet
 
 		void(__cdecl* reflection_set_property)(uintptr_t instance, const char* property_name, const InteropVariant* value);
 
+		uintptr_t(__cdecl* reflection_event_connect)(uintptr_t instance, const char* event_name, ManagedEventCallback callback, void* state);
+
+		void(__cdecl* reflection_event_disconnect)(uintptr_t connection_handle);
+
 		uintptr_t(__cdecl* instance_get_class_descriptor)(uintptr_t instance);
 
 		void(__cdecl* managed_log)(int32_t level, const char* utf8, int32_t len);
 
 		void(__cdecl* free_string)(const char* str);
-		
+
 		void(__cdecl* free_native_ptr)(const void* ptr);
 	};
 
-	inline constexpr uint32_t RML_INTEROP_VERSION = 2;
+	inline constexpr uint32_t RML_INTEROP_VERSION = 3;
 
 	class InteropRegistry
 	{

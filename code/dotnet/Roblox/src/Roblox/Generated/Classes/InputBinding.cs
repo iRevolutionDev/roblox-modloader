@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies an alternate KeyCode for dispatching directionally "backward" inputs to the parent InputAction.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Backward"/>
         public Enum.KeyCode Backward
@@ -37,8 +36,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>InputBinding.ClampMagnitudeToOne</c>
-        /// <para><b>Default:</b> <c>true</c></para>
+        /// Specifies how the binding normalizes composite directional input to a maximum magnitude of 1.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#ClampMagnitudeToOne"/>
         public bool ClampMagnitudeToOne
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies an alternate KeyCode for dispatching directionally "down" inputs to the parent InputAction.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Down"/>
         public Enum.KeyCode Down
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies an alternate KeyCode for dispatching directionally "forward" inputs to the parent InputAction.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Forward"/>
         public Enum.KeyCode Forward
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the KeyCode which triggers the parent InputAction.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#KeyCode"/>
         public Enum.KeyCode KeyCode
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies an alternate KeyCode for dispatching directionally "left" inputs to the parent InputAction.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Left"/>
         public Enum.KeyCode Left
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>InputBinding.PointerIndex</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#PointerIndex"/>
         public int PointerIndex
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Numerical value above which to fire an InputAction with a Type of Bool.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#PressedThreshold"/>
         public float PressedThreshold
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies a primary KeyCode that must be pressed for the binding to activate.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#PrimaryModifier"/>
         public Enum.KeyCode PrimaryModifier
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Numerical value below which to fire an InputAction with a Type of Bool.
-        /// <para><b>Default:</b> <c>0.200000003</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#ReleasedThreshold"/>
         public float ReleasedThreshold
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Numerical value to configure scaling for more precise thumbstick aiming.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#ResponseCurve"/>
         public float ResponseCurve
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies an alternate KeyCode for dispatching directionally "right" inputs to the parent InputAction.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Right"/>
         public Enum.KeyCode Right
@@ -158,8 +146,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// Amount by which to linearly scale the values of a directional InputAction.
-        /// <para><b>Default:</b> <c>1</c></para>
+        /// Scalar multiplier applied uniformly to all components of a directional InputAction's output.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Scale"/>
         public float Scale
@@ -170,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies a secondary KeyCode that must be pressed for the binding to activate.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#SecondaryModifier"/>
         public Enum.KeyCode SecondaryModifier
@@ -189,6 +175,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<GuiButton?>(this, "UIButton", value);
         }
 
+        /// <summary>
+        /// Specifies a GuiButton that must be active for the binding to activate.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#UIModifier"/>
         public GuiButton? UIModifier
         {
             get => global::Roblox.Reflection.GetProperty<GuiButton?>(this, "UIModifier");
@@ -197,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies an alternate KeyCode for dispatching directionally "up" inputs to the parent InputAction.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Up"/>
         public Enum.KeyCode Up
@@ -207,8 +196,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// Amount by which to linearly scale the values of a two-directional InputAction.
-        /// <para><b>Default:</b> <c>1, 1</c></para>
+        /// Per-component scale applied to the output of a Direction2D action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Vector2Scale"/>
         public global::System.Numerics.Vector2 Vector2Scale
@@ -218,8 +206,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>InputBinding.Vector3Scale</c>
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
+        /// Per-component scale applied to the output of a Direction3D action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Vector3Scale"/>
         public global::System.Numerics.Vector3 Vector3Scale

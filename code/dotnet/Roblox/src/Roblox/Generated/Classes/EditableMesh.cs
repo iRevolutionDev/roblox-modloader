@@ -35,18 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FixedSize", value);
         }
 
-        public bool IsReplicatedCopy
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReplicatedCopy");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsReplicatedCopy", value);
-        }
-
-        public string? MeshData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MeshData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MeshData", value);
-        }
-
         /// <summary>
         /// Adds a new bone and returns a stable bone ID.
         /// </summary>

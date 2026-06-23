@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Sound.AcousticSimulationEnabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#AcousticSimulationEnabled"/>
         public bool AcousticSimulationEnabled
@@ -36,10 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AcousticSimulationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>Sound.AssetRepresentation</c>
-        /// <para><b>Default:</b> <c>FullLength</c></para>
-        /// </summary>
         public Enum.AssetRepresentation AssetRepresentation
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation");
@@ -56,10 +51,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "AudioContent", value);
         }
 
-        /// <summary>
-        /// <c>Sound.ChannelCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int ChannelCount
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "ChannelCount");
@@ -68,7 +59,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property has deprecated in favor of Sound.RollOffMinDistance and Sound.RollOffMaxDistance which should be used instead in new work.The minimum distance, in studs, at which a 3D Sound (direct child of a BasePart or Attachment) will begin to attenuate (decrease in volume).
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#EmitterSize"/>
         public float EmitterSize
@@ -79,7 +69,6 @@ namespace Roblox
 
         /// <summary>
         /// This property is true when the Sound has loaded from Roblox servers and is ready to play.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#IsLoaded"/>
         public bool IsLoaded
@@ -90,7 +79,6 @@ namespace Roblox
 
         /// <summary>
         /// Read-only property which returns true when the Sound is not playing.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#IsPaused"/>
         public bool IsPaused
@@ -101,7 +89,6 @@ namespace Roblox
 
         /// <summary>
         /// Read-only property which returns true when the Sound is playing.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#IsPlaying"/>
         public bool IsPlaying
@@ -110,10 +97,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPlaying", value);
         }
 
-        /// <summary>
-        /// <c>Sound.IsSpatial</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsSpatial
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSpatial");
@@ -122,7 +105,6 @@ namespace Roblox
 
         /// <summary>
         /// A range denoting a desired loop start and loop end within the PlaybackRegion, in seconds.
-        /// <para><b>Default:</b> <c>0 60000 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#LoopRegion"/>
         public object? LoopRegion
@@ -133,7 +115,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether or not the Sound repeats once it has finished playing.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Looped"/>
         public bool Looped
@@ -144,7 +125,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property has deprecated in favor of Sound.RollOffMinDistance and Sound.RollOffMaxDistance which should be used instead in new work.The maximum distance, in studs, a client's listener can be from the Sound\s origin and still hear it. Only applies to Sounds parented to a Part or Attachment (3D sounds).
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#MaxDistance"/>
         public float MaxDistance
@@ -155,7 +135,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: MinDistance has been superseded by Sound.EmitterSize, whose name better describes this properties behavior.The minimum distance at which a 3D Sound (direct child of a BasePart or Attachment) will begin to attenuate. Effectively, the emitter size.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#MinDistance"/>
         public float MinDistance
@@ -166,7 +145,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property has been deprecated in favor of Sound.PlaybackSpeed whose name suits the behavior better.Sets how high pitched and fast a Sound is when it is played. The greater the integer, the higher and faster the Sound is.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Pitch"/>
         public float Pitch
@@ -177,7 +155,6 @@ namespace Roblox
 
         /// <summary>
         /// When true, the Sound will play when it is removed from the experience.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlayOnRemove"/>
         public bool PlayOnRemove
@@ -188,7 +165,6 @@ namespace Roblox
 
         /// <summary>
         /// A number between 0 and 1000 indicating how loud the Sound is currently playing back.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackLoudness"/>
         public double PlaybackLoudness
@@ -199,7 +175,6 @@ namespace Roblox
 
         /// <summary>
         /// A range denoting a desired start and stop time within the TimeLength, in seconds.
-        /// <para><b>Default:</b> <c>0 60000 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackRegion"/>
         public object? PlaybackRegion
@@ -210,7 +185,6 @@ namespace Roblox
 
         /// <summary>
         /// If true, this property gives your Sound access to the PlaybackRegion and LoopRegion properties which can more-accurately control its playback.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackRegionsEnabled"/>
         public bool PlaybackRegionsEnabled
@@ -221,7 +195,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the speed at which a Sound will play, with higher values causing the sound to play faster and at a higher pitch.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackSpeed"/>
         public float PlaybackSpeed
@@ -232,7 +205,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether the Sound is currently playing.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Playing"/>
         public bool Playing
@@ -241,20 +213,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Playing", value);
         }
 
-        /// <summary>
-        /// <c>Sound.PlayingReplicator</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool PlayingReplicator
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayingReplicator");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayingReplicator", value);
-        }
-
-        /// <summary>
-        /// <c>Sound.RollOffGain</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float RollOffGain
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffGain");
@@ -263,7 +221,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum distance, in studs, a client's listener can be from the sound's origin and still hear it. Only applies to Sounds parented to a BasePart or Attachment.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#RollOffMaxDistance"/>
         public float RollOffMaxDistance
@@ -274,7 +231,6 @@ namespace Roblox
 
         /// <summary>
         /// The minimum distance, in studs, at which a Sound which is parented to a BasePart or Attachment will begin to attenuate (decrease in volume).
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#RollOffMinDistance"/>
         public float RollOffMinDistance
@@ -285,7 +241,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how the volume of a Sound which is parented to a BasePart or Attachment attenuates (fades out) as the distance between the listener and parent changes.
-        /// <para><b>Default:</b> <c>Inverse</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#RollOffMode"/>
         public Enum.RollOffMode RollOffMode
@@ -316,7 +271,6 @@ namespace Roblox
 
         /// <summary>
         /// The length of the Sound in seconds.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#TimeLength"/>
         public double TimeLength
@@ -327,7 +281,6 @@ namespace Roblox
 
         /// <summary>
         /// Progress of the Sound in seconds. Can be changed to move the playback position of the Sound both before and during playback.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#TimePosition"/>
         public double TimePosition
@@ -336,20 +289,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimePosition", value);
         }
 
-        /// <summary>
-        /// <c>Sound.TimePositionReplicator</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public double TimePositionReplicator
-        {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePositionReplicator");
-            set => global::Roblox.Reflection.SetProperty<double>(this, "TimePositionReplicator", value);
-        }
-
-        /// <summary>
-        /// <c>Sound.UsageContextPermission</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.UsageContext UsageContextPermission
         {
             get => global::Roblox.Reflection.GetProperty<Enum.UsageContext>(this, "UsageContextPermission");
@@ -358,33 +297,12 @@ namespace Roblox
 
         /// <summary>
         /// The volume of the Sound.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Volume"/>
         public float Volume
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
-        }
-
-        /// <summary>
-        /// <c>Sound.xmlRead_MaxDistance_3</c>
-        /// <para><b>Default:</b> <c>10000</c></para>
-        /// </summary>
-        public float XmlRead_MaxDistance_3
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "xmlRead_MaxDistance_3");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "xmlRead_MaxDistance_3", value);
-        }
-
-        /// <summary>
-        /// <c>Sound.xmlRead_MinDistance_3</c>
-        /// <para><b>Default:</b> <c>10</c></para>
-        /// </summary>
-        public float XmlRead_MinDistance_3
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "xmlRead_MinDistance_3");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "xmlRead_MinDistance_3", value);
         }
 
         /// <summary>
@@ -428,82 +346,88 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the Sound loops.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="numOfTimesLooped">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#DidLoop"/>
-        // public event Action? DidLoop; // TODO: native event binding
+        public event Action<string?, int>? DidLoop
+        {
+            add { if (value is not null) AddEventHandler("DidLoop", value); }
+            remove { if (value is not null) RemoveEventHandler("DidLoop", value); }
+        }
 
         /// <summary>
         /// Fires when the Sound has completed playback and stopped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Ended"/>
-        // public event Action? Ended; // TODO: native event binding
+        public event Action<string?>? Ended
+        {
+            add { if (value is not null) AddEventHandler("Ended", value); }
+            remove { if (value is not null) RemoveEventHandler("Ended", value); }
+        }
 
         /// <summary>
         /// Fires when the Sound is loaded.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Loaded"/>
-        // public event Action? Loaded; // TODO: native event binding
+        public event Action<string?>? Loaded
+        {
+            add { if (value is not null) AddEventHandler("Loaded", value); }
+            remove { if (value is not null) RemoveEventHandler("Loaded", value); }
+        }
 
         /// <summary>
         /// Fires whenever the Sound is paused using Pause().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Paused"/>
-        // public event Action? Paused; // TODO: native event binding
+        public event Action<string?>? Paused
+        {
+            add { if (value is not null) AddEventHandler("Paused", value); }
+            remove { if (value is not null) RemoveEventHandler("Paused", value); }
+        }
 
         /// <summary>
         /// Fires whenever the Sound is played using Play().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Played"/>
-        // public event Action? Played; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Sound.PlayingUpdatedFromClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlayingUpdatedFromClient; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Sound.PlayingUpdatedFromServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlayingUpdatedFromServer; // TODO: native event binding
+        public event Action<string?>? Played
+        {
+            add { if (value is not null) AddEventHandler("Played", value); }
+            remove { if (value is not null) RemoveEventHandler("Played", value); }
+        }
 
         /// <summary>
         /// Fires when the Sound is resumed using Resume().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Resumed"/>
-        // public event Action? Resumed; // TODO: native event binding
+        public event Action<string?>? Resumed
+        {
+            add { if (value is not null) AddEventHandler("Resumed", value); }
+            remove { if (value is not null) RemoveEventHandler("Resumed", value); }
+        }
 
         /// <summary>
         /// Fires when the Sound is stopped through using Stop().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Stopped"/>
-        // public event Action? Stopped; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Sound.TimePositionUpdatedFromClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TimePositionUpdatedFromClient; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Sound.TimePositionUpdatedFromServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TimePositionUpdatedFromServer; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Sound.playbackActionSync</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlaybackActionSync; // TODO: native event binding
+        public event Action<string?>? Stopped
+        {
+            add { if (value is not null) AddEventHandler("Stopped", value); }
+            remove { if (value is not null) RemoveEventHandler("Stopped", value); }
+        }
 
     }
 }

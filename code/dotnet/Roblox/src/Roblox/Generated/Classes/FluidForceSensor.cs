@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Assembly center of pressure offset from its center of mass in world coordinates.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor#CenterOfPressure"/>
         public global::System.Numerics.Vector3 CenterOfPressure
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Assembly fluid force in world coordinates.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor#Force"/>
         public global::System.Numerics.Vector3 Force
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Assembly fluid torque in world coordinates.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor#Torque"/>
         public global::System.Numerics.Vector3 Torque

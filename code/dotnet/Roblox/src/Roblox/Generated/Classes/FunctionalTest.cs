@@ -26,64 +26,13 @@ namespace Roblox
             => handle == 0 ? null : new FunctionalTest(handle);
 
         /// <summary>
-        /// <c>FunctionalTest.AllowSleep</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
-        public bool AllowSleep
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowSleep");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowSleep", value);
-        }
-
-        /// <summary>
         /// The description of the FunctionalTest.
-        /// <para><b>Default:</b> <c>?</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest#Description"/>
         public string? Description
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "Description");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Description", value);
-        }
-
-        /// <summary>
-        /// <c>FunctionalTest.HasMigratedSettingsToTestService</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool HasMigratedSettingsToTestService
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasMigratedSettingsToTestService");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "HasMigratedSettingsToTestService", value);
-        }
-
-        /// <summary>
-        /// <c>FunctionalTest.Is30FpsThrottleEnabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
-        public bool Is30FpsThrottleEnabled
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Is30FpsThrottleEnabled");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Is30FpsThrottleEnabled", value);
-        }
-
-        /// <summary>
-        /// <c>FunctionalTest.PhysicsEnvironmentalThrottle</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
-        public bool PhysicsEnvironmentalThrottle
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PhysicsEnvironmentalThrottle");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "PhysicsEnvironmentalThrottle", value);
-        }
-
-        /// <summary>
-        /// <c>FunctionalTest.Timeout</c>
-        /// <para><b>Default:</b> <c>60</c></para>
-        /// </summary>
-        public double Timeout
-        {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "Timeout");
-            set => global::Roblox.Reflection.SetProperty<double>(this, "Timeout", value);
         }
 
         /// <summary>

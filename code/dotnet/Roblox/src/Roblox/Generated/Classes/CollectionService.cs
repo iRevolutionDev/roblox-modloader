@@ -110,31 +110,51 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item has been superseded by a CollectionService tagging method. There is currently no means of checking when a tag is added.Fires when a Configuration, CustomEvent, CustomEventReceiver, Dialog, or VehicleSeat is added to the DataModel.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemAdded"/>
-        // public event Action? ItemAdded; // TODO: native event binding
+        public event Action<Instance?>? ItemAdded
+        {
+            add { if (value is not null) AddEventHandler("ItemAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("ItemAdded", value); }
+        }
 
         /// <summary>
         /// Deprecated: This item has been superseded by a CollectionService tagging method. There is currently no means of checking when a tag is removed.Fires when a Configuration, CustomEvent, CustomEventReceiver, Dialog, or VehicleSeat is removed from the DataModel.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemRemoved"/>
-        // public event Action? ItemRemoved; // TODO: native event binding
+        public event Action<Instance?>? ItemRemoved
+        {
+            add { if (value is not null) AddEventHandler("ItemRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("ItemRemoved", value); }
+        }
 
         /// <summary>
         /// Fires when a tag is added to an instance and the added tag is the only occurrence of that tag in the place.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="tag">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#TagAdded"/>
-        // public event Action? TagAdded; // TODO: native event binding
+        public event Action<string?>? TagAdded
+        {
+            add { if (value is not null) AddEventHandler("TagAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("TagAdded", value); }
+        }
 
         /// <summary>
         /// Fires when a tag is removed from an instance and the removed tag is no longer used anywhere in the place.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="tag">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#TagRemoved"/>
-        // public event Action? TagRemoved; // TODO: native event binding
+        public event Action<string?>? TagRemoved
+        {
+            add { if (value is not null) AddEventHandler("TagRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("TagRemoved", value); }
+        }
 
     }
 }

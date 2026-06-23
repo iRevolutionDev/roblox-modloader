@@ -72,9 +72,17 @@ namespace Roblox
 
         /// <summary>
         /// <c>CoreGui.UserGuiRenderingChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UserGuiRenderingChanged; // TODO: native event binding
+        /// <param name="enabled">A <c>bool</c> value.</param>
+        /// <param name="guiAdornee">A <c>Instance?</c> value.</param>
+        /// <param name="faceId">A <c>Enum.NormalId</c> value.</param>
+        /// <param name="horizontalCurvature">A <c>float</c> value.</param>
+        public event Action<bool, Instance?, Enum.NormalId, float>? UserGuiRenderingChanged
+        {
+            add { if (value is not null) AddEventHandler("UserGuiRenderingChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("UserGuiRenderingChanged", value); }
+        }
 
     }
 }

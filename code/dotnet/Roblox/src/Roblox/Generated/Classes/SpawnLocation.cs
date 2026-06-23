@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Allows a Player to join the team by touching the SpawnLocation. When set to true, if a Player character comes into contact with the SpawnLocation, the player's Player.TeamColor will be set to SpawnLocation.TeamColor.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#AllowTeamChangeOnTouch"/>
         public bool AllowTeamChangeOnTouch
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The length of time, in seconds, that a ForceField will be applied to a Player character spawning at this SpawnLocation. If Duration is zero, the ForceField is never created, and it will not trigger the Instance.DescendantAdded or Instance.ChildAdded events.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#Duration"/>
         public int Duration
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether or not the SpawnLocation is enabled. When disabled players cannot spawn at the SpawnLocation and the AllowTeamChangeOnTouch functionality is disabled.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#Enabled"/>
         public bool Enabled
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether or not a SpawnLocation is affiliated with a specific team. This means that any Player, of any Team, can spawn on it if this property is set to true.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#Neutral"/>
         public bool Neutral

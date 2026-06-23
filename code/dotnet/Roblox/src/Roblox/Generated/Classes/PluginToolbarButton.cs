@@ -55,6 +55,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "Icon", value);
         }
 
+        public string? IconContent
+        {
+            get => global::Roblox.Reflection.GetProperty<string?>(this, "IconContent");
+            set => global::Roblox.Reflection.SetProperty<string?>(this, "IconContent", value);
+        }
+
         /// <summary>
         /// Sets the state of the plugin button.
         /// </summary>
@@ -74,16 +80,24 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user presses and releases their cursor on the button.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginToolbarButton#Click"/>
-        // public event Action? Click; // TODO: native event binding
+        public event Action? Click
+        {
+            add { if (value is not null) AddEventHandler("Click", value); }
+            remove { if (value is not null) RemoveEventHandler("Click", value); }
+        }
 
         /// <summary>
         /// <c>PluginToolbarButton.DropdownClick</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DropdownClick; // TODO: native event binding
+        public event Action? DropdownClick
+        {
+            add { if (value is not null) AddEventHandler("DropdownClick", value); }
+            remove { if (value is not null) RemoveEventHandler("DropdownClick", value); }
+        }
 
     }
 }

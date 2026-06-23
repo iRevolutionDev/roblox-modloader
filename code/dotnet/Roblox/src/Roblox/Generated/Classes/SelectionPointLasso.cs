@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the Vector3 target of the lasso object.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionPointLasso#Point"/>
         public global::System.Numerics.Vector3 Point

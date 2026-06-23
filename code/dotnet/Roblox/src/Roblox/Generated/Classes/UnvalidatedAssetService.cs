@@ -22,16 +22,6 @@ namespace Roblox
             => handle == 0 ? null : new UnvalidatedAssetService(handle);
 
         /// <summary>
-        /// <c>UnvalidatedAssetService.CachedData</c>
-        /// <para><b>Default:</b> <c>{&quot;lastSaveTime&quot;:0,&quot;lastKnownPublishRequest&quot;:0,&quot;users&quot;:[]}</c></para>
-        /// </summary>
-        public string? CachedData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CachedData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CachedData", value);
-        }
-
-        /// <summary>
         /// <c>UnvalidatedAssetService.AppendTempAssetId</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>

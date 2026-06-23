@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the additive blending intensity.
-        /// <para><b>Default:</b> <c>0.400000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BloomEffect#Intensity"/>
         public float Intensity
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the radius of the bloom in pixels.
-        /// <para><b>Default:</b> <c>24</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BloomEffect#Size"/>
         public float Size
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how bright a color must be before it blooms.
-        /// <para><b>Default:</b> <c>0.949999988</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BloomEffect#Threshold"/>
         public float Threshold

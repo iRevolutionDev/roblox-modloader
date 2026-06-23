@@ -267,15 +267,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>VirtualInputManager.PlaybackCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlaybackCompleted; // TODO: native event binding
+        /// <param name="additionalLuaState">A <c>string?</c> value.</param>
+        public event Action<string?>? PlaybackCompleted
+        {
+            add { if (value is not null) AddEventHandler("PlaybackCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PlaybackCompleted", value); }
+        }
 
         /// <summary>
         /// <c>VirtualInputManager.RecordingCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RecordingCompleted; // TODO: native event binding
+        /// <param name="result">A <c>string?</c> value.</param>
+        public event Action<string?>? RecordingCompleted
+        {
+            add { if (value is not null) AddEventHandler("RecordingCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("RecordingCompleted", value); }
+        }
 
     }
 }

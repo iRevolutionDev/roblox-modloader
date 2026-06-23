@@ -83,31 +83,47 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player presses down on their left mouse button while hovering over the adornment.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseButton1Down"/>
-        // public event Action? MouseButton1Down; // TODO: native event binding
+        public event Action? MouseButton1Down
+        {
+            add { if (value is not null) AddEventHandler("MouseButton1Down", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton1Down", value); }
+        }
 
         /// <summary>
         /// Fires when a player releases their left mouse button while hovering over the adornment.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseButton1Up"/>
-        // public event Action? MouseButton1Up; // TODO: native event binding
+        public event Action? MouseButton1Up
+        {
+            add { if (value is not null) AddEventHandler("MouseButton1Up", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton1Up", value); }
+        }
 
         /// <summary>
         /// Fires when a player moves their mouse over the adornment.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseEnter"/>
-        // public event Action? MouseEnter; // TODO: native event binding
+        public event Action? MouseEnter
+        {
+            add { if (value is not null) AddEventHandler("MouseEnter", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseEnter", value); }
+        }
 
         /// <summary>
         /// Fires when a player moves their mouse out of the adornment.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseLeave"/>
-        // public event Action? MouseLeave; // TODO: native event binding
+        public event Action? MouseLeave
+        {
+            add { if (value is not null) AddEventHandler("MouseLeave", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseLeave", value); }
+        }
 
     }
 }

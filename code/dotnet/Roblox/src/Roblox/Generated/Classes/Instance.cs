@@ -35,24 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Archivable", value);
         }
 
-        public string? Attributes
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Attributes");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Attributes", value);
-        }
-
-        public string? AttributesReplicate
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AttributesReplicate");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AttributesReplicate", value);
-        }
-
-        public byte[]? AttributesSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "AttributesSerialize");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "AttributesSerialize", value);
-        }
-
         /// <summary>
         /// The set of capabilities allowed to be used for scripts inside this container.
         /// </summary>
@@ -67,18 +49,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "DataCost");
             set => global::Roblox.Reflection.SetProperty<int>(this, "DataCost", value);
-        }
-
-        public bool DefinesCapabilities
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DefinesCapabilities");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "DefinesCapabilities", value);
-        }
-
-        public object? HistoryId
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "HistoryId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "HistoryId", value);
         }
 
         public bool IsInSandbox
@@ -117,12 +87,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.PredictionMode>(this, "PredictionMode", value);
         }
 
-        public Enum.PropertyStatus PropertyStatusStudio
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.PropertyStatus>(this, "PropertyStatusStudio");
-            set => global::Roblox.Reflection.SetProperty<Enum.PropertyStatus>(this, "PropertyStatusStudio", value);
-        }
-
         /// <summary>
         /// A deprecated property that used to protect CoreGui objects.
         /// </summary>
@@ -149,12 +113,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<long>(this, "SourceAssetId", value);
         }
 
-        public byte[]? Tags
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "Tags");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "Tags", value);
-        }
-
         /// <summary>
         /// A unique identifier for the instance.
         /// </summary>
@@ -163,12 +121,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "UniqueId");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "UniqueId", value);
-        }
-
-        public int NumExpectedDirectChildren
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "numExpectedDirectChildren");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "numExpectedDirectChildren", value);
         }
 
         /// <summary>
@@ -464,59 +416,98 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Instance.Parent property of this object or one of its ancestors is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="child">A <c>Instance?</c> value.</param>
+        /// <param name="parent">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#AncestryChanged"/>
-        // public event Action? AncestryChanged; // TODO: native event binding
+        public event Action<Instance?, Instance?>? AncestryChanged
+        {
+            add { if (value is not null) AddEventHandler("AncestryChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("AncestryChanged", value); }
+        }
 
         /// <summary>
         /// Fires whenever an attribute is changed on the Instance.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="attribute">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#AttributeChanged"/>
-        // public event Action? AttributeChanged; // TODO: native event binding
+        public event Action<string?>? AttributeChanged
+        {
+            add { if (value is not null) AddEventHandler("AttributeChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("AttributeChanged", value); }
+        }
 
         /// <summary>
         /// Fires after an object is parented to this Instance.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="child">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ChildAdded"/>
-        // public event Action? ChildAdded; // TODO: native event binding
+        public event Action<Instance?>? ChildAdded
+        {
+            add { if (value is not null) AddEventHandler("ChildAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("ChildAdded", value); }
+        }
 
         /// <summary>
         /// Fires after a child is removed from this Instance.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="child">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ChildRemoved"/>
-        // public event Action? ChildRemoved; // TODO: native event binding
+        public event Action<Instance?>? ChildRemoved
+        {
+            add { if (value is not null) AddEventHandler("ChildRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("ChildRemoved", value); }
+        }
 
         /// <summary>
         /// Fires after a descendant is added to the Instance.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="descendant">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#DescendantAdded"/>
-        // public event Action? DescendantAdded; // TODO: native event binding
+        public event Action<Instance?>? DescendantAdded
+        {
+            add { if (value is not null) AddEventHandler("DescendantAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("DescendantAdded", value); }
+        }
 
         /// <summary>
         /// Fires immediately before a descendant of the Instance is removed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="descendant">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#DescendantRemoving"/>
-        // public event Action? DescendantRemoving; // TODO: native event binding
+        public event Action<Instance?>? DescendantRemoving
+        {
+            add { if (value is not null) AddEventHandler("DescendantRemoving", value); }
+            remove { if (value is not null) RemoveEventHandler("DescendantRemoving", value); }
+        }
 
         /// <summary>
         /// Fires immediately before (or is deferred until after) the instance is destroyed via Instance:Destroy().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Destroying"/>
-        // public event Action? Destroying; // TODO: native event binding
+        public event Action? Destroying
+        {
+            add { if (value is not null) AddEventHandler("Destroying", value); }
+            remove { if (value is not null) RemoveEventHandler("Destroying", value); }
+        }
 
         /// <summary>
         /// Fires whenever any style property is changed on the instance, including when a property is set to nil.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#StyledPropertiesChanged"/>
-        // public event Action? StyledPropertiesChanged; // TODO: native event binding
+        public event Action? StyledPropertiesChanged
+        {
+            add { if (value is not null) AddEventHandler("StyledPropertiesChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("StyledPropertiesChanged", value); }
+        }
 
     }
 }

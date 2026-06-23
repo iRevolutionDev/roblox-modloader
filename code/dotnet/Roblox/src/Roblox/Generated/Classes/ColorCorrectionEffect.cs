@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines by how much the brightness of pixel colors will be shifted.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#Brightness"/>
         public float Brightness
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the change in separation between the dark and light colors.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#Contrast"/>
         public float Contrast
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the change in intensity of colors.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#Saturation"/>
         public float Saturation
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines by how much the RGB channels of pixels are scaled.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#TintColor"/>
         public object? TintColor

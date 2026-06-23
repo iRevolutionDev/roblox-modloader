@@ -25,18 +25,17 @@ namespace Roblox
         public static BinaryStringValue? FromHandle(nuint handle)
             => handle == 0 ? null : new BinaryStringValue(handle);
 
-        public byte[]? Value
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "Value", value);
-        }
-
         /// <summary>
         /// Fires if the BinaryStringValue's value is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="value">A <c>byte[]?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BinaryStringValue#Changed"/>
-        // public event Action? Changed; // TODO: native event binding
+        public event Action<byte[]?>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
     }
 }

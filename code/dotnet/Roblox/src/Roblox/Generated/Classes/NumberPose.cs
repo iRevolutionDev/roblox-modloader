@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The value that will be applied to the FACS control corresponding to the NumberPose.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NumberPose#Value"/>
         public double Value

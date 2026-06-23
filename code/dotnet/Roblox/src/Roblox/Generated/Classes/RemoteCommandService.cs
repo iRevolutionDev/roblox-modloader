@@ -76,53 +76,5 @@ namespace Roblox
         public object? ExecuteCommandAsync(string? code, object? args)
             => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteCommandAsync", code, args);
 
-        /// <summary>
-        /// <c>RemoteCommandService.CommandSentFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? CommandSentFromStudio; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCommandService.OneshotCommandErrorFromRcc</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OneshotCommandErrorFromRcc; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCommandService.OneshotCommandResultFromRcc</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OneshotCommandResultFromRcc; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCommandService.OneshotCommandSentFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OneshotCommandSentFromStudio; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCommandService.StandardOutMessageFromRcc</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? StandardOutMessageFromRcc; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCommandService.StopSentFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? StopSentFromStudio; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCommandService.UpdateSentFromRcc</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateSentFromRcc; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCommandService.UpdateSentFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateSentFromStudio; // TODO: native event binding
-
     }
 }

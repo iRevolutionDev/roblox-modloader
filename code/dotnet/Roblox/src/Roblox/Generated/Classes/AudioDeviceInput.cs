@@ -25,15 +25,8 @@ namespace Roblox
         public static AudioDeviceInput? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioDeviceInput(handle);
 
-        public byte[]? AccessList
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "AccessList");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "AccessList", value);
-        }
-
         /// <summary>
         /// Determines whether the list of user IDs provided to SetUserIdAccessList is treated as an allow-list or deny-list.
-        /// <para><b>Default:</b> <c>Deny</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#AccessType"/>
         public Enum.AccessModifierType AccessType
@@ -44,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether the physical device is actively recording.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#Active"/>
         public bool Active
@@ -53,20 +45,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
-        /// <summary>
-        /// <c>AudioDeviceInput.EchoCancellation</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EchoCancellation
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EchoCancellation");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EchoCancellation", value);
         }
 
-        /// <summary>
-        /// <c>AudioDeviceInput.GainControl</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool GainControl
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "GainControl");
@@ -75,7 +59,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether this AudioDeviceInput is ready to produce sound.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#IsReady"/>
         public bool IsReady
@@ -86,7 +69,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether this AudioDeviceInput is muted.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#Muted"/>
         public bool Muted
@@ -95,20 +77,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Muted", value);
         }
 
-        /// <summary>
-        /// <c>AudioDeviceInput.MutedByLocalUser</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool MutedByLocalUser
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "MutedByLocalUser");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MutedByLocalUser", value);
         }
 
-        /// <summary>
-        /// <c>AudioDeviceInput.NoiseSuppression</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool NoiseSuppression
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "NoiseSuppression");
@@ -127,7 +101,6 @@ namespace Roblox
 
         /// <summary>
         /// Volume level which is multiplied onto the output audio stream.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#Volume"/>
         public float Volume
@@ -180,10 +153,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioDeviceInput via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

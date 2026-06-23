@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether force is applied to the parent of Attachment0 at that attachment's location, or at the parents' center of mass.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the constraint force will be limited. Only used if RigidityEnabled is false.
-        /// <para><b>Default:</b> <c>Magnitude</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ForceLimitMode"/>
         public Enum.ForceLimitMode ForceLimitMode
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the axes that the constraint uses to limit the force. Only applies when RigidityEnabled is false and AlignPosition.ForceLimitMode is PerAxis. .
-        /// <para><b>Default:</b> <c>World</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ForceRelativeTo"/>
         public Enum.ActuatorRelativeTo ForceRelativeTo
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum force along each axis that the constraint can apply to achieve its goal.
-        /// <para><b>Default:</b> <c>10000, 10000, 10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#MaxAxesForce"/>
         public global::System.Numerics.Vector3 MaxAxesForce
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum force magnitude the constraint can apply to achieve its goal.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#MaxForce"/>
         public float MaxForce
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum speed the attachments can move when converging.
-        /// <para><b>Default:</b> <c>INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#MaxVelocity"/>
         public float MaxVelocity
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the constraint uses one or two attachments in calculating its goal.
-        /// <para><b>Default:</b> <c>TwoAttachment</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#Mode"/>
         public Enum.PositionAlignmentMode Mode
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The position to which the constraint should move its Attachment0.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the constraint applies force only to Attachment0, or to both attachments in equal and opposite directions.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ReactionForceEnabled"/>
         public bool ReactionForceEnabled
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how quickly the constraint reaches its goal. Higher values cause the attachment(s) to align more rapidly.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#Responsiveness"/>
         public float Responsiveness
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether force is dependent on other properties, or if the physics solver reacts as quickly as possible to complete the alignment.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#RigidityEnabled"/>
         public bool RigidityEnabled

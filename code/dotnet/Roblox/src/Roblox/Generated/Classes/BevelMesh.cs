@@ -25,23 +25,5 @@ namespace Roblox
         public static BevelMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new BevelMesh(handle);
 
-        public float Bevel
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Bevel");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "Bevel", value);
-        }
-
-        public float BevelRoundness
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Bevel Roundness");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "Bevel Roundness", value);
-        }
-
-        public float Bulge
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Bulge");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "Bulge", value);
-        }
-
     }
 }

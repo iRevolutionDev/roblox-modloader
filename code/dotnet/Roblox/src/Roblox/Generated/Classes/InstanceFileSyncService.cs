@@ -69,16 +69,27 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the synchronization status of an instance changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="status">A <c>Enum.InstanceFileSyncStatus</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceFileSyncService#StatusChanged"/>
-        // public event Action? StatusChanged; // TODO: native event binding
+        public event Action<Instance?, Enum.InstanceFileSyncStatus>? StatusChanged
+        {
+            add { if (value is not null) AddEventHandler("StatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("StatusChanged", value); }
+        }
 
         /// <summary>
         /// <c>InstanceFileSyncService.SyncingCollaboratorsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SyncingCollaboratorsChanged; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? SyncingCollaboratorsChanged
+        {
+            add { if (value is not null) AddEventHandler("SyncingCollaboratorsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SyncingCollaboratorsChanged", value); }
+        }
 
     }
 }

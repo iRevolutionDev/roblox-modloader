@@ -21,30 +21,18 @@ namespace Roblox
         public static StudioCallout? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioCallout(handle);
 
-        /// <summary>
-        /// <c>StudioCallout.AnchorPoint</c>
-        /// <para><b>Default:</b> <c>0.5, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 AnchorPoint
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AnchorPoint");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AnchorPoint", value);
         }
 
-        /// <summary>
-        /// <c>StudioCallout.IsArrowVisible</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool IsArrowVisible
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsArrowVisible");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsArrowVisible", value);
         }
 
-        /// <summary>
-        /// <c>StudioCallout.IsNextVisible</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsNextVisible
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNextVisible");

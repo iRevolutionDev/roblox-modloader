@@ -25,20 +25,12 @@ namespace Roblox
         public static DataStoreService? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreService(handle);
 
-        /// <summary>
-        /// <c>DataStoreService.AutomaticRetry</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool AutomaticRetry
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AutomaticRetry");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutomaticRetry", value);
         }
 
-        /// <summary>
-        /// <c>DataStoreService.LegacyNamingScheme</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool LegacyNamingScheme
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "LegacyNamingScheme");

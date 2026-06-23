@@ -44,16 +44,19 @@ namespace Roblox
 
         /// <summary>
         /// <c>HeapProfilerService.OnNewData</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="jsonString">A <c>object?</c> value.</param>
+        /// <param name="id">A <c>int</c> value.</param>
+        /// <param name="compressedLength">A <c>int</c> value.</param>
+        /// <param name="uncompressedLength">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HeapProfilerService#OnNewData"/>
-        // public event Action? OnNewData; // TODO: native event binding
-
-        /// <summary>
-        /// <c>HeapProfilerService.RequestData</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestData; // TODO: native event binding
+        public event Action<Player?, object?, int, int, int>? OnNewData
+        {
+            add { if (value is not null) AddEventHandler("OnNewData", value); }
+            remove { if (value is not null) RemoveEventHandler("OnNewData", value); }
+        }
 
     }
 }

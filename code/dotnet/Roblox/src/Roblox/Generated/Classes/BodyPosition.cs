@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the amount of dampening to use in reaching the goal Position.
-        /// <para><b>Default:</b> <c>1250</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#D"/>
         public float D
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the limit on how much force that may be applied to each axis.
-        /// <para><b>Default:</b> <c>4000, 4000, 4000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#MaxForce"/>
         public global::System.Numerics.Vector3 MaxForce
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how aggressive of a force is applied in reaching the goal position.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#P"/>
         public float P
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the goal position towards which force will be applied.
-        /// <para><b>Default:</b> <c>0, 50, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -87,10 +83,14 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the Parent of the BodyPosition reaches the desired BodyPosition.Position (within .1 studs). Once this event fires it will not fire again until BodyPosition.Position is updated.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#ReachedTarget"/>
-        // public event Action? ReachedTarget; // TODO: native event binding
+        public event Action? ReachedTarget
+        {
+            add { if (value is not null) AddEventHandler("ReachedTarget", value); }
+            remove { if (value is not null) RemoveEventHandler("ReachedTarget", value); }
+        }
 
     }
 }

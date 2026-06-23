@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Displays the current rotation of the motor in radians.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor#CurrentAngle"/>
         public float CurrentAngle
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The desired angle to turn the motor to in radians.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor#DesiredAngle"/>
         public float DesiredAngle
@@ -49,23 +47,12 @@ namespace Roblox
 
         /// <summary>
         /// The maximum velocity the motor can use to reach Motor.DesiredAngle measured in radians per physics frame (1/60th of a second).
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor#MaxVelocity"/>
         public float MaxVelocity
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "MaxVelocity");
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxVelocity", value);
-        }
-
-        /// <summary>
-        /// <c>Motor.ReplicateCurrentAngle</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float ReplicateCurrentAngle
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ReplicateCurrentAngle");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "ReplicateCurrentAngle", value);
         }
 
         /// <summary>

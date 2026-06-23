@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Type of angular actuator.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularActuatorType"/>
         public Enum.ActuatorType AngularActuatorType
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Enables the angular limits around the rotation axis.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularLimitsEnabled"/>
         public bool AngularLimitsEnabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the sharpness of the angular servo motor in reaching the TargetAngle.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularResponsiveness"/>
         public float AngularResponsiveness
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Restitution of the two limits, or how elastic they are.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularRestitution"/>
         public float AngularRestitution
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Target angular speed. This value is unsigned as the servo will always move toward its target. In radians per second.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularSpeed"/>
         public float AngularSpeed
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The target angular velocity of the motor in radians per second around the rotation axis.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularVelocity"/>
         public float AngularVelocity
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Signed angle (in degrees) between the reference axis and the secondary axis of Attachment1 around the rotation axis.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#CurrentAngle"/>
         public float CurrentAngle
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Direction of the rotation axis as an angle from the X axis in the XY plane of Attachment0.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#InclinationAngle"/>
         public float InclinationAngle
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Lower limit for the angle (in degrees) between the reference axis and the SecondaryAxis of Attachment1 around the rotation axis.
-        /// <para><b>Default:</b> <c>-45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#LowerAngle"/>
         public float LowerAngle
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angular acceleration of the motor in radians per second squared.
-        /// <para><b>Default:</b> <c>500000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#MotorMaxAngularAcceleration"/>
         public float MotorMaxAngularAcceleration
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque the motor can apply to achieve the target angular velocity.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#MotorMaxTorque"/>
         public float MotorMaxTorque
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Enable the visibility of the rotation axis.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#RotationAxisVisible"/>
         public bool RotationAxisVisible
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum torque the servo motor can apply.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#ServoMaxTorque"/>
         public float ServoMaxTorque
@@ -170,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property should not be used in new work.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#SoftlockAngularServoUponReachingTarget"/>
         public bool SoftlockAngularServoUponReachingTarget
@@ -181,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Target angle (in degrees) between the reference axis and the secondary axis of Attachment1 around the rotation axis.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#TargetAngle"/>
         public float TargetAngle
@@ -192,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Upper limit for the angle (in degrees) between the reference axis and the secondary axis of Attachment1 around the rotation axis.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#UpperAngle"/>
         public float UpperAngle
@@ -203,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// The unit vector direction of the rotation axis in world coordinates.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#WorldRotationAxis"/>
         public global::System.Numerics.Vector3 WorldRotationAxis

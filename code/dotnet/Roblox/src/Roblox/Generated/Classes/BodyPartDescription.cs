@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The asset ID that should be applied when applying this BodyPartDescription.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#AssetId"/>
         public long AssetId
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The type of body part.
-        /// <para><b>Default:</b> <c>Head</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#BodyPart"/>
         public Enum.BodyPart BodyPart
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The Color3 for this body part.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#Color"/>
         public object? Color

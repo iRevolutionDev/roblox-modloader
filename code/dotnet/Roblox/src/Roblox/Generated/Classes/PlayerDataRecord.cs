@@ -21,110 +21,66 @@ namespace Roblox
         public static PlayerDataRecord? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerDataRecord(handle);
 
-        /// <summary>
-        /// <c>PlayerDataRecord.CreatedTime</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CreatedTime
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreatedTime", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.DefaultRecordName</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool DefaultRecordName
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "DefaultRecordName");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DefaultRecordName", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.Dirty</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Dirty
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Dirty");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Dirty", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.Error</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
         public Enum.PlayerDataErrorState Error
         {
             get => global::Roblox.Reflection.GetProperty<Enum.PlayerDataErrorState>(this, "Error");
             set => global::Roblox.Reflection.SetProperty<Enum.PlayerDataErrorState>(this, "Error", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.FlushedTime</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long FlushedTime
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "FlushedTime");
             set => global::Roblox.Reflection.SetProperty<long>(this, "FlushedTime", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.LoadedTime</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long LoadedTime
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "LoadedTime");
             set => global::Roblox.Reflection.SetProperty<long>(this, "LoadedTime", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.ModifiedTime</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long ModifiedTime
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "ModifiedTime");
             set => global::Roblox.Reflection.SetProperty<long>(this, "ModifiedTime", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.NewRecord</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool NewRecord
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "NewRecord");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "NewRecord", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.Readable</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Readable
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Readable");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Readable", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.RecordName</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public string? RecordName
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "RecordName");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "RecordName", value);
         }
 
-        /// <summary>
-        /// <c>PlayerDataRecord.Writable</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Writable
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Writable");
@@ -187,21 +143,39 @@ namespace Roblox
 
         /// <summary>
         /// <c>PlayerDataRecord.Changed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Changed; // TODO: native event binding
+        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="value">A <c>object?</c> value.</param>
+        public event Action<string?, object?>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
         /// <summary>
         /// <c>PlayerDataRecord.Flushed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Flushed; // TODO: native event binding
+        /// <param name="flushState">A <c>bool</c> value.</param>
+        /// <param name="error">A <c>object?</c> value.</param>
+        public event Action<bool, object?>? Flushed
+        {
+            add { if (value is not null) AddEventHandler("Flushed", value); }
+            remove { if (value is not null) RemoveEventHandler("Flushed", value); }
+        }
 
         /// <summary>
         /// <c>PlayerDataRecord.Loaded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Loaded; // TODO: native event binding
+        /// <param name="success">A <c>bool</c> value.</param>
+        /// <param name="error">A <c>object?</c> value.</param>
+        public event Action<bool, object?>? Loaded
+        {
+            add { if (value is not null) AddEventHandler("Loaded", value); }
+            remove { if (value is not null) RemoveEventHandler("Loaded", value); }
+        }
 
     }
 }

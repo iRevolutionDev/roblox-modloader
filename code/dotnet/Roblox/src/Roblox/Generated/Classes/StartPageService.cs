@@ -155,21 +155,37 @@ namespace Roblox
 
         /// <summary>
         /// <c>StartPageService.ImageImportedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ImageImportedSignal; // TODO: native event binding
+        /// <param name="urlImported">A <c>string?</c> value.</param>
+        /// <param name="temporaryId">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? ImageImportedSignal
+        {
+            add { if (value is not null) AddEventHandler("ImageImportedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("ImageImportedSignal", value); }
+        }
 
         /// <summary>
         /// <c>StartPageService.LocalGamesFromRegistryUpdatedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? LocalGamesFromRegistryUpdatedSignal; // TODO: native event binding
+        /// <param name="localGames">A <c>object?</c> value.</param>
+        public event Action<object?>? LocalGamesFromRegistryUpdatedSignal
+        {
+            add { if (value is not null) AddEventHandler("LocalGamesFromRegistryUpdatedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("LocalGamesFromRegistryUpdatedSignal", value); }
+        }
 
         /// <summary>
         /// <c>StartPageService.RecentApiGamesFromRegistryUpdatedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RecentApiGamesFromRegistryUpdatedSignal; // TODO: native event binding
+        /// <param name="recentGames">A <c>object?</c> value.</param>
+        public event Action<object?>? RecentApiGamesFromRegistryUpdatedSignal
+        {
+            add { if (value is not null) AddEventHandler("RecentApiGamesFromRegistryUpdatedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("RecentApiGamesFromRegistryUpdatedSignal", value); }
+        }
 
     }
 }

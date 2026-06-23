@@ -21,15 +21,5 @@ namespace Roblox
         public static MetaBreakpointContext? FromHandle(nuint handle)
             => handle == 0 ? null : new MetaBreakpointContext(handle);
 
-        /// <summary>
-        /// <c>MetaBreakpointContext.ContextDataInternal</c>
-        /// <para><b>Default:</b> <c>0 1 2 </c></para>
-        /// </summary>
-        public string? ContextDataInternal
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ContextDataInternal");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ContextDataInternal", value);
-        }
-
     }
 }

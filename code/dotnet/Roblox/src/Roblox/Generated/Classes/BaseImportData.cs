@@ -62,15 +62,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>BaseImportData.StatusRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StatusRemoved; // TODO: native event binding
+        /// <param name="status">A <c>object?</c> value.</param>
+        public event Action<object?>? StatusRemoved
+        {
+            add { if (value is not null) AddEventHandler("StatusRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("StatusRemoved", value); }
+        }
 
         /// <summary>
         /// <c>BaseImportData.StatusReported</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StatusReported; // TODO: native event binding
+        /// <param name="status">A <c>object?</c> value.</param>
+        public event Action<object?>? StatusReported
+        {
+            add { if (value is not null) AddEventHandler("StatusReported", value); }
+            remove { if (value is not null) RemoveEventHandler("StatusReported", value); }
+        }
 
     }
 }

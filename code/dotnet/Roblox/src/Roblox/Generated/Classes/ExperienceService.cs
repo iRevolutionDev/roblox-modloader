@@ -123,33 +123,60 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceService.OnCrossExperienceStarted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnCrossExperienceStarted; // TODO: native event binding
+        /// <param name="type">A <c>string?</c> value.</param>
+        /// <param name="params">A <c>object?</c> value.</param>
+        public event Action<string?, object?>? OnCrossExperienceStarted
+        {
+            add { if (value is not null) AddEventHandler("OnCrossExperienceStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("OnCrossExperienceStarted", value); }
+        }
 
         /// <summary>
         /// <c>ExperienceService.OnCrossExperienceStopped</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnCrossExperienceStopped; // TODO: native event binding
+        /// <param name="type">A <c>string?</c> value.</param>
+        /// <param name="params">A <c>object?</c> value.</param>
+        public event Action<string?, object?>? OnCrossExperienceStopped
+        {
+            add { if (value is not null) AddEventHandler("OnCrossExperienceStopped", value); }
+            remove { if (value is not null) RemoveEventHandler("OnCrossExperienceStopped", value); }
+        }
 
         /// <summary>
         /// <c>ExperienceService.OnNewJoinAttempt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnNewJoinAttempt; // TODO: native event binding
+        /// <param name="params">A <c>object?</c> value.</param>
+        public event Action<object?>? OnNewJoinAttempt
+        {
+            add { if (value is not null) AddEventHandler("OnNewJoinAttempt", value); }
+            remove { if (value is not null) RemoveEventHandler("OnNewJoinAttempt", value); }
+        }
 
         /// <summary>
         /// <c>ExperienceService.PlaceJoinStateChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlaceJoinStateChanged; // TODO: native event binding
+        /// <param name="state">A <c>string?</c> value.</param>
+        public event Action<string?>? PlaceJoinStateChanged
+        {
+            add { if (value is not null) AddEventHandler("PlaceJoinStateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("PlaceJoinStateChanged", value); }
+        }
 
         /// <summary>
         /// <c>ExperienceService.QueuePositionChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? QueuePositionChanged; // TODO: native event binding
+        /// <param name="position">A <c>int</c> value.</param>
+        public event Action<int>? QueuePositionChanged
+        {
+            add { if (value is not null) AddEventHandler("QueuePositionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("QueuePositionChanged", value); }
+        }
 
     }
 }

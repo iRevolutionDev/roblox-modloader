@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Changes the Atmosphere hue for subtle environmental moods.
-        /// <para><b>Default:</b> <c>0.7843, 0.6667, 0.4235</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Color"/>
         public object? Color
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// When used with increased Atmosphere.Haze and Atmosphere.Glare, defines the hue of the Atmosphere away from the sun, gradually falling off from Atmosphere.Color towards this value.
-        /// <para><b>Default:</b> <c>0.3608, 0.2353, 0.0549</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Decay"/>
         public object? Decay
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines the amount of particles in the Atmosphere and essentially controls how much in-game objects/terrain will be obscured by them.
-        /// <para><b>Default:</b> <c>0.395000011</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Density"/>
         public float Density
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// When used with increased Atmosphere.Haze, specifies the glow/glare of the Atmosphere around the sun. More glare results in an increased effect of sunlight cast onto the sky and world.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Glare"/>
         public float Glare
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines the haziness of the Atmosphere with a visible effect both above the horizon and into the distance.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Haze"/>
         public float Haze
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how light transmits between the camera and the sky background.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Offset"/>
         public float Offset

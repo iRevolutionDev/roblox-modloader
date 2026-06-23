@@ -23,27 +23,54 @@ namespace Roblox
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendCreateInstanceFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SendCreateInstanceFromStudio; // TODO: native event binding
+        /// <param name="parentInstance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<Instance?, Instance?>? SendCreateInstanceFromStudio
+        {
+            add { if (value is not null) AddEventHandler("SendCreateInstanceFromStudio", value); }
+            remove { if (value is not null) RemoveEventHandler("SendCreateInstanceFromStudio", value); }
+        }
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendDeleteInstanceFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SendDeleteInstanceFromStudio; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="setParentToNull">A <c>bool</c> value.</param>
+        public event Action<Instance?, bool>? SendDeleteInstanceFromStudio
+        {
+            add { if (value is not null) AddEventHandler("SendDeleteInstanceFromStudio", value); }
+            remove { if (value is not null) RemoveEventHandler("SendDeleteInstanceFromStudio", value); }
+        }
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendReparentInstanceFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SendReparentInstanceFromStudio; // TODO: native event binding
+        /// <param name="parentInstance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<Instance?, Instance?>? SendReparentInstanceFromStudio
+        {
+            add { if (value is not null) AddEventHandler("SendReparentInstanceFromStudio", value); }
+            remove { if (value is not null) RemoveEventHandler("SendReparentInstanceFromStudio", value); }
+        }
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendTerrainChangeFromStudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SendTerrainChangeFromStudio; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="chunkX">A <c>int</c> value.</param>
+        /// <param name="chunkY">A <c>int</c> value.</param>
+        /// <param name="chunkZ">A <c>int</c> value.</param>
+        /// <param name="cells">A <c>string?</c> value.</param>
+        public event Action<Instance?, int, int, int, string?>? SendTerrainChangeFromStudio
+        {
+            add { if (value is not null) AddEventHandler("SendTerrainChangeFromStudio", value); }
+            remove { if (value is not null) RemoveEventHandler("SendTerrainChangeFromStudio", value); }
+        }
 
     }
 }

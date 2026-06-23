@@ -25,25 +25,14 @@ namespace Roblox
         public static StyleQuery? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleQuery(handle);
 
-        /// <summary>
-        /// <c>StyleQuery.AspectRatioRange</c>
-        /// <para><b>Default:</b> <c>0 inf </c></para>
-        /// </summary>
         public object? AspectRatioRange
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "AspectRatioRange");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "AspectRatioRange", value);
         }
 
-        public byte[]? ConditionsSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "ConditionsSerialize");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "ConditionsSerialize", value);
-        }
-
         /// <summary>
         /// A boolean that determines whether a StyleRule.Selector of @ will match the StyleQuery name.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#IsActive"/>
         public bool IsActive
@@ -52,60 +41,36 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsActive", value);
         }
 
-        /// <summary>
-        /// <c>StyleQuery.MaxSize</c>
-        /// <para><b>Default:</b> <c>INF, INF</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 MaxSize
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MaxSize");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MaxSize", value);
         }
 
-        /// <summary>
-        /// <c>StyleQuery.MinSize</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 MinSize
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MinSize");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MinSize", value);
         }
 
-        /// <summary>
-        /// <c>StyleQuery.PreferredInput</c>
-        /// <para><b>Default:</b> <c>KeyboardAndMouse</c></para>
-        /// </summary>
         public Enum.PreferredInput PreferredInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.PreferredInput>(this, "PreferredInput");
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredInput>(this, "PreferredInput", value);
         }
 
-        /// <summary>
-        /// <c>StyleQuery.PreferredTextSize</c>
-        /// <para><b>Default:</b> <c>Medium</c></para>
-        /// </summary>
         public Enum.PreferredTextSize PreferredTextSize
         {
             get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize");
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize", value);
         }
 
-        /// <summary>
-        /// <c>StyleQuery.ReducedMotionEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ReducedMotionEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotionEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReducedMotionEnabled", value);
         }
 
-        /// <summary>
-        /// <c>StyleQuery.ViewportDisplaySize</c>
-        /// <para><b>Default:</b> <c>Small</c></para>
-        /// </summary>
         public Enum.DisplaySize ViewportDisplaySize
         {
             get => global::Roblox.Reflection.GetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize");

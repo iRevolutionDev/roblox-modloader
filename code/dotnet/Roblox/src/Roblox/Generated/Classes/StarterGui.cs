@@ -161,9 +161,15 @@ namespace Roblox
 
         /// <summary>
         /// <c>StarterGui.CoreGuiChangedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CoreGuiChangedSignal; // TODO: native event binding
+        /// <param name="coreGuiType">A <c>Enum.CoreGuiType</c> value.</param>
+        /// <param name="enabled">A <c>bool</c> value.</param>
+        public event Action<Enum.CoreGuiType, bool>? CoreGuiChangedSignal
+        {
+            add { if (value is not null) AddEventHandler("CoreGuiChangedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("CoreGuiChangedSignal", value); }
+        }
 
     }
 }

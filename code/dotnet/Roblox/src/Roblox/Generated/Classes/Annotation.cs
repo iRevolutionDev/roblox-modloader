@@ -25,20 +25,12 @@ namespace Roblox
         public static Annotation? FromHandle(nuint handle)
             => handle == 0 ? null : new Annotation(handle);
 
-        /// <summary>
-        /// <c>Annotation.AuthorColor3</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
         public object? AuthorColor3
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "AuthorColor3");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "AuthorColor3", value);
         }
 
-        /// <summary>
-        /// <c>Annotation.AuthorId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long AuthorId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "AuthorId");
@@ -57,56 +49,30 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Contents", value);
         }
 
-        /// <summary>
-        /// <c>Annotation.CreationTimeUnix</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CreationTimeUnix
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CreationTimeUnix");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreationTimeUnix", value);
         }
 
-        /// <summary>
-        /// <c>Annotation.LastModifiedTimeUnix</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long LastModifiedTimeUnix
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "LastModifiedTimeUnix");
             set => global::Roblox.Reflection.SetProperty<long>(this, "LastModifiedTimeUnix", value);
         }
 
-        /// <summary>
-        /// <c>Annotation.LoadingReplies</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool LoadingReplies
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadingReplies");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadingReplies", value);
         }
 
-        public string? MessageId
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MessageId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MessageId", value);
-        }
-
-        /// <summary>
-        /// <c>Annotation.ReplyCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long ReplyCount
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "ReplyCount");
             set => global::Roblox.Reflection.SetProperty<long>(this, "ReplyCount", value);
         }
 
-        /// <summary>
-        /// <c>Annotation.Resolved</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Resolved
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Resolved");
@@ -142,15 +108,28 @@ namespace Roblox
 
         /// <summary>
         /// <c>Annotation.RequestCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RequestCompleted; // TODO: native event binding
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="requestType">A <c>Enum.AnnotationRequestType</c> value.</param>
+        /// <param name="result">A <c>Enum.AnnotationRequestStatus</c> value.</param>
+        public event Action<string?, Enum.AnnotationRequestType, Enum.AnnotationRequestStatus>? RequestCompleted
+        {
+            add { if (value is not null) AddEventHandler("RequestCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("RequestCompleted", value); }
+        }
 
         /// <summary>
         /// <c>Annotation.RequestInitiated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RequestInitiated; // TODO: native event binding
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="requestType">A <c>Enum.AnnotationRequestType</c> value.</param>
+        public event Action<string?, Enum.AnnotationRequestType>? RequestInitiated
+        {
+            add { if (value is not null) AddEventHandler("RequestInitiated", value); }
+            remove { if (value is not null) RemoveEventHandler("RequestInitiated", value); }
+        }
 
     }
 }

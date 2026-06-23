@@ -98,9 +98,16 @@ namespace Roblox
 
         /// <summary>
         /// <c>LinkingService.OnLuaUrl</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnLuaUrl; // TODO: native event binding
+        /// <param name="url">A <c>string?</c> value.</param>
+        /// <param name="matchedUrl">A <c>string?</c> value.</param>
+        /// <param name="attributionUrl">A <c>object?</c> value.</param>
+        public event Action<string?, string?, object?>? OnLuaUrl
+        {
+            add { if (value is not null) AddEventHandler("OnLuaUrl", value); }
+            remove { if (value is not null) RemoveEventHandler("OnLuaUrl", value); }
+        }
 
     }
 }

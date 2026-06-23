@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether acoustic simulation is enabled globally in the advanced audio system.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#AcousticSimulationEnabled"/>
         public bool AcousticSimulationEnabled
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The ambient sound environment preset applied to all Sounds.
-        /// <para><b>Default:</b> <c>NoReverb</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#AmbientReverb"/>
         public Enum.ReverbType AmbientReverb
@@ -47,10 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.ReverbType>(this, "AmbientReverb", value);
         }
 
-        /// <summary>
-        /// <c>SoundService.AudioApiByDefault</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.RolloutState AudioApiByDefault
         {
             get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "AudioApiByDefault");
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the default character sounds will use instances in the advanced audio system vs. Sounds.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#CharacterSoundsUseNewApi"/>
         public Enum.RolloutState CharacterSoundsUseNewApi
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines where (if anywhere) to place an AudioListener by default.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#DefaultListenerLocation"/>
         public Enum.ListenerLocation DefaultListenerLocation
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// The number of studs to be considered a meter by SoundService when simulating the Doppler effect for Sounds.
-        /// <para><b>Default:</b> <c>3.32999992</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#DistanceFactor"/>
         public float DistanceFactor
@@ -92,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Degree to which the pitch of a Sound varies due to the Doppler effect.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#DopplerScale"/>
         public float DopplerScale
@@ -101,19 +91,32 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "DopplerScale", value);
         }
 
-        /// <summary>
-        /// <c>SoundService.IsNewExpForAudioApiByDefault</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsNewExpForAudioApiByDefault
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNewExpForAudioApiByDefault");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsNewExpForAudioApiByDefault", value);
         }
 
+        public object? ListenerCFrame
+        {
+            get => global::Roblox.Reflection.GetProperty<object?>(this, "ListenerCFrame");
+            set => global::Roblox.Reflection.SetProperty<object?>(this, "ListenerCFrame", value);
+        }
+
+        public Instance? ListenerObject
+        {
+            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ListenerObject");
+            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ListenerObject", value);
+        }
+
+        public Enum.ListenerType ListenerType
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.ListenerType>(this, "ListenerType");
+            set => global::Roblox.Reflection.SetProperty<Enum.ListenerType>(this, "ListenerType", value);
+        }
+
         /// <summary>
         /// Sets whether Sound playback from a client will replicate to the server.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#RespectFilteringEnabled"/>
         public bool RespectFilteringEnabled
@@ -124,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how fast the volume of a Sound attenuates beyond its Sound.RollOffMinDistance.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#RolloffScale"/>
         public float RolloffScale
@@ -135,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether certain spatialized Sounds emit volumetrically, throughout the space of their parent object.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#VolumetricAudio"/>
         public Enum.VolumetricAudio VolumetricAudio
@@ -321,45 +322,69 @@ namespace Roblox
 
         /// <summary>
         /// <c>SoundService.AudioInstanceAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AudioInstanceAdded; // TODO: native event binding
-
-        /// <summary>
-        /// <c>SoundService.ClientLoggedEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientLoggedEvent; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? AudioInstanceAdded
+        {
+            add { if (value is not null) AddEventHandler("AudioInstanceAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("AudioInstanceAdded", value); }
+        }
 
         /// <summary>
         /// <c>SoundService.DeviceListChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DeviceListChanged; // TODO: native event binding
+        /// <param name="newDevices">A <c>object?</c> value.</param>
+        public event Action<object?>? DeviceListChanged
+        {
+            add { if (value is not null) AddEventHandler("DeviceListChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("DeviceListChanged", value); }
+        }
 
         /// <summary>
         /// <c>SoundService.OpenAttenuationCurveEditorSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenAttenuationCurveEditorSignal; // TODO: native event binding
+        /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        public event Action<IReadOnlyList<Instance>>? OpenAttenuationCurveEditorSignal
+        {
+            add { if (value is not null) AddEventHandler("OpenAttenuationCurveEditorSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenAttenuationCurveEditorSignal", value); }
+        }
 
         /// <summary>
         /// <c>SoundService.OpenAudioCompressorEditorSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenAudioCompressorEditorSignal; // TODO: native event binding
+        /// <param name="selectedCompressorObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        public event Action<IReadOnlyList<Instance>>? OpenAudioCompressorEditorSignal
+        {
+            add { if (value is not null) AddEventHandler("OpenAudioCompressorEditorSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenAudioCompressorEditorSignal", value); }
+        }
 
         /// <summary>
         /// <c>SoundService.OpenAudioEqualizerEditorSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenAudioEqualizerEditorSignal; // TODO: native event binding
+        /// <param name="selectedEqualizerObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        public event Action<IReadOnlyList<Instance>>? OpenAudioEqualizerEditorSignal
+        {
+            add { if (value is not null) AddEventHandler("OpenAudioEqualizerEditorSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenAudioEqualizerEditorSignal", value); }
+        }
 
         /// <summary>
         /// <c>SoundService.OpenDirectionalCurveEditorSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenDirectionalCurveEditorSignal; // TODO: native event binding
+        /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        public event Action<IReadOnlyList<Instance>>? OpenDirectionalCurveEditorSignal
+        {
+            add { if (value is not null) AddEventHandler("OpenDirectionalCurveEditorSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenDirectionalCurveEditorSignal", value); }
+        }
 
     }
 }

@@ -26,16 +26,6 @@ namespace Roblox
             => handle == 0 ? null : new AnimationNodeDefinition(handle);
 
         /// <summary>
-        /// <c>AnimationNodeDefinition.InputPinData</c>
-        /// <para><b>Default:</b> <c></c></para>
-        /// </summary>
-        public byte[]? InputPinData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "InputPinData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "InputPinData", value);
-        }
-
-        /// <summary>
         /// <c>AnimationNodeDefinition.NodeId</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationNodeDefinition#NodeId"/>
@@ -47,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnimationNodeDefinition.NodeType</c>
-        /// <para><b>Default:</b> <c>InvalidNode</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationNodeDefinition#NodeType"/>
         public Enum.AnimationNodeType NodeType
@@ -89,9 +78,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnimationNodeDefinition.InputPinsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InputPinsChanged; // TODO: native event binding
+        public event Action? InputPinsChanged
+        {
+            add { if (value is not null) AddEventHandler("InputPinsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("InputPinsChanged", value); }
+        }
 
     }
 }

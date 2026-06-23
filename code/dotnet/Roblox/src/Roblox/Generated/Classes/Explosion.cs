@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to determine the amount of force applied to BaseParts caught in the Explosion.BlastRadius.
-        /// <para><b>Default:</b> <c>500000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#BlastPressure"/>
         public float BlastPressure
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// This property determines the radius of the Explosion, in studs. This radius determines the area of effect of the explosion, not the size of the explosion's visuals.
-        /// <para><b>Default:</b> <c>4</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#BlastRadius"/>
         public float BlastRadius
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to set the proportion of the Explosion.BlastRadius, between 0 and 1, within which all joints will be destroyed. Anything outside of this range will only have the Explosion force applied to it.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#DestroyJointRadiusPercent"/>
         public float DestroyJointRadiusPercent
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// This property determines how the Explosion will interact with Terrain. Used to set if explosions will cause damage to the terrain or not.
-        /// <para><b>Default:</b> <c>Craters</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#ExplosionType"/>
         public Enum.ExplosionType ExplosionType
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Explosion.LocalTransparencyModifier</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// This property is the position of the center of the Explosion. It is defined in world-space and not influenced by the Explosion parent.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Value between 0 and 1 that controls the speed of the particle effect.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#TimeScale"/>
         public float TimeScale
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// This property determines whether or not the visual effect of an Explosion is shown or not.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#Visible"/>
         public bool Visible
@@ -115,10 +107,16 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Explosion hits a BasePart within its Explosion.BlastRadius. Returns the part hit along with the distance of the part from Explosion.Position.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="part">A <c>BasePart?</c> value.</param>
+        /// <param name="distance">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#Hit"/>
-        // public event Action? Hit; // TODO: native event binding
+        public event Action<BasePart?, float>? Hit
+        {
+            add { if (value is not null) AddEventHandler("Hit", value); }
+            remove { if (value is not null) RemoveEventHandler("Hit", value); }
+        }
 
     }
 }

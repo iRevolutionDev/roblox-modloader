@@ -45,10 +45,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>SensorBase.OnSensorOutputChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SensorBase#OnSensorOutputChanged"/>
-        // public event Action? OnSensorOutputChanged; // TODO: native event binding
+        public event Action? OnSensorOutputChanged
+        {
+            add { if (value is not null) AddEventHandler("OnSensorOutputChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("OnSensorOutputChanged", value); }
+        }
 
     }
 }

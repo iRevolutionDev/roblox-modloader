@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the maximum bound of the UV space to include in the transfer.
-        /// <para><b>Default:</b> <c>-INF, -INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTextureTransfer#UVMaxBound"/>
         public global::System.Numerics.Vector2 UVMaxBound
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the minimum bound of the UV space to include in the transfer.
-        /// <para><b>Default:</b> <c>INF, INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTextureTransfer#UVMinBound"/>
         public global::System.Numerics.Vector2 UVMinBound

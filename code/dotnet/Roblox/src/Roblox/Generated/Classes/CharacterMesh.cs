@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The texture of a CharacterMesh. It can be overridden by Shirts, Pants, T-Shirts, and the CharacterMesh.OverlayTextureId property.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#BaseTextureId"/>
         public long BaseTextureId
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The part of the Character's body that is affected.
-        /// <para><b>Default:</b> <c>Head</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#BodyPart"/>
         public Enum.BodyPart BodyPart
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to load a mesh file, and apply it to the given BodyPart.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#MeshId"/>
         public long MeshId
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The assetId of the overlay texture. The overlay covers Shirts, Pants, T-Shirts, and the CharacterMesh.BaseTextureId.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#OverlayTextureId"/>
         public long OverlayTextureId

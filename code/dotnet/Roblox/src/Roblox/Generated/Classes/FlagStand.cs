@@ -37,10 +37,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player bearing an opposing flag, and having the same Player.TeamColor as the stand, touches the FlagStand.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlagStand#FlagCaptured"/>
-        // public event Action? FlagCaptured; // TODO: native event binding
+        public event Action<Instance?>? FlagCaptured
+        {
+            add { if (value is not null) AddEventHandler("FlagCaptured", value); }
+            remove { if (value is not null) RemoveEventHandler("FlagCaptured", value); }
+        }
 
     }
 }

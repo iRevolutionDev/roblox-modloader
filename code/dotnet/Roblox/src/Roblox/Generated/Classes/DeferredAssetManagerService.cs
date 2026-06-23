@@ -30,9 +30,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>DeferredAssetManagerService.PrefetchDownloadStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PrefetchDownloadStatusChanged; // TODO: native event binding
+        /// <param name="status">A <c>Enum.PrefetchDownloadStatus</c> value.</param>
+        public event Action<Enum.PrefetchDownloadStatus>? PrefetchDownloadStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("PrefetchDownloadStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("PrefetchDownloadStatusChanged", value); }
+        }
 
     }
 }

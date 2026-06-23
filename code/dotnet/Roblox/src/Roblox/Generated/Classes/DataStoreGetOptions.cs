@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DataStoreGetOptions.UseCache</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreGetOptions#UseCache"/>
         public bool UseCache

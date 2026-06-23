@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets how long it takes for the reverberating echoes to fade out completely.
-        /// <para><b>Default:</b> <c>1.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#DecayTime"/>
         public float DecayTime
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how many reflections are generated.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#Density"/>
         public float Density
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how smooth and reflective the simulated surfaces are.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#Diffusion"/>
         public float Diffusion
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The output volume of the original sound.
-        /// <para><b>Default:</b> <c>-6</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#DryLevel"/>
         public float DryLevel
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The output volume of the echoed effect.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#WetLevel"/>
         public float WetLevel

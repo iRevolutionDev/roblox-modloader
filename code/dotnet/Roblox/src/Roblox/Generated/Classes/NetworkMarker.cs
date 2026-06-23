@@ -27,10 +27,14 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the server has finished replicating the world to the client.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkMarker#Received"/>
-        // public event Action? Received; // TODO: native event binding
+        public event Action? Received
+        {
+            add { if (value is not null) AddEventHandler("Received", value); }
+            remove { if (value is not null) RemoveEventHandler("Received", value); }
+        }
 
     }
 }

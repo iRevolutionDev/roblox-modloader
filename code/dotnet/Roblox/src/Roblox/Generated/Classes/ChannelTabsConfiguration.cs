@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Actual screen position of the channel tab bar, in pixels.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#AbsolutePosition"/>
         public global::System.Numerics.Vector2 AbsolutePosition
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Actual screen size of the channel tab bar, in pixels.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#AbsoluteSize"/>
         public global::System.Numerics.Vector2 AbsoluteSize
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Background color of the channel tabs.
-        /// <para><b>Default:</b> <c>0.0980392, 0.105882, 0.113725</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#BackgroundColor3"/>
         public object? BackgroundColor3
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Background transparency of the channel tabs.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#BackgroundTransparency"/>
         public double BackgroundTransparency
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether to show the channel tabs.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#Enabled"/>
         public bool Enabled
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Background color of a channel tab when hovering over it.
-        /// <para><b>Default:</b> <c>0.490196, 0.490196, 0.490196</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#HoverBackgroundColor3"/>
         public object? HoverBackgroundColor3
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of text in a selected tab.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#SelectedTabTextColor3"/>
         public object? SelectedTabTextColor3
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of text in an unselected tab.
-        /// <para><b>Default:</b> <c>0.686275, 0.686275, 0.686275</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextColor3"/>
         public object? TextColor3
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of the text in channel tabs.
-        /// <para><b>Default:</b> <c>18</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextSize"/>
         public long TextSize
@@ -136,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of the text stroke for text in channel tabs.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextStrokeColor3"/>
         public object? TextStrokeColor3
@@ -147,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Transparency of the text stroke for text in channel tabs.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextStrokeTransparency"/>
         public double TextStrokeTransparency

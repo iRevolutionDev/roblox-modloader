@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SelfViewConfiguration.Open</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelfViewConfiguration#Open"/>
         public bool Open

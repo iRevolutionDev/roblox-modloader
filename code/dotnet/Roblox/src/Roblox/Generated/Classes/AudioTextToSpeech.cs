@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether the AudioTextToSpeech object is loaded, buffered, and ready to play.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#IsLoaded"/>
         public bool IsLoaded
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether the AudioTextToSpeech object is currently playing.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#IsPlaying"/>
         public bool IsPlaying
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether the AudioTextToSpeech object loops.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Looping"/>
         public bool Looping
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the pitch of the generated speech audio, which will be independent of its speed.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Pitch"/>
         public float Pitch
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how quickly the speech audio will be played, which controls its pitch.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#PlaybackSpeed"/>
         public float PlaybackSpeed
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the speed of the generated speech audio, which will be independent of its pitch.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Speed"/>
         public float Speed
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes the length of the generated speech audio.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#TimeLength"/>
         public double TimeLength
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Tracks the current position of the playhead within the generated speech audio.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#TimePosition"/>
         public double TimePosition
@@ -135,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how loudly the generated speech audio will be played.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Volume"/>
         public float Volume
@@ -197,24 +188,40 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AudioTextToSpeech object has completed playback and paused.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Ended"/>
-        // public event Action? Ended; // TODO: native event binding
+        public event Action? Ended
+        {
+            add { if (value is not null) AddEventHandler("Ended", value); }
+            remove { if (value is not null) RemoveEventHandler("Ended", value); }
+        }
 
         /// <summary>
         /// Fires when the AudioTextToSpeech object loops.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Looped"/>
-        // public event Action? Looped; // TODO: native event binding
+        public event Action? Looped
+        {
+            add { if (value is not null) AddEventHandler("Looped", value); }
+            remove { if (value is not null) RemoveEventHandler("Looped", value); }
+        }
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioTextToSpeech via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

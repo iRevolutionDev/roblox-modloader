@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether clicking on the TextBox will clear its TextBox.Text property.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ClearTextOnFocus"/>
         public bool ClearTextOnFocus
@@ -37,18 +36,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>TextBox.Confidential</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Confidential
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Confidential");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Confidential", value);
-        }
-
-        /// <summary>
         /// <c>TextBox.ContentText</c>
-        /// <para><b>Default:</b> <c>TextBox</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ContentText"/>
         public string? ContentText
@@ -59,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the offset of the text cursor in bytes, or -1 if there is no cursor.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#CursorPosition"/>
         public int CursorPosition
@@ -70,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the font used to render text.
-        /// <para><b>Default:</b> <c>Legacy</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#Font"/>
         public Enum.Font Font
@@ -91,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item has been superseded by TextBox.TextSize which should be used in all new work.Determines the font size of a TextBox object.
-        /// <para><b>Default:</b> <c>Size8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#FontSize"/>
         public Enum.FontSize FontSize
@@ -102,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Scales the spacing between lines of text in the TextBox.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#LineHeight"/>
         public float LineHeight
@@ -123,16 +107,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalizationMatchedSourceText", value);
         }
 
-        public string? LocalizedPlaceholderText
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalizedPlaceholderText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalizedPlaceholderText", value);
-        }
-
-        /// <summary>
-        /// <c>TextBox.ManualFocusRelease</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ManualFocusRelease
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ManualFocusRelease");
@@ -141,7 +115,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum number of graphemes the TextBox can show.
-        /// <para><b>Default:</b> <c>-1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#MaxVisibleGraphemes"/>
         public int MaxVisibleGraphemes
@@ -152,7 +125,6 @@ namespace Roblox
 
         /// <summary>
         /// When set to true, text inside a TextBox is able to move onto multiple lines.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#MultiLine"/>
         public bool MultiLine
@@ -181,10 +153,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "OpenTypeFeaturesError", value);
         }
 
-        /// <summary>
-        /// <c>TextBox.OverlayNativeInput</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool OverlayNativeInput
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "OverlayNativeInput");
@@ -193,7 +161,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the text color that gets used when no text has been entered into the TextBox.
-        /// <para><b>Default:</b> <c>0.5, 0.5, 0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#PlaceholderColor3"/>
         public object? PlaceholderColor3
@@ -212,10 +179,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "PlaceholderText", value);
         }
 
-        /// <summary>
-        /// <c>TextBox.ReturnKeyType</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.ReturnKeyType ReturnKeyType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ReturnKeyType>(this, "ReturnKeyType");
@@ -224,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the TextBox renders the Text string using rich text formatting.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#RichText"/>
         public bool RichText
@@ -235,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the starting position of a text selection.
-        /// <para><b>Default:</b> <c>-1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#SelectionStart"/>
         public int SelectionStart
@@ -244,30 +205,18 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "SelectionStart", value);
         }
 
-        /// <summary>
-        /// <c>TextBox.ShouldEmitReturnEvents</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ShouldEmitReturnEvents
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitReturnEvents");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldEmitReturnEvents", value);
         }
 
-        /// <summary>
-        /// <c>TextBox.ShouldEmitTabEvents</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ShouldEmitTabEvents
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitTabEvents");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldEmitTabEvents", value);
         }
 
-        /// <summary>
-        /// <c>TextBox.ShouldEmitUpAndDownArrowEvents</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ShouldEmitUpAndDownArrowEvents
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitUpAndDownArrowEvents");
@@ -276,7 +225,6 @@ namespace Roblox
 
         /// <summary>
         /// If set to true, input native to the platform is used instead of Roblox's built-in keyboard.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ShowNativeInput"/>
         public bool ShowNativeInput
@@ -287,7 +235,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the string rendered by the TextBox element.
-        /// <para><b>Default:</b> <c>TextBox</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#Text"/>
         public string? Text
@@ -298,7 +245,6 @@ namespace Roblox
 
         /// <summary>
         /// The size of a TextBox element's text in offsets.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextBounds"/>
         public global::System.Numerics.Vector2 TextBounds
@@ -319,7 +265,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of non-placeholder rendered text.
-        /// <para><b>Default:</b> <c>0.105882, 0.164706, 0.207843</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextColor3"/>
         public object? TextColor3
@@ -330,7 +275,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextBox.TextDirection</c>
-        /// <para><b>Default:</b> <c>Auto</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextDirection"/>
         public Enum.TextDirection TextDirection
@@ -341,7 +285,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the player can change the Text.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextEditable"/>
         public bool TextEditable
@@ -352,7 +295,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the text fits within the constraints of the TextBox.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextFits"/>
         public bool TextFits
@@ -361,10 +303,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextFits", value);
         }
 
-        /// <summary>
-        /// <c>TextBox.TextInputType</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.TextInputType TextInputType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TextInputType>(this, "TextInputType");
@@ -373,7 +311,6 @@ namespace Roblox
 
         /// <summary>
         /// Changes whether text is resized to fit within the TextBox.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextScaled"/>
         public bool TextScaled
@@ -384,7 +321,6 @@ namespace Roblox
 
         /// <summary>
         /// Determine the line height of text in offsets.
-        /// <para><b>Default:</b> <c>8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextSize"/>
         public float TextSize
@@ -395,7 +331,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the text stroke (outline).
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextStrokeColor3"/>
         public object? TextStrokeColor3
@@ -406,7 +341,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the text stroke (outline).
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextStrokeTransparency"/>
         public float TextStrokeTransparency
@@ -417,7 +351,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the rendered text.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextTransparency"/>
         public float TextTransparency
@@ -428,7 +361,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the truncation of the text displayed in the TextBox.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextTruncate"/>
         public Enum.TextTruncate TextTruncate
@@ -439,7 +371,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item has been superseded by TextBox.TextWrapped which should be used in all new work.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextWrap"/>
         public bool TextWrap
@@ -450,7 +381,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if text wraps to multiple lines within the TextBox element space, truncating excess text.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextWrapped"/>
         public bool TextWrapped
@@ -461,7 +391,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the horizontal alignment of the rendered text.
-        /// <para><b>Default:</b> <c>Center</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextXAlignment"/>
         public Enum.TextXAlignment TextXAlignment
@@ -472,7 +401,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the vertical alignment of the rendered text.
-        /// <para><b>Default:</b> <c>Center</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextYAlignment"/>
         public Enum.TextYAlignment TextYAlignment
@@ -523,24 +451,38 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the TextBox loses its focus.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="enterPressed">A <c>bool</c> value.</param>
+        /// <param name="inputThatCausedFocusLoss">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#FocusLost"/>
-        // public event Action? FocusLost; // TODO: native event binding
+        public event Action<bool, InputObject?>? FocusLost
+        {
+            add { if (value is not null) AddEventHandler("FocusLost", value); }
+            remove { if (value is not null) RemoveEventHandler("FocusLost", value); }
+        }
 
         /// <summary>
         /// Fires when the TextBox gains focus.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#Focused"/>
-        // public event Action? Focused; // TODO: native event binding
+        public event Action? Focused
+        {
+            add { if (value is not null) AddEventHandler("Focused", value); }
+            remove { if (value is not null) RemoveEventHandler("Focused", value); }
+        }
 
         /// <summary>
         /// Fires when the TextBox is focused and the player presses the on-screen keyboard's return/enter button.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ReturnPressedFromOnScreenKeyboard"/>
-        // public event Action? ReturnPressedFromOnScreenKeyboard; // TODO: native event binding
+        public event Action? ReturnPressedFromOnScreenKeyboard
+        {
+            add { if (value is not null) AddEventHandler("ReturnPressedFromOnScreenKeyboard", value); }
+            remove { if (value is not null) RemoveEventHandler("ReturnPressedFromOnScreenKeyboard", value); }
+        }
 
     }
 }

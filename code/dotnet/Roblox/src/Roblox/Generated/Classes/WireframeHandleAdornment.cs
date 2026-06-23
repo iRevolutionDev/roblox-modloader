@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The XYZ scale of the wireframe adornment.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#Scale"/>
         public global::System.Numerics.Vector3 Scale
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Thickness of the wireframe adornment's lines in pixels.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#Thickness"/>
         public float Thickness

@@ -140,6 +140,34 @@ public static unsafe class Interop
             Table->ReflectionSetProperty(instance, nameS, &value);
         }
 
+        public static nuint EventConnect(
+            void* instance,
+            string eventName,
+            delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void> callback,
+            void* state)
+        {
+            if (!IsInitialized || Table == null || Table->ReflectionEventConnect == null)
+            {
+                throw new InvalidOperationException(
+                    "Interop table is not initialized or ReflectionEventConnect is unavailable.");
+            }
+
+            ArgumentNullException.ThrowIfNull(eventName);
+
+            var nameS = GetCachedMemberName(eventName);
+            return Table->ReflectionEventConnect(instance, nameS, callback, state);
+        }
+
+        public static void EventDisconnect(nuint connectionHandle)
+        {
+            if (connectionHandle == 0 || !IsInitialized || Table == null || Table->ReflectionEventDisconnect == null)
+            {
+                return;
+            }
+
+            Table->ReflectionEventDisconnect(connectionHandle);
+        }
+
         private static InteropVariant BuildVariant(object? arg, nint* tempPtrs, ref int tempPtrCount)
         {
             if (arg is null)

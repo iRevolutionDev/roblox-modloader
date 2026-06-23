@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets a fixed seed for the random number generator, allowing reproducible responses in cases where the same input parameters are used across multiple requests.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextGenerator#Seed"/>
         public int Seed
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the "creativity" or randomness of the model's responses.
-        /// <para><b>Default:</b> <c>0.699999988</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextGenerator#Temperature"/>
         public float Temperature
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Helps the AI model narrow or expand the range of possible words to sample from while generating the next token.
-        /// <para><b>Default:</b> <c>0.899999976</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextGenerator#TopP"/>
         public float TopP

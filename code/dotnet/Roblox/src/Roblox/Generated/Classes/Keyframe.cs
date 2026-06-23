@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The Keyframe time position (in seconds) in an animation. This determines the time at which the Poses inside the keyframe will be shown.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#Time"/>
         public float Time

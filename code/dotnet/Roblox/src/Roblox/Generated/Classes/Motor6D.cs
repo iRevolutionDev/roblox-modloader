@@ -46,28 +46,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Motor6D.ReplicateCurrentAngle6D</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 ReplicateCurrentAngle6D
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "ReplicateCurrentAngle6D");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "ReplicateCurrentAngle6D", value);
-        }
-
-        /// <summary>
-        /// <c>Motor6D.ReplicateCurrentOffset6D</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 ReplicateCurrentOffset6D
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "ReplicateCurrentOffset6D");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "ReplicateCurrentOffset6D", value);
-        }
-
-        /// <summary>
         /// Describes the current animation offset of the Motor6D joint.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor6D#Transform"/>
         public object? Transform

@@ -52,15 +52,26 @@ namespace Roblox
 
         /// <summary>
         /// <c>ClientReplicator.RCCProfilerDataComplete</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RCCProfilerDataComplete; // TODO: native event binding
+        /// <param name="success">A <c>bool</c> value.</param>
+        /// <param name="message">A <c>string?</c> value.</param>
+        public event Action<bool, string?>? RCCProfilerDataComplete
+        {
+            add { if (value is not null) AddEventHandler("RCCProfilerDataComplete", value); }
+            remove { if (value is not null) RemoveEventHandler("RCCProfilerDataComplete", value); }
+        }
 
         /// <summary>
         /// <c>ClientReplicator.StatsReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StatsReceived; // TODO: native event binding
+        /// <param name="stats">A <c>object?</c> value.</param>
+        public event Action<object?>? StatsReceived
+        {
+            add { if (value is not null) AddEventHandler("StatsReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("StatsReceived", value); }
+        }
 
     }
 }

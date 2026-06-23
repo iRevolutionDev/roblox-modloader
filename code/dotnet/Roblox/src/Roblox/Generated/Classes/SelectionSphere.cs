@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the sphere's surface.
-        /// <para><b>Default:</b> <c>0.0509804, 0.411765, 0.67451</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionSphere#SurfaceColor3"/>
         public object? SurfaceColor3
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the sphere's surface.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionSphere#SurfaceTransparency"/>
         public float SurfaceTransparency

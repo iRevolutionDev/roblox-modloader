@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether the descendants will receive input events.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Active"/>
         public bool Active
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the BillboardGui will always be rendered on top of other 3D objects.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#AlwaysOnTop"/>
         public bool AlwaysOnTop
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the factor by which the BillboardGui container's light is scaled when LightInfluence is 0.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Brightness"/>
         public float Brightness
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether portions of GuiObjects that fall outside of the BillboardGui canvas borders will be drawn.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ClipsDescendants"/>
         public bool ClipsDescendants
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The current distance in studs that the BillboardGui is from the player's camera.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#CurrentDistance"/>
         public float CurrentDistance
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Determines the distance in studs at which the BillboardGui will stop scaling larger in size.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceLowerLimit"/>
         public float DistanceLowerLimit
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the size CurrentDistance increments and decrements in studs as the player's camera moves closer and further from the BillboardGui.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceStep"/>
         public float DistanceStep
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Determines the distance in studs at which the BillboardGui will stop scaling smaller in size.
-        /// <para><b>Default:</b> <c>-1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceUpperLimit"/>
         public float DistanceUpperLimit
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee, relative to the Camera orientation, in units half the dimensions of the model's Camera-aligned bounding box.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ExtentsOffset"/>
         public global::System.Numerics.Vector3 ExtentsOffset
@@ -136,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee, relative to the global axes, in units half the dimensions of the model's axis-aligned bounding box.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ExtentsOffsetWorldSpace"/>
         public global::System.Numerics.Vector3 ExtentsOffsetWorldSpace
@@ -147,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how much the BillboardGui is influenced by environmental lighting.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#LightInfluence"/>
         public float LightInfluence
@@ -158,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how far away the BillboardGui can be displayed before it stops rendering.
-        /// <para><b>Default:</b> <c>INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#MaxDistance"/>
         public float MaxDistance
@@ -179,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the size that the BillboardGui will have on screen.
-        /// <para><b>Default:</b> <c>{0, 0}, {0, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Size"/>
         public object? Size
@@ -190,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// A 2D offset in size-relative units that acts like an anchor point.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#SizeOffset"/>
         public global::System.Numerics.Vector2 SizeOffset
@@ -201,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee in studs, relative to the Camera orientation.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#StudsOffset"/>
         public global::System.Numerics.Vector3 StudsOffset
@@ -212,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee in studs, relative to the global axes.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#StudsOffsetWorldSpace"/>
         public global::System.Numerics.Vector3 StudsOffsetWorldSpace

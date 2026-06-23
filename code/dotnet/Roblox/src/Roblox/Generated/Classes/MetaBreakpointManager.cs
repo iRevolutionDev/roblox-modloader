@@ -49,27 +49,48 @@ namespace Roblox
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MetaBreakpointAdded; // TODO: native event binding
+        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
+        public event Action<MetaBreakpoint?>? MetaBreakpointAdded
+        {
+            add { if (value is not null) AddEventHandler("MetaBreakpointAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("MetaBreakpointAdded", value); }
+        }
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MetaBreakpointChanged; // TODO: native event binding
+        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
+        public event Action<MetaBreakpoint?>? MetaBreakpointChanged
+        {
+            add { if (value is not null) AddEventHandler("MetaBreakpointChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("MetaBreakpointChanged", value); }
+        }
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MetaBreakpointRemoved; // TODO: native event binding
+        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
+        public event Action<MetaBreakpoint?>? MetaBreakpointRemoved
+        {
+            add { if (value is not null) AddEventHandler("MetaBreakpointRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("MetaBreakpointRemoved", value); }
+        }
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointSetChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MetaBreakpointSetChanged; // TODO: native event binding
+        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
+        /// <param name="detail">A <c>object?</c> value.</param>
+        public event Action<MetaBreakpoint?, object?>? MetaBreakpointSetChanged
+        {
+            add { if (value is not null) AddEventHandler("MetaBreakpointSetChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("MetaBreakpointSetChanged", value); }
+        }
 
     }
 }

@@ -21,10 +21,6 @@ namespace Roblox
         public static FacialAnimationStreamingServiceV2? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAnimationStreamingServiceV2(handle);
 
-        /// <summary>
-        /// <c>FacialAnimationStreamingServiceV2.ServiceState</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int ServiceState
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "ServiceState");

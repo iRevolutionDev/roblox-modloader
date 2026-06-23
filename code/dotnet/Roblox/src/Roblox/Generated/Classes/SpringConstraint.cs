@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The number of coils visualized on the SpringConstraint.
-        /// <para><b>Default:</b> <c>3</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Coils"/>
         public float Coils
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The current distance between the constraint's Attachments.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#CurrentLength"/>
         public float CurrentLength
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Damping constant for the SpringConstraint. Multiplied to the velocity of the constraint's Attachments to reduce the spring force applied.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Damping"/>
         public float Damping
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Natural resting length of the spring.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#FreeLength"/>
         public float FreeLength
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the SpringConstraint enforces a minimum and maximum length.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum force the SpringConstraint can apply on its Attachments.
-        /// <para><b>Default:</b> <c>INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#MaxForce"/>
         public float MaxForce
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum separation the SpringConstraint will allow if LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#MaxLength"/>
         public float MaxLength
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The minimum separation the SpringConstraint will allow if LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#MinLength"/>
         public float MinLength
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The visualized radius of the spring's coils.
-        /// <para><b>Default:</b> <c>0.400000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Radius"/>
         public float Radius
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// The strength of the spring. The higher this value the more force will be applied when the attachments are separated a different length than the FreeLength.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Stiffness"/>
         public float Stiffness
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// The visualized thickness of the spring's coils.
-        /// <para><b>Default:</b> <c>0.100000001</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Thickness"/>
         public float Thickness

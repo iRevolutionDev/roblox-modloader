@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the color of the head, as a Color3.
-        /// <para><b>Default:</b> <c>0.992157, 0.917647, 0.552941</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#HeadColor3"/>
         public object? HeadColor3
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the color of the left arm, as a Color3.
-        /// <para><b>Default:</b> <c>0.992157, 0.917647, 0.552941</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#LeftArmColor3"/>
         public object? LeftArmColor3
@@ -79,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the color of the left leg, as a Color3.
-        /// <para><b>Default:</b> <c>0.0509804, 0.411765, 0.67451</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#LeftLegColor3"/>
         public object? LeftLegColor3
@@ -100,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the color of the right arm, as a Color3.
-        /// <para><b>Default:</b> <c>0.992157, 0.917647, 0.552941</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#RightArmColor3"/>
         public object? RightArmColor3
@@ -121,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the color of the right leg, as a Color3.
-        /// <para><b>Default:</b> <c>0.0509804, 0.411765, 0.67451</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#RightLegColor3"/>
         public object? RightLegColor3
@@ -142,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the color of the torso, as a Color3.
-        /// <para><b>Default:</b> <c>0.156863, 0.498039, 0.278431</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#TorsoColor3"/>
         public object? TorsoColor3

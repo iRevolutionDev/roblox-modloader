@@ -25,10 +25,6 @@ namespace Roblox
         public static ImageLabel? FromHandle(nuint handle)
             => handle == 0 ? null : new ImageLabel(handle);
 
-        /// <summary>
-        /// <c>ImageLabel.ContentImageSize</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 ContentImageSize
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ContentImageSize");
@@ -47,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how a rendered image will be colorized.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ImageColor3"/>
         public object? ImageColor3
@@ -68,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// The offset in pixels of the sub-area of an image to be displayed.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ImageRectOffset"/>
         public global::System.Numerics.Vector2 ImageRectOffset
@@ -79,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the size in pixels of the sub-area of an image to be displayed.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ImageRectSize"/>
         public global::System.Numerics.Vector2 ImageRectSize
@@ -90,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the rendered image.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ImageTransparency"/>
         public float ImageTransparency
@@ -101,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether the image has finished loading from Roblox.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#IsLoaded"/>
         public bool IsLoaded
@@ -112,7 +103,6 @@ namespace Roblox
 
         /// <summary>
         /// Selects the image resampling mode for the label.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ResampleMode"/>
         public Enum.ResamplerMode ResampleMode
@@ -123,7 +113,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how an image will scale if displayed in a UI element whose size differs from the source image.
-        /// <para><b>Default:</b> <c>Stretch</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ScaleType"/>
         public Enum.ScaleType ScaleType
@@ -134,7 +123,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the slice boundaries of a 9-sliced image.
-        /// <para><b>Default:</b> <c>0, 0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#SliceCenter"/>
         public object? SliceCenter
@@ -145,7 +133,6 @@ namespace Roblox
 
         /// <summary>
         /// Scales the 9-slice edges by the specified ratio.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#SliceScale"/>
         public float SliceScale
@@ -156,7 +143,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the tiling size of the ImageLabel.
-        /// <para><b>Default:</b> <c>{1, 0}, {1, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#TileSize"/>
         public object? TileSize

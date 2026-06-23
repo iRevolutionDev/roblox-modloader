@@ -48,9 +48,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioActionOverride.Triggered</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Triggered; // TODO: native event binding
+        public event Action? Triggered
+        {
+            add { if (value is not null) AddEventHandler("Triggered", value); }
+            remove { if (value is not null) RemoveEventHandler("Triggered", value); }
+        }
 
     }
 }

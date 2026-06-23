@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Background color of bubbles.
-        /// <para><b>Default:</b> <c>0.980392, 0.980392, 0.980392</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#BackgroundColor3"/>
         public object? BackgroundColor3
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Background transparency of bubbles.
-        /// <para><b>Default:</b> <c>0.10000000000000000555</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#BackgroundTransparency"/>
         public double BackgroundTransparency
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BubbleChatMessageProperties.TailVisible</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#TailVisible"/>
         public bool TailVisible
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of bubble text.
-        /// <para><b>Default:</b> <c>0.223529, 0.231373, 0.239216</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#TextColor3"/>
         public object? TextColor3
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of bubble text.
-        /// <para><b>Default:</b> <c>16</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#TextSize"/>
         public long TextSize

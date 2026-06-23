@@ -21,40 +21,24 @@ namespace Roblox
         public static FaceAnimatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new FaceAnimatorService(handle);
 
-        /// <summary>
-        /// <c>FaceAnimatorService.AudioAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool AudioAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AudioAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AudioAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>FaceAnimatorService.FaceTrackingStatusEnum</c>
-        /// <para><b>Default:</b> <c>FaceTrackingUninitialized</c></para>
-        /// </summary>
         public Enum.TrackerFaceTrackingStatus FaceTrackingStatusEnum
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TrackerFaceTrackingStatus>(this, "FaceTrackingStatusEnum");
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerFaceTrackingStatus>(this, "FaceTrackingStatusEnum", value);
         }
 
-        /// <summary>
-        /// <c>FaceAnimatorService.FlipHeadOrientation</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool FlipHeadOrientation
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "FlipHeadOrientation");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FlipHeadOrientation", value);
         }
 
-        /// <summary>
-        /// <c>FaceAnimatorService.VideoAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool VideoAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "VideoAnimationEnabled");
@@ -107,15 +91,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>FaceAnimatorService.TrackerError</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TrackerError; // TODO: native event binding
+        /// <param name="error">A <c>Enum.TrackerError</c> value.</param>
+        public event Action<Enum.TrackerError>? TrackerError
+        {
+            add { if (value is not null) AddEventHandler("TrackerError", value); }
+            remove { if (value is not null) RemoveEventHandler("TrackerError", value); }
+        }
 
         /// <summary>
         /// <c>FaceAnimatorService.TrackerPrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TrackerPrompt; // TODO: native event binding
+        /// <param name="prompt">A <c>Enum.TrackerPromptEvent</c> value.</param>
+        public event Action<Enum.TrackerPromptEvent>? TrackerPrompt
+        {
+            add { if (value is not null) AddEventHandler("TrackerPrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("TrackerPrompt", value); }
+        }
 
     }
 }

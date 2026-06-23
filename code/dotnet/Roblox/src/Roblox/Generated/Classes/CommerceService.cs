@@ -82,40 +82,69 @@ namespace Roblox
 
         /// <summary>
         /// <c>CommerceService.BenefitStatusReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BenefitStatusReceived; // TODO: native event binding
+        /// <param name="isGranted">A <c>bool</c> value.</param>
+        public event Action<bool>? BenefitStatusReceived
+        {
+            add { if (value is not null) AddEventHandler("BenefitStatusReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("BenefitStatusReceived", value); }
+        }
 
         /// <summary>
         /// <c>CommerceService.FetchReceipt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FetchReceipt; // TODO: native event binding
+        public event Action? FetchReceipt
+        {
+            add { if (value is not null) AddEventHandler("FetchReceipt", value); }
+            remove { if (value is not null) RemoveEventHandler("FetchReceipt", value); }
+        }
 
         /// <summary>
         /// <c>CommerceService.InExperienceBrowserRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InExperienceBrowserRequested; // TODO: native event binding
+        /// <param name="url">A <c>string?</c> value.</param>
+        public event Action<string?>? InExperienceBrowserRequested
+        {
+            add { if (value is not null) AddEventHandler("InExperienceBrowserRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("InExperienceBrowserRequested", value); }
+        }
 
         /// <summary>
         /// Fires when commerce purchase webview has closed - not an indicator that a purchase was successful.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="user">A <c>Player?</c> value.</param>
+        /// <param name="productId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CommerceService#PromptCommerceProductPurchaseFinished"/>
-        // public event Action? PromptCommerceProductPurchaseFinished; // TODO: native event binding
+        public event Action<Player?, string?>? PromptCommerceProductPurchaseFinished
+        {
+            add { if (value is not null) AddEventHandler("PromptCommerceProductPurchaseFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptCommerceProductPurchaseFinished", value); }
+        }
 
         /// <summary>
         /// <c>CommerceService.PromptCommerceProductPurchaseRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptCommerceProductPurchaseRequested; // TODO: native event binding
+        /// <param name="commerceProductId">A <c>string?</c> value.</param>
+        public event Action<string?>? PromptCommerceProductPurchaseRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptCommerceProductPurchaseRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptCommerceProductPurchaseRequested", value); }
+        }
 
         /// <summary>
         /// <c>CommerceService.PurchaseBrowserClosed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PurchaseBrowserClosed; // TODO: native event binding
+        public event Action? PurchaseBrowserClosed
+        {
+            add { if (value is not null) AddEventHandler("PurchaseBrowserClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("PurchaseBrowserClosed", value); }
+        }
 
     }
 }

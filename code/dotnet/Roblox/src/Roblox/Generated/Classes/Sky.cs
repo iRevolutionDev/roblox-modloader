@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the sun, moon, and stars will show.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#CelestialBodiesShown"/>
         public bool CelestialBodiesShown
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The perceived angular size of the moon while using this skybox, in degrees.
-        /// <para><b>Default:</b> <c>11</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#MoonAngularSize"/>
         public float MoonAngularSize
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The texture of the moon while using this skybox.
-        /// <para><b>Default:</b> <c>rbxasset://sky/moon.jpg</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#MoonTextureId"/>
         public object? MoonTextureId
@@ -80,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The URL link to a picture for the back surface of the sky.
-        /// <para><b>Default:</b> <c>rbxasset://textures/sky/sky512_bk.tex</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxBk"/>
         public object? SkyboxBk
@@ -91,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Asset ID for the bottom surface of the skybox.
-        /// <para><b>Default:</b> <c>rbxasset://textures/sky/sky512_dn.tex</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxDn"/>
         public object? SkyboxDn
@@ -122,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Asset ID for the front surface of the skybox.
-        /// <para><b>Default:</b> <c>rbxasset://textures/sky/sky512_ft.tex</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxFt"/>
         public object? SkyboxFt
@@ -143,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Asset ID for the left surface of the skybox.
-        /// <para><b>Default:</b> <c>rbxasset://textures/sky/sky512_lf.tex</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxLf"/>
         public object? SkyboxLf
@@ -154,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Angle of the skybox, in degrees, with rotation order of Y, X, Z.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxOrientation"/>
         public global::System.Numerics.Vector3 SkyboxOrientation
@@ -175,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Asset ID for the right surface of the skybox.
-        /// <para><b>Default:</b> <c>rbxasset://textures/sky/sky512_rt.tex</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxRt"/>
         public object? SkyboxRt
@@ -186,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Asset ID for the top surface of the skybox.
-        /// <para><b>Default:</b> <c>rbxasset://textures/sky/sky512_up.tex</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxUp"/>
         public object? SkyboxUp
@@ -207,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// How many stars are shown in the skybox.
-        /// <para><b>Default:</b> <c>3000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#StarCount"/>
         public int StarCount
@@ -218,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// The perceived angular size of the sun while using this skybox, in degrees.
-        /// <para><b>Default:</b> <c>21</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SunAngularSize"/>
         public float SunAngularSize
@@ -239,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// The texture of the sun while using this skybox.
-        /// <para><b>Default:</b> <c>rbxasset://sky/sun.jpg</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SunTextureId"/>
         public object? SunTextureId

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The state of the gamepad virtual cursor.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GamepadService#GamepadCursorEnabled"/>
         public bool GamepadCursorEnabled
@@ -77,9 +76,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>GamepadService.GamepadThumbstick1Changed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GamepadThumbstick1Changed; // TODO: native event binding
+        /// <param name="event">A <c>global::System.Numerics.Vector2</c> value.</param>
+        public event Action<global::System.Numerics.Vector2>? GamepadThumbstick1Changed
+        {
+            add { if (value is not null) AddEventHandler("GamepadThumbstick1Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("GamepadThumbstick1Changed", value); }
+        }
 
     }
 }

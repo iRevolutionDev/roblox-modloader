@@ -27,23 +27,12 @@ namespace Roblox
 
         /// <summary>
         /// When this property is set to true, the package associated with the given PackageLink automatically updates to the latest version.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#AutoUpdate"/>
         public bool AutoUpdate
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoUpdate");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoUpdate", value);
-        }
-
-        /// <summary>
-        /// <c>PackageLink.CanAutoUpdate</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool CanAutoUpdate
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanAutoUpdate");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "CanAutoUpdate", value);
         }
 
         /// <summary>
@@ -66,20 +55,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "DefaultName", value);
         }
 
-        /// <summary>
-        /// <c>PackageLink.HasNewVersion</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool HasNewVersion
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "HasNewVersion");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasNewVersion", value);
         }
 
-        /// <summary>
-        /// <c>PackageLink.ModifiedState</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int ModifiedState
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "ModifiedState");
@@ -102,22 +83,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "PackageContent", value);
         }
 
-        public string? PackageContentSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PackageContentSerialize");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PackageContentSerialize", value);
-        }
-
-        /// <summary>
-        /// <c>PackageLink.PackageGuid</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public long PackageGuid
-        {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "PackageGuid");
-            set => global::Roblox.Reflection.SetProperty<long>(this, "PackageGuid", value);
-        }
-
         /// <summary>
         /// The ID of the asset this package corresponds to.
         /// </summary>
@@ -126,12 +91,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "PackageId");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "PackageId", value);
-        }
-
-        public object? PackageIdSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PackageIdSerialize");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PackageIdSerialize", value);
         }
 
         /// <summary>
@@ -145,18 +104,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>PackageLink.VersionIdSerialize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public long VersionIdSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "VersionIdSerialize");
-            set => global::Roblox.Reflection.SetProperty<long>(this, "VersionIdSerialize", value);
-        }
-
-        /// <summary>
         /// Refers to a revision of a specific package.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#VersionNumber"/>
         public long VersionNumber
@@ -167,7 +115,6 @@ namespace Roblox
 
         /// <summary>
         /// The package permission for the current Studio user.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#PermissionLevel"/>
         public Enum.PackagePermission PermissionLevel
@@ -178,7 +125,6 @@ namespace Roblox
 
         /// <summary>
         /// The status of the package.
-        /// <para><b>Default:</b> <c>Up To Date</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#Status"/>
         public string? Status

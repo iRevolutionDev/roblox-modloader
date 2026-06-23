@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IncrementalPatchBuilder.AddPathsToBundle</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#AddPathsToBundle"/>
         public bool AddPathsToBundle
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IncrementalPatchBuilder.BuildDebouncePeriod</c>
-        /// <para><b>Default:</b> <c>0.10000000000000000555</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#BuildDebouncePeriod"/>
         public double BuildDebouncePeriod
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IncrementalPatchBuilder.HighCompression</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#HighCompression"/>
         public bool HighCompression
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IncrementalPatchBuilder.SerializePatch</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#SerializePatch"/>
         public bool SerializePatch
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IncrementalPatchBuilder.UseFileLevelCompressionInsteadOfChunk</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#UseFileLevelCompressionInsteadOfChunk"/>
         public bool UseFileLevelCompressionInsteadOfChunk
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IncrementalPatchBuilder.ZstdCompression</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#ZstdCompression"/>
         public bool ZstdCompression

@@ -41,15 +41,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>LoginService.LoginFailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? LoginFailed; // TODO: native event binding
+        /// <param name="loginError">A <c>string?</c> value.</param>
+        public event Action<string?>? LoginFailed
+        {
+            add { if (value is not null) AddEventHandler("LoginFailed", value); }
+            remove { if (value is not null) RemoveEventHandler("LoginFailed", value); }
+        }
 
         /// <summary>
         /// <c>LoginService.LoginSucceeded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? LoginSucceeded; // TODO: native event binding
+        /// <param name="username">A <c>string?</c> value.</param>
+        public event Action<string?>? LoginSucceeded
+        {
+            add { if (value is not null) AddEventHandler("LoginSucceeded", value); }
+            remove { if (value is not null) RemoveEventHandler("LoginSucceeded", value); }
+        }
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The asset ID that should be applied when applying this MakeupDescription.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription#AssetId"/>
         public long AssetId
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The MakeupType of the makeup item referred to by this description.
-        /// <para><b>Default:</b> <c>Face</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription#MakeupType"/>
         public Enum.MakeupType MakeupType
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The layering sort order for the makeup item.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription#Order"/>
         public int Order

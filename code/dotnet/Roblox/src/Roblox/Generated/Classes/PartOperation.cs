@@ -25,97 +25,8 @@ namespace Roblox
         public static PartOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new PartOperation(handle);
 
-        public object? AssetId
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "AssetId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "AssetId", value);
-        }
-
-        public byte[]? ChildData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "ChildData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "ChildData", value);
-        }
-
-        public string? ChildData2
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ChildData2");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ChildData2", value);
-        }
-
-        /// <summary>
-        /// <c>PartOperation.ComponentIndex</c>
-        /// <para><b>Default:</b> <c>-1</c></para>
-        /// </summary>
-        public int ComponentIndex
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ComponentIndex");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "ComponentIndex", value);
-        }
-
-        public object? DCDPropertyData
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "DCDPropertyData");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "DCDPropertyData", value);
-        }
-
-        /// <summary>
-        /// <c>PartOperation.FormFactor</c>
-        /// <para><b>Default:</b> <c>Custom</c></para>
-        /// </summary>
-        public Enum.FormFactor FormFactor
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.FormFactor>(this, "FormFactor");
-            set => global::Roblox.Reflection.SetProperty<Enum.FormFactor>(this, "FormFactor", value);
-        }
-
-        /// <summary>
-        /// <c>PartOperation.InitialSize</c>
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 InitialSize
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "InitialSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "InitialSize", value);
-        }
-
-        public string? ManifoldMesh_DEPRECATED
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ManifoldMesh_DEPRECATED");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ManifoldMesh_DEPRECATED", value);
-        }
-
-        public byte[]? MeshData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "MeshData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "MeshData", value);
-        }
-
-        public string? MeshData2
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MeshData2");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MeshData2", value);
-        }
-
-        /// <summary>
-        /// <c>PartOperation.OffCentered</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool OffCentered
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "OffCentered");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "OffCentered", value);
-        }
-
-        public byte[]? PhysicsData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "PhysicsData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "PhysicsData", value);
-        }
-
         /// <summary>
         /// The level of detail used to render the solid modeled part.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#RenderFidelity"/>
         public Enum.RenderFidelity RenderFidelity
@@ -126,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// An angle in degrees which affects the smooth shading of a solid modeled part.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#SmoothingAngle"/>
         public float SmoothingAngle
@@ -135,15 +45,8 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "SmoothingAngle", value);
         }
 
-        public object? SolidMeshHolder
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SolidMeshHolder");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SolidMeshHolder", value);
-        }
-
         /// <summary>
         /// The number of polygons in this solid model.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#TriangleCount"/>
         public int TriangleCount
@@ -154,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the PartOperation can be recolored using inherited color properties.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#UsePartColor"/>
         public bool UsePartColor

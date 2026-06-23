@@ -104,15 +104,29 @@ namespace Roblox
 
         /// <summary>
         /// <c>BadgeService.BadgeAwarded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BadgeAwarded; // TODO: native event binding
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <param name="badgeId">A <c>long</c> value.</param>
+        public event Action<string?, long, long>? BadgeAwarded
+        {
+            add { if (value is not null) AddEventHandler("BadgeAwarded", value); }
+            remove { if (value is not null) RemoveEventHandler("BadgeAwarded", value); }
+        }
 
         /// <summary>
         /// <c>BadgeService.OnBadgeAwarded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnBadgeAwarded; // TODO: native event binding
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <param name="creatorId">A <c>long</c> value.</param>
+        /// <param name="badgeId">A <c>long</c> value.</param>
+        public event Action<long, long, long>? OnBadgeAwarded
+        {
+            add { if (value is not null) AddEventHandler("OnBadgeAwarded", value); }
+            remove { if (value is not null) RemoveEventHandler("OnBadgeAwarded", value); }
+        }
 
     }
 }

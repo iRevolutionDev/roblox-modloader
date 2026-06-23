@@ -69,51 +69,83 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorIdleUpdate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CollaboratorIdleUpdate; // TODO: native event binding
+        /// <param name="collaboratorId">A <c>long</c> value.</param>
+        /// <param name="isIdle">A <c>bool</c> value.</param>
+        public event Action<long, bool>? CollaboratorIdleUpdate
+        {
+            add { if (value is not null) AddEventHandler("CollaboratorIdleUpdate", value); }
+            remove { if (value is not null) RemoveEventHandler("CollaboratorIdleUpdate", value); }
+        }
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorInstanceCreatedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CollaboratorInstanceCreatedSignal; // TODO: native event binding
+        /// <param name="collaboratorId">A <c>long</c> value.</param>
+        public event Action<long>? CollaboratorInstanceCreatedSignal
+        {
+            add { if (value is not null) AddEventHandler("CollaboratorInstanceCreatedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("CollaboratorInstanceCreatedSignal", value); }
+        }
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorInstanceDestroyedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CollaboratorInstanceDestroyedSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>CollaboratorsService.CollaboratorStatusUpdateRequestedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? CollaboratorStatusUpdateRequestedSignal; // TODO: native event binding
+        /// <param name="collaboratorId">A <c>long</c> value.</param>
+        public event Action<long>? CollaboratorInstanceDestroyedSignal
+        {
+            add { if (value is not null) AddEventHandler("CollaboratorInstanceDestroyedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("CollaboratorInstanceDestroyedSignal", value); }
+        }
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorStatusUpdatedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CollaboratorStatusUpdatedSignal; // TODO: native event binding
+        /// <param name="collaboratorId">A <c>long</c> value.</param>
+        /// <param name="newStatus">A <c>Enum.CollaboratorStatus</c> value.</param>
+        public event Action<long, Enum.CollaboratorStatus>? CollaboratorStatusUpdatedSignal
+        {
+            add { if (value is not null) AddEventHandler("CollaboratorStatusUpdatedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("CollaboratorStatusUpdatedSignal", value); }
+        }
 
         /// <summary>
         /// <c>CollaboratorsService.MultiGetCanCollaborateRetrieved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MultiGetCanCollaborateRetrieved; // TODO: native event binding
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="canCollaborateResponses">A <c>object?</c> value.</param>
+        public event Action<string?, object?>? MultiGetCanCollaborateRetrieved
+        {
+            add { if (value is not null) AddEventHandler("MultiGetCanCollaborateRetrieved", value); }
+            remove { if (value is not null) RemoveEventHandler("MultiGetCanCollaborateRetrieved", value); }
+        }
 
         /// <summary>
         /// <c>CollaboratorsService.ServerMultiGetCanCollaborateRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerMultiGetCanCollaborateRequested; // TODO: native event binding
+        /// <param name="userIds">A <c>string?</c> value.</param>
+        public event Action<string?>? ServerMultiGetCanCollaborateRequested
+        {
+            add { if (value is not null) AddEventHandler("ServerMultiGetCanCollaborateRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerMultiGetCanCollaborateRequested", value); }
+        }
 
         /// <summary>
         /// <c>CollaboratorsService.ToggleSelectionHighlightsSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ToggleSelectionHighlightsSignal; // TODO: native event binding
+        /// <param name="areHighlightsShown">A <c>bool</c> value.</param>
+        public event Action<bool>? ToggleSelectionHighlightsSignal
+        {
+            add { if (value is not null) AddEventHandler("ToggleSelectionHighlightsSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("ToggleSelectionHighlightsSignal", value); }
+        }
 
     }
 }

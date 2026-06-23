@@ -57,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the strength of emissive contribution.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainDetail#EmissiveStrength"/>
         public float EmissiveStrength
@@ -68,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the tinting color for emissive contribution.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainDetail#EmissiveTint"/>
         public object? EmissiveTint
@@ -79,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The face this TerrainDetail overrides.
-        /// <para><b>Default:</b> <c>Side</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainDetail#Face"/>
         public Enum.TerrainFace Face
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines texture tiling method.
-        /// <para><b>Default:</b> <c>Regular</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainDetail#MaterialPattern"/>
         public Enum.MaterialPattern MaterialPattern
@@ -161,19 +157,12 @@ namespace Roblox
 
         /// <summary>
         /// Determines the scale of textures.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainDetail#StudsPerTile"/>
         public float StudsPerTile
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "StudsPerTile");
             set => global::Roblox.Reflection.SetProperty<float>(this, "StudsPerTile", value);
-        }
-
-        public object? TexturePack
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TexturePack");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TexturePack", value);
         }
 
     }

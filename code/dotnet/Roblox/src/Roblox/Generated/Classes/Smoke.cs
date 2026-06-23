@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the smoke particles.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Color"/>
         public object? Color
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether smoke particles emit.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Enabled"/>
         public bool Enabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Smoke.LocalTransparencyModifier</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how opaque smoke particles render.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Opacity"/>
         public float Opacity
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the velocity of the smoke particles.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#RiseVelocity"/>
         public float RiseVelocity
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the size of newly emit smoke particles.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Size"/>
         public float Size
@@ -93,43 +87,12 @@ namespace Roblox
 
         /// <summary>
         /// Value between 0-1 that controls the speed of the particle effect.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#TimeScale"/>
         public float TimeScale
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale");
             set => global::Roblox.Reflection.SetProperty<float>(this, "TimeScale", value);
-        }
-
-        /// <summary>
-        /// <c>Smoke.opacity_xml</c>
-        /// <para><b>Default:</b> <c>0.5</c></para>
-        /// </summary>
-        public float Opacity_xml
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "opacity_xml");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "opacity_xml", value);
-        }
-
-        /// <summary>
-        /// <c>Smoke.riseVelocity_xml</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
-        public float RiseVelocity_xml
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "riseVelocity_xml");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "riseVelocity_xml", value);
-        }
-
-        /// <summary>
-        /// <c>Smoke.size_xml</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
-        public float Size_xml
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "size_xml");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "size_xml", value);
         }
 
         /// <summary>

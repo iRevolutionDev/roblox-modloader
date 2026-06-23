@@ -85,6 +85,18 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Animate Hover Over", value);
         }
 
+        public float AnimationSkeletonScale
+        {
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Animation Skeleton Scale");
+            set => global::Roblox.Reflection.SetProperty<float>(this, "Animation Skeleton Scale", value);
+        }
+
+        public float AnimationSkeletonTransparency
+        {
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Animation Skeleton Transparency");
+            set => global::Roblox.Reflection.SetProperty<float>(this, "Animation Skeleton Transparency", value);
+        }
+
         /// <summary>
         /// <c>Studio.AutoResumeSyncOnPlaceOpen</c>
         /// </summary>
@@ -1589,6 +1601,36 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowCorePackagesInExplorer", value);
         }
 
+        public bool ShowAnimationSkeleton
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton", value);
+        }
+
+        public bool ShowAnimationSkeletonAttachments
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Attachments");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Attachments", value);
+        }
+
+        public bool ShowAnimationSkeletonAxes
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Axes");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Axes", value);
+        }
+
+        public bool ShowAnimationSkeletonRotations
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Rotations");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Rotations", value);
+        }
+
+        public bool ShowAnimationSkeletonText
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Text");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Text", value);
+        }
+
         /// <summary>
         /// If set to true, the CoreGui will be visible in the Explorer while the game is running.
         /// </summary>
@@ -1919,10 +1961,14 @@ namespace Roblox
 
         /// <summary>
         /// Event called when Studio's theme changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ThemeChanged"/>
-        // public event Action? ThemeChanged; // TODO: native event binding
+        public event Action? ThemeChanged
+        {
+            add { if (value is not null) AddEventHandler("ThemeChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ThemeChanged", value); }
+        }
 
     }
 }

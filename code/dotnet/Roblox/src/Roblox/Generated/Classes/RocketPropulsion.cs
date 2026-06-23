@@ -26,18 +26,7 @@ namespace Roblox
             => handle == 0 ? null : new RocketPropulsion(handle);
 
         /// <summary>
-        /// <c>RocketPropulsion.Active</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Active
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
-        }
-
-        /// <summary>
         /// Determines the tendency of the assembly to face the Target.
-        /// <para><b>Default:</b> <c>0.699999988</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#CartoonFactor"/>
         public float CartoonFactor
@@ -48,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the maximum speed at which the assembly will move toward the Target.
-        /// <para><b>Default:</b> <c>30</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#MaxSpeed"/>
         public float MaxSpeed
@@ -59,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the maximum amount of thrust that will be exerted to move the assembly.
-        /// <para><b>Default:</b> <c>4000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#MaxThrust"/>
         public float MaxThrust
@@ -70,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the maximum amount of torque that may be exerted to rotate the assembly towards the Target.
-        /// <para><b>Default:</b> <c>400000, 400000, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#MaxTorque"/>
         public global::System.Numerics.Vector3 MaxTorque
@@ -91,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the world offset from the Target toward which the force/torque is exerted.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TargetOffset"/>
         public global::System.Numerics.Vector3 TargetOffset
@@ -102,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the maximum distance from the Target at which the assembly must be in order for ReachedTarget to be fired.
-        /// <para><b>Default:</b> <c>4</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TargetRadius"/>
         public float TargetRadius
@@ -113,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the dampening applied to the assembly in order to prevent it from overshooting the Target.
-        /// <para><b>Default:</b> <c>0.00100000005</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#ThrustD"/>
         public float ThrustD
@@ -124,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how aggressive of a force is applied in reaching the Target.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#ThrustP"/>
         public float ThrustP
@@ -135,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the amount of dampening that to use in reaching the Target.
-        /// <para><b>Default:</b> <c>500</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TurnD"/>
         public float TurnD
@@ -146,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how aggressive of a torque is applied in facing the Target.
-        /// <para><b>Default:</b> <c>3000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TurnP"/>
         public float TurnP
@@ -173,10 +153,14 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the assembly comes within TargetRadius of the Target.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#ReachedTarget"/>
-        // public event Action? ReachedTarget; // TODO: native event binding
+        public event Action? ReachedTarget
+        {
+            add { if (value is not null) AddEventHandler("ReachedTarget", value); }
+            remove { if (value is not null) RemoveEventHandler("ReachedTarget", value); }
+        }
 
     }
 }

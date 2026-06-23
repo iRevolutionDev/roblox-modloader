@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Roblox UserId of the specific friend to invite.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceInviteOptions#InviteUser"/>
         public long InviteUser

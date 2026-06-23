@@ -372,7 +372,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetHardwareSafeViewport");
 
         /// <summary>
-        /// Takes an ScreenInsets value and returns a Rect2D describing the inset region, relative to the CoreUISafeInsets area.
+        /// Takes an ScreenInsets value and returns a Rect describing the inset region, relative to the CoreUISafeInsets area.
         /// </summary>
         /// <param name="screenInsets">A <c>Enum.ScreenInsets</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -695,131 +695,233 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.BrowserWindowClosed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BrowserWindowClosed; // TODO: native event binding
+        public event Action? BrowserWindowClosed
+        {
+            add { if (value is not null) AddEventHandler("BrowserWindowClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("BrowserWindowClosed", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.CloseInspectMenuRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CloseInspectMenuRequest; // TODO: native event binding
+        public event Action? CloseInspectMenuRequest
+        {
+            add { if (value is not null) AddEventHandler("CloseInspectMenuRequest", value); }
+            remove { if (value is not null) RemoveEventHandler("CloseInspectMenuRequest", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.CoreGuiRenderOverflowed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CoreGuiRenderOverflowed; // TODO: native event binding
+        public event Action? CoreGuiRenderOverflowed
+        {
+            add { if (value is not null) AddEventHandler("CoreGuiRenderOverflowed", value); }
+            remove { if (value is not null) RemoveEventHandler("CoreGuiRenderOverflowed", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.EmotesMenuOpenChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? EmotesMenuOpenChanged; // TODO: native event binding
+        /// <param name="isOpen">A <c>bool</c> value.</param>
+        public event Action<bool>? EmotesMenuOpenChanged
+        {
+            add { if (value is not null) AddEventHandler("EmotesMenuOpenChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("EmotesMenuOpenChanged", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.ErrorMessageChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ErrorMessageChanged; // TODO: native event binding
+        /// <param name="newErrorMessage">A <c>string?</c> value.</param>
+        public event Action<string?>? ErrorMessageChanged
+        {
+            add { if (value is not null) AddEventHandler("ErrorMessageChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ErrorMessageChanged", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.GuiVisibilityChangedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GuiVisibilityChangedSignal; // TODO: native event binding
+        /// <param name="guiType">A <c>Enum.GuiType</c> value.</param>
+        /// <param name="visible">A <c>bool</c> value.</param>
+        public event Action<Enum.GuiType, bool>? GuiVisibilityChangedSignal
+        {
+            add { if (value is not null) AddEventHandler("GuiVisibilityChangedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("GuiVisibilityChangedSignal", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.InspectMenuEnabledChangedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InspectMenuEnabledChangedSignal; // TODO: native event binding
+        /// <param name="enabled">A <c>bool</c> value.</param>
+        public event Action<bool>? InspectMenuEnabledChangedSignal
+        {
+            add { if (value is not null) AddEventHandler("InspectMenuEnabledChangedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("InspectMenuEnabledChangedSignal", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.InspectPlayerFromHumanoidDescriptionRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InspectPlayerFromHumanoidDescriptionRequest; // TODO: native event binding
+        /// <param name="humanoidDescription">A <c>Instance?</c> value.</param>
+        /// <param name="name">A <c>string?</c> value.</param>
+        public event Action<Instance?, string?>? InspectPlayerFromHumanoidDescriptionRequest
+        {
+            add { if (value is not null) AddEventHandler("InspectPlayerFromHumanoidDescriptionRequest", value); }
+            remove { if (value is not null) RemoveEventHandler("InspectPlayerFromHumanoidDescriptionRequest", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.InspectPlayerFromUserIdWithCtxRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InspectPlayerFromUserIdWithCtxRequest; // TODO: native event binding
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <param name="ctx">A <c>string?</c> value.</param>
+        public event Action<long, string?>? InspectPlayerFromUserIdWithCtxRequest
+        {
+            add { if (value is not null) AddEventHandler("InspectPlayerFromUserIdWithCtxRequest", value); }
+            remove { if (value is not null) RemoveEventHandler("InspectPlayerFromUserIdWithCtxRequest", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.KeyPressed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? KeyPressed; // TODO: native event binding
+        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="modifiers">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? KeyPressed
+        {
+            add { if (value is not null) AddEventHandler("KeyPressed", value); }
+            remove { if (value is not null) RemoveEventHandler("KeyPressed", value); }
+        }
 
         /// <summary>
         /// Fires when the user closes the Roblox CoreGui escape menu.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#MenuClosed"/>
-        // public event Action? MenuClosed; // TODO: native event binding
+        public event Action? MenuClosed
+        {
+            add { if (value is not null) AddEventHandler("MenuClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("MenuClosed", value); }
+        }
 
         /// <summary>
         /// Fires when the user opens the Roblox CoreGui escape menu.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#MenuOpened"/>
-        // public event Action? MenuOpened; // TODO: native event binding
+        public event Action? MenuOpened
+        {
+            add { if (value is not null) AddEventHandler("MenuOpened", value); }
+            remove { if (value is not null) RemoveEventHandler("MenuOpened", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.NativeClose</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? NativeClose; // TODO: native event binding
+        public event Action? NativeClose
+        {
+            add { if (value is not null) AddEventHandler("NativeClose", value); }
+            remove { if (value is not null) RemoveEventHandler("NativeClose", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.NetworkPausedEnabledChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? NetworkPausedEnabledChanged; // TODO: native event binding
+        /// <param name="enabled">A <c>bool</c> value.</param>
+        public event Action<bool>? NetworkPausedEnabledChanged
+        {
+            add { if (value is not null) AddEventHandler("NetworkPausedEnabledChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("NetworkPausedEnabledChanged", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.Open9SliceEditor</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Open9SliceEditor; // TODO: native event binding
+        /// <param name="selectedImageObject">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? Open9SliceEditor
+        {
+            add { if (value is not null) AddEventHandler("Open9SliceEditor", value); }
+            remove { if (value is not null) RemoveEventHandler("Open9SliceEditor", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.OpenStyleEditor</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenStyleEditor; // TODO: native event binding
+        /// <param name="styleBase">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? OpenStyleEditor
+        {
+            add { if (value is not null) AddEventHandler("OpenStyleEditor", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenStyleEditor", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.PurchasePromptShown</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PurchasePromptShown; // TODO: native event binding
+        public event Action? PurchasePromptShown
+        {
+            add { if (value is not null) AddEventHandler("PurchasePromptShown", value); }
+            remove { if (value is not null) RemoveEventHandler("PurchasePromptShown", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.SafeZoneOffsetsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SafeZoneOffsetsChanged; // TODO: native event binding
+        public event Action? SafeZoneOffsetsChanged
+        {
+            add { if (value is not null) AddEventHandler("SafeZoneOffsetsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SafeZoneOffsetsChanged", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.ShowLeaveConfirmation</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowLeaveConfirmation; // TODO: native event binding
+        public event Action? ShowLeaveConfirmation
+        {
+            add { if (value is not null) AddEventHandler("ShowLeaveConfirmation", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowLeaveConfirmation", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.SpecialKeyPressed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SpecialKeyPressed; // TODO: native event binding
+        /// <param name="key">A <c>Enum.SpecialKey</c> value.</param>
+        /// <param name="modifiers">A <c>string?</c> value.</param>
+        public event Action<Enum.SpecialKey, string?>? SpecialKeyPressed
+        {
+            add { if (value is not null) AddEventHandler("SpecialKeyPressed", value); }
+            remove { if (value is not null) RemoveEventHandler("SpecialKeyPressed", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.UiMessageChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UiMessageChanged; // TODO: native event binding
+        /// <param name="msgType">A <c>Enum.UiMessageType</c> value.</param>
+        /// <param name="newUiMessage">A <c>string?</c> value.</param>
+        public event Action<Enum.UiMessageType, string?>? UiMessageChanged
+        {
+            add { if (value is not null) AddEventHandler("UiMessageChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("UiMessageChanged", value); }
+        }
 
         /// <summary>
         /// <c>GuiService.SendCoreUiNotification</c>

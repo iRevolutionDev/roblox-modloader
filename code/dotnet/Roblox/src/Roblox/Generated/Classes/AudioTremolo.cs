@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Bypass"/>
         public bool Bypass
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how much the volume will raise and lower.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Depth"/>
         public float Depth
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how long the effect will be active during one volume oscillation.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Duty"/>
         public float Duty
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets how often the effect will oscillate the volume.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Frequency"/>
         public float Frequency
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the shape of the low frequency oscillations.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Shape"/>
         public float Shape
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Time-skews the low frequency oscillations cycle.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Skew"/>
         public float Skew
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Flatness of the low frequency oscillations shape.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Square"/>
         public float Square
@@ -129,10 +122,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioTremolo via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

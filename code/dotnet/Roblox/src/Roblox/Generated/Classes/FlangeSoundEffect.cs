@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The intensity of the effect.
-        /// <para><b>Default:</b> <c>0.449999988</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlangeSoundEffect#Depth"/>
         public float Depth
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Percentage of the original sound that will be applied to the filter.
-        /// <para><b>Default:</b> <c>0.850000024</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlangeSoundEffect#Mix"/>
         public float Mix
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The frequency that the effect oscillates at.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlangeSoundEffect#Rate"/>
         public float Rate

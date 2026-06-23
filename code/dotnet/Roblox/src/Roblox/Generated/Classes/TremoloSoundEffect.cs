@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how much the volume will raise and lower.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TremoloSoundEffect#Depth"/>
         public float Depth
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how long during one volume oscillation the effect will be active.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TremoloSoundEffect#Duty"/>
         public float Duty
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets how often the effect will oscillate the volume.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TremoloSoundEffect#Frequency"/>
         public float Frequency

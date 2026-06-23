@@ -21,30 +21,18 @@ namespace Roblox
         public static AvatarChatService? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarChatService(handle);
 
-        /// <summary>
-        /// <c>AvatarChatService.ClientFeatures</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int ClientFeatures
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "ClientFeatures");
             set => global::Roblox.Reflection.SetProperty<int>(this, "ClientFeatures", value);
         }
 
-        /// <summary>
-        /// <c>AvatarChatService.ClientFeaturesInitialized</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ClientFeaturesInitialized
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ClientFeaturesInitialized");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClientFeaturesInitialized", value);
         }
 
-        /// <summary>
-        /// <c>AvatarChatService.ServerFeatures</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int ServerFeatures
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "ServerFeatures");
@@ -125,18 +113,6 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetServerFeaturesAsync()
             => global::Roblox.Reflection.Invoke<int>(this, "GetServerFeaturesAsync");
-
-        /// <summary>
-        /// <c>AvatarChatService.OnClientFeatures</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnClientFeatures; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AvatarChatService.RefreshClientFeatures</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RefreshClientFeatures; // TODO: native event binding
 
     }
 }

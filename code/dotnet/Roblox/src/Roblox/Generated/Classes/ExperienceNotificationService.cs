@@ -50,16 +50,24 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the local player closes the prompt.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceNotificationService#OptInPromptClosed"/>
-        // public event Action? OptInPromptClosed; // TODO: native event binding
+        public event Action? OptInPromptClosed
+        {
+            add { if (value is not null) AddEventHandler("OptInPromptClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("OptInPromptClosed", value); }
+        }
 
         /// <summary>
         /// <c>ExperienceNotificationService.PromptOptInRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptOptInRequested; // TODO: native event binding
+        public event Action? PromptOptInRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptOptInRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptOptInRequested", value); }
+        }
 
     }
 }

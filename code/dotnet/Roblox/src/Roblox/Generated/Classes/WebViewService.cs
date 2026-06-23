@@ -74,15 +74,24 @@ namespace Roblox
 
         /// <summary>
         /// <c>WebViewService.OnJavaScriptCall</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnJavaScriptCall; // TODO: native event binding
+        /// <param name="content">A <c>string?</c> value.</param>
+        public event Action<string?>? OnJavaScriptCall
+        {
+            add { if (value is not null) AddEventHandler("OnJavaScriptCall", value); }
+            remove { if (value is not null) RemoveEventHandler("OnJavaScriptCall", value); }
+        }
 
         /// <summary>
         /// <c>WebViewService.OnWindowClosed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnWindowClosed; // TODO: native event binding
+        public event Action? OnWindowClosed
+        {
+            add { if (value is not null) AddEventHandler("OnWindowClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("OnWindowClosed", value); }
+        }
 
     }
 }

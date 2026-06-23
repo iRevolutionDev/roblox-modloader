@@ -255,10 +255,24 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         var memberDoc    = apiDocs.GetMember(c.Name, evt.Name ?? string.Empty);
         var descFallback = metadata.ReadMemberDesc(c.Name, evt.Name ?? string.Empty);
         WriteXmlMemberDoc(sw, c.Name, evt.Name ?? string.Empty, memberDoc, descFallback,
-            parameters: null, returnCsType: null, defaultValue: null, indent: 8,
-            extraNote: "Event binding is not yet implemented in the native layer.");
-        sw.WriteLine($"        // public event Action? {memberName}; // TODO: native event binding");
+            parameters: evt.Parameters, returnCsType: null, defaultValue: null, indent: 8);
+
+        var delegateType = BuildEventDelegateType(evt.Parameters);
+
+        sw.WriteLine($"        public event {delegateType}? {memberName}");
+        sw.WriteLine("        {");
+        sw.WriteLine($"            add {{ if (value is not null) AddEventHandler(\"{evt.Name}\", value); }}");
+        sw.WriteLine($"            remove {{ if (value is not null) RemoveEventHandler(\"{evt.Name}\", value); }}");
+        sw.WriteLine("        }");
         sw.WriteLine();
+    }
+    
+    private static string BuildEventDelegateType(List<Parameter>? parameters)
+    {
+        if (parameters is null || parameters.Count == 0) return "Action";
+
+        var typeArgs = parameters.Select(p => TypeMapper.ToCSharp(p.Type, nullable: true));
+        return $"Action<{string.Join(", ", typeArgs)}>";
     }
 
     private void WriteCallbackStub(StreamWriter sw, Class c, Callback cb, string memberName)

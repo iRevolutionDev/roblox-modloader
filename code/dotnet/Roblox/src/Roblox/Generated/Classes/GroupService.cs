@@ -93,9 +93,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>GroupService.ShowJoinPrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowJoinPrompt; // TODO: native event binding
+        /// <param name="groupId">A <c>long</c> value.</param>
+        public event Action<long>? ShowJoinPrompt
+        {
+            add { if (value is not null) AddEventHandler("ShowJoinPrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowJoinPrompt", value); }
+        }
 
     }
 }

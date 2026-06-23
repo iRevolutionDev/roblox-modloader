@@ -107,39 +107,71 @@ namespace Roblox
 
         /// <summary>
         /// <c>DraftsService.CommitStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CommitStatusChanged; // TODO: native event binding
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="status">A <c>Enum.DraftStatusCode</c> value.</param>
+        public event Action<Instance?, Enum.DraftStatusCode>? CommitStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("CommitStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("CommitStatusChanged", value); }
+        }
 
         /// <summary>
         /// <c>DraftsService.DraftAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DraftAdded; // TODO: native event binding
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? DraftAdded
+        {
+            add { if (value is not null) AddEventHandler("DraftAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("DraftAdded", value); }
+        }
 
         /// <summary>
         /// <c>DraftsService.DraftRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DraftRemoved; // TODO: native event binding
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? DraftRemoved
+        {
+            add { if (value is not null) AddEventHandler("DraftRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("DraftRemoved", value); }
+        }
 
         /// <summary>
         /// <c>DraftsService.DraftStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DraftStatusChanged; // TODO: native event binding
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? DraftStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("DraftStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("DraftStatusChanged", value); }
+        }
 
         /// <summary>
         /// <c>DraftsService.EditorsListChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? EditorsListChanged; // TODO: native event binding
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? EditorsListChanged
+        {
+            add { if (value is not null) AddEventHandler("EditorsListChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("EditorsListChanged", value); }
+        }
 
         /// <summary>
         /// <c>DraftsService.UpdateStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UpdateStatusChanged; // TODO: native event binding
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="status">A <c>Enum.DraftStatusCode</c> value.</param>
+        public event Action<Instance?, Enum.DraftStatusCode>? UpdateStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("UpdateStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("UpdateStatusChanged", value); }
+        }
 
     }
 }

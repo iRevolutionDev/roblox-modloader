@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether the goodbye option will be displayed.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DialogChoice#GoodbyeChoiceActive"/>
         public bool GoodbyeChoiceActive

@@ -26,36 +26,7 @@ namespace Roblox
             => handle == 0 ? null : new Terrain(handle);
 
         /// <summary>
-        /// <c>Terrain.AcquisitionMethod</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
-        public Enum.TerrainAcquisitionMethod AcquisitionMethod
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.TerrainAcquisitionMethod>(this, "AcquisitionMethod");
-            set => global::Roblox.Reflection.SetProperty<Enum.TerrainAcquisitionMethod>(this, "AcquisitionMethod", value);
-        }
-
-        public string? ClusterGrid
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ClusterGrid");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ClusterGrid", value);
-        }
-
-        public string? ClusterGridV2
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ClusterGridV2");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ClusterGridV2", value);
-        }
-
-        public byte[]? ClusterGridV3
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "ClusterGridV3");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "ClusterGridV3", value);
-        }
-
-        /// <summary>
         /// Enables or disables terrain decoration.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#Decoration"/>
         public bool Decoration
@@ -66,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the length of animated grass.
-        /// <para><b>Default:</b> <c>0.699999988</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#GrassLength"/>
         public float GrassLength
@@ -77,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: The legacy terrain engine has been removed, so this property will always be true.Returns true if the game is using the smooth terrain system.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#IsSmooth"/>
         public bool IsSmooth
@@ -86,10 +55,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsSmooth", value);
         }
 
-        /// <summary>
-        /// <c>Terrain.LastUsedModificationMethod</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
         public Enum.TerrainAcquisitionMethod LastUsedModificationMethod
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TerrainAcquisitionMethod>(this, "LastUsedModificationMethod");
@@ -106,12 +71,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "MaterialColors", value);
         }
 
-        public string? Materials
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Materials");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Materials", value);
-        }
-
         /// <summary>
         /// Displays the boundaries of the largest possible editable region.
         /// </summary>
@@ -122,51 +81,14 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "MaxExtents", value);
         }
 
-        /// <summary>
-        /// <c>Terrain.PhysicsGrid</c>
-        /// <para><b>Default:</b> <c></c></para>
-        /// </summary>
-        public byte[]? PhysicsGrid
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "PhysicsGrid");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "PhysicsGrid", value);
-        }
-
-        /// <summary>
-        /// <c>Terrain.SmoothGrid</c>
-        /// <para><b>Default:</b> <c></c></para>
-        /// </summary>
-        public byte[]? SmoothGrid
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "SmoothGrid");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "SmoothGrid", value);
-        }
-
-        /// <summary>
-        /// <c>Terrain.SmoothVoxelsUpgraded</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool SmoothVoxelsUpgraded
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "SmoothVoxelsUpgraded");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "SmoothVoxelsUpgraded", value);
         }
 
-        public object? ValidationAssetContentMap
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ValidationAssetContentMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ValidationAssetContentMap", value);
-        }
-
-        public object? VoxelGridAssetContentMap
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "VoxelGridAssetContentMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "VoxelGridAssetContentMap", value);
-        }
-
         /// <summary>
         /// The tint of Terrain water.
-        /// <para><b>Default:</b> <c>0.05, 0.33, 0.36</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterColor"/>
         public object? WaterColor
@@ -177,7 +99,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how opaque Terrain water reflections are.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterReflectance"/>
         public float WaterReflectance
@@ -188,7 +109,6 @@ namespace Roblox
 
         /// <summary>
         /// The transparency of Terrain water.
-        /// <para><b>Default:</b> <c>0.300000012</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterTransparency"/>
         public float WaterTransparency
@@ -199,7 +119,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the maximum height of Terrain water waves in studs.
-        /// <para><b>Default:</b> <c>0.150000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterWaveSize"/>
         public float WaterWaveSize
@@ -210,7 +129,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets how many times Terrain water waves will move up and down per minute.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterWaveSpeed"/>
         public float WaterWaveSpeed

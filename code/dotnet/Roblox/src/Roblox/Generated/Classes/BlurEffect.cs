@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the blur radius.
-        /// <para><b>Default:</b> <c>24</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BlurEffect#Size"/>
         public float Size

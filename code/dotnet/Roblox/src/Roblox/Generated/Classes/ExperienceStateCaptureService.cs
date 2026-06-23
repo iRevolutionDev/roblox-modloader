@@ -21,40 +21,24 @@ namespace Roblox
         public static ExperienceStateCaptureService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceStateCaptureService(handle);
 
-        /// <summary>
-        /// <c>ExperienceStateCaptureService.HiddenSelectionEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool HiddenSelectionEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "HiddenSelectionEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HiddenSelectionEnabled", value);
         }
 
-        /// <summary>
-        /// <c>ExperienceStateCaptureService.IsInBackground</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsInBackground
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInBackground");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsInBackground", value);
         }
 
-        /// <summary>
-        /// <c>ExperienceStateCaptureService.IsInCaptureMode</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsInCaptureMode
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInCaptureMode");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsInCaptureMode", value);
         }
 
-        /// <summary>
-        /// <c>ExperienceStateCaptureService.SelectionMode</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.ExperienceStateCaptureSelectionMode SelectionMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ExperienceStateCaptureSelectionMode>(this, "SelectionMode");
@@ -84,9 +68,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceStateCaptureService.ItemSelectedInCaptureMode</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ItemSelectedInCaptureMode; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? ItemSelectedInCaptureMode
+        {
+            add { if (value is not null) AddEventHandler("ItemSelectedInCaptureMode", value); }
+            remove { if (value is not null) RemoveEventHandler("ItemSelectedInCaptureMode", value); }
+        }
 
     }
 }

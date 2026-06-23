@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles the control on and off. True by default.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Enabled"/>
         public bool Enabled
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// An additional offset applied on top of the EndEffector in its local space to change where it moves.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#EndEffectorOffset"/>
         public object? EndEffectorOffset
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// An additional offset applied on top of the Target to change where the EndEffector moves.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Offset"/>
         public object? Offset
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the order in which controls are solved. Higher values have higher priority.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Priority"/>
         public int Priority
@@ -101,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the average number of seconds that it takes for the EndEffector to smoothly reach the Target.
-        /// <para><b>Default:</b> <c>0.0500000007</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#SmoothTime"/>
         public float SmoothTime
@@ -122,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies how the solver satisfies this control.
-        /// <para><b>Default:</b> <c>Transform</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Type"/>
         public Enum.IKControlType Type
@@ -133,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the weight of the IK control target. Should be in the [0, 1] range.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Weight"/>
         public float Weight

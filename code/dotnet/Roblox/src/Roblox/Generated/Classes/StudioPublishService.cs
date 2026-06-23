@@ -21,10 +21,6 @@ namespace Roblox
         public static StudioPublishService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioPublishService(handle);
 
-        /// <summary>
-        /// <c>StudioPublishService.PublishLocked</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool PublishLocked
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "PublishLocked");
@@ -128,33 +124,62 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioPublishService.GameNameUpdated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GameNameUpdated; // TODO: native event binding
+        /// <param name="name">A <c>string?</c> value.</param>
+        public event Action<string?>? GameNameUpdated
+        {
+            add { if (value is not null) AddEventHandler("GameNameUpdated", value); }
+            remove { if (value is not null) RemoveEventHandler("GameNameUpdated", value); }
+        }
 
         /// <summary>
         /// <c>StudioPublishService.GamePublishCancelled</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GamePublishCancelled; // TODO: native event binding
+        public event Action? GamePublishCancelled
+        {
+            add { if (value is not null) AddEventHandler("GamePublishCancelled", value); }
+            remove { if (value is not null) RemoveEventHandler("GamePublishCancelled", value); }
+        }
 
         /// <summary>
         /// <c>StudioPublishService.GamePublishFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GamePublishFinished; // TODO: native event binding
+        /// <param name="success">A <c>bool</c> value.</param>
+        /// <param name="gameId">A <c>long</c> value.</param>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="reason">A <c>Enum.StudioPlaceUpdateFailureReason</c> value.</param>
+        public event Action<bool, long, string?, Enum.StudioPlaceUpdateFailureReason>? GamePublishFinished
+        {
+            add { if (value is not null) AddEventHandler("GamePublishFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("GamePublishFinished", value); }
+        }
 
         /// <summary>
         /// <c>StudioPublishService.OnPublishAttempt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnPublishAttempt; // TODO: native event binding
+        /// <param name="isPublishAs">A <c>bool</c> value.</param>
+        public event Action<bool>? OnPublishAttempt
+        {
+            add { if (value is not null) AddEventHandler("OnPublishAttempt", value); }
+            remove { if (value is not null) RemoveEventHandler("OnPublishAttempt", value); }
+        }
 
         /// <summary>
         /// <c>StudioPublishService.OnSaveOrPublishPlaceToRoblox</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnSaveOrPublishPlaceToRoblox; // TODO: native event binding
+        /// <param name="showGameSelect">A <c>bool</c> value.</param>
+        /// <param name="isPublish">A <c>bool</c> value.</param>
+        /// <param name="closeMode">A <c>Enum.StudioCloseMode</c> value.</param>
+        public event Action<bool, bool, Enum.StudioCloseMode>? OnSaveOrPublishPlaceToRoblox
+        {
+            add { if (value is not null) AddEventHandler("OnSaveOrPublishPlaceToRoblox", value); }
+            remove { if (value is not null) RemoveEventHandler("OnSaveOrPublishPlaceToRoblox", value); }
+        }
 
     }
 }

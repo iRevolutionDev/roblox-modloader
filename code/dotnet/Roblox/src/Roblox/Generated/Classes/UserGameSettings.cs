@@ -95,18 +95,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatVisible", value);
         }
 
-        public string? CompletedTutorials
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CompletedTutorials");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CompletedTutorials", value);
-        }
-
-        public bool ComputerCameraMovementChanged
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ComputerCameraMovementChanged");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "ComputerCameraMovementChanged", value);
-        }
-
         /// <summary>
         /// The camera movement mode currently in-use by the client on desktop.
         /// </summary>
@@ -115,12 +103,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ComputerCameraMovementMode>(this, "ComputerCameraMovementMode");
             set => global::Roblox.Reflection.SetProperty<Enum.ComputerCameraMovementMode>(this, "ComputerCameraMovementMode", value);
-        }
-
-        public bool ComputerMovementChanged
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ComputerMovementChanged");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "ComputerMovementChanged", value);
         }
 
         /// <summary>
@@ -467,12 +449,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredTextSize>(this, "StudioPreferredTextSize", value);
         }
 
-        public bool TouchCameraMovementChanged
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchCameraMovementChanged");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "TouchCameraMovementChanged", value);
-        }
-
         /// <summary>
         /// The camera type in-use by the client while on a mobile device.
         /// </summary>
@@ -481,12 +457,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TouchCameraMovementMode>(this, "TouchCameraMovementMode");
             set => global::Roblox.Reflection.SetProperty<Enum.TouchCameraMovementMode>(this, "TouchCameraMovementMode", value);
-        }
-
-        public bool TouchMovementChanged
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchMovementChanged");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "TouchMovementChanged", value);
         }
 
         /// <summary>
@@ -611,12 +581,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VignetteEnabledCustomOption", value);
         }
 
-        public string? GaID
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "gaID");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "gaID", value);
-        }
-
         /// <summary>
         /// Returns the camera's Y-invert value.
         /// </summary>
@@ -709,23 +673,38 @@ namespace Roblox
 
         /// <summary>
         /// Fires if the user's full screen mode is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="isFullscreen">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#FullscreenChanged"/>
-        // public event Action? FullscreenChanged; // TODO: native event binding
+        public event Action<bool>? FullscreenChanged
+        {
+            add { if (value is not null) AddEventHandler("FullscreenChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("FullscreenChanged", value); }
+        }
 
         /// <summary>
         /// <c>UserGameSettings.PerformanceStatsVisibleChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PerformanceStatsVisibleChanged; // TODO: native event binding
+        /// <param name="isPerformanceStatsVisible">A <c>bool</c> value.</param>
+        public event Action<bool>? PerformanceStatsVisibleChanged
+        {
+            add { if (value is not null) AddEventHandler("PerformanceStatsVisibleChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("PerformanceStatsVisibleChanged", value); }
+        }
 
         /// <summary>
         /// Fired when the user's client switches between Studio mode and in-game mode. This gets fired periodically in Roblox Studio when a session starts.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="isStudioMode">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StudioModeChanged"/>
-        // public event Action? StudioModeChanged; // TODO: native event binding
+        public event Action<bool>? StudioModeChanged
+        {
+            add { if (value is not null) AddEventHandler("StudioModeChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("StudioModeChanged", value); }
+        }
 
     }
 }

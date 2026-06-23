@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the user can send messages to the TextChannel.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextSource#CanSend"/>
         public bool CanSend
@@ -44,23 +43,12 @@ namespace Roblox
 
         /// <summary>
         /// UserId of the user represented by the TextSource.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextSource#UserId"/>
         public long UserId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "UserId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "UserId", value);
-        }
-
-        /// <summary>
-        /// <c>TextSource.UserIdReplicated</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public long UserIdReplicated
-        {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "UserIdReplicated");
-            set => global::Roblox.Reflection.SetProperty<long>(this, "UserIdReplicated", value);
         }
 
         public string? Username

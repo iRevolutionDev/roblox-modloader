@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to hold an integer.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntValue#Value"/>
         public long Value
@@ -38,10 +37,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the IntValue.Value is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="value">A <c>long</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntValue#Changed"/>
-        // public event Action? Changed; // TODO: native event binding
+        public event Action<long>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
     }
 }

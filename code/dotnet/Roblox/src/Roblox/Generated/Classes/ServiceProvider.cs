@@ -54,30 +54,48 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the current place is exited.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#Close"/>
-        // public event Action? Close; // TODO: native event binding
+        public event Action? Close
+        {
+            add { if (value is not null) AddEventHandler("Close", value); }
+            remove { if (value is not null) RemoveEventHandler("Close", value); }
+        }
 
         /// <summary>
         /// <c>ServiceProvider.CloseLate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CloseLate; // TODO: native event binding
+        public event Action? CloseLate
+        {
+            add { if (value is not null) AddEventHandler("CloseLate", value); }
+            remove { if (value is not null) RemoveEventHandler("CloseLate", value); }
+        }
 
         /// <summary>
         /// Fired when a service is created.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="service">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#ServiceAdded"/>
-        // public event Action? ServiceAdded; // TODO: native event binding
+        public event Action<Instance?>? ServiceAdded
+        {
+            add { if (value is not null) AddEventHandler("ServiceAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("ServiceAdded", value); }
+        }
 
         /// <summary>
         /// Fired when a service is about to be removed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="service">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#ServiceRemoving"/>
-        // public event Action? ServiceRemoving; // TODO: native event binding
+        public event Action<Instance?>? ServiceRemoving
+        {
+            add { if (value is not null) AddEventHandler("ServiceRemoving", value); }
+            remove { if (value is not null) RemoveEventHandler("ServiceRemoving", value); }
+        }
 
     }
 }

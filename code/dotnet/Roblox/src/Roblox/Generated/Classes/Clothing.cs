@@ -35,17 +35,5 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "Color3", value);
         }
 
-        public object? Outfit1
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Outfit1");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Outfit1", value);
-        }
-
-        public object? Outfit2
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Outfit2");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Outfit2", value);
-        }
-
     }
 }

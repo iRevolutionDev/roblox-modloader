@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether the player can drop the tool.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#CanBeDropped"/>
         public bool CanBeDropped
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Relates to whether or not the tool can be used.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Enabled"/>
         public bool Enabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Stores the tool's "grip" properties as one CFrame.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Grip"/>
         public object? Grip
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Represents the R02, R12, and R22 values of the grip CFrame rotation matrix.
-        /// <para><b>Default:</b> <c>-0, -0, -1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripForward"/>
         public global::System.Numerics.Vector3 GripForward
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The positional offset of the tool's weld matrix.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripPos"/>
         public global::System.Numerics.Vector3 GripPos
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Represents the R00, R10, and R20 values of the grip CFrame rotation matrix.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripRight"/>
         public global::System.Numerics.Vector3 GripRight
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Represents the R01, R11, and R21 values of the grip CFrame rotation matrix.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripUp"/>
         public global::System.Numerics.Vector3 GripUp
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether the Tool can be activated without executing Tool:Activate().
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#ManualActivationOnly"/>
         public bool ManualActivationOnly
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether a Tool functions without a handle.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#RequiresHandle"/>
         public bool RequiresHandle
@@ -152,37 +143,48 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the player clicks while the tool is equipped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Activated"/>
-        // public event Action? Activated; // TODO: native event binding
+        public event Action? Activated
+        {
+            add { if (value is not null) AddEventHandler("Activated", value); }
+            remove { if (value is not null) RemoveEventHandler("Activated", value); }
+        }
 
         /// <summary>
         /// Fires when the player releases their click while the tool is equipped and activated.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Deactivated"/>
-        // public event Action? Deactivated; // TODO: native event binding
+        public event Action? Deactivated
+        {
+            add { if (value is not null) AddEventHandler("Deactivated", value); }
+            remove { if (value is not null) RemoveEventHandler("Deactivated", value); }
+        }
 
         /// <summary>
         /// Fires when the tool is equipped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="mouse">A <c>Mouse?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Equipped"/>
-        // public event Action? Equipped; // TODO: native event binding
+        public event Action<Mouse?>? Equipped
+        {
+            add { if (value is not null) AddEventHandler("Equipped", value); }
+            remove { if (value is not null) RemoveEventHandler("Equipped", value); }
+        }
 
         /// <summary>
         /// Fires when the tool is unequipped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Unequipped"/>
-        // public event Action? Unequipped; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Tool.VRLaserPointerClicked</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VRLaserPointerClicked; // TODO: native event binding
+        public event Action? Unequipped
+        {
+            add { if (value is not null) AddEventHandler("Unequipped", value); }
+            remove { if (value is not null) RemoveEventHandler("Unequipped", value); }
+        }
 
     }
 }

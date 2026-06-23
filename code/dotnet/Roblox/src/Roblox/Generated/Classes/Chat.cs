@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether player's chat messages will appear above their in-game avatar.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#BubbleChatEnabled"/>
         public bool BubbleChatEnabled
@@ -36,10 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BubbleChatEnabled", value);
         }
 
-        /// <summary>
-        /// <c>Chat.IsAutoMigrated</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsAutoMigrated
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsAutoMigrated");
@@ -48,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether the default chat framework should be automatically loaded when the game runs.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#LoadDefaultChat"/>
         public bool LoadDefaultChat
@@ -57,10 +51,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadDefaultChat", value);
         }
 
-        /// <summary>
-        /// <c>Chat.ModerationMode</c>
-        /// <para><b>Default:</b> <c>Unsupported</c></para>
-        /// </summary>
         public string? ModerationMode
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "ModerationMode");
@@ -191,64 +181,62 @@ namespace Roblox
 
         /// <summary>
         /// <c>Chat.BubbleChatSettingsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BubbleChatSettingsChanged; // TODO: native event binding
+        /// <param name="settings">A <c>object?</c> value.</param>
+        public event Action<object?>? BubbleChatSettingsChanged
+        {
+            add { if (value is not null) AddEventHandler("BubbleChatSettingsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("BubbleChatSettingsChanged", value); }
+        }
 
         /// <summary>
         /// Fires when Chat:Chat() is called.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="part">A <c>Instance?</c> value.</param>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="color">A <c>Enum.ChatColor</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#Chatted"/>
-        // public event Action? Chatted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Chat.ClientToServerFilterMessageSignalV2</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientToServerFilterMessageSignalV2; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Chat.ClientToServerReportUnfilteredSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientToServerReportUnfilteredSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Chat.ModerationModeEnabledChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ModerationModeEnabledChanged; // TODO: native event binding
+        public event Action<Instance?, string?, Enum.ChatColor>? Chatted
+        {
+            add { if (value is not null) AddEventHandler("Chatted", value); }
+            remove { if (value is not null) RemoveEventHandler("Chatted", value); }
+        }
 
         /// <summary>
         /// <c>Chat.PlayerChatAvailabilityStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlayerChatAvailabilityStatusChanged; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        public event Action<Player?>? PlayerChatAvailabilityStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("PlayerChatAvailabilityStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerChatAvailabilityStatusChanged", value); }
+        }
 
         /// <summary>
         /// <c>Chat.ReconcileCommunicationAccessCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ReconcileCommunicationAccessCompleted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Chat.ReconcileCommunicationAccessSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReconcileCommunicationAccessSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Chat.ServerToClientUnderOver13FilteredResponseSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientUnderOver13FilteredResponseSignal; // TODO: native event binding
+        /// <param name="chatAvailabilityStatus">A <c>string?</c> value.</param>
+        public event Action<string?>? ReconcileCommunicationAccessCompleted
+        {
+            add { if (value is not null) AddEventHandler("ReconcileCommunicationAccessCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("ReconcileCommunicationAccessCompleted", value); }
+        }
 
         /// <summary>
         /// <c>Chat.TimeoutChatAttempt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TimeoutChatAttempt; // TODO: native event binding
+        /// <param name="isPermanentTimeout">A <c>bool</c> value.</param>
+        /// <param name="endTime">A <c>long</c> value.</param>
+        public event Action<bool, long>? TimeoutChatAttempt
+        {
+            add { if (value is not null) AddEventHandler("TimeoutChatAttempt", value); }
+            remove { if (value is not null) RemoveEventHandler("TimeoutChatAttempt", value); }
+        }
 
     }
 }

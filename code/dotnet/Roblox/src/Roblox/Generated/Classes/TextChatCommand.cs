@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatCommand.AutocompleteVisible</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#AutocompleteVisible"/>
         public bool AutocompleteVisible
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the TextChatCommand is enabled.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#Enabled"/>
         public bool Enabled
@@ -69,10 +67,16 @@ namespace Roblox
 
         /// <summary>
         /// An event that developers can bind to execute commands.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="originTextSource">A <c>TextSource?</c> value.</param>
+        /// <param name="unfilteredText">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#Triggered"/>
-        // public event Action? Triggered; // TODO: native event binding
+        public event Action<TextSource?, string?>? Triggered
+        {
+            add { if (value is not null) AddEventHandler("Triggered", value); }
+            remove { if (value is not null) RemoveEventHandler("Triggered", value); }
+        }
 
     }
 }

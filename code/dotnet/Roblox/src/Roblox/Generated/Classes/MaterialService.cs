@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Asphalt.
-        /// <para><b>Default:</b> <c>Asphalt</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#AsphaltName"/>
         public string? AsphaltName
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Basalt.
-        /// <para><b>Default:</b> <c>Basalt</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#BasaltName"/>
         public string? BasaltName
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Brick.
-        /// <para><b>Default:</b> <c>Brick</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#BrickName"/>
         public string? BrickName
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.CardboardName</c>
-        /// <para><b>Default:</b> <c>Cardboard</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CardboardName"/>
         public string? CardboardName
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.CarpetName</c>
-        /// <para><b>Default:</b> <c>Carpet</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CarpetName"/>
         public string? CarpetName
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.CeramicTilesName</c>
-        /// <para><b>Default:</b> <c>CeramicTiles</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CeramicTilesName"/>
         public string? CeramicTilesName
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.ClayRoofTilesName</c>
-        /// <para><b>Default:</b> <c>ClayRoofTiles</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#ClayRoofTilesName"/>
         public string? ClayRoofTilesName
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Cobblestone.
-        /// <para><b>Default:</b> <c>Cobblestone</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CobblestoneName"/>
         public string? CobblestoneName
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Concrete.
-        /// <para><b>Default:</b> <c>Concrete</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#ConcreteName"/>
         public string? ConcreteName
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in CorrodedMetal.
-        /// <para><b>Default:</b> <c>CorrodedMetal</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CorrodedMetalName"/>
         public string? CorrodedMetalName
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in CrackedLava.
-        /// <para><b>Default:</b> <c>CrackedLava</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CrackedLavaName"/>
         public string? CrackedLavaName
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in DiamondPlate.
-        /// <para><b>Default:</b> <c>DiamondPlate</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#DiamondPlateName"/>
         public string? DiamondPlateName
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Fabric.
-        /// <para><b>Default:</b> <c>Fabric</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#FabricName"/>
         public string? FabricName
@@ -170,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Foil.
-        /// <para><b>Default:</b> <c>Foil</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#FoilName"/>
         public string? FoilName
@@ -181,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Glacier.
-        /// <para><b>Default:</b> <c>Glacier</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GlacierName"/>
         public string? GlacierName
@@ -192,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Granite.
-        /// <para><b>Default:</b> <c>Granite</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GraniteName"/>
         public string? GraniteName
@@ -203,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Grass.
-        /// <para><b>Default:</b> <c>Grass</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GrassName"/>
         public string? GrassName
@@ -214,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Ground.
-        /// <para><b>Default:</b> <c>Ground</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GroundName"/>
         public string? GroundName
@@ -225,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Ice.
-        /// <para><b>Default:</b> <c>Ice</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#IceName"/>
         public string? IceName
@@ -236,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in LeafyGrass.
-        /// <para><b>Default:</b> <c>LeafyGrass</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#LeafyGrassName"/>
         public string? LeafyGrassName
@@ -247,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.LeatherName</c>
-        /// <para><b>Default:</b> <c>Leather</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#LeatherName"/>
         public string? LeatherName
@@ -258,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Limestone.
-        /// <para><b>Default:</b> <c>Limestone</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#LimestoneName"/>
         public string? LimestoneName
@@ -269,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Marble.
-        /// <para><b>Default:</b> <c>Marble</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#MarbleName"/>
         public string? MarbleName
@@ -280,7 +257,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Metal.
-        /// <para><b>Default:</b> <c>Metal</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#MetalName"/>
         public string? MetalName
@@ -291,7 +267,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Mud.
-        /// <para><b>Default:</b> <c>Mud</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#MudName"/>
         public string? MudName
@@ -302,7 +277,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Pavement.
-        /// <para><b>Default:</b> <c>Pavement</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PavementName"/>
         public string? PavementName
@@ -313,7 +287,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Pebble.
-        /// <para><b>Default:</b> <c>Pebble</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PebbleName"/>
         public string? PebbleName
@@ -324,7 +297,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.PlasterName</c>
-        /// <para><b>Default:</b> <c>Plaster</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PlasterName"/>
         public string? PlasterName
@@ -335,7 +307,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Plastic.
-        /// <para><b>Default:</b> <c>Plastic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PlasticName"/>
         public string? PlasticName
@@ -346,7 +317,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Rock.
-        /// <para><b>Default:</b> <c>Rock</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#RockName"/>
         public string? RockName
@@ -357,7 +327,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.RoofShinglesName</c>
-        /// <para><b>Default:</b> <c>RoofShingles</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#RoofShinglesName"/>
         public string? RoofShinglesName
@@ -368,7 +337,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.RubberName</c>
-        /// <para><b>Default:</b> <c>Rubber</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#RubberName"/>
         public string? RubberName
@@ -379,7 +347,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Salt.
-        /// <para><b>Default:</b> <c>Salt</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SaltName"/>
         public string? SaltName
@@ -390,7 +357,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Sand.
-        /// <para><b>Default:</b> <c>Sand</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SandName"/>
         public string? SandName
@@ -401,7 +367,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Sandstone.
-        /// <para><b>Default:</b> <c>Sandstone</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SandstoneName"/>
         public string? SandstoneName
@@ -412,7 +377,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Slate.
-        /// <para><b>Default:</b> <c>Slate</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SlateName"/>
         public string? SlateName
@@ -423,7 +387,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in SmoothPlastic.
-        /// <para><b>Default:</b> <c>SmoothPlastic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SmoothPlasticName"/>
         public string? SmoothPlasticName
@@ -434,7 +397,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Snow.
-        /// <para><b>Default:</b> <c>Snow</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SnowName"/>
         public string? SnowName
@@ -445,7 +407,6 @@ namespace Roblox
 
         /// <summary>
         /// Switch built-in material pack.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#Use2022Materials"/>
         public bool Use2022Materials
@@ -455,18 +416,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>MaterialService.Use2022MaterialsXml</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Use2022MaterialsXml
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Use2022MaterialsXml");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Use2022MaterialsXml", value);
-        }
-
-        /// <summary>
         /// Specify MaterialVariant name to override built-in Wood.
-        /// <para><b>Default:</b> <c>Wood</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#WoodName"/>
         public string? WoodName
@@ -477,7 +427,6 @@ namespace Roblox
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in WoodPlanks.
-        /// <para><b>Default:</b> <c>WoodPlanks</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#WoodPlanksName"/>
         public string? WoodPlanksName
@@ -556,15 +505,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.MaterialFillToolEnabledChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MaterialFillToolEnabledChanged; // TODO: native event binding
+        /// <param name="shouldEnable">A <c>bool</c> value.</param>
+        public event Action<bool>? MaterialFillToolEnabledChanged
+        {
+            add { if (value is not null) AddEventHandler("MaterialFillToolEnabledChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("MaterialFillToolEnabledChanged", value); }
+        }
 
         /// <summary>
         /// <c>MaterialService.OverrideStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OverrideStatusChanged; // TODO: native event binding
+        /// <param name="material">A <c>Enum.Material</c> value.</param>
+        public event Action<Enum.Material>? OverrideStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("OverrideStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("OverrideStatusChanged", value); }
+        }
 
     }
 }

@@ -26,16 +26,6 @@ namespace Roblox
             => handle == 0 ? null : new ProceduralModel(handle);
 
         /// <summary>
-        /// <c>ProceduralModel.Dirty</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Dirty
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Dirty");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Dirty", value);
-        }
-
-        /// <summary>
         /// Stores errors that the generator module might encounter during generation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#GenerationError"/>
@@ -57,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines the bounding volume used for generation.
-        /// <para><b>Default:</b> <c>12, 12, 12</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#Size"/>
         public global::System.Numerics.Vector3 Size

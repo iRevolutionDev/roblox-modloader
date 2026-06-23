@@ -107,9 +107,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnimationStreamTrack.Stopped</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Stopped; // TODO: native event binding
+        public event Action? Stopped
+        {
+            add { if (value is not null) AddEventHandler("Stopped", value); }
+            remove { if (value is not null) RemoveEventHandler("Stopped", value); }
+        }
 
     }
 }

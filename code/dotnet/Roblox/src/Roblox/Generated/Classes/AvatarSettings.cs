@@ -21,10 +21,6 @@ namespace Roblox
         public static AvatarSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarSettings(handle);
 
-        /// <summary>
-        /// <c>AvatarSettings.Loaded</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Loaded
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Loaded");
@@ -46,16 +42,14 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "Publish");
 
         /// <summary>
-        /// <c>AvatarSettings.DiscardRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? DiscardRequested; // TODO: native event binding
-
-        /// <summary>
         /// <c>AvatarSettings.RefreshPluginState</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RefreshPluginState; // TODO: native event binding
+        public event Action? RefreshPluginState
+        {
+            add { if (value is not null) AddEventHandler("RefreshPluginState", value); }
+            remove { if (value is not null) RemoveEventHandler("RefreshPluginState", value); }
+        }
 
     }
 }

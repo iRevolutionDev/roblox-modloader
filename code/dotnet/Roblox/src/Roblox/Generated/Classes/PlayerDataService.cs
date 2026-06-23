@@ -21,10 +21,6 @@ namespace Roblox
         public static PlayerDataService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerDataService(handle);
 
-        /// <summary>
-        /// <c>PlayerDataService.LoadFailureBehavior</c>
-        /// <para><b>Default:</b> <c>Failure</c></para>
-        /// </summary>
         public Enum.PlayerDataLoadFailureBehavior LoadFailureBehavior
         {
             get => global::Roblox.Reflection.GetProperty<Enum.PlayerDataLoadFailureBehavior>(this, "LoadFailureBehavior");

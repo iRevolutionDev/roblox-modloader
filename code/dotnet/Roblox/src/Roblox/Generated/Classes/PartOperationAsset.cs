@@ -25,17 +25,5 @@ namespace Roblox
         public static PartOperationAsset? FromHandle(nuint handle)
             => handle == 0 ? null : new PartOperationAsset(handle);
 
-        public byte[]? ChildData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "ChildData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "ChildData", value);
-        }
-
-        public byte[]? MeshData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "MeshData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "MeshData", value);
-        }
-
     }
 }

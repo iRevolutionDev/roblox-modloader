@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the axis of rotation (direction) and the rotational velocity (magnitude) in radians/s.
-        /// <para><b>Default:</b> <c>0, 2, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#AngularVelocity"/>
         public global::System.Numerics.Vector3 AngularVelocity
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the limit of torque that may be exerted on each world axis.
-        /// <para><b>Default:</b> <c>4000, 4000, 4000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#MaxTorque"/>
         public global::System.Numerics.Vector3 MaxTorque
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how aggressive of a torque is applied in reaching the goal angular velocity.
-        /// <para><b>Default:</b> <c>1250</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#P"/>
         public float P
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This deprecated property is a variant of BodyAngularVelocity.AngularVelocity which should be used instead.
-        /// <para><b>Default:</b> <c>0, 2, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#angularvelocity"/>
         public global::System.Numerics.Vector3 Angularvelocity

@@ -54,31 +54,52 @@ namespace Roblox
 
         /// <summary>
         /// <c>WebStreamClient.Closed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Closed"/>
-        // public event Action? Closed; // TODO: native event binding
+        public event Action? Closed
+        {
+            add { if (value is not null) AddEventHandler("Closed", value); }
+            remove { if (value is not null) RemoveEventHandler("Closed", value); }
+        }
 
         /// <summary>
         /// Fires if an error is received while establishing the connection or during the connection lifetime.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="responseStatusCode">A <c>int</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Error"/>
-        // public event Action? Error; // TODO: native event binding
+        public event Action<int, string?>? Error
+        {
+            add { if (value is not null) AddEventHandler("Error", value); }
+            remove { if (value is not null) RemoveEventHandler("Error", value); }
+        }
 
         /// <summary>
         /// Fires each time a message is received from the server.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#MessageReceived"/>
-        // public event Action? MessageReceived; // TODO: native event binding
+        public event Action<string?>? MessageReceived
+        {
+            add { if (value is not null) AddEventHandler("MessageReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }
+        }
 
         /// <summary>
         /// Fires when the a connection is successfully established between the client and server, allowing for events to begin streaming.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="responseStatusCode">A <c>int</c> value.</param>
+        /// <param name="headers">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Opened"/>
-        // public event Action? Opened; // TODO: native event binding
+        public event Action<int, string?>? Opened
+        {
+            add { if (value is not null) AddEventHandler("Opened", value); }
+            remove { if (value is not null) RemoveEventHandler("Opened", value); }
+        }
 
     }
 }

@@ -33,15 +33,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>MultipleDocumentInterfaceInstance.DataModelSessionEnded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DataModelSessionEnded; // TODO: native event binding
+        /// <param name="dataModelSession">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? DataModelSessionEnded
+        {
+            add { if (value is not null) AddEventHandler("DataModelSessionEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("DataModelSessionEnded", value); }
+        }
 
         /// <summary>
         /// <c>MultipleDocumentInterfaceInstance.DataModelSessionStarted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DataModelSessionStarted; // TODO: native event binding
+        /// <param name="dataModelSession">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? DataModelSessionStarted
+        {
+            add { if (value is not null) AddEventHandler("DataModelSessionStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("DataModelSessionStarted", value); }
+        }
 
     }
 }

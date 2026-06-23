@@ -21,270 +21,162 @@ namespace Roblox
         public static AvatarClothingRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarClothingRules(handle);
 
-        /// <summary>
-        /// <c>AvatarClothingRules.ClothingMode</c>
-        /// <para><b>Default:</b> <c>PlayerChoice</c></para>
-        /// </summary>
         public Enum.AvatarSettingsClothingMode ClothingMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsClothingMode>(this, "ClothingMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsClothingMode>(this, "ClothingMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomClassicPantsAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomClassicPantsAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomClassicPantsAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomClassicPantsAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomClassicPantsAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomClassicPantsAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomClassicPantsAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomClassicPantsAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomClassicShirtsAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomClassicShirtsAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomClassicShirtsAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomClassicShirtsAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomClassicShirtsAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomClassicShirtsAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomClassicShirtsAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomClassicShirtsAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomClassicTShirtsAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomClassicTShirtsAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomClassicTShirtsAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomClassicTShirtsAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomClassicTShirtsAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomClassicTShirtsAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomClassicTShirtsAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomClassicTShirtsAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomClothingMode</c>
-        /// <para><b>Default:</b> <c>PlayerChoice</c></para>
-        /// </summary>
         public Enum.AvatarSettingsCustomClothingMode CustomClothingMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCustomClothingMode>(this, "CustomClothingMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCustomClothingMode>(this, "CustomClothingMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomDressSkirtAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomDressSkirtAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomDressSkirtAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomDressSkirtAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomDressSkirtAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomDressSkirtAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomDressSkirtAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomDressSkirtAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomJacketAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomJacketAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomJacketAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomJacketAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomJacketAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomJacketAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomJacketAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomJacketAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomLeftShoesAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomLeftShoesAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomLeftShoesAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomLeftShoesAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomLeftShoesAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomLeftShoesAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomLeftShoesAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomLeftShoesAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomPantsAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomPantsAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomPantsAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomPantsAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomPantsAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomPantsAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomPantsAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomPantsAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomRightShoesAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomRightShoesAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomRightShoesAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomRightShoesAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomRightShoesAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomRightShoesAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomRightShoesAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomRightShoesAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomShirtAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomShirtAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomShirtAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomShirtAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomShirtAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomShirtAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomShirtAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomShirtAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomShortsAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomShortsAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomShortsAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomShortsAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomShortsAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomShortsAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomShortsAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomShortsAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomSweaterAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomSweaterAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomSweaterAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomSweaterAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomSweaterAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomSweaterAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomSweaterAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomSweaterAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomTShirtAccessoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomTShirtAccessoryEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomTShirtAccessoryEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomTShirtAccessoryEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.CustomTShirtAccessoryId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomTShirtAccessoryId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomTShirtAccessoryId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomTShirtAccessoryId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarClothingRules.LimitBounds</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector3 LimitBounds
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LimitBounds");

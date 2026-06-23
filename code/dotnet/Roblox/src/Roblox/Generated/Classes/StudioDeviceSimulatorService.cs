@@ -166,10 +166,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.ConfigurationChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#ConfigurationChanged"/>
-        // public event Action? ConfigurationChanged; // TODO: native event binding
+        public event Action? ConfigurationChanged
+        {
+            add { if (value is not null) AddEventHandler("ConfigurationChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ConfigurationChanged", value); }
+        }
 
     }
 }

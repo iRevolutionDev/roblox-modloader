@@ -27,10 +27,15 @@ namespace Roblox
 
         /// <summary>
         /// Fired when Instances are being selected while the mouse is dragging.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMouse#DragEnter"/>
-        // public event Action? DragEnter; // TODO: native event binding
+        public event Action<IReadOnlyList<Instance>>? DragEnter
+        {
+            add { if (value is not null) AddEventHandler("DragEnter", value); }
+            remove { if (value is not null) RemoveEventHandler("DragEnter", value); }
+        }
 
     }
 }

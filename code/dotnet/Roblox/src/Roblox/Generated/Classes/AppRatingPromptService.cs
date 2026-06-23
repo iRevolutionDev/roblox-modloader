@@ -37,9 +37,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>AppRatingPromptService.OnGameLeft</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnGameLeft; // TODO: native event binding
+        /// <param name="gameTime">A <c>double</c> value.</param>
+        public event Action<double>? OnGameLeft
+        {
+            add { if (value is not null) AddEventHandler("OnGameLeft", value); }
+            remove { if (value is not null) RemoveEventHandler("OnGameLeft", value); }
+        }
 
     }
 }

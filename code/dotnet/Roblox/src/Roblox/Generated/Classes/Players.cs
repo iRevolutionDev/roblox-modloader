@@ -127,18 +127,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "RespawnTime", value);
         }
 
-        public string? ServerGitHash
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ServerGitHash");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ServerGitHash", value);
-        }
-
-        public string? ServerLogPrefix
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ServerLogPrefix");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ServerLogPrefix", value);
-        }
-
         /// <summary>
         /// <c>Players.UseStrafingAnimations</c>
         /// </summary>
@@ -261,9 +249,10 @@ namespace Roblox
         /// <param name="membershipType">A <c>Enum.MembershipType</c> value.</param>
         /// <param name="isUnder13">A <c>bool</c> value.</param>
         /// <param name="hasRobloxSubscription">A <c>bool</c> value.</param>
+        /// <param name="ageCheckedStatus">A <c>Enum.AgeCheckStatus</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetLocalPlayerInfo(long userId, string? userName, string? displayName, Enum.MembershipType membershipType, bool isUnder13, bool hasRobloxSubscription)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetLocalPlayerInfo", userId, userName, displayName, membershipType, isUnder13, hasRobloxSubscription);
+        public object? SetLocalPlayerInfo(long userId, string? userName, string? displayName, Enum.MembershipType membershipType, bool isUnder13, bool hasRobloxSubscription, Enum.AgeCheckStatus ageCheckedStatus)
+            => global::Roblox.Reflection.Invoke<object?>(this, "SetLocalPlayerInfo", userId, userName, displayName, membershipType, isUnder13, hasRobloxSubscription, ageCheckedStatus);
 
         /// <summary>
         /// Makes the local player chat the given message, which will only be viewable by users on the same team.
@@ -460,110 +449,125 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "UnbanAsync", config);
 
         /// <summary>
-        /// <c>Players.CloudEditApplyEditsMessage</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? CloudEditApplyEditsMessage; // TODO: native event binding
-
-        /// <summary>
         /// <c>Players.FriendRequestEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FriendRequestEvent; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="friendRequestEvent">A <c>Enum.FriendRequestEvent</c> value.</param>
+        public event Action<Player?, Player?, Enum.FriendRequestEvent>? FriendRequestEvent
+        {
+            add { if (value is not null) AddEventHandler("FriendRequestEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("FriendRequestEvent", value); }
+        }
 
         /// <summary>
         /// Fires when a player enters the experience.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerAdded"/>
-        // public event Action? PlayerAdded; // TODO: native event binding
+        public event Action<Player?>? PlayerAdded
+        {
+            add { if (value is not null) AddEventHandler("PlayerAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerAdded", value); }
+        }
 
         /// <summary>
         /// <c>Players.PlayerChatted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlayerChatted; // TODO: native event binding
+        /// <param name="chatType">A <c>Enum.PlayerChatType</c> value.</param>
+        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="targetPlayer">A <c>Player?</c> value.</param>
+        public event Action<Enum.PlayerChatType, Player?, string?, Player?>? PlayerChatted
+        {
+            add { if (value is not null) AddEventHandler("PlayerChatted", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerChatted", value); }
+        }
 
         /// <summary>
         /// <c>Players.PlayerConnecting</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlayerConnecting; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        public event Action<Player?>? PlayerConnecting
+        {
+            add { if (value is not null) AddEventHandler("PlayerConnecting", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerConnecting", value); }
+        }
 
         /// <summary>
         /// <c>Players.PlayerDisconnecting</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlayerDisconnecting; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        public event Action<Player?>? PlayerDisconnecting
+        {
+            add { if (value is not null) AddEventHandler("PlayerDisconnecting", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerDisconnecting", value); }
+        }
 
         /// <summary>
         /// Fires when the experience server recognizes that a player's membership has changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerMembershipChanged"/>
-        // public event Action? PlayerMembershipChanged; // TODO: native event binding
+        public event Action<Player?>? PlayerMembershipChanged
+        {
+            add { if (value is not null) AddEventHandler("PlayerMembershipChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerMembershipChanged", value); }
+        }
 
         /// <summary>
         /// <c>Players.PlayerRejoining</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlayerRejoining; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        public event Action<Player?>? PlayerRejoining
+        {
+            add { if (value is not null) AddEventHandler("PlayerRejoining", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerRejoining", value); }
+        }
 
         /// <summary>
         /// Fires when a player is about to leave the experience.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="reason">A <c>Enum.PlayerExitReason</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerRemoving"/>
-        // public event Action? PlayerRemoving; // TODO: native event binding
+        public event Action<Player?, Enum.PlayerExitReason>? PlayerRemoving
+        {
+            add { if (value is not null) AddEventHandler("PlayerRemoving", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerRemoving", value); }
+        }
 
         /// <summary>
-        /// <c>Players.PromptGameServerAvatarReportEnrichment</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <c>Players.PromptAgeCheckRequested</c>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptGameServerAvatarReportEnrichment; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Players.PromptGameServerReportEnrichment</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptGameServerReportEnrichment; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Players.PromptGameServerTargetedChatReportEnrichment</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptGameServerTargetedChatReportEnrichment; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Players.PromptReportServerEnrichmentAndScan</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PromptReportServerEnrichmentAndScan; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Players.RequestCloudEditKick</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestCloudEditKick; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Players.RequestCloudEditShutdown</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestCloudEditShutdown; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Players.TeamCreateServerMessage</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TeamCreateServerMessage; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        public event Action<Player?>? PromptAgeCheckRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptAgeCheckRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptAgeCheckRequested", value); }
+        }
 
         /// <summary>
         /// Fires when the experience server recognizes that the user's status for a certain subscription has changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="user">A <c>Player?</c> value.</param>
+        /// <param name="subscriptionId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#UserSubscriptionStatusChanged"/>
-        // public event Action? UserSubscriptionStatusChanged; // TODO: native event binding
+        public event Action<Player?, string?>? UserSubscriptionStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("UserSubscriptionStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("UserSubscriptionStatusChanged", value); }
+        }
 
     }
 }

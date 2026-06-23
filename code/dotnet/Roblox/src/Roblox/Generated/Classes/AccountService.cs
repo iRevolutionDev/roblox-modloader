@@ -75,9 +75,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>AccountService.MagicLoginEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MagicLoginEvent; // TODO: native event binding
+        /// <param name="data">A <c>string?</c> value.</param>
+        public event Action<string?>? MagicLoginEvent
+        {
+            add { if (value is not null) AddEventHandler("MagicLoginEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("MagicLoginEvent", value); }
+        }
 
     }
 }

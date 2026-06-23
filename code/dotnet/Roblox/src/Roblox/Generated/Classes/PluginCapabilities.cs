@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PluginCapabilities.Manifest</c>
-        /// <para><b>Default:</b> <c>{&quot;Metadata&quot;:{&quot;TargetDataModels&quot;: [&quot;Edit&quot;, &quot;Server&quot;, &quot;Client&quot;]},&quot;Permissions&quot;:{}}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginCapabilities#Manifest"/>
         public string? Manifest

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The largest size in pixels the font is allowed to be.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITextSizeConstraint#MaxTextSize"/>
         public int MaxTextSize
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The smallest size in pixels the font is allowed to be.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITextSizeConstraint#MinTextSize"/>
         public int MinTextSize

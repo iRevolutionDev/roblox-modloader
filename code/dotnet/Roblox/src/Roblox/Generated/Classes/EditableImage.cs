@@ -25,18 +25,6 @@ namespace Roblox
         public static EditableImage? FromHandle(nuint handle)
             => handle == 0 ? null : new EditableImage(handle);
 
-        public byte[]? ImageData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "ImageData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "ImageData", value);
-        }
-
-        public bool IsReplicatedCopy
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReplicatedCopy");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsReplicatedCopy", value);
-        }
-
         /// <summary>
         /// Size of the EditableImage in pixels.
         /// </summary>

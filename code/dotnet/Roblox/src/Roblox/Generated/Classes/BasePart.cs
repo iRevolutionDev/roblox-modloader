@@ -265,12 +265,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "CollisionGroupId", value);
         }
 
-        public string? CollisionGroupReplicate
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CollisionGroupReplicate");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CollisionGroupReplicate", value);
-        }
-
         /// <summary>
         /// Determines the color of a part.
         /// </summary>
@@ -279,12 +273,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
-        }
-
-        public object? Color3uint8
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color3uint8");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color3uint8", value);
         }
 
         /// <summary>
@@ -305,12 +293,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomPhysicalProperties");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomPhysicalProperties", value);
-        }
-
-        public bool DraggingV1
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggingV1");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggingV1", value);
         }
 
         /// <summary>
@@ -503,30 +485,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "MaterialVariant", value);
         }
 
-        public string? MaterialVariantSerialized
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MaterialVariantSerialized");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MaterialVariantSerialized", value);
-        }
-
-        public bool NetworkIsSleeping
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "NetworkIsSleeping");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "NetworkIsSleeping", value);
-        }
-
-        public object? NetworkOwnerV3
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "NetworkOwnerV3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "NetworkOwnerV3", value);
-        }
-
-        public Enum.NetworkOwnership NetworkOwnershipRule
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.NetworkOwnership>(this, "NetworkOwnershipRule");
-            set => global::Roblox.Reflection.SetProperty<Enum.NetworkOwnership>(this, "NetworkOwnershipRule", value);
-        }
-
         /// <summary>
         /// Describes the rotation of the part in the world.
         /// </summary>
@@ -535,12 +493,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Orientation");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Orientation", value);
-        }
-
-        public BasePart? PhysicsRepRootPart
-        {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "PhysicsRepRootPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "PhysicsRepRootPart", value);
         }
 
         /// <summary>
@@ -581,12 +533,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Reflectance");
             set => global::Roblox.Reflection.SetProperty<float>(this, "Reflectance", value);
-        }
-
-        public object? ReplicationPV
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ReplicationPV");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ReplicationPV", value);
         }
 
         /// <summary>
@@ -757,12 +703,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Velocity");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Velocity", value);
-        }
-
-        public global::System.Numerics.Vector3 Siz
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "siz");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "siz", value);
         }
 
         /// <summary>
@@ -1014,44 +954,62 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This event is deprecated in favor of BasePart.Touched.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="part">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LocalSimulationTouched"/>
-        // public event Action? LocalSimulationTouched; // TODO: native event binding
-
-        /// <summary>
-        /// <c>BasePart.NetworkOwnerChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? NetworkOwnerChanged; // TODO: native event binding
+        public event Action<BasePart?>? LocalSimulationTouched
+        {
+            add { if (value is not null) AddEventHandler("LocalSimulationTouched", value); }
+            remove { if (value is not null) RemoveEventHandler("LocalSimulationTouched", value); }
+        }
 
         /// <summary>
         /// Deprecated: This event is deprecated. Do not use it for new work.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#OutfitChanged"/>
-        // public event Action? OutfitChanged; // TODO: native event binding
+        public event Action? OutfitChanged
+        {
+            add { if (value is not null) AddEventHandler("OutfitChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("OutfitChanged", value); }
+        }
 
         /// <summary>
         /// Deprecated: This event is deprecated in favor of BasePart.TouchEnded, which should be used instead.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="otherPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#StoppedTouching"/>
-        // public event Action? StoppedTouching; // TODO: native event binding
+        public event Action<BasePart?>? StoppedTouching
+        {
+            add { if (value is not null) AddEventHandler("StoppedTouching", value); }
+            remove { if (value is not null) RemoveEventHandler("StoppedTouching", value); }
+        }
 
         /// <summary>
         /// Fires when a part stops touching another part as a result of physical movement.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="otherPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TouchEnded"/>
-        // public event Action? TouchEnded; // TODO: native event binding
+        public event Action<BasePart?>? TouchEnded
+        {
+            add { if (value is not null) AddEventHandler("TouchEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchEnded", value); }
+        }
 
         /// <summary>
         /// Fires when a part touches another part as a result of physical movement.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="otherPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Touched"/>
-        // public event Action? Touched; // TODO: native event binding
+        public event Action<BasePart?>? Touched
+        {
+            add { if (value is not null) AddEventHandler("Touched", value); }
+            remove { if (value is not null) RemoveEventHandler("Touched", value); }
+        }
 
     }
 }

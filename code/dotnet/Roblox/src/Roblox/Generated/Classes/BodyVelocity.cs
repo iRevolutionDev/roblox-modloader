@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the limit on how much force that may be applied to each axis.
-        /// <para><b>Default:</b> <c>4000, 4000, 4000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#MaxForce"/>
         public global::System.Numerics.Vector3 MaxForce
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how aggressive of a force is applied in reaching the goal velocity.
-        /// <para><b>Default:</b> <c>1250</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#P"/>
         public float P
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the goal velocity.
-        /// <para><b>Default:</b> <c>0, 2, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#Velocity"/>
         public global::System.Numerics.Vector3 Velocity

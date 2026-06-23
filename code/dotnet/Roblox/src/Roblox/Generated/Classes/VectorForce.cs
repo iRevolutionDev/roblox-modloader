@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether force is applied at the center of mass of the parent assembly.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VectorForce#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The strength and direction of the force.
-        /// <para><b>Default:</b> <c>1000, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VectorForce#Force"/>
         public global::System.Numerics.Vector3 Force
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The CFrame in which the force is expressed.
-        /// <para><b>Default:</b> <c>Attachment0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VectorForce#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo

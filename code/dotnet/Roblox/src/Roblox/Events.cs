@@ -1,0 +1,147 @@
+using System.Collections.Concurrent;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+using RML.Interop;
+
+namespace Roblox;
+
+internal static unsafe class EventManager
+{
+    private static readonly ConcurrentDictionary<(nuint Instance, string Event), Subscription> Subscriptions = new();
+
+    private static readonly object SyncRoot = new();
+
+    public static void Add(nuint instanceHandle, string eventName, Delegate handler)
+    {
+        ArgumentNullException.ThrowIfNull(eventName);
+        ArgumentNullException.ThrowIfNull(handler);
+
+        if (instanceHandle == 0)
+        {
+            throw new ArgumentException("Instance handle is null", nameof(instanceHandle));
+        }
+
+        lock (SyncRoot)
+        {
+            (UIntPtr instanceHandle, string eventName) key = (instanceHandle, eventName);
+            if (!Subscriptions.TryGetValue(key, out Subscription? subscription))
+            {
+                subscription = new Subscription(instanceHandle, eventName);
+                subscription.Self = GCHandle.Alloc(subscription);
+
+                var state = (void*)GCHandle.ToIntPtr(subscription.Self);
+                subscription.NativeHandle = Interop.Reflection.EventConnect(
+                    (void*)instanceHandle, eventName, &OnNativeEvent, state);
+
+                if (subscription.NativeHandle == 0)
+                {
+                    subscription.Self.Free();
+                    throw new InvalidOperationException(
+                        $"Failed to connect to native event '{eventName}'.");
+                }
+
+                Subscriptions[key] = subscription;
+            }
+
+            subscription.Handlers.Add(handler);
+        }
+    }
+
+    public static void Remove(nuint instanceHandle, string eventName, Delegate handler)
+    {
+        if (handler is null || eventName is null || instanceHandle == 0)
+        {
+            return;
+        }
+
+        lock (SyncRoot)
+        {
+            (UIntPtr instanceHandle, string eventName) key = (instanceHandle, eventName);
+            if (!Subscriptions.TryGetValue(key, out Subscription? subscription))
+            {
+                return;
+            }
+
+            subscription.Handlers.Remove(handler);
+            if (subscription.Handlers.Count != 0)
+            {
+                return;
+            }
+
+            Subscriptions.TryRemove(key, out _);
+            Interop.Reflection.EventDisconnect(subscription.NativeHandle);
+            subscription.Self.Free();
+        }
+    }
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    private static void OnNativeEvent(void* state, InteropVariant* args, uint argCount)
+    {
+        try
+        {
+            var target = GCHandle.FromIntPtr((nint)state).Target;
+            if (target is not Subscription subscription)
+            {
+                return;
+            }
+
+            Delegate[] handlers;
+            lock (SyncRoot)
+            {
+                if (subscription.Handlers.Count == 0)
+                {
+                    return;
+                }
+
+                handlers = [.. subscription.Handlers];
+            }
+
+            foreach (Delegate handler in handlers)
+            {
+                Dispatch(handler, args, argCount);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[Roblox.EventManager] Event dispatch failed: {ex}");
+        }
+    }
+
+    private static void Dispatch(Delegate handler, InteropVariant* args, uint argCount)
+    {
+        try
+        {
+            ParameterInfo[] parameters = handler.Method.GetParameters();
+            var managedArgs = new object?[parameters.Length];
+
+            for (var i = 0; i < parameters.Length; i++)
+            {
+                Type parameterType = parameters[i].ParameterType;
+                managedArgs[i] = i < argCount
+                    ? Reflection.ConvertVariant(args[i], parameterType)
+                    : DefaultValue(parameterType);
+            }
+
+            handler.DynamicInvoke(managedArgs);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[Roblox.EventManager] Handler invocation failed: {ex}");
+        }
+    }
+
+    private static object? DefaultValue(Type type)
+        => type.IsValueType ? RuntimeHelpers.GetUninitializedObject(type) : null;
+
+    private sealed class Subscription(nuint instanceHandle, string eventName)
+    {
+        public readonly string EventName = eventName;
+        public readonly List<Delegate> Handlers = [];
+        public readonly nuint InstanceHandle = instanceHandle;
+
+        public nuint NativeHandle;
+        public GCHandle Self;
+    }
+}

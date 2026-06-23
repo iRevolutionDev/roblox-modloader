@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// A Vector3 describing the delta between input movements.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#Delta"/>
         public global::System.Numerics.Vector3 Delta
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Contains an Enum that describes the kind of input used.
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#KeyCode"/>
         public Enum.KeyCode KeyCode
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// A Vector3 describing the positional value of this input.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the state of an input being performed, following a specific flow depending on the UserInputType.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#UserInputState"/>
         public Enum.UserInputState UserInputState
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the kind of input being performed (mouse, keyboard, gamepad, touch, etc.).
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#UserInputType"/>
         public Enum.UserInputType UserInputType

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether to clip the contents of this ScreenGui to the device's safe area.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#ClipToDeviceSafeArea"/>
         public bool ClipToDeviceSafeArea
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the Z-index order in which multiple ScreenGui containers are drawn.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#DisplayOrder"/>
         public int DisplayOrder
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the ScreenGui overflows into the range of Roblox's core UI elements.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#IgnoreGuiInset"/>
         public bool IgnoreGuiInset
@@ -58,10 +55,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IgnoreGuiInset", value);
         }
 
-        /// <summary>
-        /// <c>ScreenGui.OnTopOfCoreBlur</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool OnTopOfCoreBlur
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "OnTopOfCoreBlur");
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies whether automatic UI compatibility transformations are applied to descendant "fullscreen" GuiObjects on displays with screen cutouts.
-        /// <para><b>Default:</b> <c>FullscreenExtension</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#SafeAreaCompatibility"/>
         public Enum.SafeAreaCompatibility SafeAreaCompatibility
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the safe area insets that are applied to the contents of the ScreenGui.
-        /// <para><b>Default:</b> <c>CoreUISafeInsets</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#ScreenInsets"/>
         public Enum.ScreenInsets ScreenInsets

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes whether the previous state of this DockWidgetPluginGui was restored when it was created.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DockWidgetPluginGui#HostWidgetWasRestored"/>
         public bool HostWidgetWasRestored

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Radius of the sphere adornment.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SphereHandleAdornment#Radius"/>
         public float Radius
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SphereHandleAdornment.Shading</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SphereHandleAdornment#Shading"/>
         public Enum.AdornShading Shading

@@ -44,10 +44,15 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Fires whenever the AnimationController begins playing an animation. It returns the AnimationTrack playing.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#AnimationPlayed"/>
-        // public event Action? AnimationPlayed; // TODO: native event binding
+        public event Action<AnimationTrack?>? AnimationPlayed
+        {
+            add { if (value is not null) AddEventHandler("AnimationPlayed", value); }
+            remove { if (value is not null) RemoveEventHandler("AnimationPlayed", value); }
+        }
 
     }
 }

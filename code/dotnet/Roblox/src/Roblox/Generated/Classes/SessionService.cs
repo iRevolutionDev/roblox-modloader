@@ -178,9 +178,18 @@ namespace Roblox
 
         /// <summary>
         /// <c>SessionService.SessionChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SessionChanged; // TODO: native event binding
+        /// <param name="structuralId">A <c>string?</c> value.</param>
+        /// <param name="currentTag">A <c>string?</c> value.</param>
+        /// <param name="currentSessionId">A <c>string?</c> value.</param>
+        /// <param name="previousTag">A <c>string?</c> value.</param>
+        /// <param name="previousSessionId">A <c>string?</c> value.</param>
+        public event Action<string?, string?, string?, string?, string?>? SessionChanged
+        {
+            add { if (value is not null) AddEventHandler("SessionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SessionChanged", value); }
+        }
 
     }
 }

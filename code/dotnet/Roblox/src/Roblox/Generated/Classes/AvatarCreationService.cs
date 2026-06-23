@@ -207,77 +207,76 @@ namespace Roblox
 
         /// <summary>
         /// Fires when an in-experience-created avatar asset's moderation status has been updated from pending.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="moderationStatus">A <c>Enum.ModerationStatus</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#AvatarAssetModerationCompleted"/>
-        // public event Action? AvatarAssetModerationCompleted; // TODO: native event binding
+        public event Action<long, Enum.ModerationStatus>? AvatarAssetModerationCompleted
+        {
+            add { if (value is not null) AddEventHandler("AvatarAssetModerationCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("AvatarAssetModerationCompleted", value); }
+        }
 
         /// <summary>
         /// Fires when an in-experience-created avatar's moderation status has been updated from pending.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="outfitId">A <c>long</c> value.</param>
+        /// <param name="moderationStatus">A <c>Enum.ModerationStatus</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#AvatarModerationCompleted"/>
-        // public event Action? AvatarModerationCompleted; // TODO: native event binding
+        public event Action<long, Enum.ModerationStatus>? AvatarModerationCompleted
+        {
+            add { if (value is not null) AddEventHandler("AvatarModerationCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("AvatarModerationCompleted", value); }
+        }
 
         /// <summary>
         /// <c>AvatarCreationService.OpenSelfieConsent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenSelfieConsent; // TODO: native event binding
+        public event Action? OpenSelfieConsent
+        {
+            add { if (value is not null) AddEventHandler("OpenSelfieConsent", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenSelfieConsent", value); }
+        }
 
         /// <summary>
         /// <c>AvatarCreationService.OpenSelfieQRCode</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenSelfieQRCode; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AvatarCreationService.ReplicateAvatarGenerationImageIdWithErrorType</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReplicateAvatarGenerationImageIdWithErrorType; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AvatarCreationService.ReplicateAvatarModel</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReplicateAvatarModel; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AvatarCreationService.ReplicateAvatarPreviewUrl</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReplicateAvatarPreviewUrl; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AvatarCreationService.RequestAvatarGenerationImage</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestAvatarGenerationImage; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AvatarCreationService.RequestAvatarModel</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestAvatarModel; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AvatarCreationService.RequestAvatarPreviewUrl</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestAvatarPreviewUrl; // TODO: native event binding
+        /// <param name="url">A <c>string?</c> value.</param>
+        /// <param name="jobId">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? OpenSelfieQRCode
+        {
+            add { if (value is not null) AddEventHandler("OpenSelfieQRCode", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenSelfieQRCode", value); }
+        }
 
         /// <summary>
         /// <c>AvatarCreationService.UgcValidationFailure</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UgcValidationFailure; // TODO: native event binding
+        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? UgcValidationFailure
+        {
+            add { if (value is not null) AddEventHandler("UgcValidationFailure", value); }
+            remove { if (value is not null) RemoveEventHandler("UgcValidationFailure", value); }
+        }
 
         /// <summary>
         /// <c>AvatarCreationService.UgcValidationSuccess</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UgcValidationSuccess; // TODO: native event binding
+        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="serializedModel">A <c>string?</c> value.</param>
+        /// <param name="price">A <c>long</c> value.</param>
+        public event Action<string?, string?, long>? UgcValidationSuccess
+        {
+            add { if (value is not null) AddEventHandler("UgcValidationSuccess", value); }
+            remove { if (value is not null) RemoveEventHandler("UgcValidationSuccess", value); }
+        }
 
     }
 }

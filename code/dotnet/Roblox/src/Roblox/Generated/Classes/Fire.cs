@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the primary (outer) flame particles.
-        /// <para><b>Default:</b> <c>0.92549, 0.545098, 0.27451</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#Color"/>
         public object? Color
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether flame particles are emit.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#Enabled"/>
         public bool Enabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the velocity at which particles are emit.
-        /// <para><b>Default:</b> <c>9</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#Heat"/>
         public float Heat
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// A multiplier for the Fire object's transparency that is only visible to the local client.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the of the secondary (inner) flame particles.
-        /// <para><b>Default:</b> <c>0.545098, 0.313726, 0.215686</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#SecondaryColor"/>
         public object? SecondaryColor
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the size of the flame particles.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#Size"/>
         public float Size
@@ -93,33 +87,12 @@ namespace Roblox
 
         /// <summary>
         /// Controls the speed of the particle effect.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#TimeScale"/>
         public float TimeScale
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale");
             set => global::Roblox.Reflection.SetProperty<float>(this, "TimeScale", value);
-        }
-
-        /// <summary>
-        /// <c>Fire.heat_xml</c>
-        /// <para><b>Default:</b> <c>9</c></para>
-        /// </summary>
-        public float Heat_xml
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "heat_xml");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "heat_xml", value);
-        }
-
-        /// <summary>
-        /// <c>Fire.size_xml</c>
-        /// <para><b>Default:</b> <c>5</c></para>
-        /// </summary>
-        public float Size_xml
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "size_xml");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "size_xml", value);
         }
 
         /// <summary>

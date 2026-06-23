@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The position in world space where the sensor hit the ControllerPartSensor.SensedPart.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#HitFrame"/>
         public object? HitFrame
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The surface normal at the position where the sensor hit the ControllerPartSensor.SensedPart.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#HitNormal"/>
         public global::System.Numerics.Vector3 HitNormal
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ControllerPartSensor.LadderSearchHeight</c>
-        /// <para><b>Default:</b> <c>6</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#LadderSearchHeight"/>
         public float LadderSearchHeight
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ControllerPartSensor.LadderSearchOffset</c>
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#LadderSearchOffset"/>
         public float LadderSearchOffset
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The distance from the sensor's parent BasePart to use when sensing other parts.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#SearchDistance"/>
         public float SearchDistance
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ControllerPartSensor.SensedMaterial</c>
-        /// <para><b>Default:</b> <c>Air</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#SensedMaterial"/>
         public Enum.Material SensedMaterial
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines what behavior this SensorBase uses when sensing other parts.
-        /// <para><b>Default:</b> <c>Floor</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#SensorMode"/>
         public Enum.SensorMode SensorMode

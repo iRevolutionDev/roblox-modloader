@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AdGui.AdShape</c>
-        /// <para><b>Default:</b> <c>HorizontalRectangle</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui#AdShape"/>
         public Enum.AdShape AdShape
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Enables the AdGui to serve video ads.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui#EnableVideoAds"/>
         public bool EnableVideoAds
@@ -65,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AdGui.Status</c>
-        /// <para><b>Default:</b> <c>Inactive</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui#Status"/>
         public Enum.AdUnitStatus Status
@@ -97,22 +94,15 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "forwardStateToLuaUI");
 
         /// <summary>
-        /// <c>AdGui.AdEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? AdEvent; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdGui.ReportIsSubscribedToVideoCompletion</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReportIsSubscribedToVideoCompletion; // TODO: native event binding
-
-        /// <summary>
         /// <c>AdGui.adGuiStateChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AdGuiStateChanged; // TODO: native event binding
+        /// <param name="adUIState">A <c>object?</c> value.</param>
+        public event Action<object?>? AdGuiStateChanged
+        {
+            add { if (value is not null) AddEventHandler("adGuiStateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("adGuiStateChanged", value); }
+        }
 
         /// <summary>
         /// Used to react to the AdGui events.

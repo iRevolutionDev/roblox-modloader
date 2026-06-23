@@ -37,26 +37,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "ForcePlayModeRobloxLocaleId", value);
         }
 
-        public string? GameSourceLanguageId
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GameSourceLanguageId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GameSourceLanguageId", value);
-        }
-
-        /// <summary>
-        /// <c>LocalizationService.IsTextScraperRunning</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsTextScraperRunning
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsTextScraperRunning");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsTextScraperRunning", value);
-        }
-
-        public string? LocaleManifest
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocaleManifest");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocaleManifest", value);
         }
 
         public string? RobloxForcePlayModeGameLocaleId
@@ -79,16 +63,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "RobloxLocaleId");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "RobloxLocaleId", value);
-        }
-
-        /// <summary>
-        /// <c>LocalizationService.ShouldUseCloudTable</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool ShouldUseCloudTable
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldUseCloudTable");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldUseCloudTable", value);
         }
 
         /// <summary>
@@ -222,21 +196,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>LocalizationService.AutoTranslateWillRun</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AutoTranslateWillRun; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LocalizationService.DynamicTranslationServerToClientResponse</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? DynamicTranslationServerToClientResponse; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LocalizationService.TextScraperClientMessageWithPlayerSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TextScraperClientMessageWithPlayerSignal; // TODO: native event binding
+        public event Action? AutoTranslateWillRun
+        {
+            add { if (value is not null) AddEventHandler("AutoTranslateWillRun", value); }
+            remove { if (value is not null) RemoveEventHandler("AutoTranslateWillRun", value); }
+        }
 
     }
 }

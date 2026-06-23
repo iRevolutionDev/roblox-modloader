@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// A decimal number between 0 and 1, through which you can control how far all of the decals are along the wire.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#CycleOffset"/>
         public float CycleOffset
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The number of studs between each FloorWire segment.
-        /// <para><b>Default:</b> <c>4</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#StudsBetweenTextures"/>
         public float StudsBetweenTextures
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the size of the texture used with the FloorWire.
-        /// <para><b>Default:</b> <c>1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#TextureSize"/>
         public global::System.Numerics.Vector2 TextureSize
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The speed that the textures flow along the wire.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#Velocity"/>
         public float Velocity
@@ -101,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The radius of the wire.
-        /// <para><b>Default:</b> <c>0.0625</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#WireRadius"/>
         public float WireRadius

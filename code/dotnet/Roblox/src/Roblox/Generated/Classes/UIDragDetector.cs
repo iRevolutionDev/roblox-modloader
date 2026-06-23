@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines bounding behavior of the dragged UI object when the detector's BoundingUI is set.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#BoundingBehavior"/>
         public Enum.UIDragDetectorBoundingBehavior BoundingBehavior
@@ -88,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The drag axis for the UIDragDetector instance when DragStyle is set to UIDragDetectorDragStyle.TranslateLine.
-        /// <para><b>Default:</b> <c>1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragAxis"/>
         public global::System.Numerics.Vector2 DragAxis
@@ -99,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the paradigm which defines the relativity of inputs/outputs from a custom drag function.
-        /// <para><b>Default:</b> <c>Absolute</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragRelativity"/>
         public Enum.UIDragDetectorDragRelativity DragRelativity
@@ -110,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The rotation performed by the current drag.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragRotation"/>
         public float DragRotation
@@ -121,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the paradigm which defines the space of inputs/outputs from a custom drag function.
-        /// <para><b>Default:</b> <c>Parent</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragSpace"/>
         public Enum.UIDragDetectorDragSpace DragSpace
@@ -132,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// The paradigm used to generate proposed motion.
-        /// <para><b>Default:</b> <c>TranslatePlane</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragStyle"/>
         public Enum.UIDragDetectorDragStyle DragStyle
@@ -143,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// The translation performed by the current drag expressed in a UDim2 value.
-        /// <para><b>Default:</b> <c>{0, 0}, {0, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragUDim2"/>
         public object? DragUDim2
@@ -154,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the UIDragDetector responds to user input.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#Enabled"/>
         public bool Enabled
@@ -165,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MinDragAngle, impedes the detector's attempts to generate rotational motion.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MaxDragAngle"/>
         public float MaxDragAngle
@@ -176,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MinDragTranslation, impedes the detector's attempts to generate linear/planar motion.
-        /// <para><b>Default:</b> <c>{0, 0}, {0, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MaxDragTranslation"/>
         public object? MaxDragTranslation
@@ -187,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MaxDragAngle, impedes the detector's attempts to generate rotational motion.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MinDragAngle"/>
         public float MinDragAngle
@@ -198,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MaxDragTranslation, impedes the detector's attempts to generate linear/planar motion.
-        /// <para><b>Default:</b> <c>{0, 0}, {0, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MinDragTranslation"/>
         public object? MinDragTranslation
@@ -219,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// The paradigm used to define the response to proposed motion.
-        /// <para><b>Default:</b> <c>Offset</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#ResponseStyle"/>
         public Enum.UIDragDetectorResponseStyle ResponseStyle
@@ -230,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum drag speed for translation.
-        /// <para><b>Default:</b> <c>{0, 300}, {0, 300}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#SelectionModeDragSpeed"/>
         public object? SelectionModeDragSpeed
@@ -241,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum angle per second the UIDragDetector can rotate at.
-        /// <para><b>Default:</b> <c>90</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#SelectionModeRotateSpeed"/>
         public float SelectionModeRotateSpeed
@@ -252,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// UIDragSpeedAxisMapping value that determines the X/Y dimension dragging speeds.
-        /// <para><b>Default:</b> <c>XY</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#UIDragSpeedAxisMapping"/>
         public Enum.UIDragSpeedAxisMapping UIDragSpeedAxisMapping
@@ -298,24 +282,39 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user continues dragging the UI element after DragStart has been initiated.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="inputPosition">A <c>global::System.Numerics.Vector2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragContinue"/>
-        // public event Action? DragContinue; // TODO: native event binding
+        public event Action<global::System.Numerics.Vector2>? DragContinue
+        {
+            add { if (value is not null) AddEventHandler("DragContinue", value); }
+            remove { if (value is not null) RemoveEventHandler("DragContinue", value); }
+        }
 
         /// <summary>
         /// Fires when a user stops dragging the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="inputPosition">A <c>global::System.Numerics.Vector2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragEnd"/>
-        // public event Action? DragEnd; // TODO: native event binding
+        public event Action<global::System.Numerics.Vector2>? DragEnd
+        {
+            add { if (value is not null) AddEventHandler("DragEnd", value); }
+            remove { if (value is not null) RemoveEventHandler("DragEnd", value); }
+        }
 
         /// <summary>
         /// Fires when a user starts dragging the UI element.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="inputPosition">A <c>global::System.Numerics.Vector2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragStart"/>
-        // public event Action? DragStart; // TODO: native event binding
+        public event Action<global::System.Numerics.Vector2>? DragStart
+        {
+            add { if (value is not null) AddEventHandler("DragStart", value); }
+            remove { if (value is not null) RemoveEventHandler("DragStart", value); }
+        }
 
     }
 }

@@ -26,6 +26,13 @@ namespace Roblox
             => handle == 0 ? null : new VideoService(handle);
 
         /// <summary>
+        /// <c>VideoService.GameStreamingEnabled</c>
+        /// </summary>
+        /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        public bool GameStreamingEnabled()
+            => global::Roblox.Reflection.Invoke<bool>(this, "GameStreamingEnabled");
+
+        /// <summary>
         /// Creates a VideoSampler that samples frames from the provided video content.
         /// </summary>
         /// <param name="content">A <c>string?</c> value.</param>
@@ -37,15 +44,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoService.GameStreamingResolutionReady</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GameStreamingResolutionReady; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VideoService.PlaybackReport</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlaybackReport; // TODO: native event binding
+        public event Action? GameStreamingResolutionReady
+        {
+            add { if (value is not null) AddEventHandler("GameStreamingResolutionReady", value); }
+            remove { if (value is not null) RemoveEventHandler("GameStreamingResolutionReady", value); }
+        }
 
     }
 }

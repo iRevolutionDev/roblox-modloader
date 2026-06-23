@@ -25,17 +25,5 @@ namespace Roblox
         public static Platform? FromHandle(nuint handle)
             => handle == 0 ? null : new Platform(handle);
 
-        /// <summary>
-        /// <c>Platform.RemoteCreateMotor6D</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteCreateMotor6D; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Platform.RemoteDestroyMotor6D</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteDestroyMotor6D; // TODO: native event binding
-
     }
 }

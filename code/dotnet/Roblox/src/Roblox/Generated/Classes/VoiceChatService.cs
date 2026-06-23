@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines which distance attenuation curve the default voice chat setup uses when AudioDeviceInput and AudioEmitter objects are generated.
-        /// <para><b>Default:</b> <c>Inverse</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#DefaultDistanceAttenuation"/>
         public Enum.VoiceChatDistanceAttenuationType DefaultDistanceAttenuation
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether each voice-eligible player can be heard as though they were speaking through their character.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#EnableDefaultVoice"/>
         public bool EnableDefaultVoice
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether voice chat is represented and controlled by AudioDeviceInput objects.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#UseAudioApi"/>
         public Enum.AudioApiRollout UseAudioApi
@@ -58,60 +55,36 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.AudioApiRollout>(this, "UseAudioApi", value);
         }
 
-        /// <summary>
-        /// <c>VoiceChatService.UseNewAudioApi</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool UseNewAudioApi
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewAudioApi");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseNewAudioApi", value);
         }
 
-        /// <summary>
-        /// <c>VoiceChatService.UseNewControlPaths</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool UseNewControlPaths
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewControlPaths");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseNewControlPaths", value);
         }
 
-        /// <summary>
-        /// <c>VoiceChatService.UseNewJoinFlow</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool UseNewJoinFlow
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewJoinFlow");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseNewJoinFlow", value);
         }
 
-        /// <summary>
-        /// <c>VoiceChatService.UseStreamSwitching</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool UseStreamSwitching
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "UseStreamSwitching");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseStreamSwitching", value);
         }
 
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatEnabledForPlaceOnRcc</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool VoiceChatEnabledForPlaceOnRcc
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceChatEnabledForPlaceOnRcc");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VoiceChatEnabledForPlaceOnRcc", value);
         }
 
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatEnabledForUniverseOnRcc</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool VoiceChatEnabledForUniverseOnRcc
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceChatEnabledForUniverseOnRcc");
@@ -230,250 +203,14 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<bool>(this, "IsVoiceEnabledForUserIdAsync", userId);
 
         /// <summary>
-        /// <c>VoiceChatService.ACSCleanup</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ACSCleanup; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.ClientRetryJoin</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientRetryJoin; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.ClientRetryJoinWithConfig</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientRetryJoinWithConfig; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.ClientStreamSwitchAck</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientStreamSwitchAck; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.FetchUserTurnAuthOperationFailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? FetchUserTurnAuthOperationFailed; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.JoinedVoice</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? JoinedVoice; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishStateChange</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishStateChange; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishingHandshakeAcked</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishingHandshakeAcked; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishingHandshakeAckedWithBothSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishingHandshakeAckedWithBothSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishingHandshakeAckedWithCompressedSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishingHandshakeAckedWithCompressedSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishingHandshakeCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishingHandshakeCompleted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishingHandshakeInitiated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishingHandshakeInitiated; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishingHandshakeInitiatedWithBothSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishingHandshakeInitiatedWithBothSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.PublishingHandshakeInitiatedWithCompressedSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PublishingHandshakeInitiatedWithCompressedSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.ReJoinedVoice</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReJoinedVoice; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.RelayCandidatesGathered</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RelayCandidatesGathered; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SsrcUserIdMappingUpdate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SsrcUserIdMappingUpdate; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscribeStateChange</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscribeStateChange; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriberAudioQualitySample</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriberAudioQualitySample; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionFeedStarted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionFeedStarted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionHandshakeAcked</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionHandshakeAcked; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionHandshakeAckedWithBothSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionHandshakeAckedWithBothSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionHandshakeAckedWithCompressedSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionHandshakeAckedWithCompressedSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionHandshakeCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionHandshakeCompleted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionHandshakeInitiated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionHandshakeInitiated; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionHandshakeInitiatedWithBothSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionHandshakeInitiatedWithBothSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionHandshakeInitiatedWithCompressedSdp</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionHandshakeInitiatedWithCompressedSdp; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.SubscriptionReset</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SubscriptionReset; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.UpdateTurnAuthInfoRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateTurnAuthInfoRequest; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.UserTurnAuth</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UserTurnAuth; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatClientVoiceCapability</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatClientVoiceCapability; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatClientVoiceCapabilityWithConfig</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatClientVoiceCapabilityWithConfig; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatPlayerMuteStateChangedClientToServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatPlayerMuteStateChangedClientToServer; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatPlayerMuteStateChangedServerToClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatPlayerMuteStateChangedServerToClient; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatSampleTaggedEventClientToServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatSampleTaggedEventClientToServer; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatSampleTaggedEventServerToClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatSampleTaggedEventServerToClient; // TODO: native event binding
-
-        /// <summary>
         /// <c>VoiceChatService.VoiceChatStatsCollected</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? VoiceChatStatsCollected; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatSubscriptionInitialBatchEmpty</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatSubscriptionInitialBatchEmpty; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatplayerMuteStatusChangedEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceChatplayerMuteStatusChangedEvent; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceMigration</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceMigration; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VoiceChatService.VoiceSetupFailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? VoiceSetupFailed; // TODO: native event binding
+        public event Action? VoiceChatStatsCollected
+        {
+            add { if (value is not null) AddEventHandler("VoiceChatStatsCollected", value); }
+            remove { if (value is not null) RemoveEventHandler("VoiceChatStatsCollected", value); }
+        }
 
     }
 }

@@ -51,20 +51,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<ChatWindowMessageProperties?>(this, "ChatWindowMessageProperties", value);
         }
 
-        /// <summary>
-        /// <c>TextChatMessage.ForModeration</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ForModeration
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ForModeration");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ForModeration", value);
         }
 
-        /// <summary>
-        /// <c>TextChatMessage.IsHiddenMessage</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsHiddenMessage
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsHiddenMessage");
@@ -209,20 +201,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "TranslationInternal", value);
         }
 
-        /// <summary>
-        /// <c>TextChatMessage.Verified</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Verified
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Verified");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Verified", value);
-        }
-
-        /// <summary>
-        /// <c>TextChatMessage.WasRewritten</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool WasRewritten
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "WasRewritten");

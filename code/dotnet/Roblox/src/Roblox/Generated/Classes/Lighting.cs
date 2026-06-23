@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The lighting hue applied to areas that are occluded from the sky, such as indoor areas.
-        /// <para><b>Default:</b> <c>0.5, 0.5, 0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#Ambient"/>
         public object? Ambient
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The intensity of illumination in the place.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#Brightness"/>
         public float Brightness
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// A numerical representation (in hours) of the current time of day used by Lighting.
-        /// <para><b>Default:</b> <c>14</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ClockTime"/>
         public float ClockTime
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The hue represented in light reflected in the opposite surfaces to those facing the sun or moon.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ColorShift_Bottom"/>
         public object? ColorShift_Bottom
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The hue represented in light reflected from surfaces facing the sun or moon.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ColorShift_Top"/>
         public object? ColorShift_Top
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Ambient light that is derived from the environment.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#EnvironmentDiffuseScale"/>
         public float EnvironmentDiffuseScale
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Specular light derived from environment.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#EnvironmentSpecularScale"/>
         public float EnvironmentSpecularScale
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The exposure compensation value.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ExposureCompensation"/>
         public float ExposureCompensation
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Lighting.ExtendLightRangeTo120</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ExtendLightRangeTo120"/>
         public Enum.RolloutState ExtendLightRangeTo120
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// A Color3 value giving the hue of Lighting fog.
-        /// <para><b>Default:</b> <c>0.75, 0.75, 0.75</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#FogColor"/>
         public object? FogColor
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// The depth from the Workspace.CurrentCamera, in studs, at which fog will be completely opaque.
-        /// <para><b>Default:</b> <c>100000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#FogEnd"/>
         public float FogEnd
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// The depth from the Workspace.CurrentCamera, in studs, at which fog begins to show.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#FogStart"/>
         public float FogStart
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// The geographic latitude, in degrees, of the scene, influencing the result of Lighting time on the position of the sun and moon.
-        /// <para><b>Default:</b> <c>41.7332993</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#GeographicLatitude"/>
         public float GeographicLatitude
@@ -170,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles voxel-based dynamic lighting for the place.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#GlobalShadows"/>
         public bool GlobalShadows
@@ -181,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// The artistic intent behind lighting in the experience.
-        /// <para><b>Default:</b> <c>Realistic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#LightingStyle"/>
         public Enum.LightingStyle LightingStyle
@@ -192,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// The lighting hue applied to outdoor areas.
-        /// <para><b>Default:</b> <c>0.5, 0.5, 0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#OutdoorAmbient"/>
         public object? OutdoorAmbient
@@ -203,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item is no longer supported as the outlines feature was removed from the Roblox platform.Determines whether outlines are enabled or disabled in a place.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#Outlines"/>
         public bool Outlines
@@ -214,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether you prefer lighting/shading quality or view distance to scale down first.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#PrioritizeLightingQuality"/>
         public bool PrioritizeLightingQuality
@@ -225,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item is deprecated and has no current functionality. Do not use it for new work.This is supposed to change the color of player shadows, but currently doesn't do anything.
-        /// <para><b>Default:</b> <c>0.7, 0.7, 0.72</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ShadowColor"/>
         public object? ShadowColor
@@ -236,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how blurry the shadows are.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ShadowSoftness"/>
         public float ShadowSoftness
@@ -247,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the lighting system for rendering the 3D world. Non-scriptable.
-        /// <para><b>Default:</b> <c>Compatibility</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#Technology"/>
         public Enum.Technology Technology
@@ -258,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// A 24-hour string representation of the current time of day used by Lighting.
-        /// <para><b>Default:</b> <c>14:00:00</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#TimeOfDay"/>
         public string? TimeOfDay
@@ -310,10 +288,15 @@ namespace Roblox
 
         /// <summary>
         /// This event fires when a Lighting property is changed or a Sky is added or removed from Lighting.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="skyChanged">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#LightingChanged"/>
-        // public event Action? LightingChanged; // TODO: native event binding
+        public event Action<bool>? LightingChanged
+        {
+            add { if (value is not null) AddEventHandler("LightingChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("LightingChanged", value); }
+        }
 
     }
 }

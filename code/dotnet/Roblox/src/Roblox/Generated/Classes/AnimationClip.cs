@@ -31,12 +31,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Guid", value);
         }
 
-        public byte[]? GuidBinaryString
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "GuidBinaryString");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "GuidBinaryString", value);
-        }
-
         /// <summary>
         /// Returns the length (in seconds) of this AnimationClip. This will return 0 until the animation has fully loaded and thus may not be immediately available.
         /// </summary>

@@ -25,10 +25,6 @@ namespace Roblox
         public static ScriptContext? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptContext(handle);
 
-        /// <summary>
-        /// <c>ScriptContext.ScriptsDisabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ScriptsDisabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptsDisabled");
@@ -102,16 +98,33 @@ namespace Roblox
 
         /// <summary>
         /// Fired when an error occurs.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="stackTrace">A <c>string?</c> value.</param>
+        /// <param name="script">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptContext#Error"/>
-        // public event Action? Error; // TODO: native event binding
+        public event Action<string?, string?, Instance?>? Error
+        {
+            add { if (value is not null) AddEventHandler("Error", value); }
+            remove { if (value is not null) RemoveEventHandler("Error", value); }
+        }
 
         /// <summary>
         /// <c>ScriptContext.ErrorDetailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ErrorDetailed; // TODO: native event binding
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="stackTrace">A <c>string?</c> value.</param>
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="details">A <c>string?</c> value.</param>
+        /// <param name="securityLevel">A <c>int</c> value.</param>
+        /// <param name="messageId">A <c>string?</c> value.</param>
+        public event Action<string?, string?, Instance?, string?, int, string?>? ErrorDetailed
+        {
+            add { if (value is not null) AddEventHandler("ErrorDetailed", value); }
+            remove { if (value is not null) RemoveEventHandler("ErrorDetailed", value); }
+        }
 
     }
 }

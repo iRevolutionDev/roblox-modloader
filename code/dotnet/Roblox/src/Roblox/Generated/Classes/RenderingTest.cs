@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.CFrame</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#CFrame"/>
         public object? CFrame
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.ComparisonDiffThreshold</c>
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ComparisonDiffThreshold"/>
         public int ComparisonDiffThreshold
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.ComparisonMethod</c>
-        /// <para><b>Default:</b> <c>psnr</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ComparisonMethod"/>
         public Enum.RenderingTestComparisonMethod ComparisonMethod
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.ComparisonPsnrThreshold</c>
-        /// <para><b>Default:</b> <c>50</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ComparisonPsnrThreshold"/>
         public float ComparisonPsnrThreshold
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.FieldOfView</c>
-        /// <para><b>Default:</b> <c>70</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#FieldOfView"/>
         public float FieldOfView
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.Orientation</c>
-        /// <para><b>Default:</b> <c>-0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Orientation"/>
         public global::System.Numerics.Vector3 Orientation
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.PerfTest</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#PerfTest"/>
         public bool PerfTest
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.Position</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.QualityAuto</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#QualityAuto"/>
         public bool QualityAuto
@@ -136,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.QualityLevel</c>
-        /// <para><b>Default:</b> <c>21</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#QualityLevel"/>
         public int QualityLevel
@@ -147,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.RenderingTestFrameCount</c>
-        /// <para><b>Default:</b> <c>20</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#RenderingTestFrameCount"/>
         public int RenderingTestFrameCount
@@ -158,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.ShouldSkip</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ShouldSkip"/>
         public bool ShouldSkip
@@ -179,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RenderingTest.Timeout</c>
-        /// <para><b>Default:</b> <c>30</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Timeout"/>
         public int Timeout

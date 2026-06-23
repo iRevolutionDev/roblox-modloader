@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if this InputContext is enabled or not.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputContext#Enabled"/>
         public bool Enabled
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The priority level at which the context should be run.
-        /// <para><b>Default:</b> <c>1000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputContext#Priority"/>
         public int Priority
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether input bindings of lower priority will be processed.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputContext#Sink"/>
         public bool Sink
@@ -67,9 +64,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>InputContext.InputActionsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InputActionsChanged; // TODO: native event binding
+        public event Action? InputActionsChanged
+        {
+            add { if (value is not null) AddEventHandler("InputActionsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("InputActionsChanged", value); }
+        }
 
     }
 }

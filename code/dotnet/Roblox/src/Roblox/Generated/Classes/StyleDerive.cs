@@ -26,18 +26,7 @@ namespace Roblox
             => handle == 0 ? null : new StyleDerive(handle);
 
         /// <summary>
-        /// <c>StyleDerive.Index</c>
-        /// <para><b>Default:</b> <c>-1</c></para>
-        /// </summary>
-        public int Index
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Index");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "Index", value);
-        }
-
-        /// <summary>
         /// A number that determines how style properties inherited through this StyleDerive apply relative to the same properties inherited through other StyleDerives.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleDerive#Priority"/>
         public int Priority

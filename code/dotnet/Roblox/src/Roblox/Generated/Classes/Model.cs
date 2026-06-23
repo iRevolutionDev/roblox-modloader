@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the level of detail on the model for experiences with instance streaming enabled.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#LevelOfDetail"/>
         public Enum.ModelLevelOfDetail LevelOfDetail
@@ -36,57 +35,14 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.ModelLevelOfDetail>(this, "LevelOfDetail", value);
         }
 
-        public LodDataEntity? LodEntity
-        {
-            get => global::Roblox.Reflection.GetProperty<LodDataEntity?>(this, "LodEntity");
-            set => global::Roblox.Reflection.SetProperty<LodDataEntity?>(this, "LodEntity", value);
-        }
-
-        /// <summary>
-        /// <c>Model.ModelMeshCFrame</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
-        public object? ModelMeshCFrame
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ModelMeshCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ModelMeshCFrame", value);
-        }
-
-        public string? ModelMeshData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ModelMeshData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ModelMeshData", value);
-        }
-
-        /// <summary>
-        /// <c>Model.ModelMeshSize</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 ModelMeshSize
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "ModelMeshSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "ModelMeshSize", value);
-        }
-
         /// <summary>
         /// Controls the model streaming behavior on Models when instance streaming is enabled.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#ModelStreamingMode"/>
         public Enum.ModelStreamingMode ModelStreamingMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ModelStreamingMode>(this, "ModelStreamingMode");
             set => global::Roblox.Reflection.SetProperty<Enum.ModelStreamingMode>(this, "ModelStreamingMode", value);
-        }
-
-        /// <summary>
-        /// <c>Model.NeedsPivotMigration</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool NeedsPivotMigration
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "NeedsPivotMigration");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "NeedsPivotMigration", value);
         }
 
         /// <summary>
@@ -101,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Editor-only property used to scale the model around its pivot. Setting this property will move the scale as though Model:ScaleTo() was called on it.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#Scale"/>
         public float Scale
@@ -111,42 +66,13 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Model.ScaleFactor</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
-        public float ScaleFactor
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ScaleFactor");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "ScaleFactor", value);
-        }
-
-        public SlimAnimationDataEntity? SlimAnimationTarget
-        {
-            get => global::Roblox.Reflection.GetProperty<SlimAnimationDataEntity?>(this, "SlimAnimationTarget");
-            set => global::Roblox.Reflection.SetProperty<SlimAnimationDataEntity?>(this, "SlimAnimationTarget", value);
-        }
-
-        public string? SlimHash
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SlimHash");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SlimHash", value);
-        }
-
-        /// <summary>
         /// Determines where the pivot of a Model which does not have a set Model.PrimaryPart is located.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#WorldPivot"/>
         public object? WorldPivot
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "WorldPivot");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "WorldPivot", value);
-        }
-
-        public object? WorldPivotData
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "WorldPivotData");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "WorldPivotData", value);
         }
 
         /// <summary>

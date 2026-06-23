@@ -27,19 +27,12 @@ namespace Roblox
 
         /// <summary>
         /// Sets the overall shape of the object.
-        /// <para><b>Default:</b> <c>Block</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Part#Shape"/>
         public Enum.PartType Shape
         {
             get => global::Roblox.Reflection.GetProperty<Enum.PartType>(this, "Shape");
             set => global::Roblox.Reflection.SetProperty<Enum.PartType>(this, "Shape", value);
-        }
-
-        public Enum.PartType Shap
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.PartType>(this, "shap");
-            set => global::Roblox.Reflection.SetProperty<Enum.PartType>(this, "shap", value);
         }
 
     }

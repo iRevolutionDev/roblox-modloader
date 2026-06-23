@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Read-only property that includes information on how the interpolation of the Tween is to be carried out.
-        /// <para><b>Default:</b> <c>Time:1 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quad</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tween#TweenInfo"/>
         public object? TweenInfo

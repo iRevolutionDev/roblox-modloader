@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how to distribute extra horizontal space.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#HorizontalFlex"/>
         public Enum.UIFlexAlignment HorizontalFlex
@@ -37,18 +36,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>UIListLayout.HorizontalPadding</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
-        public object? HorizontalPadding
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "HorizontalPadding");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "HorizontalPadding", value);
-        }
-
-        /// <summary>
         /// In a flex layout, defines the cross-directional alignment of siblings within a line.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#ItemLineAlignment"/>
         public Enum.ItemLineAlignment ItemLineAlignment
@@ -59,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Amount of free space between each element.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#Padding"/>
         public object? Padding
@@ -70,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how to distribute extra vertical space.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#VerticalFlex"/>
         public Enum.UIFlexAlignment VerticalFlex
@@ -80,18 +66,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>UIListLayout.VerticalPadding</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
-        public object? VerticalPadding
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "VerticalPadding");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "VerticalPadding", value);
-        }
-
-        /// <summary>
         /// Controls whether siblings within the parent container wrap.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#Wraps"/>
         public bool Wraps

@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GetTextBoundsParams.RichText</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#RichText"/>
         public bool RichText
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The size of the text being measured.
-        /// <para><b>Default:</b> <c>20</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#Size"/>
         public float Size
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The width of the container for line breaking.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#Width"/>
         public float Width

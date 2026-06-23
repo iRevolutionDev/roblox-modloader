@@ -21,10 +21,6 @@ namespace Roblox
         public static SafetyService? FromHandle(nuint handle)
             => handle == 0 ? null : new SafetyService(handle);
 
-        /// <summary>
-        /// <c>SafetyService.IsCaptureModeForReport</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsCaptureModeForReport
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsCaptureModeForReport");
@@ -118,22 +114,28 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<long>(this, "TakeScreenshot", screenshotOptions);
 
         /// <summary>
-        /// <c>SafetyService.FSTriggeredSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? FSTriggeredSignal; // TODO: native event binding
-
-        /// <summary>
         /// <c>SafetyService.ScreenshotContentReady</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ScreenshotContentReady; // TODO: native event binding
+        /// <param name="screenshotJobId">A <c>long</c> value.</param>
+        /// <param name="contentId">A <c>object?</c> value.</param>
+        public event Action<long, object?>? ScreenshotContentReady
+        {
+            add { if (value is not null) AddEventHandler("ScreenshotContentReady", value); }
+            remove { if (value is not null) RemoveEventHandler("ScreenshotContentReady", value); }
+        }
 
         /// <summary>
         /// <c>SafetyService.ScreenshotUploaded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ScreenshotUploaded; // TODO: native event binding
+        /// <param name="screenshotJobId">A <c>long</c> value.</param>
+        /// <param name="screenshotId">A <c>string?</c> value.</param>
+        public event Action<long, string?>? ScreenshotUploaded
+        {
+            add { if (value is not null) AddEventHandler("ScreenshotUploaded", value); }
+            remove { if (value is not null) RemoveEventHandler("ScreenshotUploaded", value); }
+        }
 
     }
 }

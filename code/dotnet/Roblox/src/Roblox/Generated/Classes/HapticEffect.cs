@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the haptic effect loops continuously.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Looped"/>
         public bool Looped
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with Radius, specifies the impact position relative to the input device and, effectively, how broadly that impact effects nearby motors.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with Position, specifies the impact radius relative to the input device and, effectively, how broadly that impact effects nearby motors.
-        /// <para><b>Default:</b> <c>3</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Radius"/>
         public float Radius
@@ -60,19 +57,12 @@ namespace Roblox
 
         /// <summary>
         /// HapticEffectType describing the haptic type.
-        /// <para><b>Default:</b> <c>UIClick</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Type"/>
         public Enum.HapticEffectType Type
         {
             get => global::Roblox.Reflection.GetProperty<Enum.HapticEffectType>(this, "Type");
             set => global::Roblox.Reflection.SetProperty<Enum.HapticEffectType>(this, "Type", value);
-        }
-
-        public byte[]? WaveformData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "WaveformData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "WaveformData", value);
         }
 
         /// <summary>
@@ -102,10 +92,14 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the HapticEffect has completed playback and stopped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Ended"/>
-        // public event Action? Ended; // TODO: native event binding
+        public event Action? Ended
+        {
+            add { if (value is not null) AddEventHandler("Ended", value); }
+            remove { if (value is not null) RemoveEventHandler("Ended", value); }
+        }
 
     }
 }

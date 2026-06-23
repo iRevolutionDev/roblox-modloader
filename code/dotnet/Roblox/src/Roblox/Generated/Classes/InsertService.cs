@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item was never released. Do not use it in new work.Indicates whether ''Free Models'' can be inserted into the game.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#AllowInsertFreeModels"/>
         public bool AllowInsertFreeModels
@@ -201,6 +200,15 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<Instance?>(this, "LoadAssetVersion", assetVersionId);
 
         /// <summary>
+        /// <c>InsertService.LoadAssetWithBytecodeAsync</c>
+        /// </summary>
+        /// <param name="assetId">A <c>long</c> value.</param>
+        /// <param name="version">A <c>long</c> value.</param>
+        /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
+        public Instance? LoadAssetWithBytecodeAsync(long assetId, long version)
+            => global::Roblox.Reflection.Invoke<Instance?>(this, "LoadAssetWithBytecodeAsync", assetId, version);
+
+        /// <summary>
         /// <c>InsertService.LoadAssetWithFormat</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
@@ -216,12 +224,6 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> LoadPackageAssetAsync(object? url)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "LoadPackageAssetAsync", url);
-
-        /// <summary>
-        /// <c>InsertService.InternalDelete</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? InternalDelete; // TODO: native event binding
 
     }
 }

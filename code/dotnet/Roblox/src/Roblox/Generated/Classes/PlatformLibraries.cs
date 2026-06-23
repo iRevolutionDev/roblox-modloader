@@ -21,17 +21,5 @@ namespace Roblox
         public static PlatformLibraries? FromHandle(nuint handle)
             => handle == 0 ? null : new PlatformLibraries(handle);
 
-        /// <summary>
-        /// <c>PlatformLibraries.RemoteRequireRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteRequireRequest; // TODO: native event binding
-
-        /// <summary>
-        /// <c>PlatformLibraries.RemoteRequireResponse</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteRequireResponse; // TODO: native event binding
-
     }
 }

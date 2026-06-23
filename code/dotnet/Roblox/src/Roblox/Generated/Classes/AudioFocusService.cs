@@ -62,27 +62,47 @@ namespace Roblox
 
         /// <summary>
         /// <c>AudioFocusService.OnContextRegistered</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnContextRegistered; // TODO: native event binding
+        /// <param name="contextId">A <c>int</c> value.</param>
+        public event Action<int>? OnContextRegistered
+        {
+            add { if (value is not null) AddEventHandler("OnContextRegistered", value); }
+            remove { if (value is not null) RemoveEventHandler("OnContextRegistered", value); }
+        }
 
         /// <summary>
         /// <c>AudioFocusService.OnContextUnregistered</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnContextUnregistered; // TODO: native event binding
+        /// <param name="contextId">A <c>int</c> value.</param>
+        public event Action<int>? OnContextUnregistered
+        {
+            add { if (value is not null) AddEventHandler("OnContextUnregistered", value); }
+            remove { if (value is not null) RemoveEventHandler("OnContextUnregistered", value); }
+        }
 
         /// <summary>
         /// <c>AudioFocusService.OnDeafenVoiceAudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnDeafenVoiceAudio; // TODO: native event binding
+        /// <param name="contextId">A <c>int</c> value.</param>
+        public event Action<int>? OnDeafenVoiceAudio
+        {
+            add { if (value is not null) AddEventHandler("OnDeafenVoiceAudio", value); }
+            remove { if (value is not null) RemoveEventHandler("OnDeafenVoiceAudio", value); }
+        }
 
         /// <summary>
         /// <c>AudioFocusService.OnUndeafenVoiceAudio</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnUndeafenVoiceAudio; // TODO: native event binding
+        /// <param name="contextId">A <c>int</c> value.</param>
+        public event Action<int>? OnUndeafenVoiceAudio
+        {
+            add { if (value is not null) AddEventHandler("OnUndeafenVoiceAudio", value); }
+            remove { if (value is not null) RemoveEventHandler("OnUndeafenVoiceAudio", value); }
+        }
 
     }
 }

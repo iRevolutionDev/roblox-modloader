@@ -269,53 +269,68 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the LocalPlayer enters the place following a teleport.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="loadingGui">A <c>Instance?</c> value.</param>
+        /// <param name="dataTable">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#LocalPlayerArrivedFromTeleport"/>
-        // public event Action? LocalPlayerArrivedFromTeleport; // TODO: native event binding
+        public event Action<Instance?, object?>? LocalPlayerArrivedFromTeleport
+        {
+            add { if (value is not null) AddEventHandler("LocalPlayerArrivedFromTeleport", value); }
+            remove { if (value is not null) RemoveEventHandler("LocalPlayerArrivedFromTeleport", value); }
+        }
 
         /// <summary>
         /// <c>TeleportService.MenuTeleportAttempt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MenuTeleportAttempt; // TODO: native event binding
+        public event Action? MenuTeleportAttempt
+        {
+            add { if (value is not null) AddEventHandler("MenuTeleportAttempt", value); }
+            remove { if (value is not null) RemoveEventHandler("MenuTeleportAttempt", value); }
+        }
 
         /// <summary>
         /// <c>TeleportService.OpenExperienceDetailsPrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenExperienceDetailsPrompt; // TODO: native event binding
+        /// <param name="universeId">A <c>long</c> value.</param>
+        public event Action<long>? OpenExperienceDetailsPrompt
+        {
+            add { if (value is not null) AddEventHandler("OpenExperienceDetailsPrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenExperienceDetailsPrompt", value); }
+        }
 
         /// <summary>
         /// <c>TeleportService.ReconnectTeleportInitFailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ReconnectTeleportInitFailed; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TeleportService.SendVIPData</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SendVIPData; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TeleportService.TeleportInProgress</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TeleportInProgress; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="teleportResult">A <c>Enum.TeleportResult</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        /// <param name="placeId">A <c>long</c> value.</param>
+        /// <param name="teleportOptions">A <c>Instance?</c> value.</param>
+        public event Action<Instance?, Enum.TeleportResult, string?, long, Instance?>? ReconnectTeleportInitFailed
+        {
+            add { if (value is not null) AddEventHandler("ReconnectTeleportInitFailed", value); }
+            remove { if (value is not null) RemoveEventHandler("ReconnectTeleportInitFailed", value); }
+        }
 
         /// <summary>
         /// Fires when a teleport fails to start, leaving the player in their current server.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="teleportResult">A <c>Enum.TeleportResult</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        /// <param name="placeId">A <c>long</c> value.</param>
+        /// <param name="teleportOptions">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportInitFailed"/>
-        // public event Action? TeleportInitFailed; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TeleportService.TeleportInitFailedInternal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TeleportInitFailedInternal; // TODO: native event binding
+        public event Action<Instance?, Enum.TeleportResult, string?, long, Instance?>? TeleportInitFailed
+        {
+            add { if (value is not null) AddEventHandler("TeleportInitFailed", value); }
+            remove { if (value is not null) RemoveEventHandler("TeleportInitFailed", value); }
+        }
 
     }
 }

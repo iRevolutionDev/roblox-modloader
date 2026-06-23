@@ -22,16 +22,6 @@ namespace Roblox
             => handle == 0 ? null : new ExperienceStateRecordingService(handle);
 
         /// <summary>
-        /// <c>ExperienceStateRecordingService.IsServerDataModelRecorderActive</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool IsServerDataModelRecorderActive
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsServerDataModelRecorderActive");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsServerDataModelRecorderActive", value);
-        }
-
-        /// <summary>
         /// <c>ExperienceStateRecordingService.ExitPlayback</c>
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -96,9 +86,15 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.PlaybackStatusUpdated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlaybackStatusUpdated; // TODO: native event binding
+        /// <param name="percentage">A <c>float</c> value.</param>
+        /// <param name="currentFrameNumber">A <c>long</c> value.</param>
+        public event Action<float, long>? PlaybackStatusUpdated
+        {
+            add { if (value is not null) AddEventHandler("PlaybackStatusUpdated", value); }
+            remove { if (value is not null) RemoveEventHandler("PlaybackStatusUpdated", value); }
+        }
 
     }
 }

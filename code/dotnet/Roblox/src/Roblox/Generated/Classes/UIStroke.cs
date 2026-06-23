@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether to apply the stroke to the object's border instead of the text itself.
-        /// <para><b>Default:</b> <c>Contextual</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#ApplyStrokeMode"/>
         public Enum.ApplyStrokeMode ApplyStrokeMode
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies an additional offset to the stroke's position, relative to the parent's minimum height or width.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#BorderOffset"/>
         public object? BorderOffset
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the stroke's position on its parent's border.
-        /// <para><b>Default:</b> <c>Outer</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#BorderStrokePosition"/>
         public Enum.BorderStrokePosition BorderStrokePosition
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the stroke color.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Color"/>
         public object? Color
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the stroke in visible.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Enabled"/>
         public bool Enabled
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how corners are interpreted.
-        /// <para><b>Default:</b> <c>Round</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#LineJoinMode"/>
         public Enum.LineJoinMode LineJoinMode
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the stroke's Thickness will be measured in pixels or be relative to the parent.
-        /// <para><b>Default:</b> <c>FixedSize</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#StrokeSizingMode"/>
         public Enum.StrokeSizingMode StrokeSizingMode
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the stroke's thickness.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Thickness"/>
         public float Thickness
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the stroke opacity independently of the parent object's BackgroundTransparency or TextTransparency.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Transparency"/>
         public float Transparency
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the order in which the stroke renders relative to sibling UIStroke instances.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#ZIndex"/>
         public int ZIndex

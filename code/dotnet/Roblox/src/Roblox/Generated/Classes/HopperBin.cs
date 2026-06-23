@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HopperBin.Active</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#Active"/>
         public bool Active
@@ -38,25 +37,12 @@ namespace Roblox
 
         /// <summary>
         /// <c>HopperBin.BinType</c>
-        /// <para><b>Default:</b> <c>Script</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#BinType"/>
         public Enum.BinType BinType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.BinType>(this, "BinType");
             set => global::Roblox.Reflection.SetProperty<Enum.BinType>(this, "BinType", value);
-        }
-
-        public string? Command
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Command");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Command", value);
-        }
-
-        public string? TextureName
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureName", value);
         }
 
         /// <summary>
@@ -75,23 +61,26 @@ namespace Roblox
 
         /// <summary>
         /// <c>HopperBin.Deselected</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#Deselected"/>
-        // public event Action? Deselected; // TODO: native event binding
-
-        /// <summary>
-        /// <c>HopperBin.ReplicatedSelected</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReplicatedSelected; // TODO: native event binding
+        public event Action? Deselected
+        {
+            add { if (value is not null) AddEventHandler("Deselected", value); }
+            remove { if (value is not null) RemoveEventHandler("Deselected", value); }
+        }
 
         /// <summary>
         /// <c>HopperBin.Selected</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="mouse">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#Selected"/>
-        // public event Action? Selected; // TODO: native event binding
+        public event Action<Instance?>? Selected
+        {
+            add { if (value is not null) AddEventHandler("Selected", value); }
+            remove { if (value is not null) RemoveEventHandler("Selected", value); }
+        }
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the offset position of the object on the Player.
-        /// <para><b>Default:</b> <c>-0, -0, -1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentForward"/>
         public global::System.Numerics.Vector3 AttachmentForward
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The exact CFrame of the Accoutrement.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentPoint"/>
         public object? AttachmentPoint
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the position of the object on the Player.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentPos"/>
         public global::System.Numerics.Vector3 AttachmentPos
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the offset position of the object on the Player.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentRight"/>
         public global::System.Numerics.Vector3 AttachmentRight
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the offset position of the object on the Player.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentUp"/>
         public global::System.Numerics.Vector3 AttachmentUp
@@ -79,22 +74,6 @@ namespace Roblox
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "AttachmentUp");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "AttachmentUp", value);
         }
-
-        /// <summary>
-        /// <c>Accoutrement.BackendAccoutrementState</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public int BackendAccoutrementState
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "BackendAccoutrementState");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "BackendAccoutrementState", value);
-        }
-
-        /// <summary>
-        /// <c>Accoutrement.ServerUnequipAccoutrement</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerUnequipAccoutrement; // TODO: native event binding
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the sparkle particles.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#Color"/>
         public object? Color
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether sparkles are emit.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#Enabled"/>
         public bool Enabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Sparkles.LocalTransparencyModifier</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the sparkle particles.
-        /// <para><b>Default:</b> <c>0.564706, 0.0980392, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#SparkleColor"/>
         public object? SparkleColor
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Sparkles.TimeScale</c>
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#TimeScale"/>
         public float TimeScale

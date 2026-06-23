@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Connects the first and last control points when enabled.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Closed"/>
         public bool Closed
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the Path2D.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Color3"/>
         public object? Color3
@@ -47,15 +45,8 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "Color3", value);
         }
 
-        public byte[]? PropertiesSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "PropertiesSerialize");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "PropertiesSerialize", value);
-        }
-
         /// <summary>
         /// Index of the currently selected Path2DControlPoint.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#SelectedControlPoint"/>
         public int SelectedControlPoint
@@ -76,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how thick the Path2D path is.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Thickness"/>
         public float Thickness
@@ -85,10 +75,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 
-        /// <summary>
-        /// <c>Path2D.Transparency</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public float Transparency
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
@@ -97,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if the Path2D path is rendered or not.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Visible"/>
         public bool Visible
@@ -108,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the order in which a Path2D path renders relative to other GUIs.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#ZIndex"/>
         public int ZIndex
@@ -241,10 +225,14 @@ namespace Roblox
 
         /// <summary>
         /// Fires any time control points change.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#ControlPointChanged"/>
-        // public event Action? ControlPointChanged; // TODO: native event binding
+        public event Action? ControlPointChanged
+        {
+            add { if (value is not null) AddEventHandler("ControlPointChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ControlPointChanged", value); }
+        }
 
     }
 }

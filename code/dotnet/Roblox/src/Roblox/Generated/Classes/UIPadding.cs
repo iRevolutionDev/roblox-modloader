@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Padding to apply on the bottom side, relative to the parent's normal size.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingBottom"/>
         public object? PaddingBottom
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Padding to apply on the left side, relative to the parent's normal size.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingLeft"/>
         public object? PaddingLeft
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Padding to apply on the right side, relative to the parent's normal size.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingRight"/>
         public object? PaddingRight
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Padding to apply on the top side, relative to the parent's normal size.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingTop"/>
         public object? PaddingTop

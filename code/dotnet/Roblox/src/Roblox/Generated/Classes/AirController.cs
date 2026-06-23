@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque the character can use to remain balanced upright.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#BalanceMaxTorque"/>
         public float BalanceMaxTorque
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angular speed used to align the character upright.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#BalanceSpeed"/>
         public float BalanceSpeed
@@ -47,10 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceSpeed", value);
         }
 
-        /// <summary>
-        /// <c>AirController.LinearImpulse</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector3 LinearImpulse
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LinearImpulse");
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether angular momentum is preserved when input has stopped.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#MaintainAngularMomentum"/>
         public bool MaintainAngularMomentum
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether linear momentum is preserved when input has stopped.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#MaintainLinearMomentum"/>
         public bool MaintainLinearMomentum
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum force that can be applied on the ControllerManager.RootPart for moving in the ControllerManager.MovingDirection.
-        /// <para><b>Default:</b> <c>1000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#MoveMaxForce"/>
         public float MoveMaxForce
@@ -92,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque that can be applied on the ControllerManager.RootPart for turning towards the ControllerManager.FacingDirection.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#TurnMaxTorque"/>
         public float TurnMaxTorque
@@ -103,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// The value multiplied by the ControllerManager.BaseTurnSpeed.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#TurnSpeedFactor"/>
         public float TurnSpeedFactor

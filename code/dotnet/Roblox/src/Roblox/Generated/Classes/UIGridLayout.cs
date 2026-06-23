@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The number of elements in the grid.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#AbsoluteCellCount"/>
         public global::System.Numerics.Vector2 AbsoluteCellCount
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The absolute size of each element in the grid.
-        /// <para><b>Default:</b> <c>100, 100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#AbsoluteCellSize"/>
         public global::System.Numerics.Vector2 AbsoluteCellSize
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how much space there is between elements in the grid.
-        /// <para><b>Default:</b> <c>{0, 5}, {0, 5}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#CellPadding"/>
         public object? CellPadding
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the size of each element in the grid.
-        /// <para><b>Default:</b> <c>{0, 100}, {0, 100}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#CellSize"/>
         public object? CellSize
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the maximum number of cells that may be used in a row or column before the next one is started.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#FillDirectionMaxCells"/>
         public int FillDirectionMaxCells
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines from which corner the grid starts laying out UI elements.
-        /// <para><b>Default:</b> <c>TopLeft</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#StartCorner"/>
         public Enum.StartCorner StartCorner

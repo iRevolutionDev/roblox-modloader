@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Body part or Attachment that bubbles will attach to.
-        /// <para><b>Default:</b> <c>HumanoidRootPart</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#AdorneeName"/>
         public string? AdorneeName
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Background color of bubbles.
-        /// <para><b>Default:</b> <c>0.980392, 0.980392, 0.980392</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BackgroundColor3"/>
         public object? BackgroundColor3
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the background transparency of the default bubble chat as a number between 0 and 1.
-        /// <para><b>Default:</b> <c>0.10000000000000000555</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BackgroundTransparency"/>
         public double BackgroundTransparency
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Time before a bubble fades out, in seconds.
-        /// <para><b>Default:</b> <c>15</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BubbleDuration"/>
         public float BubbleDuration
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Vertical space between stacked bubbles, in pixels.
-        /// <para><b>Default:</b> <c>6</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BubblesSpacing"/>
         public float BubblesSpacing
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether text chat bubbles are enabled.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#Enabled"/>
         public bool Enabled
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Font of the bubble text.
-        /// <para><b>Default:</b> <c>GothamMedium</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#Font"/>
         public Enum.Font Font
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Offset of bubbles from their adornee, in studs.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#LocalPlayerStudsOffset"/>
         public global::System.Numerics.Vector3 LocalPlayerStudsOffset
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum number of text chat bubbles shown per user.
-        /// <para><b>Default:</b> <c>3</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#MaxBubbles"/>
         public float MaxBubbles
@@ -136,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum distance from the camera that bubbles are shown.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#MaxDistance"/>
         public float MaxDistance
@@ -147,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Distance from the camera when bubbles turn into a single bubble with an ellipsis to indicate chatter.
-        /// <para><b>Default:</b> <c>40</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#MinimizeDistance"/>
         public float MinimizeDistance
@@ -158,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if the tail at the bottom of the text chat bubbles is visible.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#TailVisible"/>
         public bool TailVisible
@@ -169,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of bubble text.
-        /// <para><b>Default:</b> <c>0.223529, 0.231373, 0.239216</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#TextColor3"/>
         public object? TextColor3
@@ -180,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of bubble text.
-        /// <para><b>Default:</b> <c>16</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#TextSize"/>
         public long TextSize
@@ -191,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Extra space between bubbles and their adornee, in studs.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#VerticalStudsOffset"/>
         public float VerticalStudsOffset

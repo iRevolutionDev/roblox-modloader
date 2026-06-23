@@ -25,15 +25,5 @@ namespace Roblox
         public static TeamCreateData? FromHandle(nuint handle)
             => handle == 0 ? null : new TeamCreateData(handle);
 
-        /// <summary>
-        /// <c>TeamCreateData.InitialCameraCFrame</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
-        public object? InitialCameraCFrame
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "InitialCameraCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "InitialCameraCFrame", value);
-        }
-
     }
 }

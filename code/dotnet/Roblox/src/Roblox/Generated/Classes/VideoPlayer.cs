@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Loads the VideoContent while in Studio Edit mode.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#AutoLoadInStudio"/>
         public bool AutoLoadInStudio
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Plays the VideoContent while in Studio Edit mode.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#AutoPlayInStudio"/>
         public bool AutoPlayInStudio
@@ -47,10 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoPlayInStudio", value);
         }
 
-        /// <summary>
-        /// <c>VideoPlayer.InternalVideoUsage</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.InternalVideoUsage InternalVideoUsage
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage");
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates when the VideoContent has loaded and is ready to play.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#IsLoaded"/>
         public bool IsLoaded
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether this VideoPlayer is currently playing.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#IsPlaying"/>
         public bool IsPlaying
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether this VideoPlayer loops.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Looping"/>
         public bool Looping
@@ -92,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoPlayer.MaximumResolution</c>
-        /// <para><b>Default:</b> <c>Full</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#MaximumResolution"/>
         public Enum.VideoSampleSize MaximumResolution
@@ -103,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the speed at which the video is played.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#PlaybackSpeed"/>
         public float PlaybackSpeed
@@ -113,18 +102,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>VideoPlayer.PlayingReplicating</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool PlayingReplicating
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayingReplicating");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayingReplicating", value);
-        }
-
-        /// <summary>
         /// Gets the original source resolution of the VideoContent file.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Resolution"/>
         public global::System.Numerics.Vector2 Resolution
@@ -135,7 +113,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates the length of the VideoContent in seconds.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#TimeLength"/>
         public double TimeLength
@@ -146,7 +123,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates the progress in seconds of the VideoContent.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#TimePosition"/>
         public double TimePosition
@@ -167,7 +143,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how loudly the audio track will be played.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Volume"/>
         public float Volume
@@ -243,31 +218,52 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the VideoContent has completed playback and stopped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#DidEnd"/>
-        // public event Action? DidEnd; // TODO: native event binding
+        public event Action? DidEnd
+        {
+            add { if (value is not null) AddEventHandler("DidEnd", value); }
+            remove { if (value is not null) RemoveEventHandler("DidEnd", value); }
+        }
 
         /// <summary>
         /// Fires when the VideoContent loops.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#DidLoop"/>
-        // public event Action? DidLoop; // TODO: native event binding
+        public event Action? DidLoop
+        {
+            add { if (value is not null) AddEventHandler("DidLoop", value); }
+            remove { if (value is not null) RemoveEventHandler("DidLoop", value); }
+        }
 
         /// <summary>
         /// <c>VideoPlayer.PlayFailed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="error">A <c>Enum.AssetFetchStatus</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#PlayFailed"/>
-        // public event Action? PlayFailed; // TODO: native event binding
+        public event Action<Enum.AssetFetchStatus>? PlayFailed
+        {
+            add { if (value is not null) AddEventHandler("PlayFailed", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayFailed", value); }
+        }
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the VideoPlayer via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

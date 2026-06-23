@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets which side the SurfaceSelection will appear on, on the adorned BasePart.
-        /// <para><b>Default:</b> <c>Right</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceSelection#TargetSurface"/>
         public Enum.NormalId TargetSurface

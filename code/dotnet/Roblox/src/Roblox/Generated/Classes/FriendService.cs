@@ -34,21 +34,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>FriendService.FriendsUpdated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FriendsUpdated; // TODO: native event binding
-
-        /// <summary>
-        /// <c>FriendService.RemoteFriendEventSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteFriendEventSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>FriendService.RemoteFriendStatusSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteFriendStatusSignal; // TODO: native event binding
+        /// <param name="friendData">A <c>object?</c> value.</param>
+        public event Action<object?>? FriendsUpdated
+        {
+            add { if (value is not null) AddEventHandler("FriendsUpdated", value); }
+            remove { if (value is not null) RemoveEventHandler("FriendsUpdated", value); }
+        }
 
     }
 }

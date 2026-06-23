@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies which tone mapper preset to use.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorGradingEffect#TonemapperPreset"/>
         public Enum.TonemapperPreset TonemapperPreset

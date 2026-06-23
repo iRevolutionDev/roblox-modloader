@@ -31,10 +31,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<PVInstance?>(this, "Adornee", value);
         }
 
-        /// <summary>
-        /// <c>WorkspaceAnnotation.AdorneeOffset</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector3 AdorneeOffset
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "AdorneeOffset");

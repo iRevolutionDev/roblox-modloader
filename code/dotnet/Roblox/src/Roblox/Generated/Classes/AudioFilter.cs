@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Bypass"/>
         public bool Bypass
@@ -36,10 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
-        /// <summary>
-        /// <c>AudioFilter.Editor</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Editor
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Editor");
@@ -48,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// The curve type of the band represented by the filter.
-        /// <para><b>Default:</b> <c>Peak</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#FilterType"/>
         public Enum.AudioFilterType FilterType
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// The central frequency that the filter acts around.
-        /// <para><b>Default:</b> <c>2000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Frequency"/>
         public float Frequency
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// For peaking and shelving filters, controls volume increase or reduction.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Gain"/>
         public float Gain
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// For peaking, lowpass, highpass, bandpass, and notch filters, controls the selectiveness or resonance.
-        /// <para><b>Default:</b> <c>0.707000017</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Q"/>
         public float Q
@@ -126,10 +117,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioFilter via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

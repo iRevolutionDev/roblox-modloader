@@ -184,21 +184,36 @@ namespace Roblox
 
         /// <summary>
         /// <c>IXPService.OnBrowserTrackerLayerLoadingStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnBrowserTrackerLayerLoadingStatusChanged; // TODO: native event binding
+        /// <param name="status">A <c>Enum.IXPLoadingStatus</c> value.</param>
+        public event Action<Enum.IXPLoadingStatus>? OnBrowserTrackerLayerLoadingStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("OnBrowserTrackerLayerLoadingStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("OnBrowserTrackerLayerLoadingStatusChanged", value); }
+        }
 
         /// <summary>
         /// <c>IXPService.OnCreatorLayerLoadingStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnCreatorLayerLoadingStatusChanged; // TODO: native event binding
+        /// <param name="status">A <c>Enum.IXPLoadingStatus</c> value.</param>
+        public event Action<Enum.IXPLoadingStatus>? OnCreatorLayerLoadingStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("OnCreatorLayerLoadingStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("OnCreatorLayerLoadingStatusChanged", value); }
+        }
 
         /// <summary>
         /// <c>IXPService.OnUserLayerLoadingStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnUserLayerLoadingStatusChanged; // TODO: native event binding
+        /// <param name="status">A <c>Enum.IXPLoadingStatus</c> value.</param>
+        public event Action<Enum.IXPLoadingStatus>? OnUserLayerLoadingStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("OnUserLayerLoadingStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("OnUserLayerLoadingStatusChanged", value); }
+        }
 
     }
 }

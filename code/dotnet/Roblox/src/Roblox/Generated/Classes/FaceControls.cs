@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the chin up; moves the lower lip upwards.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#ChinRaiser"/>
         public float ChinRaiser
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves the upper lip when ChinRaiser is engaged and touching the upper lip.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#ChinRaiserUpperLip"/>
         public float ChinRaiserUpperLip
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Brings the left and right brows inward together.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#Corrugator"/>
         public float Corrugator
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves gaze down. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookDown"/>
         public float EyesLookDown
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves gaze left. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookLeft"/>
         public float EyesLookLeft
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves gaze right. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookRight"/>
         public float EyesLookRight
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves gaze up. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookUp"/>
         public float EyesLookUp
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Also known as lip tightener; brings the corners of the mouth inward and pressing the lips back against the teeth.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#FlatPucker"/>
         public float FlatPucker
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Makes a 'O' shape with the mouth.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#Funneler"/>
         public float Funneler
@@ -124,15 +115,8 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "Funneler", value);
         }
 
-        public byte[]? InternalOverrideFACSData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "InternalOverrideFACSData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "InternalOverrideFACSData", value);
-        }
-
         /// <summary>
         /// Lowers the jaw downward opening the mouth. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#JawDrop"/>
         public float JawDrop
@@ -143,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves mouth and jaw to the left (character left).
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#JawLeft"/>
         public float JawLeft
@@ -154,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves mouth and jaw to the right (character right).
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#JawRight"/>
         public float JawRight
@@ -165,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Lowers the left brow down.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftBrowLowerer"/>
         public float LeftBrowLowerer
@@ -176,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Puffs up the left cheek.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftCheekPuff"/>
         public float LeftCheekPuff
@@ -187,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Squints the left eye.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftCheekRaiser"/>
         public float LeftCheekRaiser
@@ -198,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves the corners of the mouth back in Z.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftDimpler"/>
         public float LeftDimpler
@@ -209,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Closes the left eyelid. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftEyeClosed"/>
         public float LeftEyeClosed
@@ -220,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the left eyelid upwards to reveal more of the eye white above the iris.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftEyeUpperLidRaiser"/>
         public float LeftEyeUpperLidRaiser
@@ -231,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the interior half of the left brow upwards.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftInnerBrowRaiser"/>
         public float LeftInnerBrowRaiser
@@ -242,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Lowers the corners of the mouth downwards in a frown.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLipCornerDown"/>
         public float LeftLipCornerDown
@@ -253,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the corners of the mouth upwards in a smile. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLipCornerPuller"/>
         public float LeftLipCornerPuller
@@ -264,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// Stretches the corners of the mouth apart. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLipStretcher"/>
         public float LeftLipStretcher
@@ -275,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// Lowers the lower lip down away from the upper lip revealing the lower teeth. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLowerLipDepressor"/>
         public float LeftLowerLipDepressor
@@ -286,7 +257,6 @@ namespace Roblox
 
         /// <summary>
         /// Raise the left nostril, pulls the brow down slightly, and wrinkles on the side of the nose.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftNoseWrinkler"/>
         public float LeftNoseWrinkler
@@ -297,7 +267,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the outer part of the left brow upwards.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftOuterBrowRaiser"/>
         public float LeftOuterBrowRaiser
@@ -308,7 +277,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the left upper lip away from the lower lip revealing the upper teeth. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftUpperLipRaiser"/>
         public float LeftUpperLipRaiser
@@ -319,7 +287,6 @@ namespace Roblox
 
         /// <summary>
         /// Presses the lips together.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LipPresser"/>
         public float LipPresser
@@ -330,7 +297,6 @@ namespace Roblox
 
         /// <summary>
         /// Brings the lips together relative to JawDrop. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LipsTogether"/>
         public float LipsTogether
@@ -341,7 +307,6 @@ namespace Roblox
 
         /// <summary>
         /// Rolls the lower lip up over the teeth.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LowerLipSuck"/>
         public float LowerLipSuck
@@ -352,7 +317,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves the mouth left.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#MouthLeft"/>
         public float MouthLeft
@@ -363,7 +327,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves the mouth right.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#MouthRight"/>
         public float MouthRight
@@ -374,7 +337,6 @@ namespace Roblox
 
         /// <summary>
         /// Makes a kiss-like shape with the mouth. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#Pucker"/>
         public float Pucker
@@ -385,7 +347,6 @@ namespace Roblox
 
         /// <summary>
         /// Lowers the right brow down.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightBrowLowerer"/>
         public float RightBrowLowerer
@@ -396,7 +357,6 @@ namespace Roblox
 
         /// <summary>
         /// Puffs up the right cheek.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightCheekPuff"/>
         public float RightCheekPuff
@@ -407,7 +367,6 @@ namespace Roblox
 
         /// <summary>
         /// Squints the right eye.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightCheekRaiser"/>
         public float RightCheekRaiser
@@ -418,7 +377,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves the corners of the mouth back in Z.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightDimpler"/>
         public float RightDimpler
@@ -429,7 +387,6 @@ namespace Roblox
 
         /// <summary>
         /// Closes the right eyelid. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightEyeClosed"/>
         public float RightEyeClosed
@@ -440,7 +397,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the right eyelid upwards to reveal more of the eye white above the iris.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightEyeUpperLidRaiser"/>
         public float RightEyeUpperLidRaiser
@@ -451,7 +407,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the interior half of the right brow upwards.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightInnerBrowRaiser"/>
         public float RightInnerBrowRaiser
@@ -462,7 +417,6 @@ namespace Roblox
 
         /// <summary>
         /// Lowers the corners of the mouth downwards in a frown.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLipCornerDown"/>
         public float RightLipCornerDown
@@ -473,7 +427,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the corners of the mouth upwards in a smile. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLipCornerPuller"/>
         public float RightLipCornerPuller
@@ -484,7 +437,6 @@ namespace Roblox
 
         /// <summary>
         /// Stretches the corners of the mouth apart. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLipStretcher"/>
         public float RightLipStretcher
@@ -495,7 +447,6 @@ namespace Roblox
 
         /// <summary>
         /// Lowers the lower lip down away from the upper lip revealing the lower teeth. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLowerLipDepressor"/>
         public float RightLowerLipDepressor
@@ -506,7 +457,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the right nostril, pulls the brow down slightly, and wrinkles on the side of the nose.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightNoseWrinkler"/>
         public float RightNoseWrinkler
@@ -517,7 +467,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the outer part of the right brow upwards.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightOuterBrowRaiser"/>
         public float RightOuterBrowRaiser
@@ -528,7 +477,6 @@ namespace Roblox
 
         /// <summary>
         /// Raises the right upper lip away from the lower lip revealing the upper teeth. This is a required pose for avatars.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightUpperLipRaiser"/>
         public float RightUpperLipRaiser
@@ -539,7 +487,6 @@ namespace Roblox
 
         /// <summary>
         /// Bends the tongue down.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#TongueDown"/>
         public float TongueDown
@@ -550,7 +497,6 @@ namespace Roblox
 
         /// <summary>
         /// Extends the tip of the tongue out of the mouth.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#TongueOut"/>
         public float TongueOut
@@ -561,7 +507,6 @@ namespace Roblox
 
         /// <summary>
         /// Bends the tongue up.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#TongueUp"/>
         public float TongueUp
@@ -572,7 +517,6 @@ namespace Roblox
 
         /// <summary>
         /// Rolls the upper lip around the teeth.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#UpperLipSuck"/>
         public float UpperLipSuck
@@ -590,9 +534,13 @@ namespace Roblox
 
         /// <summary>
         /// <c>FaceControls.InternalFacsOverrideChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InternalFacsOverrideChanged; // TODO: native event binding
+        public event Action? InternalFacsOverrideChanged
+        {
+            add { if (value is not null) AddEventHandler("InternalFacsOverrideChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("InternalFacsOverrideChanged", value); }
+        }
 
     }
 }

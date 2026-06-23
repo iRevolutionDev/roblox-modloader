@@ -21,10 +21,6 @@ namespace Roblox
         public static StudioData? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioData(handle);
 
-        /// <summary>
-        /// <c>StudioData.EnableScriptCollabByDefaultOnLoad</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool EnableScriptCollabByDefaultOnLoad
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableScriptCollabByDefaultOnLoad");

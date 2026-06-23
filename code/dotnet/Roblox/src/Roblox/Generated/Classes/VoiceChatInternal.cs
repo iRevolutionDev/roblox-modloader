@@ -21,10 +21,6 @@ namespace Roblox
         public static VoiceChatInternal? FromHandle(nuint handle)
             => handle == 0 ? null : new VoiceChatInternal(handle);
 
-        /// <summary>
-        /// <c>VoiceChatInternal.VoiceChatState</c>
-        /// <para><b>Default:</b> <c>Idle</c></para>
-        /// </summary>
         public Enum.VoiceChatState VoiceChatState
         {
             get => global::Roblox.Reflection.GetProperty<Enum.VoiceChatState>(this, "VoiceChatState");
@@ -231,33 +227,59 @@ namespace Roblox
 
         /// <summary>
         /// <c>VoiceChatInternal.LocalPlayerModerated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? LocalPlayerModerated; // TODO: native event binding
+        public event Action? LocalPlayerModerated
+        {
+            add { if (value is not null) AddEventHandler("LocalPlayerModerated", value); }
+            remove { if (value is not null) RemoveEventHandler("LocalPlayerModerated", value); }
+        }
 
         /// <summary>
         /// <c>VoiceChatInternal.ParticipantsStateChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ParticipantsStateChanged; // TODO: native event binding
+        /// <param name="participantsLeft">A <c>object?</c> value.</param>
+        /// <param name="participantsJoined">A <c>object?</c> value.</param>
+        /// <param name="updatedStates">A <c>object?</c> value.</param>
+        public event Action<object?, object?, object?>? ParticipantsStateChanged
+        {
+            add { if (value is not null) AddEventHandler("ParticipantsStateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ParticipantsStateChanged", value); }
+        }
 
         /// <summary>
         /// <c>VoiceChatInternal.PlayerMicActivitySignalChange</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlayerMicActivitySignalChange; // TODO: native event binding
+        /// <param name="activityInfo">A <c>object?</c> value.</param>
+        public event Action<object?>? PlayerMicActivitySignalChange
+        {
+            add { if (value is not null) AddEventHandler("PlayerMicActivitySignalChange", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerMicActivitySignalChange", value); }
+        }
 
         /// <summary>
         /// <c>VoiceChatInternal.StateChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StateChanged; // TODO: native event binding
+        /// <param name="old">A <c>Enum.VoiceChatState</c> value.</param>
+        /// <param name="new">A <c>Enum.VoiceChatState</c> value.</param>
+        public event Action<Enum.VoiceChatState, Enum.VoiceChatState>? StateChanged
+        {
+            add { if (value is not null) AddEventHandler("StateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("StateChanged", value); }
+        }
 
         /// <summary>
         /// <c>VoiceChatInternal.TempSetMicMutedToggleMic</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TempSetMicMutedToggleMic; // TODO: native event binding
+        public event Action? TempSetMicMutedToggleMic
+        {
+            add { if (value is not null) AddEventHandler("TempSetMicMutedToggleMic", value); }
+            remove { if (value is not null) RemoveEventHandler("TempSetMicMutedToggleMic", value); }
+        }
 
     }
 }

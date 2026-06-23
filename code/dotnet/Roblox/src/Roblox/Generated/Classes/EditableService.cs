@@ -21,15 +21,5 @@ namespace Roblox
         public static EditableService? FromHandle(nuint handle)
             => handle == 0 ? null : new EditableService(handle);
 
-        /// <summary>
-        /// <c>EditableService.EditableStatus</c>
-        /// <para><b>Default:</b> <c>Unknown</c></para>
-        /// </summary>
-        public Enum.EditableStatus EditableStatus
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.EditableStatus>(this, "EditableStatus");
-            set => global::Roblox.Reflection.SetProperty<Enum.EditableStatus>(this, "EditableStatus", value);
-        }
-
     }
 }

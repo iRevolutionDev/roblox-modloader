@@ -21,23 +21,5 @@ namespace Roblox
         public static RemoteCursorService? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteCursorService(handle);
 
-        /// <summary>
-        /// <c>RemoteCursorService.BroadcastRemoteCursorPositions</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? BroadcastRemoteCursorPositions; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCursorService.RequestAllRemoteCursorPositionForScript</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestAllRemoteCursorPositionForScript; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteCursorService.UpdateClientRemoteCursorPosition</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UpdateClientRemoteCursorPosition; // TODO: native event binding
-
     }
 }

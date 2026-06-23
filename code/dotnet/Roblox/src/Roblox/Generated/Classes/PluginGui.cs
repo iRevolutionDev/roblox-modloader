@@ -68,81 +68,143 @@ namespace Roblox
 
         /// <summary>
         /// <c>PluginGui.InputBegan</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InputBegan; // TODO: native event binding
+        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
+        public event Action<InputObject?, bool>? InputBegan
+        {
+            add { if (value is not null) AddEventHandler("InputBegan", value); }
+            remove { if (value is not null) RemoveEventHandler("InputBegan", value); }
+        }
 
         /// <summary>
         /// <c>PluginGui.InputChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InputChanged; // TODO: native event binding
+        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
+        public event Action<InputObject?, bool>? InputChanged
+        {
+            add { if (value is not null) AddEventHandler("InputChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("InputChanged", value); }
+        }
 
         /// <summary>
         /// <c>PluginGui.InputEnded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InputEnded; // TODO: native event binding
+        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
+        public event Action<InputObject?, bool>? InputEnded
+        {
+            add { if (value is not null) AddEventHandler("InputEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("InputEnded", value); }
+        }
 
         /// <summary>
         /// <c>PluginGui.MouseEnter</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MouseEnter; // TODO: native event binding
+        public event Action? MouseEnter
+        {
+            add { if (value is not null) AddEventHandler("MouseEnter", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseEnter", value); }
+        }
 
         /// <summary>
         /// <c>PluginGui.MouseLeave</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MouseLeave; // TODO: native event binding
+        public event Action? MouseLeave
+        {
+            add { if (value is not null) AddEventHandler("MouseLeave", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseLeave", value); }
+        }
 
         /// <summary>
         /// Fires when the user releases their mouse when hovering over a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragDropped"/>
-        // public event Action? PluginDragDropped; // TODO: native event binding
+        public event Action<object?>? PluginDragDropped
+        {
+            add { if (value is not null) AddEventHandler("PluginDragDropped", value); }
+            remove { if (value is not null) RemoveEventHandler("PluginDragDropped", value); }
+        }
 
         /// <summary>
         /// Fires when the user's mouse enters a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragEntered"/>
-        // public event Action? PluginDragEntered; // TODO: native event binding
+        public event Action<object?>? PluginDragEntered
+        {
+            add { if (value is not null) AddEventHandler("PluginDragEntered", value); }
+            remove { if (value is not null) RemoveEventHandler("PluginDragEntered", value); }
+        }
 
         /// <summary>
         /// Fires when the user's mouse leaves a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragLeft"/>
-        // public event Action? PluginDragLeft; // TODO: native event binding
+        public event Action<object?>? PluginDragLeft
+        {
+            add { if (value is not null) AddEventHandler("PluginDragLeft", value); }
+            remove { if (value is not null) RemoveEventHandler("PluginDragLeft", value); }
+        }
 
         /// <summary>
         /// Fires when the user's mouse moves within a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragMoved"/>
-        // public event Action? PluginDragMoved; // TODO: native event binding
+        public event Action<object?>? PluginDragMoved
+        {
+            add { if (value is not null) AddEventHandler("PluginDragMoved", value); }
+            remove { if (value is not null) RemoveEventHandler("PluginDragMoved", value); }
+        }
 
         /// <summary>
         /// <c>PluginGui.PointerAction</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PointerAction; // TODO: native event binding
+        /// <param name="wheel">A <c>float</c> value.</param>
+        /// <param name="pan">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="pinch">A <c>float</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
+        public event Action<float, global::System.Numerics.Vector2, float, bool>? PointerAction
+        {
+            add { if (value is not null) AddEventHandler("PointerAction", value); }
+            remove { if (value is not null) RemoveEventHandler("PointerAction", value); }
+        }
 
         /// <summary>
         /// Fires when the user stops interacting with the window of the PluginGui.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#WindowFocusReleased"/>
-        // public event Action? WindowFocusReleased; // TODO: native event binding
+        public event Action? WindowFocusReleased
+        {
+            add { if (value is not null) AddEventHandler("WindowFocusReleased", value); }
+            remove { if (value is not null) RemoveEventHandler("WindowFocusReleased", value); }
+        }
 
         /// <summary>
         /// Fires when the user begins interacting with the window of the PluginGui.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#WindowFocused"/>
-        // public event Action? WindowFocused; // TODO: native event binding
+        public event Action? WindowFocused
+        {
+            add { if (value is not null) AddEventHandler("WindowFocused", value); }
+            remove { if (value is not null) RemoveEventHandler("WindowFocused", value); }
+        }
 
     }
 }

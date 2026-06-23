@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the alpha channel of the SurfaceAppearance.ColorMap is used.
-        /// <para><b>Default:</b> <c>Overlay</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#AlphaMode"/>
         public Enum.AlphaMode AlphaMode
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Applies a tint to your existing colormap. Set directly with color picker or programmatically with Color3.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#Color"/>
         public object? Color
@@ -79,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the strength of emissive contribution.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#EmissiveStrength"/>
         public float EmissiveStrength
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the tinting color for emissive contribution.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#EmissiveTint"/>
         public object? EmissiveTint
@@ -141,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SurfaceAppearance.ResampleMode</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#ResampleMode"/>
         public Enum.ResamplerMode ResampleMode

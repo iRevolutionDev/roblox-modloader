@@ -21,50 +21,30 @@ namespace Roblox
         public static ParabolaAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new ParabolaAdornment(handle);
 
-        /// <summary>
-        /// <c>ParabolaAdornment.A</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float A
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "A");
             set => global::Roblox.Reflection.SetProperty<float>(this, "A", value);
         }
 
-        /// <summary>
-        /// <c>ParabolaAdornment.B</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public float B
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "B");
             set => global::Roblox.Reflection.SetProperty<float>(this, "B", value);
         }
 
-        /// <summary>
-        /// <c>ParabolaAdornment.C</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public float C
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "C");
             set => global::Roblox.Reflection.SetProperty<float>(this, "C", value);
         }
 
-        /// <summary>
-        /// <c>ParabolaAdornment.Range</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float Range
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Range");
             set => global::Roblox.Reflection.SetProperty<float>(this, "Range", value);
         }
 
-        /// <summary>
-        /// <c>ParabolaAdornment.Thickness</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float Thickness
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");

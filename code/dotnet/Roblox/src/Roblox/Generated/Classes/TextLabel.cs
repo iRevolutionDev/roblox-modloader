@@ -26,18 +26,7 @@ namespace Roblox
             => handle == 0 ? null : new TextLabel(handle);
 
         /// <summary>
-        /// <c>TextLabel.Confidential</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Confidential
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Confidential");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Confidential", value);
-        }
-
-        /// <summary>
         /// A copy of TextLabel.Text that contains exactly what is being rendered by the TextLabel.
-        /// <para><b>Default:</b> <c>Label</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#ContentText"/>
         public string? ContentText
@@ -48,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the font used to render text.
-        /// <para><b>Default:</b> <c>Legacy</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#Font"/>
         public Enum.Font Font
@@ -69,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated in favor of TextSize which is an integer and not an enum and thus offers far more options for sizes.Determines the font size to be used.
-        /// <para><b>Default:</b> <c>Size8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#FontSize"/>
         public Enum.FontSize FontSize
@@ -80,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Scales the spacing between lines of text in the TextLabel.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#LineHeight"/>
         public float LineHeight
@@ -113,7 +99,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum number of graphemes the TextLabel can show.
-        /// <para><b>Default:</b> <c>-1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#MaxVisibleGraphemes"/>
         public int MaxVisibleGraphemes
@@ -144,7 +129,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the TextLabel renders its text using rich text formatting.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#RichText"/>
         public bool RichText
@@ -155,7 +139,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the string rendered by the TextLabel.
-        /// <para><b>Default:</b> <c>Label</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#Text"/>
         public string? Text
@@ -166,7 +149,6 @@ namespace Roblox
 
         /// <summary>
         /// Read-only property which reflects the absolute size of rendered text in offsets.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextBounds"/>
         public global::System.Numerics.Vector2 TextBounds
@@ -187,7 +169,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of rendered text.
-        /// <para><b>Default:</b> <c>0.105882, 0.164706, 0.207843</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextColor3"/>
         public object? TextColor3
@@ -198,7 +179,6 @@ namespace Roblox
 
         /// <summary>
         /// Direction in which the text is rendered.
-        /// <para><b>Default:</b> <c>Auto</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextDirection"/>
         public Enum.TextDirection TextDirection
@@ -209,7 +189,6 @@ namespace Roblox
 
         /// <summary>
         /// A boolean representation of whether the label's text fits within the size of it.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextFits"/>
         public bool TextFits
@@ -220,7 +199,6 @@ namespace Roblox
 
         /// <summary>
         /// Changes whether text is resized to fit within the TextLabel.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextScaled"/>
         public bool TextScaled
@@ -231,7 +209,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the line height of text in offsets.
-        /// <para><b>Default:</b> <c>8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextSize"/>
         public float TextSize
@@ -242,7 +219,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the text stroke (outline).
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextStrokeColor3"/>
         public object? TextStrokeColor3
@@ -253,7 +229,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the text stroke (outline).
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextStrokeTransparency"/>
         public float TextStrokeTransparency
@@ -264,7 +239,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of rendered text.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextTransparency"/>
         public float TextTransparency
@@ -275,7 +249,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the truncation of the text displayed in the TextLabel.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextTruncate"/>
         public Enum.TextTruncate TextTruncate
@@ -286,7 +259,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is simply an alias for TextWrapped. Use the past-tense version instead.Determines whether or not text should wrap at the edges of the TextLabel element's space.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextWrap"/>
         public bool TextWrap
@@ -297,7 +269,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if text wraps to multiple lines within the TextLabel element's space, truncating excess text.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextWrapped"/>
         public bool TextWrapped
@@ -308,7 +279,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the horizontal alignment of rendered text.
-        /// <para><b>Default:</b> <c>Center</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextXAlignment"/>
         public Enum.TextXAlignment TextXAlignment
@@ -319,7 +289,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the vertical alignment of rendered text.
-        /// <para><b>Default:</b> <c>Center</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextLabel#TextYAlignment"/>
         public Enum.TextYAlignment TextYAlignment

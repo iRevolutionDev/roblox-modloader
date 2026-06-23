@@ -27,50 +27,30 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Condition", value);
         }
 
-        /// <summary>
-        /// <c>MetaBreakpoint.ContinueExecution</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ContinueExecution
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ContinueExecution", value);
         }
 
-        /// <summary>
-        /// <c>MetaBreakpoint.Enabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool Enabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
-        /// <summary>
-        /// <c>MetaBreakpoint.Id</c>
-        /// <para><b>Default:</b> <c>4</c></para>
-        /// </summary>
         public int Id
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Id");
             set => global::Roblox.Reflection.SetProperty<int>(this, "Id", value);
         }
 
-        /// <summary>
-        /// <c>MetaBreakpoint.IsLogpoint</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsLogpoint
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLogpoint");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLogpoint", value);
         }
 
-        /// <summary>
-        /// <c>MetaBreakpoint.Line</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int Line
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Line");
@@ -83,10 +63,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "LogMessage", value);
         }
 
-        /// <summary>
-        /// <c>MetaBreakpoint.RemoveOnHit</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool RemoveOnHit
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "RemoveOnHit");
@@ -99,10 +75,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Script", value);
         }
 
-        /// <summary>
-        /// <c>MetaBreakpoint.Valid</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool Valid
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Valid");

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Contains the hip height of the Humanoid of the model that was used to author this KeyframeSequence.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequence#AuthoredHipHeight"/>
         public float AuthoredHipHeight

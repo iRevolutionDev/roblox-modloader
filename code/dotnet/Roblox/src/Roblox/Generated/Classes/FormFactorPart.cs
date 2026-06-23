@@ -35,11 +35,5 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.FormFactor>(this, "FormFactor", value);
         }
 
-        public Enum.FormFactor FormFactorRaw
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.FormFactor>(this, "formFactorRaw");
-            set => global::Roblox.Reflection.SetProperty<Enum.FormFactor>(this, "formFactorRaw", value);
-        }
-
     }
 }

@@ -55,42 +55,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Modal", value);
         }
 
-        public int MouseButton1ClickConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton1ClickConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton1ClickConnectionCount", value);
-        }
-
-        public int MouseButton1DownConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton1DownConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton1DownConnectionCount", value);
-        }
-
-        public int MouseButton1UpConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton1UpConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton1UpConnectionCount", value);
-        }
-
-        public int MouseButton2ClickConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton2ClickConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton2ClickConnectionCount", value);
-        }
-
-        public int MouseButton2DownConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton2DownConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton2DownConnectionCount", value);
-        }
-
-        public int MouseButton2UpConnectionCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MouseButton2UpConnectionCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MouseButton2UpConnectionCount", value);
-        }
-
         /// <summary>
         /// A HapticEffect instance that will play when the GuiButton is being pressed.
         /// </summary>
@@ -123,58 +87,101 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the button is activated.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="inputObject">A <c>InputObject?</c> value.</param>
+        /// <param name="clickCount">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#Activated"/>
-        // public event Action? Activated; // TODO: native event binding
+        public event Action<InputObject?, int>? Activated
+        {
+            add { if (value is not null) AddEventHandler("Activated", value); }
+            remove { if (value is not null) RemoveEventHandler("Activated", value); }
+        }
 
         /// <summary>
         /// Fires when the user's mouse fully left clicks the GuiButton.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton1Click"/>
-        // public event Action? MouseButton1Click; // TODO: native event binding
+        public event Action? MouseButton1Click
+        {
+            add { if (value is not null) AddEventHandler("MouseButton1Click", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton1Click", value); }
+        }
 
         /// <summary>
         /// Fires when the user presses their left mouse button down on the GuiButton.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton1Down"/>
-        // public event Action? MouseButton1Down; // TODO: native event binding
+        public event Action<int, int>? MouseButton1Down
+        {
+            add { if (value is not null) AddEventHandler("MouseButton1Down", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton1Down", value); }
+        }
 
         /// <summary>
         /// Fires when the user releases their left mouse button off of the GuiButton.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton1Up"/>
-        // public event Action? MouseButton1Up; // TODO: native event binding
+        public event Action<int, int>? MouseButton1Up
+        {
+            add { if (value is not null) AddEventHandler("MouseButton1Up", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton1Up", value); }
+        }
 
         /// <summary>
         /// Fires when the user's mouse fully right clicks the GuiButton.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton2Click"/>
-        // public event Action? MouseButton2Click; // TODO: native event binding
+        public event Action? MouseButton2Click
+        {
+            add { if (value is not null) AddEventHandler("MouseButton2Click", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton2Click", value); }
+        }
 
         /// <summary>
         /// Fires when the user presses their right mouse button down on the GuiButton.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton2Down"/>
-        // public event Action? MouseButton2Down; // TODO: native event binding
+        public event Action<int, int>? MouseButton2Down
+        {
+            add { if (value is not null) AddEventHandler("MouseButton2Down", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton2Down", value); }
+        }
 
         /// <summary>
         /// Fires when the user releases their right mouse button off of the GuiButton.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="x">A <c>int</c> value.</param>
+        /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton2Up"/>
-        // public event Action? MouseButton2Up; // TODO: native event binding
+        public event Action<int, int>? MouseButton2Up
+        {
+            add { if (value is not null) AddEventHandler("MouseButton2Up", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseButton2Up", value); }
+        }
 
         /// <summary>
         /// <c>GuiButton.SecondaryActivated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SecondaryActivated; // TODO: native event binding
+        /// <param name="inputObject">A <c>InputObject?</c> value.</param>
+        public event Action<InputObject?>? SecondaryActivated
+        {
+            add { if (value is not null) AddEventHandler("SecondaryActivated", value); }
+            remove { if (value is not null) RemoveEventHandler("SecondaryActivated", value); }
+        }
 
     }
 }

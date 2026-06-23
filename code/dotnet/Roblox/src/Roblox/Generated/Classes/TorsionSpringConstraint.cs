@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The number of coils visualized for the constraint.
-        /// <para><b>Default:</b> <c>8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Coils"/>
         public float Coils
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The current angle, in degrees, of the limiting cone.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#CurrentAngle"/>
         public float CurrentAngle
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Damping constant for the TorsionSpringConstraint. Multiplied to the velocity of the constraint's Attachments to reduce the spring force applied.
-        /// <para><b>Default:</b> <c>0.00999999978</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Damping"/>
         public float Damping
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated. Use LimitsEnabled instead.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#LimitEnabled"/>
         public bool LimitEnabled
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Limits the relative angular motion of the secondary axes of attachments through a cone constraint.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angle of the constraint's limiting cone.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#MaxAngle"/>
         public float MaxAngle
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum allowable torque provided by the torsion spring.
-        /// <para><b>Default:</b> <c>INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#MaxTorque"/>
         public float MaxTorque
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The visualization radius of the spring.
-        /// <para><b>Default:</b> <c>0.400000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Radius"/>
         public float Radius
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The restitution coefficient of the cone constraint.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Restitution"/>
         public float Restitution
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// The torsional stiffness of the spring.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Stiffness"/>
         public float Stiffness

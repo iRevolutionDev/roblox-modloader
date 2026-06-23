@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Euler angles rotation order.
-        /// <para><b>Default:</b> <c>XYZ</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#RotationOrder"/>
         public Enum.RotationOrder RotationOrder

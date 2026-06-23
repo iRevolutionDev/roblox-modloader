@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the type of mesh that will be applied to the BasePart the SpecialMesh is parented to.
-        /// <para><b>Default:</b> <c>Head</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpecialMesh#MeshType"/>
         public Enum.MeshType MeshType

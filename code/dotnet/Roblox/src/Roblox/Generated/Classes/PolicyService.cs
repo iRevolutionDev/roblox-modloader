@@ -25,20 +25,12 @@ namespace Roblox
         public static PolicyService? FromHandle(nuint handle)
             => handle == 0 ? null : new PolicyService(handle);
 
-        /// <summary>
-        /// <c>PolicyService.IsLuobuServer</c>
-        /// <para><b>Default:</b> <c>Unknown</c></para>
-        /// </summary>
         public Enum.TriStateBoolean IsLuobuServer
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TriStateBoolean>(this, "IsLuobuServer");
             set => global::Roblox.Reflection.SetProperty<Enum.TriStateBoolean>(this, "IsLuobuServer", value);
         }
 
-        /// <summary>
-        /// <c>PolicyService.LuobuWhitelisted</c>
-        /// <para><b>Default:</b> <c>Unknown</c></para>
-        /// </summary>
         public Enum.TriStateBoolean LuobuWhitelisted
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TriStateBoolean>(this, "LuobuWhitelisted");

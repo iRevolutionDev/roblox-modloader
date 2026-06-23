@@ -16,8 +16,39 @@ public sealed class ExampleMod : IMod, IDataModelAware
     public void OnDataModelLoaded(DataModel dataModel, DataModelType dataModelType)
     {
         Console.WriteLine($"[DOTNET]: DataModel loaded: {dataModelType}");
-        Console.WriteLine($"[DOTNET]: DataModel root name: {dataModel.RunService?.Name}");
-        // Console.WriteLine($"[DOTNET]: DataModel root name: {dataModel.ClassName}");
+        var runService = dataModel.RunService;
+        Console.WriteLine($"[DOTNET]: RunService name: {runService?.Name}");
+        Console.WriteLine($"[DOTNET]: RunService instance: {runService?.FindFirstChild("Teste", true)}");
+
+        var dmChildren = dataModel.GetChildren();
+        Console.WriteLine($"[DOTNET]: DataModel name: {dataModel.Name}");
+        Console.WriteLine($"[DOTNET]: DataModel.GetChildren count: {dmChildren.Count}");
+        foreach (var service in dmChildren) Console.WriteLine($"[DOTNET]: Service: {service.Name}");
+
+        Task.Run(() =>
+        {
+            Thread.Sleep(5000);
+            var gameId = dataModel.GameId;
+            var placeId = dataModel.PlaceId;
+
+            Console.WriteLine($"[DOTNET]: GameId: {gameId}");
+            Console.WriteLine($"[DOTNET]: PlaceId: {placeId}");
+        });
+
+        if (dataModelType == DataModelType.Edit)
+        {
+            dataModel.Workspace.DescendantAdded += instance =>
+            {
+                Console.WriteLine(
+                    $"[DOTNET]: Instance added: {instance.Name} {instance.Parent?.Name} ({instance.ClassName})");
+            };
+
+            dataModel.Workspace.DescendantRemoving += instance =>
+            {
+                Console.WriteLine(
+                    $"[DOTNET]: Instance removed: {instance.Name} {instance.Parent?.Name} ({instance.ClassName})");
+            };
+        }
     }
 
     public void OnDataModelUnloaded(DataModel dataModel, DataModelType dataModelType)

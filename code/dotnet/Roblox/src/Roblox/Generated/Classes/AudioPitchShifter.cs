@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPitchShifter#Bypass"/>
         public bool Bypass
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Pitch modification to be multiplied by the pitch of the input stream.
-        /// <para><b>Default:</b> <c>1.25</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPitchShifter#Pitch"/>
         public float Pitch
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how much audio will be buffered and shifted at once.
-        /// <para><b>Default:</b> <c>Medium</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPitchShifter#WindowSize"/>
         public Enum.AudioWindowSize WindowSize
@@ -85,10 +82,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioPitchShifter via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPitchShifter#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

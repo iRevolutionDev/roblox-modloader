@@ -36,7 +36,7 @@ public struct InteropVariant
 
 internal static unsafe class NativeInterop
 {
-    public const int InteropTableVersion = 2;
+    public const int InteropTableVersion = 3;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct InteropTable
@@ -49,6 +49,9 @@ internal static unsafe class NativeInterop
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, uint, InteropVariant*, void> ReflectionInvoke;
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, void> ReflectionGetProperty;
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, void> ReflectionSetProperty;
+        
+        public delegate* unmanaged[Cdecl]<void*, sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>, void*, nuint> ReflectionEventConnect;
+        public delegate* unmanaged[Cdecl]<nuint, void> ReflectionEventDisconnect;
 
         public delegate* unmanaged[Cdecl]<void*, nuint> InstanceGetClassDescriptor;
 

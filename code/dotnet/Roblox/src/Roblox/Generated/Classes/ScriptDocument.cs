@@ -181,17 +181,31 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the ScriptDocument changes, including immediately after a text change.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="positionLine">A <c>long</c> value.</param>
+        /// <param name="positionCharacter">A <c>long</c> value.</param>
+        /// <param name="anchorLine">A <c>long</c> value.</param>
+        /// <param name="anchorCharacter">A <c>long</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#SelectionChanged"/>
-        // public event Action? SelectionChanged; // TODO: native event binding
+        public event Action<long, long, long, long>? SelectionChanged
+        {
+            add { if (value is not null) AddEventHandler("SelectionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SelectionChanged", value); }
+        }
 
         /// <summary>
         /// Fires when the displayed line numbers in the editor change.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="startLine">A <c>long</c> value.</param>
+        /// <param name="endLine">A <c>long</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#ViewportChanged"/>
-        // public event Action? ViewportChanged; // TODO: native event binding
+        public event Action<long, long>? ViewportChanged
+        {
+            add { if (value is not null) AddEventHandler("ViewportChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ViewportChanged", value); }
+        }
 
     }
 }

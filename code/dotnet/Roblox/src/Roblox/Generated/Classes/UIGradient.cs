@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color blended with the parent GuiObject along the length of the gradient.
-        /// <para><b>Default:</b> <c>0 1 1 1 0 1 1 1 1 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Color"/>
         public object? Color
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the gradient is enabled or not.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Enabled"/>
         public bool Enabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the scalar translation of the gradient from the center of the parent GuiObject.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Offset"/>
         public global::System.Numerics.Vector2 Offset
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the clockwise rotation in degrees of the gradient starting from left to right.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Rotation"/>
         public float Rotation
@@ -69,15 +65,32 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "Rotation", value);
         }
 
+        public float Scale
+        {
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Scale");
+            set => global::Roblox.Reflection.SetProperty<float>(this, "Scale", value);
+        }
+
+        public Enum.GradientTileMode TileMode
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.GradientTileMode>(this, "TileMode");
+            set => global::Roblox.Reflection.SetProperty<Enum.GradientTileMode>(this, "TileMode", value);
+        }
+
         /// <summary>
         /// Determines how much the parent GuiObject can be seen through along the length of the gradient.
-        /// <para><b>Default:</b> <c>0 0 0 1 0 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Transparency"/>
         public object? Transparency
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "Transparency");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "Transparency", value);
+        }
+
+        public Enum.GradientType Type
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.GradientType>(this, "Type");
+            set => global::Roblox.Reflection.SetProperty<Enum.GradientType>(this, "Type", value);
         }
 
     }

@@ -79,9 +79,15 @@ namespace Roblox
 
         /// <summary>
         /// <c>MicroProfilerService.DataChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DataChanged; // TODO: native event binding
+        /// <param name="slotId">A <c>int</c> value.</param>
+        /// <param name="flags">A <c>int</c> value.</param>
+        public event Action<int, int>? DataChanged
+        {
+            add { if (value is not null) AddEventHandler("DataChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("DataChanged", value); }
+        }
 
     }
 }

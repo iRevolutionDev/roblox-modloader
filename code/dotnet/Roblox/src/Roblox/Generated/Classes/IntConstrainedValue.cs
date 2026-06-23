@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Hold an Integer value between IntConstrainedValue.MinValue and IntConstrainedValue.MaxValue. Replaced by IntConstrainedValue.Value, but still functional.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#ConstrainedValue"/>
         public long ConstrainedValue
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The highest number that the IntConstrainedValue.Value property can be.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#MaxValue"/>
         public long MaxValue
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The lowest number that the IntConstrainedValue.Value property can be.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#MinValue"/>
         public long MinValue
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to hold an integer value between IntConstrainedValue.MinValue and IntConstrainedValue.MaxValue.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#Value"/>
         public long Value
@@ -71,10 +67,15 @@ namespace Roblox
 
         /// <summary>
         /// Fired whenever the Value of the IntConstrainedValue is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="value">A <c>long</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#Changed"/>
-        // public event Action? Changed; // TODO: native event binding
+        public event Action<long>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
     }
 }

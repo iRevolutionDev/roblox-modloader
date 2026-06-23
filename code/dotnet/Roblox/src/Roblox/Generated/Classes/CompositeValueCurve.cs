@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The type of value animated by this CompositeValueCurve.
-        /// <para><b>Default:</b> <c>NumberRange</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompositeValueCurve#CurveType"/>
         public Enum.CompositeValueCurveType CurveType

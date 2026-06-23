@@ -30,9 +30,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>BugReporterService.BugReportRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BugReportRequested; // TODO: native event binding
+        /// <param name="trigger">A <c>string?</c> value.</param>
+        public event Action<string?>? BugReportRequested
+        {
+            add { if (value is not null) AddEventHandler("BugReportRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("BugReportRequested", value); }
+        }
 
     }
 }

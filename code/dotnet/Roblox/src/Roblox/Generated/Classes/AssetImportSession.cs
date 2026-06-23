@@ -61,6 +61,16 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequencesForSelectedRestPose", modelInstance, restPoseSource);
 
         /// <summary>
+        /// <c>AssetImportSession.GetKeyframeSequencesForSelectedRestPoseWithClip</c>
+        /// </summary>
+        /// <param name="modelInstance">A <c>Instance?</c> value.</param>
+        /// <param name="restPoseSource">A <c>Enum.RestPoseModel</c> value.</param>
+        /// <param name="animationIndex">A <c>int</c> value.</param>
+        /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
+        public IReadOnlyList<Instance> GetKeyframeSequencesForSelectedRestPoseWithClip(Instance? modelInstance, Enum.RestPoseModel restPoseSource, int animationIndex)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequencesForSelectedRestPoseWithClip", modelInstance, restPoseSource, animationIndex);
+
+        /// <summary>
         /// <c>AssetImportSession.GetRigVisualization</c>
         /// </summary>
         /// <param name="importDataInstance">A <c>Instance?</c> value.</param>

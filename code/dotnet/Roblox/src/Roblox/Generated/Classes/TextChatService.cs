@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether a user has chat translation enabled.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#ChatTranslationEnabled"/>
         public bool ChatTranslationEnabled
@@ -36,20 +35,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>TextChatService.ChatTranslationFTUXShown</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ChatTranslationFTUXShown
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationFTUXShown");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationFTUXShown", value);
         }
 
-        /// <summary>
-        /// <c>TextChatService.ChatTranslationToggleEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ChatTranslationToggleEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationToggleEnabled");
@@ -58,7 +49,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether to fully enable TextChatService or revert to the legacy chat system.
-        /// <para><b>Default:</b> <c>LegacyChatService</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#ChatVersion"/>
         public Enum.ChatVersion ChatVersion
@@ -69,7 +59,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether TextChatService should create default TextChatCommands.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#CreateDefaultCommands"/>
         public bool CreateDefaultCommands
@@ -80,7 +69,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether TextChatService should create default TextChannels.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#CreateDefaultTextChannels"/>
         public bool CreateDefaultTextChannels
@@ -89,20 +77,18 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CreateDefaultTextChannels", value);
         }
 
-        /// <summary>
-        /// <c>TextChatService.HasSeenDeprecationDialog</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
+        public Enum.RolloutState EnableProtectedChat
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "EnableProtectedChat");
+            set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "EnableProtectedChat", value);
+        }
+
         public bool HasSeenDeprecationDialog
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSeenDeprecationDialog");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasSeenDeprecationDialog", value);
         }
 
-        /// <summary>
-        /// <c>TextChatService.IsLegacyChatDisabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsLegacyChatDisabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLegacyChatDisabled");
@@ -269,150 +255,130 @@ namespace Roblox
 
         /// <summary>
         /// Fires when TextChatService:DisplayBubble() is called.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="partOrCharacter">A <c>Instance?</c> value.</param>
+        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#BubbleDisplayed"/>
-        // public event Action? BubbleDisplayed; // TODO: native event binding
+        public event Action<Instance?, TextChatMessage?>? BubbleDisplayed
+        {
+            add { if (value is not null) AddEventHandler("BubbleDisplayed", value); }
+            remove { if (value is not null) RemoveEventHandler("BubbleDisplayed", value); }
+        }
 
         /// <summary>
         /// <c>TextChatService.ChatActionReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ChatActionReceived; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ClientToServerMessageReplicateSignalV2</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientToServerMessageReplicateSignalV2; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ClientToServerMessageReplicateSignalV3</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientToServerMessageReplicateSignalV3; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ClientToServerMessageReplicateSignalV4</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientToServerMessageReplicateSignalV4; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ClientToServerUniverseChatMessageSignalV1</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientToServerUniverseChatMessageSignalV1; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ClientToServerUniverseChatMessageSignalV2</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ClientToServerUniverseChatMessageSignalV2; // TODO: native event binding
+        /// <param name="chatActionMessage">A <c>TextChatMessage?</c> value.</param>
+        public event Action<TextChatMessage?>? ChatActionReceived
+        {
+            add { if (value is not null) AddEventHandler("ChatActionReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("ChatActionReceived", value); }
+        }
 
         /// <summary>
         /// <c>TextChatService.ExpChatFeatureValueChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ExpChatFeatureValueChanged; // TODO: native event binding
+        /// <param name="userId">A <c>long</c> value.</param>
+        /// <param name="featureName">A <c>string?</c> value.</param>
+        /// <param name="featureValue">A <c>string?</c> value.</param>
+        public event Action<long, string?, string?>? ExpChatFeatureValueChanged
+        {
+            add { if (value is not null) AddEventHandler("ExpChatFeatureValueChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ExpChatFeatureValueChanged", value); }
+        }
 
         /// <summary>
         /// Fires when TextChannel:DisplaySystemMessage() is invoked on the client, or when the client receives a valid TextChannel:SendAsync() response from the server.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#MessageReceived"/>
-        // public event Action? MessageReceived; // TODO: native event binding
+        public event Action<TextChatMessage?>? MessageReceived
+        {
+            add { if (value is not null) AddEventHandler("MessageReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }
+        }
 
         /// <summary>
         /// <c>TextChatService.OnIncomingMessageEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnIncomingMessageEvent; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.OnUserChatSettingUpdateServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnUserChatSettingUpdateServer; // TODO: native event binding
+        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
+        public event Action<TextChatMessage?>? OnIncomingMessageEvent
+        {
+            add { if (value is not null) AddEventHandler("OnIncomingMessageEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("OnIncomingMessageEvent", value); }
+        }
 
         /// <summary>
         /// Fires when TextChannel:SendAsync() is called by the sending client.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#SendingMessage"/>
-        // public event Action? SendingMessage; // TODO: native event binding
+        public event Action<TextChatMessage?>? SendingMessage
+        {
+            add { if (value is not null) AddEventHandler("SendingMessage", value); }
+            remove { if (value is not null) RemoveEventHandler("SendingMessage", value); }
+        }
 
         /// <summary>
         /// <c>TextChatService.SendingUniverseChatMessage</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SendingUniverseChatMessage; // TODO: native event binding
+        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
+        public event Action<TextChatMessage?>? SendingUniverseChatMessage
+        {
+            add { if (value is not null) AddEventHandler("SendingUniverseChatMessage", value); }
+            remove { if (value is not null) RemoveEventHandler("SendingUniverseChatMessage", value); }
+        }
 
         /// <summary>
-        /// <c>TextChatService.ServerToClientChatActionReplicateSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <c>TextChatService.TextChannelWindowAdded</c>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerToClientChatActionReplicateSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ServerToClientMessageReplicateSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientMessageReplicateSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ServerToClientMessageReplicateSignalV2</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientMessageReplicateSignalV2; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ServerToClientPresetChatConfigChangedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientPresetChatConfigChangedSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ServerToClientPresetChatUserAccessChangedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientPresetChatUserAccessChangedSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ServerToClientUniverseChatChannelAllocatedSignalV1</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientUniverseChatChannelAllocatedSignalV1; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.ServerToClientUniverseChatMessageSignalV1</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientUniverseChatMessageSignalV1; // TODO: native event binding
+        /// <param name="textChannelWindow">A <c>TextChannelWindow?</c> value.</param>
+        public event Action<TextChannelWindow?>? TextChannelWindowAdded
+        {
+            add { if (value is not null) AddEventHandler("TextChannelWindowAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("TextChannelWindowAdded", value); }
+        }
 
         /// <summary>
         /// <c>TextChatService.UniverseChatChannelAllocated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UniverseChatChannelAllocated; // TODO: native event binding
+        /// <param name="context">A <c>string?</c> value.</param>
+        public event Action<string?>? UniverseChatChannelAllocated
+        {
+            add { if (value is not null) AddEventHandler("UniverseChatChannelAllocated", value); }
+            remove { if (value is not null) RemoveEventHandler("UniverseChatChannelAllocated", value); }
+        }
 
         /// <summary>
         /// <c>TextChatService.UniverseChatMessageReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UniverseChatMessageReceived; // TODO: native event binding
+        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
+        public event Action<TextChatMessage?>? UniverseChatMessageReceived
+        {
+            add { if (value is not null) AddEventHandler("UniverseChatMessageReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("UniverseChatMessageReceived", value); }
+        }
 
         /// <summary>
         /// <c>TextChatService.UserMessageIntentSent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UserMessageIntentSent; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TextChatService.UserMessageIntentSentRemote</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UserMessageIntentSentRemote; // TODO: native event binding
+        /// <param name="userIntentMessage">A <c>TextChatMessage?</c> value.</param>
+        public event Action<TextChatMessage?>? UserMessageIntentSent
+        {
+            add { if (value is not null) AddEventHandler("UserMessageIntentSent", value); }
+            remove { if (value is not null) RemoveEventHandler("UserMessageIntentSent", value); }
+        }
 
         /// <summary>
         /// Called when a bubble chat is about to be displayed.

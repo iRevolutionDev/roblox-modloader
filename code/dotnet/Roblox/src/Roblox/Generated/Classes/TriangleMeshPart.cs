@@ -25,12 +25,6 @@ namespace Roblox
         public static TriangleMeshPart? FromHandle(nuint handle)
             => handle == 0 ? null : new TriangleMeshPart(handle);
 
-        public string? AeroMeshData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AeroMeshData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AeroMeshData", value);
-        }
-
         /// <summary>
         /// Determines the level of detail the part's physics will adhere to its mesh.
         /// </summary>
@@ -39,12 +33,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Enum.CollisionFidelity>(this, "CollisionFidelity");
             set => global::Roblox.Reflection.SetProperty<Enum.CollisionFidelity>(this, "CollisionFidelity", value);
-        }
-
-        public object? ConvexDecompHolder
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ConvexDecompHolder");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ConvexDecompHolder", value);
         }
 
         /// <summary>
@@ -57,18 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.FluidFidelity>(this, "FluidFidelity", value);
         }
 
-        public Enum.FluidFidelity FluidFidelityInternal
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.FluidFidelity>(this, "FluidFidelityInternal");
-            set => global::Roblox.Reflection.SetProperty<Enum.FluidFidelity>(this, "FluidFidelityInternal", value);
-        }
-
-        public bool InertiaMigrated
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InertiaMigrated");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "InertiaMigrated", value);
-        }
-
         /// <summary>
         /// <c>TriangleMeshPart.MeshSize</c>
         /// </summary>
@@ -77,12 +53,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MeshSize");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MeshSize", value);
-        }
-
-        public string? PhysicalConfigData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PhysicalConfigData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PhysicalConfigData", value);
         }
 
         public global::System.Numerics.Vector3 UnscaledCofm

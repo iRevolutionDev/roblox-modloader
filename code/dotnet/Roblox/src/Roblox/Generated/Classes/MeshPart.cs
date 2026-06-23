@@ -26,18 +26,7 @@ namespace Roblox
             => handle == 0 ? null : new MeshPart(handle);
 
         /// <summary>
-        /// <c>MeshPart.AlternateMeshHash</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public long AlternateMeshHash
-        {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "AlternateMeshHash");
-            set => global::Roblox.Reflection.SetProperty<long>(this, "AlternateMeshHash", value);
-        }
-
-        /// <summary>
         /// Determines whether to render both faces of polygons in the mesh.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#DoubleSided"/>
         public bool DoubleSided
@@ -48,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated:
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#HasJointOffset"/>
         public bool HasJointOffset
@@ -59,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MeshPart.HasSkinnedMesh</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#HasSkinnedMesh"/>
         public bool HasSkinnedMesh
@@ -69,18 +56,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>MeshPart.InitialSize</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 InitialSize
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "InitialSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "InitialSize", value);
-        }
-
-        /// <summary>
         /// Deprecated:
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#JointOffset"/>
         public global::System.Numerics.Vector3 JointOffset
@@ -99,12 +75,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "MeshContent", value);
         }
 
-        public object? MeshID
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MeshID");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MeshID", value);
-        }
-
         /// <summary>
         /// The asset URIs of the mesh that is displayed on the MeshPart. Reads and writes to MeshContent.
         /// </summary>
@@ -115,37 +85,14 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "MeshId", value);
         }
 
-        public byte[]? PhysicsData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "PhysicsData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "PhysicsData", value);
-        }
-
         /// <summary>
         /// The level of detail used to render the MeshPart.
-        /// <para><b>Default:</b> <c>Automatic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#RenderFidelity"/>
         public Enum.RenderFidelity RenderFidelity
         {
             get => global::Roblox.Reflection.GetProperty<Enum.RenderFidelity>(this, "RenderFidelity");
             set => global::Roblox.Reflection.SetProperty<Enum.RenderFidelity>(this, "RenderFidelity", value);
-        }
-
-        /// <summary>
-        /// <c>MeshPart.RenderFidelityReplicate</c>
-        /// <para><b>Default:</b> <c>Automatic</c></para>
-        /// </summary>
-        public Enum.RenderFidelity RenderFidelityReplicate
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.RenderFidelity>(this, "RenderFidelityReplicate");
-            set => global::Roblox.Reflection.SetProperty<Enum.RenderFidelity>(this, "RenderFidelityReplicate", value);
-        }
-
-        public object? SolidMeshHolder
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SolidMeshHolder");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SolidMeshHolder", value);
         }
 
         /// <summary>
@@ -166,16 +113,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "TextureID");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "TextureID", value);
-        }
-
-        /// <summary>
-        /// <c>MeshPart.VertexCount</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public int VertexCount
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "VertexCount");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "VertexCount", value);
         }
 
         /// <summary>

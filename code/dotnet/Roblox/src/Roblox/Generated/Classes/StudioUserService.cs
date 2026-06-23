@@ -21,10 +21,6 @@ namespace Roblox
         public static StudioUserService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioUserService(handle);
 
-        /// <summary>
-        /// <c>StudioUserService.IsLoggedIn</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsLoggedIn
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoggedIn");

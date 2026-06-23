@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the constraint force will be limited.
-        /// <para><b>Default:</b> <c>Magnitude</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#ForceLimitMode"/>
         public Enum.ForceLimitMode ForceLimitMode
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if the constraint force will be limited or if the physics solver can apply an unlimited force to achieve the target velocity.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#ForceLimitsEnabled"/>
         public bool ForceLimitsEnabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The normalized Vector3 direction for constraining the velocity along a line.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#LineDirection"/>
         public global::System.Numerics.Vector3 LineDirection
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Float value of the velocity when VelocityConstraintMode is set to Line.
-        /// <para><b>Default:</b> <c>-0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#LineVelocity"/>
         public float LineVelocity
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum force along each axis that the constraint can apply to achieve the vector velocity. Only used if ForceLimitsEnabled is true, ForceLimitMode is PerAxis, and VelocityConstraintMode is Vector.
-        /// <para><b>Default:</b> <c>1000, 1000, 1000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxAxesForce"/>
         public global::System.Numerics.Vector3 MaxAxesForce
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum magnitude of the force vector the constraint can apply.
-        /// <para><b>Default:</b> <c>1000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxForce"/>
         public float MaxForce
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum force along each axis that the constraint can apply to achieve the plane velocity. Only used if ForceLimitsEnabled is true, ForceLimitMode is PerAxis, and VelocityConstraintMode is Plane.
-        /// <para><b>Default:</b> <c>1000, 1000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxPlanarAxesForce"/>
         public global::System.Numerics.Vector2 MaxPlanarAxesForce
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Vector2 value of the velocity in each tangent direction of the plane.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#PlaneVelocity"/>
         public global::System.Numerics.Vector2 PlaneVelocity
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The primary axis in the plane, when VelocityConstraintMode is set to Plane.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#PrimaryTangentAxis"/>
         public global::System.Numerics.Vector3 PrimaryTangentAxis
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LinearVelocity.ReactionForceEnabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#ReactionForceEnabled"/>
         public bool ReactionForceEnabled
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the ActuatorRelativeTo property for the constraint.
-        /// <para><b>Default:</b> <c>World</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// The secondary axis in the plane, when VelocityConstraintMode is set to Plane.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#SecondaryTangentAxis"/>
         public global::System.Numerics.Vector3 SecondaryTangentAxis
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Vector3 velocity value when VelocityConstraintMode is set to Vector.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#VectorVelocity"/>
         public global::System.Numerics.Vector3 VectorVelocity
@@ -170,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// The mode of the constraint.
-        /// <para><b>Default:</b> <c>Vector</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#VelocityConstraintMode"/>
         public Enum.VelocityConstraintMode VelocityConstraintMode

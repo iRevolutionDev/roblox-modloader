@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// If set to true, the game will start running when the service's TestService:RunAsync() method is called.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#AutoRuns"/>
         public bool AutoRuns
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Measures how many errors have been recorded in the test session.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ErrorCount"/>
         public int ErrorCount
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// When set to true, TestService will be executed when using the Run action in Roblox Studio.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ExecuteWithStudioRun"/>
         public bool ExecuteWithStudioRun
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This has been deprecated and directly renamed to ThrottlePhysicsToRealtime to better reflect its practical use.Sets whether or not the physics engine should be throttled to 30 FPS while the test is being ran.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Is30FpsThrottleEnabled"/>
         public bool Is30FpsThrottleEnabled
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether or not the physics environment should be throttled while running this test.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#IsPhysicsEnvironmentalThrottled"/>
         public bool IsPhysicsEnvironmentalThrottled
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether or not physics objects will be allowed to fall asleep while the test simulation is running.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#IsSleepAllowed"/>
         public bool IsSleepAllowed
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The number of players expected in this test, if any.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#NumberOfPlayers"/>
         public int NumberOfPlayers
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets a specific amount of additional latency experienced by players during the test session.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#SimulateSecondsLag"/>
         public double SimulateSecondsLag
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Measures how many test calls have been recorded in the test session.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#TestCount"/>
         public int TestCount
@@ -136,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the test should be throttled to simulate time according to real world time or as fast as possible.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ThrottlePhysicsToRealtime"/>
         public bool ThrottlePhysicsToRealtime
@@ -147,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum amount of time that tests are allowed to run for.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Timeout"/>
         public double Timeout
@@ -158,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Measures how many warning calls have been recorded in the test session.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#WarnCount"/>
         public int WarnCount
@@ -391,17 +379,32 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the server should collect a conditional test result.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="condition">A <c>bool</c> value.</param>
+        /// <param name="text">A <c>string?</c> value.</param>
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="line">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ServerCollectConditionalResult"/>
-        // public event Action? ServerCollectConditionalResult; // TODO: native event binding
+        public event Action<bool, string?, Instance?, int>? ServerCollectConditionalResult
+        {
+            add { if (value is not null) AddEventHandler("ServerCollectConditionalResult", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerCollectConditionalResult", value); }
+        }
 
         /// <summary>
         /// Fires when the server should collect a test result.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="text">A <c>string?</c> value.</param>
+        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="line">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ServerCollectResult"/>
-        // public event Action? ServerCollectResult; // TODO: native event binding
+        public event Action<string?, Instance?, int>? ServerCollectResult
+        {
+            add { if (value is not null) AddEventHandler("ServerCollectResult", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerCollectResult", value); }
+        }
 
     }
 }

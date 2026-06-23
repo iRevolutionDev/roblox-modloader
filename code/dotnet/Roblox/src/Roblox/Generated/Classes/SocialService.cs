@@ -234,91 +234,154 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player's call invite state changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="inviteState">A <c>Enum.InviteState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#CallInviteStateChanged"/>
-        // public event Action? CallInviteStateChanged; // TODO: native event binding
+        public event Action<Instance?, Enum.InviteState>? CallInviteStateChanged
+        {
+            add { if (value is not null) AddEventHandler("CallInviteStateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("CallInviteStateChanged", value); }
+        }
 
         /// <summary>
         /// Fires when a player closes an invite prompt.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="recipientIds">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GameInvitePromptClosed"/>
-        // public event Action? GameInvitePromptClosed; // TODO: native event binding
-
-        /// <summary>
-        /// <c>SocialService.IrisInviteInitiated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? IrisInviteInitiated; // TODO: native event binding
+        public event Action<Instance?, object?>? GameInvitePromptClosed
+        {
+            add { if (value is not null) AddEventHandler("GameInvitePromptClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("GameInvitePromptClosed", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.OpenShareSheetWithLink</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenShareSheetWithLink; // TODO: native event binding
+        /// <param name="link">A <c>string?</c> value.</param>
+        public event Action<string?>? OpenShareSheetWithLink
+        {
+            add { if (value is not null) AddEventHandler("OpenShareSheetWithLink", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenShareSheetWithLink", value); }
+        }
 
         /// <summary>
         /// Fires when a player closes the phone book prompt.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PhoneBookPromptClosed"/>
-        // public event Action? PhoneBookPromptClosed; // TODO: native event binding
+        public event Action<Instance?>? PhoneBookPromptClosed
+        {
+            add { if (value is not null) AddEventHandler("PhoneBookPromptClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("PhoneBookPromptClosed", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.PlayerPartyDataChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PlayerPartyDataChanged; // TODO: native event binding
+        /// <param name="partyId">A <c>string?</c> value.</param>
+        public event Action<string?>? PlayerPartyDataChanged
+        {
+            add { if (value is not null) AddEventHandler("PlayerPartyDataChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerPartyDataChanged", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.PromptInviteRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptInviteRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="experienceInviteOptions">A <c>Instance?</c> value.</param>
+        public event Action<Instance?, Instance?>? PromptInviteRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptInviteRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptInviteRequested", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.PromptIrisInviteRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptIrisInviteRequested; // TODO: native event binding
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="tag">A <c>string?</c> value.</param>
+        public event Action<Instance?, string?>? PromptIrisInviteRequested
+        {
+            add { if (value is not null) AddEventHandler("PromptIrisInviteRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptIrisInviteRequested", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.SelfViewHidden</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SelfViewHidden; // TODO: native event binding
+        public event Action? SelfViewHidden
+        {
+            add { if (value is not null) AddEventHandler("SelfViewHidden", value); }
+            remove { if (value is not null) RemoveEventHandler("SelfViewHidden", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.SelfViewVisible</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SelfViewVisible; // TODO: native event binding
+        /// <param name="selfViewPosition">A <c>Enum.SelfViewPosition</c> value.</param>
+        public event Action<Enum.SelfViewPosition>? SelfViewVisible
+        {
+            add { if (value is not null) AddEventHandler("SelfViewVisible", value); }
+            remove { if (value is not null) RemoveEventHandler("SelfViewVisible", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.ShareSheetClosed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#ShareSheetClosed"/>
-        // public event Action? ShareSheetClosed; // TODO: native event binding
+        public event Action<Player?>? ShareSheetClosed
+        {
+            add { if (value is not null) AddEventHandler("ShareSheetClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("ShareSheetClosed", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.ShowPromptFeedbackSubmission</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowPromptFeedbackSubmission; // TODO: native event binding
+        /// <param name="feedbackType">A <c>Enum.FeedbackType</c> value.</param>
+        public event Action<Enum.FeedbackType>? ShowPromptFeedbackSubmission
+        {
+            add { if (value is not null) AddEventHandler("ShowPromptFeedbackSubmission", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowPromptFeedbackSubmission", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.ShowPromptFeedbackUnavailable</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowPromptFeedbackUnavailable; // TODO: native event binding
+        /// <param name="reason">A <c>string?</c> value.</param>
+        /// <param name="feedbackType">A <c>Enum.FeedbackType</c> value.</param>
+        public event Action<string?, Enum.FeedbackType>? ShowPromptFeedbackUnavailable
+        {
+            add { if (value is not null) AddEventHandler("ShowPromptFeedbackUnavailable", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowPromptFeedbackUnavailable", value); }
+        }
 
         /// <summary>
         /// <c>SocialService.ShowPromptRsvpToEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowPromptRsvpToEvent; // TODO: native event binding
+        /// <param name="eventId">A <c>string?</c> value.</param>
+        public event Action<string?>? ShowPromptRsvpToEvent
+        {
+            add { if (value is not null) AddEventHandler("ShowPromptRsvpToEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowPromptRsvpToEvent", value); }
+        }
 
         /// <summary>
         /// Callback for when a call is placed from the phone book.

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the character will automatically jump when they hit an obstacle as a player on a mobile device.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AutoJumpEnabled"/>
         public bool AutoJumpEnabled
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// AutoRotate sets whether or not the Humanoid will automatically rotate to face in the direction they are moving in.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AutoRotate"/>
         public bool AutoRotate
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// When Enabled, AutomaticScalingEnabled causes the size of the character to change in response to the values in the humanoid's child scale values changing.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AutomaticScalingEnabled"/>
         public bool AutomaticScalingEnabled
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the humanoid's joints break when in the HumanoidStateType.Dead state.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#BreakJointsOnDeath"/>
         public bool BreakJointsOnDeath
@@ -70,38 +66,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.CameraMaxDistance</c>
-        /// <para><b>Default:</b> <c>400</c></para>
-        /// </summary>
-        public float CameraMaxDistance
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMaxDistance");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "CameraMaxDistance", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.CameraMinDistance</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float CameraMinDistance
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMinDistance");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "CameraMinDistance", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.CameraMode</c>
-        /// <para><b>Default:</b> <c>Classic</c></para>
-        /// </summary>
-        public Enum.CameraMode CameraMode
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.CameraMode>(this, "CameraMode");
-            set => global::Roblox.Reflection.SetProperty<Enum.CameraMode>(this, "CameraMode", value);
-        }
-
-        /// <summary>
         /// An offset applied to the Camera's subject position when its CameraSubject is set to this Humanoid.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CameraOffset"/>
         public global::System.Numerics.Vector3 CameraOffset
@@ -112,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Selects the HumanoidCollisionType for R15 and Rthro non-player characters.
-        /// <para><b>Default:</b> <c>OuterBox</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CollisionType"/>
         public Enum.HumanoidCollisionType CollisionType
@@ -123,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the distance behavior of the humanoid's name and health display.
-        /// <para><b>Default:</b> <c>Viewer</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#DisplayDistanceType"/>
         public Enum.HumanoidDisplayDistanceType DisplayDistanceType
@@ -144,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to disable the internal physics and state machine of the Humanoid.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#EvaluateStateMachine"/>
         public bool EvaluateStateMachine
@@ -154,18 +116,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.FinishedState</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool FinishedState
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FinishedState");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "FinishedState", value);
-        }
-
-        /// <summary>
         /// Describes the Material that the Humanoid is currently standing on. If the Humanoid isn't standing on anything, the value of this property will be Air.
-        /// <para><b>Default:</b> <c>Air</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#FloorMaterial"/>
         public Enum.Material FloorMaterial
@@ -176,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the current health of the Humanoid on the range [0, Humanoid.MaxHealth].
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Health"/>
         public float Health
@@ -187,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Used in conjunction with the DisplayDistanceType property to control the distance from which a humanoid's health bar can be seen.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HealthDisplayDistance"/>
         public float HealthDisplayDistance
@@ -198,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls when the humanoid's health bar is allowed to be displayed.
-        /// <para><b>Default:</b> <c>DisplayWhenDamaged</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HealthDisplayType"/>
         public Enum.HumanoidHealthDisplayType HealthDisplayType
@@ -208,34 +156,13 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.Health_XML</c>
-        /// <para><b>Default:</b> <c>100</c></para>
-        /// </summary>
-        public float Health_XML
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Health_XML");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "Health_XML", value);
-        }
-
-        /// <summary>
         /// Determines the distance off the ground the Humanoid.RootPart should be.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HipHeight"/>
         public float HipHeight
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "HipHeight");
             set => global::Roblox.Reflection.SetProperty<float>(this, "HipHeight", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.InternalBodyScale</c>
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 InternalBodyScale
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "InternalBodyScale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "InternalBodyScale", value);
         }
 
         public string? InternalDisplayName
@@ -245,28 +172,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.InternalHeadScale</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
-        public float InternalHeadScale
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InternalHeadScale");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "InternalHeadScale", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.InternalOriginalHipHeight</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float InternalOriginalHipHeight
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InternalOriginalHipHeight");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "InternalOriginalHipHeight", value);
-        }
-
-        /// <summary>
         /// If true, the Humanoid jumps with an upwards force.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Jump"/>
         public bool Jump
@@ -277,7 +183,6 @@ namespace Roblox
 
         /// <summary>
         /// Provides control over the height that the Humanoid jumps to.
-        /// <para><b>Default:</b> <c>7.19999981</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#JumpHeight"/>
         public float JumpHeight
@@ -288,23 +193,12 @@ namespace Roblox
 
         /// <summary>
         /// Determines how much upwards force is applied to the Humanoid when jumping.
-        /// <para><b>Default:</b> <c>50</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#JumpPower"/>
         public float JumpPower
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "JumpPower");
             set => global::Roblox.Reflection.SetProperty<float>(this, "JumpPower", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.JumpReplicate</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool JumpReplicate
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "JumpReplicate");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "JumpReplicate", value);
         }
 
         /// <summary>
@@ -319,7 +213,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum value of a humanoid's Health.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MaxHealth"/>
         public float MaxHealth
@@ -330,7 +223,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum slope angle that a humanoid can walk on without slipping.
-        /// <para><b>Default:</b> <c>89</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MaxSlopeAngle"/>
         public float MaxSlopeAngle
@@ -341,7 +233,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the direction that the Humanoid is walking in.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MoveDirection"/>
         public global::System.Numerics.Vector3 MoveDirection
@@ -351,18 +242,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.MoveDirectionInternal</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 MoveDirectionInternal
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MoveDirectionInternal");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MoveDirectionInternal", value);
-        }
-
-        /// <summary>
         /// Used in conjunction with the Humanoid.DisplayDistanceType property to control the distance from which a humanoid's name can be seen.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#NameDisplayDistance"/>
         public float NameDisplayDistance
@@ -373,7 +253,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether a humanoid's name and health bar can be seen behind walls or other objects.
-        /// <para><b>Default:</b> <c>OccludeAll</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#NameOcclusion"/>
         public Enum.NameOcclusion NameOcclusion
@@ -383,38 +262,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.NetworkHumanoidState</c>
-        /// <para><b>Default:</b> <c>FallingDown</c></para>
-        /// </summary>
-        public Enum.HumanoidStateType NetworkHumanoidState
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidStateType>(this, "NetworkHumanoidState");
-            set => global::Roblox.Reflection.SetProperty<Enum.HumanoidStateType>(this, "NetworkHumanoidState", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.NoFloorTimerState</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float NoFloorTimerState
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "NoFloorTimerState");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "NoFloorTimerState", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.OverrideDefaultCollisions</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool OverrideDefaultCollisions
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "OverrideDefaultCollisions");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "OverrideDefaultCollisions", value);
-        }
-
-        /// <summary>
         /// Determines whether the Humanoid is currently in the HumanoidStateType.PlatformStanding state.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#PlatformStand"/>
         public bool PlatformStand
@@ -425,7 +273,6 @@ namespace Roblox
 
         /// <summary>
         /// Allows developers to disable the behavior where a player Character|character dies if the Neck Motor6D is removed or disconnected even momentarily.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RequiresNeck"/>
         public bool RequiresNeck
@@ -436,7 +283,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes whether this Humanoid is utilizing the legacy R6 character rig, or the new R15 character rig.
-        /// <para><b>Default:</b> <c>R6</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RigType"/>
         public Enum.HumanoidRigType RigType
@@ -466,16 +312,6 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.RotationType</c>
-        /// <para><b>Default:</b> <c>MovementRelative</c></para>
-        /// </summary>
-        public Enum.RotationType RotationType
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.RotationType>(this, "RotationType");
-            set => global::Roblox.Reflection.SetProperty<Enum.RotationType>(this, "RotationType", value);
-        }
-
-        /// <summary>
         /// A reference to the seat that a Humanoid is currently sitting in, if any.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#SeatPart"/>
@@ -487,7 +323,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes whether the Humanoid is currently sitting.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Sit"/>
         public bool Sit
@@ -497,34 +332,13 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.Strafe</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Strafe
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Strafe");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Strafe", value);
-        }
-
-        /// <summary>
         /// Describes the 3D position where the Player controlling the Humanoid last clicked in the world while using a Tool.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#TargetPoint"/>
         public global::System.Numerics.Vector3 TargetPoint
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "TargetPoint");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "TargetPoint", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.TimerState</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float TimerState
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TimerState");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "TimerState", value);
         }
 
         /// <summary>
@@ -539,7 +353,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the JumpHeight (false) or Humanoid.JumpPower (true) property is used.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#UseJumpPower"/>
         public bool UseJumpPower
@@ -549,28 +362,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Humanoid.WalkAngleError</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float WalkAngleError
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WalkAngleError");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "WalkAngleError", value);
-        }
-
-        /// <summary>
-        /// <c>Humanoid.WalkDirection</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 WalkDirection
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WalkDirection");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WalkDirection", value);
-        }
-
-        /// <summary>
         /// Describes the humanoid's maximum movement speed in studs per second.
-        /// <para><b>Default:</b> <c>16</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#WalkSpeed"/>
         public float WalkSpeed
@@ -591,7 +383,6 @@ namespace Roblox
 
         /// <summary>
         /// The position that a humanoid is trying to reach, after a call to Humanoid:MoveTo() is made.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#WalkToPoint"/>
         public global::System.Numerics.Vector3 WalkToPoint
@@ -961,200 +752,304 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Fires when an AnimationTrack begins playing on the Humanoid.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AnimationPlayed"/>
-        // public event Action? AnimationPlayed; // TODO: native event binding
+        public event Action<AnimationTrack?>? AnimationPlayed
+        {
+            add { if (value is not null) AddEventHandler("AnimationPlayed", value); }
+            remove { if (value is not null) RemoveEventHandler("AnimationPlayed", value); }
+        }
 
         /// <summary>
         /// <c>Humanoid.ApplyDescriptionFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="description">A <c>HumanoidDescription?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescriptionFinished"/>
-        // public event Action? ApplyDescriptionFinished; // TODO: native event binding
+        public event Action<HumanoidDescription?>? ApplyDescriptionFinished
+        {
+            add { if (value is not null) AddEventHandler("ApplyDescriptionFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("ApplyDescriptionFinished", value); }
+        }
 
         /// <summary>
         /// Fires when the speed at which a Humanoid is climbing changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="speed">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Climbing"/>
-        // public event Action? Climbing; // TODO: native event binding
+        public event Action<float>? Climbing
+        {
+            add { if (value is not null) AddEventHandler("Climbing", value); }
+            remove { if (value is not null) RemoveEventHandler("Climbing", value); }
+        }
 
         /// <summary>
         /// <c>Humanoid.ClusterCompositionFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ClusterCompositionFinished; // TODO: native event binding
+        public event Action? ClusterCompositionFinished
+        {
+            add { if (value is not null) AddEventHandler("ClusterCompositionFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("ClusterCompositionFinished", value); }
+        }
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is added to the Humanoid.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="status">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusAdded"/>
-        // public event Action? CustomStatusAdded; // TODO: native event binding
+        public event Action<string?>? CustomStatusAdded
+        {
+            add { if (value is not null) AddEventHandler("CustomStatusAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("CustomStatusAdded", value); }
+        }
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is removed from the Humanoid.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="status">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusRemoved"/>
-        // public event Action? CustomStatusRemoved; // TODO: native event binding
+        public event Action<string?>? CustomStatusRemoved
+        {
+            add { if (value is not null) AddEventHandler("CustomStatusRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("CustomStatusRemoved", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid dies.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Died"/>
-        // public event Action? Died; // TODO: native event binding
+        public event Action? Died
+        {
+            add { if (value is not null) AddEventHandler("Died", value); }
+            remove { if (value is not null) RemoveEventHandler("Died", value); }
+        }
 
         /// <summary>
         /// <c>Humanoid.EmoteTriggered</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? EmoteTriggered; // TODO: native event binding
+        /// <param name="success">A <c>bool</c> value.</param>
+        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
+        public event Action<bool, AnimationTrack?>? EmoteTriggered
+        {
+            add { if (value is not null) AddEventHandler("EmoteTriggered", value); }
+            remove { if (value is not null) RemoveEventHandler("EmoteTriggered", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the FallingDown HumanoidStateType.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#FallingDown"/>
-        // public event Action? FallingDown; // TODO: native event binding
+        public event Action<bool>? FallingDown
+        {
+            add { if (value is not null) AddEventHandler("FallingDown", value); }
+            remove { if (value is not null) RemoveEventHandler("FallingDown", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the Freefall HumanoidStateType.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#FreeFalling"/>
-        // public event Action? FreeFalling; // TODO: native event binding
+        public event Action<bool>? FreeFalling
+        {
+            add { if (value is not null) AddEventHandler("FreeFalling", value); }
+            remove { if (value is not null) RemoveEventHandler("FreeFalling", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the GettingUp HumanoidStateType.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GettingUp"/>
-        // public event Action? GettingUp; // TODO: native event binding
+        public event Action<bool>? GettingUp
+        {
+            add { if (value is not null) AddEventHandler("GettingUp", value); }
+            remove { if (value is not null) RemoveEventHandler("GettingUp", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid.Health changes (or when the Humanoid.MaxHealth is set).
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="health">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HealthChanged"/>
-        // public event Action? HealthChanged; // TODO: native event binding
+        public event Action<float>? HealthChanged
+        {
+            add { if (value is not null) AddEventHandler("HealthChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("HealthChanged", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid enters and leaves the Jumping HumanoidStateType.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Jumping"/>
-        // public event Action? Jumping; // TODO: native event binding
+        public event Action<bool>? Jumping
+        {
+            add { if (value is not null) AddEventHandler("Jumping", value); }
+            remove { if (value is not null) RemoveEventHandler("Jumping", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid finishes walking to a goal declared by Humanoid:MoveTo().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="reached">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MoveToFinished"/>
-        // public event Action? MoveToFinished; // TODO: native event binding
+        public event Action<bool>? MoveToFinished
+        {
+            add { if (value is not null) AddEventHandler("MoveToFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("MoveToFinished", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the PlatformStanding HumanoidStateType.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#PlatformStanding"/>
-        // public event Action? PlatformStanding; // TODO: native event binding
+        public event Action<bool>? PlatformStanding
+        {
+            add { if (value is not null) AddEventHandler("PlatformStanding", value); }
+            remove { if (value is not null) RemoveEventHandler("PlatformStanding", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the Ragdoll HumanoidStateType.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Ragdoll"/>
-        // public event Action? Ragdoll; // TODO: native event binding
+        public event Action<bool>? Ragdoll
+        {
+            add { if (value is not null) AddEventHandler("Ragdoll", value); }
+            remove { if (value is not null) RemoveEventHandler("Ragdoll", value); }
+        }
 
         /// <summary>
         /// Fires when the speed at which a Humanoid is running changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="speed">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Running"/>
-        // public event Action? Running; // TODO: native event binding
+        public event Action<float>? Running
+        {
+            add { if (value is not null) AddEventHandler("Running", value); }
+            remove { if (value is not null) RemoveEventHandler("Running", value); }
+        }
 
         /// <summary>
         /// Fired when a Humanoid either sits in a Seat or VehicleSeat or gets up.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
+        /// <param name="currentSeatPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Seated"/>
-        // public event Action? Seated; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Humanoid.ServerApplyDescription</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerApplyDescription; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Humanoid.ServerBreakJoints</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerBreakJoints; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Humanoid.ServerEquipTool</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerEquipTool; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Humanoid.ServerResetCharacter</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerResetCharacter; // TODO: native event binding
+        public event Action<bool, BasePart?>? Seated
+        {
+            add { if (value is not null) AddEventHandler("Seated", value); }
+            remove { if (value is not null) RemoveEventHandler("Seated", value); }
+        }
 
         /// <summary>
         /// Fires when the state of the Humanoid is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="old">A <c>Enum.HumanoidStateType</c> value.</param>
+        /// <param name="new">A <c>Enum.HumanoidStateType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StateChanged"/>
-        // public event Action? StateChanged; // TODO: native event binding
+        public event Action<Enum.HumanoidStateType, Enum.HumanoidStateType>? StateChanged
+        {
+            add { if (value is not null) AddEventHandler("StateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("StateChanged", value); }
+        }
 
         /// <summary>
         /// Fires when Humanoid:SetStateEnabled() is called on the Humanoid.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="state">A <c>Enum.HumanoidStateType</c> value.</param>
+        /// <param name="isEnabled">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StateEnabledChanged"/>
-        // public event Action? StateEnabledChanged; // TODO: native event binding
+        public event Action<Enum.HumanoidStateType, bool>? StateEnabledChanged
+        {
+            add { if (value is not null) AddEventHandler("StateEnabledChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("StateEnabledChanged", value); }
+        }
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is added to the Humanoid.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="status">A <c>Enum.Status</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StatusAdded"/>
-        // public event Action? StatusAdded; // TODO: native event binding
+        public event Action<Enum.Status>? StatusAdded
+        {
+            add { if (value is not null) AddEventHandler("StatusAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("StatusAdded", value); }
+        }
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is removed from the Humanoid.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="status">A <c>Enum.Status</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StatusRemoved"/>
-        // public event Action? StatusRemoved; // TODO: native event binding
+        public event Action<Enum.Status>? StatusRemoved
+        {
+            add { if (value is not null) AddEventHandler("StatusRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("StatusRemoved", value); }
+        }
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the StrafingNoPhysics HumanoidStateType.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Strafing"/>
-        // public event Action? Strafing; // TODO: native event binding
+        public event Action<bool>? Strafing
+        {
+            add { if (value is not null) AddEventHandler("Strafing", value); }
+            remove { if (value is not null) RemoveEventHandler("Strafing", value); }
+        }
 
         /// <summary>
         /// Fires when the speed at which a Humanoid is swimming in Terrain water changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="speed">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Swimming"/>
-        // public event Action? Swimming; // TODO: native event binding
+        public event Action<float>? Swimming
+        {
+            add { if (value is not null) AddEventHandler("Swimming", value); }
+            remove { if (value is not null) RemoveEventHandler("Swimming", value); }
+        }
 
         /// <summary>
         /// Fires when one of the humanoid's limbs come in contact with another BasePart.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchingPart">A <c>BasePart?</c> value.</param>
+        /// <param name="humanoidPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Touched"/>
-        // public event Action? Touched; // TODO: native event binding
+        public event Action<BasePart?, BasePart?>? Touched
+        {
+            add { if (value is not null) AddEventHandler("Touched", value); }
+            remove { if (value is not null) RemoveEventHandler("Touched", value); }
+        }
 
     }
 }

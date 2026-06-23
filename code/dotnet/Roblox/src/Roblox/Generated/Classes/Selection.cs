@@ -50,7 +50,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Selection.SelectionThickness</c>
+        /// The thickness of the selection highlight outline drawn around selected Instances in Roblox Studio's viewport.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#SelectionThickness"/>
         public float SelectionThickness
@@ -66,7 +66,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Selection.Add</c>
+        /// Adds the given Instances to the current selection in Roblox Studio.
         /// </summary>
         /// <param name="instancesToAdd">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -99,7 +99,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Get");
 
         /// <summary>
-        /// <c>Selection.Remove</c>
+        /// Removes the given Instances from the current selection in Roblox Studio.
         /// </summary>
         /// <param name="instancesToRemove">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -127,16 +127,24 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Instances selected in Roblox Studio changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#SelectionChanged"/>
-        // public event Action? SelectionChanged; // TODO: native event binding
+        public event Action? SelectionChanged
+        {
+            add { if (value is not null) AddEventHandler("SelectionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SelectionChanged", value); }
+        }
 
         /// <summary>
         /// <c>Selection.SelectionChangedThisFrame</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SelectionChangedThisFrame; // TODO: native event binding
+        public event Action? SelectionChangedThisFrame
+        {
+            add { if (value is not null) AddEventHandler("SelectionChangedThisFrame", value); }
+            remove { if (value is not null) RemoveEventHandler("SelectionChangedThisFrame", value); }
+        }
 
     }
 }

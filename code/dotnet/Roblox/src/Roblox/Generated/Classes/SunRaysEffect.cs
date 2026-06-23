@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the opacity of the sun rays.
-        /// <para><b>Default:</b> <c>0.25</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SunRaysEffect#Intensity"/>
         public float Intensity
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how wide the sun rays will spread out.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SunRaysEffect#Spread"/>
         public float Spread

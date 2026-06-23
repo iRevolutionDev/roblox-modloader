@@ -21,11 +21,5 @@ namespace Roblox
         public static PlayerHydrationService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerHydrationService(handle);
 
-        /// <summary>
-        /// <c>PlayerHydrationService.PlayerHydration</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlayerHydration; // TODO: native event binding
-
     }
 }

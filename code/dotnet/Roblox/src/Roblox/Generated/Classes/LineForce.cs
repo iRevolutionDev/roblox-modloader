@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether force is applied at the center of mass of the parent assembly.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// When true, the force magnitude is multiplied by the inverse square of the distance.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#InverseSquareLaw"/>
         public bool InverseSquareLaw
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The magnitude of the force.
-        /// <para><b>Default:</b> <c>1000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#Magnitude"/>
         public float Magnitude
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum absolute force that can be applied.
-        /// <para><b>Default:</b> <c>INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#MaxForce"/>
         public float MaxForce
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Enables an equal and opposite reaction force on the parent of Attachment1.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#ReactionForceEnabled"/>
         public bool ReactionForceEnabled

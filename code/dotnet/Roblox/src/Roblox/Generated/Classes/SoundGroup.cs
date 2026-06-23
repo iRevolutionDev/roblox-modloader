@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The volume multiplier applied to Sounds that are in the SoundGroup.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundGroup#Volume"/>
         public float Volume

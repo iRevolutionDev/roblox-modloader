@@ -577,107 +577,184 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<CatalogPages?>(this, "SearchCatalogAsync", searchParameters);
 
         /// <summary>
-        /// <c>AvatarEditorService.NotifyBustAvatarFetchCache</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? NotifyBustAvatarFetchCache; // TODO: native event binding
-
-        /// <summary>
         /// <c>AvatarEditorService.OpenAllowInventoryReadAccess</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenAllowInventoryReadAccess; // TODO: native event binding
+        public event Action? OpenAllowInventoryReadAccess
+        {
+            add { if (value is not null) AddEventHandler("OpenAllowInventoryReadAccess", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenAllowInventoryReadAccess", value); }
+        }
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptCreateOufit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenPromptCreateOufit; // TODO: native event binding
+        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
+        public event Action<HumanoidDescription?, Enum.HumanoidRigType>? OpenPromptCreateOufit
+        {
+            add { if (value is not null) AddEventHandler("OpenPromptCreateOufit", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenPromptCreateOufit", value); }
+        }
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptDeleteOutfit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenPromptDeleteOutfit; // TODO: native event binding
+        /// <param name="outfitId">A <c>long</c> value.</param>
+        public event Action<long>? OpenPromptDeleteOutfit
+        {
+            add { if (value is not null) AddEventHandler("OpenPromptDeleteOutfit", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenPromptDeleteOutfit", value); }
+        }
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptRenameOutfit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenPromptRenameOutfit; // TODO: native event binding
+        /// <param name="outfitId">A <c>long</c> value.</param>
+        public event Action<long>? OpenPromptRenameOutfit
+        {
+            add { if (value is not null) AddEventHandler("OpenPromptRenameOutfit", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenPromptRenameOutfit", value); }
+        }
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptSaveAvatar</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenPromptSaveAvatar; // TODO: native event binding
+        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
+        public event Action<HumanoidDescription?, Enum.HumanoidRigType>? OpenPromptSaveAvatar
+        {
+            add { if (value is not null) AddEventHandler("OpenPromptSaveAvatar", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenPromptSaveAvatar", value); }
+        }
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptSetFavorite</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenPromptSetFavorite; // TODO: native event binding
+        /// <param name="itemId">A <c>long</c> value.</param>
+        /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
+        /// <param name="shouldFavorite">A <c>bool</c> value.</param>
+        public event Action<long, Enum.AvatarItemType, bool>? OpenPromptSetFavorite
+        {
+            add { if (value is not null) AddEventHandler("OpenPromptSetFavorite", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenPromptSetFavorite", value); }
+        }
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptUpdateOutfit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenPromptUpdateOutfit; // TODO: native event binding
+        /// <param name="outfitId">A <c>long</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
+        public event Action<long, HumanoidDescription?, Enum.HumanoidRigType>? OpenPromptUpdateOutfit
+        {
+            add { if (value is not null) AddEventHandler("OpenPromptUpdateOutfit", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenPromptUpdateOutfit", value); }
+        }
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptAllowInventoryReadAccess() prompt is responded to by the user.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptAllowInventoryReadAccessCompleted"/>
-        // public event Action? PromptAllowInventoryReadAccessCompleted; // TODO: native event binding
+        public event Action<Enum.AvatarPromptResult>? PromptAllowInventoryReadAccessCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptAllowInventoryReadAccessCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptAllowInventoryReadAccessCompleted", value); }
+        }
 
         /// <summary>
         /// Fires when the PromptSaveOutfit operation is completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
+        /// <param name="failureType">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptCreateOutfitCompleted"/>
-        // public event Action? PromptCreateOutfitCompleted; // TODO: native event binding
+        public event Action<Enum.AvatarPromptResult, object?>? PromptCreateOutfitCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptCreateOutfitCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptCreateOutfitCompleted", value); }
+        }
 
         /// <summary>
         /// Fires when the PromptDeleteOutfit operation is completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptDeleteOutfitCompleted"/>
-        // public event Action? PromptDeleteOutfitCompleted; // TODO: native event binding
+        public event Action<Enum.AvatarPromptResult>? PromptDeleteOutfitCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptDeleteOutfitCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptDeleteOutfitCompleted", value); }
+        }
 
         /// <summary>
         /// Fires when the PromptRenameOutfit operation is completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptRenameOutfitCompleted"/>
-        // public event Action? PromptRenameOutfitCompleted; // TODO: native event binding
+        public event Action<Enum.AvatarPromptResult>? PromptRenameOutfitCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptRenameOutfitCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptRenameOutfitCompleted", value); }
+        }
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptSaveAvatar() operation is completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptSaveAvatarCompleted"/>
-        // public event Action? PromptSaveAvatarCompleted; // TODO: native event binding
+        public event Action<Enum.AvatarPromptResult, HumanoidDescription?>? PromptSaveAvatarCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptSaveAvatarCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptSaveAvatarCompleted", value); }
+        }
 
         /// <summary>
         /// <c>AvatarEditorService.PromptSaveAvatarThumbnailCustomizationCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PromptSaveAvatarThumbnailCustomizationCompleted; // TODO: native event binding
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
+        /// <param name="failureType">A <c>object?</c> value.</param>
+        public event Action<Enum.AvatarPromptResult, object?>? PromptSaveAvatarThumbnailCustomizationCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptSaveAvatarThumbnailCustomizationCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptSaveAvatarThumbnailCustomizationCompleted", value); }
+        }
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptSetFavorite() operation is completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptSetFavoriteCompleted"/>
-        // public event Action? PromptSetFavoriteCompleted; // TODO: native event binding
+        public event Action<Enum.AvatarPromptResult>? PromptSetFavoriteCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptSetFavoriteCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptSetFavoriteCompleted", value); }
+        }
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptUpdateOutfit() operation is completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptUpdateOutfitCompleted"/>
-        // public event Action? PromptUpdateOutfitCompleted; // TODO: native event binding
+        public event Action<Enum.AvatarPromptResult>? PromptUpdateOutfitCompleted
+        {
+            add { if (value is not null) AddEventHandler("PromptUpdateOutfitCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptUpdateOutfitCompleted", value); }
+        }
 
     }
 }

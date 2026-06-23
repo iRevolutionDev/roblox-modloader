@@ -25,40 +25,24 @@ namespace Roblox
         public static AnimationConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationConstraint(handle);
 
-        /// <summary>
-        /// <c>AnimationConstraint.AngularDamping</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float AngularDamping
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "AngularDamping");
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularDamping", value);
         }
 
-        /// <summary>
-        /// <c>AnimationConstraint.AngularStrength</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float AngularStrength
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "AngularStrength");
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularStrength", value);
         }
 
-        /// <summary>
-        /// <c>AnimationConstraint.C0</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
         public object? C0
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "C0");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "C0", value);
         }
 
-        /// <summary>
-        /// <c>AnimationConstraint.C1</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
         public object? C1
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "C1");
@@ -67,7 +51,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether the constraint is kinematic or physically simulated.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#IsKinematic"/>
         public bool IsKinematic
@@ -76,20 +59,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsKinematic", value);
         }
 
-        /// <summary>
-        /// <c>AnimationConstraint.LinearDamping</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float LinearDamping
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "LinearDamping");
             set => global::Roblox.Reflection.SetProperty<float>(this, "LinearDamping", value);
         }
 
-        /// <summary>
-        /// <c>AnimationConstraint.LinearStrength</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float LinearStrength
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "LinearStrength");
@@ -98,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum force magnitude the constraint can apply to achieve its goal.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#MaxForce"/>
         public float MaxForce
@@ -109,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum torque the constraint can apply to reach its goal.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#MaxTorque"/>
         public float MaxTorque
@@ -132,7 +105,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the current animation offset of the constraint joint.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#Transform"/>
         public object? Transform

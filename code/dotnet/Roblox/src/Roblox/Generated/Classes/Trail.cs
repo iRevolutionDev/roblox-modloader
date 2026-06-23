@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Scales the light emitted from the trail when LightInfluence is less than 1.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Brightness"/>
         public float Brightness
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The color of the trail throughout its lifetime.
-        /// <para><b>Default:</b> <c>0 1 1 1 0 1 1 1 1 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Color"/>
         public object? Color
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the trail will be drawn or not.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Enabled"/>
         public bool Enabled
@@ -80,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the trail will always face the camera, regardless of its orientation.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#FaceCamera"/>
         public bool FaceCamera
@@ -91,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how long each segment in a trail will last, in seconds.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Lifetime"/>
         public float Lifetime
@@ -102,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines to what degree the colors of the trail are blended with the colors behind it.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#LightEmission"/>
         public float LightEmission
@@ -113,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the degree to which the trail is influenced by the environment's lighting.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#LightInfluence"/>
         public float LightInfluence
@@ -124,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Trail.LocalTransparencyModifier</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -135,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the maximum length of the trail.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#MaxLength"/>
         public float MaxLength
@@ -146,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the minimum length of the trail.
-        /// <para><b>Default:</b> <c>0.100000001</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#MinLength"/>
         public float MinLength
@@ -173,7 +163,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the length of the trail's texture, dependent on TextureMode.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#TextureLength"/>
         public float TextureLength
@@ -184,7 +173,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the manner in which the Texture scales, repeats, and moves along with the trail's attachments.
-        /// <para><b>Default:</b> <c>Stretch</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#TextureMode"/>
         public Enum.TextureMode TextureMode
@@ -195,7 +183,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the transparency of the trail's segments over its Lifetime.
-        /// <para><b>Default:</b> <c>0 0.5 0 1 0.5 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Transparency"/>
         public object? Transparency
@@ -206,7 +193,6 @@ namespace Roblox
 
         /// <summary>
         /// Scales the width of the trail over the course of its lifetime.
-        /// <para><b>Default:</b> <c>0 1 0 1 1 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#WidthScale"/>
         public object? WidthScale
@@ -222,12 +208,6 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Clear"/>
         public object? Clear()
             => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
-
-        /// <summary>
-        /// <c>Trail.OnClearRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnClearRequested; // TODO: native event binding
 
     }
 }

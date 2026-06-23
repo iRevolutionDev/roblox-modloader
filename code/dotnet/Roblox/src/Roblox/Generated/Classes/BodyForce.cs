@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the force exerted on each axis.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyForce#Force"/>
         public global::System.Numerics.Vector3 Force

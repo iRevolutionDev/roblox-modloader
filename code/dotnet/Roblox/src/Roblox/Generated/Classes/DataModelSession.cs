@@ -39,15 +39,24 @@ namespace Roblox
 
         /// <summary>
         /// <c>DataModelSession.CurrentDataModelTypeAboutToChange</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CurrentDataModelTypeAboutToChange; // TODO: native event binding
+        /// <param name="dataModelType">A <c>Enum.StudioDataModelType</c> value.</param>
+        public event Action<Enum.StudioDataModelType>? CurrentDataModelTypeAboutToChange
+        {
+            add { if (value is not null) AddEventHandler("CurrentDataModelTypeAboutToChange", value); }
+            remove { if (value is not null) RemoveEventHandler("CurrentDataModelTypeAboutToChange", value); }
+        }
 
         /// <summary>
         /// <c>DataModelSession.CurrentDataModelTypeChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CurrentDataModelTypeChanged; // TODO: native event binding
+        public event Action? CurrentDataModelTypeChanged
+        {
+            add { if (value is not null) AddEventHandler("CurrentDataModelTypeChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("CurrentDataModelTypeChanged", value); }
+        }
 
     }
 }

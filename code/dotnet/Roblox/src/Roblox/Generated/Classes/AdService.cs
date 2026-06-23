@@ -196,112 +196,89 @@ namespace Roblox
 
         /// <summary>
         /// <c>AdService.AdTeleportEnded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AdTeleportEnded; // TODO: native event binding
+        public event Action? AdTeleportEnded
+        {
+            add { if (value is not null) AddEventHandler("AdTeleportEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("AdTeleportEnded", value); }
+        }
 
         /// <summary>
         /// <c>AdService.AdTeleportInitiated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AdTeleportInitiated; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.CampaignEligibilityResponseFailureSignalFromClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? CampaignEligibilityResponseFailureSignalFromClient; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.CampaignEligibilityResponseSuccessSignalFromClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? CampaignEligibilityResponseSuccessSignalFromClient; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.GetCampaignEligibilitySignalFromServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? GetCampaignEligibilitySignalFromServer; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.ReportImpressionSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReportImpressionSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.ReportTeleportSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReportTeleportSignal; // TODO: native event binding
+        public event Action? AdTeleportInitiated
+        {
+            add { if (value is not null) AddEventHandler("AdTeleportInitiated", value); }
+            remove { if (value is not null) RemoveEventHandler("AdTeleportInitiated", value); }
+        }
 
         /// <summary>
         /// <c>AdService.RewardedVideoAdEnded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RewardedVideoAdEnded; // TODO: native event binding
+        public event Action? RewardedVideoAdEnded
+        {
+            add { if (value is not null) AddEventHandler("RewardedVideoAdEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("RewardedVideoAdEnded", value); }
+        }
 
         /// <summary>
         /// <c>AdService.RewardedVideoAdStarted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RewardedVideoAdStarted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.ServeAdResponseSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServeAdResponseSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.ServeAdSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServeAdSignal; // TODO: native event binding
+        public event Action? RewardedVideoAdStarted
+        {
+            add { if (value is not null) AddEventHandler("RewardedVideoAdStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("RewardedVideoAdStarted", value); }
+        }
 
         /// <summary>
         /// <c>AdService.ShowDynamicEudsaDisclosure</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowDynamicEudsaDisclosure; // TODO: native event binding
+        /// <param name="advertiserName">A <c>string?</c> value.</param>
+        /// <param name="payerName">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? ShowDynamicEudsaDisclosure
+        {
+            add { if (value is not null) AddEventHandler("ShowDynamicEudsaDisclosure", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowDynamicEudsaDisclosure", value); }
+        }
 
         /// <summary>
         /// <c>AdService.ShowReportAdPopup</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowReportAdPopup; // TODO: native event binding
+        /// <param name="adInfo">A <c>object?</c> value.</param>
+        public event Action<object?>? ShowReportAdPopup
+        {
+            add { if (value is not null) AddEventHandler("ShowReportAdPopup", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowReportAdPopup", value); }
+        }
 
         /// <summary>
         /// Deprecated: VideoAdClosed has been decommissioned and is no longer operational.Fires when an AdService video closes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="adShown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#VideoAdClosed"/>
-        // public event Action? VideoAdClosed; // TODO: native event binding
+        public event Action<bool>? VideoAdClosed
+        {
+            add { if (value is not null) AddEventHandler("VideoAdClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("VideoAdClosed", value); }
+        }
 
         /// <summary>
         /// <c>AdService.adGuiRegisterUI</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AdGuiRegisterUI; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.rewardedVideoAdPlayServerToClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RewardedVideoAdPlayServerToClient; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.rewardedVideoAdPlayServerToClientWithPlacement</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RewardedVideoAdPlayServerToClientWithPlacement; // TODO: native event binding
-
-        /// <summary>
-        /// <c>AdService.rewardedVideoAdResultClientToServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RewardedVideoAdResultClientToServer; // TODO: native event binding
+        /// <param name="adGui">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? AdGuiRegisterUI
+        {
+            add { if (value is not null) AddEventHandler("adGuiRegisterUI", value); }
+            remove { if (value is not null) RemoveEventHandler("adGuiRegisterUI", value); }
+        }
 
         /// <summary>
         /// <c>AdService.OnImmersiveBrandedAdDisclosureButtonActivated</c>

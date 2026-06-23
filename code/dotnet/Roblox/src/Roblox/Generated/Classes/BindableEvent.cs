@@ -36,10 +36,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires when any script calls the Fire() method on the same BindableEvent instance.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="arguments">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BindableEvent#Event"/>
-        // public event Action? Event; // TODO: native event binding
+        public event Action<object?>? Event
+        {
+            add { if (value is not null) AddEventHandler("Event", value); }
+            remove { if (value is not null) RemoveEventHandler("Event", value); }
+        }
 
     }
 }

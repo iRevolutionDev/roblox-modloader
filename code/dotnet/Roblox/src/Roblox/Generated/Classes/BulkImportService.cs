@@ -38,21 +38,37 @@ namespace Roblox
 
         /// <summary>
         /// <c>BulkImportService.AssetImported</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AssetImported; // TODO: native event binding
+        /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
+        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="id">A <c>long</c> value.</param>
+        public event Action<Enum.AssetType, string?, long>? AssetImported
+        {
+            add { if (value is not null) AddEventHandler("AssetImported", value); }
+            remove { if (value is not null) RemoveEventHandler("AssetImported", value); }
+        }
 
         /// <summary>
         /// <c>BulkImportService.BulkImportFinished</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BulkImportFinished; // TODO: native event binding
+        /// <param name="state">A <c>int</c> value.</param>
+        public event Action<int>? BulkImportFinished
+        {
+            add { if (value is not null) AddEventHandler("BulkImportFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("BulkImportFinished", value); }
+        }
 
         /// <summary>
         /// <c>BulkImportService.BulkImportStarted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BulkImportStarted; // TODO: native event binding
+        public event Action? BulkImportStarted
+        {
+            add { if (value is not null) AddEventHandler("BulkImportStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("BulkImportStarted", value); }
+        }
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The CFrame in which the torque is expressed.
-        /// <para><b>Default:</b> <c>Attachment0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Torque#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The strength and direction of the torque.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Torque#Torque"/>
         public global::System.Numerics.Vector3 TorqueValue

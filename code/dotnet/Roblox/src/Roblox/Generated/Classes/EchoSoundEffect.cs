@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The amount of time between echoes.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#Delay"/>
         public float Delay
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The output volume of the original sound.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#DryLevel"/>
         public float DryLevel
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The echo decay every time the echo plays.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#Feedback"/>
         public float Feedback
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The output volume of the echoed effect.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#WetLevel"/>
         public float WetLevel

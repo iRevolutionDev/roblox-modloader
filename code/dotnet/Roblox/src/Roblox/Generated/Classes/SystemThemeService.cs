@@ -52,9 +52,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>SystemThemeService.OnLuaThemeUpdated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnLuaThemeUpdated; // TODO: native event binding
+        /// <param name="theme">A <c>Enum.SystemThemeValue</c> value.</param>
+        public event Action<Enum.SystemThemeValue>? OnLuaThemeUpdated
+        {
+            add { if (value is not null) AddEventHandler("OnLuaThemeUpdated", value); }
+            remove { if (value is not null) RemoveEventHandler("OnLuaThemeUpdated", value); }
+        }
 
     }
 }

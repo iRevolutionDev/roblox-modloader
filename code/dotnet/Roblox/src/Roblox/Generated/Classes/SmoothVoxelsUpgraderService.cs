@@ -41,9 +41,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>SmoothVoxelsUpgraderService.Status</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Status; // TODO: native event binding
+        /// <param name="progressRatio">A <c>float</c> value.</param>
+        public event Action<float>? Status
+        {
+            add { if (value is not null) AddEventHandler("Status", value); }
+            remove { if (value is not null) RemoveEventHandler("Status", value); }
+        }
 
     }
 }

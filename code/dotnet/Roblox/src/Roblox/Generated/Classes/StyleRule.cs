@@ -26,40 +26,13 @@ namespace Roblox
             => handle == 0 ? null : new StyleRule(handle);
 
         /// <summary>
-        /// <c>StyleRule.Index</c>
-        /// <para><b>Default:</b> <c>-1</c></para>
-        /// </summary>
-        public int Index
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Index");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "Index", value);
-        }
-
-        /// <summary>
         /// A number that determines how properties of the StyleRule apply relative to the same properties in other StyleRules. Higher priority values take precedence over lower.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#Priority"/>
         public int Priority
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Priority");
             set => global::Roblox.Reflection.SetProperty<int>(this, "Priority", value);
-        }
-
-        public byte[]? PropertiesSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "PropertiesSerialize");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "PropertiesSerialize", value);
-        }
-
-        /// <summary>
-        /// <c>StyleRule.PropertyTransitionsSerialize</c>
-        /// <para><b>Default:</b> <c></c></para>
-        /// </summary>
-        public byte[]? PropertyTransitionsSerialize
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "PropertyTransitionsSerialize");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "PropertyTransitionsSerialize", value);
         }
 
         /// <summary>
@@ -179,9 +152,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>StyleRule.StyleRulePropertyChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StyleRulePropertyChanged; // TODO: native event binding
+        /// <param name="styleProperty">A <c>string?</c> value.</param>
+        public event Action<string?>? StyleRulePropertyChanged
+        {
+            add { if (value is not null) AddEventHandler("StyleRulePropertyChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("StyleRulePropertyChanged", value); }
+        }
 
     }
 }

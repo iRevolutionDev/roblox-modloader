@@ -26,16 +26,6 @@ namespace Roblox
             => handle == 0 ? null : new ModuleScript(handle);
 
         /// <summary>
-        /// <c>ModuleScript.Confidential</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool Confidential
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Confidential");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "Confidential", value);
-        }
-
-        /// <summary>
         /// Deprecated: This property is now replaced by packages which has greater functionality.Used to store a URL that points to an online script source. Binds the online code to the script's Script.Source.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModuleScript#LinkedSource"/>
@@ -53,16 +43,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "Source");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Source", value);
-        }
-
-        /// <summary>
-        /// <c>ModuleScript.UnrestrictedRequireAllowed</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool UnrestrictedRequireAllowed
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UnrestrictedRequireAllowed");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "UnrestrictedRequireAllowed", value);
         }
 
     }

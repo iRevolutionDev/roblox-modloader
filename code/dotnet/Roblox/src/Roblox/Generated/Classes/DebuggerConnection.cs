@@ -205,33 +205,60 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnection.BreakpointAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BreakpointAdded; // TODO: native event binding
+        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
+        public event Action<Breakpoint?>? BreakpointAdded
+        {
+            add { if (value is not null) AddEventHandler("BreakpointAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("BreakpointAdded", value); }
+        }
 
         /// <summary>
         /// <c>DebuggerConnection.BreakpointChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BreakpointChanged; // TODO: native event binding
+        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
+        public event Action<Breakpoint?>? BreakpointChanged
+        {
+            add { if (value is not null) AddEventHandler("BreakpointChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("BreakpointChanged", value); }
+        }
 
         /// <summary>
         /// <c>DebuggerConnection.BreakpointRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BreakpointRemoved; // TODO: native event binding
+        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
+        /// <param name="reason">A <c>Enum.BreakpointRemoveReason</c> value.</param>
+        public event Action<Breakpoint?, Enum.BreakpointRemoveReason>? BreakpointRemoved
+        {
+            add { if (value is not null) AddEventHandler("BreakpointRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("BreakpointRemoved", value); }
+        }
 
         /// <summary>
         /// <c>DebuggerConnection.Paused</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Paused; // TODO: native event binding
+        /// <param name="pausedState">A <c>PausedState?</c> value.</param>
+        /// <param name="reason">A <c>Enum.DebuggerPauseReason</c> value.</param>
+        public event Action<PausedState?, Enum.DebuggerPauseReason>? Paused
+        {
+            add { if (value is not null) AddEventHandler("Paused", value); }
+            remove { if (value is not null) RemoveEventHandler("Paused", value); }
+        }
 
         /// <summary>
         /// <c>DebuggerConnection.Resumed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Resumed; // TODO: native event binding
+        /// <param name="pausedState">A <c>PausedState?</c> value.</param>
+        public event Action<PausedState?>? Resumed
+        {
+            add { if (value is not null) AddEventHandler("Resumed", value); }
+            remove { if (value is not null) RemoveEventHandler("Resumed", value); }
+        }
 
     }
 }

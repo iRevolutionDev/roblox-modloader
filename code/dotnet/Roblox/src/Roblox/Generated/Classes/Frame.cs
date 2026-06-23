@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets what the frame looks like from a selection of pre-determined styles.
-        /// <para><b>Default:</b> <c>Custom</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Frame#Style"/>
         public Enum.FrameStyle Style

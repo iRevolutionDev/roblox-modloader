@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the angular motion of attachments' primary axes is limited.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The max angle, in degrees, of the constraint's limiting cone.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#MaxAngle"/>
         public float MaxAngle
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The constraint's visualization radius.
-        /// <para><b>Default:</b> <c>0.200000003</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#Radius"/>
         public float Radius
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The restitution coefficient of the cone constraint.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#Restitution"/>
         public float Restitution

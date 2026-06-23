@@ -21,10 +21,6 @@ namespace Roblox
         public static LiveSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new LiveSyncService(handle);
 
-        /// <summary>
-        /// <c>LiveSyncService.HasSyncedInstances</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool HasSyncedInstances
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSyncedInstances");
@@ -41,9 +37,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>LiveSyncService.SyncStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SyncStatusChanged; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? SyncStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("SyncStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SyncStatusChanged", value); }
+        }
 
     }
 }

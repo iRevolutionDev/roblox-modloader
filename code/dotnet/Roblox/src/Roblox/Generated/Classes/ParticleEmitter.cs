@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the global-axis acceleration of all active particles, measured in studs per second squared.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Acceleration"/>
         public global::System.Numerics.Vector3 Acceleration
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Scales the light emitted from the emitter when ParticleEmitter.LightInfluence is 0.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Brightness"/>
         public float Brightness
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of all active particles over their individual lifetimes.
-        /// <para><b>Default:</b> <c>0 1 1 1 0 1 1 1 1 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Color"/>
         public object? Color
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the rate at which particles will lose half their speed through exponential decay.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Drag"/>
         public float Drag
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the face of the object that particles emit from.
-        /// <para><b>Default:</b> <c>Top</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#EmissionDirection"/>
         public Enum.NormalId EmissionDirection
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if particles emit from the emitter.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Enabled"/>
         public bool Enabled
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the flipbook frames are blended between.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookBlendFrames"/>
         public bool FlipbookBlendFrames
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how fast the flipbook texture animates in frames per second.
-        /// <para><b>Default:</b> <c>1 1 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookFramerate"/>
         public object? FlipbookFramerate
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The error message to display if the Texture is incompatible for a flipbook.
-        /// <para><b>Default:</b> <c>Particle texture must be 1024 by 1024 to use flipbooks.</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookIncompatible"/>
         public string? FlipbookIncompatible
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the layout of the flipbook texture. Must be None, Grid2x2, Grid4x4, Grid8x8 or Custom.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookLayout"/>
         public Enum.ParticleFlipbookLayout FlipbookLayout
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the type of the flipbook animation. Must be Loop, OneShot, PingPong, or Random.
-        /// <para><b>Default:</b> <c>Loop</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookMode"/>
         public Enum.ParticleFlipbookMode FlipbookMode
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines the number of horizontal frames in a custom flipbook layout.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookSizeX"/>
         public int FlipbookSizeX
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines the number of vertical frames in a custom flipbook layout.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookSizeY"/>
         public int FlipbookSizeY
@@ -170,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the animation starts at a random frame chosen per particle instead of always starting at frame zero.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookStartRandom"/>
         public bool FlipbookStartRandom
@@ -181,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Defines a random range of ages for newly emitted particles.
-        /// <para><b>Default:</b> <c>5 10 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Lifetime"/>
         public object? Lifetime
@@ -192,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how much particles' colors are blended with the colors behind them.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LightEmission"/>
         public float LightEmission
@@ -203,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how much particles are influenced by the environmental light.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LightInfluence"/>
         public float LightInfluence
@@ -214,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ParticleEmitter.LocalTransparencyModifier</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -225,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the particles rigidly move with the part they're being emitted from.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LockedToPart"/>
         public bool LockedToPart
@@ -236,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies how to orient particles.
-        /// <para><b>Default:</b> <c>FacingCamera</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Orientation"/>
         public Enum.ParticleOrientation Orientation
@@ -247,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the number of particles emitted per second.
-        /// <para><b>Default:</b> <c>20</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Rate"/>
         public float Rate
@@ -258,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the range of angular speeds of emitted particles, measured in degrees per second.
-        /// <para><b>Default:</b> <c>0 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#RotSpeed"/>
         public object? RotSpeed
@@ -269,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the range of rotations in degrees for newly emitted particles.
-        /// <para><b>Default:</b> <c>0 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Rotation"/>
         public object? Rotation
@@ -280,7 +257,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the shape of the emitter to either a box, sphere, cylinder, or disc.
-        /// <para><b>Default:</b> <c>Box</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Shape"/>
         public Enum.ParticleEmitterShape Shape
@@ -291,7 +267,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether particles emit outward only, inward only, or in both directions.
-        /// <para><b>Default:</b> <c>Outward</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ShapeInOut"/>
         public Enum.ParticleEmitterShapeInOut ShapeInOut
@@ -302,7 +277,6 @@ namespace Roblox
 
         /// <summary>
         /// Influences particle emission from cylinder, disc, sphere, and box shapes.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ShapePartial"/>
         public float ShapePartial
@@ -313,7 +287,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets particle emission to either volumetric or surface-only emission.
-        /// <para><b>Default:</b> <c>Volume</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ShapeStyle"/>
         public Enum.ParticleEmitterShapeStyle ShapeStyle
@@ -324,7 +297,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the world size over individual particles' lifetimes.
-        /// <para><b>Default:</b> <c>0 1 0 1 1 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Size"/>
         public object? Size
@@ -335,7 +307,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines a random range of velocities (minimum to maximum) at which new particles will emit, measured in studs per second.
-        /// <para><b>Default:</b> <c>5 5 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Speed"/>
         public object? Speed
@@ -346,7 +317,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the angles at which particles may be randomly emit, measured in degrees.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#SpreadAngle"/>
         public global::System.Numerics.Vector2 SpreadAngle
@@ -357,7 +327,6 @@ namespace Roblox
 
         /// <summary>
         /// Allows for non-uniform scaling of particles, curve-controlled over their lifetime.
-        /// <para><b>Default:</b> <c>0 0 0 1 0 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Squash"/>
         public object? Squash
@@ -368,7 +337,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the image rendered on particles.
-        /// <para><b>Default:</b> <c>rbxasset://textures/particles/sparkles_main.dds</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Texture"/>
         public object? Texture
@@ -385,7 +353,6 @@ namespace Roblox
 
         /// <summary>
         /// Value between 0 and 1 that controls the speed of the particle effect.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#TimeScale"/>
         public float TimeScale
@@ -396,7 +363,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of particles over their individual lifetimes.
-        /// <para><b>Default:</b> <c>0 0 0 1 0 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Transparency"/>
         public object? Transparency
@@ -407,7 +373,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how much of the parent's velocity is inherited by particles when emitted.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#VelocityInheritance"/>
         public float VelocityInheritance
@@ -418,7 +383,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property has been superseded by ParticleEmitter.SpreadAngle which should be used in all new work.Determines how offset a particle can be fired from the local emitter direction of its parent.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#VelocitySpread"/>
         public float VelocitySpread
@@ -429,7 +393,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether emitted particles follow the Workspace.GlobalWind vector.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#WindAffectsDrag"/>
         public bool WindAffectsDrag
@@ -440,7 +403,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the forward-backward render position of particles; used to control what particles render on top/bottom.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ZOffset"/>
         public float ZOffset
@@ -473,18 +435,6 @@ namespace Roblox
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         public object? FastForward(int numFrames)
             => global::Roblox.Reflection.Invoke<object?>(this, "FastForward", numFrames);
-
-        /// <summary>
-        /// <c>ParticleEmitter.OnClearRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnClearRequested; // TODO: native event binding
-
-        /// <summary>
-        /// <c>ParticleEmitter.OnEmitRequested</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnEmitRequested; // TODO: native event binding
 
     }
 }

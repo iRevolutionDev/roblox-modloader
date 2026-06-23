@@ -60,21 +60,37 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnectionManager.ConnectionEnded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ConnectionEnded; // TODO: native event binding
+        /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
+        /// <param name="reason">A <c>Enum.DebuggerEndReason</c> value.</param>
+        public event Action<DebuggerConnection?, Enum.DebuggerEndReason>? ConnectionEnded
+        {
+            add { if (value is not null) AddEventHandler("ConnectionEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("ConnectionEnded", value); }
+        }
 
         /// <summary>
         /// <c>DebuggerConnectionManager.ConnectionStarted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ConnectionStarted; // TODO: native event binding
+        /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
+        public event Action<DebuggerConnection?>? ConnectionStarted
+        {
+            add { if (value is not null) AddEventHandler("ConnectionStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("ConnectionStarted", value); }
+        }
 
         /// <summary>
         /// <c>DebuggerConnectionManager.FocusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FocusChanged; // TODO: native event binding
+        /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
+        public event Action<DebuggerConnection?>? FocusChanged
+        {
+            add { if (value is not null) AddEventHandler("FocusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("FocusChanged", value); }
+        }
 
     }
 }

@@ -72,17 +72,27 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the computed path becomes blocked.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="blockedWaypointIdx">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#Blocked"/>
-        // public event Action? Blocked; // TODO: native event binding
+        public event Action<int>? Blocked
+        {
+            add { if (value is not null) AddEventHandler("Blocked", value); }
+            remove { if (value is not null) RemoveEventHandler("Blocked", value); }
+        }
 
         /// <summary>
         /// Fires when a computed path that was blocked becomes unblocked.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="unblockedWaypointIdx">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#Unblocked"/>
-        // public event Action? Unblocked; // TODO: native event binding
+        public event Action<int>? Unblocked
+        {
+            add { if (value is not null) AddEventHandler("Unblocked", value); }
+            remove { if (value is not null) RemoveEventHandler("Unblocked", value); }
+        }
 
     }
 }

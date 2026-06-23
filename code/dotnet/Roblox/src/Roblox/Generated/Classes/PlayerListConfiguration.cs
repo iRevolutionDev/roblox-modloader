@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PlayerListConfiguration.Open</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerListConfiguration#Open"/>
         public bool Open

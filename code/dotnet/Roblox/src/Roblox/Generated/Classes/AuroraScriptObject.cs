@@ -45,12 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "LODLevel", value);
         }
 
-        public int MaxFrequency
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxFrequency");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "MaxFrequency", value);
-        }
-
         public int PriorFrameInvoked
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "PriorFrameInvoked");

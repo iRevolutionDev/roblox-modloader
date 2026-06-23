@@ -26,10 +26,11 @@ namespace Roblox
             => handle == 0 ? null : new UserService(handle);
 
         /// <summary>
-        /// <c>UserService.GetUserFromGlobalUserIdAsync</c>
+        /// Returns a User for the given global user ID within the current experience.
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserService#GetUserFromGlobalUserIdAsync"/>
         public object? GetUserFromGlobalUserIdAsync(long userId)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetUserFromGlobalUserIdAsync", userId);
 

@@ -21,11 +21,5 @@ namespace Roblox
         public static SlimReplicationService? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimReplicationService(handle);
 
-        /// <summary>
-        /// <c>SlimReplicationService.ServerUpdateEntities</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerUpdateEntities; // TODO: native event binding
-
     }
 }

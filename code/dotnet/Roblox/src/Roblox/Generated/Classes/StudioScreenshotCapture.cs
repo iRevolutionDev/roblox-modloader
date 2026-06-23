@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioScreenshotCapture.BufferFormat</c>
-        /// <para><b>Default:</b> <c>RGBA8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#BufferFormat"/>
         public Enum.StudioCaptureScreenshotFormat BufferFormat
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioScreenshotCapture.BufferStatus</c>
-        /// <para><b>Default:</b> <c>NotStarted</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#BufferStatus"/>
         public Enum.StudioCaptureBufferStatus BufferStatus
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioScreenshotCapture.OriginalSize</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#OriginalSize"/>
         public global::System.Numerics.Vector2 OriginalSize
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioScreenshotCapture.Position</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#Position"/>
         public global::System.Numerics.Vector2 Position
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioScreenshotCapture.Resolution</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#Resolution"/>
         public global::System.Numerics.Vector2 Resolution
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioScreenshotCapture.UICaptureMode</c>
-        /// <para><b>Default:</b> <c>All</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#UICaptureMode"/>
         public Enum.UICaptureMode UICaptureMode

@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Enables a path to traverse a link in both directions. The default value is true.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingLink#IsBidirectional"/>
         public bool IsBidirectional

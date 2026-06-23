@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the player's current screen orientation.
-        /// <para><b>Default:</b> <c>LandscapeLeft</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#CurrentScreenOrientation"/>
         public Enum.ScreenOrientation CurrentScreenOrientation
@@ -36,15 +35,8 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.ScreenOrientation>(this, "CurrentScreenOrientation", value);
         }
 
-        public byte[]? InputBindingMappingsRaw
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "InputBindingMappingsRaw");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "InputBindingMappingsRaw", value);
-        }
-
         /// <summary>
         /// Sets the preferred screen orientation mode for this player, if on a mobile device.
-        /// <para><b>Default:</b> <c>LandscapeSensor</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#ScreenOrientation"/>
         public Enum.ScreenOrientation ScreenOrientation
@@ -82,10 +74,15 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Fires when the transparency of the Topbar CoreGui changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="transparency">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#TopbarTransparencyChangedSignal"/>
-        // public event Action? TopbarTransparencyChangedSignal; // TODO: native event binding
+        public event Action<float>? TopbarTransparencyChangedSignal
+        {
+            add { if (value is not null) AddEventHandler("TopbarTransparencyChangedSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("TopbarTransparencyChangedSignal", value); }
+        }
 
     }
 }

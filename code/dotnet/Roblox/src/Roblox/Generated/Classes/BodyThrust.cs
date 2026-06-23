@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the amount of force exerted on each axis relative to the assembly.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyThrust#Force"/>
         public global::System.Numerics.Vector3 Force
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the relative position where the Force is exerted.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyThrust#Location"/>
         public global::System.Numerics.Vector3 Location

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// A JSON formatted array of Layered clothing where each table in the entry in the array describes an accessory's AssetId, AccessoryType, Order, and (optionally) Puffiness as key-value pairs.
-        /// <para><b>Default:</b> <c>[]</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#AccessoryBlob"/>
         public string? AccessoryBlob
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the factor by which the shape of a Humanoid is interpolated from the standard R15 body shape (0) to a taller and more slender body type (1).
-        /// <para><b>Default:</b> <c>0.300000012</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#BodyTypeScale"/>
         public float BodyTypeScale
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// When this description is applied to a Humanoid, this determines the Animation.AnimationId to play when its state is Climbing.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#ClimbAnimation"/>
         public long ClimbAnimation
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines by what factor the depth (back-to-front distance) of a Humanoid is scaled.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#DepthScale"/>
         public float DepthScale
@@ -79,21 +75,8 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "DepthScale", value);
         }
 
-        public string? EmotesDataInternal
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EmotesDataInternal");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EmotesDataInternal", value);
-        }
-
-        public string? EquippedEmotesDataInternal
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EquippedEmotesDataInternal");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EquippedEmotesDataInternal", value);
-        }
-
         /// <summary>
         /// Determines the asset ID of the Face to be applied to the Humanoid.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Face"/>
         public long Face
@@ -114,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// When this description is applied to a Humanoid, this determines the Animation.AnimationId to play when its state is Freefall.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#FallAnimation"/>
         public long FallAnimation
@@ -135,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the Graphic used by a ShirtGraphic.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#GraphicTShirt"/>
         public long GraphicTShirt
@@ -166,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the asset ID of the Head to be applied to the Humanoid.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Head"/>
         public long Head
@@ -177,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the BodyColors.HeadColor3 and BodyColors.HeadColor of a Humanoid when applied.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HeadColor"/>
         public object? HeadColor
@@ -188,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines by what factor the Head object of a Humanoid is scaled, as well as any accessories attached to it.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HeadScale"/>
         public float HeadScale
@@ -199,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines by what factor the height (top-to-bottom distance) of a Humanoid is scaled, as well as all accessories not attached to its head.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HeightScale"/>
         public float HeightScale
@@ -210,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// When this description is applied to a Humanoid, this determines the Animation.AnimationId to play when its state is Running at a speed near zero.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#IdleAnimation"/>
         public long IdleAnimation
@@ -221,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// When this description is applied to a Humanoid, this determines the Animation.AnimationId to play when its state is Jumping.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#JumpAnimation"/>
         public long JumpAnimation
@@ -232,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the asset ID of the LeftArm to be applied to the Humanoid.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftArm"/>
         public long LeftArm
@@ -243,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the BodyColors.LeftArmColor3 and BodyColors.LeftArmColor of a Humanoid when applied.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftArmColor"/>
         public object? LeftArmColor
@@ -254,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the asset ID of the LeftLeg to be applied to the Humanoid.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftLeg"/>
         public long LeftLeg
@@ -265,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the BodyColors.LeftLegColor3 and BodyColors.LeftLegColor of a Humanoid when applied.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftLegColor"/>
         public object? LeftLegColor
@@ -276,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidDescription.MoodAnimation</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#MoodAnimation"/>
         public long MoodAnimation
@@ -295,10 +265,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "NeckAccessory", value);
         }
 
-        /// <summary>
-        /// <c>HumanoidDescription.NumberEmotesLoaded</c>
-        /// <para><b>Default:</b> <c>-1</c></para>
-        /// </summary>
         public int NumberEmotesLoaded
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "NumberEmotesLoaded");
@@ -307,7 +273,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the PantsTemplate used by a Pants instance.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Pants"/>
         public long Pants
@@ -318,7 +283,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how wide (0) or narrow (1) a Humanoid rig is.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#ProportionScale"/>
         public float ProportionScale
@@ -327,10 +291,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "ProportionScale", value);
         }
 
-        /// <summary>
-        /// <c>HumanoidDescription.ResetIncludesBodyParts</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool ResetIncludesBodyParts
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetIncludesBodyParts");
@@ -339,7 +299,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the asset ID of the RightArm to be applied to the Humanoid.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightArm"/>
         public long RightArm
@@ -350,7 +309,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the BodyColors.RightArmColor3 and BodyColors.RightArmColor of a Humanoid when applied.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightArmColor"/>
         public object? RightArmColor
@@ -361,7 +319,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the asset ID of the RightLeg to be applied to the Humanoid.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightLeg"/>
         public long RightLeg
@@ -372,7 +329,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the BodyColors.RightLegColor3 and BodyColors.RightLegColor of a Humanoid when applied.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightLegColor"/>
         public object? RightLegColor
@@ -383,7 +339,6 @@ namespace Roblox
 
         /// <summary>
         /// When this description is applied to a Humanoid, this determines the Animation.AnimationId to play when its state is Running at a moderate speed.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RunAnimation"/>
         public long RunAnimation
@@ -394,7 +349,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the ShirtTemplate used by a Shirt instance.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Shirt"/>
         public long Shirt
@@ -415,7 +369,6 @@ namespace Roblox
 
         /// <summary>
         /// When true, disables facial animations on a Dynamic Head, displaying a static mood pose instead. Defaults to false.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#StaticFacialAnimation"/>
         public bool StaticFacialAnimation
@@ -426,7 +379,6 @@ namespace Roblox
 
         /// <summary>
         /// When this description is applied to a Humanoid, this determines the Animation.AnimationId to play when its state is Swimming.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#SwimAnimation"/>
         public long SwimAnimation
@@ -437,7 +389,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the asset ID of the Torso to be applied to the Humanoid.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Torso"/>
         public long Torso
@@ -448,7 +399,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the BodyColors.TorsoColor3 and BodyColors.TorsoColor of a Humanoid when applied.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#TorsoColor"/>
         public object? TorsoColor
@@ -459,7 +409,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidDescription.UseAvatarSettings</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#UseAvatarSettings"/>
         public bool UseAvatarSettings
@@ -480,7 +429,6 @@ namespace Roblox
 
         /// <summary>
         /// When this description is applied to a Humanoid, this determines the Animation.AnimationId to play when its state is Running at a low speed.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#WalkAnimation"/>
         public long WalkAnimation
@@ -491,7 +439,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines by what factor the width (left-to-right distance) of a Humanoid is scaled, as well as all accessories not attached to its head.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#WidthScale"/>
         public float WidthScale
@@ -574,17 +521,27 @@ namespace Roblox
 
         /// <summary>
         /// Fires when emotes are added, removed or set on this description.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="newEmotes">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#EmotesChanged"/>
-        // public event Action? EmotesChanged; // TODO: native event binding
+        public event Action<object?>? EmotesChanged
+        {
+            add { if (value is not null) AddEventHandler("EmotesChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("EmotesChanged", value); }
+        }
 
         /// <summary>
         /// Fires when the equipped emotes are set on this description.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="newEquippedEmotes">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#EquippedEmotesChanged"/>
-        // public event Action? EquippedEmotesChanged; // TODO: native event binding
+        public event Action<object?>? EquippedEmotesChanged
+        {
+            add { if (value is not null) AddEventHandler("EquippedEmotesChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("EquippedEmotesChanged", value); }
+        }
 
     }
 }

@@ -93,9 +93,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>PartyEmulatorService.ConfigurationChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ConfigurationChanged; // TODO: native event binding
+        /// <param name="configuration">A <c>object?</c> value.</param>
+        public event Action<object?>? ConfigurationChanged
+        {
+            add { if (value is not null) AddEventHandler("ConfigurationChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ConfigurationChanged", value); }
+        }
 
     }
 }

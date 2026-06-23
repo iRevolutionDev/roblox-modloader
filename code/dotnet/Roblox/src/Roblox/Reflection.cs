@@ -132,41 +132,52 @@ public static unsafe class Reflection
 
     private static T? ConvertResult<T>(InteropVariant variant)
     {
-        Type t = typeof(T);
+        var converted = ConvertResult(variant, typeof(T), true);
+        return converted is null ? default : (T)converted;
+    }
 
+    internal static object? ConvertVariant(InteropVariant variant, Type targetType)
+        => ConvertResult(variant, targetType, false);
+
+    internal static object? ConvertResult(InteropVariant variant, Type t, bool freeNativeResources)
+    {
         if (variant.Tag == InteropVariant.Tags.Null)
         {
-            return default;
+            return null;
         }
 
         if (t == typeof(string))
         {
             if (variant.Tag != InteropVariant.Tags.String)
             {
-                return default;
+                return null;
             }
 
             var ptr = new IntPtr((long)variant.AsPointer);
             if (ptr == IntPtr.Zero)
             {
-                return default;
+                return null;
             }
 
             var s = Marshal.PtrToStringUTF8(ptr);
-            Interop.FreeNativeString(ptr);
-            return (T)((object?)s)!;
+            if (freeNativeResources)
+            {
+                Interop.FreeNativeString(ptr);
+            }
+
+            return s;
         }
 
         if (variant.Tag == InteropVariant.Tags.InstanceArray)
         {
             if (variant.AsPointer == 0)
             {
-                return default;
+                return null;
             }
 
             var buf = (byte*)variant.AsPointer;
             var count = *(uint*)buf;
-            var handles = (nuint*)(buf + (sizeof(uint) * 2) + sizeof(nuint));
+            var handles = (nuint*)(buf + sizeof(ulong));
 
             var list = new List<Instance>((int)count);
             for (var i = 0u; i < count; i++)
@@ -180,37 +191,40 @@ public static unsafe class Reflection
                 list.Add(new Instance(handle));
             }
 
-            Interop.FreeNativeArray((nint)variant.AsPointer);
+            if (freeNativeResources)
+            {
+                Interop.FreeNativeArray((nint)variant.AsPointer);
+            }
 
             if (t == typeof(Instance[]) || (t.IsArray && t.GetElementType() == typeof(Instance)))
             {
-                return (T)(object)list.ToArray();
+                return list.ToArray();
             }
 
             if (t.IsAssignableFrom(typeof(List<Instance>)))
             {
-                return (T)(object)list;
+                return list;
             }
 
-            return default;
+            return null;
         }
 
         if (typeof(Object).IsAssignableFrom(t))
         {
             if (variant.Tag != InteropVariant.Tags.Instance)
             {
-                return default;
+                return null;
             }
 
             var handle = variant.AsPointer;
             if (handle == 0)
             {
-                return default;
+                return null;
             }
 
             if (t == typeof(Object))
             {
-                return (T)(object)new Object(handle);
+                return new Object(handle);
             }
 
             MethodInfo? fromHandle = t.GetMethod("FromHandle",
@@ -221,74 +235,71 @@ public static unsafe class Reflection
 
             if (fromHandle != null)
             {
-                var result = fromHandle.Invoke(null, new object[] { handle });
-                return result is null ? default! : (T)result;
+                return fromHandle.Invoke(null, new object[] { handle });
             }
 
-            return (T)(object)new Object(handle);
+            return new Object(handle);
         }
 
         if (t == typeof(bool))
         {
             return variant.Tag == InteropVariant.Tags.Bool
-                ? (T)(object)variant.AsBool
-                : (T)(object)(variant.AsUInt64 != 0);
+                ? variant.AsBool
+                : variant.AsUInt64 != 0;
         }
 
         if (t == typeof(double))
         {
             if (variant.Tag == InteropVariant.Tags.Double)
             {
-                return (T)(object)variant.AsDouble;
+                return variant.AsDouble;
             }
 
             if (variant.Tag == InteropVariant.Tags.Float)
             {
-                return (T)(object)(double)variant.AsFloat;
+                return (double)variant.AsFloat;
             }
 
-            return (T)(object)BitConverter.Int64BitsToDouble(variant.AsInt64);
+            return BitConverter.Int64BitsToDouble(variant.AsInt64);
         }
 
         if (t == typeof(float))
         {
             if (variant.Tag == InteropVariant.Tags.Float)
             {
-                return (T)(object)variant.AsFloat;
+                return variant.AsFloat;
             }
 
-            return (T)(object)BitConverter.Int32BitsToSingle((int)(uint)variant.AsUInt64);
+            return BitConverter.Int32BitsToSingle((int)(uint)variant.AsUInt64);
         }
 
         if (t.IsEnum)
         {
             var underlying = Convert.ChangeType(variant.AsUInt64, System.Enum.GetUnderlyingType(t));
-            return (T)System.Enum.ToObject(t, underlying);
+            return System.Enum.ToObject(t, underlying);
         }
 
         if (t == typeof(object))
         {
-            return (T)(object)variant.AsUInt64;
+            return variant.AsUInt64;
         }
 
         if (t == typeof(byte) || t == typeof(sbyte) || t == typeof(short) || t == typeof(ushort) ||
             t == typeof(int) || t == typeof(uint) || t == typeof(long) || t == typeof(ulong) ||
             t == typeof(nint) || t == typeof(nuint))
         {
-            object boxed = variant.AsUInt64;
-            return (T)Convert.ChangeType(boxed, t);
+            return Convert.ChangeType(variant.AsUInt64, t);
         }
 
         Type? nullableUnderlying = Nullable.GetUnderlyingType(t);
         if (nullableUnderlying != null)
         {
-            var boxed = Convert.ChangeType(variant.AsUInt64, nullableUnderlying);
-            return (T)boxed;
+            return ConvertResult(variant, nullableUnderlying, freeNativeResources);
         }
 
         try
         {
-            return (T)Convert.ChangeType(variant.AsUInt64, t);
+            return Convert.ChangeType(variant.AsUInt64, t);
         }
         catch (Exception ex)
         {

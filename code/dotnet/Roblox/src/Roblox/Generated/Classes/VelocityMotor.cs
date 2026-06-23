@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Displays the angle that the motor is at in radians.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor#CurrentAngle"/>
         public float CurrentAngle
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The desired angle to be reached. The motor will attempt to reach this angle.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor#DesiredAngle"/>
         public float DesiredAngle
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum amount of velocity able to be reached.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor#MaxVelocity"/>
         public float MaxVelocity

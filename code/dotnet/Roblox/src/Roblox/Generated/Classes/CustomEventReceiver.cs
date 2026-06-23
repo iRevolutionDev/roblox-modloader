@@ -45,24 +45,39 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the receiver is attached to a different CustomEvent, when the CustomEventReceiver.Source property is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="event">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#EventConnected"/>
-        // public event Action? EventConnected; // TODO: native event binding
+        public event Action<Instance?>? EventConnected
+        {
+            add { if (value is not null) AddEventHandler("EventConnected", value); }
+            remove { if (value is not null) RemoveEventHandler("EventConnected", value); }
+        }
 
         /// <summary>
         /// Fires when the receiver is attached to a different CustomEvent instance when the CustomEventReceiver.Source property is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="event">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#EventDisconnected"/>
-        // public event Action? EventDisconnected; // TODO: native event binding
+        public event Action<Instance?>? EventDisconnected
+        {
+            add { if (value is not null) AddEventHandler("EventDisconnected", value); }
+            remove { if (value is not null) RemoveEventHandler("EventDisconnected", value); }
+        }
 
         /// <summary>
         /// Fires when the value of the CustomEvent's source is changed, passing the CustomEvent's new value.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="newValue">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#SourceValueChanged"/>
-        // public event Action? SourceValueChanged; // TODO: native event binding
+        public event Action<float>? SourceValueChanged
+        {
+            add { if (value is not null) AddEventHandler("SourceValueChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SourceValueChanged", value); }
+        }
 
     }
 }

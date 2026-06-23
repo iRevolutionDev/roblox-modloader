@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Height of the pyramid adornment.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Height"/>
         public float Height
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PyramidHandleAdornment.Shading</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Shading"/>
         public Enum.AdornShading Shading
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Number of sides for the pyramid adornment.
-        /// <para><b>Default:</b> <c>4</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Sides"/>
         public int Sides
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of the pyramid adornment's base.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Size"/>
         public float Size

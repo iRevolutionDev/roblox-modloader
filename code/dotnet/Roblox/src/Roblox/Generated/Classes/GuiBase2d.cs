@@ -55,12 +55,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSize", value);
         }
 
-        public string? ActiveQueryNames
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ActiveQueryNames");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ActiveQueryNames", value);
-        }
-
         /// <summary>
         /// When set to true, localization will be applied to this GuiBase2d and its descendants.
         /// </summary>
@@ -97,12 +91,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "RawRect2D");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "RawRect2D", value);
-        }
-
-        public int ReplicatedInsertionOrder
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ReplicatedInsertionOrder");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "ReplicatedInsertionOrder", value);
         }
 
         /// <summary>
@@ -173,10 +161,17 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the gamepad selection moves to, leaves, or changes within the connected GuiBase2d or any descendant GuiObjects.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="amISelected">A <c>bool</c> value.</param>
+        /// <param name="previousSelection">A <c>GuiObject?</c> value.</param>
+        /// <param name="newSelection">A <c>GuiObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#SelectionChanged"/>
-        // public event Action? SelectionChanged; // TODO: native event binding
+        public event Action<bool, GuiObject?, GuiObject?>? SelectionChanged
+        {
+            add { if (value is not null) AddEventHandler("SelectionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SelectionChanged", value); }
+        }
 
     }
 }

@@ -23,27 +23,52 @@ namespace Roblox
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentFail</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RuntimeContentFail; // TODO: native event binding
+        /// <param name="id">A <c>string?</c> value.</param>
+        public event Action<string?>? RuntimeContentFail
+        {
+            add { if (value is not null) AddEventHandler("RuntimeContentFail", value); }
+            remove { if (value is not null) RemoveEventHandler("RuntimeContentFail", value); }
+        }
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentLRCleanup</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RuntimeContentLRCleanup; // TODO: native event binding
+        /// <param name="id">A <c>string?</c> value.</param>
+        /// <param name="priorityList">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? RuntimeContentLRCleanup
+        {
+            add { if (value is not null) AddEventHandler("RuntimeContentLRCleanup", value); }
+            remove { if (value is not null) RemoveEventHandler("RuntimeContentLRCleanup", value); }
+        }
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentQuery</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RuntimeContentQuery; // TODO: native event binding
+        /// <param name="id">A <c>string?</c> value.</param>
+        /// <param name="expectedType">A <c>string?</c> value.</param>
+        /// <param name="priorityList">A <c>string?</c> value.</param>
+        public event Action<string?, string?, string?>? RuntimeContentQuery
+        {
+            add { if (value is not null) AddEventHandler("RuntimeContentQuery", value); }
+            remove { if (value is not null) RemoveEventHandler("RuntimeContentQuery", value); }
+        }
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentShare</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RuntimeContentShare; // TODO: native event binding
+        /// <param name="id">A <c>string?</c> value.</param>
+        /// <param name="content">A <c>string?</c> value.</param>
+        /// <param name="metadata">A <c>string?</c> value.</param>
+        public event Action<string?, string?, string?>? RuntimeContentShare
+        {
+            add { if (value is not null) AddEventHandler("RuntimeContentShare", value); }
+            remove { if (value is not null) RemoveEventHandler("RuntimeContentShare", value); }
+        }
 
     }
 }

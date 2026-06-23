@@ -26,34 +26,7 @@ namespace Roblox
             => handle == 0 ? null : new TerrainRegion(handle);
 
         /// <summary>
-        /// <c>TerrainRegion.ExtentsMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public object? ExtentsMax
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ExtentsMax");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ExtentsMax", value);
-        }
-
-        /// <summary>
-        /// <c>TerrainRegion.ExtentsMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public object? ExtentsMin
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ExtentsMin");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ExtentsMin", value);
-        }
-
-        public byte[]? GridV3
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "GridV3");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "GridV3", value);
-        }
-
-        /// <summary>
         /// Deprecated: This item is a deprecated function of a legacy Terrain engine that has been removed. Do not use it for new work.The state of this property shows whether or not this TerrainRegion contains smooth terrain.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#IsSmooth"/>
         public bool IsSmooth
@@ -64,23 +37,12 @@ namespace Roblox
 
         /// <summary>
         /// The size of this TerrainRegion in cells.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#SizeInCells"/>
         public global::System.Numerics.Vector3 SizeInCells
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SizeInCells");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SizeInCells", value);
-        }
-
-        /// <summary>
-        /// <c>TerrainRegion.SmoothGrid</c>
-        /// <para><b>Default:</b> <c></c></para>
-        /// </summary>
-        public byte[]? SmoothGrid
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "SmoothGrid");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "SmoothGrid", value);
         }
 
         /// <summary>

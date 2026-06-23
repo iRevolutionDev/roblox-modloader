@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>WrapLayer.AutoSkin</c>
-        /// <para><b>Default:</b> <c>Disabled</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#AutoSkin"/>
         public Enum.WrapLayerAutoSkin AutoSkin
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// CFrame is used to adjust a binding point for clothing item mesh. Could be used to move and rotate clothing items. This property is intended for fine-tuning only and it is heavily optional.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#BindOffset"/>
         public object? BindOffset
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets color used for the debug rendering. See WrapTarget.DebugMode.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Color"/>
         public object? Color
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Allows switching between different debugging visualization modes for cage meshes.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#DebugMode"/>
         public Enum.WrapLayerDebugMode DebugMode
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Allows for disabling of the WrapLayer object as if it does not exist.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Enabled"/>
         public bool Enabled
@@ -80,20 +75,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
-        /// <summary>
-        /// <c>WrapLayer.MaxSize</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector3 MaxSize
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxSize");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxSize", value);
         }
 
-        /// <summary>
-        /// <c>WrapLayer.Offset</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector3 Offset
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Offset");
@@ -102,7 +89,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the composition order for layered clothing.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Order"/>
         public int Order
@@ -113,7 +99,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how much underlying clothing items inflate the current clothing item.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Puffiness"/>
         public float Puffiness
@@ -144,7 +129,6 @@ namespace Roblox
 
         /// <summary>
         /// Reference mesh offset relative to parent MeshPart (in the parent MeshPart space) Note: this property is set up automatically by the FBX importer.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceOrigin"/>
         public object? ReferenceOrigin
@@ -155,7 +139,6 @@ namespace Roblox
 
         /// <summary>
         /// Reference mesh offset relative to parent MeshPart (in the world space) Note: this property is set up automatically by the FBX importer.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceOriginWorld"/>
         public object? ReferenceOriginWorld
@@ -166,19 +149,12 @@ namespace Roblox
 
         /// <summary>
         /// Allows slight shrinking/expanding of the resulting render mesh, without affecting any other layers.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ShrinkFactor"/>
         public float ShrinkFactor
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "ShrinkFactor");
             set => global::Roblox.Reflection.SetProperty<float>(this, "ShrinkFactor", value);
-        }
-
-        public object? TemporaryReferenceId
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TemporaryReferenceId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TemporaryReferenceId", value);
         }
 
     }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether the Wire is carrying a stream of data.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#Connected"/>
         public bool Connected
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The name of the pin on SourceInstance that is producing a stream.
-        /// <para><b>Default:</b> <c>Output</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#SourceName"/>
         public string? SourceName
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The name of the pin on TargetInstance that is receiving a stream.
-        /// <para><b>Default:</b> <c>Input</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#TargetName"/>
         public string? TargetName

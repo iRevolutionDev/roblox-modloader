@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The action text shown to the user.
-        /// <para><b>Default:</b> <c>Interact</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#ActionText"/>
         public string? ActionText
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the prompt's ProximityPrompt.ActionText and ProximityPrompt.ObjectText will be localized according to the ProximityPrompt.RootLocalizationTable.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#AutoLocalize"/>
         public bool AutoLocalize
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the prompt can be activated by clicking/tapping on the prompt UI.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#ClickablePrompt"/>
         public bool ClickablePrompt
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether or not this prompt should be shown.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Enabled"/>
         public bool Enabled
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to customize which prompts can be shown at the same time.
-        /// <para><b>Default:</b> <c>OnePerButton</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Exclusivity"/>
         public Enum.ProximityPromptExclusivity Exclusivity
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The gamepad button the player should press to trigger the prompt.
-        /// <para><b>Default:</b> <c>ButtonX</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#GamepadKeyCode"/>
         public Enum.KeyCode GamepadKeyCode
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The duration, in seconds, that the player must hold the button/key down to trigger the prompt.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#HoldDuration"/>
         public float HoldDuration
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The key the player should press to trigger the prompt.
-        /// <para><b>Default:</b> <c>E</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#KeyboardKeyCode"/>
         public Enum.KeyCode KeyboardKeyCode
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum distance a Player's character can be from the ProximityPrompt for the prompt to appear.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#MaxActivationDistance"/>
         public float MaxActivationDistance
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ProximityPrompt.MaxIndicatorDistance</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#MaxIndicatorDistance"/>
         public float MaxIndicatorDistance
@@ -147,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the prompt is hidden if the path between the player's Camera and object parented to the ProximityPrompt is obstructed.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#RequiresLineOfSight"/>
         public bool RequiresLineOfSight
@@ -168,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// The style of the prompt's UI.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Style"/>
         public Enum.ProximityPromptStyle Style
@@ -179,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// The pixel offset applied to the prompt's UI.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#UIOffset"/>
         public global::System.Numerics.Vector2 UIOffset
@@ -205,84 +192,97 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "InputHoldEnd");
 
         /// <summary>
-        /// <c>ProximityPrompt.ButtonHoldBeganActionReplicated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ButtonHoldBeganActionReplicated; // TODO: native event binding
-
-        /// <summary>
-        /// <c>ProximityPrompt.ButtonHoldEndedActionReplicated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ButtonHoldEndedActionReplicated; // TODO: native event binding
-
-        /// <summary>
         /// <c>ProximityPrompt.IndicatorHidden</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#IndicatorHidden"/>
-        // public event Action? IndicatorHidden; // TODO: native event binding
+        public event Action? IndicatorHidden
+        {
+            add { if (value is not null) AddEventHandler("IndicatorHidden", value); }
+            remove { if (value is not null) RemoveEventHandler("IndicatorHidden", value); }
+        }
 
         /// <summary>
         /// <c>ProximityPrompt.IndicatorShown</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#IndicatorShown"/>
-        // public event Action? IndicatorShown; // TODO: native event binding
+        public event Action? IndicatorShown
+        {
+            add { if (value is not null) AddEventHandler("IndicatorShown", value); }
+            remove { if (value is not null) RemoveEventHandler("IndicatorShown", value); }
+        }
 
         /// <summary>
         /// Triggered when a player begins holding down the key/button connected to a prompt with a non-zero ProximityPrompt.HoldDuration.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptButtonHoldBegan"/>
-        // public event Action? PromptButtonHoldBegan; // TODO: native event binding
+        public event Action<Player?>? PromptButtonHoldBegan
+        {
+            add { if (value is not null) AddEventHandler("PromptButtonHoldBegan", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptButtonHoldBegan", value); }
+        }
 
         /// <summary>
         /// Triggers when the player ends holding down the button on a prompt with a non-zero ProximityPrompt.HoldDuration.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptButtonHoldEnded"/>
-        // public event Action? PromptButtonHoldEnded; // TODO: native event binding
+        public event Action<Player?>? PromptButtonHoldEnded
+        {
+            add { if (value is not null) AddEventHandler("PromptButtonHoldEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptButtonHoldEnded", value); }
+        }
 
         /// <summary>
         /// Triggers when the prompt becomes hidden.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptHidden"/>
-        // public event Action? PromptHidden; // TODO: native event binding
+        public event Action? PromptHidden
+        {
+            add { if (value is not null) AddEventHandler("PromptHidden", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptHidden", value); }
+        }
 
         /// <summary>
         /// Triggers when the prompt becomes visible.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="inputType">A <c>Enum.ProximityPromptInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptShown"/>
-        // public event Action? PromptShown; // TODO: native event binding
+        public event Action<Enum.ProximityPromptInputType>? PromptShown
+        {
+            add { if (value is not null) AddEventHandler("PromptShown", value); }
+            remove { if (value is not null) RemoveEventHandler("PromptShown", value); }
+        }
 
         /// <summary>
         /// Triggers when key/button is released, for longer events where the user is required to hold down the button.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#TriggerEnded"/>
-        // public event Action? TriggerEnded; // TODO: native event binding
-
-        /// <summary>
-        /// <c>ProximityPrompt.TriggerEndedActionReplicated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TriggerEndedActionReplicated; // TODO: native event binding
+        public event Action<Player?>? TriggerEnded
+        {
+            add { if (value is not null) AddEventHandler("TriggerEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("TriggerEnded", value); }
+        }
 
         /// <summary>
         /// Triggered when the prompt key/button is pressed, or after a specified amount of time holding the button, if ProximityPrompt.HoldDuration is used.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Triggered"/>
-        // public event Action? Triggered; // TODO: native event binding
-
-        /// <summary>
-        /// <c>ProximityPrompt.TriggeredActionReplicated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TriggeredActionReplicated; // TODO: native event binding
+        public event Action<Player?>? Triggered
+        {
+            add { if (value is not null) AddEventHandler("Triggered", value); }
+            remove { if (value is not null) RemoveEventHandler("Triggered", value); }
+        }
 
     }
 }

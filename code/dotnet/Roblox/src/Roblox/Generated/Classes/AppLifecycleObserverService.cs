@@ -58,39 +58,63 @@ namespace Roblox
 
         /// <summary>
         /// <c>AppLifecycleObserverService.OnBecomeActive</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnBecomeActive; // TODO: native event binding
+        public event Action? OnBecomeActive
+        {
+            add { if (value is not null) AddEventHandler("OnBecomeActive", value); }
+            remove { if (value is not null) RemoveEventHandler("OnBecomeActive", value); }
+        }
 
         /// <summary>
         /// <c>AppLifecycleObserverService.OnDetach</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnDetach; // TODO: native event binding
+        public event Action? OnDetach
+        {
+            add { if (value is not null) AddEventHandler("OnDetach", value); }
+            remove { if (value is not null) RemoveEventHandler("OnDetach", value); }
+        }
 
         /// <summary>
         /// <c>AppLifecycleObserverService.OnHide</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnHide; // TODO: native event binding
+        public event Action? OnHide
+        {
+            add { if (value is not null) AddEventHandler("OnHide", value); }
+            remove { if (value is not null) RemoveEventHandler("OnHide", value); }
+        }
 
         /// <summary>
         /// <c>AppLifecycleObserverService.OnResignActive</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnResignActive; // TODO: native event binding
+        public event Action? OnResignActive
+        {
+            add { if (value is not null) AddEventHandler("OnResignActive", value); }
+            remove { if (value is not null) RemoveEventHandler("OnResignActive", value); }
+        }
 
         /// <summary>
         /// <c>AppLifecycleObserverService.OnStart</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnStart; // TODO: native event binding
+        public event Action? OnStart
+        {
+            add { if (value is not null) AddEventHandler("OnStart", value); }
+            remove { if (value is not null) RemoveEventHandler("OnStart", value); }
+        }
 
         /// <summary>
         /// <c>AppLifecycleObserverService.OnUnhide</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnUnhide; // TODO: native event binding
+        public event Action? OnUnhide
+        {
+            add { if (value is not null) AddEventHandler("OnUnhide", value); }
+            remove { if (value is not null) RemoveEventHandler("OnUnhide", value); }
+        }
 
     }
 }

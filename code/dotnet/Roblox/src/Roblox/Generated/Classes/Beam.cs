@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Scales the light emitted from the beam when LightInfluence is less than 1.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Brightness"/>
         public float Brightness
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the color of the beam across its Segments.
-        /// <para><b>Default:</b> <c>0 1 1 1 0 1 1 1 1 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Color"/>
         public object? Color
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines, along with Attachment0, the position of the second control point in the beam's Bézier curve.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#CurveSize0"/>
         public float CurveSize0
@@ -80,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines, along with Attachment1, the position of the third control point in the beam's Bézier curve.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#CurveSize1"/>
         public float CurveSize1
@@ -91,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the beam is visible or not.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Enabled"/>
         public bool Enabled
@@ -102,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the Segments of the beam will always face the camera, regardless of its orientation.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#FaceCamera"/>
         public bool FaceCamera
@@ -113,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines to what degree the colors of the beam are blended with the colors behind it.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#LightEmission"/>
         public float LightEmission
@@ -124,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the degree to which the beam is influenced by the environment's lighting.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#LightInfluence"/>
         public float LightInfluence
@@ -135,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Beam.LocalTransparencyModifier</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -146,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets how many straight segments the beam is made up of.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Segments"/>
         public int Segments
@@ -173,7 +163,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the length of the beam's texture, dependent on TextureMode.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#TextureLength"/>
         public float TextureLength
@@ -184,7 +173,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the manner in which the Texture scales and repeats.
-        /// <para><b>Default:</b> <c>Stretch</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#TextureMode"/>
         public Enum.TextureMode TextureMode
@@ -195,7 +183,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the speed at which the Texture image moves along the beam.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#TextureSpeed"/>
         public float TextureSpeed
@@ -206,7 +193,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the beam across its segments.
-        /// <para><b>Default:</b> <c>0 0.5 0 1 0.5 0 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Transparency"/>
         public object? Transparency
@@ -217,7 +203,6 @@ namespace Roblox
 
         /// <summary>
         /// The width of the beam at its origin (Attachment0), in studs.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Width0"/>
         public float Width0
@@ -228,7 +213,6 @@ namespace Roblox
 
         /// <summary>
         /// The width of the beam at its end (Attachment1), in studs.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Width1"/>
         public float Width1
@@ -239,7 +223,6 @@ namespace Roblox
 
         /// <summary>
         /// The distance, in studs, the beam display is offset relative to the CurrentCamera.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#ZOffset"/>
         public float ZOffset

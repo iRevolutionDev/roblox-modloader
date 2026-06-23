@@ -21,220 +21,132 @@ namespace Roblox
         public static AvatarAnimationRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarAnimationRules(handle);
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.AnimationClipsMode</c>
-        /// <para><b>Default:</b> <c>PlayerChoice</c></para>
-        /// </summary>
         public Enum.AvatarSettingsAnimationClipsMode AnimationClipsMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAnimationClipsMode>(this, "AnimationClipsMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsAnimationClipsMode>(this, "AnimationClipsMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.AnimationPacksMode</c>
-        /// <para><b>Default:</b> <c>PlayerChoice</c></para>
-        /// </summary>
         public Enum.AvatarSettingsAnimationPacksMode AnimationPacksMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAnimationPacksMode>(this, "AnimationPacksMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsAnimationPacksMode>(this, "AnimationPacksMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomClimbAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomClimbAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomClimbAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomClimbAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomClimbAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomClimbAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomClimbAnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomClimbAnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomFallAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomFallAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomFallAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomFallAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomFallAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomFallAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomFallAnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomFallAnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomIdleAlt1AnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomIdleAlt1AnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomIdleAlt1AnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomIdleAlt1AnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomIdleAlt1AnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomIdleAlt1AnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomIdleAlt1AnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomIdleAlt1AnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomIdleAlt2AnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomIdleAlt2AnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomIdleAlt2AnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomIdleAlt2AnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomIdleAlt2AnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomIdleAlt2AnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomIdleAlt2AnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomIdleAlt2AnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomIdleAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomIdleAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomIdleAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomIdleAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomIdleAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomIdleAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomIdleAnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomIdleAnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomJumpAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomJumpAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomJumpAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomJumpAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomJumpAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomJumpAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomJumpAnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomJumpAnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomRunAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomRunAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomRunAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomRunAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomRunAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomRunAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomRunAnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomRunAnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomSwimAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomSwimAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomSwimAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomSwimAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomSwimAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomSwimAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomSwimAnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomSwimAnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomSwimIdleAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomSwimIdleAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomSwimIdleAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomSwimIdleAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomSwimIdleAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomSwimIdleAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomSwimIdleAnimationId");
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomSwimIdleAnimationId", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomWalkAnimationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomWalkAnimationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomWalkAnimationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomWalkAnimationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>AvatarAnimationRules.CustomWalkAnimationId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long CustomWalkAnimationId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "CustomWalkAnimationId");

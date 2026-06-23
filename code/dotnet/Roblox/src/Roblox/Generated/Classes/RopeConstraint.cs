@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The current distance between the constraint's Attachments.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#CurrentDistance"/>
         public float CurrentDistance
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum distance apart the two Attachments can be.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#Length"/>
         public float Length
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Elasticity of the Attachments connected by the constraint when reaching the maximum defined Length. Constrained between 0 and 1.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#Restitution"/>
         public float Restitution
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The visualized thickness of the RopeConstraint.
-        /// <para><b>Default:</b> <c>0.100000001</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#Thickness"/>
         public float Thickness
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Enables the winch motor.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchEnabled"/>
         public bool WinchEnabled
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum force that the winch motor can apply.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchForce"/>
         public float WinchForce
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The sharpness of the winch motor in reaching the WinchTarget.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchResponsiveness"/>
         public float WinchResponsiveness
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// A positive desired velocity at which the winch motor changes the rope length.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchSpeed"/>
         public float WinchSpeed
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The target length for the winch motor.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchTarget"/>
         public float WinchTarget

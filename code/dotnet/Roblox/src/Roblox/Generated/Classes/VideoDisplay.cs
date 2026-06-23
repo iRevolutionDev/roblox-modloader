@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Selects the texture resampling mode for the VideoDisplay.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#ResampleMode"/>
         public Enum.ResamplerMode ResampleMode
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how a video will scale if displayed in a UI element whose aspect ratio differs from the source video.
-        /// <para><b>Default:</b> <c>Stretch</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#ScaleType"/>
         public Enum.ScaleType ScaleType
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoDisplay.TileSize</c>
-        /// <para><b>Default:</b> <c>{1, 0}, {1, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#TileSize"/>
         public object? TileSize
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how a rendered video will be colorized.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoColor3"/>
         public object? VideoColor3
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The offset in pixels of the sub-area of a video to be displayed.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoRectOffset"/>
         public global::System.Numerics.Vector2 VideoRectOffset
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the size in pixels of the sub-area of a video to be displayed.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoRectSize"/>
         public global::System.Numerics.Vector2 VideoRectSize
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the rendered video.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoTransparency"/>
         public float VideoTransparency
@@ -129,10 +122,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the VideoDisplay via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

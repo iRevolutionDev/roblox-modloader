@@ -127,41 +127,80 @@ namespace Roblox
 
         /// <summary>
         /// <c>NotificationService.RccConnectionChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RccConnectionChanged; // TODO: native event binding
+        /// <param name="connectionName">A <c>string?</c> value.</param>
+        /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
+        /// <param name="rccSequenceNumber">A <c>string?</c> value.</param>
+        /// <param name="userIdToNamespaceSequenceNumbers">A <c>object?</c> value.</param>
+        public event Action<string?, Enum.ConnectionState, string?, object?>? RccConnectionChanged
+        {
+            add { if (value is not null) AddEventHandler("RccConnectionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("RccConnectionChanged", value); }
+        }
 
         /// <summary>
         /// <c>NotificationService.RccEventReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RccEventReceived; // TODO: native event binding
+        /// <param name="eventData">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>long</c> value.</param>
+        public event Action<object?, long>? RccEventReceived
+        {
+            add { if (value is not null) AddEventHandler("RccEventReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("RccEventReceived", value); }
+        }
 
         /// <summary>
         /// <c>NotificationService.Roblox17sConnectionChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connectionName">A <c>string?</c> value.</param>
+        /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
+        /// <param name="namespaceSequenceNumbers">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NotificationService#Roblox17sConnectionChanged"/>
-        // public event Action? Roblox17sConnectionChanged; // TODO: native event binding
+        public event Action<string?, Enum.ConnectionState, string?>? Roblox17sConnectionChanged
+        {
+            add { if (value is not null) AddEventHandler("Roblox17sConnectionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("Roblox17sConnectionChanged", value); }
+        }
 
         /// <summary>
         /// <c>NotificationService.Roblox17sEventReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="eventData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NotificationService#Roblox17sEventReceived"/>
-        // public event Action? Roblox17sEventReceived; // TODO: native event binding
+        public event Action<object?>? Roblox17sEventReceived
+        {
+            add { if (value is not null) AddEventHandler("Roblox17sEventReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("Roblox17sEventReceived", value); }
+        }
 
         /// <summary>
         /// <c>NotificationService.RobloxConnectionChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RobloxConnectionChanged; // TODO: native event binding
+        /// <param name="connectionName">A <c>string?</c> value.</param>
+        /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
+        /// <param name="sequenceNumber">A <c>string?</c> value.</param>
+        /// <param name="namespaceSequenceNumbers">A <c>string?</c> value.</param>
+        public event Action<string?, Enum.ConnectionState, string?, string?>? RobloxConnectionChanged
+        {
+            add { if (value is not null) AddEventHandler("RobloxConnectionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("RobloxConnectionChanged", value); }
+        }
 
         /// <summary>
         /// <c>NotificationService.RobloxEventReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RobloxEventReceived; // TODO: native event binding
+        /// <param name="eventData">A <c>object?</c> value.</param>
+        public event Action<object?>? RobloxEventReceived
+        {
+            add { if (value is not null) AddEventHandler("RobloxEventReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("RobloxEventReceived", value); }
+        }
 
     }
 }

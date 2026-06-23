@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the rotation of the HingeConstraint is actuated and, if so, what kind of actuation it uses.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#ActuatorType"/>
         public Enum.ActuatorType ActuatorType
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the sharpness of the servo motor in reaching the TargetAngle.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#AngularResponsiveness"/>
         public float AngularResponsiveness
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The desired angular speed a HingeConstraint with ActuatorType set to Servo will attempt to maintain while rotating towards its TargetAngle. Measured in radians/second.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#AngularSpeed"/>
         public float AngularSpeed
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The angular velocity a HingeConstraint with ActuatorType set to Motor will attempt to achieve. Measured in radians/second.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#AngularVelocity"/>
         public float AngularVelocity
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The current angle of the HingeConstraint.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#CurrentAngle"/>
         public float CurrentAngle
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the HingeConstraint will limit the range of rotation.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The minimum rotation angle the HingeConstraint will allow if LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>-45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#LowerAngle"/>
         public float LowerAngle
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angular acceleration a HingeConstraint with ActuatorType set to Motor can apply to achieve its AngularVelocity. Measured in radians/second&amp;sup2;.
-        /// <para><b>Default:</b> <c>500000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#MotorMaxAcceleration"/>
         public float MotorMaxAcceleration
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque a HingeConstraint with ActuatorType set to Motor can apply when trying to reach its desired AngularVelocity.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#MotorMaxTorque"/>
         public float MotorMaxTorque
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// The visualized radius of the HingeConstraint.
-        /// <para><b>Default:</b> <c>0.150000006</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#Radius"/>
         public float Radius
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// How elastic Attachment connected by a HingeConstraint will be when they reach the end of the range when LimitsEnabled is true. Constrained between 0 and 1.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#Restitution"/>
         public float Restitution
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque a HingeConstraint with ActuatorType set to Servo can apply when trying to reach its desired TargetAngle.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#ServoMaxTorque"/>
         public float ServoMaxTorque
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property should not be used in new work.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#SoftlockServoUponReachingTarget"/>
         public bool SoftlockServoUponReachingTarget
@@ -170,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// The target angle a HingeConstraint will attempt to rotate to if its ActuatorType is set to Servo. Measured in degrees.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#TargetAngle"/>
         public float TargetAngle
@@ -181,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum rotation angle the HingeConstraint will allow if LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>45</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#UpperAngle"/>
         public float UpperAngle

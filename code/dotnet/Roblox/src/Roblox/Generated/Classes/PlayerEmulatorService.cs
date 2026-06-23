@@ -21,10 +21,6 @@ namespace Roblox
         public static PlayerEmulatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerEmulatorService(handle);
 
-        /// <summary>
-        /// <c>PlayerEmulatorService.CustomPoliciesEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool CustomPoliciesEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomPoliciesEnabled");
@@ -43,20 +39,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "EmulatedGameLocale", value);
         }
 
-        /// <summary>
-        /// <c>PlayerEmulatorService.PlayerEmulationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool PlayerEmulationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayerEmulationEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayerEmulationEnabled", value);
         }
 
-        /// <summary>
-        /// <c>PlayerEmulatorService.PseudolocalizationEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool PseudolocalizationEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "PseudolocalizationEnabled");
@@ -69,10 +57,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "SerializedEmulatedPolicyInfo", value);
         }
 
-        /// <summary>
-        /// <c>PlayerEmulatorService.TextElongationFactor</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int TextElongationFactor
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "TextElongationFactor");

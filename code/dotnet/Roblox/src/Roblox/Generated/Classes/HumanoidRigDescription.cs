@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.ChestRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestRangeMax"/>
         public global::System.Numerics.Vector3 ChestRangeMax
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.ChestRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestRangeMin"/>
         public global::System.Numerics.Vector3 ChestRangeMin
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.ChestSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestSize"/>
         public float ChestSize
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.ChestTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestTposeAdjustment"/>
         public object? ChestTposeAdjustment
@@ -91,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.HeadBaseRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseRangeMax"/>
         public global::System.Numerics.Vector3 HeadBaseRangeMax
@@ -102,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.HeadBaseRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseRangeMin"/>
         public global::System.Numerics.Vector3 HeadBaseRangeMin
@@ -113,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.HeadBaseSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseSize"/>
         public float HeadBaseSize
@@ -124,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.HeadBaseTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseTposeAdjustment"/>
         public object? HeadBaseTposeAdjustment
@@ -145,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftAnkleRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleRangeMax"/>
         public global::System.Numerics.Vector3 LeftAnkleRangeMax
@@ -156,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftAnkleRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleRangeMin"/>
         public global::System.Numerics.Vector3 LeftAnkleRangeMin
@@ -167,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftAnkleSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleSize"/>
         public float LeftAnkleSize
@@ -178,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftAnkleTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleTposeAdjustment"/>
         public object? LeftAnkleTposeAdjustment
@@ -199,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftClavicleRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleRangeMax"/>
         public global::System.Numerics.Vector3 LeftClavicleRangeMax
@@ -210,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftClavicleRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleRangeMin"/>
         public global::System.Numerics.Vector3 LeftClavicleRangeMin
@@ -221,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftClavicleSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleSize"/>
         public float LeftClavicleSize
@@ -232,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftClavicleTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleTposeAdjustment"/>
         public object? LeftClavicleTposeAdjustment
@@ -253,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftElbowRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowRangeMax"/>
         public global::System.Numerics.Vector3 LeftElbowRangeMax
@@ -264,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftElbowRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowRangeMin"/>
         public global::System.Numerics.Vector3 LeftElbowRangeMin
@@ -275,7 +257,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftElbowSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowSize"/>
         public float LeftElbowSize
@@ -286,7 +267,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftElbowTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowTposeAdjustment"/>
         public object? LeftElbowTposeAdjustment
@@ -307,7 +287,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftHipRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipRangeMax"/>
         public global::System.Numerics.Vector3 LeftHipRangeMax
@@ -318,7 +297,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftHipRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipRangeMin"/>
         public global::System.Numerics.Vector3 LeftHipRangeMin
@@ -329,7 +307,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftHipSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipSize"/>
         public float LeftHipSize
@@ -340,7 +317,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftHipTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipTposeAdjustment"/>
         public object? LeftHipTposeAdjustment
@@ -361,7 +337,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftKneeRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeRangeMax"/>
         public global::System.Numerics.Vector3 LeftKneeRangeMax
@@ -372,7 +347,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftKneeRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeRangeMin"/>
         public global::System.Numerics.Vector3 LeftKneeRangeMin
@@ -383,7 +357,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftKneeSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeSize"/>
         public float LeftKneeSize
@@ -394,7 +367,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftKneeTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeTposeAdjustment"/>
         public object? LeftKneeTposeAdjustment
@@ -415,7 +387,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftShoulderRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderRangeMax"/>
         public global::System.Numerics.Vector3 LeftShoulderRangeMax
@@ -426,7 +397,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftShoulderRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderRangeMin"/>
         public global::System.Numerics.Vector3 LeftShoulderRangeMin
@@ -437,7 +407,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftShoulderSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderSize"/>
         public float LeftShoulderSize
@@ -448,7 +417,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftShoulderTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderTposeAdjustment"/>
         public object? LeftShoulderTposeAdjustment
@@ -469,7 +437,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftToeBaseRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseRangeMax"/>
         public global::System.Numerics.Vector3 LeftToeBaseRangeMax
@@ -480,7 +447,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftToeBaseRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseRangeMin"/>
         public global::System.Numerics.Vector3 LeftToeBaseRangeMin
@@ -491,7 +457,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftToeBaseSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseSize"/>
         public float LeftToeBaseSize
@@ -502,7 +467,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftToeBaseTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseTposeAdjustment"/>
         public object? LeftToeBaseTposeAdjustment
@@ -523,7 +487,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftWristRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristRangeMax"/>
         public global::System.Numerics.Vector3 LeftWristRangeMax
@@ -534,7 +497,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftWristRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristRangeMin"/>
         public global::System.Numerics.Vector3 LeftWristRangeMin
@@ -545,7 +507,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftWristSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristSize"/>
         public float LeftWristSize
@@ -556,7 +517,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftWristTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristTposeAdjustment"/>
         public object? LeftWristTposeAdjustment
@@ -577,7 +537,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.NeckRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckRangeMax"/>
         public global::System.Numerics.Vector3 NeckRangeMax
@@ -588,7 +547,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.NeckRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckRangeMin"/>
         public global::System.Numerics.Vector3 NeckRangeMin
@@ -599,7 +557,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.NeckSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckSize"/>
         public float NeckSize
@@ -610,7 +567,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.NeckTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckTposeAdjustment"/>
         public object? NeckTposeAdjustment
@@ -621,7 +577,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.OriginOffset</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#OriginOffset"/>
         public object? OriginOffset
@@ -642,7 +597,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightAnkleRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleRangeMax"/>
         public global::System.Numerics.Vector3 RightAnkleRangeMax
@@ -653,7 +607,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightAnkleRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleRangeMin"/>
         public global::System.Numerics.Vector3 RightAnkleRangeMin
@@ -664,7 +617,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightAnkleSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleSize"/>
         public float RightAnkleSize
@@ -675,7 +627,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightAnkleTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleTposeAdjustment"/>
         public object? RightAnkleTposeAdjustment
@@ -696,7 +647,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightClavicleRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleRangeMax"/>
         public global::System.Numerics.Vector3 RightClavicleRangeMax
@@ -707,7 +657,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightClavicleRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleRangeMin"/>
         public global::System.Numerics.Vector3 RightClavicleRangeMin
@@ -718,7 +667,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightClavicleSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleSize"/>
         public float RightClavicleSize
@@ -729,7 +677,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightClavicleTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleTposeAdjustment"/>
         public object? RightClavicleTposeAdjustment
@@ -750,7 +697,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightElbowRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowRangeMax"/>
         public global::System.Numerics.Vector3 RightElbowRangeMax
@@ -761,7 +707,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightElbowRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowRangeMin"/>
         public global::System.Numerics.Vector3 RightElbowRangeMin
@@ -772,7 +717,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightElbowSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowSize"/>
         public float RightElbowSize
@@ -783,7 +727,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightElbowTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowTposeAdjustment"/>
         public object? RightElbowTposeAdjustment
@@ -804,7 +747,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightHipRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipRangeMax"/>
         public global::System.Numerics.Vector3 RightHipRangeMax
@@ -815,7 +757,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightHipRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipRangeMin"/>
         public global::System.Numerics.Vector3 RightHipRangeMin
@@ -826,7 +767,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightHipSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipSize"/>
         public float RightHipSize
@@ -837,7 +777,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightHipTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipTposeAdjustment"/>
         public object? RightHipTposeAdjustment
@@ -858,7 +797,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightKneeRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeRangeMax"/>
         public global::System.Numerics.Vector3 RightKneeRangeMax
@@ -869,7 +807,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightKneeRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeRangeMin"/>
         public global::System.Numerics.Vector3 RightKneeRangeMin
@@ -880,7 +817,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightKneeSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeSize"/>
         public float RightKneeSize
@@ -891,7 +827,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightKneeTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeTposeAdjustment"/>
         public object? RightKneeTposeAdjustment
@@ -912,7 +847,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightShoulderRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderRangeMax"/>
         public global::System.Numerics.Vector3 RightShoulderRangeMax
@@ -923,7 +857,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightShoulderRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderRangeMin"/>
         public global::System.Numerics.Vector3 RightShoulderRangeMin
@@ -934,7 +867,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightShoulderSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderSize"/>
         public float RightShoulderSize
@@ -945,7 +877,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightShoulderTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderTposeAdjustment"/>
         public object? RightShoulderTposeAdjustment
@@ -966,7 +897,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightToeBaseRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseRangeMax"/>
         public global::System.Numerics.Vector3 RightToeBaseRangeMax
@@ -977,7 +907,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightToeBaseRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseRangeMin"/>
         public global::System.Numerics.Vector3 RightToeBaseRangeMin
@@ -988,7 +917,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightToeBaseSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseSize"/>
         public float RightToeBaseSize
@@ -999,7 +927,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightToeBaseTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseTposeAdjustment"/>
         public object? RightToeBaseTposeAdjustment
@@ -1020,7 +947,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightWristRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristRangeMax"/>
         public global::System.Numerics.Vector3 RightWristRangeMax
@@ -1031,7 +957,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightWristRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristRangeMin"/>
         public global::System.Numerics.Vector3 RightWristRangeMin
@@ -1042,7 +967,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightWristSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristSize"/>
         public float RightWristSize
@@ -1053,7 +977,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightWristTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristTposeAdjustment"/>
         public object? RightWristTposeAdjustment
@@ -1074,7 +997,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RootRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootRangeMax"/>
         public global::System.Numerics.Vector3 RootRangeMax
@@ -1085,7 +1007,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RootRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootRangeMin"/>
         public global::System.Numerics.Vector3 RootRangeMin
@@ -1096,7 +1017,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RootSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootSize"/>
         public float RootSize
@@ -1107,7 +1027,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.RootTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootTposeAdjustment"/>
         public object? RootTposeAdjustment
@@ -1128,7 +1047,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.SpineRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineRangeMax"/>
         public global::System.Numerics.Vector3 SpineRangeMax
@@ -1139,7 +1057,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.SpineRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineRangeMin"/>
         public global::System.Numerics.Vector3 SpineRangeMin
@@ -1150,7 +1067,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.SpineSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineSize"/>
         public float SpineSize
@@ -1161,7 +1077,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.SpineTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineTposeAdjustment"/>
         public object? SpineTposeAdjustment
@@ -1182,7 +1097,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.WaistRangeMax</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistRangeMax"/>
         public global::System.Numerics.Vector3 WaistRangeMax
@@ -1193,7 +1107,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.WaistRangeMin</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistRangeMin"/>
         public global::System.Numerics.Vector3 WaistRangeMin
@@ -1204,7 +1117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.WaistSize</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistSize"/>
         public float WaistSize
@@ -1215,7 +1127,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HumanoidRigDescription.WaistTposeAdjustment</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistTposeAdjustment"/>
         public object? WaistTposeAdjustment

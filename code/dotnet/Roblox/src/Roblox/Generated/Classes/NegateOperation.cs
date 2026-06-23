@@ -25,15 +25,5 @@ namespace Roblox
         public static NegateOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new NegateOperation(handle);
 
-        /// <summary>
-        /// <c>NegateOperation.PreviousOperation</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
-        public Enum.NegateOperationHiddenHistory PreviousOperation
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.NegateOperationHiddenHistory>(this, "PreviousOperation");
-            set => global::Roblox.Reflection.SetProperty<Enum.NegateOperationHiddenHistory>(this, "PreviousOperation", value);
-        }
-
     }
 }

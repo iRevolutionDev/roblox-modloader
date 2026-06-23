@@ -523,23 +523,35 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the plugin is deactivated.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Deactivation"/>
-        // public event Action? Deactivation; // TODO: native event binding
+        public event Action? Deactivation
+        {
+            add { if (value is not null) AddEventHandler("Deactivation", value); }
+            remove { if (value is not null) RemoveEventHandler("Deactivation", value); }
+        }
 
         /// <summary>
         /// <c>Plugin.Ready</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Ready; // TODO: native event binding
+        public event Action? Ready
+        {
+            add { if (value is not null) AddEventHandler("Ready", value); }
+            remove { if (value is not null) RemoveEventHandler("Ready", value); }
+        }
 
         /// <summary>
         /// Fires immediately before the Plugin stops running.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Unloading"/>
-        // public event Action? Unloading; // TODO: native event binding
+        public event Action? Unloading
+        {
+            add { if (value is not null) AddEventHandler("Unloading", value); }
+            remove { if (value is not null) RemoveEventHandler("Unloading", value); }
+        }
 
         /// <summary>
         /// <c>Plugin.ProcessAssetInsertionDrag</c>

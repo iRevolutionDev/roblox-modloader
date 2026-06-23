@@ -263,72 +263,125 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, after the physics simulation has completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="deltaTime">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Heartbeat"/>
-        // public event Action? Heartbeat; // TODO: native event binding
+        public event Action<double>? Heartbeat
+        {
+            add { if (value is not null) AddEventHandler("Heartbeat", value); }
+            remove { if (value is not null) RemoveEventHandler("Heartbeat", value); }
+        }
 
         /// <summary>
         /// In the server authority model, fires during prediction when the engine detects that the client has diverged from the server's authoritative state. Intended for plugin-based debugging.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="time">A <c>double</c> value.</param>
+        /// <param name="instances">A <c>object?</c> value.</param>
+        /// <param name="stats">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Misprediction"/>
-        // public event Action? Misprediction; // TODO: native event binding
+        public event Action<double, object?, object?>? Misprediction
+        {
+            add { if (value is not null) AddEventHandler("Misprediction", value); }
+            remove { if (value is not null) RemoveEventHandler("Misprediction", value); }
+        }
 
         /// <summary>
         /// Fires every frame, after the physics simulation has completed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="deltaTimeSim">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PostSimulation"/>
-        // public event Action? PostSimulation; // TODO: native event binding
+        public event Action<double>? PostSimulation
+        {
+            add { if (value is not null) AddEventHandler("PostSimulation", value); }
+            remove { if (value is not null) RemoveEventHandler("PostSimulation", value); }
+        }
 
         /// <summary>
         /// Fires every frame, prior to the physics simulation but after rendering.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="deltaTimeSim">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PreAnimation"/>
-        // public event Action? PreAnimation; // TODO: native event binding
+        public event Action<double>? PreAnimation
+        {
+            add { if (value is not null) AddEventHandler("PreAnimation", value); }
+            remove { if (value is not null) RemoveEventHandler("PreAnimation", value); }
+        }
 
         /// <summary>
         /// Fires every frame, prior to the frame being rendered.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="deltaTimeRender">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PreRender"/>
-        // public event Action? PreRender; // TODO: native event binding
+        public event Action<double>? PreRender
+        {
+            add { if (value is not null) AddEventHandler("PreRender", value); }
+            remove { if (value is not null) RemoveEventHandler("PreRender", value); }
+        }
 
         /// <summary>
         /// Fires every frame, prior to the physics simulation.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="deltaTimeSim">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PreSimulation"/>
-        // public event Action? PreSimulation; // TODO: native event binding
+        public event Action<double>? PreSimulation
+        {
+            add { if (value is not null) AddEventHandler("PreSimulation", value); }
+            remove { if (value is not null) RemoveEventHandler("PreSimulation", value); }
+        }
 
         /// <summary>
         /// Fires every frame, prior to the frame being rendered.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="deltaTime">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#RenderStepped"/>
-        // public event Action? RenderStepped; // TODO: native event binding
+        public event Action<double>? RenderStepped
+        {
+            add { if (value is not null) AddEventHandler("RenderStepped", value); }
+            remove { if (value is not null) RemoveEventHandler("RenderStepped", value); }
+        }
 
         /// <summary>
         /// <c>RunService.RobloxGuiFocusedChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RobloxGuiFocusedChanged; // TODO: native event binding
+        /// <param name="isRobloxGuiFocused">A <c>bool</c> value.</param>
+        public event Action<bool>? RobloxGuiFocusedChanged
+        {
+            add { if (value is not null) AddEventHandler("RobloxGuiFocusedChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("RobloxGuiFocusedChanged", value); }
+        }
 
         /// <summary>
         /// In the server authority model, this fires after rolling back the predicted state due to a misprediction, but before resimulation begins.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="time">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Rollback"/>
-        // public event Action? Rollback; // TODO: native event binding
+        public event Action<double>? Rollback
+        {
+            add { if (value is not null) AddEventHandler("Rollback", value); }
+            remove { if (value is not null) RemoveEventHandler("Rollback", value); }
+        }
 
         /// <summary>
         /// Fires every frame, prior to the physics simulation.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="time">A <c>double</c> value.</param>
+        /// <param name="deltaTime">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Stepped"/>
-        // public event Action? Stepped; // TODO: native event binding
+        public event Action<double, double>? Stepped
+        {
+            add { if (value is not null) AddEventHandler("Stepped", value); }
+            remove { if (value is not null) RemoveEventHandler("Stepped", value); }
+        }
 
     }
 }

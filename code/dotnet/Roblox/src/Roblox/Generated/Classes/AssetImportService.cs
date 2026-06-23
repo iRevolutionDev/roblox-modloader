@@ -141,15 +141,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetImportService.SingleFileChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SingleFileChanged; // TODO: native event binding
+        /// <param name="filePath">A <c>string?</c> value.</param>
+        public event Action<string?>? SingleFileChanged
+        {
+            add { if (value is not null) AddEventHandler("SingleFileChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SingleFileChanged", value); }
+        }
 
         /// <summary>
         /// <c>AssetImportService.StartSingleMeshImport</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StartSingleMeshImport; // TODO: native event binding
+        /// <param name="fileName">A <c>string?</c> value.</param>
+        public event Action<string?>? StartSingleMeshImport
+        {
+            add { if (value is not null) AddEventHandler("StartSingleMeshImport", value); }
+            remove { if (value is not null) RemoveEventHandler("StartSingleMeshImport", value); }
+        }
 
     }
 }

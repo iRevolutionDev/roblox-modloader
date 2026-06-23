@@ -56,21 +56,33 @@ namespace Roblox
 
         /// <summary>
         /// <c>ReplicatedFirst.DefaultLoadingGuiRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DefaultLoadingGuiRemoved; // TODO: native event binding
+        public event Action? DefaultLoadingGuiRemoved
+        {
+            add { if (value is not null) AddEventHandler("DefaultLoadingGuiRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("DefaultLoadingGuiRemoved", value); }
+        }
 
         /// <summary>
         /// <c>ReplicatedFirst.FinishedReplicating</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FinishedReplicating; // TODO: native event binding
+        public event Action? FinishedReplicating
+        {
+            add { if (value is not null) AddEventHandler("FinishedReplicating", value); }
+            remove { if (value is not null) RemoveEventHandler("FinishedReplicating", value); }
+        }
 
         /// <summary>
         /// <c>ReplicatedFirst.RemoveDefaultLoadingGuiSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? RemoveDefaultLoadingGuiSignal; // TODO: native event binding
+        public event Action? RemoveDefaultLoadingGuiSignal
+        {
+            add { if (value is not null) AddEventHandler("RemoveDefaultLoadingGuiSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("RemoveDefaultLoadingGuiSignal", value); }
+        }
 
     }
 }

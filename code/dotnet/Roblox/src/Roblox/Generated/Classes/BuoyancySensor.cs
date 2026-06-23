@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// True when the entirety of the BasePart is submerged in Terrain water with at least one voxel of water above it.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BuoyancySensor#FullySubmerged"/>
         public bool FullySubmerged
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// True when any position on the BasePart is touching Terrain water.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BuoyancySensor#TouchingSurface"/>
         public bool TouchingSurface

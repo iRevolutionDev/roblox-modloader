@@ -77,15 +77,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>HeightmapImporterService.ColormapHasUnknownPixels</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ColormapHasUnknownPixels; // TODO: native event binding
+        public event Action? ColormapHasUnknownPixels
+        {
+            add { if (value is not null) AddEventHandler("ColormapHasUnknownPixels", value); }
+            remove { if (value is not null) RemoveEventHandler("ColormapHasUnknownPixels", value); }
+        }
 
         /// <summary>
         /// <c>HeightmapImporterService.ProgressUpdate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ProgressUpdate; // TODO: native event binding
+        /// <param name="progressRatio">A <c>float</c> value.</param>
+        /// <param name="operation">A <c>string?</c> value.</param>
+        public event Action<float, string?>? ProgressUpdate
+        {
+            add { if (value is not null) AddEventHandler("ProgressUpdate", value); }
+            remove { if (value is not null) RemoveEventHandler("ProgressUpdate", value); }
+        }
 
     }
 }

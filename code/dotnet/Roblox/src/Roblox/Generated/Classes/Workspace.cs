@@ -85,24 +85,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.ClientAnimatorThrottlingMode>(this, "ClientAnimatorThrottling", value);
         }
 
-        public byte[]? CollisionGroupData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "CollisionGroupData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "CollisionGroupData", value);
-        }
-
-        public string? CollisionGroups
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CollisionGroups");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CollisionGroups", value);
-        }
-
-        public bool ConvexDecompCompressed
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ConvexDecompCompressed");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "ConvexDecompCompressed", value);
-        }
-
         /// <summary>
         /// The Camera object being used by the local player.
         /// </summary>
@@ -111,12 +93,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Camera?>(this, "CurrentCamera");
             set => global::Roblox.Reflection.SetProperty<Camera?>(this, "CurrentCamera", value);
-        }
-
-        public int DataModelPlaceVersion
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DataModelPlaceVersion");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "DataModelPlaceVersion", value);
         }
 
         /// <summary>
@@ -137,12 +113,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "EnableSLIMAvatars");
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "EnableSLIMAvatars", value);
-        }
-
-        public bool ExplicitAutoJoints
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ExplicitAutoJoints");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "ExplicitAutoJoints", value);
         }
 
         /// <summary>
@@ -358,7 +328,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// Controls internal behavior of the built-in Player scripts.
+        /// Controls whether the built-in player scripts are updated to use the Input Action System.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PlayerScriptsUseInputActionSystem"/>
         public Enum.RolloutState PlayerScriptsUseInputActionSystem
@@ -447,12 +417,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.SignalBehavior>(this, "SignalBehavior", value);
         }
 
-        public Enum.SignalBehavior SignalBehavior2
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.SignalBehavior>(this, "SignalBehavior2");
-            set => global::Roblox.Reflection.SetProperty<Enum.SignalBehavior>(this, "SignalBehavior2", value);
-        }
-
         /// <summary>
         /// <c>Workspace.SignalBehaviorAlias</c>
         /// </summary>
@@ -513,12 +477,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "StreamingMinRadius", value);
         }
 
-        public Enum.StreamingPauseMode StreamingPauseMode
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.StreamingPauseMode>(this, "StreamingPauseMode");
-            set => global::Roblox.Reflection.SetProperty<Enum.StreamingPauseMode>(this, "StreamingPauseMode", value);
-        }
-
         /// <summary>
         /// Maximum distance that content will be streamed to players.
         /// </summary>
@@ -537,18 +495,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Terrain?>(this, "Terrain");
             set => global::Roblox.Reflection.SetProperty<Terrain?>(this, "Terrain", value);
-        }
-
-        public bool TerrainWeldsFixed
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TerrainWeldsFixed");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "TerrainWeldsFixed", value);
-        }
-
-        public int ThrottleLevel
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ThrottleLevel");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "ThrottleLevel", value);
         }
 
         public Enum.RolloutState TouchEventsUseCollisionGroups
@@ -605,12 +551,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ValidateEnabledProximityPrompt");
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "ValidateEnabledProximityPrompt", value);
-        }
-
-        public string? WatermarkHash
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "WatermarkHash");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "WatermarkHash", value);
         }
 
         /// <summary>
@@ -766,16 +706,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires when persistent models have been sent to the specified player.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PersistentLoaded"/>
-        // public event Action? PersistentLoaded; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Workspace.SendServerTime</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SendServerTime; // TODO: native event binding
+        public event Action<Player?>? PersistentLoaded
+        {
+            add { if (value is not null) AddEventHandler("PersistentLoaded", value); }
+            remove { if (value is not null) RemoveEventHandler("PersistentLoaded", value); }
+        }
 
     }
 }

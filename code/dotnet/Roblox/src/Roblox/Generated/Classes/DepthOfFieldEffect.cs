@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Intensity of the far field blur.
-        /// <para><b>Default:</b> <c>0.75</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#FarIntensity"/>
         public float FarIntensity
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Distance away from the camera where objects are in focus.
-        /// <para><b>Default:</b> <c>0.0500000007</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#FocusDistance"/>
         public float FocusDistance
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the distance away from the FocusDistance where no blur is applied.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#InFocusRadius"/>
         public float InFocusRadius
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Intensity of the near field blur.
-        /// <para><b>Default:</b> <c>0.75</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#NearIntensity"/>
         public float NearIntensity

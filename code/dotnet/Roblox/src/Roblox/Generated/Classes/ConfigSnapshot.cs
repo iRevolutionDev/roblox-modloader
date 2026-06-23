@@ -73,10 +73,14 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a newer version of the configuration is available.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot#UpdateAvailable"/>
-        // public event Action? UpdateAvailable; // TODO: native event binding
+        public event Action? UpdateAvailable
+        {
+            add { if (value is not null) AddEventHandler("UpdateAvailable", value); }
+            remove { if (value is not null) RemoveEventHandler("UpdateAvailable", value); }
+        }
 
     }
 }

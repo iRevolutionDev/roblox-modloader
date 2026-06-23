@@ -62,11 +62,5 @@ namespace Roblox
         public object? InternalRequestReviewableContentReviewAsync(object? config)
             => global::Roblox.Reflection.Invoke<object?>(this, "InternalRequestReviewableContentReviewAsync", config);
 
-        /// <summary>
-        /// <c>ModerationService.TriggeredCaptureUpload</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TriggeredCaptureUpload; // TODO: native event binding
-
     }
 }

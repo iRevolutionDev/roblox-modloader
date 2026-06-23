@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Direction of the X axis of the attachment, represented as a unit Vector3.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Axis"/>
         public global::System.Numerics.Vector3 Axis
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// CFrame offset of the attachment.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#CFrame"/>
         public object? CFrame
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Orientation of the attachment relative to the orientation of its parent.
-        /// <para><b>Default:</b> <c>-0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Orientation"/>
         public global::System.Numerics.Vector3 Orientation
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Positional offset of the attachment, relative to the position and orientation of its parent.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Position"/>
         public global::System.Numerics.Vector3 Position
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated and should not be used in new work. See Orientation instead.Rotation of the attachment relative to the rotation of its parent.
-        /// <para><b>Default:</b> <c>-0, 0, -0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Rotation"/>
         public global::System.Numerics.Vector3 Rotation
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Direction of the Y axis of the attachment, represented as a unit Vector3.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#SecondaryAxis"/>
         public global::System.Numerics.Vector3 SecondaryAxis
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles the in-experience visibility of the attachment.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Visible"/>
         public bool Visible
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Direction of the X axis of the attachment relative to the world, represented as a unit Vector3 with a length of 1.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldAxis"/>
         public global::System.Numerics.Vector3 WorldAxis
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The exact CFrame of the attachment in world space coordinates.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldCFrame"/>
         public object? WorldCFrame
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Orientation of the attachment relative to the world rather than its own parent.
-        /// <para><b>Default:</b> <c>-0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldOrientation"/>
         public global::System.Numerics.Vector3 WorldOrientation
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Position of the attachment relative to the world rather than its own parent.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldPosition"/>
         public global::System.Numerics.Vector3 WorldPosition
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item has been superseded by WorldOrientation which should be used in new work.Rotation of the attachment relative to the world rather than its own parent.
-        /// <para><b>Default:</b> <c>-0, 0, -0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldRotation"/>
         public global::System.Numerics.Vector3 WorldRotation
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Direction of the Y axis of the attachment relative to the world, represented as a unit Vector3 with a length of 1.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldSecondaryAxis"/>
         public global::System.Numerics.Vector3 WorldSecondaryAxis

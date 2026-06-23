@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the target orientation (translational component ignored).
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#CFrame"/>
         public object? CFrame
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the amount of dampening to use in reaching the goal CFrame.
-        /// <para><b>Default:</b> <c>500</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#D"/>
         public float D
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the limit on how much torque that may be applied to each axis.
-        /// <para><b>Default:</b> <c>400000, 0, 400000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#MaxTorque"/>
         public global::System.Numerics.Vector3 MaxTorque
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how aggressive of a torque is applied in reaching the goal orientation.
-        /// <para><b>Default:</b> <c>3000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#P"/>
         public float P
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is a deprecated variant of BodyGyro.CFrame which should be used instead.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#cframe"/>
         public object? Cframe

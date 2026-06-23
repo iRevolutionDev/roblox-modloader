@@ -159,24 +159,40 @@ namespace Roblox
 
         /// <summary>
         /// Fires just after a ScriptDocument changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="document">A <c>ScriptDocument?</c> value.</param>
+        /// <param name="changesArray">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidChange"/>
-        // public event Action? TextDocumentDidChange; // TODO: native event binding
+        public event Action<ScriptDocument?, object?>? TextDocumentDidChange
+        {
+            add { if (value is not null) AddEventHandler("TextDocumentDidChange", value); }
+            remove { if (value is not null) RemoveEventHandler("TextDocumentDidChange", value); }
+        }
 
         /// <summary>
         /// Fires just before a ScriptDocument object is destroyed, which happens right after the script editor closes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="oldDocument">A <c>ScriptDocument?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidClose"/>
-        // public event Action? TextDocumentDidClose; // TODO: native event binding
+        public event Action<ScriptDocument?>? TextDocumentDidClose
+        {
+            add { if (value is not null) AddEventHandler("TextDocumentDidClose", value); }
+            remove { if (value is not null) RemoveEventHandler("TextDocumentDidClose", value); }
+        }
 
         /// <summary>
         /// Fires just after a ScriptDocument object is created and parented to the service, which happens right after the script editor opens.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="newDocument">A <c>ScriptDocument?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidOpen"/>
-        // public event Action? TextDocumentDidOpen; // TODO: native event binding
+        public event Action<ScriptDocument?>? TextDocumentDidOpen
+        {
+            add { if (value is not null) AddEventHandler("TextDocumentDidOpen", value); }
+            remove { if (value is not null) RemoveEventHandler("TextDocumentDidOpen", value); }
+        }
 
     }
 }

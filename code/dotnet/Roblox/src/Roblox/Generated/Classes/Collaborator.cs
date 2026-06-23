@@ -21,30 +21,18 @@ namespace Roblox
         public static Collaborator? FromHandle(nuint handle)
             => handle == 0 ? null : new Collaborator(handle);
 
-        /// <summary>
-        /// <c>Collaborator.CFrame</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
         public object? CFrame
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
         }
 
-        /// <summary>
-        /// <c>Collaborator.CollaboratorColor</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int CollaboratorColor
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "CollaboratorColor");
             set => global::Roblox.Reflection.SetProperty<int>(this, "CollaboratorColor", value);
         }
 
-        /// <summary>
-        /// <c>Collaborator.CollaboratorColor3</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
         public object? CollaboratorColor3
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "CollaboratorColor3");
@@ -57,40 +45,24 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "CurDocGUID", value);
         }
 
-        /// <summary>
-        /// <c>Collaborator.CurScriptLineNumber</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int CurScriptLineNumber
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "CurScriptLineNumber");
             set => global::Roblox.Reflection.SetProperty<int>(this, "CurScriptLineNumber", value);
         }
 
-        /// <summary>
-        /// <c>Collaborator.IsIdle</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsIdle
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsIdle");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsIdle", value);
         }
 
-        /// <summary>
-        /// <c>Collaborator.Status</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
         public Enum.CollaboratorStatus Status
         {
             get => global::Roblox.Reflection.GetProperty<Enum.CollaboratorStatus>(this, "Status");
             set => global::Roblox.Reflection.SetProperty<Enum.CollaboratorStatus>(this, "Status", value);
         }
 
-        /// <summary>
-        /// <c>Collaborator.UserId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long UserId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "UserId");

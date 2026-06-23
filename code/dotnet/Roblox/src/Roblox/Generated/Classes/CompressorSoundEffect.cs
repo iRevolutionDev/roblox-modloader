@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The time the effect takes to become active after its Threshold has been reached.
-        /// <para><b>Default:</b> <c>0.100000001</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Attack"/>
         public float Attack
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The overall amplification applied to the effect's Sound or SoundGroup after attenuation of sounds above the threshold.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#GainMakeup"/>
         public float GainMakeup
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The ratio between the SideChain sound effect, and this sound effect.
-        /// <para><b>Default:</b> <c>40</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Ratio"/>
         public float Ratio
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The time the effect takes to become inactive after its sound is below the Threshold.
-        /// <para><b>Default:</b> <c>0.100000001</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Release"/>
         public float Release
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Volume level at which point the compressor applies its effect.
-        /// <para><b>Default:</b> <c>-40</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Threshold"/>
         public float Threshold

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The percentage to shift the original pitch.
-        /// <para><b>Default:</b> <c>1.25</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PitchShiftSoundEffect#Octave"/>
         public float Octave

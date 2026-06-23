@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the shadow's blurriness.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#BlurRadius"/>
         public object? BlurRadius
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the shadow's color.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Color"/>
         public object? Color
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the UIShadow is visible.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Enabled"/>
         public bool Enabled
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Moves the shadow relative to the parent's position.
-        /// <para><b>Default:</b> <c>{0, 0}, {0, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Offset"/>
         public object? Offset
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Expands or shrinks the shadow relative to the parent's size.
-        /// <para><b>Default:</b> <c>{0, 0}, {0, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Spread"/>
         public object? Spread
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the shadow's transparency.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Transparency"/>
         public float Transparency
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the shadow's render order relative to sibling UIShadow instances.
-        /// <para><b>Default:</b> <c>-1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#ZIndex"/>
         public int ZIndex

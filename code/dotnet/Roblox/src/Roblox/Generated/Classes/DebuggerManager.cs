@@ -79,15 +79,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerManager.DebuggerAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DebuggerAdded; // TODO: native event binding
+        /// <param name="debugger">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? DebuggerAdded
+        {
+            add { if (value is not null) AddEventHandler("DebuggerAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("DebuggerAdded", value); }
+        }
 
         /// <summary>
         /// <c>DebuggerManager.DebuggerRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DebuggerRemoved; // TODO: native event binding
+        /// <param name="debugger">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? DebuggerRemoved
+        {
+            add { if (value is not null) AddEventHandler("DebuggerRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("DebuggerRemoved", value); }
+        }
 
     }
 }

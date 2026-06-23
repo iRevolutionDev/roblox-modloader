@@ -51,15 +51,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>ImportSession.UploadComplete</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UploadComplete; // TODO: native event binding
+        /// <param name="results">A <c>object?</c> value.</param>
+        public event Action<object?>? UploadComplete
+        {
+            add { if (value is not null) AddEventHandler("UploadComplete", value); }
+            remove { if (value is not null) RemoveEventHandler("UploadComplete", value); }
+        }
 
         /// <summary>
         /// <c>ImportSession.UploadProgress</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UploadProgress; // TODO: native event binding
+        /// <param name="progressRatio">A <c>float</c> value.</param>
+        public event Action<float>? UploadProgress
+        {
+            add { if (value is not null) AddEventHandler("UploadProgress", value); }
+            remove { if (value is not null) RemoveEventHandler("UploadProgress", value); }
+        }
 
     }
 }

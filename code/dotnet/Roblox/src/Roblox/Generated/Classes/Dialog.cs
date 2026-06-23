@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the Dialog can be used by multiple players at once.
-        /// <para><b>Default:</b> <c>SinglePlayer</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#BehaviorType"/>
         public Enum.DialogBehaviorType BehaviorType
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The furthest distance that a player can be from the Dialog's parent to start a conversation.
-        /// <para><b>Default:</b> <c>25</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#ConversationDistance"/>
         public float ConversationDistance
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether the goodbye option will be displayed.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#GoodbyeChoiceActive"/>
         public bool GoodbyeChoiceActive
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// If true, this dialog is being used by at least one player.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#InUse"/>
         public bool InUse
@@ -91,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the icon that the initial dialog displays.
-        /// <para><b>Default:</b> <c>Help</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#Purpose"/>
         public Enum.DialogPurpose Purpose
@@ -102,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the color of the NPC's speech bubble.
-        /// <para><b>Default:</b> <c>Neutral</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#Tone"/>
         public Enum.DialogTone Tone
@@ -113,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the maximum distance that a dialog can be triggered from.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#TriggerDistance"/>
         public float TriggerDistance
@@ -124,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the offset of the dialog relative to the dialog's parent.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#TriggerOffset"/>
         public global::System.Numerics.Vector3 TriggerOffset
@@ -169,10 +161,16 @@ namespace Roblox
 
         /// <summary>
         /// Fired when a player chooses something to say, through a Dialog instance.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="dialogChoice">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#DialogChoiceSelected"/>
-        // public event Action? DialogChoiceSelected; // TODO: native event binding
+        public event Action<Instance?, Instance?>? DialogChoiceSelected
+        {
+            add { if (value is not null) AddEventHandler("DialogChoiceSelected", value); }
+            remove { if (value is not null) RemoveEventHandler("DialogChoiceSelected", value); }
+        }
 
     }
 }

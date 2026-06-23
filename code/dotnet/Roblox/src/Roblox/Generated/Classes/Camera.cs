@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The CFrame of the Camera, defining its position and orientation in the 3D world.
-        /// <para><b>Default:</b> <c>0, 20, 20, 1, 0, -0, -0, 0.707106829, 0.707106829, 0, -0.707106829, 0.707106829</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#CFrame"/>
         public object? CFrame
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the CameraType to be read by the camera scripts.
-        /// <para><b>Default:</b> <c>Fixed</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#CameraType"/>
         public Enum.CameraType CameraType
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item has been superseded by Camera.CFrame which should be used in all new work.
-        /// <para><b>Default:</b> <c>0, 20, 20, 1, 0, -0, -0, 0.707106829, 0.707106829, 0, -0.707106829, 0.707106829</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#CoordinateFrame"/>
         public object? CoordinateFrame
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the angle of the camera's diagonal field of view.
-        /// <para><b>Default:</b> <c>88.8765335</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#DiagonalFieldOfView"/>
         public float DiagonalFieldOfView
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the angle of the camera's vertical field of view.
-        /// <para><b>Default:</b> <c>70</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#FieldOfView"/>
         public float FieldOfView
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the FOV value of the Camera that's invariant under viewport size changes.
-        /// <para><b>Default:</b> <c>Vertical</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#FieldOfViewMode"/>
         public Enum.FieldOfViewMode FieldOfViewMode
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the area in 3D space that is prioritized by Roblox's graphical systems.
-        /// <para><b>Default:</b> <c>0, 0, -5, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#Focus"/>
         public object? Focus
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether the camera will automatically track the head motion of a player using a VR device.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#HeadLocked"/>
         public bool HeadLocked
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the scale of the user's perspective of the world when using VR.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#HeadScale"/>
         public float HeadScale
@@ -136,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the angle of the camera's field of view along the longest viewport axis.
-        /// <para><b>Default:</b> <c>70</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#MaxAxisFieldOfView"/>
         public float MaxAxisFieldOfView
@@ -147,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the negative Z offset, in studs, of the camera's near clipping plane.
-        /// <para><b>Default:</b> <c>-0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#NearPlaneZ"/>
         public float NearPlaneZ
@@ -158,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether to apply tilt and roll from the CFrame property while the player is using a VR device.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#VRTiltAndRollEnabled"/>
         public bool VRTiltAndRollEnabled
@@ -169,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// The dimensions of the device safe area on a Roblox client.
-        /// <para><b>Default:</b> <c>1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#ViewportSize"/>
         public global::System.Numerics.Vector2 ViewportSize
@@ -344,16 +331,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>Camera.FirstPersonTransition</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FirstPersonTransition; // TODO: native event binding
+        /// <param name="entering">A <c>bool</c> value.</param>
+        public event Action<bool>? FirstPersonTransition
+        {
+            add { if (value is not null) AddEventHandler("FirstPersonTransition", value); }
+            remove { if (value is not null) RemoveEventHandler("FirstPersonTransition", value); }
+        }
 
         /// <summary>
         /// Fired when the Camera has finished interpolating usingInterpolate().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#InterpolationFinished"/>
-        // public event Action? InterpolationFinished; // TODO: native event binding
+        public event Action? InterpolationFinished
+        {
+            add { if (value is not null) AddEventHandler("InterpolationFinished", value); }
+            remove { if (value is not null) RemoveEventHandler("InterpolationFinished", value); }
+        }
 
     }
 }

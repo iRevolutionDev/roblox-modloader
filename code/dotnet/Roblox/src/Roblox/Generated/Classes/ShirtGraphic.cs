@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the colorization to be applied to the ShirtGraphic texture.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ShirtGraphic#Color3"/>
         public object? Color3
@@ -44,6 +43,12 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "Graphic");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "Graphic", value);
+        }
+
+        public string? TextureContent
+        {
+            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
+            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
         }
 
     }

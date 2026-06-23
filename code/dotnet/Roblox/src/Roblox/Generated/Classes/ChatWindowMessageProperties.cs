@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of the text in the chat window.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties#TextColor3"/>
         public object? TextColor3
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of the text in the chat window.
-        /// <para><b>Default:</b> <c>18</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties#TextSize"/>
         public int TextSize
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Stroke color applied to text in the chat window.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties#TextStrokeColor3"/>
         public object? TextStrokeColor3
@@ -80,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Transparency of the stroke applied to text in the chat window.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties#TextStrokeTransparency"/>
         public double TextStrokeTransparency

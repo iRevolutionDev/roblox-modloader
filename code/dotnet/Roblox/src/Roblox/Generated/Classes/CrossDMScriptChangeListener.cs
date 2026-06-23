@@ -42,15 +42,28 @@ namespace Roblox
 
         /// <summary>
         /// <c>CrossDMScriptChangeListener.GuidLineContentsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GuidLineContentsChanged; // TODO: native event binding
+        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="lineNumber">A <c>int</c> value.</param>
+        /// <param name="contents">A <c>string?</c> value.</param>
+        public event Action<string?, int, string?>? GuidLineContentsChanged
+        {
+            add { if (value is not null) AddEventHandler("GuidLineContentsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("GuidLineContentsChanged", value); }
+        }
 
         /// <summary>
         /// <c>CrossDMScriptChangeListener.GuidNameChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GuidNameChanged; // TODO: native event binding
+        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="fullName">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? GuidNameChanged
+        {
+            add { if (value is not null) AddEventHandler("GuidNameChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("GuidNameChanged", value); }
+        }
 
     }
 }

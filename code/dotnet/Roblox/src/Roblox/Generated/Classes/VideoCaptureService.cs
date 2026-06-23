@@ -25,10 +25,6 @@ namespace Roblox
         public static VideoCaptureService? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoCaptureService(handle);
 
-        /// <summary>
-        /// <c>VideoCaptureService.Active</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Active
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
@@ -50,27 +46,47 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoCaptureService.DevicesChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? DevicesChanged; // TODO: native event binding
+        public event Action? DevicesChanged
+        {
+            add { if (value is not null) AddEventHandler("DevicesChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("DevicesChanged", value); }
+        }
 
         /// <summary>
         /// <c>VideoCaptureService.Error</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Error; // TODO: native event binding
+        /// <param name="cameraid">A <c>string?</c> value.</param>
+        /// <param name="errorcode">A <c>string?</c> value.</param>
+        public event Action<string?, string?>? Error
+        {
+            add { if (value is not null) AddEventHandler("Error", value); }
+            remove { if (value is not null) RemoveEventHandler("Error", value); }
+        }
 
         /// <summary>
         /// <c>VideoCaptureService.Started</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Started; // TODO: native event binding
+        /// <param name="cameraid">A <c>string?</c> value.</param>
+        public event Action<string?>? Started
+        {
+            add { if (value is not null) AddEventHandler("Started", value); }
+            remove { if (value is not null) RemoveEventHandler("Started", value); }
+        }
 
         /// <summary>
         /// <c>VideoCaptureService.Stopped</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Stopped; // TODO: native event binding
+        /// <param name="cameraid">A <c>string?</c> value.</param>
+        public event Action<string?>? Stopped
+        {
+            add { if (value is not null) AddEventHandler("Stopped", value); }
+            remove { if (value is not null) RemoveEventHandler("Stopped", value); }
+        }
 
     }
 }

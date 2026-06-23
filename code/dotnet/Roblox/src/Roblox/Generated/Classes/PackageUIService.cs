@@ -85,15 +85,28 @@ namespace Roblox
 
         /// <summary>
         /// <c>PackageUIService.OnConvertToPackageResult</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnConvertToPackageResult; // TODO: native event binding
+        /// <param name="isSuccessful">A <c>bool</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        public event Action<bool, string?>? OnConvertToPackageResult
+        {
+            add { if (value is not null) AddEventHandler("OnConvertToPackageResult", value); }
+            remove { if (value is not null) RemoveEventHandler("OnConvertToPackageResult", value); }
+        }
 
         /// <summary>
         /// <c>PackageUIService.OnOpenConvertToPackagePlugin</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnOpenConvertToPackagePlugin; // TODO: native event binding
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="cloneInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        public event Action<IReadOnlyList<Instance>, string?, IReadOnlyList<Instance>>? OnOpenConvertToPackagePlugin
+        {
+            add { if (value is not null) AddEventHandler("OnOpenConvertToPackagePlugin", value); }
+            remove { if (value is not null) RemoveEventHandler("OnOpenConvertToPackagePlugin", value); }
+        }
 
     }
 }

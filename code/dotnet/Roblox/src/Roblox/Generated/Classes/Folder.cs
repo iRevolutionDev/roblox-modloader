@@ -25,15 +25,5 @@ namespace Roblox
         public static Folder? FromHandle(nuint handle)
             => handle == 0 ? null : new Folder(handle);
 
-        /// <summary>
-        /// <c>Folder.ReplicatedGuiInsertionOrder</c>
-        /// <para><b>Default:</b> <c>2147483647</c></para>
-        /// </summary>
-        public int ReplicatedGuiInsertionOrder
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ReplicatedGuiInsertionOrder");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "ReplicatedGuiInsertionOrder", value);
-        }
-
     }
 }

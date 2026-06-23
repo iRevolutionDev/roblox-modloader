@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The Color3 tint of the Decal.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Color3"/>
         public object? Color3
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Acts as a multiplier for the decal's Transparency property. The effects are only visible to the local player.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
@@ -109,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Decal.Rotation</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Rotation"/>
         public float Rotation
@@ -140,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This non-functional property is deprecated and should not be used in new work.
-        /// <para><b>Default:</b> <c>20</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Shiny"/>
         public float Shiny
@@ -151,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property no longer functions correctly and is deprecated. It should not be used in new work.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Specular"/>
         public float Specular
@@ -190,15 +185,8 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "TexturePack", value);
         }
 
-        public string? TexturePackMetadata
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TexturePackMetadata");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TexturePackMetadata", value);
-        }
-
         /// <summary>
         /// Determines the transparency of the Decal.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Transparency"/>
         public float Transparency
@@ -209,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Shifts the UV coordinates by adding an offset before texture mapping.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#UVOffset"/>
         public global::System.Numerics.Vector2 UVOffset
@@ -220,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Stretches or compresses the UV coordinates by multiplying a scale factor.
-        /// <para><b>Default:</b> <c>1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#UVScale"/>
         public global::System.Numerics.Vector2 UVScale
@@ -231,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the rendering order when multiple decals are assigned the same face.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#ZIndex"/>
         public int ZIndex

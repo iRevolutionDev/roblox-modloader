@@ -21,92 +21,10 @@ namespace Roblox
         public static LodDataEntity? FromHandle(nuint handle)
             => handle == 0 ? null : new LodDataEntity(handle);
 
-        public string? EntityData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EntityData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EntityData", value);
-        }
-
-        /// <summary>
-        /// <c>LodDataEntity.EntityLodEnabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool EntityLodEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EntityLodEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EntityLodEnabled", value);
-        }
-
-        /// <summary>
-        /// <c>LodDataEntity.EntityModelSize</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 EntityModelSize
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "EntityModelSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "EntityModelSize", value);
-        }
-
-        /// <summary>
-        /// <c>LodDataEntity.EntityPosition</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
-        public object? EntityPosition
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "EntityPosition");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "EntityPosition", value);
-        }
-
-        /// <summary>
-        /// <c>LodDataEntity.EntityScale</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 EntityScale
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "EntityScale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "EntityScale", value);
-        }
-
-        public Instance? EntitySource
-        {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "EntitySource");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "EntitySource", value);
-        }
-
-        /// <summary>
-        /// <c>LodDataEntity.EntityVisible</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
-        public bool EntityVisible
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EntityVisible");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "EntityVisible", value);
-        }
-
-        /// <summary>
-        /// <c>LodDataEntity.IsSlimEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool IsSlimEnabled
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSlimEnabled");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsSlimEnabled", value);
-        }
-
-        public SlimAnimationDataEntity? SlimAnimationSource
-        {
-            get => global::Roblox.Reflection.GetProperty<SlimAnimationDataEntity?>(this, "SlimAnimationSource");
-            set => global::Roblox.Reflection.SetProperty<SlimAnimationDataEntity?>(this, "SlimAnimationSource", value);
-        }
-
-        /// <summary>
-        /// <c>LodDataEntity.SlimReplicationTimestampSec</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public double SlimReplicationTimestampSec
-        {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "SlimReplicationTimestampSec");
-            set => global::Roblox.Reflection.SetProperty<double>(this, "SlimReplicationTimestampSec", value);
         }
 
     }

@@ -21,20 +21,12 @@ namespace Roblox
         public static Noise? FromHandle(nuint handle)
             => handle == 0 ? null : new Noise(handle);
 
-        /// <summary>
-        /// <c>Noise.NoiseType</c>
-        /// <para><b>Default:</b> <c>SimplexGabor</c></para>
-        /// </summary>
         public Enum.NoiseType NoiseType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.NoiseType>(this, "NoiseType");
             set => global::Roblox.Reflection.SetProperty<Enum.NoiseType>(this, "NoiseType", value);
         }
 
-        /// <summary>
-        /// <c>Noise.Seed</c>
-        /// <para><b>Default:</b> <c>1234</c></para>
-        /// </summary>
         public int Seed
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Seed");

@@ -152,33 +152,65 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioAssetService.OnConvertToPackageResult</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnConvertToPackageResult; // TODO: native event binding
+        /// <param name="isSuccessful">A <c>bool</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        public event Action<bool, string?>? OnConvertToPackageResult
+        {
+            add { if (value is not null) AddEventHandler("OnConvertToPackageResult", value); }
+            remove { if (value is not null) RemoveEventHandler("OnConvertToPackageResult", value); }
+        }
 
         /// <summary>
         /// <c>StudioAssetService.OnPromptSaveInstanceToRobloxAsync</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnPromptSaveInstanceToRobloxAsync; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="assetType">A <c>object?</c> value.</param>
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="groupId">A <c>object?</c> value.</param>
+        public event Action<Instance?, object?, string?, object?>? OnPromptSaveInstanceToRobloxAsync
+        {
+            add { if (value is not null) AddEventHandler("OnPromptSaveInstanceToRobloxAsync", value); }
+            remove { if (value is not null) RemoveEventHandler("OnPromptSaveInstanceToRobloxAsync", value); }
+        }
 
         /// <summary>
         /// <c>StudioAssetService.OnPublishPackageResult</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnPublishPackageResult; // TODO: native event binding
+        /// <param name="result">A <c>object?</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        public event Action<object?, string?>? OnPublishPackageResult
+        {
+            add { if (value is not null) AddEventHandler("OnPublishPackageResult", value); }
+            remove { if (value is not null) RemoveEventHandler("OnPublishPackageResult", value); }
+        }
 
         /// <summary>
         /// <c>StudioAssetService.OnSaveToRoblox</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnSaveToRoblox; // TODO: native event binding
+        /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
+        /// <param name="assetType">A <c>object?</c> value.</param>
+        /// <param name="hasSubsequent">A <c>bool</c> value.</param>
+        public event Action<IReadOnlyList<Instance>, object?, bool>? OnSaveToRoblox
+        {
+            add { if (value is not null) AddEventHandler("OnSaveToRoblox", value); }
+            remove { if (value is not null) RemoveEventHandler("OnSaveToRoblox", value); }
+        }
 
         /// <summary>
         /// <c>StudioAssetService.OnUGCSubmitCompleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnUGCSubmitCompleted; // TODO: native event binding
+        /// <param name="cancelled">A <c>bool</c> value.</param>
+        public event Action<bool>? OnUGCSubmitCompleted
+        {
+            add { if (value is not null) AddEventHandler("OnUGCSubmitCompleted", value); }
+            remove { if (value is not null) RemoveEventHandler("OnUGCSubmitCompleted", value); }
+        }
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The direction of movement, tied to the keys A and D. Must be 1 (right), 0 (straight), or -1 (left). Will refresh back to 0 unless constantly set.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardController#Steer"/>
         public float Steer
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The direction of movement, tied to the keys W and S. Must be an integer 1 (forward), 0 (null), or -1 (reverse). Will refresh back to 0 unless constantly set.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardController#Throttle"/>
         public float Throttle
@@ -49,10 +47,15 @@ namespace Roblox
 
         /// <summary>
         /// Fired when any input state of the skateboard controller is updated.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="axis">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardController#AxisChanged"/>
-        // public event Action? AxisChanged; // TODO: native event binding
+        public event Action<string?>? AxisChanged
+        {
+            add { if (value is not null) AddEventHandler("AxisChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("AxisChanged", value); }
+        }
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the width-to-height ratio to maintain.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIAspectRatioConstraint#AspectRatio"/>
         public float AspectRatio
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the maximum size of the object is limited.
-        /// <para><b>Default:</b> <c>FitWithinMaxSize</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIAspectRatioConstraint#AspectType"/>
         public Enum.AspectType AspectType
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the axis to use when setting the new size of the object.
-        /// <para><b>Default:</b> <c>Width</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIAspectRatioConstraint#DominantAxis"/>
         public Enum.DominantAxis DominantAxis

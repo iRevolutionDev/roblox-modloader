@@ -21,20 +21,12 @@ namespace Roblox
         public static RealtimeMedia? FromHandle(nuint handle)
             => handle == 0 ? null : new RealtimeMedia(handle);
 
-        /// <summary>
-        /// <c>RealtimeMedia.ForwardInput</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ForwardInput
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ForwardInput");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ForwardInput", value);
         }
 
-        /// <summary>
-        /// <c>RealtimeMedia.IsConnected</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsConnected
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsConnected");
@@ -90,15 +82,29 @@ namespace Roblox
 
         /// <summary>
         /// <c>RealtimeMedia.OnMessage</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnMessage; // TODO: native event binding
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="binary">A <c>bool</c> value.</param>
+        public event Action<string?, bool>? OnMessage
+        {
+            add { if (value is not null) AddEventHandler("OnMessage", value); }
+            remove { if (value is not null) RemoveEventHandler("OnMessage", value); }
+        }
 
         /// <summary>
         /// <c>RealtimeMedia.WiringChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? WiringChanged; // TODO: native event binding
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

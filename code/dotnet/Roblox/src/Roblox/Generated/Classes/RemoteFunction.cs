@@ -45,30 +45,6 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "InvokeServer", arguments);
 
         /// <summary>
-        /// <c>RemoteFunction.RemoteOnInvokeClient</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteOnInvokeClient; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteFunction.RemoteOnInvokeError</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteOnInvokeError; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteFunction.RemoteOnInvokeServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteOnInvokeServer; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteFunction.RemoteOnInvokeSuccess</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteOnInvokeSuccess; // TODO: native event binding
-
-        /// <summary>
         /// Callback for when the RemoteFunction is invoked with InvokeClient().
         /// <para><b>Note:</b> Callback binding is not yet implemented in the native layer.</para>
         /// </summary>

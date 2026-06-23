@@ -35,10 +35,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "AccountAge", value);
         }
 
-        public int AccountAgeReplicate
+        public Enum.AgeCheckStatus AgeChecked
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "AccountAgeReplicate");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "AccountAgeReplicate", value);
+            get => global::Roblox.Reflection.GetProperty<Enum.AgeCheckStatus>(this, "AgeChecked");
+            set => global::Roblox.Reflection.SetProperty<Enum.AgeCheckStatus>(this, "AgeChecked", value);
         }
 
         public bool AppearanceDidLoad
@@ -55,12 +55,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoJumpEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoJumpEnabled", value);
-        }
-
-        public bool CameraFrustumRequested
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraFrustumRequested");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "CameraFrustumRequested", value);
         }
 
         /// <summary>
@@ -133,12 +127,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<long>(this, "CharacterAppearanceId", value);
         }
 
-        public global::System.Numerics.Vector3 ChararacterRegionId
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "ChararacterRegionId");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "ChararacterRegionId", value);
-        }
-
         public string? ChatAvailabilityStatus
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "ChatAvailabilityStatus");
@@ -149,30 +137,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ChatMode>(this, "ChatMode");
             set => global::Roblox.Reflection.SetProperty<Enum.ChatMode>(this, "ChatMode", value);
-        }
-
-        public Enum.ChatPrivacyMode ChatPrivacyMode
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.ChatPrivacyMode>(this, "ChatPrivacyMode");
-            set => global::Roblox.Reflection.SetProperty<Enum.ChatPrivacyMode>(this, "ChatPrivacyMode", value);
-        }
-
-        public object? CloudEditCameraCoordinateFrame
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CloudEditCameraCoordinateFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CloudEditCameraCoordinateFrame", value);
-        }
-
-        public bool CloudEditPlayerActive
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CloudEditPlayerActive");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "CloudEditPlayerActive", value);
-        }
-
-        public string? CountryRegionCodeReplicate
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CountryRegionCodeReplicate");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CountryRegionCodeReplicate", value);
         }
 
         /// <summary>
@@ -281,12 +245,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<long>(this, "FollowUserId", value);
         }
 
-        public long FollowUserIdReplicated
-        {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "FollowUserIdReplicated");
-            set => global::Roblox.Reflection.SetProperty<long>(this, "FollowUserIdReplicated", value);
-        }
-
         /// <summary>
         /// Whether player client-side gameplay is currently paused.
         /// </summary>
@@ -343,12 +301,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "InputLatency", value);
         }
 
-        public bool InternalCharacterAppearanceLoaded
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InternalCharacterAppearanceLoaded");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "InternalCharacterAppearanceLoaded", value);
-        }
-
         /// <summary>
         /// This property shows the locale ID that the local player has set for their Roblox account.
         /// </summary>
@@ -357,12 +309,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "LocaleId");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "LocaleId", value);
-        }
-
-        public float MaxSimulationRadius
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxSimulationRadius");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "MaxSimulationRadius", value);
         }
 
         public float MaximumSimulationRadius
@@ -381,12 +327,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.MembershipType>(this, "MembershipType", value);
         }
 
-        public Enum.MembershipType MembershipTypeReplicate
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.MembershipType>(this, "MembershipTypeReplicate");
-            set => global::Roblox.Reflection.SetProperty<Enum.MembershipType>(this, "MembershipTypeReplicate", value);
-        }
-
         /// <summary>
         /// Sets the distance at which this player will see other players' names.
         /// </summary>
@@ -395,12 +335,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance");
             set => global::Roblox.Reflection.SetProperty<float>(this, "NameDisplayDistance", value);
-        }
-
-        public bool NeedRegionalFallback
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "NeedRegionalFallback");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "NeedRegionalFallback", value);
         }
 
         /// <summary>
@@ -433,12 +367,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "PlatformName");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "PlatformName", value);
-        }
-
-        public byte[]? RawJoinData
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "RawJoinData");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "RawJoinData", value);
         }
 
         /// <summary>
@@ -475,12 +403,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "StepIdOffset");
             set => global::Roblox.Reflection.SetProperty<int>(this, "StepIdOffset", value);
-        }
-
-        public bool SuperSafeChatReplicate
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "SuperSafeChatReplicate");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "SuperSafeChatReplicate", value);
         }
 
         /// <summary>
@@ -531,6 +453,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UnfilteredChat", value);
         }
 
+        /// <summary>
+        /// The User representing this player's domain-scoped identity within the current experience.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#User"/>
         public object? User
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "User");
@@ -776,6 +702,13 @@ namespace Roblox
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         public object? PinStreamingForInstanceByUniqueId(string? uniqueIdString, int depth)
             => global::Roblox.Reflection.Invoke<object?>(this, "PinStreamingForInstanceByUniqueId", uniqueIdString, depth);
+
+        /// <summary>
+        /// <c>Player.PromptAgeCheck</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? PromptAgeCheck()
+            => global::Roblox.Reflection.Invoke<object?>(this, "PromptAgeCheck");
 
         /// <summary>
         /// <c>Player.RemoveCharacter</c>
@@ -1156,207 +1089,147 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player's character spawns or respawns.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="character">A <c>Model?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAdded"/>
-        // public event Action? CharacterAdded; // TODO: native event binding
+        public event Action<Model?>? CharacterAdded
+        {
+            add { if (value is not null) AddEventHandler("CharacterAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("CharacterAdded", value); }
+        }
 
         /// <summary>
         /// Fires when the full appearance of a Character has been inserted.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="character">A <c>Model?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAppearanceLoaded"/>
-        // public event Action? CharacterAppearanceLoaded; // TODO: native event binding
+        public event Action<Model?>? CharacterAppearanceLoaded
+        {
+            add { if (value is not null) AddEventHandler("CharacterAppearanceLoaded", value); }
+            remove { if (value is not null) RemoveEventHandler("CharacterAppearanceLoaded", value); }
+        }
 
         /// <summary>
         /// Fires right before a player's character is removed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="character">A <c>Model?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterRemoving"/>
-        // public event Action? CharacterRemoving; // TODO: native event binding
+        public event Action<Model?>? CharacterRemoving
+        {
+            add { if (value is not null) AddEventHandler("CharacterRemoving", value); }
+            remove { if (value is not null) RemoveEventHandler("CharacterRemoving", value); }
+        }
 
         /// <summary>
         /// Fires when a player chats in experience using Roblox's provided chat bar.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="recipient">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Chatted"/>
-        // public event Action? Chatted; // TODO: native event binding
+        public event Action<string?, Player?>? Chatted
+        {
+            add { if (value is not null) AddEventHandler("Chatted", value); }
+            remove { if (value is not null) RemoveEventHandler("Chatted", value); }
+        }
 
         /// <summary>
         /// <c>Player.CloudEditSelectionChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CloudEditSelectionChanged; // TODO: native event binding
+        /// <param name="newSelection">A <c>object?</c> value.</param>
+        public event Action<object?>? CloudEditSelectionChanged
+        {
+            add { if (value is not null) AddEventHandler("CloudEditSelectionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("CloudEditSelectionChanged", value); }
+        }
 
         /// <summary>
         /// <c>Player.FriendStatusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FriendStatusChanged; // TODO: native event binding
+        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="friendStatus">A <c>Enum.FriendStatus</c> value.</param>
+        public event Action<Player?, Enum.FriendStatus>? FriendStatusChanged
+        {
+            add { if (value is not null) AddEventHandler("FriendStatusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("FriendStatusChanged", value); }
+        }
 
         /// <summary>
         /// This event fires approximately two minutes after the engine classifies the player as idle. Time is the number of seconds that have elapsed since that point.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="time">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Idled"/>
-        // public event Action? Idled; // TODO: native event binding
+        public event Action<double>? Idled
+        {
+            add { if (value is not null) AddEventHandler("Idled", value); }
+            remove { if (value is not null) RemoveEventHandler("Idled", value); }
+        }
 
         /// <summary>
         /// <c>Player.InstancePinned</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InstancePinned; // TODO: native event binding
+        /// <param name="uniqueIdString">A <c>string?</c> value.</param>
+        /// <param name="depth">A <c>int</c> value.</param>
+        public event Action<string?, int>? InstancePinned
+        {
+            add { if (value is not null) AddEventHandler("InstancePinned", value); }
+            remove { if (value is not null) RemoveEventHandler("InstancePinned", value); }
+        }
 
         /// <summary>
         /// <c>Player.InstanceUnpinned</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InstanceUnpinned; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.Kill</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? Kill; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.NotifyStreamingUnpinned</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? NotifyStreamingUnpinned; // TODO: native event binding
+        /// <param name="uniqueIdString">A <c>string?</c> value.</param>
+        /// <param name="depth">A <c>int</c> value.</param>
+        public event Action<string?, int>? InstanceUnpinned
+        {
+            add { if (value is not null) AddEventHandler("InstanceUnpinned", value); }
+            remove { if (value is not null) RemoveEventHandler("InstanceUnpinned", value); }
+        }
 
         /// <summary>
         /// Fires when the teleport state of a player changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="teleportState">A <c>Enum.TeleportState</c> value.</param>
+        /// <param name="placeId">A <c>long</c> value.</param>
+        /// <param name="spawnName">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#OnTeleport"/>
-        // public event Action? OnTeleport; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.OnTeleportInternal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnTeleportInternal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.OverrideStreamRadii</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OverrideStreamRadii; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.PlayerCharacterLoaded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlayerCharacterLoaded; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.PlayerChatTranslationSettingsLocaleSetFromLua</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlayerChatTranslationSettingsLocaleSetFromLua; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.PlayerExperienceSettingsLocaleSetFromLua</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlayerExperienceSettingsLocaleSetFromLua; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.RemoteFriendRequestSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteFriendRequestSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.RemoteInsert</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteInsert; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.RequestStreamingPin</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestStreamingPin; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.RequestStreamingPinByUniqueId</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestStreamingPinByUniqueId; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.ScopeCheckInitiated</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScopeCheckInitiated; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.ScriptSecurityError</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScriptSecurityError; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.SendCameraFrustum</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SendCameraFrustum; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.SendMaxClientBandwidthBps</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SendMaxClientBandwidthBps; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.ServerToClientUnfilteredChatReplicate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerToClientUnfilteredChatReplicate; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.ServerUpdatedHead</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerUpdatedHead; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.SetShutdownMessage</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? SetShutdownMessage; // TODO: native event binding
+        public event Action<Enum.TeleportState, long, string?>? OnTeleport
+        {
+            add { if (value is not null) AddEventHandler("OnTeleport", value); }
+            remove { if (value is not null) RemoveEventHandler("OnTeleport", value); }
+        }
 
         /// <summary>
         /// <c>Player.SimulationRadiusChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? SimulationRadiusChanged; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.StatsAvailable</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? StatsAvailable; // TODO: native event binding
+        /// <param name="radius">A <c>float</c> value.</param>
+        public event Action<float>? SimulationRadiusChanged
+        {
+            add { if (value is not null) AddEventHandler("SimulationRadiusChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("SimulationRadiusChanged", value); }
+        }
 
         /// <summary>
         /// <c>Player.StreamingPinComplete</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StreamingPinComplete; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.UnpinStreaming</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? UnpinStreaming; // TODO: native event binding
-
-        /// <summary>
-        /// <c>Player.iradDebugServerReceivedIradRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? IradDebugServerReceivedIradRequest; // TODO: native event binding
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        public event Action<Instance?>? StreamingPinComplete
+        {
+            add { if (value is not null) AddEventHandler("StreamingPinComplete", value); }
+            remove { if (value is not null) RemoveEventHandler("StreamingPinComplete", value); }
+        }
 
     }
 }

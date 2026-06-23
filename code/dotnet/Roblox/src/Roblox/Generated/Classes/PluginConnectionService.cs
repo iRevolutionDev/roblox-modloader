@@ -45,10 +45,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires just after a new PluginConnection successfully connects.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="conn">A <c>PluginConnection?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnectionService#Connected"/>
-        // public event Action? Connected; // TODO: native event binding
+        public event Action<PluginConnection?>? Connected
+        {
+            add { if (value is not null) AddEventHandler("Connected", value); }
+            remove { if (value is not null) RemoveEventHandler("Connected", value); }
+        }
 
     }
 }

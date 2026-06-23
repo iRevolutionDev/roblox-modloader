@@ -21,85 +21,11 @@ namespace Roblox
         public static VersionControlService? FromHandle(nuint handle)
             => handle == 0 ? null : new VersionControlService(handle);
 
-        /// <summary>
-        /// <c>VersionControlService.ScriptCollabEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ScriptCollabEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptCollabEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ScriptCollabEnabled", value);
         }
-
-        /// <summary>
-        /// <c>VersionControlService.ScriptCollabVersionHistoryEnabled</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool ScriptCollabVersionHistoryEnabled
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptCollabVersionHistoryEnabled");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "ScriptCollabVersionHistoryEnabled", value);
-        }
-
-        /// <summary>
-        /// <c>VersionControlService.BroadcastScriptChangesSubmitted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? BroadcastScriptChangesSubmitted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.CommitRejectedInfo</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? CommitRejectedInfo; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.LockedScriptBatchCommit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? LockedScriptBatchCommit; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.RequestAllEditorsSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestAllEditorsSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.ScriptBatchCommit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScriptBatchCommit; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.ScriptChangesSubmitted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScriptChangesSubmitted; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.ScriptEditorAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScriptEditorAdded; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.ScriptEditorRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScriptEditorRemoved; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.ScriptStartEdit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScriptStartEdit; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VersionControlService.ScriptStopEdit</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScriptStopEdit; // TODO: native event binding
 
     }
 }

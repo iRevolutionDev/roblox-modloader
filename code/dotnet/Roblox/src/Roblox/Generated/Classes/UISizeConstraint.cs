@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The largest size, in pixels, the parent object is allowed to be.
-        /// <para><b>Default:</b> <c>INF, INF</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UISizeConstraint#MaxSize"/>
         public global::System.Numerics.Vector2 MaxSize
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The smallest size, in pixels, the object is allowed to be.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UISizeConstraint#MinSize"/>
         public global::System.Numerics.Vector2 MinSize

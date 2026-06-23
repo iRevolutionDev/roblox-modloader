@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Angle of the cylinder handle as in a "pie slice" sector.
-        /// <para><b>Default:</b> <c>360</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Angle"/>
         public float Angle
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Height of the cylinder adornment.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Height"/>
         public float Height
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Inner radius with which to render a hollow cylinder.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#InnerRadius"/>
         public float InnerRadius
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Radius of the cylinder adornment.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Radius"/>
         public float Radius
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CylinderHandleAdornment.Shading</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Shading"/>
         public Enum.AdornShading Shading

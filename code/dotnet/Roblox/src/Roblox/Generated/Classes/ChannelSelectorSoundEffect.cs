@@ -21,10 +21,6 @@ namespace Roblox
         public static ChannelSelectorSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ChannelSelectorSoundEffect(handle);
 
-        /// <summary>
-        /// <c>ChannelSelectorSoundEffect.Channel</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public int Channel
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Channel");

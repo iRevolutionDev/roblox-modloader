@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the AccessoryType of the Accessory (eg. Hat, Tshirt, Waist).
-        /// <para><b>Default:</b> <c>Unknown</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accessory#AccessoryType"/>
         public Enum.AccessoryType AccessoryType

@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetDeliveryProxy.Port</c>
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetDeliveryProxy#Port"/>
         public int Port
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetDeliveryProxy.StartServer</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetDeliveryProxy#StartServer"/>
         public bool StartServer

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the face of a Glue.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F0"/>
         public global::System.Numerics.Vector3 F0
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the face of a Glue.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F1"/>
         public global::System.Numerics.Vector3 F1
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the face of a Glue.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F2"/>
         public global::System.Numerics.Vector3 F2
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the face of a Glue.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F3"/>
         public global::System.Numerics.Vector3 F3

@@ -64,39 +64,66 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioCameraService.FocusStateChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? FocusStateChanged; // TODO: native event binding
+        public event Action? FocusStateChanged
+        {
+            add { if (value is not null) AddEventHandler("FocusStateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("FocusStateChanged", value); }
+        }
 
         /// <summary>
         /// <c>StudioCameraService.OnMouseCaptureBegin</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnMouseCaptureBegin; // TODO: native event binding
+        public event Action? OnMouseCaptureBegin
+        {
+            add { if (value is not null) AddEventHandler("OnMouseCaptureBegin", value); }
+            remove { if (value is not null) RemoveEventHandler("OnMouseCaptureBegin", value); }
+        }
 
         /// <summary>
         /// <c>StudioCameraService.OnMouseCaptureEnd</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnMouseCaptureEnd; // TODO: native event binding
+        public event Action? OnMouseCaptureEnd
+        {
+            add { if (value is not null) AddEventHandler("OnMouseCaptureEnd", value); }
+            remove { if (value is not null) RemoveEventHandler("OnMouseCaptureEnd", value); }
+        }
 
         /// <summary>
         /// <c>StudioCameraService.PointFocused</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PointFocused; // TODO: native event binding
+        /// <param name="point">A <c>global::System.Numerics.Vector3</c> value.</param>
+        public event Action<global::System.Numerics.Vector3>? PointFocused
+        {
+            add { if (value is not null) AddEventHandler("PointFocused", value); }
+            remove { if (value is not null) RemoveEventHandler("PointFocused", value); }
+        }
 
         /// <summary>
         /// <c>StudioCameraService.ShowCameraSpeed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ShowCameraSpeed; // TODO: native event binding
+        /// <param name="speed">A <c>float</c> value.</param>
+        public event Action<float>? ShowCameraSpeed
+        {
+            add { if (value is not null) AddEventHandler("ShowCameraSpeed", value); }
+            remove { if (value is not null) RemoveEventHandler("ShowCameraSpeed", value); }
+        }
 
         /// <summary>
         /// <c>StudioCameraService.UpdateUI</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? UpdateUI; // TODO: native event binding
+        /// <param name="deltaTime">A <c>double</c> value.</param>
+        public event Action<double>? UpdateUI
+        {
+            add { if (value is not null) AddEventHandler("UpdateUI", value); }
+            remove { if (value is not null) RemoveEventHandler("UpdateUI", value); }
+        }
 
     }
 }

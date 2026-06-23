@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The subtype of the audio asset.
-        /// <para><b>Default:</b> <c>Music</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#AudioSubType"/>
         public Enum.AudioSubType AudioSubType
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: The subtype of the audio asset.
-        /// <para><b>Default:</b> <c>Music</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#AudioSubtype"/>
         public Enum.AudioSubType AudioSubtype
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum duration of the audio asset.
-        /// <para><b>Default:</b> <c>2147483647</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#MaxDuration"/>
         public int MaxDuration
@@ -80,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The minimum duration of the audio asset.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#MinDuration"/>
         public int MinDuration

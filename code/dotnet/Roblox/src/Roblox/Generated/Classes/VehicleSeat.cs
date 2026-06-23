@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Displays how many hinges are detected by the VehicleSeat. Useful for debugging vehicle designs.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#AreHingesDetected"/>
         public int AreHingesDetected
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Toggles whether the VehicleSeat is active or not.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Disabled"/>
         public bool Disabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// If true, a UI speed bar will be displayed on screen that tells you what speed the vehicle is moving at.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#HeadsUpDisplay"/>
         public bool HeadsUpDisplay
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum speed that can be attained.
-        /// <para><b>Default:</b> <c>25</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#MaxSpeed"/>
         public float MaxSpeed
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The direction of movement, tied to left and right movement inputs.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Steer"/>
         public int Steer
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The left-to-right movement float, tied to left and right movement inputs.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#SteerFloat"/>
         public float SteerFloat
@@ -103,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// The direction of throttle, tied to forward and backward movement inputs.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Throttle"/>
         public int Throttle
@@ -114,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// The forward-to-reverse throttle float, tied to forward and backward movement inputs.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#ThrottleFloat"/>
         public float ThrottleFloat
@@ -125,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// How fast the vehicle will be able to attain MaxSpeed.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Torque"/>
         public float Torque
@@ -136,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// The speed at which the vehicle will turn. Higher numbers can cause problems and are not necessarily better.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#TurnSpeed"/>
         public float TurnSpeed
@@ -153,18 +143,6 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Sit"/>
         public object? Sit(Instance? humanoid)
             => global::Roblox.Reflection.Invoke<object?>(this, "Sit", humanoid);
-
-        /// <summary>
-        /// <c>VehicleSeat.RemoteCreateSeatWeld</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteCreateSeatWeld; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VehicleSeat.RemoteDestroySeatWeld</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteDestroySeatWeld; // TODO: native event binding
 
     }
 }

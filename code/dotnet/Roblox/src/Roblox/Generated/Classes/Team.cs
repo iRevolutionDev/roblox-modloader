@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// This property determines whether Players will be automatically placed onto the Team when joining. If multiple teams have this property set to true, Roblox will attempt to even the teams out when Players are added.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#AutoAssignable"/>
         public bool AutoAssignable
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated and no longer functions, it should not be used for new work.Deprecated and no longer functional. Historically set whether or not Player character models on a team would be colored to Team.TeamColor.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#AutoColorCharacters"/>
         public bool AutoColorCharacters
@@ -47,10 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoColorCharacters", value);
         }
 
-        /// <summary>
-        /// <c>Team.ChildOrder</c>
-        /// <para><b>Default:</b> <c>-1</c></para>
-        /// </summary>
         public int ChildOrder
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "ChildOrder");
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated and should not be used in new work. For more information on how to handle leaderboards and scoring please see this tutorial.This property can be used to store an integer value associated with the team. This property offers no additional functionality and is not used by any game services.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#Score"/>
         public int Score
@@ -88,17 +81,27 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever a Player is assigned to the Team. A player is considered assigned if their Player.Team property is equal to the Team and Player.Neutral is false.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#PlayerAdded"/>
-        // public event Action? PlayerAdded; // TODO: native event binding
+        public event Action<Player?>? PlayerAdded
+        {
+            add { if (value is not null) AddEventHandler("PlayerAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerAdded", value); }
+        }
 
         /// <summary>
         /// Fires whenever a Player is removed from a Team. This can be due to the Player leaving the game, Player.Neutral being set to true or the Player joining a different team.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#PlayerRemoved"/>
-        // public event Action? PlayerRemoved; // TODO: native event binding
+        public event Action<Player?>? PlayerRemoved
+        {
+            add { if (value is not null) AddEventHandler("PlayerRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("PlayerRemoved", value); }
+        }
 
     }
 }

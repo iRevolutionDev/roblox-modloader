@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Color tint that applies to all descendants.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CanvasGroup#GroupColor3"/>
         public object? GroupColor3
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Transparency that applies to all descendants.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CanvasGroup#GroupTransparency"/>
         public float GroupTransparency
@@ -47,10 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "GroupTransparency", value);
         }
 
-        /// <summary>
-        /// <c>CanvasGroup.ResolutionScale</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float ResolutionScale
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "ResolutionScale");

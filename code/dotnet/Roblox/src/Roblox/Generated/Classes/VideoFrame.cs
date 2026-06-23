@@ -25,10 +25,6 @@ namespace Roblox
         public static VideoFrame? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoFrame(handle);
 
-        /// <summary>
-        /// <c>VideoFrame.InternalVideoUsage</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.InternalVideoUsage InternalVideoUsage
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage");
@@ -37,7 +33,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates when the VideoFrame.Video has loaded from Roblox servers and is ready to play.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#IsLoaded"/>
         public bool IsLoaded
@@ -48,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether or not the VideoFrame.Video repeats once it has finished when it is playing.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Looped"/>
         public bool Looped
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoFrame.MaximumResolution</c>
-        /// <para><b>Default:</b> <c>Full</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#MaximumResolution"/>
         public Enum.VideoSampleSize MaximumResolution
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether the VideoFrame.Video is currently playing. It can be set to start or pause playback.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Playing"/>
         public bool Playing
@@ -80,18 +72,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>VideoFrame.PlayingReplicating</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool PlayingReplicating
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayingReplicating");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayingReplicating", value);
-        }
-
-        /// <summary>
         /// Gets the original source resolution of the VideoFrame.Video file.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Resolution"/>
         public global::System.Numerics.Vector2 Resolution
@@ -102,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoFrame.RollOffMaxDistance</c>
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#RollOffMaxDistance"/>
         public float RollOffMaxDistance
@@ -113,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoFrame.RollOffMinDistance</c>
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#RollOffMinDistance"/>
         public float RollOffMinDistance
@@ -124,7 +103,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoFrame.RollOffMode</c>
-        /// <para><b>Default:</b> <c>Inverse</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#RollOffMode"/>
         public Enum.RollOffMode RollOffMode
@@ -135,7 +113,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates the length of the VideoFrame.Video in seconds.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#TimeLength"/>
         public double TimeLength
@@ -146,23 +123,12 @@ namespace Roblox
 
         /// <summary>
         /// Indicates the progress in seconds of the VideoFrame.Video.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#TimePosition"/>
         public double TimePosition
         {
             get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition");
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimePosition", value);
-        }
-
-        /// <summary>
-        /// <c>VideoFrame.TimePositionReplicating</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public double TimePositionReplicating
-        {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePositionReplicating");
-            set => global::Roblox.Reflection.SetProperty<double>(this, "TimePositionReplicating", value);
         }
 
         /// <summary>
@@ -187,7 +153,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates how loud the VideoFrame.Video is currently playing back.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Volume"/>
         public float Volume
@@ -222,50 +187,63 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the VideoFrame.Video loops.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#DidLoop"/>
-        // public event Action? DidLoop; // TODO: native event binding
+        public event Action<string?>? DidLoop
+        {
+            add { if (value is not null) AddEventHandler("DidLoop", value); }
+            remove { if (value is not null) RemoveEventHandler("DidLoop", value); }
+        }
 
         /// <summary>
         /// Fires when the VideoFrame.Video has completed playback and stopped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Ended"/>
-        // public event Action? Ended; // TODO: native event binding
+        public event Action<string?>? Ended
+        {
+            add { if (value is not null) AddEventHandler("Ended", value); }
+            remove { if (value is not null) RemoveEventHandler("Ended", value); }
+        }
 
         /// <summary>
         /// Fires when the VideoFrame.Video is loaded.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Loaded"/>
-        // public event Action? Loaded; // TODO: native event binding
+        public event Action<string?>? Loaded
+        {
+            add { if (value is not null) AddEventHandler("Loaded", value); }
+            remove { if (value is not null) RemoveEventHandler("Loaded", value); }
+        }
 
         /// <summary>
         /// This event fires whenever the VideoFrame.Video is paused using VideoFrame:Pause() or by setting VideoFrame.Playing to false.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Paused"/>
-        // public event Action? Paused; // TODO: native event binding
+        public event Action<string?>? Paused
+        {
+            add { if (value is not null) AddEventHandler("Paused", value); }
+            remove { if (value is not null) RemoveEventHandler("Paused", value); }
+        }
 
         /// <summary>
         /// Fires whenever the VideoFrame.Video is played using the VideoFrame:Play() function or by setting VideoFrame.Playing to true.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Played"/>
-        // public event Action? Played; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VideoFrame.PlayingUpdatedFromServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? PlayingUpdatedFromServer; // TODO: native event binding
-
-        /// <summary>
-        /// <c>VideoFrame.TimePositionUpdatedFromServer</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TimePositionUpdatedFromServer; // TODO: native event binding
+        public event Action<string?>? Played
+        {
+            add { if (value is not null) AddEventHandler("Played", value); }
+            remove { if (value is not null) RemoveEventHandler("Played", value); }
+        }
 
     }
 }

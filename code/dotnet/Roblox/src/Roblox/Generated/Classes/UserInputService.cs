@@ -513,198 +513,366 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user moves a device that has an accelerometer.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="acceleration">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#DeviceAccelerationChanged"/>
-        // public event Action? DeviceAccelerationChanged; // TODO: native event binding
+        public event Action<InputObject?>? DeviceAccelerationChanged
+        {
+            add { if (value is not null) AddEventHandler("DeviceAccelerationChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("DeviceAccelerationChanged", value); }
+        }
 
         /// <summary>
         /// Fires when the force of gravity changes on a device that has an enabled accelerometer.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="gravity">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#DeviceGravityChanged"/>
-        // public event Action? DeviceGravityChanged; // TODO: native event binding
+        public event Action<InputObject?>? DeviceGravityChanged
+        {
+            add { if (value is not null) AddEventHandler("DeviceGravityChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("DeviceGravityChanged", value); }
+        }
 
         /// <summary>
         /// Fires when a user rotates a device that has a gyroscope.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="rotation">A <c>InputObject?</c> value.</param>
+        /// <param name="cframe">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#DeviceRotationChanged"/>
-        // public event Action? DeviceRotationChanged; // TODO: native event binding
+        public event Action<InputObject?, object?>? DeviceRotationChanged
+        {
+            add { if (value is not null) AddEventHandler("DeviceRotationChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("DeviceRotationChanged", value); }
+        }
 
         /// <summary>
         /// Fires when a gamepad is connected to the client.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="gamepadNum">A <c>Enum.UserInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GamepadConnected"/>
-        // public event Action? GamepadConnected; // TODO: native event binding
+        public event Action<Enum.UserInputType>? GamepadConnected
+        {
+            add { if (value is not null) AddEventHandler("GamepadConnected", value); }
+            remove { if (value is not null) RemoveEventHandler("GamepadConnected", value); }
+        }
 
         /// <summary>
         /// Fires when a gamepad is disconnected from the client.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="gamepadNum">A <c>Enum.UserInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GamepadDisconnected"/>
-        // public event Action? GamepadDisconnected; // TODO: native event binding
+        public event Action<Enum.UserInputType>? GamepadDisconnected
+        {
+            add { if (value is not null) AddEventHandler("GamepadDisconnected", value); }
+            remove { if (value is not null) RemoveEventHandler("GamepadDisconnected", value); }
+        }
 
         /// <summary>
         /// Fires when a user begins interacting with an input device such as a mouse or gamepad.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#InputBegan"/>
-        // public event Action? InputBegan; // TODO: native event binding
+        public event Action<InputObject?, bool>? InputBegan
+        {
+            add { if (value is not null) AddEventHandler("InputBegan", value); }
+            remove { if (value is not null) RemoveEventHandler("InputBegan", value); }
+        }
 
         /// <summary>
         /// Fires when a user changes how they're interacting with an input device such as a mouse or gamepad.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#InputChanged"/>
-        // public event Action? InputChanged; // TODO: native event binding
+        public event Action<InputObject?, bool>? InputChanged
+        {
+            add { if (value is not null) AddEventHandler("InputChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("InputChanged", value); }
+        }
 
         /// <summary>
         /// Fires when a user stops interacting with an input device such as a mouse or gamepad.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#InputEnded"/>
-        // public event Action? InputEnded; // TODO: native event binding
+        public event Action<InputObject?, bool>? InputEnded
+        {
+            add { if (value is not null) AddEventHandler("InputEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("InputEnded", value); }
+        }
 
         /// <summary>
         /// Fires whenever the client makes a request for their character to jump.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#JumpRequest"/>
-        // public event Action? JumpRequest; // TODO: native event binding
+        public event Action? JumpRequest
+        {
+            add { if (value is not null) AddEventHandler("JumpRequest", value); }
+            remove { if (value is not null) RemoveEventHandler("JumpRequest", value); }
+        }
 
         /// <summary>
         /// Fires whenever the client's UserInputType is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="lastInputType">A <c>Enum.UserInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#LastInputTypeChanged"/>
-        // public event Action? LastInputTypeChanged; // TODO: native event binding
+        public event Action<Enum.UserInputType>? LastInputTypeChanged
+        {
+            add { if (value is not null) AddEventHandler("LastInputTypeChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("LastInputTypeChanged", value); }
+        }
 
         /// <summary>
         /// Fires when the user performs a specific pointer action.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="wheel">A <c>float</c> value.</param>
+        /// <param name="pan">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="pinch">A <c>float</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#PointerAction"/>
-        // public event Action? PointerAction; // TODO: native event binding
+        public event Action<float, global::System.Numerics.Vector2, float, bool>? PointerAction
+        {
+            add { if (value is not null) AddEventHandler("PointerAction", value); }
+            remove { if (value is not null) RemoveEventHandler("PointerAction", value); }
+        }
 
         /// <summary>
         /// <c>UserInputService.StatusBarTapped</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? StatusBarTapped; // TODO: native event binding
+        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        public event Action<global::System.Numerics.Vector2>? StatusBarTapped
+        {
+            add { if (value is not null) AddEventHandler("StatusBarTapped", value); }
+            remove { if (value is not null) RemoveEventHandler("StatusBarTapped", value); }
+        }
 
         /// <summary>
         /// Fires when the client loses focus on a TextBox.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="textboxReleased">A <c>TextBox?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TextBoxFocusReleased"/>
-        // public event Action? TextBoxFocusReleased; // TODO: native event binding
+        public event Action<TextBox?>? TextBoxFocusReleased
+        {
+            add { if (value is not null) AddEventHandler("TextBoxFocusReleased", value); }
+            remove { if (value is not null) RemoveEventHandler("TextBoxFocusReleased", value); }
+        }
 
         /// <summary>
         /// Fires when the client focuses on a TextBox.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="textboxFocused">A <c>TextBox?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TextBoxFocused"/>
-        // public event Action? TextBoxFocused; // TODO: native event binding
+        public event Action<TextBox?>? TextBoxFocused
+        {
+            add { if (value is not null) AddEventHandler("TextBoxFocused", value); }
+            remove { if (value is not null) RemoveEventHandler("TextBoxFocused", value); }
+        }
 
         /// <summary>
         /// Fires when the user drags on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="dragDirection">A <c>Enum.SwipeDirection</c> value.</param>
+        /// <param name="numberOfTouches">A <c>int</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchDrag"/>
-        // public event Action? TouchDrag; // TODO: native event binding
+        public event Action<Enum.SwipeDirection, int, bool>? TouchDrag
+        {
+            add { if (value is not null) AddEventHandler("TouchDrag", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchDrag", value); }
+        }
 
         /// <summary>
         /// Fires when a user releases their finger from the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touch">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchEnded"/>
-        // public event Action? TouchEnded; // TODO: native event binding
+        public event Action<InputObject?, bool>? TouchEnded
+        {
+            add { if (value is not null) AddEventHandler("TouchEnded", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchEnded", value); }
+        }
 
         /// <summary>
         /// Fires when a user holds at least one finger for a short amount of time on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchLongPress"/>
-        // public event Action? TouchLongPress; // TODO: native event binding
+        public event Action<object?, Enum.UserInputState, bool>? TouchLongPress
+        {
+            add { if (value is not null) AddEventHandler("TouchLongPress", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchLongPress", value); }
+        }
 
         /// <summary>
         /// Fires when a user moves their finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touch">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchMoved"/>
-        // public event Action? TouchMoved; // TODO: native event binding
+        public event Action<InputObject?, bool>? TouchMoved
+        {
+            add { if (value is not null) AddEventHandler("TouchMoved", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchMoved", value); }
+        }
 
         /// <summary>
         /// Fires when the user drags at least one finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="totalTranslation">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="velocity">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchPan"/>
-        // public event Action? TouchPan; // TODO: native event binding
+        public event Action<object?, global::System.Numerics.Vector2, global::System.Numerics.Vector2, Enum.UserInputState, bool>? TouchPan
+        {
+            add { if (value is not null) AddEventHandler("TouchPan", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchPan", value); }
+        }
 
         /// <summary>
         /// Fires when a user performs a pinch gesture on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="scale">A <c>float</c> value.</param>
+        /// <param name="velocity">A <c>float</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchPinch"/>
-        // public event Action? TouchPinch; // TODO: native event binding
+        public event Action<object?, float, float, Enum.UserInputState, bool>? TouchPinch
+        {
+            add { if (value is not null) AddEventHandler("TouchPinch", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchPinch", value); }
+        }
 
         /// <summary>
         /// Fires when a user rotates two fingers on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="rotation">A <c>float</c> value.</param>
+        /// <param name="velocity">A <c>float</c> value.</param>
+        /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchRotate"/>
-        // public event Action? TouchRotate; // TODO: native event binding
+        public event Action<object?, float, float, Enum.UserInputState, bool>? TouchRotate
+        {
+            add { if (value is not null) AddEventHandler("TouchRotate", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchRotate", value); }
+        }
 
         /// <summary>
         /// Fires when a user places their finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touch">A <c>InputObject?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchStarted"/>
-        // public event Action? TouchStarted; // TODO: native event binding
+        public event Action<InputObject?, bool>? TouchStarted
+        {
+            add { if (value is not null) AddEventHandler("TouchStarted", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchStarted", value); }
+        }
 
         /// <summary>
         /// Fires on a TouchEnabled device when a user places their finger(s) down on the screen, pans across the screen, and lifts their finger(s) off with a certain speed of movement.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="swipeDirection">A <c>Enum.SwipeDirection</c> value.</param>
+        /// <param name="numberOfTouches">A <c>int</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchSwipe"/>
-        // public event Action? TouchSwipe; // TODO: native event binding
+        public event Action<Enum.SwipeDirection, int, bool>? TouchSwipe
+        {
+            add { if (value is not null) AddEventHandler("TouchSwipe", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchSwipe", value); }
+        }
 
         /// <summary>
         /// Fires when a user taps their finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchTap"/>
-        // public event Action? TouchTap; // TODO: native event binding
+        public event Action<object?, bool>? TouchTap
+        {
+            add { if (value is not null) AddEventHandler("TouchTap", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchTap", value); }
+        }
 
         /// <summary>
         /// Fires when a user taps their finger on the screen of a TouchEnabled device and the tap location is in the 3D world.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="processedByUI">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchTapInWorld"/>
-        // public event Action? TouchTapInWorld; // TODO: native event binding
+        public event Action<global::System.Numerics.Vector2, bool>? TouchTapInWorld
+        {
+            add { if (value is not null) AddEventHandler("TouchTapInWorld", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchTapInWorld", value); }
+        }
 
         /// <summary>
         /// Deprecated: Fires when the CFrame of a specified Virtual Reality device changes.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
+        /// <param name="value">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#UserCFrameChanged"/>
-        // public event Action? UserCFrameChanged; // TODO: native event binding
+        public event Action<Enum.UserCFrame, object?>? UserCFrameChanged
+        {
+            add { if (value is not null) AddEventHandler("UserCFrameChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("UserCFrameChanged", value); }
+        }
 
         /// <summary>
         /// Fires when the window of the Roblox client loses focus on the user's screen.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#WindowFocusReleased"/>
-        // public event Action? WindowFocusReleased; // TODO: native event binding
+        public event Action? WindowFocusReleased
+        {
+            add { if (value is not null) AddEventHandler("WindowFocusReleased", value); }
+            remove { if (value is not null) RemoveEventHandler("WindowFocusReleased", value); }
+        }
 
         /// <summary>
         /// Fires when the window of the Roblox client gains focus on the user's screen.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#WindowFocused"/>
-        // public event Action? WindowFocused; // TODO: native event binding
+        public event Action? WindowFocused
+        {
+            add { if (value is not null) AddEventHandler("WindowFocused", value); }
+            remove { if (value is not null) RemoveEventHandler("WindowFocused", value); }
+        }
 
     }
 }

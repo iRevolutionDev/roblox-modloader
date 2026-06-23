@@ -302,33 +302,60 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetService.AudioMetadataFailedResponse</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AudioMetadataFailedResponse; // TODO: native event binding
+        /// <param name="requestid">A <c>long</c> value.</param>
+        public event Action<long>? AudioMetadataFailedResponse
+        {
+            add { if (value is not null) AddEventHandler("AudioMetadataFailedResponse", value); }
+            remove { if (value is not null) RemoveEventHandler("AudioMetadataFailedResponse", value); }
+        }
 
         /// <summary>
         /// <c>AssetService.AudioMetadataRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AudioMetadataRequest; // TODO: native event binding
+        /// <param name="requestid">A <c>long</c> value.</param>
+        /// <param name="request">A <c>object?</c> value.</param>
+        public event Action<long, object?>? AudioMetadataRequest
+        {
+            add { if (value is not null) AddEventHandler("AudioMetadataRequest", value); }
+            remove { if (value is not null) RemoveEventHandler("AudioMetadataRequest", value); }
+        }
 
         /// <summary>
         /// <c>AssetService.AudioMetadataResponse</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AudioMetadataResponse; // TODO: native event binding
+        /// <param name="requestid">A <c>long</c> value.</param>
+        /// <param name="response">A <c>object?</c> value.</param>
+        public event Action<long, object?>? AudioMetadataResponse
+        {
+            add { if (value is not null) AddEventHandler("AudioMetadataResponse", value); }
+            remove { if (value is not null) RemoveEventHandler("AudioMetadataResponse", value); }
+        }
 
         /// <summary>
         /// <c>AssetService.OpenCreateResultModal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenCreateResultModal; // TODO: native event binding
+        /// <param name="resultType">A <c>Enum.PromptCreateAssetResult</c> value.</param>
+        public event Action<Enum.PromptCreateAssetResult>? OpenCreateResultModal
+        {
+            add { if (value is not null) AddEventHandler("OpenCreateResultModal", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenCreateResultModal", value); }
+        }
 
         /// <summary>
         /// <c>AssetService.OpenPublishResultModal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenPublishResultModal; // TODO: native event binding
+        /// <param name="resultType">A <c>Enum.PromptPublishAssetResult</c> value.</param>
+        public event Action<Enum.PromptPublishAssetResult>? OpenPublishResultModal
+        {
+            add { if (value is not null) AddEventHandler("OpenPublishResultModal", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenPublishResultModal", value); }
+        }
 
     }
 }

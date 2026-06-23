@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFlanger#Bypass"/>
         public bool Bypass
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how strong the pitch modulation of the flanger is.
-        /// <para><b>Default:</b> <c>0.449999988</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFlanger#Depth"/>
         public float Depth
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the balance of plain input stream to modified output stream.
-        /// <para><b>Default:</b> <c>0.850000024</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFlanger#Mix"/>
         public float Mix
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the rate of pitch modulations.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFlanger#Rate"/>
         public float Rate
@@ -96,10 +92,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioFlanger via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFlanger#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

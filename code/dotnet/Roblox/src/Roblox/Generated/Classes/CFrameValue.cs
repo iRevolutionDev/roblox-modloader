@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Used to hold a CFrame value.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CFrameValue#Value"/>
         public object? Value
@@ -38,10 +37,15 @@ namespace Roblox
 
         /// <summary>
         /// Fired whenever the CFrameValue.Value of the CFrameValue is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="value">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CFrameValue#Changed"/>
-        // public event Action? Changed; // TODO: native event binding
+        public event Action<object?>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Number of keys in the value curve.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#Length"/>
         public int Length
@@ -38,23 +37,12 @@ namespace Roblox
 
         /// <summary>
         /// Read-only value indicating the type held in this curve.
-        /// <para><b>Default:</b> <c>nil</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#ValueType"/>
         public string? ValueType
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "ValueType");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "ValueType", value);
-        }
-
-        /// <summary>
-        /// <c>ValueCurve.ValuesAndTimes</c>
-        /// <para><b>Default:</b> <c></c></para>
-        /// </summary>
-        public byte[]? ValuesAndTimes
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "ValuesAndTimes");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "ValuesAndTimes", value);
         }
 
         /// <summary>

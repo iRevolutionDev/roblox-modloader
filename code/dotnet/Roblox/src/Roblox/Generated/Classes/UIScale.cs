@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the multiplier to apply to the parent UI element's size.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIScale#Scale"/>
         public float Scale

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CapturesViewConfiguration.Open</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CapturesViewConfiguration#Open"/>
         public bool Open

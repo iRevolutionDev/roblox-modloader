@@ -34,15 +34,16 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceAuthService.OpenAuthPrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OpenAuthPrompt; // TODO: native event binding
-
-        /// <summary>
-        /// <c>ExperienceAuthService.ScopeCheckResult</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ScopeCheckResult; // TODO: native event binding
+        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="scopes">A <c>object?</c> value.</param>
+        /// <param name="metadata">A <c>object?</c> value.</param>
+        public event Action<string?, object?, object?>? OpenAuthPrompt
+        {
+            add { if (value is not null) AddEventHandler("OpenAuthPrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("OpenAuthPrompt", value); }
+        }
 
     }
 }

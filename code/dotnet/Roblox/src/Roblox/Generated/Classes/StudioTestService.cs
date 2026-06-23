@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioTestService.EditModeActive</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#EditModeActive"/>
         public bool EditModeActive

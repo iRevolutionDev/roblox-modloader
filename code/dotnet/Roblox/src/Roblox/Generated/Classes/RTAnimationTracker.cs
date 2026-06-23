@@ -21,20 +21,12 @@ namespace Roblox
         public static RTAnimationTracker? FromHandle(nuint handle)
             => handle == 0 ? null : new RTAnimationTracker(handle);
 
-        /// <summary>
-        /// <c>RTAnimationTracker.Active</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Active
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
-        /// <summary>
-        /// <c>RTAnimationTracker.EnableFallbackAudioInput</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool EnableFallbackAudioInput
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFallbackAudioInput");
@@ -47,20 +39,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "SessionName", value);
         }
 
-        /// <summary>
-        /// <c>RTAnimationTracker.TrackerMode</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
         public Enum.TrackerMode TrackerMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TrackerMode>(this, "TrackerMode");
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerMode>(this, "TrackerMode", value);
         }
 
-        /// <summary>
-        /// <c>RTAnimationTracker.TrackerType</c>
-        /// <para><b>Default:</b> <c>Face</c></para>
-        /// </summary>
         public Enum.TrackerType TrackerType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.TrackerType>(this, "TrackerType");
@@ -76,15 +60,26 @@ namespace Roblox
 
         /// <summary>
         /// <c>RTAnimationTracker.TrackerError</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TrackerError; // TODO: native event binding
+        /// <param name="errorCode">A <c>Enum.TrackerError</c> value.</param>
+        /// <param name="msg">A <c>string?</c> value.</param>
+        public event Action<Enum.TrackerError, string?>? TrackerError
+        {
+            add { if (value is not null) AddEventHandler("TrackerError", value); }
+            remove { if (value is not null) RemoveEventHandler("TrackerError", value); }
+        }
 
         /// <summary>
         /// <c>RTAnimationTracker.TrackerPrompt</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TrackerPrompt; // TODO: native event binding
+        /// <param name="prompt">A <c>Enum.TrackerPromptEvent</c> value.</param>
+        public event Action<Enum.TrackerPromptEvent>? TrackerPrompt
+        {
+            add { if (value is not null) AddEventHandler("TrackerPrompt", value); }
+            remove { if (value is not null) RemoveEventHandler("TrackerPrompt", value); }
+        }
 
     }
 }

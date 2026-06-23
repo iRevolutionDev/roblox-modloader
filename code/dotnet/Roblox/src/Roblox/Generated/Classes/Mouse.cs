@@ -147,73 +147,115 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the left mouse button is pressed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button1Down"/>
-        // public event Action? Button1Down; // TODO: native event binding
+        public event Action? Button1Down
+        {
+            add { if (value is not null) AddEventHandler("Button1Down", value); }
+            remove { if (value is not null) RemoveEventHandler("Button1Down", value); }
+        }
 
         /// <summary>
         /// Fires when the left mouse button is released.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button1Up"/>
-        // public event Action? Button1Up; // TODO: native event binding
+        public event Action? Button1Up
+        {
+            add { if (value is not null) AddEventHandler("Button1Up", value); }
+            remove { if (value is not null) RemoveEventHandler("Button1Up", value); }
+        }
 
         /// <summary>
         /// Fires when the right mouse button is pressed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button2Down"/>
-        // public event Action? Button2Down; // TODO: native event binding
+        public event Action? Button2Down
+        {
+            add { if (value is not null) AddEventHandler("Button2Down", value); }
+            remove { if (value is not null) RemoveEventHandler("Button2Down", value); }
+        }
 
         /// <summary>
         /// Fired when the right mouse button is released.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button2Up"/>
-        // public event Action? Button2Up; // TODO: native event binding
+        public event Action? Button2Up
+        {
+            add { if (value is not null) AddEventHandler("Button2Up", value); }
+            remove { if (value is not null) RemoveEventHandler("Button2Up", value); }
+        }
 
         /// <summary>
         /// Fired during every heartbeat that the mouse isn't being passed to another mouse event.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Idle"/>
-        // public event Action? Idle; // TODO: native event binding
+        public event Action? Idle
+        {
+            add { if (value is not null) AddEventHandler("Idle", value); }
+            remove { if (value is not null) RemoveEventHandler("Idle", value); }
+        }
 
         /// <summary>
         /// Deprecated: Mouse events have been superseded by UserInputService which should be used in all new work.Fires when a Key is pressed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="key">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyDown"/>
-        // public event Action? KeyDown; // TODO: native event binding
+        public event Action<string?>? KeyDown
+        {
+            add { if (value is not null) AddEventHandler("KeyDown", value); }
+            remove { if (value is not null) RemoveEventHandler("KeyDown", value); }
+        }
 
         /// <summary>
         /// Deprecated: Mouse events have been superseded by UserInputService which should be used in all new work.Fires when a Key is released.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="key">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyUp"/>
-        // public event Action? KeyUp; // TODO: native event binding
+        public event Action<string?>? KeyUp
+        {
+            add { if (value is not null) AddEventHandler("KeyUp", value); }
+            remove { if (value is not null) RemoveEventHandler("KeyUp", value); }
+        }
 
         /// <summary>
         /// Fired when the mouse is moved.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Move"/>
-        // public event Action? Move; // TODO: native event binding
+        public event Action? Move
+        {
+            add { if (value is not null) AddEventHandler("Move", value); }
+            remove { if (value is not null) RemoveEventHandler("Move", value); }
+        }
 
         /// <summary>
         /// Fires when the mouse wheel is scrolled backwards.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#WheelBackward"/>
-        // public event Action? WheelBackward; // TODO: native event binding
+        public event Action? WheelBackward
+        {
+            add { if (value is not null) AddEventHandler("WheelBackward", value); }
+            remove { if (value is not null) RemoveEventHandler("WheelBackward", value); }
+        }
 
         /// <summary>
         /// Fires when the mouse wheel is scrolled forwards.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#WheelForward"/>
-        // public event Action? WheelForward; // TODO: native event binding
+        public event Action? WheelForward
+        {
+            add { if (value is not null) AddEventHandler("WheelForward", value); }
+            remove { if (value is not null) RemoveEventHandler("WheelForward", value); }
+        }
 
     }
 }

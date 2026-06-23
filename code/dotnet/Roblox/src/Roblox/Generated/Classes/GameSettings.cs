@@ -37,9 +37,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>GameSettings.VideoRecordingChangeRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? VideoRecordingChangeRequest; // TODO: native event binding
+        /// <param name="recording">A <c>bool</c> value.</param>
+        public event Action<bool>? VideoRecordingChangeRequest
+        {
+            add { if (value is not null) AddEventHandler("VideoRecordingChangeRequest", value); }
+            remove { if (value is not null) RemoveEventHandler("VideoRecordingChangeRequest", value); }
+        }
 
     }
 }

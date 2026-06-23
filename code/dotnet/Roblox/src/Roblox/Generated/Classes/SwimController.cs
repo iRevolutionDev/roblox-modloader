@@ -25,10 +25,6 @@ namespace Roblox
         public static SwimController? FromHandle(nuint handle)
             => handle == 0 ? null : new SwimController(handle);
 
-        /// <summary>
-        /// <c>SwimController.AccelerationTime</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public float AccelerationTime
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationTime");
@@ -37,7 +33,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque used to rotate to the desired pitch.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#PitchMaxTorque"/>
         public float PitchMaxTorque
@@ -48,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// Multiplied by ControllerManager.BaseTurnSpeed to determine the maximum angular velocity for pitch.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#PitchSpeedFactor"/>
         public float PitchSpeedFactor
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque applied to rotate to the desired roll.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#RollMaxTorque"/>
         public float RollMaxTorque
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Multiplied by ControllerManager.BaseTurnSpeed to determine the maximum angular velocity for roll.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#RollSpeedFactor"/>
         public float RollSpeedFactor

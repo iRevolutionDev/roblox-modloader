@@ -46,18 +46,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>SkateboardPlatform.MoveState</c>
-        /// <para><b>Default:</b> <c>Stopped</c></para>
-        /// </summary>
-        public Enum.MoveState MoveState
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.MoveState>(this, "MoveState");
-            set => global::Roblox.Reflection.SetProperty<Enum.MoveState>(this, "MoveState", value);
-        }
-
-        /// <summary>
         /// The direction of movement, tied to the keys A and D. Must be 1 (right), 0 (straight), or -1 (left). Will refresh back to 0 unless constantly set.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Steer"/>
         public int Steer
@@ -68,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// If true, wheels won't roll without user input.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#StickyWheels"/>
         public bool StickyWheels
@@ -79,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The direction of movement, tied to the keys W and S. Must be an integer 1 (forward), 0 (null), or -1 (reverse). Will refresh back to 0 unless constantly set.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Throttle"/>
         public int Throttle
@@ -99,36 +86,41 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the skateboard is equipped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="humanoid">A <c>Instance?</c> value.</param>
+        /// <param name="skateboardController">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Equipped"/>
-        // public event Action? Equipped; // TODO: native event binding
+        public event Action<Instance?, Instance?>? Equipped
+        {
+            add { if (value is not null) AddEventHandler("Equipped", value); }
+            remove { if (value is not null) RemoveEventHandler("Equipped", value); }
+        }
 
         /// <summary>
         /// Fired when the SkateboardPlatform's SkateboardPlatform.ControllingHumanoid changes the force being used on the SkateboardPlatform.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="newState">A <c>Enum.MoveState</c> value.</param>
+        /// <param name="oldState">A <c>Enum.MoveState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#MoveStateChanged"/>
-        // public event Action? MoveStateChanged; // TODO: native event binding
-
-        /// <summary>
-        /// <c>SkateboardPlatform.RemoteCreateMotor6D</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteCreateMotor6D; // TODO: native event binding
-
-        /// <summary>
-        /// <c>SkateboardPlatform.RemoteDestroyMotor6D</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RemoteDestroyMotor6D; // TODO: native event binding
+        public event Action<Enum.MoveState, Enum.MoveState>? MoveStateChanged
+        {
+            add { if (value is not null) AddEventHandler("MoveStateChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("MoveStateChanged", value); }
+        }
 
         /// <summary>
         /// Fired whenever the skateboard is unequipped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="humanoid">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Unequipped"/>
-        // public event Action? Unequipped; // TODO: native event binding
+        public event Action<Instance?>? Unequipped
+        {
+            add { if (value is not null) AddEventHandler("Unequipped", value); }
+            remove { if (value is not null) RemoveEventHandler("Unequipped", value); }
+        }
 
     }
 }

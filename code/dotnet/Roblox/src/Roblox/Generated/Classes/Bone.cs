@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the current animated offset of the bone in its local space.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#Transform"/>
         public object? Transform
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the combined CFrame offset of the bone and the current animation offset in the bone local space.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#TransformedCFrame"/>
         public object? TransformedCFrame
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the combined CFrame offset of the bone and the current animation offset in world space.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#TransformedWorldCFrame"/>
         public object? TransformedWorldCFrame

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The size of the area that is scrollable, in offsets.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#AbsoluteCanvasSize"/>
         public global::System.Numerics.Vector2 AbsoluteCanvasSize
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The size of the frame, in offsets, without the scroll bars.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#AbsoluteWindowSize"/>
         public global::System.Numerics.Vector2 AbsoluteWindowSize
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether ScrollingFrame.CanvasSize is resized based on child content.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#AutomaticCanvasSize"/>
         public Enum.AutomaticSize AutomaticCanvasSize
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Image that displays on the bottom of a vertical scroll bar, or the right of a horizontal scroll bar (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar).
-        /// <para><b>Default:</b> <c>rbxasset://textures/ui/Scroll/scroll-bottom.png</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#BottomImage"/>
         public object? BottomImage
@@ -81,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Reflects the current positional offset of the canvas within the frame, in pixels, and sets the position of scroll bars accordingly.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#CanvasPosition"/>
         public global::System.Numerics.Vector2 CanvasPosition
@@ -92,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the size of the scrollable area.
-        /// <para><b>Default:</b> <c>{0, 0}, {2, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#CanvasSize"/>
         public object? CanvasSize
@@ -101,10 +95,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "CanvasSize", value);
         }
 
-        /// <summary>
-        /// <c>ScrollingFrame.DraggingScrollBar</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
         public Enum.DraggingScrollBar DraggingScrollBar
         {
             get => global::Roblox.Reflection.GetProperty<Enum.DraggingScrollBar>(this, "DraggingScrollBar");
@@ -113,7 +103,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if and when elastic scrolling is allowed on touch‑enabled devices.
-        /// <para><b>Default:</b> <c>WhenScrollable</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ElasticBehavior"/>
         public Enum.ElasticBehavior ElasticBehavior
@@ -122,10 +111,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.ElasticBehavior>(this, "ElasticBehavior", value);
         }
 
-        /// <summary>
-        /// <c>ScrollingFrame.HorizontalBarRect</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 0</c></para>
-        /// </summary>
         public object? HorizontalBarRect
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "HorizontalBarRect");
@@ -134,7 +119,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether CanvasSize is inset by ScrollBarThickness on the horizontal axis.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#HorizontalScrollBarInset"/>
         public Enum.ScrollBarInset HorizontalScrollBarInset
@@ -143,10 +127,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.ScrollBarInset>(this, "HorizontalScrollBarInset", value);
         }
 
-        /// <summary>
-        /// <c>ScrollingFrame.MaxCanvasPosition</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 MaxCanvasPosition
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MaxCanvasPosition");
@@ -155,7 +135,6 @@ namespace Roblox
 
         /// <summary>
         /// Image which spans the area between TopImage and BottomImage (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar).
-        /// <para><b>Default:</b> <c>rbxasset://textures/ui/Scroll/scroll-middle.png</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#MidImage"/>
         public object? MidImage
@@ -176,7 +155,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the rendered scroll bar images are colorized.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollBarImageColor3"/>
         public object? ScrollBarImageColor3
@@ -187,7 +165,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the opacity of the scroll bar images.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollBarImageTransparency"/>
         public float ScrollBarImageTransparency
@@ -198,7 +175,6 @@ namespace Roblox
 
         /// <summary>
         /// Thickness of the scroll bar in pixels; applies to both horizontal and vertical scroll bars.
-        /// <para><b>Default:</b> <c>12</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollBarThickness"/>
         public int ScrollBarThickness
@@ -207,20 +183,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "ScrollBarThickness", value);
         }
 
-        /// <summary>
-        /// <c>ScrollingFrame.ScrollRate</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float ScrollRate
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "ScrollRate");
             set => global::Roblox.Reflection.SetProperty<float>(this, "ScrollRate", value);
         }
 
-        /// <summary>
-        /// <c>ScrollingFrame.ScrollVelocity</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 ScrollVelocity
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ScrollVelocity");
@@ -229,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the direction(s) in which scrolling is allowed.
-        /// <para><b>Default:</b> <c>XY</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollingDirection"/>
         public Enum.ScrollingDirection ScrollingDirection
@@ -240,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether scrolling is allowed on the frame.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollingEnabled"/>
         public bool ScrollingEnabled
@@ -249,10 +215,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ScrollingEnabled", value);
         }
 
-        /// <summary>
-        /// <c>ScrollingFrame.SmoothScroll</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool SmoothScroll
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "SmoothScroll");
@@ -261,7 +223,6 @@ namespace Roblox
 
         /// <summary>
         /// Image which displays on the top of a vertical scroll bar, or the left of a horizontal scroll bar (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar).
-        /// <para><b>Default:</b> <c>rbxasset://textures/ui/Scroll/scroll-top.png</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#TopImage"/>
         public object? TopImage
@@ -280,10 +241,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "TopImageContent", value);
         }
 
-        /// <summary>
-        /// <c>ScrollingFrame.VerticalBarRect</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 0</c></para>
-        /// </summary>
         public object? VerticalBarRect
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "VerticalBarRect");
@@ -292,7 +249,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether CanvasSize is inset by ScrollBarThickness on the vertical axis.
-        /// <para><b>Default:</b> <c>None</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#VerticalScrollBarInset"/>
         public Enum.ScrollBarInset VerticalScrollBarInset
@@ -303,7 +259,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether the vertical scroll bar is positioned to the left or right of the canvas.
-        /// <para><b>Default:</b> <c>Right</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#VerticalScrollBarPosition"/>
         public Enum.VerticalScrollBarPosition VerticalScrollBarPosition

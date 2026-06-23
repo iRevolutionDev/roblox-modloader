@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The stored Vector3.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Value#Value"/>
         public global::System.Numerics.Vector3 Value
@@ -38,10 +37,15 @@ namespace Roblox
 
         /// <summary>
         /// Fired whenever Vector3Value.Value is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="value">A <c>global::System.Numerics.Vector3</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Value#Changed"/>
-        // public event Action? Changed; // TODO: native event binding
+        public event Action<global::System.Numerics.Vector3>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
     }
 }

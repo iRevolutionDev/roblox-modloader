@@ -21,10 +21,6 @@ namespace Roblox
         public static AvatarRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarRules(handle);
 
-        /// <summary>
-        /// <c>AvatarRules.AvatarType</c>
-        /// <para><b>Default:</b> <c>R15</c></para>
-        /// </summary>
         public Enum.GameAvatarType AvatarType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.GameAvatarType>(this, "AvatarType");

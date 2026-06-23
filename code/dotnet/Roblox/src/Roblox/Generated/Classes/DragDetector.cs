@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether constraint force is applied to the object's center of mass.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
@@ -58,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The primary axis of motion, expressed relative to the reference frame.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Axis"/>
         public global::System.Numerics.Vector3 Axis
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The CFrame of the pivot, dependent on the drag detector's ReferenceInstance.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragFrame"/>
         public object? DragFrame
@@ -80,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The paradigm used to generate proposed motion.
-        /// <para><b>Default:</b> <c>TranslatePlane</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragStyle"/>
         public Enum.DragDetectorDragStyle DragStyle
@@ -91,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether the DragDetector responds to user input.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Enabled"/>
         public bool Enabled
@@ -102,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// During gamepad input, the modifier KeyCode for the secondary mode of motion.
-        /// <para><b>Default:</b> <c>ButtonR1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#GamepadModeSwitchKeyCode"/>
         public Enum.KeyCode GamepadModeSwitchKeyCode
@@ -113,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// During keyboard input, the modifier KeyCode for the secondary mode of motion.
-        /// <para><b>Default:</b> <c>LeftControl</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#KeyboardModeSwitchKeyCode"/>
         public Enum.KeyCode KeyboardModeSwitchKeyCode
@@ -124,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MinDragAngle, impedes the drag detector's attempts to generate motion.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxDragAngle"/>
         public float MaxDragAngle
@@ -135,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MinDragTranslation, impedes the drag detector's attempts to generate motion.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxDragTranslation"/>
         public global::System.Numerics.Vector3 MaxDragTranslation
@@ -146,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum force applied for the object to reach its goal.
-        /// <para><b>Default:</b> <c>10000000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxForce"/>
         public float MaxForce
@@ -157,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Maximum torque applied for the object to reach its goal.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxTorque"/>
         public float MaxTorque
@@ -168,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MaxDragAngle, impedes the drag detector's attempts to generate motion.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MinDragAngle"/>
         public float MinDragAngle
@@ -179,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Along with MaxDragTranslation, impedes the drag detector's attempts to generate motion.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MinDragTranslation"/>
         public global::System.Numerics.Vector3 MinDragTranslation
@@ -190,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Specifies the YXZ rotation of axes of motion relative to the reference frame.
-        /// <para><b>Default:</b> <c>-0, 180, 90</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Orientation"/>
         public global::System.Numerics.Vector3 Orientation
@@ -201,49 +187,12 @@ namespace Roblox
 
         /// <summary>
         /// Controls the permission level for which players can interact with the DragDetector.
-        /// <para><b>Default:</b> <c>Everybody</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#PermissionPolicy"/>
         public Enum.DragDetectorPermissionPolicy PermissionPolicy
         {
             get => global::Roblox.Reflection.GetProperty<Enum.DragDetectorPermissionPolicy>(this, "PermissionPolicy");
             set => global::Roblox.Reflection.SetProperty<Enum.DragDetectorPermissionPolicy>(this, "PermissionPolicy", value);
-        }
-
-        public Instance? PhysicalDragClickedPart
-        {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "PhysicalDragClickedPart");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "PhysicalDragClickedPart", value);
-        }
-
-        /// <summary>
-        /// <c>DragDetector.PhysicalDragHitPoint</c>
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
-        /// </summary>
-        public global::System.Numerics.Vector3 PhysicalDragHitPoint
-        {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "PhysicalDragHitPoint");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "PhysicalDragHitPoint", value);
-        }
-
-        /// <summary>
-        /// <c>DragDetector.PhysicalDragIsInVR</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool PhysicalDragIsInVR
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PhysicalDragIsInVR");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "PhysicalDragIsInVR", value);
-        }
-
-        /// <summary>
-        /// <c>DragDetector.PhysicalDragTargetFrame</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
-        public object? PhysicalDragTargetFrame
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PhysicalDragTargetFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PhysicalDragTargetFrame", value);
         }
 
         /// <summary>
@@ -258,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// The paradigm used to move, or not move, the objects affected by the drag detector.
-        /// <para><b>Default:</b> <c>Physical</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#ResponseStyle"/>
         public Enum.DragDetectorResponseStyle ResponseStyle
@@ -269,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Higher values cause the object to reach its goal more rapidly.
-        /// <para><b>Default:</b> <c>10</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Responsiveness"/>
         public float Responsiveness
@@ -280,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether user input on a DragDetector replicates to the server or remains local to the specific client.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#RunLocally"/>
         public bool RunLocally
@@ -291,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// The secondary axis of the motion.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#SecondaryAxis"/>
         public global::System.Numerics.Vector3 SecondaryAxis
@@ -302,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// If DragStyle is DragDetectorDragStyle.RotateTrackball, multiplier for adding a radial pull rotation as a contribution to the total.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#TrackballRadialPullFactor"/>
         public float TrackballRadialPullFactor
@@ -313,7 +257,6 @@ namespace Roblox
 
         /// <summary>
         /// If DragStyle is DragDetectorDragStyle.RotateTrackball, multiplier for adding roll rotation to the total.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#TrackballRollFactor"/>
         public float TrackballRollFactor
@@ -324,7 +267,6 @@ namespace Roblox
 
         /// <summary>
         /// During VR input, the modifier KeyCode for the secondary mode of motion.
-        /// <para><b>Default:</b> <c>ButtonL2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#VRSwitchKeyCode"/>
         public Enum.KeyCode VRSwitchKeyCode
@@ -335,7 +277,6 @@ namespace Roblox
 
         /// <summary>
         /// The Axis expressed in world space.
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#WorldAxis"/>
         public global::System.Numerics.Vector3 WorldAxis
@@ -346,7 +287,6 @@ namespace Roblox
 
         /// <summary>
         /// The SecondaryAxis expressed in world space.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#WorldSecondaryAxis"/>
         public global::System.Numerics.Vector3 WorldSecondaryAxis
@@ -401,48 +341,49 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user continues dragging the object after DragStart has been initiated.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
+        /// <param name="cursorRay">A <c>object?</c> value.</param>
+        /// <param name="viewFrame">A <c>object?</c> value.</param>
+        /// <param name="vrInputFrame">A <c>object?</c> value.</param>
+        /// <param name="isModeSwitchKeyDown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragContinue"/>
-        // public event Action? DragContinue; // TODO: native event binding
-
-        /// <summary>
-        /// <c>DragDetector.DragContinueReplicate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? DragContinueReplicate; // TODO: native event binding
+        public event Action<Player?, object?, object?, object?, bool>? DragContinue
+        {
+            add { if (value is not null) AddEventHandler("DragContinue", value); }
+            remove { if (value is not null) RemoveEventHandler("DragContinue", value); }
+        }
 
         /// <summary>
         /// Fires when a user stops dragging the object.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragEnd"/>
-        // public event Action? DragEnd; // TODO: native event binding
-
-        /// <summary>
-        /// <c>DragDetector.DragEndReplicate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? DragEndReplicate; // TODO: native event binding
+        public event Action<Player?>? DragEnd
+        {
+            add { if (value is not null) AddEventHandler("DragEnd", value); }
+            remove { if (value is not null) RemoveEventHandler("DragEnd", value); }
+        }
 
         /// <summary>
         /// Fires when a user starts dragging the object.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
+        /// <param name="cursorRay">A <c>object?</c> value.</param>
+        /// <param name="viewFrame">A <c>object?</c> value.</param>
+        /// <param name="hitFrame">A <c>object?</c> value.</param>
+        /// <param name="clickedPart">A <c>BasePart?</c> value.</param>
+        /// <param name="vrInputFrame">A <c>object?</c> value.</param>
+        /// <param name="isModeSwitchKeyDown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragStart"/>
-        // public event Action? DragStart; // TODO: native event binding
-
-        /// <summary>
-        /// <c>DragDetector.DragStartReplicate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? DragStartReplicate; // TODO: native event binding
-
-        /// <summary>
-        /// <c>DragDetector.RestartPhysicalDragReplicate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RestartPhysicalDragReplicate; // TODO: native event binding
+        public event Action<Player?, object?, object?, object?, BasePart?, object?, bool>? DragStart
+        {
+            add { if (value is not null) AddEventHandler("DragStart", value); }
+            remove { if (value is not null) RemoveEventHandler("DragStart", value); }
+        }
 
     }
 }

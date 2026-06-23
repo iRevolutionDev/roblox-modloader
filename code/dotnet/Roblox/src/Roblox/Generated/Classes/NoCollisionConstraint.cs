@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the two linked BaseParts will collide with each other.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NoCollisionConstraint#Enabled"/>
         public bool Enabled

@@ -37,10 +37,15 @@ namespace Roblox
 
         /// <summary>
         /// Fired whenever the BrickColorValue.Value of the BrickColorValue is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="value">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BrickColorValue#Changed"/>
-        // public event Action? Changed; // TODO: native event binding
+        public event Action<object?>? Changed
+        {
+            add { if (value is not null) AddEventHandler("Changed", value); }
+            remove { if (value is not null) RemoveEventHandler("Changed", value); }
+        }
 
     }
 }

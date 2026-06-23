@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Actual screen position of the default chat window, in pixels.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#AbsolutePosition"/>
         public global::System.Numerics.Vector2 AbsolutePosition
@@ -36,10 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsolutePosition", value);
         }
 
-        /// <summary>
-        /// <c>ChatWindowConfiguration.AbsolutePositionWrite</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 AbsolutePositionWrite
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsolutePositionWrite");
@@ -48,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// Actual screen size of the default chat window, in pixels.
-        /// <para><b>Default:</b> <c>0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#AbsoluteSize"/>
         public global::System.Numerics.Vector2 AbsoluteSize
@@ -57,10 +51,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSize", value);
         }
 
-        /// <summary>
-        /// <c>ChatWindowConfiguration.AbsoluteSizeWrite</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 AbsoluteSizeWrite
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSizeWrite");
@@ -69,7 +59,6 @@ namespace Roblox
 
         /// <summary>
         /// Background color of the default chat window.
-        /// <para><b>Default:</b> <c>0.0980392, 0.105882, 0.113725</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#BackgroundColor3"/>
         public object? BackgroundColor3
@@ -80,7 +69,6 @@ namespace Roblox
 
         /// <summary>
         /// Background transparency of the default chat window.
-        /// <para><b>Default:</b> <c>0.2999999999999999889</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#BackgroundTransparency"/>
         public double BackgroundTransparency
@@ -91,7 +79,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether to show the default chat window.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#Enabled"/>
         public bool Enabled
@@ -112,7 +99,6 @@ namespace Roblox
 
         /// <summary>
         /// Factor by which the height of the default chat window should be scaled.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#HeightScale"/>
         public float HeightScale
@@ -123,7 +109,6 @@ namespace Roblox
 
         /// <summary>
         /// Horizontal alignment of the chat window.
-        /// <para><b>Default:</b> <c>Left</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#HorizontalAlignment"/>
         public Enum.HorizontalAlignment HorizontalAlignment
@@ -134,7 +119,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of the text in default chat window.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextColor3"/>
         public object? TextColor3
@@ -145,7 +129,6 @@ namespace Roblox
 
         /// <summary>
         /// Size of the text in default chat window.
-        /// <para><b>Default:</b> <c>14</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextSize"/>
         public long TextSize
@@ -156,7 +139,6 @@ namespace Roblox
 
         /// <summary>
         /// Color of the text stroke for text in default chat window.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextStrokeColor3"/>
         public object? TextStrokeColor3
@@ -167,7 +149,6 @@ namespace Roblox
 
         /// <summary>
         /// Transparency of the text stroke for text in default chat window.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextStrokeTransparency"/>
         public double TextStrokeTransparency
@@ -178,7 +159,6 @@ namespace Roblox
 
         /// <summary>
         /// Vertical alignment of the chat window.
-        /// <para><b>Default:</b> <c>Top</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#VerticalAlignment"/>
         public Enum.VerticalAlignment VerticalAlignment
@@ -189,7 +169,6 @@ namespace Roblox
 
         /// <summary>
         /// Factor by which the width of the default chat window should be scaled.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#WidthScale"/>
         public float WidthScale

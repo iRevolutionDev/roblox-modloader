@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Automatically adjusts scaling in VR to align the player with their avatar.
-        /// <para><b>Default:</b> <c>World</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#AutomaticScaling"/>
         public Enum.VRScaling AutomaticScaling
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// When true, a VR player will be able to animate their hands and head using their controllers and headset.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#AvatarGestures"/>
         public bool AvatarGestures
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VRService.ControllerModels</c>
-        /// <para><b>Default:</b> <c>Transparent</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#ControllerModels"/>
         public Enum.VRControllerModelMode ControllerModels
@@ -58,10 +55,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.VRControllerModelMode>(this, "ControllerModels", value);
         }
 
-        /// <summary>
-        /// <c>VRService.DidPointerHit</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool DidPointerHit
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "DidPointerHit");
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// When true, a VR player's view will fade to black when their head collides with an object.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#FadeOutViewOnCollision"/>
         public bool FadeOutViewOnCollision
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes what UserCFrame is responsible for input in VR.
-        /// <para><b>Default:</b> <c>Head</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#GuiInputUserCFrame"/>
         public Enum.UserCFrame GuiInputUserCFrame
@@ -90,10 +81,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.UserCFrame>(this, "GuiInputUserCFrame", value);
         }
 
-        /// <summary>
-        /// <c>VRService.LaserDistance</c>
-        /// <para><b>Default:</b> <c>50</c></para>
-        /// </summary>
         public float LaserDistance
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "LaserDistance");
@@ -102,7 +89,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VRService.LaserPointer</c>
-        /// <para><b>Default:</b> <c>Pointer</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#LaserPointer"/>
         public Enum.VRLaserPointerMode LaserPointer
@@ -111,30 +97,18 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.VRLaserPointerMode>(this, "LaserPointer", value);
         }
 
-        /// <summary>
-        /// <c>VRService.PointerHitCFrame</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
         public object? PointerHitCFrame
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "PointerHitCFrame");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "PointerHitCFrame", value);
         }
 
-        /// <summary>
-        /// <c>VRService.QuestASWState</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool QuestASWState
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "QuestASWState");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "QuestASWState", value);
         }
 
-        /// <summary>
-        /// <c>VRService.QuestDisplayRefreshRate</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public float QuestDisplayRefreshRate
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "QuestDisplayRefreshRate");
@@ -143,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VRService.ThirdPersonFollowCamEnabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#ThirdPersonFollowCamEnabled"/>
         public bool ThirdPersonFollowCamEnabled
@@ -152,10 +125,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ThirdPersonFollowCamEnabled", value);
         }
 
-        /// <summary>
-        /// <c>VRService.VRDeviceAvailable</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool VRDeviceAvailable
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "VRDeviceAvailable");
@@ -170,7 +139,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes whether the user is using a virtual reality device.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#VREnabled"/>
         public bool VREnabled
@@ -179,10 +147,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VREnabled", value);
         }
 
-        /// <summary>
-        /// <c>VRService.VRSessionState</c>
-        /// <para><b>Default:</b> <c>Undefined</c></para>
-        /// </summary>
         public Enum.VRSessionState VRSessionState
         {
             get => global::Roblox.Reflection.GetProperty<Enum.VRSessionState>(this, "VRSessionState");
@@ -260,37 +224,66 @@ namespace Roblox
 
         /// <summary>
         /// <c>VRService.LaserPointerTriggered</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? LaserPointerTriggered; // TODO: native event binding
+        /// <param name="input">A <c>InputObject?</c> value.</param>
+        public event Action<InputObject?>? LaserPointerTriggered
+        {
+            add { if (value is not null) AddEventHandler("LaserPointerTriggered", value); }
+            remove { if (value is not null) RemoveEventHandler("LaserPointerTriggered", value); }
+        }
 
         /// <summary>
         /// Fired when navigation is requested from VRService.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="inputUserCFrame">A <c>Enum.UserCFrame</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#NavigationRequested"/>
-        // public event Action? NavigationRequested; // TODO: native event binding
+        public event Action<object?, Enum.UserCFrame>? NavigationRequested
+        {
+            add { if (value is not null) AddEventHandler("NavigationRequested", value); }
+            remove { if (value is not null) RemoveEventHandler("NavigationRequested", value); }
+        }
 
         /// <summary>
         /// Fires if the VRTouchpadMode of a VRTouchpad is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="pad">A <c>Enum.VRTouchpad</c> value.</param>
+        /// <param name="mode">A <c>Enum.VRTouchpadMode</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#TouchpadModeChanged"/>
-        // public event Action? TouchpadModeChanged; // TODO: native event binding
+        public event Action<Enum.VRTouchpad, Enum.VRTouchpadMode>? TouchpadModeChanged
+        {
+            add { if (value is not null) AddEventHandler("TouchpadModeChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchpadModeChanged", value); }
+        }
 
         /// <summary>
         /// Fires when a UserCFrame is changed.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
+        /// <param name="value">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#UserCFrameChanged"/>
-        // public event Action? UserCFrameChanged; // TODO: native event binding
+        public event Action<Enum.UserCFrame, object?>? UserCFrameChanged
+        {
+            add { if (value is not null) AddEventHandler("UserCFrameChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("UserCFrameChanged", value); }
+        }
 
         /// <summary>
         /// Fires when a UserCFrame is enabled or disabled.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
+        /// <param name="enabled">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#UserCFrameEnabled"/>
-        // public event Action? UserCFrameEnabled; // TODO: native event binding
+        public event Action<Enum.UserCFrame, bool>? UserCFrameEnabled
+        {
+            add { if (value is not null) AddEventHandler("UserCFrameEnabled", value); }
+            remove { if (value is not null) RemoveEventHandler("UserCFrameEnabled", value); }
+        }
 
     }
 }

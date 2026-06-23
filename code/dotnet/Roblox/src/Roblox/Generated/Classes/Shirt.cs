@@ -35,5 +35,11 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "ShirtTemplate", value);
         }
 
+        public string? ShirtTemplateContent
+        {
+            get => global::Roblox.Reflection.GetProperty<string?>(this, "ShirtTemplateContent");
+            set => global::Roblox.Reflection.SetProperty<string?>(this, "ShirtTemplateContent", value);
+        }
+
     }
 }

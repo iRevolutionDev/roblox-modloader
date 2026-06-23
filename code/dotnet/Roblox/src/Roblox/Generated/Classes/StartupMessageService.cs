@@ -26,6 +26,13 @@ namespace Roblox
             => handle == 0 ? null : new StartupMessageService(handle);
 
         /// <summary>
+        /// <c>StartupMessageService.ExecuteActionButton</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? ExecuteActionButton()
+            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteActionButton");
+
+        /// <summary>
         /// <c>StartupMessageService.GetStartupMessage</c>
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>

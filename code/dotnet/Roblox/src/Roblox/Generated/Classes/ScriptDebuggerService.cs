@@ -104,9 +104,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptDebuggerService.Resumed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Resumed; // TODO: native event binding
+        /// <param name="threadIds">A <c>object?</c> value.</param>
+        public event Action<object?>? Resumed
+        {
+            add { if (value is not null) AddEventHandler("Resumed", value); }
+            remove { if (value is not null) RemoveEventHandler("Resumed", value); }
+        }
 
         /// <summary>
         /// <c>ScriptDebuggerService.OnStopped</c>

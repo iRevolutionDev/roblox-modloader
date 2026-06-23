@@ -32,27 +32,47 @@ namespace Roblox
 
         /// <summary>
         /// <c>RibbonNotificationService.AllNotificationsReadFromRibbon</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AllNotificationsReadFromRibbon; // TODO: native event binding
+        public event Action? AllNotificationsReadFromRibbon
+        {
+            add { if (value is not null) AddEventHandler("AllNotificationsReadFromRibbon", value); }
+            remove { if (value is not null) RemoveEventHandler("AllNotificationsReadFromRibbon", value); }
+        }
 
         /// <summary>
         /// <c>RibbonNotificationService.NewNotificationFromRibbon</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? NewNotificationFromRibbon; // TODO: native event binding
+        /// <param name="newNotificationId">A <c>string?</c> value.</param>
+        public event Action<string?>? NewNotificationFromRibbon
+        {
+            add { if (value is not null) AddEventHandler("NewNotificationFromRibbon", value); }
+            remove { if (value is not null) RemoveEventHandler("NewNotificationFromRibbon", value); }
+        }
 
         /// <summary>
         /// <c>RibbonNotificationService.NotificationReadFromRibbon</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? NotificationReadFromRibbon; // TODO: native event binding
+        /// <param name="newNotificationId">A <c>string?</c> value.</param>
+        public event Action<string?>? NotificationReadFromRibbon
+        {
+            add { if (value is not null) AddEventHandler("NotificationReadFromRibbon", value); }
+            remove { if (value is not null) RemoveEventHandler("NotificationReadFromRibbon", value); }
+        }
 
         /// <summary>
         /// <c>RibbonNotificationService.ToggleNotificationTray</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ToggleNotificationTray; // TODO: native event binding
+        /// <param name="checked">A <c>bool</c> value.</param>
+        /// <param name="newNotificationAvailable">A <c>bool</c> value.</param>
+        public event Action<bool, bool>? ToggleNotificationTray
+        {
+            add { if (value is not null) AddEventHandler("ToggleNotificationTray", value); }
+            remove { if (value is not null) RemoveEventHandler("ToggleNotificationTray", value); }
+        }
 
     }
 }

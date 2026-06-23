@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether or not the ForceField particle effect is visible.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ForceField#Visible"/>
         public bool Visible

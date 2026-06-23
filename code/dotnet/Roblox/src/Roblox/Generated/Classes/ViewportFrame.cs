@@ -27,33 +27,12 @@ namespace Roblox
 
         /// <summary>
         /// The lighting hue applied to the area within the ViewportFrame.
-        /// <para><b>Default:</b> <c>0.784314, 0.784314, 0.784314</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#Ambient"/>
         public object? Ambient
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "Ambient");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "Ambient", value);
-        }
-
-        /// <summary>
-        /// <c>ViewportFrame.CameraCFrame</c>
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
-        /// </summary>
-        public object? CameraCFrame
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CameraCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CameraCFrame", value);
-        }
-
-        /// <summary>
-        /// <c>ViewportFrame.CameraFieldOfView</c>
-        /// <para><b>Default:</b> <c>1.22173059</c></para>
-        /// </summary>
-        public float CameraFieldOfView
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraFieldOfView");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "CameraFieldOfView", value);
         }
 
         /// <summary>
@@ -68,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines how the rendered viewport image will be colorized.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#ImageColor3"/>
         public object? ImageColor3
@@ -79,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the transparency of the rendered viewport image.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#ImageTransparency"/>
         public float ImageTransparency
@@ -88,10 +65,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "ImageTransparency", value);
         }
 
-        /// <summary>
-        /// <c>ViewportFrame.IsMirrored</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsMirrored
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsMirrored");
@@ -100,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// The color of the emitted light.
-        /// <para><b>Default:</b> <c>0.54902, 0.54902, 0.54902</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#LightColor"/>
         public object? LightColor
@@ -111,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// A Vector3 representing the direction of the light source.
-        /// <para><b>Default:</b> <c>-1, -1, -1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#LightDirection"/>
         public global::System.Numerics.Vector3 LightDirection

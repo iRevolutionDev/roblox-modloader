@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The intensity of the effect.
-        /// <para><b>Default:</b> <c>0.75</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DistortionSoundEffect#Level"/>
         public float Level

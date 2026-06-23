@@ -21,20 +21,12 @@ namespace Roblox
         public static AnnotationsService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnnotationsService(handle);
 
-        /// <summary>
-        /// <c>AnnotationsService.AnnotationsLoadingStatus</c>
-        /// <para><b>Default:</b> <c>Loading</c></para>
-        /// </summary>
         public Enum.AnnotationRequestStatus AnnotationsLoadingStatus
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AnnotationRequestStatus>(this, "AnnotationsLoadingStatus");
             set => global::Roblox.Reflection.SetProperty<Enum.AnnotationRequestStatus>(this, "AnnotationsLoadingStatus", value);
         }
 
-        /// <summary>
-        /// <c>AnnotationsService.AnnotationsVisible</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool AnnotationsVisible
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AnnotationsVisible");
@@ -47,20 +39,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Annotation?>(this, "Hovered", value);
         }
 
-        /// <summary>
-        /// <c>AnnotationsService.Mode</c>
-        /// <para><b>Default:</b> <c>None</c></para>
-        /// </summary>
         public Enum.AnnotationEditingMode Mode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AnnotationEditingMode>(this, "Mode");
             set => global::Roblox.Reflection.SetProperty<Enum.AnnotationEditingMode>(this, "Mode", value);
         }
 
-        /// <summary>
-        /// <c>AnnotationsService.ResolvedLoadingStatus</c>
-        /// <para><b>Default:</b> <c>Loading</c></para>
-        /// </summary>
         public Enum.AnnotationRequestStatus ResolvedLoadingStatus
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AnnotationRequestStatus>(this, "ResolvedLoadingStatus");
@@ -202,45 +186,90 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AnnotationAdded; // TODO: native event binding
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        /// <param name="channelId">A <c>string?</c> value.</param>
+        public event Action<string?, Annotation?, string?>? AnnotationAdded
+        {
+            add { if (value is not null) AddEventHandler("AnnotationAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("AnnotationAdded", value); }
+        }
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationDeleted</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AnnotationDeleted; // TODO: native event binding
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        public event Action<string?, Annotation?>? AnnotationDeleted
+        {
+            add { if (value is not null) AddEventHandler("AnnotationDeleted", value); }
+            remove { if (value is not null) RemoveEventHandler("AnnotationDeleted", value); }
+        }
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationEdited</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AnnotationEdited; // TODO: native event binding
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="uniqueId">A <c>string?</c> value.</param>
+        /// <param name="contents">A <c>string?</c> value.</param>
+        /// <param name="taggedUsers">A <c>string?</c> value.</param>
+        public event Action<string?, string?, string?, string?>? AnnotationEdited
+        {
+            add { if (value is not null) AddEventHandler("AnnotationEdited", value); }
+            remove { if (value is not null) RemoveEventHandler("AnnotationEdited", value); }
+        }
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationResolved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AnnotationResolved; // TODO: native event binding
+        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        /// <param name="resolved">A <c>bool</c> value.</param>
+        public event Action<string?, Annotation?, bool>? AnnotationResolved
+        {
+            add { if (value is not null) AddEventHandler("AnnotationResolved", value); }
+            remove { if (value is not null) RemoveEventHandler("AnnotationResolved", value); }
+        }
 
         /// <summary>
         /// <c>AnnotationsService.ServerLoadAnnotationReplies</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerLoadAnnotationReplies; // TODO: native event binding
+        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        /// <param name="reverseOrder">A <c>bool</c> value.</param>
+        /// <param name="loadAll">A <c>bool</c> value.</param>
+        public event Action<Annotation?, bool, bool>? ServerLoadAnnotationReplies
+        {
+            add { if (value is not null) AddEventHandler("ServerLoadAnnotationReplies", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerLoadAnnotationReplies", value); }
+        }
 
         /// <summary>
         /// <c>AnnotationsService.ServerLoadAnnotations</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerLoadAnnotations; // TODO: native event binding
+        /// <param name="resolved">A <c>bool</c> value.</param>
+        public event Action<bool>? ServerLoadAnnotations
+        {
+            add { if (value is not null) AddEventHandler("ServerLoadAnnotations", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerLoadAnnotations", value); }
+        }
 
         /// <summary>
         /// <c>AnnotationsService.ServerLoadResolvedAnnotations</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerLoadResolvedAnnotations; // TODO: native event binding
+        /// <param name="count">A <c>int</c> value.</param>
+        public event Action<int>? ServerLoadResolvedAnnotations
+        {
+            add { if (value is not null) AddEventHandler("ServerLoadResolvedAnnotations", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerLoadResolvedAnnotations", value); }
+        }
 
     }
 }

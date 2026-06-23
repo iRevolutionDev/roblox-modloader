@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#Bypass"/>
         public bool Bypass
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how quickly high frequency sound decays compared to the overall reverb.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#DecayRatio"/>
         public float DecayRatio
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how long it takes for the reverb to dissipate.
-        /// <para><b>Default:</b> <c>1.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#DecayTime"/>
         public float DecayTime
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how many reflections are generated.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#Density"/>
         public float Density
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how smooth and reflective the simulated surfaces are.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#Diffusion"/>
         public float Diffusion
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Gain level determining how loud the original, unaltered audio stream will be.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#DryLevel"/>
         public float DryLevel
@@ -93,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the amount of time before reverberation begins .
-        /// <para><b>Default:</b> <c>0.0199999996</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#EarlyDelayTime"/>
         public float EarlyDelayTime
@@ -104,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Frequency above which sound is filtered out of the reverb.
-        /// <para><b>Default:</b> <c>20000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#HighCutFrequency"/>
         public float HighCutFrequency
@@ -115,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Time, following early delays, before diffuse reverberations begin.
-        /// <para><b>Default:</b> <c>0.0399999991</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#LateDelayTime"/>
         public float LateDelayTime
@@ -126,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Frequency below which audio can be boosted or reduced in the reverb.
-        /// <para><b>Default:</b> <c>250</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#LowShelfFrequency"/>
         public float LowShelfFrequency
@@ -137,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls the presence of low frequency content in the reverb.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#LowShelfGain"/>
         public float LowShelfGain
@@ -148,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Frequency that separates low frequency decay speeds from high frequency decay speeds.
-        /// <para><b>Default:</b> <c>5000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#ReferenceFrequency"/>
         public float ReferenceFrequency
@@ -159,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Gain level determining how loud the reverberated stream will be.
-        /// <para><b>Default:</b> <c>-6</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#WetLevel"/>
         public float WetLevel
@@ -202,10 +189,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioReverb via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

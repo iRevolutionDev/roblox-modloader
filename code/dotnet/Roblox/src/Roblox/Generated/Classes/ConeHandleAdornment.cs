@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Height of the cone adornment.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Height"/>
         public float Height
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ConeHandleAdornment.Hollow</c>
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Hollow"/>
         public bool Hollow
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Radius of the cone adornment.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Radius"/>
         public float Radius
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ConeHandleAdornment.Shading</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Shading"/>
         public Enum.AdornShading Shading

@@ -44,21 +44,34 @@ namespace Roblox
 
         /// <summary>
         /// <c>WebSocketClient.Closed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Closed; // TODO: native event binding
+        public event Action? Closed
+        {
+            add { if (value is not null) AddEventHandler("Closed", value); }
+            remove { if (value is not null) RemoveEventHandler("Closed", value); }
+        }
 
         /// <summary>
         /// <c>WebSocketClient.MessageReceived</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MessageReceived; // TODO: native event binding
+        /// <param name="data">A <c>string?</c> value.</param>
+        public event Action<string?>? MessageReceived
+        {
+            add { if (value is not null) AddEventHandler("MessageReceived", value); }
+            remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }
+        }
 
         /// <summary>
         /// <c>WebSocketClient.Opened</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Opened; // TODO: native event binding
+        public event Action? Opened
+        {
+            add { if (value is not null) AddEventHandler("Opened", value); }
+            remove { if (value is not null) RemoveEventHandler("Opened", value); }
+        }
 
     }
 }

@@ -272,47 +272,88 @@ namespace Roblox
 
         /// <summary>
         /// <c>ContextActionService.BoundActionAdded</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BoundActionAdded; // TODO: native event binding
+        /// <param name="actionAdded">A <c>string?</c> value.</param>
+        /// <param name="createTouchButton">A <c>bool</c> value.</param>
+        /// <param name="functionInfoTable">A <c>object?</c> value.</param>
+        /// <param name="isCore">A <c>bool</c> value.</param>
+        public event Action<string?, bool, object?, bool>? BoundActionAdded
+        {
+            add { if (value is not null) AddEventHandler("BoundActionAdded", value); }
+            remove { if (value is not null) RemoveEventHandler("BoundActionAdded", value); }
+        }
 
         /// <summary>
         /// <c>ContextActionService.BoundActionChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BoundActionChanged; // TODO: native event binding
+        /// <param name="actionChanged">A <c>string?</c> value.</param>
+        /// <param name="changeName">A <c>string?</c> value.</param>
+        /// <param name="changeTable">A <c>object?</c> value.</param>
+        public event Action<string?, string?, object?>? BoundActionChanged
+        {
+            add { if (value is not null) AddEventHandler("BoundActionChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("BoundActionChanged", value); }
+        }
 
         /// <summary>
         /// <c>ContextActionService.BoundActionRemoved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BoundActionRemoved; // TODO: native event binding
+        /// <param name="actionRemoved">A <c>string?</c> value.</param>
+        /// <param name="functionInfoTable">A <c>object?</c> value.</param>
+        /// <param name="isCore">A <c>bool</c> value.</param>
+        public event Action<string?, object?, bool>? BoundActionRemoved
+        {
+            add { if (value is not null) AddEventHandler("BoundActionRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("BoundActionRemoved", value); }
+        }
 
         /// <summary>
         /// <c>ContextActionService.GetActionButtonEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GetActionButtonEvent; // TODO: native event binding
+        /// <param name="actionName">A <c>string?</c> value.</param>
+        public event Action<string?>? GetActionButtonEvent
+        {
+            add { if (value is not null) AddEventHandler("GetActionButtonEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("GetActionButtonEvent", value); }
+        }
 
         /// <summary>
         /// <c>ContextActionService.InputContextsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? InputContextsChanged; // TODO: native event binding
+        public event Action? InputContextsChanged
+        {
+            add { if (value is not null) AddEventHandler("InputContextsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("InputContextsChanged", value); }
+        }
 
         /// <summary>
         /// Fires when the current player equips a Tool.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="toolEquipped">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#LocalToolEquipped"/>
-        // public event Action? LocalToolEquipped; // TODO: native event binding
+        public event Action<Instance?>? LocalToolEquipped
+        {
+            add { if (value is not null) AddEventHandler("LocalToolEquipped", value); }
+            remove { if (value is not null) RemoveEventHandler("LocalToolEquipped", value); }
+        }
 
         /// <summary>
         /// Fires when the current player unequips a Tool.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="toolUnequipped">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#LocalToolUnequipped"/>
-        // public event Action? LocalToolUnequipped; // TODO: native event binding
+        public event Action<Instance?>? LocalToolUnequipped
+        {
+            add { if (value is not null) AddEventHandler("LocalToolUnequipped", value); }
+            remove { if (value is not null) RemoveEventHandler("LocalToolUnequipped", value); }
+        }
 
     }
 }

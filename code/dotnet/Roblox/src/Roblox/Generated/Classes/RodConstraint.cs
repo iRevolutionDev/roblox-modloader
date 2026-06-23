@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// The current distance between the constraint's Attachments.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#CurrentDistance"/>
         public float CurrentDistance
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The distance apart at which the constraint attempts to keep its Attachments.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#Length"/>
         public float Length
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angle between the rod and Attachment0 when LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>90</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#LimitAngle0"/>
         public float LimitAngle0
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angle between the rod and Attachment1 when LimitsEnabled is true.
-        /// <para><b>Default:</b> <c>90</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#LimitAngle1"/>
         public float LimitAngle1
@@ -71,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether LimitAngle0 and LimitAngle1 control the angles between the rod and the respective attachments.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
@@ -82,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// The visualized thickness of the RodConstraint.
-        /// <para><b>Default:</b> <c>0.100000001</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#Thickness"/>
         public float Thickness

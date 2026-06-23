@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if the parts enclosed by the modifier are traversable, even if they would normally be collided with.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingModifier#PassThrough"/>
         public bool PassThrough

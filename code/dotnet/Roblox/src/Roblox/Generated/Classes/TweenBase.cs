@@ -61,10 +61,15 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the tween finishes playing or when stopped with TweenBase:Cancel().
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="playbackState">A <c>Enum.PlaybackState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenBase#Completed"/>
-        // public event Action? Completed; // TODO: native event binding
+        public event Action<Enum.PlaybackState>? Completed
+        {
+            add { if (value is not null) AddEventHandler("Completed", value); }
+            remove { if (value is not null) RemoveEventHandler("Completed", value); }
+        }
 
     }
 }

@@ -26,34 +26,13 @@ namespace Roblox
             => handle == 0 ? null : new LocalizationTable(handle);
 
         /// <summary>
-        /// <c>LocalizationTable.Contents</c>
-        /// <para><b>Default:</b> <c>[]</c></para>
-        /// </summary>
-        public string? Contents
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Contents");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Contents", value);
-        }
-
-        /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable.SourceLocaleId which should be used in all new work.The default IETF tag to use if the ''languageKey'' parameter is excluded from the LocalizationTable:GetString() method.
-        /// <para><b>Default:</b> <c>en-us</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#DevelopmentLanguage"/>
         public string? DevelopmentLanguage
         {
             get => global::Roblox.Reflection.GetProperty<string?>(this, "DevelopmentLanguage");
             set => global::Roblox.Reflection.SetProperty<string?>(this, "DevelopmentLanguage", value);
-        }
-
-        /// <summary>
-        /// <c>LocalizationTable.IsExemptFromUGCAnalytics</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
-        public bool IsExemptFromUGCAnalytics
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsExemptFromUGCAnalytics");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsExemptFromUGCAnalytics", value);
         }
 
         /// <summary>
@@ -68,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The locale of source strings.
-        /// <para><b>Default:</b> <c>en-us</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SourceLocaleId"/>
         public string? SourceLocaleId

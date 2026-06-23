@@ -26,16 +26,6 @@ namespace Roblox
             => handle == 0 ? null : new CustomEvent(handle);
 
         /// <summary>
-        /// <c>CustomEvent.PersistedCurrentValue</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
-        public float PersistedCurrentValue
-        {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PersistedCurrentValue");
-            set => global::Roblox.Reflection.SetProperty<float>(this, "PersistedCurrentValue", value);
-        }
-
-        /// <summary>
         /// Returns the CustomEventReceivers that are connected to the CustomEvent.
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
@@ -54,17 +44,27 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a receiver is connected to the CustomEvent.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="receiver">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#ReceiverConnected"/>
-        // public event Action? ReceiverConnected; // TODO: native event binding
+        public event Action<Instance?>? ReceiverConnected
+        {
+            add { if (value is not null) AddEventHandler("ReceiverConnected", value); }
+            remove { if (value is not null) RemoveEventHandler("ReceiverConnected", value); }
+        }
 
         /// <summary>
         /// Fires when a receiver is disconnected from the CustomEvent.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="receiver">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#ReceiverDisconnected"/>
-        // public event Action? ReceiverDisconnected; // TODO: native event binding
+        public event Action<Instance?>? ReceiverDisconnected
+        {
+            add { if (value is not null) AddEventHandler("ReceiverDisconnected", value); }
+            remove { if (value is not null) RemoveEventHandler("ReceiverDisconnected", value); }
+        }
 
     }
 }

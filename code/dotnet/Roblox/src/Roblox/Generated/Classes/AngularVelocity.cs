@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// A Vector3 that gives the desired or target angular velocity.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#AngularVelocity"/>
         public global::System.Numerics.Vector3 AngularVelocityValue
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Magnitude of the maximum torque the constraint can apply.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#MaxTorque"/>
         public float MaxTorque
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Causes the constraint to apply equal and opposite reaction forces.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#ReactionTorqueEnabled"/>
         public bool ReactionTorqueEnabled
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AngularVelocity.RelativeTo</c>
-        /// <para><b>Default:</b> <c>World</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo

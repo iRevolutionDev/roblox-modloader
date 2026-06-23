@@ -45,10 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "AssetId", value);
         }
 
-        /// <summary>
-        /// <c>AudioPlayer.AssetRepresentation</c>
-        /// <para><b>Default:</b> <c>FullLength</c></para>
-        /// </summary>
         public Enum.AssetRepresentation AssetRepresentation
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation");
@@ -67,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether Asset loads automatically once assigned.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#AutoLoad"/>
         public bool AutoLoad
@@ -78,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether this AudioPlayer starts playing as soon as it spawns in for the first time.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#AutoPlay"/>
         public bool AutoPlay
@@ -89,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether this AudioPlayer is currently playing or planning to play.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#IsPlaying"/>
         public bool IsPlaying
@@ -100,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes whether this AudioPlayer is loaded, buffered, and ready to play.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#IsReady"/>
         public bool IsReady
@@ -111,7 +103,6 @@ namespace Roblox
 
         /// <summary>
         /// A range, in seconds, denoting a desired loop start and loop end within the PlaybackRegion of this AudioPlayer.
-        /// <para><b>Default:</b> <c>0 60000 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#LoopRegion"/>
         public object? LoopRegion
@@ -122,7 +113,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether this AudioPlayer loops.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Looping"/>
         public bool Looping
@@ -133,7 +123,6 @@ namespace Roblox
 
         /// <summary>
         /// Range in seconds denoting a desired start time (minimum) and stop time (maximum) within the TimeLength.
-        /// <para><b>Default:</b> <c>0 60000 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#PlaybackRegion"/>
         public object? PlaybackRegion
@@ -144,7 +133,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how quickly the asset will be played, which controls its pitch.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#PlaybackSpeed"/>
         public double PlaybackSpeed
@@ -155,7 +143,6 @@ namespace Roblox
 
         /// <summary>
         /// Denotes the length of the loaded asset.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#TimeLength"/>
         public double TimeLength
@@ -166,7 +153,6 @@ namespace Roblox
 
         /// <summary>
         /// Tracks the current position of the playhead within the asset.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#TimePosition"/>
         public double TimePosition
@@ -177,7 +163,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how loudly the asset will be played.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Volume"/>
         public float Volume
@@ -250,24 +235,40 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AudioPlayer has completed playback and stopped.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Ended"/>
-        // public event Action? Ended; // TODO: native event binding
+        public event Action? Ended
+        {
+            add { if (value is not null) AddEventHandler("Ended", value); }
+            remove { if (value is not null) RemoveEventHandler("Ended", value); }
+        }
 
         /// <summary>
         /// Fires when the AudioPlayer loops.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Looped"/>
-        // public event Action? Looped; // TODO: native event binding
+        public event Action? Looped
+        {
+            add { if (value is not null) AddEventHandler("Looped", value); }
+            remove { if (value is not null) RemoveEventHandler("Looped", value); }
+        }
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioPlayer via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

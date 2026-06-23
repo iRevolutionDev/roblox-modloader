@@ -35,10 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "PortalInvalidReason", value);
         }
 
-        /// <summary>
-        /// <c>AdPortal.PortalVersion</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public long PortalVersion
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "PortalVersion");
@@ -47,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AdPortal.Status</c>
-        /// <para><b>Default:</b> <c>Inactive</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdPortal#Status"/>
         public Enum.AdUnitStatus Status

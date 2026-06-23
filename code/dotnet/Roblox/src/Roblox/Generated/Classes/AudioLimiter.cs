@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioLimiter#Bypass"/>
         public bool Bypass
@@ -36,10 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
-        /// <summary>
-        /// <c>AudioLimiter.Editor</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Editor
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Editor");
@@ -48,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum volume tolerated.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioLimiter#MaxLevel"/>
         public float MaxLevel
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// The amount of time it takes for previously limited streams to return to their normal volume.
-        /// <para><b>Default:</b> <c>0.00999999978</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioLimiter#Release"/>
         public float Release
@@ -95,10 +88,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioLimiter via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioLimiter#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

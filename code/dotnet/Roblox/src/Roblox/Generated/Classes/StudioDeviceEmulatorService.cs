@@ -117,27 +117,43 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.CurrentDeviceIdChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? CurrentDeviceIdChanged; // TODO: native event binding
+        public event Action? CurrentDeviceIdChanged
+        {
+            add { if (value is not null) AddEventHandler("CurrentDeviceIdChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("CurrentDeviceIdChanged", value); }
+        }
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.OrientationChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OrientationChanged; // TODO: native event binding
+        public event Action? OrientationChanged
+        {
+            add { if (value is not null) AddEventHandler("OrientationChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("OrientationChanged", value); }
+        }
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.TouchInBoundsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TouchInBoundsChanged; // TODO: native event binding
+        public event Action? TouchInBoundsChanged
+        {
+            add { if (value is not null) AddEventHandler("TouchInBoundsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchInBoundsChanged", value); }
+        }
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.TouchPositionsChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TouchPositionsChanged; // TODO: native event binding
+        public event Action? TouchPositionsChanged
+        {
+            add { if (value is not null) AddEventHandler("TouchPositionsChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("TouchPositionsChanged", value); }
+        }
 
     }
 }

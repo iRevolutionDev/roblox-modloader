@@ -25,47 +25,5 @@ namespace Roblox
         public static LuaSourceContainer? FromHandle(nuint handle)
             => handle == 0 ? null : new LuaSourceContainer(handle);
 
-        public string? CachedRemoteSource
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CachedRemoteSource");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CachedRemoteSource", value);
-        }
-
-        public int CachedRemoteSourceLoadState
-        {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "CachedRemoteSourceLoadState");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "CachedRemoteSourceLoadState", value);
-        }
-
-        public bool HasAssociatedDrafts
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasAssociatedDrafts");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "HasAssociatedDrafts", value);
-        }
-
-        public bool IsDifferentFromFileSystem
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDifferentFromFileSystem");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "IsDifferentFromFileSystem", value);
-        }
-
-        public string? SandboxedSource
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SandboxedSource");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SandboxedSource", value);
-        }
-
-        public string? ScriptGuid
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ScriptGuid");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ScriptGuid", value);
-        }
-
-        public bool IsPlayerScript
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "isPlayerScript");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "isPlayerScript", value);
-        }
-
     }
 }

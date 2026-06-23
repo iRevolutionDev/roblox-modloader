@@ -130,76 +130,74 @@ namespace Roblox
 
         /// <summary>
         /// <c>LogService.HttpResultOut</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? HttpResultOut; // TODO: native event binding
+        /// <param name="httpResult">A <c>object?</c> value.</param>
+        public event Action<object?>? HttpResultOut
+        {
+            add { if (value is not null) AddEventHandler("HttpResultOut", value); }
+            remove { if (value is not null) RemoveEventHandler("HttpResultOut", value); }
+        }
 
         /// <summary>
         /// Fires when the client outputs text.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
+        /// <param name="context">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#MessageOut"/>
-        // public event Action? MessageOut; // TODO: native event binding
+        public event Action<string?, Enum.MessageType, object?>? MessageOut
+        {
+            add { if (value is not null) AddEventHandler("MessageOut", value); }
+            remove { if (value is not null) RemoveEventHandler("MessageOut", value); }
+        }
 
         /// <summary>
         /// <c>LogService.OnHttpResultApproved</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? OnHttpResultApproved; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LogService.RequestHttpResultApprovedSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestHttpResultApprovedSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LogService.RequestScriptExecutionSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestScriptExecutionSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LogService.RequestServerHttpResultSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestServerHttpResultSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LogService.RequestServerOutputSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestServerOutputSignal; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LogService.RequestSettingsChange</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestSettingsChange; // TODO: native event binding
+        /// <param name="isApproved">A <c>bool</c> value.</param>
+        public event Action<bool>? OnHttpResultApproved
+        {
+            add { if (value is not null) AddEventHandler("OnHttpResultApproved", value); }
+            remove { if (value is not null) RemoveEventHandler("OnHttpResultApproved", value); }
+        }
 
         /// <summary>
         /// <c>LogService.ServerContextOut</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerContextOut; // TODO: native event binding
+        /// <param name="contextData">A <c>object?</c> value.</param>
+        public event Action<object?>? ServerContextOut
+        {
+            add { if (value is not null) AddEventHandler("ServerContextOut", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerContextOut", value); }
+        }
 
         /// <summary>
         /// <c>LogService.ServerHttpResultOut</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerHttpResultOut; // TODO: native event binding
+        /// <param name="httpResult">A <c>object?</c> value.</param>
+        public event Action<object?>? ServerHttpResultOut
+        {
+            add { if (value is not null) AddEventHandler("ServerHttpResultOut", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerHttpResultOut", value); }
+        }
 
         /// <summary>
         /// <c>LogService.ServerMessageOut</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServerMessageOut; // TODO: native event binding
-
-        /// <summary>
-        /// <c>LogService.ServerVariantMessageOut</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ServerVariantMessageOut; // TODO: native event binding
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
+        /// <param name="timestamp">A <c>double</c> value.</param>
+        public event Action<string?, Enum.MessageType, double>? ServerMessageOut
+        {
+            add { if (value is not null) AddEventHandler("ServerMessageOut", value); }
+            remove { if (value is not null) RemoveEventHandler("ServerMessageOut", value); }
+        }
 
     }
 }

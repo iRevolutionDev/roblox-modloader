@@ -75,24 +75,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object?>(this, "HSRAssetId", value);
         }
 
-        public string? HSRData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "HSRData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "HSRData", value);
-        }
-
-        public string? HSRMeshIdData
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "HSRMeshIdData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "HSRMeshIdData", value);
-        }
-
-        public bool ImportInProcess
-        {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ImportInProcess");
-            set => global::Roblox.Reflection.SetProperty<bool>(this, "ImportInProcess", value);
-        }
-
         /// <summary>
         /// Describes where a global zero was while authoring the cage mesh in an asset creation tool.
         /// </summary>
@@ -111,12 +93,6 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "ImportOriginWorld");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "ImportOriginWorld", value);
-        }
-
-        public object? TemporaryCageMeshId
-        {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TemporaryCageMeshId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TemporaryCageMeshId", value);
         }
 
         /// <summary>
@@ -168,9 +144,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>BaseWrap.VerticesModified</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? VerticesModified; // TODO: native event binding
+        /// <param name="vertices">A <c>object?</c> value.</param>
+        public event Action<object?>? VerticesModified
+        {
+            add { if (value is not null) AddEventHandler("VerticesModified", value); }
+            remove { if (value is not null) RemoveEventHandler("VerticesModified", value); }
+        }
 
     }
 }

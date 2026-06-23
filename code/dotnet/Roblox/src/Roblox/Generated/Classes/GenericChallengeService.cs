@@ -72,33 +72,63 @@ namespace Roblox
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeAbandonedEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ChallengeAbandonedEvent; // TODO: native event binding
+        /// <param name="challengeID">A <c>string?</c> value.</param>
+        public event Action<string?>? ChallengeAbandonedEvent
+        {
+            add { if (value is not null) AddEventHandler("ChallengeAbandonedEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("ChallengeAbandonedEvent", value); }
+        }
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeCompletedEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ChallengeCompletedEvent; // TODO: native event binding
+        /// <param name="challengeID">A <c>string?</c> value.</param>
+        /// <param name="challengeType">A <c>string?</c> value.</param>
+        /// <param name="challengeMetadata">A <c>string?</c> value.</param>
+        public event Action<string?, string?, string?>? ChallengeCompletedEvent
+        {
+            add { if (value is not null) AddEventHandler("ChallengeCompletedEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("ChallengeCompletedEvent", value); }
+        }
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeInvalidatedEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ChallengeInvalidatedEvent; // TODO: native event binding
+        /// <param name="challengeID">A <c>string?</c> value.</param>
+        public event Action<string?>? ChallengeInvalidatedEvent
+        {
+            add { if (value is not null) AddEventHandler("ChallengeInvalidatedEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("ChallengeInvalidatedEvent", value); }
+        }
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeLoadedEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ChallengeLoadedEvent; // TODO: native event binding
+        /// <param name="challengeID">A <c>string?</c> value.</param>
+        /// <param name="success">A <c>bool</c> value.</param>
+        public event Action<string?, bool>? ChallengeLoadedEvent
+        {
+            add { if (value is not null) AddEventHandler("ChallengeLoadedEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("ChallengeLoadedEvent", value); }
+        }
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeRequiredEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ChallengeRequiredEvent; // TODO: native event binding
+        /// <param name="challengeID">A <c>string?</c> value.</param>
+        /// <param name="challengeType">A <c>string?</c> value.</param>
+        /// <param name="challengeMetadata">A <c>string?</c> value.</param>
+        public event Action<string?, string?, string?>? ChallengeRequiredEvent
+        {
+            add { if (value is not null) AddEventHandler("ChallengeRequiredEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("ChallengeRequiredEvent", value); }
+        }
 
     }
 }

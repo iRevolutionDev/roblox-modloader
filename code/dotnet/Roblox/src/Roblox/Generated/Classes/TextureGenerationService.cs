@@ -64,15 +64,25 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextureGenerationService.GenerationNotificationSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? GenerationNotificationSignal; // TODO: native event binding
+        /// <param name="notificationData">A <c>object?</c> value.</param>
+        public event Action<object?>? GenerationNotificationSignal
+        {
+            add { if (value is not null) AddEventHandler("GenerationNotificationSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("GenerationNotificationSignal", value); }
+        }
 
         /// <summary>
         /// <c>TextureGenerationService.PreviewNotificationSignal</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? PreviewNotificationSignal; // TODO: native event binding
+        /// <param name="notificationData">A <c>object?</c> value.</param>
+        public event Action<object?>? PreviewNotificationSignal
+        {
+            add { if (value is not null) AddEventHandler("PreviewNotificationSignal", value); }
+            remove { if (value is not null) RemoveEventHandler("PreviewNotificationSignal", value); }
+        }
 
     }
 }

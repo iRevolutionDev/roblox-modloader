@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// This CFrame applies to the Motor6D corresponding with the Pose when the Motor6D.Transform is changed.
-        /// <para><b>Default:</b> <c>0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#CFrame"/>
         public object? CFrame
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This property is deprecated. Use the AnimationTrack:AdjustWeight() function when blending multiple animations.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#MaskWeight"/>
         public float MaskWeight

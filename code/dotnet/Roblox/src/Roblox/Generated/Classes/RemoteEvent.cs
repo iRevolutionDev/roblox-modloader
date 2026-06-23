@@ -55,23 +55,28 @@ namespace Roblox
 
         /// <summary>
         /// Fires from a LocalScript when either FireClient() or FireAllClients() is called on the same RemoteEvent instance from a Script.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="arguments">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#OnClientEvent"/>
-        // public event Action? OnClientEvent; // TODO: native event binding
-
-        /// <summary>
-        /// <c>RemoteEvent.OnRemoteServerEvent</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? OnRemoteServerEvent; // TODO: native event binding
+        public event Action<object?>? OnClientEvent
+        {
+            add { if (value is not null) AddEventHandler("OnClientEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("OnClientEvent", value); }
+        }
 
         /// <summary>
         /// Fires from a Script when FireServer() is called on the same RemoteEvent instance from a LocalScript.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="arguments">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#OnServerEvent"/>
-        // public event Action? OnServerEvent; // TODO: native event binding
+        public event Action<Player?, object?>? OnServerEvent
+        {
+            add { if (value is not null) AddEventHandler("OnServerEvent", value); }
+            remove { if (value is not null) RemoveEventHandler("OnServerEvent", value); }
+        }
 
     }
 }

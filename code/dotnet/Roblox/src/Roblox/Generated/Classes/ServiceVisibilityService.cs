@@ -56,9 +56,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>ServiceVisibilityService.ServiceVisibilityChanged</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? ServiceVisibilityChanged; // TODO: native event binding
+        /// <param name="serviceName">A <c>string?</c> value.</param>
+        public event Action<string?>? ServiceVisibilityChanged
+        {
+            add { if (value is not null) AddEventHandler("ServiceVisibilityChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("ServiceVisibilityChanged", value); }
+        }
 
     }
 }

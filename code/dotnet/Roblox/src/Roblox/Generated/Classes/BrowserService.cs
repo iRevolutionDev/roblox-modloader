@@ -101,27 +101,45 @@ namespace Roblox
 
         /// <summary>
         /// <c>BrowserService.AuthCookieCopiedToEngine</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? AuthCookieCopiedToEngine; // TODO: native event binding
+        public event Action? AuthCookieCopiedToEngine
+        {
+            add { if (value is not null) AddEventHandler("AuthCookieCopiedToEngine", value); }
+            remove { if (value is not null) RemoveEventHandler("AuthCookieCopiedToEngine", value); }
+        }
 
         /// <summary>
         /// <c>BrowserService.BrowserWindowClosed</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BrowserWindowClosed; // TODO: native event binding
+        public event Action? BrowserWindowClosed
+        {
+            add { if (value is not null) AddEventHandler("BrowserWindowClosed", value); }
+            remove { if (value is not null) RemoveEventHandler("BrowserWindowClosed", value); }
+        }
 
         /// <summary>
         /// <c>BrowserService.BrowserWindowWillNavigate</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? BrowserWindowWillNavigate; // TODO: native event binding
+        /// <param name="url">A <c>string?</c> value.</param>
+        public event Action<string?>? BrowserWindowWillNavigate
+        {
+            add { if (value is not null) AddEventHandler("BrowserWindowWillNavigate", value); }
+            remove { if (value is not null) RemoveEventHandler("BrowserWindowWillNavigate", value); }
+        }
 
         /// <summary>
         /// <c>BrowserService.JavaScriptCallback</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? JavaScriptCallback; // TODO: native event binding
+        /// <param name="content">A <c>string?</c> value.</param>
+        public event Action<string?>? JavaScriptCallback
+        {
+            add { if (value is not null) AddEventHandler("JavaScriptCallback", value); }
+            remove { if (value is not null) RemoveEventHandler("JavaScriptCallback", value); }
+        }
 
     }
 }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Describes the current game's permission levels regarding custom avatar animations from the website.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#AllowCustomAnimations"/>
         public bool AllowCustomAnimations
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether the character will automatically jump when hitting an obstacle on a mobile device.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#AutoJumpEnabled"/>
         public bool AutoJumpEnabled
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls whether avatars spawn with AnimationConstraint joints for physical simulation.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#AvatarJointUpgrade"/>
         public Enum.RolloutState AvatarJointUpgrade
@@ -59,18 +56,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>StarterPlayer.AvatarJointUpgrade_SerializedRollout</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
-        public Enum.RolloutState AvatarJointUpgrade_SerializedRollout
-        {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "AvatarJointUpgrade_SerializedRollout");
-            set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "AvatarJointUpgrade_SerializedRollout", value);
-        }
-
-        /// <summary>
         /// The maximum distance the player's default camera is allowed to zoom out in studs.
-        /// <para><b>Default:</b> <c>400</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CameraMaxZoomDistance"/>
         public float CameraMaxZoomDistance
@@ -81,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The minimum distance in studs the player's default camera is allowed to zoom in.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CameraMinZoomDistance"/>
         public float CameraMinZoomDistance
@@ -92,7 +77,6 @@ namespace Roblox
 
         /// <summary>
         /// Changes the default camera's mode to either first or third person.
-        /// <para><b>Default:</b> <c>Classic</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CameraMode"/>
         public Enum.CameraMode CameraMode
@@ -103,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the starting value of Humanoid.BreakJointsOnDeath for Player.Character.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterBreakJointsOnDeath"/>
         public bool CharacterBreakJointsOnDeath
@@ -114,7 +97,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the starting value of Humanoid.JumpHeight for Player.Character.
-        /// <para><b>Default:</b> <c>7.19999981</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterJumpHeight"/>
         public float CharacterJumpHeight
@@ -125,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the starting value of Humanoid.JumpPower for Player.Character.
-        /// <para><b>Default:</b> <c>50</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterJumpPower"/>
         public float CharacterJumpPower
@@ -136,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the starting value of Humanoid.MaxSlopeAngle for Player.Character.
-        /// <para><b>Default:</b> <c>89</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterMaxSlopeAngle"/>
         public float CharacterMaxSlopeAngle
@@ -147,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the starting state of Humanoid.UseJumpPower for Player.Character.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterUseJumpPower"/>
         public bool CharacterUseJumpPower
@@ -158,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the starting value of Humanoid.WalkSpeed for Player.Character.
-        /// <para><b>Default:</b> <c>16</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterWalkSpeed"/>
         public float CharacterWalkSpeed
@@ -169,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StarterPlayer.ClassicDeath</c>
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#ClassicDeath"/>
         public bool ClassicDeath
@@ -180,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how the default player module and related scripts are handled.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CreateDefaultPlayerModule"/>
         public bool CreateDefaultPlayerModule
@@ -191,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets how the default camera handles objects between the camera and the player.
-        /// <para><b>Default:</b> <c>Zoom</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevCameraOcclusionMode"/>
         public Enum.DevCameraOcclusionMode DevCameraOcclusionMode
@@ -202,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Lets you overwrite the player's camera mode on a computer.
-        /// <para><b>Default:</b> <c>UserChoice</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevComputerCameraMovementMode"/>
         public Enum.DevComputerCameraMovementMode DevComputerCameraMovementMode
@@ -213,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Lets you overwrite the player's movement mode on a computer.
-        /// <para><b>Default:</b> <c>UserChoice</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevComputerMovementMode"/>
         public Enum.DevComputerMovementMode DevComputerMovementMode
@@ -224,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Lets you overwrite the player's camera mode on a touch-enabled device.
-        /// <para><b>Default:</b> <c>UserChoice</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevTouchCameraMovementMode"/>
         public Enum.DevTouchCameraMovementMode DevTouchCameraMovementMode
@@ -235,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Lets you overwrite the player's movement mode on a touch-enabled device.
-        /// <para><b>Default:</b> <c>UserChoice</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevTouchMovementMode"/>
         public Enum.DevTouchMovementMode DevTouchMovementMode
@@ -246,7 +217,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the use of dynamic heads. When true, enables the use of avatar heads with facial animation data.
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#EnableDynamicHeads"/>
         public Enum.LoadDynamicHeads EnableDynamicHeads
@@ -257,7 +227,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if a player can toggle mouse lock by default.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#EnableMouseLockOption"/>
         public bool EnableMouseLockOption
@@ -266,170 +235,102 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableMouseLockOption", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDFace</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDFace
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDFace");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDFace", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDHead</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDHead
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDHead");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDHead", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDLeftArm</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDLeftArm
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDLeftArm");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDLeftArm", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDLeftLeg</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDLeftLeg
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDLeftLeg");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDLeftLeg", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDPants</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDPants
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDPants");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDPants", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDRightArm</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDRightArm
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDRightArm");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDRightArm", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDRightLeg</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDRightLeg
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDRightLeg");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDRightLeg", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDShirt</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDShirt
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDShirt");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDShirt", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDTeeShirt</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDTeeShirt
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDTeeShirt");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDTeeShirt", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAssetIDTorso</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public long GameSettingsAssetIDTorso
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDTorso");
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDTorso", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsAvatar</c>
-        /// <para><b>Default:</b> <c>R15</c></para>
-        /// </summary>
         public Enum.GameAvatarType GameSettingsAvatar
         {
             get => global::Roblox.Reflection.GetProperty<Enum.GameAvatarType>(this, "GameSettingsAvatar");
             set => global::Roblox.Reflection.SetProperty<Enum.GameAvatarType>(this, "GameSettingsAvatar", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsR15Collision</c>
-        /// <para><b>Default:</b> <c>OuterBox</c></para>
-        /// </summary>
         public Enum.R15CollisionType GameSettingsR15Collision
         {
             get => global::Roblox.Reflection.GetProperty<Enum.R15CollisionType>(this, "GameSettingsR15Collision");
             set => global::Roblox.Reflection.SetProperty<Enum.R15CollisionType>(this, "GameSettingsR15Collision", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsScaleRangeBodyType</c>
-        /// <para><b>Default:</b> <c>0 1 </c></para>
-        /// </summary>
         public object? GameSettingsScaleRangeBodyType
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeBodyType");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeBodyType", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsScaleRangeHead</c>
-        /// <para><b>Default:</b> <c>0.95 1 </c></para>
-        /// </summary>
         public object? GameSettingsScaleRangeHead
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeHead");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeHead", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsScaleRangeHeight</c>
-        /// <para><b>Default:</b> <c>0.9 1.05 </c></para>
-        /// </summary>
         public object? GameSettingsScaleRangeHeight
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeHeight");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeHeight", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsScaleRangeProportion</c>
-        /// <para><b>Default:</b> <c>0 1 </c></para>
-        /// </summary>
         public object? GameSettingsScaleRangeProportion
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeProportion");
             set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeProportion", value);
         }
 
-        /// <summary>
-        /// <c>StarterPlayer.GameSettingsScaleRangeWidth</c>
-        /// <para><b>Default:</b> <c>0.7 1 </c></para>
-        /// </summary>
         public object? GameSettingsScaleRangeWidth
         {
             get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeWidth");
@@ -438,7 +339,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the distance at which this player will see other Humanoid health bars. If set to 0, the health bars will not be displayed.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#HealthDisplayDistance"/>
         public float HealthDisplayDistance
@@ -449,7 +349,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether or not the appearance of a player's character should be loaded.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#LoadCharacterAppearance"/>
         public bool LoadCharacterAppearance
@@ -459,18 +358,17 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>StarterPlayer.LoadCharacterLayeredClothing</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
+        /// Indicates whether characters spawning into an experience will have layered clothing accessories equipped on them.
         /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#LoadCharacterLayeredClothing "/>
         public Enum.LoadCharacterLayeredClothing LoadCharacterLayeredClothing
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.LoadCharacterLayeredClothing>(this, "LoadCharacterLayeredClothing");
-            set => global::Roblox.Reflection.SetProperty<Enum.LoadCharacterLayeredClothing>(this, "LoadCharacterLayeredClothing", value);
+            get => global::Roblox.Reflection.GetProperty<Enum.LoadCharacterLayeredClothing>(this, "LoadCharacterLayeredClothing ");
+            set => global::Roblox.Reflection.SetProperty<Enum.LoadCharacterLayeredClothing>(this, "LoadCharacterLayeredClothing ", value);
         }
 
         /// <summary>
         /// <c>StarterPlayer.LuaCharacterController</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#LuaCharacterController"/>
         public Enum.CharacterControlMode LuaCharacterController
@@ -481,7 +379,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the distance at which this player will see other Humanoid names.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#NameDisplayDistance"/>
         public float NameDisplayDistance
@@ -492,7 +389,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines if user-owned emotes are loaded when loading avatars.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#UserEmotesEnabled"/>
         public bool UserEmotesEnabled

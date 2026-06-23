@@ -21,50 +21,30 @@ namespace Roblox
         public static StudioAttachment? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioAttachment(handle);
 
-        /// <summary>
-        /// <c>StudioAttachment.AutoHideParent</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool AutoHideParent
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoHideParent");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoHideParent", value);
         }
 
-        /// <summary>
-        /// <c>StudioAttachment.IsArrowVisible</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool IsArrowVisible
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsArrowVisible");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsArrowVisible", value);
         }
 
-        /// <summary>
-        /// <c>StudioAttachment.Offset</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 Offset
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Offset");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Offset", value);
         }
 
-        /// <summary>
-        /// <c>StudioAttachment.SourceAnchorPoint</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 SourceAnchorPoint
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "SourceAnchorPoint");
             set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "SourceAnchorPoint", value);
         }
 
-        /// <summary>
-        /// <c>StudioAttachment.TargetAnchorPoint</c>
-        /// <para><b>Default:</b> <c>0, 0</c></para>
-        /// </summary>
         public global::System.Numerics.Vector2 TargetAnchorPoint
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "TargetAnchorPoint");

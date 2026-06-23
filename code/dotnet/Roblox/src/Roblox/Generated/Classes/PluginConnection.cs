@@ -35,12 +35,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Connected", value);
         }
 
-        public string? GroupId
-        {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GroupId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GroupId", value);
-        }
-
         /// <summary>
         /// A unique ID for the target data model.
         /// </summary>

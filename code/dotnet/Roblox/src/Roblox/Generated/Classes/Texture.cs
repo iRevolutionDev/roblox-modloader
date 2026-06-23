@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the offset in studs of the rendered texture's horizontal coordinate.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#OffsetStudsU"/>
         public float OffsetStudsU
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the offset in studs of the rendered texture's vertical coordinate.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#OffsetStudsV"/>
         public float OffsetStudsV
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the horizontal size, in studs, of the tiled image applied by the Texture.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#StudsPerTileU"/>
         public float StudsPerTileU
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the vertical size, in studs, of the tiled image applied by the Texture.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#StudsPerTileV"/>
         public float StudsPerTileV

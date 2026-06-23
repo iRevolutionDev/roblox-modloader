@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how long it takes for the gate to open when the signal level rises above the Threshold.
-        /// <para><b>Default:</b> <c>0.00999999978</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioGate#Attack"/>
         public float Attack
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioGate#Bypass"/>
         public bool Bypass
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how long it takes for the gate to close when the signal level drops below the Threshold.
-        /// <para><b>Default:</b> <c>0.100000001</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioGate#Release"/>
         public float Release
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// The gain value(s) around which the gate opens and closes.
-        /// <para><b>Default:</b> <c>-36 -24 </c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioGate#Threshold"/>
         public object? Threshold
@@ -103,10 +99,18 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioGate via a Wire.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <param name="connected">A <c>bool</c> value.</param>
+        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="wire">A <c>Wire?</c> value.</param>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioGate#WiringChanged"/>
-        // public event Action? WiringChanged; // TODO: native event binding
+        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        {
+            add { if (value is not null) AddEventHandler("WiringChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }
+        }
 
     }
 }

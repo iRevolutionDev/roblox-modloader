@@ -27,15 +27,23 @@ namespace Roblox
 
         /// <summary>
         /// <c>MouseService.MouseEnterStudioViewport</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MouseEnterStudioViewport; // TODO: native event binding
+        public event Action? MouseEnterStudioViewport
+        {
+            add { if (value is not null) AddEventHandler("MouseEnterStudioViewport", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseEnterStudioViewport", value); }
+        }
 
         /// <summary>
         /// <c>MouseService.MouseLeaveStudioViewport</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? MouseLeaveStudioViewport; // TODO: native event binding
+        public event Action? MouseLeaveStudioViewport
+        {
+            add { if (value is not null) AddEventHandler("MouseLeaveStudioViewport", value); }
+            remove { if (value is not null) RemoveEventHandler("MouseLeaveStudioViewport", value); }
+        }
 
     }
 }

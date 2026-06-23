@@ -27,40 +27,24 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Condition", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.ContinueExecution</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool ContinueExecution
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ContinueExecution", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.Enabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool Enabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.Id</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int Id
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Id");
             set => global::Roblox.Reflection.SetProperty<int>(this, "Id", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.Line</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int Line
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Line");
@@ -73,20 +57,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "LogMessage", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.MetaBreakpointId</c>
-        /// <para><b>Default:</b> <c>0</c></para>
-        /// </summary>
         public int MetaBreakpointId
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "MetaBreakpointId");
             set => global::Roblox.Reflection.SetProperty<int>(this, "MetaBreakpointId", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.RemoveOnHit</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool RemoveOnHit
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "RemoveOnHit");
@@ -99,20 +75,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Script", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.Valid</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool Valid
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Valid");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Valid", value);
         }
 
-        /// <summary>
-        /// <c>Breakpoint.Verified</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Verified
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Verified");

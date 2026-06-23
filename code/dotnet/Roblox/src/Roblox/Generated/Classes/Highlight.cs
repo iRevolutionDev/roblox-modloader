@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Controls how the Highlight effect displays with respect to other objects in the world.
-        /// <para><b>Default:</b> <c>AlwaysOnTop</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#DepthMode"/>
         public Enum.HighlightDepthMode DepthMode
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets whether or not the highlight is enabled.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#Enabled"/>
         public bool Enabled
@@ -59,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the Color3 value of the highlight's interior.
-        /// <para><b>Default:</b> <c>1, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#FillColor"/>
         public object? FillColor
@@ -70,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the transparency of the highlight's interior.
-        /// <para><b>Default:</b> <c>0.5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#FillTransparency"/>
         public float FillTransparency
@@ -79,10 +75,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "FillTransparency", value);
         }
 
-        /// <summary>
-        /// <c>Highlight.LineThickness</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public int LineThickness
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "LineThickness");
@@ -91,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the Color3 value of the highlight's outline.
-        /// <para><b>Default:</b> <c>1, 1, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#OutlineColor"/>
         public object? OutlineColor
@@ -102,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// Sets the transparency of the highlight's outline.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#OutlineTransparency"/>
         public float OutlineTransparency
@@ -111,10 +101,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "OutlineTransparency", value);
         }
 
-        /// <summary>
-        /// <c>Highlight.ReservedId</c>
-        /// <para><b>Default:</b> <c>Standard</c></para>
-        /// </summary>
         public Enum.ReservedHighlightId ReservedId
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ReservedHighlightId>(this, "ReservedId");

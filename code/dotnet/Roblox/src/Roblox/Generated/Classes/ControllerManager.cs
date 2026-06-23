@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// The base linear movement speed used by all controllers.
-        /// <para><b>Default:</b> <c>16</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#BaseMoveSpeed"/>
         public float BaseMoveSpeed
@@ -48,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// The base angular turning speed used by all controllers.
-        /// <para><b>Default:</b> <c>8</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#BaseTurnSpeed"/>
         public float BaseTurnSpeed
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// The unit vector describing the desired direction to face.
-        /// <para><b>Default:</b> <c>0, 0, 1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#FacingDirection"/>
         public global::System.Numerics.Vector3 FacingDirection
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// The vector describing the desired direction to move in.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#MovingDirection"/>
         public global::System.Numerics.Vector3 MovingDirection
@@ -111,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ControllerManager.UpDirection</c>
-        /// <para><b>Default:</b> <c>0, 1, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#UpDirection"/>
         public global::System.Numerics.Vector3 UpDirection

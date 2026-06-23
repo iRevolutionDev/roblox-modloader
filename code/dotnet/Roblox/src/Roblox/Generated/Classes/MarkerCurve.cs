@@ -27,23 +27,12 @@ namespace Roblox
 
         /// <summary>
         /// Returns the number of markers in the MarkerCurve.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarkerCurve#Length"/>
         public int Length
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Length");
             set => global::Roblox.Reflection.SetProperty<int>(this, "Length", value);
-        }
-
-        /// <summary>
-        /// <c>MarkerCurve.ValuesAndTimes</c>
-        /// <para><b>Default:</b> <c></c></para>
-        /// </summary>
-        public byte[]? ValuesAndTimes
-        {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "ValuesAndTimes");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "ValuesAndTimes", value);
         }
 
         /// <summary>

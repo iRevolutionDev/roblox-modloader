@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether the action can be assigned a keyboard shortcut in Studio.
-        /// <para><b>Default:</b> <c>true</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginAction#AllowBinding"/>
         public bool AllowBinding
@@ -46,10 +45,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowBinding", value);
         }
 
-        /// <summary>
-        /// <c>PluginAction.Checked</c>
-        /// <para><b>Default:</b> <c>false</c></para>
-        /// </summary>
         public bool Checked
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Checked");
@@ -62,10 +57,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "DefaultShortcut", value);
         }
 
-        /// <summary>
-        /// <c>PluginAction.Enabled</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool Enabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
@@ -92,10 +83,6 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
         }
 
-        /// <summary>
-        /// <c>PluginAction.Visible</c>
-        /// <para><b>Default:</b> <c>true</c></para>
-        /// </summary>
         public bool Visible
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
@@ -104,10 +91,14 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the action is triggered.
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginAction#Triggered"/>
-        // public event Action? Triggered; // TODO: native event binding
+        public event Action? Triggered
+        {
+            add { if (value is not null) AddEventHandler("Triggered", value); }
+            remove { if (value is not null) RemoveEventHandler("Triggered", value); }
+        }
 
     }
 }

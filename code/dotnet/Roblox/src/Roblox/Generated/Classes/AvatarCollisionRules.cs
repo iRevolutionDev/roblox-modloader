@@ -21,40 +21,24 @@ namespace Roblox
         public static AvatarCollisionRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarCollisionRules(handle);
 
-        /// <summary>
-        /// <c>AvatarCollisionRules.CollisionMode</c>
-        /// <para><b>Default:</b> <c>Default</c></para>
-        /// </summary>
         public Enum.AvatarSettingsCollisionMode CollisionMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCollisionMode>(this, "CollisionMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCollisionMode>(this, "CollisionMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarCollisionRules.HitAndTouchDetectionMode</c>
-        /// <para><b>Default:</b> <c>UseParts</c></para>
-        /// </summary>
         public Enum.AvatarSettingsHitAndTouchDetectionMode HitAndTouchDetectionMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsHitAndTouchDetectionMode>(this, "HitAndTouchDetectionMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsHitAndTouchDetectionMode>(this, "HitAndTouchDetectionMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarCollisionRules.LegacyCollisionMode</c>
-        /// <para><b>Default:</b> <c>InnerBoxColliders</c></para>
-        /// </summary>
         public Enum.AvatarSettingsLegacyCollisionMode LegacyCollisionMode
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsLegacyCollisionMode>(this, "LegacyCollisionMode");
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsLegacyCollisionMode>(this, "LegacyCollisionMode", value);
         }
 
-        /// <summary>
-        /// <c>AvatarCollisionRules.SingleColliderSize</c>
-        /// <para><b>Default:</b> <c>2, 3, 1</c></para>
-        /// </summary>
         public global::System.Numerics.Vector3 SingleColliderSize
         {
             get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SingleColliderSize");

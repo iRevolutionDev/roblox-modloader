@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Measures the density of the air where the sensor is positioned.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AtmosphereSensor#AirDensity"/>
         public float AirDensity
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Reports the wind velocity relative to the sensor.
-        /// <para><b>Default:</b> <c>0, 0, 0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AtmosphereSensor#RelativeWindVelocity"/>
         public global::System.Numerics.Vector3 RelativeWindVelocity

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether cells are sized such that they occupy the horizontal space of the parent UI element.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#FillEmptySpaceColumns"/>
         public bool FillEmptySpaceColumns
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether cells are sized such that they occupy the vertical space of the parent UI element.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#FillEmptySpaceRows"/>
         public bool FillEmptySpaceRows
@@ -49,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines whether sibling UI elements are treated as rows or columns.
-        /// <para><b>Default:</b> <c>RowMajor</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#MajorAxis"/>
         public Enum.TableMajorAxis MajorAxis
@@ -60,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Determines the empty space between cells.
-        /// <para><b>Default:</b> <c>{0, 0}, {0, 0}</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#Padding"/>
         public object? Padding

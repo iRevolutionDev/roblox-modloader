@@ -25,10 +25,6 @@ namespace Roblox
         public static GroundController? FromHandle(nuint handle)
             => handle == 0 ? null : new GroundController(handle);
 
-        /// <summary>
-        /// <c>GroundController.AccelerationLean</c>
-        /// <para><b>Default:</b> <c>1</c></para>
-        /// </summary>
         public float AccelerationLean
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationLean");
@@ -37,7 +33,6 @@ namespace Roblox
 
         /// <summary>
         /// Estimated time taken to reach the desired speed.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#AccelerationTime"/>
         public float AccelerationTime
@@ -48,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum torque used to keep the ControllerManager.RootPart aligned upright.
-        /// <para><b>Default:</b> <c>10000</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#BalanceMaxTorque"/>
         public float BalanceMaxTorque
@@ -59,7 +53,6 @@ namespace Roblox
 
         /// <summary>
         /// The maximum angular speed used to align the ControllerManager.RootPart upright.
-        /// <para><b>Default:</b> <c>100</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#BalanceSpeed"/>
         public float BalanceSpeed
@@ -70,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Estimated time taken to reach a complete stop from full speed.
-        /// <para><b>Default:</b> <c>0</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#DecelerationTime"/>
         public float DecelerationTime
@@ -81,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// The coefficient of friction of the character on the ground.
-        /// <para><b>Default:</b> <c>2</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#Friction"/>
         public float Friction
@@ -92,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Amount the character's friction is weighed against the ground friction.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#FrictionWeight"/>
         public float FrictionWeight
@@ -103,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// The target distance above the ground to keep the ControllerManager.RootPart at.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#GroundOffset"/>
         public float GroundOffset
@@ -112,20 +101,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "GroundOffset", value);
         }
 
-        /// <summary>
-        /// <c>GroundController.StandForce</c>
-        /// <para><b>Default:</b> <c>10000</c></para>
-        /// </summary>
         public float StandForce
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "StandForce");
             set => global::Roblox.Reflection.SetProperty<float>(this, "StandForce", value);
         }
 
-        /// <summary>
-        /// <c>GroundController.StandSpeed</c>
-        /// <para><b>Default:</b> <c>100</c></para>
-        /// </summary>
         public float StandSpeed
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "StandSpeed");
@@ -134,7 +115,6 @@ namespace Roblox
 
         /// <summary>
         /// The value multiplied by the ControllerManager.BaseTurnSpeed.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#TurnSpeedFactor"/>
         public float TurnSpeedFactor

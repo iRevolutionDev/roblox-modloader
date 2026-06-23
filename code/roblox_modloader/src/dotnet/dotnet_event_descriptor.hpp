@@ -1,0 +1,67 @@
+#pragma once
+#include "RobloxModLoader/logger/logger.hpp"
+#include "RobloxModLoader/roblox/reflection/event_descriptor.hpp"
+#include "RobloxModLoader/roblox/signals.hpp"
+#include "dotnet_variant.hpp"
+#include "interop_registry.hpp"
+#include "spdlog/spdlog.h"
+
+#include <cstdint>
+#include <memory>
+#include <vector>
+
+namespace rml::dotnet
+{
+	class ManagedEventSlot final : public RBX::Reflection::GenericSlotWrapper
+	{
+	public:
+		ManagedEventSlot(const ManagedEventCallback callback, void* state) noexcept :
+		    m_callback(callback),
+		    m_state(state)
+		{
+		}
+
+		void deliver(const RBX::EventArguments& args) override
+		{
+			if (!m_callback)
+				return;
+
+			try
+			{
+				std::vector<char*> owned_strings;
+				std::vector<InteropVariant> interop_args;
+				interop_args.reserve(args.size());
+
+				for (const auto& arg : args)
+				{
+					interop_args.push_back(engine_variant_to_interop(arg, owned_strings));
+				}
+
+				m_callback(m_state, interop_args.data(), static_cast<uint32_t>(interop_args.size()));
+
+				for (auto* str : owned_strings)
+				{
+					free(str);
+				}
+			}
+			catch (const std::exception& ex)
+			{
+				LOG_ERROR("[ManagedEventSlot] Exception while dispatching event: {}", ex.what());
+			}
+			catch (...)
+			{
+				LOG_ERROR("[ManagedEventSlot] Unknown exception while dispatching event");
+			}
+		}
+
+	private:
+		ManagedEventCallback m_callback;
+		void* m_state;
+	};
+
+	struct ManagedEventConnection
+	{
+		std::shared_ptr<RBX::Reflection::GenericSlotWrapper> slot;
+		RBX::Signals::Connection connection;
+	};
+}

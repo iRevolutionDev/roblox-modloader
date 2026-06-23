@@ -144,17 +144,5 @@ namespace Roblox
         public bool UpdateVideoGenSessionTriggersAsync(string? sessionId, object? triggers)
             => global::Roblox.Reflection.Invoke<bool>(this, "UpdateVideoGenSessionTriggersAsync", sessionId, triggers);
 
-        /// <summary>
-        /// <c>GenerationService.ReplicateGeneration</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? ReplicateGeneration; // TODO: native event binding
-
-        /// <summary>
-        /// <c>GenerationService.RequestGenerationReplication</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? RequestGenerationReplication; // TODO: native event binding
-
     }
 }

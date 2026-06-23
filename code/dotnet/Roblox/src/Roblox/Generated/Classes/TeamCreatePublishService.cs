@@ -23,21 +23,15 @@ namespace Roblox
 
         /// <summary>
         /// <c>TeamCreatePublishService.TeamCreateErrorStatus</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? TeamCreateErrorStatus; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TeamCreatePublishService.TeamCreatePlaceUploadRequest</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TeamCreatePlaceUploadRequest; // TODO: native event binding
-
-        /// <summary>
-        /// <c>TeamCreatePublishService.TeamCreatePlaceUploadResponse</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
-        /// </summary>
-        // public event Action? TeamCreatePlaceUploadResponse; // TODO: native event binding
+        /// <param name="result">A <c>Enum.TeamCreateErrorState</c> value.</param>
+        /// <param name="teamCreateSaveData">A <c>object?</c> value.</param>
+        public event Action<Enum.TeamCreateErrorState, object?>? TeamCreateErrorStatus
+        {
+            add { if (value is not null) AddEventHandler("TeamCreateErrorStatus", value); }
+            remove { if (value is not null) RemoveEventHandler("TeamCreateErrorStatus", value); }
+        }
 
     }
 }

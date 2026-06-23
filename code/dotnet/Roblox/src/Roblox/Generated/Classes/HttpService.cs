@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Indicates whether HTTP requests can be sent to external websites.
-        /// <para><b>Default:</b> <c>false</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#HttpEnabled"/>
         public bool HttpEnabled

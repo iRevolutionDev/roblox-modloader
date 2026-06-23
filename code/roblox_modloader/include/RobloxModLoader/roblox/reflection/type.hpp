@@ -48,15 +48,16 @@ namespace RBX::Reflection
 	{
 		struct Storage
 		{
-			std::byte data[88]{};
+			std::byte data[0x40]{};
 		};
 
 		const Type* m_type{nullptr};
+		const void* m_value_ops{nullptr};
 		alignas(8) Storage m_storage;
 
 	public:
-		Variant()                          = default;
-		Variant(const Variant&)            = default;
+		Variant() = default;
+		Variant(const Variant&) = default;
 		Variant& operator=(const Variant&) = default;
 
 		[[nodiscard]] const Type& type() const
@@ -98,8 +99,8 @@ namespace RBX::Reflection
 	};
 
 	using EventArguments = std::vector<Variant>;
-	using ValueArray     = std::vector<Variant>;
-	using ValueMap       = std::unordered_map<std::string, Variant>;
+	using ValueArray = std::vector<Variant>;
+	using ValueMap = std::unordered_map<std::string, Variant>;
 
 	struct Tuple
 	{

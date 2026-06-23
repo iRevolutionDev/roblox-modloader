@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Length of the line.
-        /// <para><b>Default:</b> <c>5</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineHandleAdornment#Length"/>
         public float Length
@@ -38,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Thickness of the line in pixels.
-        /// <para><b>Default:</b> <c>1</c></para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineHandleAdornment#Thickness"/>
         public float Thickness

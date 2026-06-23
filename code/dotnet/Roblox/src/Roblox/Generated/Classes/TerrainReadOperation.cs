@@ -23,9 +23,14 @@ namespace Roblox
 
         /// <summary>
         /// <c>TerrainReadOperation.Ready</c>
-        /// <para><b>Note:</b> Event binding is not yet implemented in the native layer.</para>
+        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        // public event Action? Ready; // TODO: native event binding
+        /// <param name="block">A <c>object?</c> value.</param>
+        public event Action<object?>? Ready
+        {
+            add { if (value is not null) AddEventHandler("Ready", value); }
+            remove { if (value is not null) RemoveEventHandler("Ready", value); }
+        }
 
     }
 }
