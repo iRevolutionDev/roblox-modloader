@@ -1,18 +1,25 @@
+using System;
 using System.Runtime.InteropServices;
 
 namespace RML.Interop;
 
 [StructLayout(LayoutKind.Explicit, Size = 16)]
-public struct InteropVariant
+public readonly struct InteropVariant
 {
-    [FieldOffset(0)] public byte Tag;
+    [FieldOffset(0)] public readonly byte Tag;
 
-    [FieldOffset(8)] public ulong AsUInt64;
-    [FieldOffset(8)] public long AsInt64;
-    [FieldOffset(8)] public double AsDouble;
-    [FieldOffset(8)] public float AsFloat;
-    [FieldOffset(8)] public bool AsBool;
-    [FieldOffset(8)] public nuint AsPointer;
+    [FieldOffset(8)] public readonly ulong AsUInt64;
+    [FieldOffset(8)] public readonly long AsInt64;
+    [FieldOffset(8)] public readonly double AsDouble;
+    [FieldOffset(8)] public readonly float AsFloat;
+    [FieldOffset(8)] public readonly bool AsBool;
+    [FieldOffset(8)] public readonly nuint AsPointer;
+
+    private InteropVariant(byte tag, ulong payload) : this()
+    {
+        Tag = tag;
+        AsUInt64 = payload;
+    }
 
     public static class Tags
     {
@@ -27,12 +34,14 @@ public struct InteropVariant
         public const byte Blittable = 8;
     }
 
-    public static InteropVariant FromBool(bool v) => new() { Tag = Tags.Bool, AsBool = v };
-    public static InteropVariant FromInt64(long v) => new() { Tag = Tags.Int64, AsInt64 = v };
-    public static InteropVariant FromDouble(double v) => new() { Tag = Tags.Double, AsDouble = v };
-    public static InteropVariant FromFloat(float v) => new() { Tag = Tags.Float, AsFloat = v };
-    public static InteropVariant FromPointer(nuint v) => new() { Tag = Tags.Instance, AsPointer = v };
-    public static InteropVariant FromString(nuint ptr) => new() { Tag = Tags.String, AsPointer = ptr };
+    public static InteropVariant Null => new(Tags.Null, 0);
+    public static InteropVariant FromBool(bool v) => new(Tags.Bool, v ? 1ul : 0ul);
+    public static InteropVariant FromInt64(long v) => new(Tags.Int64, unchecked((ulong)v));
+    public static InteropVariant FromDouble(double v) => new(Tags.Double, BitConverter.DoubleToUInt64Bits(v));
+    public static InteropVariant FromFloat(float v) => new(Tags.Float, BitConverter.SingleToUInt32Bits(v));
+    public static InteropVariant FromPointer(nuint v) => new(Tags.Instance, v);
+    public static InteropVariant FromString(nuint ptr) => new(Tags.String, ptr);
+    public static InteropVariant FromBlittable(nuint ptr) => new(Tags.Blittable, ptr);
 }
 
 internal static unsafe class NativeInterop

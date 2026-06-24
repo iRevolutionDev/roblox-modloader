@@ -11,6 +11,8 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         "Object",
     };
 
+    private readonly List<string> _renamedMembers = [];
+
     public void Generate(List<Class> classes)
     {
         var byName = new Dictionary<string, Class>(StringComparer.Ordinal);
@@ -36,6 +38,24 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
             {
                 WriteGeneratedClass(c, byName);
             }
+        }
+
+        ReportRenamedMembers();
+    }
+    
+    private void ReportRenamedMembers()
+    {
+        if (_renamedMembers.Count == 0)
+        {
+            return;
+        }
+
+        Console.Error.WriteLine(
+            $"warning RBXGEN001: {_renamedMembers.Count} member(s) were renamed because their name " +
+            "collided with the declaring class name:");
+        foreach (var rename in _renamedMembers)
+        {
+            Console.Error.WriteLine($"warning RBXGEN001:   {rename}");
         }
     }
     
@@ -144,7 +164,8 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
 
         foreach (var (rawCsName, member) in winners)
         {
-            var csName = rawCsName == c.Name
+            var collidesWithClassName = rawCsName == c.Name;
+            var csName = collidesWithClassName
                 ? member switch
                 {
                     Property  => rawCsName + "Value",
@@ -154,6 +175,11 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
                     _         => rawCsName + "Member",
                 }
                 : rawCsName;
+
+            if (collidesWithClassName)
+            {
+                _renamedMembers.Add($"{c.Name}.{member.Name} -> {csName}");
+            }
 
             switch (member)
             {

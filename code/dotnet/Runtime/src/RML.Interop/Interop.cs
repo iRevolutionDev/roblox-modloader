@@ -261,14 +261,14 @@ public static unsafe class Interop
                     var p = Marshal.AllocHGlobal(size);
                     Marshal.StructureToPtr(arg, p, false);
                     tempPtrs[tempPtrCount++] = p;
-                    return new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)p };
+                    return InteropVariant.FromBlittable((nuint)p);
                 }
                 catch (ArgumentException)
                 {
                 }
             }
 
-            return new InteropVariant { Tag = InteropVariant.Tags.Int64, AsInt64 = ToInt64Fallback(arg) };
+            return InteropVariant.FromInt64(ToInt64Fallback(arg));
         }
 
         private static InteropVariant BuildStringVariant(string s, nint* tempPtrs, ref int tempPtrCount)

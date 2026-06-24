@@ -15,7 +15,7 @@ public class NewDataTypeMarshalTests
         try
         {
             Marshal.StructureToPtr(value, buffer, false);
-            var variant = new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)buffer };
+            var variant = InteropVariant.FromBlittable((nuint)buffer);
             var result = Reflection.ConvertResult(variant, typeof(T), freeNativeResources: false);
             return Assert.IsType<T>(result);
         }
@@ -174,7 +174,7 @@ public class NewDataTypeMarshalTests
                 Marshal.StructureToPtr(keys[i], buffer + sizeof(int) + (i * stride), false);
             }
 
-            var variant = new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)buffer };
+            var variant = InteropVariant.FromBlittable((nuint)buffer);
             return Reflection.ConvertResult(variant, target, freeNativeResources: false);
         }
         finally

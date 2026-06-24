@@ -67,4 +67,23 @@ public unsafe class InteropVariantTests
         InteropVariant v = default;
         Assert.Equal(InteropVariant.Tags.Null, v.Tag);
     }
+
+    [Fact]
+    public void FromBlittable_TagsAsBlittable()
+    {
+        var v = InteropVariant.FromBlittable((nuint)0x2000);
+        Assert.Equal(InteropVariant.Tags.Blittable, v.Tag);
+        Assert.Equal((nuint)0x2000, v.AsPointer);
+    }
+
+    [Fact]
+    public void Null_Factory_Matches_Default()
+    {
+        Assert.Equal(InteropVariant.Tags.Null, InteropVariant.Null.Tag);
+        Assert.Equal(0ul, InteropVariant.Null.AsUInt64);
+    }
+
+    [Fact]
+    public void Layout_Is_Sixteen_Bytes()
+        => Assert.Equal(16, System.Runtime.InteropServices.Marshal.SizeOf<InteropVariant>());
 }

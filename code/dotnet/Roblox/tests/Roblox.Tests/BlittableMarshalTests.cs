@@ -15,7 +15,7 @@ public class BlittableMarshalTests
         try
         {
             Marshal.StructureToPtr(value, buffer, false);
-            var variant = new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)buffer };
+            var variant = InteropVariant.FromBlittable((nuint)buffer);
             var result = Reflection.ConvertResult(variant, typeof(T), freeNativeResources: false);
             return Assert.IsType<T>(result);
         }
@@ -67,7 +67,7 @@ public class BlittableMarshalTests
     [Fact]
     public void Null_Pointer_Blittable_Is_Null()
     {
-        var variant = new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = 0 };
+        var variant = InteropVariant.FromBlittable(0);
         Assert.Null(Reflection.ConvertResult(variant, typeof(Vector3), freeNativeResources: false));
     }
 }

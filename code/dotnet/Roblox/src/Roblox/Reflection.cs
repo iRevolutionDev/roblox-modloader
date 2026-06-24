@@ -106,7 +106,7 @@ public static unsafe class Reflection
             {
                 Marshal.StructureToPtr((object)value, buffer, false);
                 Interop.Reflection.SetProperty((void*)handle, propertyName,
-                    new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)buffer });
+                    InteropVariant.FromBlittable((nuint)buffer));
             }
             finally
             {
@@ -199,7 +199,7 @@ public static unsafe class Reflection
             }
 
             Interop.Reflection.SetProperty((void*)handle, propertyName,
-                new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)buffer });
+                InteropVariant.FromBlittable((nuint)buffer));
         }
         finally
         {
