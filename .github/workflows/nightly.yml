@@ -45,9 +45,14 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Setup MSVC
-        uses: microsoft/setup-msbuild@v2
-        
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Setup MSVC (latest)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
       - name: Build managed solutions
         shell: bash
         run: |
@@ -70,28 +75,33 @@ jobs:
           dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj          -c Release -o publish/managed --nologo
 
       - name: Generate CMake project
-        run: cmake -B build -G "Visual Studio 17 2022" -A x64
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl
 
       - name: Build Release DLL
-        run: cmake --build build --config Release --parallel 4
+        run: cmake --build build --parallel
 
       - name: Check if DLL got built
-        run: if (-Not (Test-Path -path "build/Release/roblox_modloader.dll")) {throw 1}
+        run: if (-Not (Test-Path -path "build/code/roblox_modloader/roblox_modloader.dll")) {throw 1}
         shell: pwsh
-
-      - name: Package managed runtime
+        
+      - name: Stage nightly artifacts
         shell: pwsh
-        run: Compress-Archive -Path "publish/managed/*" -DestinationPath "managed-runtime.zip" -Force
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Copy-Item "build/code/roblox_modloader/roblox_modloader.dll" dist/
+          if (Test-Path "build/code/roblox_modloader/roblox_modloader.pdb") {
+            Copy-Item "build/code/roblox_modloader/roblox_modloader.pdb" dist/
+          }
+          if (Test-Path "build/dwmapi.dll") {
+            Copy-Item "build/dwmapi.dll" dist/
+          }
+          Compress-Archive -Path "publish/managed/*" -DestinationPath "dist/managed-runtime.zip" -Force
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: binary
-          path: |
-            build/Release/roblox_modloader.dll
-            build/Release/roblox_modloader.pdb
-            build/Release/dwmapi.dll
-            managed-runtime.zip
+          path: dist/*
 
       - name: Generate Build Info
         id: var

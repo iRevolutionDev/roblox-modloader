@@ -30,8 +30,13 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Setup MSVC
-        uses: microsoft/setup-msbuild@v2
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Setup MSVC (latest)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
 
       - name: Get version
         id: version
@@ -75,13 +80,10 @@ jobs:
           dotnet publish examples/example_dotnet/src/ExampleMod/ExampleMod.csproj                  -c "$BUILD_TYPE" -o publish/mods/ExampleMod --nologo
           dotnet publish examples/discord_rpc_dotnet/src/RobloxDiscord.RPC/RobloxDiscord.RPC.csproj -c "$BUILD_TYPE" -o publish/mods/DiscordRpc  --nologo
 
-      - name: Setup MSVC
-        uses: microsoft/setup-msbuild@v2
-
       - name: Build with MSVC (Release)
         run: |
-          cmake -B build-msvc -G "Visual Studio 17 2022" -A x64
-          cmake --build build-msvc --config ${{ env.BUILD_TYPE }} --parallel
+          cmake -B build-msvc -G Ninja -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl
+          cmake --build build-msvc --parallel
 
       - name: Create release package
         shell: powershell
@@ -92,9 +94,9 @@ jobs:
           New-Item -ItemType Directory -Force -Path "$root/examples" | Out-Null
           New-Item -ItemType Directory -Force -Path "$root/docs" | Out-Null
 
-          Copy-Item "build-msvc/${{ env.BUILD_TYPE }}/roblox_modloader.dll" "$root/"
-          if (Test-Path "build-msvc/${{ env.BUILD_TYPE }}/dwmapi.dll") {
-            Copy-Item "build-msvc/${{ env.BUILD_TYPE }}/dwmapi.dll" "$root/"
+          Copy-Item "build-msvc/code/roblox_modloader/roblox_modloader.dll" "$root/"
+          if (Test-Path "build-msvc/dwmapi.dll") {
+            Copy-Item "build-msvc/dwmapi.dll" "$root/"
           }
 
           Copy-Item "publish/managed/*" "$root/managed/" -Recurse -Force
@@ -111,7 +113,7 @@ jobs:
               Copy-Item $_.FullName $destPath
             }
           }
-          
+
           Copy-Item "README.md" "$root/"
           if (Test-Path "docs") { Copy-Item "docs/*" "$root/docs/" -Recurse -Force }
           Get-ChildItem "examples" -Recurse -Include *.luau, *.lua, *.toml -ErrorAction SilentlyContinue | ForEach-Object {
