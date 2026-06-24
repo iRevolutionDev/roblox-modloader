@@ -45,14 +45,6 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Setup Ninja
-        uses: seanmiddleditch/gha-setup-ninja@master
-
-      - name: Setup MSVC (latest)
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x64
-
       - name: Build managed solutions
         shell: bash
         run: |
@@ -73,6 +65,14 @@ jobs:
           set -euo pipefail
           dotnet publish code/dotnet/Runtime/src/RML.NativeHost/RML.NativeHost.csproj -c Release -o publish/managed --nologo
           dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj          -c Release -o publish/managed --nologo
+          
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Setup MSVC (latest)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
 
       - name: Generate CMake project
         run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl

@@ -30,14 +30,6 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Setup Ninja
-        uses: seanmiddleditch/gha-setup-ninja@master
-
-      - name: Setup MSVC (latest)
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x64
-
       - name: Get version
         id: version
         run: |
@@ -79,6 +71,14 @@ jobs:
           set -euo pipefail
           dotnet publish examples/example_dotnet/src/ExampleMod/ExampleMod.csproj                  -c "$BUILD_TYPE" -o publish/mods/ExampleMod --nologo
           dotnet publish examples/discord_rpc_dotnet/src/RobloxDiscord.RPC/RobloxDiscord.RPC.csproj -c "$BUILD_TYPE" -o publish/mods/DiscordRpc  --nologo
+          
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Setup MSVC (latest)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
 
       - name: Build with MSVC (Release)
         run: |
