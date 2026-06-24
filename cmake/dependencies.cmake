@@ -18,10 +18,9 @@ function(setup_compiler_flags target_name)
                 /NXCOMPAT:NO
         )
     else ()
-        target_compile_options(${target_name} PRIVATE
-                -Wa,-mbig-obj
-                -m32
-        )
+        if (WIN32)
+            target_compile_options(${target_name} PRIVATE -Wa,-mbig-obj)
+        endif ()
     endif ()
 endfunction()
 

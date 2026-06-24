@@ -5,7 +5,9 @@
     <Project Path="src/RML.Interop/RML.Interop.csproj" />
     <Project Path="src/RML.NativeHost/RML.NativeHost.csproj" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/RML.Interop.Tests/RML.Interop.Tests.csproj" />
+  </Folder>
   <Folder Name="/tools/" />
   <Folder Name="/_SolutionItems/">
     <File Path=".editorconfig" />
