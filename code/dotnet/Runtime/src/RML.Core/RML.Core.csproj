@@ -11,4 +11,7 @@
     <ProjectReference Include="..\..\..\Roblox\src\Roblox\Roblox.csproj"/>
     <ProjectReference Include="..\RML.Interop\RML.Interop.csproj"/>
   </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="RML.Core.Tests"/>
+  </ItemGroup>
 </Project>

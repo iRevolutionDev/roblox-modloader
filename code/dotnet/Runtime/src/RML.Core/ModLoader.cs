@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.Loader;
 
 using RML.Core.Api;
@@ -76,15 +77,36 @@ internal static class ModLoader
 
     internal static void UnloadMod(string path)
     {
-        if (!_mods.TryGetValue(path, out var modInfo))
+        if (!_mods.ContainsKey(path))
         {
             Console.WriteLine($"No mod loaded from path {path}.");
             return;
         }
+        
+        var weakContext = UnloadModCore(path);
+
+        for (var i = 0; weakContext.IsAlive && i < 10; i++)
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+
+        if (weakContext.IsAlive)
+        {
+            Console.Error.WriteLine(
+                $"[ModLoader] Warning: the AssemblyLoadContext for '{path}' did not unload — it is " +
+                "still rooted (a leaked event handler, GCHandle, static reference, or running thread).");
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static WeakReference UnloadModCore(string path)
+    {
+        _mods.Remove(path, out var modInfo);
 
         try
         {
-            if (modInfo.Initialized)
+            if (modInfo!.Initialized)
             {
                 modInfo.Instance.OnUnload();
             }
@@ -93,18 +115,10 @@ internal static class ModLoader
         {
             Console.WriteLine($"Error while unloading mod from {path}: {e}");
         }
-        finally
-        {
-            _mods.Remove(path);
-            modInfo.Context.Unload();
 
-            // yes i ik this is ugly but works
-            for (var i = 0; i < 3 && modInfo.Context.IsCollectible; i++)
-            {
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-            }
-        }
+        var weak = new WeakReference(modInfo!.Context);
+        modInfo.Context.Unload();
+        return weak;
     }
 
     internal static void Shutdown()
