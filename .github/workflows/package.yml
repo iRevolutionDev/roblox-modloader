@@ -79,12 +79,7 @@ jobs:
           $runtime = Join-Path $rml "runtime"
           New-Item -ItemType Directory -Force -Path $runtime, (Join-Path $rml "mods") | Out-Null
 
-          $coreAtRoot = Join-Path $stage "roblox_modloader.dll"
-          if (Test-Path $coreAtRoot) {
-            Move-Item $coreAtRoot (Join-Path $rml "roblox_modloader.dll") -Force
-          } else {
-            Copy-Item "build/code/roblox_modloader/roblox_modloader.dll" (Join-Path $rml "roblox_modloader.dll") -Force
-          }
+          Copy-Item "build/code/roblox_modloader/roblox_modloader.dll" (Join-Path $stage "roblox_modloader.dll") -Force
 
           dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj `
             -c Release -o $runtime --nologo
@@ -116,13 +111,8 @@ jobs:
           Copy-Item "build/dwmapi.dll" (Join-Path $stage "dwmapi.dll") -Force
           Copy-Item "tools/packaging/config.default.toml" (Join-Path $rml "config.toml") -Force
 
-          $packs = Join-Path $runtime "dotnet/packs"
-          if (Test-Path $packs) { Remove-Item $packs -Recurse -Force }
-          $shared = Join-Path $runtime "dotnet/shared/Microsoft.NETCore.App"
-          if (Test-Path $shared) {
-            Get-ChildItem $shared -Directory | Where-Object { $_.Name -notlike '10.*' } |
-              Remove-Item -Recurse -Force
-          }
+          $bundledRuntime = Join-Path $runtime "dotnet"
+          if (Test-Path $bundledRuntime) { Remove-Item $bundledRuntime -Recurse -Force }
 
           foreach ($junk in @("crashes", "generated", (Join-Path "runtime" "managed"))) {
             $p = Join-Path $rml $junk
