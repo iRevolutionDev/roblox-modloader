@@ -69,10 +69,10 @@ namespace Roblox
         /// Sets what team the SpawnLocation is affiliated to. If SpawnLocation.Neutral property is false, only Players with the same Player.TeamColor as the spawn's TeamColor will be able to spawn there.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#TeamColor"/>
-        public object? TeamColor
+        public global::Roblox.BrickColor? TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
         }
 
     }

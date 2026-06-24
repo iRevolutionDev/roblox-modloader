@@ -59,10 +59,10 @@ namespace Roblox
         /// The color of the constraint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#Color"/>
-        public object? Color
+        public global::Roblox.BrickColor? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "Color", value);
         }
 
         /// <summary>

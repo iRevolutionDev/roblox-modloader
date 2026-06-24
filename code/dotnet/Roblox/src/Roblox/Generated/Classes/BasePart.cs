@@ -179,10 +179,10 @@ namespace Roblox
         /// Determines the color of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BrickColor"/>
-        public object? BrickColor
+        public global::Roblox.BrickColor? BrickColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BrickColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BrickColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "BrickColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "BrickColor", value);
         }
 
         /// <summary>
@@ -549,10 +549,10 @@ namespace Roblox
         /// Describes the faces on which a part may be resized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ResizeableFaces"/>
-        public int ResizeableFaces
+        public global::Roblox.Faces? ResizeableFaces
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ResizeableFaces");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "ResizeableFaces", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Faces?>(this, "ResizeableFaces");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Faces?>(this, "ResizeableFaces", value);
         }
 
         /// <summary>

@@ -59,10 +59,10 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of the Color3 property GuiObject.BackgroundColor3, which should be used in new work instead.Determines the color of the GuiObject background.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundColor"/>
-        public object? BackgroundColor
+        public global::Roblox.BrickColor? BackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BackgroundColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BackgroundColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "BackgroundColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "BackgroundColor", value);
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of the Color3 property BorderColor3, which should be used in new work instead.Determines the color of the GuiObject border.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BorderColor"/>
-        public object? BorderColor
+        public global::Roblox.BrickColor? BorderColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BorderColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BorderColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "BorderColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "BorderColor", value);
         }
 
         /// <summary>

@@ -427,10 +427,10 @@ namespace Roblox
         /// Determines the Team with which the player is associated with according to that team's Team.TeamColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#TeamColor"/>
-        public object? TeamColor
+        public global::Roblox.BrickColor? TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
         }
 
         public bool Teleported

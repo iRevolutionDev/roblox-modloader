@@ -29,18 +29,18 @@ namespace Roblox
         /// Used to hold a BrickColor value.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BrickColorValue#Value"/>
-        public object? Value
+        public global::Roblox.BrickColor? Value
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "Value");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired whenever the BrickColorValue.Value of the BrickColorValue is changed.
         /// </summary>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.BrickColor?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BrickColorValue#Changed"/>
-        public event Action<object?>? Changed
+        public event Action<global::Roblox.BrickColor?>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

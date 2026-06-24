@@ -171,9 +171,6 @@ namespace rml::dotnet
 		}
 	}
 
-	// View over a libstdc++/MSVC std::vector<T> control block: three raw pointers {begin, end, cap}.
-	// The engine's NumberSequence/ColorSequence are each exactly one such vector of POD keypoints, so
-	// we can read/write their contents without pulling in the engine's sequence type definitions.
 	struct engine_vector_header
 	{
 		const std::byte* begin;
@@ -181,9 +178,6 @@ namespace rml::dotnet
 		const std::byte* capacity;
 	};
 
-	// Per-keypoint stride for the variable-length sequence datatypes, or 0 if not a sequence.
-	// NumberSequenceKeypoint = {float time, value, envelope} = 12B;
-	// ColorSequenceKeypoint  = {float time, Color3 value, float envelope} = 20B.
 	[[nodiscard]] inline size_t sequence_stride(const RBX::Name& type_name) noexcept
 	{
 		if (type_name == "NumberSequence")
@@ -192,9 +186,7 @@ namespace rml::dotnet
 			return 20;
 		return 0;
 	}
-
-	// Packs a sequence value (a std::vector<Keypoint> living at `vec_storage`) into a freshly
-	// malloc'd [int32 count][keypoint...] buffer that the managed side reads and frees.
+	
 	[[nodiscard]] inline InteropVariant pack_sequence(const void* vec_storage, const size_t stride)
 	{
 		InteropVariant out{};
@@ -216,8 +208,6 @@ namespace rml::dotnet
 		return out;
 	}
 
-	// GET counterpart for NumberSequence/ColorSequence: read the engine vector out of the reflection
-	// Variant storage and pack it. Returns nullopt for non-sequence properties (caller falls back).
 	[[nodiscard]] inline std::optional<InteropVariant> try_sequence_property(
 	    const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
 	{
@@ -233,9 +223,6 @@ namespace rml::dotnet
 		return pack_sequence(variant.try_cast<std::byte>(), stride);
 	}
 
-	// SET counterpart: the managed side handed us [int32 count][keypoint...]. Point a temporary
-	// std::vector header at those keypoints and pass it through the typed setter; the engine
-	// deep-copies the elements into its own vector (it never frees our buffer).
 	[[nodiscard]] inline bool try_set_sequence_property(
 	    const RBX::Reflection::PropertyDescriptor* descriptor, RBX::Reflection::DescribedBase* instance,
 	    const InteropVariant& value)

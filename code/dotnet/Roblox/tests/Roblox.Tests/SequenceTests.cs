@@ -77,6 +77,6 @@ public class SequenceLayoutTests
     public void Keypoint_Sizes_Are_Blittable()
     {
         Assert.Equal(12, Marshal.SizeOf<NumberSequenceKeypoint>());
-        Assert.Equal(16, Marshal.SizeOf<ColorSequenceKeypoint>());
+        Assert.Equal(20, Marshal.SizeOf<ColorSequenceKeypoint>());
     }
 }

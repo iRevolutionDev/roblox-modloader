@@ -161,10 +161,10 @@ namespace Roblox
         /// Deprecated: This item has been superseded by TextButton.TextColor3 which should be used in all new work.Determines the color of text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextColor"/>
-        public object? TextColor
+        public global::Roblox.BrickColor? TextColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TextColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TextColor", value);
         }
 
         /// <summary>

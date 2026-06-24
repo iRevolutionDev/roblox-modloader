@@ -59,10 +59,10 @@ namespace Roblox
         /// The color of the trail throughout its lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Color"/>
-        public object? Color
+        public global::Roblox.ColorSequence? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
         }
 
         /// <summary>
@@ -185,20 +185,20 @@ namespace Roblox
         /// Sets the transparency of the trail's segments over its Lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Transparency"/>
-        public object? Transparency
+        public global::Roblox.NumberSequence? Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
         }
 
         /// <summary>
         /// Scales the width of the trail over the course of its lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#WidthScale"/>
-        public object? WidthScale
+        public global::Roblox.NumberSequence? WidthScale
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "WidthScale");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "WidthScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "WidthScale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "WidthScale", value);
         }
 
         /// <summary>

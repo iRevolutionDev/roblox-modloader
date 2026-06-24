@@ -29,10 +29,10 @@ namespace Roblox
         /// Determines the color blended with the parent GuiObject along the length of the gradient.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Color"/>
-        public object? Color
+        public global::Roblox.ColorSequence? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
         }
 
         /// <summary>
@@ -81,10 +81,10 @@ namespace Roblox
         /// Determines how much the parent GuiObject can be seen through along the length of the gradient.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Transparency"/>
-        public object? Transparency
+        public global::Roblox.NumberSequence? Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
         }
 
         public Enum.GradientType Type

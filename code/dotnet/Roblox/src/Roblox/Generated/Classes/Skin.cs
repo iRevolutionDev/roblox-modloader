@@ -29,10 +29,10 @@ namespace Roblox
         /// <c>Skin.SkinColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Skin#SkinColor"/>
-        public object? SkinColor
+        public global::Roblox.BrickColor? SkinColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SkinColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SkinColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "SkinColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "SkinColor", value);
         }
 
     }

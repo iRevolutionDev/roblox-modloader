@@ -29,10 +29,10 @@ namespace Roblox
         /// The Team that owns the FlagStand. Corresponds with the TeamColors in the Teams service.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlagStand#TeamColor"/>
-        public object? TeamColor
+        public global::Roblox.BrickColor? TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
         }
 
         /// <summary>

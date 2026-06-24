@@ -29,10 +29,10 @@ namespace Roblox
         /// Sets the current Axes ArcHandles will show.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ArcHandles#Axes"/>
-        public int Axes
+        public global::Roblox.Axes? Axes
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Axes");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "Axes", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Axes?>(this, "Axes");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Axes?>(this, "Axes", value);
         }
 
         /// <summary>

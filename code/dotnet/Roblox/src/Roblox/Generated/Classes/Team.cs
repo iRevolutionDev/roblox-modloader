@@ -65,10 +65,10 @@ namespace Roblox
         /// This property sets the color of the Team. Determines the Player.TeamColor property of players who are a member of the team. Also determines the color displayed on the player list and above player's heads.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#TeamColor"/>
-        public object? TeamColor
+        public global::Roblox.BrickColor? TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
         }
 
         /// <summary>

@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines the color of the beam across its Segments.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Color"/>
-        public object? Color
+        public global::Roblox.ColorSequence? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
         }
 
         /// <summary>
@@ -195,10 +195,10 @@ namespace Roblox
         /// Determines the transparency of the beam across its segments.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Transparency"/>
-        public object? Transparency
+        public global::Roblox.NumberSequence? Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
         }
 
         /// <summary>

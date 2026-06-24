@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines the color of all active particles over their individual lifetimes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Color"/>
-        public object? Color
+        public global::Roblox.ColorSequence? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
         }
 
         /// <summary>
@@ -299,10 +299,10 @@ namespace Roblox
         /// Determines the world size over individual particles' lifetimes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Size"/>
-        public object? Size
+        public global::Roblox.NumberSequence? Size
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Size");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Size", value);
         }
 
         /// <summary>
@@ -329,10 +329,10 @@ namespace Roblox
         /// Allows for non-uniform scaling of particles, curve-controlled over their lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Squash"/>
-        public object? Squash
+        public global::Roblox.NumberSequence? Squash
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Squash");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Squash", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Squash");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Squash", value);
         }
 
         /// <summary>
@@ -365,10 +365,10 @@ namespace Roblox
         /// Determines the transparency of particles over their individual lifetimes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Transparency"/>
-        public object? Transparency
+        public global::Roblox.NumberSequence? Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
         }
 
         /// <summary>

@@ -29,10 +29,10 @@ namespace Roblox
         /// Sets which sides the GUI handles will appear.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#Faces"/>
-        public int Faces
+        public global::Roblox.Faces? Faces
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Faces");
-            set => global::Roblox.Reflection.SetProperty<int>(this, "Faces", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Faces?>(this, "Faces");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Faces?>(this, "Faces", value);
         }
 
         /// <summary>
