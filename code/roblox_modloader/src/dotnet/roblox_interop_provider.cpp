@@ -95,6 +95,12 @@ namespace rml::dotnet
 					return;
 				}
 
+				if (const auto sequence = try_sequence_property(property_descriptor, instance))
+				{
+					*out_value = *sequence;
+					return;
+				}
+
 				if (const auto blittable = try_blittable_property(property_descriptor, instance))
 				{
 					*out_value = *blittable;
@@ -144,6 +150,9 @@ namespace rml::dotnet
 					ref_desc->set_ref_value(instance, target);
 					return;
 				}
+
+				if (try_set_sequence_property(property_descriptor, instance, *value))
+					return;
 
 				if (try_set_blittable_property(property_descriptor, instance, *value))
 					return;

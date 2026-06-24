@@ -23,6 +23,10 @@ public readonly struct ColorSequence : IEquatable<ColorSequence>
         _keypoints = (ColorSequenceKeypoint[])keypoints.Clone();
     }
 
+    private ColorSequence(ColorSequenceKeypoint[] keypoints, bool _) => _keypoints = keypoints;
+    
+    internal static ColorSequence FromEngine(ColorSequenceKeypoint[] keypoints) => new(keypoints, false);
+
     private static void Validate(ColorSequenceKeypoint[] kp)
     {
         if (kp.Length < 2)

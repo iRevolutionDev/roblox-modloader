@@ -23,6 +23,10 @@ public readonly struct NumberSequence : IEquatable<NumberSequence>
         _keypoints = (NumberSequenceKeypoint[])keypoints.Clone();
     }
 
+    private NumberSequence(NumberSequenceKeypoint[] keypoints, bool _) => _keypoints = keypoints;
+    
+    internal static NumberSequence FromEngine(NumberSequenceKeypoint[] keypoints) => new(keypoints, false);
+
     private static void Validate(NumberSequenceKeypoint[] kp)
     {
         if (kp.Length < 2)

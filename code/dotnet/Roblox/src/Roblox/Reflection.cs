@@ -86,6 +86,18 @@ public static unsafe class Reflection
             return;
         }
 
+        if (value is NumberSequence ns)
+        {
+            WriteSequence(handle, propertyName, ns.Keypoints);
+            return;
+        }
+
+        if (value is ColorSequence cs)
+        {
+            WriteSequence(handle, propertyName, cs.Keypoints);
+            return;
+        }
+
         if (value is IRobloxDataType)
         {
             var size = Marshal.SizeOf((object)value);
@@ -138,6 +150,63 @@ public static unsafe class Reflection
         return converted is null ? default : (T)converted;
     }
 
+    // Variable-length datatype wire format: [int32 count][keypoint_0 ... keypoint_{count-1}], each
+    // keypoint a fixed blittable struct. Mirrors the native std::vector<Keypoint> packing.
+    private static NumberSequence ReadNumberSequence(nint ptr)
+    {
+        var keys = ReadKeypoints<NumberSequenceKeypoint>(ptr);
+        return NumberSequence.FromEngine(keys);
+    }
+
+    private static ColorSequence ReadColorSequence(nint ptr)
+    {
+        var keys = ReadKeypoints<ColorSequenceKeypoint>(ptr);
+        return ColorSequence.FromEngine(keys);
+    }
+
+    private static T[] ReadKeypoints<T>(nint ptr) where T : struct
+    {
+        var count = Marshal.ReadInt32(ptr);
+        if (count <= 0)
+        {
+            return [];
+        }
+
+        var stride = Marshal.SizeOf<T>();
+        var elems = ptr + sizeof(int);
+        var keys = new T[count];
+        for (var i = 0; i < count; i++)
+        {
+            keys[i] = Marshal.PtrToStructure<T>(elems + (i * stride));
+        }
+
+        return keys;
+    }
+
+    private static void WriteSequence<T>(nuint handle, string propertyName, IReadOnlyList<T> keypoints)
+        where T : struct
+    {
+        var stride = Marshal.SizeOf<T>();
+        var size = sizeof(int) + (keypoints.Count * stride);
+        var buffer = Marshal.AllocHGlobal(size);
+        try
+        {
+            Marshal.WriteInt32(buffer, keypoints.Count);
+            var elems = buffer + sizeof(int);
+            for (var i = 0; i < keypoints.Count; i++)
+            {
+                Marshal.StructureToPtr(keypoints[i], elems + (i * stride), false);
+            }
+
+            Interop.Reflection.SetProperty((void*)handle, propertyName,
+                new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)buffer });
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
+        }
+    }
+
     internal static object? ConvertVariant(InteropVariant variant, Type targetType)
         => ConvertResult(variant, targetType, false);
 
@@ -158,7 +227,24 @@ public static unsafe class Reflection
                 }
 
                 var blittablePtr = (nint)variant.AsPointer;
-                var value = Marshal.PtrToStructure(blittablePtr, Nullable.GetUnderlyingType(t) ?? t);
+                var underlying = Nullable.GetUnderlyingType(t) ?? t;
+
+                // Variable-length datatypes arrive as [int32 count][keypoint...]; fixed blittable
+                // value types are a straight struct copy.
+                object? value;
+                if (underlying == typeof(NumberSequence))
+                {
+                    value = ReadNumberSequence(blittablePtr);
+                }
+                else if (underlying == typeof(ColorSequence))
+                {
+                    value = ReadColorSequence(blittablePtr);
+                }
+                else
+                {
+                    value = Marshal.PtrToStructure(blittablePtr, underlying);
+                }
+
                 if (freeNativeResources)
                 {
                     Interop.FreeNativeArray(blittablePtr);

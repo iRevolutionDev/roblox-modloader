@@ -103,6 +103,9 @@ namespace rml::dotnet
 		    {"Rect", 16},
 		    {"NumberRange", 8},
 		    {"Region3", 60},
+		    {"Faces", 4},
+		    {"Axes", 4},
+		    {"BrickColor", 4},
 		};
 
 		for (const auto& [name, sz] : table)
@@ -157,6 +160,7 @@ namespace rml::dotnet
 
 		switch (size)
 		{
+		case 4: property.set(*static_cast<const blittable_blob<4>*>(bytes)); return true;
 		case 8: property.set(*static_cast<const blittable_blob<8>*>(bytes)); return true;
 		case 12: property.set(*static_cast<const blittable_blob<12>*>(bytes)); return true;
 		case 16: property.set(*static_cast<const blittable_blob<16>*>(bytes)); return true;
@@ -165,6 +169,96 @@ namespace rml::dotnet
 		case 60: property.set(*static_cast<const blittable_blob<60>*>(bytes)); return true;
 		default: return false;
 		}
+	}
+
+	// View over a libstdc++/MSVC std::vector<T> control block: three raw pointers {begin, end, cap}.
+	// The engine's NumberSequence/ColorSequence are each exactly one such vector of POD keypoints, so
+	// we can read/write their contents without pulling in the engine's sequence type definitions.
+	struct engine_vector_header
+	{
+		const std::byte* begin;
+		const std::byte* end;
+		const std::byte* capacity;
+	};
+
+	// Per-keypoint stride for the variable-length sequence datatypes, or 0 if not a sequence.
+	// NumberSequenceKeypoint = {float time, value, envelope} = 12B;
+	// ColorSequenceKeypoint  = {float time, Color3 value, float envelope} = 20B.
+	[[nodiscard]] inline size_t sequence_stride(const RBX::Name& type_name) noexcept
+	{
+		if (type_name == "NumberSequence")
+			return 12;
+		if (type_name == "ColorSequence")
+			return 20;
+		return 0;
+	}
+
+	// Packs a sequence value (a std::vector<Keypoint> living at `vec_storage`) into a freshly
+	// malloc'd [int32 count][keypoint...] buffer that the managed side reads and frees.
+	[[nodiscard]] inline InteropVariant pack_sequence(const void* vec_storage, const size_t stride)
+	{
+		InteropVariant out{};
+		out.tag = InteropValueTag::Blittable;
+		out.as_instance = 0;
+
+		const auto* header = static_cast<const engine_vector_header*>(vec_storage);
+		const size_t bytes = (header->end > header->begin) ? static_cast<size_t>(header->end - header->begin) : 0;
+		const auto count = static_cast<int32_t>(bytes / stride);
+
+		const size_t buf_size = sizeof(int32_t) + bytes;
+		if (auto* buf = static_cast<std::byte*>(std::malloc(buf_size)))
+		{
+			*reinterpret_cast<int32_t*>(buf) = count;
+			if (bytes)
+				std::memcpy(buf + sizeof(int32_t), header->begin, bytes);
+			out.as_instance = reinterpret_cast<uintptr_t>(buf);
+		}
+		return out;
+	}
+
+	// GET counterpart for NumberSequence/ColorSequence: read the engine vector out of the reflection
+	// Variant storage and pack it. Returns nullopt for non-sequence properties (caller falls back).
+	[[nodiscard]] inline std::optional<InteropVariant> try_sequence_property(
+	    const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
+	{
+		const auto stride = sequence_stride(descriptor->type.name);
+		if (stride == 0)
+			return std::nullopt;
+
+		RBX::Reflection::Variant variant;
+		descriptor->get_variant(instance, variant);
+		if (variant.is_void())
+			return std::nullopt;
+
+		return pack_sequence(variant.try_cast<std::byte>(), stride);
+	}
+
+	// SET counterpart: the managed side handed us [int32 count][keypoint...]. Point a temporary
+	// std::vector header at those keypoints and pass it through the typed setter; the engine
+	// deep-copies the elements into its own vector (it never frees our buffer).
+	[[nodiscard]] inline bool try_set_sequence_property(
+	    const RBX::Reflection::PropertyDescriptor* descriptor, RBX::Reflection::DescribedBase* instance,
+	    const InteropVariant& value)
+	{
+		if (value.tag != InteropValueTag::Blittable || value.as_instance == 0)
+			return false;
+
+		const auto stride = sequence_stride(descriptor->type.name);
+		if (stride == 0)
+			return false;
+
+		const auto* buf = reinterpret_cast<const std::byte*>(value.as_instance);
+		const auto count = *reinterpret_cast<const int32_t*>(buf);
+		const auto* keys = buf + sizeof(int32_t);
+
+		engine_vector_header header{};
+		header.begin = keys;
+		header.end = keys + static_cast<size_t>(count < 0 ? 0 : count) * stride;
+		header.capacity = header.end;
+
+		RBX::Property property(*descriptor, instance);
+		property.set(*reinterpret_cast<const blittable_blob<sizeof(engine_vector_header)>*>(&header));
+		return true;
 	}
 
 	inline InteropVariant engine_variant_to_interop(const RBX::Reflection::Variant& variant, InteropStringPool& strings)

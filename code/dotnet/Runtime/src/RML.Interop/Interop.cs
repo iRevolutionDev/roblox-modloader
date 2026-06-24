@@ -249,17 +249,23 @@ public static unsafe class Interop
                 _ => BuildFallbackVariant(arg, tempPtrs, ref tempPtrCount)
             };
         }
-        
+
         private static InteropVariant BuildFallbackVariant(object arg, nint* tempPtrs, ref int tempPtrCount)
         {
             var type = arg.GetType();
             if (type.IsValueType && !type.IsPrimitive && !type.IsEnum)
             {
-                var size = Marshal.SizeOf(arg);
-                var p = Marshal.AllocHGlobal(size);
-                Marshal.StructureToPtr(arg, p, false);
-                tempPtrs[tempPtrCount++] = p;
-                return new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)p };
+                try
+                {
+                    var size = Marshal.SizeOf(arg);
+                    var p = Marshal.AllocHGlobal(size);
+                    Marshal.StructureToPtr(arg, p, false);
+                    tempPtrs[tempPtrCount++] = p;
+                    return new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)p };
+                }
+                catch (ArgumentException)
+                {
+                }
             }
 
             return new InteropVariant { Tag = InteropVariant.Tags.Int64, AsInt64 = ToInt64Fallback(arg) };
