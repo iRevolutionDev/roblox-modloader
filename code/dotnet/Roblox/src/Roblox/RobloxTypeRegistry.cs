@@ -6,24 +6,34 @@ namespace Roblox;
 
 internal static class RobloxTypeRegistry
 {
-    private static readonly Dictionary<string, Type> _byClassName = Build();
-    private static readonly ConcurrentDictionary<Type, Func<nuint, object>> _factories = new();
+    private static readonly RobloxClassManifest.Entry[] _entries = RobloxClassManifest.All();
+
+    private static readonly Dictionary<string, RobloxClassManifest.Entry> _byClassName =
+        _entries.ToDictionary(e => e.ClassName, StringComparer.Ordinal);
+
+    private static readonly Dictionary<Type, Func<nuint, Object>> _factoriesByType =
+        _entries.ToDictionary(e => e.Type, e => e.Factory);
+
+    private static readonly ConcurrentDictionary<Type, Func<nuint, object>> _reflectionFactories = new();
 
     public static Type? Resolve(string className)
-        => _byClassName.GetValueOrDefault(className);
+        => _byClassName.TryGetValue(className, out var entry) ? entry.Type : null;
 
     public static Object Create(nuint handle)
     {
         var className = TryGetClassName(handle);
-        if (className is not null && _byClassName.TryGetValue(className, out Type? type))
+        if (className is not null && _byClassName.TryGetValue(className, out var entry))
         {
-            return (Object)GetFactory(type)(handle);
+            return entry.Factory(handle);
         }
 
         return new Instance(handle);
     }
 
-    public static object CreateAs(Type type, nuint handle) => GetFactory(type)(handle);
+    public static object CreateAs(Type type, nuint handle)
+        => _factoriesByType.TryGetValue(type, out var factory)
+            ? factory(handle)
+            : ReflectionFactory(type)(handle);
 
     private static string? TryGetClassName(nuint handle)
     {
@@ -37,8 +47,8 @@ internal static class RobloxTypeRegistry
         }
     }
 
-    private static Func<nuint, object> GetFactory(Type type)
-        => _factories.GetOrAdd(type, static t =>
+    private static Func<nuint, object> ReflectionFactory(Type type)
+        => _reflectionFactories.GetOrAdd(type, static t =>
         {
             MethodInfo? fromHandle = t.GetMethod(
                 "FromHandle",
@@ -63,30 +73,4 @@ internal static class RobloxTypeRegistry
                     handleParam)
                 .Compile();
         });
-
-    private static Dictionary<string, Type> Build()
-    {
-        var map = new Dictionary<string, Type>(StringComparer.Ordinal);
-
-        Type?[] types;
-        try
-        {
-            types = typeof(RobloxTypeRegistry).Assembly.GetTypes();
-        }
-        catch (ReflectionTypeLoadException ex)
-        {
-            types = ex.Types;
-        }
-
-        foreach (Type? type in types)
-        {
-            RobloxClassAttribute? attr = type?.GetCustomAttribute<RobloxClassAttribute>();
-            if (type is not null && attr is not null)
-            {
-                map[attr.ClassName] = type;
-            }
-        }
-
-        return map;
-    }
 }
