@@ -40,7 +40,11 @@ internal static unsafe class EventManager
 
                 if (subscription.NativeHandle == 0)
                 {
-                    subscription.Self.Free();
+                    if (subscription.Self.IsAllocated)
+                    {
+                        subscription.Self.Free();
+                    }
+
                     throw new InvalidOperationException(
                         $"Failed to connect to native event '{eventName}'.");
                 }
@@ -76,7 +80,10 @@ internal static unsafe class EventManager
 
             Subscriptions.TryRemove(key, out _);
             Interop.Reflection.EventDisconnect(subscription.NativeHandle);
-            subscription.Self.Free();
+            if (subscription.Self.IsAllocated)
+            {
+                subscription.Self.Free();
+            }
         }
     }
 
@@ -200,7 +207,10 @@ internal static unsafe class EventManager
 
             Subscriptions.TryRemove(key, out _);
             Interop.Reflection.EventDisconnect(subscription.NativeHandle);
-            subscription.Self.Free();
+            if (subscription.Self.IsAllocated)
+            {
+                subscription.Self.Free();
+            }
         }
     }
 

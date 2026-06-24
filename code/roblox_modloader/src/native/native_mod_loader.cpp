@@ -15,7 +15,7 @@ namespace rml::native
 		if (m_loaded_mods.contains(path))
 			return {};
 
-		using start_fn_t     = mod_base::start_type;
+		using start_fn_t = mod_base::start_type;
 		using uninstall_fn_t = void (*)(const mod_base*);
 
 		auto module_ptr = std::make_unique<memory::module>(path);
@@ -24,7 +24,7 @@ namespace rml::native
 			return std::unexpected(std::format("Failed to attach module '{}' : {}", path.string(), r.error()));
 		}
 
-		auto start_h     = module_ptr->get_export("start_mod");
+		auto start_h = module_ptr->get_export("start_mod");
 		auto uninstall_h = module_ptr->get_export("uninstall_mod");
 
 		if (!start_h)
@@ -39,7 +39,7 @@ namespace rml::native
 			return std::unexpected("Failed to find 'uninstall_mod' export in native mod: " + path.string());
 		}
 
-		auto* start     = start_h.as<start_fn_t>();
+		auto* start = start_h.as<start_fn_t>();
 		auto* uninstall = uninstall_h.as<uninstall_fn_t>();
 
 		mod_base* instance = nullptr;
@@ -63,7 +63,7 @@ namespace rml::native
 		{
 			instance->on_load();
 		}
-		catch (std::exception& e)
+		catch (const std::exception& e)
 		{
 			uninstall(instance);
 			module_ptr->detach();
@@ -71,11 +71,14 @@ namespace rml::native
 		}
 		catch (...)
 		{
+			uninstall(instance);
+			module_ptr->detach();
+			return std::unexpected(std::format("Unknown exception while calling 'on_load' for {}", path.string()));
 		}
 
 		LoadedMod lm{};
-		lm.module    = std::move(module_ptr);
-		lm.instance  = instance;
+		lm.module = std::move(module_ptr);
+		lm.instance = instance;
 		lm.uninstall = uninstall;
 
 		m_loaded_mods[path] = std::move(lm);
@@ -95,8 +98,13 @@ namespace rml::native
 			{
 				lm.instance->on_unload();
 			}
+			catch (const std::exception& e)
+			{
+				LOG_ERROR("Exception during on_unload for {}: {}", path.string(), e.what());
+			}
 			catch (...)
 			{
+				LOG_ERROR("Unknown exception during on_unload for {}", path.string());
 			}
 
 			if (lm.uninstall)
@@ -107,6 +115,7 @@ namespace rml::native
 				}
 				catch (...)
 				{
+					LOG_ERROR("Unknown exception during uninstall_mod for {}", path.string());
 				}
 			}
 			else
@@ -143,8 +152,13 @@ namespace rml::native
 				{
 					instance->on_unload();
 				}
+				catch (const std::exception& e)
+				{
+					LOG_ERROR("Exception during on_unload (unload_all): {}", e.what());
+				}
 				catch (...)
 				{
+					LOG_ERROR("Unknown exception during on_unload (unload_all)");
 				}
 				if (uninstall)
 				{
@@ -154,6 +168,7 @@ namespace rml::native
 					}
 					catch (...)
 					{
+						LOG_ERROR("Unknown exception during uninstall_mod (unload_all)");
 					}
 				}
 				else

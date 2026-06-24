@@ -29,5 +29,9 @@ public static class EntryPoint
         ModLoader.UnloadMod(dllPath);
     }
 
-    public static void Shutdown() => ModLoader.Shutdown();
+    public static void Shutdown()
+    {
+        ModLoader.Shutdown();
+        Interop.Interop.Uninitialize();
+    }
 }

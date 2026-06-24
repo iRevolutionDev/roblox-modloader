@@ -17,13 +17,32 @@ public static unsafe class Interop
             throw new ArgumentException("Invalid interop table pointer or size.");
         }
 
+        if (sizeof(InteropVariant) != 16)
+        {
+            throw new InvalidOperationException(
+                $"InteropVariant ABI mismatch: managed size is {sizeof(InteropVariant)}, expected 16.");
+        }
+
         var table = (NativeInterop.InteropTable*)tablePtr;
         if (table->Version != NativeInterop.InteropTableVersion)
         {
-            throw new InvalidOperationException($"Unsupported interop table version: {table->Version}");
+            throw new InvalidOperationException(
+                $"Unsupported interop table version: {table->Version} (expected {NativeInterop.InteropTableVersion}).");
+        }
+
+        if (table->Size != 0 && table->Size != (uint)sizeof(NativeInterop.InteropTable))
+        {
+            throw new InvalidOperationException(
+                $"Interop table size mismatch: native {table->Size} != managed {sizeof(NativeInterop.InteropTable)}.");
         }
 
         Table = table;
+    }
+    
+    public static void Uninitialize()
+    {
+        Reflection.ClearCaches();
+        Table = null;
     }
 
     public static void FreeNativeString(nint ptr)
@@ -49,6 +68,19 @@ public static unsafe class Interop
     public class Reflection
     {
         private static readonly ConcurrentDictionary<string, nint> CachedMemberNames = new(StringComparer.Ordinal);
+
+        internal static void ClearCaches()
+        {
+            foreach (var ptr in CachedMemberNames.Values)
+            {
+                if (ptr != nint.Zero)
+                {
+                    Marshal.FreeHGlobal(ptr);
+                }
+            }
+
+            CachedMemberNames.Clear();
+        }
 
         private static sbyte* GetCachedMemberName(string memberName)
         {

@@ -1,5 +1,12 @@
 #pragma once
+#include <cstddef>
 #include <cstdint>
+
+#if defined(_WIN32)
+	#define RML_INTEROP_CALL __cdecl
+#else
+	#define RML_INTEROP_CALL
+#endif
 
 namespace rml::dotnet
 {
@@ -29,32 +36,37 @@ namespace rml::dotnet
 		};
 	};
 
-	using ManagedEventCallback = void(__cdecl*)(void* state, const InteropVariant* args, uint32_t arg_count);
+	static_assert(sizeof(InteropVariant) == 16, "InteropVariant must be 16 bytes (managed mirror is Size = 16).");
+	static_assert(alignof(InteropVariant) == 8, "InteropVariant must be 8-byte aligned.");
+	static_assert(offsetof(InteropVariant, tag) == 0, "InteropVariant.tag must be at offset 0.");
+	static_assert(offsetof(InteropVariant, as_uint64) == 8, "InteropVariant union must start at offset 8.");
+	
+	using ManagedEventCallback = void(RML_INTEROP_CALL*)(void* state, const InteropVariant* args, uint32_t arg_count);
 
 	struct alignas(8) InteropTable
 	{
 		uint32_t version;
 		uint32_t size;
 
-		void*(__cdecl* get_proc_address)(const char* name);
+		void*(RML_INTEROP_CALL* get_proc_address)(const char* name);
 
-		void(__cdecl* reflection_invoke)(uintptr_t instance, const char* function_name, const InteropVariant* args, uint32_t arg_count, InteropVariant* out_result);
+		void(RML_INTEROP_CALL* reflection_invoke)(uintptr_t instance, const char* function_name, const InteropVariant* args, uint32_t arg_count, InteropVariant* out_result);
 
-		void(__cdecl* reflection_get_property)(uintptr_t instance, const char* property_name, InteropVariant* out_value);
+		void(RML_INTEROP_CALL* reflection_get_property)(uintptr_t instance, const char* property_name, InteropVariant* out_value);
 
-		void(__cdecl* reflection_set_property)(uintptr_t instance, const char* property_name, const InteropVariant* value);
+		void(RML_INTEROP_CALL* reflection_set_property)(uintptr_t instance, const char* property_name, const InteropVariant* value);
 
-		uintptr_t(__cdecl* reflection_event_connect)(uintptr_t instance, const char* event_name, ManagedEventCallback callback, void* state);
+		uintptr_t(RML_INTEROP_CALL* reflection_event_connect)(uintptr_t instance, const char* event_name, ManagedEventCallback callback, void* state);
 
-		void(__cdecl* reflection_event_disconnect)(uintptr_t connection_handle);
+		void(RML_INTEROP_CALL* reflection_event_disconnect)(uintptr_t connection_handle);
 
-		uintptr_t(__cdecl* instance_get_class_descriptor)(uintptr_t instance);
+		uintptr_t(RML_INTEROP_CALL* instance_get_class_descriptor)(uintptr_t instance);
 
-		void(__cdecl* managed_log)(int32_t level, const char* utf8, int32_t len);
+		void(RML_INTEROP_CALL* managed_log)(int32_t level, const char* utf8, int32_t len);
 
-		void(__cdecl* free_string)(const char* str);
+		void(RML_INTEROP_CALL* free_string)(const char* str);
 
-		void(__cdecl* free_native_ptr)(const void* ptr);
+		void(RML_INTEROP_CALL* free_native_ptr)(const void* ptr);
 	};
 
 	inline constexpr uint32_t RML_INTEROP_VERSION = 3;

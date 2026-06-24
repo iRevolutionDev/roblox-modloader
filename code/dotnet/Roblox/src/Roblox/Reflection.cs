@@ -62,70 +62,55 @@ public static unsafe class Reflection
             throw new ArgumentException("Instance handle is null", nameof(handle));
         }
 
+        if (value is null)
+        {
+            Interop.Reflection.SetProperty((void*)handle, propertyName, default);
+            return;
+        }
+        
+        if (value is string s)
+        {
+            var b = Encoding.UTF8.GetBytes(s);
+            var strPtr = Marshal.AllocHGlobal(b.Length + 1);
+            try
+            {
+                Marshal.Copy(b, 0, strPtr, b.Length);
+                Marshal.WriteByte(strPtr + b.Length, 0);
+                Interop.Reflection.SetProperty((void*)handle, propertyName, InteropVariant.FromString((nuint)(ulong)strPtr));
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(strPtr);
+            }
+
+            return;
+        }
+
+        InteropVariant variantValue = value switch
+        {
+            Object inst => InteropVariant.FromPointer(inst.Handle),
+            bool bb => InteropVariant.FromBool(bb),
+            double dd => InteropVariant.FromDouble(dd),
+            float ff => InteropVariant.FromFloat(ff),
+            System.Enum => InteropVariant.FromInt64(Convert.ToInt64(value)),
+            nuint nu => InteropVariant.FromPointer(nu),
+            nint ni => InteropVariant.FromPointer((nuint)ni),
+            _ => InteropVariant.FromInt64(ToInt64OrThrow(value, propertyName))
+        };
+
+        Interop.Reflection.SetProperty((void*)handle, propertyName, variantValue);
+    }
+
+    private static long ToInt64OrThrow(object value, string propertyName)
+    {
         try
         {
-            InteropVariant variantValue;
-
-            if (value is null)
-            {
-                variantValue = default;
-            }
-            else
-            {
-                switch (value)
-                {
-                    case string s:
-                    {
-                        var b = Encoding.UTF8.GetBytes(s);
-                        var strPtr = Marshal.AllocHGlobal(b.Length + 1);
-                        Marshal.Copy(b, 0, strPtr, b.Length);
-                        Marshal.WriteByte(strPtr + b.Length, 0);
-                        variantValue = InteropVariant.FromString((nuint)(ulong)strPtr);
-                        Interop.Reflection.SetProperty((void*)handle, propertyName, variantValue);
-                        Marshal.FreeHGlobal(strPtr);
-                        return;
-                    }
-                    case Object inst:
-                        variantValue = InteropVariant.FromPointer(inst.Handle);
-                        break;
-                    case bool bb:
-                        variantValue = InteropVariant.FromBool(bb);
-                        break;
-                    case double dd:
-                        variantValue = InteropVariant.FromDouble(dd);
-                        break;
-                    case float ff:
-                        variantValue = InteropVariant.FromFloat(ff);
-                        break;
-                    case System.Enum:
-                        variantValue = InteropVariant.FromInt64(Convert.ToInt64(value));
-                        break;
-                    case nuint nu:
-                        variantValue = InteropVariant.FromPointer(nu);
-                        break;
-                    case nint ni:
-                        variantValue = InteropVariant.FromPointer((nuint)ni);
-                        break;
-                    default:
-                        long raw;
-                        try
-                        {
-                            raw = Convert.ToInt64(value);
-                        }
-                        catch
-                        {
-                            raw = 0;
-                        }
-
-                        variantValue = InteropVariant.FromInt64(raw);
-                        break;
-                }
-            }
-
-            Interop.Reflection.SetProperty((void*)handle, propertyName, variantValue);
+            return Convert.ToInt64(value);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            throw new InvalidCastException(
+                $"Cannot marshal value of type '{value.GetType()}' for property '{propertyName}'.", ex);
         }
     }
 
