@@ -29,10 +29,10 @@ namespace Roblox
         /// This CFrame applies to the Motor6D corresponding with the Pose when the Motor6D.Transform is changed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         /// <summary>

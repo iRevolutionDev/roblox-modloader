@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FeatureRestrictionManager.FeatureTimeoutAttempt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="permanent">A <c>bool</c> value.</param>
         /// <param name="startTime">A <c>long</c> value.</param>
@@ -41,7 +40,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FeatureRestrictionManager.FeatureTimeoutRestored</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="featureRestrictionAbuseVector">A <c>Enum.FeatureRestrictionAbuseVector</c> value.</param>
         public event Action<Enum.FeatureRestrictionAbuseVector>? FeatureTimeoutRestored
@@ -52,7 +50,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FeatureRestrictionManager.ShowFeatureInterventionDetails</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="featureRestrictionAbuseVector">A <c>Enum.FeatureRestrictionAbuseVector</c> value.</param>
         public event Action<Enum.FeatureRestrictionAbuseVector>? ShowFeatureInterventionDetails
@@ -63,7 +60,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FeatureRestrictionManager.ShowFeatureInterventionDetailsV2</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="featureRestrictionAbuseVector">A <c>Enum.FeatureRestrictionAbuseVector</c> value.</param>
         /// <param name="isGameJoin">A <c>bool</c> value.</param>
@@ -75,7 +71,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FeatureRestrictionManager.TimeoutChatAttempt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isPermanentTimeout">A <c>bool</c> value.</param>
         /// <param name="endTime">A <c>long</c> value.</param>

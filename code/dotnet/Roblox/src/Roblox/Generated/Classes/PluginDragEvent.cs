@@ -49,10 +49,10 @@ namespace Roblox
         /// <c>PluginDragEvent.Position</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginDragEvent#Position"/>
-        public global::System.Numerics.Vector2 Position
+        public global::Roblox.Vector2? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Position", value);
         }
 
         /// <summary>

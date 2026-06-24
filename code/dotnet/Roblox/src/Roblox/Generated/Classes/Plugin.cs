@@ -344,10 +344,10 @@ namespace Roblox
         /// Activates the specified Roblox Studio tool.
         /// </summary>
         /// <param name="tool">A <c>Enum.RibbonTool</c> value.</param>
-        /// <param name="position">A <c>object?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.UDim2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#SelectRibbonTool"/>
-        public object? SelectRibbonTool(Enum.RibbonTool tool, object? position)
+        public object? SelectRibbonTool(Enum.RibbonTool tool, global::Roblox.UDim2? position)
             => global::Roblox.Reflection.Invoke<object?>(this, "SelectRibbonTool", tool, position);
 
         /// <summary>
@@ -523,7 +523,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the plugin is deactivated.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Deactivation"/>
         public event Action? Deactivation
@@ -532,10 +531,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("Deactivation", value); }
         }
 
-        /// <summary>
-        /// <c>Plugin.Ready</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? Ready
         {
             add { if (value is not null) AddEventHandler("Ready", value); }
@@ -544,13 +539,38 @@ namespace Roblox
 
         /// <summary>
         /// Fires immediately before the Plugin stops running.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Unloading"/>
         public event Action? Unloading
         {
             add { if (value is not null) AddEventHandler("Unloading", value); }
             remove { if (value is not null) RemoveEventHandler("Unloading", value); }
+        }
+
+        /// <summary>
+        /// <c>Plugin.ViewportDragDropped</c>
+        /// </summary>
+        /// <param name="dragData">A <c>object?</c> value.</param>
+        public event Action<object?>? ViewportDragDropped
+        {
+            add { if (value is not null) AddEventHandler("ViewportDragDropped", value); }
+            remove { if (value is not null) RemoveEventHandler("ViewportDragDropped", value); }
+        }
+
+        /// <summary>
+        /// <c>Plugin.ViewportDragEntered</c>
+        /// </summary>
+        /// <param name="dragData">A <c>object?</c> value.</param>
+        public event Action<object?>? ViewportDragEntered
+        {
+            add { if (value is not null) AddEventHandler("ViewportDragEntered", value); }
+            remove { if (value is not null) RemoveEventHandler("ViewportDragEntered", value); }
+        }
+
+        public event Action? ViewportDragLeft
+        {
+            add { if (value is not null) AddEventHandler("ViewportDragLeft", value); }
+            remove { if (value is not null) RemoveEventHandler("ViewportDragLeft", value); }
         }
 
         /// <summary>

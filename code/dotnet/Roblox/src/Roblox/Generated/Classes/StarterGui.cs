@@ -161,7 +161,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StarterGui.CoreGuiChangedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="coreGuiType">A <c>Enum.CoreGuiType</c> value.</param>
         /// <param name="enabled">A <c>bool</c> value.</param>

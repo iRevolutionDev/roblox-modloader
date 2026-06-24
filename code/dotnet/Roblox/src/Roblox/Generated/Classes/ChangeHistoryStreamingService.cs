@@ -23,7 +23,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendCreateInstanceFromStudio</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="parentInstance">A <c>Instance?</c> value.</param>
         /// <param name="instance">A <c>Instance?</c> value.</param>
@@ -35,7 +34,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendDeleteInstanceFromStudio</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <param name="setParentToNull">A <c>bool</c> value.</param>
@@ -47,7 +45,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendReparentInstanceFromStudio</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="parentInstance">A <c>Instance?</c> value.</param>
         /// <param name="instance">A <c>Instance?</c> value.</param>
@@ -59,7 +56,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendTerrainChangeFromStudio</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <param name="chunkX">A <c>int</c> value.</param>

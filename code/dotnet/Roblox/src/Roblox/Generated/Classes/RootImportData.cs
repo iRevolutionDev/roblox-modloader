@@ -45,10 +45,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "ExistingPackageId", value);
         }
 
-        public global::System.Numerics.Vector3 FileDimensions
+        public global::Roblox.Vector3? FileDimensions
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "FileDimensions");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "FileDimensions", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "FileDimensions");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "FileDimensions", value);
         }
 
         public bool ImportAsModelAsset

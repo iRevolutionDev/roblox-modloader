@@ -159,10 +159,10 @@ namespace Roblox
         /// Determines the BodyColors.HeadColor3 and BodyColors.HeadColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HeadColor"/>
-        public object? HeadColor
+        public global::Roblox.Color3? HeadColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "HeadColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "HeadColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "HeadColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "HeadColor", value);
         }
 
         /// <summary>
@@ -219,10 +219,10 @@ namespace Roblox
         /// Determines the BodyColors.LeftArmColor3 and BodyColors.LeftArmColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftArmColor"/>
-        public object? LeftArmColor
+        public global::Roblox.Color3? LeftArmColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "LeftArmColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "LeftArmColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "LeftArmColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "LeftArmColor", value);
         }
 
         /// <summary>
@@ -239,10 +239,10 @@ namespace Roblox
         /// Determines the BodyColors.LeftLegColor3 and BodyColors.LeftLegColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftLegColor"/>
-        public object? LeftLegColor
+        public global::Roblox.Color3? LeftLegColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "LeftLegColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "LeftLegColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "LeftLegColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "LeftLegColor", value);
         }
 
         /// <summary>
@@ -311,10 +311,10 @@ namespace Roblox
         /// Determines the BodyColors.RightArmColor3 and BodyColors.RightArmColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightArmColor"/>
-        public object? RightArmColor
+        public global::Roblox.Color3? RightArmColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "RightArmColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "RightArmColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "RightArmColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "RightArmColor", value);
         }
 
         /// <summary>
@@ -331,10 +331,10 @@ namespace Roblox
         /// Determines the BodyColors.RightLegColor3 and BodyColors.RightLegColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightLegColor"/>
-        public object? RightLegColor
+        public global::Roblox.Color3? RightLegColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "RightLegColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "RightLegColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "RightLegColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "RightLegColor", value);
         }
 
         /// <summary>
@@ -401,10 +401,10 @@ namespace Roblox
         /// Determines the BodyColors.TorsoColor3 and BodyColors.TorsoColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#TorsoColor"/>
-        public object? TorsoColor
+        public global::Roblox.Color3? TorsoColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TorsoColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TorsoColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TorsoColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TorsoColor", value);
         }
 
         /// <summary>
@@ -521,7 +521,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when emotes are added, removed or set on this description.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newEmotes">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#EmotesChanged"/>
@@ -533,7 +532,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the equipped emotes are set on this description.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newEquippedEmotes">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#EquippedEmotesChanged"/>

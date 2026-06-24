@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>LiveSyncService</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LiveSyncService"/>
     [RobloxClass("LiveSyncService")]
     public class LiveSyncService : Instance
     {
@@ -21,6 +25,10 @@ namespace Roblox
         public static LiveSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new LiveSyncService(handle);
 
+        /// <summary>
+        /// <c>LiveSyncService.HasSyncedInstances</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LiveSyncService#HasSyncedInstances"/>
         public bool HasSyncedInstances
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSyncedInstances");
@@ -32,14 +40,15 @@ namespace Roblox
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LiveSyncService#GetSyncState"/>
         public object? GetSyncState(Instance? instance)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetSyncState", instance);
 
         /// <summary>
         /// <c>LiveSyncService.SyncStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LiveSyncService#SyncStatusChanged"/>
         public event Action<Instance?>? SyncStatusChanged
         {
             add { if (value is not null) AddEventHandler("SyncStatusChanged", value); }

@@ -44,13 +44,13 @@ namespace Roblox
         /// <summary>
         /// Casts a block shape in a given direction and returns a RaycastResult if the shape hits a BasePart or Terrain cell.
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="params">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#Blockcast"/>
-        public object? Blockcast(object? cframe, global::System.Numerics.Vector3 size, global::System.Numerics.Vector3 direction, object? @params)
+        public object? Blockcast(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, global::Roblox.Vector3? direction, object? @params)
             => global::Roblox.Reflection.Invoke<object?>(this, "Blockcast", cframe, size, direction, @params);
 
         /// <summary>
@@ -68,10 +68,10 @@ namespace Roblox
         /// <c>WorldRoot.CacheCurrentTerrain</c>
         /// </summary>
         /// <param name="id">A <c>string?</c> value.</param>
-        /// <param name="center">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
         /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? CacheCurrentTerrain(string? id, global::System.Numerics.Vector3 center, float radius)
+        public string? CacheCurrentTerrain(string? id, global::Roblox.Vector3? center, float radius)
             => global::Roblox.Reflection.Invoke<string?>(this, "CacheCurrentTerrain", id, center, radius);
 
         /// <summary>
@@ -85,69 +85,69 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:Raycast() along with RaycastParams for new work.Returns the first BasePart or Terrain cell intersecting with the given Ray.
         /// </summary>
-        /// <param name="ray">A <c>object?</c> value.</param>
+        /// <param name="ray">A <c>global::Roblox.Ray?</c> value.</param>
         /// <param name="ignoreDescendantsInstance">A <c>Instance?</c> value.</param>
         /// <param name="terrainCellsAreCubes">A <c>bool</c> value.</param>
         /// <param name="ignoreWater">A <c>bool</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartOnRay"/>
-        public object? FindPartOnRay(object? ray, Instance? ignoreDescendantsInstance, bool terrainCellsAreCubes, bool ignoreWater)
+        public object? FindPartOnRay(global::Roblox.Ray? ray, Instance? ignoreDescendantsInstance, bool terrainCellsAreCubes, bool ignoreWater)
             => global::Roblox.Reflection.Invoke<object?>(this, "FindPartOnRay", ray, ignoreDescendantsInstance, terrainCellsAreCubes, ignoreWater);
 
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:Raycast() along with RaycastParams for new work.Returns the first BasePart or Terrain cell intersecting with the given Ray that isn't in, nor is a descendant of an object in, the given ignore list.
         /// </summary>
-        /// <param name="ray">A <c>object?</c> value.</param>
+        /// <param name="ray">A <c>global::Roblox.Ray?</c> value.</param>
         /// <param name="ignoreDescendantsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="terrainCellsAreCubes">A <c>bool</c> value.</param>
         /// <param name="ignoreWater">A <c>bool</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartOnRayWithIgnoreList"/>
-        public object? FindPartOnRayWithIgnoreList(object? ray, IReadOnlyList<Instance> ignoreDescendantsTable, bool terrainCellsAreCubes, bool ignoreWater)
+        public object? FindPartOnRayWithIgnoreList(global::Roblox.Ray? ray, IReadOnlyList<Instance> ignoreDescendantsTable, bool terrainCellsAreCubes, bool ignoreWater)
             => global::Roblox.Reflection.Invoke<object?>(this, "FindPartOnRayWithIgnoreList", ray, ignoreDescendantsTable, terrainCellsAreCubes, ignoreWater);
 
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:Raycast() along with RaycastParams for new work.Returns the first BasePart or Terrain cell intersecting with the given Ray that is in, or is a descendant of an object in, the given inclusion list.
         /// </summary>
-        /// <param name="ray">A <c>object?</c> value.</param>
+        /// <param name="ray">A <c>global::Roblox.Ray?</c> value.</param>
         /// <param name="whitelistDescendantsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="ignoreWater">A <c>bool</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartOnRayWithWhitelist"/>
-        public object? FindPartOnRayWithWhitelist(object? ray, IReadOnlyList<Instance> whitelistDescendantsTable, bool ignoreWater)
+        public object? FindPartOnRayWithWhitelist(global::Roblox.Ray? ray, IReadOnlyList<Instance> whitelistDescendantsTable, bool ignoreWater)
             => global::Roblox.Reflection.Invoke<object?>(this, "FindPartOnRayWithWhitelist", ray, whitelistDescendantsTable, ignoreWater);
 
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:GetPartBoundsInBox() along with OverlapParams for new work.Returns an array of BaseParts in the given Region3.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="ignoreDescendantsInstance">A <c>Instance?</c> value.</param>
         /// <param name="maxParts">A <c>int</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartsInRegion3"/>
-        public IReadOnlyList<Instance> FindPartsInRegion3(object? region, Instance? ignoreDescendantsInstance, int maxParts)
+        public IReadOnlyList<Instance> FindPartsInRegion3(global::Roblox.Region3? region, Instance? ignoreDescendantsInstance, int maxParts)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FindPartsInRegion3", region, ignoreDescendantsInstance, maxParts);
 
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:GetPartBoundsInBox() along with OverlapParams for new work.Returns an array of BaseParts in the given Region3 that aren't in, or a descendant of an entry in, the given ignore list.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="ignoreDescendantsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="maxParts">A <c>int</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartsInRegion3WithIgnoreList"/>
-        public IReadOnlyList<Instance> FindPartsInRegion3WithIgnoreList(object? region, IReadOnlyList<Instance> ignoreDescendantsTable, int maxParts)
+        public IReadOnlyList<Instance> FindPartsInRegion3WithIgnoreList(global::Roblox.Region3? region, IReadOnlyList<Instance> ignoreDescendantsTable, int maxParts)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FindPartsInRegion3WithIgnoreList", region, ignoreDescendantsTable, maxParts);
 
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:GetPartBoundsInBox() along with OverlapParams for new work.Returns an array of BaseParts in the given Region3 that are in, or descendant of an entry in, the given inclusion list.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="whitelistDescendantsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="maxParts">A <c>int</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartsInRegion3WithWhiteList"/>
-        public IReadOnlyList<Instance> FindPartsInRegion3WithWhiteList(object? region, IReadOnlyList<Instance> whitelistDescendantsTable, int maxParts)
+        public IReadOnlyList<Instance> FindPartsInRegion3WithWhiteList(global::Roblox.Region3? region, IReadOnlyList<Instance> whitelistDescendantsTable, int maxParts)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FindPartsInRegion3WithWhiteList", region, whitelistDescendantsTable, maxParts);
 
         /// <summary>
@@ -181,23 +181,23 @@ namespace Roblox
         /// <summary>
         /// Returns an array of parts whose bounding boxes overlap a given box.
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="overlapParams">A <c>object?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#GetPartBoundsInBox"/>
-        public IReadOnlyList<Instance> GetPartBoundsInBox(object? cframe, global::System.Numerics.Vector3 size, object? overlapParams)
+        public IReadOnlyList<Instance> GetPartBoundsInBox(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, object? overlapParams)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPartBoundsInBox", cframe, size, overlapParams);
 
         /// <summary>
         /// Returns an array of parts whose bounding boxes overlap a given sphere.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
         /// <param name="overlapParams">A <c>object?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#GetPartBoundsInRadius"/>
-        public IReadOnlyList<Instance> GetPartBoundsInRadius(global::System.Numerics.Vector3 position, float radius, object? overlapParams)
+        public IReadOnlyList<Instance> GetPartBoundsInRadius(global::Roblox.Vector3? position, float radius, object? overlapParams)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPartBoundsInRadius", position, radius, overlapParams);
 
         /// <summary>
@@ -214,86 +214,86 @@ namespace Roblox
         /// Moves the specified part to the specified location via inverse kinematics rather than moving it there directly, to ensure any joints, constraints, or collisions that part is participating in remain physically satisfied.
         /// </summary>
         /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <param name="target">A <c>object?</c> value.</param>
+        /// <param name="target">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="translateStiffness">A <c>float</c> value.</param>
         /// <param name="rotateStiffness">A <c>float</c> value.</param>
         /// <param name="collisionsMode">A <c>Enum.IKCollisionsMode</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#IKMoveTo"/>
-        public object? IKMoveTo(BasePart? part, object? target, float translateStiffness, float rotateStiffness, Enum.IKCollisionsMode collisionsMode)
+        public object? IKMoveTo(BasePart? part, global::Roblox.CFrame? target, float translateStiffness, float rotateStiffness, Enum.IKCollisionsMode collisionsMode)
             => global::Roblox.Reflection.Invoke<object?>(this, "IKMoveTo", part, target, translateStiffness, rotateStiffness, collisionsMode);
 
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:GetPartBoundsInBox() along with OverlapParams for new work.Returns a bool indicating whether there are no BaseParts within the given Region3.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="ignoreDescendentsInstance">A <c>Instance?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#IsRegion3Empty"/>
-        public bool IsRegion3Empty(object? region, Instance? ignoreDescendentsInstance)
+        public bool IsRegion3Empty(global::Roblox.Region3? region, Instance? ignoreDescendentsInstance)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsRegion3Empty", region, ignoreDescendentsInstance);
 
         /// <summary>
         /// Deprecated: This function has been deprecated. Use WorldRoot:GetPartBoundsInBox() along with OverlapParams for new work.Returns a boolean indicating whether there are no BaseParts within the given Region3, ignoring any BaseParts that are descendants of the objects within the given ignore list.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="ignoreDescendentsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#IsRegion3EmptyWithIgnoreList"/>
-        public bool IsRegion3EmptyWithIgnoreList(object? region, IReadOnlyList<Instance> ignoreDescendentsTable)
+        public bool IsRegion3EmptyWithIgnoreList(global::Roblox.Region3? region, IReadOnlyList<Instance> ignoreDescendentsTable)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsRegion3EmptyWithIgnoreList", region, ignoreDescendentsTable);
 
         /// <summary>
         /// Casts a ray using an origin, direction, and optional RaycastParams, then returns a RaycastResult if an eligible object or terrain intersects the ray.
         /// </summary>
-        /// <param name="origin">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="origin">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="raycastParams">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#Raycast"/>
-        public object? Raycast(global::System.Numerics.Vector3 origin, global::System.Numerics.Vector3 direction, object? raycastParams)
+        public object? Raycast(global::Roblox.Vector3? origin, global::Roblox.Vector3? direction, object? raycastParams)
             => global::Roblox.Reflection.Invoke<object?>(this, "Raycast", origin, direction, raycastParams);
 
         /// <summary>
         /// <c>WorldRoot.RaycastCachedTerrain</c>
         /// </summary>
         /// <param name="id">A <c>string?</c> value.</param>
-        /// <param name="origin">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="origin">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="ignoreWater">A <c>bool</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RaycastCachedTerrain(string? id, global::System.Numerics.Vector3 origin, global::System.Numerics.Vector3 direction, bool ignoreWater)
+        public object? RaycastCachedTerrain(string? id, global::Roblox.Vector3? origin, global::Roblox.Vector3? direction, bool ignoreWater)
             => global::Roblox.Reflection.Invoke<object?>(this, "RaycastCachedTerrain", id, origin, direction, ignoreWater);
 
         /// <summary>
         /// <c>WorldRoot.SetInsertPoint</c>
         /// </summary>
-        /// <param name="point">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetInsertPoint(global::System.Numerics.Vector3 point)
+        public object? SetInsertPoint(global::Roblox.Vector3? point)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetInsertPoint", point);
 
         /// <summary>
         /// <c>WorldRoot.Shapecast</c>
         /// </summary>
         /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="params">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#Shapecast"/>
-        public object? Shapecast(BasePart? part, global::System.Numerics.Vector3 direction, object? @params)
+        public object? Shapecast(BasePart? part, global::Roblox.Vector3? direction, object? @params)
             => global::Roblox.Reflection.Invoke<object?>(this, "Shapecast", part, direction, @params);
 
         /// <summary>
         /// Casts a spherical shape in a given direction and returns a RaycastResult if the shape hits a BasePart or Terrain cell.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="params">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#Spherecast"/>
-        public object? Spherecast(global::System.Numerics.Vector3 position, float radius, global::System.Numerics.Vector3 direction, object? @params)
+        public object? Spherecast(global::Roblox.Vector3? position, float radius, global::Roblox.Vector3? direction, object? @params)
             => global::Roblox.Reflection.Invoke<object?>(this, "Spherecast", position, radius, direction, @params);
 
         /// <summary>

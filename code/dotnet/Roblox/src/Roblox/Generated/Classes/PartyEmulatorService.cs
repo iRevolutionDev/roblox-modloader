@@ -93,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PartyEmulatorService.ConfigurationChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="configuration">A <c>object?</c> value.</param>
         public event Action<object?>? ConfigurationChanged

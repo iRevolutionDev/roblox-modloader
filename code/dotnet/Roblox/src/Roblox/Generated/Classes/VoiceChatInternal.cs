@@ -225,10 +225,6 @@ namespace Roblox
         public bool IsVoiceEnabledForUserIdAsync(long userId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsVoiceEnabledForUserIdAsync", userId);
 
-        /// <summary>
-        /// <c>VoiceChatInternal.LocalPlayerModerated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? LocalPlayerModerated
         {
             add { if (value is not null) AddEventHandler("LocalPlayerModerated", value); }
@@ -237,7 +233,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VoiceChatInternal.ParticipantsStateChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="participantsLeft">A <c>object?</c> value.</param>
         /// <param name="participantsJoined">A <c>object?</c> value.</param>
@@ -250,7 +245,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VoiceChatInternal.PlayerMicActivitySignalChange</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="activityInfo">A <c>object?</c> value.</param>
         public event Action<object?>? PlayerMicActivitySignalChange
@@ -261,7 +255,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VoiceChatInternal.StateChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="old">A <c>Enum.VoiceChatState</c> value.</param>
         /// <param name="new">A <c>Enum.VoiceChatState</c> value.</param>
@@ -271,10 +264,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("StateChanged", value); }
         }
 
-        /// <summary>
-        /// <c>VoiceChatInternal.TempSetMicMutedToggleMic</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? TempSetMicMutedToggleMic
         {
             add { if (value is not null) AddEventHandler("TempSetMicMutedToggleMic", value); }

@@ -29,10 +29,10 @@ namespace Roblox
         /// Background color of bubbles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#BackgroundColor3"/>
-        public object? BackgroundColor3
+        public global::Roblox.Color3? BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Roblox
         /// Color of bubble text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#TextColor3"/>
-        public object? TextColor3
+        public global::Roblox.Color3? TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
         }
 
         /// <summary>

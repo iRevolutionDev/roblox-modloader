@@ -75,10 +75,10 @@ namespace Roblox
         /// Gets the original source resolution of the VideoFrame.Video file.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Resolution"/>
-        public global::System.Numerics.Vector2 Resolution
+        public global::Roblox.Vector2? Resolution
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Resolution");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Resolution", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Resolution");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Resolution", value);
         }
 
         /// <summary>
@@ -187,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the VideoFrame.Video loops.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#DidLoop"/>
@@ -199,7 +198,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the VideoFrame.Video has completed playback and stopped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Ended"/>
@@ -211,7 +209,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the VideoFrame.Video is loaded.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Loaded"/>
@@ -223,7 +220,6 @@ namespace Roblox
 
         /// <summary>
         /// This event fires whenever the VideoFrame.Video is paused using VideoFrame:Pause() or by setting VideoFrame.Playing to false.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Paused"/>
@@ -235,7 +231,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the VideoFrame.Video is played using the VideoFrame:Play() function or by setting VideoFrame.Playing to true.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="video">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Played"/>

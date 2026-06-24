@@ -98,7 +98,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ThirdPartyUserService.ActiveUserSignedOut</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="signOutStatus">A <c>int</c> value.</param>
         public event Action<int>? ActiveUserSignedOut

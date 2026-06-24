@@ -29,10 +29,10 @@ namespace Roblox
         /// Determines the colorization to be applied to the ShirtGraphic texture.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ShirtGraphic#Color3"/>
-        public object? Color3
+        public global::Roblox.Color3? Color3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
         }
 
         /// <summary>

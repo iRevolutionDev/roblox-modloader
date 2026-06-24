@@ -186,7 +186,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestId">A <c>string?</c> value.</param>
         /// <param name="annotation">A <c>Annotation?</c> value.</param>
@@ -199,7 +198,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationDeleted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestId">A <c>string?</c> value.</param>
         /// <param name="annotation">A <c>Annotation?</c> value.</param>
@@ -211,7 +209,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationEdited</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestId">A <c>string?</c> value.</param>
         /// <param name="uniqueId">A <c>string?</c> value.</param>
@@ -225,7 +222,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationResolved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestId">A <c>string?</c> value.</param>
         /// <param name="annotation">A <c>Annotation?</c> value.</param>
@@ -238,7 +234,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.ServerLoadAnnotationReplies</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="annotation">A <c>Annotation?</c> value.</param>
         /// <param name="reverseOrder">A <c>bool</c> value.</param>
@@ -251,7 +246,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.ServerLoadAnnotations</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="resolved">A <c>bool</c> value.</param>
         public event Action<bool>? ServerLoadAnnotations
@@ -262,7 +256,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AnnotationsService.ServerLoadResolvedAnnotations</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="count">A <c>int</c> value.</param>
         public event Action<int>? ServerLoadResolvedAnnotations

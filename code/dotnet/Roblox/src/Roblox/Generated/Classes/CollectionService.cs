@@ -110,7 +110,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item has been superseded by a CollectionService tagging method. There is currently no means of checking when a tag is added.Fires when a Configuration, CustomEvent, CustomEventReceiver, Dialog, or VehicleSeat is added to the DataModel.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemAdded"/>
@@ -122,7 +121,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item has been superseded by a CollectionService tagging method. There is currently no means of checking when a tag is removed.Fires when a Configuration, CustomEvent, CustomEventReceiver, Dialog, or VehicleSeat is removed from the DataModel.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemRemoved"/>
@@ -134,7 +132,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a tag is added to an instance and the added tag is the only occurrence of that tag in the place.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="tag">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#TagAdded"/>
@@ -146,7 +143,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a tag is removed from an instance and the removed tag is no longer used anywhere in the place.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="tag">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#TagRemoved"/>

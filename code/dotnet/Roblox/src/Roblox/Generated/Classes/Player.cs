@@ -311,6 +311,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "LocaleId", value);
         }
 
+        /// <summary>
+        /// <c>Player.MaximumSimulationRadius</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#MaximumSimulationRadius"/>
         public float MaximumSimulationRadius
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "MaximumSimulationRadius");
@@ -389,6 +393,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<SpawnLocation?>(this, "RespawnLocation", value);
         }
 
+        /// <summary>
+        /// <c>Player.SimulationRadius</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SimulationRadius"/>
         public float SimulationRadius
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "SimulationRadius");
@@ -497,10 +505,10 @@ namespace Roblox
         /// <summary>
         /// <c>Player.AddReplicationFocusPosition</c>
         /// </summary>
-        /// <param name="center">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="radius">A <c>int</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddReplicationFocusPosition(global::System.Numerics.Vector3 center, int radius)
+        public object? AddReplicationFocusPosition(global::Roblox.Vector3? center, int radius)
             => global::Roblox.Reflection.Invoke<object?>(this, "AddReplicationFocusPosition", center, radius);
 
         /// <summary>
@@ -530,11 +538,25 @@ namespace Roblox
         /// <summary>
         /// Returns the distance between the character's head and the given Vector3, or 0 if the player has no character.
         /// </summary>
-        /// <param name="point">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DistanceFromCharacter"/>
-        public float DistanceFromCharacter(global::System.Numerics.Vector3 point)
+        public float DistanceFromCharacter(global::Roblox.Vector3? point)
             => global::Roblox.Reflection.Invoke<float>(this, "DistanceFromCharacter", point);
+
+        /// <summary>
+        /// <c>Player.GetBlockListInitialized</c>
+        /// </summary>
+        /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        public bool GetBlockListInitialized()
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetBlockListInitialized");
+
+        /// <summary>
+        /// <c>Player.GetCameraState</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? GetCameraState()
+            => global::Roblox.Reflection.Invoke<object?>(this, "GetCameraState");
 
         /// <summary>
         /// <c>Player.GetData</c>
@@ -583,6 +605,20 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<float>(this, "GetNetworkPing");
 
         /// <summary>
+        /// <c>Player.GetSeatRequested</c>
+        /// </summary>
+        /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
+        public Instance? GetSeatRequested()
+            => global::Roblox.Reflection.Invoke<Instance?>(this, "GetSeatRequested");
+
+        /// <summary>
+        /// <c>Player.GetToolRequested</c>
+        /// </summary>
+        /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
+        public Instance? GetToolRequested()
+            => global::Roblox.Reflection.Invoke<Instance?>(this, "GetToolRequested");
+
+        /// <summary>
         /// <c>Player.GetUnder13</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
@@ -596,6 +632,14 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#HasAppearanceLoaded"/>
         public bool HasAppearanceLoaded()
             => global::Roblox.Reflection.Invoke<bool>(this, "HasAppearanceLoaded");
+
+        /// <summary>
+        /// <c>Player.HasBlockedPlayer</c>
+        /// </summary>
+        /// <param name="fromPlayer">A <c>long</c> value.</param>
+        /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        public bool HasBlockedPlayer(long fromPlayer)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasBlockedPlayer", fromPlayer);
 
         /// <summary>
         /// Returns whether the player is verified with concrete, real-world signals.
@@ -669,11 +713,11 @@ namespace Roblox
         /// <summary>
         /// Causes the player's character to walk in the given direction until stopped, or interrupted by the player (by using their controls).
         /// </summary>
-        /// <param name="walkDirection">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="walkDirection">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="relativeToCamera">A <c>bool</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Move"/>
-        public object? Move(global::System.Numerics.Vector3 walkDirection, bool relativeToCamera)
+        public object? Move(global::Roblox.Vector3? walkDirection, bool relativeToCamera)
             => global::Roblox.Reflection.Invoke<object?>(this, "Move", walkDirection, relativeToCamera);
 
         /// <summary>
@@ -729,10 +773,10 @@ namespace Roblox
         /// <summary>
         /// <c>Player.RemoveReplicationFocusPosition</c>
         /// </summary>
-        /// <param name="center">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="radius">A <c>int</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveReplicationFocusPosition(global::System.Numerics.Vector3 center, int radius)
+        public object? RemoveReplicationFocusPosition(global::Roblox.Vector3? center, int radius)
             => global::Roblox.Reflection.Invoke<object?>(this, "RemoveReplicationFocusPosition", center, radius);
 
         /// <summary>
@@ -742,6 +786,22 @@ namespace Roblox
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         public object? RequestFriendship(Player? player)
             => global::Roblox.Reflection.Invoke<object?>(this, "RequestFriendship", player);
+
+        /// <summary>
+        /// <c>Player.RequestSeat</c>
+        /// </summary>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? RequestSeat(Instance? instance)
+            => global::Roblox.Reflection.Invoke<object?>(this, "RequestSeat", instance);
+
+        /// <summary>
+        /// <c>Player.RequestTool</c>
+        /// </summary>
+        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? RequestTool(Instance? instance)
+            => global::Roblox.Reflection.Invoke<object?>(this, "RequestTool", instance);
 
         /// <summary>
         /// <c>Player.RevokeFriendship</c>
@@ -940,7 +1000,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<int>(this, "GetRankInGroup", groupId);
 
         /// <summary>
-        /// Deprecated: This method only returns a single role rank and may produce arbitrary results when a user holds multiple roles. Use GroupService:GetRolesInGroupAsync() instead, which returns all roles.Returns the player's rank in the group as an integer.
+        /// Returns the player's rank in the group as an integer.
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
@@ -958,7 +1018,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<string?>(this, "GetRoleInGroup", groupId);
 
         /// <summary>
-        /// Deprecated: This method only returns a single role name and may produce arbitrary results when a user holds multiple roles. Use GroupService:GetRolesInGroupAsync() instead, which returns all roles.Returns the player's role in the group as a string, or Guest if the player isn't part of the group.
+        /// Returns the player's role in the group as a string, or Guest if the player isn't part of the group.
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <returns>A <c>string?</c> value returned by the engine.</returns>
@@ -1072,11 +1132,11 @@ namespace Roblox
         /// <summary>
         /// Requests that the server stream to the player around the specified location.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="timeOut">A <c>double</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#RequestStreamAroundAsync"/>
-        public object? RequestStreamAroundAsync(global::System.Numerics.Vector3 position, double timeOut)
+        public object? RequestStreamAroundAsync(global::Roblox.Vector3? position, double timeOut)
             => global::Roblox.Reflection.Invoke<object?>(this, "RequestStreamAroundAsync", position, timeOut);
 
         /// <summary>
@@ -1087,9 +1147,14 @@ namespace Roblox
         public bool WaitForDataReady()
             => global::Roblox.Reflection.Invoke<bool>(this, "WaitForDataReady");
 
+        public event Action? BlockListChanged
+        {
+            add { if (value is not null) AddEventHandler("BlockListChanged", value); }
+            remove { if (value is not null) RemoveEventHandler("BlockListChanged", value); }
+        }
+
         /// <summary>
         /// Fires when a player's character spawns or respawns.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="character">A <c>Model?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAdded"/>
@@ -1101,7 +1166,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the full appearance of a Character has been inserted.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="character">A <c>Model?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAppearanceLoaded"/>
@@ -1113,7 +1177,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires right before a player's character is removed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="character">A <c>Model?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterRemoving"/>
@@ -1125,7 +1188,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player chats in experience using Roblox's provided chat bar.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
         /// <param name="recipient">A <c>Player?</c> value.</param>
@@ -1138,7 +1200,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Player.CloudEditSelectionChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newSelection">A <c>object?</c> value.</param>
         public event Action<object?>? CloudEditSelectionChanged
@@ -1149,7 +1210,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Player.FriendStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <param name="friendStatus">A <c>Enum.FriendStatus</c> value.</param>
@@ -1161,7 +1221,6 @@ namespace Roblox
 
         /// <summary>
         /// This event fires approximately two minutes after the engine classifies the player as idle. Time is the number of seconds that have elapsed since that point.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="time">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Idled"/>
@@ -1173,7 +1232,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Player.InstancePinned</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="uniqueIdString">A <c>string?</c> value.</param>
         /// <param name="depth">A <c>int</c> value.</param>
@@ -1185,7 +1243,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Player.InstanceUnpinned</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="uniqueIdString">A <c>string?</c> value.</param>
         /// <param name="depth">A <c>int</c> value.</param>
@@ -1197,7 +1254,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the teleport state of a player changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="teleportState">A <c>Enum.TeleportState</c> value.</param>
         /// <param name="placeId">A <c>long</c> value.</param>
@@ -1211,7 +1267,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Player.SimulationRadiusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="radius">A <c>float</c> value.</param>
         public event Action<float>? SimulationRadiusChanged
@@ -1222,7 +1277,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Player.StreamingPinComplete</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? StreamingPinComplete

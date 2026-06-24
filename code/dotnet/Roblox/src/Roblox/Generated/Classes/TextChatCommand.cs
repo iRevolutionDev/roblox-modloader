@@ -67,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// An event that developers can bind to execute commands.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="originTextSource">A <c>TextSource?</c> value.</param>
         /// <param name="unfilteredText">A <c>string?</c> value.</param>

@@ -123,7 +123,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceService.OnCrossExperienceStarted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="type">A <c>string?</c> value.</param>
         /// <param name="params">A <c>object?</c> value.</param>
@@ -135,7 +134,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceService.OnCrossExperienceStopped</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="type">A <c>string?</c> value.</param>
         /// <param name="params">A <c>object?</c> value.</param>
@@ -147,7 +145,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceService.OnNewJoinAttempt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="params">A <c>object?</c> value.</param>
         public event Action<object?>? OnNewJoinAttempt
@@ -158,7 +155,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceService.PlaceJoinStateChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="state">A <c>string?</c> value.</param>
         public event Action<string?>? PlaceJoinStateChanged
@@ -169,7 +165,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceService.QueuePositionChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="position">A <c>int</c> value.</param>
         public event Action<int>? QueuePositionChanged

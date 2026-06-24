@@ -29,10 +29,10 @@ namespace Roblox
         /// Controls the material color of cloud particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Color"/>
-        public object? Color
+        public global::Roblox.Color3? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
         }
 
         /// <summary>

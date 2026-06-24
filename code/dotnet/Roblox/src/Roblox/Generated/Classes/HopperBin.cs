@@ -61,7 +61,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HopperBin.Deselected</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#Deselected"/>
         public event Action? Deselected
@@ -72,7 +71,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HopperBin.Selected</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="mouse">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#Selected"/>

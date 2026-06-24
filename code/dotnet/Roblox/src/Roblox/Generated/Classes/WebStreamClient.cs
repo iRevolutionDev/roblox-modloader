@@ -54,7 +54,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>WebStreamClient.Closed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Closed"/>
         public event Action? Closed
@@ -65,7 +64,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires if an error is received while establishing the connection or during the connection lifetime.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="responseStatusCode">A <c>int</c> value.</param>
         /// <param name="errorMessage">A <c>string?</c> value.</param>
@@ -78,7 +76,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires each time a message is received from the server.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#MessageReceived"/>
@@ -90,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the a connection is successfully established between the client and server, allowing for events to begin streaming.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="responseStatusCode">A <c>int</c> value.</param>
         /// <param name="headers">A <c>string?</c> value.</param>

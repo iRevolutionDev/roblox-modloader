@@ -104,7 +104,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BadgeService.BadgeAwarded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
         /// <param name="userId">A <c>long</c> value.</param>
@@ -117,7 +116,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BadgeService.OnBadgeAwarded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="creatorId">A <c>long</c> value.</param>

@@ -532,10 +532,6 @@ namespace Roblox
         public bool HasOverrideFACSData()
             => global::Roblox.Reflection.Invoke<bool>(this, "HasOverrideFACSData");
 
-        /// <summary>
-        /// <c>FaceControls.InternalFacsOverrideChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? InternalFacsOverrideChanged
         {
             add { if (value is not null) AddEventHandler("InternalFacsOverrideChanged", value); }

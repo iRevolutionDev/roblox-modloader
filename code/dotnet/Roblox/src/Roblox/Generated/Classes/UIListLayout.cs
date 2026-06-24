@@ -49,10 +49,10 @@ namespace Roblox
         /// Amount of free space between each element.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#Padding"/>
-        public object? Padding
+        public global::Roblox.UDim? Padding
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Padding");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Padding", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "Padding");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "Padding", value);
         }
 
         /// <summary>

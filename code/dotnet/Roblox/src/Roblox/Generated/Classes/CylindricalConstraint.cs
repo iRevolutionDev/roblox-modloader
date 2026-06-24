@@ -189,10 +189,10 @@ namespace Roblox
         /// The unit vector direction of the rotation axis in world coordinates.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#WorldRotationAxis"/>
-        public global::System.Numerics.Vector3 WorldRotationAxis
+        public global::Roblox.Vector3? WorldRotationAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldRotationAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldRotationAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldRotationAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldRotationAxis", value);
         }
 
     }

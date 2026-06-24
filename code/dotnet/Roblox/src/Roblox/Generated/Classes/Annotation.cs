@@ -25,10 +25,10 @@ namespace Roblox
         public static Annotation? FromHandle(nuint handle)
             => handle == 0 ? null : new Annotation(handle);
 
-        public object? AuthorColor3
+        public global::Roblox.Color3? AuthorColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "AuthorColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "AuthorColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "AuthorColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "AuthorColor3", value);
         }
 
         public long AuthorId
@@ -108,7 +108,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Annotation.RequestCompleted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestId">A <c>string?</c> value.</param>
         /// <param name="requestType">A <c>Enum.AnnotationRequestType</c> value.</param>
@@ -121,7 +120,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Annotation.RequestInitiated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestId">A <c>string?</c> value.</param>
         /// <param name="requestType">A <c>Enum.AnnotationRequestType</c> value.</param>

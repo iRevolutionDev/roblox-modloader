@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player bearing an opposing flag, and having the same Player.TeamColor as the stand, touches the FlagStand.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlagStand#FlagCaptured"/>

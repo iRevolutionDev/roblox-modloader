@@ -25,28 +25,36 @@ namespace Roblox
         public static AnimationConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationConstraint(handle);
 
+        /// <summary>
+        /// Damping ratio for the rotational part of the constraint. Higher values reduce oscillation around the target orientation.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#AngularDamping"/>
         public float AngularDamping
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "AngularDamping");
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularDamping", value);
         }
 
+        /// <summary>
+        /// Controls how rigidly the constraint enforces the rotational part of its target Transform. Higher values track the target orientation more stiffly.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#AngularStrength"/>
         public float AngularStrength
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "AngularStrength");
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularStrength", value);
         }
 
-        public object? C0
+        public global::Roblox.CFrame? C0
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "C0");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "C0", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "C0");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "C0", value);
         }
 
-        public object? C1
+        public global::Roblox.CFrame? C1
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "C1");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "C1", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "C1");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "C1", value);
         }
 
         /// <summary>
@@ -59,12 +67,20 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsKinematic", value);
         }
 
+        /// <summary>
+        /// Damping ratio for the translational part of the constraint. Higher values reduce oscillation around the target position.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#LinearDamping"/>
         public float LinearDamping
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "LinearDamping");
             set => global::Roblox.Reflection.SetProperty<float>(this, "LinearDamping", value);
         }
 
+        /// <summary>
+        /// Controls how rigidly the constraint enforces the translational part of its target Transform. Higher values track the target position more stiffly.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#LinearStrength"/>
         public float LinearStrength
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "LinearStrength");
@@ -107,10 +123,10 @@ namespace Roblox
         /// Describes the current animation offset of the constraint joint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#Transform"/>
-        public object? Transform
+        public global::Roblox.CFrame? Transform
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Transform");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Transform", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Transform");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Transform", value);
         }
 
     }

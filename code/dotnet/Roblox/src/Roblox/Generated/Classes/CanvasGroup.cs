@@ -29,10 +29,10 @@ namespace Roblox
         /// Color tint that applies to all descendants.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CanvasGroup#GroupColor3"/>
-        public object? GroupColor3
+        public global::Roblox.Color3? GroupColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "GroupColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "GroupColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "GroupColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "GroupColor3", value);
         }
 
         /// <summary>

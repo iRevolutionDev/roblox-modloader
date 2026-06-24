@@ -153,10 +153,10 @@ namespace Roblox
         /// Used to determine the absolute size and position of unobstructed area within top bar space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#TopbarInset"/>
-        public object? TopbarInset
+        public global::Roblox.Rect? TopbarInset
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TopbarInset");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TopbarInset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "TopbarInset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "TopbarInset", value);
         }
 
         /// <summary>
@@ -179,10 +179,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize", value);
         }
 
-        public global::System.Numerics.Vector2 ViewportSizeInMM
+        public global::Roblox.Vector2? ViewportSizeInMM
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ViewportSizeInMM");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "ViewportSizeInMM", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ViewportSizeInMM");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ViewportSizeInMM", value);
         }
 
         /// <summary>
@@ -291,17 +291,17 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.GetClosestDialogToPosition</c>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? GetClosestDialogToPosition(global::System.Numerics.Vector3 position)
+        public Instance? GetClosestDialogToPosition(global::Roblox.Vector3? position)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetClosestDialogToPosition", position);
 
         /// <summary>
         /// <c>GuiService.GetClosestVisibleDialogToPosition</c>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>Dialog?</c> value returned by the engine.</returns>
-        public Dialog? GetClosestVisibleDialogToPosition(global::System.Numerics.Vector3 position)
+        public Dialog? GetClosestVisibleDialogToPosition(global::Roblox.Vector3? position)
             => global::Roblox.Reflection.Invoke<Dialog?>(this, "GetClosestVisibleDialogToPosition", position);
 
         /// <summary>
@@ -367,18 +367,18 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.GetHardwareSafeViewport</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector2 GetHardwareSafeViewport()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetHardwareSafeViewport");
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2? GetHardwareSafeViewport()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetHardwareSafeViewport");
 
         /// <summary>
         /// Takes an ScreenInsets value and returns a Rect describing the inset region, relative to the CoreUISafeInsets area.
         /// </summary>
         /// <param name="screenInsets">A <c>Enum.ScreenInsets</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Rect?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#GetInsetArea"/>
-        public object? GetInsetArea(Enum.ScreenInsets screenInsets)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInsetArea", screenInsets);
+        public global::Roblox.Rect? GetInsetArea(Enum.ScreenInsets screenInsets)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Rect?>(this, "GetInsetArea", screenInsets);
 
         /// <summary>
         /// Returns whether the avatar inspection menu is enabled.
@@ -554,11 +554,11 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.SendUIOcclusionMetricsForQueryRegion</c>
         /// </summary>
-        /// <param name="position">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>object?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.UDim2?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.UDim2?</c> value.</param>
         /// <param name="regionName">A <c>string?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendUIOcclusionMetricsForQueryRegion(object? position, object? size, string? regionName)
+        public object? SendUIOcclusionMetricsForQueryRegion(global::Roblox.UDim2? position, global::Roblox.UDim2? size, string? regionName)
             => global::Roblox.Reflection.Invoke<object?>(this, "SendUIOcclusionMetricsForQueryRegion", position, size, regionName);
 
         /// <summary>
@@ -641,9 +641,9 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.SetTopbarInset</c>
         /// </summary>
-        /// <param name="topbarInset">A <c>object?</c> value.</param>
+        /// <param name="topbarInset">A <c>global::Roblox.Rect?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTopbarInset(object? topbarInset)
+        public object? SetTopbarInset(global::Roblox.Rect? topbarInset)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetTopbarInset", topbarInset);
 
         /// <summary>
@@ -689,34 +689,22 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.GetScreenResolution</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector2 GetScreenResolution()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetScreenResolution");
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2? GetScreenResolution()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetScreenResolution");
 
-        /// <summary>
-        /// <c>GuiService.BrowserWindowClosed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? BrowserWindowClosed
         {
             add { if (value is not null) AddEventHandler("BrowserWindowClosed", value); }
             remove { if (value is not null) RemoveEventHandler("BrowserWindowClosed", value); }
         }
 
-        /// <summary>
-        /// <c>GuiService.CloseInspectMenuRequest</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? CloseInspectMenuRequest
         {
             add { if (value is not null) AddEventHandler("CloseInspectMenuRequest", value); }
             remove { if (value is not null) RemoveEventHandler("CloseInspectMenuRequest", value); }
         }
 
-        /// <summary>
-        /// <c>GuiService.CoreGuiRenderOverflowed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? CoreGuiRenderOverflowed
         {
             add { if (value is not null) AddEventHandler("CoreGuiRenderOverflowed", value); }
@@ -725,7 +713,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.EmotesMenuOpenChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isOpen">A <c>bool</c> value.</param>
         public event Action<bool>? EmotesMenuOpenChanged
@@ -736,7 +723,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.ErrorMessageChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newErrorMessage">A <c>string?</c> value.</param>
         public event Action<string?>? ErrorMessageChanged
@@ -747,7 +733,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.GuiVisibilityChangedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="guiType">A <c>Enum.GuiType</c> value.</param>
         /// <param name="visible">A <c>bool</c> value.</param>
@@ -759,7 +744,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.InspectMenuEnabledChangedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
         public event Action<bool>? InspectMenuEnabledChangedSignal
@@ -770,7 +754,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.InspectPlayerFromHumanoidDescriptionRequest</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="humanoidDescription">A <c>Instance?</c> value.</param>
         /// <param name="name">A <c>string?</c> value.</param>
@@ -782,7 +765,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.InspectPlayerFromUserIdWithCtxRequest</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="ctx">A <c>string?</c> value.</param>
@@ -794,7 +776,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.KeyPressed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="key">A <c>string?</c> value.</param>
         /// <param name="modifiers">A <c>string?</c> value.</param>
@@ -806,7 +787,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user closes the Roblox CoreGui escape menu.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#MenuClosed"/>
         public event Action? MenuClosed
@@ -817,7 +797,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user opens the Roblox CoreGui escape menu.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#MenuOpened"/>
         public event Action? MenuOpened
@@ -826,10 +805,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("MenuOpened", value); }
         }
 
-        /// <summary>
-        /// <c>GuiService.NativeClose</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? NativeClose
         {
             add { if (value is not null) AddEventHandler("NativeClose", value); }
@@ -838,7 +813,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.NetworkPausedEnabledChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
         public event Action<bool>? NetworkPausedEnabledChanged
@@ -849,7 +823,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.Open9SliceEditor</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="selectedImageObject">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? Open9SliceEditor
@@ -860,7 +833,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.OpenStyleEditor</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="styleBase">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? OpenStyleEditor
@@ -869,30 +841,18 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("OpenStyleEditor", value); }
         }
 
-        /// <summary>
-        /// <c>GuiService.PurchasePromptShown</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? PurchasePromptShown
         {
             add { if (value is not null) AddEventHandler("PurchasePromptShown", value); }
             remove { if (value is not null) RemoveEventHandler("PurchasePromptShown", value); }
         }
 
-        /// <summary>
-        /// <c>GuiService.SafeZoneOffsetsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? SafeZoneOffsetsChanged
         {
             add { if (value is not null) AddEventHandler("SafeZoneOffsetsChanged", value); }
             remove { if (value is not null) RemoveEventHandler("SafeZoneOffsetsChanged", value); }
         }
 
-        /// <summary>
-        /// <c>GuiService.ShowLeaveConfirmation</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ShowLeaveConfirmation
         {
             add { if (value is not null) AddEventHandler("ShowLeaveConfirmation", value); }
@@ -901,7 +861,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.SpecialKeyPressed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="key">A <c>Enum.SpecialKey</c> value.</param>
         /// <param name="modifiers">A <c>string?</c> value.</param>
@@ -913,7 +872,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiService.UiMessageChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="msgType">A <c>Enum.UiMessageType</c> value.</param>
         /// <param name="newUiMessage">A <c>string?</c> value.</param>

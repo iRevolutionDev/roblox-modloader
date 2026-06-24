@@ -55,6 +55,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "AudioInteractionGroup", value);
         }
 
+        public Enum.SimulationMode DiffractionEnabled
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "DiffractionEnabled");
+            set => global::Roblox.Reflection.SetProperty<Enum.SimulationMode>(this, "DiffractionEnabled", value);
+        }
+
         /// <summary>
         /// Represents how the perceived volume of emitted sounds change as the distance between AudioEmitters and the AudioListener increases.
         /// </summary>
@@ -65,10 +71,36 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "DistanceAttenuation", value);
         }
 
-        public Instance? PositionOverride
+        public Enum.SimulationMode OcclusionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "PositionOverride");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "PositionOverride", value);
+            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "OcclusionEnabled");
+            set => global::Roblox.Reflection.SetProperty<Enum.SimulationMode>(this, "OcclusionEnabled", value);
+        }
+
+        /// <summary>
+        /// The Instance whose position and orientation is used as the listener's position if PositionType is set to ListenerPositionType.Instance.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#PositionInstance"/>
+        public Instance? PositionInstance
+        {
+            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "PositionInstance");
+            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "PositionInstance", value);
+        }
+
+        /// <summary>
+        /// Determines how the AudioListener determines its 3D location.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#PositionType"/>
+        public Enum.ListenerPositionType PositionType
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.ListenerPositionType>(this, "PositionType");
+            set => global::Roblox.Reflection.SetProperty<Enum.ListenerPositionType>(this, "PositionType", value);
+        }
+
+        public Enum.SimulationMode ReverbEnabled
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "ReverbEnabled");
+            set => global::Roblox.Reflection.SetProperty<Enum.SimulationMode>(this, "ReverbEnabled", value);
         }
 
         /// <summary>
@@ -166,7 +198,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioListener via a Wire.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
         /// <param name="pin">A <c>string?</c> value.</param>

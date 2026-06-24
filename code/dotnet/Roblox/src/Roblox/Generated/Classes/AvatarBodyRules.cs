@@ -45,10 +45,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCustomBodyType>(this, "CustomBodyType", value);
         }
 
-        public object? CustomBodyTypeScale
+        public global::Roblox.NumberRange? CustomBodyTypeScale
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomBodyTypeScale");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomBodyTypeScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomBodyTypeScale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomBodyTypeScale", value);
         }
 
         public bool CustomEyebrowEnabled
@@ -99,22 +99,22 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomHeadId", value);
         }
 
-        public object? CustomHeadScale
+        public global::Roblox.NumberRange? CustomHeadScale
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomHeadScale");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomHeadScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomHeadScale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomHeadScale", value);
         }
 
-        public object? CustomHeight
+        public global::Roblox.NumberRange? CustomHeight
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomHeight");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomHeight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomHeight");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomHeight", value);
         }
 
-        public object? CustomHeightScale
+        public global::Roblox.NumberRange? CustomHeightScale
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomHeightScale");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomHeightScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomHeightScale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomHeightScale", value);
         }
 
         public bool CustomLeftArmEnabled
@@ -153,10 +153,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomMoodId", value);
         }
 
-        public object? CustomProportionsScale
+        public global::Roblox.NumberRange? CustomProportionsScale
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomProportionsScale");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomProportionsScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomProportionsScale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomProportionsScale", value);
         }
 
         public bool CustomRightArmEnabled
@@ -195,10 +195,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomTorsoId", value);
         }
 
-        public object? CustomWidthScale
+        public global::Roblox.NumberRange? CustomWidthScale
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomWidthScale");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomWidthScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomWidthScale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomWidthScale", value);
         }
 
         public bool KeepPlayerHead

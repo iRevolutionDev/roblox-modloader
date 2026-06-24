@@ -119,15 +119,14 @@ namespace Roblox
         /// <summary>
         /// <c>Selection.SetTerrainSelectionHack</c>
         /// </summary>
-        /// <param name="center">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTerrainSelectionHack(global::System.Numerics.Vector3 center, global::System.Numerics.Vector3 size)
+        public object? SetTerrainSelectionHack(global::Roblox.Vector3? center, global::Roblox.Vector3? size)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetTerrainSelectionHack", center, size);
 
         /// <summary>
         /// Fires when the Instances selected in Roblox Studio changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#SelectionChanged"/>
         public event Action? SelectionChanged
@@ -136,10 +135,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("SelectionChanged", value); }
         }
 
-        /// <summary>
-        /// <c>Selection.SelectionChangedThisFrame</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? SelectionChangedThisFrame
         {
             add { if (value is not null) AddEventHandler("SelectionChangedThisFrame", value); }

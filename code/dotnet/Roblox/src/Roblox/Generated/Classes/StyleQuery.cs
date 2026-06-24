@@ -25,10 +25,10 @@ namespace Roblox
         public static StyleQuery? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleQuery(handle);
 
-        public object? AspectRatioRange
+        public global::Roblox.NumberRange? AspectRatioRange
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "AspectRatioRange");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "AspectRatioRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "AspectRatioRange");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "AspectRatioRange", value);
         }
 
         /// <summary>
@@ -41,16 +41,16 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsActive", value);
         }
 
-        public global::System.Numerics.Vector2 MaxSize
+        public global::Roblox.Vector2? MaxSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MaxSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MaxSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MaxSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MaxSize", value);
         }
 
-        public global::System.Numerics.Vector2 MinSize
+        public global::Roblox.Vector2? MinSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MinSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MinSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MinSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MinSize", value);
         }
 
         public Enum.PreferredInput PreferredInput

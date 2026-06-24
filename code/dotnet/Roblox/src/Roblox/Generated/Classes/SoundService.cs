@@ -71,6 +71,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.ListenerLocation>(this, "DefaultListenerLocation", value);
         }
 
+        public bool DiffractionEnabled
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DiffractionEnabled");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "DiffractionEnabled", value);
+        }
+
         /// <summary>
         /// The number of studs to be considered a meter by SoundService when simulating the Doppler effect for Sounds.
         /// </summary>
@@ -97,22 +103,40 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsNewExpForAudioApiByDefault", value);
         }
 
-        public object? ListenerCFrame
+        /// <summary>
+        /// The CFrame that is used as the listener's position if ListenerType is set to ListenerType.CFrame.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#ListenerCFrame"/>
+        public global::Roblox.CFrame? ListenerCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ListenerCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ListenerCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ListenerCFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ListenerCFrame", value);
         }
 
+        /// <summary>
+        /// The Instance whose translation or coordinate frame is used as the listener's position if ListenerType is set to ListenerType.ObjectPosition or ListenerType.ObjectCFrame.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#ListenerObject"/>
         public Instance? ListenerObject
         {
             get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ListenerObject");
             set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ListenerObject", value);
         }
 
+        /// <summary>
+        /// The current listener type used by 3D Sounds to determine where they will be heard from.
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#ListenerType"/>
         public Enum.ListenerType ListenerType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.ListenerType>(this, "ListenerType");
             set => global::Roblox.Reflection.SetProperty<Enum.ListenerType>(this, "ListenerType", value);
+        }
+
+        public bool OcclusionEnabled
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "OcclusionEnabled");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "OcclusionEnabled", value);
         }
 
         /// <summary>
@@ -123,6 +147,12 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "RespectFilteringEnabled");
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RespectFilteringEnabled", value);
+        }
+
+        public bool ReverbEnabled
+        {
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReverbEnabled");
+            set => global::Roblox.Reflection.SetProperty<bool>(this, "ReverbEnabled", value);
         }
 
         /// <summary>
@@ -322,7 +352,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SoundService.AudioInstanceAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? AudioInstanceAdded
@@ -333,7 +362,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SoundService.DeviceListChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newDevices">A <c>object?</c> value.</param>
         public event Action<object?>? DeviceListChanged
@@ -344,7 +372,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SoundService.OpenAttenuationCurveEditorSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         public event Action<IReadOnlyList<Instance>>? OpenAttenuationCurveEditorSignal
@@ -355,7 +382,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SoundService.OpenAudioCompressorEditorSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="selectedCompressorObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         public event Action<IReadOnlyList<Instance>>? OpenAudioCompressorEditorSignal
@@ -366,7 +392,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SoundService.OpenAudioEqualizerEditorSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="selectedEqualizerObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         public event Action<IReadOnlyList<Instance>>? OpenAudioEqualizerEditorSignal
@@ -377,7 +402,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SoundService.OpenDirectionalCurveEditorSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         public event Action<IReadOnlyList<Instance>>? OpenDirectionalCurveEditorSignal

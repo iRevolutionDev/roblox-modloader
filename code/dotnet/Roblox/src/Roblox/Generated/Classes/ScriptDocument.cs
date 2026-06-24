@@ -181,7 +181,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the ScriptDocument changes, including immediately after a text change.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="positionLine">A <c>long</c> value.</param>
         /// <param name="positionCharacter">A <c>long</c> value.</param>
@@ -196,7 +195,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the displayed line numbers in the editor change.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="startLine">A <c>long</c> value.</param>
         /// <param name="endLine">A <c>long</c> value.</param>

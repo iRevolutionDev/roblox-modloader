@@ -55,7 +55,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires from a LocalScript when either FireClient() or FireAllClients() is called on the same RemoteEvent instance from a Script.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="arguments">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#OnClientEvent"/>
@@ -67,7 +66,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires from a Script when FireServer() is called on the same RemoteEvent instance from a LocalScript.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <param name="arguments">A <c>object?</c> value.</param>

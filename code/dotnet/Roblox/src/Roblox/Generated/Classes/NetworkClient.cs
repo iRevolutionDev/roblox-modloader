@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the client successfully connects to a server. Returns a string showing the server's IP and port, and the client's ClientReplicator.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="peer">A <c>string?</c> value.</param>
         /// <param name="replicator">A <c>Instance?</c> value.</param>
@@ -40,7 +39,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired if the client fails to connect to the server.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="peer">A <c>string?</c> value.</param>
         /// <param name="code">A <c>int</c> value.</param>

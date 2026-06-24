@@ -39,10 +39,10 @@ namespace Roblox
         /// Reports the wind velocity relative to the sensor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AtmosphereSensor#RelativeWindVelocity"/>
-        public global::System.Numerics.Vector3 RelativeWindVelocity
+        public global::Roblox.Vector3? RelativeWindVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "RelativeWindVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "RelativeWindVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RelativeWindVelocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RelativeWindVelocity", value);
         }
 
     }

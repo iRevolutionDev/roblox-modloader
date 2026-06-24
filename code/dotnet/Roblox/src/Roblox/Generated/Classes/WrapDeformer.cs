@@ -46,11 +46,11 @@ namespace Roblox
         /// <summary>
         /// Returns a CFrame deformed comparably to the MeshPart.
         /// </summary>
-        /// <param name="originalCFrame">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="originalCFrame">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapDeformer#GetDeformedCFrameAsync"/>
-        public object? GetDeformedCFrameAsync(object? originalCFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDeformedCFrameAsync", originalCFrame);
+        public global::Roblox.CFrame? GetDeformedCFrameAsync(global::Roblox.CFrame? originalCFrame)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetDeformedCFrameAsync", originalCFrame);
 
     }
 }

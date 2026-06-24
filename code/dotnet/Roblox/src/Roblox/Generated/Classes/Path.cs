@@ -63,16 +63,15 @@ namespace Roblox
         /// <summary>
         /// Computes a Path from a start position to an end position.
         /// </summary>
-        /// <param name="start">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="finish">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="start">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="finish">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#ComputeAsync"/>
-        public object? ComputeAsync(global::System.Numerics.Vector3 start, global::System.Numerics.Vector3 finish)
+        public object? ComputeAsync(global::Roblox.Vector3? start, global::Roblox.Vector3? finish)
             => global::Roblox.Reflection.Invoke<object?>(this, "ComputeAsync", start, finish);
 
         /// <summary>
         /// Fires when the computed path becomes blocked.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="blockedWaypointIdx">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#Blocked"/>
@@ -84,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a computed path that was blocked becomes unblocked.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="unblockedWaypointIdx">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#Unblocked"/>

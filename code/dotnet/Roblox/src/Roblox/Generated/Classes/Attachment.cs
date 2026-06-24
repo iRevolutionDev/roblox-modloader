@@ -29,60 +29,60 @@ namespace Roblox
         /// Direction of the X axis of the attachment, represented as a unit Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Axis"/>
-        public global::System.Numerics.Vector3 Axis
+        public global::Roblox.Vector3? Axis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Axis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Axis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Axis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Axis", value);
         }
 
         /// <summary>
         /// CFrame offset of the attachment.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         /// <summary>
         /// Orientation of the attachment relative to the orientation of its parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Orientation"/>
-        public global::System.Numerics.Vector3 Orientation
+        public global::Roblox.Vector3? Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Orientation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Orientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Orientation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Orientation", value);
         }
 
         /// <summary>
         /// Positional offset of the attachment, relative to the position and orientation of its parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>
         /// Deprecated: This property is deprecated and should not be used in new work. See Orientation instead.Rotation of the attachment relative to the rotation of its parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Rotation"/>
-        public global::System.Numerics.Vector3 Rotation
+        public global::Roblox.Vector3? Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Rotation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Rotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Rotation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Rotation", value);
         }
 
         /// <summary>
         /// Direction of the Y axis of the attachment, represented as a unit Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#SecondaryAxis"/>
-        public global::System.Numerics.Vector3 SecondaryAxis
+        public global::Roblox.Vector3? SecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis", value);
         }
 
         /// <summary>
@@ -99,69 +99,69 @@ namespace Roblox
         /// Direction of the X axis of the attachment relative to the world, represented as a unit Vector3 with a length of 1.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldAxis"/>
-        public global::System.Numerics.Vector3 WorldAxis
+        public global::Roblox.Vector3? WorldAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldAxis", value);
         }
 
         /// <summary>
         /// The exact CFrame of the attachment in world space coordinates.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldCFrame"/>
-        public object? WorldCFrame
+        public global::Roblox.CFrame? WorldCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "WorldCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "WorldCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "WorldCFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "WorldCFrame", value);
         }
 
         /// <summary>
         /// Orientation of the attachment relative to the world rather than its own parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldOrientation"/>
-        public global::System.Numerics.Vector3 WorldOrientation
+        public global::Roblox.Vector3? WorldOrientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldOrientation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldOrientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldOrientation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldOrientation", value);
         }
 
         /// <summary>
         /// Position of the attachment relative to the world rather than its own parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldPosition"/>
-        public global::System.Numerics.Vector3 WorldPosition
+        public global::Roblox.Vector3? WorldPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldPosition");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldPosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldPosition", value);
         }
 
         /// <summary>
         /// Deprecated: This item has been superseded by WorldOrientation which should be used in new work.Rotation of the attachment relative to the world rather than its own parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldRotation"/>
-        public global::System.Numerics.Vector3 WorldRotation
+        public global::Roblox.Vector3? WorldRotation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldRotation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldRotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldRotation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldRotation", value);
         }
 
         /// <summary>
         /// Direction of the Y axis of the attachment relative to the world, represented as a unit Vector3 with a length of 1.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldSecondaryAxis"/>
-        public global::System.Numerics.Vector3 WorldSecondaryAxis
+        public global::Roblox.Vector3? WorldSecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldSecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldSecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldSecondaryAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldSecondaryAxis", value);
         }
 
         /// <summary>
         /// Deprecated: This method is deprecated and should not be used in new work.Returns the value of the attachment's Axis.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#GetAxis"/>
-        public global::System.Numerics.Vector3 GetAxis()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetAxis");
+        public global::Roblox.Vector3? GetAxis()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetAxis");
 
         /// <summary>
         /// Returns a list of Constraints connected to the attachment.
@@ -174,27 +174,27 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This method is deprecated and should not be used in new work.Returns the value of the attachment's SecondaryAxis.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#GetSecondaryAxis"/>
-        public global::System.Numerics.Vector3 GetSecondaryAxis()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetSecondaryAxis");
+        public global::Roblox.Vector3? GetSecondaryAxis()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetSecondaryAxis");
 
         /// <summary>
         /// Deprecated: This method is deprecated and should not be used in new work.Sets the value of the attachment's Axis.
         /// </summary>
-        /// <param name="axis">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="axis">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#SetAxis"/>
-        public object? SetAxis(global::System.Numerics.Vector3 axis)
+        public object? SetAxis(global::Roblox.Vector3? axis)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetAxis", axis);
 
         /// <summary>
         /// Deprecated: This method is deprecated and should not be used in new work.Sets the value of the attachment's SecondaryAxis.
         /// </summary>
-        /// <param name="axis">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="axis">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#SetSecondaryAxis"/>
-        public object? SetSecondaryAxis(global::System.Numerics.Vector3 axis)
+        public object? SetSecondaryAxis(global::Roblox.Vector3? axis)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetSecondaryAxis", axis);
 
     }

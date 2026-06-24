@@ -23,7 +23,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TeamCreatePublishService.TeamCreateErrorStatus</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.TeamCreateErrorState</c> value.</param>
         /// <param name="teamCreateSaveData">A <c>object?</c> value.</param>

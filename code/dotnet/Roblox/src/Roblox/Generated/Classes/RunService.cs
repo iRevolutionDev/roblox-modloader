@@ -88,6 +88,13 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<string?>(this, "GetCoreScriptVersion");
 
         /// <summary>
+        /// <c>RunService.GetPhysicsStepId</c>
+        /// </summary>
+        /// <returns>A <c>long</c> value returned by the engine.</returns>
+        public long GetPhysicsStepId()
+            => global::Roblox.Reflection.Invoke<long>(this, "GetPhysicsStepId");
+
+        /// <summary>
         /// Checks the PredictionStatus of a specific context instance, useful for debugging scripts affecting multiple instances where some might be predicted and others might not.
         /// </summary>
         /// <param name="context">A <c>Instance?</c> value.</param>
@@ -263,7 +270,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, after the physics simulation has completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="deltaTime">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Heartbeat"/>
@@ -275,7 +281,6 @@ namespace Roblox
 
         /// <summary>
         /// In the server authority model, fires during prediction when the engine detects that the client has diverged from the server's authoritative state. Intended for plugin-based debugging.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="time">A <c>double</c> value.</param>
         /// <param name="instances">A <c>object?</c> value.</param>
@@ -289,7 +294,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, after the physics simulation has completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="deltaTimeSim">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PostSimulation"/>
@@ -301,7 +305,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, prior to the physics simulation but after rendering.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="deltaTimeSim">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PreAnimation"/>
@@ -313,7 +316,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, prior to the frame being rendered.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="deltaTimeRender">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PreRender"/>
@@ -325,7 +327,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, prior to the physics simulation.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="deltaTimeSim">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#PreSimulation"/>
@@ -337,7 +338,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, prior to the frame being rendered.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="deltaTime">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#RenderStepped"/>
@@ -349,7 +349,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RunService.RobloxGuiFocusedChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isRobloxGuiFocused">A <c>bool</c> value.</param>
         public event Action<bool>? RobloxGuiFocusedChanged
@@ -360,7 +359,6 @@ namespace Roblox
 
         /// <summary>
         /// In the server authority model, this fires after rolling back the predicted state due to a misprediction, but before resimulation begins.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="time">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Rollback"/>
@@ -372,7 +370,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every frame, prior to the physics simulation.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="time">A <c>double</c> value.</param>
         /// <param name="deltaTime">A <c>double</c> value.</param>

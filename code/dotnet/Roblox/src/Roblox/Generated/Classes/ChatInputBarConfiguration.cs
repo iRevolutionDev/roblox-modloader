@@ -29,32 +29,32 @@ namespace Roblox
         /// Actual screen position of the default chat input bar in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#AbsolutePosition"/>
-        public global::System.Numerics.Vector2 AbsolutePosition
+        public global::Roblox.Vector2? AbsolutePosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsolutePosition");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsolutePosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition", value);
         }
 
-        public global::System.Numerics.Vector2 AbsolutePositionWrite
+        public global::Roblox.Vector2? AbsolutePositionWrite
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsolutePositionWrite");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsolutePositionWrite", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePositionWrite");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePositionWrite", value);
         }
 
         /// <summary>
         /// Actual screen size of the default chat input bar in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#AbsoluteSize"/>
-        public global::System.Numerics.Vector2 AbsoluteSize
+        public global::Roblox.Vector2? AbsoluteSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize", value);
         }
 
-        public global::System.Numerics.Vector2 AbsoluteSizeWrite
+        public global::Roblox.Vector2? AbsoluteSizeWrite
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSizeWrite");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSizeWrite", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSizeWrite");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSizeWrite", value);
         }
 
         /// <summary>
@@ -71,10 +71,10 @@ namespace Roblox
         /// Background color of the default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#BackgroundColor3"/>
-        public object? BackgroundColor3
+        public global::Roblox.Color3? BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -137,10 +137,10 @@ namespace Roblox
         /// Color of the text of the placeholder text in the default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#PlaceholderColor3"/>
-        public object? PlaceholderColor3
+        public global::Roblox.Color3? PlaceholderColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PlaceholderColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PlaceholderColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3", value);
         }
 
         /// <summary>
@@ -167,10 +167,10 @@ namespace Roblox
         /// Color of the text in default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TextColor3"/>
-        public object? TextColor3
+        public global::Roblox.Color3? TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -187,10 +187,10 @@ namespace Roblox
         /// Color of the text stroke for text in default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TextStrokeColor3"/>
-        public object? TextStrokeColor3
+        public global::Roblox.Color3? TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>

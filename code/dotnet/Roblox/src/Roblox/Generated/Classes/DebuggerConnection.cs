@@ -205,7 +205,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnection.BreakpointAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
         public event Action<Breakpoint?>? BreakpointAdded
@@ -216,7 +215,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnection.BreakpointChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
         public event Action<Breakpoint?>? BreakpointChanged
@@ -227,7 +225,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnection.BreakpointRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
         /// <param name="reason">A <c>Enum.BreakpointRemoveReason</c> value.</param>
@@ -239,7 +236,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnection.Paused</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="pausedState">A <c>PausedState?</c> value.</param>
         /// <param name="reason">A <c>Enum.DebuggerPauseReason</c> value.</param>
@@ -251,7 +247,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnection.Resumed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="pausedState">A <c>PausedState?</c> value.</param>
         public event Action<PausedState?>? Resumed

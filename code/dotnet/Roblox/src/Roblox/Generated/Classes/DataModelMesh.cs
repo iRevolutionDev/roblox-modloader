@@ -29,30 +29,30 @@ namespace Roblox
         /// The Offset of a mesh determines the relative position from the BasePart.Position of a BasePart that the mesh will be displayed at.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModelMesh#Offset"/>
-        public global::System.Numerics.Vector3 Offset
+        public global::Roblox.Vector3? Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Offset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Offset", value);
         }
 
         /// <summary>
         /// The Scale of a mesh determines the size of the mesh relative to its original dimensions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModelMesh#Scale"/>
-        public global::System.Numerics.Vector3 Scale
+        public global::Roblox.Vector3? Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Scale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Scale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Scale", value);
         }
 
         /// <summary>
         /// Changes the hue of a mesh's texture, used with FileMesh.TextureId.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModelMesh#VertexColor"/>
-        public global::System.Numerics.Vector3 VertexColor
+        public global::Roblox.Vector3? VertexColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "VertexColor");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "VertexColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "VertexColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "VertexColor", value);
         }
 
     }

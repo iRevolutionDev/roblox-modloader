@@ -143,7 +143,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PlayerDataRecord.Changed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="key">A <c>string?</c> value.</param>
         /// <param name="value">A <c>object?</c> value.</param>
@@ -155,7 +154,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PlayerDataRecord.Flushed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="flushState">A <c>bool</c> value.</param>
         /// <param name="error">A <c>object?</c> value.</param>
@@ -167,7 +165,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PlayerDataRecord.Loaded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
         /// <param name="error">A <c>object?</c> value.</param>

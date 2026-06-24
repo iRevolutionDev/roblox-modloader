@@ -234,7 +234,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player's call invite state changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="inviteState">A <c>Enum.InviteState</c> value.</param>
@@ -247,7 +246,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player closes an invite prompt.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="recipientIds">A <c>object?</c> value.</param>
@@ -260,7 +258,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.OpenShareSheetWithLink</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="link">A <c>string?</c> value.</param>
         public event Action<string?>? OpenShareSheetWithLink
@@ -271,7 +268,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player closes the phone book prompt.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PhoneBookPromptClosed"/>
@@ -283,7 +279,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.PlayerPartyDataChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="partyId">A <c>string?</c> value.</param>
         public event Action<string?>? PlayerPartyDataChanged
@@ -294,7 +289,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.PromptInviteRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="experienceInviteOptions">A <c>Instance?</c> value.</param>
@@ -306,7 +300,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.PromptIrisInviteRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="tag">A <c>string?</c> value.</param>
@@ -316,10 +309,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("PromptIrisInviteRequested", value); }
         }
 
-        /// <summary>
-        /// <c>SocialService.SelfViewHidden</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? SelfViewHidden
         {
             add { if (value is not null) AddEventHandler("SelfViewHidden", value); }
@@ -328,7 +317,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.SelfViewVisible</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="selfViewPosition">A <c>Enum.SelfViewPosition</c> value.</param>
         public event Action<Enum.SelfViewPosition>? SelfViewVisible
@@ -339,7 +327,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.ShareSheetClosed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#ShareSheetClosed"/>
@@ -351,7 +338,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.ShowPromptFeedbackSubmission</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="feedbackType">A <c>Enum.FeedbackType</c> value.</param>
         public event Action<Enum.FeedbackType>? ShowPromptFeedbackSubmission
@@ -362,7 +348,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.ShowPromptFeedbackUnavailable</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="reason">A <c>string?</c> value.</param>
         /// <param name="feedbackType">A <c>Enum.FeedbackType</c> value.</param>
@@ -374,7 +359,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SocialService.ShowPromptRsvpToEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="eventId">A <c>string?</c> value.</param>
         public event Action<string?>? ShowPromptRsvpToEvent

@@ -55,7 +55,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LocalStorageService.ItemWasSet</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="key">A <c>string?</c> value.</param>
         /// <param name="value">A <c>string?</c> value.</param>
@@ -65,10 +64,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("ItemWasSet", value); }
         }
 
-        /// <summary>
-        /// <c>LocalStorageService.StoreWasCleared</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? StoreWasCleared
         {
             add { if (value is not null) AddEventHandler("StoreWasCleared", value); }

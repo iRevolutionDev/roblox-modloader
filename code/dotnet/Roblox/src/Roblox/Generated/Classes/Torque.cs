@@ -39,10 +39,10 @@ namespace Roblox
         /// The strength and direction of the torque.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Torque#Torque"/>
-        public global::System.Numerics.Vector3 TorqueValue
+        public global::Roblox.Vector3? TorqueValue
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Torque");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Torque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Torque");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Torque", value);
         }
 
     }

@@ -29,10 +29,10 @@ namespace Roblox
         /// Determines the limit on how much force that may be applied to each axis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#MaxForce"/>
-        public global::System.Numerics.Vector3 MaxForce
+        public global::Roblox.Vector3? MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxForce");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxForce");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxForce", value);
         }
 
         /// <summary>
@@ -49,27 +49,27 @@ namespace Roblox
         /// Determines the goal velocity.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#Velocity"/>
-        public global::System.Numerics.Vector3 Velocity
+        public global::Roblox.Vector3? Velocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Velocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Velocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Velocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Velocity", value);
         }
 
         /// <summary>
         /// Not implemented and will always return the 0 vector.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#GetLastForce"/>
-        public global::System.Numerics.Vector3 GetLastForce()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetLastForce");
+        public global::Roblox.Vector3? GetLastForce()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetLastForce");
 
         /// <summary>
         /// Returns the last force in the object.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#lastForce"/>
-        public global::System.Numerics.Vector3 LastForce()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "lastForce");
+        public global::Roblox.Vector3? LastForce()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "lastForce");
 
     }
 }

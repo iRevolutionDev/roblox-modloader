@@ -51,7 +51,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ImportSession.UploadComplete</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="results">A <c>object?</c> value.</param>
         public event Action<object?>? UploadComplete
@@ -62,7 +61,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ImportSession.UploadProgress</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="progressRatio">A <c>float</c> value.</param>
         public event Action<float>? UploadProgress

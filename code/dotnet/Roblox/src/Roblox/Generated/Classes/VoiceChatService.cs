@@ -202,10 +202,6 @@ namespace Roblox
         public bool IsVoiceEnabledForUserIdAsync(object? userId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsVoiceEnabledForUserIdAsync", userId);
 
-        /// <summary>
-        /// <c>VoiceChatService.VoiceChatStatsCollected</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? VoiceChatStatsCollected
         {
             add { if (value is not null) AddEventHandler("VoiceChatStatsCollected", value); }

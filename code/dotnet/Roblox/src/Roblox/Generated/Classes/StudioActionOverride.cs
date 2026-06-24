@@ -46,10 +46,6 @@ namespace Roblox
         public object? Release()
             => global::Roblox.Reflection.Invoke<object?>(this, "Release");
 
-        /// <summary>
-        /// <c>StudioActionOverride.Triggered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? Triggered
         {
             add { if (value is not null) AddEventHandler("Triggered", value); }

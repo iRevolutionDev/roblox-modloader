@@ -39,10 +39,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsMultiTouchEnabled", value);
         }
 
-        public global::System.Numerics.Vector2 PivotPosition
+        public global::Roblox.Vector2? PivotPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "PivotPosition");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "PivotPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "PivotPosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "PivotPosition", value);
         }
 
         /// <summary>
@@ -64,17 +64,17 @@ namespace Roblox
         /// <c>StudioDeviceEmulatorService.GetTouchPosition</c>
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector2 GetTouchPosition(int index)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetTouchPosition", index);
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2? GetTouchPosition(int index)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTouchPosition", index);
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.EmulatePCDeviceWithResolution</c>
         /// </summary>
         /// <param name="deviceId">A <c>string?</c> value.</param>
-        /// <param name="resolution">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="resolution">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool EmulatePCDeviceWithResolution(string? deviceId, global::System.Numerics.Vector2 resolution)
+        public bool EmulatePCDeviceWithResolution(string? deviceId, global::Roblox.Vector2? resolution)
             => global::Roblox.Reflection.Invoke<bool>(this, "EmulatePCDeviceWithResolution", deviceId, resolution);
 
         /// <summary>
@@ -115,40 +115,24 @@ namespace Roblox
         public object? SetCurrentOrientation(Enum.ScreenOrientation orientation)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetCurrentOrientation", orientation);
 
-        /// <summary>
-        /// <c>StudioDeviceEmulatorService.CurrentDeviceIdChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? CurrentDeviceIdChanged
         {
             add { if (value is not null) AddEventHandler("CurrentDeviceIdChanged", value); }
             remove { if (value is not null) RemoveEventHandler("CurrentDeviceIdChanged", value); }
         }
 
-        /// <summary>
-        /// <c>StudioDeviceEmulatorService.OrientationChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? OrientationChanged
         {
             add { if (value is not null) AddEventHandler("OrientationChanged", value); }
             remove { if (value is not null) RemoveEventHandler("OrientationChanged", value); }
         }
 
-        /// <summary>
-        /// <c>StudioDeviceEmulatorService.TouchInBoundsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? TouchInBoundsChanged
         {
             add { if (value is not null) AddEventHandler("TouchInBoundsChanged", value); }
             remove { if (value is not null) RemoveEventHandler("TouchInBoundsChanged", value); }
         }
 
-        /// <summary>
-        /// <c>StudioDeviceEmulatorService.TouchPositionsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? TouchPositionsChanged
         {
             add { if (value is not null) AddEventHandler("TouchPositionsChanged", value); }

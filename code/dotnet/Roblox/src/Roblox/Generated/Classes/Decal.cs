@@ -29,10 +29,10 @@ namespace Roblox
         /// The Color3 tint of the Decal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Color3"/>
-        public object? Color3
+        public global::Roblox.Color3? Color3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Roblox
         }
 
         /// <summary>
-        /// <c>Decal.Rotation</c>
+        /// Rotates the decal texture.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Rotation"/>
         public float Rotation
@@ -199,20 +199,20 @@ namespace Roblox
         /// Shifts the UV coordinates by adding an offset before texture mapping.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#UVOffset"/>
-        public global::System.Numerics.Vector2 UVOffset
+        public global::Roblox.Vector2? UVOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "UVOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "UVOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVOffset", value);
         }
 
         /// <summary>
         /// Stretches or compresses the UV coordinates by multiplying a scale factor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#UVScale"/>
-        public global::System.Numerics.Vector2 UVScale
+        public global::Roblox.Vector2? UVScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "UVScale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "UVScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVScale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVScale", value);
         }
 
         /// <summary>

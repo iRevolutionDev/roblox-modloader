@@ -44,7 +44,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a receiver is connected to the CustomEvent.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="receiver">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#ReceiverConnected"/>
@@ -56,7 +55,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a receiver is disconnected from the CustomEvent.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="receiver">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#ReceiverDisconnected"/>

@@ -87,7 +87,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the button is activated.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="inputObject">A <c>InputObject?</c> value.</param>
         /// <param name="clickCount">A <c>int</c> value.</param>
@@ -100,7 +99,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user's mouse fully left clicks the GuiButton.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton1Click"/>
         public event Action? MouseButton1Click
@@ -111,7 +109,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user presses their left mouse button down on the GuiButton.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
@@ -124,7 +121,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user releases their left mouse button off of the GuiButton.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
@@ -137,7 +133,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user's mouse fully right clicks the GuiButton.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#MouseButton2Click"/>
         public event Action? MouseButton2Click
@@ -148,7 +143,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user presses their right mouse button down on the GuiButton.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
@@ -161,7 +155,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user releases their right mouse button off of the GuiButton.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
@@ -174,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GuiButton.SecondaryActivated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="inputObject">A <c>InputObject?</c> value.</param>
         public event Action<InputObject?>? SecondaryActivated

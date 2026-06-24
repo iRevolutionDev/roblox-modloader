@@ -74,7 +74,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Fires when the transparency of the Topbar CoreGui changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="transparency">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#TopbarTransparencyChangedSignal"/>

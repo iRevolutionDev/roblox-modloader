@@ -73,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a newer version of the configuration is available.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot#UpdateAvailable"/>
         public event Action? UpdateAvailable

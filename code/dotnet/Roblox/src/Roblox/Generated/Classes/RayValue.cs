@@ -29,19 +29,18 @@ namespace Roblox
         /// The stored Ray.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RayValue#Value"/>
-        public object? Value
+        public global::Roblox.Ray? Value
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Ray?>(this, "Value");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Ray?>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired when RayValue.Value is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.Ray?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RayValue#Changed"/>
-        public event Action<object?>? Changed
+        public event Action<global::Roblox.Ray?>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

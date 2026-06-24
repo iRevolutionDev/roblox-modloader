@@ -86,7 +86,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.PlaybackStatusUpdated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="percentage">A <c>float</c> value.</param>
         /// <param name="currentFrameNumber">A <c>long</c> value.</param>

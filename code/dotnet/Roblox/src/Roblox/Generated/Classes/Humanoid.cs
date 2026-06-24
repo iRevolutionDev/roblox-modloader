@@ -69,10 +69,10 @@ namespace Roblox
         /// An offset applied to the Camera's subject position when its CameraSubject is set to this Humanoid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CameraOffset"/>
-        public global::System.Numerics.Vector3 CameraOffset
+        public global::Roblox.Vector3? CameraOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "CameraOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "CameraOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "CameraOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "CameraOffset", value);
         }
 
         /// <summary>
@@ -235,10 +235,10 @@ namespace Roblox
         /// Describes the direction that the Humanoid is walking in.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MoveDirection"/>
-        public global::System.Numerics.Vector3 MoveDirection
+        public global::Roblox.Vector3? MoveDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MoveDirection");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MoveDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MoveDirection");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MoveDirection", value);
         }
 
         /// <summary>
@@ -335,10 +335,10 @@ namespace Roblox
         /// Describes the 3D position where the Player controlling the Humanoid last clicked in the world while using a Tool.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#TargetPoint"/>
-        public global::System.Numerics.Vector3 TargetPoint
+        public global::Roblox.Vector3? TargetPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "TargetPoint");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "TargetPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "TargetPoint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "TargetPoint", value);
         }
 
         /// <summary>
@@ -385,10 +385,10 @@ namespace Roblox
         /// The position that a humanoid is trying to reach, after a call to Humanoid:MoveTo() is made.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#WalkToPoint"/>
-        public global::System.Numerics.Vector3 WalkToPoint
+        public global::Roblox.Vector3? WalkToPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WalkToPoint");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WalkToPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WalkToPoint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WalkToPoint", value);
         }
 
         /// <summary>
@@ -446,9 +446,9 @@ namespace Roblox
         /// <summary>
         /// <c>Humanoid.ComputeR15BodyBoundingBox</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ComputeR15BodyBoundingBox()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ComputeR15BodyBoundingBox");
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        public global::Roblox.CFrame? ComputeR15BodyBoundingBox()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "ComputeR15BodyBoundingBox");
 
         /// <summary>
         /// Makes the Humanoid equip the given Tool.
@@ -472,9 +472,9 @@ namespace Roblox
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         /// <param name="partType">A <c>Enum.BodyPartR15</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector3 GetAccessoryHandleScale(Instance? instance, Enum.BodyPartR15 partType)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetAccessoryHandleScale", instance, partType);
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3? GetAccessoryHandleScale(Instance? instance, Enum.BodyPartR15 partType)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetAccessoryHandleScale", instance, partType);
 
         /// <summary>
         /// Returns a copy of the humanoid's cached HumanoidDescription which describes its current look.
@@ -505,10 +505,10 @@ namespace Roblox
         /// <summary>
         /// <c>Humanoid.GetMoveVelocity</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetMoveVelocity"/>
-        public global::System.Numerics.Vector3 GetMoveVelocity()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetMoveVelocity");
+        public global::Roblox.Vector3? GetMoveVelocity()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetMoveVelocity");
 
         /// <summary>
         /// Deprecated: Returns an array of all AnimationTracks that are currently being played on the Humanoid.
@@ -521,10 +521,10 @@ namespace Roblox
         /// <summary>
         /// Returns the humanoid's actual physical velocity relative to the surface it is standing on as a Vector3 in world-space orientation.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetRelativeVelocityAtFloor"/>
-        public global::System.Numerics.Vector3 GetRelativeVelocityAtFloor()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetRelativeVelocityAtFloor");
+        public global::Roblox.Vector3? GetRelativeVelocityAtFloor()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetRelativeVelocityAtFloor");
 
         /// <summary>
         /// Returns the humanoid's current HumanoidStateType.
@@ -581,21 +581,21 @@ namespace Roblox
         /// <summary>
         /// Causes the Humanoid to walk in the given direction.
         /// </summary>
-        /// <param name="moveDirection">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="moveDirection">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="relativeToCamera">A <c>bool</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Move"/>
-        public object? Move(global::System.Numerics.Vector3 moveDirection, bool relativeToCamera)
+        public object? Move(global::Roblox.Vector3? moveDirection, bool relativeToCamera)
             => global::Roblox.Reflection.Invoke<object?>(this, "Move", moveDirection, relativeToCamera);
 
         /// <summary>
         /// Causes the Humanoid to attempt to walk to the given location by setting the Humanoid.WalkToPoint and Humanoid.WalkToPart properties.
         /// </summary>
-        /// <param name="location">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="location">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="part">A <c>Instance?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MoveTo"/>
-        public object? MoveTo(global::System.Numerics.Vector3 location, Instance? part)
+        public object? MoveTo(global::Roblox.Vector3? location, Instance? part)
             => global::Roblox.Reflection.Invoke<object?>(this, "MoveTo", location, part);
 
         /// <summary>
@@ -752,7 +752,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Fires when an AnimationTrack begins playing on the Humanoid.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AnimationPlayed"/>
@@ -764,7 +763,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Humanoid.ApplyDescriptionFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="description">A <c>HumanoidDescription?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescriptionFinished"/>
@@ -776,7 +774,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the speed at which a Humanoid is climbing changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="speed">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Climbing"/>
@@ -786,10 +783,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("Climbing", value); }
         }
 
-        /// <summary>
-        /// <c>Humanoid.ClusterCompositionFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ClusterCompositionFinished
         {
             add { if (value is not null) AddEventHandler("ClusterCompositionFinished", value); }
@@ -798,7 +791,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is added to the Humanoid.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusAdded"/>
@@ -810,7 +802,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is removed from the Humanoid.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusRemoved"/>
@@ -822,7 +813,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid dies.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Died"/>
         public event Action? Died
@@ -833,7 +823,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Humanoid.EmoteTriggered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
         /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
@@ -845,7 +834,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the FallingDown HumanoidStateType.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#FallingDown"/>
@@ -857,7 +845,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the Freefall HumanoidStateType.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#FreeFalling"/>
@@ -869,7 +856,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the GettingUp HumanoidStateType.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GettingUp"/>
@@ -881,7 +867,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid.Health changes (or when the Humanoid.MaxHealth is set).
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="health">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HealthChanged"/>
@@ -893,7 +878,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid enters and leaves the Jumping HumanoidStateType.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Jumping"/>
@@ -905,7 +889,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid finishes walking to a goal declared by Humanoid:MoveTo().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="reached">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MoveToFinished"/>
@@ -917,7 +900,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the PlatformStanding HumanoidStateType.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#PlatformStanding"/>
@@ -929,7 +911,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the Ragdoll HumanoidStateType.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Ragdoll"/>
@@ -941,7 +922,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the speed at which a Humanoid is running changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="speed">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Running"/>
@@ -953,7 +933,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when a Humanoid either sits in a Seat or VehicleSeat or gets up.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <param name="currentSeatPart">A <c>BasePart?</c> value.</param>
@@ -966,7 +945,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the state of the Humanoid is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="old">A <c>Enum.HumanoidStateType</c> value.</param>
         /// <param name="new">A <c>Enum.HumanoidStateType</c> value.</param>
@@ -979,7 +957,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when Humanoid:SetStateEnabled() is called on the Humanoid.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="state">A <c>Enum.HumanoidStateType</c> value.</param>
         /// <param name="isEnabled">A <c>bool</c> value.</param>
@@ -992,7 +969,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is added to the Humanoid.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>Enum.Status</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StatusAdded"/>
@@ -1004,7 +980,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is removed from the Humanoid.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>Enum.Status</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StatusRemoved"/>
@@ -1016,7 +991,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Humanoid enters or leaves the StrafingNoPhysics HumanoidStateType.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Strafing"/>
@@ -1028,7 +1002,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the speed at which a Humanoid is swimming in Terrain water changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="speed">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Swimming"/>
@@ -1040,7 +1013,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when one of the humanoid's limbs come in contact with another BasePart.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touchingPart">A <c>BasePart?</c> value.</param>
         /// <param name="humanoidPart">A <c>BasePart?</c> value.</param>

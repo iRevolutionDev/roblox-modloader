@@ -165,6 +165,12 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "SecondaryModifier", value);
         }
 
+        public Enum.InputBindingType Type
+        {
+            get => global::Roblox.Reflection.GetProperty<Enum.InputBindingType>(this, "Type");
+            set => global::Roblox.Reflection.SetProperty<Enum.InputBindingType>(this, "Type", value);
+        }
+
         /// <summary>
         /// Connects a GuiButton to a boolean action.
         /// </summary>
@@ -199,21 +205,30 @@ namespace Roblox
         /// Per-component scale applied to the output of a Direction2D action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Vector2Scale"/>
-        public global::System.Numerics.Vector2 Vector2Scale
+        public global::Roblox.Vector2? Vector2Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Vector2Scale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Vector2Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Vector2Scale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Vector2Scale", value);
         }
 
         /// <summary>
         /// Per-component scale applied to the output of a Direction3D action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Vector3Scale"/>
-        public global::System.Numerics.Vector3 Vector3Scale
+        public global::Roblox.Vector3? Vector3Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Vector3Scale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Vector3Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Vector3Scale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Vector3Scale", value);
         }
+
+        /// <summary>
+        /// Programmatically updates the parent InputAction state through this binding.
+        /// </summary>
+        /// <param name="state">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Fire"/>
+        public object? Fire(object? state)
+            => global::Roblox.Reflection.Invoke<object?>(this, "Fire", state);
 
     }
 }

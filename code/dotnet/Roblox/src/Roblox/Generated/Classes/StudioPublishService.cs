@@ -124,7 +124,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioPublishService.GameNameUpdated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="name">A <c>string?</c> value.</param>
         public event Action<string?>? GameNameUpdated
@@ -133,10 +132,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("GameNameUpdated", value); }
         }
 
-        /// <summary>
-        /// <c>StudioPublishService.GamePublishCancelled</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? GamePublishCancelled
         {
             add { if (value is not null) AddEventHandler("GamePublishCancelled", value); }
@@ -145,7 +140,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioPublishService.GamePublishFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
         /// <param name="gameId">A <c>long</c> value.</param>
@@ -159,7 +153,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioPublishService.OnPublishAttempt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isPublishAs">A <c>bool</c> value.</param>
         public event Action<bool>? OnPublishAttempt
@@ -170,7 +163,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioPublishService.OnSaveOrPublishPlaceToRoblox</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="showGameSelect">A <c>bool</c> value.</param>
         /// <param name="isPublish">A <c>bool</c> value.</param>

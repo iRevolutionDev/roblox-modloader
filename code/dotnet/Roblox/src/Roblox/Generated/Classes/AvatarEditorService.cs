@@ -576,10 +576,6 @@ namespace Roblox
         public CatalogPages? SearchCatalogAsync(object? searchParameters)
             => global::Roblox.Reflection.Invoke<CatalogPages?>(this, "SearchCatalogAsync", searchParameters);
 
-        /// <summary>
-        /// <c>AvatarEditorService.OpenAllowInventoryReadAccess</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? OpenAllowInventoryReadAccess
         {
             add { if (value is not null) AddEventHandler("OpenAllowInventoryReadAccess", value); }
@@ -588,7 +584,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptCreateOufit</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
@@ -600,7 +595,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptDeleteOutfit</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
         public event Action<long>? OpenPromptDeleteOutfit
@@ -611,7 +605,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptRenameOutfit</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
         public event Action<long>? OpenPromptRenameOutfit
@@ -622,7 +615,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptSaveAvatar</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
@@ -634,7 +626,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptSetFavorite</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="itemId">A <c>long</c> value.</param>
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
@@ -647,7 +638,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptUpdateOutfit</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
         /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
@@ -660,7 +650,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptAllowInventoryReadAccess() prompt is responded to by the user.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptAllowInventoryReadAccessCompleted"/>
@@ -672,7 +661,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the PromptSaveOutfit operation is completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <param name="failureType">A <c>object?</c> value.</param>
@@ -685,7 +673,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the PromptDeleteOutfit operation is completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptDeleteOutfitCompleted"/>
@@ -697,7 +684,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the PromptRenameOutfit operation is completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptRenameOutfitCompleted"/>
@@ -709,7 +695,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptSaveAvatar() operation is completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
@@ -722,7 +707,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarEditorService.PromptSaveAvatarThumbnailCustomizationCompleted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <param name="failureType">A <c>object?</c> value.</param>
@@ -734,7 +718,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptSetFavorite() operation is completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptSetFavoriteCompleted"/>
@@ -746,7 +729,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AvatarEditorService:PromptUpdateOutfit() operation is completed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptUpdateOutfitCompleted"/>

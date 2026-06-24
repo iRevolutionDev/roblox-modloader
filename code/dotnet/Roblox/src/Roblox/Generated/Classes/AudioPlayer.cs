@@ -105,10 +105,10 @@ namespace Roblox
         /// A range, in seconds, denoting a desired loop start and loop end within the PlaybackRegion of this AudioPlayer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#LoopRegion"/>
-        public object? LoopRegion
+        public global::Roblox.NumberRange? LoopRegion
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "LoopRegion");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "LoopRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "LoopRegion");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "LoopRegion", value);
         }
 
         /// <summary>
@@ -125,10 +125,10 @@ namespace Roblox
         /// Range in seconds denoting a desired start time (minimum) and stop time (maximum) within the TimeLength.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#PlaybackRegion"/>
-        public object? PlaybackRegion
+        public global::Roblox.NumberRange? PlaybackRegion
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PlaybackRegion");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PlaybackRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion", value);
         }
 
         /// <summary>
@@ -226,16 +226,15 @@ namespace Roblox
         /// <summary>
         /// Returns a sampling of the waveform data for the loaded Asset.
         /// </summary>
-        /// <param name="timeRange">A <c>object?</c> value.</param>
+        /// <param name="timeRange">A <c>global::Roblox.NumberRange?</c> value.</param>
         /// <param name="samples">A <c>int</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#GetWaveformAsync"/>
-        public object? GetWaveformAsync(object? timeRange, int samples)
+        public object? GetWaveformAsync(global::Roblox.NumberRange? timeRange, int samples)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetWaveformAsync", timeRange, samples);
 
         /// <summary>
         /// Fires when the AudioPlayer has completed playback and stopped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Ended"/>
         public event Action? Ended
@@ -246,7 +245,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AudioPlayer loops.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Looped"/>
         public event Action? Looped
@@ -257,7 +255,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioPlayer via a Wire.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
         /// <param name="pin">A <c>string?</c> value.</param>

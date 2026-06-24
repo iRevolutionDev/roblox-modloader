@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the left mouse button goes down on one of the GUI handles.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="axis">A <c>Enum.Axis</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ArcHandles#MouseButton1Down"/>
@@ -49,7 +48,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the left mouse button is released on one of the GUI handles.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="axis">A <c>Enum.Axis</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ArcHandles#MouseButton1Up"/>
@@ -61,7 +59,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the mouse moves while the MouseButton1Down event has fired, but the left mouse button has not been released yet.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="axis">A <c>Enum.Axis</c> value.</param>
         /// <param name="relativeAngle">A <c>float</c> value.</param>
@@ -75,7 +72,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when a mouse "enters" the GUI handle.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="axis">A <c>Enum.Axis</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ArcHandles#MouseEnter"/>
@@ -87,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the mouse leaves the GUI handle.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="axis">A <c>Enum.Axis</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ArcHandles#MouseLeave"/>

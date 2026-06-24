@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GameSettings.VideoRecordingChangeRequest</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="recording">A <c>bool</c> value.</param>
         public event Action<bool>? VideoRecordingChangeRequest

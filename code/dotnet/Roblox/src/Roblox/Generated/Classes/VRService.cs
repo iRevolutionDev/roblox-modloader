@@ -97,10 +97,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.VRLaserPointerMode>(this, "LaserPointer", value);
         }
 
-        public object? PointerHitCFrame
+        public global::Roblox.CFrame? PointerHitCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PointerHitCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PointerHitCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "PointerHitCFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "PointerHitCFrame", value);
         }
 
         public bool QuestASWState
@@ -166,10 +166,10 @@ namespace Roblox
         /// Returns a CFrame describing the position &amp; orientation of a specified virtual reality device as an offset from a point in real world space.
         /// </summary>
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#GetUserCFrame"/>
-        public object? GetUserCFrame(Enum.UserCFrame type)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserCFrame", type);
+        public global::Roblox.CFrame? GetUserCFrame(Enum.UserCFrame type)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetUserCFrame", type);
 
         /// <summary>
         /// Returns true if the specified UserCFrame is available to be listened to.
@@ -205,11 +205,11 @@ namespace Roblox
         /// <summary>
         /// Requests navigation to the specified CFrame using the specified UserCFrame as the origin for the visualizer parabola.
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="inputUserCFrame">A <c>Enum.UserCFrame</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#RequestNavigation"/>
-        public object? RequestNavigation(object? cframe, Enum.UserCFrame inputUserCFrame)
+        public object? RequestNavigation(global::Roblox.CFrame? cframe, Enum.UserCFrame inputUserCFrame)
             => global::Roblox.Reflection.Invoke<object?>(this, "RequestNavigation", cframe, inputUserCFrame);
 
         /// <summary>
@@ -224,7 +224,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VRService.LaserPointerTriggered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="input">A <c>InputObject?</c> value.</param>
         public event Action<InputObject?>? LaserPointerTriggered
@@ -235,12 +234,11 @@ namespace Roblox
 
         /// <summary>
         /// Fired when navigation is requested from VRService.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="inputUserCFrame">A <c>Enum.UserCFrame</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#NavigationRequested"/>
-        public event Action<object?, Enum.UserCFrame>? NavigationRequested
+        public event Action<global::Roblox.CFrame?, Enum.UserCFrame>? NavigationRequested
         {
             add { if (value is not null) AddEventHandler("NavigationRequested", value); }
             remove { if (value is not null) RemoveEventHandler("NavigationRequested", value); }
@@ -248,7 +246,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires if the VRTouchpadMode of a VRTouchpad is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="pad">A <c>Enum.VRTouchpad</c> value.</param>
         /// <param name="mode">A <c>Enum.VRTouchpadMode</c> value.</param>
@@ -261,12 +258,11 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a UserCFrame is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#UserCFrameChanged"/>
-        public event Action<Enum.UserCFrame, object?>? UserCFrameChanged
+        public event Action<Enum.UserCFrame, global::Roblox.CFrame?>? UserCFrameChanged
         {
             add { if (value is not null) AddEventHandler("UserCFrameChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UserCFrameChanged", value); }
@@ -274,7 +270,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a UserCFrame is enabled or disabled.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
         /// <param name="enabled">A <c>bool</c> value.</param>

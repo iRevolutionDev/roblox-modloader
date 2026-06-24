@@ -39,29 +39,29 @@ namespace Roblox
         /// The size of this TerrainRegion in cells.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#SizeInCells"/>
-        public global::System.Numerics.Vector3 SizeInCells
+        public global::Roblox.Vector3? SizeInCells
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SizeInCells");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SizeInCells", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SizeInCells");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SizeInCells", value);
         }
 
         /// <summary>
         /// <c>TerrainRegion.ApplyTransform</c>
         /// </summary>
-        /// <param name="rotation">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="rotation">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyTransform(object? rotation, global::System.Numerics.Vector3 size)
+        public object? ApplyTransform(global::Roblox.CFrame? rotation, global::Roblox.Vector3? size)
             => global::Roblox.Reflection.Invoke<object?>(this, "ApplyTransform", rotation, size);
 
         /// <summary>
         /// <c>TerrainRegion.ApplyTransformSubregion</c>
         /// </summary>
-        /// <param name="rotation">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="rotation">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="region">A <c>object?</c> value.</param>
         /// <returns>A <c>TerrainRegion?</c> value returned by the engine.</returns>
-        public TerrainRegion? ApplyTransformSubregion(object? rotation, global::System.Numerics.Vector3 size, object? region)
+        public TerrainRegion? ApplyTransformSubregion(global::Roblox.CFrame? rotation, global::Roblox.Vector3? size, object? region)
             => global::Roblox.Reflection.Invoke<TerrainRegion?>(this, "ApplyTransformSubregion", rotation, size, region);
 
         /// <summary>

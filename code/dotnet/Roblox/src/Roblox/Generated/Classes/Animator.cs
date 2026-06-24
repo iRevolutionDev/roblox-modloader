@@ -49,10 +49,10 @@ namespace Roblox
         /// <c>Animator.RootMotion</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#RootMotion"/>
-        public object? RootMotion
+        public global::Roblox.CFrame? RootMotion
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "RootMotion");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "RootMotion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RootMotion");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RootMotion", value);
         }
 
         /// <summary>
@@ -180,7 +180,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Animator starts playing an AnimationTrack.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#AnimationPlayed"/>
@@ -192,7 +191,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Animator.AnimationPlayedCoreScript</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
         public event Action<AnimationTrack?>? AnimationPlayedCoreScript
@@ -203,7 +201,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Animator.AnimationStreamTrackPlayed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="animationTrack">A <c>AnimationStreamTrack?</c> value.</param>
         public event Action<AnimationStreamTrack?>? AnimationStreamTrackPlayed

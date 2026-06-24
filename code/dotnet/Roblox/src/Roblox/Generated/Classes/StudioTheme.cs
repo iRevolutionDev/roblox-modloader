@@ -30,10 +30,10 @@ namespace Roblox
         /// </summary>
         /// <param name="styleguideitem">A <c>Enum.StudioStyleGuideColor</c> value.</param>
         /// <param name="modifier">A <c>Enum.StudioStyleGuideModifier</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Color3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTheme#GetColor"/>
-        public object? GetColor(Enum.StudioStyleGuideColor styleguideitem, Enum.StudioStyleGuideModifier modifier)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetColor", styleguideitem, modifier);
+        public global::Roblox.Color3? GetColor(Enum.StudioStyleGuideColor styleguideitem, Enum.StudioStyleGuideModifier modifier)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Color3?>(this, "GetColor", styleguideitem, modifier);
 
     }
 }

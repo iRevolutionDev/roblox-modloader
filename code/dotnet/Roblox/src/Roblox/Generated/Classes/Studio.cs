@@ -49,20 +49,20 @@ namespace Roblox
         /// <c>Studio.Active Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Active Color"/>
-        public object? ActiveColor
+        public global::Roblox.Color3? ActiveColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Active Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Active Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Active Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Active Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Active Hover Over Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Active Hover Over Color"/>
-        public object? ActiveHoverOverColor
+        public global::Roblox.Color3? ActiveHoverOverColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Active Hover Over Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Active Hover Over Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Active Hover Over Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Active Hover Over Color", value);
         }
 
         /// <summary>
@@ -207,10 +207,10 @@ namespace Roblox
         /// Specifies the background color of Roblox Studio's script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Background Color"/>
-        public object? BackgroundColor
+        public global::Roblox.Color3? BackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Background Color", value);
         }
 
         /// <summary>
@@ -227,30 +227,30 @@ namespace Roblox
         /// <c>Studio.Bool Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Bool Color"/>
-        public object? BoolColor
+        public global::Roblox.Color3? BoolColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Bool Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Bool Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Bool Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Bool Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Bracket Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Bracket Color"/>
-        public object? BracketColor
+        public global::Roblox.Color3? BracketColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Bracket Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Bracket Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Bracket Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Bracket Color", value);
         }
 
         /// <summary>
         /// Sets the color of built-in functions and keywords in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Built-in Function Color"/>
-        public object? BuiltInFunctionColor
+        public global::Roblox.Color3? BuiltInFunctionColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Built-in Function Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Built-in Function Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Built-in Function Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Built-in Function Color", value);
         }
 
         /// <summary>
@@ -445,40 +445,40 @@ namespace Roblox
         /// Specifies the color of comments in Roblox Studio's script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Comment Color"/>
-        public object? CommentColor
+        public global::Roblox.Color3? CommentColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Comment Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Comment Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Comment Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Comment Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Current Line Highlight Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Current Line Highlight Color"/>
-        public object? CurrentLineHighlightColor
+        public global::Roblox.Color3? CurrentLineHighlightColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Current Line Highlight Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Current Line Highlight Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Current Line Highlight Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Current Line Highlight Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Debugger Current Line Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Debugger Current Line Color"/>
-        public object? DebuggerCurrentLineColor
+        public global::Roblox.Color3? DebuggerCurrentLineColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Debugger Current Line Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Debugger Current Line Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Debugger Current Line Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Debugger Current Line Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Debugger Error Line Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Debugger Error Line Color"/>
-        public object? DebuggerErrorLineColor
+        public global::Roblox.Color3? DebuggerErrorLineColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Debugger Error Line Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Debugger Error Line Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Debugger Error Line Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Debugger Error Line Color", value);
         }
 
         /// <summary>
@@ -521,20 +521,20 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "DisplayLanguage", value);
         }
 
-        public object? DocViewCodeBackgroundColor
+        public global::Roblox.Color3? DocViewCodeBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Doc View Code Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Doc View Code Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Doc View Code Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Doc View Code Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.DraggerActiveColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerActiveColor"/>
-        public object? DraggerActiveColor
+        public global::Roblox.Color3? DraggerActiveColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "DraggerActiveColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "DraggerActiveColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "DraggerActiveColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "DraggerActiveColor", value);
         }
 
         /// <summary>
@@ -571,10 +571,10 @@ namespace Roblox
         /// <c>Studio.DraggerPassiveColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerPassiveColor"/>
-        public object? DraggerPassiveColor
+        public global::Roblox.Color3? DraggerPassiveColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "DraggerPassiveColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "DraggerPassiveColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "DraggerPassiveColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "DraggerPassiveColor", value);
         }
 
         /// <summary>
@@ -887,10 +887,10 @@ namespace Roblox
         /// Specifies the color of the wavy underline shown when malformed code is detected in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Error Color"/>
-        public object? ErrorColor
+        public global::Roblox.Color3? ErrorColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Error Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Error Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Error Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Error Color", value);
         }
 
         /// <summary>
@@ -917,10 +917,10 @@ namespace Roblox
         /// Sets the highlight color of matches in the script editor's Find Selection operation (Ctrl+F).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Find Selection Background Color"/>
-        public object? FindSelectionBackgroundColor
+        public global::Roblox.Color3? FindSelectionBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Find Selection Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Find Selection Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Find Selection Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Find Selection Background Color", value);
         }
 
         /// <summary>
@@ -957,10 +957,10 @@ namespace Roblox
         /// <c>Studio.Function Name Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Function Name Color"/>
-        public object? FunctionNameColor
+        public global::Roblox.Color3? FunctionNameColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Function Name Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Function Name Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Function Name Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Function Name Color", value);
         }
 
         /// <summary>
@@ -987,10 +987,10 @@ namespace Roblox
         /// <c>Studio.HintColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#HintColor"/>
-        public object? HintColor
+        public global::Roblox.Color3? HintColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "HintColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "HintColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "HintColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "HintColor", value);
         }
 
         /// <summary>
@@ -1027,10 +1027,10 @@ namespace Roblox
         /// Specifies the color that the hover selection box uses.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Hover Over Color"/>
-        public object? HoverOverColor
+        public global::Roblox.Color3? HoverOverColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Hover Over Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Hover Over Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Hover Over Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Hover Over Color", value);
         }
 
         /// <summary>
@@ -1057,30 +1057,30 @@ namespace Roblox
         /// <c>Studio.IndentationRulerColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#IndentationRulerColor"/>
-        public object? IndentationRulerColor
+        public global::Roblox.Color3? IndentationRulerColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "IndentationRulerColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "IndentationRulerColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "IndentationRulerColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "IndentationRulerColor", value);
         }
 
         /// <summary>
         /// <c>Studio.InformationColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#InformationColor"/>
-        public object? InformationColor
+        public global::Roblox.Color3? InformationColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "InformationColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "InformationColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "InformationColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "InformationColor", value);
         }
 
         /// <summary>
         /// Sets the text color of built-in Luau keywords.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Keyword Color"/>
-        public object? KeywordColor
+        public global::Roblox.Color3? KeywordColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Keyword Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Keyword Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Keyword Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Keyword Color", value);
         }
 
         /// <summary>
@@ -1177,10 +1177,10 @@ namespace Roblox
         /// <c>Studio.Luau Keyword Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Luau Keyword Color"/>
-        public object? LuauKeywordColor
+        public global::Roblox.Color3? LuauKeywordColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Luau Keyword Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Luau Keyword Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Luau Keyword Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Luau Keyword Color", value);
         }
 
         /// <summary>
@@ -1197,10 +1197,10 @@ namespace Roblox
         /// Sets the highlight color of double-clicked variables in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Matching Word Background Color"/>
-        public object? MatchingWordBackgroundColor
+        public global::Roblox.Color3? MatchingWordBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Matching Word Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Matching Word Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Matching Word Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Matching Word Background Color", value);
         }
 
         /// <summary>
@@ -1227,30 +1227,30 @@ namespace Roblox
         /// <c>Studio.Menu Item Background Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Menu Item Background Color"/>
-        public object? MenuItemBackgroundColor
+        public global::Roblox.Color3? MenuItemBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Menu Item Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Menu Item Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Menu Item Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Menu Item Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Method Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Method Color"/>
-        public object? MethodColor
+        public global::Roblox.Color3? MethodColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Method Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Method Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Method Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Method Color", value);
         }
 
         /// <summary>
         /// Specifies the color of numbers in Roblox Studio's script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Number Color"/>
-        public object? NumberColor
+        public global::Roblox.Color3? NumberColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Number Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Number Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Number Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Number Color", value);
         }
 
         /// <summary>
@@ -1267,10 +1267,10 @@ namespace Roblox
         /// Sets the text color of operator characters in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Operator Color"/>
-        public object? OperatorColor
+        public global::Roblox.Color3? OperatorColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Operator Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Operator Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Operator Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Operator Color", value);
         }
 
         /// <summary>
@@ -1317,10 +1317,10 @@ namespace Roblox
         /// <c>Studio.Pivot Snap To Geometry Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Pivot Snap To Geometry Color"/>
-        public object? PivotSnapToGeometryColor
+        public global::Roblox.Color3? PivotSnapToGeometryColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Pivot Snap To Geometry Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Pivot Snap To Geometry Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Pivot Snap To Geometry Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Pivot Snap To Geometry Color", value);
         }
 
         /// <summary>
@@ -1357,20 +1357,20 @@ namespace Roblox
         /// <c>Studio.Primary Text Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Primary Text Color"/>
-        public object? PrimaryTextColor
+        public global::Roblox.Color3? PrimaryTextColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Primary Text Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Primary Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Primary Text Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Primary Text Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Property Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Property Color"/>
-        public object? PropertyColor
+        public global::Roblox.Color3? PropertyColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Property Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Property Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Property Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Property Color", value);
         }
 
         /// <summary>
@@ -1407,10 +1407,10 @@ namespace Roblox
         /// <c>Studio.Ruler Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Ruler Color"/>
-        public object? RulerColor
+        public global::Roblox.Color3? RulerColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Ruler Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Ruler Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Ruler Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Ruler Color", value);
         }
 
         /// <summary>
@@ -1433,10 +1433,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.RuntimeUndoBehavior>(this, "RuntimeUndoBehavior", value);
         }
 
-        public object? ScriptEditorMenuBorderColor
+        public global::Roblox.Color3? ScriptEditorMenuBorderColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ScriptEditorMenuBorderColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ScriptEditorMenuBorderColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ScriptEditorMenuBorderColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ScriptEditorMenuBorderColor", value);
         }
 
         public bool ScriptEditorShouldShowPluginMethods
@@ -1469,20 +1469,20 @@ namespace Roblox
         /// <c>Studio.Script Editor Scrollbar Background Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Script Editor Scrollbar Background Color"/>
-        public object? ScriptEditorScrollbarBackgroundColor
+        public global::Roblox.Color3? ScriptEditorScrollbarBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Script Editor Scrollbar Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Script Editor Scrollbar Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Script Editor Scrollbar Handle Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Script Editor Scrollbar Handle Color"/>
-        public object? ScriptEditorScrollbarHandleColor
+        public global::Roblox.Color3? ScriptEditorScrollbarHandleColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Script Editor Scrollbar Handle Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Script Editor Scrollbar Handle Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Handle Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Handle Color", value);
         }
 
         /// <summary>
@@ -1499,56 +1499,56 @@ namespace Roblox
         /// <c>Studio.Secondary Text Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Secondary Text Color"/>
-        public object? SecondaryTextColor
+        public global::Roblox.Color3? SecondaryTextColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Secondary Text Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Secondary Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Secondary Text Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Secondary Text Color", value);
         }
 
         /// <summary>
         /// The color of the selection box used with object selections in the Workspace.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Select Color"/>
-        public object? SelectColor
+        public global::Roblox.Color3? SelectColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Select Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Select Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Select Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Select Color", value);
         }
 
-        public object? SelectHoverColor
+        public global::Roblox.Color3? SelectHoverColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Select/Hover Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Select/Hover Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Select/Hover Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Select/Hover Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Selected Menu Item Background Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selected Menu Item Background Color"/>
-        public object? SelectedMenuItemBackgroundColor
+        public global::Roblox.Color3? SelectedMenuItemBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Selected Menu Item Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Selected Menu Item Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selected Menu Item Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selected Menu Item Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Selected Text Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selected Text Color"/>
-        public object? SelectedTextColor
+        public global::Roblox.Color3? SelectedTextColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Selected Text Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Selected Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selected Text Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selected Text Color", value);
         }
 
         /// <summary>
         /// Sets the background color of selected text in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selection Background Color"/>
-        public object? SelectionBackgroundColor
+        public global::Roblox.Color3? SelectionBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Selection Background Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Selection Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selection Background Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selection Background Color", value);
         }
 
         /// <summary>
@@ -1565,10 +1565,10 @@ namespace Roblox
         /// Sets the text color of selected text in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selection Color"/>
-        public object? SelectionColor
+        public global::Roblox.Color3? SelectionColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Selection Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Selection Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selection Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selection Color", value);
         }
 
         /// <summary>
@@ -1775,16 +1775,16 @@ namespace Roblox
         /// Specifies the color of strings in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#String Color"/>
-        public object? StringColor
+        public global::Roblox.Color3? StringColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "String Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "String Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "String Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "String Color", value);
         }
 
-        public object? TODOColor
+        public global::Roblox.Color3? TODOColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "\"TODO\" Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "\"TODO\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"TODO\" Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"TODO\" Color", value);
         }
 
         /// <summary>
@@ -1801,10 +1801,10 @@ namespace Roblox
         /// Specifies the color of normal text in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Text Color"/>
-        public object? TextColor
+        public global::Roblox.Color3? TextColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Text Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Text Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Text Color", value);
         }
 
         /// <summary>
@@ -1831,10 +1831,10 @@ namespace Roblox
         /// <c>Studio.TypeColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#TypeColor"/>
-        public object? TypeColor
+        public global::Roblox.Color3? TypeColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TypeColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TypeColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TypeColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TypeColor", value);
         }
 
         /// <summary>
@@ -1871,84 +1871,84 @@ namespace Roblox
         /// <c>Studio.VAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#VAxisColor"/>
-        public object? VAxisColor
+        public global::Roblox.Color3? VAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "VAxisColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "VAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "VAxisColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "VAxisColor", value);
         }
 
         /// <summary>
         /// Specifies the color of the wavy underline shown when the script analyzer picks up a problem that should be addressed in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Warning Color"/>
-        public object? WarningColor
+        public global::Roblox.Color3? WarningColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Warning Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Warning Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Warning Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Warning Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Whitespace Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Whitespace Color"/>
-        public object? WhitespaceColor
+        public global::Roblox.Color3? WhitespaceColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Whitespace Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Whitespace Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Whitespace Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Whitespace Color", value);
         }
 
         /// <summary>
         /// <c>Studio.XAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#XAxisColor"/>
-        public object? XAxisColor
+        public global::Roblox.Color3? XAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "XAxisColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "XAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "XAxisColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "XAxisColor", value);
         }
 
         /// <summary>
         /// <c>Studio.YAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#YAxisColor"/>
-        public object? YAxisColor
+        public global::Roblox.Color3? YAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "YAxisColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "YAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "YAxisColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "YAxisColor", value);
         }
 
         /// <summary>
         /// <c>Studio.ZAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ZAxisColor"/>
-        public object? ZAxisColor
+        public global::Roblox.Color3? ZAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ZAxisColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ZAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ZAxisColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ZAxisColor", value);
         }
 
-        public object? functionColor
+        public global::Roblox.Color3? functionColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "\"function\" Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "\"function\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"function\" Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"function\" Color", value);
         }
 
-        public object? localColor
+        public global::Roblox.Color3? localColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "\"local\" Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "\"local\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"local\" Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"local\" Color", value);
         }
 
-        public object? nilColor
+        public global::Roblox.Color3? nilColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "\"nil\" Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "\"nil\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"nil\" Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"nil\" Color", value);
         }
 
-        public object? selfColor
+        public global::Roblox.Color3? selfColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "\"self\" Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "\"self\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"self\" Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"self\" Color", value);
         }
 
         /// <summary>
@@ -1961,7 +1961,6 @@ namespace Roblox
 
         /// <summary>
         /// Event called when Studio's theme changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ThemeChanged"/>
         public event Action? ThemeChanged

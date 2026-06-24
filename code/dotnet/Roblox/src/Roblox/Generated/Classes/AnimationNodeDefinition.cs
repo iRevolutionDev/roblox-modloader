@@ -76,10 +76,6 @@ namespace Roblox
         public object? SetOrderedInputPinNames(object? pins)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetOrderedInputPinNames", pins);
 
-        /// <summary>
-        /// <c>AnimationNodeDefinition.InputPinsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? InputPinsChanged
         {
             add { if (value is not null) AddEventHandler("InputPinsChanged", value); }

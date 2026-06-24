@@ -69,10 +69,10 @@ namespace Roblox
         /// The unit vector describing the desired direction to face.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#FacingDirection"/>
-        public global::System.Numerics.Vector3 FacingDirection
+        public global::Roblox.Vector3? FacingDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "FacingDirection");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "FacingDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "FacingDirection");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "FacingDirection", value);
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Roblox
         /// The vector describing the desired direction to move in.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#MovingDirection"/>
-        public global::System.Numerics.Vector3 MovingDirection
+        public global::Roblox.Vector3? MovingDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MovingDirection");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MovingDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MovingDirection");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MovingDirection", value);
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace Roblox
         /// <c>ControllerManager.UpDirection</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#UpDirection"/>
-        public global::System.Numerics.Vector3 UpDirection
+        public global::Roblox.Vector3? UpDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "UpDirection");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "UpDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "UpDirection");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "UpDirection", value);
         }
 
     }

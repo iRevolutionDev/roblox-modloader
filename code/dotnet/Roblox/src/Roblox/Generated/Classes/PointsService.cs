@@ -63,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when points have been successfully awarded to a player, while also passing along the updated balance of points the player has in the current game and all games.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="pointsAwarded">A <c>int</c> value.</param>

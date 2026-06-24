@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>SystemThemeService</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService"/>
     [RobloxClass("SystemThemeService")]
     public class SystemThemeService : Instance
     {
@@ -32,6 +36,7 @@ namespace Roblox
         /// <c>SystemThemeService.isSystemThemeAvailable</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService#isSystemThemeAvailable"/>
         public bool IsSystemThemeAvailable()
             => global::Roblox.Reflection.Invoke<bool>(this, "isSystemThemeAvailable");
 
@@ -40,6 +45,7 @@ namespace Roblox
         /// </summary>
         /// <param name="theme">A <c>Enum.SystemThemeValue</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService#setTheme"/>
         public object? SetTheme(Enum.SystemThemeValue theme)
             => global::Roblox.Reflection.Invoke<object?>(this, "setTheme", theme);
 
@@ -47,14 +53,15 @@ namespace Roblox
         /// <c>SystemThemeService.getSystemThemeAsync</c>
         /// </summary>
         /// <returns>A <c>Enum.SystemThemeValue</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService#getSystemThemeAsync"/>
         public Enum.SystemThemeValue GetSystemThemeAsync()
             => global::Roblox.Reflection.Invoke<Enum.SystemThemeValue>(this, "getSystemThemeAsync");
 
         /// <summary>
         /// <c>SystemThemeService.OnLuaThemeUpdated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="theme">A <c>Enum.SystemThemeValue</c> value.</param>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService#OnLuaThemeUpdated"/>
         public event Action<Enum.SystemThemeValue>? OnLuaThemeUpdated
         {
             add { if (value is not null) AddEventHandler("OnLuaThemeUpdated", value); }

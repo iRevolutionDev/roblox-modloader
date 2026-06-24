@@ -82,7 +82,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CommerceService.BenefitStatusReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isGranted">A <c>bool</c> value.</param>
         public event Action<bool>? BenefitStatusReceived
@@ -91,10 +90,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("BenefitStatusReceived", value); }
         }
 
-        /// <summary>
-        /// <c>CommerceService.FetchReceipt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? FetchReceipt
         {
             add { if (value is not null) AddEventHandler("FetchReceipt", value); }
@@ -103,7 +98,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CommerceService.InExperienceBrowserRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="url">A <c>string?</c> value.</param>
         public event Action<string?>? InExperienceBrowserRequested
@@ -114,7 +108,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when commerce purchase webview has closed - not an indicator that a purchase was successful.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="user">A <c>Player?</c> value.</param>
         /// <param name="productId">A <c>string?</c> value.</param>
@@ -127,7 +120,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CommerceService.PromptCommerceProductPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="commerceProductId">A <c>string?</c> value.</param>
         public event Action<string?>? PromptCommerceProductPurchaseRequested
@@ -136,10 +128,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("PromptCommerceProductPurchaseRequested", value); }
         }
 
-        /// <summary>
-        /// <c>CommerceService.PurchaseBrowserClosed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? PurchaseBrowserClosed
         {
             add { if (value is not null) AddEventHandler("PurchaseBrowserClosed", value); }

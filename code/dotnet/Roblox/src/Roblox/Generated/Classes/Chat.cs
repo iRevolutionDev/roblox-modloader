@@ -181,7 +181,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Chat.BubbleChatSettingsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="settings">A <c>object?</c> value.</param>
         public event Action<object?>? BubbleChatSettingsChanged
@@ -192,7 +191,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when Chat:Chat() is called.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="part">A <c>Instance?</c> value.</param>
         /// <param name="message">A <c>string?</c> value.</param>
@@ -206,7 +204,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Chat.PlayerChatAvailabilityStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         public event Action<Player?>? PlayerChatAvailabilityStatusChanged
@@ -217,7 +214,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Chat.ReconcileCommunicationAccessCompleted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="chatAvailabilityStatus">A <c>string?</c> value.</param>
         public event Action<string?>? ReconcileCommunicationAccessCompleted
@@ -228,7 +224,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Chat.TimeoutChatAttempt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isPermanentTimeout">A <c>bool</c> value.</param>
         /// <param name="endTime">A <c>long</c> value.</param>

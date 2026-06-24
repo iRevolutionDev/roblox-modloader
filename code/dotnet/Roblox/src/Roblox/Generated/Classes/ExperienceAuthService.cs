@@ -34,7 +34,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceAuthService.OpenAuthPrompt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="guid">A <c>string?</c> value.</param>
         /// <param name="scopes">A <c>object?</c> value.</param>

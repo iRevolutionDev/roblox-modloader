@@ -79,10 +79,10 @@ namespace Roblox
         /// This property is the position of the center of the Explosion. It is defined in world-space and not influenced by the Explosion parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>
@@ -107,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Explosion hits a BasePart within its Explosion.BlastRadius. Returns the part hit along with the distance of the part from Explosion.Position.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="part">A <c>BasePart?</c> value.</param>
         /// <param name="distance">A <c>float</c> value.</param>

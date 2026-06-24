@@ -302,7 +302,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetService.AudioMetadataFailedResponse</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestid">A <c>long</c> value.</param>
         public event Action<long>? AudioMetadataFailedResponse
@@ -313,7 +312,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetService.AudioMetadataRequest</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestid">A <c>long</c> value.</param>
         /// <param name="request">A <c>object?</c> value.</param>
@@ -325,7 +323,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetService.AudioMetadataResponse</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestid">A <c>long</c> value.</param>
         /// <param name="response">A <c>object?</c> value.</param>
@@ -337,7 +334,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetService.OpenCreateResultModal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="resultType">A <c>Enum.PromptCreateAssetResult</c> value.</param>
         public event Action<Enum.PromptCreateAssetResult>? OpenCreateResultModal
@@ -348,7 +344,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetService.OpenPublishResultModal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="resultType">A <c>Enum.PromptPublishAssetResult</c> value.</param>
         public event Action<Enum.PromptPublishAssetResult>? OpenPublishResultModal

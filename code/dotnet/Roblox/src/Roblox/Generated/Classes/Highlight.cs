@@ -59,10 +59,10 @@ namespace Roblox
         /// Sets the Color3 value of the highlight's interior.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#FillColor"/>
-        public object? FillColor
+        public global::Roblox.Color3? FillColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FillColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FillColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "FillColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "FillColor", value);
         }
 
         /// <summary>
@@ -85,10 +85,10 @@ namespace Roblox
         /// Sets the Color3 value of the highlight's outline.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#OutlineColor"/>
-        public object? OutlineColor
+        public global::Roblox.Color3? OutlineColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "OutlineColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "OutlineColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "OutlineColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "OutlineColor", value);
         }
 
         /// <summary>

@@ -79,10 +79,10 @@ namespace Roblox
         /// The accessory adjustment position offset, if the Accessory is rigid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>
@@ -99,20 +99,20 @@ namespace Roblox
         /// The accessory adjustment rotation offset, if the Accessory is rigid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Rotation"/>
-        public global::System.Numerics.Vector3 Rotation
+        public global::Roblox.Vector3? Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Rotation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Rotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Rotation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Rotation", value);
         }
 
         /// <summary>
         /// The accessory adjustment scale, if the Accessory is rigid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Scale"/>
-        public global::System.Numerics.Vector3 Scale
+        public global::Roblox.Vector3? Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Scale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Scale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Scale", value);
         }
 
         /// <summary>

@@ -47,11 +47,11 @@ namespace Roblox
         /// <summary>
         /// Adds a new color to the geometry and returns a stable color ID.
         /// </summary>
-        /// <param name="color">A <c>object?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
         /// <param name="alpha">A <c>float</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddColor"/>
-        public long AddColor(object? color, float alpha)
+        public long AddColor(global::Roblox.Color3? color, float alpha)
             => global::Roblox.Reflection.Invoke<long>(this, "AddColor", color, alpha);
 
         /// <summary>
@@ -85,19 +85,19 @@ namespace Roblox
         /// <summary>
         /// Adds a new UV to the geometry and returns a stable UV ID.
         /// </summary>
-        /// <param name="uv">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="uv">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddUV"/>
-        public long AddUV(global::System.Numerics.Vector2 uv)
+        public long AddUV(global::Roblox.Vector2? uv)
             => global::Roblox.Reflection.Invoke<long>(this, "AddUV", uv);
 
         /// <summary>
         /// Adds a new vertex to the geometry and returns a stable vertex ID.
         /// </summary>
-        /// <param name="p">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="p">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddVertex"/>
-        public long AddVertex(global::System.Numerics.Vector3 p)
+        public long AddVertex(global::Roblox.Vector3? p)
             => global::Roblox.Reflection.Invoke<long>(this, "AddVertex", p);
 
         /// <summary>
@@ -118,29 +118,29 @@ namespace Roblox
         /// <summary>
         /// Finds the closest point on the mesh's surface.
         /// </summary>
-        /// <param name="point">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FindClosestPointOnSurface"/>
-        public object? FindClosestPointOnSurface(global::System.Numerics.Vector3 point)
+        public object? FindClosestPointOnSurface(global::Roblox.Vector3? point)
             => global::Roblox.Reflection.Invoke<object?>(this, "FindClosestPointOnSurface", point);
 
         /// <summary>
         /// Finds the closest vertex to a specific point in space.
         /// </summary>
-        /// <param name="toThisPoint">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="toThisPoint">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FindClosestVertex"/>
-        public long FindClosestVertex(global::System.Numerics.Vector3 toThisPoint)
+        public long FindClosestVertex(global::Roblox.Vector3? toThisPoint)
             => global::Roblox.Reflection.Invoke<long>(this, "FindClosestVertex", toThisPoint);
 
         /// <summary>
         /// Finds all vertices within a specific sphere.
         /// </summary>
-        /// <param name="center">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FindVerticesWithinSphere"/>
-        public object? FindVerticesWithinSphere(global::System.Numerics.Vector3 center, float radius)
+        public object? FindVerticesWithinSphere(global::Roblox.Vector3? center, float radius)
             => global::Roblox.Reflection.Invoke<object?>(this, "FindVerticesWithinSphere", center, radius);
 
         /// <summary>
@@ -174,10 +174,10 @@ namespace Roblox
         /// Returns the initial CFrame of the bone in the bind pose of the mesh.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetBoneCFrame"/>
-        public object? GetBoneCFrame(long boneId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBoneCFrame", boneId);
+        public global::Roblox.CFrame? GetBoneCFrame(long boneId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetBoneCFrame", boneId);
 
         /// <summary>
         /// Returns true if the bone is virtual.
@@ -217,10 +217,10 @@ namespace Roblox
         /// <summary>
         /// <c>EditableMesh.GetCenter</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetCenter"/>
-        public global::System.Numerics.Vector3 GetCenter()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetCenter");
+        public global::Roblox.Vector3? GetCenter()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetCenter");
 
         /// <summary>
         /// Returns the color for the given color ID.
@@ -383,18 +383,18 @@ namespace Roblox
         /// Gets the position of a vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetPosition"/>
-        public global::System.Numerics.Vector3 GetPosition(long vertexId)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetPosition", vertexId);
+        public global::Roblox.Vector3? GetPosition(long vertexId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetPosition", vertexId);
 
         /// <summary>
         /// <c>EditableMesh.GetSize</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetSize"/>
-        public global::System.Numerics.Vector3 GetSize()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetSize");
+        public global::Roblox.Vector3? GetSize()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetSize");
 
         /// <summary>
         /// Returns UV coordinates at the given UV ID.
@@ -562,11 +562,11 @@ namespace Roblox
         /// <summary>
         /// <c>EditableMesh.RaycastLocal</c>
         /// </summary>
-        /// <param name="origin">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="origin">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#RaycastLocal"/>
-        public object? RaycastLocal(global::System.Numerics.Vector3 origin, global::System.Numerics.Vector3 direction)
+        public object? RaycastLocal(global::Roblox.Vector3? origin, global::Roblox.Vector3? direction)
             => global::Roblox.Reflection.Invoke<object?>(this, "RaycastLocal", origin, direction);
 
         /// <summary>
@@ -608,10 +608,10 @@ namespace Roblox
         /// Set the initial CFrame for a bone in the mesh's bind pose.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetBoneCFrame"/>
-        public object? SetBoneCFrame(long boneId, object? cframe)
+        public object? SetBoneCFrame(long boneId, global::Roblox.CFrame? cframe)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetBoneCFrame", boneId, cframe);
 
         /// <summary>
@@ -648,10 +648,10 @@ namespace Roblox
         /// Sets the color for a color ID.
         /// </summary>
         /// <param name="colorId">A <c>long</c> value.</param>
-        /// <param name="color">A <c>object?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetColor"/>
-        public object? SetColor(long colorId, object? color)
+        public object? SetColor(long colorId, global::Roblox.Color3? color)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetColor", colorId, color);
 
         /// <summary>
@@ -709,10 +709,10 @@ namespace Roblox
         /// </summary>
         /// <param name="action">A <c>Enum.FacsActionUnit</c> value.</param>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFacsBonePose"/>
-        public object? SetFacsBonePose(Enum.FacsActionUnit action, long boneId, object? cframe)
+        public object? SetFacsBonePose(Enum.FacsActionUnit action, long boneId, global::Roblox.CFrame? cframe)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetFacsBonePose", action, boneId, cframe);
 
         /// <summary>
@@ -741,30 +741,30 @@ namespace Roblox
         /// Set the normal for a normal ID.
         /// </summary>
         /// <param name="normalId">A <c>long</c> value.</param>
-        /// <param name="normal">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="normal">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetNormal"/>
-        public object? SetNormal(long normalId, global::System.Numerics.Vector3 normal)
+        public object? SetNormal(long normalId, global::Roblox.Vector3? normal)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetNormal", normalId, normal);
 
         /// <summary>
         /// Sets a vertex position in the mesh's local object space.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <param name="p">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="p">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetPosition"/>
-        public object? SetPosition(long vertexId, global::System.Numerics.Vector3 p)
+        public object? SetPosition(long vertexId, global::Roblox.Vector3? p)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetPosition", vertexId, p);
 
         /// <summary>
         /// Sets UV coordinates for a UV ID.
         /// </summary>
         /// <param name="uvId">A <c>long</c> value.</param>
-        /// <param name="uv">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="uv">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetUV"/>
-        public object? SetUV(long uvId, global::System.Numerics.Vector2 uv)
+        public object? SetUV(long uvId, global::Roblox.Vector2? uv)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetUV", uvId, uv);
 
         /// <summary>

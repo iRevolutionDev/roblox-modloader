@@ -29,10 +29,10 @@ namespace Roblox
         /// A Vector3 describing the delta between input movements.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#Delta"/>
-        public global::System.Numerics.Vector3 Delta
+        public global::Roblox.Vector3? Delta
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Delta");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Delta", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Delta");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Delta", value);
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Roblox
         /// A Vector3 describing the positional value of this input.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>

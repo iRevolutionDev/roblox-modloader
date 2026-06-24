@@ -34,7 +34,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FriendService.FriendsUpdated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="friendData">A <c>object?</c> value.</param>
         public event Action<object?>? FriendsUpdated

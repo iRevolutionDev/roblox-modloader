@@ -23,7 +23,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
         public event Action<LuaSourceContainer?>? ScriptAdded
@@ -34,7 +33,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptBeingRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
         public event Action<LuaSourceContainer?>? ScriptBeingRemoved
@@ -45,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
         /// <param name="property">A <c>string?</c> value.</param>
@@ -57,7 +54,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptFullNameChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
         public event Action<LuaSourceContainer?>? ScriptFullNameChanged
@@ -68,7 +64,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptSourceChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
         public event Action<LuaSourceContainer?>? ScriptSourceChanged

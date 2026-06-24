@@ -159,10 +159,10 @@ namespace Roblox
         /// Specifies the global wind vector for animated terrain grass, dynamic clouds, and particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#GlobalWind"/>
-        public global::System.Numerics.Vector3 GlobalWind
+        public global::Roblox.Vector3? GlobalWind
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "GlobalWind");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "GlobalWind", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GlobalWind");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GlobalWind", value);
         }
 
         /// <summary>
@@ -201,10 +201,10 @@ namespace Roblox
         /// The world position at which new objects are placed when inserted from the toolbox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#InsertPoint"/>
-        public global::System.Numerics.Vector3 InsertPoint
+        public global::Roblox.Vector3? InsertPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "InsertPoint");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "InsertPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "InsertPoint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "InsertPoint", value);
         }
 
         /// <summary>
@@ -598,9 +598,10 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<float>(this, "CalculateJumpPower", gravity, jumpHeight);
 
         /// <summary>
-        /// <c>Workspace.ExperimentalSolverIsEnabled</c>
+        /// Returns true if the experimental physics solver is enabled.
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ExperimentalSolverIsEnabled"/>
         public bool ExperimentalSolverIsEnabled()
             => global::Roblox.Reflection.Invoke<bool>(this, "ExperimentalSolverIsEnabled");
 
@@ -706,7 +707,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when persistent models have been sent to the specified player.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PersistentLoaded"/>

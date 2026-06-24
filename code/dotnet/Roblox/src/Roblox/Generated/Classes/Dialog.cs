@@ -119,10 +119,10 @@ namespace Roblox
         /// Sets the offset of the dialog relative to the dialog's parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#TriggerOffset"/>
-        public global::System.Numerics.Vector3 TriggerOffset
+        public global::Roblox.Vector3? TriggerOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "TriggerOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "TriggerOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "TriggerOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "TriggerOffset", value);
         }
 
         /// <summary>
@@ -161,7 +161,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when a player chooses something to say, through a Dialog instance.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="dialogChoice">A <c>Instance?</c> value.</param>

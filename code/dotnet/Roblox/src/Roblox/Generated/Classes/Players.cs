@@ -450,7 +450,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Players.FriendRequestEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <param name="player">A <c>Player?</c> value.</param>
@@ -463,7 +462,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player enters the experience.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerAdded"/>
@@ -475,7 +473,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Players.PlayerChatted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="chatType">A <c>Enum.PlayerChatType</c> value.</param>
         /// <param name="player">A <c>Player?</c> value.</param>
@@ -489,7 +486,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Players.PlayerConnecting</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         public event Action<Player?>? PlayerConnecting
@@ -500,7 +496,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Players.PlayerDisconnecting</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         public event Action<Player?>? PlayerDisconnecting
@@ -511,7 +506,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the experience server recognizes that a player's membership has changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerMembershipChanged"/>
@@ -523,7 +517,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Players.PlayerRejoining</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         public event Action<Player?>? PlayerRejoining
@@ -534,7 +527,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player is about to leave the experience.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <param name="reason">A <c>Enum.PlayerExitReason</c> value.</param>
@@ -547,7 +539,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>Players.PromptAgeCheckRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         public event Action<Player?>? PromptAgeCheckRequested
@@ -558,7 +549,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the experience server recognizes that the user's status for a certain subscription has changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="user">A <c>Player?</c> value.</param>
         /// <param name="subscriptionId">A <c>string?</c> value.</param>

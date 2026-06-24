@@ -184,7 +184,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IXPService.OnBrowserTrackerLayerLoadingStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>Enum.IXPLoadingStatus</c> value.</param>
         public event Action<Enum.IXPLoadingStatus>? OnBrowserTrackerLayerLoadingStatusChanged
@@ -195,7 +194,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IXPService.OnCreatorLayerLoadingStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>Enum.IXPLoadingStatus</c> value.</param>
         public event Action<Enum.IXPLoadingStatus>? OnCreatorLayerLoadingStatusChanged
@@ -206,7 +204,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>IXPService.OnUserLayerLoadingStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>Enum.IXPLoadingStatus</c> value.</param>
         public event Action<Enum.IXPLoadingStatus>? OnUserLayerLoadingStatusChanged

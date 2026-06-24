@@ -29,10 +29,10 @@ namespace Roblox
         /// The absolute size of space being taken up by the grid layout.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#AbsoluteContentSize"/>
-        public global::System.Numerics.Vector2 AbsoluteContentSize
+        public global::Roblox.Vector2? AbsoluteContentSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsoluteContentSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteContentSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteContentSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteContentSize", value);
         }
 
         /// <summary>

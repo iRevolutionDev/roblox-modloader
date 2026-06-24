@@ -42,10 +42,6 @@ namespace Roblox
         public VideoSampler? CreateVideoSamplerAsync(string? content, object? options)
             => global::Roblox.Reflection.Invoke<VideoSampler?>(this, "CreateVideoSamplerAsync", content, options);
 
-        /// <summary>
-        /// <c>VideoService.GameStreamingResolutionReady</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? GameStreamingResolutionReady
         {
             add { if (value is not null) AddEventHandler("GameStreamingResolutionReady", value); }

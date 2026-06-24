@@ -49,30 +49,30 @@ namespace Roblox
         /// <c>StudioScreenshotCapture.OriginalSize</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#OriginalSize"/>
-        public global::System.Numerics.Vector2 OriginalSize
+        public global::Roblox.Vector2? OriginalSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "OriginalSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "OriginalSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "OriginalSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "OriginalSize", value);
         }
 
         /// <summary>
         /// <c>StudioScreenshotCapture.Position</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#Position"/>
-        public global::System.Numerics.Vector2 Position
+        public global::Roblox.Vector2? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Position", value);
         }
 
         /// <summary>
         /// <c>StudioScreenshotCapture.Resolution</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#Resolution"/>
-        public global::System.Numerics.Vector2 Resolution
+        public global::Roblox.Vector2? Resolution
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Resolution");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Resolution", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Resolution");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Resolution", value);
         }
 
         /// <summary>
@@ -105,10 +105,10 @@ namespace Roblox
         /// <c>StudioScreenshotCapture.ScaleAsync</c>
         /// </summary>
         /// <param name="strategy">A <c>Enum.ResamplerMode</c> value.</param>
-        /// <param name="newSize">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="newSize">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>StudioScreenshotCapture?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioScreenshotCapture#ScaleAsync"/>
-        public StudioScreenshotCapture? ScaleAsync(Enum.ResamplerMode strategy, global::System.Numerics.Vector2 newSize)
+        public StudioScreenshotCapture? ScaleAsync(Enum.ResamplerMode strategy, global::Roblox.Vector2? newSize)
             => global::Roblox.Reflection.Invoke<StudioScreenshotCapture?>(this, "ScaleAsync", strategy, newSize);
 
     }

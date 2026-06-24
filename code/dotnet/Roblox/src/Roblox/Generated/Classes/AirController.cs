@@ -45,10 +45,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceSpeed", value);
         }
 
-        public global::System.Numerics.Vector3 LinearImpulse
+        public global::Roblox.Vector3? LinearImpulse
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LinearImpulse");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "LinearImpulse", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LinearImpulse");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LinearImpulse", value);
         }
 
         /// <summary>

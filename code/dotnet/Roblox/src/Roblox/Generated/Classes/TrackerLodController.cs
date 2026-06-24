@@ -73,10 +73,6 @@ namespace Roblox
         public bool IsVideoEnabled()
             => global::Roblox.Reflection.Invoke<bool>(this, "isVideoEnabled");
 
-        /// <summary>
-        /// <c>TrackerLodController.UpdateState</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? UpdateState
         {
             add { if (value is not null) AddEventHandler("UpdateState", value); }

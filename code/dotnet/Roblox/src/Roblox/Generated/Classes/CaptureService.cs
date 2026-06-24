@@ -302,9 +302,9 @@ namespace Roblox
         /// <c>CaptureService.GetCaptureSizeAsync</c>
         /// </summary>
         /// <param name="captureContent">A <c>string?</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector2 GetCaptureSizeAsync(string? captureContent)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetCaptureSizeAsync", captureContent);
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2? GetCaptureSizeAsync(string? captureContent)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetCaptureSizeAsync", captureContent);
 
         /// <summary>
         /// <c>CaptureService.GetCaptureStorageSizeAsync</c>
@@ -402,7 +402,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires immediately before a capture begins.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="captureType">A <c>Enum.CaptureType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureBegan"/>
@@ -414,7 +413,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires after a capture finishes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="captureType">A <c>Enum.CaptureType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureEnded"/>
@@ -426,7 +424,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.CaptureObjectSavedInternal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="capture">A <c>Capture?</c> value.</param>
         /// <param name="triggerSource">A <c>string?</c> value.</param>
@@ -438,7 +435,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This event has been superseded by the UserCaptureSaved event.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="captureInfo">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureSaved"/>
@@ -450,7 +446,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.CaptureSavedInternal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="captureInfo">A <c>object?</c> value.</param>
         /// <param name="triggerSource">A <c>string?</c> value.</param>
@@ -462,7 +457,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.OpenCapturePermissionsPrompt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
         /// <param name="captureGalleryPermission">A <c>Enum.CaptureGalleryPermission</c> value.</param>
@@ -474,7 +468,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.OpenSaveCapturesPrompt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
         /// <param name="captures">A <c>object?</c> value.</param>
@@ -486,7 +479,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.OpenShareCapturePrompt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
         /// <param name="captureContent">A <c>object?</c> value.</param>
@@ -499,7 +491,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user saves a capture.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="captureContentId">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#UserCaptureSaved"/>
@@ -511,7 +502,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.UserVideoCaptureFailed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.VideoCaptureResult</c> value.</param>
         public event Action<Enum.VideoCaptureResult>? UserVideoCaptureFailed
@@ -522,7 +512,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.UserVideoCaptureStartFailed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>Enum.VideoCaptureStartedResult</c> value.</param>
         public event Action<Enum.VideoCaptureStartedResult>? UserVideoCaptureStartFailed
@@ -533,7 +522,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CaptureService.VideoCaptureInProgress</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isInProgress">A <c>bool</c> value.</param>
         /// <param name="captureTrigger">A <c>string?</c> value.</param>

@@ -29,40 +29,40 @@ namespace Roblox
         /// The number of elements in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#AbsoluteCellCount"/>
-        public global::System.Numerics.Vector2 AbsoluteCellCount
+        public global::Roblox.Vector2? AbsoluteCellCount
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsoluteCellCount");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteCellCount", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellCount");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellCount", value);
         }
 
         /// <summary>
         /// The absolute size of each element in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#AbsoluteCellSize"/>
-        public global::System.Numerics.Vector2 AbsoluteCellSize
+        public global::Roblox.Vector2? AbsoluteCellSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsoluteCellSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteCellSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellSize", value);
         }
 
         /// <summary>
         /// Determines how much space there is between elements in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#CellPadding"/>
-        public object? CellPadding
+        public global::Roblox.UDim2? CellPadding
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CellPadding");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CellPadding", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CellPadding");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CellPadding", value);
         }
 
         /// <summary>
         /// Determines the size of each element in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#CellSize"/>
-        public object? CellSize
+        public global::Roblox.UDim2? CellSize
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CellSize");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CellSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CellSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CellSize", value);
         }
 
         /// <summary>

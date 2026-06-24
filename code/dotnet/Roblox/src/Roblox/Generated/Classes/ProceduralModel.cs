@@ -49,10 +49,10 @@ namespace Roblox
         /// Defines the bounding volume used for generation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#Size"/>
-        public global::System.Numerics.Vector3 Size
+        public global::Roblox.Vector3? Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Size");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Size", value);
         }
 
         /// <summary>

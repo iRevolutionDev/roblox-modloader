@@ -45,20 +45,20 @@ namespace Roblox
         /// Screen location of the camera button.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#CameraButtonPosition"/>
-        public object? CameraButtonPosition
+        public global::Roblox.UDim2? CameraButtonPosition
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CameraButtonPosition");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CameraButtonPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CameraButtonPosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CameraButtonPosition", value);
         }
 
         /// <summary>
         /// Screen location of the close button.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#CloseButtonPosition"/>
-        public object? CloseButtonPosition
+        public global::Roblox.UDim2? CloseButtonPosition
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CloseButtonPosition");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CloseButtonPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CloseButtonPosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CloseButtonPosition", value);
         }
 
         /// <summary>

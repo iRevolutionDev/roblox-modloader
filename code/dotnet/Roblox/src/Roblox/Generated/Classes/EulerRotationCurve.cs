@@ -48,10 +48,10 @@ namespace Roblox
         /// Samples the EulerRotationCurve at a given time and returns the corresponding rotation.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#GetRotationAtTime"/>
-        public object? GetRotationAtTime(float time)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRotationAtTime", time);
+        public global::Roblox.CFrame? GetRotationAtTime(float time)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetRotationAtTime", time);
 
         /// <summary>
         /// Returns the FloatCurve controlling the X Euler angle channel.

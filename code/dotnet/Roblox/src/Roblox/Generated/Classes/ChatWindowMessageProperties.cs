@@ -49,10 +49,10 @@ namespace Roblox
         /// Color of the text in the chat window.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties#TextColor3"/>
-        public object? TextColor3
+        public global::Roblox.Color3? TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Roblox
         /// Stroke color applied to text in the chat window.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties#TextStrokeColor3"/>
-        public object? TextStrokeColor3
+        public global::Roblox.Color3? TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>

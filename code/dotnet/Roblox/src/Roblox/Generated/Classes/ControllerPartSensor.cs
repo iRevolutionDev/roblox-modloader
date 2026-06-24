@@ -29,20 +29,20 @@ namespace Roblox
         /// The position in world space where the sensor hit the ControllerPartSensor.SensedPart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#HitFrame"/>
-        public object? HitFrame
+        public global::Roblox.CFrame? HitFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "HitFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "HitFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "HitFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "HitFrame", value);
         }
 
         /// <summary>
         /// The surface normal at the position where the sensor hit the ControllerPartSensor.SensedPart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#HitNormal"/>
-        public global::System.Numerics.Vector3 HitNormal
+        public global::Roblox.Vector3? HitNormal
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "HitNormal");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "HitNormal", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "HitNormal");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "HitNormal", value);
         }
 
         /// <summary>

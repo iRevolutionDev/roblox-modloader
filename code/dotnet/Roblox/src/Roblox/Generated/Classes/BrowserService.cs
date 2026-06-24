@@ -99,20 +99,12 @@ namespace Roblox
         public object? SendCommand(string? command)
             => global::Roblox.Reflection.Invoke<object?>(this, "SendCommand", command);
 
-        /// <summary>
-        /// <c>BrowserService.AuthCookieCopiedToEngine</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? AuthCookieCopiedToEngine
         {
             add { if (value is not null) AddEventHandler("AuthCookieCopiedToEngine", value); }
             remove { if (value is not null) RemoveEventHandler("AuthCookieCopiedToEngine", value); }
         }
 
-        /// <summary>
-        /// <c>BrowserService.BrowserWindowClosed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? BrowserWindowClosed
         {
             add { if (value is not null) AddEventHandler("BrowserWindowClosed", value); }
@@ -121,7 +113,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BrowserService.BrowserWindowWillNavigate</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="url">A <c>string?</c> value.</param>
         public event Action<string?>? BrowserWindowWillNavigate
@@ -132,7 +123,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BrowserService.JavaScriptCallback</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="content">A <c>string?</c> value.</param>
         public event Action<string?>? JavaScriptCallback

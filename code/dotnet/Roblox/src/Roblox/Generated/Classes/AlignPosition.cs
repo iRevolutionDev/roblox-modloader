@@ -59,10 +59,10 @@ namespace Roblox
         /// Maximum force along each axis that the constraint can apply to achieve its goal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#MaxAxesForce"/>
-        public global::System.Numerics.Vector3 MaxAxesForce
+        public global::Roblox.Vector3? MaxAxesForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxAxesForce");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxAxesForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce", value);
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace Roblox
         /// The position to which the constraint should move its Attachment0.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>

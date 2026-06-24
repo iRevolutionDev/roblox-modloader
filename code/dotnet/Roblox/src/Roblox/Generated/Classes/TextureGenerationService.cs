@@ -64,7 +64,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextureGenerationService.GenerationNotificationSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="notificationData">A <c>object?</c> value.</param>
         public event Action<object?>? GenerationNotificationSignal
@@ -75,7 +74,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextureGenerationService.PreviewNotificationSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="notificationData">A <c>object?</c> value.</param>
         public event Action<object?>? PreviewNotificationSignal

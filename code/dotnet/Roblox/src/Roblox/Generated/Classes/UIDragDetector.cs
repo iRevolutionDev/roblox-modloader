@@ -89,10 +89,10 @@ namespace Roblox
         /// The drag axis for the UIDragDetector instance when DragStyle is set to UIDragDetectorDragStyle.TranslateLine.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragAxis"/>
-        public global::System.Numerics.Vector2 DragAxis
+        public global::Roblox.Vector2? DragAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "DragAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "DragAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "DragAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "DragAxis", value);
         }
 
         /// <summary>
@@ -139,10 +139,10 @@ namespace Roblox
         /// The translation performed by the current drag expressed in a UDim2 value.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragUDim2"/>
-        public object? DragUDim2
+        public global::Roblox.UDim2? DragUDim2
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "DragUDim2");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "DragUDim2", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "DragUDim2");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "DragUDim2", value);
         }
 
         /// <summary>
@@ -169,10 +169,10 @@ namespace Roblox
         /// Along with MinDragTranslation, impedes the detector's attempts to generate linear/planar motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MaxDragTranslation"/>
-        public object? MaxDragTranslation
+        public global::Roblox.UDim2? MaxDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MaxDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MaxDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "MaxDragTranslation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "MaxDragTranslation", value);
         }
 
         /// <summary>
@@ -189,10 +189,10 @@ namespace Roblox
         /// Along with MaxDragTranslation, impedes the detector's attempts to generate linear/planar motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MinDragTranslation"/>
-        public object? MinDragTranslation
+        public global::Roblox.UDim2? MinDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MinDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MinDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "MinDragTranslation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "MinDragTranslation", value);
         }
 
         /// <summary>
@@ -219,10 +219,10 @@ namespace Roblox
         /// Maximum drag speed for translation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#SelectionModeDragSpeed"/>
-        public object? SelectionModeDragSpeed
+        public global::Roblox.UDim2? SelectionModeDragSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SelectionModeDragSpeed");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SelectionModeDragSpeed", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "SelectionModeDragSpeed");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "SelectionModeDragSpeed", value);
         }
 
         /// <summary>
@@ -258,10 +258,10 @@ namespace Roblox
         /// <summary>
         /// Returns the reference UDim2 position of the current drag's reference origin.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.UDim2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#GetReferencePosition"/>
-        public object? GetReferencePosition()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetReferencePosition");
+        public global::Roblox.UDim2? GetReferencePosition()
+            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2?>(this, "GetReferencePosition");
 
         /// <summary>
         /// Returns the reference rotation of the current drag's reference element.
@@ -282,11 +282,10 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user continues dragging the UI element after DragStart has been initiated.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="inputPosition">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="inputPosition">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragContinue"/>
-        public event Action<global::System.Numerics.Vector2>? DragContinue
+        public event Action<global::Roblox.Vector2?>? DragContinue
         {
             add { if (value is not null) AddEventHandler("DragContinue", value); }
             remove { if (value is not null) RemoveEventHandler("DragContinue", value); }
@@ -294,11 +293,10 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user stops dragging the UI element.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="inputPosition">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="inputPosition">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragEnd"/>
-        public event Action<global::System.Numerics.Vector2>? DragEnd
+        public event Action<global::Roblox.Vector2?>? DragEnd
         {
             add { if (value is not null) AddEventHandler("DragEnd", value); }
             remove { if (value is not null) RemoveEventHandler("DragEnd", value); }
@@ -306,11 +304,10 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user starts dragging the UI element.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="inputPosition">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="inputPosition">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragStart"/>
-        public event Action<global::System.Numerics.Vector2>? DragStart
+        public event Action<global::Roblox.Vector2?>? DragStart
         {
             add { if (value is not null) AddEventHandler("DragStart", value); }
             remove { if (value is not null) RemoveEventHandler("DragStart", value); }

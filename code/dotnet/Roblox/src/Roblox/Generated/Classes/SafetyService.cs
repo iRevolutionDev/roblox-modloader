@@ -115,7 +115,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SafetyService.ScreenshotContentReady</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="screenshotJobId">A <c>long</c> value.</param>
         /// <param name="contentId">A <c>object?</c> value.</param>
@@ -127,7 +126,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SafetyService.ScreenshotUploaded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="screenshotJobId">A <c>long</c> value.</param>
         /// <param name="screenshotId">A <c>string?</c> value.</param>

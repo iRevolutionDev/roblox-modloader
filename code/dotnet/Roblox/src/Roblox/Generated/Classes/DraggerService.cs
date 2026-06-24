@@ -99,10 +99,10 @@ namespace Roblox
         /// <c>DraggerService.GeometrySnapColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#GeometrySnapColor"/>
-        public object? GeometrySnapColor
+        public global::Roblox.Color3? GeometrySnapColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "GeometrySnapColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "GeometrySnapColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "GeometrySnapColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "GeometrySnapColor", value);
         }
 
         /// <summary>

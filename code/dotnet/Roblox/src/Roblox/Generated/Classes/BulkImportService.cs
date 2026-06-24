@@ -38,7 +38,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BulkImportService.AssetImported</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
         /// <param name="name">A <c>string?</c> value.</param>
@@ -51,7 +50,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BulkImportService.BulkImportFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="state">A <c>int</c> value.</param>
         public event Action<int>? BulkImportFinished
@@ -60,10 +58,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("BulkImportFinished", value); }
         }
 
-        /// <summary>
-        /// <c>BulkImportService.BulkImportStarted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? BulkImportStarted
         {
             add { if (value is not null) AddEventHandler("BulkImportStarted", value); }

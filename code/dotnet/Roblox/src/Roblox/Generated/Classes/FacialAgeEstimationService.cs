@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>FacialAgeEstimationService</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FacialAgeEstimationService"/>
     [RobloxClass("FacialAgeEstimationService")]
     public class FacialAgeEstimationService : Instance
     {
@@ -25,6 +29,7 @@ namespace Roblox
         /// <c>FacialAgeEstimationService.IsAvailable</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FacialAgeEstimationService#IsAvailable"/>
         public bool IsAvailable()
             => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable");
 
@@ -33,6 +38,7 @@ namespace Roblox
         /// </summary>
         /// <param name="inquiryRequest">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FacialAgeEstimationService#InquiryAsync"/>
         public object? InquiryAsync(object? inquiryRequest)
             => global::Roblox.Reflection.Invoke<object?>(this, "InquiryAsync", inquiryRequest);
 

@@ -75,6 +75,13 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<bool>(this, "IsValidR15");
 
         /// <summary>
+        /// <c>AnimationRigData.IsValidR15Plus</c>
+        /// </summary>
+        /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        public bool IsValidR15Plus()
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsValidR15Plus");
+
+        /// <summary>
         /// <c>AnimationRigData.LoadFromHumanoid</c>
         /// </summary>
         /// <param name="humanoid">A <c>Instance?</c> value.</param>

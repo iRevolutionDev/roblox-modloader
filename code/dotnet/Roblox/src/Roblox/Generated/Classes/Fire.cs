@@ -29,10 +29,10 @@ namespace Roblox
         /// Determines the color of the primary (outer) flame particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#Color"/>
-        public object? Color
+        public global::Roblox.Color3? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Roblox
         /// Determines the color of the of the secondary (inner) flame particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Fire#SecondaryColor"/>
-        public object? SecondaryColor
+        public global::Roblox.Color3? SecondaryColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SecondaryColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SecondaryColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "SecondaryColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "SecondaryColor", value);
         }
 
         /// <summary>

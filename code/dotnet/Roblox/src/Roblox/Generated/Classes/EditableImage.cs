@@ -29,10 +29,10 @@ namespace Roblox
         /// Size of the EditableImage in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#Size"/>
-        public global::System.Numerics.Vector2 Size
+        public global::Roblox.Vector2? Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Size");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Size", value);
         }
 
         /// <summary>
@@ -46,26 +46,26 @@ namespace Roblox
         /// <summary>
         /// Draws a circle at the specified point.
         /// </summary>
-        /// <param name="center">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="radius">A <c>int</c> value.</param>
-        /// <param name="color">A <c>object?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
         /// <param name="transparency">A <c>float</c> value.</param>
         /// <param name="combineType">A <c>Enum.ImageCombineType</c> value.</param>
         /// <param name="antiAliasing">A <c>Enum.AntiAliasing</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#DrawCircle"/>
-        public object? DrawCircle(global::System.Numerics.Vector2 center, int radius, object? color, float transparency, Enum.ImageCombineType combineType, Enum.AntiAliasing antiAliasing)
+        public object? DrawCircle(global::Roblox.Vector2? center, int radius, global::Roblox.Color3? color, float transparency, Enum.ImageCombineType combineType, Enum.AntiAliasing antiAliasing)
             => global::Roblox.Reflection.Invoke<object?>(this, "DrawCircle", center, radius, color, transparency, combineType, antiAliasing);
 
         /// <summary>
         /// Draws another EditableImage into this EditableImage at the given position.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="image">A <c>EditableImage?</c> value.</param>
         /// <param name="combineType">A <c>Enum.ImageCombineType</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#DrawImage"/>
-        public object? DrawImage(global::System.Numerics.Vector2 position, EditableImage? image, Enum.ImageCombineType combineType)
+        public object? DrawImage(global::Roblox.Vector2? position, EditableImage? image, Enum.ImageCombineType combineType)
             => global::Roblox.Reflection.Invoke<object?>(this, "DrawImage", position, image, combineType);
 
         /// <summary>
@@ -82,74 +82,74 @@ namespace Roblox
         /// <summary>
         /// Draws an image into this EditableImage with transformations including scaling and rotation, placing it at the specified position.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="scale">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="scale">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="rotation">A <c>float</c> value.</param>
         /// <param name="image">A <c>EditableImage?</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#DrawImageTransformed"/>
-        public object? DrawImageTransformed(global::System.Numerics.Vector2 position, global::System.Numerics.Vector2 scale, float rotation, EditableImage? image, object? options)
+        public object? DrawImageTransformed(global::Roblox.Vector2? position, global::Roblox.Vector2? scale, float rotation, EditableImage? image, object? options)
             => global::Roblox.Reflection.Invoke<object?>(this, "DrawImageTransformed", position, scale, rotation, image, options);
 
         /// <summary>
         /// Draws a line between two provided points.
         /// </summary>
-        /// <param name="p1">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="p2">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="color">A <c>object?</c> value.</param>
+        /// <param name="p1">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="p2">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
         /// <param name="transparency">A <c>float</c> value.</param>
         /// <param name="combineType">A <c>Enum.ImageCombineType</c> value.</param>
         /// <param name="antiAliasing">A <c>Enum.AntiAliasing</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#DrawLine"/>
-        public object? DrawLine(global::System.Numerics.Vector2 p1, global::System.Numerics.Vector2 p2, object? color, float transparency, Enum.ImageCombineType combineType, Enum.AntiAliasing antiAliasing)
+        public object? DrawLine(global::Roblox.Vector2? p1, global::Roblox.Vector2? p2, global::Roblox.Color3? color, float transparency, Enum.ImageCombineType combineType, Enum.AntiAliasing antiAliasing)
             => global::Roblox.Reflection.Invoke<object?>(this, "DrawLine", p1, p2, color, transparency, combineType, antiAliasing);
 
         /// <summary>
         /// Draws a rectangle of the given size at the given top-left position.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="color">A <c>object?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
         /// <param name="transparency">A <c>float</c> value.</param>
         /// <param name="combineType">A <c>Enum.ImageCombineType</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#DrawRectangle"/>
-        public object? DrawRectangle(global::System.Numerics.Vector2 position, global::System.Numerics.Vector2 size, object? color, float transparency, Enum.ImageCombineType combineType)
+        public object? DrawRectangle(global::Roblox.Vector2? position, global::Roblox.Vector2? size, global::Roblox.Color3? color, float transparency, Enum.ImageCombineType combineType)
             => global::Roblox.Reflection.Invoke<object?>(this, "DrawRectangle", position, size, color, transparency, combineType);
 
         /// <summary>
         /// <c>EditableImage.DrawTriangle</c>
         /// </summary>
-        /// <param name="p1">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="p2">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="p3">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="color">A <c>object?</c> value.</param>
+        /// <param name="p1">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="p2">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="p3">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
         /// <param name="transparency">A <c>float</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DrawTriangle(global::System.Numerics.Vector2 p1, global::System.Numerics.Vector2 p2, global::System.Numerics.Vector2 p3, object? color, float transparency)
+        public object? DrawTriangle(global::Roblox.Vector2? p1, global::Roblox.Vector2? p2, global::Roblox.Vector2? p3, global::Roblox.Color3? color, float transparency)
             => global::Roblox.Reflection.Invoke<object?>(this, "DrawTriangle", p1, p2, p3, color, transparency);
 
         /// <summary>
         /// Reads a rectangular region of pixels into a buffer.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#ReadPixelsBuffer"/>
-        public object? ReadPixelsBuffer(global::System.Numerics.Vector2 position, global::System.Numerics.Vector2 size)
+        public object? ReadPixelsBuffer(global::Roblox.Vector2? position, global::Roblox.Vector2? size)
             => global::Roblox.Reflection.Invoke<object?>(this, "ReadPixelsBuffer", position, size);
 
         /// <summary>
         /// Writes a rectangular region of pixels into the image.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="buffer">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage#WritePixelsBuffer"/>
-        public object? WritePixelsBuffer(global::System.Numerics.Vector2 position, global::System.Numerics.Vector2 size, object? buffer)
+        public object? WritePixelsBuffer(global::Roblox.Vector2? position, global::Roblox.Vector2? size, object? buffer)
             => global::Roblox.Reflection.Invoke<object?>(this, "WritePixelsBuffer", position, size, buffer);
 
     }

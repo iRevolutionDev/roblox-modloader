@@ -50,7 +50,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the local player closes the prompt.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceNotificationService#OptInPromptClosed"/>
         public event Action? OptInPromptClosed
@@ -59,10 +58,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("OptInPromptClosed", value); }
         }
 
-        /// <summary>
-        /// <c>ExperienceNotificationService.PromptOptInRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? PromptOptInRequested
         {
             add { if (value is not null) AddEventHandler("PromptOptInRequested", value); }

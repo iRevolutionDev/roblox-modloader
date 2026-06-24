@@ -54,30 +54,18 @@ namespace Roblox
         public object? SetDefaultLoadingGuiRemoved()
             => global::Roblox.Reflection.Invoke<object?>(this, "SetDefaultLoadingGuiRemoved");
 
-        /// <summary>
-        /// <c>ReplicatedFirst.DefaultLoadingGuiRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? DefaultLoadingGuiRemoved
         {
             add { if (value is not null) AddEventHandler("DefaultLoadingGuiRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("DefaultLoadingGuiRemoved", value); }
         }
 
-        /// <summary>
-        /// <c>ReplicatedFirst.FinishedReplicating</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? FinishedReplicating
         {
             add { if (value is not null) AddEventHandler("FinishedReplicating", value); }
             remove { if (value is not null) RemoveEventHandler("FinishedReplicating", value); }
         }
 
-        /// <summary>
-        /// <c>ReplicatedFirst.RemoveDefaultLoadingGuiSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? RemoveDefaultLoadingGuiSignal
         {
             add { if (value is not null) AddEventHandler("RemoveDefaultLoadingGuiSignal", value); }

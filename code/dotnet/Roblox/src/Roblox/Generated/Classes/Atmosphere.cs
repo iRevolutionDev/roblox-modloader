@@ -29,20 +29,20 @@ namespace Roblox
         /// Changes the Atmosphere hue for subtle environmental moods.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Color"/>
-        public object? Color
+        public global::Roblox.Color3? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
         }
 
         /// <summary>
         /// When used with increased Atmosphere.Haze and Atmosphere.Glare, defines the hue of the Atmosphere away from the sun, gradually falling off from Atmosphere.Color towards this value.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Decay"/>
-        public object? Decay
+        public global::Roblox.Color3? Decay
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Decay");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Decay", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Decay");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Decay", value);
         }
 
         /// <summary>

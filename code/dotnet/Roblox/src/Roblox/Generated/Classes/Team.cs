@@ -81,7 +81,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever a Player is assigned to the Team. A player is considered assigned if their Player.Team property is equal to the Team and Player.Neutral is false.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#PlayerAdded"/>
@@ -93,7 +92,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever a Player is removed from a Team. This can be due to the Player leaving the game, Player.Neutral being set to true or the Player joining a different team.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#PlayerRemoved"/>

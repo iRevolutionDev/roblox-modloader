@@ -78,10 +78,10 @@ namespace Roblox
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetResolutionAsync</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetResolutionAsync"/>
-        public global::System.Numerics.Vector2 GetResolutionAsync()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetResolutionAsync");
+        public global::Roblox.Vector2? GetResolutionAsync()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetResolutionAsync");
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetScalingModeAsync</c>
@@ -166,7 +166,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.ConfigurationChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#ConfigurationChanged"/>
         public event Action? ConfigurationChanged

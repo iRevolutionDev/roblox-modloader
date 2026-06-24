@@ -38,10 +38,10 @@ namespace Roblox
         /// <summary>
         /// <c>BasePlayerGui.GetGuiObjectsInCircle</c>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetGuiObjectsInCircle(global::System.Numerics.Vector2 position, float radius)
+        public IReadOnlyList<Instance> GetGuiObjectsInCircle(global::Roblox.Vector2? position, float radius)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsInCircle", position, radius);
 
     }

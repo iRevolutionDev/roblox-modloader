@@ -56,7 +56,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ServiceVisibilityService.ServiceVisibilityChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="serviceName">A <c>string?</c> value.</param>
         public event Action<string?>? ServiceVisibilityChanged

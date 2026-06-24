@@ -35,10 +35,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AccelerometerEnabled", value);
         }
 
-        public global::System.Numerics.Vector2 BottomBarSize
+        public global::Roblox.Vector2? BottomBarSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "BottomBarSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "BottomBarSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "BottomBarSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "BottomBarSize", value);
         }
 
         /// <summary>
@@ -147,10 +147,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MouseIconEnabled", value);
         }
 
-        public global::System.Numerics.Vector2 NavBarSize
+        public global::Roblox.Vector2? NavBarSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "NavBarSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "NavBarSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "NavBarSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "NavBarSize", value);
         }
 
         public double OnScreenKeyboardAnimationDuration
@@ -163,20 +163,20 @@ namespace Roblox
         /// Determines the position of the on-screen keyboard.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#OnScreenKeyboardPosition"/>
-        public global::System.Numerics.Vector2 OnScreenKeyboardPosition
+        public global::Roblox.Vector2? OnScreenKeyboardPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "OnScreenKeyboardPosition");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "OnScreenKeyboardPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "OnScreenKeyboardPosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "OnScreenKeyboardPosition", value);
         }
 
         /// <summary>
         /// Determines the size of the on-screen keyboard.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#OnScreenKeyboardSize"/>
-        public global::System.Numerics.Vector2 OnScreenKeyboardSize
+        public global::Roblox.Vector2? OnScreenKeyboardSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "OnScreenKeyboardSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "OnScreenKeyboardSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "OnScreenKeyboardSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "OnScreenKeyboardSize", value);
         }
 
         /// <summary>
@@ -205,16 +205,16 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredInput>(this, "PreferredInput", value);
         }
 
-        public global::System.Numerics.Vector2 RightBarSize
+        public global::Roblox.Vector2? RightBarSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "RightBarSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "RightBarSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "RightBarSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "RightBarSize", value);
         }
 
-        public global::System.Numerics.Vector2 StatusBarSize
+        public global::Roblox.Vector2? StatusBarSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "StatusBarSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "StatusBarSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "StatusBarSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "StatusBarSize", value);
         }
 
         /// <summary>
@@ -241,10 +241,10 @@ namespace Roblox
         /// Deprecated: This item has been superseded by UserInputService:GetUserCFrame() which should be used in all new work.Describes the orientation and position of a user's head, if they are actively using a virtual reality headset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#UserHeadCFrame"/>
-        public object? UserHeadCFrame
+        public global::Roblox.CFrame? UserHeadCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "UserHeadCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "UserHeadCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "UserHeadCFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "UserHeadCFrame", value);
         }
 
         /// <summary>
@@ -383,18 +383,18 @@ namespace Roblox
         /// <summary>
         /// Returns the change, in pixels, of the position of the player's Mouse in the last rendered frame. Only works if the mouse is locked.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetMouseDelta"/>
-        public global::System.Numerics.Vector2 GetMouseDelta()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetMouseDelta");
+        public global::Roblox.Vector2? GetMouseDelta()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetMouseDelta");
 
         /// <summary>
         /// Returns the current screen location of the player's Mouse relative to the top-left corner of the screen.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetMouseLocation"/>
-        public global::System.Numerics.Vector2 GetMouseLocation()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetMouseLocation");
+        public global::Roblox.Vector2? GetMouseLocation()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetMouseLocation");
 
         /// <summary>
         /// Returns an array of gamepads connected and enabled for GuiObject navigation in descending order of priority.
@@ -422,10 +422,11 @@ namespace Roblox
         /// Returns a string representing a key the user should press in order to input a given KeyCode.
         /// </summary>
         /// <param name="keyCode">A <c>Enum.KeyCode</c> value.</param>
+        /// <param name="format">A <c>Enum.KeyCodeStringFormat</c> value.</param>
         /// <returns>A <c>string?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetStringForKeyCode"/>
-        public string? GetStringForKeyCode(Enum.KeyCode keyCode)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetStringForKeyCode", keyCode);
+        public string? GetStringForKeyCode(Enum.KeyCode keyCode, Enum.KeyCodeStringFormat format)
+            => global::Roblox.Reflection.Invoke<string?>(this, "GetStringForKeyCode", keyCode, format);
 
         /// <summary>
         /// Returns an array of KeyCodes that the gamepad associated with the given UserInputType supports.
@@ -440,10 +441,10 @@ namespace Roblox
         /// Deprecated: Returns a CFrame describing the position and orientation of a specified virtual reality device.
         /// </summary>
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetUserCFrame"/>
-        public object? GetUserCFrame(Enum.UserCFrame type)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserCFrame", type);
+        public global::Roblox.CFrame? GetUserCFrame(Enum.UserCFrame type)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetUserCFrame", type);
 
         /// <summary>
         /// Determines whether a particular button is pressed on a gamepad.
@@ -493,12 +494,12 @@ namespace Roblox
         /// <summary>
         /// <c>UserInputService.SendAppUISizes</c>
         /// </summary>
-        /// <param name="statusBarSize">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="navBarSize">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="bottomBarSize">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="rightBarSize">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="statusBarSize">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="navBarSize">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="bottomBarSize">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="rightBarSize">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendAppUISizes(global::System.Numerics.Vector2 statusBarSize, global::System.Numerics.Vector2 navBarSize, global::System.Numerics.Vector2 bottomBarSize, global::System.Numerics.Vector2 rightBarSize)
+        public object? SendAppUISizes(global::Roblox.Vector2? statusBarSize, global::Roblox.Vector2? navBarSize, global::Roblox.Vector2? bottomBarSize, global::Roblox.Vector2? rightBarSize)
             => global::Roblox.Reflection.Invoke<object?>(this, "SendAppUISizes", statusBarSize, navBarSize, bottomBarSize, rightBarSize);
 
         /// <summary>
@@ -513,7 +514,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user moves a device that has an accelerometer.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="acceleration">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#DeviceAccelerationChanged"/>
@@ -525,7 +525,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the force of gravity changes on a device that has an enabled accelerometer.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="gravity">A <c>InputObject?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#DeviceGravityChanged"/>
@@ -537,12 +536,11 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user rotates a device that has a gyroscope.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="rotation">A <c>InputObject?</c> value.</param>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#DeviceRotationChanged"/>
-        public event Action<InputObject?, object?>? DeviceRotationChanged
+        public event Action<InputObject?, global::Roblox.CFrame?>? DeviceRotationChanged
         {
             add { if (value is not null) AddEventHandler("DeviceRotationChanged", value); }
             remove { if (value is not null) RemoveEventHandler("DeviceRotationChanged", value); }
@@ -550,7 +548,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a gamepad is connected to the client.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="gamepadNum">A <c>Enum.UserInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GamepadConnected"/>
@@ -562,7 +559,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a gamepad is disconnected from the client.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="gamepadNum">A <c>Enum.UserInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GamepadDisconnected"/>
@@ -574,7 +570,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user begins interacting with an input device such as a mouse or gamepad.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -587,7 +582,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user changes how they're interacting with an input device such as a mouse or gamepad.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -600,7 +594,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user stops interacting with an input device such as a mouse or gamepad.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -613,7 +606,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the client makes a request for their character to jump.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#JumpRequest"/>
         public event Action? JumpRequest
@@ -624,7 +616,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the client's UserInputType is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="lastInputType">A <c>Enum.UserInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#LastInputTypeChanged"/>
@@ -636,14 +627,13 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user performs a specific pointer action.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="wheel">A <c>float</c> value.</param>
-        /// <param name="pan">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="pan">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="pinch">A <c>float</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#PointerAction"/>
-        public event Action<float, global::System.Numerics.Vector2, float, bool>? PointerAction
+        public event Action<float, global::Roblox.Vector2?, float, bool>? PointerAction
         {
             add { if (value is not null) AddEventHandler("PointerAction", value); }
             remove { if (value is not null) RemoveEventHandler("PointerAction", value); }
@@ -651,10 +641,9 @@ namespace Roblox
 
         /// <summary>
         /// <c>UserInputService.StatusBarTapped</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
-        public event Action<global::System.Numerics.Vector2>? StatusBarTapped
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        public event Action<global::Roblox.Vector2?>? StatusBarTapped
         {
             add { if (value is not null) AddEventHandler("StatusBarTapped", value); }
             remove { if (value is not null) RemoveEventHandler("StatusBarTapped", value); }
@@ -662,7 +651,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the client loses focus on a TextBox.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textboxReleased">A <c>TextBox?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TextBoxFocusReleased"/>
@@ -674,7 +662,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the client focuses on a TextBox.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textboxFocused">A <c>TextBox?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TextBoxFocused"/>
@@ -686,7 +673,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user drags on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dragDirection">A <c>Enum.SwipeDirection</c> value.</param>
         /// <param name="numberOfTouches">A <c>int</c> value.</param>
@@ -700,7 +686,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user releases their finger from the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touch">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -713,7 +698,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user holds at least one finger for a short amount of time on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touchPositions">A <c>object?</c> value.</param>
         /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
@@ -727,7 +711,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user moves their finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touch">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -740,15 +723,14 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user drags at least one finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touchPositions">A <c>object?</c> value.</param>
-        /// <param name="totalTranslation">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <param name="velocity">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="totalTranslation">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="velocity">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchPan"/>
-        public event Action<object?, global::System.Numerics.Vector2, global::System.Numerics.Vector2, Enum.UserInputState, bool>? TouchPan
+        public event Action<object?, global::Roblox.Vector2?, global::Roblox.Vector2?, Enum.UserInputState, bool>? TouchPan
         {
             add { if (value is not null) AddEventHandler("TouchPan", value); }
             remove { if (value is not null) RemoveEventHandler("TouchPan", value); }
@@ -756,7 +738,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user performs a pinch gesture on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touchPositions">A <c>object?</c> value.</param>
         /// <param name="scale">A <c>float</c> value.</param>
@@ -772,7 +753,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user rotates two fingers on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touchPositions">A <c>object?</c> value.</param>
         /// <param name="rotation">A <c>float</c> value.</param>
@@ -788,7 +768,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user places their finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touch">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -801,7 +780,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires on a TouchEnabled device when a user places their finger(s) down on the screen, pans across the screen, and lifts their finger(s) off with a certain speed of movement.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="swipeDirection">A <c>Enum.SwipeDirection</c> value.</param>
         /// <param name="numberOfTouches">A <c>int</c> value.</param>
@@ -815,7 +793,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user taps their finger on the screen of a TouchEnabled device.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="touchPositions">A <c>object?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -828,12 +805,11 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user taps their finger on the screen of a TouchEnabled device and the tap location is in the 3D world.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="processedByUI">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#TouchTapInWorld"/>
-        public event Action<global::System.Numerics.Vector2, bool>? TouchTapInWorld
+        public event Action<global::Roblox.Vector2?, bool>? TouchTapInWorld
         {
             add { if (value is not null) AddEventHandler("TouchTapInWorld", value); }
             remove { if (value is not null) RemoveEventHandler("TouchTapInWorld", value); }
@@ -841,12 +817,11 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Fires when the CFrame of a specified Virtual Reality device changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#UserCFrameChanged"/>
-        public event Action<Enum.UserCFrame, object?>? UserCFrameChanged
+        public event Action<Enum.UserCFrame, global::Roblox.CFrame?>? UserCFrameChanged
         {
             add { if (value is not null) AddEventHandler("UserCFrameChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UserCFrameChanged", value); }
@@ -854,7 +829,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the window of the Roblox client loses focus on the user's screen.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#WindowFocusReleased"/>
         public event Action? WindowFocusReleased
@@ -865,7 +839,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the window of the Roblox client gains focus on the user's screen.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#WindowFocused"/>
         public event Action? WindowFocused

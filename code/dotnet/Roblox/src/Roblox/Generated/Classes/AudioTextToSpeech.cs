@@ -171,11 +171,11 @@ namespace Roblox
         /// <summary>
         /// Returns a sampling of the waveform data for the generated audio.
         /// </summary>
-        /// <param name="timeRange">A <c>object?</c> value.</param>
+        /// <param name="timeRange">A <c>global::Roblox.NumberRange?</c> value.</param>
         /// <param name="samples">A <c>int</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#GetWaveformAsync"/>
-        public object? GetWaveformAsync(object? timeRange, int samples)
+        public object? GetWaveformAsync(global::Roblox.NumberRange? timeRange, int samples)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetWaveformAsync", timeRange, samples);
 
         /// <summary>
@@ -188,7 +188,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AudioTextToSpeech object has completed playback and paused.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Ended"/>
         public event Action? Ended
@@ -199,7 +198,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AudioTextToSpeech object loops.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Looped"/>
         public event Action? Looped
@@ -210,7 +208,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioTextToSpeech via a Wire.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
         /// <param name="pin">A <c>string?</c> value.</param>

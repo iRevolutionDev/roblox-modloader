@@ -57,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player interacts with the parent of a ClickDetector or DragDetector.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoClicked">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseClick"/>
@@ -69,7 +68,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the parent of a ClickDetector or DragDetector is hovered over by a player.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoHovered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseHoverEnter"/>
@@ -81,7 +79,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player's cursor hovers off the parent of a ClickDetector or DragDetector.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoHovered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseHoverLeave"/>
@@ -93,7 +90,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player right clicks their mouse cursor on a ClickDetector or DragDetector.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoClicked">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#RightMouseClick"/>

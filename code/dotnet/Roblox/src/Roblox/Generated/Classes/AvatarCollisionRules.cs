@@ -39,10 +39,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsLegacyCollisionMode>(this, "LegacyCollisionMode", value);
         }
 
-        public global::System.Numerics.Vector3 SingleColliderSize
+        public global::Roblox.Vector3? SingleColliderSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SingleColliderSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SingleColliderSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SingleColliderSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SingleColliderSize", value);
         }
 
     }

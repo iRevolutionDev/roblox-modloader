@@ -29,41 +29,41 @@ namespace Roblox
         /// Assembly center of pressure offset from its center of mass in world coordinates.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor#CenterOfPressure"/>
-        public global::System.Numerics.Vector3 CenterOfPressure
+        public global::Roblox.Vector3? CenterOfPressure
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "CenterOfPressure");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "CenterOfPressure", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "CenterOfPressure");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "CenterOfPressure", value);
         }
 
         /// <summary>
         /// Assembly fluid force in world coordinates.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor#Force"/>
-        public global::System.Numerics.Vector3 Force
+        public global::Roblox.Vector3? Force
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Force");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Force", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Force");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Force", value);
         }
 
         /// <summary>
         /// Assembly fluid torque in world coordinates.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor#Torque"/>
-        public global::System.Numerics.Vector3 Torque
+        public global::Roblox.Vector3? Torque
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Torque");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Torque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Torque");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Torque", value);
         }
 
         /// <summary>
         /// Asynchronously computes force, torque, and center of pressure for the parent part of a sensor given provided inputs.
         /// </summary>
-        /// <param name="linearVelocity">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="angularVelocity">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="linearVelocity">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="angularVelocity">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor#EvaluateAsync"/>
-        public object? EvaluateAsync(global::System.Numerics.Vector3 linearVelocity, global::System.Numerics.Vector3 angularVelocity, object? cframe)
+        public object? EvaluateAsync(global::Roblox.Vector3? linearVelocity, global::Roblox.Vector3? angularVelocity, global::Roblox.CFrame? cframe)
             => global::Roblox.Reflection.Invoke<object?>(this, "EvaluateAsync", linearVelocity, angularVelocity, cframe);
 
     }

@@ -29,10 +29,10 @@ namespace Roblox
         /// The XYZ scale of the wireframe adornment.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#Scale"/>
-        public global::System.Numerics.Vector3 Scale
+        public global::Roblox.Vector3? Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Scale");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Scale");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Scale", value);
         }
 
         /// <summary>
@@ -48,11 +48,11 @@ namespace Roblox
         /// <summary>
         /// Adds a line to the wireframe adornment from a starting point to an ending point relative to the center of the Adornee.
         /// </summary>
-        /// <param name="from">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="to">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="from">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="to">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#AddLine"/>
-        public object? AddLine(global::System.Numerics.Vector3 from, global::System.Numerics.Vector3 to)
+        public object? AddLine(global::Roblox.Vector3? from, global::Roblox.Vector3? to)
             => global::Roblox.Reflection.Invoke<object?>(this, "AddLine", from, to);
 
         /// <summary>
@@ -77,12 +77,12 @@ namespace Roblox
         /// <summary>
         /// Adds a text label to the wireframe adornment.
         /// </summary>
-        /// <param name="point">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="text">A <c>string?</c> value.</param>
         /// <param name="size">A <c>int</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#AddText"/>
-        public object? AddText(global::System.Numerics.Vector3 point, string? text, int size)
+        public object? AddText(global::Roblox.Vector3? point, string? text, int size)
             => global::Roblox.Reflection.Invoke<object?>(this, "AddText", point, text, size);
 
         /// <summary>

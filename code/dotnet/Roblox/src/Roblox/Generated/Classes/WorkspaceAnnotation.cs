@@ -31,25 +31,25 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<PVInstance?>(this, "Adornee", value);
         }
 
-        public global::System.Numerics.Vector3 AdorneeOffset
+        public global::Roblox.Vector3? AdorneeOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "AdorneeOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "AdorneeOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AdorneeOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AdorneeOffset", value);
         }
 
         /// <summary>
         /// <c>WorkspaceAnnotation.GetAbsolutePosition</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector3 GetAbsolutePosition()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetAbsolutePosition");
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3? GetAbsolutePosition()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetAbsolutePosition");
 
         /// <summary>
         /// <c>WorkspaceAnnotation.SetAdorneeOffsetFromAbsolutePosition</c>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAdorneeOffsetFromAbsolutePosition(global::System.Numerics.Vector3 position)
+        public object? SetAdorneeOffsetFromAbsolutePosition(global::Roblox.Vector3? position)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetAdorneeOffsetFromAbsolutePosition", position);
 
     }

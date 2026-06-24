@@ -39,41 +39,41 @@ namespace Roblox
         /// <summary>
         /// Injects a mouse button press or release event at the specified screen position.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="button">A <c>Enum.UserInputType</c> value.</param>
         /// <param name="isDown">A <c>bool</c> value.</param>
         /// <param name="repeatCount">A <c>int</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualInput#SendMouseButton"/>
-        public object? SendMouseButton(global::System.Numerics.Vector2 position, Enum.UserInputType button, bool isDown, int repeatCount)
+        public object? SendMouseButton(global::Roblox.Vector2? position, Enum.UserInputType button, bool isDown, int repeatCount)
             => global::Roblox.Reflection.Invoke<object?>(this, "SendMouseButton", position, button, isDown, repeatCount);
 
         /// <summary>
         /// Injects a relative mouse movement event. Only works while the player's cursor is locked.
         /// </summary>
-        /// <param name="positionDelta">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="positionDelta">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualInput#SendMouseDelta"/>
-        public object? SendMouseDelta(global::System.Numerics.Vector2 positionDelta)
+        public object? SendMouseDelta(global::Roblox.Vector2? positionDelta)
             => global::Roblox.Reflection.Invoke<object?>(this, "SendMouseDelta", positionDelta);
 
         /// <summary>
         /// Moves the virtual mouse cursor to the specified absolute screen position.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualInput#SendMousePosition"/>
-        public object? SendMousePosition(global::System.Numerics.Vector2 position)
+        public object? SendMousePosition(global::Roblox.Vector2? position)
             => global::Roblox.Reflection.Invoke<object?>(this, "SendMousePosition", position);
 
         /// <summary>
         /// Injects a scroll wheel, trackpad pan, or pinch gesture event at the specified screen position.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="pointerAction">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualInput#SendPointerAction"/>
-        public object? SendPointerAction(global::System.Numerics.Vector2 position, object? pointerAction)
+        public object? SendPointerAction(global::Roblox.Vector2? position, object? pointerAction)
             => global::Roblox.Reflection.Invoke<object?>(this, "SendPointerAction", position, pointerAction);
 
         /// <summary>

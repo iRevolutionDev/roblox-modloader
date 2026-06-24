@@ -49,40 +49,40 @@ namespace Roblox
         /// <c>VideoDisplay.TileSize</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#TileSize"/>
-        public object? TileSize
+        public global::Roblox.UDim2? TileSize
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TileSize");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TileSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "TileSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "TileSize", value);
         }
 
         /// <summary>
         /// Determines how a rendered video will be colorized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoColor3"/>
-        public object? VideoColor3
+        public global::Roblox.Color3? VideoColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "VideoColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "VideoColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "VideoColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "VideoColor3", value);
         }
 
         /// <summary>
         /// The offset in pixels of the sub-area of a video to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoRectOffset"/>
-        public global::System.Numerics.Vector2 VideoRectOffset
+        public global::Roblox.Vector2? VideoRectOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "VideoRectOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "VideoRectOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "VideoRectOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "VideoRectOffset", value);
         }
 
         /// <summary>
         /// Determines the size in pixels of the sub-area of a video to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoRectSize"/>
-        public global::System.Numerics.Vector2 VideoRectSize
+        public global::Roblox.Vector2? VideoRectSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "VideoRectSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "VideoRectSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "VideoRectSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "VideoRectSize", value);
         }
 
         /// <summary>
@@ -122,7 +122,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the VideoDisplay via a Wire.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
         /// <param name="pin">A <c>string?</c> value.</param>

@@ -80,7 +80,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user presses and releases their cursor on the button.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginToolbarButton#Click"/>
         public event Action? Click
@@ -89,10 +88,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("Click", value); }
         }
 
-        /// <summary>
-        /// <c>PluginToolbarButton.DropdownClick</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? DropdownClick
         {
             add { if (value is not null) AddEventHandler("DropdownClick", value); }

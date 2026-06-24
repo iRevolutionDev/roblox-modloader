@@ -105,10 +105,10 @@ namespace Roblox
         /// Gets the original source resolution of the VideoContent file.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Resolution"/>
-        public global::System.Numerics.Vector2 Resolution
+        public global::Roblox.Vector2? Resolution
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Resolution");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Resolution", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Resolution");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Resolution", value);
         }
 
         /// <summary>
@@ -218,7 +218,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the VideoContent has completed playback and stopped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#DidEnd"/>
         public event Action? DidEnd
@@ -229,7 +228,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the VideoContent loops.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#DidLoop"/>
         public event Action? DidLoop
@@ -240,7 +238,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoPlayer.PlayFailed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="error">A <c>Enum.AssetFetchStatus</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#PlayFailed"/>
@@ -252,7 +249,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the VideoPlayer via a Wire.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
         /// <param name="pin">A <c>string?</c> value.</param>

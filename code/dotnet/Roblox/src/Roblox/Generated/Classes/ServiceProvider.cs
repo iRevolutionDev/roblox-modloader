@@ -54,7 +54,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the current place is exited.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#Close"/>
         public event Action? Close
@@ -63,10 +62,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("Close", value); }
         }
 
-        /// <summary>
-        /// <c>ServiceProvider.CloseLate</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? CloseLate
         {
             add { if (value is not null) AddEventHandler("CloseLate", value); }
@@ -75,7 +70,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when a service is created.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="service">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#ServiceAdded"/>
@@ -87,7 +81,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when a service is about to be removed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="service">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#ServiceRemoving"/>

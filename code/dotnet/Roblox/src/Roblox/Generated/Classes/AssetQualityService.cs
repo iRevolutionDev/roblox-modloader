@@ -40,6 +40,16 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "FetchAssetQualitySummaryFromJobIdAsync", jobId, desiredQualityChecks);
 
         /// <summary>
+        /// <c>AssetQualityService.FetchAssetQualityValidationEntriesFromModelsAsync</c>
+        /// </summary>
+        /// <param name="models">A <c>object?</c> value.</param>
+        /// <param name="assetTypeIds">A <c>object?</c> value.</param>
+        /// <param name="settings">A <c>object?</c> value.</param>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? FetchAssetQualityValidationEntriesFromModelsAsync(object? models, object? assetTypeIds, object? settings)
+            => global::Roblox.Reflection.Invoke<object?>(this, "FetchAssetQualityValidationEntriesFromModelsAsync", models, assetTypeIds, settings);
+
+        /// <summary>
         /// <c>AssetQualityService.FetchAssetQualityVisualizationDataFromUrlAsync</c>
         /// </summary>
         /// <param name="visualizationUrl">A <c>string?</c> value.</param>

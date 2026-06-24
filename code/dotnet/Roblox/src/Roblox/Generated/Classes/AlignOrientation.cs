@@ -39,20 +39,20 @@ namespace Roblox
         /// The CFrame orientation with which the constraint will attempt to match the orientation of Attachment0.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         /// <summary>
         /// A Vector3 world space location toward which the primary axis will attempt to align.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#LookAtPosition"/>
-        public global::System.Numerics.Vector3 LookAtPosition
+        public global::Roblox.Vector3? LookAtPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LookAtPosition");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "LookAtPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LookAtPosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LookAtPosition", value);
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Roblox
         /// The direction of the goal's X axis, represented as a unit Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#PrimaryAxis"/>
-        public global::System.Numerics.Vector3 PrimaryAxis
+        public global::Roblox.Vector3? PrimaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "PrimaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "PrimaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "PrimaryAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "PrimaryAxis", value);
         }
 
         /// <summary>
@@ -139,10 +139,10 @@ namespace Roblox
         /// The direction of the goal's Y axis, represented as a unit Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#SecondaryAxis"/>
-        public global::System.Numerics.Vector3 SecondaryAxis
+        public global::Roblox.Vector3? SecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis", value);
         }
 
     }

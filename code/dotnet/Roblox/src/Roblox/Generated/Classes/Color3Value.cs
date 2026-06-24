@@ -29,19 +29,18 @@ namespace Roblox
         /// The stored Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Color3Value#Value"/>
-        public object? Value
+        public global::Roblox.Color3? Value
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Value");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired whenever the Color3Value.Value is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.Color3?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Color3Value#Changed"/>
-        public event Action<object?>? Changed
+        public event Action<global::Roblox.Color3?>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

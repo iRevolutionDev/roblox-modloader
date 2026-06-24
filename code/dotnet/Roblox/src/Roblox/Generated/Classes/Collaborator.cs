@@ -21,10 +21,10 @@ namespace Roblox
         public static Collaborator? FromHandle(nuint handle)
             => handle == 0 ? null : new Collaborator(handle);
 
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         public int CollaboratorColor
@@ -33,10 +33,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "CollaboratorColor", value);
         }
 
-        public object? CollaboratorColor3
+        public global::Roblox.Color3? CollaboratorColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CollaboratorColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CollaboratorColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "CollaboratorColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "CollaboratorColor3", value);
         }
 
         public string? CurDocGUID

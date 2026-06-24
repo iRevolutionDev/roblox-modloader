@@ -23,7 +23,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentFail</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="id">A <c>string?</c> value.</param>
         public event Action<string?>? RuntimeContentFail
@@ -34,7 +33,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentLRCleanup</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="id">A <c>string?</c> value.</param>
         /// <param name="priorityList">A <c>string?</c> value.</param>
@@ -46,7 +44,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentQuery</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="id">A <c>string?</c> value.</param>
         /// <param name="expectedType">A <c>string?</c> value.</param>
@@ -59,7 +56,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentShare</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="id">A <c>string?</c> value.</param>
         /// <param name="content">A <c>string?</c> value.</param>

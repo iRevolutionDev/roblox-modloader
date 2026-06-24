@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AppRatingPromptService.OnGameLeft</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="gameTime">A <c>double</c> value.</param>
         public event Action<double>? OnGameLeft

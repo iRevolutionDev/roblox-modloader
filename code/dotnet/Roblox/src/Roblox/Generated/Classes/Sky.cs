@@ -149,10 +149,10 @@ namespace Roblox
         /// Angle of the skybox, in degrees, with rotation order of Y, X, Z.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxOrientation"/>
-        public global::System.Numerics.Vector3 SkyboxOrientation
+        public global::Roblox.Vector3? SkyboxOrientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SkyboxOrientation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SkyboxOrientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SkyboxOrientation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SkyboxOrientation", value);
         }
 
         /// <summary>

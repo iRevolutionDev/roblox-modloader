@@ -117,7 +117,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerUIService.ExpressionAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="expression">A <c>string?</c> value.</param>
         public event Action<string?>? ExpressionAdded
@@ -126,10 +125,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("ExpressionAdded", value); }
         }
 
-        /// <summary>
-        /// <c>DebuggerUIService.ExpressionsCleared</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ExpressionsCleared
         {
             add { if (value is not null) AddEventHandler("ExpressionsCleared", value); }

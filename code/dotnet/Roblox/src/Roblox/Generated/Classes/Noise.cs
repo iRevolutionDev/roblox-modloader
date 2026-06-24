@@ -36,18 +36,18 @@ namespace Roblox
         /// <summary>
         /// <c>Noise.SampleDirectional</c>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float SampleDirectional(global::System.Numerics.Vector3 position, global::System.Numerics.Vector3 direction)
+        public float SampleDirectional(global::Roblox.Vector3? position, global::Roblox.Vector3? direction)
             => global::Roblox.Reflection.Invoke<float>(this, "SampleDirectional", position, direction);
 
         /// <summary>
         /// <c>Noise.SampleUniform</c>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float SampleUniform(global::System.Numerics.Vector3 position)
+        public float SampleUniform(global::Roblox.Vector3? position)
             => global::Roblox.Reflection.Invoke<float>(this, "SampleUniform", position);
 
     }

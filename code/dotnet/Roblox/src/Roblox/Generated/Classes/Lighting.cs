@@ -29,10 +29,10 @@ namespace Roblox
         /// The lighting hue applied to areas that are occluded from the sky, such as indoor areas.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#Ambient"/>
-        public object? Ambient
+        public global::Roblox.Color3? Ambient
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Ambient");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Ambient", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Ambient");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Ambient", value);
         }
 
         /// <summary>
@@ -59,20 +59,20 @@ namespace Roblox
         /// The hue represented in light reflected in the opposite surfaces to those facing the sun or moon.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ColorShift_Bottom"/>
-        public object? ColorShift_Bottom
+        public global::Roblox.Color3? ColorShift_Bottom
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ColorShift_Bottom");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ColorShift_Bottom", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ColorShift_Bottom");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ColorShift_Bottom", value);
         }
 
         /// <summary>
         /// The hue represented in light reflected from surfaces facing the sun or moon.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ColorShift_Top"/>
-        public object? ColorShift_Top
+        public global::Roblox.Color3? ColorShift_Top
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ColorShift_Top");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ColorShift_Top", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ColorShift_Top");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ColorShift_Top", value);
         }
 
         /// <summary>
@@ -119,10 +119,10 @@ namespace Roblox
         /// A Color3 value giving the hue of Lighting fog.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#FogColor"/>
-        public object? FogColor
+        public global::Roblox.Color3? FogColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FogColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FogColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "FogColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "FogColor", value);
         }
 
         /// <summary>
@@ -179,10 +179,10 @@ namespace Roblox
         /// The lighting hue applied to outdoor areas.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#OutdoorAmbient"/>
-        public object? OutdoorAmbient
+        public global::Roblox.Color3? OutdoorAmbient
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "OutdoorAmbient");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "OutdoorAmbient", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "OutdoorAmbient");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "OutdoorAmbient", value);
         }
 
         /// <summary>
@@ -209,10 +209,10 @@ namespace Roblox
         /// Deprecated: This item is deprecated and has no current functionality. Do not use it for new work.This is supposed to change the color of player shadows, but currently doesn't do anything.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ShadowColor"/>
-        public object? ShadowColor
+        public global::Roblox.Color3? ShadowColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ShadowColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ShadowColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ShadowColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ShadowColor", value);
         }
 
         /// <summary>
@@ -256,10 +256,10 @@ namespace Roblox
         /// <summary>
         /// Returns a Vector3 representing the direction of the moon.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#GetMoonDirection"/>
-        public global::System.Numerics.Vector3 GetMoonDirection()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetMoonDirection");
+        public global::Roblox.Vector3? GetMoonDirection()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetMoonDirection");
 
         /// <summary>
         /// Returns the moon's current phase.
@@ -272,10 +272,10 @@ namespace Roblox
         /// <summary>
         /// Returns a Vector3 representing the direction of the sun.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#GetSunDirection"/>
-        public global::System.Numerics.Vector3 GetSunDirection()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetSunDirection");
+        public global::Roblox.Vector3? GetSunDirection()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetSunDirection");
 
         /// <summary>
         /// Sets TimeOfDay and ClockTime to the given number of minutes after midnight.
@@ -288,7 +288,6 @@ namespace Roblox
 
         /// <summary>
         /// This event fires when a Lighting property is changed or a Sky is added or removed from Lighting.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="skyChanged">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#LightingChanged"/>

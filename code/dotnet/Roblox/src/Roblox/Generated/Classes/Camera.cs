@@ -29,10 +29,10 @@ namespace Roblox
         /// The CFrame of the Camera, defining its position and orientation in the 3D world.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -59,10 +59,10 @@ namespace Roblox
         /// Deprecated: This item has been superseded by Camera.CFrame which should be used in all new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#CoordinateFrame"/>
-        public object? CoordinateFrame
+        public global::Roblox.CFrame? CoordinateFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CoordinateFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CoordinateFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CoordinateFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CoordinateFrame", value);
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace Roblox
         /// Sets the area in 3D space that is prioritized by Roblox's graphical systems.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#Focus"/>
-        public object? Focus
+        public global::Roblox.CFrame? Focus
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Focus");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Focus", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Focus");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Focus", value);
         }
 
         /// <summary>
@@ -159,10 +159,10 @@ namespace Roblox
         /// The dimensions of the device safe area on a Roblox client.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#ViewportSize"/>
-        public global::System.Numerics.Vector2 ViewportSize
+        public global::Roblox.Vector2? ViewportSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ViewportSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "ViewportSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ViewportSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ViewportSize", value);
         }
 
         /// <summary>
@@ -195,10 +195,10 @@ namespace Roblox
         /// <summary>
         /// Returns the actual CFramewhere the Camera is being rendered, accounting for any roll applied and the impact of VR devices.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#GetRenderCFrame"/>
-        public object? GetRenderCFrame()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRenderCFrame");
+        public global::Roblox.CFrame? GetRenderCFrame()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetRenderCFrame");
 
         /// <summary>
         /// Returns in radians the current roll, or rotation around the camera's Z-axis, applied to the Camera using SetRoll().
@@ -219,12 +219,12 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This method has been deprecated. Instead use TweenService to smoothly animate the Camera, see the code snippets below for an example.Tweens the Camera in a linear fashion towards a new CFrame and Focus over a given duration.
         /// </summary>
-        /// <param name="endPos">A <c>object?</c> value.</param>
-        /// <param name="endFocus">A <c>object?</c> value.</param>
+        /// <param name="endPos">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="endFocus">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="duration">A <c>float</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#Interpolate"/>
-        public object? Interpolate(object? endPos, object? endFocus, float duration)
+        public object? Interpolate(global::Roblox.CFrame? endPos, global::Roblox.CFrame? endFocus, float duration)
             => global::Roblox.Reflection.Invoke<object?>(this, "Interpolate", endPos, endFocus, duration);
 
         /// <summary>
@@ -242,10 +242,10 @@ namespace Roblox
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
         /// <param name="depth">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Ray?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#ScreenPointToRay"/>
-        public object? ScreenPointToRay(float x, float y, float depth)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ScreenPointToRay", x, y, depth);
+        public global::Roblox.Ray? ScreenPointToRay(float x, float y, float depth)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Ray?>(this, "ScreenPointToRay", x, y, depth);
 
         /// <summary>
         /// Deprecated: This method has been deprecated and should not be used in new work.Sets the CameraPanMode to be used by the Camera on mobile devices.
@@ -259,9 +259,9 @@ namespace Roblox
         /// <summary>
         /// <c>Camera.SetImageServerView</c>
         /// </summary>
-        /// <param name="modelCoord">A <c>object?</c> value.</param>
+        /// <param name="modelCoord">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetImageServerView(object? modelCoord)
+        public object? SetImageServerView(global::Roblox.CFrame? modelCoord)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetImageServerView", modelCoord);
 
         /// <summary>
@@ -288,27 +288,27 @@ namespace Roblox
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
         /// <param name="depth">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Ray?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#ViewportPointToRay"/>
-        public object? ViewportPointToRay(float x, float y, float depth)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ViewportPointToRay", x, y, depth);
+        public global::Roblox.Ray? ViewportPointToRay(float x, float y, float depth)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Ray?>(this, "ViewportPointToRay", x, y, depth);
 
         /// <summary>
         /// Returns the screen location and depth of a Vector3 worldPoint and whether this point is within the bounds of the screen. Accounts for the GUI inset.
         /// </summary>
-        /// <param name="worldPoint">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="worldPoint">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#WorldToScreenPoint"/>
-        public object? WorldToScreenPoint(global::System.Numerics.Vector3 worldPoint)
+        public object? WorldToScreenPoint(global::Roblox.Vector3? worldPoint)
             => global::Roblox.Reflection.Invoke<object?>(this, "WorldToScreenPoint", worldPoint);
 
         /// <summary>
         /// Returns the screen location and depth of a Vector3 worldPoint and whether this point is within the bounds of the screen. Does not account for the GUI inset.
         /// </summary>
-        /// <param name="worldPoint">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="worldPoint">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#WorldToViewportPoint"/>
-        public object? WorldToViewportPoint(global::System.Numerics.Vector3 worldPoint)
+        public object? WorldToViewportPoint(global::Roblox.Vector3? worldPoint)
             => global::Roblox.Reflection.Invoke<object?>(this, "WorldToViewportPoint", worldPoint);
 
         /// <summary>
@@ -322,16 +322,15 @@ namespace Roblox
         /// <summary>
         /// Adjusts the CFrame so that the specified bounding box is fully visible within the camera's viewport.
         /// </summary>
-        /// <param name="boundingBoxCFrame">A <c>object?</c> value.</param>
-        /// <param name="boundingBoxSize">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="boundingBoxCFrame">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="boundingBoxSize">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#ZoomToExtents"/>
-        public object? ZoomToExtents(object? boundingBoxCFrame, global::System.Numerics.Vector3 boundingBoxSize)
+        public object? ZoomToExtents(global::Roblox.CFrame? boundingBoxCFrame, global::Roblox.Vector3? boundingBoxSize)
             => global::Roblox.Reflection.Invoke<object?>(this, "ZoomToExtents", boundingBoxCFrame, boundingBoxSize);
 
         /// <summary>
         /// <c>Camera.FirstPersonTransition</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="entering">A <c>bool</c> value.</param>
         public event Action<bool>? FirstPersonTransition
@@ -342,7 +341,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the Camera has finished interpolating usingInterpolate().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#InterpolationFinished"/>
         public event Action? InterpolationFinished

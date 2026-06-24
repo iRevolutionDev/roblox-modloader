@@ -169,10 +169,10 @@ namespace Roblox
         /// The pixel offset applied to the prompt's UI.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#UIOffset"/>
-        public global::System.Numerics.Vector2 UIOffset
+        public global::Roblox.Vector2? UIOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "UIOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "UIOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UIOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UIOffset", value);
         }
 
         /// <summary>
@@ -193,7 +193,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ProximityPrompt.IndicatorHidden</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#IndicatorHidden"/>
         public event Action? IndicatorHidden
@@ -204,7 +203,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ProximityPrompt.IndicatorShown</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#IndicatorShown"/>
         public event Action? IndicatorShown
@@ -215,7 +213,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggered when a player begins holding down the key/button connected to a prompt with a non-zero ProximityPrompt.HoldDuration.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptButtonHoldBegan"/>
@@ -227,7 +224,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when the player ends holding down the button on a prompt with a non-zero ProximityPrompt.HoldDuration.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptButtonHoldEnded"/>
@@ -239,7 +235,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when the prompt becomes hidden.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptHidden"/>
         public event Action? PromptHidden
@@ -250,7 +245,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when the prompt becomes visible.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="inputType">A <c>Enum.ProximityPromptInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptShown"/>
@@ -262,7 +256,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when key/button is released, for longer events where the user is required to hold down the button.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#TriggerEnded"/>
@@ -274,7 +267,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggered when the prompt key/button is pressed, or after a specified amount of time holding the button, if ProximityPrompt.HoldDuration is used.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Triggered"/>

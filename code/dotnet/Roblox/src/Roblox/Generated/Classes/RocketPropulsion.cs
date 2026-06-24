@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines the maximum amount of torque that may be exerted to rotate the assembly towards the Target.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#MaxTorque"/>
-        public global::System.Numerics.Vector3 MaxTorque
+        public global::Roblox.Vector3? MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxTorque");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxTorque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxTorque");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxTorque", value);
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace Roblox
         /// Determines the world offset from the Target toward which the force/torque is exerted.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TargetOffset"/>
-        public global::System.Numerics.Vector3 TargetOffset
+        public global::Roblox.Vector3? TargetOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "TargetOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "TargetOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "TargetOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "TargetOffset", value);
         }
 
         /// <summary>
@@ -153,7 +153,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the assembly comes within TargetRadius of the Target.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#ReachedTarget"/>
         public event Action? ReachedTarget

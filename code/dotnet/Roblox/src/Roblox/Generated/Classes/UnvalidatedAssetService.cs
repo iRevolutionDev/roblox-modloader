@@ -26,11 +26,11 @@ namespace Roblox
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <param name="lookAt">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="camPos">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="lookAt">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="camPos">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="usage">A <c>string?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AppendTempAssetId(long userId, long id, global::System.Numerics.Vector3 lookAt, global::System.Numerics.Vector3 camPos, string? usage)
+        public object? AppendTempAssetId(long userId, long id, global::Roblox.Vector3? lookAt, global::Roblox.Vector3? camPos, string? usage)
             => global::Roblox.Reflection.Invoke<object?>(this, "AppendTempAssetId", userId, id, lookAt, camPos, usage);
 
         /// <summary>
@@ -38,10 +38,10 @@ namespace Roblox
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <param name="lookAt">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="camPos">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="lookAt">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="camPos">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool AppendVantagePoint(long userId, long id, global::System.Numerics.Vector3 lookAt, global::System.Numerics.Vector3 camPos)
+        public bool AppendVantagePoint(long userId, long id, global::Roblox.Vector3? lookAt, global::Roblox.Vector3? camPos)
             => global::Roblox.Reflection.Invoke<bool>(this, "AppendVantagePoint", userId, id, lookAt, camPos);
 
         /// <summary>

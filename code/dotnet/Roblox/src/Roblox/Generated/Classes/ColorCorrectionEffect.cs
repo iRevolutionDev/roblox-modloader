@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines by how much the RGB channels of pixels are scaled.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#TintColor"/>
-        public object? TintColor
+        public global::Roblox.Color3? TintColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TintColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TintColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TintColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TintColor", value);
         }
 
     }

@@ -75,10 +75,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageUVMisMatchedPreview", value);
         }
 
-        public global::System.Numerics.Vector3 Dimensions
+        public global::Roblox.Vector3? Dimensions
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Dimensions");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Dimensions", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Dimensions");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Dimensions", value);
         }
 
         public bool DoubleSided

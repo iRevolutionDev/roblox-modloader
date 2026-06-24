@@ -62,7 +62,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BaseImportData.StatusRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>object?</c> value.</param>
         public event Action<object?>? StatusRemoved
@@ -73,7 +72,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BaseImportData.StatusReported</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="status">A <c>object?</c> value.</param>
         public event Action<object?>? StatusReported

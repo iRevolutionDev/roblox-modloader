@@ -45,7 +45,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires just after a new PluginConnection successfully connects.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="conn">A <c>PluginConnection?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnectionService#Connected"/>

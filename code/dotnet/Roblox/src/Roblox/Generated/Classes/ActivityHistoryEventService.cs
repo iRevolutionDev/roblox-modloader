@@ -23,7 +23,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ActivityHistoryEventService.WriteActivityHistoryEventFromStudio</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="eventType">A <c>int</c> value.</param>
         /// <param name="resourceId">A <c>long</c> value.</param>

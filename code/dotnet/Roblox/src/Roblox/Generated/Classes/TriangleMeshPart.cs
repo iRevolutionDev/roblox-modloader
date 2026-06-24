@@ -49,28 +49,28 @@ namespace Roblox
         /// <c>TriangleMeshPart.MeshSize</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TriangleMeshPart#MeshSize"/>
-        public global::System.Numerics.Vector3 MeshSize
+        public global::Roblox.Vector3? MeshSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MeshSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MeshSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MeshSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MeshSize", value);
         }
 
-        public global::System.Numerics.Vector3 UnscaledCofm
+        public global::Roblox.Vector3? UnscaledCofm
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "UnscaledCofm");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "UnscaledCofm", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "UnscaledCofm");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "UnscaledCofm", value);
         }
 
-        public global::System.Numerics.Vector3 UnscaledVolInertiaDiags
+        public global::Roblox.Vector3? UnscaledVolInertiaDiags
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "UnscaledVolInertiaDiags");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "UnscaledVolInertiaDiags", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "UnscaledVolInertiaDiags");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "UnscaledVolInertiaDiags", value);
         }
 
-        public global::System.Numerics.Vector3 UnscaledVolInertiaOffDiags
+        public global::Roblox.Vector3? UnscaledVolInertiaOffDiags
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "UnscaledVolInertiaOffDiags");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "UnscaledVolInertiaOffDiags", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "UnscaledVolInertiaOffDiags");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "UnscaledVolInertiaOffDiags", value);
         }
 
         public float UnscaledVolume

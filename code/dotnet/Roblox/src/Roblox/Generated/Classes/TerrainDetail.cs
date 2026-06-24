@@ -69,10 +69,10 @@ namespace Roblox
         /// Determines the tinting color for emissive contribution.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainDetail#EmissiveTint"/>
-        public object? EmissiveTint
+        public global::Roblox.Color3? EmissiveTint
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "EmissiveTint");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "EmissiveTint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "EmissiveTint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "EmissiveTint", value);
         }
 
         /// <summary>

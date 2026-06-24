@@ -194,40 +194,24 @@ namespace Roblox
         public Enum.ShowAdResult ShowRewardedVideoAdAtClientAsync(long universeId)
             => global::Roblox.Reflection.Invoke<Enum.ShowAdResult>(this, "ShowRewardedVideoAdAtClientAsync", universeId);
 
-        /// <summary>
-        /// <c>AdService.AdTeleportEnded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? AdTeleportEnded
         {
             add { if (value is not null) AddEventHandler("AdTeleportEnded", value); }
             remove { if (value is not null) RemoveEventHandler("AdTeleportEnded", value); }
         }
 
-        /// <summary>
-        /// <c>AdService.AdTeleportInitiated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? AdTeleportInitiated
         {
             add { if (value is not null) AddEventHandler("AdTeleportInitiated", value); }
             remove { if (value is not null) RemoveEventHandler("AdTeleportInitiated", value); }
         }
 
-        /// <summary>
-        /// <c>AdService.RewardedVideoAdEnded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? RewardedVideoAdEnded
         {
             add { if (value is not null) AddEventHandler("RewardedVideoAdEnded", value); }
             remove { if (value is not null) RemoveEventHandler("RewardedVideoAdEnded", value); }
         }
 
-        /// <summary>
-        /// <c>AdService.RewardedVideoAdStarted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? RewardedVideoAdStarted
         {
             add { if (value is not null) AddEventHandler("RewardedVideoAdStarted", value); }
@@ -236,7 +220,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AdService.ShowDynamicEudsaDisclosure</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="advertiserName">A <c>string?</c> value.</param>
         /// <param name="payerName">A <c>string?</c> value.</param>
@@ -248,7 +231,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AdService.ShowReportAdPopup</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="adInfo">A <c>object?</c> value.</param>
         public event Action<object?>? ShowReportAdPopup
@@ -259,7 +241,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: VideoAdClosed has been decommissioned and is no longer operational.Fires when an AdService video closes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="adShown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#VideoAdClosed"/>
@@ -271,7 +252,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AdService.adGuiRegisterUI</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="adGui">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? AdGuiRegisterUI

@@ -39,10 +39,10 @@ namespace Roblox
         /// The strength and direction of the force.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VectorForce#Force"/>
-        public global::System.Numerics.Vector3 Force
+        public global::Roblox.Vector3? Force
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Force");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Force", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Force");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Force", value);
         }
 
         /// <summary>

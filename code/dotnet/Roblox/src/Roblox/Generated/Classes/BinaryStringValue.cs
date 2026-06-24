@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires if the BinaryStringValue's value is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="value">A <c>byte[]?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BinaryStringValue#Changed"/>

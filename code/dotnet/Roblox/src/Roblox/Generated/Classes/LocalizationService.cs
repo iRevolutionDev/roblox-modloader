@@ -194,10 +194,6 @@ namespace Roblox
         public Instance? PromptUploadCSVToGameTable()
             => global::Roblox.Reflection.Invoke<Instance?>(this, "PromptUploadCSVToGameTable");
 
-        /// <summary>
-        /// <c>LocalizationService.AutoTranslateWillRun</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? AutoTranslateWillRun
         {
             add { if (value is not null) AddEventHandler("AutoTranslateWillRun", value); }

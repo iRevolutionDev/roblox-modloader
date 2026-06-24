@@ -29,20 +29,20 @@ namespace Roblox
         /// Determines the shadow's blurriness.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#BlurRadius"/>
-        public object? BlurRadius
+        public global::Roblox.UDim? BlurRadius
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BlurRadius");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BlurRadius", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "BlurRadius");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "BlurRadius", value);
         }
 
         /// <summary>
         /// Determines the shadow's color.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Color"/>
-        public object? Color
+        public global::Roblox.Color3? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
         }
 
         /// <summary>
@@ -59,20 +59,20 @@ namespace Roblox
         /// Moves the shadow relative to the parent's position.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Offset"/>
-        public object? Offset
+        public global::Roblox.UDim2? Offset
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Offset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Offset", value);
         }
 
         /// <summary>
         /// Expands or shrinks the shadow relative to the parent's size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Spread"/>
-        public object? Spread
+        public global::Roblox.UDim2? Spread
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Spread");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Spread", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Spread");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Spread", value);
         }
 
         /// <summary>

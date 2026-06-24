@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired whenever the BrickColorValue.Value of the BrickColorValue is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="value">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BrickColorValue#Changed"/>

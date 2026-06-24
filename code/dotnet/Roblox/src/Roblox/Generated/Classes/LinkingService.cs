@@ -98,7 +98,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LinkingService.OnLuaUrl</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="url">A <c>string?</c> value.</param>
         /// <param name="matchedUrl">A <c>string?</c> value.</param>

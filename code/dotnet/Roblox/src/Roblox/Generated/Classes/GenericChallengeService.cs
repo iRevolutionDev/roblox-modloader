@@ -72,7 +72,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeAbandonedEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="challengeID">A <c>string?</c> value.</param>
         public event Action<string?>? ChallengeAbandonedEvent
@@ -83,7 +82,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeCompletedEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="challengeID">A <c>string?</c> value.</param>
         /// <param name="challengeType">A <c>string?</c> value.</param>
@@ -96,7 +94,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeInvalidatedEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="challengeID">A <c>string?</c> value.</param>
         public event Action<string?>? ChallengeInvalidatedEvent
@@ -107,7 +104,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeLoadedEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="challengeID">A <c>string?</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
@@ -119,7 +115,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeRequiredEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="challengeID">A <c>string?</c> value.</param>
         /// <param name="challengeType">A <c>string?</c> value.</param>

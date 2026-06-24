@@ -29,10 +29,10 @@ namespace Roblox
         /// The CFrame of the mouse's position in 3D space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Hit"/>
-        public object? Hit
+        public global::Roblox.CFrame? Hit
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Hit");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Hit", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Hit");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Hit", value);
         }
 
         /// <summary>
@@ -59,10 +59,10 @@ namespace Roblox
         /// A CFrame positioned at the Workspace.CurrentCamera and oriented toward the mouse's 3D position.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Origin"/>
-        public object? Origin
+        public global::Roblox.CFrame? Origin
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Origin");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Origin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Origin");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Origin", value);
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace Roblox
         /// A Ray directed towards the mouse's world position, originating from the Workspace.CurrentCamera world position.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#UnitRay"/>
-        public object? UnitRay
+        public global::Roblox.Ray? UnitRay
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "UnitRay");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "UnitRay", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Ray?>(this, "UnitRay");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Ray?>(this, "UnitRay", value);
         }
 
         /// <summary>
@@ -147,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the left mouse button is pressed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button1Down"/>
         public event Action? Button1Down
@@ -158,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the left mouse button is released.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button1Up"/>
         public event Action? Button1Up
@@ -169,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the right mouse button is pressed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button2Down"/>
         public event Action? Button2Down
@@ -180,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the right mouse button is released.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Button2Up"/>
         public event Action? Button2Up
@@ -191,7 +187,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired during every heartbeat that the mouse isn't being passed to another mouse event.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Idle"/>
         public event Action? Idle
@@ -202,7 +197,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Mouse events have been superseded by UserInputService which should be used in all new work.Fires when a Key is pressed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="key">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyDown"/>
@@ -214,7 +208,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Mouse events have been superseded by UserInputService which should be used in all new work.Fires when a Key is released.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="key">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyUp"/>
@@ -226,7 +219,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the mouse is moved.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Move"/>
         public event Action? Move
@@ -237,7 +229,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the mouse wheel is scrolled backwards.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#WheelBackward"/>
         public event Action? WheelBackward
@@ -248,7 +239,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the mouse wheel is scrolled forwards.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#WheelForward"/>
         public event Action? WheelForward

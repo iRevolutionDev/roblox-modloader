@@ -29,10 +29,10 @@ namespace Roblox
         /// Determines the target orientation (translational component ignored).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines the limit on how much torque that may be applied to each axis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#MaxTorque"/>
-        public global::System.Numerics.Vector3 MaxTorque
+        public global::Roblox.Vector3? MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxTorque");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxTorque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxTorque");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxTorque", value);
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Roblox
         /// Deprecated: This property is a deprecated variant of BodyGyro.CFrame which should be used instead.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#cframe"/>
-        public object? Cframe
+        public global::Roblox.CFrame? Cframe
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "cframe");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "cframe", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "cframe");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "cframe", value);
         }
 
     }

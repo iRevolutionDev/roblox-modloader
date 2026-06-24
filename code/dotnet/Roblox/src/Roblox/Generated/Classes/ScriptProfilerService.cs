@@ -98,7 +98,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptProfilerService.OnNewData</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <param name="jsonString">A <c>string?</c> value.</param>

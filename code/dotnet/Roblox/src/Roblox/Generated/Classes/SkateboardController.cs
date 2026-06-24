@@ -47,7 +47,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when any input state of the skateboard controller is updated.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="axis">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardController#AxisChanged"/>

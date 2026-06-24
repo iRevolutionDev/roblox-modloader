@@ -155,7 +155,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StartPageService.ImageImportedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="urlImported">A <c>string?</c> value.</param>
         /// <param name="temporaryId">A <c>string?</c> value.</param>
@@ -167,7 +166,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StartPageService.LocalGamesFromRegistryUpdatedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="localGames">A <c>object?</c> value.</param>
         public event Action<object?>? LocalGamesFromRegistryUpdatedSignal
@@ -178,7 +176,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StartPageService.RecentApiGamesFromRegistryUpdatedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="recentGames">A <c>object?</c> value.</param>
         public event Action<object?>? RecentApiGamesFromRegistryUpdatedSignal

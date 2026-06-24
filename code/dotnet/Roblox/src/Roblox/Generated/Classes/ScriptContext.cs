@@ -98,7 +98,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when an error occurs.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
         /// <param name="stackTrace">A <c>string?</c> value.</param>
@@ -112,7 +111,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptContext.ErrorDetailed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
         /// <param name="stackTrace">A <c>string?</c> value.</param>

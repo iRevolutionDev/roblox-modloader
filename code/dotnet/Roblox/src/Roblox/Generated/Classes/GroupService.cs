@@ -93,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>GroupService.ShowJoinPrompt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
         public event Action<long>? ShowJoinPrompt

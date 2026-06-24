@@ -130,7 +130,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LogService.HttpResultOut</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="httpResult">A <c>object?</c> value.</param>
         public event Action<object?>? HttpResultOut
@@ -141,7 +140,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the client outputs text.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
         /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
@@ -155,7 +153,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LogService.OnHttpResultApproved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isApproved">A <c>bool</c> value.</param>
         public event Action<bool>? OnHttpResultApproved
@@ -166,7 +163,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LogService.ServerContextOut</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="contextData">A <c>object?</c> value.</param>
         public event Action<object?>? ServerContextOut
@@ -177,7 +173,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LogService.ServerHttpResultOut</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="httpResult">A <c>object?</c> value.</param>
         public event Action<object?>? ServerHttpResultOut
@@ -188,7 +183,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LogService.ServerMessageOut</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
         /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>

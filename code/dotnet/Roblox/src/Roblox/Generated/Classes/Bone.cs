@@ -29,30 +29,30 @@ namespace Roblox
         /// Determines the current animated offset of the bone in its local space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#Transform"/>
-        public object? Transform
+        public global::Roblox.CFrame? Transform
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Transform");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Transform", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Transform");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Transform", value);
         }
 
         /// <summary>
         /// Describes the combined CFrame offset of the bone and the current animation offset in the bone local space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#TransformedCFrame"/>
-        public object? TransformedCFrame
+        public global::Roblox.CFrame? TransformedCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TransformedCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TransformedCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "TransformedCFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "TransformedCFrame", value);
         }
 
         /// <summary>
         /// Describes the combined CFrame offset of the bone and the current animation offset in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#TransformedWorldCFrame"/>
-        public object? TransformedWorldCFrame
+        public global::Roblox.CFrame? TransformedWorldCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TransformedWorldCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TransformedWorldCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "TransformedWorldCFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "TransformedWorldCFrame", value);
         }
 
     }

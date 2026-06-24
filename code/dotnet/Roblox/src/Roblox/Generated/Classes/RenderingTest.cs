@@ -29,10 +29,10 @@ namespace Roblox
         /// <c>RenderingTest.CFrame</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Roblox
         /// <c>RenderingTest.Orientation</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Orientation"/>
-        public global::System.Numerics.Vector3 Orientation
+        public global::Roblox.Vector3? Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Orientation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Orientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Orientation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Orientation", value);
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace Roblox
         /// <c>RenderingTest.Position</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>

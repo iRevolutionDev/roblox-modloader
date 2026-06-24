@@ -62,10 +62,6 @@ namespace Roblox
         public IReadOnlyList<Instance> GetInputActions()
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputActions");
 
-        /// <summary>
-        /// <c>InputContext.InputActionsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? InputActionsChanged
         {
             add { if (value is not null) AddEventHandler("InputActionsChanged", value); }

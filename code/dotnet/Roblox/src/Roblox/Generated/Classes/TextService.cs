@@ -38,11 +38,11 @@ namespace Roblox
         /// <param name="string">A <c>string?</c> value.</param>
         /// <param name="fontSize">A <c>int</c> value.</param>
         /// <param name="font">A <c>Enum.Font</c> value.</param>
-        /// <param name="frameSize">A <c>global::System.Numerics.Vector2</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <param name="frameSize">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#GetTextSize"/>
-        public global::System.Numerics.Vector2 GetTextSize(string? @string, int fontSize, Enum.Font font, global::System.Numerics.Vector2 frameSize)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetTextSize", @string, fontSize, font, frameSize);
+        public global::Roblox.Vector2? GetTextSize(string? @string, int fontSize, Enum.Font font, global::Roblox.Vector2? frameSize)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTextSize", @string, fontSize, font, frameSize);
 
         /// <summary>
         /// <c>TextService.SetResolutionScale</c>
@@ -88,10 +88,10 @@ namespace Roblox
         /// Computes the Vector2 dimensions (in pixels) that will be taken up with text when using a GetTextBoundsParams object.
         /// </summary>
         /// <param name="params">A <c>GetTextBoundsParams?</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#GetTextBoundsAsync"/>
-        public global::System.Numerics.Vector2 GetTextBoundsAsync(GetTextBoundsParams? @params)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetTextBoundsAsync", @params);
+        public global::Roblox.Vector2? GetTextBoundsAsync(GetTextBoundsParams? @params)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTextBoundsAsync", @params);
 
         /// <summary>
         /// Returns the offset used to up-scale text based on the current GuiService.PreferredTextSize setting.

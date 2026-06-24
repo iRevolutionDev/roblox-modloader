@@ -29,19 +29,18 @@ namespace Roblox
         /// The stored Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Value#Value"/>
-        public global::System.Numerics.Vector3 Value
+        public global::Roblox.Vector3? Value
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Value");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired whenever Vector3Value.Value is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="value">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Value#Changed"/>
-        public event Action<global::System.Numerics.Vector3>? Changed
+        public event Action<global::Roblox.Vector3?>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

@@ -49,10 +49,10 @@ namespace Roblox
         /// The size of a "virtual screen" in "virtual pixels" which makes SurfaceGuis pixel-to-pixel compatible with ScreenGuis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#CanvasSize"/>
-        public global::System.Numerics.Vector2 CanvasSize
+        public global::Roblox.Vector2? CanvasSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "CanvasSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "CanvasSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "CanvasSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "CanvasSize", value);
         }
 
         /// <summary>

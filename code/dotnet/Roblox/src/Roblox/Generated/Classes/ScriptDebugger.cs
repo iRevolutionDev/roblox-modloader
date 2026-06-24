@@ -147,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptDebugger.BreakpointAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? BreakpointAdded
@@ -158,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptDebugger.BreakpointRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? BreakpointRemoved
@@ -169,7 +167,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptDebugger.EncounteredBreak</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="line">A <c>int</c> value.</param>
         /// <param name="breakReason">A <c>Enum.BreakReason</c> value.</param>
@@ -179,10 +176,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("EncounteredBreak", value); }
         }
 
-        /// <summary>
-        /// <c>ScriptDebugger.Resuming</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? Resuming
         {
             add { if (value is not null) AddEventHandler("Resuming", value); }
@@ -191,7 +184,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptDebugger.WatchAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="watch">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? WatchAdded
@@ -202,7 +194,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ScriptDebugger.WatchRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="watch">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? WatchRemoved

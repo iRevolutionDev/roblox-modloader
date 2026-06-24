@@ -45,7 +45,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the receiver is attached to a different CustomEvent, when the CustomEventReceiver.Source property is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="event">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#EventConnected"/>
@@ -57,7 +56,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the receiver is attached to a different CustomEvent instance when the CustomEventReceiver.Source property is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="event">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#EventDisconnected"/>
@@ -69,7 +67,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the value of the CustomEvent's source is changed, passing the CustomEvent's new value.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newValue">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#SourceValueChanged"/>

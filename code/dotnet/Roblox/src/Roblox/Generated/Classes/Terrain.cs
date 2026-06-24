@@ -91,10 +91,10 @@ namespace Roblox
         /// The tint of Terrain water.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterColor"/>
-        public object? WaterColor
+        public global::Roblox.Color3? WaterColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "WaterColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "WaterColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "WaterColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "WaterColor", value);
         }
 
         /// <summary>
@@ -170,10 +170,10 @@ namespace Roblox
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
         /// <param name="z">A <c>int</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#CellCenterToWorld"/>
-        public global::System.Numerics.Vector3 CellCenterToWorld(int x, int y, int z)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "CellCenterToWorld", x, y, z);
+        public global::Roblox.Vector3? CellCenterToWorld(int x, int y, int z)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "CellCenterToWorld", x, y, z);
 
         /// <summary>
         /// Returns the position of the lower-left-forward corner of the grid cell.
@@ -181,10 +181,10 @@ namespace Roblox
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
         /// <param name="z">A <c>int</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#CellCornerToWorld"/>
-        public global::System.Numerics.Vector3 CellCornerToWorld(int x, int y, int z)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "CellCornerToWorld", x, y, z);
+        public global::Roblox.Vector3? CellCornerToWorld(int x, int y, int z)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "CellCornerToWorld", x, y, z);
 
         /// <summary>
         /// Clears all terrain.
@@ -197,10 +197,10 @@ namespace Roblox
         /// <summary>
         /// <c>Terrain.ClearVoxelsAsync_beta</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="channelIds">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearVoxelsAsync_beta(object? region, object? channelIds)
+        public object? ClearVoxelsAsync_beta(global::Roblox.Region3? region, object? channelIds)
             => global::Roblox.Reflection.Invoke<object?>(this, "ClearVoxelsAsync_beta", region, channelIds);
 
         /// <summary>
@@ -238,57 +238,57 @@ namespace Roblox
         /// <summary>
         /// Fills a ball of smooth terrain in a given space.
         /// </summary>
-        /// <param name="center">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#FillBall"/>
-        public object? FillBall(global::System.Numerics.Vector3 center, float radius, Enum.Material material)
+        public object? FillBall(global::Roblox.Vector3? center, float radius, Enum.Material material)
             => global::Roblox.Reflection.Invoke<object?>(this, "FillBall", center, radius, material);
 
         /// <summary>
         /// Fills a block of smooth terrain with a given location, rotation, size, and material.
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#FillBlock"/>
-        public object? FillBlock(object? cframe, global::System.Numerics.Vector3 size, Enum.Material material)
+        public object? FillBlock(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, Enum.Material material)
             => global::Roblox.Reflection.Invoke<object?>(this, "FillBlock", cframe, size, material);
 
         /// <summary>
         /// Fills a cylinder of smooth terrain in a given space.
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="height">A <c>float</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#FillCylinder"/>
-        public object? FillCylinder(object? cframe, float height, float radius, Enum.Material material)
+        public object? FillCylinder(global::Roblox.CFrame? cframe, float height, float radius, Enum.Material material)
             => global::Roblox.Reflection.Invoke<object?>(this, "FillCylinder", cframe, height, radius, material);
 
         /// <summary>
         /// Fills a Region3 space with smooth terrain.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>float</c> value.</param>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#FillRegion"/>
-        public object? FillRegion(object? region, float resolution, Enum.Material material)
+        public object? FillRegion(global::Roblox.Region3? region, float resolution, Enum.Material material)
             => global::Roblox.Reflection.Invoke<object?>(this, "FillRegion", region, resolution, material);
 
         /// <summary>
         /// Fills a wedge-shaped volume of terrain with the given Material.
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#FillWedge"/>
-        public object? FillWedge(object? cframe, global::System.Numerics.Vector3 size, Enum.Material material)
+        public object? FillWedge(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, Enum.Material material)
             => global::Roblox.Reflection.Invoke<object?>(this, "FillWedge", cframe, size, material);
 
         /// <summary>
@@ -306,10 +306,10 @@ namespace Roblox
         /// Returns current terrain material color for specified terrain material.
         /// </summary>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Color3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#GetMaterialColor"/>
-        public object? GetMaterialColor(Enum.Material material)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMaterialColor", material);
+        public global::Roblox.Color3? GetMaterialColor(Enum.Material material)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Color3?>(this, "GetMaterialColor", material);
 
         /// <summary>
         /// <c>Terrain.GetMaterialSlot</c>
@@ -322,10 +322,10 @@ namespace Roblox
         /// <summary>
         /// <c>Terrain.GetTerrainWireframe</c>
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetTerrainWireframe(object? cframe, global::System.Numerics.Vector3 size)
+        public object? GetTerrainWireframe(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetTerrainWireframe", cframe, size);
 
         /// <summary>
@@ -342,21 +342,21 @@ namespace Roblox
         /// <summary>
         /// <c>Terrain.IterateVoxelsAsync_beta</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>int</c> value.</param>
         /// <param name="channelIds">A <c>object?</c> value.</param>
         /// <returns>A <c>TerrainIterateOperation?</c> value returned by the engine.</returns>
-        public TerrainIterateOperation? IterateVoxelsAsync_beta(object? region, int resolution, object? channelIds)
+        public TerrainIterateOperation? IterateVoxelsAsync_beta(global::Roblox.Region3? region, int resolution, object? channelIds)
             => global::Roblox.Reflection.Invoke<TerrainIterateOperation?>(this, "IterateVoxelsAsync_beta", region, resolution, channelIds);
 
         /// <summary>
         /// <c>Terrain.ModifyVoxelsAsync_beta</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>int</c> value.</param>
         /// <param name="channelIds">A <c>object?</c> value.</param>
         /// <returns>A <c>TerrainModifyOperation?</c> value returned by the engine.</returns>
-        public TerrainModifyOperation? ModifyVoxelsAsync_beta(object? region, int resolution, object? channelIds)
+        public TerrainModifyOperation? ModifyVoxelsAsync_beta(global::Roblox.Region3? region, int resolution, object? channelIds)
             => global::Roblox.Reflection.Invoke<TerrainModifyOperation?>(this, "ModifyVoxelsAsync_beta", region, resolution, channelIds);
 
         /// <summary>
@@ -373,67 +373,67 @@ namespace Roblox
         /// <summary>
         /// Returns a region of terrain voxel data in table format based on the channel names.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>float</c> value.</param>
         /// <param name="channelIds">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#ReadVoxelChannels"/>
-        public object? ReadVoxelChannels(object? region, float resolution, object? channelIds)
+        public object? ReadVoxelChannels(global::Roblox.Region3? region, float resolution, object? channelIds)
             => global::Roblox.Reflection.Invoke<object?>(this, "ReadVoxelChannels", region, resolution, channelIds);
 
         /// <summary>
         /// Returns a certain region of smooth terrain in table format.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>float</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#ReadVoxels"/>
-        public object? ReadVoxels(object? region, float resolution)
+        public object? ReadVoxels(global::Roblox.Region3? region, float resolution)
             => global::Roblox.Reflection.Invoke<object?>(this, "ReadVoxels", region, resolution);
 
         /// <summary>
         /// <c>Terrain.ReadVoxelsAsync_beta</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>int</c> value.</param>
         /// <param name="channelIds">A <c>object?</c> value.</param>
         /// <returns>A <c>TerrainReadOperation?</c> value returned by the engine.</returns>
-        public TerrainReadOperation? ReadVoxelsAsync_beta(object? region, int resolution, object? channelIds)
+        public TerrainReadOperation? ReadVoxelsAsync_beta(global::Roblox.Region3? region, int resolution, object? channelIds)
             => global::Roblox.Reflection.Invoke<TerrainReadOperation?>(this, "ReadVoxelsAsync_beta", region, resolution, channelIds);
 
         /// <summary>
         /// Replaces the terrain of a material within a region with another material.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>float</c> value.</param>
         /// <param name="sourceMaterial">A <c>Enum.Material</c> value.</param>
         /// <param name="targetMaterial">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#ReplaceMaterial"/>
-        public object? ReplaceMaterial(object? region, float resolution, Enum.Material sourceMaterial, Enum.Material targetMaterial)
+        public object? ReplaceMaterial(global::Roblox.Region3? region, float resolution, Enum.Material sourceMaterial, Enum.Material targetMaterial)
             => global::Roblox.Reflection.Invoke<object?>(this, "ReplaceMaterial", region, resolution, sourceMaterial, targetMaterial);
 
         /// <summary>
         /// <c>Terrain.ReplaceMaterialInTransform</c>
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="sourceMaterial">A <c>Enum.Material</c> value.</param>
         /// <param name="targetMaterial">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReplaceMaterialInTransform(object? cframe, global::System.Numerics.Vector3 size, Enum.Material sourceMaterial, Enum.Material targetMaterial)
+        public object? ReplaceMaterialInTransform(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, Enum.Material sourceMaterial, Enum.Material targetMaterial)
             => global::Roblox.Reflection.Invoke<object?>(this, "ReplaceMaterialInTransform", cframe, size, sourceMaterial, targetMaterial);
 
         /// <summary>
         /// <c>Terrain.ReplaceMaterialInTransformSubregion</c>
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="sourceMaterial">A <c>Enum.Material</c> value.</param>
         /// <param name="targetMaterial">A <c>Enum.Material</c> value.</param>
         /// <param name="targetRegion">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReplaceMaterialInTransformSubregion(object? cframe, global::System.Numerics.Vector3 size, Enum.Material sourceMaterial, Enum.Material targetMaterial, object? targetRegion)
+        public object? ReplaceMaterialInTransformSubregion(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, Enum.Material sourceMaterial, Enum.Material targetMaterial, object? targetRegion)
             => global::Roblox.Reflection.Invoke<object?>(this, "ReplaceMaterialInTransformSubregion", cframe, size, sourceMaterial, targetMaterial, targetRegion);
 
         /// <summary>
@@ -474,31 +474,31 @@ namespace Roblox
         /// Sets current terrain material color for specified terrain material.
         /// </summary>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.Color3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#SetMaterialColor"/>
-        public object? SetMaterialColor(Enum.Material material, object? value)
+        public object? SetMaterialColor(Enum.Material material, global::Roblox.Color3? value)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetMaterialColor", material, value);
 
         /// <summary>
         /// <c>Terrain.SetMaterialInTransform</c>
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="targetMaterial">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMaterialInTransform(object? cframe, global::System.Numerics.Vector3 size, Enum.Material targetMaterial)
+        public object? SetMaterialInTransform(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, Enum.Material targetMaterial)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetMaterialInTransform", cframe, size, targetMaterial);
 
         /// <summary>
         /// <c>Terrain.SetMaterialInTransformSubregion</c>
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
-        /// <param name="size">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="targetMaterial">A <c>Enum.Material</c> value.</param>
         /// <param name="targetRegion">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMaterialInTransformSubregion(object? cframe, global::System.Numerics.Vector3 size, Enum.Material targetMaterial, object? targetRegion)
+        public object? SetMaterialInTransformSubregion(global::Roblox.CFrame? cframe, global::Roblox.Vector3? size, Enum.Material targetMaterial, object? targetRegion)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetMaterialInTransformSubregion", cframe, size, targetMaterial, targetRegion);
 
         /// <summary>
@@ -507,9 +507,9 @@ namespace Roblox
         /// <param name="slotIndex">A <c>int</c> value.</param>
         /// <param name="baseMaterial">A <c>Enum.Material</c> value.</param>
         /// <param name="materialVariant">A <c>string?</c> value.</param>
-        /// <param name="color">A <c>object?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMaterialSlot(int slotIndex, Enum.Material baseMaterial, string? materialVariant, object? color)
+        public object? SetMaterialSlot(int slotIndex, Enum.Material baseMaterial, string? materialVariant, global::Roblox.Color3? color)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetMaterialSlot", slotIndex, baseMaterial, materialVariant, color);
 
         /// <summary>
@@ -528,92 +528,92 @@ namespace Roblox
         /// <summary>
         /// <c>Terrain.SmoothRegion</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>float</c> value.</param>
         /// <param name="strength">A <c>float</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SmoothRegion(object? region, float resolution, float strength)
+        public object? SmoothRegion(global::Roblox.Region3? region, float resolution, float strength)
             => global::Roblox.Reflection.Invoke<object?>(this, "SmoothRegion", region, resolution, strength);
 
         /// <summary>
         /// Returns the grid cell location that contains the position point.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WorldToCell"/>
-        public global::System.Numerics.Vector3 WorldToCell(global::System.Numerics.Vector3 position)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "WorldToCell", position);
+        public global::Roblox.Vector3? WorldToCell(global::Roblox.Vector3? position)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "WorldToCell", position);
 
         /// <summary>
         /// Returns the grid cell location that contains the position point, preferring empty grid cells when position is on a grid edge.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WorldToCellPreferEmpty"/>
-        public global::System.Numerics.Vector3 WorldToCellPreferEmpty(global::System.Numerics.Vector3 position)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "WorldToCellPreferEmpty", position);
+        public global::Roblox.Vector3? WorldToCellPreferEmpty(global::Roblox.Vector3? position)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "WorldToCellPreferEmpty", position);
 
         /// <summary>
         /// Returns the grid cell location that contains the point position, preferring non-empty grid cells when position is on a grid edge.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WorldToCellPreferSolid"/>
-        public global::System.Numerics.Vector3 WorldToCellPreferSolid(global::System.Numerics.Vector3 position)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "WorldToCellPreferSolid", position);
+        public global::Roblox.Vector3? WorldToCellPreferSolid(global::Roblox.Vector3? position)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "WorldToCellPreferSolid", position);
 
         /// <summary>
         /// Sets a region of terrain using a dictionary of voxel channel data.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>float</c> value.</param>
         /// <param name="channels">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WriteVoxelChannels"/>
-        public object? WriteVoxelChannels(object? region, float resolution, object? channels)
+        public object? WriteVoxelChannels(global::Roblox.Region3? region, float resolution, object? channels)
             => global::Roblox.Reflection.Invoke<object?>(this, "WriteVoxelChannels", region, resolution, channels);
 
         /// <summary>
         /// Sets a certain region of smooth terrain using table format.
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>float</c> value.</param>
         /// <param name="materials">A <c>object?</c> value.</param>
         /// <param name="occupancy">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#WriteVoxels"/>
-        public object? WriteVoxels(object? region, float resolution, object? materials, object? occupancy)
+        public object? WriteVoxels(global::Roblox.Region3? region, float resolution, object? materials, object? occupancy)
             => global::Roblox.Reflection.Invoke<object?>(this, "WriteVoxels", region, resolution, materials, occupancy);
 
         /// <summary>
         /// <c>Terrain.WriteVoxelsAsync_beta</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>int</c> value.</param>
         /// <param name="channelIds">A <c>object?</c> value.</param>
         /// <returns>A <c>TerrainWriteOperation?</c> value returned by the engine.</returns>
-        public TerrainWriteOperation? WriteVoxelsAsync_beta(object? region, int resolution, object? channelIds)
+        public TerrainWriteOperation? WriteVoxelsAsync_beta(global::Roblox.Region3? region, int resolution, object? channelIds)
             => global::Roblox.Reflection.Invoke<TerrainWriteOperation?>(this, "WriteVoxelsAsync_beta", region, resolution, channelIds);
 
         /// <summary>
         /// <c>Terrain.DrawBufferAsync</c>
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="scale">A <c>float</c> value.</param>
         /// <param name="resolution">A <c>int</c> value.</param>
         /// <param name="source">A <c>VoxelBuffer?</c> value.</param>
         /// <param name="mergeConfig">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DrawBufferAsync(object? cframe, float scale, int resolution, VoxelBuffer? source, object? mergeConfig)
+        public object? DrawBufferAsync(global::Roblox.CFrame? cframe, float scale, int resolution, VoxelBuffer? source, object? mergeConfig)
             => global::Roblox.Reflection.Invoke<object?>(this, "DrawBufferAsync", cframe, scale, resolution, source, mergeConfig);
 
         /// <summary>
         /// <c>Terrain.ReadBufferAsync</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="resolution">A <c>int</c> value.</param>
         /// <returns>A <c>VoxelBuffer?</c> value returned by the engine.</returns>
-        public VoxelBuffer? ReadBufferAsync(object? region, int resolution)
+        public VoxelBuffer? ReadBufferAsync(global::Roblox.Region3? region, int resolution)
             => global::Roblox.Reflection.Invoke<VoxelBuffer?>(this, "ReadBufferAsync", region, resolution);
 
     }

@@ -91,7 +91,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FaceAnimatorService.TrackerError</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="error">A <c>Enum.TrackerError</c> value.</param>
         public event Action<Enum.TrackerError>? TrackerError
@@ -102,7 +101,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>FaceAnimatorService.TrackerPrompt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>Enum.TrackerPromptEvent</c> value.</param>
         public event Action<Enum.TrackerPromptEvent>? TrackerPrompt

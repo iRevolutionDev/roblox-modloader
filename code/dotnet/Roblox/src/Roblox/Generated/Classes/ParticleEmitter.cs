@@ -29,10 +29,10 @@ namespace Roblox
         /// Determines the global-axis acceleration of all active particles, measured in studs per second squared.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Acceleration"/>
-        public global::System.Numerics.Vector3 Acceleration
+        public global::Roblox.Vector3? Acceleration
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Acceleration");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Acceleration", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Acceleration");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Acceleration", value);
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace Roblox
         /// Determines how fast the flipbook texture animates in frames per second.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookFramerate"/>
-        public object? FlipbookFramerate
+        public global::Roblox.NumberRange? FlipbookFramerate
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FlipbookFramerate");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FlipbookFramerate", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "FlipbookFramerate");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "FlipbookFramerate", value);
         }
 
         /// <summary>
@@ -169,10 +169,10 @@ namespace Roblox
         /// Defines a random range of ages for newly emitted particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Lifetime"/>
-        public object? Lifetime
+        public global::Roblox.NumberRange? Lifetime
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Lifetime");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Lifetime", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "Lifetime");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "Lifetime", value);
         }
 
         /// <summary>
@@ -239,20 +239,20 @@ namespace Roblox
         /// Determines the range of angular speeds of emitted particles, measured in degrees per second.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#RotSpeed"/>
-        public object? RotSpeed
+        public global::Roblox.NumberRange? RotSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "RotSpeed");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "RotSpeed", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "RotSpeed");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "RotSpeed", value);
         }
 
         /// <summary>
         /// Determines the range of rotations in degrees for newly emitted particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Rotation"/>
-        public object? Rotation
+        public global::Roblox.NumberRange? Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Rotation");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Rotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "Rotation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "Rotation", value);
         }
 
         /// <summary>
@@ -309,20 +309,20 @@ namespace Roblox
         /// Determines a random range of velocities (minimum to maximum) at which new particles will emit, measured in studs per second.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Speed"/>
-        public object? Speed
+        public global::Roblox.NumberRange? Speed
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Speed");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Speed", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "Speed");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "Speed", value);
         }
 
         /// <summary>
         /// Determines the angles at which particles may be randomly emit, measured in degrees.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#SpreadAngle"/>
-        public global::System.Numerics.Vector2 SpreadAngle
+        public global::Roblox.Vector2? SpreadAngle
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "SpreadAngle");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "SpreadAngle", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "SpreadAngle");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "SpreadAngle", value);
         }
 
         /// <summary>

@@ -159,7 +159,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires just after a ScriptDocument changes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="document">A <c>ScriptDocument?</c> value.</param>
         /// <param name="changesArray">A <c>object?</c> value.</param>
@@ -172,7 +171,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires just before a ScriptDocument object is destroyed, which happens right after the script editor closes.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="oldDocument">A <c>ScriptDocument?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidClose"/>
@@ -184,7 +182,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires just after a ScriptDocument object is created and parented to the service, which happens right after the script editor opens.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newDocument">A <c>ScriptDocument?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidOpen"/>

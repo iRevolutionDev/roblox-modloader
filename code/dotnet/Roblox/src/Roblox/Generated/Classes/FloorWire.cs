@@ -69,10 +69,10 @@ namespace Roblox
         /// Sets the size of the texture used with the FloorWire.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#TextureSize"/>
-        public global::System.Numerics.Vector2 TextureSize
+        public global::Roblox.Vector2? TextureSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "TextureSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "TextureSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "TextureSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "TextureSize", value);
         }
 
         /// <summary>

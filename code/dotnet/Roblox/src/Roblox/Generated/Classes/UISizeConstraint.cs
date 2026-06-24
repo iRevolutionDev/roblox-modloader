@@ -29,20 +29,20 @@ namespace Roblox
         /// The largest size, in pixels, the parent object is allowed to be.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UISizeConstraint#MaxSize"/>
-        public global::System.Numerics.Vector2 MaxSize
+        public global::Roblox.Vector2? MaxSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MaxSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MaxSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MaxSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MaxSize", value);
         }
 
         /// <summary>
         /// The smallest size, in pixels, the object is allowed to be.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UISizeConstraint#MinSize"/>
-        public global::System.Numerics.Vector2 MinSize
+        public global::Roblox.Vector2? MinSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MinSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MinSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MinSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MinSize", value);
         }
 
     }

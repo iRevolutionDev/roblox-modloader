@@ -54,7 +54,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when one or more StyleRules is explicitly changed on the connected StyleSheet or StyleRule.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleBase#StyleRulesChanged"/>
         public event Action? StyleRulesChanged

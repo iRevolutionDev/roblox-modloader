@@ -45,10 +45,10 @@ namespace Roblox
         /// Size of the image in studs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageHandleAdornment#Size"/>
-        public global::System.Numerics.Vector2 Size
+        public global::Roblox.Vector2? Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Size");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Size", value);
         }
 
     }

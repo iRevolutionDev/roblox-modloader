@@ -41,7 +41,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires immediately after a property of the object changes, with some limitations.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="property">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Object#Changed"/>

@@ -236,11 +236,11 @@ namespace Roblox
         /// <summary>
         /// <c>StudioService.GizmoRaycast</c>
         /// </summary>
-        /// <param name="origin">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="direction">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="origin">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="raycastParams">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GizmoRaycast(global::System.Numerics.Vector3 origin, global::System.Numerics.Vector3 direction, object? raycastParams)
+        public object? GizmoRaycast(global::Roblox.Vector3? origin, global::Roblox.Vector3? direction, object? raycastParams)
             => global::Roblox.Reflection.Invoke<object?>(this, "GizmoRaycast", origin, direction, raycastParams);
 
         /// <summary>
@@ -353,7 +353,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.OnImportFromRoblox</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="assetType">A <c>string?</c> value.</param>
         public event Action<string?>? OnImportFromRoblox
@@ -364,7 +363,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.OnOpenGameSettings</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="pageIdentifier">A <c>string?</c> value.</param>
         public event Action<string?>? OnOpenGameSettings
@@ -375,7 +373,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.OnOpenManagePackagePlugin</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
@@ -385,10 +382,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("OnOpenManagePackagePlugin", value); }
         }
 
-        /// <summary>
-        /// <c>StudioService.OnPluginInstalledFromToolbox</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? OnPluginInstalledFromToolbox
         {
             add { if (value is not null) AddEventHandler("OnPluginInstalledFromToolbox", value); }
@@ -397,7 +390,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.OnPluginInstalledFromWeb</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="pluginId">A <c>string?</c> value.</param>
         public event Action<string?>? OnPluginInstalledFromWeb
@@ -408,7 +400,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.OnPublishAsPlugin</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         public event Action<IReadOnlyList<Instance>>? OnPublishAsPlugin
@@ -419,7 +410,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.OnSaveToRoblox</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         public event Action<IReadOnlyList<Instance>>? OnSaveToRoblox
@@ -428,10 +418,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("OnSaveToRoblox", value); }
         }
 
-        /// <summary>
-        /// <c>StudioService.PromptTransformPluginCheckEnable</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? PromptTransformPluginCheckEnable
         {
             add { if (value is not null) AddEventHandler("PromptTransformPluginCheckEnable", value); }
@@ -440,7 +426,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioService.SaveLocallyAsComplete</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
         public event Action<bool>? SaveLocallyAsComplete

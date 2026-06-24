@@ -177,7 +177,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ContentProvider.AssetFetchFailed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="assetId">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#AssetFetchFailed"/>

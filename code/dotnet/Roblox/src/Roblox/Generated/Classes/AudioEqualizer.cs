@@ -75,10 +75,10 @@ namespace Roblox
         /// The frequency range of the band influenced by MidGain.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#MidRange"/>
-        public object? MidRange
+        public global::Roblox.NumberRange? MidRange
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MidRange");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MidRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "MidRange");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "MidRange", value);
         }
 
         /// <summary>
@@ -108,7 +108,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioEqualizer via a Wire.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
         /// <param name="pin">A <c>string?</c> value.</param>

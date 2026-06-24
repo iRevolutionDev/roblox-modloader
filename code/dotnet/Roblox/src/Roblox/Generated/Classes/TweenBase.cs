@@ -61,7 +61,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the tween finishes playing or when stopped with TweenBase:Cancel().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playbackState">A <c>Enum.PlaybackState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenBase#Completed"/>

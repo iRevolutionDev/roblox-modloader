@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>BugReporterService</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BugReporterService"/>
     [RobloxClass("BugReporterService")]
     public class BugReporterService : Instance
     {
@@ -25,14 +29,15 @@ namespace Roblox
         /// <c>BugReporterService.IsAvailable</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BugReporterService#IsAvailable"/>
         public bool IsAvailable()
             => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable");
 
         /// <summary>
         /// <c>BugReporterService.BugReportRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="trigger">A <c>string?</c> value.</param>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BugReporterService#BugReportRequested"/>
         public event Action<string?>? BugReportRequested
         {
             add { if (value is not null) AddEventHandler("BugReportRequested", value); }

@@ -33,7 +33,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MultipleDocumentInterfaceInstance.DataModelSessionEnded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dataModelSession">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? DataModelSessionEnded
@@ -44,7 +43,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MultipleDocumentInterfaceInstance.DataModelSessionStarted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dataModelSession">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? DataModelSessionStarted

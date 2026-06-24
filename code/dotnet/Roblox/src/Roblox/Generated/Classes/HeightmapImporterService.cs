@@ -67,18 +67,14 @@ namespace Roblox
         /// <summary>
         /// <c>HeightmapImporterService.ImportHeightmap</c>
         /// </summary>
-        /// <param name="region">A <c>object?</c> value.</param>
+        /// <param name="region">A <c>global::Roblox.Region3?</c> value.</param>
         /// <param name="heightmapAssetId">A <c>object?</c> value.</param>
         /// <param name="colormapAssetId">A <c>object?</c> value.</param>
         /// <param name="defaultMaterial">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ImportHeightmap(object? region, object? heightmapAssetId, object? colormapAssetId, Enum.Material defaultMaterial)
+        public object? ImportHeightmap(global::Roblox.Region3? region, object? heightmapAssetId, object? colormapAssetId, Enum.Material defaultMaterial)
             => global::Roblox.Reflection.Invoke<object?>(this, "ImportHeightmap", region, heightmapAssetId, colormapAssetId, defaultMaterial);
 
-        /// <summary>
-        /// <c>HeightmapImporterService.ColormapHasUnknownPixels</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ColormapHasUnknownPixels
         {
             add { if (value is not null) AddEventHandler("ColormapHasUnknownPixels", value); }
@@ -87,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>HeightmapImporterService.ProgressUpdate</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="progressRatio">A <c>float</c> value.</param>
         /// <param name="operation">A <c>string?</c> value.</param>

@@ -39,20 +39,20 @@ namespace Roblox
         /// Determines how the offset point is attached to JointInstance.Part0.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointInstance#C0"/>
-        public object? C0
+        public global::Roblox.CFrame? C0
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "C0");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "C0", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "C0");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "C0", value);
         }
 
         /// <summary>
         /// Subtracted from the C0 property to create an offset point for Part1.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointInstance#C1"/>
-        public object? C1
+        public global::Roblox.CFrame? C1
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "C1");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "C1", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "C1");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "C1", value);
         }
 
         /// <summary>

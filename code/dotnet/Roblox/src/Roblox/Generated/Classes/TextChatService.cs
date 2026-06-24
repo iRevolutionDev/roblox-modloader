@@ -106,6 +106,13 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "DisplayBubble", partOrCharacter, message);
 
         /// <summary>
+        /// <c>TextChatService.GetTextChannelWindows</c>
+        /// </summary>
+        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        public object? GetTextChannelWindows()
+            => global::Roblox.Reflection.Invoke<object?>(this, "GetTextChannelWindows");
+
+        /// <summary>
         /// <c>TextChatService.HasAllocatedUniverseChatContext</c>
         /// </summary>
         /// <param name="context">A <c>string?</c> value.</param>
@@ -221,6 +228,15 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<object?>(this, "GetChatGroupsAsync", players);
 
         /// <summary>
+        /// <c>TextChatService.GetChatableUserCountAsync</c>
+        /// </summary>
+        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="context">A <c>string?</c> value.</param>
+        /// <returns>A <c>int</c> value returned by the engine.</returns>
+        public int GetChatableUserCountAsync(object? userId, string? context)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetChatableUserCountAsync", userId, context);
+
+        /// <summary>
         /// <c>TextChatService.GetPresetsAsync</c>
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
@@ -235,6 +251,14 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool OnUserChatSettingUpdateAsync(string? featureName, string? featureValue)
             => global::Roblox.Reflection.Invoke<bool>(this, "OnUserChatSettingUpdateAsync", featureName, featureValue);
+
+        /// <summary>
+        /// <c>TextChatService.SendDictatedSpeechUniverseChatAsync</c>
+        /// </summary>
+        /// <param name="text">A <c>string?</c> value.</param>
+        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
+        public TextChatMessage? SendDictatedSpeechUniverseChatAsync(string? text)
+            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendDictatedSpeechUniverseChatAsync", text);
 
         /// <summary>
         /// <c>TextChatService.SendUniverseChatMessageAsync</c>
@@ -255,7 +279,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when TextChatService:DisplayBubble() is called.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="partOrCharacter">A <c>Instance?</c> value.</param>
         /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
@@ -268,7 +291,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatService.ChatActionReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="chatActionMessage">A <c>TextChatMessage?</c> value.</param>
         public event Action<TextChatMessage?>? ChatActionReceived
@@ -279,7 +301,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatService.ExpChatFeatureValueChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="featureName">A <c>string?</c> value.</param>
@@ -292,7 +313,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when TextChannel:DisplaySystemMessage() is invoked on the client, or when the client receives a valid TextChannel:SendAsync() response from the server.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#MessageReceived"/>
@@ -304,7 +324,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatService.OnIncomingMessageEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         public event Action<TextChatMessage?>? OnIncomingMessageEvent
@@ -315,7 +334,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when TextChannel:SendAsync() is called by the sending client.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#SendingMessage"/>
@@ -327,7 +345,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatService.SendingUniverseChatMessage</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         public event Action<TextChatMessage?>? SendingUniverseChatMessage
@@ -338,7 +355,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatService.TextChannelWindowAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textChannelWindow">A <c>TextChannelWindow?</c> value.</param>
         public event Action<TextChannelWindow?>? TextChannelWindowAdded
@@ -348,8 +364,17 @@ namespace Roblox
         }
 
         /// <summary>
+        /// <c>TextChatService.TextChannelWindowRemoved</c>
+        /// </summary>
+        /// <param name="textChannelWindow">A <c>TextChannelWindow?</c> value.</param>
+        public event Action<TextChannelWindow?>? TextChannelWindowRemoved
+        {
+            add { if (value is not null) AddEventHandler("TextChannelWindowRemoved", value); }
+            remove { if (value is not null) RemoveEventHandler("TextChannelWindowRemoved", value); }
+        }
+
+        /// <summary>
         /// <c>TextChatService.UniverseChatChannelAllocated</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="context">A <c>string?</c> value.</param>
         public event Action<string?>? UniverseChatChannelAllocated
@@ -360,7 +385,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatService.UniverseChatMessageReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
         public event Action<TextChatMessage?>? UniverseChatMessageReceived
@@ -371,7 +395,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TextChatService.UserMessageIntentSent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userIntentMessage">A <c>TextChatMessage?</c> value.</param>
         public event Action<TextChatMessage?>? UserMessageIntentSent

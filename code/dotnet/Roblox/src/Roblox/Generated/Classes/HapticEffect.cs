@@ -39,10 +39,10 @@ namespace Roblox
         /// Along with Radius, specifies the impact position relative to the input device and, effectively, how broadly that impact effects nearby motors.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>
@@ -92,7 +92,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the HapticEffect has completed playback and stopped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Ended"/>
         public event Action? Ended

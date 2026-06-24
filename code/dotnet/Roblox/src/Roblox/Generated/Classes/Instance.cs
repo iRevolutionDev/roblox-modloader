@@ -352,7 +352,7 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<bool>(this, "IsPropertyModified", property);
 
         /// <summary>
-        /// <c>Instance.QueryDescendants</c>
+        /// Returns an array containing all descendants of the instance that match the selector string.
         /// </summary>
         /// <param name="selector">A <c>string?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
@@ -416,7 +416,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Instance.Parent property of this object or one of its ancestors is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="child">A <c>Instance?</c> value.</param>
         /// <param name="parent">A <c>Instance?</c> value.</param>
@@ -429,7 +428,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever an attribute is changed on the Instance.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="attribute">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#AttributeChanged"/>
@@ -441,7 +439,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires after an object is parented to this Instance.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="child">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ChildAdded"/>
@@ -453,7 +450,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires after a child is removed from this Instance.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="child">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ChildRemoved"/>
@@ -465,7 +461,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires after a descendant is added to the Instance.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="descendant">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#DescendantAdded"/>
@@ -477,7 +472,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires immediately before a descendant of the Instance is removed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="descendant">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#DescendantRemoving"/>
@@ -489,7 +483,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires immediately before (or is deferred until after) the instance is destroyed via Instance:Destroy().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Destroying"/>
         public event Action? Destroying
@@ -500,7 +493,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever any style property is changed on the instance, including when a property is set to nil.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#StyledPropertiesChanged"/>
         public event Action? StyledPropertiesChanged

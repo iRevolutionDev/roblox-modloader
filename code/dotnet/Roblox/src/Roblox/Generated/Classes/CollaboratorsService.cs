@@ -69,7 +69,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorIdleUpdate</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="collaboratorId">A <c>long</c> value.</param>
         /// <param name="isIdle">A <c>bool</c> value.</param>
@@ -81,7 +80,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorInstanceCreatedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="collaboratorId">A <c>long</c> value.</param>
         public event Action<long>? CollaboratorInstanceCreatedSignal
@@ -92,7 +90,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorInstanceDestroyedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="collaboratorId">A <c>long</c> value.</param>
         public event Action<long>? CollaboratorInstanceDestroyedSignal
@@ -103,7 +100,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorStatusUpdatedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="collaboratorId">A <c>long</c> value.</param>
         /// <param name="newStatus">A <c>Enum.CollaboratorStatus</c> value.</param>
@@ -115,7 +111,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.MultiGetCanCollaborateRetrieved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="requestId">A <c>string?</c> value.</param>
         /// <param name="canCollaborateResponses">A <c>object?</c> value.</param>
@@ -127,7 +122,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.ServerMultiGetCanCollaborateRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userIds">A <c>string?</c> value.</param>
         public event Action<string?>? ServerMultiGetCanCollaborateRequested
@@ -138,7 +132,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CollaboratorsService.ToggleSelectionHighlightsSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="areHighlightsShown">A <c>bool</c> value.</param>
         public event Action<bool>? ToggleSelectionHighlightsSignal

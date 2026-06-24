@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>LanguageService</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LanguageService"/>
     [RobloxClass("LanguageService")]
     public class LanguageService : Instance
     {
@@ -26,6 +30,7 @@ namespace Roblox
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LanguageService#GetCapabilitiesUsedInPackageAsync"/>
         public object? GetCapabilitiesUsedInPackageAsync(IReadOnlyList<Instance> instances)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetCapabilitiesUsedInPackageAsync", instances);
 

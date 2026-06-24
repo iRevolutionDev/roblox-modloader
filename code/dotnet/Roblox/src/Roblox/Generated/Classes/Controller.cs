@@ -55,7 +55,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the pressed state of a bound button is changed. This event can be used in conjunction with Controller:GetButton() to see whether a bound button is being pressed down or not.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="button">A <c>Enum.Button</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Controller#ButtonChanged"/>

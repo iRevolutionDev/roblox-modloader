@@ -115,7 +115,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the user completes an action. Parameters come from TryBeginRecording() and FinishRecording().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="name">A <c>string?</c> value.</param>
         /// <param name="displayName">A <c>object?</c> value.</param>
@@ -131,7 +130,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the user begins an action. Parameters come from TryBeginRecording().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="name">A <c>string?</c> value.</param>
         /// <param name="displayName">A <c>object?</c> value.</param>
@@ -144,7 +142,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the user reverses the undo command. Waypoint describes the type action that has been redone.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="waypoint">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnRedo"/>
@@ -156,7 +153,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the user undoes an action in studio. Waypoint describes the type action that has been undone.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="waypoint">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnUndo"/>

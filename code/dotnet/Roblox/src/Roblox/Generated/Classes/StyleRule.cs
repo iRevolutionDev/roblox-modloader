@@ -152,7 +152,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StyleRule.StyleRulePropertyChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="styleProperty">A <c>string?</c> value.</param>
         public event Action<string?>? StyleRulePropertyChanged

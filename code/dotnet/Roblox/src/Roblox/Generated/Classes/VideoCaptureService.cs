@@ -44,10 +44,6 @@ namespace Roblox
         public object? GetCameraDevices()
             => global::Roblox.Reflection.Invoke<object?>(this, "GetCameraDevices");
 
-        /// <summary>
-        /// <c>VideoCaptureService.DevicesChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? DevicesChanged
         {
             add { if (value is not null) AddEventHandler("DevicesChanged", value); }
@@ -56,7 +52,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoCaptureService.Error</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="cameraid">A <c>string?</c> value.</param>
         /// <param name="errorcode">A <c>string?</c> value.</param>
@@ -68,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoCaptureService.Started</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="cameraid">A <c>string?</c> value.</param>
         public event Action<string?>? Started
@@ -79,7 +73,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VideoCaptureService.Stopped</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="cameraid">A <c>string?</c> value.</param>
         public event Action<string?>? Stopped

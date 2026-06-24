@@ -267,7 +267,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VirtualInputManager.PlaybackCompleted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="additionalLuaState">A <c>string?</c> value.</param>
         public event Action<string?>? PlaybackCompleted
@@ -278,7 +277,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>VirtualInputManager.RecordingCompleted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="result">A <c>string?</c> value.</param>
         public event Action<string?>? RecordingCompleted

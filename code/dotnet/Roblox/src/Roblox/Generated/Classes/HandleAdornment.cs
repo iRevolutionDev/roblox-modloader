@@ -49,10 +49,10 @@ namespace Roblox
         /// The position and rotation of the object relative to its PVAdornment.Adornee.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         public Instance? GizmoReference
@@ -65,10 +65,10 @@ namespace Roblox
         /// The positional offset of the adornment based on the adornee's BasePart.Size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#SizeRelativeOffset"/>
-        public global::System.Numerics.Vector3 SizeRelativeOffset
+        public global::Roblox.Vector3? SizeRelativeOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SizeRelativeOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SizeRelativeOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SizeRelativeOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SizeRelativeOffset", value);
         }
 
         /// <summary>
@@ -83,7 +83,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player presses down on their left mouse button while hovering over the adornment.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseButton1Down"/>
         public event Action? MouseButton1Down
@@ -94,7 +93,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player releases their left mouse button while hovering over the adornment.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseButton1Up"/>
         public event Action? MouseButton1Up
@@ -105,7 +103,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player moves their mouse over the adornment.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseEnter"/>
         public event Action? MouseEnter
@@ -116,7 +113,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a player moves their mouse out of the adornment.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#MouseLeave"/>
         public event Action? MouseLeave

@@ -49,20 +49,20 @@ namespace Roblox
         /// Non-scriptable read-only property useful for debugging Direction2D input actions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Direction2DState"/>
-        public global::System.Numerics.Vector2 Direction2DState
+        public global::Roblox.Vector2? Direction2DState
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Direction2DState");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Direction2DState", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Direction2DState");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Direction2DState", value);
         }
 
         /// <summary>
         /// Non-scriptable read-only property useful for debugging Direction3D input actions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Direction3DState"/>
-        public global::System.Numerics.Vector3 Direction3DState
+        public global::Roblox.Vector3? Direction3DState
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Direction3DState");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Direction3DState", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Direction3DState");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Direction3DState", value);
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Roblox
         /// Non-scriptable read-only property useful for debugging ViewportPosition input actions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#ViewportPositionState"/>
-        public global::System.Numerics.Vector2 ViewportPositionState
+        public global::Roblox.Vector2? ViewportPositionState
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ViewportPositionState");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "ViewportPositionState", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ViewportPositionState");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ViewportPositionState", value);
         }
 
         /// <summary>
@@ -119,10 +119,6 @@ namespace Roblox
         public object? GetState()
             => global::Roblox.Reflection.Invoke<object?>(this, "GetState");
 
-        /// <summary>
-        /// <c>InputAction.InputBindingsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? InputBindingsChanged
         {
             add { if (value is not null) AddEventHandler("InputBindingsChanged", value); }
@@ -131,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires only when the InputAction.Type is set to Bool on a state transition from false to true.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Pressed"/>
         public event Action? Pressed
@@ -142,7 +137,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires only when the InputAction.Type is set to Bool on a state transition from true to false.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Released"/>
         public event Action? Released
@@ -153,7 +147,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires for all InputActionType types whenever the state changes, except if the state attempts to transition to the same state.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="value">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#StateChanged"/>

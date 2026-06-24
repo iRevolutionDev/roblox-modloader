@@ -141,7 +141,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetImportService.SingleFileChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="filePath">A <c>string?</c> value.</param>
         public event Action<string?>? SingleFileChanged
@@ -152,7 +151,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetImportService.StartSingleMeshImport</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="fileName">A <c>string?</c> value.</param>
         public event Action<string?>? StartSingleMeshImport

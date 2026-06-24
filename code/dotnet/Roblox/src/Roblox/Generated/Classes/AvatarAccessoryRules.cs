@@ -141,10 +141,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableVFX", value);
         }
 
-        public global::System.Numerics.Vector3 LimitBounds
+        public global::Roblox.Vector3? LimitBounds
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LimitBounds");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "LimitBounds", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LimitBounds");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LimitBounds", value);
         }
 
         public Enum.AvatarSettingsAccessoryLimitMethod LimitMethod

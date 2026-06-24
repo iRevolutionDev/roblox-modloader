@@ -39,10 +39,10 @@ namespace Roblox
         /// Determines the color of the sphere's surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionSphere#SurfaceColor3"/>
-        public object? SurfaceColor3
+        public global::Roblox.Color3? SurfaceColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SurfaceColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SurfaceColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "SurfaceColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "SurfaceColor3", value);
         }
 
         /// <summary>

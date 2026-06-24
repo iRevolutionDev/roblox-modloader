@@ -121,40 +121,24 @@ namespace Roblox
         public object? RegisterTouchMovementMode(Enum.TouchMovementMode movementMode)
             => global::Roblox.Reflection.Invoke<object?>(this, "RegisterTouchMovementMode", movementMode);
 
-        /// <summary>
-        /// <c>PlayerScripts.ComputerCameraMovementModeRegistered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ComputerCameraMovementModeRegistered
         {
             add { if (value is not null) AddEventHandler("ComputerCameraMovementModeRegistered", value); }
             remove { if (value is not null) RemoveEventHandler("ComputerCameraMovementModeRegistered", value); }
         }
 
-        /// <summary>
-        /// <c>PlayerScripts.ComputerMovementModeRegistered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ComputerMovementModeRegistered
         {
             add { if (value is not null) AddEventHandler("ComputerMovementModeRegistered", value); }
             remove { if (value is not null) RemoveEventHandler("ComputerMovementModeRegistered", value); }
         }
 
-        /// <summary>
-        /// <c>PlayerScripts.TouchCameraMovementModeRegistered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? TouchCameraMovementModeRegistered
         {
             add { if (value is not null) AddEventHandler("TouchCameraMovementModeRegistered", value); }
             remove { if (value is not null) RemoveEventHandler("TouchCameraMovementModeRegistered", value); }
         }
 
-        /// <summary>
-        /// <c>PlayerScripts.TouchMovementModeRegistered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? TouchMovementModeRegistered
         {
             add { if (value is not null) AddEventHandler("TouchMovementModeRegistered", value); }

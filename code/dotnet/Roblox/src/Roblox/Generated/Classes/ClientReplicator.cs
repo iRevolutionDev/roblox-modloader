@@ -52,7 +52,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ClientReplicator.RCCProfilerDataComplete</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
         /// <param name="message">A <c>string?</c> value.</param>
@@ -64,7 +63,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ClientReplicator.StatsReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="stats">A <c>object?</c> value.</param>
         public event Action<object?>? StatsReceived

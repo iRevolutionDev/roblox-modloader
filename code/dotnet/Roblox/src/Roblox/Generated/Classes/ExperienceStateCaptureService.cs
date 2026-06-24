@@ -68,7 +68,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ExperienceStateCaptureService.ItemSelectedInCaptureMode</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instance">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? ItemSelectedInCaptureMode

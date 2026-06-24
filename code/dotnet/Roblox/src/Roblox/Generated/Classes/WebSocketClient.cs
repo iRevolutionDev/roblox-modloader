@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>WebSocketClient</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient"/>
     [RobloxClass("WebSocketClient")]
     public class WebSocketClient : Instance
     {
@@ -21,6 +25,10 @@ namespace Roblox
         public static WebSocketClient? FromHandle(nuint handle)
             => handle == 0 ? null : new WebSocketClient(handle);
 
+        /// <summary>
+        /// <c>WebSocketClient.ConnectionState</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#ConnectionState"/>
         public Enum.WebSocketState ConnectionState
         {
             get => global::Roblox.Reflection.GetProperty<Enum.WebSocketState>(this, "ConnectionState");
@@ -31,6 +39,7 @@ namespace Roblox
         /// <c>WebSocketClient.Close</c>
         /// </summary>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#Close"/>
         public object? Close()
             => global::Roblox.Reflection.Invoke<object?>(this, "Close");
 
@@ -39,13 +48,14 @@ namespace Roblox
         /// </summary>
         /// <param name="data">A <c>string?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#Send"/>
         public object? Send(string? data)
             => global::Roblox.Reflection.Invoke<object?>(this, "Send", data);
 
         /// <summary>
         /// <c>WebSocketClient.Closed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#Closed"/>
         public event Action? Closed
         {
             add { if (value is not null) AddEventHandler("Closed", value); }
@@ -54,9 +64,9 @@ namespace Roblox
 
         /// <summary>
         /// <c>WebSocketClient.MessageReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="data">A <c>string?</c> value.</param>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#MessageReceived"/>
         public event Action<string?>? MessageReceived
         {
             add { if (value is not null) AddEventHandler("MessageReceived", value); }
@@ -65,8 +75,8 @@ namespace Roblox
 
         /// <summary>
         /// <c>WebSocketClient.Opened</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#Opened"/>
         public event Action? Opened
         {
             add { if (value is not null) AddEventHandler("Opened", value); }

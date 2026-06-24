@@ -379,7 +379,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the server should collect a conditional test result.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="condition">A <c>bool</c> value.</param>
         /// <param name="text">A <c>string?</c> value.</param>
@@ -394,7 +393,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the server should collect a test result.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="text">A <c>string?</c> value.</param>
         /// <param name="script">A <c>Instance?</c> value.</param>

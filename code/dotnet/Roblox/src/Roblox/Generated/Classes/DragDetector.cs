@@ -59,20 +59,20 @@ namespace Roblox
         /// The primary axis of motion, expressed relative to the reference frame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Axis"/>
-        public global::System.Numerics.Vector3 Axis
+        public global::Roblox.Vector3? Axis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Axis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Axis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Axis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Axis", value);
         }
 
         /// <summary>
         /// The CFrame of the pivot, dependent on the drag detector's ReferenceInstance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragFrame"/>
-        public object? DragFrame
+        public global::Roblox.CFrame? DragFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "DragFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "DragFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "DragFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "DragFrame", value);
         }
 
         /// <summary>
@@ -129,10 +129,10 @@ namespace Roblox
         /// Along with MinDragTranslation, impedes the drag detector's attempts to generate motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxDragTranslation"/>
-        public global::System.Numerics.Vector3 MaxDragTranslation
+        public global::Roblox.Vector3? MaxDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxDragTranslation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxDragTranslation", value);
         }
 
         /// <summary>
@@ -169,20 +169,20 @@ namespace Roblox
         /// Along with MaxDragTranslation, impedes the drag detector's attempts to generate motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MinDragTranslation"/>
-        public global::System.Numerics.Vector3 MinDragTranslation
+        public global::Roblox.Vector3? MinDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MinDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MinDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MinDragTranslation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MinDragTranslation", value);
         }
 
         /// <summary>
         /// Specifies the YXZ rotation of axes of motion relative to the reference frame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Orientation"/>
-        public global::System.Numerics.Vector3 Orientation
+        public global::Roblox.Vector3? Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Orientation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Orientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Orientation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Orientation", value);
         }
 
         /// <summary>
@@ -239,10 +239,10 @@ namespace Roblox
         /// The secondary axis of the motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#SecondaryAxis"/>
-        public global::System.Numerics.Vector3 SecondaryAxis
+        public global::Roblox.Vector3? SecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis", value);
         }
 
         /// <summary>
@@ -279,20 +279,20 @@ namespace Roblox
         /// The Axis expressed in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#WorldAxis"/>
-        public global::System.Numerics.Vector3 WorldAxis
+        public global::Roblox.Vector3? WorldAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldAxis", value);
         }
 
         /// <summary>
         /// The SecondaryAxis expressed in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#WorldSecondaryAxis"/>
-        public global::System.Numerics.Vector3 WorldSecondaryAxis
+        public global::Roblox.Vector3? WorldSecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "WorldSecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "WorldSecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldSecondaryAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldSecondaryAxis", value);
         }
 
         /// <summary>
@@ -308,10 +308,10 @@ namespace Roblox
         /// <summary>
         /// Returns the reference CFrame in which motion is expressed.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#GetReferenceFrame"/>
-        public object? GetReferenceFrame()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetReferenceFrame");
+        public global::Roblox.CFrame? GetReferenceFrame()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetReferenceFrame");
 
         /// <summary>
         /// May be invoked from a script to restart the drag using new parameters.
@@ -341,15 +341,14 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user continues dragging the object after DragStart has been initiated.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
-        /// <param name="cursorRay">A <c>object?</c> value.</param>
-        /// <param name="viewFrame">A <c>object?</c> value.</param>
+        /// <param name="cursorRay">A <c>global::Roblox.Ray?</c> value.</param>
+        /// <param name="viewFrame">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="vrInputFrame">A <c>object?</c> value.</param>
         /// <param name="isModeSwitchKeyDown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragContinue"/>
-        public event Action<Player?, object?, object?, object?, bool>? DragContinue
+        public event Action<Player?, global::Roblox.Ray?, global::Roblox.CFrame?, object?, bool>? DragContinue
         {
             add { if (value is not null) AddEventHandler("DragContinue", value); }
             remove { if (value is not null) RemoveEventHandler("DragContinue", value); }
@@ -357,7 +356,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user stops dragging the object.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragEnd"/>
@@ -369,17 +367,16 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a user starts dragging the object.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
-        /// <param name="cursorRay">A <c>object?</c> value.</param>
-        /// <param name="viewFrame">A <c>object?</c> value.</param>
-        /// <param name="hitFrame">A <c>object?</c> value.</param>
+        /// <param name="cursorRay">A <c>global::Roblox.Ray?</c> value.</param>
+        /// <param name="viewFrame">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="hitFrame">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="clickedPart">A <c>BasePart?</c> value.</param>
         /// <param name="vrInputFrame">A <c>object?</c> value.</param>
         /// <param name="isModeSwitchKeyDown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragStart"/>
-        public event Action<Player?, object?, object?, object?, BasePart?, object?, bool>? DragStart
+        public event Action<Player?, global::Roblox.Ray?, global::Roblox.CFrame?, global::Roblox.CFrame?, BasePart?, object?, bool>? DragStart
         {
             add { if (value is not null) AddEventHandler("DragStart", value); }
             remove { if (value is not null) RemoveEventHandler("DragStart", value); }

@@ -47,33 +47,33 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This item has been superseded by PathfindingService:FindPathAsync() which should be used in all new work instead.Computes and returns a Path between two Vector3s. If the given MaxDistance is greater than 512, an error will be thrown. (MaxDistance is too large).
         /// </summary>
-        /// <param name="start">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="finish">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="start">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="finish">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="maxDistance">A <c>float</c> value.</param>
         /// <returns>A <c>Path?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService#ComputeRawPathAsync"/>
-        public Path? ComputeRawPathAsync(global::System.Numerics.Vector3 start, global::System.Numerics.Vector3 finish, float maxDistance)
+        public Path? ComputeRawPathAsync(global::Roblox.Vector3? start, global::Roblox.Vector3? finish, float maxDistance)
             => global::Roblox.Reflection.Invoke<Path?>(this, "ComputeRawPathAsync", start, finish, maxDistance);
 
         /// <summary>
         /// Deprecated: This item has been superseded by PathfindingService:FindPathAsync() which should be used in all new work instead.Computes and returns a smooth Path between two Vector3s.
         /// </summary>
-        /// <param name="start">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="finish">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="start">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="finish">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="maxDistance">A <c>float</c> value.</param>
         /// <returns>A <c>Path?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService#ComputeSmoothPathAsync"/>
-        public Path? ComputeSmoothPathAsync(global::System.Numerics.Vector3 start, global::System.Numerics.Vector3 finish, float maxDistance)
+        public Path? ComputeSmoothPathAsync(global::Roblox.Vector3? start, global::Roblox.Vector3? finish, float maxDistance)
             => global::Roblox.Reflection.Invoke<Path?>(this, "ComputeSmoothPathAsync", start, finish, maxDistance);
 
         /// <summary>
         /// Finds a Path between the two provided points.
         /// </summary>
-        /// <param name="start">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="finish">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="start">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="finish">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>Path?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService#FindPathAsync"/>
-        public Path? FindPathAsync(global::System.Numerics.Vector3 start, global::System.Numerics.Vector3 finish)
+        public Path? FindPathAsync(global::Roblox.Vector3? start, global::Roblox.Vector3? finish)
             => global::Roblox.Reflection.Invoke<Path?>(this, "FindPathAsync", start, finish);
 
     }

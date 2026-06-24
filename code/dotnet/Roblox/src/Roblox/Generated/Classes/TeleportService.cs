@@ -269,7 +269,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the LocalPlayer enters the place following a teleport.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="loadingGui">A <c>Instance?</c> value.</param>
         /// <param name="dataTable">A <c>object?</c> value.</param>
@@ -280,10 +279,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("LocalPlayerArrivedFromTeleport", value); }
         }
 
-        /// <summary>
-        /// <c>TeleportService.MenuTeleportAttempt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? MenuTeleportAttempt
         {
             add { if (value is not null) AddEventHandler("MenuTeleportAttempt", value); }
@@ -292,7 +287,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TeleportService.OpenExperienceDetailsPrompt</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="universeId">A <c>long</c> value.</param>
         public event Action<long>? OpenExperienceDetailsPrompt
@@ -303,7 +297,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>TeleportService.ReconnectTeleportInitFailed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="teleportResult">A <c>Enum.TeleportResult</c> value.</param>
@@ -318,7 +311,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a teleport fails to start, leaving the player in their current server.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="teleportResult">A <c>Enum.TeleportResult</c> value.</param>

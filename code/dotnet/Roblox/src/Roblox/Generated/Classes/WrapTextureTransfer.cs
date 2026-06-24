@@ -39,20 +39,20 @@ namespace Roblox
         /// Determines the maximum bound of the UV space to include in the transfer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTextureTransfer#UVMaxBound"/>
-        public global::System.Numerics.Vector2 UVMaxBound
+        public global::Roblox.Vector2? UVMaxBound
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "UVMaxBound");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "UVMaxBound", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVMaxBound");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVMaxBound", value);
         }
 
         /// <summary>
         /// Determines the minimum bound of the UV space to include in the transfer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTextureTransfer#UVMinBound"/>
-        public global::System.Numerics.Vector2 UVMinBound
+        public global::Roblox.Vector2? UVMinBound
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "UVMinBound");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "UVMinBound", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVMinBound");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVMinBound", value);
         }
 
     }

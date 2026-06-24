@@ -29,10 +29,10 @@ namespace Roblox
         /// A Vector3 that gives the desired or target angular velocity.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#AngularVelocity"/>
-        public global::System.Numerics.Vector3 AngularVelocityValue
+        public global::Roblox.Vector3? AngularVelocityValue
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "AngularVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "AngularVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AngularVelocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AngularVelocity", value);
         }
 
         /// <summary>

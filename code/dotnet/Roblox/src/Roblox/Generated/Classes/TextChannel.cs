@@ -74,6 +74,14 @@ namespace Roblox
             => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendAsync", message, metadata);
 
         /// <summary>
+        /// <c>TextChannel.SendDictatedSpeechAsync</c>
+        /// </summary>
+        /// <param name="message">A <c>string?</c> value.</param>
+        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
+        public TextChatMessage? SendDictatedSpeechAsync(string? message)
+            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendDictatedSpeechAsync", message);
+
+        /// <summary>
         /// <c>TextChannel.SendInternalAsync</c>
         /// </summary>
         /// <param name="message">A <c>string?</c> value.</param>
@@ -92,7 +100,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when TextChannel:DisplaySystemMessage() is invoked on the client, or when the client receives a valid TextChannel:SendAsync() response from the server.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="incomingMessage">A <c>TextChatMessage?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#MessageReceived"/>

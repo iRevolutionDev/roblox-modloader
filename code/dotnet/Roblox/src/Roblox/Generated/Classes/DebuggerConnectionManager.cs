@@ -60,7 +60,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnectionManager.ConnectionEnded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
         /// <param name="reason">A <c>Enum.DebuggerEndReason</c> value.</param>
@@ -72,7 +71,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnectionManager.ConnectionStarted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
         public event Action<DebuggerConnection?>? ConnectionStarted
@@ -83,7 +81,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DebuggerConnectionManager.FocusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
         public event Action<DebuggerConnection?>? FocusChanged

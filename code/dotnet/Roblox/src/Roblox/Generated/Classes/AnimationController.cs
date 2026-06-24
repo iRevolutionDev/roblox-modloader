@@ -44,7 +44,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: Fires whenever the AnimationController begins playing an animation. It returns the AnimationTrack playing.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#AnimationPlayed"/>

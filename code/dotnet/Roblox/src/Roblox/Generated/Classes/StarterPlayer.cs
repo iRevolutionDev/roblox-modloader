@@ -307,34 +307,34 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.R15CollisionType>(this, "GameSettingsR15Collision", value);
         }
 
-        public object? GameSettingsScaleRangeBodyType
+        public global::Roblox.NumberRange? GameSettingsScaleRangeBodyType
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeBodyType");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeBodyType", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeBodyType");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeBodyType", value);
         }
 
-        public object? GameSettingsScaleRangeHead
+        public global::Roblox.NumberRange? GameSettingsScaleRangeHead
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeHead");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeHead", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHead");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHead", value);
         }
 
-        public object? GameSettingsScaleRangeHeight
+        public global::Roblox.NumberRange? GameSettingsScaleRangeHeight
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeHeight");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeHeight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHeight");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHeight", value);
         }
 
-        public object? GameSettingsScaleRangeProportion
+        public global::Roblox.NumberRange? GameSettingsScaleRangeProportion
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeProportion");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeProportion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeProportion");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeProportion", value);
         }
 
-        public object? GameSettingsScaleRangeWidth
+        public global::Roblox.NumberRange? GameSettingsScaleRangeWidth
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "GameSettingsScaleRangeWidth");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "GameSettingsScaleRangeWidth", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeWidth");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeWidth", value);
         }
 
         /// <summary>
@@ -385,6 +385,12 @@ namespace Roblox
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance");
             set => global::Roblox.Reflection.SetProperty<float>(this, "NameDisplayDistance", value);
+        }
+
+        public int PlayerModuleStatus
+        {
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PlayerModuleStatus");
+            set => global::Roblox.Reflection.SetProperty<int>(this, "PlayerModuleStatus", value);
         }
 
         /// <summary>

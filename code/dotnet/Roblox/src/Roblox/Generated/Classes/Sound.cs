@@ -51,6 +51,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string?>(this, "AudioContent", value);
         }
 
+        /// <summary>
+        /// <c>Sound.ChannelCount</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#ChannelCount"/>
         public int ChannelCount
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "ChannelCount");
@@ -107,10 +111,10 @@ namespace Roblox
         /// A range denoting a desired loop start and loop end within the PlaybackRegion, in seconds.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#LoopRegion"/>
-        public object? LoopRegion
+        public global::Roblox.NumberRange? LoopRegion
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "LoopRegion");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "LoopRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "LoopRegion");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "LoopRegion", value);
         }
 
         /// <summary>
@@ -177,10 +181,10 @@ namespace Roblox
         /// A range denoting a desired start and stop time within the TimeLength, in seconds.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackRegion"/>
-        public object? PlaybackRegion
+        public global::Roblox.NumberRange? PlaybackRegion
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PlaybackRegion");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PlaybackRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion", value);
         }
 
         /// <summary>
@@ -346,7 +350,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the Sound loops.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="soundId">A <c>string?</c> value.</param>
         /// <param name="numOfTimesLooped">A <c>int</c> value.</param>
@@ -359,7 +362,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Sound has completed playback and stopped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Ended"/>
@@ -371,7 +373,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Sound is loaded.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Loaded"/>
@@ -383,7 +384,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the Sound is paused using Pause().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Paused"/>
@@ -395,7 +395,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the Sound is played using Play().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Played"/>
@@ -407,7 +406,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Sound is resumed using Resume().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Resumed"/>
@@ -419,7 +417,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the Sound is stopped through using Stop().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="soundId">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Stopped"/>

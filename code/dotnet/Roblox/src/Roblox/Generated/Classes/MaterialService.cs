@@ -505,7 +505,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.MaterialFillToolEnabledChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="shouldEnable">A <c>bool</c> value.</param>
         public event Action<bool>? MaterialFillToolEnabledChanged
@@ -516,7 +515,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MaterialService.OverrideStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
         public event Action<Enum.Material>? OverrideStatusChanged

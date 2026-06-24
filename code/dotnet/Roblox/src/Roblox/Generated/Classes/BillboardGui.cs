@@ -119,20 +119,20 @@ namespace Roblox
         /// Determines how the BillboardGui is offset from its Adornee, relative to the Camera orientation, in units half the dimensions of the model's Camera-aligned bounding box.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ExtentsOffset"/>
-        public global::System.Numerics.Vector3 ExtentsOffset
+        public global::Roblox.Vector3? ExtentsOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "ExtentsOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "ExtentsOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ExtentsOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ExtentsOffset", value);
         }
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee, relative to the global axes, in units half the dimensions of the model's axis-aligned bounding box.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ExtentsOffsetWorldSpace"/>
-        public global::System.Numerics.Vector3 ExtentsOffsetWorldSpace
+        public global::Roblox.Vector3? ExtentsOffsetWorldSpace
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "ExtentsOffsetWorldSpace");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "ExtentsOffsetWorldSpace", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ExtentsOffsetWorldSpace");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ExtentsOffsetWorldSpace", value);
         }
 
         /// <summary>
@@ -169,40 +169,40 @@ namespace Roblox
         /// Controls the size that the BillboardGui will have on screen.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Size"/>
-        public object? Size
+        public global::Roblox.UDim2? Size
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Size");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Size", value);
         }
 
         /// <summary>
         /// A 2D offset in size-relative units that acts like an anchor point.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#SizeOffset"/>
-        public global::System.Numerics.Vector2 SizeOffset
+        public global::Roblox.Vector2? SizeOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "SizeOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "SizeOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "SizeOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "SizeOffset", value);
         }
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee in studs, relative to the Camera orientation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#StudsOffset"/>
-        public global::System.Numerics.Vector3 StudsOffset
+        public global::Roblox.Vector3? StudsOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "StudsOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "StudsOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "StudsOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "StudsOffset", value);
         }
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee in studs, relative to the global axes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#StudsOffsetWorldSpace"/>
-        public global::System.Numerics.Vector3 StudsOffsetWorldSpace
+        public global::Roblox.Vector3? StudsOffsetWorldSpace
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "StudsOffsetWorldSpace");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "StudsOffsetWorldSpace", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "StudsOffsetWorldSpace");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "StudsOffsetWorldSpace", value);
         }
 
         /// <summary>

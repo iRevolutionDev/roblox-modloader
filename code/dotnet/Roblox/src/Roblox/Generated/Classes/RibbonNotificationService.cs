@@ -30,10 +30,6 @@ namespace Roblox
         public object? OnNotificationUpdateFromPlugin(string? newNotificationId, string? seenNotificationId)
             => global::Roblox.Reflection.Invoke<object?>(this, "OnNotificationUpdateFromPlugin", newNotificationId, seenNotificationId);
 
-        /// <summary>
-        /// <c>RibbonNotificationService.AllNotificationsReadFromRibbon</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? AllNotificationsReadFromRibbon
         {
             add { if (value is not null) AddEventHandler("AllNotificationsReadFromRibbon", value); }
@@ -42,7 +38,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RibbonNotificationService.NewNotificationFromRibbon</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newNotificationId">A <c>string?</c> value.</param>
         public event Action<string?>? NewNotificationFromRibbon
@@ -53,7 +48,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RibbonNotificationService.NotificationReadFromRibbon</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newNotificationId">A <c>string?</c> value.</param>
         public event Action<string?>? NotificationReadFromRibbon
@@ -64,7 +58,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>RibbonNotificationService.ToggleNotificationTray</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="checked">A <c>bool</c> value.</param>
         /// <param name="newNotificationAvailable">A <c>bool</c> value.</param>

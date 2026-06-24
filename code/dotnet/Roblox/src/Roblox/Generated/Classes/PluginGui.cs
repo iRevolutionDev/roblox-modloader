@@ -53,10 +53,10 @@ namespace Roblox
         /// <summary>
         /// Returns the position of the mouse relative to the PluginGui.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#GetRelativeMousePosition"/>
-        public global::System.Numerics.Vector2 GetRelativeMousePosition()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetRelativeMousePosition");
+        public global::Roblox.Vector2? GetRelativeMousePosition()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetRelativeMousePosition");
 
         /// <summary>
         /// <c>PluginGui.OverrideStudioAction</c>
@@ -68,7 +68,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PluginGui.InputBegan</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -80,7 +79,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PluginGui.InputChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -92,7 +90,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PluginGui.InputEnded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="input">A <c>InputObject?</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
@@ -102,20 +99,12 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("InputEnded", value); }
         }
 
-        /// <summary>
-        /// <c>PluginGui.MouseEnter</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? MouseEnter
         {
             add { if (value is not null) AddEventHandler("MouseEnter", value); }
             remove { if (value is not null) RemoveEventHandler("MouseEnter", value); }
         }
 
-        /// <summary>
-        /// <c>PluginGui.MouseLeave</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? MouseLeave
         {
             add { if (value is not null) AddEventHandler("MouseLeave", value); }
@@ -124,7 +113,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user releases their mouse when hovering over a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragDropped"/>
@@ -136,7 +124,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user's mouse enters a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragEntered"/>
@@ -148,7 +135,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user's mouse leaves a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragLeft"/>
@@ -160,7 +146,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user's mouse moves within a PluginGui during a drag operation started by Plugin:StartDrag().
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dragData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragMoved"/>
@@ -172,13 +157,12 @@ namespace Roblox
 
         /// <summary>
         /// <c>PluginGui.PointerAction</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="wheel">A <c>float</c> value.</param>
-        /// <param name="pan">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="pan">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <param name="pinch">A <c>float</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
-        public event Action<float, global::System.Numerics.Vector2, float, bool>? PointerAction
+        public event Action<float, global::Roblox.Vector2?, float, bool>? PointerAction
         {
             add { if (value is not null) AddEventHandler("PointerAction", value); }
             remove { if (value is not null) RemoveEventHandler("PointerAction", value); }
@@ -186,7 +170,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user stops interacting with the window of the PluginGui.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#WindowFocusReleased"/>
         public event Action? WindowFocusReleased
@@ -197,7 +180,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the user begins interacting with the window of the PluginGui.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#WindowFocused"/>
         public event Action? WindowFocused

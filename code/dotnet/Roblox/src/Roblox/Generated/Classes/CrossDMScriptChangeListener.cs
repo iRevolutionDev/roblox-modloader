@@ -42,7 +42,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CrossDMScriptChangeListener.GuidLineContentsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="guid">A <c>string?</c> value.</param>
         /// <param name="lineNumber">A <c>int</c> value.</param>
@@ -55,7 +54,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CrossDMScriptChangeListener.GuidNameChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="guid">A <c>string?</c> value.</param>
         /// <param name="fullName">A <c>string?</c> value.</param>

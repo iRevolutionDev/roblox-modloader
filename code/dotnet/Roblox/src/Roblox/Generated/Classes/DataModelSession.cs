@@ -39,7 +39,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DataModelSession.CurrentDataModelTypeAboutToChange</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="dataModelType">A <c>Enum.StudioDataModelType</c> value.</param>
         public event Action<Enum.StudioDataModelType>? CurrentDataModelTypeAboutToChange
@@ -48,10 +47,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("CurrentDataModelTypeAboutToChange", value); }
         }
 
-        /// <summary>
-        /// <c>DataModelSession.CurrentDataModelTypeChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? CurrentDataModelTypeChanged
         {
             add { if (value is not null) AddEventHandler("CurrentDataModelTypeChanged", value); }

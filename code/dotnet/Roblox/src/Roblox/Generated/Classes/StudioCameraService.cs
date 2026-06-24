@@ -49,9 +49,9 @@ namespace Roblox
         /// <summary>
         /// <c>StudioCameraService.InterpolateView</c>
         /// </summary>
-        /// <param name="target">A <c>object?</c> value.</param>
+        /// <param name="target">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InterpolateView(object? target)
+        public object? InterpolateView(global::Roblox.CFrame? target)
             => global::Roblox.Reflection.Invoke<object?>(this, "InterpolateView", target);
 
         /// <summary>
@@ -62,30 +62,18 @@ namespace Roblox
         public object? SetFocusLock(bool value)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetFocusLock", value);
 
-        /// <summary>
-        /// <c>StudioCameraService.FocusStateChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? FocusStateChanged
         {
             add { if (value is not null) AddEventHandler("FocusStateChanged", value); }
             remove { if (value is not null) RemoveEventHandler("FocusStateChanged", value); }
         }
 
-        /// <summary>
-        /// <c>StudioCameraService.OnMouseCaptureBegin</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? OnMouseCaptureBegin
         {
             add { if (value is not null) AddEventHandler("OnMouseCaptureBegin", value); }
             remove { if (value is not null) RemoveEventHandler("OnMouseCaptureBegin", value); }
         }
 
-        /// <summary>
-        /// <c>StudioCameraService.OnMouseCaptureEnd</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? OnMouseCaptureEnd
         {
             add { if (value is not null) AddEventHandler("OnMouseCaptureEnd", value); }
@@ -94,10 +82,9 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioCameraService.PointFocused</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="point">A <c>global::System.Numerics.Vector3</c> value.</param>
-        public event Action<global::System.Numerics.Vector3>? PointFocused
+        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
+        public event Action<global::Roblox.Vector3?>? PointFocused
         {
             add { if (value is not null) AddEventHandler("PointFocused", value); }
             remove { if (value is not null) RemoveEventHandler("PointFocused", value); }
@@ -105,7 +92,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioCameraService.ShowCameraSpeed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="speed">A <c>float</c> value.</param>
         public event Action<float>? ShowCameraSpeed
@@ -116,7 +102,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>StudioCameraService.UpdateUI</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="deltaTime">A <c>double</c> value.</param>
         public event Action<double>? UpdateUI

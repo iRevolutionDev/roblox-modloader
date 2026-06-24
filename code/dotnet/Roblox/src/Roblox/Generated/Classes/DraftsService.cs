@@ -107,7 +107,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DraftsService.CommitStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>Instance?</c> value.</param>
         /// <param name="status">A <c>Enum.DraftStatusCode</c> value.</param>
@@ -119,7 +118,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DraftsService.DraftAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? DraftAdded
@@ -130,7 +128,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DraftsService.DraftRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? DraftRemoved
@@ -141,7 +138,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DraftsService.DraftStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? DraftStatusChanged
@@ -152,7 +148,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DraftsService.EditorsListChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? EditorsListChanged
@@ -163,7 +158,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>DraftsService.UpdateStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="script">A <c>Instance?</c> value.</param>
         /// <param name="status">A <c>Enum.DraftStatusCode</c> value.</param>

@@ -37,7 +37,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires whenever the ObjectValue.Value is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="value">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ObjectValue#Changed"/>

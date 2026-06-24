@@ -72,7 +72,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>CoreGui.UserGuiRenderingChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
         /// <param name="guiAdornee">A <c>Instance?</c> value.</param>

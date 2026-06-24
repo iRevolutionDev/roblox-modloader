@@ -85,7 +85,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PackageUIService.OnConvertToPackageResult</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isSuccessful">A <c>bool</c> value.</param>
         /// <param name="errorMessage">A <c>string?</c> value.</param>
@@ -97,7 +96,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>PackageUIService.OnOpenConvertToPackagePlugin</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="name">A <c>string?</c> value.</param>

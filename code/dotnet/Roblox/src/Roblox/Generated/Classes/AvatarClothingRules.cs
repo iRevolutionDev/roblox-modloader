@@ -177,10 +177,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomTShirtAccessoryId", value);
         }
 
-        public global::System.Numerics.Vector3 LimitBounds
+        public global::Roblox.Vector3? LimitBounds
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LimitBounds");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "LimitBounds", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LimitBounds");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LimitBounds", value);
         }
 
     }

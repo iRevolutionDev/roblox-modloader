@@ -127,7 +127,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>NotificationService.RccConnectionChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connectionName">A <c>string?</c> value.</param>
         /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
@@ -141,7 +140,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>NotificationService.RccEventReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="eventData">A <c>object?</c> value.</param>
         /// <param name="userId">A <c>long</c> value.</param>
@@ -153,7 +151,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>NotificationService.Roblox17sConnectionChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connectionName">A <c>string?</c> value.</param>
         /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
@@ -167,7 +164,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>NotificationService.Roblox17sEventReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="eventData">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NotificationService#Roblox17sEventReceived"/>
@@ -179,7 +175,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>NotificationService.RobloxConnectionChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connectionName">A <c>string?</c> value.</param>
         /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
@@ -193,7 +188,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>NotificationService.RobloxEventReceived</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="eventData">A <c>object?</c> value.</param>
         public event Action<object?>? RobloxEventReceived

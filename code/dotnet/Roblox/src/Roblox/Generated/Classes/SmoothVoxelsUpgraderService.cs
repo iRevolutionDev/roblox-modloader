@@ -41,7 +41,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SmoothVoxelsUpgraderService.Status</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="progressRatio">A <c>float</c> value.</param>
         public event Action<float>? Status

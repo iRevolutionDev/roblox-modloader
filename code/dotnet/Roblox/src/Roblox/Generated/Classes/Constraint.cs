@@ -89,19 +89,19 @@ namespace Roblox
         /// Deprecated: This method should not be used in new work.
         /// </summary>
         /// <param name="bodyId">A <c>int</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#GetDebugAppliedForce"/>
-        public global::System.Numerics.Vector3 GetDebugAppliedForce(int bodyId)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetDebugAppliedForce", bodyId);
+        public global::Roblox.Vector3? GetDebugAppliedForce(int bodyId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetDebugAppliedForce", bodyId);
 
         /// <summary>
         /// Deprecated: This method should not be used in new work.
         /// </summary>
         /// <param name="bodyId">A <c>int</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#GetDebugAppliedTorque"/>
-        public global::System.Numerics.Vector3 GetDebugAppliedTorque(int bodyId)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetDebugAppliedTorque", bodyId);
+        public global::Roblox.Vector3? GetDebugAppliedTorque(int bodyId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetDebugAppliedTorque", bodyId);
 
     }
 }

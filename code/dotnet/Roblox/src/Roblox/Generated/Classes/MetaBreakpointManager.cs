@@ -49,7 +49,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
         public event Action<MetaBreakpoint?>? MetaBreakpointAdded
@@ -60,7 +59,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
         public event Action<MetaBreakpoint?>? MetaBreakpointChanged
@@ -71,7 +69,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
         public event Action<MetaBreakpoint?>? MetaBreakpointRemoved
@@ -82,7 +79,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointSetChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
         /// <param name="detail">A <c>object?</c> value.</param>

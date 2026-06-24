@@ -57,7 +57,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ProximityPromptService.IndicatorHidden</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#IndicatorHidden"/>
@@ -69,7 +68,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ProximityPromptService.IndicatorShown</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#IndicatorShown"/>
@@ -81,7 +79,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when the player begins holding down the KeyboardKeyCode key/button on a prompt with a non-zero HoldDuration.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
@@ -94,7 +91,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when the player stops holding down the KeyboardKeyCode key/button on a prompt with a non-zero HoldDuration.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
@@ -107,7 +103,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers client-side when a prompt becomes hidden.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#PromptHidden"/>
@@ -119,7 +114,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers client-side when a prompt becomes visible.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <param name="inputType">A <c>Enum.ProximityPromptInputType</c> value.</param>
@@ -132,7 +126,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when the player stops holding down the KeyboardKeyCode key/button while triggering a prompt.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
@@ -145,7 +138,6 @@ namespace Roblox
 
         /// <summary>
         /// Triggers when the user interacts with this prompt.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
         /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>

@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>WebSocketService</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketService"/>
     [RobloxClass("WebSocketService")]
     public class WebSocketService : Instance
     {
@@ -26,6 +30,7 @@ namespace Roblox
         /// </summary>
         /// <param name="uri">A <c>string?</c> value.</param>
         /// <returns>A <c>WebSocketClient?</c> value returned by the engine.</returns>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketService#CreateClient"/>
         public WebSocketClient? CreateClient(string? uri)
             => global::Roblox.Reflection.Invoke<WebSocketClient?>(this, "CreateClient", uri);
 

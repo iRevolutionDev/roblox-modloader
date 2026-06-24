@@ -25,10 +25,10 @@ namespace Roblox
         public static ImageLabel? FromHandle(nuint handle)
             => handle == 0 ? null : new ImageLabel(handle);
 
-        public global::System.Numerics.Vector2 ContentImageSize
+        public global::Roblox.Vector2? ContentImageSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ContentImageSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "ContentImageSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ContentImageSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ContentImageSize", value);
         }
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace Roblox
         /// Determines how a rendered image will be colorized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ImageColor3"/>
-        public object? ImageColor3
+        public global::Roblox.Color3? ImageColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ImageColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ImageColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ImageColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ImageColor3", value);
         }
 
         /// <summary>
@@ -65,20 +65,20 @@ namespace Roblox
         /// The offset in pixels of the sub-area of an image to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ImageRectOffset"/>
-        public global::System.Numerics.Vector2 ImageRectOffset
+        public global::Roblox.Vector2? ImageRectOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ImageRectOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "ImageRectOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ImageRectOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ImageRectOffset", value);
         }
 
         /// <summary>
         /// Determines the size in pixels of the sub-area of an image to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#ImageRectSize"/>
-        public global::System.Numerics.Vector2 ImageRectSize
+        public global::Roblox.Vector2? ImageRectSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ImageRectSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "ImageRectSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ImageRectSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ImageRectSize", value);
         }
 
         /// <summary>
@@ -125,10 +125,10 @@ namespace Roblox
         /// Sets the slice boundaries of a 9-sliced image.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#SliceCenter"/>
-        public object? SliceCenter
+        public global::Roblox.Rect? SliceCenter
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SliceCenter");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SliceCenter", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "SliceCenter");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "SliceCenter", value);
         }
 
         /// <summary>
@@ -145,10 +145,10 @@ namespace Roblox
         /// Sets the tiling size of the ImageLabel.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel#TileSize"/>
-        public object? TileSize
+        public global::Roblox.UDim2? TileSize
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TileSize");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TileSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "TileSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "TileSize", value);
         }
 
         /// <summary>

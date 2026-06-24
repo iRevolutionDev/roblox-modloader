@@ -78,15 +78,14 @@ namespace Roblox
         /// <summary>
         /// Adds ''impulseWorld'' to the SkateboardPlatform's BasePart.Velocity.
         /// </summary>
-        /// <param name="impulseWorld">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="impulseWorld">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#ApplySpecificImpulse"/>
-        public object? ApplySpecificImpulse(global::System.Numerics.Vector3 impulseWorld)
+        public object? ApplySpecificImpulse(global::Roblox.Vector3? impulseWorld)
             => global::Roblox.Reflection.Invoke<object?>(this, "ApplySpecificImpulse", impulseWorld);
 
         /// <summary>
         /// Fired when the skateboard is equipped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="humanoid">A <c>Instance?</c> value.</param>
         /// <param name="skateboardController">A <c>Instance?</c> value.</param>
@@ -99,7 +98,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the SkateboardPlatform's SkateboardPlatform.ControllingHumanoid changes the force being used on the SkateboardPlatform.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="newState">A <c>Enum.MoveState</c> value.</param>
         /// <param name="oldState">A <c>Enum.MoveState</c> value.</param>
@@ -112,7 +110,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired whenever the skateboard is unequipped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="humanoid">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Unequipped"/>

@@ -6,6 +6,10 @@ using System;
 
 namespace Roblox
 {
+    /// <summary>
+    /// Roblox <c>PlaceAssetIdsService</c> class.
+    /// </summary>
+    /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlaceAssetIdsService"/>
     [RobloxClass("PlaceAssetIdsService")]
     public class PlaceAssetIdsService : Instance
     {

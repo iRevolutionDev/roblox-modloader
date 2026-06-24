@@ -91,7 +91,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the action is triggered.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginAction#Triggered"/>
         public event Action? Triggered

@@ -218,7 +218,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AssetManagerService.AssetImportedSignal</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
         /// <param name="assetId">A <c>string?</c> value.</param>
@@ -229,20 +228,12 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("AssetImportedSignal", value); }
         }
 
-        /// <summary>
-        /// <c>AssetManagerService.ImportSessionFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ImportSessionFinished
         {
             add { if (value is not null) AddEventHandler("ImportSessionFinished", value); }
             remove { if (value is not null) RemoveEventHandler("ImportSessionFinished", value); }
         }
 
-        /// <summary>
-        /// <c>AssetManagerService.ImportSessionStarted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? ImportSessionStarted
         {
             add { if (value is not null) AddEventHandler("ImportSessionStarted", value); }

@@ -39,20 +39,20 @@ namespace Roblox
         /// CFrame is used to adjust a binding point for clothing item mesh. Could be used to move and rotate clothing items. This property is intended for fine-tuning only and it is heavily optional.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#BindOffset"/>
-        public object? BindOffset
+        public global::Roblox.CFrame? BindOffset
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BindOffset");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BindOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "BindOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "BindOffset", value);
         }
 
         /// <summary>
         /// Sets color used for the debug rendering. See WrapTarget.DebugMode.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Color"/>
-        public object? Color
+        public global::Roblox.Color3? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
         }
 
         /// <summary>
@@ -75,16 +75,16 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
-        public global::System.Numerics.Vector3 MaxSize
+        public global::Roblox.Vector3? MaxSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxSize", value);
         }
 
-        public global::System.Numerics.Vector3 Offset
+        public global::Roblox.Vector3? Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Offset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Offset", value);
         }
 
         /// <summary>
@@ -131,20 +131,20 @@ namespace Roblox
         /// Reference mesh offset relative to parent MeshPart (in the parent MeshPart space) Note: this property is set up automatically by the FBX importer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceOrigin"/>
-        public object? ReferenceOrigin
+        public global::Roblox.CFrame? ReferenceOrigin
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ReferenceOrigin");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ReferenceOrigin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ReferenceOrigin");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ReferenceOrigin", value);
         }
 
         /// <summary>
         /// Reference mesh offset relative to parent MeshPart (in the world space) Note: this property is set up automatically by the FBX importer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceOriginWorld"/>
-        public object? ReferenceOriginWorld
+        public global::Roblox.CFrame? ReferenceOriginWorld
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ReferenceOriginWorld");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ReferenceOriginWorld", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ReferenceOriginWorld");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ReferenceOriginWorld", value);
         }
 
         /// <summary>

@@ -201,10 +201,10 @@ namespace Roblox
         /// Given the name of a bound action with a touch button, sets the position of the button within the ContextButtonFrame.
         /// </summary>
         /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="position">A <c>object?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.UDim2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#SetPosition"/>
-        public object? SetPosition(string? actionName, object? position)
+        public object? SetPosition(string? actionName, global::Roblox.UDim2? position)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetPosition", actionName, position);
 
         /// <summary>
@@ -272,7 +272,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ContextActionService.BoundActionAdded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="actionAdded">A <c>string?</c> value.</param>
         /// <param name="createTouchButton">A <c>bool</c> value.</param>
@@ -286,7 +285,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ContextActionService.BoundActionChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="actionChanged">A <c>string?</c> value.</param>
         /// <param name="changeName">A <c>string?</c> value.</param>
@@ -299,7 +297,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ContextActionService.BoundActionRemoved</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="actionRemoved">A <c>string?</c> value.</param>
         /// <param name="functionInfoTable">A <c>object?</c> value.</param>
@@ -312,7 +309,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>ContextActionService.GetActionButtonEvent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="actionName">A <c>string?</c> value.</param>
         public event Action<string?>? GetActionButtonEvent
@@ -321,10 +317,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("GetActionButtonEvent", value); }
         }
 
-        /// <summary>
-        /// <c>ContextActionService.InputContextsChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? InputContextsChanged
         {
             add { if (value is not null) AddEventHandler("InputContextsChanged", value); }
@@ -333,7 +325,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the current player equips a Tool.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="toolEquipped">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#LocalToolEquipped"/>
@@ -345,7 +336,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the current player unequips a Tool.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="toolUnequipped">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#LocalToolUnequipped"/>

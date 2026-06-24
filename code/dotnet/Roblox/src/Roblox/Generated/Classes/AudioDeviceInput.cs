@@ -77,6 +77,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Muted", value);
         }
 
+        /// <summary>
+        /// <c>AudioDeviceInput.MutedByLocalUser</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#MutedByLocalUser"/>
         public bool MutedByLocalUser
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "MutedByLocalUser");
@@ -153,7 +157,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioDeviceInput via a Wire.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
         /// <param name="pin">A <c>string?</c> value.</param>

@@ -25,20 +25,12 @@ namespace Roblox
         public static MouseService? FromHandle(nuint handle)
             => handle == 0 ? null : new MouseService(handle);
 
-        /// <summary>
-        /// <c>MouseService.MouseEnterStudioViewport</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? MouseEnterStudioViewport
         {
             add { if (value is not null) AddEventHandler("MouseEnterStudioViewport", value); }
             remove { if (value is not null) RemoveEventHandler("MouseEnterStudioViewport", value); }
         }
 
-        /// <summary>
-        /// <c>MouseService.MouseLeaveStudioViewport</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? MouseLeaveStudioViewport
         {
             add { if (value is not null) AddEventHandler("MouseLeaveStudioViewport", value); }

@@ -27,7 +27,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the server has finished replicating the world to the client.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkMarker#Received"/>
         public event Action? Received

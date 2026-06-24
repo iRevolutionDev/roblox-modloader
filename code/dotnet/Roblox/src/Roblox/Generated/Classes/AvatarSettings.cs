@@ -41,10 +41,6 @@ namespace Roblox
         public object? Publish()
             => global::Roblox.Reflection.Invoke<object?>(this, "Publish");
 
-        /// <summary>
-        /// <c>AvatarSettings.RefreshPluginState</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? RefreshPluginState
         {
             add { if (value is not null) AddEventHandler("RefreshPluginState", value); }

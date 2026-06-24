@@ -29,37 +29,37 @@ namespace Roblox
         /// <c>PVInstance.Origin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PVInstance#Origin"/>
-        public object? Origin
+        public global::Roblox.CFrame? Origin
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Origin");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Origin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Origin");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Origin", value);
         }
 
         /// <summary>
         /// <c>PVInstance.Pivot Offset</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PVInstance#Pivot Offset"/>
-        public object? PivotOffset
+        public global::Roblox.CFrame? PivotOffset
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Pivot Offset");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Pivot Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Pivot Offset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Pivot Offset", value);
         }
 
         /// <summary>
         /// Gets the pivot of a PVInstance.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PVInstance#GetPivot"/>
-        public object? GetPivot()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPivot");
+        public global::Roblox.CFrame? GetPivot()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetPivot");
 
         /// <summary>
         /// Transforms the PVInstance along with all of its descendant PVInstances such that the pivot is now located at the specified CFrame.
         /// </summary>
-        /// <param name="targetCFrame">A <c>object?</c> value.</param>
+        /// <param name="targetCFrame">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PVInstance#PivotTo"/>
-        public object? PivotTo(object? targetCFrame)
+        public object? PivotTo(global::Roblox.CFrame? targetCFrame)
             => global::Roblox.Reflection.Invoke<object?>(this, "PivotTo", targetCFrame);
 
     }

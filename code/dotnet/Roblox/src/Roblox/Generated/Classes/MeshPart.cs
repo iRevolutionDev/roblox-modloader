@@ -59,10 +59,10 @@ namespace Roblox
         /// Deprecated:
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#JointOffset"/>
-        public global::System.Numerics.Vector3 JointOffset
+        public global::Roblox.Vector3? JointOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "JointOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "JointOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "JointOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "JointOffset", value);
         }
 
         /// <summary>

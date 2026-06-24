@@ -49,20 +49,20 @@ namespace Roblox
         /// Cage mesh offset relative to parent MeshPart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#CageOrigin"/>
-        public object? CageOrigin
+        public global::Roblox.CFrame? CageOrigin
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CageOrigin");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CageOrigin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CageOrigin");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CageOrigin", value);
         }
 
         /// <summary>
         /// Cage mesh offset in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#CageOriginWorld"/>
-        public object? CageOriginWorld
+        public global::Roblox.CFrame? CageOriginWorld
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CageOriginWorld");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CageOriginWorld", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CageOriginWorld");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CageOriginWorld", value);
         }
 
         /// <summary>
@@ -79,28 +79,28 @@ namespace Roblox
         /// Describes where a global zero was while authoring the cage mesh in an asset creation tool.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#ImportOrigin"/>
-        public object? ImportOrigin
+        public global::Roblox.CFrame? ImportOrigin
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ImportOrigin");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ImportOrigin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ImportOrigin");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ImportOrigin", value);
         }
 
         /// <summary>
         /// Describes where the origin (in world space) was while authoring the cage mesh in an asset creation tool.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#ImportOriginWorld"/>
-        public object? ImportOriginWorld
+        public global::Roblox.CFrame? ImportOriginWorld
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ImportOriginWorld");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ImportOriginWorld", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ImportOriginWorld");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ImportOriginWorld", value);
         }
 
         /// <summary>
         /// <c>BaseWrap.GetCageOffset</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector3 GetCageOffset()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetCageOffset");
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3? GetCageOffset()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetCageOffset");
 
         /// <summary>
         /// <c>BaseWrap.GetFaces</c>
@@ -144,7 +144,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>BaseWrap.VerticesModified</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="vertices">A <c>object?</c> value.</param>
         public event Action<object?>? VerticesModified

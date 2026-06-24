@@ -163,10 +163,10 @@ namespace Roblox
         /// Sets the text color that gets used when no text has been entered into the TextBox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#PlaceholderColor3"/>
-        public object? PlaceholderColor3
+        public global::Roblox.Color3? PlaceholderColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PlaceholderColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PlaceholderColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3", value);
         }
 
         /// <summary>
@@ -247,10 +247,10 @@ namespace Roblox
         /// The size of a TextBox element's text in offsets.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextBounds"/>
-        public global::System.Numerics.Vector2 TextBounds
+        public global::Roblox.Vector2? TextBounds
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "TextBounds");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "TextBounds", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "TextBounds");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "TextBounds", value);
         }
 
         /// <summary>
@@ -267,10 +267,10 @@ namespace Roblox
         /// Determines the color of non-placeholder rendered text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextColor3"/>
-        public object? TextColor3
+        public global::Roblox.Color3? TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -333,10 +333,10 @@ namespace Roblox
         /// Determines the color of the text stroke (outline).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextStrokeColor3"/>
-        public object? TextStrokeColor3
+        public global::Roblox.Color3? TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>
@@ -451,7 +451,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the TextBox loses its focus.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="enterPressed">A <c>bool</c> value.</param>
         /// <param name="inputThatCausedFocusLoss">A <c>InputObject?</c> value.</param>
@@ -464,7 +463,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the TextBox gains focus.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#Focused"/>
         public event Action? Focused
@@ -475,7 +473,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the TextBox is focused and the player presses the on-screen keyboard's return/enter button.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ReturnPressedFromOnScreenKeyboard"/>
         public event Action? ReturnPressedFromOnScreenKeyboard

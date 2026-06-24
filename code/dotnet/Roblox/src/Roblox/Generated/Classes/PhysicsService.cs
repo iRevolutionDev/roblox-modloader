@@ -111,11 +111,11 @@ namespace Roblox
         /// <c>PhysicsService.IkSolve</c>
         /// </summary>
         /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <param name="target">A <c>object?</c> value.</param>
+        /// <param name="target">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="translateStiffness">A <c>float</c> value.</param>
         /// <param name="rotateStiffness">A <c>float</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? IkSolve(BasePart? part, object? target, float translateStiffness, float rotateStiffness)
+        public object? IkSolve(BasePart? part, global::Roblox.CFrame? target, float translateStiffness, float rotateStiffness)
             => global::Roblox.Reflection.Invoke<object?>(this, "IkSolve", part, target, translateStiffness, rotateStiffness);
 
         /// <summary>
@@ -131,11 +131,11 @@ namespace Roblox
         /// <c>PhysicsService.LocalIkSolve</c>
         /// </summary>
         /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <param name="target">A <c>object?</c> value.</param>
+        /// <param name="target">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="translateStiffness">A <c>float</c> value.</param>
         /// <param name="rotateStiffness">A <c>float</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LocalIkSolve(BasePart? part, object? target, float translateStiffness, float rotateStiffness)
+        public object? LocalIkSolve(BasePart? part, global::Roblox.CFrame? target, float translateStiffness, float rotateStiffness)
             => global::Roblox.Reflection.Invoke<object?>(this, "LocalIkSolve", part, target, translateStiffness, rotateStiffness);
 
         /// <summary>

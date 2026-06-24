@@ -21,10 +21,10 @@ namespace Roblox
         public static ExplorerFilterAutocompleter? FromHandle(nuint handle)
             => handle == 0 ? null : new ExplorerFilterAutocompleter(handle);
 
-        public global::System.Numerics.Vector2 ReplaceRange
+        public global::Roblox.Vector2? ReplaceRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "ReplaceRange");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "ReplaceRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ReplaceRange");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ReplaceRange", value);
         }
 
         public bool RequiresOutsideContext

@@ -677,7 +677,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.ClientLuaDialogRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="arguments">A <c>object?</c> value.</param>
         public event Action<object?>? ClientLuaDialogRequested
@@ -688,7 +687,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.ClientPurchaseSuccess</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="ticket">A <c>string?</c> value.</param>
         /// <param name="playerId">A <c>long</c> value.</param>
@@ -701,7 +699,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.NativePurchaseFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="productId">A <c>string?</c> value.</param>
@@ -714,7 +711,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.NativePurchaseFinishedWithLocalPlayer</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="productId">A <c>string?</c> value.</param>
         /// <param name="wasPurchased">A <c>bool</c> value.</param>
@@ -726,7 +722,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.OpenShopRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         public event Action<Player?>? OpenShopRequested
@@ -737,7 +732,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PrepareCollectiblesPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
@@ -753,7 +747,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a purchase prompt for bulk avatar items is closed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="status">A <c>Enum.MarketplaceBulkPurchasePromptStatus</c> value.</param>
@@ -767,7 +760,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptBulkPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="displayData">A <c>object?</c> value.</param>
@@ -783,7 +775,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptBulkPurchaseRequestedV2</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="displayData">A <c>object?</c> value.</param>
@@ -800,7 +791,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptBundlePurchaseFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
@@ -814,7 +804,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptBundlePurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
@@ -826,7 +815,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptCancelSubscriptionRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="subscriptionId">A <c>string?</c> value.</param>
         public event Action<string?>? PromptCancelSubscriptionRequested
@@ -837,7 +825,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptCollectibleBundlePurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
@@ -855,7 +842,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptCollectiblesPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
@@ -873,7 +859,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a purchase prompt for a pass is closed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
@@ -887,7 +872,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptGamePassPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
@@ -899,7 +883,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a purchase prompt for Roblox Premium is closed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptPremiumPurchaseFinished"/>
         public event Action? PromptPremiumPurchaseFinished
@@ -910,7 +893,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptPremiumPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         public event Action<Instance?>? PromptPremiumPurchaseRequested
@@ -921,7 +903,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a purchase prompt for a developer product is closed. Do not use this event to process purchases.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
@@ -935,7 +916,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptProductPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
@@ -949,7 +929,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a purchase prompt for an affiliate gear sale or other asset is closed. Does not fire for developer product or pass prompts.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
@@ -963,7 +942,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
@@ -977,7 +955,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptPurchaseRequestedV2</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
@@ -993,7 +970,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptRobloxPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
@@ -1005,7 +981,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a purchase prompt for Roblox Plus is closed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="user">A <c>Player?</c> value.</param>
         /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
@@ -1016,10 +991,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("PromptRobloxSubscriptionPurchaseFinished", value); }
         }
 
-        /// <summary>
-        /// <c>MarketplaceService.PromptRobloxSubscriptionPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? PromptRobloxSubscriptionPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptRobloxSubscriptionPurchaseRequested", value); }
@@ -1028,7 +999,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptRobuxTransferRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="jsonResponse">A <c>string?</c> value.</param>
@@ -1038,10 +1008,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("PromptRobuxTransferRequested", value); }
         }
 
-        /// <summary>
-        /// <c>MarketplaceService.PromptRobuxTransferSubscriptionUpsellRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? PromptRobuxTransferSubscriptionUpsellRequested
         {
             add { if (value is not null) AddEventHandler("PromptRobuxTransferSubscriptionUpsellRequested", value); }
@@ -1050,7 +1016,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a purchase prompt for a subscription is closed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="user">A <c>Player?</c> value.</param>
         /// <param name="subscriptionId">A <c>string?</c> value.</param>
@@ -1064,7 +1029,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.PromptSubscriptionPurchaseRequested</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="subscriptionId">A <c>string?</c> value.</param>
         public event Action<string?>? PromptSubscriptionPurchaseRequested
@@ -1075,7 +1039,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.RobuxTransferCompleted</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         public event Action<long>? RobuxTransferCompleted
@@ -1086,7 +1049,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.ServerPurchaseVerification</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="serverResponseTable">A <c>object?</c> value.</param>
         public event Action<object?>? ServerPurchaseVerification
@@ -1097,7 +1059,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.ThirdPartyPurchaseFinished</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Instance?</c> value.</param>
         /// <param name="productId">A <c>string?</c> value.</param>
@@ -1111,7 +1072,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MarketplaceService.UserSubscriptionStatusChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="subscriptionId">A <c>string?</c> value.</param>
         public event Action<string?>? UserSubscriptionStatusChanged

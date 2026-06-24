@@ -49,50 +49,50 @@ namespace Roblox
         /// Stores the tool's "grip" properties as one CFrame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Grip"/>
-        public object? Grip
+        public global::Roblox.CFrame? Grip
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Grip");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Grip", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Grip");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Grip", value);
         }
 
         /// <summary>
         /// Represents the R02, R12, and R22 values of the grip CFrame rotation matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripForward"/>
-        public global::System.Numerics.Vector3 GripForward
+        public global::Roblox.Vector3? GripForward
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "GripForward");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "GripForward", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripForward");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripForward", value);
         }
 
         /// <summary>
         /// The positional offset of the tool's weld matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripPos"/>
-        public global::System.Numerics.Vector3 GripPos
+        public global::Roblox.Vector3? GripPos
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "GripPos");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "GripPos", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripPos");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripPos", value);
         }
 
         /// <summary>
         /// Represents the R00, R10, and R20 values of the grip CFrame rotation matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripRight"/>
-        public global::System.Numerics.Vector3 GripRight
+        public global::Roblox.Vector3? GripRight
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "GripRight");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "GripRight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripRight");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripRight", value);
         }
 
         /// <summary>
         /// Represents the R01, R11, and R21 values of the grip CFrame rotation matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripUp"/>
-        public global::System.Numerics.Vector3 GripUp
+        public global::Roblox.Vector3? GripUp
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "GripUp");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "GripUp", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripUp");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripUp", value);
         }
 
         /// <summary>
@@ -143,7 +143,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the player clicks while the tool is equipped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Activated"/>
         public event Action? Activated
@@ -154,7 +153,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the player releases their click while the tool is equipped and activated.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Deactivated"/>
         public event Action? Deactivated
@@ -165,7 +163,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the tool is equipped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="mouse">A <c>Mouse?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Equipped"/>
@@ -177,7 +174,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the tool is unequipped.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Unequipped"/>
         public event Action? Unequipped

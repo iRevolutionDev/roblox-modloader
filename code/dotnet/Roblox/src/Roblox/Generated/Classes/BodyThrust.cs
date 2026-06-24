@@ -29,20 +29,20 @@ namespace Roblox
         /// Determines the amount of force exerted on each axis relative to the assembly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyThrust#Force"/>
-        public global::System.Numerics.Vector3 Force
+        public global::Roblox.Vector3? Force
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Force");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Force", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Force");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Force", value);
         }
 
         /// <summary>
         /// Determines the relative position where the Force is exerted.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyThrust#Location"/>
-        public global::System.Numerics.Vector3 Location
+        public global::Roblox.Vector3? Location
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Location");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Location", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Location");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Location", value);
         }
 
     }

@@ -246,7 +246,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when an AnimationTrack loops on the next update following the end of the previous animation loop.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#DidLoop"/>
         public event Action? DidLoop
@@ -257,7 +256,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AnimationTrack is completely done moving anything in the world.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Ended"/>
         public event Action? Ended
@@ -268,7 +266,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires every time playback of an AnimationTrack reaches a Keyframe that does not have the default name of Keyframe.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="keyframeName">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#KeyframeReached"/>
@@ -280,7 +277,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the AnimationTrack finishes playing. The AnimationTrack might still animate the subject while the animation "fades out". To catch when the AnimationTrack is completely done moving anything in the world, use the AnimationTrack.Ended event.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Stopped"/>
         public event Action? Stopped

@@ -79,7 +79,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>MicroProfilerService.DataChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="slotId">A <c>int</c> value.</param>
         /// <param name="flags">A <c>int</c> value.</param>

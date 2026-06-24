@@ -178,7 +178,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SessionService.SessionChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="structuralId">A <c>string?</c> value.</param>
         /// <param name="currentTag">A <c>string?</c> value.</param>

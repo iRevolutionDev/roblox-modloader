@@ -45,6 +45,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ResetOnSpawn", value);
         }
 
+        /// <summary>
+        /// <c>LayerCollector.TabKeyboardNavigation</c>
+        /// </summary>
+        /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LayerCollector#TabKeyboardNavigation"/>
         public bool TabKeyboardNavigation
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "TabKeyboardNavigation");

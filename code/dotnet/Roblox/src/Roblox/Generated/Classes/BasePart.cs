@@ -39,30 +39,30 @@ namespace Roblox
         /// The angular velocity of the part's assembly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyAngularVelocity"/>
-        public global::System.Numerics.Vector3 AssemblyAngularVelocity
+        public global::Roblox.Vector3? AssemblyAngularVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "AssemblyAngularVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "AssemblyAngularVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AssemblyAngularVelocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AssemblyAngularVelocity", value);
         }
 
         /// <summary>
         /// The center of mass of the part's assembly in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyCenterOfMass"/>
-        public global::System.Numerics.Vector3 AssemblyCenterOfMass
+        public global::Roblox.Vector3? AssemblyCenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "AssemblyCenterOfMass");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "AssemblyCenterOfMass", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AssemblyCenterOfMass");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AssemblyCenterOfMass", value);
         }
 
         /// <summary>
         /// The linear velocity of the part's assembly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyLinearVelocity"/>
-        public global::System.Numerics.Vector3 AssemblyLinearVelocity
+        public global::Roblox.Vector3? AssemblyLinearVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "AssemblyLinearVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "AssemblyLinearVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AssemblyLinearVelocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AssemblyLinearVelocity", value);
         }
 
         /// <summary>
@@ -189,10 +189,10 @@ namespace Roblox
         /// Determines the position and orientation of the BasePart in the world.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CFrame"/>
-        public object? CFrame
+        public global::Roblox.CFrame? CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -239,10 +239,10 @@ namespace Roblox
         /// Describes the world position in which a part's center of mass is located.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CenterOfMass"/>
-        public global::System.Numerics.Vector3 CenterOfMass
+        public global::Roblox.Vector3? CenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "CenterOfMass");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "CenterOfMass", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "CenterOfMass");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "CenterOfMass", value);
         }
 
         /// <summary>
@@ -269,10 +269,10 @@ namespace Roblox
         /// Determines the color of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Color"/>
-        public object? Color
+        public global::Roblox.Color3? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
         }
 
         /// <summary>
@@ -319,20 +319,20 @@ namespace Roblox
         /// The CFrame of the physical extents of the BasePart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ExtentsCFrame"/>
-        public object? ExtentsCFrame
+        public global::Roblox.CFrame? ExtentsCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ExtentsCFrame");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ExtentsCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ExtentsCFrame");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ExtentsCFrame", value);
         }
 
         /// <summary>
         /// The actual physical size of the BasePart as regarded by the physics engine.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ExtentsSize"/>
-        public global::System.Numerics.Vector3 ExtentsSize
+        public global::Roblox.Vector3? ExtentsSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "ExtentsSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "ExtentsSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ExtentsSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ExtentsSize", value);
         }
 
         /// <summary>
@@ -489,30 +489,30 @@ namespace Roblox
         /// Describes the rotation of the part in the world.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Orientation"/>
-        public global::System.Numerics.Vector3 Orientation
+        public global::Roblox.Vector3? Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Orientation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Orientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Orientation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Orientation", value);
         }
 
         /// <summary>
         /// Specifies the offset of the part's pivot from its CFrame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#PivotOffset"/>
-        public object? PivotOffset
+        public global::Roblox.CFrame? PivotOffset
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PivotOffset");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PivotOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "PivotOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "PivotOffset", value);
         }
 
         /// <summary>
         /// Describes the position of the part in the world.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Position"/>
-        public global::System.Numerics.Vector3 Position
+        public global::Roblox.Vector3? Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
         }
 
         /// <summary>
@@ -609,30 +609,30 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use AssemblyAngularVelocity instead.Determines a part's change in orientation over time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RotVelocity"/>
-        public global::System.Numerics.Vector3 RotVelocity
+        public global::Roblox.Vector3? RotVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "RotVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "RotVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RotVelocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RotVelocity", value);
         }
 
         /// <summary>
         /// The rotation of the part in degrees for the three axes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Rotation"/>
-        public global::System.Numerics.Vector3 Rotation
+        public global::Roblox.Vector3? Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Rotation");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Rotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Rotation");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Rotation", value);
         }
 
         /// <summary>
         /// Determines the dimensions of a part (length, width, height).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Size"/>
-        public global::System.Numerics.Vector3 Size
+        public global::Roblox.Vector3? Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Size");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Size", value);
         }
 
         /// <summary>
@@ -699,48 +699,48 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use AssemblyLinearVelocity instead.Determines a part's change in position over time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Velocity"/>
-        public global::System.Numerics.Vector3 Velocity
+        public global::Roblox.Vector3? Velocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "Velocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "Velocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Velocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Velocity", value);
         }
 
         /// <summary>
         /// Returns the torque needed to achieve a given angular acceleration on this part's assembly, optionally accounting for gyroscopic effects.
         /// </summary>
-        /// <param name="angAcceleration">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="angVelocity">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <param name="angAcceleration">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="angVelocity">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AngularAccelerationToTorque"/>
-        public global::System.Numerics.Vector3 AngularAccelerationToTorque(global::System.Numerics.Vector3 angAcceleration, global::System.Numerics.Vector3 angVelocity)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "AngularAccelerationToTorque", angAcceleration, angVelocity);
+        public global::Roblox.Vector3? AngularAccelerationToTorque(global::Roblox.Vector3? angAcceleration, global::Roblox.Vector3? angVelocity)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "AngularAccelerationToTorque", angAcceleration, angVelocity);
 
         /// <summary>
         /// Apply an angular impulse to the assembly.
         /// </summary>
-        /// <param name="impulse">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="impulse">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyAngularImpulse"/>
-        public object? ApplyAngularImpulse(global::System.Numerics.Vector3 impulse)
+        public object? ApplyAngularImpulse(global::Roblox.Vector3? impulse)
             => global::Roblox.Reflection.Invoke<object?>(this, "ApplyAngularImpulse", impulse);
 
         /// <summary>
         /// Apply an impulse to the assembly at the assembly's center of mass.
         /// </summary>
-        /// <param name="impulse">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="impulse">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulse"/>
-        public object? ApplyImpulse(global::System.Numerics.Vector3 impulse)
+        public object? ApplyImpulse(global::Roblox.Vector3? impulse)
             => global::Roblox.Reflection.Invoke<object?>(this, "ApplyImpulse", impulse);
 
         /// <summary>
         /// Apply an impulse to the assembly at specified position.
         /// </summary>
-        /// <param name="impulse">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="impulse">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulseAtPosition"/>
-        public object? ApplyImpulseAtPosition(global::System.Numerics.Vector3 impulse, global::System.Numerics.Vector3 position)
+        public object? ApplyImpulseAtPosition(global::Roblox.Vector3? impulse, global::Roblox.Vector3? position)
             => global::Roblox.Reflection.Invoke<object?>(this, "ApplyImpulseAtPosition", impulse, position);
 
         /// <summary>
@@ -771,11 +771,11 @@ namespace Roblox
         /// <summary>
         /// Returns the closest point on the part's surface to the given point.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetClosestPointOnSurface"/>
-        public global::System.Numerics.Vector3 GetClosestPointOnSurface(global::System.Numerics.Vector3 position)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetClosestPointOnSurface", position);
+        public global::Roblox.Vector3? GetClosestPointOnSurface(global::Roblox.Vector3? position)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetClosestPointOnSurface", position);
 
         /// <summary>
         /// Returns a table of parts connected to the object by any kind of rigid joint.
@@ -836,10 +836,10 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This item is been deprecated since interpolation is now applied to the CFrame directly. Do not use it for new work.OBSOLETE. Returns a CFrame describing where the part is being rendered at.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetRenderCFrame"/>
-        public object? GetRenderCFrame()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRenderCFrame");
+        public global::Roblox.CFrame? GetRenderCFrame()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetRenderCFrame");
 
         /// <summary>
         /// Deprecated: Returns the base part of an assembly of parts.
@@ -860,11 +860,11 @@ namespace Roblox
         /// <summary>
         /// Returns the linear velocity of the part's assembly at the given position relative to this part.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetVelocityAtPosition"/>
-        public global::System.Numerics.Vector3 GetVelocityAtPosition(global::System.Numerics.Vector3 position)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetVelocityAtPosition", position);
+        public global::Roblox.Vector3? GetVelocityAtPosition(global::Roblox.Vector3? position)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetVelocityAtPosition", position);
 
         /// <summary>
         /// Returns true if the object is connected to a part that will hold it in place (eg an Anchored part), otherwise returns false.
@@ -912,12 +912,12 @@ namespace Roblox
         /// <summary>
         /// Returns the angular acceleration that would result from applying a given torque to this part's assembly, optionally accounting for gyroscopic effects.
         /// </summary>
-        /// <param name="torque">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="angVelocity">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <param name="torque">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="angVelocity">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TorqueToAngularAcceleration"/>
-        public global::System.Numerics.Vector3 TorqueToAngularAcceleration(global::System.Numerics.Vector3 torque, global::System.Numerics.Vector3 angVelocity)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "TorqueToAngularAcceleration", torque, angVelocity);
+        public global::Roblox.Vector3? TorqueToAngularAcceleration(global::Roblox.Vector3? torque, global::Roblox.Vector3? angVelocity)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "TorqueToAngularAcceleration", torque, angVelocity);
 
         /// <summary>
         /// Note: It is highly recommended to use the newer GeometryService:IntersectAsync instead of this function. As well as having better performance and more features, the new function differs as follows: The output is an array of instances rather than a single instance. The input parts do not need to be parented to the scene, allowing for background operations. When the SplitApart option is set to true (default), each distinct body will be returned in its own PartOperation. All the returned parts are in the coordinate space of the main part, so their PVInstance.Origin positions are the same as the main part's. This keeps the vertices of the mesh in the same position relative to the object as before the operation, but it does also mean the (0, 0, 0) of a returned part is not necessarily at the center of its body. Creates a new IntersectOperation from the overlapping geometry of the part and the other parts in the given array.
@@ -954,7 +954,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This event is deprecated in favor of BasePart.Touched.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="part">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LocalSimulationTouched"/>
@@ -966,7 +965,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This event is deprecated. Do not use it for new work.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#OutfitChanged"/>
         public event Action? OutfitChanged
@@ -977,7 +975,6 @@ namespace Roblox
 
         /// <summary>
         /// Deprecated: This event is deprecated in favor of BasePart.TouchEnded, which should be used instead.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="otherPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#StoppedTouching"/>
@@ -989,7 +986,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a part stops touching another part as a result of physical movement.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="otherPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TouchEnded"/>
@@ -1001,7 +997,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a part touches another part as a result of physical movement.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="otherPart">A <c>BasePart?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Touched"/>

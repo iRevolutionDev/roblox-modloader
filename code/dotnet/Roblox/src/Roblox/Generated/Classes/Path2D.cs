@@ -39,10 +39,10 @@ namespace Roblox
         /// Determines the color of the Path2D.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Color3"/>
-        public object? Color3
+        public global::Roblox.Color3? Color3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
         }
 
         /// <summary>
@@ -104,10 +104,10 @@ namespace Roblox
         /// <summary>
         /// Returns the bounding size for the Path2D.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Rect?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetBoundingRect"/>
-        public object? GetBoundingRect()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBoundingRect");
+        public global::Roblox.Rect? GetBoundingRect()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Rect?>(this, "GetBoundingRect");
 
         /// <summary>
         /// Returns the Path2DControlPoint for a given index.
@@ -146,19 +146,19 @@ namespace Roblox
         /// Returns the position at a given value in parameter space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.UDim2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetPositionOnCurve"/>
-        public object? GetPositionOnCurve(float t)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPositionOnCurve", t);
+        public global::Roblox.UDim2? GetPositionOnCurve(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2?>(this, "GetPositionOnCurve", t);
 
         /// <summary>
         /// Returns the position at a given value in arc length space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.UDim2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetPositionOnCurveArcLength"/>
-        public object? GetPositionOnCurveArcLength(float t)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPositionOnCurveArcLength", t);
+        public global::Roblox.UDim2? GetPositionOnCurveArcLength(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2?>(this, "GetPositionOnCurveArcLength", t);
 
         /// <summary>
         /// <c>Path2D.GetSegmentCount</c>
@@ -171,19 +171,19 @@ namespace Roblox
         /// Returns the tangent at a given value in parameter space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetTangentOnCurve"/>
-        public global::System.Numerics.Vector2 GetTangentOnCurve(float t)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetTangentOnCurve", t);
+        public global::Roblox.Vector2? GetTangentOnCurve(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTangentOnCurve", t);
 
         /// <summary>
         /// Returns the tangent at a given value in arc length space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetTangentOnCurveArcLength"/>
-        public global::System.Numerics.Vector2 GetTangentOnCurveArcLength(float t)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetTangentOnCurveArcLength", t);
+        public global::Roblox.Vector2? GetTangentOnCurveArcLength(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTangentOnCurveArcLength", t);
 
         /// <summary>
         /// Inserts a new control point at a given index.
@@ -225,7 +225,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires any time control points change.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#ControlPointChanged"/>
         public event Action? ControlPointChanged

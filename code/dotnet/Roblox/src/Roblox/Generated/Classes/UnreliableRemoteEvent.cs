@@ -55,7 +55,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires from a LocalScript when either FireClient() or FireAllClients() is called on the same UnreliableRemoteEvent instance from a Script, although this firing is not guaranteed even if one of the above methods are called. This can occur due to packet loss or to maintain optimal engine performance.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="arguments">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UnreliableRemoteEvent#OnClientEvent"/>
@@ -67,7 +66,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires from a Script when FireServer() is called on the same UnreliableRemoteEvent instance from a LocalScript, although this firing is not guaranteed even if the above methods is called. This can occur due to packet loss or to maintain optimal engine performance.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
         /// <param name="arguments">A <c>object?</c> value.</param>

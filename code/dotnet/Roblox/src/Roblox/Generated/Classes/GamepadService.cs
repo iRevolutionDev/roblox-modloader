@@ -62,24 +62,23 @@ namespace Roblox
         /// <summary>
         /// <c>GamepadService.GetGamepadCursorPosition</c>
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector2 GetGamepadCursorPosition()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetGamepadCursorPosition");
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2? GetGamepadCursorPosition()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetGamepadCursorPosition");
 
         /// <summary>
         /// <c>GamepadService.SetGamepadCursorPosition</c>
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector2</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetGamepadCursorPosition(global::System.Numerics.Vector2 position)
+        public object? SetGamepadCursorPosition(global::Roblox.Vector2? position)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetGamepadCursorPosition", position);
 
         /// <summary>
         /// <c>GamepadService.GamepadThumbstick1Changed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
-        /// <param name="event">A <c>global::System.Numerics.Vector2</c> value.</param>
-        public event Action<global::System.Numerics.Vector2>? GamepadThumbstick1Changed
+        /// <param name="event">A <c>global::Roblox.Vector2?</c> value.</param>
+        public event Action<global::Roblox.Vector2?>? GamepadThumbstick1Changed
         {
             add { if (value is not null) AddEventHandler("GamepadThumbstick1Changed", value); }
             remove { if (value is not null) RemoveEventHandler("GamepadThumbstick1Changed", value); }

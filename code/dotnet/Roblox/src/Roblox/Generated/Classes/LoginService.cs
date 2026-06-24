@@ -41,7 +41,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LoginService.LoginFailed</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="loginError">A <c>string?</c> value.</param>
         public event Action<string?>? LoginFailed
@@ -52,7 +51,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>LoginService.LoginSucceeded</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="username">A <c>string?</c> value.</param>
         public event Action<string?>? LoginSucceeded

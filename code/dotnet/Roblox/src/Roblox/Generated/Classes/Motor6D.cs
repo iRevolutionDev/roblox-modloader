@@ -49,10 +49,10 @@ namespace Roblox
         /// Describes the current animation offset of the Motor6D joint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor6D#Transform"/>
-        public object? Transform
+        public global::Roblox.CFrame? Transform
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Transform");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Transform", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Transform");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Transform", value);
         }
 
     }

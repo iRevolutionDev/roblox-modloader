@@ -21,10 +21,10 @@ namespace Roblox
         public static StudioCallout? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioCallout(handle);
 
-        public global::System.Numerics.Vector2 AnchorPoint
+        public global::Roblox.Vector2? AnchorPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AnchorPoint");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AnchorPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AnchorPoint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AnchorPoint", value);
         }
 
         public bool IsArrowVisible

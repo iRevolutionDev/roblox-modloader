@@ -62,7 +62,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AudioFocusService.OnContextRegistered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="contextId">A <c>int</c> value.</param>
         public event Action<int>? OnContextRegistered
@@ -73,7 +72,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AudioFocusService.OnContextUnregistered</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="contextId">A <c>int</c> value.</param>
         public event Action<int>? OnContextUnregistered
@@ -84,7 +82,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AudioFocusService.OnDeafenVoiceAudio</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="contextId">A <c>int</c> value.</param>
         public event Action<int>? OnDeafenVoiceAudio
@@ -95,7 +92,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AudioFocusService.OnUndeafenVoiceAudio</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="contextId">A <c>int</c> value.</param>
         public event Action<int>? OnUndeafenVoiceAudio

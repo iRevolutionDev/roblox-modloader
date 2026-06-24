@@ -31,10 +31,10 @@ namespace Roblox
         /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
         /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
         /// <param name="refMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="innerTransform">A <c>object?</c> value.</param>
-        /// <param name="outerTransform">A <c>object?</c> value.</param>
+        /// <param name="innerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="outerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float CalculateAverageEditableCageMeshDistance(EditableMesh? innerCage, EditableMesh? outerCage, EditableMesh? refMesh, object? innerTransform, object? outerTransform)
+        public float CalculateAverageEditableCageMeshDistance(EditableMesh? innerCage, EditableMesh? outerCage, EditableMesh? refMesh, global::Roblox.CFrame? innerTransform, global::Roblox.CFrame? outerTransform)
             => global::Roblox.Reflection.Invoke<float>(this, "CalculateAverageEditableCageMeshDistance", innerCage, outerCage, refMesh, innerTransform, outerTransform);
 
         /// <summary>
@@ -42,10 +42,10 @@ namespace Roblox
         /// </summary>
         /// <param name="editableMeshRoot">A <c>EditableMesh?</c> value.</param>
         /// <param name="editableMeshQuery">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshQueryTransform">A <c>object?</c> value.</param>
-        /// <param name="meshQueryScale">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="meshQueryTransform">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="meshQueryScale">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float CalculateEditableMeshInsideMeshPercentage(EditableMesh? editableMeshRoot, EditableMesh? editableMeshQuery, object? meshQueryTransform, global::System.Numerics.Vector3 meshQueryScale)
+        public float CalculateEditableMeshInsideMeshPercentage(EditableMesh? editableMeshRoot, EditableMesh? editableMeshQuery, global::Roblox.CFrame? meshQueryTransform, global::Roblox.Vector3? meshQueryScale)
             => global::Roblox.Reflection.Invoke<float>(this, "CalculateEditableMeshInsideMeshPercentage", editableMeshRoot, editableMeshQuery, meshQueryTransform, meshQueryScale);
 
         /// <summary>
@@ -53,11 +53,11 @@ namespace Roblox
         /// </summary>
         /// <param name="referenceUVValues">A <c>object?</c> value.</param>
         /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="innerTransform">A <c>object?</c> value.</param>
+        /// <param name="innerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerTransform">A <c>object?</c> value.</param>
+        /// <param name="outerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CalculateEditableMeshModifiedCageBoundingBox(object? referenceUVValues, EditableMesh? innerCage, object? innerTransform, EditableMesh? outerCage, object? outerTransform)
+        public object? CalculateEditableMeshModifiedCageBoundingBox(object? referenceUVValues, EditableMesh? innerCage, global::Roblox.CFrame? innerTransform, EditableMesh? outerCage, global::Roblox.CFrame? outerTransform)
             => global::Roblox.Reflection.Invoke<object?>(this, "CalculateEditableMeshModifiedCageBoundingBox", referenceUVValues, innerCage, innerTransform, outerCage, outerTransform);
 
         /// <summary>
@@ -65,20 +65,20 @@ namespace Roblox
         /// </summary>
         /// <param name="referenceUVValues">A <c>object?</c> value.</param>
         /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="innerTransform">A <c>object?</c> value.</param>
+        /// <param name="innerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerTransform">A <c>object?</c> value.</param>
+        /// <param name="outerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CalculateEditableMeshNumModifiedCageUVsInSet(object? referenceUVValues, EditableMesh? innerCage, object? innerTransform, EditableMesh? outerCage, object? outerTransform)
+        public object? CalculateEditableMeshNumModifiedCageUVsInSet(object? referenceUVValues, EditableMesh? innerCage, global::Roblox.CFrame? innerTransform, EditableMesh? outerCage, global::Roblox.CFrame? outerTransform)
             => global::Roblox.Reflection.Invoke<object?>(this, "CalculateEditableMeshNumModifiedCageUVsInSet", referenceUVValues, innerCage, innerTransform, outerCage, outerTransform);
 
         /// <summary>
         /// <c>UGCValidationService.CalculateEditableMeshTotalSurfaceArea</c>
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float CalculateEditableMeshTotalSurfaceArea(EditableMesh? editableMesh, global::System.Numerics.Vector3 meshScale)
+        public float CalculateEditableMeshTotalSurfaceArea(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
             => global::Roblox.Reflection.Invoke<float>(this, "CalculateEditableMeshTotalSurfaceArea", editableMesh, meshScale);
 
         /// <summary>
@@ -93,11 +93,11 @@ namespace Roblox
         /// <c>UGCValidationService.CheckEditableMeshInCameraFrustum</c>
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="handleWorldCF">A <c>object?</c> value.</param>
-        /// <param name="cameraWorldCF">A <c>object?</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="handleWorldCF">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="cameraWorldCF">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool CheckEditableMeshInCameraFrustum(EditableMesh? editableMesh, global::System.Numerics.Vector3 meshScale, object? handleWorldCF, object? cameraWorldCF)
+        public bool CheckEditableMeshInCameraFrustum(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale, global::Roblox.CFrame? handleWorldCF, global::Roblox.CFrame? cameraWorldCF)
             => global::Roblox.Reflection.Invoke<bool>(this, "CheckEditableMeshInCameraFrustum", editableMesh, meshScale, handleWorldCF, cameraWorldCF);
 
         /// <summary>
@@ -141,27 +141,27 @@ namespace Roblox
         /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
         /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
         /// <param name="refMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="offsetInner">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="offsetOuter">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="offsetInner">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="offsetOuter">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEditableCagingRelevancyMetrics(EditableMesh? innerCage, EditableMesh? outerCage, EditableMesh? refMesh, global::System.Numerics.Vector3 offsetInner, global::System.Numerics.Vector3 offsetOuter)
+        public object? GetEditableCagingRelevancyMetrics(EditableMesh? innerCage, EditableMesh? outerCage, EditableMesh? refMesh, global::Roblox.Vector3? offsetInner, global::Roblox.Vector3? offsetOuter)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetEditableCagingRelevancyMetrics", innerCage, outerCage, refMesh, offsetInner, offsetOuter);
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableImageSize</c>
         /// </summary>
         /// <param name="editableImage">A <c>EditableImage?</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector2</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector2 GetEditableImageSize(EditableImage? editableImage)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector2>(this, "GetEditableImageSize", editableImage);
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2? GetEditableImageSize(EditableImage? editableImage)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetEditableImageSize", editableImage);
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableMeshMaxNearbyVerticesCollisions</c>
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetEditableMeshMaxNearbyVerticesCollisions(EditableMesh? editableMesh, global::System.Numerics.Vector3 meshScale)
+        public int GetEditableMeshMaxNearbyVerticesCollisions(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
             => global::Roblox.Reflection.Invoke<int>(this, "GetEditableMeshMaxNearbyVerticesCollisions", editableMesh, meshScale);
 
         /// <summary>
@@ -192,9 +192,9 @@ namespace Roblox
         /// <c>UGCValidationService.GetEditableMeshVerticesSimilarityRate</c>
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float GetEditableMeshVerticesSimilarityRate(EditableMesh? editableMesh, global::System.Numerics.Vector3 meshScale)
+        public float GetEditableMeshVerticesSimilarityRate(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
             => global::Roblox.Reflection.Invoke<float>(this, "GetEditableMeshVerticesSimilarityRate", editableMesh, meshScale);
 
         /// <summary>
@@ -210,9 +210,9 @@ namespace Roblox
         /// </summary>
         /// <param name="jointLabel">A <c>Enum.RigLabel</c> value.</param>
         /// <param name="partsFolder">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetExpectedTposeRotation(Enum.RigLabel jointLabel, Instance? partsFolder)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetExpectedTposeRotation", jointLabel, partsFolder);
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        public global::Roblox.CFrame? GetExpectedTposeRotation(Enum.RigLabel jointLabel, Instance? partsFolder)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetExpectedTposeRotation", jointLabel, partsFolder);
 
         /// <summary>
         /// <c>UGCValidationService.GetFacsDrivenJointNamesFromEditableMesh</c>
@@ -227,10 +227,10 @@ namespace Roblox
         /// </summary>
         /// <param name="accessory">A <c>Accessory?</c> value.</param>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
-        public global::System.Numerics.Vector3 GetLayeredClothingPostDeformationSize(Accessory? accessory, EditableMesh? editableMesh, global::System.Numerics.Vector3 meshScale)
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetLayeredClothingPostDeformationSize", accessory, editableMesh, meshScale);
+        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3? GetLayeredClothingPostDeformationSize(Accessory? accessory, EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetLayeredClothingPostDeformationSize", accessory, editableMesh, meshScale);
 
         /// <summary>
         /// <c>UGCValidationService.GetMaximalJointDistancesWithinFacs</c>
@@ -270,10 +270,10 @@ namespace Roblox
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
         /// <param name="limit">A <c>int</c> value.</param>
-        /// <param name="meshScale">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="intersectBackFaces">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsEditableMeshNumCoplanarIntersectionsOverLimit(EditableMesh? editableMesh, int limit, global::System.Numerics.Vector3 meshScale, bool intersectBackFaces)
+        public bool IsEditableMeshNumCoplanarIntersectionsOverLimit(EditableMesh? editableMesh, int limit, global::Roblox.Vector3? meshScale, bool intersectBackFaces)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsEditableMeshNumCoplanarIntersectionsOverLimit", editableMesh, limit, meshScale, intersectBackFaces);
 
         /// <summary>
@@ -394,9 +394,9 @@ namespace Roblox
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
         /// <param name="boundsScale">A <c>float</c> value.</param>
-        /// <param name="partSize">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="partSize">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshFacialBounds(EditableMesh? editableMesh, float boundsScale, global::System.Numerics.Vector3 partSize)
+        public bool ValidateEditableMeshFacialBounds(EditableMesh? editableMesh, float boundsScale, global::Roblox.Vector3? partSize)
             => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshFacialBounds", editableMesh, boundsScale, partSize);
 
         /// <summary>
@@ -404,9 +404,9 @@ namespace Roblox
         /// </summary>
         /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
         /// <param name="minDelta">A <c>float</c> value.</param>
-        /// <param name="partSize">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="partSize">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float ValidateEditableMeshFacialExpressiveness(EditableMesh? editableMesh, float minDelta, global::System.Numerics.Vector3 partSize)
+        public float ValidateEditableMeshFacialExpressiveness(EditableMesh? editableMesh, float minDelta, global::Roblox.Vector3? partSize)
             => global::Roblox.Reflection.Invoke<float>(this, "ValidateEditableMeshFacialExpressiveness", editableMesh, minDelta, partSize);
 
         /// <summary>
@@ -509,10 +509,10 @@ namespace Roblox
         /// <param name="renderMesh">A <c>EditableMesh?</c> value.</param>
         /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
         /// <param name="cageUVs">A <c>object?</c> value.</param>
-        /// <param name="referenceOrigin">A <c>object?</c> value.</param>
+        /// <param name="referenceOrigin">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="distanceThreshold">A <c>float</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateLeaderSkinnedVertsNearCageIslands(EditableMesh? renderMesh, EditableMesh? innerCage, object? cageUVs, object? referenceOrigin, float distanceThreshold)
+        public bool ValidateLeaderSkinnedVertsNearCageIslands(EditableMesh? renderMesh, EditableMesh? innerCage, object? cageUVs, global::Roblox.CFrame? referenceOrigin, float distanceThreshold)
             => global::Roblox.Reflection.Invoke<bool>(this, "ValidateLeaderSkinnedVertsNearCageIslands", renderMesh, innerCage, cageUVs, referenceOrigin, distanceThreshold);
 
         /// <summary>
@@ -520,11 +520,11 @@ namespace Roblox
         /// </summary>
         /// <param name="headEditableMesh">A <c>EditableMesh?</c> value.</param>
         /// <param name="partEditableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="headScale">A <c>global::System.Numerics.Vector3</c> value.</param>
-        /// <param name="partScale">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="headScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="partScale">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <param name="boundsMaxMultiplier">A <c>float</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidatePartBBoxAfterFullFacs(EditableMesh? headEditableMesh, EditableMesh? partEditableMesh, global::System.Numerics.Vector3 headScale, global::System.Numerics.Vector3 partScale, float boundsMaxMultiplier)
+        public bool ValidatePartBBoxAfterFullFacs(EditableMesh? headEditableMesh, EditableMesh? partEditableMesh, global::Roblox.Vector3? headScale, global::Roblox.Vector3? partScale, float boundsMaxMultiplier)
             => global::Roblox.Reflection.Invoke<bool>(this, "ValidatePartBBoxAfterFullFacs", headEditableMesh, partEditableMesh, headScale, partScale, boundsMaxMultiplier);
 
         /// <summary>

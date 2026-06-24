@@ -49,10 +49,10 @@ namespace Roblox
         /// The normalized Vector3 direction for constraining the velocity along a line.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#LineDirection"/>
-        public global::System.Numerics.Vector3 LineDirection
+        public global::Roblox.Vector3? LineDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LineDirection");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "LineDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LineDirection");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LineDirection", value);
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Roblox
         /// Maximum force along each axis that the constraint can apply to achieve the vector velocity. Only used if ForceLimitsEnabled is true, ForceLimitMode is PerAxis, and VelocityConstraintMode is Vector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxAxesForce"/>
-        public global::System.Numerics.Vector3 MaxAxesForce
+        public global::Roblox.Vector3? MaxAxesForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "MaxAxesForce");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "MaxAxesForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce", value);
         }
 
         /// <summary>
@@ -89,30 +89,30 @@ namespace Roblox
         /// Maximum force along each axis that the constraint can apply to achieve the plane velocity. Only used if ForceLimitsEnabled is true, ForceLimitMode is PerAxis, and VelocityConstraintMode is Plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxPlanarAxesForce"/>
-        public global::System.Numerics.Vector2 MaxPlanarAxesForce
+        public global::Roblox.Vector2? MaxPlanarAxesForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MaxPlanarAxesForce");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MaxPlanarAxesForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MaxPlanarAxesForce");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MaxPlanarAxesForce", value);
         }
 
         /// <summary>
         /// Vector2 value of the velocity in each tangent direction of the plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#PlaneVelocity"/>
-        public global::System.Numerics.Vector2 PlaneVelocity
+        public global::Roblox.Vector2? PlaneVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "PlaneVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "PlaneVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "PlaneVelocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "PlaneVelocity", value);
         }
 
         /// <summary>
         /// The primary axis in the plane, when VelocityConstraintMode is set to Plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#PrimaryTangentAxis"/>
-        public global::System.Numerics.Vector3 PrimaryTangentAxis
+        public global::Roblox.Vector3? PrimaryTangentAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "PrimaryTangentAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "PrimaryTangentAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "PrimaryTangentAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "PrimaryTangentAxis", value);
         }
 
         /// <summary>
@@ -139,20 +139,20 @@ namespace Roblox
         /// The secondary axis in the plane, when VelocityConstraintMode is set to Plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#SecondaryTangentAxis"/>
-        public global::System.Numerics.Vector3 SecondaryTangentAxis
+        public global::Roblox.Vector3? SecondaryTangentAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "SecondaryTangentAxis");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "SecondaryTangentAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SecondaryTangentAxis");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SecondaryTangentAxis", value);
         }
 
         /// <summary>
         /// Vector3 velocity value when VelocityConstraintMode is set to Vector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#VectorVelocity"/>
-        public global::System.Numerics.Vector3 VectorVelocity
+        public global::Roblox.Vector3? VectorVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "VectorVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "VectorVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "VectorVelocity");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "VectorVelocity", value);
         }
 
         /// <summary>

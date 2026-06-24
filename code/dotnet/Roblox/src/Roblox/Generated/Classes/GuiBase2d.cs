@@ -29,10 +29,10 @@ namespace Roblox
         /// Describes the actual screen position of a GuiBase2d element, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#AbsolutePosition"/>
-        public global::System.Numerics.Vector2 AbsolutePosition
+        public global::Roblox.Vector2? AbsolutePosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsolutePosition");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsolutePosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition", value);
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Roblox
         /// Describes the actual screen size of a GuiBase2d element, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#AbsoluteSize"/>
-        public global::System.Numerics.Vector2 AbsoluteSize
+        public global::Roblox.Vector2? AbsoluteSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "AbsoluteSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize", value);
         }
 
         /// <summary>
@@ -65,10 +65,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoLocalize", value);
         }
 
-        public object? ClippedRect
+        public global::Roblox.Rect? ClippedRect
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ClippedRect");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ClippedRect", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "ClippedRect");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "ClippedRect", value);
         }
 
         public bool IsNotOccluded
@@ -87,10 +87,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Localize", value);
         }
 
-        public object? RawRect2D
+        public global::Roblox.Rect? RawRect2D
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "RawRect2D");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "RawRect2D", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "RawRect2D");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "RawRect2D", value);
         }
 
         /// <summary>
@@ -161,7 +161,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when the gamepad selection moves to, leaves, or changes within the connected GuiBase2d or any descendant GuiObjects.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="amISelected">A <c>bool</c> value.</param>
         /// <param name="previousSelection">A <c>GuiObject?</c> value.</param>

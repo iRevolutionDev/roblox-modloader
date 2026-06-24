@@ -263,16 +263,16 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "MouseSensitivity", value);
         }
 
-        public global::System.Numerics.Vector2 MouseSensitivityFirstPerson
+        public global::Roblox.Vector2? MouseSensitivityFirstPerson
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MouseSensitivityFirstPerson");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MouseSensitivityFirstPerson", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityFirstPerson");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityFirstPerson", value);
         }
 
-        public global::System.Numerics.Vector2 MouseSensitivityThirdPerson
+        public global::Roblox.Vector2? MouseSensitivityThirdPerson
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "MouseSensitivityThirdPerson");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "MouseSensitivityThirdPerson", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityThirdPerson");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityThirdPerson", value);
         }
 
         public bool OnScreenProfilerEnabled
@@ -427,20 +427,20 @@ namespace Roblox
         /// The screen position of the client's window when the application launches.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartScreenPosition"/>
-        public global::System.Numerics.Vector2 StartScreenPosition
+        public global::Roblox.Vector2? StartScreenPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "StartScreenPosition");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "StartScreenPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "StartScreenPosition");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "StartScreenPosition", value);
         }
 
         /// <summary>
         /// The size of the client's window when the application launches.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartScreenSize"/>
-        public global::System.Numerics.Vector2 StartScreenSize
+        public global::Roblox.Vector2? StartScreenSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "StartScreenSize");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "StartScreenSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "StartScreenSize");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "StartScreenSize", value);
         }
 
         public Enum.PreferredTextSize StudioPreferredTextSize
@@ -673,7 +673,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires if the user's full screen mode is changed.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isFullscreen">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#FullscreenChanged"/>
@@ -685,7 +684,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>UserGameSettings.PerformanceStatsVisibleChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isPerformanceStatsVisible">A <c>bool</c> value.</param>
         public event Action<bool>? PerformanceStatsVisibleChanged
@@ -696,7 +694,6 @@ namespace Roblox
 
         /// <summary>
         /// Fired when the user's client switches between Studio mode and in-game mode. This gets fired periodically in Roblox Studio when a session starts.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="isStudioMode">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StudioModeChanged"/>

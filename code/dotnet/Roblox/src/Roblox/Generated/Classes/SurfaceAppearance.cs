@@ -39,10 +39,10 @@ namespace Roblox
         /// Applies a tint to your existing colormap. Set directly with color picker or programmatically with Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#Color"/>
-        public object? Color
+        public global::Roblox.Color3? Color
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Roblox
         /// Determines the tinting color for emissive contribution.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#EmissiveTint"/>
-        public object? EmissiveTint
+        public global::Roblox.Color3? EmissiveTint
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "EmissiveTint");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "EmissiveTint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "EmissiveTint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "EmissiveTint", value);
         }
 
         /// <summary>

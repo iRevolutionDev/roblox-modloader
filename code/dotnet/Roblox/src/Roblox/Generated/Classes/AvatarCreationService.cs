@@ -207,7 +207,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when an in-experience-created avatar asset's moderation status has been updated from pending.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="moderationStatus">A <c>Enum.ModerationStatus</c> value.</param>
@@ -220,7 +219,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when an in-experience-created avatar's moderation status has been updated from pending.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
         /// <param name="moderationStatus">A <c>Enum.ModerationStatus</c> value.</param>
@@ -231,10 +229,6 @@ namespace Roblox
             remove { if (value is not null) RemoveEventHandler("AvatarModerationCompleted", value); }
         }
 
-        /// <summary>
-        /// <c>AvatarCreationService.OpenSelfieConsent</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? OpenSelfieConsent
         {
             add { if (value is not null) AddEventHandler("OpenSelfieConsent", value); }
@@ -243,7 +237,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarCreationService.OpenSelfieQRCode</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="url">A <c>string?</c> value.</param>
         /// <param name="jobId">A <c>string?</c> value.</param>
@@ -255,7 +248,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarCreationService.UgcValidationFailure</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="guid">A <c>string?</c> value.</param>
         /// <param name="errorMessage">A <c>string?</c> value.</param>
@@ -267,7 +259,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>AvatarCreationService.UgcValidationSuccess</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="guid">A <c>string?</c> value.</param>
         /// <param name="serializedModel">A <c>string?</c> value.</param>

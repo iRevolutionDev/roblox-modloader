@@ -29,17 +29,17 @@ namespace Roblox
         /// Returns a world space CFrame looking at the player's character.
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerViewService#GetDeviceCameraCFrame"/>
-        public object? GetDeviceCameraCFrame(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDeviceCameraCFrame", player);
+        public global::Roblox.CFrame? GetDeviceCameraCFrame(Player? player)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetDeviceCameraCFrame", player);
 
         /// <summary>
         /// <c>PlayerViewService.GetDeviceCameraCFrameForSelfView</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDeviceCameraCFrameForSelfView()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDeviceCameraCFrameForSelfView");
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        public global::Roblox.CFrame? GetDeviceCameraCFrameForSelfView()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetDeviceCameraCFrameForSelfView");
 
         /// <summary>
         /// <c>PlayerViewService.OnCameraCFrameReplicationRequest</c>
@@ -52,10 +52,10 @@ namespace Roblox
         /// <c>PlayerViewService.UpdateDeviceCFrame</c>
         /// </summary>
         /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="timestamp">A <c>long</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdateDeviceCFrame(Player? player, object? cframe, long timestamp)
+        public object? UpdateDeviceCFrame(Player? player, global::Roblox.CFrame? cframe, long timestamp)
             => global::Roblox.Reflection.Invoke<object?>(this, "UpdateDeviceCFrame", player, cframe, timestamp);
 
     }

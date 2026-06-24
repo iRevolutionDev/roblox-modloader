@@ -39,10 +39,10 @@ namespace Roblox
         /// Background color of bubbles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BackgroundColor3"/>
-        public object? BackgroundColor3
+        public global::Roblox.Color3? BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace Roblox
         /// Offset of bubbles from their adornee, in studs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#LocalPlayerStudsOffset"/>
-        public global::System.Numerics.Vector3 LocalPlayerStudsOffset
+        public global::Roblox.Vector3? LocalPlayerStudsOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LocalPlayerStudsOffset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "LocalPlayerStudsOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LocalPlayerStudsOffset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LocalPlayerStudsOffset", value);
         }
 
         /// <summary>
@@ -159,10 +159,10 @@ namespace Roblox
         /// Color of bubble text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#TextColor3"/>
-        public object? TextColor3
+        public global::Roblox.Color3? TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
         }
 
         /// <summary>

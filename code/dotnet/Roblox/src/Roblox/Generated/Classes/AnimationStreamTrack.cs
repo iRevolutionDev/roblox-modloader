@@ -105,10 +105,6 @@ namespace Roblox
         public object? TogglePause(bool paused)
             => global::Roblox.Reflection.Invoke<object?>(this, "TogglePause", paused);
 
-        /// <summary>
-        /// <c>AnimationStreamTrack.Stopped</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
-        /// </summary>
         public event Action? Stopped
         {
             add { if (value is not null) AddEventHandler("Stopped", value); }

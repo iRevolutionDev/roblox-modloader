@@ -89,10 +89,10 @@ namespace Roblox
         /// Determines the amount that pages are separated from each other by.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Padding"/>
-        public object? Padding
+        public global::Roblox.UDim? Padding
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Padding");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Padding", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "Padding");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "Padding", value);
         }
 
         /// <summary>
@@ -161,7 +161,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a page comes into view, and is going to be rendered.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="page">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#PageEnter"/>
@@ -173,7 +172,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when a page leaves view, and will not be rendered.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="page">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#PageLeave"/>
@@ -185,7 +183,6 @@ namespace Roblox
 
         /// <summary>
         /// Fires when an animation to UIPageLayout.CurrentPage is completed without being canceled, and the view stops scrolling.
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <param name="currentPage">A <c>Instance?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Stopped"/>

@@ -45,7 +45,6 @@ namespace Roblox
 
         /// <summary>
         /// <c>SensorBase.OnSensorOutputChanged</c>
-        /// <para><b>Note:</b> Event subscription is routed through Roblox reflection interop.</para>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SensorBase#OnSensorOutputChanged"/>
         public event Action? OnSensorOutputChanged

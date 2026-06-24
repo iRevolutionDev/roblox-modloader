@@ -33,22 +33,22 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsArrowVisible", value);
         }
 
-        public global::System.Numerics.Vector2 Offset
+        public global::Roblox.Vector2? Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Offset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Offset", value);
         }
 
-        public global::System.Numerics.Vector2 SourceAnchorPoint
+        public global::Roblox.Vector2? SourceAnchorPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "SourceAnchorPoint");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "SourceAnchorPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "SourceAnchorPoint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "SourceAnchorPoint", value);
         }
 
-        public global::System.Numerics.Vector2 TargetAnchorPoint
+        public global::Roblox.Vector2? TargetAnchorPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "TargetAnchorPoint");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "TargetAnchorPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "TargetAnchorPoint");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "TargetAnchorPoint", value);
         }
 
     }

@@ -29,10 +29,10 @@ namespace Roblox
         /// The lighting hue applied to the area within the ViewportFrame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#Ambient"/>
-        public object? Ambient
+        public global::Roblox.Color3? Ambient
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Ambient");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Ambient", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Ambient");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Ambient", value);
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines how the rendered viewport image will be colorized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#ImageColor3"/>
-        public object? ImageColor3
+        public global::Roblox.Color3? ImageColor3
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ImageColor3");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ImageColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ImageColor3");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ImageColor3", value);
         }
 
         /// <summary>
@@ -75,20 +75,20 @@ namespace Roblox
         /// The color of the emitted light.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#LightColor"/>
-        public object? LightColor
+        public global::Roblox.Color3? LightColor
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "LightColor");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "LightColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "LightColor");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "LightColor", value);
         }
 
         /// <summary>
         /// A Vector3 representing the direction of the light source.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#LightDirection"/>
-        public global::System.Numerics.Vector3 LightDirection
+        public global::Roblox.Vector3? LightDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector3>(this, "LightDirection");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector3>(this, "LightDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LightDirection");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LightDirection", value);
         }
 
         /// <summary>

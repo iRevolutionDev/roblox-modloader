@@ -69,10 +69,10 @@ namespace Roblox
         /// Determines where the pivot of a Model which does not have a set Model.PrimaryPart is located.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#WorldPivot"/>
-        public object? WorldPivot
+        public global::Roblox.CFrame? WorldPivot
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "WorldPivot");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "WorldPivot", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "WorldPivot");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "WorldPivot", value);
         }
 
         /// <summary>
@@ -95,34 +95,34 @@ namespace Roblox
         /// <summary>
         /// Returns a description of a volume that contains all parts of a Model.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetBoundingBox"/>
-        public object? GetBoundingBox()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBoundingBox");
+        public global::Roblox.CFrame? GetBoundingBox()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetBoundingBox");
 
         /// <summary>
         /// Returns the size of the smallest bounding box that contains all of the BaseParts in the Model, aligned with the Model.PrimaryPart if it is set.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetExtentsSize"/>
-        public global::System.Numerics.Vector3 GetExtentsSize()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetExtentsSize");
+        public global::Roblox.Vector3? GetExtentsSize()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetExtentsSize");
 
         /// <summary>
         /// Deprecated: This function has been deprecated as it did not provide reliable results. You can instead use Model:GetPrimaryPartCFrame() to retrieve the CFrame of the model's primary part.This value historically returned the CFrame of a central position in the model.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetModelCFrame"/>
-        public object? GetModelCFrame()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetModelCFrame");
+        public global::Roblox.CFrame? GetModelCFrame()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetModelCFrame");
 
         /// <summary>
         /// Deprecated: This item is deprecated. Do not use it for new work. Developers can instead use Model.GetExtentsSize.Returns the Vector3 size of the Model.
         /// </summary>
-        /// <returns>A <c>global::System.Numerics.Vector3</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetModelSize"/>
-        public global::System.Numerics.Vector3 GetModelSize()
-            => global::Roblox.Reflection.Invoke<global::System.Numerics.Vector3>(this, "GetModelSize");
+        public global::Roblox.Vector3? GetModelSize()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetModelSize");
 
         /// <summary>
         /// Returns all the Player objects that this model object is persistent for. Behavior varies based on whether this method is called from a Script or a LocalScript.
@@ -135,10 +135,10 @@ namespace Roblox
         /// <summary>
         /// Deprecated: Returns the CFrame of the model's Model.PrimaryPart. This function will throw an error if no primary part exists for the Model.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetPrimaryPartCFrame"/>
-        public object? GetPrimaryPartCFrame()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPrimaryPartCFrame");
+        public global::Roblox.CFrame? GetPrimaryPartCFrame()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetPrimaryPartCFrame");
 
         /// <summary>
         /// Returns the canonical scale of the model, which defaults to 1 for newly created models and will change as it is scaled via Model:ScaleTo().
@@ -159,10 +159,10 @@ namespace Roblox
         /// <summary>
         /// Moves the PrimaryPart to the given position. If a primary part has not been specified, the root part of the model will be used.
         /// </summary>
-        /// <param name="position">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#MoveTo"/>
-        public object? MoveTo(global::System.Numerics.Vector3 position)
+        public object? MoveTo(global::Roblox.Vector3? position)
             => global::Roblox.Reflection.Invoke<object?>(this, "MoveTo", position);
 
         /// <summary>
@@ -202,28 +202,28 @@ namespace Roblox
         /// <summary>
         /// Deprecated: Sets the BasePart.CFrame of the model's Model.PrimaryPart. All other parts in the model will also be moved and will maintain their orientation and offset respective to the Model.PrimaryPart.
         /// </summary>
-        /// <param name="cframe">A <c>object?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#SetPrimaryPartCFrame"/>
-        public object? SetPrimaryPartCFrame(object? cframe)
+        public object? SetPrimaryPartCFrame(global::Roblox.CFrame? cframe)
             => global::Roblox.Reflection.Invoke<object?>(this, "SetPrimaryPartCFrame", cframe);
 
         /// <summary>
         /// Shifts a Model by the given Vector3 offset, preserving the model's orientation. If another BasePart or Terrain already exists at the new position then the Model will overlap said object.
         /// </summary>
-        /// <param name="delta">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="delta">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#TranslateBy"/>
-        public object? TranslateBy(global::System.Numerics.Vector3 delta)
+        public object? TranslateBy(global::Roblox.Vector3? delta)
             => global::Roblox.Reflection.Invoke<object?>(this, "TranslateBy", delta);
 
         /// <summary>
         /// Deprecated: This item has been superseded by Model:MoveTo() which should be used in all new work
         /// </summary>
-        /// <param name="location">A <c>global::System.Numerics.Vector3</c> value.</param>
+        /// <param name="location">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#move"/>
-        public object? Move(global::System.Numerics.Vector3 location)
+        public object? Move(global::Roblox.Vector3? location)
             => global::Roblox.Reflection.Invoke<object?>(this, "move", location);
 
     }

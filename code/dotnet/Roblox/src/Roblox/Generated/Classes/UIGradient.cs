@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines the scalar translation of the gradient from the center of the parent GuiObject.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Offset"/>
-        public global::System.Numerics.Vector2 Offset
+        public global::Roblox.Vector2? Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::System.Numerics.Vector2>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::System.Numerics.Vector2>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Offset");
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Offset", value);
         }
 
         /// <summary>
