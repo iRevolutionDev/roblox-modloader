@@ -2,7 +2,7 @@
 
 #include "RobloxModLoader/rml_export.hpp"
 
-#define LOGGER_NAME "roblox_modloader"
+#define LOGGER_NAME "RML"
 
 #define LOG_INFO(...) SPDLOG_LOGGER_INFO(global_logger(), __VA_ARGS__)
 #define LOG_WARN(...) SPDLOG_LOGGER_WARN(global_logger(), __VA_ARGS__)
@@ -10,11 +10,28 @@
 #define LOG_DEBUG(...) SPDLOG_LOGGER_DEBUG(global_logger(), __VA_ARGS__)
 #define LOG_TRACE(...) SPDLOG_LOGGER_TRACE(global_logger(), __VA_ARGS__)
 
-#define LOG_INFO_CLASS(...) SPDLOG_LOGGER_INFO(logger::get_logger(logger::strip_class_prefix(typeid(*this).name())), __VA_ARGS__)
-#define LOG_WARN_CLASS(...) SPDLOG_LOGGER_WARN(logger::get_logger(logger::strip_class_prefix(typeid(*this).name())), __VA_ARGS__)
-#define LOG_ERROR_CLASS(...) SPDLOG_LOGGER_ERROR(logger::get_logger(logger::strip_class_prefix(typeid(*this).name())), __VA_ARGS__)
-#define LOG_DEBUG_CLASS(...) SPDLOG_LOGGER_DEBUG(logger::get_logger(logger::strip_class_prefix(typeid(*this).name())), __VA_ARGS__)
-#define LOG_TRACE_CLASS(...) SPDLOG_LOGGER_TRACE(logger::get_logger(logger::strip_class_prefix(typeid(*this).name())), __VA_ARGS__)
+#define RML_LOG_SCOPE(scope_name)                                            \
+    namespace                                                                \
+    {                                                                        \
+        inline const std::shared_ptr<spdlog::logger>& rml_scoped_logger()    \
+        {                                                                    \
+            static const std::shared_ptr<spdlog::logger> instance =          \
+                logger::get_logger(scope_name);                              \
+            return instance;                                                 \
+        }                                                                    \
+    }
+
+#define RML_INFO(...)  SPDLOG_LOGGER_INFO(rml_scoped_logger(), __VA_ARGS__)
+#define RML_WARN(...)  SPDLOG_LOGGER_WARN(rml_scoped_logger(), __VA_ARGS__)
+#define RML_ERROR(...) SPDLOG_LOGGER_ERROR(rml_scoped_logger(), __VA_ARGS__)
+#define RML_DEBUG(...) SPDLOG_LOGGER_DEBUG(rml_scoped_logger(), __VA_ARGS__)
+#define RML_TRACE(...) SPDLOG_LOGGER_TRACE(rml_scoped_logger(), __VA_ARGS__)
+
+#define RML_INFO_AT(scope, ...)  SPDLOG_LOGGER_INFO(logger::get_logger(scope), __VA_ARGS__)
+#define RML_WARN_AT(scope, ...)  SPDLOG_LOGGER_WARN(logger::get_logger(scope), __VA_ARGS__)
+#define RML_ERROR_AT(scope, ...) SPDLOG_LOGGER_ERROR(logger::get_logger(scope), __VA_ARGS__)
+#define RML_DEBUG_AT(scope, ...) SPDLOG_LOGGER_DEBUG(logger::get_logger(scope), __VA_ARGS__)
+#define RML_TRACE_AT(scope, ...) SPDLOG_LOGGER_TRACE(logger::get_logger(scope), __VA_ARGS__)
 
 class logger {
 public:

@@ -6,9 +6,11 @@
 
 #include <utility>
 
+RML_LOG_SCOPE("Hooking");
+
 hooking::hooking()
 {
-	LOG_INFO("Initializing hooking");
+	RML_INFO("Initializing hooking");
 
 	for (const auto kind : {rml::JobKind::Heartbeat, rml::JobKind::Physics, rml::JobKind::WaitingHybridScripts, rml::JobKind::Render})
 	{
@@ -16,14 +18,14 @@ hooking::hooking()
 
 		if (!vtable.has_value())
 		{
-			LOG_WARN("[hooking] Failed to get vtable for job kind {}", std::to_underlying(kind));
+			RML_WARN("Failed to get vtable for job kind {}", std::to_underlying(kind));
 			continue;
 		}
 
 		auto job_hook = std::make_unique<vtable_hook>(*vtable, 7);
 		job_hook->hook(6, &hooks::on_job_step);
 		m_jobs_hook[kind] = std::move(job_hook);
-		LOG_DEBUG("[hooking] Hooked job kind {} with vtable 0x{:X}", std::to_underlying(kind), reinterpret_cast<std::uintptr_t>(*vtable));
+		RML_DEBUG("Hooked job kind {} with vtable 0x{:X}", std::to_underlying(kind), reinterpret_cast<std::uintptr_t>(*vtable));
 	}
 
 	for (auto& detour_hook_helper : m_detour_hook_helpers)
@@ -88,7 +90,7 @@ hooking::detour_hook_helper::~detour_hook_helper()
 {
 }
 
-void hooking::detour_hook_helper::enable_hook_if_hooking_is_already_running()
+void hooking::detour_hook_helper::enable_hook_if_hooking_is_already_running() const
 {
 	if (g_hooking && g_hooking->m_enabled)
 	{

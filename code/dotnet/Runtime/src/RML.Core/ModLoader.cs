@@ -22,7 +22,7 @@ internal static class ModLoader
     {
         if (_mods.ContainsKey(path))
         {
-            Console.WriteLine($"Mod at path {path} is already loaded.");
+            RuntimeLog.Warn($"Mod at path {path} is already loaded.");
             return;
         }
 
@@ -42,7 +42,7 @@ internal static class ModLoader
 
             if (modType is null)
             {
-                Console.WriteLine($"No [RmlMod] class implementing IMod found in assembly {assembly.FullName}.");
+                RuntimeLog.Warn($"No [Mod] class implementing IMod found in assembly {assembly.FullName}.");
                 context.Unload();
                 return;
             }
@@ -64,13 +64,13 @@ internal static class ModLoader
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error while calling OnLoad for mod at {path}: {e}");
+                    RuntimeLog.Error($"Error while calling OnLoad for mod at {path}: {e}");
                 }
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            RuntimeLog.Error($"Failed to load mod at {path}: {e}");
             throw;
         }
     }
@@ -79,7 +79,7 @@ internal static class ModLoader
     {
         if (!_mods.ContainsKey(path))
         {
-            Console.WriteLine($"No mod loaded from path {path}.");
+            RuntimeLog.Warn($"No mod loaded from path {path}.");
             return;
         }
         
@@ -93,9 +93,9 @@ internal static class ModLoader
 
         if (weakContext.IsAlive)
         {
-            Console.Error.WriteLine(
-                $"[ModLoader] Warning: the AssemblyLoadContext for '{path}' did not unload — it is " +
-                "still rooted (a leaked event handler, GCHandle, static reference, or running thread).");
+            RuntimeLog.Warn(
+                $"The AssemblyLoadContext for '{path}' did not unload — it is still rooted " +
+                "(a leaked event handler, GCHandle, static reference, or running thread).");
         }
     }
 
@@ -113,7 +113,7 @@ internal static class ModLoader
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error while unloading mod from {path}: {e}");
+            RuntimeLog.Error($"Error while unloading mod from {path}: {e}");
         }
 
         var weak = new WeakReference(modInfo!.Context);
@@ -156,7 +156,7 @@ internal static class ModLoader
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Error while calling OnLoad for mod: {e}");
+                        RuntimeLog.Error($"Error while calling OnLoad for mod: {e}");
                     }
 
                     modInfo.Initialized = true;
@@ -175,7 +175,7 @@ internal static class ModLoader
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Error in IDataModelAware.OnDataModelLoaded: {e}");
+                        RuntimeLog.Error($"Error in IDataModelAware.OnDataModelLoaded: {e}");
                     }
                 }
             }
@@ -189,7 +189,7 @@ internal static class ModLoader
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Error in IDataModelAware.OnDataModelUnloaded: {e}");
+                        RuntimeLog.Error($"Error in IDataModelAware.OnDataModelUnloaded: {e}");
                     }
                 }
 
@@ -201,7 +201,7 @@ internal static class ModLoader
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Error while calling OnUnload for mod: {e}");
+                        RuntimeLog.Error($"Error while calling OnUnload for mod: {e}");
                     }
 
                     modInfo.Instance.Game = null;

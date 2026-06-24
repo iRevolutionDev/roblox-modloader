@@ -15,6 +15,8 @@ using std::chrono::seconds;
 using std::chrono::system_clock;
 using std::chrono::time_point_cast;
 
+RML_LOG_SCOPE("CrashDumper");
+
 namespace exception_filter
 {
 	CrashDumper::CrashDumper() = default;
@@ -28,7 +30,7 @@ namespace exception_filter
 	{
 		if (m_enabled)
 		{
-			LOG_WARN("Crash dumper already enabled");
+			RML_WARN("Crash dumper already enabled");
 			return;
 		}
 
@@ -39,7 +41,7 @@ namespace exception_filter
 			m_veh_handle = AddVectoredExceptionHandler(1, vectored_exception_handler);
 			if (!m_veh_handle)
 			{
-				LOG_WARN("Failed to register Vectored Exception Handler");
+				RML_WARN("Failed to register Vectored Exception Handler");
 			}
 
 			m_previous_exception_filter = SetUnhandledExceptionFilter(exception_handler);
@@ -47,21 +49,21 @@ namespace exception_filter
 
 			if (!m_set_unhandled_exception_filter_hook->hook())
 			{
-				LOG_ERROR("Failed to hook SetUnhandledExceptionFilter");
+				RML_ERROR("Failed to hook SetUnhandledExceptionFilter");
 				SetUnhandledExceptionFilter(reinterpret_cast<LPTOP_LEVEL_EXCEPTION_FILTER>(m_previous_exception_filter));
 				return;
 			}
 
 			m_enabled = true;
-			LOG_INFO("Crash dumper enabled");
+			RML_INFO("Crash dumper enabled");
 		}
 		catch (const std::exception& e)
 		{
-			LOG_ERROR("Failed to enable crash dumper: {}", e.what());
+			RML_ERROR("Failed to enable crash dumper: {}", e.what());
 		}
 		catch (...)
 		{
-			LOG_ERROR("Failed to enable crash dumper: unknown exception");
+			RML_ERROR("Failed to enable crash dumper: unknown exception");
 		}
 	}
 
@@ -89,23 +91,23 @@ namespace exception_filter
 			SetUnhandledExceptionFilter(reinterpret_cast<LPTOP_LEVEL_EXCEPTION_FILTER>(m_previous_exception_filter));
 			m_enabled = false;
 
-			LOG_INFO("Crash dumper disabled successfully");
+			RML_INFO("Crash dumper disabled successfully");
 		}
 		catch (...)
 		{
-			LOG_ERROR("Exception occurred while disabling crash dumper");
+			RML_ERROR("Exception occurred while disabling crash dumper");
 		}
 	}
 
 	void CrashDumper::set_full_memory_dump(bool enabled)
 	{
 		m_full_memory_dump = enabled;
-		LOG_INFO("Full memory dump {}", enabled ? "enabled" : "disabled");
+		RML_INFO("Full memory dump {}", enabled ? "enabled" : "disabled");
 	}
 
 	LPTOP_LEVEL_EXCEPTION_FILTER WINAPI CrashDumper::hooked_set_unhandled_exception_filter(LPTOP_LEVEL_EXCEPTION_FILTER filter)
 	{
-		LOG_WARN("Attempt to override exception handler blocked");
+		RML_WARN("Attempt to override exception handler blocked");
 		return nullptr;
 	}
 
@@ -206,7 +208,7 @@ namespace exception_filter
 			if (file == INVALID_HANDLE_VALUE)
 			{
 				const auto error = GetLastError();
-				LOG_ERROR("Failed to create crash dump file {}: {}", std::filesystem::path(dump_path).string(), error);
+				RML_ERROR("Failed to create crash dump file {}: {}", std::filesystem::path(dump_path).string(), error);
 				return false;
 			}
 
@@ -226,16 +228,16 @@ namespace exception_filter
 			if (!result)
 			{
 				const auto error = GetLastError();
-				LOG_ERROR("Failed to write crash dump: {}", error);
+				RML_ERROR("Failed to write crash dump: {}", error);
 				return false;
 			}
 
-			LOG_INFO("Crash dump successfully written to: {}", std::filesystem::path(dump_path).string());
+			RML_INFO("Crash dump successfully written to: {}", std::filesystem::path(dump_path).string());
 			return true;
 		}
 		catch (...)
 		{
-			LOG_ERROR("Exception occurred while creating crash dump");
+			RML_ERROR("Exception occurred while creating crash dump");
 			return false;
 		}
 	}
@@ -270,10 +272,9 @@ namespace exception_filter
 
 		try
 		{
-			LOG_ERROR("=== [VEH] CRITICAL EXCEPTION DETECTED (before Roblox handler) ===");
-			LOG_ERROR("[VEH] Exception Code: 0x{:08X}", code);
-			LOG_ERROR("[VEH] Exception Address: 0x{:016X}",
-			    reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
+			RML_ERROR("=== [VEH] CRITICAL EXCEPTION DETECTED (before Roblox handler) ===");
+			RML_ERROR("Exception Code: 0x{:08X}", code);
+			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
 			create_minidump(exception_pointers, dump_path);
@@ -319,9 +320,9 @@ namespace exception_filter
 
 		try
 		{
-			LOG_ERROR("=== CRITICAL EXCEPTION DETECTED ===");
-			LOG_ERROR("Exception Code: 0x{:08X}", exception_pointers->ExceptionRecord->ExceptionCode);
-			LOG_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
+			RML_ERROR("=== CRITICAL EXCEPTION DETECTED ===");
+			RML_ERROR("Exception Code: 0x{:08X}", exception_pointers->ExceptionRecord->ExceptionCode);
+			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
 			const bool dump_created = create_minidump(exception_pointers, dump_path);
@@ -383,19 +384,19 @@ namespace exception_filter
 			const auto* context = exception_pointers->ContextRecord;
 			const auto* exception_record = exception_pointers->ExceptionRecord;
 
-			LOG_ERROR("=== EXCEPTION INFORMATION ===");
-			LOG_ERROR("Thread RIP: 0x{:016X}", context->Rip);
+			RML_ERROR("=== EXCEPTION INFORMATION ===");
+			RML_ERROR("Thread RIP: 0x{:016X}", context->Rip);
 
 			const auto our_module_base = reinterpret_cast<uintptr_t>(g_hinstance);
 			const auto rebased_our_rip = context->Rip - our_module_base;
-			LOG_ERROR("roblox_modloader.dll Base: 0x{:016X}", our_module_base);
-			LOG_ERROR("Rebased ModLoader: 0x{:016X}", rebased_our_rip);
+			RML_ERROR("roblox_modloader.dll Base: 0x{:016X}", our_module_base);
+			RML_ERROR("Rebased ModLoader: 0x{:016X}", rebased_our_rip);
 
 			if (const auto roblox_base = memory::module_utils::get_roblox_studio_base(); roblox_base != 0)
 			{
 				const auto rebased_rip = context->Rip - roblox_base;
-				LOG_ERROR("RobloxStudioBeta.exe Base: 0x{:016X}", roblox_base);
-				LOG_ERROR("Rebased Studio: 0x{:016X}", rebased_rip);
+				RML_ERROR("RobloxStudioBeta.exe Base: 0x{:016X}", roblox_base);
+				RML_ERROR("Rebased Studio: 0x{:016X}", rebased_rip);
 			}
 			const auto exception_addr = reinterpret_cast<uintptr_t>(exception_record->ExceptionAddress);
 			if (const auto module_name = memory::module_utils::get_module_name_from_address(exception_addr);
@@ -404,20 +405,20 @@ namespace exception_filter
 				const auto module_base = memory::module_utils::get_module_base_address(module_name);
 				const auto rebased_addr = exception_addr - module_base;
 
-				LOG_ERROR("Exception Module: {} @ 0x{:016X}", module_name, module_base);
-				LOG_ERROR("Exception Rebased Address: 0x{:016X}", rebased_addr);
+				RML_ERROR("Exception Module: {} @ 0x{:016X}", module_name, module_base);
+				RML_ERROR("Exception Rebased Address: 0x{:016X}", rebased_addr);
 			}
 
-			LOG_ERROR("Exception Flags: 0x{:08X}", exception_record->ExceptionFlags);
-			LOG_ERROR("Number of Parameters: {}", exception_record->NumberParameters);
+			RML_ERROR("Exception Flags: 0x{:08X}", exception_record->ExceptionFlags);
+			RML_ERROR("Number of Parameters: {}", exception_record->NumberParameters);
 			for (DWORD i = 0; i < exception_record->NumberParameters && i < EXCEPTION_MAXIMUM_PARAMETERS; ++i)
 			{
-				LOG_ERROR("Parameter {}: 0x{:016X}", i, exception_record->ExceptionInformation[i]);
+				RML_ERROR("Parameter {}: 0x{:016X}", i, exception_record->ExceptionInformation[i]);
 			}
 		}
 		catch (...)
 		{
-			LOG_ERROR("Failed to log exception info safely");
+			RML_ERROR("Failed to log exception info safely");
 		}
 	}
 
@@ -425,35 +426,35 @@ namespace exception_filter
 	{
 		try
 		{
-			LOG_ERROR("=== REGISTER STATE ===");
+			RML_ERROR("=== REGISTER STATE ===");
 
-			LOG_ERROR("-- GENERAL PURPOSE REGISTERS --");
-			LOG_ERROR("RAX: 0x{:016X}", context->Rax);
-			LOG_ERROR("RBX: 0x{:016X}", context->Rbx);
-			LOG_ERROR("RCX: 0x{:016X}", context->Rcx);
-			LOG_ERROR("RDX: 0x{:016X}", context->Rdx);
-			LOG_ERROR("RDI: 0x{:016X}", context->Rdi);
-			LOG_ERROR("RSI: 0x{:016X}", context->Rsi);
-			LOG_ERROR("R08: 0x{:016X}", context->R8);
-			LOG_ERROR("R09: 0x{:016X}", context->R9);
-			LOG_ERROR("R10: 0x{:016X}", context->R10);
-			LOG_ERROR("R11: 0x{:016X}", context->R11);
-			LOG_ERROR("R12: 0x{:016X}", context->R12);
-			LOG_ERROR("R13: 0x{:016X}", context->R13);
-			LOG_ERROR("R14: 0x{:016X}", context->R14);
-			LOG_ERROR("R15: 0x{:016X}", context->R15);
+			RML_ERROR("-- GENERAL PURPOSE REGISTERS --");
+			RML_ERROR("RAX: 0x{:016X}", context->Rax);
+			RML_ERROR("RBX: 0x{:016X}", context->Rbx);
+			RML_ERROR("RCX: 0x{:016X}", context->Rcx);
+			RML_ERROR("RDX: 0x{:016X}", context->Rdx);
+			RML_ERROR("RDI: 0x{:016X}", context->Rdi);
+			RML_ERROR("RSI: 0x{:016X}", context->Rsi);
+			RML_ERROR("R08: 0x{:016X}", context->R8);
+			RML_ERROR("R09: 0x{:016X}", context->R9);
+			RML_ERROR("R10: 0x{:016X}", context->R10);
+			RML_ERROR("R11: 0x{:016X}", context->R11);
+			RML_ERROR("R12: 0x{:016X}", context->R12);
+			RML_ERROR("R13: 0x{:016X}", context->R13);
+			RML_ERROR("R14: 0x{:016X}", context->R14);
+			RML_ERROR("R15: 0x{:016X}", context->R15);
 
-			LOG_ERROR("-- STACK POINTERS --");
-			LOG_ERROR("RBP: 0x{:016X}", context->Rbp);
-			LOG_ERROR("RSP: 0x{:016X}", context->Rsp);
-			LOG_ERROR("RIP: 0x{:016X}", context->Rip);
+			RML_ERROR("-- STACK POINTERS --");
+			RML_ERROR("RBP: 0x{:016X}", context->Rbp);
+			RML_ERROR("RSP: 0x{:016X}", context->Rsp);
+			RML_ERROR("RIP: 0x{:016X}", context->Rip);
 
-			LOG_ERROR("-- FLAGS --");
-			LOG_ERROR("RFLAGS: 0x{:016X}", context->EFlags);
+			RML_ERROR("-- FLAGS --");
+			RML_ERROR("RFLAGS: 0x{:016X}", context->EFlags);
 		}
 		catch (...)
 		{
-			LOG_ERROR("Failed to log register state safely");
+			RML_ERROR("Failed to log register state safely");
 		}
 	}
 
@@ -483,18 +484,18 @@ namespace exception_filter
 	{
 		try
 		{
-			LOG_ERROR("=== STACK TRACE ===");
+			RML_ERROR("=== STACK TRACE ===");
 
 			HANDLE process = nullptr;
 			if (!DuplicateHandle(GetCurrentProcess(), GetCurrentProcess(), GetCurrentProcess(), &process, PROCESS_ALL_ACCESS, FALSE, 0))
 			{
-				LOG_ERROR("Failed to duplicate process handle: {}", GetLastError());
+				RML_ERROR("Failed to duplicate process handle: {}", GetLastError());
 				process = GetCurrentProcess();
 			}
 
 			if (!SymInitialize(process, nullptr, TRUE))
 			{
-				LOG_ERROR("Failed to initialize symbol handler: {}", GetLastError());
+				RML_ERROR("Failed to initialize symbol handler: {}", GetLastError());
 				if (process != GetCurrentProcess())
 				{
 					CloseHandle(process);
@@ -507,7 +508,7 @@ namespace exception_filter
 			void* stack[256];
 			const auto frame_count = RtlCaptureStackBackTrace(0, 255, stack, nullptr);
 
-			LOG_ERROR("Captured {} stack frames:", frame_count);
+			RML_ERROR("Captured {} stack frames:", frame_count);
 
 			for (WORD i = 0; i < frame_count; ++i)
 			{
@@ -523,7 +524,7 @@ namespace exception_filter
 						const auto roblox_base = memory::module_utils::get_roblox_studio_base();
 						const auto rebased_addr = memory::module_utils::get_roblox_studio_rebased_address(address, roblox_base);
 
-						LOG_ERROR("[Stack Frame {}] Inside {} @ 0x{:016X} ({}) | Studio Rebase: 0x{:016X} | Displacement: +0x{:X}", i, symbol_name, address, module_name, rebased_addr, displacement);
+						RML_ERROR("[Stack Frame {}] Inside {} @ 0x{:016X} ({}) | Studio Rebase: 0x{:016X} | Displacement: +0x{:X}", i, symbol_name, address, module_name, rebased_addr, displacement);
 					}
 					else
 					{
@@ -531,12 +532,12 @@ namespace exception_filter
 						const auto roblox_base = memory::module_utils::get_roblox_studio_base();
 						const auto rebased_addr = memory::module_utils::get_roblox_studio_rebased_address(address, roblox_base);
 
-						LOG_ERROR("[Stack Frame {}] Unknown Subroutine @ 0x{:016X} ({}) | Studio Rebase: 0x{:016X}", i, address, module_name, rebased_addr);
+						RML_ERROR("[Stack Frame {}] Unknown Subroutine @ 0x{:016X} ({}) | Studio Rebase: 0x{:016X}", i, address, module_name, rebased_addr);
 					}
 				}
 				catch (...)
 				{
-					LOG_ERROR("[Stack Frame {}] Failed to resolve frame", i);
+					RML_ERROR("[Stack Frame {}] Failed to resolve frame", i);
 				}
 			}
 
@@ -551,11 +552,11 @@ namespace exception_filter
 						stack_chain << " -> ";
 					}
 				}
-				LOG_ERROR("Stack Chain: {}", stack_chain.str());
+				RML_ERROR("Stack Chain: {}", stack_chain.str());
 			}
 			catch (...)
 			{
-				LOG_ERROR("Failed to generate stack chain");
+				RML_ERROR("Failed to generate stack chain");
 			}
 
 			SymCleanup(process);
@@ -567,7 +568,7 @@ namespace exception_filter
 		}
 		catch (...)
 		{
-			LOG_ERROR("Failed to log stack trace safely");
+			RML_ERROR("Failed to log stack trace safely");
 		}
 	}
 }

@@ -13,6 +13,8 @@
 	#define RML_GET_PROC(h, s) dlsym(h, s)
 #endif
 
+RML_LOG_SCOPE("DotnetRuntime");
+
 namespace rml::dotnet
 {
 	std::expected<void, std::string> DotnetRuntime::initialize(const std::filesystem::path& runtime_config)
@@ -27,7 +29,7 @@ namespace rml::dotnet
 			return result;
 
 		m_initialized = true;
-		LOG_INFO("[DotnetRuntime] CLR initialized");
+		RML_INFO("CLR initialized");
 
 		return {};
 	}
@@ -43,7 +45,7 @@ namespace rml::dotnet
 		}
 		m_initialized = false;
 
-		LOG_INFO("[DotnetRuntime] CLR shutdown");
+		RML_INFO("CLR shutdown");
 	}
 
 	std::expected<void, std::string> DotnetRuntime::load_hostfxr()
@@ -54,9 +56,9 @@ namespace rml::dotnet
 		auto runtime_path = utils::directory::get_runtime_directory();
 
 		constexpr get_hostfxr_parameters params{
-		    .size          = sizeof(get_hostfxr_parameters),
+		    .size = sizeof(get_hostfxr_parameters),
 		    .assembly_path = nullptr,
-		    .dotnet_root   = nullptr,
+		    .dotnet_root = nullptr,
 		};
 
 		using get_hostfxr_path_fn = int (*)(char_t*, size_t*, const get_hostfxr_parameters*);

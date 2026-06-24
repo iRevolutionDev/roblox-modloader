@@ -8,6 +8,8 @@
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/waiting_hybrid_scripts_job.hpp"
 
+RML_LOG_SCOPE("LuauWaitingScriptJob");
+
 namespace rml::jobs {
     LuauWaitingScriptJob::LuauWaitingScriptJob() noexcept
         : JobBase(JOB_NAME, JobPriority::High, JobKind::WaitingHybridScripts, true) {
@@ -40,7 +42,7 @@ namespace rml::jobs {
 
         if (const auto engine = g_task_scheduler->get_script_engine(data_model_type)) {
             if (auto &scheduler = const_cast<luau::ScriptScheduler &>(engine->get_scheduler()); scheduler.step()) {
-                LOG_DEBUG("[LuauWaitingScriptJob] Processed script from queue for DataModel type: {}",
+                RML_DEBUG("Processed script from queue for DataModel type: {}",
                           static_cast<int>(data_model_type));
             }
         }

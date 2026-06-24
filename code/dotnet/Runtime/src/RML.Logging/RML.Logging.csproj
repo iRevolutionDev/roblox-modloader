@@ -4,10 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RootNamespace>RML.Interop</RootNamespace>
+    <RootNamespace>RML.Logging</RootNamespace>
+    <Description>Beautiful, colored, source-tagged logging for RML mods and runtime.</Description>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="../RML.Logging/RML.Logging.csproj" />
-  </ItemGroup>
 </Project>

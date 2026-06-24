@@ -46,11 +46,11 @@ namespace rml::dotnet
 			}
 			catch (const std::exception& ex)
 			{
-				LOG_ERROR("[ManagedEventSlot] Exception while dispatching event: {}", ex.what());
+				RML_ERROR_AT("ManagedEventSlot", "Exception while dispatching event: {}", ex.what());
 			}
 			catch (...)
 			{
-				LOG_ERROR("[ManagedEventSlot] Unknown exception while dispatching event");
+				RML_ERROR_AT("ManagedEventSlot", "Unknown exception while dispatching event");
 			}
 		}
 

@@ -79,7 +79,7 @@ public:
 
 		detour_hook *m_detour_hook;
 
-		void enable_hook_if_hooking_is_already_running();
+		void enable_hook_if_hooking_is_already_running() const;
 
 		template<auto detour_function>
 		struct hook_to_detour_hook_helper {

@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Roblox\src\Roblox\Roblox.csproj"/>
     <ProjectReference Include="..\RML.Interop\RML.Interop.csproj"/>
+    <ProjectReference Include="..\RML.Logging\RML.Logging.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="RML.Core.Tests"/>

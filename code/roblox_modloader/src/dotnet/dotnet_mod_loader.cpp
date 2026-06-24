@@ -5,9 +5,10 @@
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "roblox_interop_provider.hpp"
 
+RML_LOG_SCOPE("DotnetModLoader");
+
 namespace rml::dotnet
 {
-
 	DotnetModLoader::DotnetModLoader(const std::filesystem::path& runtime_path, const std::filesystem::path& mods_root) :
 	    m_bridge(m_runtime, m_registry),
 	    m_native_host_dll(runtime_path / "RML.NativeHost.dll"),
@@ -41,7 +42,7 @@ namespace rml::dotnet
 			return r;
 		if (auto r = m_bridge.load_mod(path); !r)
 			return r;
-			
+
 		if (g_task_scheduler)
 		{
 			for (int i = 0; i <= static_cast<int>(RBX::DataModelType::Standalone); ++i)
@@ -51,7 +52,7 @@ namespace rml::dotnet
 				{
 					if (auto r2 = m_bridge.notify_data_model_changed(0, reinterpret_cast<uint64_t>(current), i); !r2)
 					{
-						LOG_WARN("[DotnetModLoader] notify_data_model_changed failed: {}", r2.error());
+						RML_WARN("notify_data_model_changed failed: {}", r2.error());
 					}
 				}
 			}
@@ -88,7 +89,7 @@ namespace rml::dotnet
 	{
 		if (auto r = m_bridge.notify_data_model_changed(old_dm, new_dm, dm_type); !r)
 		{
-			LOG_WARN("[DotnetModLoader] notify_data_model_changed failed: {}", r.error());
+			RML_WARN("notify_data_model_changed failed: {}", r.error());
 		}
 	}
 } // namespace rml::dotnet

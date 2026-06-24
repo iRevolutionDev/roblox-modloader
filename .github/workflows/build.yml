@@ -58,6 +58,7 @@ jobs:
         run: |
           set -euo pipefail
           dotnet test code/dotnet/Runtime/Runtime.slnx -c "${{ matrix.config }}" --nologo
+          dotnet test code/dotnet/Roblox/Roblox.slnx   -c "${{ matrix.config }}" --nologo
 
   lint-native:
     name: Lint (native, advisory)

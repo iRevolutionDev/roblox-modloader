@@ -2,6 +2,8 @@ using System.Collections.Concurrent;
 using System.Runtime.InteropServices;
 using System.Text;
 
+using RML.Logging;
+
 namespace RML.Interop;
 
 public static unsafe class Interop
@@ -9,6 +11,34 @@ public static unsafe class Interop
     public static bool IsInitialized => Table != null;
 
     internal static NativeInterop.InteropTable* Table { get; private set; }
+
+    public static void Log(LogLevel level, string message)
+    {
+        if (message is null)
+        {
+            return;
+        }
+
+        try
+        {
+            if (IsInitialized && Table != null && Table->Log != null)
+            {
+                var bytes = Encoding.UTF8.GetBytes(message);
+                fixed (byte* p = bytes)
+                {
+                    Table->Log((int)level, (sbyte*)p, bytes.Length);
+                }
+
+                return;
+            }
+        }
+        catch
+        {
+        }
+
+        var writer = level >= LogLevel.Warn ? Console.Error : Console.Out;
+        writer.WriteLine($"[RML/{level}] {message}");
+    }
 
     public static void Initialize(nint tablePtr)
     {

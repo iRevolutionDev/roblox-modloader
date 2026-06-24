@@ -2,6 +2,8 @@
 
 #include "RobloxModLoader/common.hpp"
 
+RML_LOG_SCOPE("ManagedBridge");
+
 namespace rml::dotnet
 {
 	namespace
@@ -49,7 +51,7 @@ namespace rml::dotnet
 		if (int32_t rc = m_initialize(root.c_str(), table); rc != 0)
 			return std::unexpected(std::format("rml_initialize returned {}", rc));
 
-		LOG_INFO("[ManagedBridge] C# side initialized");
+		RML_INFO("C# side initialized");
 		return {};
 	}
 

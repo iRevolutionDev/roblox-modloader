@@ -15,6 +15,8 @@
 #include <thread>
 #include <utility>
 
+RML_LOG_SCOPE("TaskScheduler");
+
 namespace RBX
 {
 	TaskScheduler::TaskScheduler()
@@ -59,7 +61,7 @@ namespace RBX
 			m_jobs.emplace(job_id, JobEntry(std::move(job)));
 			m_name_to_id.emplace(job_name, job_id);
 
-			LOG_DEBUG("[TaskScheduler] Registered job '{}' with ID {}", job_name, job_id);
+			RML_DEBUG("Registered job '{}' with ID {}", job_name, job_id);
 			return job_id;
 		}
 		catch (const std::exception& e)
@@ -85,7 +87,7 @@ namespace RBX
 		m_name_to_id.erase(std::string(job_name));
 		m_jobs.erase(it);
 
-		LOG_DEBUG("[TaskScheduler] Unregistered job '{}' (ID: {})", job_name, job_id);
+		RML_DEBUG("Unregistered job '{}' (ID: {})", job_name, job_id);
 		return true;
 	}
 
@@ -227,7 +229,7 @@ namespace RBX
 
 	void TaskScheduler::shutdown() noexcept
 	{
-		LOG_INFO("[TaskScheduler] Shutting down TaskScheduler...");
+		RML_INFO("Shutting down TaskScheduler...");
 
 		m_shutdown_requested.store(true, std::memory_order_release);
 
@@ -243,7 +245,7 @@ namespace RBX
 		m_jobs.clear();
 		m_name_to_id.clear();
 
-		LOG_INFO("[TaskScheduler] Shutdown completed");
+		RML_INFO("Shutdown completed");
 	}
 
 	bool TaskScheduler::is_shutdown() const noexcept
@@ -283,7 +285,7 @@ namespace RBX
 
 		if (old_data_model && old_data_model != data_model)
 		{
-			LOG_INFO("[TaskScheduler] DataModel type {} changed, cleaning up old instance", static_cast<int>(type));
+			RML_INFO("DataModel type {} changed, cleaning up old instance", static_cast<int>(type));
 			// cleanup_script_engine(type);
 		}
 
@@ -345,11 +347,11 @@ namespace RBX
 
 	void TaskScheduler::initialize() noexcept
 	{
-		LOG_INFO("[TaskScheduler] Initializing TaskScheduler...");
+		RML_INFO("Initializing TaskScheduler...");
 
 		m_script_engines.clear();
 
-		LOG_INFO("[TaskScheduler] TaskScheduler initialized successfully.");
+		RML_INFO("TaskScheduler initialized successfully.");
 	}
 
 	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::create_or_get_script_engine(DataModelType data_model_type, ScriptContext* script_context)
@@ -361,7 +363,7 @@ namespace RBX
 			return it->second;
 		}
 
-		LOG_INFO("[TaskScheduler] Creating ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+		RML_INFO("Creating ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
 
 		if (!script_context)
 		{
@@ -384,13 +386,13 @@ namespace RBX
 
 		if (!script_engine->initialize())
 		{
-			LOG_ERROR("[TaskScheduler] Failed to initialize ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+			RML_ERROR("Failed to initialize ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
 			return nullptr;
 		}
 
 		m_script_engines[data_model_type] = script_engine;
 
-		LOG_INFO("[TaskScheduler] ScriptEngine created successfully for DataModel type: {}", static_cast<int>(data_model_type));
+		RML_INFO("ScriptEngine created successfully for DataModel type: {}", static_cast<int>(data_model_type));
 
 		return script_engine;
 	}
@@ -399,20 +401,20 @@ namespace RBX
 	{
 		std::unique_lock lock(m_script_engines_mutex);
 
-		LOG_INFO("[TaskScheduler] Shutting down all ScriptEngines...");
+		RML_INFO("Shutting down all ScriptEngines...");
 
 		for (auto& [data_model_type, engine] : m_script_engines)
 		{
 			if (engine)
 			{
-				LOG_INFO("[TaskScheduler] Shutting down ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+				RML_INFO("Shutting down ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
 				engine->shutdown();
 			}
 		}
 
 		m_script_engines.clear();
 
-		LOG_INFO("[TaskScheduler] All ScriptEngines shut down successfully.");
+		RML_INFO("All ScriptEngines shut down successfully.");
 	}
 
 	void TaskScheduler::initialize_vtable_mappings() noexcept
@@ -427,24 +429,24 @@ namespace RBX
 			const auto rtti = memory::rtti::rtti_manager::get_class_rtti(class_name);
 			if (!rtti)
 			{
-				LOG_WARN("[TaskScheduler] RTTI for '{}' not found, skipping vtable mapping", class_name);
+				RML_WARN("RTTI for '{}' not found, skipping vtable mapping", class_name);
 				continue;
 			}
 
 			const auto vtable = rtti->get_virtual_function_table();
 			if (!vtable)
 			{
-				LOG_WARN("[TaskScheduler] Failed to get vtable for '{}'", class_name);
+				RML_WARN("Failed to get vtable for '{}'", class_name);
 				continue;
 			}
 
 			m_vtable_to_kind.emplace(vtable, job_kind);
 			m_kind_to_vtable.emplace(job_kind, vtable);
 
-			LOG_INFO("[TaskScheduler] Mapped vtable for '{}' (kind: {}) -> 0x{:X}", class_name, std::to_underlying(job_kind), reinterpret_cast<std::uintptr_t>(vtable));
+			RML_INFO("Mapped vtable for '{}' (kind: {}) -> 0x{:X}", class_name, std::to_underlying(job_kind), reinterpret_cast<std::uintptr_t>(vtable));
 		}
 
-		LOG_INFO("[TaskScheduler] Initialized vtable mappings: {}/{} job types mapped",
+		RML_INFO("Initialized vtable mappings: {}/{} job types mapped",
 		    m_vtable_to_kind.size(),
 		    known_job_classes.size());
 	}
@@ -461,7 +463,7 @@ namespace RBX
 				const auto job_name = it->second.job->get_name();
 				m_name_to_id.erase(std::string(job_name));
 				it = m_jobs.erase(it);
-				LOG_DEBUG("[TaskScheduler] Cleaned up destroyed job '{}'", job_name);
+				RML_DEBUG("Cleaned up destroyed job '{}'", job_name);
 			}
 			else
 			{
@@ -487,12 +489,12 @@ namespace RBX
 		catch (const std::exception& e)
 		{
 			entry.stats.failures++;
-			LOG_ERROR("[TaskScheduler] Job '{}' execution failed: {}", entry.job->get_name(), e.what());
+			RML_ERROR("Job '{}' execution failed: {}", entry.job->get_name(), e.what());
 		}
 		catch (...)
 		{
 			entry.stats.failures++;
-			LOG_ERROR("[TaskScheduler] Job '{}' execution failed with unknown exception", entry.job->get_name());
+			RML_ERROR("Job '{}' execution failed with unknown exception", entry.job->get_name());
 		}
 
 		const auto end_time       = std::chrono::steady_clock::now();
@@ -505,7 +507,7 @@ namespace RBX
 
 	void TaskScheduler::cleanup_data_model(DataModelType data_model_type)
 	{
-		LOG_INFO("[TaskScheduler] Cleaning up DataModel type: {}", static_cast<int>(data_model_type));
+		RML_INFO("Cleaning up DataModel type: {}", static_cast<int>(data_model_type));
 		//cleanup_script_engine(data_model_type);
 
 		{
@@ -513,12 +515,12 @@ namespace RBX
 			m_data_models.erase(data_model_type);
 		}
 
-		LOG_INFO("[TaskScheduler] DataModel type {} cleanup completed", static_cast<int>(data_model_type));
+		RML_INFO("DataModel type {} cleanup completed", static_cast<int>(data_model_type));
 	}
 
 	void TaskScheduler::cleanup_script_engine(DataModelType data_model_type)
 	{
-		LOG_INFO("[TaskScheduler] Cleaning up ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+		RML_INFO("Cleaning up ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
 
 		std::shared_ptr<rml::luau::ScriptEngine> engine_to_cleanup;
 		{
@@ -536,13 +538,13 @@ namespace RBX
 		std::thread([engine = std::move(engine_to_cleanup), data_model_type]() {
 			try
 			{
-				LOG_INFO("[TaskScheduler] Shutting down ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
+				RML_INFO("Shutting down ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
 				engine->shutdown();
-				LOG_INFO("[TaskScheduler] ScriptEngine shutdown completed for DataModel type: {}", static_cast<int>(data_model_type));
+				RML_INFO("ScriptEngine shutdown completed for DataModel type: {}", static_cast<int>(data_model_type));
 			}
 			catch (const std::exception& e)
 			{
-				LOG_ERROR("[TaskScheduler] Error shutting down ScriptEngine for DataModel type {}: {}", static_cast<int>(data_model_type), e.what());
+				RML_ERROR("Error shutting down ScriptEngine for DataModel type {}: {}", static_cast<int>(data_model_type), e.what());
 			}
 		}).detach();
 	}
@@ -565,7 +567,7 @@ namespace RBX
 
 		for (const auto& orphaned_type : orphaned_types)
 		{
-			LOG_WARN("[TaskScheduler] Found orphaned ScriptEngine for DataModel type: {}, cleaning up", static_cast<int>(orphaned_type));
+			RML_WARN("Found orphaned ScriptEngine for DataModel type: {}, cleaning up", static_cast<int>(orphaned_type));
 			cleanup_script_engine(orphaned_type);
 		}
 	}

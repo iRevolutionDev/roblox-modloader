@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <cctype>
 
+RML_LOG_SCOPE("ModManager");
+
 namespace rml
 {
 	ModManager::ModManager()
@@ -18,7 +20,7 @@ namespace rml
 
 		if (!mods_path.has_value())
 		{
-			LOG_ERROR("[ModManager] Failed to get mods directory: {}", mods_path.error());
+			RML_ERROR("Failed to get mods directory: {}", mods_path.error());
 			return;
 		}
 
@@ -38,19 +40,19 @@ namespace rml
 			auto native_result = load_directory(mod_dir.path() / "native");
 			if (!native_result.has_value())
 			{
-				LOG_ERROR("[ModManager] Failed to load native mods: {}", native_result.error());
+				RML_ERROR("Failed to load native mods: {}", native_result.error());
 			}
 
 			auto dotnet_result = load_directory(mod_dir.path() / "dotnet");
 			if (!dotnet_result.has_value())
 			{
-				LOG_ERROR("[ModManager] Failed to load .NET mods: {}", dotnet_result.error());
+				RML_ERROR("Failed to load .NET mods: {}", dotnet_result.error());
 			}
 
 			auto scripts_result = load_directory(mod_dir.path() / "scripts");
 			if (!scripts_result.has_value())
 			{
-				LOG_ERROR("[ModManager] Failed to load script mods: {}", scripts_result.error());
+				RML_ERROR("Failed to load script mods: {}", scripts_result.error());
 			}
 		}
 	}

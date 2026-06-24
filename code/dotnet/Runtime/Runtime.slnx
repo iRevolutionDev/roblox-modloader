@@ -3,11 +3,13 @@
   <Folder Name="/src/">
     <Project Path="src/RML.Core/RML.Core.csproj" />
     <Project Path="src/RML.Interop/RML.Interop.csproj" />
+    <Project Path="src/RML.Logging/RML.Logging.csproj" />
     <Project Path="src/RML.NativeHost/RML.NativeHost.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/RML.Interop.Tests/RML.Interop.Tests.csproj" />
     <Project Path="tests/RML.Core.Tests/RML.Core.Tests.csproj" />
+    <Project Path="tests/RML.Logging.Tests/RML.Logging.Tests.csproj" />
   </Folder>
   <Folder Name="/tools/" />
   <Folder Name="/_SolutionItems/">

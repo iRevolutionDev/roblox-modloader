@@ -95,7 +95,7 @@ namespace rml::dotnet
 			const auto instance = shared ? reinterpret_cast<uintptr_t>(shared->get()) : 0;
 			if (!utils::memory::is_valid_pointer(instance))
 			{
-				LOG_WARN("[Engine::Interop] Dropping implausible instance handle {:#x} for type '{}'",
+				RML_WARN_AT("Interop", "Dropping implausible instance handle {:#x} for type '{}'",
 				    instance,
 				    type.name.c_str());
 				return null_value();
@@ -124,7 +124,7 @@ namespace rml::dotnet
 		if (variant.is_number())
 			return int64_value(type.name == "int" ? *variant.try_cast<int>() : *variant.try_cast<int64_t>());
 
-		LOG_WARN("[Engine::Interop] Unsupported event argument type '{}'", type.name.c_str());
+		RML_WARN_AT("Interop", "Unsupported event argument type '{}'", type.name.c_str());
 		return null_value();
 	}
 
