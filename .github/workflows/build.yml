@@ -57,8 +57,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          dotnet test code/dotnet/Runtime/tests/RML.Interop.Tests/RML.Interop.Tests.csproj \
-            -c "${{ matrix.config }}" --nologo
+          dotnet test code/dotnet/Runtime/Runtime.slnx -c "${{ matrix.config }}" --nologo
 
   lint-native:
     name: Lint (native, advisory)
