@@ -1,0 +1,21 @@
+# Roblox ModLoader configuration.
+# This file is created with defaults on first run; edit it to change behavior.
+# See docs/configuration.md for the full reference.
+
+[core.logging]
+level = "info"
+enable_console = true
+enable_file_logging = true
+enable_async_logging = true
+
+[core.performance]
+enable_profiling = false
+
+[core.security]
+verify_mod_signatures = false
+sandbox_mods = false
+
+[core.developer]
+debug_mode = false
+enable_hot_reload = false
+verbose_logging = false
