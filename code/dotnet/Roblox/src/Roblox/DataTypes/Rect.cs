@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct Rect : IEquatable<Rect>
+public readonly struct Rect : IEquatable<Rect>, IRobloxDataType
 {
     public Vector2 Min { get; }
     public Vector2 Max { get; }

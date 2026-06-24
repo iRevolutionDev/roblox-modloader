@@ -9,4 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Runtime\src\RML.Interop\RML.Interop.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Roblox.Tests" />
+  </ItemGroup>
 </Project>

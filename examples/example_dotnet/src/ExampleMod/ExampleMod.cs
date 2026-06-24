@@ -11,19 +11,19 @@ namespace ExampleMod;
     Author = "Revolution",
     Description = "Example managed mod for RobloxModLoader"
 )]
-public sealed class ExampleMod : IMod, IDataModelAware
+public sealed class ExampleMod : Mod, IDataModelAware
 {
     public void OnDataModelLoaded(DataModel dataModel, DataModelType dataModelType)
     {
-        Console.WriteLine($"[DOTNET]: DataModel loaded: {dataModelType}");
+        Logger.Info($"[DOTNET]: DataModel loaded: {dataModelType}");
         var runService = dataModel.RunService;
-        Console.WriteLine($"[DOTNET]: RunService name: {runService?.Name}");
-        Console.WriteLine($"[DOTNET]: RunService instance: {runService?.FindFirstChild("Teste", true)}");
+        Logger.Info($"[DOTNET]: RunService name: {runService?.Name}");
+        Logger.Info($"[DOTNET]: RunService instance: {runService?.FindFirstChild("Teste", true)}");
 
         var dmChildren = dataModel.GetChildren();
-        Console.WriteLine($"[DOTNET]: DataModel name: {dataModel.Name}");
-        Console.WriteLine($"[DOTNET]: DataModel.GetChildren count: {dmChildren.Count}");
-        foreach (var service in dmChildren) Console.WriteLine($"[DOTNET]: Service: {service.Name}");
+        Logger.Info($"[DOTNET]: DataModel name: {dataModel.Name}");
+        Logger.Info($"[DOTNET]: DataModel.GetChildren count: {dmChildren.Count}");
+        foreach (var service in dmChildren) Logger.Info($"[DOTNET]: Service: {service.Name}");
 
         Task.Run(() =>
         {
@@ -31,26 +31,36 @@ public sealed class ExampleMod : IMod, IDataModelAware
             var gameId = dataModel.GameId;
             var placeId = dataModel.PlaceId;
 
-            Console.WriteLine($"[DOTNET]: GameId: {gameId}");
-            Console.WriteLine($"[DOTNET]: PlaceId: {placeId}");
+            Logger.Info($"[DOTNET]: GameId: {gameId}");
+            Logger.Info($"[DOTNET]: PlaceId: {placeId}");
         });
 
-        var workspace = dataModel.GetService("Workspace");
-        Console.WriteLine($"[DOTNET]: Workspace name: {workspace?.Name ?? "null"}");
+        var workspace = dataModel.GetService("Workspace")?.As<Workspace>();
+        Logger.Info($"[DOTNET]: Workspace name: {workspace?.Name ?? "null"}");
 
         if (dataModelType == DataModelType.Edit)
         {
-            dataModel.Workspace.DescendantAdded += instance =>
+            workspace?.DescendantAdded += instance =>
             {
-                Console.WriteLine(
+                Logger.Info(
                     $"[DOTNET]: Instance added: {instance.Name} {instance.Parent?.Name} ({instance.ClassName})");
             };
 
-            dataModel.Workspace.DescendantRemoving += instance =>
+            workspace?.DescendantRemoving += instance =>
             {
-                Console.WriteLine(
+                Logger.Info(
                     $"[DOTNET]: Instance removed: {instance.Name} {instance.Parent?.Name} ({instance.ClassName})");
             };
+
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                    var camera = workspace?.CurrentCamera;
+                    Logger.Info($"[DOTNET]: CurrentCamera CFrame: {camera?.CFrame}");
+                }
+            });
         }
     }
 
@@ -58,17 +68,15 @@ public sealed class ExampleMod : IMod, IDataModelAware
     {
     }
 
-    public DataModel? Game { get; set; }
-
-    public int OnLoad()
+    public override int OnLoad()
     {
-        Console.WriteLine("Hello from ExampleMod!");
+        Logger.Info("Hello from ExampleMod!");
         return 0;
     }
 
-    public void OnUnload()
+    public override void OnUnload()
     {
-        Console.WriteLine("Goodbye from ExampleMod!");
+        Logger.Info("Goodbye from ExampleMod!");
     }
 
     [DllImport("user32.dll", SetLastError = true)]

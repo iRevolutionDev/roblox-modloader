@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct NumberRange : IEquatable<NumberRange>
+public readonly struct NumberRange : IEquatable<NumberRange>, IRobloxDataType
 {
     public float Min { get; }
     public float Max { get; }

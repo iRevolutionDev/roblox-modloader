@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct CFrame : IEquatable<CFrame>
+public readonly struct CFrame : IEquatable<CFrame>, IRobloxDataType
 {
     private readonly float _r00, _r01, _r02;
     private readonly float _r10, _r11, _r12;

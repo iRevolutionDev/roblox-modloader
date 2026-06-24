@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct Region3 : IEquatable<Region3>
+public readonly struct Region3 : IEquatable<Region3>, IRobloxDataType
 {
     public CFrame CFrame { get; }
     public Vector3 Size { get; }

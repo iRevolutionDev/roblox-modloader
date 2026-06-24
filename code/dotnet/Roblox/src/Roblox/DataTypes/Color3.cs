@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct Color3 : IEquatable<Color3>
+public readonly struct Color3 : IEquatable<Color3>, IRobloxDataType
 {
     public float R { get; }
     public float G { get; }

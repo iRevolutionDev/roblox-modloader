@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct UDim2 : IEquatable<UDim2>
+public readonly struct UDim2 : IEquatable<UDim2>, IRobloxDataType
 {
     public UDim X { get; }
     public UDim Y { get; }

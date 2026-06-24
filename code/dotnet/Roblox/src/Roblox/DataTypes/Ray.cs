@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct Ray : IEquatable<Ray>
+public readonly struct Ray : IEquatable<Ray>, IRobloxDataType
 {
     public Vector3 Origin { get; }
     public Vector3 Direction { get; }

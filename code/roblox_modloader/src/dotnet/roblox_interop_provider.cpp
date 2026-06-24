@@ -2,17 +2,26 @@
 #include "roblox_interop_provider.hpp"
 
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
+#include "RobloxModLoader/util/memory.hpp"
 #include "dotnet_arguments.hpp"
 #include "dotnet_event_descriptor.hpp"
 #include "dotnet_variant.hpp"
 
 #include <RobloxModLoader/roblox/instance.hpp>
-#include <RobloxModLoader/roblox/reflection/function_descriptor.hpp>
 #include <RobloxModLoader/roblox/reflection/object.hpp>
 #include <RobloxModLoader/roblox/reflection/property_descriptor.hpp>
 
+RML_LOG_SCOPE("Interop");
+
 namespace rml::dotnet
 {
+	[[nodiscard]] RBX::Instance* as_instance(const uintptr_t handle)
+	{
+		if (!utils::memory::is_valid_pointer(handle))
+			return nullptr;
+		return reinterpret_cast<RBX::Instance*>(handle);
+	}
+
 	void RobloxInteropProvider::populate(InteropTable& table)
 	{
 		table.version = RML_INTEROP_VERSION;
@@ -29,22 +38,33 @@ namespace rml::dotnet
 				out_result->as_uint64 = 0;
 			}
 
-			auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
-			if (!instance)
-				return;
+			try
+			{
+				auto* instance = as_instance(instance_ptr);
+				if (!instance || !function_name)
+					return;
 
-			const auto* descriptor = instance->get_descriptor().find_function(function_name);
-			if (!descriptor)
-				return;
+				const auto* descriptor = instance->get_descriptor().find_function(function_name);
+				if (!descriptor)
+					return;
 
-			DotNetArguments arguments{args, arg_count};
+				DotNetArguments arguments{args, arg_count};
 
-			const auto function = RBX::Function(*descriptor, instance);
-			const auto ret = function.invoke(arguments);
-			const auto type = descriptor->get_signature().first_result_type();
+				const auto function = RBX::Function(*descriptor, instance);
+				const auto ret = function.invoke(arguments);
+				const auto type = descriptor->get_signature().first_result_type();
 
-			if (out_result)
-				write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), *out_result);
+				if (out_result)
+					write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), *out_result);
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("invoke('{}') failed: {}", function_name ? function_name : "?", e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("invoke('{}') failed: unknown exception", function_name ? function_name : "?");
+			}
 		};
 
 		table.reflection_get_property = [](const uintptr_t instance_ptr, const char* property_name, InteropVariant* out_value) {
@@ -52,82 +72,127 @@ namespace rml::dotnet
 				return;
 			*out_value = null_value();
 
-			const auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
-			if (!instance)
-				return;
-
-			const auto property_descriptor = instance->get_descriptor().find_property(property_name);
-			if (!property_descriptor)
-				return;
-
-			if (property_descriptor->type.name == "string")
+			try
 			{
-				*out_value = string_value(property_descriptor->get_string_value(instance).c_str());
-				return;
-			}
+				const auto* instance = as_instance(instance_ptr);
+				if (!instance || !property_name)
+					return;
 
-			if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
+				const auto property_descriptor = instance->get_descriptor().find_property(property_name);
+				if (!property_descriptor)
+					return;
+
+				if (property_descriptor->type.name == "string")
+				{
+					*out_value = string_value(property_descriptor->get_string_value(instance).c_str());
+					return;
+				}
+
+				if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
+				{
+					const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
+					*out_value = instance_value(reinterpret_cast<uintptr_t>(ref_desc->get_ref_value(instance)));
+					return;
+				}
+
+				if (const auto blittable = try_blittable_property(property_descriptor, instance))
+				{
+					*out_value = *blittable;
+					return;
+				}
+
+				const auto property = RBX::Property(*property_descriptor, instance);
+				*out_value = int64_value(static_cast<int64_t>(property.get<uint64_t>()));
+			}
+			catch (const std::exception& e)
 			{
-				const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
-				*out_value = instance_value(reinterpret_cast<uintptr_t>(ref_desc->get_ref_value(instance)));
-				return;
+				RML_ERROR("get_property('{}') failed: {}", property_name ? property_name : "?", e.what());
 			}
-
-			const auto property = RBX::Property(*property_descriptor, instance);
-			*out_value = int64_value(static_cast<int64_t>(property.get<uint64_t>()));
+			catch (...)
+			{
+				RML_ERROR("get_property('{}') failed: unknown exception", property_name ? property_name : "?");
+			}
 		};
 
 		table.reflection_set_property = [](const uintptr_t instance_ptr, const char* property_name, const InteropVariant* value) {
 			if (!value)
 				return;
 
-			auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
-			if (!instance)
-				return;
-
-			const auto property_descriptor = instance->get_descriptor().find_property(property_name);
-			if (!property_descriptor)
-				return;
-
-			if (property_descriptor->type.name == "string")
+			try
 			{
-				if (value->tag == InteropValueTag::String && value->as_string)
-					property_descriptor->set_string_value(instance, value->as_string);
-				return;
-			}
+				auto* instance = as_instance(instance_ptr);
+				if (!instance || !property_name)
+					return;
 
-			if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
+				const auto property_descriptor = instance->get_descriptor().find_property(property_name);
+				if (!property_descriptor)
+					return;
+
+				if (property_descriptor->type.name == "string")
+				{
+					if (value->tag == InteropValueTag::String && value->as_string)
+						property_descriptor->set_string_value(instance, value->as_string);
+					return;
+				}
+
+				if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
+				{
+					const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
+					auto* target = value->tag == InteropValueTag::Instance ?
+					    reinterpret_cast<RBX::Reflection::DescribedBase*>(value->as_instance) :
+					    nullptr;
+					ref_desc->set_ref_value(instance, target);
+					return;
+				}
+
+				if (try_set_blittable_property(property_descriptor, instance, *value))
+					return;
+
+				auto property = RBX::Property(*property_descriptor, instance);
+				property.set(value->as_uint64);
+			}
+			catch (const std::exception& e)
 			{
-				const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
-				auto* target =
-				    value->tag == InteropValueTag::Instance ? reinterpret_cast<RBX::Reflection::DescribedBase*>(value->as_instance) : nullptr;
-				ref_desc->set_ref_value(instance, target);
-				return;
+				RML_ERROR("set_property('{}') failed: {}", property_name ? property_name : "?", e.what());
 			}
-
-			auto property = RBX::Property(*property_descriptor, instance);
-			property.set(value->as_uint64);
+			catch (...)
+			{
+				RML_ERROR("set_property('{}') failed: unknown exception", property_name ? property_name : "?");
+			}
 		};
 
 		table.reflection_event_connect = [](const uintptr_t instance_ptr, const char* event_name, const ManagedEventCallback callback, void* state) -> uintptr_t {
-			if (!callback)
+			try
+			{
+				if (!callback)
+					return 0;
+
+				auto* instance = as_instance(instance_ptr);
+				if (!instance || !event_name)
+					return 0;
+
+				const auto* event_descriptor = instance->get_descriptor().find_event(event_name);
+				if (!event_descriptor)
+					return 0;
+
+				const auto slot = std::make_shared<ManagedEventSlot>(callback, state);
+
+				auto holder = std::make_unique<ManagedEventConnection>();
+				holder->slot = slot;
+				holder->connection = event_descriptor->connect(instance, slot);
+
+				return reinterpret_cast<uintptr_t>(holder.release());
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("event_connect('{}') failed: {}", event_name ? event_name : "?", e.what());
 				return 0;
-
-			auto* instance = reinterpret_cast<RBX::Instance*>(instance_ptr);
-			if (!instance)
+			}
+			catch (...)
+			{
+				RML_ERROR("event_connect('{}') failed: unknown exception", event_name ? event_name : "?");
 				return 0;
-
-			const auto* event_descriptor = instance->get_descriptor().find_event(event_name);
-			if (!event_descriptor)
-				return 0;
-
-			const auto slot = std::make_shared<ManagedEventSlot>(callback, state);
-
-			auto* holder = new ManagedEventConnection{};
-			holder->slot = slot;
-			holder->connection = event_descriptor->connect(instance, slot);
-
-			return reinterpret_cast<uintptr_t>(holder);
+			}
 		};
 
 		table.reflection_event_disconnect = [](const uintptr_t connection_handle) {
@@ -135,7 +200,19 @@ namespace rml::dotnet
 			if (!holder)
 				return;
 
-			holder->connection.disconnect();
+			try
+			{
+				holder->connection.disconnect();
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("event_disconnect failed: {}", e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("event_disconnect failed: unknown exception");
+			}
+
 			delete holder;
 		};
 

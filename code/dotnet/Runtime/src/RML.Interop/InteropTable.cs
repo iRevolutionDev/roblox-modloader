@@ -24,6 +24,7 @@ public struct InteropVariant
         public const byte String = 5;
         public const byte Instance = 6;
         public const byte InstanceArray = 7;
+        public const byte Blittable = 8;
     }
 
     public static InteropVariant FromBool(bool v) => new() { Tag = Tags.Bool, AsBool = v };

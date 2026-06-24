@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct UDim : IEquatable<UDim>
+public readonly struct UDim : IEquatable<UDim>, IRobloxDataType
 {
     public float Scale { get; }
     public int Offset { get; }

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Roblox;
 
 [StructLayout(LayoutKind.Sequential)]
-public readonly struct NumberSequenceKeypoint : IEquatable<NumberSequenceKeypoint>
+public readonly struct NumberSequenceKeypoint : IEquatable<NumberSequenceKeypoint>, IRobloxDataType
 {
     /// <summary>Position along the sequence, 0..1.</summary>
     public float Time { get; }

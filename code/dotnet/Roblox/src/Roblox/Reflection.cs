@@ -86,6 +86,24 @@ public static unsafe class Reflection
             return;
         }
 
+        if (value is IRobloxDataType)
+        {
+            var size = Marshal.SizeOf((object)value);
+            var buffer = Marshal.AllocHGlobal(size);
+            try
+            {
+                Marshal.StructureToPtr((object)value, buffer, false);
+                Interop.Reflection.SetProperty((void*)handle, propertyName,
+                    new InteropVariant { Tag = InteropVariant.Tags.Blittable, AsPointer = (nuint)buffer });
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(buffer);
+            }
+
+            return;
+        }
+
         InteropVariant variantValue = value switch
         {
             Object inst => InteropVariant.FromPointer(inst.Handle),
@@ -130,6 +148,23 @@ public static unsafe class Reflection
             if (variant.Tag == InteropVariant.Tags.Null)
             {
                 return null;
+            }
+
+            if (variant.Tag == InteropVariant.Tags.Blittable)
+            {
+                if (variant.AsPointer == 0)
+                {
+                    return null;
+                }
+
+                var blittablePtr = (nint)variant.AsPointer;
+                var value = Marshal.PtrToStructure(blittablePtr, Nullable.GetUnderlyingType(t) ?? t);
+                if (freeNativeResources)
+                {
+                    Interop.FreeNativeArray(blittablePtr);
+                }
+
+                return value;
             }
 
             if (t == typeof(string))

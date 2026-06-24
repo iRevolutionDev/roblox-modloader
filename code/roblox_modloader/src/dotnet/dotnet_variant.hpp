@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -82,6 +83,90 @@ namespace rml::dotnet
 		return out;
 	}
 
+	template<size_t N>
+	struct blittable_blob
+	{
+		std::byte data[N];
+	};
+
+	[[nodiscard]] inline size_t blittable_size(const RBX::Name& type_name) noexcept
+	{
+		static constexpr std::pair<const char*, size_t> table[] = {
+		    {"Vector3", 12},
+		    {"Vector2", 8},
+		    {"Color3", 12},
+		    {"CoordinateFrame", 48},
+		    {"CFrame", 48},
+		    {"UDim", 8},
+		    {"UDim2", 16},
+		    {"Ray", 24},
+		    {"Rect", 16},
+		    {"NumberRange", 8},
+		    {"Region3", 60},
+		};
+
+		for (const auto& [name, sz] : table)
+		{
+			if (type_name == name)
+				return sz;
+		}
+		return 0;
+	}
+
+	[[nodiscard]] inline InteropVariant blittable_value(const void* bytes, const size_t size)
+	{
+		InteropVariant out{};
+		out.tag = InteropValueTag::Blittable;
+		out.as_instance = 0;
+		if (bytes && size)
+		{
+			if (auto* buf = std::malloc(size))
+			{
+				std::memcpy(buf, bytes, size);
+				out.as_instance = reinterpret_cast<uintptr_t>(buf);
+			}
+		}
+		return out;
+	}
+
+	[[nodiscard]] inline std::optional<InteropVariant> try_blittable_property(const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
+	{
+		const auto size = blittable_size(descriptor->type.name);
+		if (size == 0)
+			return std::nullopt;
+
+		RBX::Reflection::Variant variant;
+		descriptor->get_variant(instance, variant);
+		if (variant.is_void())
+			return std::nullopt;
+
+		return blittable_value(variant.try_cast<std::byte>(), size);
+	}
+
+	[[nodiscard]] inline bool try_set_blittable_property(const RBX::Reflection::PropertyDescriptor* descriptor, RBX::Reflection::DescribedBase* instance, const InteropVariant& value)
+	{
+		if (value.tag != InteropValueTag::Blittable || value.as_instance == 0)
+			return false;
+
+		const auto size = blittable_size(descriptor->type.name);
+		if (size == 0)
+			return false;
+
+		const auto* bytes = reinterpret_cast<const void*>(value.as_instance);
+		RBX::Property property(*descriptor, instance);
+
+		switch (size)
+		{
+		case 8: property.set(*static_cast<const blittable_blob<8>*>(bytes)); return true;
+		case 12: property.set(*static_cast<const blittable_blob<12>*>(bytes)); return true;
+		case 16: property.set(*static_cast<const blittable_blob<16>*>(bytes)); return true;
+		case 24: property.set(*static_cast<const blittable_blob<24>*>(bytes)); return true;
+		case 48: property.set(*static_cast<const blittable_blob<48>*>(bytes)); return true;
+		case 60: property.set(*static_cast<const blittable_blob<60>*>(bytes)); return true;
+		default: return false;
+		}
+	}
+
 	inline InteropVariant engine_variant_to_interop(const RBX::Reflection::Variant& variant, InteropStringPool& strings)
 	{
 		if (variant.is_void())
@@ -95,9 +180,7 @@ namespace rml::dotnet
 			const auto instance = shared ? reinterpret_cast<uintptr_t>(shared->get()) : 0;
 			if (!utils::memory::is_valid_pointer(instance))
 			{
-				RML_WARN_AT("Interop", "Dropping implausible instance handle {:#x} for type '{}'",
-				    instance,
-				    type.name.c_str());
+				RML_WARN_AT("Interop", "Dropping implausible instance handle {:#x} for type '{}'", instance, type.name.c_str());
 				return null_value();
 			}
 			return instance_value(instance);

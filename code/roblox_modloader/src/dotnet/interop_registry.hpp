@@ -20,6 +20,7 @@ namespace rml::dotnet
 		String = 5,
 		Instance = 6,
 		InstanceArray = 7,
+		Blittable = 8,
 	};
 
 	struct alignas(8) InteropVariant
