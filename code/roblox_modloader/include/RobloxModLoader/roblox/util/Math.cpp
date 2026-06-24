@@ -2,7 +2,7 @@
 
 #include "Math.h"
 #include "PV.h"
-#include "RobloxModLoader/roblox/rbxg3d/RbxRay.h"
+#include "rbxg3d/RbxRay.h"
 
 namespace G3D
 {

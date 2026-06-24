@@ -49,6 +49,8 @@ include(cmake/dotnet_hosting.cmake)
 
 include(cmake/dependencies.cmake)
 
+add_subdirectory(libs/third_party)
+
 add_subdirectory(code/roblox_modloader)
 add_subdirectory(code/dotnet)
 

@@ -13,6 +13,11 @@ file(GLOB_RECURSE MODLOADER_SUBDIRS CONFIGURE_DEPENDS
 
 list(APPEND MODLOADER_SOURCES ${MODLOADER_SUBDIRS})
 
+file(GLOB_RECURSE MODLOADER_VENDOR_SOURCES CONFIGURE_DEPENDS
+        "${RML_THIRDPARTY_G3D_SRC_DIR}/*.cpp"
+)
+list(APPEND MODLOADER_SOURCES ${MODLOADER_VENDOR_SOURCES})
+
 add_library(roblox_modloader SHARED ${MODLOADER_SOURCES})
 
 setup_compiler_flags(roblox_modloader)
@@ -20,6 +25,8 @@ setup_compile_definitions(roblox_modloader PRIVATE)
 setup_core_dependencies(roblox_modloader PRIVATE)
 setup_luau_dependencies(roblox_modloader PRIVATE)
 setup_dotnet_hosting(roblox_modloader PRIVATE)
+
+target_link_libraries(roblox_modloader PRIVATE rml_thirdparty)
 
 if (UNIX AND NOT APPLE)
     target_link_libraries(roblox_modloader PRIVATE dl)
@@ -59,6 +66,9 @@ add_library(RobloxModLoader::RobloxModLoader ALIAS RobloxModLoader)
 target_include_directories(RobloxModLoader INTERFACE
         "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_INCLUDE_DIR}>"
         "$<INSTALL_INTERFACE:include>"
+        "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libs/third_party/g3d/include>"
+        "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libs/third_party/bullet/include>"
+        "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libs/third_party/rbxg3d/include>"
         "$<BUILD_INTERFACE:${spdlog_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${tomlplusplus_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"

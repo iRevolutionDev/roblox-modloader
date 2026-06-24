@@ -3,8 +3,8 @@
 #include "NormalId.h"
 #include "G3DCore.h"
 #include "PV.h"
-#include "RobloxModLoader/roblox/g3d/Array.h"
-#include "RobloxModLoader/roblox/rbxg3d/RbxRay.h"
+#include "g3d/Array.h"
+#include "rbxg3d/RbxRay.h"
 #include <limits>
 
 namespace RBX {

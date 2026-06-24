@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RobloxModLoader/roblox/g3d/Color3.h"
-#include "RobloxModLoader/roblox/g3d/Color4.h"
-#include "RobloxModLoader/roblox/g3d/Color3uint8.h"
-#include "RobloxModLoader/roblox/g3d/Color4uint8.h"
+#include "g3d/Color3.h"
+#include "g3d/Color4.h"
+#include "g3d/Color3uint8.h"
+#include "g3d/Color4uint8.h"
 
 #include <vector>
 
