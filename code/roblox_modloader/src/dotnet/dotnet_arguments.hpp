@@ -137,7 +137,7 @@ namespace rml::dotnet
 		{
 			if (!is_valid(index))
 				return false;
-			const auto* ptr = read_instance<const T>(m_args[index - 1]);
+			const auto* ptr = read_struct_ptr<T>(m_args[index - 1]);
 			if (!ptr)
 				return false;
 			out = *ptr;

@@ -267,6 +267,12 @@ namespace rml::dotnet
 			return;
 		}
 
+		if (const auto size = blittable_size(type->name))
+		{
+			out = blittable_value(reinterpret_cast<const void*>(ret_slot_addr), size);
+			return;
+		}
+
 		if (!ret)
 		{
 			out = null_value();
@@ -316,5 +322,13 @@ namespace rml::dotnet
 	[[nodiscard]] T* read_instance(const InteropVariant& v) noexcept
 	{
 		return v.tag == InteropValueTag::Instance ? reinterpret_cast<T*>(v.as_instance) : nullptr;
+	}
+	
+	template<typename T>
+	[[nodiscard]] const T* read_struct_ptr(const InteropVariant& v) noexcept
+	{
+		return (v.tag == InteropValueTag::Blittable || v.tag == InteropValueTag::Instance)
+		    ? reinterpret_cast<const T*>(v.as_instance)
+		    : nullptr;
 	}
 } // namespace rml::dotnet
