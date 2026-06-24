@@ -53,6 +53,26 @@ jobs:
             echo "::endgroup::"
           done
 
+      - name: Test managed
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet test code/dotnet/Runtime/tests/RML.Interop.Tests/RML.Interop.Tests.csproj \
+            -c "${{ matrix.config }}" --nologo
+
+  lint-native:
+    name: Lint (native, advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+
+      - name: clang-format (first-party only)
+        run: bash .github/scripts/clang-format-check.sh
+
   native:
     name: Native (${{ matrix.config }})
     runs-on: windows-latest
