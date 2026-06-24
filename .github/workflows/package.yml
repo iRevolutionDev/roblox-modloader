@@ -1,0 +1,181 @@
+name: Package
+
+on:
+  schedule:
+    - cron: '0 6 * * *'        # nightly at 06:00 UTC
+  workflow_dispatch:
+  push:
+    tags: [ 'v*' ]
+
+concurrency:
+  group: package-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package (${{ matrix.platform }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows
+            runner: windows-latest
+            rid: win-x64
+          # - platform: macos
+          #   runner: macos-latest
+          #   rid: osx-arm64
+          # - platform: linux
+          #   runner: ubuntu-latest
+          #   rid: linux-x64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Setup Ninja
+        if: matrix.platform == 'windows'
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Setup MSVC
+        if: matrix.platform == 'windows'
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Cache CMake dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/_deps
+            build/_dotnet_hosting_cache
+          key: cmake-deps-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'cmake/**/*.cmake') }}
+          restore-keys: |
+            cmake-deps-${{ runner.os }}-
+
+      - name: Build (Windows)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        env:
+          ROBLOX_STUDIO_PATH: ${{ github.workspace }}/stage
+        run: |
+          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl
+          cmake --build build --parallel
+
+      - name: Assemble package (Windows)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $stage   = "${{ github.workspace }}/stage"
+          $rml     = Join-Path $stage "RobloxModLoader"
+          $runtime = Join-Path $rml "runtime"
+          New-Item -ItemType Directory -Force -Path $runtime, (Join-Path $rml "mods") | Out-Null
+
+          $coreAtRoot = Join-Path $stage "roblox_modloader.dll"
+          if (Test-Path $coreAtRoot) {
+            Move-Item $coreAtRoot (Join-Path $rml "roblox_modloader.dll") -Force
+          } else {
+            Copy-Item "build/code/roblox_modloader/roblox_modloader.dll" (Join-Path $rml "roblox_modloader.dll") -Force
+          }
+
+          dotnet publish code/dotnet/Runtime/src/RML.NativeHost/RML.NativeHost.csproj `
+            -c Release -o $runtime --nologo
+
+          $globalCfg = Join-Path $runtime "RobloxModLoader.runtimeconfig.json"
+          if (Test-Path $globalCfg) {
+            Copy-Item $globalCfg (Join-Path $runtime "RML.runtimeconfig.json") -Force
+          }
+
+          Copy-Item "build/dwmapi.dll" (Join-Path $stage "dwmapi.dll") -Force
+          Copy-Item "tools/packaging/config.default.toml" (Join-Path $rml "config.toml") -Force
+
+          $packs = Join-Path $runtime "dotnet/packs"
+          if (Test-Path $packs) { Remove-Item $packs -Recurse -Force }
+          $shared = Join-Path $runtime "dotnet/shared/Microsoft.NETCore.App"
+          if (Test-Path $shared) {
+            Get-ChildItem $shared -Directory | Where-Object { $_.Name -notlike '10.*' } |
+              Remove-Item -Recurse -Force
+          }
+
+          foreach ($junk in @("crashes", "generated", (Join-Path "runtime" "managed"))) {
+            $p = Join-Path $rml $junk
+            if (Test-Path $p) { Remove-Item $p -Recurse -Force }
+          }
+
+          $required = @(
+            (Join-Path $stage "dwmapi.dll"),
+            (Join-Path $rml "roblox_modloader.dll"),
+            (Join-Path $rml "config.toml"),
+            (Join-Path $runtime "nethost.dll"),
+            (Join-Path $runtime "RML.NativeHost.dll"),
+            (Join-Path $runtime "Roblox.dll"),
+            (Join-Path $runtime "RML.runtimeconfig.json"),
+            (Join-Path $runtime "RobloxModLoader.runtimeconfig.json")
+          )
+          $missing = $required | Where-Object { -not (Test-Path $_) }
+          if ($missing) {
+            Write-Error "Package is missing required files:`n$($missing -join "`n")"
+            exit 1
+          }
+          Write-Host "Package assembled. Runtime size:" (
+            "{0:N0} MB" -f ((Get-ChildItem $runtime -Recurse -File | Measure-Object Length -Sum).Sum / 1MB))
+
+      - name: Create archive
+        shell: pwsh
+        run: |
+          $stage = "${{ github.workspace }}/stage"
+          $zip   = "${{ github.workspace }}/nightly-${{ matrix.platform }}.zip"
+          if (Test-Path $zip) { Remove-Item $zip -Force }
+          Compress-Archive -Path (Join-Path $stage "*") -DestinationPath $zip -CompressionLevel Optimal
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-${{ matrix.platform }}
+          path: nightly-${{ matrix.platform }}.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    name: Publish
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download archives
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: nightly-*
+          merge-multiple: true
+
+      - name: Move nightly tag
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git tag -f nightly
+          git push -f origin nightly
+        continue-on-error: true
+
+      - name: Publish nightly
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: nightly
+          name: Nightly build
+          prerelease: true
+          files: artifacts/*.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*.zip
