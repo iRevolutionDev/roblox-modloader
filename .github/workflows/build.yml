@@ -6,57 +6,104 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+
+  managed:
+    name: Managed (${{ matrix.config }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [ Debug, Release ]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      - name: Build all managed solutions
+        shell: bash
+        run: |
+          set -euo pipefail
+          solutions=(
+            "code/dotnet/Runtime/Runtime.slnx"
+            "code/dotnet/Roblox/Roblox.slnx"
+            "examples/example_dotnet/ExampleMod.slnx"
+            "examples/discord_rpc_dotnet/RobloxDiscord.RPC.slnx"
+          )
+          for sln in "${solutions[@]}"; do
+            echo "::group::dotnet build $sln (${{ matrix.config }})"
+            dotnet build "$sln" -c "${{ matrix.config }}" --nologo
+            echo "::endgroup::"
+          done
+
+  native:
+    name: Native (${{ matrix.config }})
     runs-on: windows-latest
     strategy:
+      fail-fast: false
       matrix:
-        config: [Debug, RelWithDebInfo]
-        
-    name: Build (${{ matrix.config }})
-    
+        config: [ Debug, RelWithDebInfo ]
     steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: recursive
-        
-    - name: Setup MSVC
-      uses: microsoft/setup-msbuild@v2
-      
-    - name: Cache CMake dependencies
-      uses: actions/cache@v4
-      with:
-        path: |
-          build/_deps
-          build/cpm-package-lock.cmake
-        key: cmake-deps-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'scripts/*.cmake') }}
-        restore-keys: |
-          cmake-deps-${{ runner.os }}-
-          
-    - name: Configure CMake
-      run: cmake -B build -G "Visual Studio 17 2022" -A x64
-      
-    - name: Build
-      run: cmake --build build --config ${{ matrix.config }} --parallel 4
-      
-    - name: Test DLL load
-      run: |
-        $dllPath = "build\${{ matrix.config }}\roblox_modloader.dll"
-        if (Test-Path $dllPath) {
-          Write-Host "✅ DLL built successfully: $dllPath"
-          $size = (Get-Item $dllPath).Length
-          Write-Host "DLL size: $([Math]::Round($size / 1KB, 2)) KB"
-        } else {
-          Write-Host "❌ DLL not found at expected path"
-          exit 1
-        }
-      shell: pwsh
-      
-    - name: Upload DLL artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: roblox-modloader-${{ matrix.config }}
-        path: |
-          build/${{ matrix.config }}/roblox_modloader.dll
-          build/${{ matrix.config }}/roblox_modloader.pdb
-        retention-days: 7
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Setup MSVC
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Cache CMake dependencies
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: cmake-deps-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'cmake/**/*.cmake') }}
+          restore-keys: |
+            cmake-deps-${{ runner.os }}-
+
+      - name: Configure CMake
+        run: cmake -B build -G "Visual Studio 17 2022" -A x64
+
+      - name: Build
+        run: cmake --build build --config ${{ matrix.config }} --parallel 4
+
+      - name: Verify loader DLL
+        shell: pwsh
+        run: |
+          $dll = "build/${{ matrix.config }}/roblox_modloader.dll"
+          if (-not (Test-Path $dll)) {
+            Write-Error "Loader DLL not found at $dll"
+            exit 1
+          }
+          $kb = [Math]::Round((Get-Item $dll).Length / 1KB, 2)
+          Write-Host "OK: $dll ($kb KB)"
+
+      - name: Upload loader artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: roblox-modloader-${{ matrix.config }}
+          path: |
+            build/${{ matrix.config }}/roblox_modloader.dll
+            build/${{ matrix.config }}/roblox_modloader.pdb
+          retention-days: 7
+          if-no-files-found: error

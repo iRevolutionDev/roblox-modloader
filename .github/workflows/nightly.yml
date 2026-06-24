@@ -40,8 +40,34 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
       - name: Setup MSVC
         uses: microsoft/setup-msbuild@v2
+        
+      - name: Build managed solutions
+        shell: bash
+        run: |
+          set -euo pipefail
+          for sln in \
+            "code/dotnet/Runtime/Runtime.slnx" \
+            "code/dotnet/Roblox/Roblox.slnx" \
+            "examples/example_dotnet/ExampleMod.slnx" \
+            "examples/discord_rpc_dotnet/RobloxDiscord.RPC.slnx"; do
+            echo "::group::dotnet build $sln"
+            dotnet build "$sln" -c Release --nologo
+            echo "::endgroup::"
+          done
+
+      - name: Publish managed runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet publish code/dotnet/Runtime/src/RML.NativeHost/RML.NativeHost.csproj -c Release -o publish/managed --nologo
+          dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj          -c Release -o publish/managed --nologo
 
       - name: Generate CMake project
         run: cmake -B build -G "Visual Studio 17 2022" -A x64
@@ -53,6 +79,10 @@ jobs:
         run: if (-Not (Test-Path -path "build/Release/roblox_modloader.dll")) {throw 1}
         shell: pwsh
 
+      - name: Package managed runtime
+        shell: pwsh
+        run: Compress-Archive -Path "publish/managed/*" -DestinationPath "managed-runtime.zip" -Force
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -61,6 +91,7 @@ jobs:
             build/Release/roblox_modloader.dll
             build/Release/roblox_modloader.pdb
             build/Release/dwmapi.dll
+            managed-runtime.zip
 
       - name: Generate Build Info
         id: var
@@ -126,6 +157,9 @@ jobs:
           if [ -f "dwmapi.dll" ]; then
             sha256sum dwmapi.dll >> sha256.checksum
           fi
+          if [ -f "managed-runtime.zip" ]; then
+            sha256sum managed-runtime.zip >> sha256.checksum
+          fi
           echo "build_sha<<EOF" >> $GITHUB_OUTPUT
           cat sha256.checksum >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -155,6 +189,7 @@ jobs:
             **Includes:**
             - `roblox_modloader.dll` - Main mod loader library
             - `dwmapi.dll` - Proxy DLL for injection (if available)
+            - `managed-runtime.zip` - The .NET runtime (RML.NativeHost + RML.Core + Roblox + RML.Interop)
 
             Full Commit Hash:
             ```
@@ -163,3 +198,4 @@ jobs:
           files: |
             roblox_modloader.dll
             dwmapi.dll
+            managed-runtime.zip

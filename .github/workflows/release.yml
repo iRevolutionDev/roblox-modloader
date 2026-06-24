@@ -17,7 +17,7 @@ env:
 jobs:
   release:
     runs-on: windows-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,17 +25,13 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
       - name: Setup MSVC
         uses: microsoft/setup-msbuild@v2
-
-      - name: Setup Clang
-        uses: egor-tensin/setup-clang@v1
-        with:
-          version: latest
-          platform: x64
-
-      - name: Setup Ninja
-        uses: seanmiddleditch/gha-setup-ninja@master
 
       - name: Get version
         id: version
@@ -51,58 +47,88 @@ jobs:
           echo "Version: $version"
         shell: powershell
 
+      - name: Build managed solutions
+        shell: bash
+        run: |
+          set -euo pipefail
+          for sln in \
+            "code/dotnet/Runtime/Runtime.slnx" \
+            "code/dotnet/Roblox/Roblox.slnx" \
+            "examples/example_dotnet/ExampleMod.slnx" \
+            "examples/discord_rpc_dotnet/RobloxDiscord.RPC.slnx"; do
+            echo "::group::dotnet build $sln"
+            dotnet build "$sln" -c "$BUILD_TYPE" --nologo
+            echo "::endgroup::"
+          done
+
+      - name: Publish managed runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet publish code/dotnet/Runtime/src/RML.NativeHost/RML.NativeHost.csproj -c "$BUILD_TYPE" -o publish/managed --nologo
+          dotnet publish code/dotnet/Runtime/src/RML.Core/RML.Core.csproj          -c "$BUILD_TYPE" -o publish/managed --nologo
+
+      - name: Publish example mods
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet publish examples/example_dotnet/src/ExampleMod/ExampleMod.csproj                  -c "$BUILD_TYPE" -o publish/mods/ExampleMod --nologo
+          dotnet publish examples/discord_rpc_dotnet/src/RobloxDiscord.RPC/RobloxDiscord.RPC.csproj -c "$BUILD_TYPE" -o publish/mods/DiscordRpc  --nologo
+
+      - name: Setup MSVC
+        uses: microsoft/setup-msbuild@v2
+
       - name: Build with MSVC (Release)
         run: |
-          cmake -B build-msvc -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+          cmake -B build-msvc -G "Visual Studio 17 2022" -A x64
           cmake --build build-msvc --config ${{ env.BUILD_TYPE }} --parallel
 
-      - name: Build with Clang (Release)
-        run: |
-          cmake -B build-clang -G "Ninja" -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-          cmake --build build-clang --parallel
-
       - name: Create release package
+        shell: powershell
         run: |
-          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader"
-          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/mods"
-          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/examples"
-          New-Item -ItemType Directory -Force -Path "release/RobloxModLoader/docs"
-          
-          Copy-Item "build-msvc/${{ env.BUILD_TYPE }}/roblox_modloader.dll" "release/RobloxModLoader/"
-          
+          $root = "release/RobloxModLoader"
+          New-Item -ItemType Directory -Force -Path "$root/managed" | Out-Null
+          New-Item -ItemType Directory -Force -Path "$root/mods" | Out-Null
+          New-Item -ItemType Directory -Force -Path "$root/examples" | Out-Null
+          New-Item -ItemType Directory -Force -Path "$root/docs" | Out-Null
+
+          Copy-Item "build-msvc/${{ env.BUILD_TYPE }}/roblox_modloader.dll" "$root/"
+          if (Test-Path "build-msvc/${{ env.BUILD_TYPE }}/dwmapi.dll") {
+            Copy-Item "build-msvc/${{ env.BUILD_TYPE }}/dwmapi.dll" "$root/"
+          }
+
+          Copy-Item "publish/managed/*" "$root/managed/" -Recurse -Force
+
+          if (Test-Path "publish/mods") {
+            Copy-Item "publish/mods/*" "$root/mods/" -Recurse -Force
+          }
+
           if (Test-Path "build-msvc/examples") {
             Get-ChildItem "build-msvc/examples" -Recurse -Filter "*.dll" | ForEach-Object {
               $relativePath = $_.FullName.Substring((Resolve-Path "build-msvc/examples").Path.Length + 1)
-              $destPath = "release/RobloxModLoader/examples/$relativePath"
-              $destDir = Split-Path $destPath -Parent
-              New-Item -ItemType Directory -Force -Path $destDir
+              $destPath = "$root/examples/$relativePath"
+              New-Item -ItemType Directory -Force -Path (Split-Path $destPath -Parent) | Out-Null
               Copy-Item $_.FullName $destPath
             }
           }
           
-          Copy-Item "README.md" "release/RobloxModLoader/"
-          if (Test-Path "docs") {
-            Copy-Item "docs/*" "release/RobloxModLoader/docs/" -Recurse -Force
+          Copy-Item "README.md" "$root/"
+          if (Test-Path "docs") { Copy-Item "docs/*" "$root/docs/" -Recurse -Force }
+          Get-ChildItem "examples" -Recurse -Include *.luau, *.lua, *.toml -ErrorAction SilentlyContinue | ForEach-Object {
+            Copy-Item $_.FullName "$root/examples/"
           }
-          
-          if (Test-Path "examples") {
-            Copy-Item "examples/*.lua" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
-            Copy-Item "examples/*.luau" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
-            Copy-Item "examples/*.toml" "release/RobloxModLoader/examples/" -ErrorAction SilentlyContinue
-          }
-          
-          Compress-Archive -Path "release/RobloxModLoader" -DestinationPath "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" -Force
-          
-          $hash = Get-FileHash "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" -Algorithm SHA256
-          "$($hash.Hash)  roblox-modloader-${{ steps.version.outputs.version_clean }}.zip" | Out-File -FilePath "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256" -Encoding ASCII
-        shell: powershell
+
+          $zip = "roblox-modloader-${{ steps.version.outputs.version_clean }}.zip"
+          Compress-Archive -Path $root -DestinationPath $zip -Force
+          $hash = Get-FileHash $zip -Algorithm SHA256
+          "$($hash.Hash)  $zip" | Out-File -FilePath "$zip.sha256" -Encoding ASCII
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.version.outputs.version }}
           name: "Roblox ModLoader ${{ steps.version.outputs.version }}"
-          bodyFile: ${{ steps.changelog.outputs.changelog_file }}
+          generateReleaseNotes: true
           artifacts: |
             roblox-modloader-${{ steps.version.outputs.version_clean }}.zip
             roblox-modloader-${{ steps.version.outputs.version_clean }}.zip.sha256
