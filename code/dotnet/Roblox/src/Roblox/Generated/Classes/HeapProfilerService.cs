@@ -22,36 +22,36 @@ namespace Roblox
         /// Creates a <see cref="HeapProfilerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HeapProfilerService? FromHandle(nuint handle)
+        public static new HeapProfilerService? FromHandle(nuint handle)
             => handle == 0 ? null : new HeapProfilerService(handle);
 
         /// <summary>
         /// <c>HeapProfilerService.ClientRequestDataAsync</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HeapProfilerService#ClientRequestDataAsync"/>
-        public string? ClientRequestDataAsync(Player? player)
-            => global::Roblox.Reflection.Invoke<string?>(this, "ClientRequestDataAsync", player);
+        public string ClientRequestDataAsync(Player player)
+            => global::Roblox.Reflection.Invoke<string>(this, "ClientRequestDataAsync", player)!;
 
         /// <summary>
         /// <c>HeapProfilerService.ServerRequestDataAsync</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HeapProfilerService#ServerRequestDataAsync"/>
-        public string? ServerRequestDataAsync()
-            => global::Roblox.Reflection.Invoke<string?>(this, "ServerRequestDataAsync");
+        public string ServerRequestDataAsync()
+            => global::Roblox.Reflection.Invoke<string>(this, "ServerRequestDataAsync")!;
 
         /// <summary>
         /// <c>HeapProfilerService.OnNewData</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="jsonString">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="jsonString">A <c>object</c> value.</param>
         /// <param name="id">A <c>int</c> value.</param>
         /// <param name="compressedLength">A <c>int</c> value.</param>
         /// <param name="uncompressedLength">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HeapProfilerService#OnNewData"/>
-        public event Action<Player?, object?, int, int, int>? OnNewData
+        public event Action<Player, object, int, int, int>? OnNewData
         {
             add { if (value is not null) AddEventHandler("OnNewData", value); }
             remove { if (value is not null) RemoveEventHandler("OnNewData", value); }

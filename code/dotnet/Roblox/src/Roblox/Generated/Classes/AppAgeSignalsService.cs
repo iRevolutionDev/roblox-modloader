@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AppAgeSignalsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AppAgeSignalsService? FromHandle(nuint handle)
+        public static new AppAgeSignalsService? FromHandle(nuint handle)
             => handle == 0 ? null : new AppAgeSignalsService(handle);
 
         /// <summary>
@@ -26,14 +26,14 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable")!;
 
         /// <summary>
         /// <c>AppAgeSignalsService.GetAppAgeSignalsAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAppAgeSignalsAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAppAgeSignalsAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAppAgeSignalsAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAppAgeSignalsAsync")!;
 
     }
 }

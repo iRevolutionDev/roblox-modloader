@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VectorForce"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VectorForce? FromHandle(nuint handle)
+        public static new VectorForce? FromHandle(nuint handle)
             => handle == 0 ? null : new VectorForce(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VectorForce#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ApplyAtCenterOfMass", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// The strength and direction of the force.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VectorForce#Force"/>
-        public global::Roblox.Vector3? Force
+        public global::Roblox.Vector3 Force
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Force");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Force", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Force")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Force", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VectorForce#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo", value);
         }
 

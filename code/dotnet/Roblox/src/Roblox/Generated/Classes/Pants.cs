@@ -22,23 +22,23 @@ namespace Roblox
         /// Creates a <see cref="Pants"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Pants? FromHandle(nuint handle)
+        public static new Pants? FromHandle(nuint handle)
             => handle == 0 ? null : new Pants(handle);
 
         /// <summary>
         /// Determines the texture of the Pants.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pants#PantsTemplate"/>
-        public object? PantsTemplate
+        public object PantsTemplate
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PantsTemplate");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PantsTemplate", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "PantsTemplate")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "PantsTemplate", value);
         }
 
-        public string? PantsTemplateContent
+        public string PantsTemplateContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PantsTemplateContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PantsTemplateContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PantsTemplateContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PantsTemplateContent", value);
         }
 
     }

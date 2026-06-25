@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AchievementService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AchievementService? FromHandle(nuint handle)
+        public static new AchievementService? FromHandle(nuint handle)
             => handle == 0 ? null : new AchievementService(handle);
 
         /// <summary>
@@ -26,23 +26,23 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable")!;
 
         /// <summary>
         /// <c>AchievementService.GrantAchievement</c>
         /// </summary>
-        /// <param name="achievementName">A <c>string?</c> value.</param>
+        /// <param name="achievementName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool GrantAchievement(string? achievementName)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GrantAchievement", achievementName);
+        public bool GrantAchievement(string achievementName)
+            => global::Roblox.Reflection.Invoke<bool>(this, "GrantAchievement", achievementName)!;
 
         /// <summary>
         /// <c>AchievementService.HasAchieved</c>
         /// </summary>
-        /// <param name="achievementName">A <c>string?</c> value.</param>
+        /// <param name="achievementName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool HasAchieved(string? achievementName)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasAchieved", achievementName);
+        public bool HasAchieved(string achievementName)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasAchieved", achievementName)!;
 
     }
 }

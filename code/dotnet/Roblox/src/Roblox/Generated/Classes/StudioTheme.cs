@@ -22,18 +22,18 @@ namespace Roblox
         /// Creates a <see cref="StudioTheme"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioTheme? FromHandle(nuint handle)
+        public static new StudioTheme? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioTheme(handle);
 
         /// <summary>
         /// Returns the color corresponding to the arguments provided.
         /// </summary>
         /// <param name="styleguideitem">A <c>Enum.StudioStyleGuideColor</c> value.</param>
-        /// <param name="modifier">A <c>Enum.StudioStyleGuideModifier</c> value.</param>
-        /// <returns>A <c>global::Roblox.Color3?</c> value returned by the engine.</returns>
+        /// <param name="modifier">A <c>Enum.StudioStyleGuideModifier?</c> value.</param>
+        /// <returns>A <c>global::Roblox.Color3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTheme#GetColor"/>
-        public global::Roblox.Color3? GetColor(Enum.StudioStyleGuideColor styleguideitem, Enum.StudioStyleGuideModifier modifier)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Color3?>(this, "GetColor", styleguideitem, modifier);
+        public global::Roblox.Color3 GetColor(Enum.StudioStyleGuideColor styleguideitem, Enum.StudioStyleGuideModifier? modifier = null)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Color3>(this, "GetColor", styleguideitem, modifier)!;
 
     }
 }

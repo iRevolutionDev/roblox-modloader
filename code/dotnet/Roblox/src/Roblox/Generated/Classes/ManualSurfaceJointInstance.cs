@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ManualSurfaceJointInstance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ManualSurfaceJointInstance? FromHandle(nuint handle)
+        public static new ManualSurfaceJointInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new ManualSurfaceJointInstance(handle);
 
     }

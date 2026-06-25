@@ -22,98 +22,98 @@ namespace Roblox
         /// Creates a <see cref="CollectionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CollectionService? FromHandle(nuint handle)
+        public static new CollectionService? FromHandle(nuint handle)
             => handle == 0 ? null : new CollectionService(handle);
 
         /// <summary>
         /// Applies a tag to an Instance.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#AddTag"/>
-        public object? AddTag(Instance? instance, string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddTag", instance, tag);
+        public object AddTag(Instance instance, string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddTag", instance, tag)!;
 
         /// <summary>
         /// Returns an array of all tags in the experience.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetAllTags"/>
-        public object? GetAllTags()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAllTags");
+        public object GetAllTags()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAllTags")!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by a CollectionService tagging method. The equivalent function using the new method is CollectionService:GetTagged() which should be used in new work.Returns all instances of a given class which are in the DataModel.
         /// </summary>
-        /// <param name="class">A <c>string?</c> value.</param>
+        /// <param name="@class">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetCollection"/>
-        public IReadOnlyList<Instance> GetCollection(string? @class)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCollection", @class);
+        public IReadOnlyList<Instance> GetCollection(string @class)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCollection", @class)!;
 
         /// <summary>
         /// Returns a signal that fires when a given tag is added to an instance.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetInstanceAddedSignal"/>
-        public object? GetInstanceAddedSignal(string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInstanceAddedSignal", tag);
+        public object GetInstanceAddedSignal(string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInstanceAddedSignal", tag)!;
 
         /// <summary>
         /// Returns a signal that fires when a given tag is removed from an instance.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetInstanceRemovedSignal"/>
-        public object? GetInstanceRemovedSignal(string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInstanceRemovedSignal", tag);
+        public object GetInstanceRemovedSignal(string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInstanceRemovedSignal", tag)!;
 
         /// <summary>
         /// Returns an array of instances in the game with a given tag.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetTagged"/>
-        public IReadOnlyList<Instance> GetTagged(string? tag)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTagged", tag);
+        public IReadOnlyList<Instance> GetTagged(string tag)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTagged", tag)!;
 
         /// <summary>
         /// Gets an array of all tags applied to a given instance.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetTags"/>
-        public object? GetTags(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTags", instance);
+        public object GetTags(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTags", instance)!;
 
         /// <summary>
         /// Check whether an instance has a given tag.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#HasTag"/>
-        public bool HasTag(Instance? instance, string? tag)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasTag", instance, tag);
+        public bool HasTag(Instance instance, string tag)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasTag", instance, tag)!;
 
         /// <summary>
         /// Removes a tag from an instance.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#RemoveTag"/>
-        public object? RemoveTag(Instance? instance, string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveTag", instance, tag);
+        public object RemoveTag(Instance instance, string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveTag", instance, tag)!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by a CollectionService tagging method. There is currently no means of checking when a tag is added.Fires when a Configuration, CustomEvent, CustomEventReceiver, Dialog, or VehicleSeat is added to the DataModel.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemAdded"/>
-        public event Action<Instance?>? ItemAdded
+        public event Action<Instance>? ItemAdded
         {
             add { if (value is not null) AddEventHandler("ItemAdded", value); }
             remove { if (value is not null) RemoveEventHandler("ItemAdded", value); }
@@ -122,9 +122,9 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This item has been superseded by a CollectionService tagging method. There is currently no means of checking when a tag is removed.Fires when a Configuration, CustomEvent, CustomEventReceiver, Dialog, or VehicleSeat is removed from the DataModel.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemRemoved"/>
-        public event Action<Instance?>? ItemRemoved
+        public event Action<Instance>? ItemRemoved
         {
             add { if (value is not null) AddEventHandler("ItemRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("ItemRemoved", value); }
@@ -133,9 +133,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a tag is added to an instance and the added tag is the only occurrence of that tag in the place.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#TagAdded"/>
-        public event Action<string?>? TagAdded
+        public event Action<string>? TagAdded
         {
             add { if (value is not null) AddEventHandler("TagAdded", value); }
             remove { if (value is not null) RemoveEventHandler("TagAdded", value); }
@@ -144,9 +144,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a tag is removed from an instance and the removed tag is no longer used anywhere in the place.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#TagRemoved"/>
-        public event Action<string?>? TagRemoved
+        public event Action<string>? TagRemoved
         {
             add { if (value is not null) AddEventHandler("TagRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("TagRemoved", value); }

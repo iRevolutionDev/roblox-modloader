@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DoubleConstrainedValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DoubleConstrainedValue? FromHandle(nuint handle)
+        public static new DoubleConstrainedValue? FromHandle(nuint handle)
             => handle == 0 ? null : new DoubleConstrainedValue(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DoubleConstrainedValue#ConstrainedValue"/>
         public double ConstrainedValue
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "ConstrainedValue");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "ConstrainedValue")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "ConstrainedValue", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DoubleConstrainedValue#MaxValue"/>
         public double MaxValue
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "MaxValue");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "MaxValue")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "MaxValue", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DoubleConstrainedValue#MinValue"/>
         public double MinValue
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "MinValue");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "MinValue")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "MinValue", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DoubleConstrainedValue#Value"/>
         public double Value
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "Value");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "Value")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "Value", value);
         }
 
@@ -70,7 +70,7 @@ namespace Roblox
         /// </summary>
         /// <param name="value">A <c>double</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DoubleConstrainedValue#Changed"/>
-        public event Action<double>? Changed
+        public new event Action<double>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

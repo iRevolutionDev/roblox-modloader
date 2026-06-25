@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="UISizeConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UISizeConstraint? FromHandle(nuint handle)
+        public static new UISizeConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new UISizeConstraint(handle);
 
         /// <summary>
         /// The largest size, in pixels, the parent object is allowed to be.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UISizeConstraint#MaxSize"/>
-        public global::Roblox.Vector2? MaxSize
+        public global::Roblox.Vector2 MaxSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MaxSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MaxSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MaxSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MaxSize", value);
         }
 
         /// <summary>
         /// The smallest size, in pixels, the object is allowed to be.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UISizeConstraint#MinSize"/>
-        public global::Roblox.Vector2? MinSize
+        public global::Roblox.Vector2 MinSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MinSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MinSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MinSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MinSize", value);
         }
 
     }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="IntValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static IntValue? FromHandle(nuint handle)
+        public static new IntValue? FromHandle(nuint handle)
             => handle == 0 ? null : new IntValue(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntValue#Value"/>
         public long Value
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Value");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Value")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Value", value);
         }
 
@@ -40,7 +40,7 @@ namespace Roblox
         /// </summary>
         /// <param name="value">A <c>long</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntValue#Changed"/>
-        public event Action<long>? Changed
+        public new event Action<long>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

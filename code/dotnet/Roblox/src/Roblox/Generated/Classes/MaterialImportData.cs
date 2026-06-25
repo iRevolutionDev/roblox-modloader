@@ -18,43 +18,43 @@ namespace Roblox
         /// Creates a <see cref="MaterialImportData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MaterialImportData? FromHandle(nuint handle)
+        public static new MaterialImportData? FromHandle(nuint handle)
             => handle == 0 ? null : new MaterialImportData(handle);
 
-        public string? DiffuseFilePath
+        public string DiffuseFilePath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DiffuseFilePath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DiffuseFilePath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DiffuseFilePath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DiffuseFilePath", value);
         }
 
-        public string? EmissiveFilePath
+        public string EmissiveFilePath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EmissiveFilePath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EmissiveFilePath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "EmissiveFilePath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "EmissiveFilePath", value);
         }
 
         public bool IsPbr
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPbr");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPbr")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPbr", value);
         }
 
-        public string? MetalnessFilePath
+        public string MetalnessFilePath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MetalnessFilePath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MetalnessFilePath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MetalnessFilePath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MetalnessFilePath", value);
         }
 
-        public string? NormalFilePath
+        public string NormalFilePath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "NormalFilePath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "NormalFilePath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "NormalFilePath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "NormalFilePath", value);
         }
 
-        public string? RoughnessFilePath
+        public string RoughnessFilePath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RoughnessFilePath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RoughnessFilePath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RoughnessFilePath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RoughnessFilePath", value);
         }
 
     }

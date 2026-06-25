@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Sky"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Sky? FromHandle(nuint handle)
+        public static new Sky? FromHandle(nuint handle)
             => handle == 0 ? null : new Sky(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#CelestialBodiesShown"/>
         public bool CelestialBodiesShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CelestialBodiesShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CelestialBodiesShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CelestialBodiesShown", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#MoonAngularSize"/>
         public float MoonAngularSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MoonAngularSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MoonAngularSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MoonAngularSize", value);
         }
 
@@ -49,150 +49,150 @@ namespace Roblox
         /// <c>Sky.MoonTextureContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#MoonTextureContent"/>
-        public string? MoonTextureContent
+        public string MoonTextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MoonTextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MoonTextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MoonTextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MoonTextureContent", value);
         }
 
         /// <summary>
         /// The texture of the moon while using this skybox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#MoonTextureId"/>
-        public object? MoonTextureId
+        public object MoonTextureId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MoonTextureId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MoonTextureId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "MoonTextureId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "MoonTextureId", value);
         }
 
         /// <summary>
         /// <c>Sky.SkyboxBackContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxBackContent"/>
-        public string? SkyboxBackContent
+        public string SkyboxBackContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SkyboxBackContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SkyboxBackContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SkyboxBackContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SkyboxBackContent", value);
         }
 
         /// <summary>
         /// The URL link to a picture for the back surface of the sky.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxBk"/>
-        public object? SkyboxBk
+        public object SkyboxBk
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SkyboxBk");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SkyboxBk", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SkyboxBk")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SkyboxBk", value);
         }
 
         /// <summary>
         /// Asset ID for the bottom surface of the skybox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxDn"/>
-        public object? SkyboxDn
+        public object SkyboxDn
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SkyboxDn");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SkyboxDn", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SkyboxDn")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SkyboxDn", value);
         }
 
         /// <summary>
         /// <c>Sky.SkyboxDownContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxDownContent"/>
-        public string? SkyboxDownContent
+        public string SkyboxDownContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SkyboxDownContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SkyboxDownContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SkyboxDownContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SkyboxDownContent", value);
         }
 
         /// <summary>
         /// <c>Sky.SkyboxFrontContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxFrontContent"/>
-        public string? SkyboxFrontContent
+        public string SkyboxFrontContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SkyboxFrontContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SkyboxFrontContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SkyboxFrontContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SkyboxFrontContent", value);
         }
 
         /// <summary>
         /// Asset ID for the front surface of the skybox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxFt"/>
-        public object? SkyboxFt
+        public object SkyboxFt
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SkyboxFt");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SkyboxFt", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SkyboxFt")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SkyboxFt", value);
         }
 
         /// <summary>
         /// <c>Sky.SkyboxLeftContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxLeftContent"/>
-        public string? SkyboxLeftContent
+        public string SkyboxLeftContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SkyboxLeftContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SkyboxLeftContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SkyboxLeftContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SkyboxLeftContent", value);
         }
 
         /// <summary>
         /// Asset ID for the left surface of the skybox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxLf"/>
-        public object? SkyboxLf
+        public object SkyboxLf
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SkyboxLf");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SkyboxLf", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SkyboxLf")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SkyboxLf", value);
         }
 
         /// <summary>
         /// Angle of the skybox, in degrees, with rotation order of Y, X, Z.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxOrientation"/>
-        public global::Roblox.Vector3? SkyboxOrientation
+        public global::Roblox.Vector3 SkyboxOrientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SkyboxOrientation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SkyboxOrientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SkyboxOrientation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SkyboxOrientation", value);
         }
 
         /// <summary>
         /// <c>Sky.SkyboxRightContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxRightContent"/>
-        public string? SkyboxRightContent
+        public string SkyboxRightContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SkyboxRightContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SkyboxRightContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SkyboxRightContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SkyboxRightContent", value);
         }
 
         /// <summary>
         /// Asset ID for the right surface of the skybox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxRt"/>
-        public object? SkyboxRt
+        public object SkyboxRt
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SkyboxRt");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SkyboxRt", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SkyboxRt")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SkyboxRt", value);
         }
 
         /// <summary>
         /// Asset ID for the top surface of the skybox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxUp"/>
-        public object? SkyboxUp
+        public object SkyboxUp
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SkyboxUp");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SkyboxUp", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SkyboxUp")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SkyboxUp", value);
         }
 
         /// <summary>
         /// <c>Sky.SkyboxUpContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SkyboxUpContent"/>
-        public string? SkyboxUpContent
+        public string SkyboxUpContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SkyboxUpContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SkyboxUpContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SkyboxUpContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SkyboxUpContent", value);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#StarCount"/>
         public int StarCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "StarCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "StarCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "StarCount", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SunAngularSize"/>
         public float SunAngularSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SunAngularSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SunAngularSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SunAngularSize", value);
         }
 
@@ -219,20 +219,20 @@ namespace Roblox
         /// <c>Sky.SunTextureContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SunTextureContent"/>
-        public string? SunTextureContent
+        public string SunTextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SunTextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SunTextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SunTextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SunTextureContent", value);
         }
 
         /// <summary>
         /// The texture of the sun while using this skybox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sky#SunTextureId"/>
-        public object? SunTextureId
+        public object SunTextureId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SunTextureId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SunTextureId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SunTextureId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SunTextureId", value);
         }
 
     }

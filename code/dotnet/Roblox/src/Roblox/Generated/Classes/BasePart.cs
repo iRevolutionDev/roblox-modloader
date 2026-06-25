@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BasePart"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BasePart? FromHandle(nuint handle)
+        public static new BasePart? FromHandle(nuint handle)
             => handle == 0 ? null : new BasePart(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Anchored"/>
         public bool Anchored
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Anchored", value);
         }
 
@@ -39,30 +39,30 @@ namespace Roblox
         /// The angular velocity of the part's assembly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyAngularVelocity"/>
-        public global::Roblox.Vector3? AssemblyAngularVelocity
+        public global::Roblox.Vector3 AssemblyAngularVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AssemblyAngularVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AssemblyAngularVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AssemblyAngularVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AssemblyAngularVelocity", value);
         }
 
         /// <summary>
         /// The center of mass of the part's assembly in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyCenterOfMass"/>
-        public global::Roblox.Vector3? AssemblyCenterOfMass
+        public global::Roblox.Vector3 AssemblyCenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AssemblyCenterOfMass");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AssemblyCenterOfMass", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AssemblyCenterOfMass")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AssemblyCenterOfMass", value);
         }
 
         /// <summary>
         /// The linear velocity of the part's assembly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyLinearVelocity"/>
-        public global::Roblox.Vector3? AssemblyLinearVelocity
+        public global::Roblox.Vector3 AssemblyLinearVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AssemblyLinearVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AssemblyLinearVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AssemblyLinearVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AssemblyLinearVelocity", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyMass"/>
         public float AssemblyMass
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AssemblyMass");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AssemblyMass")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AssemblyMass", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AudioCanCollide"/>
         public bool AudioCanCollide
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AudioCanCollide");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AudioCanCollide")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AudioCanCollide", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BackParamA"/>
         public float BackParamA
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BackParamA");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BackParamA")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BackParamA", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BackParamB"/>
         public float BackParamB
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BackParamB");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BackParamB")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BackParamB", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BackSurface"/>
         public Enum.SurfaceType BackSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "BackSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "BackSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceType>(this, "BackSurface", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BackSurfaceInput"/>
         public Enum.InputType BackSurfaceInput
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "BackSurfaceInput");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "BackSurfaceInput")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputType>(this, "BackSurfaceInput", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BottomParamA"/>
         public float BottomParamA
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BottomParamA");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BottomParamA")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BottomParamA", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BottomParamB"/>
         public float BottomParamB
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BottomParamB");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BottomParamB")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BottomParamB", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BottomSurface"/>
         public Enum.SurfaceType BottomSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "BottomSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "BottomSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceType>(this, "BottomSurface", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BottomSurfaceInput"/>
         public Enum.InputType BottomSurfaceInput
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "BottomSurfaceInput");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "BottomSurfaceInput")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputType>(this, "BottomSurfaceInput", value);
         }
 
@@ -179,20 +179,20 @@ namespace Roblox
         /// Determines the color of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BrickColor"/>
-        public global::Roblox.BrickColor? BrickColor
+        public global::Roblox.BrickColor BrickColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "BrickColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "BrickColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "BrickColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "BrickColor", value);
         }
 
         /// <summary>
         /// Determines the position and orientation of the BasePart in the world.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CFrame"/>
-        public global::Roblox.CFrame? CFrame
+        public global::Roblox.CFrame CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CanCollide"/>
         public bool CanCollide
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanCollide");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanCollide")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CanCollide", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CanQuery"/>
         public bool CanQuery
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanQuery");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanQuery")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CanQuery", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CanTouch"/>
         public bool CanTouch
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanTouch");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanTouch")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CanTouch", value);
         }
 
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CastShadow"/>
         public bool CastShadow
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CastShadow");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CastShadow")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CastShadow", value);
         }
 
@@ -239,20 +239,20 @@ namespace Roblox
         /// Describes the world position in which a part's center of mass is located.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CenterOfMass"/>
-        public global::Roblox.Vector3? CenterOfMass
+        public global::Roblox.Vector3 CenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "CenterOfMass");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "CenterOfMass", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "CenterOfMass")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "CenterOfMass", value);
         }
 
         /// <summary>
         /// Describes the name of a part's collision group.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CollisionGroup"/>
-        public string? CollisionGroup
+        public string CollisionGroup
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CollisionGroup");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CollisionGroup", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CollisionGroup")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CollisionGroup", value);
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CollisionGroupId"/>
         public int CollisionGroupId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "CollisionGroupId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "CollisionGroupId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "CollisionGroupId", value);
         }
 
@@ -269,30 +269,30 @@ namespace Roblox
         /// Determines the color of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
         /// Indicates the current physical properties of the part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CurrentPhysicalProperties"/>
-        public object? CurrentPhysicalProperties
+        public object CurrentPhysicalProperties
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CurrentPhysicalProperties");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CurrentPhysicalProperties", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "CurrentPhysicalProperties")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "CurrentPhysicalProperties", value);
         }
 
         /// <summary>
         /// Determines several physical properties of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CustomPhysicalProperties"/>
-        public object? CustomPhysicalProperties
+        public object CustomPhysicalProperties
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CustomPhysicalProperties");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CustomPhysicalProperties", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "CustomPhysicalProperties")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "CustomPhysicalProperties", value);
         }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Elasticity"/>
         public float Elasticity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Elasticity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Elasticity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Elasticity", value);
         }
 
@@ -311,7 +311,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#EnableFluidForces"/>
         public bool EnableFluidForces
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFluidForces");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFluidForces")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableFluidForces", value);
         }
 
@@ -319,20 +319,20 @@ namespace Roblox
         /// The CFrame of the physical extents of the BasePart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ExtentsCFrame"/>
-        public global::Roblox.CFrame? ExtentsCFrame
+        public global::Roblox.CFrame ExtentsCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ExtentsCFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ExtentsCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "ExtentsCFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "ExtentsCFrame", value);
         }
 
         /// <summary>
         /// The actual physical size of the BasePart as regarded by the physics engine.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ExtentsSize"/>
-        public global::Roblox.Vector3? ExtentsSize
+        public global::Roblox.Vector3 ExtentsSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ExtentsSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ExtentsSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "ExtentsSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "ExtentsSize", value);
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Friction"/>
         public float Friction
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Friction");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Friction")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Friction", value);
         }
 
@@ -351,7 +351,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#FrontParamA"/>
         public float FrontParamA
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FrontParamA");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FrontParamA")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FrontParamA", value);
         }
 
@@ -361,7 +361,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#FrontParamB"/>
         public float FrontParamB
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FrontParamB");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FrontParamB")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FrontParamB", value);
         }
 
@@ -371,7 +371,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#FrontSurface"/>
         public Enum.SurfaceType FrontSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "FrontSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "FrontSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceType>(this, "FrontSurface", value);
         }
 
@@ -381,7 +381,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#FrontSurfaceInput"/>
         public Enum.InputType FrontSurfaceInput
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "FrontSurfaceInput");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "FrontSurfaceInput")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputType>(this, "FrontSurfaceInput", value);
         }
 
@@ -391,7 +391,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LeftParamA"/>
         public float LeftParamA
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftParamA");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftParamA")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftParamA", value);
         }
 
@@ -401,7 +401,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LeftParamB"/>
         public float LeftParamB
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftParamB");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftParamB")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftParamB", value);
         }
 
@@ -411,7 +411,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LeftSurface"/>
         public Enum.SurfaceType LeftSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "LeftSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "LeftSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceType>(this, "LeftSurface", value);
         }
 
@@ -421,7 +421,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LeftSurfaceInput"/>
         public Enum.InputType LeftSurfaceInput
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "LeftSurfaceInput");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "LeftSurfaceInput")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputType>(this, "LeftSurfaceInput", value);
         }
 
@@ -431,7 +431,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -441,7 +441,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Locked"/>
         public bool Locked
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Locked");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Locked")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Locked", value);
         }
 
@@ -451,7 +451,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Mass"/>
         public float Mass
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Mass");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Mass")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Mass", value);
         }
 
@@ -461,7 +461,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Massless"/>
         public bool Massless
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Massless");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Massless")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Massless", value);
         }
 
@@ -471,7 +471,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Material"/>
         public Enum.Material Material
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Material>(this, "Material");
+            get => global::Roblox.Reflection.GetProperty<Enum.Material>(this, "Material")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Material>(this, "Material", value);
         }
 
@@ -479,40 +479,40 @@ namespace Roblox
         /// The name of MaterialVariant.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#MaterialVariant"/>
-        public string? MaterialVariant
+        public string MaterialVariant
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MaterialVariant");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MaterialVariant", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MaterialVariant")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MaterialVariant", value);
         }
 
         /// <summary>
         /// Describes the rotation of the part in the world.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Orientation"/>
-        public global::Roblox.Vector3? Orientation
+        public global::Roblox.Vector3 Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Orientation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Orientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Orientation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Orientation", value);
         }
 
         /// <summary>
         /// Specifies the offset of the part's pivot from its CFrame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#PivotOffset"/>
-        public global::Roblox.CFrame? PivotOffset
+        public new global::Roblox.CFrame PivotOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "PivotOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "PivotOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "PivotOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "PivotOffset", value);
         }
 
         /// <summary>
         /// Describes the position of the part in the world.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
@@ -521,7 +521,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ReceiveAge"/>
         public float ReceiveAge
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ReceiveAge");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ReceiveAge")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ReceiveAge", value);
         }
 
@@ -531,7 +531,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Reflectance"/>
         public float Reflectance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Reflectance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Reflectance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Reflectance", value);
         }
 
@@ -541,7 +541,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ResizeIncrement"/>
         public int ResizeIncrement
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ResizeIncrement");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ResizeIncrement")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ResizeIncrement", value);
         }
 
@@ -549,10 +549,10 @@ namespace Roblox
         /// Describes the faces on which a part may be resized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ResizeableFaces"/>
-        public global::Roblox.Faces? ResizeableFaces
+        public global::Roblox.Faces ResizeableFaces
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Faces?>(this, "ResizeableFaces");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Faces?>(this, "ResizeableFaces", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Faces>(this, "ResizeableFaces")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Faces>(this, "ResizeableFaces", value);
         }
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RightParamA"/>
         public float RightParamA
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightParamA");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightParamA")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightParamA", value);
         }
 
@@ -571,7 +571,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RightParamB"/>
         public float RightParamB
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightParamB");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightParamB")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightParamB", value);
         }
 
@@ -581,7 +581,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RightSurface"/>
         public Enum.SurfaceType RightSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "RightSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "RightSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceType>(this, "RightSurface", value);
         }
 
@@ -591,7 +591,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RightSurfaceInput"/>
         public Enum.InputType RightSurfaceInput
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "RightSurfaceInput");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "RightSurfaceInput")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputType>(this, "RightSurfaceInput", value);
         }
 
@@ -601,7 +601,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RootPriority"/>
         public int RootPriority
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "RootPriority");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "RootPriority")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "RootPriority", value);
         }
 
@@ -609,30 +609,30 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use AssemblyAngularVelocity instead.Determines a part's change in orientation over time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RotVelocity"/>
-        public global::Roblox.Vector3? RotVelocity
+        public global::Roblox.Vector3 RotVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RotVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RotVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RotVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RotVelocity", value);
         }
 
         /// <summary>
         /// The rotation of the part in degrees for the three axes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Rotation"/>
-        public global::Roblox.Vector3? Rotation
+        public global::Roblox.Vector3 Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Rotation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Rotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Rotation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Rotation", value);
         }
 
         /// <summary>
         /// Determines the dimensions of a part (length, width, height).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Size"/>
-        public global::Roblox.Vector3? Size
+        public global::Roblox.Vector3 Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Size")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Size", value);
         }
 
         /// <summary>
@@ -641,7 +641,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#SpecificGravity"/>
         public float SpecificGravity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SpecificGravity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SpecificGravity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SpecificGravity", value);
         }
 
@@ -651,7 +651,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TopParamA"/>
         public float TopParamA
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TopParamA");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TopParamA")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TopParamA", value);
         }
 
@@ -661,7 +661,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TopParamB"/>
         public float TopParamB
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TopParamB");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TopParamB")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TopParamB", value);
         }
 
@@ -671,7 +671,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TopSurface"/>
         public Enum.SurfaceType TopSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "TopSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceType>(this, "TopSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceType>(this, "TopSurface", value);
         }
 
@@ -681,7 +681,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TopSurfaceInput"/>
         public Enum.InputType TopSurfaceInput
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "TopSurfaceInput");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "TopSurfaceInput")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputType>(this, "TopSurfaceInput", value);
         }
 
@@ -691,7 +691,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Transparency"/>
         public float Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Transparency", value);
         }
 
@@ -699,92 +699,92 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use AssemblyLinearVelocity instead.Determines a part's change in position over time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Velocity"/>
-        public global::Roblox.Vector3? Velocity
+        public global::Roblox.Vector3 Velocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Velocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Velocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Velocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Velocity", value);
         }
 
         /// <summary>
         /// Returns the torque needed to achieve a given angular acceleration on this part's assembly, optionally accounting for gyroscopic effects.
         /// </summary>
-        /// <param name="angAcceleration">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="angAcceleration">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="angVelocity">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AngularAccelerationToTorque"/>
-        public global::Roblox.Vector3? AngularAccelerationToTorque(global::Roblox.Vector3? angAcceleration, global::Roblox.Vector3? angVelocity)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "AngularAccelerationToTorque", angAcceleration, angVelocity);
+        public global::Roblox.Vector3 AngularAccelerationToTorque(global::Roblox.Vector3 angAcceleration, global::Roblox.Vector3? angVelocity = null)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "AngularAccelerationToTorque", angAcceleration, angVelocity)!;
 
         /// <summary>
         /// Apply an angular impulse to the assembly.
         /// </summary>
-        /// <param name="impulse">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="impulse">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyAngularImpulse"/>
-        public object? ApplyAngularImpulse(global::Roblox.Vector3? impulse)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyAngularImpulse", impulse);
+        public object ApplyAngularImpulse(global::Roblox.Vector3 impulse)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyAngularImpulse", impulse)!;
 
         /// <summary>
         /// Apply an impulse to the assembly at the assembly's center of mass.
         /// </summary>
-        /// <param name="impulse">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="impulse">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulse"/>
-        public object? ApplyImpulse(global::Roblox.Vector3? impulse)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyImpulse", impulse);
+        public object ApplyImpulse(global::Roblox.Vector3 impulse)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyImpulse", impulse)!;
 
         /// <summary>
         /// Apply an impulse to the assembly at specified position.
         /// </summary>
-        /// <param name="impulse">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="impulse">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#ApplyImpulseAtPosition"/>
-        public object? ApplyImpulseAtPosition(global::Roblox.Vector3? impulse, global::Roblox.Vector3? position)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyImpulseAtPosition", impulse, position);
+        public object ApplyImpulseAtPosition(global::Roblox.Vector3 impulse, global::Roblox.Vector3 position)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyImpulseAtPosition", impulse, position)!;
 
         /// <summary>
         /// Deprecated: Breaks any surface connection with any adjacent part, including Weld and other JointInstance.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BreakJoints"/>
-        public object? BreakJoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "BreakJoints");
+        public object BreakJoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "BreakJoints")!;
 
         /// <summary>
         /// Returns whether the parts can collide with each other.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
+        /// <param name="part">A <c>BasePart</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CanCollideWith"/>
-        public bool CanCollideWith(BasePart? part)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanCollideWith", part);
+        public bool CanCollideWith(BasePart part)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanCollideWith", part)!;
 
         /// <summary>
         /// Checks whether you can set a part's network ownership.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CanSetNetworkOwnership"/>
-        public object? CanSetNetworkOwnership()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CanSetNetworkOwnership");
+        public object CanSetNetworkOwnership()
+            => global::Roblox.Reflection.Invoke<object>(this, "CanSetNetworkOwnership")!;
 
         /// <summary>
         /// Returns the closest point on the part's surface to the given point.
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetClosestPointOnSurface"/>
-        public global::Roblox.Vector3? GetClosestPointOnSurface(global::Roblox.Vector3? position)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetClosestPointOnSurface", position);
+        public global::Roblox.Vector3 GetClosestPointOnSurface(global::Roblox.Vector3 position)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetClosestPointOnSurface", position)!;
 
         /// <summary>
         /// Returns a table of parts connected to the object by any kind of rigid joint.
         /// </summary>
-        /// <param name="recursive">A <c>bool</c> value.</param>
+        /// <param name="recursive">A <c>bool?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetConnectedParts"/>
-        public IReadOnlyList<Instance> GetConnectedParts(bool recursive)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedParts", recursive);
+        public IReadOnlyList<Instance> GetConnectedParts(bool? recursive = null)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedParts", recursive)!;
 
         /// <summary>
         /// Return all Joints or Constraints that is connected to this Part.
@@ -792,7 +792,7 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetJoints"/>
         public IReadOnlyList<Instance> GetJoints()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetJoints");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetJoints")!;
 
         /// <summary>
         /// Returns the value of the Mass property.
@@ -800,7 +800,7 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetMass"/>
         public float GetMass()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetMass");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetMass")!;
 
         /// <summary>
         /// Returns the current player who is the network owner of this part, or nil in case of the server.
@@ -816,7 +816,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetNetworkOwnershipAuto"/>
         public bool GetNetworkOwnershipAuto()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetNetworkOwnershipAuto");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetNetworkOwnershipAuto")!;
 
         /// <summary>
         /// <c>BasePart.GetNoCollisionConstraints</c>
@@ -824,22 +824,22 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetNoCollisionConstraints"/>
         public IReadOnlyList<Instance> GetNoCollisionConstraints()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetNoCollisionConstraints");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetNoCollisionConstraints")!;
 
         /// <summary>
         /// <c>BasePart.GetPhysicsCost</c>
         /// </summary>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         public float GetPhysicsCost()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetPhysicsCost");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetPhysicsCost")!;
 
         /// <summary>
         /// Deprecated: This item is been deprecated since interpolation is now applied to the CFrame directly. Do not use it for new work.OBSOLETE. Returns a CFrame describing where the part is being rendered at.
         /// </summary>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetRenderCFrame"/>
-        public global::Roblox.CFrame? GetRenderCFrame()
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetRenderCFrame");
+        public global::Roblox.CFrame GetRenderCFrame()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetRenderCFrame")!;
 
         /// <summary>
         /// Deprecated: Returns the base part of an assembly of parts.
@@ -855,16 +855,16 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetTouchingParts"/>
         public IReadOnlyList<Instance> GetTouchingParts()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTouchingParts");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTouchingParts")!;
 
         /// <summary>
         /// Returns the linear velocity of the part's assembly at the given position relative to this part.
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetVelocityAtPosition"/>
-        public global::Roblox.Vector3? GetVelocityAtPosition(global::Roblox.Vector3? position)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetVelocityAtPosition", position);
+        public global::Roblox.Vector3 GetVelocityAtPosition(global::Roblox.Vector3 position)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetVelocityAtPosition", position)!;
 
         /// <summary>
         /// Returns true if the object is connected to a part that will hold it in place (eg an Anchored part), otherwise returns false.
@@ -872,15 +872,15 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#IsGrounded"/>
         public bool IsGrounded()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsGrounded");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsGrounded")!;
 
         /// <summary>
         /// Deprecated: SurfaceType based joining is deprecated, do not use MakeJoints for new projects. WeldConstraints and HingeConstraints should be used instead.Creates a joint on any side of the object that has a surface ID that can make a joint.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#MakeJoints"/>
-        public object? MakeJoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "MakeJoints");
+        public object MakeJoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "MakeJoints")!;
 
         /// <summary>
         /// Changes the size of an object just like using the Studio resize tool.
@@ -890,74 +890,74 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Resize"/>
         public bool Resize(Enum.NormalId normalId, int deltaAmount)
-            => global::Roblox.Reflection.Invoke<bool>(this, "Resize", normalId, deltaAmount);
+            => global::Roblox.Reflection.Invoke<bool>(this, "Resize", normalId, deltaAmount)!;
 
         /// <summary>
         /// Sets the given player as network owner for this and all connected parts.
         /// </summary>
         /// <param name="playerInstance">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#SetNetworkOwner"/>
-        public object? SetNetworkOwner(Player? playerInstance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetNetworkOwner", playerInstance);
+        public object SetNetworkOwner(Player? playerInstance = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetNetworkOwner", playerInstance)!;
 
         /// <summary>
         /// Lets the game engine dynamically decide who will handle the part's physics (one of the clients or the server).
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#SetNetworkOwnershipAuto"/>
-        public object? SetNetworkOwnershipAuto()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetNetworkOwnershipAuto");
+        public object SetNetworkOwnershipAuto()
+            => global::Roblox.Reflection.Invoke<object>(this, "SetNetworkOwnershipAuto")!;
 
         /// <summary>
         /// Returns the angular acceleration that would result from applying a given torque to this part's assembly, optionally accounting for gyroscopic effects.
         /// </summary>
-        /// <param name="torque">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="torque">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="angVelocity">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TorqueToAngularAcceleration"/>
-        public global::Roblox.Vector3? TorqueToAngularAcceleration(global::Roblox.Vector3? torque, global::Roblox.Vector3? angVelocity)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "TorqueToAngularAcceleration", torque, angVelocity);
+        public global::Roblox.Vector3 TorqueToAngularAcceleration(global::Roblox.Vector3 torque, global::Roblox.Vector3? angVelocity = null)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "TorqueToAngularAcceleration", torque, angVelocity)!;
 
         /// <summary>
         /// Note: It is highly recommended to use the newer GeometryService:IntersectAsync instead of this function. As well as having better performance and more features, the new function differs as follows: The output is an array of instances rather than a single instance. The input parts do not need to be parented to the scene, allowing for background operations. When the SplitApart option is set to true (default), each distinct body will be returned in its own PartOperation. All the returned parts are in the coordinate space of the main part, so their PVInstance.Origin positions are the same as the main part's. This keeps the vertices of the mesh in the same position relative to the object as before the operation, but it does also mean the (0, 0, 0) of a returned part is not necessarily at the center of its body. Creates a new IntersectOperation from the overlapping geometry of the part and the other parts in the given array.
         /// </summary>
         /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity</c> value.</param>
-        /// <param name="renderFidelity">A <c>Enum.RenderFidelity</c> value.</param>
+        /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity?</c> value.</param>
+        /// <param name="renderFidelity">A <c>Enum.RenderFidelity?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#IntersectAsync"/>
-        public Instance? IntersectAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
+        public Instance? IntersectAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity? collisionfidelity = null, Enum.RenderFidelity? renderFidelity = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "IntersectAsync", parts, collisionfidelity, renderFidelity);
 
         /// <summary>
         /// Note: It is highly recommended to use the newer GeometryService:UnionAsync instead of this function. As well as having better performance and more features, the new function differs as follows: The output is an array of instances rather than a single instance. The input parts do not need to be parented to the scene, allowing for background operations. When the SplitApart option is set to true (default), each distinct body will be returned in its own PartOperation. All the returned parts are in the coordinate space of the main part, so their PVInstance.Origin positions are the same as the main part's. This keeps the vertices of the mesh in the same position relative to the object as before the operation, but it does also mean the (0, 0, 0) of a returned part is not necessarily at the center of its body. Creates a new UnionOperation from the part, minus the geometry occupied by the parts in the given array.
         /// </summary>
         /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity</c> value.</param>
-        /// <param name="renderFidelity">A <c>Enum.RenderFidelity</c> value.</param>
+        /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity?</c> value.</param>
+        /// <param name="renderFidelity">A <c>Enum.RenderFidelity?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#SubtractAsync"/>
-        public Instance? SubtractAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
+        public Instance? SubtractAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity? collisionfidelity = null, Enum.RenderFidelity? renderFidelity = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "SubtractAsync", parts, collisionfidelity, renderFidelity);
 
         /// <summary>
         /// Note: It is highly recommended to use the newer GeometryService:UnionAsync instead of this function. As well as having better performance and more features, the new function differs as follows: The output is an array of instances rather than a single instance. The input parts do not need to be parented to the scene, allowing for background operations. When the SplitApart option is set to true (default), each distinct body will be returned in its own PartOperation. All the returned parts are in the coordinate space of the main part, so their PVInstance.Origin positions are the same as the main part's. This keeps the vertices of the mesh in the same position relative to the object as before the operation, but it does also mean the (0, 0, 0) of a returned part is not necessarily at the center of its body.Creates a new `UnionOperation` from the part, plus the geometry occupied by the parts in the given array.
         /// </summary>
         /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity</c> value.</param>
-        /// <param name="renderFidelity">A <c>Enum.RenderFidelity</c> value.</param>
+        /// <param name="collisionfidelity">A <c>Enum.CollisionFidelity?</c> value.</param>
+        /// <param name="renderFidelity">A <c>Enum.RenderFidelity?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#UnionAsync"/>
-        public Instance? UnionAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity collisionfidelity, Enum.RenderFidelity renderFidelity)
+        public Instance? UnionAsync(IReadOnlyList<Instance> parts, Enum.CollisionFidelity? collisionfidelity = null, Enum.RenderFidelity? renderFidelity = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "UnionAsync", parts, collisionfidelity, renderFidelity);
 
         /// <summary>
         /// Deprecated: This event is deprecated in favor of BasePart.Touched.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
+        /// <param name="part">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LocalSimulationTouched"/>
-        public event Action<BasePart?>? LocalSimulationTouched
+        public event Action<BasePart>? LocalSimulationTouched
         {
             add { if (value is not null) AddEventHandler("LocalSimulationTouched", value); }
             remove { if (value is not null) RemoveEventHandler("LocalSimulationTouched", value); }
@@ -976,9 +976,9 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This event is deprecated in favor of BasePart.TouchEnded, which should be used instead.
         /// </summary>
-        /// <param name="otherPart">A <c>BasePart?</c> value.</param>
+        /// <param name="otherPart">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#StoppedTouching"/>
-        public event Action<BasePart?>? StoppedTouching
+        public event Action<BasePart>? StoppedTouching
         {
             add { if (value is not null) AddEventHandler("StoppedTouching", value); }
             remove { if (value is not null) RemoveEventHandler("StoppedTouching", value); }
@@ -987,9 +987,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a part stops touching another part as a result of physical movement.
         /// </summary>
-        /// <param name="otherPart">A <c>BasePart?</c> value.</param>
+        /// <param name="otherPart">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TouchEnded"/>
-        public event Action<BasePart?>? TouchEnded
+        public event Action<BasePart>? TouchEnded
         {
             add { if (value is not null) AddEventHandler("TouchEnded", value); }
             remove { if (value is not null) RemoveEventHandler("TouchEnded", value); }
@@ -998,9 +998,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a part touches another part as a result of physical movement.
         /// </summary>
-        /// <param name="otherPart">A <c>BasePart?</c> value.</param>
+        /// <param name="otherPart">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Touched"/>
-        public event Action<BasePart?>? Touched
+        public event Action<BasePart>? Touched
         {
             add { if (value is not null) AddEventHandler("Touched", value); }
             remove { if (value is not null) RemoveEventHandler("Touched", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="KeyframeSequence"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static KeyframeSequence? FromHandle(nuint handle)
+        public static new KeyframeSequence? FromHandle(nuint handle)
             => handle == 0 ? null : new KeyframeSequence(handle);
 
         /// <summary>
@@ -31,18 +31,18 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequence#AuthoredHipHeight"/>
         public float AuthoredHipHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AuthoredHipHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AuthoredHipHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AuthoredHipHeight", value);
         }
 
         /// <summary>
         /// Adds a Keyframe to the KeyframeSequence by parenting it to the KeyframeSequence.
         /// </summary>
-        /// <param name="keyframe">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="keyframe">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequence#AddKeyframe"/>
-        public object? AddKeyframe(Instance? keyframe)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddKeyframe", keyframe);
+        public object AddKeyframe(Instance keyframe)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddKeyframe", keyframe)!;
 
         /// <summary>
         /// Returns an array that contains all Keyframes contained in a KeyframeSequence.
@@ -50,16 +50,16 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequence#GetKeyframes"/>
         public IReadOnlyList<Instance> GetKeyframes()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframes");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframes")!;
 
         /// <summary>
         /// This method removes a Keyframe from the KeyframeSequence by setting its parent to nil.
         /// </summary>
-        /// <param name="keyframe">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="keyframe">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequence#RemoveKeyframe"/>
-        public object? RemoveKeyframe(Instance? keyframe)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveKeyframe", keyframe);
+        public object RemoveKeyframe(Instance keyframe)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveKeyframe", keyframe)!;
 
     }
 }

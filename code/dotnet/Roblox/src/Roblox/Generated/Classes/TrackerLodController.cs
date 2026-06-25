@@ -18,30 +18,30 @@ namespace Roblox
         /// Creates a <see cref="TrackerLodController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TrackerLodController? FromHandle(nuint handle)
+        public static new TrackerLodController? FromHandle(nuint handle)
             => handle == 0 ? null : new TrackerLodController(handle);
 
         public Enum.TrackerLodFlagMode AudioMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TrackerLodFlagMode>(this, "AudioMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TrackerLodFlagMode>(this, "AudioMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerLodFlagMode>(this, "AudioMode", value);
         }
 
         public Enum.TrackerExtrapolationFlagMode VideoExtrapolationMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TrackerExtrapolationFlagMode>(this, "VideoExtrapolationMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TrackerExtrapolationFlagMode>(this, "VideoExtrapolationMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerExtrapolationFlagMode>(this, "VideoExtrapolationMode", value);
         }
 
         public Enum.TrackerLodValueMode VideoLodMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TrackerLodValueMode>(this, "VideoLodMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TrackerLodValueMode>(this, "VideoLodMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerLodValueMode>(this, "VideoLodMode", value);
         }
 
         public Enum.TrackerLodFlagMode VideoMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TrackerLodFlagMode>(this, "VideoMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TrackerLodFlagMode>(this, "VideoMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerLodFlagMode>(this, "VideoMode", value);
         }
 
@@ -50,28 +50,28 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetExtrapolation()
-            => global::Roblox.Reflection.Invoke<int>(this, "getExtrapolation");
+            => global::Roblox.Reflection.Invoke<int>(this, "getExtrapolation")!;
 
         /// <summary>
         /// <c>TrackerLodController.getVideoLod</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetVideoLod()
-            => global::Roblox.Reflection.Invoke<int>(this, "getVideoLod");
+            => global::Roblox.Reflection.Invoke<int>(this, "getVideoLod")!;
 
         /// <summary>
         /// <c>TrackerLodController.isAudioEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAudioEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "isAudioEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "isAudioEnabled")!;
 
         /// <summary>
         /// <c>TrackerLodController.isVideoEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsVideoEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "isVideoEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "isVideoEnabled")!;
 
         public event Action? UpdateState
         {

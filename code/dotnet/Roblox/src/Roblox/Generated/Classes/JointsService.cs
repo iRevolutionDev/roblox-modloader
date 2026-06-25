@@ -22,50 +22,50 @@ namespace Roblox
         /// Creates a <see cref="JointsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static JointsService? FromHandle(nuint handle)
+        public static new JointsService? FromHandle(nuint handle)
             => handle == 0 ? null : new JointsService(handle);
 
         /// <summary>
         /// Will remove any 'create joints' that were made visible via the JointsService:ShowPermissibleJoints() method.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointsService#ClearJoinAfterMoveJoints"/>
-        public object? ClearJoinAfterMoveJoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearJoinAfterMoveJoints");
+        public object ClearJoinAfterMoveJoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearJoinAfterMoveJoints")!;
 
         /// <summary>
         /// Updates all visible joints for the parts assigned by the JointsService:SetJoinAfterMoveTarget() and JointsService:SetJoinAfterMoveInstance() methods.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointsService#CreateJoinAfterMoveJoints"/>
-        public object? CreateJoinAfterMoveJoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateJoinAfterMoveJoints");
+        public object CreateJoinAfterMoveJoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateJoinAfterMoveJoints")!;
 
         /// <summary>
         /// Sets the PVInstance that will be connected with the target PVInstance specified by JointsService:SetJoinAfterMoveTarget().
         /// </summary>
-        /// <param name="joinInstance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="joinInstance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointsService#SetJoinAfterMoveInstance"/>
-        public object? SetJoinAfterMoveInstance(Instance? joinInstance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetJoinAfterMoveInstance", joinInstance);
+        public object SetJoinAfterMoveInstance(Instance joinInstance)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetJoinAfterMoveInstance", joinInstance)!;
 
         /// <summary>
         /// Sets the PVInstance that will be connected with the PVInstance specified by JointsService:SetJoinAfterMoveInstance().
         /// </summary>
-        /// <param name="joinTarget">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="joinTarget">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointsService#SetJoinAfterMoveTarget"/>
-        public object? SetJoinAfterMoveTarget(Instance? joinTarget)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetJoinAfterMoveTarget", joinTarget);
+        public object SetJoinAfterMoveTarget(Instance joinTarget)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetJoinAfterMoveTarget", joinTarget)!;
 
         /// <summary>
         /// When used it will visibly display a potential surface connection between the two BasePart, which were set with JointsService:SetJoinAfterMoveTarget() and JointsService:SetJoinAfterMoveInstance().
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointsService#ShowPermissibleJoints"/>
-        public object? ShowPermissibleJoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowPermissibleJoints");
+        public object ShowPermissibleJoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowPermissibleJoints")!;
 
     }
 }

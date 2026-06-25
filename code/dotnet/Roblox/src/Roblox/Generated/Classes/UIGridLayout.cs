@@ -22,47 +22,47 @@ namespace Roblox
         /// Creates a <see cref="UIGridLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIGridLayout? FromHandle(nuint handle)
+        public static new UIGridLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UIGridLayout(handle);
 
         /// <summary>
         /// The number of elements in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#AbsoluteCellCount"/>
-        public global::Roblox.Vector2? AbsoluteCellCount
+        public global::Roblox.Vector2 AbsoluteCellCount
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellCount");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellCount", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteCellCount")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteCellCount", value);
         }
 
         /// <summary>
         /// The absolute size of each element in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#AbsoluteCellSize"/>
-        public global::Roblox.Vector2? AbsoluteCellSize
+        public global::Roblox.Vector2 AbsoluteCellSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteCellSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteCellSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteCellSize", value);
         }
 
         /// <summary>
         /// Determines how much space there is between elements in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#CellPadding"/>
-        public global::Roblox.UDim2? CellPadding
+        public global::Roblox.UDim2 CellPadding
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CellPadding");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CellPadding", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "CellPadding")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "CellPadding", value);
         }
 
         /// <summary>
         /// Determines the size of each element in the grid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#CellSize"/>
-        public global::Roblox.UDim2? CellSize
+        public global::Roblox.UDim2 CellSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CellSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CellSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "CellSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "CellSize", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#FillDirectionMaxCells"/>
         public int FillDirectionMaxCells
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "FillDirectionMaxCells");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "FillDirectionMaxCells")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "FillDirectionMaxCells", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridLayout#StartCorner"/>
         public Enum.StartCorner StartCorner
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StartCorner>(this, "StartCorner");
+            get => global::Roblox.Reflection.GetProperty<Enum.StartCorner>(this, "StartCorner")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StartCorner>(this, "StartCorner", value);
         }
 

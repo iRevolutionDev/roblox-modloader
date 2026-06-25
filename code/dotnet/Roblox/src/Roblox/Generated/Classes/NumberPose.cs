@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="NumberPose"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NumberPose? FromHandle(nuint handle)
+        public static new NumberPose? FromHandle(nuint handle)
             => handle == 0 ? null : new NumberPose(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NumberPose#Value"/>
         public double Value
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "Value");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "Value")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "Value", value);
         }
 

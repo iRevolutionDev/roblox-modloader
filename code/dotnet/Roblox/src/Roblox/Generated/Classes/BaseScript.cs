@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BaseScript"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BaseScript? FromHandle(nuint handle)
+        public static new BaseScript? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseScript(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseScript#Disabled"/>
         public bool Disabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Disabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Disabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Disabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseScript#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Deprecated: This property is now replaced by packages which has greater functionality.The content ID of an uploaded script. When set binds the uploaded code to the script's Script.Source.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseScript#LinkedSource"/>
-        public object? LinkedSource
+        public object LinkedSource
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "LinkedSource");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "LinkedSource", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "LinkedSource")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "LinkedSource", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseScript#RunContext"/>
         public Enum.RunContext RunContext
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RunContext>(this, "RunContext");
+            get => global::Roblox.Reflection.GetProperty<Enum.RunContext>(this, "RunContext")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RunContext>(this, "RunContext", value);
         }
 

@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="CorePackages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CorePackages? FromHandle(nuint handle)
+        public static new CorePackages? FromHandle(nuint handle)
             => handle == 0 ? null : new CorePackages(handle);
 
     }

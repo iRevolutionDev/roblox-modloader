@@ -18,98 +18,98 @@ namespace Roblox
         /// Creates a <see cref="VoiceChatInternal"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VoiceChatInternal? FromHandle(nuint handle)
+        public static new VoiceChatInternal? FromHandle(nuint handle)
             => handle == 0 ? null : new VoiceChatInternal(handle);
 
         public Enum.VoiceChatState VoiceChatState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VoiceChatState>(this, "VoiceChatState");
+            get => global::Roblox.Reflection.GetProperty<Enum.VoiceChatState>(this, "VoiceChatState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VoiceChatState>(this, "VoiceChatState", value);
         }
 
         /// <summary>
         /// <c>VoiceChatInternal.GetAndClearCallFailureMessage</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetAndClearCallFailureMessage()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetAndClearCallFailureMessage");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetAndClearCallFailureMessage()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetAndClearCallFailureMessage")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetAudioProcessingSettings</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAudioProcessingSettings()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAudioProcessingSettings");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAudioProcessingSettings()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAudioProcessingSettings")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetChannelId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetChannelId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetChannelId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetChannelId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetChannelId")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetGroupId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetGroupId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetGroupId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetGroupId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetGroupId")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetMicDevices</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMicDevices()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMicDevices");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMicDevices()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMicDevices")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetParticipants</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetParticipants()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetParticipants");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetParticipants()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetParticipants")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetSessionId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetSessionId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetSessionId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetSessionId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetSessionId")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetVoiceChatApiVersion</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetVoiceChatApiVersion()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetVoiceChatApiVersion");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetVoiceChatApiVersion")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetVoiceChatAvailable</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetVoiceChatAvailable()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetVoiceChatAvailable");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetVoiceChatAvailable")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.GetVoiceExperienceId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetVoiceExperienceId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetVoiceExperienceId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetVoiceExperienceId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetVoiceExperienceId")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.IsContextVoiceEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsContextVoiceEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsContextVoiceEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsContextVoiceEnabled")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.IsPublishPaused</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsPublishPaused()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPublishPaused");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPublishPaused")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.IsSubscribePaused</c>
@@ -117,47 +117,47 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsSubscribePaused(long userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsSubscribePaused", userId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsSubscribePaused", userId)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.JoinByGroupId</c>
         /// </summary>
-        /// <param name="groupId">A <c>string?</c> value.</param>
-        /// <param name="isMicMuted">A <c>bool</c> value.</param>
+        /// <param name="groupId">A <c>string</c> value.</param>
+        /// <param name="isMicMuted">A <c>bool?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool JoinByGroupId(string? groupId, bool isMicMuted)
-            => global::Roblox.Reflection.Invoke<bool>(this, "JoinByGroupId", groupId, isMicMuted);
+        public bool JoinByGroupId(string groupId, bool? isMicMuted = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "JoinByGroupId", groupId, isMicMuted)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.JoinByGroupIdToken</c>
         /// </summary>
-        /// <param name="groupId">A <c>string?</c> value.</param>
+        /// <param name="groupId">A <c>string</c> value.</param>
         /// <param name="isMicMuted">A <c>bool</c> value.</param>
-        /// <param name="isRetry">A <c>bool</c> value.</param>
+        /// <param name="isRetry">A <c>bool?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool JoinByGroupIdToken(string? groupId, bool isMicMuted, bool isRetry)
-            => global::Roblox.Reflection.Invoke<bool>(this, "JoinByGroupIdToken", groupId, isMicMuted, isRetry);
+        public bool JoinByGroupIdToken(string groupId, bool isMicMuted, bool? isRetry = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "JoinByGroupIdToken", groupId, isMicMuted, isRetry)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.Leave</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Leave()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Leave");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Leave()
+            => global::Roblox.Reflection.Invoke<object>(this, "Leave")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.LogPublisherWebRTCStats</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool LogPublisherWebRTCStats()
-            => global::Roblox.Reflection.Invoke<bool>(this, "LogPublisherWebRTCStats");
+            => global::Roblox.Reflection.Invoke<bool>(this, "LogPublisherWebRTCStats")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.LogSubscriptionWebRTCStats</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool LogSubscriptionWebRTCStats()
-            => global::Roblox.Reflection.Invoke<bool>(this, "LogSubscriptionWebRTCStats");
+            => global::Roblox.Reflection.Invoke<bool>(this, "LogSubscriptionWebRTCStats")!;
 
         /// <summary>
         /// <c>VoiceChatInternal.PublishPause</c>
@@ -165,16 +165,16 @@ namespace Roblox
         /// <param name="paused">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool PublishPause(bool paused)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PublishPause", paused);
+            => global::Roblox.Reflection.Invoke<bool>(this, "PublishPause", paused)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.SetMicDevice</c>
         /// </summary>
-        /// <param name="micDeviceName">A <c>string?</c> value.</param>
-        /// <param name="micDeviceGuid">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMicDevice(string? micDeviceName, string? micDeviceGuid)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMicDevice", micDeviceName, micDeviceGuid);
+        /// <param name="micDeviceName">A <c>string</c> value.</param>
+        /// <param name="micDeviceGuid">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetMicDevice(string micDeviceName, string micDeviceGuid)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMicDevice", micDeviceName, micDeviceGuid)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.SubscribeBlock</c>
@@ -182,7 +182,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SubscribeBlock(long userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribeBlock", userId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribeBlock", userId)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.SubscribePause</c>
@@ -191,7 +191,7 @@ namespace Roblox
         /// <param name="paused">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SubscribePause(long userId, bool paused)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribePause", userId, paused);
+            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribePause", userId, paused)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.SubscribePauseAll</c>
@@ -199,7 +199,7 @@ namespace Roblox
         /// <param name="paused">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SubscribePauseAll(bool paused)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribePauseAll", paused);
+            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribePauseAll", paused)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.SubscribeRetry</c>
@@ -207,7 +207,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SubscribeRetry(long userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribeRetry", userId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribeRetry", userId)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.SubscribeUnblock</c>
@@ -215,7 +215,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SubscribeUnblock(long userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribeUnblock", userId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "SubscribeUnblock", userId)!;
 
         /// <summary>
         /// <c>VoiceChatInternal.IsVoiceEnabledForUserIdAsync</c>
@@ -223,7 +223,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsVoiceEnabledForUserIdAsync(long userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsVoiceEnabledForUserIdAsync", userId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsVoiceEnabledForUserIdAsync", userId)!;
 
         public event Action? LocalPlayerModerated
         {
@@ -234,10 +234,10 @@ namespace Roblox
         /// <summary>
         /// <c>VoiceChatInternal.ParticipantsStateChanged</c>
         /// </summary>
-        /// <param name="participantsLeft">A <c>object?</c> value.</param>
-        /// <param name="participantsJoined">A <c>object?</c> value.</param>
-        /// <param name="updatedStates">A <c>object?</c> value.</param>
-        public event Action<object?, object?, object?>? ParticipantsStateChanged
+        /// <param name="participantsLeft">A <c>object</c> value.</param>
+        /// <param name="participantsJoined">A <c>object</c> value.</param>
+        /// <param name="updatedStates">A <c>object</c> value.</param>
+        public event Action<object, object, object>? ParticipantsStateChanged
         {
             add { if (value is not null) AddEventHandler("ParticipantsStateChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ParticipantsStateChanged", value); }
@@ -246,8 +246,8 @@ namespace Roblox
         /// <summary>
         /// <c>VoiceChatInternal.PlayerMicActivitySignalChange</c>
         /// </summary>
-        /// <param name="activityInfo">A <c>object?</c> value.</param>
-        public event Action<object?>? PlayerMicActivitySignalChange
+        /// <param name="activityInfo">A <c>object</c> value.</param>
+        public event Action<object>? PlayerMicActivitySignalChange
         {
             add { if (value is not null) AddEventHandler("PlayerMicActivitySignalChange", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerMicActivitySignalChange", value); }
@@ -257,7 +257,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.StateChanged</c>
         /// </summary>
         /// <param name="old">A <c>Enum.VoiceChatState</c> value.</param>
-        /// <param name="new">A <c>Enum.VoiceChatState</c> value.</param>
+        /// <param name="@new">A <c>Enum.VoiceChatState</c> value.</param>
         public event Action<Enum.VoiceChatState, Enum.VoiceChatState>? StateChanged
         {
             add { if (value is not null) AddEventHandler("StateChanged", value); }

@@ -22,12 +22,12 @@ namespace Roblox
         /// Creates a <see cref="StarterGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StarterGui? FromHandle(nuint handle)
+        public static new StarterGui? FromHandle(nuint handle)
             => handle == 0 ? null : new StarterGui(handle);
 
         public Enum.RolloutState ClipsDescendantsSupportsRotation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ClipsDescendantsSupportsRotation");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ClipsDescendantsSupportsRotation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "ClipsDescendantsSupportsRotation", value);
         }
 
@@ -37,7 +37,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#ProcessUserInput"/>
         public bool ProcessUserInput
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ProcessUserInput");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ProcessUserInput")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ProcessUserInput", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#ResetPlayerGuiOnSpawn"/>
         public bool ResetPlayerGuiOnSpawn
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetPlayerGuiOnSpawn");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetPlayerGuiOnSpawn")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ResetPlayerGuiOnSpawn", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#RtlTextSupport"/>
         public Enum.RtlTextSupport RtlTextSupport
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RtlTextSupport>(this, "RtlTextSupport");
+            get => global::Roblox.Reflection.GetProperty<Enum.RtlTextSupport>(this, "RtlTextSupport")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RtlTextSupport>(this, "RtlTextSupport", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#ScreenOrientation"/>
         public Enum.ScreenOrientation ScreenOrientation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScreenOrientation>(this, "ScreenOrientation");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScreenOrientation>(this, "ScreenOrientation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScreenOrientation>(this, "ScreenOrientation", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#ShowDevelopmentGui"/>
         public bool ShowDevelopmentGui
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowDevelopmentGui");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowDevelopmentGui")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowDevelopmentGui", value);
         }
 
@@ -99,7 +99,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#VirtualCursorMode"/>
         public Enum.VirtualCursorMode VirtualCursorMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VirtualCursorMode>(this, "VirtualCursorMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.VirtualCursorMode>(this, "VirtualCursorMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VirtualCursorMode>(this, "VirtualCursorMode", value);
         }
 
@@ -110,54 +110,54 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#GetCoreGuiEnabled"/>
         public bool GetCoreGuiEnabled(Enum.CoreGuiType coreGuiType)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetCoreGuiEnabled", coreGuiType);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetCoreGuiEnabled", coreGuiType)!;
 
         /// <summary>
         /// <c>StarterGui.RegisterGetCore</c>
         /// </summary>
-        /// <param name="parameterName">A <c>string?</c> value.</param>
-        /// <param name="getFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterGetCore(string? parameterName, object? getFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterGetCore", parameterName, getFunction);
+        /// <param name="parameterName">A <c>string</c> value.</param>
+        /// <param name="getFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterGetCore(string parameterName, object getFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterGetCore", parameterName, getFunction)!;
 
         /// <summary>
         /// <c>StarterGui.RegisterSetCore</c>
         /// </summary>
-        /// <param name="parameterName">A <c>string?</c> value.</param>
-        /// <param name="setFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterSetCore(string? parameterName, object? setFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterSetCore", parameterName, setFunction);
+        /// <param name="parameterName">A <c>string</c> value.</param>
+        /// <param name="setFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterSetCore(string parameterName, object setFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterSetCore", parameterName, setFunction)!;
 
         /// <summary>
         /// Allows you to perform certain interactions with Roblox's core scripts.
         /// </summary>
-        /// <param name="parameterName">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="parameterName">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#SetCore"/>
-        public object? SetCore(string? parameterName, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCore", parameterName, value);
+        public object SetCore(string parameterName, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCore", parameterName, value)!;
 
         /// <summary>
         /// Sets whether the CoreGui element associated with the given CoreGuiType is enabled or disabled.
         /// </summary>
         /// <param name="coreGuiType">A <c>Enum.CoreGuiType</c> value.</param>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#SetCoreGuiEnabled"/>
-        public object? SetCoreGuiEnabled(Enum.CoreGuiType coreGuiType, bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCoreGuiEnabled", coreGuiType, enabled);
+        public object SetCoreGuiEnabled(Enum.CoreGuiType coreGuiType, bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCoreGuiEnabled", coreGuiType, enabled)!;
 
         /// <summary>
         /// Returns a variable that has been specified by a Roblox core script.
         /// </summary>
-        /// <param name="parameterName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="parameterName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#GetCore"/>
-        public object? GetCore(string? parameterName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCore", parameterName);
+        public object GetCore(string parameterName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCore", parameterName)!;
 
         /// <summary>
         /// <c>StarterGui.CoreGuiChangedSignal</c>

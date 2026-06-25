@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StyleSheet"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StyleSheet? FromHandle(nuint handle)
+        public static new StyleSheet? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleSheet(handle);
 
         /// <summary>
@@ -31,16 +31,16 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleSheet#GetDerives"/>
         public IReadOnlyList<Instance> GetDerives()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDerives");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDerives")!;
 
         /// <summary>
         /// Sets the StyleSheet to derive StyleRules and token definitions from one or more other StyleSheets.
         /// </summary>
         /// <param name="derives">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleSheet#SetDerives"/>
-        public object? SetDerives(IReadOnlyList<Instance> derives)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDerives", derives);
+        public object SetDerives(IReadOnlyList<Instance> derives)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDerives", derives)!;
 
     }
 }

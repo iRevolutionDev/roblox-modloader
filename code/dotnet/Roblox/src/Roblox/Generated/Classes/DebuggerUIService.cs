@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="DebuggerUIService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerUIService? FromHandle(nuint handle)
+        public static new DebuggerUIService? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerUIService(handle);
 
         /// <summary>
         /// <c>DebuggerUIService.EditBreakpoint</c>
         /// </summary>
         /// <param name="metaBreakpointId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EditBreakpoint(int metaBreakpointId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EditBreakpoint", metaBreakpointId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EditBreakpoint(int metaBreakpointId)
+            => global::Roblox.Reflection.Invoke<object>(this, "EditBreakpoint", metaBreakpointId)!;
 
         /// <summary>
         /// <c>DebuggerUIService.EditWatch</c>
         /// </summary>
-        /// <param name="expression">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EditWatch(string? expression)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EditWatch", expression);
+        /// <param name="expression">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EditWatch(string expression)
+            => global::Roblox.Reflection.Invoke<object>(this, "EditWatch", expression)!;
 
         /// <summary>
         /// <c>DebuggerUIService.IsConnectionForPlayDataModel</c>
@@ -43,83 +43,83 @@ namespace Roblox
         /// <param name="debuggerConnectionId">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsConnectionForPlayDataModel(int debuggerConnectionId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsConnectionForPlayDataModel", debuggerConnectionId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsConnectionForPlayDataModel", debuggerConnectionId)!;
 
         /// <summary>
         /// <c>DebuggerUIService.OpenExceptionMessagePopup</c>
         /// </summary>
-        /// <param name="exceptionMessage">A <c>string?</c> value.</param>
+        /// <param name="exceptionMessage">A <c>string</c> value.</param>
         /// <param name="pausedLine">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenExceptionMessagePopup(string? exceptionMessage, int pausedLine)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenExceptionMessagePopup", exceptionMessage, pausedLine);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenExceptionMessagePopup(string exceptionMessage, int pausedLine)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenExceptionMessagePopup", exceptionMessage, pausedLine)!;
 
         /// <summary>
         /// <c>DebuggerUIService.OpenScriptAtLine</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="guid">A <c>string</c> value.</param>
         /// <param name="debuggerConnectionId">A <c>int</c> value.</param>
         /// <param name="line">A <c>int</c> value.</param>
         /// <param name="showErrorOnFail">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenScriptAtLine(string? guid, int debuggerConnectionId, int line, bool showErrorOnFail)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenScriptAtLine", guid, debuggerConnectionId, line, showErrorOnFail);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenScriptAtLine(string guid, int debuggerConnectionId, int line, bool showErrorOnFail)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenScriptAtLine", guid, debuggerConnectionId, line, showErrorOnFail)!;
 
         /// <summary>
         /// <c>DebuggerUIService.Pause</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// <c>DebuggerUIService.RemoveScriptLineMarkers</c>
         /// </summary>
         /// <param name="debuggerConnectionId">A <c>int</c> value.</param>
         /// <param name="allMarkers">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveScriptLineMarkers(int debuggerConnectionId, bool allMarkers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveScriptLineMarkers", debuggerConnectionId, allMarkers);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveScriptLineMarkers(int debuggerConnectionId, bool allMarkers)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveScriptLineMarkers", debuggerConnectionId, allMarkers)!;
 
         /// <summary>
         /// <c>DebuggerUIService.Resume</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Resume()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Resume");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Resume()
+            => global::Roblox.Reflection.Invoke<object>(this, "Resume")!;
 
         /// <summary>
         /// <c>DebuggerUIService.SetCurrentThreadId</c>
         /// </summary>
         /// <param name="debuggerThreadId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetCurrentThreadId(int debuggerThreadId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCurrentThreadId", debuggerThreadId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetCurrentThreadId(int debuggerThreadId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCurrentThreadId", debuggerThreadId)!;
 
         /// <summary>
         /// <c>DebuggerUIService.SetScriptLineMarker</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="guid">A <c>string</c> value.</param>
         /// <param name="debuggerConnectionId">A <c>int</c> value.</param>
         /// <param name="line">A <c>int</c> value.</param>
         /// <param name="lineMarkerType">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetScriptLineMarker(string? guid, int debuggerConnectionId, int line, bool lineMarkerType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetScriptLineMarker", guid, debuggerConnectionId, line, lineMarkerType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetScriptLineMarker(string guid, int debuggerConnectionId, int line, bool lineMarkerType)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetScriptLineMarker", guid, debuggerConnectionId, line, lineMarkerType)!;
 
         /// <summary>
         /// <c>DebuggerUIService.SetWatchExpressions</c>
         /// </summary>
-        /// <param name="expressions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetWatchExpressions(object? expressions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetWatchExpressions", expressions);
+        /// <param name="expressions">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetWatchExpressions(object expressions)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetWatchExpressions", expressions)!;
 
         /// <summary>
         /// <c>DebuggerUIService.ExpressionAdded</c>
         /// </summary>
-        /// <param name="expression">A <c>string?</c> value.</param>
-        public event Action<string?>? ExpressionAdded
+        /// <param name="expression">A <c>string</c> value.</param>
+        public event Action<string>? ExpressionAdded
         {
             add { if (value is not null) AddEventHandler("ExpressionAdded", value); }
             remove { if (value is not null) RemoveEventHandler("ExpressionAdded", value); }

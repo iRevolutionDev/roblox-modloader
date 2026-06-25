@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="ScriptCloneWatcher"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptCloneWatcher? FromHandle(nuint handle)
+        public static new ScriptCloneWatcher? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptCloneWatcher(handle);
 
     }

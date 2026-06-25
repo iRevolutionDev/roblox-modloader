@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("OutputLink")]
-    public class OutputLink : Object
+    public class OutputLink : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox OutputLink.</param>
@@ -25,11 +25,11 @@ namespace Roblox
         /// <c>OutputLink.Print</c>
         /// </summary>
         /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="urlText">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Print(Enum.MessageType messageType, string? message, string? urlText)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Print", messageType, message, urlText);
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="urlText">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Print(Enum.MessageType messageType, string message, string urlText)
+            => global::Roblox.Reflection.Invoke<object>(this, "Print", messageType, message, urlText)!;
 
     }
 }

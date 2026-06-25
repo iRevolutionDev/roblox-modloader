@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Workspace"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Workspace? FromHandle(nuint handle)
+        public static new Workspace? FromHandle(nuint handle)
             => handle == 0 ? null : new Workspace(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#AirDensity"/>
         public float AirDensity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AirDensity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AirDensity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AirDensity", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#AirTurbulenceIntensity"/>
         public float AirTurbulenceIntensity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AirTurbulenceIntensity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AirTurbulenceIntensity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AirTurbulenceIntensity", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#AllowThirdPartySales"/>
         public bool AllowThirdPartySales
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowThirdPartySales");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowThirdPartySales")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowThirdPartySales", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#AuthorityMode"/>
         public Enum.AuthorityMode AuthorityMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AuthorityMode>(this, "AuthorityMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AuthorityMode>(this, "AuthorityMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AuthorityMode>(this, "AuthorityMode", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#AvatarUnificationMode"/>
         public Enum.AvatarUnificationMode AvatarUnificationMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarUnificationMode>(this, "AvatarUnificationMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarUnificationMode>(this, "AvatarUnificationMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarUnificationMode>(this, "AvatarUnificationMode", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ClientAnimatorThrottling"/>
         public Enum.ClientAnimatorThrottlingMode ClientAnimatorThrottling
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ClientAnimatorThrottlingMode>(this, "ClientAnimatorThrottling");
+            get => global::Roblox.Reflection.GetProperty<Enum.ClientAnimatorThrottlingMode>(this, "ClientAnimatorThrottling")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ClientAnimatorThrottlingMode>(this, "ClientAnimatorThrottling", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#DistributedGameTime"/>
         public double DistributedGameTime
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "DistributedGameTime");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "DistributedGameTime")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "DistributedGameTime", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#EnableSLIMAvatars"/>
         public Enum.RolloutState EnableSLIMAvatars
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "EnableSLIMAvatars");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "EnableSLIMAvatars")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "EnableSLIMAvatars", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#FallHeightEnabled"/>
         public bool FallHeightEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FallHeightEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FallHeightEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FallHeightEnabled", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#FallenPartsDestroyHeight"/>
         public float FallenPartsDestroyHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FallenPartsDestroyHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FallenPartsDestroyHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FallenPartsDestroyHeight", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#FilteringEnabled"/>
         public bool FilteringEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FilteringEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FilteringEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FilteringEnabled", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#FluidForces"/>
         public Enum.FluidForces FluidForces
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FluidForces>(this, "FluidForces");
+            get => global::Roblox.Reflection.GetProperty<Enum.FluidForces>(this, "FluidForces")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FluidForces>(this, "FluidForces", value);
         }
 
@@ -159,10 +159,10 @@ namespace Roblox
         /// Specifies the global wind vector for animated terrain grass, dynamic clouds, and particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#GlobalWind"/>
-        public global::Roblox.Vector3? GlobalWind
+        public global::Roblox.Vector3 GlobalWind
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GlobalWind");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GlobalWind", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "GlobalWind")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "GlobalWind", value);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#Gravity"/>
         public float Gravity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Gravity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Gravity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Gravity", value);
         }
 
@@ -181,19 +181,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#IKControlConstraintSupport"/>
         public Enum.IKControlConstraintSupport IKControlConstraintSupport
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.IKControlConstraintSupport>(this, "IKControlConstraintSupport");
+            get => global::Roblox.Reflection.GetProperty<Enum.IKControlConstraintSupport>(this, "IKControlConstraintSupport")!;
             set => global::Roblox.Reflection.SetProperty<Enum.IKControlConstraintSupport>(this, "IKControlConstraintSupport", value);
         }
 
         public Enum.RolloutState ImprovedAnimationConstraint
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ImprovedAnimationConstraint");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ImprovedAnimationConstraint")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "ImprovedAnimationConstraint", value);
         }
 
         public Enum.RolloutState ImprovedPhysicsReplication
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ImprovedPhysicsReplication");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ImprovedPhysicsReplication")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "ImprovedPhysicsReplication", value);
         }
 
@@ -201,10 +201,10 @@ namespace Roblox
         /// The world position at which new objects are placed when inserted from the toolbox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#InsertPoint"/>
-        public global::Roblox.Vector3? InsertPoint
+        public global::Roblox.Vector3 InsertPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "InsertPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "InsertPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "InsertPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "InsertPoint", value);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#InterpolationThrottling"/>
         public Enum.InterpolationThrottlingMode InterpolationThrottling
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InterpolationThrottlingMode>(this, "InterpolationThrottling");
+            get => global::Roblox.Reflection.GetProperty<Enum.InterpolationThrottlingMode>(this, "InterpolationThrottling")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InterpolationThrottlingMode>(this, "InterpolationThrottling", value);
         }
 
@@ -223,7 +223,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#LayeredClothingCacheOptimizations"/>
         public Enum.RolloutState LayeredClothingCacheOptimizations
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "LayeredClothingCacheOptimizations");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "LayeredClothingCacheOptimizations")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "LayeredClothingCacheOptimizations", value);
         }
 
@@ -233,7 +233,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#LuauTypeCheckMode"/>
         public Enum.LuauTypeCheckMode LuauTypeCheckMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.LuauTypeCheckMode>(this, "LuauTypeCheckMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.LuauTypeCheckMode>(this, "LuauTypeCheckMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.LuauTypeCheckMode>(this, "LuauTypeCheckMode", value);
         }
 
@@ -243,7 +243,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#MeshPartHeadsAndAccessories"/>
         public Enum.MeshPartHeadsAndAccessories MeshPartHeadsAndAccessories
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.MeshPartHeadsAndAccessories>(this, "MeshPartHeadsAndAccessories");
+            get => global::Roblox.Reflection.GetProperty<Enum.MeshPartHeadsAndAccessories>(this, "MeshPartHeadsAndAccessories")!;
             set => global::Roblox.Reflection.SetProperty<Enum.MeshPartHeadsAndAccessories>(this, "MeshPartHeadsAndAccessories", value);
         }
 
@@ -253,7 +253,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#MeshStreamingAndImprovedLods"/>
         public Enum.RolloutState MeshStreamingAndImprovedLods
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "MeshStreamingAndImprovedLods");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "MeshStreamingAndImprovedLods")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "MeshStreamingAndImprovedLods", value);
         }
 
@@ -263,7 +263,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ModelStreamingBehavior"/>
         public Enum.ModelStreamingBehavior ModelStreamingBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ModelStreamingBehavior>(this, "ModelStreamingBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.ModelStreamingBehavior>(this, "ModelStreamingBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ModelStreamingBehavior>(this, "ModelStreamingBehavior", value);
         }
 
@@ -273,7 +273,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#NextGenerationReplication"/>
         public Enum.RolloutState NextGenerationReplication
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "NextGenerationReplication");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "NextGenerationReplication")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "NextGenerationReplication", value);
         }
 
@@ -283,7 +283,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#NextGenerationReplicationAlias"/>
         public Enum.RolloutState NextGenerationReplicationAlias
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "NextGenerationReplicationAlias");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "NextGenerationReplicationAlias")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "NextGenerationReplicationAlias", value);
         }
 
@@ -293,7 +293,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PathfindingUseImprovedSearch"/>
         public Enum.PathfindingUseImprovedSearch PathfindingUseImprovedSearch
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PathfindingUseImprovedSearch>(this, "PathfindingUseImprovedSearch");
+            get => global::Roblox.Reflection.GetProperty<Enum.PathfindingUseImprovedSearch>(this, "PathfindingUseImprovedSearch")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PathfindingUseImprovedSearch>(this, "PathfindingUseImprovedSearch", value);
         }
 
@@ -303,7 +303,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PhysicsImprovedSleep"/>
         public Enum.RolloutState PhysicsImprovedSleep
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "PhysicsImprovedSleep");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "PhysicsImprovedSleep")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "PhysicsImprovedSleep", value);
         }
 
@@ -313,7 +313,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PhysicsSteppingMethod"/>
         public Enum.PhysicsSteppingMethod PhysicsSteppingMethod
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PhysicsSteppingMethod>(this, "PhysicsSteppingMethod");
+            get => global::Roblox.Reflection.GetProperty<Enum.PhysicsSteppingMethod>(this, "PhysicsSteppingMethod")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PhysicsSteppingMethod>(this, "PhysicsSteppingMethod", value);
         }
 
@@ -323,7 +323,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PlayerCharacterDestroyBehavior"/>
         public Enum.PlayerCharacterDestroyBehavior PlayerCharacterDestroyBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PlayerCharacterDestroyBehavior>(this, "PlayerCharacterDestroyBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.PlayerCharacterDestroyBehavior>(this, "PlayerCharacterDestroyBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PlayerCharacterDestroyBehavior>(this, "PlayerCharacterDestroyBehavior", value);
         }
 
@@ -333,7 +333,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PlayerScriptsUseInputActionSystem"/>
         public Enum.RolloutState PlayerScriptsUseInputActionSystem
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "PlayerScriptsUseInputActionSystem");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "PlayerScriptsUseInputActionSystem")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "PlayerScriptsUseInputActionSystem", value);
         }
 
@@ -343,7 +343,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PlayerScriptsUseInputActionSystemAlias"/>
         public Enum.RolloutState PlayerScriptsUseInputActionSystemAlias
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "PlayerScriptsUseInputActionSystemAlias");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "PlayerScriptsUseInputActionSystemAlias")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "PlayerScriptsUseInputActionSystemAlias", value);
         }
 
@@ -353,7 +353,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PrimalPhysicsSolver"/>
         public Enum.PrimalPhysicsSolver PrimalPhysicsSolver
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PrimalPhysicsSolver>(this, "PrimalPhysicsSolver");
+            get => global::Roblox.Reflection.GetProperty<Enum.PrimalPhysicsSolver>(this, "PrimalPhysicsSolver")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PrimalPhysicsSolver>(this, "PrimalPhysicsSolver", value);
         }
 
@@ -363,7 +363,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#RejectCharacterDeletions"/>
         public Enum.RejectCharacterDeletions RejectCharacterDeletions
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RejectCharacterDeletions>(this, "RejectCharacterDeletions");
+            get => global::Roblox.Reflection.GetProperty<Enum.RejectCharacterDeletions>(this, "RejectCharacterDeletions")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RejectCharacterDeletions>(this, "RejectCharacterDeletions", value);
         }
 
@@ -373,7 +373,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#RenderingCacheOptimizations"/>
         public Enum.RenderingCacheOptimizationMode RenderingCacheOptimizations
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RenderingCacheOptimizationMode>(this, "RenderingCacheOptimizations");
+            get => global::Roblox.Reflection.GetProperty<Enum.RenderingCacheOptimizationMode>(this, "RenderingCacheOptimizations")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RenderingCacheOptimizationMode>(this, "RenderingCacheOptimizations", value);
         }
 
@@ -383,7 +383,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ReplicateInstanceDestroySetting"/>
         public Enum.ReplicateInstanceDestroySetting ReplicateInstanceDestroySetting
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ReplicateInstanceDestroySetting>(this, "ReplicateInstanceDestroySetting");
+            get => global::Roblox.Reflection.GetProperty<Enum.ReplicateInstanceDestroySetting>(this, "ReplicateInstanceDestroySetting")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ReplicateInstanceDestroySetting>(this, "ReplicateInstanceDestroySetting", value);
         }
 
@@ -393,7 +393,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#Retargeting"/>
         public Enum.AnimatorRetargetingMode Retargeting
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnimatorRetargetingMode>(this, "Retargeting");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnimatorRetargetingMode>(this, "Retargeting")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnimatorRetargetingMode>(this, "Retargeting", value);
         }
 
@@ -403,7 +403,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#SandboxedInstanceMode"/>
         public Enum.SandboxedInstanceMode SandboxedInstanceMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SandboxedInstanceMode>(this, "SandboxedInstanceMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.SandboxedInstanceMode>(this, "SandboxedInstanceMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SandboxedInstanceMode>(this, "SandboxedInstanceMode", value);
         }
 
@@ -413,7 +413,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#SignalBehavior"/>
         public Enum.SignalBehavior SignalBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SignalBehavior>(this, "SignalBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.SignalBehavior>(this, "SignalBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SignalBehavior>(this, "SignalBehavior", value);
         }
 
@@ -423,7 +423,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#SignalBehaviorAlias"/>
         public Enum.SignalBehavior SignalBehaviorAlias
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SignalBehavior>(this, "SignalBehaviorAlias");
+            get => global::Roblox.Reflection.GetProperty<Enum.SignalBehavior>(this, "SignalBehaviorAlias")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SignalBehavior>(this, "SignalBehaviorAlias", value);
         }
 
@@ -433,7 +433,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamOutBehavior"/>
         public Enum.StreamOutBehavior StreamOutBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StreamOutBehavior>(this, "StreamOutBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.StreamOutBehavior>(this, "StreamOutBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StreamOutBehavior>(this, "StreamOutBehavior", value);
         }
 
@@ -443,7 +443,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamingEnabled"/>
         public bool StreamingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "StreamingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "StreamingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "StreamingEnabled", value);
         }
 
@@ -453,7 +453,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamingEnabledAlias"/>
         public bool StreamingEnabledAlias
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "StreamingEnabledAlias");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "StreamingEnabledAlias")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "StreamingEnabledAlias", value);
         }
 
@@ -463,7 +463,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamingIntegrityMode"/>
         public Enum.StreamingIntegrityMode StreamingIntegrityMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StreamingIntegrityMode>(this, "StreamingIntegrityMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.StreamingIntegrityMode>(this, "StreamingIntegrityMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StreamingIntegrityMode>(this, "StreamingIntegrityMode", value);
         }
 
@@ -473,7 +473,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamingMinRadius"/>
         public int StreamingMinRadius
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "StreamingMinRadius");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "StreamingMinRadius")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "StreamingMinRadius", value);
         }
 
@@ -483,7 +483,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#StreamingTargetRadius"/>
         public int StreamingTargetRadius
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "StreamingTargetRadius");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "StreamingTargetRadius")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "StreamingTargetRadius", value);
         }
 
@@ -499,7 +499,7 @@ namespace Roblox
 
         public Enum.RolloutState TouchEventsUseCollisionGroups
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "TouchEventsUseCollisionGroups");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "TouchEventsUseCollisionGroups")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "TouchEventsUseCollisionGroups", value);
         }
 
@@ -509,7 +509,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#TouchesUseCollisionGroups"/>
         public bool TouchesUseCollisionGroups
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchesUseCollisionGroups");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchesUseCollisionGroups")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TouchesUseCollisionGroups", value);
         }
 
@@ -519,7 +519,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#UseFixedSimulation"/>
         public Enum.RolloutState UseFixedSimulation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "UseFixedSimulation");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "UseFixedSimulation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "UseFixedSimulation", value);
         }
 
@@ -529,7 +529,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#UseFixedSimulationAlias"/>
         public Enum.RolloutState UseFixedSimulationAlias
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "UseFixedSimulationAlias");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "UseFixedSimulationAlias")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "UseFixedSimulationAlias", value);
         }
 
@@ -539,7 +539,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#UseNewLuauTypeSolver"/>
         public Enum.RolloutState UseNewLuauTypeSolver
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "UseNewLuauTypeSolver");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "UseNewLuauTypeSolver")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "UseNewLuauTypeSolver", value);
         }
 
@@ -549,7 +549,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ValidateEnabledProximityPrompt"/>
         public Enum.RolloutState ValidateEnabledProximityPrompt
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ValidateEnabledProximityPrompt");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "ValidateEnabledProximityPrompt")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "ValidateEnabledProximityPrompt", value);
         }
 
@@ -558,16 +558,16 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool ApplyRecommendedStreamingSettings()
-            => global::Roblox.Reflection.Invoke<bool>(this, "ApplyRecommendedStreamingSettings");
+            => global::Roblox.Reflection.Invoke<bool>(this, "ApplyRecommendedStreamingSettings")!;
 
         /// <summary>
         /// Deprecated: Goes through all BaseParts given, breaking any joints connected to these parts.
         /// </summary>
         /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#BreakJoints"/>
-        public object? BreakJoints(IReadOnlyList<Instance> objects)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BreakJoints", objects);
+        public object BreakJoints(IReadOnlyList<Instance> objects)
+            => global::Roblox.Reflection.Invoke<object>(this, "BreakJoints", objects)!;
 
         /// <summary>
         /// <c>Workspace.CalculateJumpDistance</c>
@@ -577,7 +577,7 @@ namespace Roblox
         /// <param name="walkSpeed">A <c>float</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         public float CalculateJumpDistance(float gravity, float jumpPower, float walkSpeed)
-            => global::Roblox.Reflection.Invoke<float>(this, "CalculateJumpDistance", gravity, jumpPower, walkSpeed);
+            => global::Roblox.Reflection.Invoke<float>(this, "CalculateJumpDistance", gravity, jumpPower, walkSpeed)!;
 
         /// <summary>
         /// <c>Workspace.CalculateJumpHeight</c>
@@ -586,7 +586,7 @@ namespace Roblox
         /// <param name="jumpPower">A <c>float</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         public float CalculateJumpHeight(float gravity, float jumpPower)
-            => global::Roblox.Reflection.Invoke<float>(this, "CalculateJumpHeight", gravity, jumpPower);
+            => global::Roblox.Reflection.Invoke<float>(this, "CalculateJumpHeight", gravity, jumpPower)!;
 
         /// <summary>
         /// <c>Workspace.CalculateJumpPower</c>
@@ -595,7 +595,7 @@ namespace Roblox
         /// <param name="jumpHeight">A <c>float</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         public float CalculateJumpPower(float gravity, float jumpHeight)
-            => global::Roblox.Reflection.Invoke<float>(this, "CalculateJumpPower", gravity, jumpHeight);
+            => global::Roblox.Reflection.Invoke<float>(this, "CalculateJumpPower", gravity, jumpHeight)!;
 
         /// <summary>
         /// Returns true if the experimental physics solver is enabled.
@@ -603,7 +603,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ExperimentalSolverIsEnabled"/>
         public bool ExperimentalSolverIsEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "ExperimentalSolverIsEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "ExperimentalSolverIsEnabled")!;
 
         /// <summary>
         /// Returns the number of BaseParts that are deemed physically active, due to being recently under the influence of physics.
@@ -611,7 +611,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#GetNumAwakeParts"/>
         public int GetNumAwakeParts()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetNumAwakeParts");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetNumAwakeParts")!;
 
         /// <summary>
         /// Returns an integer, between 0 and 100, representing the percentage of real time that physics simulation is currently being throttled to.
@@ -619,7 +619,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#GetPhysicsThrottling"/>
         public int GetPhysicsThrottling()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetPhysicsThrottling");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetPhysicsThrottling")!;
 
         /// <summary>
         /// Returns the number of frames per second that physics is currently being simulated at.
@@ -627,7 +627,7 @@ namespace Roblox
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#GetRealPhysicsFPS"/>
         public double GetRealPhysicsFPS()
-            => global::Roblox.Reflection.Invoke<double>(this, "GetRealPhysicsFPS");
+            => global::Roblox.Reflection.Invoke<double>(this, "GetRealPhysicsFPS")!;
 
         /// <summary>
         /// Returns the server's Unix time in seconds.
@@ -635,26 +635,26 @@ namespace Roblox
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#GetServerTimeNow"/>
         public double GetServerTimeNow()
-            => global::Roblox.Reflection.Invoke<double>(this, "GetServerTimeNow");
+            => global::Roblox.Reflection.Invoke<double>(this, "GetServerTimeNow")!;
 
         /// <summary>
         /// Creates joints between the specified Parts and any touching parts depending on the parts' surfaces and the specified joint creation mode.
         /// </summary>
         /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="jointType">A <c>Enum.JointCreationMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#JoinToOutsiders"/>
-        public object? JoinToOutsiders(IReadOnlyList<Instance> objects, Enum.JointCreationMode jointType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "JoinToOutsiders", objects, jointType);
+        public object JoinToOutsiders(IReadOnlyList<Instance> objects, Enum.JointCreationMode jointType)
+            => global::Roblox.Reflection.Invoke<object>(this, "JoinToOutsiders", objects, jointType)!;
 
         /// <summary>
         /// Deprecated: Goes through all BaseParts given. If any part's side has a SurfaceType that can make a joint it will create a joint with any adjacent parts.
         /// </summary>
         /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#MakeJoints"/>
-        public object? MakeJoints(IReadOnlyList<Instance> objects)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MakeJoints", objects);
+        public object MakeJoints(IReadOnlyList<Instance> objects)
+            => global::Roblox.Reflection.Invoke<object>(this, "MakeJoints", objects)!;
 
         /// <summary>
         /// Returns true if the game has the PGS Physics solver enabled.
@@ -662,55 +662,55 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PGSIsEnabled"/>
         public bool PGSIsEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "PGSIsEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "PGSIsEnabled")!;
 
         /// <summary>
         /// <c>Workspace.SetAvatarUnificationMode</c>
         /// </summary>
         /// <param name="value">A <c>Enum.AvatarUnificationMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAvatarUnificationMode(Enum.AvatarUnificationMode value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAvatarUnificationMode", value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetAvatarUnificationMode(Enum.AvatarUnificationMode value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAvatarUnificationMode", value)!;
 
         /// <summary>
         /// <c>Workspace.SetMeshPartHeadsAndAccessories</c>
         /// </summary>
         /// <param name="value">A <c>Enum.MeshPartHeadsAndAccessories</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMeshPartHeadsAndAccessories(Enum.MeshPartHeadsAndAccessories value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMeshPartHeadsAndAccessories", value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetMeshPartHeadsAndAccessories(Enum.MeshPartHeadsAndAccessories value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMeshPartHeadsAndAccessories", value)!;
 
         /// <summary>
         /// <c>Workspace.SetPhysicsThrottleEnabled</c>
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPhysicsThrottleEnabled(bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPhysicsThrottleEnabled", value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPhysicsThrottleEnabled(bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPhysicsThrottleEnabled", value)!;
 
         /// <summary>
         /// Breaks all joints between the specified BaseParts and other BaseParts.
         /// </summary>
         /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#UnjoinFromOutsiders"/>
-        public object? UnjoinFromOutsiders(IReadOnlyList<Instance> objects)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnjoinFromOutsiders", objects);
+        public object UnjoinFromOutsiders(IReadOnlyList<Instance> objects)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnjoinFromOutsiders", objects)!;
 
         /// <summary>
         /// Positions and zooms the Workspace.CurrentCamera to show the extent of BaseParts currently in the Workspace.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#ZoomToExtents"/>
-        public object? ZoomToExtents()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ZoomToExtents");
+        public object ZoomToExtents()
+            => global::Roblox.Reflection.Invoke<object>(this, "ZoomToExtents")!;
 
         /// <summary>
         /// Fires when persistent models have been sent to the specified player.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#PersistentLoaded"/>
-        public event Action<Player?>? PersistentLoaded
+        public event Action<Player>? PersistentLoaded
         {
             add { if (value is not null) AddEventHandler("PersistentLoaded", value); }
             remove { if (value is not null) RemoveEventHandler("PersistentLoaded", value); }

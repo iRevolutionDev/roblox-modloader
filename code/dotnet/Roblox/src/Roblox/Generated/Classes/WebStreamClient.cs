@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient"/>
     [RobloxClass("WebStreamClient")]
-    public class WebStreamClient : Object
+    public class WebStreamClient : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox WebStreamClient.</param>
@@ -31,26 +31,26 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#ConnectionState"/>
         public Enum.WebStreamClientState ConnectionState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.WebStreamClientState>(this, "ConnectionState");
+            get => global::Roblox.Reflection.GetProperty<Enum.WebStreamClientState>(this, "ConnectionState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.WebStreamClientState>(this, "ConnectionState", value);
         }
 
         /// <summary>
         /// Closes the client, aborting the ongoing request.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Close"/>
-        public object? Close()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Close");
+        public object Close()
+            => global::Roblox.Reflection.Invoke<object>(this, "Close")!;
 
         /// <summary>
         /// Enqueues data to be transmitted to the server over the streaming connection.
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="data">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Send"/>
-        public object? Send(string? data)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Send", data);
+        public object Send(string data)
+            => global::Roblox.Reflection.Invoke<object>(this, "Send", data)!;
 
         /// <summary>
         /// <c>WebStreamClient.Closed</c>
@@ -66,9 +66,9 @@ namespace Roblox
         /// Fires if an error is received while establishing the connection or during the connection lifetime.
         /// </summary>
         /// <param name="responseStatusCode">A <c>int</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        /// <param name="errorMessage">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Error"/>
-        public event Action<int, string?>? Error
+        public event Action<int, string>? Error
         {
             add { if (value is not null) AddEventHandler("Error", value); }
             remove { if (value is not null) RemoveEventHandler("Error", value); }
@@ -77,9 +77,9 @@ namespace Roblox
         /// <summary>
         /// Fires each time a message is received from the server.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#MessageReceived"/>
-        public event Action<string?>? MessageReceived
+        public event Action<string>? MessageReceived
         {
             add { if (value is not null) AddEventHandler("MessageReceived", value); }
             remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }
@@ -89,9 +89,9 @@ namespace Roblox
         /// Fires when the a connection is successfully established between the client and server, allowing for events to begin streaming.
         /// </summary>
         /// <param name="responseStatusCode">A <c>int</c> value.</param>
-        /// <param name="headers">A <c>string?</c> value.</param>
+        /// <param name="headers">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebStreamClient#Opened"/>
-        public event Action<int, string?>? Opened
+        public event Action<int, string>? Opened
         {
             add { if (value is not null) AddEventHandler("Opened", value); }
             remove { if (value is not null) RemoveEventHandler("Opened", value); }

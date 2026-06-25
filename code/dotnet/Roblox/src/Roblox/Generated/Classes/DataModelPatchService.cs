@@ -18,45 +18,45 @@ namespace Roblox
         /// Creates a <see cref="DataModelPatchService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataModelPatchService? FromHandle(nuint handle)
+        public static new DataModelPatchService? FromHandle(nuint handle)
             => handle == 0 ? null : new DataModelPatchService(handle);
 
         /// <summary>
         /// <c>DataModelPatchService.GetLuaVersion</c>
         /// </summary>
-        /// <param name="patchName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetLuaVersion(string? patchName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetLuaVersion", patchName);
+        /// <param name="patchName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetLuaVersion(string patchName)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetLuaVersion", patchName)!;
 
         /// <summary>
         /// <c>DataModelPatchService.GetPatch</c>
         /// </summary>
-        /// <param name="patchName">A <c>string?</c> value.</param>
+        /// <param name="patchName">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? GetPatch(string? patchName)
+        public Instance? GetPatch(string patchName)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetPatch", patchName);
 
         /// <summary>
         /// <c>DataModelPatchService.RegisterPatch</c>
         /// </summary>
-        /// <param name="patchName">A <c>string?</c> value.</param>
-        /// <param name="behaviorName">A <c>string?</c> value.</param>
-        /// <param name="localConfigPath">A <c>string?</c> value.</param>
+        /// <param name="patchName">A <c>string</c> value.</param>
+        /// <param name="behaviorName">A <c>string</c> value.</param>
+        /// <param name="localConfigPath">A <c>string</c> value.</param>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterPatch(string? patchName, string? behaviorName, string? localConfigPath, long userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterPatch", patchName, behaviorName, localConfigPath, userId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterPatch(string patchName, string behaviorName, string localConfigPath, long userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterPatch", patchName, behaviorName, localConfigPath, userId)!;
 
         /// <summary>
         /// <c>DataModelPatchService.UpdatePatch</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="patchName">A <c>string?</c> value.</param>
-        /// <param name="callbackFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdatePatch(long userId, string? patchName, object? callbackFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdatePatch", userId, patchName, callbackFunction);
+        /// <param name="patchName">A <c>string</c> value.</param>
+        /// <param name="callbackFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdatePatch(long userId, string patchName, object callbackFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdatePatch", userId, patchName, callbackFunction)!;
 
     }
 }

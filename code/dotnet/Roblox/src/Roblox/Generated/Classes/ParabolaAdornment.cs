@@ -18,36 +18,36 @@ namespace Roblox
         /// Creates a <see cref="ParabolaAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ParabolaAdornment? FromHandle(nuint handle)
+        public static new ParabolaAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new ParabolaAdornment(handle);
 
         public float A
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "A");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "A")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "A", value);
         }
 
         public float B
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "B");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "B")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "B", value);
         }
 
         public float C
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "C");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "C")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "C", value);
         }
 
         public float Range
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Range");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Range")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Range", value);
         }
 
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 
@@ -55,9 +55,9 @@ namespace Roblox
         /// <c>ParabolaAdornment.FindPartOnParabola</c>
         /// </summary>
         /// <param name="ignoreDescendentsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FindPartOnParabola(IReadOnlyList<Instance> ignoreDescendentsTable)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FindPartOnParabola", ignoreDescendentsTable);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FindPartOnParabola(IReadOnlyList<Instance> ignoreDescendentsTable)
+            => global::Roblox.Reflection.Invoke<object>(this, "FindPartOnParabola", ignoreDescendentsTable)!;
 
     }
 }

@@ -181,7 +181,7 @@ internal static class ModLoader
             }
             else
             {
-                if (modInfo.Instance is IDataModelAware aware)
+                if (oldModel != null && modInfo.Instance is IDataModelAware aware)
                 {
                     try
                     {

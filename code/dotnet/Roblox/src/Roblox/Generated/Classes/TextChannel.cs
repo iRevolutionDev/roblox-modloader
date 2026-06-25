@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TextChannel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextChannel? FromHandle(nuint handle)
+        public static new TextChannel? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChannel(handle);
 
         /// <summary>
@@ -38,72 +38,72 @@ namespace Roblox
         /// <summary>
         /// Displays a system message to the user.
         /// </summary>
-        /// <param name="systemMessage">A <c>string?</c> value.</param>
-        /// <param name="metadata">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
+        /// <param name="systemMessage">A <c>string</c> value.</param>
+        /// <param name="metadata">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#DisplaySystemMessage"/>
-        public TextChatMessage? DisplaySystemMessage(string? systemMessage, string? metadata)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "DisplaySystemMessage", systemMessage, metadata);
+        public TextChatMessage DisplaySystemMessage(string systemMessage, string metadata)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "DisplaySystemMessage", systemMessage, metadata)!;
 
         /// <summary>
         /// Sets the DirectChatRequester for the TextChannel. The TextChannel will only deliver messages to users that can send direct messages to the DirectChatRequester.
         /// </summary>
-        /// <param name="requester">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="requester">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#SetDirectChatRequester"/>
-        public object? SetDirectChatRequester(Player? requester)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDirectChatRequester", requester);
+        public object SetDirectChatRequester(Player requester)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDirectChatRequester", requester)!;
 
         /// <summary>
         /// Adds a TextSource to the TextChannel given userId of a Player.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#AddUserAsync"/>
-        public object? AddUserAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddUserAsync", userId);
+        public object AddUserAsync(object userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddUserAsync", userId)!;
 
         /// <summary>
         /// Sends a TextChatMessage to the server.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="metadata">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="metadata">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#SendAsync"/>
-        public TextChatMessage? SendAsync(string? message, string? metadata)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendAsync", message, metadata);
+        public TextChatMessage SendAsync(string message, string metadata)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "SendAsync", message, metadata)!;
 
         /// <summary>
         /// <c>TextChannel.SendDictatedSpeechAsync</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
-        public TextChatMessage? SendDictatedSpeechAsync(string? message)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendDictatedSpeechAsync", message);
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
+        public TextChatMessage SendDictatedSpeechAsync(string message)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "SendDictatedSpeechAsync", message)!;
 
         /// <summary>
         /// <c>TextChannel.SendInternalAsync</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="metadata">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
-        public TextChatMessage? SendInternalAsync(string? message, string? metadata)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendInternalAsync", message, metadata);
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="metadata">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
+        public TextChatMessage SendInternalAsync(string message, string metadata)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "SendInternalAsync", message, metadata)!;
 
         /// <summary>
         /// <c>TextChannel.SendPresetAsync</c>
         /// </summary>
-        /// <param name="presetId">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
-        public TextChatMessage? SendPresetAsync(string? presetId)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendPresetAsync", presetId);
+        /// <param name="presetId">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
+        public TextChatMessage SendPresetAsync(string presetId)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "SendPresetAsync", presetId)!;
 
         /// <summary>
         /// Fires when TextChannel:DisplaySystemMessage() is invoked on the client, or when the client receives a valid TextChannel:SendAsync() response from the server.
         /// </summary>
-        /// <param name="incomingMessage">A <c>TextChatMessage?</c> value.</param>
+        /// <param name="incomingMessage">A <c>TextChatMessage</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#MessageReceived"/>
-        public event Action<TextChatMessage?>? MessageReceived
+        public event Action<TextChatMessage>? MessageReceived
         {
             add { if (value is not null) AddEventHandler("MessageReceived", value); }
             remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }

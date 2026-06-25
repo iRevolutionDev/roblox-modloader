@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PyramidHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PyramidHandleAdornment? FromHandle(nuint handle)
+        public static new PyramidHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new PyramidHandleAdornment(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Height"/>
         public float Height
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Height");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Height")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Height", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Shading"/>
         public Enum.AdornShading Shading
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdornShading>(this, "Shading", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Sides"/>
         public int Sides
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Sides");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Sides")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Sides", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PyramidHandleAdornment#Size"/>
         public float Size
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Size");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Size")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Size", value);
         }
 

@@ -22,12 +22,12 @@ namespace Roblox
         /// Creates a <see cref="GroundController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GroundController? FromHandle(nuint handle)
+        public static new GroundController? FromHandle(nuint handle)
             => handle == 0 ? null : new GroundController(handle);
 
         public float AccelerationLean
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationLean");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationLean")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AccelerationLean", value);
         }
 
@@ -37,7 +37,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#AccelerationTime"/>
         public float AccelerationTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AccelerationTime", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#BalanceMaxTorque"/>
         public float BalanceMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceMaxTorque", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#BalanceSpeed"/>
         public float BalanceSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceSpeed", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#DecelerationTime"/>
         public float DecelerationTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DecelerationTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DecelerationTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DecelerationTime", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#Friction"/>
         public float Friction
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Friction");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Friction")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Friction", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#FrictionWeight"/>
         public float FrictionWeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FrictionWeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FrictionWeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FrictionWeight", value);
         }
 
@@ -97,19 +97,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#GroundOffset"/>
         public float GroundOffset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "GroundOffset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "GroundOffset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "GroundOffset", value);
         }
 
         public float StandForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "StandForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "StandForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "StandForce", value);
         }
 
         public float StandSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "StandSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "StandSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "StandSpeed", value);
         }
 
@@ -119,7 +119,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroundController#TurnSpeedFactor"/>
         public float TurnSpeedFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnSpeedFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnSpeedFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TurnSpeedFactor", value);
         }
 

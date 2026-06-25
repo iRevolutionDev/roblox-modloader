@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BuoyancySensor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BuoyancySensor? FromHandle(nuint handle)
+        public static new BuoyancySensor? FromHandle(nuint handle)
             => handle == 0 ? null : new BuoyancySensor(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BuoyancySensor#FullySubmerged"/>
         public bool FullySubmerged
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FullySubmerged");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FullySubmerged")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FullySubmerged", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BuoyancySensor#TouchingSurface"/>
         public bool TouchingSurface
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchingSurface");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchingSurface")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TouchingSurface", value);
         }
 

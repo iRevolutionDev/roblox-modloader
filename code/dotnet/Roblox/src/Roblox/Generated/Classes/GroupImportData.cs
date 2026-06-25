@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="GroupImportData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GroupImportData? FromHandle(nuint handle)
+        public static new GroupImportData? FromHandle(nuint handle)
             => handle == 0 ? null : new GroupImportData(handle);
 
         public bool Anchored
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Anchored", value);
         }
 
         public bool ImportAsModelAsset
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ImportAsModelAsset");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ImportAsModelAsset")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ImportAsModelAsset", value);
         }
 
         public bool InsertInWorkspace
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InsertInWorkspace");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "InsertInWorkspace")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "InsertInWorkspace", value);
         }
 

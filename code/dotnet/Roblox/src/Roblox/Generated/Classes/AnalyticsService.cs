@@ -22,205 +22,205 @@ namespace Roblox
         /// Creates a <see cref="AnalyticsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnalyticsService? FromHandle(nuint handle)
+        public static new AnalyticsService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnalyticsService(handle);
 
         /// <summary>
         /// Deprecated: PlayFab API key. Must be set in order to use FireEvent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#ApiKey"/>
-        public string? ApiKey
+        public string ApiKey
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ApiKey");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ApiKey", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ApiKey")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ApiKey", value);
         }
 
         /// <summary>
         /// Deprecated: This deprecated function is a variant of AnalyticsService:LogCustomEvent() which should be used instead.Fires a custom event with a custom event name and data.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="eventCategory">A <c>string?</c> value.</param>
-        /// <param name="customData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="eventCategory">A <c>string</c> value.</param>
+        /// <param name="customData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireCustomEvent"/>
-        public object? FireCustomEvent(Instance? player, string? eventCategory, object? customData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireCustomEvent", player, eventCategory, customData);
+        public object FireCustomEvent(Instance player, string eventCategory, object customData)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireCustomEvent", player, eventCategory, customData)!;
 
         /// <summary>
         /// Deprecated: This function has been deprecated in favor of more descriptive methods, including AnalyticsService:LogCustomEvent(), AnalyticsService:LogEconomyEvent(), and AnalyticsService:LogProgressionEvent().Report a custom event to PlayFab.
         /// </summary>
-        /// <param name="category">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="category">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireEvent"/>
-        public object? FireEvent(string? category, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireEvent", category, value);
+        public object FireEvent(string category, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireEvent", category, value)!;
 
         /// <summary>
         /// Deprecated: This deprecated function is a variant of AnalyticsService:LogEconomyEvent() which should be used instead.Fire an event used to track player actions pertaining to the in-game economy.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="itemName">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="itemName">A <c>string</c> value.</param>
         /// <param name="economyAction">A <c>Enum.AnalyticsEconomyAction</c> value.</param>
-        /// <param name="itemCategory">A <c>string?</c> value.</param>
+        /// <param name="itemCategory">A <c>string</c> value.</param>
         /// <param name="amount">A <c>int</c> value.</param>
-        /// <param name="currency">A <c>string?</c> value.</param>
-        /// <param name="location">A <c>object?</c> value.</param>
-        /// <param name="customData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="currency">A <c>string</c> value.</param>
+        /// <param name="location">A <c>object</c> value.</param>
+        /// <param name="customData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireInGameEconomyEvent"/>
-        public object? FireInGameEconomyEvent(Instance? player, string? itemName, Enum.AnalyticsEconomyAction economyAction, string? itemCategory, int amount, string? currency, object? location, object? customData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireInGameEconomyEvent", player, itemName, economyAction, itemCategory, amount, currency, location, customData);
+        public object FireInGameEconomyEvent(Instance player, string itemName, Enum.AnalyticsEconomyAction economyAction, string itemCategory, int amount, string currency, object location, object customData)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireInGameEconomyEvent", player, itemName, economyAction, itemCategory, amount, currency, location, customData)!;
 
         /// <summary>
         /// Deprecated: Fire a log event used to track errors and warnings experienced by players.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="logLevel">A <c>Enum.AnalyticsLogLevel</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="debugInfo">A <c>object?</c> value.</param>
-        /// <param name="customData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="debugInfo">A <c>object</c> value.</param>
+        /// <param name="customData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireLogEvent"/>
-        public object? FireLogEvent(Instance? player, Enum.AnalyticsLogLevel logLevel, string? message, object? debugInfo, object? customData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireLogEvent", player, logLevel, message, debugInfo, customData);
+        public object FireLogEvent(Instance player, Enum.AnalyticsLogLevel logLevel, string message, object debugInfo, object customData)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireLogEvent", player, logLevel, message, debugInfo, customData)!;
 
         /// <summary>
         /// Deprecated: This deprecated function is a variant of AnalyticsService:LogProgressionEvent() which should be used instead.Fire an event used to track player progression through the game.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="category">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="category">A <c>string</c> value.</param>
         /// <param name="progressionStatus">A <c>Enum.AnalyticsProgressionStatus</c> value.</param>
-        /// <param name="location">A <c>object?</c> value.</param>
-        /// <param name="statistics">A <c>object?</c> value.</param>
-        /// <param name="customData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="location">A <c>object</c> value.</param>
+        /// <param name="statistics">A <c>object</c> value.</param>
+        /// <param name="customData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FirePlayerProgressionEvent"/>
-        public object? FirePlayerProgressionEvent(Instance? player, string? category, Enum.AnalyticsProgressionStatus progressionStatus, object? location, object? statistics, object? customData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FirePlayerProgressionEvent", player, category, progressionStatus, location, statistics, customData);
+        public object FirePlayerProgressionEvent(Instance player, string category, Enum.AnalyticsProgressionStatus progressionStatus, object location, object statistics, object customData)
+            => global::Roblox.Reflection.Invoke<object>(this, "FirePlayerProgressionEvent", player, category, progressionStatus, location, statistics, customData)!;
 
         /// <summary>
         /// <c>AnalyticsService.GetDurationLoggerTimestamp</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetDurationLoggerTimestamp()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetDurationLoggerTimestamp");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetDurationLoggerTimestamp")!;
 
         /// <summary>
         /// Logs an event used to track custom metrics of a user in experience.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="eventName">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>double</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="eventName">A <c>string</c> value.</param>
+        /// <param name="value">A <c>double?</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogCustomEvent"/>
-        public object? LogCustomEvent(Player? player, string? eventName, double value, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogCustomEvent", player, eventName, value, customFields);
+        public object LogCustomEvent(Player player, string eventName, double? value = null, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogCustomEvent", player, eventName, value, customFields)!;
 
         /// <summary>
         /// Logs an event used to track player actions related in experience.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="flowType">A <c>Enum.AnalyticsEconomyFlowType</c> value.</param>
-        /// <param name="currencyType">A <c>string?</c> value.</param>
+        /// <param name="currencyType">A <c>string</c> value.</param>
         /// <param name="amount">A <c>float</c> value.</param>
         /// <param name="endingBalance">A <c>float</c> value.</param>
-        /// <param name="transactionType">A <c>string?</c> value.</param>
-        /// <param name="itemSku">A <c>string?</c> value.</param>
+        /// <param name="transactionType">A <c>string</c> value.</param>
+        /// <param name="itemSku">A <c>string</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogEconomyEvent"/>
-        public object? LogEconomyEvent(Player? player, Enum.AnalyticsEconomyFlowType flowType, string? currencyType, float amount, float endingBalance, string? transactionType, string? itemSku, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogEconomyEvent", player, flowType, currencyType, amount, endingBalance, transactionType, itemSku, customFields);
+        public object LogEconomyEvent(Player player, Enum.AnalyticsEconomyFlowType flowType, string currencyType, float amount, float endingBalance, string transactionType, string itemSku, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogEconomyEvent", player, flowType, currencyType, amount, endingBalance, transactionType, itemSku, customFields)!;
 
         /// <summary>
         /// Logs an event used to track user actions stepping through a pre-planned funnel.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="funnelName">A <c>string?</c> value.</param>
-        /// <param name="funnelSessionId">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="funnelName">A <c>string</c> value.</param>
+        /// <param name="funnelSessionId">A <c>string</c> value.</param>
         /// <param name="step">A <c>int</c> value.</param>
-        /// <param name="stepName">A <c>string?</c> value.</param>
+        /// <param name="stepName">A <c>string</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogFunnelStepEvent"/>
-        public object? LogFunnelStepEvent(Player? player, string? funnelName, string? funnelSessionId, int step, string? stepName, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogFunnelStepEvent", player, funnelName, funnelSessionId, step, stepName, customFields);
+        public object LogFunnelStepEvent(Player player, string funnelName, string funnelSessionId, int step, string stepName, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogFunnelStepEvent", player, funnelName, funnelSessionId, step, stepName, customFields)!;
 
         /// <summary>
         /// Logs an event used to track user actions stepping through an onboarding funnel.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="step">A <c>int</c> value.</param>
-        /// <param name="stepName">A <c>string?</c> value.</param>
+        /// <param name="stepName">A <c>string</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogOnboardingFunnelStepEvent"/>
-        public object? LogOnboardingFunnelStepEvent(Player? player, int step, string? stepName, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogOnboardingFunnelStepEvent", player, step, stepName, customFields);
+        public object LogOnboardingFunnelStepEvent(Player player, int step, string stepName, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogOnboardingFunnelStepEvent", player, step, stepName, customFields)!;
 
         /// <summary>
         /// Logs an event for when a user has completed a level attempt.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="progressionPathName">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="progressionPathName">A <c>string</c> value.</param>
         /// <param name="level">A <c>int</c> value.</param>
-        /// <param name="levelName">A <c>string?</c> value.</param>
+        /// <param name="levelName">A <c>string</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogProgressionCompleteEvent"/>
-        public object? LogProgressionCompleteEvent(Player? player, string? progressionPathName, int level, string? levelName, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogProgressionCompleteEvent", player, progressionPathName, level, levelName, customFields);
+        public object LogProgressionCompleteEvent(Player player, string progressionPathName, int level, string levelName, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogProgressionCompleteEvent", player, progressionPathName, level, levelName, customFields)!;
 
         /// <summary>
         /// Logs an event for when a user has started, completed, or failed a level attempt.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="progressionPathName">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="progressionPathName">A <c>string</c> value.</param>
         /// <param name="status">A <c>Enum.AnalyticsProgressionType</c> value.</param>
         /// <param name="level">A <c>int</c> value.</param>
-        /// <param name="levelName">A <c>string?</c> value.</param>
+        /// <param name="levelName">A <c>string</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogProgressionEvent"/>
-        public object? LogProgressionEvent(Player? player, string? progressionPathName, Enum.AnalyticsProgressionType status, int level, string? levelName, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogProgressionEvent", player, progressionPathName, status, level, levelName, customFields);
+        public object LogProgressionEvent(Player player, string progressionPathName, Enum.AnalyticsProgressionType status, int level, string levelName, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogProgressionEvent", player, progressionPathName, status, level, levelName, customFields)!;
 
         /// <summary>
         /// Logs an event for when a user has failed a level attempt.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="progressionPathName">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="progressionPathName">A <c>string</c> value.</param>
         /// <param name="level">A <c>int</c> value.</param>
-        /// <param name="levelName">A <c>string?</c> value.</param>
+        /// <param name="levelName">A <c>string</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogProgressionFailEvent"/>
-        public object? LogProgressionFailEvent(Player? player, string? progressionPathName, int level, string? levelName, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogProgressionFailEvent", player, progressionPathName, level, levelName, customFields);
+        public object LogProgressionFailEvent(Player player, string progressionPathName, int level, string levelName, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogProgressionFailEvent", player, progressionPathName, level, levelName, customFields)!;
 
         /// <summary>
         /// Logs an event for when a user has started a level attempt.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="progressionPathName">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="progressionPathName">A <c>string</c> value.</param>
         /// <param name="level">A <c>int</c> value.</param>
-        /// <param name="levelName">A <c>string?</c> value.</param>
+        /// <param name="levelName">A <c>string</c> value.</param>
         /// <param name="customFields">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#LogProgressionStartEvent"/>
-        public object? LogProgressionStartEvent(Player? player, string? progressionPathName, int level, string? levelName, object? customFields)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogProgressionStartEvent", player, progressionPathName, level, levelName, customFields);
+        public object LogProgressionStartEvent(Player player, string progressionPathName, int level, string levelName, object? customFields = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogProgressionStartEvent", player, progressionPathName, level, levelName, customFields)!;
 
         /// <summary>
         /// Returns coarse player segment buckets for the current experience.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#GetPlayerSegmentsAsync"/>
-        public object? GetPlayerSegmentsAsync(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayerSegmentsAsync", player);
+        public object GetPlayerSegmentsAsync(Player player)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPlayerSegmentsAsync", player)!;
 
     }
 }

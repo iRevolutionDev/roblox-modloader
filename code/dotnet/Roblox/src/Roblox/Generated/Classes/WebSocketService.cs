@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="WebSocketService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WebSocketService? FromHandle(nuint handle)
+        public static new WebSocketService? FromHandle(nuint handle)
             => handle == 0 ? null : new WebSocketService(handle);
 
         /// <summary>
         /// <c>WebSocketService.CreateClient</c>
         /// </summary>
-        /// <param name="uri">A <c>string?</c> value.</param>
-        /// <returns>A <c>WebSocketClient?</c> value returned by the engine.</returns>
+        /// <param name="uri">A <c>string</c> value.</param>
+        /// <returns>A <c>WebSocketClient</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketService#CreateClient"/>
-        public WebSocketClient? CreateClient(string? uri)
-            => global::Roblox.Reflection.Invoke<WebSocketClient?>(this, "CreateClient", uri);
+        public WebSocketClient CreateClient(string uri)
+            => global::Roblox.Reflection.Invoke<WebSocketClient>(this, "CreateClient", uri)!;
 
     }
 }

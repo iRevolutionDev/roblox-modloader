@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot"/>
     [RobloxClass("ConfigSnapshot")]
-    public class ConfigSnapshot : Object
+    public class ConfigSnapshot : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ConfigSnapshot.</param>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot#Error"/>
         public Enum.ConfigSnapshotErrorState Error
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ConfigSnapshotErrorState>(this, "Error");
+            get => global::Roblox.Reflection.GetProperty<Enum.ConfigSnapshotErrorState>(this, "Error")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ConfigSnapshotErrorState>(this, "Error", value);
         }
 
@@ -41,35 +41,35 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot#Outdated"/>
         public bool Outdated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Outdated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Outdated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Outdated", value);
         }
 
         /// <summary>
         /// Returns the value for the given key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot#GetValue"/>
-        public object? GetValue(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValue", key);
+        public object GetValue(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetValue", key)!;
 
         /// <summary>
         /// Returns a signal that fires when the value for the given key changes due to a refresh.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot#GetValueChangedSignal"/>
-        public object? GetValueChangedSignal(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValueChangedSignal", key);
+        public object GetValueChangedSignal(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetValueChangedSignal", key)!;
 
         /// <summary>
         /// Refreshes the snapshot to the latest configuration values.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigSnapshot#Refresh"/>
-        public object? Refresh()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Refresh");
+        public object Refresh()
+            => global::Roblox.Reflection.Invoke<object>(this, "Refresh")!;
 
         /// <summary>
         /// Fires when a newer version of the configuration is available.

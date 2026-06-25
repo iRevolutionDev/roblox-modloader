@@ -22,45 +22,45 @@ namespace Roblox
         /// Creates a <see cref="Dragger"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Dragger? FromHandle(nuint handle)
+        public static new Dragger? FromHandle(nuint handle)
             => handle == 0 ? null : new Dragger(handle);
 
         /// <summary>
         /// Rotates the currently dragged part(s) by 90 degrees on the given axis.
         /// </summary>
-        /// <param name="axis">A <c>Enum.Axis</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="axis">A <c>Enum.Axis?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dragger#AxisRotate"/>
-        public object? AxisRotate(Enum.Axis axis)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AxisRotate", axis);
+        public object AxisRotate(Enum.Axis? axis = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "AxisRotate", axis)!;
 
         /// <summary>
         /// Initializes a dragging action, specifying which parts to use when dragging.
         /// </summary>
-        /// <param name="mousePart">A <c>Instance?</c> value.</param>
-        /// <param name="pointOnMousePart">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="mousePart">A <c>Instance</c> value.</param>
+        /// <param name="pointOnMousePart">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="parts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dragger#MouseDown"/>
-        public object? MouseDown(Instance? mousePart, global::Roblox.Vector3? pointOnMousePart, IReadOnlyList<Instance> parts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MouseDown", mousePart, pointOnMousePart, parts);
+        public object MouseDown(Instance mousePart, global::Roblox.Vector3 pointOnMousePart, IReadOnlyList<Instance> parts)
+            => global::Roblox.Reflection.Invoke<object>(this, "MouseDown", mousePart, pointOnMousePart, parts)!;
 
         /// <summary>
         /// Tries to move the currently dragged part to the point where MouseRay hits another part.
         /// </summary>
-        /// <param name="mouseRay">A <c>global::Roblox.Ray?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="mouseRay">A <c>global::Roblox.Ray</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dragger#MouseMove"/>
-        public object? MouseMove(global::Roblox.Ray? mouseRay)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MouseMove", mouseRay);
+        public object MouseMove(global::Roblox.Ray mouseRay)
+            => global::Roblox.Reflection.Invoke<object>(this, "MouseMove", mouseRay)!;
 
         /// <summary>
         /// Stops the current dragging action (made by Dragger:MouseDown()).
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dragger#MouseUp"/>
-        public object? MouseUp()
-            => global::Roblox.Reflection.Invoke<object?>(this, "MouseUp");
+        public object MouseUp()
+            => global::Roblox.Reflection.Invoke<object>(this, "MouseUp")!;
 
     }
 }

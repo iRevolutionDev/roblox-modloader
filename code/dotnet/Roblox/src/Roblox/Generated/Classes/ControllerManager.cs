@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ControllerManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ControllerManager? FromHandle(nuint handle)
+        public static new ControllerManager? FromHandle(nuint handle)
             => handle == 0 ? null : new ControllerManager(handle);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#BaseMoveSpeed"/>
         public float BaseMoveSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BaseMoveSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BaseMoveSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BaseMoveSpeed", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#BaseTurnSpeed"/>
         public float BaseTurnSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BaseTurnSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BaseTurnSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BaseTurnSpeed", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// The unit vector describing the desired direction to face.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#FacingDirection"/>
-        public global::Roblox.Vector3? FacingDirection
+        public global::Roblox.Vector3 FacingDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "FacingDirection");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "FacingDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "FacingDirection")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "FacingDirection", value);
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Roblox
         /// The vector describing the desired direction to move in.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#MovingDirection"/>
-        public global::Roblox.Vector3? MovingDirection
+        public global::Roblox.Vector3 MovingDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MovingDirection");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MovingDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MovingDirection")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MovingDirection", value);
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace Roblox
         /// <c>ControllerManager.UpDirection</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#UpDirection"/>
-        public global::Roblox.Vector3? UpDirection
+        public global::Roblox.Vector3 UpDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "UpDirection");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "UpDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "UpDirection")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "UpDirection", value);
         }
 
     }

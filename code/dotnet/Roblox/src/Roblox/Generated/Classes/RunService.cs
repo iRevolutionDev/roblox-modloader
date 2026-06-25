@@ -22,22 +22,22 @@ namespace Roblox
         /// Creates a <see cref="RunService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RunService? FromHandle(nuint handle)
+        public static new RunService? FromHandle(nuint handle)
             => handle == 0 ? null : new RunService(handle);
 
         /// <summary>
         /// <c>RunService.ClientGitHash</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#ClientGitHash"/>
-        public string? ClientGitHash
+        public string ClientGitHash
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ClientGitHash");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ClientGitHash", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ClientGitHash")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ClientGitHash", value);
         }
 
         public long FrameNumber
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "FrameNumber");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "FrameNumber")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "FrameNumber", value);
         }
 
@@ -47,89 +47,89 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#RunState"/>
         public Enum.RunState RunState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RunState>(this, "RunState");
+            get => global::Roblox.Reflection.GetProperty<Enum.RunState>(this, "RunState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RunState>(this, "RunState", value);
         }
 
         /// <summary>
         /// Given a string name of a function and a priority, this method binds the function to RunService.PreRender.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#BindToRenderStep"/>
-        public object? BindToRenderStep(string? name, int priority, object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindToRenderStep", name, priority, function);
+        public object BindToRenderStep(string name, int priority, object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindToRenderStep", name, priority, function)!;
 
         /// <summary>
         /// Binds a custom function to be called at a fixed frequency which is independent of the frame rate.
         /// </summary>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <param name="frequency">A <c>Enum.StepFrequency</c> value.</param>
-        /// <param name="priority">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <param name="frequency">A <c>Enum.StepFrequency?</c> value.</param>
+        /// <param name="priority">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#BindToSimulation"/>
-        public object? BindToSimulation(object? function, Enum.StepFrequency frequency, int priority)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindToSimulation", function, frequency, priority);
+        public object BindToSimulation(object function, Enum.StepFrequency? frequency = null, int? priority = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindToSimulation", function, frequency, priority)!;
 
         /// <summary>
         /// <c>RunService.GetControlAndVariantRolloutFlags</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetControlAndVariantRolloutFlags()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetControlAndVariantRolloutFlags");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetControlAndVariantRolloutFlags()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetControlAndVariantRolloutFlags")!;
 
         /// <summary>
         /// <c>RunService.GetCoreScriptVersion</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetCoreScriptVersion()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetCoreScriptVersion");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetCoreScriptVersion()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetCoreScriptVersion")!;
 
         /// <summary>
         /// <c>RunService.GetPhysicsStepId</c>
         /// </summary>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long GetPhysicsStepId()
-            => global::Roblox.Reflection.Invoke<long>(this, "GetPhysicsStepId");
+            => global::Roblox.Reflection.Invoke<long>(this, "GetPhysicsStepId")!;
 
         /// <summary>
         /// Checks the PredictionStatus of a specific context instance, useful for debugging scripts affecting multiple instances where some might be predicted and others might not.
         /// </summary>
-        /// <param name="context">A <c>Instance?</c> value.</param>
+        /// <param name="context">A <c>Instance</c> value.</param>
         /// <returns>A <c>Enum.PredictionStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#GetPredictionStatus"/>
-        public Enum.PredictionStatus GetPredictionStatus(Instance? context)
-            => global::Roblox.Reflection.Invoke<Enum.PredictionStatus>(this, "GetPredictionStatus", context);
+        public Enum.PredictionStatus GetPredictionStatus(Instance context)
+            => global::Roblox.Reflection.Invoke<Enum.PredictionStatus>(this, "GetPredictionStatus", context)!;
 
         /// <summary>
         /// <c>RunService.GetRobloxClientChannel</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetRobloxClientChannel()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetRobloxClientChannel");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetRobloxClientChannel()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetRobloxClientChannel")!;
 
         /// <summary>
         /// <c>RunService.GetRobloxGuiFocused</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetRobloxGuiFocused()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetRobloxGuiFocused");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetRobloxGuiFocused")!;
 
         /// <summary>
         /// <c>RunService.GetRobloxVersion</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetRobloxVersion()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetRobloxVersion");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetRobloxVersion()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetRobloxVersion")!;
 
         /// <summary>
         /// <c>RunService.GetTotalScriptPlusExecutionTime</c>
         /// </summary>
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         public double GetTotalScriptPlusExecutionTime()
-            => global::Roblox.Reflection.Invoke<double>(this, "GetTotalScriptPlusExecutionTime");
+            => global::Roblox.Reflection.Invoke<double>(this, "GetTotalScriptPlusExecutionTime")!;
 
         /// <summary>
         /// Returns whether the current environment is running on the client.
@@ -137,7 +137,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#IsClient"/>
         public bool IsClient()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsClient");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsClient")!;
 
         /// <summary>
         /// Returns whether the current environment is in Edit mode.
@@ -145,14 +145,14 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#IsEdit"/>
         public bool IsEdit()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsEdit");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsEdit")!;
 
         /// <summary>
         /// <c>RunService.IsResimulating</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsResimulating()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsResimulating");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsResimulating")!;
 
         /// <summary>
         /// Returns whether a Run playtest has been initiated in Studio.
@@ -160,7 +160,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#IsRunMode"/>
         public bool IsRunMode()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsRunMode");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsRunMode")!;
 
         /// <summary>
         /// Returns whether the experience is currently running.
@@ -168,7 +168,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#IsRunning"/>
         public bool IsRunning()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsRunning");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsRunning")!;
 
         /// <summary>
         /// Returns whether the current environment is running on the server.
@@ -176,7 +176,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#IsServer"/>
         public bool IsServer()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsServer");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsServer")!;
 
         /// <summary>
         /// Returns whether the current environment is running in Studio.
@@ -184,89 +184,89 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#IsStudio"/>
         public bool IsStudio()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsStudio");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsStudio")!;
 
         /// <summary>
         /// Pauses the experience's simulation if it is running, suspending physics and scripts.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Pause"/>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// Deprecated: This item is deprecated and should not be used in new work.Resets the current game to a waypoint set when RunService:Run() was called.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Reset"/>
-        public object? Reset()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Reset");
+        public object Reset()
+            => global::Roblox.Reflection.Invoke<object>(this, "Reset")!;
 
         /// <summary>
         /// Runs the game's simulation, running physics and scripts.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Run"/>
-        public object? Run()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Run");
+        public object Run()
+            => global::Roblox.Reflection.Invoke<object>(this, "Run")!;
 
         /// <summary>
         /// <c>RunService.Set3dRenderingEnabled</c>
         /// </summary>
         /// <param name="enable">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Set3dRenderingEnabled(bool enable)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Set3dRenderingEnabled", enable);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Set3dRenderingEnabled(bool enable)
+            => global::Roblox.Reflection.Invoke<object>(this, "Set3dRenderingEnabled", enable)!;
 
         /// <summary>
         /// Sets the prediction mode for an Instance to an PredictionMode value.
         /// </summary>
-        /// <param name="context">A <c>Instance?</c> value.</param>
+        /// <param name="context">A <c>Instance</c> value.</param>
         /// <param name="mode">A <c>Enum.PredictionMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#SetPredictionMode"/>
-        public object? SetPredictionMode(Instance? context, Enum.PredictionMode mode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPredictionMode", context, mode);
+        public object SetPredictionMode(Instance context, Enum.PredictionMode mode)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPredictionMode", context, mode)!;
 
         /// <summary>
         /// <c>RunService.SetRobloxGuiFocused</c>
         /// </summary>
         /// <param name="focus">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetRobloxGuiFocused(bool focus)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetRobloxGuiFocused", focus);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetRobloxGuiFocused(bool focus)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetRobloxGuiFocused", focus)!;
 
         /// <summary>
         /// Stops the experience's simulation if it is running.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Stop"/>
-        public object? Stop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop");
+        public object Stop()
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop")!;
 
         /// <summary>
         /// Unbinds a function that was bound to the render loop using RunService:BindToRenderStep().
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#UnbindFromRenderStep"/>
-        public object? UnbindFromRenderStep(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbindFromRenderStep", name);
+        public object UnbindFromRenderStep(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbindFromRenderStep", name)!;
 
         /// <summary>
         /// <c>RunService.getThrottleFramerateEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetThrottleFramerateEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "getThrottleFramerateEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "getThrottleFramerateEnabled")!;
 
         /// <summary>
         /// <c>RunService.setThrottleFramerateEnabled</c>
         /// </summary>
         /// <param name="enable">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetThrottleFramerateEnabled(bool enable)
-            => global::Roblox.Reflection.Invoke<object?>(this, "setThrottleFramerateEnabled", enable);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetThrottleFramerateEnabled(bool enable)
+            => global::Roblox.Reflection.Invoke<object>(this, "setThrottleFramerateEnabled", enable)!;
 
         /// <summary>
         /// Fires every frame, after the physics simulation has completed.
@@ -283,10 +283,10 @@ namespace Roblox
         /// In the server authority model, fires during prediction when the engine detects that the client has diverged from the server's authoritative state. Intended for plugin-based debugging.
         /// </summary>
         /// <param name="time">A <c>double</c> value.</param>
-        /// <param name="instances">A <c>object?</c> value.</param>
-        /// <param name="stats">A <c>object?</c> value.</param>
+        /// <param name="instances">A <c>object</c> value.</param>
+        /// <param name="stats">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunService#Misprediction"/>
-        public event Action<double, object?, object?>? Misprediction
+        public event Action<double, object, object>? Misprediction
         {
             add { if (value is not null) AddEventHandler("Misprediction", value); }
             remove { if (value is not null) RemoveEventHandler("Misprediction", value); }

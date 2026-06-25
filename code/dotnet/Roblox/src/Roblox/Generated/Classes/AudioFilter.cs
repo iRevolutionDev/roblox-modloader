@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioFilter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioFilter? FromHandle(nuint handle)
+        public static new AudioFilter? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioFilter(handle);
 
         /// <summary>
@@ -31,13 +31,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Bypass"/>
         public bool Bypass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
         public bool Editor
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Editor");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Editor")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Editor", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#FilterType"/>
         public Enum.AudioFilterType FilterType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AudioFilterType>(this, "FilterType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AudioFilterType>(this, "FilterType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AudioFilterType>(this, "FilterType", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Frequency"/>
         public float Frequency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Frequency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Frequency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Frequency", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Gain"/>
         public float Gain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Gain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Gain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Gain", value);
         }
 
@@ -77,18 +77,18 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#Q"/>
         public float Q
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Q");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Q")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Q", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Returns the magnitude response of the filter at the given frequency.
@@ -97,33 +97,33 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#GetGainAt"/>
         public float GetGainAt(float frequency)
-            => global::Roblox.Reflection.Invoke<float>(this, "GetGainAt", frequency);
+            => global::Roblox.Reflection.Invoke<float>(this, "GetGainAt", frequency)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioFilter via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioFilter#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

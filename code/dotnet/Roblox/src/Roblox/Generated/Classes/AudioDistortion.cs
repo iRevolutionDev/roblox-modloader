@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioDistortion"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioDistortion? FromHandle(nuint handle)
+        public static new AudioDistortion? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioDistortion(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDistortion#Bypass"/>
         public bool Bypass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
@@ -41,44 +41,44 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDistortion#Level"/>
         public float Level
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Level");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Level")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Level", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDistortion#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDistortion#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDistortion#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioDistortion via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDistortion#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

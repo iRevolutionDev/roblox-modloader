@@ -22,23 +22,23 @@ namespace Roblox
         /// Creates a <see cref="ExperienceNotificationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExperienceNotificationService? FromHandle(nuint handle)
+        public static new ExperienceNotificationService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceNotificationService(handle);
 
         /// <summary>
         /// <c>ExperienceNotificationService.InvokeOptInPromptClosed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InvokeOptInPromptClosed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeOptInPromptClosed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InvokeOptInPromptClosed()
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeOptInPromptClosed")!;
 
         /// <summary>
         /// Shows an in-experience prompt for the local player to enable notifications.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceNotificationService#PromptOptIn"/>
-        public object? PromptOptIn()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptOptIn");
+        public object PromptOptIn()
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptOptIn")!;
 
         /// <summary>
         /// Indicates whether the local player can be prompted to enable notifications.
@@ -46,7 +46,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceNotificationService#CanPromptOptInAsync"/>
         public bool CanPromptOptInAsync()
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanPromptOptInAsync");
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanPromptOptInAsync")!;
 
         /// <summary>
         /// Fires when the local player closes the prompt.

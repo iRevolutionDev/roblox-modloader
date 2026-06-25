@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AppRatingPromptService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AppRatingPromptService? FromHandle(nuint handle)
+        public static new AppRatingPromptService? FromHandle(nuint handle)
             => handle == 0 ? null : new AppRatingPromptService(handle);
 
         /// <summary>
@@ -26,14 +26,14 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAppRatingPromptAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "isAppRatingPromptAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "isAppRatingPromptAvailable")!;
 
         /// <summary>
         /// <c>AppRatingPromptService.showAppRatingPrompt</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowAppRatingPrompt()
-            => global::Roblox.Reflection.Invoke<object?>(this, "showAppRatingPrompt");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowAppRatingPrompt()
+            => global::Roblox.Reflection.Invoke<object>(this, "showAppRatingPrompt")!;
 
         /// <summary>
         /// <c>AppRatingPromptService.OnGameLeft</c>

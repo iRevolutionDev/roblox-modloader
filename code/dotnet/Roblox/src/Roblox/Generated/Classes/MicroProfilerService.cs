@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="MicroProfilerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MicroProfilerService? FromHandle(nuint handle)
+        public static new MicroProfilerService? FromHandle(nuint handle)
             => handle == 0 ? null : new MicroProfilerService(handle);
 
         /// <summary>
         /// <c>MicroProfilerService.ContextLabel</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MicroProfilerService#ContextLabel"/>
-        public string? ContextLabel
+        public string ContextLabel
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ContextLabel");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ContextLabel", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ContextLabel")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ContextLabel", value);
         }
 
         /// <summary>
@@ -41,11 +41,11 @@ namespace Roblox
         /// <param name="slotId">A <c>int</c> value.</param>
         /// <param name="offset">A <c>int</c> value.</param>
         /// <param name="size">A <c>int</c> value.</param>
-        /// <param name="destBuffer">A <c>object?</c> value.</param>
+        /// <param name="destBuffer">A <c>object</c> value.</param>
         /// <param name="destBufferOffset">A <c>int</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetDataInRange(int slotId, int offset, int size, object? destBuffer, int destBufferOffset)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetDataInRange", slotId, offset, size, destBuffer, destBufferOffset);
+        public int GetDataInRange(int slotId, int offset, int size, object destBuffer, int destBufferOffset)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetDataInRange", slotId, offset, size, destBuffer, destBufferOffset)!;
 
         /// <summary>
         /// <c>MicroProfilerService.GetDataSize</c>
@@ -53,29 +53,29 @@ namespace Roblox
         /// <param name="slotId">A <c>int</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetDataSize(int slotId)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetDataSize", slotId);
+            => global::Roblox.Reflection.Invoke<int>(this, "GetDataSize", slotId)!;
 
         /// <summary>
         /// <c>MicroProfilerService.ProcessCommand</c>
         /// </summary>
-        /// <param name="cmdBuf">A <c>object?</c> value.</param>
+        /// <param name="cmdBuf">A <c>object</c> value.</param>
         /// <param name="cmdOffset">A <c>int</c> value.</param>
         /// <param name="cmdSize">A <c>int</c> value.</param>
-        /// <param name="respBuf">A <c>object?</c> value.</param>
+        /// <param name="respBuf">A <c>object</c> value.</param>
         /// <param name="respOffset">A <c>int</c> value.</param>
         /// <param name="respSize">A <c>int</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int ProcessCommand(object? cmdBuf, int cmdOffset, int cmdSize, object? respBuf, int respOffset, int respSize)
-            => global::Roblox.Reflection.Invoke<int>(this, "ProcessCommand", cmdBuf, cmdOffset, cmdSize, respBuf, respOffset, respSize);
+        public int ProcessCommand(object cmdBuf, int cmdOffset, int cmdSize, object respBuf, int respOffset, int respSize)
+            => global::Roblox.Reflection.Invoke<int>(this, "ProcessCommand", cmdBuf, cmdOffset, cmdSize, respBuf, respOffset, respSize)!;
 
         /// <summary>
         /// <c>MicroProfilerService.DumpToFileAsync</c>
         /// </summary>
         /// <param name="secondsToDelay">A <c>int</c> value.</param>
         /// <param name="framesToDump">A <c>int</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? DumpToFileAsync(int secondsToDelay, int framesToDump)
-            => global::Roblox.Reflection.Invoke<string?>(this, "DumpToFileAsync", secondsToDelay, framesToDump);
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string DumpToFileAsync(int secondsToDelay, int framesToDump)
+            => global::Roblox.Reflection.Invoke<string>(this, "DumpToFileAsync", secondsToDelay, framesToDump)!;
 
         /// <summary>
         /// <c>MicroProfilerService.DataChanged</c>

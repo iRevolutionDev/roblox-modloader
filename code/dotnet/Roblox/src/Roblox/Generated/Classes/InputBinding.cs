@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="InputBinding"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InputBinding? FromHandle(nuint handle)
+        public static new InputBinding? FromHandle(nuint handle)
             => handle == 0 ? null : new InputBinding(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Backward"/>
         public Enum.KeyCode Backward
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Backward");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Backward")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "Backward", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#ClampMagnitudeToOne"/>
         public bool ClampMagnitudeToOne
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClampMagnitudeToOne");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClampMagnitudeToOne")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClampMagnitudeToOne", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Down"/>
         public Enum.KeyCode Down
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Down");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Down")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "Down", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Forward"/>
         public Enum.KeyCode Forward
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Forward");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Forward")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "Forward", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#KeyCode"/>
         public Enum.KeyCode KeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "KeyCode", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Left"/>
         public Enum.KeyCode Left
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Left");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Left")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "Left", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#PointerIndex"/>
         public int PointerIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PointerIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PointerIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PointerIndex", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#PressedThreshold"/>
         public float PressedThreshold
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PressedThreshold");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PressedThreshold")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PressedThreshold", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#PrimaryModifier"/>
         public Enum.KeyCode PrimaryModifier
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "PrimaryModifier");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "PrimaryModifier")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "PrimaryModifier", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#ReleasedThreshold"/>
         public float ReleasedThreshold
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ReleasedThreshold");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ReleasedThreshold")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ReleasedThreshold", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#ResponseCurve"/>
         public float ResponseCurve
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ResponseCurve");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ResponseCurve")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ResponseCurve", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Right"/>
         public Enum.KeyCode Right
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Right");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Right")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "Right", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Scale"/>
         public float Scale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Scale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Scale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Scale", value);
         }
 
@@ -161,13 +161,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#SecondaryModifier"/>
         public Enum.KeyCode SecondaryModifier
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "SecondaryModifier");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "SecondaryModifier")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "SecondaryModifier", value);
         }
 
         public Enum.InputBindingType Type
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputBindingType>(this, "Type");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputBindingType>(this, "Type")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputBindingType>(this, "Type", value);
         }
 
@@ -197,7 +197,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Up"/>
         public Enum.KeyCode Up
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Up");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "Up")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "Up", value);
         }
 
@@ -205,30 +205,30 @@ namespace Roblox
         /// Per-component scale applied to the output of a Direction2D action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Vector2Scale"/>
-        public global::Roblox.Vector2? Vector2Scale
+        public global::Roblox.Vector2 Vector2Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Vector2Scale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Vector2Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Vector2Scale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Vector2Scale", value);
         }
 
         /// <summary>
         /// Per-component scale applied to the output of a Direction3D action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Vector3Scale"/>
-        public global::Roblox.Vector3? Vector3Scale
+        public global::Roblox.Vector3 Vector3Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Vector3Scale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Vector3Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Vector3Scale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Vector3Scale", value);
         }
 
         /// <summary>
         /// Programmatically updates the parent InputAction state through this binding.
         /// </summary>
-        /// <param name="state">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="state">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#Fire"/>
-        public object? Fire(object? state)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Fire", state);
+        public object Fire(object state)
+            => global::Roblox.Reflection.Invoke<object>(this, "Fire", state)!;
 
     }
 }

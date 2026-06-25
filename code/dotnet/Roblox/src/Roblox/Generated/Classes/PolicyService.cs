@@ -22,46 +22,46 @@ namespace Roblox
         /// Creates a <see cref="PolicyService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PolicyService? FromHandle(nuint handle)
+        public static new PolicyService? FromHandle(nuint handle)
             => handle == 0 ? null : new PolicyService(handle);
 
         public Enum.TriStateBoolean IsLuobuServer
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TriStateBoolean>(this, "IsLuobuServer");
+            get => global::Roblox.Reflection.GetProperty<Enum.TriStateBoolean>(this, "IsLuobuServer")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TriStateBoolean>(this, "IsLuobuServer", value);
         }
 
         public Enum.TriStateBoolean LuobuWhitelisted
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TriStateBoolean>(this, "LuobuWhitelisted");
+            get => global::Roblox.Reflection.GetProperty<Enum.TriStateBoolean>(this, "LuobuWhitelisted")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TriStateBoolean>(this, "LuobuWhitelisted", value);
         }
 
         /// <summary>
         /// Determines if a user can see brand project assets inside your experience.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="brandProjectId">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="brandProjectId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PolicyService#CanViewBrandProjectAsync"/>
-        public bool CanViewBrandProjectAsync(Player? player, string? brandProjectId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanViewBrandProjectAsync", player, brandProjectId);
+        public bool CanViewBrandProjectAsync(Player player, string brandProjectId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanViewBrandProjectAsync", player, brandProjectId)!;
 
         /// <summary>
         /// Returns policy information about a player based on geolocation, age group, and platform.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PolicyService#GetPolicyInfoForPlayerAsync"/>
-        public object? GetPolicyInfoForPlayerAsync(Instance? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPolicyInfoForPlayerAsync", player);
+        public object GetPolicyInfoForPlayerAsync(Instance player)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPolicyInfoForPlayerAsync", player)!;
 
         /// <summary>
         /// <c>PolicyService.GetPolicyInfoForServerRobloxOnlyAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPolicyInfoForServerRobloxOnlyAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPolicyInfoForServerRobloxOnlyAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPolicyInfoForServerRobloxOnlyAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPolicyInfoForServerRobloxOnlyAsync")!;
 
     }
 }

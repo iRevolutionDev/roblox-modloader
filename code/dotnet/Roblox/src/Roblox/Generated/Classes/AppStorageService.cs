@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AppStorageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AppStorageService? FromHandle(nuint handle)
+        public static new AppStorageService? FromHandle(nuint handle)
             => handle == 0 ? null : new AppStorageService(handle);
 
     }

@@ -18,65 +18,65 @@ namespace Roblox
         /// Creates a <see cref="WebViewService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WebViewService? FromHandle(nuint handle)
+        public static new WebViewService? FromHandle(nuint handle)
             => handle == 0 ? null : new WebViewService(handle);
 
         /// <summary>
         /// <c>WebViewService.CloseWindow</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CloseWindow()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CloseWindow");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CloseWindow()
+            => global::Roblox.Reflection.Invoke<object>(this, "CloseWindow")!;
 
         /// <summary>
         /// <c>WebViewService.MutateWindow</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <param name="title">A <c>object?</c> value.</param>
-        /// <param name="isVisible">A <c>object?</c> value.</param>
-        /// <param name="searchType">A <c>object?</c> value.</param>
-        /// <param name="transitionAnimation">A <c>object?</c> value.</param>
-        /// <param name="showDomainAsTitle">A <c>object?</c> value.</param>
-        /// <param name="backButtonVisible">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? MutateWindow(string? url, object? title, object? isVisible, object? searchType, object? transitionAnimation, object? showDomainAsTitle, object? backButtonVisible)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MutateWindow", url, title, isVisible, searchType, transitionAnimation, showDomainAsTitle, backButtonVisible);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <param name="title">A <c>string?</c> value.</param>
+        /// <param name="isVisible">A <c>bool?</c> value.</param>
+        /// <param name="searchType">A <c>string?</c> value.</param>
+        /// <param name="transitionAnimation">A <c>string?</c> value.</param>
+        /// <param name="showDomainAsTitle">A <c>bool?</c> value.</param>
+        /// <param name="backButtonVisible">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object MutateWindow(string url, string? title = null, bool? isVisible = null, string? searchType = null, string? transitionAnimation = null, bool? showDomainAsTitle = null, bool? backButtonVisible = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "MutateWindow", url, title, isVisible, searchType, transitionAnimation, showDomainAsTitle, backButtonVisible)!;
 
         /// <summary>
         /// <c>WebViewService.OpenWindow</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <param name="title">A <c>object?</c> value.</param>
-        /// <param name="isVisible">A <c>object?</c> value.</param>
-        /// <param name="searchType">A <c>object?</c> value.</param>
-        /// <param name="transitionAnimation">A <c>object?</c> value.</param>
-        /// <param name="showDomainAsTitle">A <c>object?</c> value.</param>
-        /// <param name="backButtonVisible">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenWindow(string? url, object? title, object? isVisible, object? searchType, object? transitionAnimation, object? showDomainAsTitle, object? backButtonVisible)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenWindow", url, title, isVisible, searchType, transitionAnimation, showDomainAsTitle, backButtonVisible);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <param name="title">A <c>string?</c> value.</param>
+        /// <param name="isVisible">A <c>bool?</c> value.</param>
+        /// <param name="searchType">A <c>string?</c> value.</param>
+        /// <param name="transitionAnimation">A <c>string?</c> value.</param>
+        /// <param name="showDomainAsTitle">A <c>bool?</c> value.</param>
+        /// <param name="backButtonVisible">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenWindow(string url, string? title = null, bool? isVisible = null, string? searchType = null, string? transitionAnimation = null, bool? showDomainAsTitle = null, bool? backButtonVisible = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenWindow", url, title, isVisible, searchType, transitionAnimation, showDomainAsTitle, backButtonVisible)!;
 
         /// <summary>
         /// <c>WebViewService.OpenWindowV2</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenWindowV2(string? url, object? @params)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenWindowV2", url, @params);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>object?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenWindowV2(string url, object? @params = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenWindowV2", url, @params)!;
 
         /// <summary>
         /// <c>WebViewService.IsAvailable</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable")!;
 
         /// <summary>
         /// <c>WebViewService.OnJavaScriptCall</c>
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
-        public event Action<string?>? OnJavaScriptCall
+        /// <param name="content">A <c>string</c> value.</param>
+        public event Action<string>? OnJavaScriptCall
         {
             add { if (value is not null) AddEventHandler("OnJavaScriptCall", value); }
             remove { if (value is not null) RemoveEventHandler("OnJavaScriptCall", value); }

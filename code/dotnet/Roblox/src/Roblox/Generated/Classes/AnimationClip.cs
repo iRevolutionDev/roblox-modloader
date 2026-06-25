@@ -22,13 +22,13 @@ namespace Roblox
         /// Creates a <see cref="AnimationClip"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationClip? FromHandle(nuint handle)
+        public static new AnimationClip? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationClip(handle);
 
-        public string? Guid
+        public string Guid
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Guid");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Guid", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Guid")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Guid", value);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClip#Length"/>
         public float Length
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Length", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClip#Loop"/>
         public bool Loop
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Loop");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Loop")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Loop", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClip#Priority"/>
         public Enum.AnimationPriority Priority
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnimationPriority>(this, "Priority");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnimationPriority>(this, "Priority")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnimationPriority>(this, "Priority", value);
         }
 

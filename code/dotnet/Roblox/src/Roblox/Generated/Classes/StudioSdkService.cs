@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="StudioSdkService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioSdkService? FromHandle(nuint handle)
+        public static new StudioSdkService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioSdkService(handle);
 
         /// <summary>
@@ -31,10 +31,10 @@ namespace Roblox
         /// <summary>
         /// <c>StudioSdkService.SetSdk</c>
         /// </summary>
-        /// <param name="sdk">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetSdk(Instance? sdk)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetSdk", sdk);
+        /// <param name="sdk">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetSdk(Instance sdk)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetSdk", sdk)!;
 
     }
 }

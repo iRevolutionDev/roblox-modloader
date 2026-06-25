@@ -22,48 +22,48 @@ namespace Roblox
         /// Creates a <see cref="MemoryStoreQueue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MemoryStoreQueue? FromHandle(nuint handle)
+        public static new MemoryStoreQueue? FromHandle(nuint handle)
             => handle == 0 ? null : new MemoryStoreQueue(handle);
 
         /// <summary>
         /// Adds an item to the queue.
         /// </summary>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
         /// <param name="expiration">A <c>long</c> value.</param>
-        /// <param name="priority">A <c>double</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="priority">A <c>double?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreQueue#AddAsync"/>
-        public object? AddAsync(object? value, long expiration, double priority)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddAsync", value, expiration, priority);
+        public object AddAsync(object value, long expiration, double? priority = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddAsync", value, expiration, priority)!;
 
         /// <summary>
         /// Gets the size of the queue.
         /// </summary>
-        /// <param name="excludeInvisible">A <c>bool</c> value.</param>
+        /// <param name="excludeInvisible">A <c>bool?</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreQueue#GetSizeAsync"/>
-        public int GetSizeAsync(bool excludeInvisible)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetSizeAsync", excludeInvisible);
+        public int GetSizeAsync(bool? excludeInvisible = null)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetSizeAsync", excludeInvisible)!;
 
         /// <summary>
         /// Reads one or more items from the queue.
         /// </summary>
         /// <param name="count">A <c>int</c> value.</param>
-        /// <param name="allOrNothing">A <c>bool</c> value.</param>
-        /// <param name="waitTimeout">A <c>double</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="allOrNothing">A <c>bool?</c> value.</param>
+        /// <param name="waitTimeout">A <c>double?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreQueue#ReadAsync"/>
-        public object? ReadAsync(int count, bool allOrNothing, double waitTimeout)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReadAsync", count, allOrNothing, waitTimeout);
+        public object ReadAsync(int count, bool? allOrNothing = null, double? waitTimeout = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReadAsync", count, allOrNothing, waitTimeout)!;
 
         /// <summary>
         /// Removes an item or items previously read from the queue.
         /// </summary>
-        /// <param name="id">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="id">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreQueue#RemoveAsync"/>
-        public object? RemoveAsync(string? id)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveAsync", id);
+        public object RemoveAsync(string id)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveAsync", id)!;
 
     }
 }

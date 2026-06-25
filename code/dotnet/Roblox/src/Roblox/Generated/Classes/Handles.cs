@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Handles"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Handles? FromHandle(nuint handle)
+        public static new Handles? FromHandle(nuint handle)
             => handle == 0 ? null : new Handles(handle);
 
         /// <summary>
         /// Sets which sides the GUI handles will appear.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#Faces"/>
-        public global::Roblox.Faces? Faces
+        public global::Roblox.Faces Faces
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Faces?>(this, "Faces");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Faces?>(this, "Faces", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Faces>(this, "Faces")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Faces>(this, "Faces", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Handles#Style"/>
         public Enum.HandlesStyle Style
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HandlesStyle>(this, "Style");
+            get => global::Roblox.Reflection.GetProperty<Enum.HandlesStyle>(this, "Style")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HandlesStyle>(this, "Style", value);
         }
 

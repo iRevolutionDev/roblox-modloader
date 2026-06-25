@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FaceControls"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FaceControls? FromHandle(nuint handle)
+        public static new FaceControls? FromHandle(nuint handle)
             => handle == 0 ? null : new FaceControls(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#ChinRaiser"/>
         public float ChinRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ChinRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ChinRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ChinRaiser", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#ChinRaiserUpperLip"/>
         public float ChinRaiserUpperLip
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ChinRaiserUpperLip");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ChinRaiserUpperLip")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ChinRaiserUpperLip", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#Corrugator"/>
         public float Corrugator
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Corrugator");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Corrugator")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Corrugator", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookDown"/>
         public float EyesLookDown
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookDown");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookDown")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "EyesLookDown", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookLeft"/>
         public float EyesLookLeft
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookLeft");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookLeft")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "EyesLookLeft", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookRight"/>
         public float EyesLookRight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookRight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookRight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "EyesLookRight", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#EyesLookUp"/>
         public float EyesLookUp
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookUp");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "EyesLookUp")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "EyesLookUp", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#FlatPucker"/>
         public float FlatPucker
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FlatPucker");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FlatPucker")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FlatPucker", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#Funneler"/>
         public float Funneler
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Funneler");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Funneler")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Funneler", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#JawDrop"/>
         public float JawDrop
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "JawDrop");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "JawDrop")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "JawDrop", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#JawLeft"/>
         public float JawLeft
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "JawLeft");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "JawLeft")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "JawLeft", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#JawRight"/>
         public float JawRight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "JawRight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "JawRight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "JawRight", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftBrowLowerer"/>
         public float LeftBrowLowerer
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftBrowLowerer");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftBrowLowerer")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftBrowLowerer", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftCheekPuff"/>
         public float LeftCheekPuff
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftCheekPuff");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftCheekPuff")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftCheekPuff", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftCheekRaiser"/>
         public float LeftCheekRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftCheekRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftCheekRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftCheekRaiser", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftDimpler"/>
         public float LeftDimpler
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftDimpler");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftDimpler")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftDimpler", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftEyeClosed"/>
         public float LeftEyeClosed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftEyeClosed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftEyeClosed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftEyeClosed", value);
         }
 
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftEyeUpperLidRaiser"/>
         public float LeftEyeUpperLidRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftEyeUpperLidRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftEyeUpperLidRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftEyeUpperLidRaiser", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftInnerBrowRaiser"/>
         public float LeftInnerBrowRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftInnerBrowRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftInnerBrowRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftInnerBrowRaiser", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLipCornerDown"/>
         public float LeftLipCornerDown
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLipCornerDown");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLipCornerDown")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftLipCornerDown", value);
         }
 
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLipCornerPuller"/>
         public float LeftLipCornerPuller
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLipCornerPuller");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLipCornerPuller")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftLipCornerPuller", value);
         }
 
@@ -241,7 +241,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLipStretcher"/>
         public float LeftLipStretcher
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLipStretcher");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLipStretcher")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftLipStretcher", value);
         }
 
@@ -251,7 +251,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftLowerLipDepressor"/>
         public float LeftLowerLipDepressor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLowerLipDepressor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftLowerLipDepressor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftLowerLipDepressor", value);
         }
 
@@ -261,7 +261,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftNoseWrinkler"/>
         public float LeftNoseWrinkler
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftNoseWrinkler");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftNoseWrinkler")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftNoseWrinkler", value);
         }
 
@@ -271,7 +271,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftOuterBrowRaiser"/>
         public float LeftOuterBrowRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftOuterBrowRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftOuterBrowRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftOuterBrowRaiser", value);
         }
 
@@ -281,7 +281,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LeftUpperLipRaiser"/>
         public float LeftUpperLipRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftUpperLipRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftUpperLipRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftUpperLipRaiser", value);
         }
 
@@ -291,7 +291,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LipPresser"/>
         public float LipPresser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LipPresser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LipPresser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LipPresser", value);
         }
 
@@ -301,7 +301,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LipsTogether"/>
         public float LipsTogether
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LipsTogether");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LipsTogether")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LipsTogether", value);
         }
 
@@ -311,7 +311,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#LowerLipSuck"/>
         public float LowerLipSuck
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerLipSuck");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerLipSuck")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowerLipSuck", value);
         }
 
@@ -321,7 +321,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#MouthLeft"/>
         public float MouthLeft
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MouthLeft");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MouthLeft")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MouthLeft", value);
         }
 
@@ -331,7 +331,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#MouthRight"/>
         public float MouthRight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MouthRight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MouthRight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MouthRight", value);
         }
 
@@ -341,7 +341,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#Pucker"/>
         public float Pucker
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Pucker");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Pucker")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Pucker", value);
         }
 
@@ -351,7 +351,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightBrowLowerer"/>
         public float RightBrowLowerer
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightBrowLowerer");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightBrowLowerer")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightBrowLowerer", value);
         }
 
@@ -361,7 +361,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightCheekPuff"/>
         public float RightCheekPuff
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightCheekPuff");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightCheekPuff")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightCheekPuff", value);
         }
 
@@ -371,7 +371,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightCheekRaiser"/>
         public float RightCheekRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightCheekRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightCheekRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightCheekRaiser", value);
         }
 
@@ -381,7 +381,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightDimpler"/>
         public float RightDimpler
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightDimpler");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightDimpler")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightDimpler", value);
         }
 
@@ -391,7 +391,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightEyeClosed"/>
         public float RightEyeClosed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightEyeClosed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightEyeClosed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightEyeClosed", value);
         }
 
@@ -401,7 +401,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightEyeUpperLidRaiser"/>
         public float RightEyeUpperLidRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightEyeUpperLidRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightEyeUpperLidRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightEyeUpperLidRaiser", value);
         }
 
@@ -411,7 +411,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightInnerBrowRaiser"/>
         public float RightInnerBrowRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightInnerBrowRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightInnerBrowRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightInnerBrowRaiser", value);
         }
 
@@ -421,7 +421,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLipCornerDown"/>
         public float RightLipCornerDown
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLipCornerDown");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLipCornerDown")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightLipCornerDown", value);
         }
 
@@ -431,7 +431,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLipCornerPuller"/>
         public float RightLipCornerPuller
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLipCornerPuller");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLipCornerPuller")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightLipCornerPuller", value);
         }
 
@@ -441,7 +441,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLipStretcher"/>
         public float RightLipStretcher
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLipStretcher");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLipStretcher")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightLipStretcher", value);
         }
 
@@ -451,7 +451,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightLowerLipDepressor"/>
         public float RightLowerLipDepressor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLowerLipDepressor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightLowerLipDepressor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightLowerLipDepressor", value);
         }
 
@@ -461,7 +461,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightNoseWrinkler"/>
         public float RightNoseWrinkler
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightNoseWrinkler");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightNoseWrinkler")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightNoseWrinkler", value);
         }
 
@@ -471,7 +471,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightOuterBrowRaiser"/>
         public float RightOuterBrowRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightOuterBrowRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightOuterBrowRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightOuterBrowRaiser", value);
         }
 
@@ -481,7 +481,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#RightUpperLipRaiser"/>
         public float RightUpperLipRaiser
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightUpperLipRaiser");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightUpperLipRaiser")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightUpperLipRaiser", value);
         }
 
@@ -491,7 +491,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#TongueDown"/>
         public float TongueDown
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TongueDown");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TongueDown")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TongueDown", value);
         }
 
@@ -501,7 +501,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#TongueOut"/>
         public float TongueOut
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TongueOut");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TongueOut")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TongueOut", value);
         }
 
@@ -511,7 +511,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#TongueUp"/>
         public float TongueUp
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TongueUp");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TongueUp")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TongueUp", value);
         }
 
@@ -521,7 +521,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceControls#UpperLipSuck"/>
         public float UpperLipSuck
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperLipSuck");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperLipSuck")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "UpperLipSuck", value);
         }
 
@@ -530,7 +530,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool HasOverrideFACSData()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasOverrideFACSData");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasOverrideFACSData")!;
 
         public event Action? InternalFacsOverrideChanged
         {

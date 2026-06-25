@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ReflectionMetadataItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReflectionMetadataItem? FromHandle(nuint handle)
+        public static new ReflectionMetadataItem? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionMetadataItem(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#Browsable"/>
         public bool Browsable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Browsable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Browsable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Browsable", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Describes the category of this class.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#ClassCategory"/>
-        public string? ClassCategory
+        public string ClassCategory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ClassCategory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ClassCategory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ClassCategory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ClassCategory", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#ClientOnly"/>
         public bool ClientOnly
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClientOnly");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClientOnly")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClientOnly", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Describes a constraint for a single-argument function whose argument type is a Object.ClassName.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#Constraint"/>
-        public string? Constraint
+        public string Constraint
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Constraint");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Constraint", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Constraint")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Constraint", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#Deprecated"/>
         public bool Deprecated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Deprecated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Deprecated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Deprecated", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#EditingDisabled"/>
         public bool EditingDisabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EditingDisabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EditingDisabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EditingDisabled", value);
         }
 
@@ -89,20 +89,20 @@ namespace Roblox
         /// <c>ReflectionMetadataItem.EditorType</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#EditorType"/>
-        public string? EditorType
+        public string EditorType
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EditorType");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EditorType", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "EditorType")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "EditorType", value);
         }
 
         /// <summary>
         /// <c>ReflectionMetadataItem.FFlag</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#FFlag"/>
-        public string? FFlag
+        public string FFlag
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FFlag");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FFlag", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FFlag")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FFlag", value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#IsBackend"/>
         public bool IsBackend
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsBackend");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsBackend")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsBackend", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#PropertyOrder"/>
         public int PropertyOrder
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PropertyOrder");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PropertyOrder")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PropertyOrder", value);
         }
 
@@ -129,10 +129,10 @@ namespace Roblox
         /// Describes the context where this member can be used. If set to "Server", this member will not be available to auto fill when editing a LocalScript. If set to "Client", this member will not be available to auto fill when editing a Script.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#ScriptContext"/>
-        public string? ScriptContext
+        public string ScriptContext
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ScriptContext");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ScriptContext", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ScriptContext")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ScriptContext", value);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#ServerOnly"/>
         public bool ServerOnly
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ServerOnly");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ServerOnly")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ServerOnly", value);
         }
 
@@ -149,10 +149,10 @@ namespace Roblox
         /// <c>ReflectionMetadataItem.SliderScaling</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#SliderScaling"/>
-        public string? SliderScaling
+        public string SliderScaling
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SliderScaling");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SliderScaling", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SliderScaling")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SliderScaling", value);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#UIMaximum"/>
         public double UIMaximum
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "UIMaximum");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "UIMaximum")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "UIMaximum", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#UIMinimum"/>
         public double UIMinimum
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "UIMinimum");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "UIMinimum")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "UIMinimum", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataItem#UINumTicks"/>
         public double UINumTicks
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "UINumTicks");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "UINumTicks")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "UINumTicks", value);
         }
 

@@ -22,40 +22,40 @@ namespace Roblox
         /// Creates a <see cref="ClientReplicator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ClientReplicator? FromHandle(nuint handle)
+        public static new ClientReplicator? FromHandle(nuint handle)
             => handle == 0 ? null : new ClientReplicator(handle);
 
         /// <summary>
         /// <c>ClientReplicator.IsStreamedOut</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsStreamedOut(Instance? instance)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsStreamedOut", instance);
+        public bool IsStreamedOut(Instance instance)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsStreamedOut", instance)!;
 
         /// <summary>
         /// <c>ClientReplicator.RequestRCCProfilerData</c>
         /// </summary>
         /// <param name="frameRate">A <c>int</c> value.</param>
         /// <param name="timeFrame">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestRCCProfilerData(int frameRate, int timeFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestRCCProfilerData", frameRate, timeFrame);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestRCCProfilerData(int frameRate, int timeFrame)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestRCCProfilerData", frameRate, timeFrame)!;
 
         /// <summary>
         /// <c>ClientReplicator.RequestServerStats</c>
         /// </summary>
         /// <param name="request">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestServerStats(bool request)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestServerStats", request);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestServerStats(bool request)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestServerStats", request)!;
 
         /// <summary>
         /// <c>ClientReplicator.RCCProfilerDataComplete</c>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        public event Action<bool, string?>? RCCProfilerDataComplete
+        /// <param name="message">A <c>string</c> value.</param>
+        public event Action<bool, string>? RCCProfilerDataComplete
         {
             add { if (value is not null) AddEventHandler("RCCProfilerDataComplete", value); }
             remove { if (value is not null) RemoveEventHandler("RCCProfilerDataComplete", value); }
@@ -64,8 +64,8 @@ namespace Roblox
         /// <summary>
         /// <c>ClientReplicator.StatsReceived</c>
         /// </summary>
-        /// <param name="stats">A <c>object?</c> value.</param>
-        public event Action<object?>? StatsReceived
+        /// <param name="stats">A <c>object</c> value.</param>
+        public event Action<object>? StatsReceived
         {
             add { if (value is not null) AddEventHandler("StatsReceived", value); }
             remove { if (value is not null) RemoveEventHandler("StatsReceived", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StarterPack"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StarterPack? FromHandle(nuint handle)
+        public static new StarterPack? FromHandle(nuint handle)
             => handle == 0 ? null : new StarterPack(handle);
 
     }

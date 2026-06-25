@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CurveAnimation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CurveAnimation? FromHandle(nuint handle)
+        public static new CurveAnimation? FromHandle(nuint handle)
             => handle == 0 ? null : new CurveAnimation(handle);
 
     }

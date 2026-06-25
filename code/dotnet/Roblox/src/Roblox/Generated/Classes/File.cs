@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="File"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static File? FromHandle(nuint handle)
+        public static new File? FromHandle(nuint handle)
             => handle == 0 ? null : new File(handle);
 
         /// <summary>
@@ -31,25 +31,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/File#Size"/>
         public long Size
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Size");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Size")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Size", value);
         }
 
         /// <summary>
         /// Reads the contents of the File as a string.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/File#GetBinaryContents"/>
-        public string? GetBinaryContents()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetBinaryContents");
+        public string GetBinaryContents()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetBinaryContents")!;
 
         /// <summary>
         /// Gets a rbxtemp:// asset ID for this File.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/File#GetTemporaryId"/>
-        public object? GetTemporaryId()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTemporaryId");
+        public object GetTemporaryId()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTemporaryId")!;
 
     }
 }

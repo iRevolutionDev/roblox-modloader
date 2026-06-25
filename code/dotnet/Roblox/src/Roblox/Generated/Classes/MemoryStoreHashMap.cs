@@ -22,57 +22,57 @@ namespace Roblox
         /// Creates a <see cref="MemoryStoreHashMap"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MemoryStoreHashMap? FromHandle(nuint handle)
+        public static new MemoryStoreHashMap? FromHandle(nuint handle)
             => handle == 0 ? null : new MemoryStoreHashMap(handle);
 
         /// <summary>
         /// Retrieves the value of a key in the hash map.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreHashMap#GetAsync"/>
-        public object? GetAsync(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAsync", key);
+        public object GetAsync(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAsync", key)!;
 
         /// <summary>
         /// Returns a MemoryStoreHashMapPages object for enumerating through items in the hash map.
         /// </summary>
         /// <param name="count">A <c>int</c> value.</param>
-        /// <returns>A <c>MemoryStoreHashMapPages?</c> value returned by the engine.</returns>
+        /// <returns>A <c>MemoryStoreHashMapPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreHashMap#ListItemsAsync"/>
-        public MemoryStoreHashMapPages? ListItemsAsync(int count)
-            => global::Roblox.Reflection.Invoke<MemoryStoreHashMapPages?>(this, "ListItemsAsync", count);
+        public MemoryStoreHashMapPages ListItemsAsync(int count)
+            => global::Roblox.Reflection.Invoke<MemoryStoreHashMapPages>(this, "ListItemsAsync", count)!;
 
         /// <summary>
         /// Removes an item from the hash map.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreHashMap#RemoveAsync"/>
-        public object? RemoveAsync(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveAsync", key);
+        public object RemoveAsync(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveAsync", key)!;
 
         /// <summary>
         /// Sets the value of a key in the hash map.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
         /// <param name="expiration">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreHashMap#SetAsync"/>
-        public bool SetAsync(string? key, object? value, long expiration)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SetAsync", key, value, expiration);
+        public bool SetAsync(string key, object value, long expiration)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SetAsync", key, value, expiration)!;
 
         /// <summary>
         /// Retrieves the value of a key from a hash map and lets you update it to a new value.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="transformFunction">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="transformFunction">A <c>object</c> value.</param>
         /// <param name="expiration">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreHashMap#UpdateAsync"/>
-        public object? UpdateAsync(string? key, object? transformFunction, long expiration)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateAsync", key, transformFunction, expiration);
+        public object UpdateAsync(string key, object transformFunction, long expiration)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateAsync", key, transformFunction, expiration)!;
 
     }
 }

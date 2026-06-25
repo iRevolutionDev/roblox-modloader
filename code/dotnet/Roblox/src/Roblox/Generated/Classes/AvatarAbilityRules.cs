@@ -18,84 +18,84 @@ namespace Roblox
         /// Creates a <see cref="AvatarAbilityRules"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarAbilityRules? FromHandle(nuint handle)
+        public static new AvatarAbilityRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarAbilityRules(handle);
 
         public Enum.AvatarSettingsCharacterControllerMode CharacterControllerMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCharacterControllerMode>(this, "CharacterControllerMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCharacterControllerMode>(this, "CharacterControllerMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCharacterControllerMode>(this, "CharacterControllerMode", value);
         }
 
         public bool EnableClimbing
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableClimbing");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableClimbing")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableClimbing", value);
         }
 
         public bool EnableCrouching
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableCrouching");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableCrouching")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableCrouching", value);
         }
 
         public bool EnableFallingDown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFallingDown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFallingDown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableFallingDown", value);
         }
 
         public bool EnableGettingUp
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableGettingUp");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableGettingUp")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableGettingUp", value);
         }
 
         public bool EnableHolding
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableHolding");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableHolding")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableHolding", value);
         }
 
         public bool EnableJumping
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableJumping");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableJumping")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableJumping", value);
         }
 
         public bool EnableReaching
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableReaching");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableReaching")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableReaching", value);
         }
 
         public bool EnableRunning
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableRunning");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableRunning")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableRunning", value);
         }
 
         public bool EnableSitting
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSitting");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSitting")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableSitting", value);
         }
 
         public bool EnableSprinting
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSprinting");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSprinting")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableSprinting", value);
         }
 
         public bool EnableStrafing
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableStrafing");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableStrafing")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableStrafing", value);
         }
 
         public bool EnableSwimming
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSwimming");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSwimming")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableSwimming", value);
         }
 

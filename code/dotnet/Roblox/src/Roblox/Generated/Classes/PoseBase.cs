@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PoseBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PoseBase? FromHandle(nuint handle)
+        public static new PoseBase? FromHandle(nuint handle)
             => handle == 0 ? null : new PoseBase(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PoseBase#EasingDirection"/>
         public Enum.PoseEasingDirection EasingDirection
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PoseEasingDirection>(this, "EasingDirection");
+            get => global::Roblox.Reflection.GetProperty<Enum.PoseEasingDirection>(this, "EasingDirection")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PoseEasingDirection>(this, "EasingDirection", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PoseBase#EasingStyle"/>
         public Enum.PoseEasingStyle EasingStyle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PoseEasingStyle>(this, "EasingStyle");
+            get => global::Roblox.Reflection.GetProperty<Enum.PoseEasingStyle>(this, "EasingStyle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PoseEasingStyle>(this, "EasingStyle", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PoseBase#Weight"/>
         public float Weight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Weight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Weight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Weight", value);
         }
 

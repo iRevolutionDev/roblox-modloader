@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="VideoCapture"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VideoCapture? FromHandle(nuint handle)
+        public static new VideoCapture? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoCapture(handle);
 
         /// <summary>
         /// <c>VideoCapture.FilePath</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoCapture#FilePath"/>
-        public string? FilePath
+        public string FilePath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FilePath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FilePath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FilePath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FilePath", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoCapture#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 

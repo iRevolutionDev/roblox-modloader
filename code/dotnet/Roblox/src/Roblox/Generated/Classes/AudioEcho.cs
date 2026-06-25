@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioEcho"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioEcho? FromHandle(nuint handle)
+        public static new AudioEcho? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioEcho(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#Bypass"/>
         public bool Bypass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#DelayTime"/>
         public float DelayTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DelayTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DelayTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DelayTime", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#DryLevel"/>
         public float DryLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DryLevel", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#Feedback"/>
         public float Feedback
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Feedback");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Feedback")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Feedback", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#RampTime"/>
         public float RampTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RampTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RampTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RampTime", value);
         }
 
@@ -81,51 +81,51 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#WetLevel"/>
         public float WetLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WetLevel", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// <c>AudioEcho.Reset</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Reset()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Reset");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Reset()
+            => global::Roblox.Reflection.Invoke<object>(this, "Reset")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioEcho via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEcho#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

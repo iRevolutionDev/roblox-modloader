@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FaceInstance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FaceInstance? FromHandle(nuint handle)
+        public static new FaceInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new FaceInstance(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FaceInstance#Face"/>
         public Enum.NormalId Face
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "Face");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "Face")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "Face", value);
         }
 

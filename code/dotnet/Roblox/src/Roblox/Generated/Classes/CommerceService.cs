@@ -22,55 +22,55 @@ namespace Roblox
         /// Creates a <see cref="CommerceService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CommerceService? FromHandle(nuint handle)
+        public static new CommerceService? FromHandle(nuint handle)
             => handle == 0 ? null : new CommerceService(handle);
 
         /// <summary>
         /// Prompts a user to purchase a commerce product using the provided commerceProductId. Opens a webview that guides the user through the purchasing flow.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="commerceProductId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="commerceProductId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CommerceService#PromptCommerceProductPurchase"/>
-        public object? PromptCommerceProductPurchase(Player? user, string? commerceProductId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptCommerceProductPurchase", user, commerceProductId);
+        public object PromptCommerceProductPurchase(Player user, string commerceProductId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptCommerceProductPurchase", user, commerceProductId)!;
 
         /// <summary>
         /// <c>CommerceService.PromptRealWorldCommerceBrowser</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CommerceService#PromptRealWorldCommerceBrowser"/>
-        public object? PromptRealWorldCommerceBrowser(Player? player, string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptRealWorldCommerceBrowser", player, url);
+        public object PromptRealWorldCommerceBrowser(Player player, string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptRealWorldCommerceBrowser", player, url)!;
 
         /// <summary>
         /// <c>CommerceService.SignalPromptCommerceProductPurchaseFinished</c>
         /// </summary>
-        /// <param name="productId">A <c>string?</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
         /// <param name="didTryPurchase">A <c>bool</c> value.</param>
-        /// <param name="checkoutSessionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptCommerceProductPurchaseFinished(string? productId, bool didTryPurchase, string? checkoutSessionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptCommerceProductPurchaseFinished", productId, didTryPurchase, checkoutSessionId);
+        /// <param name="checkoutSessionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptCommerceProductPurchaseFinished(string productId, bool didTryPurchase, string checkoutSessionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptCommerceProductPurchaseFinished", productId, didTryPurchase, checkoutSessionId)!;
 
         /// <summary>
         /// Retrieves information about the commerce products you are selling in experience.
         /// </summary>
-        /// <param name="commerceProductId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="commerceProductId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CommerceService#GetCommerceProductInfoAsync"/>
-        public object? GetCommerceProductInfoAsync(string? commerceProductId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCommerceProductInfoAsync", commerceProductId);
+        public object GetCommerceProductInfoAsync(string commerceProductId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCommerceProductInfoAsync", commerceProductId)!;
 
         /// <summary>
         /// <c>CommerceService.PrepareCommerceProductPurchase</c>
         /// </summary>
-        /// <param name="commerceProductId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PrepareCommerceProductPurchase(string? commerceProductId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PrepareCommerceProductPurchase", commerceProductId);
+        /// <param name="commerceProductId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PrepareCommerceProductPurchase(string commerceProductId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PrepareCommerceProductPurchase", commerceProductId)!;
 
         /// <summary>
         /// <c>CommerceService.UserEligibleForRealWorldCommerceAsync</c>
@@ -78,7 +78,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CommerceService#UserEligibleForRealWorldCommerceAsync"/>
         public bool UserEligibleForRealWorldCommerceAsync()
-            => global::Roblox.Reflection.Invoke<bool>(this, "UserEligibleForRealWorldCommerceAsync");
+            => global::Roblox.Reflection.Invoke<bool>(this, "UserEligibleForRealWorldCommerceAsync")!;
 
         /// <summary>
         /// <c>CommerceService.BenefitStatusReceived</c>
@@ -99,8 +99,8 @@ namespace Roblox
         /// <summary>
         /// <c>CommerceService.InExperienceBrowserRequested</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        public event Action<string?>? InExperienceBrowserRequested
+        /// <param name="url">A <c>string</c> value.</param>
+        public event Action<string>? InExperienceBrowserRequested
         {
             add { if (value is not null) AddEventHandler("InExperienceBrowserRequested", value); }
             remove { if (value is not null) RemoveEventHandler("InExperienceBrowserRequested", value); }
@@ -109,10 +109,10 @@ namespace Roblox
         /// <summary>
         /// Fires when commerce purchase webview has closed - not an indicator that a purchase was successful.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="productId">A <c>string?</c> value.</param>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CommerceService#PromptCommerceProductPurchaseFinished"/>
-        public event Action<Player?, string?>? PromptCommerceProductPurchaseFinished
+        public event Action<Player, string>? PromptCommerceProductPurchaseFinished
         {
             add { if (value is not null) AddEventHandler("PromptCommerceProductPurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("PromptCommerceProductPurchaseFinished", value); }
@@ -121,8 +121,8 @@ namespace Roblox
         /// <summary>
         /// <c>CommerceService.PromptCommerceProductPurchaseRequested</c>
         /// </summary>
-        /// <param name="commerceProductId">A <c>string?</c> value.</param>
-        public event Action<string?>? PromptCommerceProductPurchaseRequested
+        /// <param name="commerceProductId">A <c>string</c> value.</param>
+        public event Action<string>? PromptCommerceProductPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptCommerceProductPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptCommerceProductPurchaseRequested", value); }

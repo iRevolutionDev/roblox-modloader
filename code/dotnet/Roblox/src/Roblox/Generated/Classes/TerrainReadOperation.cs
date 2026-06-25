@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TerrainReadOperation")]
-    public class TerrainReadOperation : Object
+    public class TerrainReadOperation : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TerrainReadOperation.</param>
@@ -24,8 +24,8 @@ namespace Roblox
         /// <summary>
         /// <c>TerrainReadOperation.Ready</c>
         /// </summary>
-        /// <param name="block">A <c>object?</c> value.</param>
-        public event Action<object?>? Ready
+        /// <param name="block">A <c>object</c> value.</param>
+        public event Action<object>? Ready
         {
             add { if (value is not null) AddEventHandler("Ready", value); }
             remove { if (value is not null) RemoveEventHandler("Ready", value); }

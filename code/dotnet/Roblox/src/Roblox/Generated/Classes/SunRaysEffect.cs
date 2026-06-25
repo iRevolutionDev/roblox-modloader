@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SunRaysEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SunRaysEffect? FromHandle(nuint handle)
+        public static new SunRaysEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new SunRaysEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SunRaysEffect#Intensity"/>
         public float Intensity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Intensity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Intensity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Intensity", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SunRaysEffect#Spread"/>
         public float Spread
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Spread");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Spread")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Spread", value);
         }
 

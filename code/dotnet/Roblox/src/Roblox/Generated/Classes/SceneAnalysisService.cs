@@ -22,56 +22,56 @@ namespace Roblox
         /// Creates a <see cref="SceneAnalysisService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SceneAnalysisService? FromHandle(nuint handle)
+        public static new SceneAnalysisService? FromHandle(nuint handle)
             => handle == 0 ? null : new SceneAnalysisService(handle);
 
         /// <summary>
         /// <c>SceneAnalysisService.GetAnimationMemoryAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SceneAnalysisService#GetAnimationMemoryAsync"/>
-        public object? GetAnimationMemoryAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAnimationMemoryAsync");
+        public object GetAnimationMemoryAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAnimationMemoryAsync")!;
 
         /// <summary>
         /// <c>SceneAnalysisService.GetAudioMemoryAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SceneAnalysisService#GetAudioMemoryAsync"/>
-        public object? GetAudioMemoryAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAudioMemoryAsync");
+        public object GetAudioMemoryAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAudioMemoryAsync")!;
 
         /// <summary>
         /// <c>SceneAnalysisService.GetInstanceCompositionAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SceneAnalysisService#GetInstanceCompositionAsync"/>
-        public object? GetInstanceCompositionAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInstanceCompositionAsync");
+        public object GetInstanceCompositionAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInstanceCompositionAsync")!;
 
         /// <summary>
         /// <c>SceneAnalysisService.GetScriptMemoryAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SceneAnalysisService#GetScriptMemoryAsync"/>
-        public object? GetScriptMemoryAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetScriptMemoryAsync");
+        public object GetScriptMemoryAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetScriptMemoryAsync")!;
 
         /// <summary>
         /// <c>SceneAnalysisService.GetTriangleCompositionAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SceneAnalysisService#GetTriangleCompositionAsync"/>
-        public object? GetTriangleCompositionAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTriangleCompositionAsync");
+        public object GetTriangleCompositionAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTriangleCompositionAsync")!;
 
         /// <summary>
         /// <c>SceneAnalysisService.GetUnparentedInstancesAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SceneAnalysisService#GetUnparentedInstancesAsync"/>
-        public object? GetUnparentedInstancesAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUnparentedInstancesAsync");
+        public object GetUnparentedInstancesAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUnparentedInstancesAsync")!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CoreGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CoreGui? FromHandle(nuint handle)
+        public static new CoreGui? FromHandle(nuint handle)
             => handle == 0 ? null : new CoreGui(handle);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreGui#Version"/>
         public int Version
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Version");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Version")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Version", value);
         }
 
@@ -49,35 +49,35 @@ namespace Roblox
         /// <c>CoreGui.SetUserGuiRendering</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <param name="guiAdornee">A <c>Instance?</c> value.</param>
+        /// <param name="guiAdornee">A <c>Instance</c> value.</param>
         /// <param name="faceId">A <c>Enum.NormalId</c> value.</param>
-        /// <param name="horizontalCurvature">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetUserGuiRendering(bool enabled, Instance? guiAdornee, Enum.NormalId faceId, float horizontalCurvature)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUserGuiRendering", enabled, guiAdornee, faceId, horizontalCurvature);
+        /// <param name="horizontalCurvature">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetUserGuiRendering(bool enabled, Instance guiAdornee, Enum.NormalId faceId, float? horizontalCurvature = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUserGuiRendering", enabled, guiAdornee, faceId, horizontalCurvature)!;
 
         /// <summary>
         /// <c>CoreGui.TakeScreenshot</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TakeScreenshot()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TakeScreenshot");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TakeScreenshot()
+            => global::Roblox.Reflection.Invoke<object>(this, "TakeScreenshot")!;
 
         /// <summary>
         /// <c>CoreGui.ToggleRecording</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleRecording()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleRecording");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleRecording()
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleRecording")!;
 
         /// <summary>
         /// <c>CoreGui.UserGuiRenderingChanged</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <param name="guiAdornee">A <c>Instance?</c> value.</param>
+        /// <param name="guiAdornee">A <c>Instance</c> value.</param>
         /// <param name="faceId">A <c>Enum.NormalId</c> value.</param>
         /// <param name="horizontalCurvature">A <c>float</c> value.</param>
-        public event Action<bool, Instance?, Enum.NormalId, float>? UserGuiRenderingChanged
+        public event Action<bool, Instance, Enum.NormalId, float>? UserGuiRenderingChanged
         {
             add { if (value is not null) AddEventHandler("UserGuiRenderingChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UserGuiRenderingChanged", value); }

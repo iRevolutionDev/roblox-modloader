@@ -22,12 +22,12 @@ namespace Roblox
         /// Creates a <see cref="VideoFrame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VideoFrame? FromHandle(nuint handle)
+        public static new VideoFrame? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoFrame(handle);
 
         public Enum.InternalVideoUsage InternalVideoUsage
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage");
+            get => global::Roblox.Reflection.GetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage", value);
         }
 
@@ -37,7 +37,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#IsLoaded"/>
         public bool IsLoaded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLoaded", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Looped"/>
         public bool Looped
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Looped", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#MaximumResolution"/>
         public Enum.VideoSampleSize MaximumResolution
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VideoSampleSize>(this, "MaximumResolution");
+            get => global::Roblox.Reflection.GetProperty<Enum.VideoSampleSize>(this, "MaximumResolution")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VideoSampleSize>(this, "MaximumResolution", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Playing"/>
         public bool Playing
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Playing");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Playing")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Playing", value);
         }
 
@@ -75,10 +75,10 @@ namespace Roblox
         /// Gets the original source resolution of the VideoFrame.Video file.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Resolution"/>
-        public global::Roblox.Vector2? Resolution
+        public global::Roblox.Vector2 Resolution
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Resolution");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Resolution", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Resolution")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Resolution", value);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#RollOffMaxDistance"/>
         public float RollOffMaxDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMaxDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMaxDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RollOffMaxDistance", value);
         }
 
@@ -97,7 +97,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#RollOffMinDistance"/>
         public float RollOffMinDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMinDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMinDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RollOffMinDistance", value);
         }
 
@@ -107,7 +107,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#RollOffMode"/>
         public Enum.RollOffMode RollOffMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RollOffMode>(this, "RollOffMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.RollOffMode>(this, "RollOffMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RollOffMode>(this, "RollOffMode", value);
         }
 
@@ -117,7 +117,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 
@@ -127,7 +127,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#TimePosition"/>
         public double TimePosition
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimePosition", value);
         }
 
@@ -135,20 +135,20 @@ namespace Roblox
         /// The content ID of the video file a VideoFrame object is associated with.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Video"/>
-        public object? Video
+        public object Video
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Video");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Video", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Video")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Video", value);
         }
 
         /// <summary>
         /// <c>VideoFrame.VideoContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#VideoContent"/>
-        public string? VideoContent
+        public string VideoContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "VideoContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "VideoContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "VideoContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "VideoContent", value);
         }
 
         /// <summary>
@@ -157,40 +157,40 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Volume"/>
         public float Volume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
         }
 
         /// <summary>
         /// Sets VideoFrame.Playing to false, pausing playback if the VideoFrame.Video is playing.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Pause"/>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// Sets VideoFrame.Playing to true, playing the VideoFrame.Video from the current VideoFrame.TimePosition.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Play"/>
-        public object? Play()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play");
+        public object Play()
+            => global::Roblox.Reflection.Invoke<object>(this, "Play")!;
 
         /// <summary>
         /// <c>VideoFrame.SetStudioPreview</c>
         /// </summary>
         /// <param name="isPreview">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetStudioPreview(bool isPreview)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetStudioPreview", isPreview);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetStudioPreview(bool isPreview)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetStudioPreview", isPreview)!;
 
         /// <summary>
         /// Fires whenever the VideoFrame.Video loops.
         /// </summary>
-        /// <param name="video">A <c>string?</c> value.</param>
+        /// <param name="video">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#DidLoop"/>
-        public event Action<string?>? DidLoop
+        public event Action<string>? DidLoop
         {
             add { if (value is not null) AddEventHandler("DidLoop", value); }
             remove { if (value is not null) RemoveEventHandler("DidLoop", value); }
@@ -199,9 +199,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the VideoFrame.Video has completed playback and stopped.
         /// </summary>
-        /// <param name="video">A <c>string?</c> value.</param>
+        /// <param name="video">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Ended"/>
-        public event Action<string?>? Ended
+        public event Action<string>? Ended
         {
             add { if (value is not null) AddEventHandler("Ended", value); }
             remove { if (value is not null) RemoveEventHandler("Ended", value); }
@@ -210,9 +210,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the VideoFrame.Video is loaded.
         /// </summary>
-        /// <param name="video">A <c>string?</c> value.</param>
+        /// <param name="video">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Loaded"/>
-        public event Action<string?>? Loaded
+        public event Action<string>? Loaded
         {
             add { if (value is not null) AddEventHandler("Loaded", value); }
             remove { if (value is not null) RemoveEventHandler("Loaded", value); }
@@ -221,9 +221,9 @@ namespace Roblox
         /// <summary>
         /// This event fires whenever the VideoFrame.Video is paused using VideoFrame:Pause() or by setting VideoFrame.Playing to false.
         /// </summary>
-        /// <param name="video">A <c>string?</c> value.</param>
+        /// <param name="video">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Paused"/>
-        public event Action<string?>? Paused
+        public event Action<string>? Paused
         {
             add { if (value is not null) AddEventHandler("Paused", value); }
             remove { if (value is not null) RemoveEventHandler("Paused", value); }
@@ -232,9 +232,9 @@ namespace Roblox
         /// <summary>
         /// Fires whenever the VideoFrame.Video is played using the VideoFrame:Play() function or by setting VideoFrame.Playing to true.
         /// </summary>
-        /// <param name="video">A <c>string?</c> value.</param>
+        /// <param name="video">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Played"/>
-        public event Action<string?>? Played
+        public event Action<string>? Played
         {
             add { if (value is not null) AddEventHandler("Played", value); }
             remove { if (value is not null) RemoveEventHandler("Played", value); }

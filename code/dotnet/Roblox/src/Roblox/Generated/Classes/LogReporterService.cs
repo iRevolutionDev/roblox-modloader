@@ -18,42 +18,42 @@ namespace Roblox
         /// Creates a <see cref="LogReporterService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LogReporterService? FromHandle(nuint handle)
+        public static new LogReporterService? FromHandle(nuint handle)
             => handle == 0 ? null : new LogReporterService(handle);
 
         /// <summary>
         /// <c>LogReporterService.ReportLog</c>
         /// </summary>
-        /// <param name="fingerprint">A <c>string?</c> value.</param>
-        /// <param name="uuid">A <c>string?</c> value.</param>
-        /// <param name="desc">A <c>string?</c> value.</param>
-        /// <param name="attributes">A <c>object?</c> value.</param>
-        /// <param name="annotations">A <c>object?</c> value.</param>
+        /// <param name="fingerprint">A <c>string</c> value.</param>
+        /// <param name="uuid">A <c>string</c> value.</param>
+        /// <param name="desc">A <c>string</c> value.</param>
+        /// <param name="attributes">A <c>object</c> value.</param>
+        /// <param name="annotations">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ReportLog(string? fingerprint, string? uuid, string? desc, object? attributes, object? annotations)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ReportLog", fingerprint, uuid, desc, attributes, annotations);
+        public bool ReportLog(string fingerprint, string uuid, string desc, object attributes, object annotations)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ReportLog", fingerprint, uuid, desc, attributes, annotations)!;
 
         /// <summary>
         /// <c>LogReporterService.ReportMultipleLogs</c>
         /// </summary>
-        /// <param name="fingerprint">A <c>string?</c> value.</param>
-        /// <param name="uuid">A <c>string?</c> value.</param>
-        /// <param name="desc">A <c>string?</c> value.</param>
-        /// <param name="attributes">A <c>object?</c> value.</param>
-        /// <param name="annotations">A <c>object?</c> value.</param>
+        /// <param name="fingerprint">A <c>string</c> value.</param>
+        /// <param name="uuid">A <c>string</c> value.</param>
+        /// <param name="desc">A <c>string</c> value.</param>
+        /// <param name="attributes">A <c>object</c> value.</param>
+        /// <param name="annotations">A <c>object</c> value.</param>
         /// <param name="numLogs">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ReportMultipleLogs(string? fingerprint, string? uuid, string? desc, object? attributes, object? annotations, int numLogs)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ReportMultipleLogs", fingerprint, uuid, desc, attributes, annotations, numLogs);
+        public bool ReportMultipleLogs(string fingerprint, string uuid, string desc, object attributes, object annotations, int numLogs)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ReportMultipleLogs", fingerprint, uuid, desc, attributes, annotations, numLogs)!;
 
         /// <summary>
         /// <c>LogReporterService.SubmitStratusBugReport</c>
         /// </summary>
-        /// <param name="description">A <c>string?</c> value.</param>
-        /// <param name="username">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
+        /// <param name="username">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool SubmitStratusBugReport(string? description, string? username)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SubmitStratusBugReport", description, username);
+        public bool SubmitStratusBugReport(string description, string username)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SubmitStratusBugReport", description, username)!;
 
     }
 }

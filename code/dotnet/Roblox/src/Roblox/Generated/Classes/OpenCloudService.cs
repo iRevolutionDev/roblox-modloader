@@ -22,53 +22,53 @@ namespace Roblox
         /// Creates a <see cref="OpenCloudService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static OpenCloudService? FromHandle(nuint handle)
+        public static new OpenCloudService? FromHandle(nuint handle)
             => handle == 0 ? null : new OpenCloudService(handle);
 
         /// <summary>
         /// Deprecated:
         /// </summary>
-        /// <returns>A <c>OpenCloudApiV1?</c> value returned by the engine.</returns>
+        /// <returns>A <c>OpenCloudApiV1</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OpenCloudService#GetApiV1"/>
-        public OpenCloudApiV1? GetApiV1()
-            => global::Roblox.Reflection.Invoke<OpenCloudApiV1?>(this, "GetApiV1");
+        public OpenCloudApiV1 GetApiV1()
+            => global::Roblox.Reflection.Invoke<OpenCloudApiV1>(this, "GetApiV1")!;
 
         /// <summary>
         /// <c>OpenCloudService.RegisterOpenCloud</c>
         /// </summary>
-        /// <param name="version">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="method">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterOpenCloud(string? version, string? methodName, object? method)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterOpenCloud", version, methodName, method);
+        /// <param name="version">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="method">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterOpenCloud(string version, string methodName, object method)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterOpenCloud", version, methodName, method)!;
 
         /// <summary>
         /// <c>OpenCloudService.RegistrationComplete</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegistrationComplete()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegistrationComplete");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegistrationComplete()
+            => global::Roblox.Reflection.Invoke<object>(this, "RegistrationComplete")!;
 
         /// <summary>
         /// <c>OpenCloudService.HttpRequestAsync</c>
         /// </summary>
-        /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HttpRequestAsync(object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HttpRequestAsync", options);
+        /// <param name="options">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HttpRequestAsync(object options)
+            => global::Roblox.Reflection.Invoke<object>(this, "HttpRequestAsync", options)!;
 
         /// <summary>
         /// Deprecated:
         /// </summary>
-        /// <param name="version">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="arguments">A <c>object?</c> value.</param>
+        /// <param name="version">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
         /// <param name="headers">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OpenCloudService#InvokeAsync"/>
-        public object? InvokeAsync(string? version, string? methodName, object? arguments, object? headers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeAsync", version, methodName, arguments, headers);
+        public object InvokeAsync(string version, string methodName, object arguments, object? headers = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeAsync", version, methodName, arguments, headers)!;
 
     }
 }

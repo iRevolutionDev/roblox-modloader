@@ -22,18 +22,18 @@ namespace Roblox
         /// Creates a <see cref="GamePassService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GamePassService? FromHandle(nuint handle)
+        public static new GamePassService? FromHandle(nuint handle)
             => handle == 0 ? null : new GamePassService(handle);
 
         /// <summary>
         /// Deprecated: Returns true if the Player has the specified legacy game pass. Does not work with new game passes.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GamePassService#PlayerHasPass"/>
-        public bool PlayerHasPass(Player? player, long gamePassId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerHasPass", player, gamePassId);
+        public bool PlayerHasPass(Player player, long gamePassId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerHasPass", player, gamePassId)!;
 
     }
 }

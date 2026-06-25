@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VisibilityCheckDispatcher"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VisibilityCheckDispatcher? FromHandle(nuint handle)
+        public static new VisibilityCheckDispatcher? FromHandle(nuint handle)
             => handle == 0 ? null : new VisibilityCheckDispatcher(handle);
 
     }

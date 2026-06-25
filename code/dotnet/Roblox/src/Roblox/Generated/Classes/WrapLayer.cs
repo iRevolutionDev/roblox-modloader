@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="WrapLayer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WrapLayer? FromHandle(nuint handle)
+        public static new WrapLayer? FromHandle(nuint handle)
             => handle == 0 ? null : new WrapLayer(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#AutoSkin"/>
         public Enum.WrapLayerAutoSkin AutoSkin
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.WrapLayerAutoSkin>(this, "AutoSkin");
+            get => global::Roblox.Reflection.GetProperty<Enum.WrapLayerAutoSkin>(this, "AutoSkin")!;
             set => global::Roblox.Reflection.SetProperty<Enum.WrapLayerAutoSkin>(this, "AutoSkin", value);
         }
 
@@ -39,20 +39,20 @@ namespace Roblox
         /// CFrame is used to adjust a binding point for clothing item mesh. Could be used to move and rotate clothing items. This property is intended for fine-tuning only and it is heavily optional.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#BindOffset"/>
-        public global::Roblox.CFrame? BindOffset
+        public global::Roblox.CFrame BindOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "BindOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "BindOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "BindOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "BindOffset", value);
         }
 
         /// <summary>
         /// Sets color used for the debug rendering. See WrapTarget.DebugMode.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#DebugMode"/>
         public Enum.WrapLayerDebugMode DebugMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.WrapLayerDebugMode>(this, "DebugMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.WrapLayerDebugMode>(this, "DebugMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.WrapLayerDebugMode>(this, "DebugMode", value);
         }
 
@@ -71,20 +71,20 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
-        public global::Roblox.Vector3? MaxSize
+        public global::Roblox.Vector3 MaxSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxSize", value);
         }
 
-        public global::Roblox.Vector3? Offset
+        public global::Roblox.Vector3 Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Offset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Offset", value);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Order"/>
         public int Order
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Order");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Order")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Order", value);
         }
 
@@ -103,7 +103,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Puffiness"/>
         public float Puffiness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Puffiness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Puffiness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Puffiness", value);
         }
 
@@ -111,40 +111,40 @@ namespace Roblox
         /// <c>WrapLayer.ReferenceMeshContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceMeshContent"/>
-        public string? ReferenceMeshContent
+        public string ReferenceMeshContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ReferenceMeshContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ReferenceMeshContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ReferenceMeshContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ReferenceMeshContent", value);
         }
 
         /// <summary>
         /// AssetID for reference mesh used to define Inner Cage of a 3D object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceMeshId"/>
-        public object? ReferenceMeshId
+        public object ReferenceMeshId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ReferenceMeshId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ReferenceMeshId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "ReferenceMeshId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "ReferenceMeshId", value);
         }
 
         /// <summary>
         /// Reference mesh offset relative to parent MeshPart (in the parent MeshPart space) Note: this property is set up automatically by the FBX importer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceOrigin"/>
-        public global::Roblox.CFrame? ReferenceOrigin
+        public global::Roblox.CFrame ReferenceOrigin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ReferenceOrigin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ReferenceOrigin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "ReferenceOrigin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "ReferenceOrigin", value);
         }
 
         /// <summary>
         /// Reference mesh offset relative to parent MeshPart (in the world space) Note: this property is set up automatically by the FBX importer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ReferenceOriginWorld"/>
-        public global::Roblox.CFrame? ReferenceOriginWorld
+        public global::Roblox.CFrame ReferenceOriginWorld
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ReferenceOriginWorld");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ReferenceOriginWorld", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "ReferenceOriginWorld")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "ReferenceOriginWorld", value);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ShrinkFactor"/>
         public float ShrinkFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ShrinkFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ShrinkFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ShrinkFactor", value);
         }
 

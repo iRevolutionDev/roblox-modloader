@@ -22,41 +22,41 @@ namespace Roblox
         /// Creates a <see cref="Vector3Curve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Vector3Curve? FromHandle(nuint handle)
+        public static new Vector3Curve? FromHandle(nuint handle)
             => handle == 0 ? null : new Vector3Curve(handle);
 
         /// <summary>
         /// Returns the three FloatCurves (X, Y, Z) at the passed time argument.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Curve#GetValueAtTime"/>
-        public object? GetValueAtTime(float time)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValueAtTime", time);
+        public object GetValueAtTime(float time)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetValueAtTime", time)!;
 
         /// <summary>
         /// Returns the FloatCurve controlling the X channel (the first child instance of type FloatCurve named X).
         /// </summary>
-        /// <returns>A <c>FloatCurve?</c> value returned by the engine.</returns>
+        /// <returns>A <c>FloatCurve</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Curve#X"/>
-        public FloatCurve? X()
-            => global::Roblox.Reflection.Invoke<FloatCurve?>(this, "X");
+        public FloatCurve X()
+            => global::Roblox.Reflection.Invoke<FloatCurve>(this, "X")!;
 
         /// <summary>
         /// Returns the FloatCurve controlling the Y channel (the first child instance of type FloatCurve named Y).
         /// </summary>
-        /// <returns>A <c>FloatCurve?</c> value returned by the engine.</returns>
+        /// <returns>A <c>FloatCurve</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Curve#Y"/>
-        public FloatCurve? Y()
-            => global::Roblox.Reflection.Invoke<FloatCurve?>(this, "Y");
+        public FloatCurve Y()
+            => global::Roblox.Reflection.Invoke<FloatCurve>(this, "Y")!;
 
         /// <summary>
         /// Returns the FloatCurve controlling the Z channel (the first child instance of type FloatCurve named Z).
         /// </summary>
-        /// <returns>A <c>FloatCurve?</c> value returned by the engine.</returns>
+        /// <returns>A <c>FloatCurve</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Curve#Z"/>
-        public FloatCurve? Z()
-            => global::Roblox.Reflection.Invoke<FloatCurve?>(this, "Z");
+        public FloatCurve Z()
+            => global::Roblox.Reflection.Invoke<FloatCurve>(this, "Z")!;
 
     }
 }

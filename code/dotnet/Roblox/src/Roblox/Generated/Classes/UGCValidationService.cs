@@ -22,600 +22,600 @@ namespace Roblox
         /// Creates a <see cref="UGCValidationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UGCValidationService? FromHandle(nuint handle)
+        public static new UGCValidationService? FromHandle(nuint handle)
             => handle == 0 ? null : new UGCValidationService(handle);
 
         /// <summary>
         /// <c>UGCValidationService.CalculateAverageEditableCageMeshDistance</c>
         /// </summary>
-        /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="refMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="innerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="outerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="innerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="outerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="refMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="innerTransform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="outerTransform">A <c>global::Roblox.CFrame</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float CalculateAverageEditableCageMeshDistance(EditableMesh? innerCage, EditableMesh? outerCage, EditableMesh? refMesh, global::Roblox.CFrame? innerTransform, global::Roblox.CFrame? outerTransform)
-            => global::Roblox.Reflection.Invoke<float>(this, "CalculateAverageEditableCageMeshDistance", innerCage, outerCage, refMesh, innerTransform, outerTransform);
+        public float CalculateAverageEditableCageMeshDistance(EditableMesh innerCage, EditableMesh outerCage, EditableMesh refMesh, global::Roblox.CFrame innerTransform, global::Roblox.CFrame outerTransform)
+            => global::Roblox.Reflection.Invoke<float>(this, "CalculateAverageEditableCageMeshDistance", innerCage, outerCage, refMesh, innerTransform, outerTransform)!;
 
         /// <summary>
         /// <c>UGCValidationService.CalculateEditableMeshInsideMeshPercentage</c>
         /// </summary>
-        /// <param name="editableMeshRoot">A <c>EditableMesh?</c> value.</param>
-        /// <param name="editableMeshQuery">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshQueryTransform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="meshQueryScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="editableMeshRoot">A <c>EditableMesh</c> value.</param>
+        /// <param name="editableMeshQuery">A <c>EditableMesh</c> value.</param>
+        /// <param name="meshQueryTransform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="meshQueryScale">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float CalculateEditableMeshInsideMeshPercentage(EditableMesh? editableMeshRoot, EditableMesh? editableMeshQuery, global::Roblox.CFrame? meshQueryTransform, global::Roblox.Vector3? meshQueryScale)
-            => global::Roblox.Reflection.Invoke<float>(this, "CalculateEditableMeshInsideMeshPercentage", editableMeshRoot, editableMeshQuery, meshQueryTransform, meshQueryScale);
+        public float CalculateEditableMeshInsideMeshPercentage(EditableMesh editableMeshRoot, EditableMesh editableMeshQuery, global::Roblox.CFrame meshQueryTransform, global::Roblox.Vector3 meshQueryScale)
+            => global::Roblox.Reflection.Invoke<float>(this, "CalculateEditableMeshInsideMeshPercentage", editableMeshRoot, editableMeshQuery, meshQueryTransform, meshQueryScale)!;
 
         /// <summary>
         /// <c>UGCValidationService.CalculateEditableMeshModifiedCageBoundingBox</c>
         /// </summary>
-        /// <param name="referenceUVValues">A <c>object?</c> value.</param>
-        /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="innerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CalculateEditableMeshModifiedCageBoundingBox(object? referenceUVValues, EditableMesh? innerCage, global::Roblox.CFrame? innerTransform, EditableMesh? outerCage, global::Roblox.CFrame? outerTransform)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CalculateEditableMeshModifiedCageBoundingBox", referenceUVValues, innerCage, innerTransform, outerCage, outerTransform);
+        /// <param name="referenceUVValues">A <c>object</c> value.</param>
+        /// <param name="innerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="innerTransform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="outerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="outerTransform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CalculateEditableMeshModifiedCageBoundingBox(object referenceUVValues, EditableMesh innerCage, global::Roblox.CFrame innerTransform, EditableMesh outerCage, global::Roblox.CFrame outerTransform)
+            => global::Roblox.Reflection.Invoke<object>(this, "CalculateEditableMeshModifiedCageBoundingBox", referenceUVValues, innerCage, innerTransform, outerCage, outerTransform)!;
 
         /// <summary>
         /// <c>UGCValidationService.CalculateEditableMeshNumModifiedCageUVsInSet</c>
         /// </summary>
-        /// <param name="referenceUVValues">A <c>object?</c> value.</param>
-        /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="innerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerTransform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CalculateEditableMeshNumModifiedCageUVsInSet(object? referenceUVValues, EditableMesh? innerCage, global::Roblox.CFrame? innerTransform, EditableMesh? outerCage, global::Roblox.CFrame? outerTransform)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CalculateEditableMeshNumModifiedCageUVsInSet", referenceUVValues, innerCage, innerTransform, outerCage, outerTransform);
+        /// <param name="referenceUVValues">A <c>object</c> value.</param>
+        /// <param name="innerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="innerTransform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="outerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="outerTransform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CalculateEditableMeshNumModifiedCageUVsInSet(object referenceUVValues, EditableMesh innerCage, global::Roblox.CFrame innerTransform, EditableMesh outerCage, global::Roblox.CFrame outerTransform)
+            => global::Roblox.Reflection.Invoke<object>(this, "CalculateEditableMeshNumModifiedCageUVsInSet", referenceUVValues, innerCage, innerTransform, outerCage, outerTransform)!;
 
         /// <summary>
         /// <c>UGCValidationService.CalculateEditableMeshTotalSurfaceArea</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float CalculateEditableMeshTotalSurfaceArea(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
-            => global::Roblox.Reflection.Invoke<float>(this, "CalculateEditableMeshTotalSurfaceArea", editableMesh, meshScale);
+        public float CalculateEditableMeshTotalSurfaceArea(EditableMesh editableMesh, global::Roblox.Vector3 meshScale)
+            => global::Roblox.Reflection.Invoke<float>(this, "CalculateEditableMeshTotalSurfaceArea", editableMesh, meshScale)!;
 
         /// <summary>
         /// <c>UGCValidationService.CalculateEditableMeshUniqueUVCount</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int CalculateEditableMeshUniqueUVCount(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<int>(this, "CalculateEditableMeshUniqueUVCount", editableMesh);
+        public int CalculateEditableMeshUniqueUVCount(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<int>(this, "CalculateEditableMeshUniqueUVCount", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.CheckEditableMeshInCameraFrustum</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="handleWorldCF">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="cameraWorldCF">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="handleWorldCF">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="cameraWorldCF">A <c>global::Roblox.CFrame</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool CheckEditableMeshInCameraFrustum(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale, global::Roblox.CFrame? handleWorldCF, global::Roblox.CFrame? cameraWorldCF)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CheckEditableMeshInCameraFrustum", editableMesh, meshScale, handleWorldCF, cameraWorldCF);
+        public bool CheckEditableMeshInCameraFrustum(EditableMesh editableMesh, global::Roblox.Vector3 meshScale, global::Roblox.CFrame handleWorldCF, global::Roblox.CFrame cameraWorldCF)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CheckEditableMeshInCameraFrustum", editableMesh, meshScale, handleWorldCF, cameraWorldCF)!;
 
         /// <summary>
         /// <c>UGCValidationService.CreateEditableImageFromBinaryStringRobloxOnly</c>
         /// </summary>
-        /// <param name="value">A <c>BinaryStringValue?</c> value.</param>
-        /// <returns>A <c>EditableImage?</c> value returned by the engine.</returns>
-        public EditableImage? CreateEditableImageFromBinaryStringRobloxOnly(BinaryStringValue? value)
-            => global::Roblox.Reflection.Invoke<EditableImage?>(this, "CreateEditableImageFromBinaryStringRobloxOnly", value);
+        /// <param name="value">A <c>BinaryStringValue</c> value.</param>
+        /// <returns>A <c>EditableImage</c> value returned by the engine.</returns>
+        public EditableImage CreateEditableImageFromBinaryStringRobloxOnly(BinaryStringValue value)
+            => global::Roblox.Reflection.Invoke<EditableImage>(this, "CreateEditableImageFromBinaryStringRobloxOnly", value)!;
 
         /// <summary>
         /// <c>UGCValidationService.CreateEditableMeshFromBinaryStringRobloxOnly</c>
         /// </summary>
-        /// <param name="value">A <c>BinaryStringValue?</c> value.</param>
-        /// <returns>A <c>EditableMesh?</c> value returned by the engine.</returns>
-        public EditableMesh? CreateEditableMeshFromBinaryStringRobloxOnly(BinaryStringValue? value)
-            => global::Roblox.Reflection.Invoke<EditableMesh?>(this, "CreateEditableMeshFromBinaryStringRobloxOnly", value);
+        /// <param name="value">A <c>BinaryStringValue</c> value.</param>
+        /// <returns>A <c>EditableMesh</c> value returned by the engine.</returns>
+        public EditableMesh CreateEditableMeshFromBinaryStringRobloxOnly(BinaryStringValue value)
+            => global::Roblox.Reflection.Invoke<EditableMesh>(this, "CreateEditableMeshFromBinaryStringRobloxOnly", value)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetBoundingBoxManipulationData</c>
         /// </summary>
-        /// <param name="partMeshObjects">A <c>object?</c> value.</param>
-        /// <param name="partCFs">A <c>object?</c> value.</param>
-        /// <param name="meshScales">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBoundingBoxManipulationData(object? partMeshObjects, object? partCFs, object? meshScales)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBoundingBoxManipulationData", partMeshObjects, partCFs, meshScales);
+        /// <param name="partMeshObjects">A <c>object</c> value.</param>
+        /// <param name="partCFs">A <c>object</c> value.</param>
+        /// <param name="meshScales">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetBoundingBoxManipulationData(object partMeshObjects, object partCFs, object meshScales)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBoundingBoxManipulationData", partMeshObjects, partCFs, meshScales)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetDynamicHeadEditableMeshInactiveControls</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="controlNames">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDynamicHeadEditableMeshInactiveControls(EditableMesh? editableMesh, object? controlNames)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDynamicHeadEditableMeshInactiveControls", editableMesh, controlNames);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="controlNames">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetDynamicHeadEditableMeshInactiveControls(EditableMesh editableMesh, object controlNames)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDynamicHeadEditableMeshInactiveControls", editableMesh, controlNames)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableCagingRelevancyMetrics</c>
         /// </summary>
-        /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="refMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="offsetInner">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="offsetOuter">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEditableCagingRelevancyMetrics(EditableMesh? innerCage, EditableMesh? outerCage, EditableMesh? refMesh, global::Roblox.Vector3? offsetInner, global::Roblox.Vector3? offsetOuter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEditableCagingRelevancyMetrics", innerCage, outerCage, refMesh, offsetInner, offsetOuter);
+        /// <param name="innerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="outerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="refMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="offsetInner">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="offsetOuter">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetEditableCagingRelevancyMetrics(EditableMesh innerCage, EditableMesh outerCage, EditableMesh refMesh, global::Roblox.Vector3 offsetInner, global::Roblox.Vector3 offsetOuter)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEditableCagingRelevancyMetrics", innerCage, outerCage, refMesh, offsetInner, offsetOuter)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableImageSize</c>
         /// </summary>
-        /// <param name="editableImage">A <c>EditableImage?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector2? GetEditableImageSize(EditableImage? editableImage)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetEditableImageSize", editableImage);
+        /// <param name="editableImage">A <c>EditableImage</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2 GetEditableImageSize(EditableImage editableImage)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetEditableImageSize", editableImage)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableMeshMaxNearbyVerticesCollisions</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetEditableMeshMaxNearbyVerticesCollisions(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetEditableMeshMaxNearbyVerticesCollisions", editableMesh, meshScale);
+        public int GetEditableMeshMaxNearbyVerticesCollisions(EditableMesh editableMesh, global::Roblox.Vector3 meshScale)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetEditableMeshMaxNearbyVerticesCollisions", editableMesh, meshScale)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableMeshSkinningTransferJointsInfo</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEditableMeshSkinningTransferJointsInfo(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEditableMeshSkinningTransferJointsInfo", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetEditableMeshSkinningTransferJointsInfo(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEditableMeshSkinningTransferJointsInfo", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableMeshTriCount</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetEditableMeshTriCount(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetEditableMeshTriCount", editableMesh);
+        public int GetEditableMeshTriCount(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetEditableMeshTriCount", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableMeshVertColors</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEditableMeshVertColors(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEditableMeshVertColors", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetEditableMeshVertColors(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEditableMeshVertColors", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableMeshVerticesSimilarityRate</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float GetEditableMeshVerticesSimilarityRate(EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
-            => global::Roblox.Reflection.Invoke<float>(this, "GetEditableMeshVerticesSimilarityRate", editableMesh, meshScale);
+        public float GetEditableMeshVerticesSimilarityRate(EditableMesh editableMesh, global::Roblox.Vector3 meshScale)
+            => global::Roblox.Reflection.Invoke<float>(this, "GetEditableMeshVerticesSimilarityRate", editableMesh, meshScale)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetEditableMeshVerts</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEditableMeshVerts(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEditableMeshVerts", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetEditableMeshVerts(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEditableMeshVerts", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetExpectedTposeRotation</c>
         /// </summary>
         /// <param name="jointLabel">A <c>Enum.RigLabel</c> value.</param>
-        /// <param name="partsFolder">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
-        public global::Roblox.CFrame? GetExpectedTposeRotation(Enum.RigLabel jointLabel, Instance? partsFolder)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetExpectedTposeRotation", jointLabel, partsFolder);
+        /// <param name="partsFolder">A <c>Instance</c> value.</param>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
+        public global::Roblox.CFrame GetExpectedTposeRotation(Enum.RigLabel jointLabel, Instance partsFolder)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetExpectedTposeRotation", jointLabel, partsFolder)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetFacsDrivenJointNamesFromEditableMesh</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetFacsDrivenJointNamesFromEditableMesh(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacsDrivenJointNamesFromEditableMesh", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetFacsDrivenJointNamesFromEditableMesh(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacsDrivenJointNamesFromEditableMesh", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetLayeredClothingPostDeformationSize</c>
         /// </summary>
-        /// <param name="accessory">A <c>Accessory?</c> value.</param>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector3? GetLayeredClothingPostDeformationSize(Accessory? accessory, EditableMesh? editableMesh, global::Roblox.Vector3? meshScale)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetLayeredClothingPostDeformationSize", accessory, editableMesh, meshScale);
+        /// <param name="accessory">A <c>Accessory</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3 GetLayeredClothingPostDeformationSize(Accessory accessory, EditableMesh editableMesh, global::Roblox.Vector3 meshScale)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetLayeredClothingPostDeformationSize", accessory, editableMesh, meshScale)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetMaximalJointDistancesWithinFacs</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMaximalJointDistancesWithinFacs(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMaximalJointDistancesWithinFacs", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMaximalJointDistancesWithinFacs(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMaximalJointDistancesWithinFacs", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetMinAndMaxMeshSizeAcrossAllFacs</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMinAndMaxMeshSizeAcrossAllFacs(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMinAndMaxMeshSizeAcrossAllFacs", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMinAndMaxMeshSizeAcrossAllFacs(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMinAndMaxMeshSizeAcrossAllFacs", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetPropertyValue</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="property">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPropertyValue(Instance? instance, string? property)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPropertyValue", instance, property);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="property">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPropertyValue(Instance instance, string property)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPropertyValue", instance, property)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetSkinnedJointNamesFromEditableMesh</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSkinnedJointNamesFromEditableMesh(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSkinnedJointNamesFromEditableMesh", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetSkinnedJointNamesFromEditableMesh(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSkinnedJointNamesFromEditableMesh", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.IsEditableMeshNumCoplanarIntersectionsOverLimit</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <param name="limit">A <c>int</c> value.</param>
-        /// <param name="meshScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="meshScale">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="intersectBackFaces">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsEditableMeshNumCoplanarIntersectionsOverLimit(EditableMesh? editableMesh, int limit, global::Roblox.Vector3? meshScale, bool intersectBackFaces)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsEditableMeshNumCoplanarIntersectionsOverLimit", editableMesh, limit, meshScale, intersectBackFaces);
+        public bool IsEditableMeshNumCoplanarIntersectionsOverLimit(EditableMesh editableMesh, int limit, global::Roblox.Vector3 meshScale, bool intersectBackFaces)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsEditableMeshNumCoplanarIntersectionsOverLimit", editableMesh, limit, meshScale, intersectBackFaces)!;
 
         /// <summary>
         /// <c>UGCValidationService.RegisterAlternateMesh</c>
         /// </summary>
-        /// <param name="alternateId">A <c>string?</c> value.</param>
-        /// <param name="binaryStringValue">A <c>BinaryStringValue?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterAlternateMesh(string? alternateId, BinaryStringValue? binaryStringValue)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterAlternateMesh", alternateId, binaryStringValue);
+        /// <param name="alternateId">A <c>string</c> value.</param>
+        /// <param name="binaryStringValue">A <c>BinaryStringValue</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterAlternateMesh(string alternateId, BinaryStringValue binaryStringValue)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterAlternateMesh", alternateId, binaryStringValue)!;
 
         /// <summary>
         /// <c>UGCValidationService.RegisterUGCValidationFunction</c>
         /// </summary>
-        /// <param name="setFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterUGCValidationFunction(object? setFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterUGCValidationFunction", setFunction);
+        /// <param name="setFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterUGCValidationFunction(object setFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterUGCValidationFunction", setFunction)!;
 
         /// <summary>
         /// <c>UGCValidationService.ReportUGCValidationCounter</c>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <param name="validationType">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportUGCValidationCounter(bool success, string? validationType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportUGCValidationCounter", success, validationType);
+        /// <param name="validationType">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportUGCValidationCounter(bool success, string validationType)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportUGCValidationCounter", success, validationType)!;
 
         /// <summary>
         /// <c>UGCValidationService.ReportUGCValidationFailureTelemetry</c>
         /// </summary>
-        /// <param name="errorType">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportUGCValidationFailureTelemetry(string? errorType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportUGCValidationFailureTelemetry", errorType);
+        /// <param name="errorType">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportUGCValidationFailureTelemetry(string errorType)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportUGCValidationFailureTelemetry", errorType)!;
 
         /// <summary>
         /// <c>UGCValidationService.ReportUGCValidationTelemetry</c>
         /// </summary>
-        /// <param name="assetType">A <c>string?</c> value.</param>
-        /// <param name="data">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportUGCValidationTelemetry(string? assetType, object? data)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportUGCValidationTelemetry", assetType, data);
+        /// <param name="assetType">A <c>string</c> value.</param>
+        /// <param name="data">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportUGCValidationTelemetry(string assetType, object data)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportUGCValidationTelemetry", assetType, data)!;
 
         /// <summary>
         /// <c>UGCValidationService.ResetCollisionFidelity</c>
         /// </summary>
-        /// <param name="meshPart">A <c>Instance?</c> value.</param>
-        /// <param name="collisionFidelity">A <c>Enum.CollisionFidelity</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResetCollisionFidelity(Instance? meshPart, Enum.CollisionFidelity collisionFidelity)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetCollisionFidelity", meshPart, collisionFidelity);
+        /// <param name="meshPart">A <c>Instance</c> value.</param>
+        /// <param name="collisionFidelity">A <c>Enum.CollisionFidelity?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResetCollisionFidelity(Instance meshPart, Enum.CollisionFidelity? collisionFidelity = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetCollisionFidelity", meshPart, collisionFidelity)!;
 
         /// <summary>
         /// <c>UGCValidationService.ResetCollisionFidelityWithEditableMeshDataLua</c>
         /// </summary>
-        /// <param name="meshPart">A <c>MeshPart?</c> value.</param>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="collisionFidelity">A <c>Enum.CollisionFidelity</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResetCollisionFidelityWithEditableMeshDataLua(MeshPart? meshPart, EditableMesh? editableMesh, Enum.CollisionFidelity collisionFidelity)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetCollisionFidelityWithEditableMeshDataLua", meshPart, editableMesh, collisionFidelity);
+        /// <param name="meshPart">A <c>MeshPart</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="collisionFidelity">A <c>Enum.CollisionFidelity?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResetCollisionFidelityWithEditableMeshDataLua(MeshPart meshPart, EditableMesh editableMesh, Enum.CollisionFidelity? collisionFidelity = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetCollisionFidelityWithEditableMeshDataLua", meshPart, editableMesh, collisionFidelity)!;
 
         /// <summary>
         /// <c>UGCValidationService.SetMeshIdBlocking</c>
         /// </summary>
-        /// <param name="meshPart">A <c>Instance?</c> value.</param>
-        /// <param name="meshId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMeshIdBlocking(Instance? meshPart, string? meshId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMeshIdBlocking", meshPart, meshId);
+        /// <param name="meshPart">A <c>Instance</c> value.</param>
+        /// <param name="meshId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetMeshIdBlocking(Instance meshPart, string meshId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMeshIdBlocking", meshPart, meshId)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateDynamicHeadEditableMesh</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateDynamicHeadEditableMesh(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateDynamicHeadEditableMesh", editableMesh);
+        public bool ValidateDynamicHeadEditableMesh(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateDynamicHeadEditableMesh", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshCageMeshIntersection</c>
         /// </summary>
-        /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="refMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ValidateEditableMeshCageMeshIntersection(EditableMesh? innerCage, EditableMesh? outerCage, EditableMesh? refMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ValidateEditableMeshCageMeshIntersection", innerCage, outerCage, refMesh);
+        /// <param name="innerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="outerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="refMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ValidateEditableMeshCageMeshIntersection(EditableMesh innerCage, EditableMesh outerCage, EditableMesh refMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "ValidateEditableMeshCageMeshIntersection", innerCage, outerCage, refMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshCageNonManifoldAndHoles</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ValidateEditableMeshCageNonManifoldAndHoles(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ValidateEditableMeshCageNonManifoldAndHoles", editableMesh);
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ValidateEditableMeshCageNonManifoldAndHoles(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<object>(this, "ValidateEditableMeshCageNonManifoldAndHoles", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshCageUVCoincident</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshCageUVCoincident(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshCageUVCoincident", editableMesh);
+        public bool ValidateEditableMeshCageUVCoincident(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshCageUVCoincident", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshCageUVTriangleArea</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshCageUVTriangleArea(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshCageUVTriangleArea", editableMesh);
+        public bool ValidateEditableMeshCageUVTriangleArea(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshCageUVTriangleArea", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshFacialBounds</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <param name="boundsScale">A <c>float</c> value.</param>
-        /// <param name="partSize">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="partSize">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshFacialBounds(EditableMesh? editableMesh, float boundsScale, global::Roblox.Vector3? partSize)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshFacialBounds", editableMesh, boundsScale, partSize);
+        public bool ValidateEditableMeshFacialBounds(EditableMesh editableMesh, float boundsScale, global::Roblox.Vector3 partSize)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshFacialBounds", editableMesh, boundsScale, partSize)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshFacialExpressiveness</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <param name="minDelta">A <c>float</c> value.</param>
-        /// <param name="partSize">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="partSize">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float ValidateEditableMeshFacialExpressiveness(EditableMesh? editableMesh, float minDelta, global::Roblox.Vector3? partSize)
-            => global::Roblox.Reflection.Invoke<float>(this, "ValidateEditableMeshFacialExpressiveness", editableMesh, minDelta, partSize);
+        public float ValidateEditableMeshFacialExpressiveness(EditableMesh editableMesh, float minDelta, global::Roblox.Vector3 partSize)
+            => global::Roblox.Reflection.Invoke<float>(this, "ValidateEditableMeshFacialExpressiveness", editableMesh, minDelta, partSize)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshFullBodyCageDeletion</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshFullBodyCageDeletion(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshFullBodyCageDeletion", editableMesh);
+        public bool ValidateEditableMeshFullBodyCageDeletion(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshFullBodyCageDeletion", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshMisMatchUV</c>
         /// </summary>
-        /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="outerCage">A <c>EditableMesh?</c> value.</param>
+        /// <param name="innerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="outerCage">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshMisMatchUV(EditableMesh? innerCage, EditableMesh? outerCage)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshMisMatchUV", innerCage, outerCage);
+        public bool ValidateEditableMeshMisMatchUV(EditableMesh innerCage, EditableMesh outerCage)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshMisMatchUV", innerCage, outerCage)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshOverlappingVertices</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshOverlappingVertices(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshOverlappingVertices", editableMesh);
+        public bool ValidateEditableMeshOverlappingVertices(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshOverlappingVertices", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshTriangleArea</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshTriangleArea(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshTriangleArea", editableMesh);
+        public bool ValidateEditableMeshTriangleArea(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshTriangleArea", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshTriangles</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshTriangles(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshTriangles", editableMesh);
+        public bool ValidateEditableMeshTriangles(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshTriangles", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshUVDuplicates</c>
         /// </summary>
-        /// <param name="referenceValues">A <c>object?</c> value.</param>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="referenceValues">A <c>object</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int ValidateEditableMeshUVDuplicates(object? referenceValues, EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<int>(this, "ValidateEditableMeshUVDuplicates", referenceValues, editableMesh);
+        public int ValidateEditableMeshUVDuplicates(object referenceValues, EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<int>(this, "ValidateEditableMeshUVDuplicates", referenceValues, editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshUVSpace</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshUVSpace(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshUVSpace", editableMesh);
+        public bool ValidateEditableMeshUVSpace(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshUVSpace", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshUVValuesInReference</c>
         /// </summary>
-        /// <param name="referenceValues">A <c>object?</c> value.</param>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="referenceValues">A <c>object</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshUVValuesInReference(object? referenceValues, EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshUVValuesInReference", referenceValues, editableMesh);
+        public bool ValidateEditableMeshUVValuesInReference(object referenceValues, EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshUVValuesInReference", referenceValues, editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshUniqueUVCount</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <param name="numRequired">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshUniqueUVCount(EditableMesh? editableMesh, int numRequired)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshUniqueUVCount", editableMesh, numRequired);
+        public bool ValidateEditableMeshUniqueUVCount(EditableMesh editableMesh, int numRequired)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshUniqueUVCount", editableMesh, numRequired)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateEditableMeshVertColors</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="includeAlpha">A <c>bool</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="includeAlpha">A <c>bool?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateEditableMeshVertColors(EditableMesh? editableMesh, bool includeAlpha)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshVertColors", editableMesh, includeAlpha);
+        public bool ValidateEditableMeshVertColors(EditableMesh editableMesh, bool? includeAlpha = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateEditableMeshVertColors", editableMesh, includeAlpha)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateHSRMeshIds</c>
         /// </summary>
-        /// <param name="wrapLayerInstance">A <c>Instance?</c> value.</param>
-        /// <param name="hsrInstance">A <c>Instance?</c> value.</param>
+        /// <param name="wrapLayerInstance">A <c>Instance</c> value.</param>
+        /// <param name="hsrInstance">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateHSRMeshIds(Instance? wrapLayerInstance, Instance? hsrInstance)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateHSRMeshIds", wrapLayerInstance, hsrInstance);
+        public bool ValidateHSRMeshIds(Instance wrapLayerInstance, Instance hsrInstance)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateHSRMeshIds", wrapLayerInstance, hsrInstance)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateLeaderSkinnedVertsNearCageIslands</c>
         /// </summary>
-        /// <param name="renderMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="innerCage">A <c>EditableMesh?</c> value.</param>
-        /// <param name="cageUVs">A <c>object?</c> value.</param>
-        /// <param name="referenceOrigin">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="renderMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="innerCage">A <c>EditableMesh</c> value.</param>
+        /// <param name="cageUVs">A <c>object</c> value.</param>
+        /// <param name="referenceOrigin">A <c>global::Roblox.CFrame</c> value.</param>
         /// <param name="distanceThreshold">A <c>float</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateLeaderSkinnedVertsNearCageIslands(EditableMesh? renderMesh, EditableMesh? innerCage, object? cageUVs, global::Roblox.CFrame? referenceOrigin, float distanceThreshold)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateLeaderSkinnedVertsNearCageIslands", renderMesh, innerCage, cageUVs, referenceOrigin, distanceThreshold);
+        public bool ValidateLeaderSkinnedVertsNearCageIslands(EditableMesh renderMesh, EditableMesh innerCage, object cageUVs, global::Roblox.CFrame referenceOrigin, float distanceThreshold)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateLeaderSkinnedVertsNearCageIslands", renderMesh, innerCage, cageUVs, referenceOrigin, distanceThreshold)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidatePartBBoxAfterFullFacs</c>
         /// </summary>
-        /// <param name="headEditableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="partEditableMesh">A <c>EditableMesh?</c> value.</param>
-        /// <param name="headScale">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="partScale">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="headEditableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="partEditableMesh">A <c>EditableMesh</c> value.</param>
+        /// <param name="headScale">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="partScale">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="boundsMaxMultiplier">A <c>float</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidatePartBBoxAfterFullFacs(EditableMesh? headEditableMesh, EditableMesh? partEditableMesh, global::Roblox.Vector3? headScale, global::Roblox.Vector3? partScale, float boundsMaxMultiplier)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidatePartBBoxAfterFullFacs", headEditableMesh, partEditableMesh, headScale, partScale, boundsMaxMultiplier);
+        public bool ValidatePartBBoxAfterFullFacs(EditableMesh headEditableMesh, EditableMesh partEditableMesh, global::Roblox.Vector3 headScale, global::Roblox.Vector3 partScale, float boundsMaxMultiplier)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidatePartBBoxAfterFullFacs", headEditableMesh, partEditableMesh, headScale, partScale, boundsMaxMultiplier)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidatePropertiesSensible</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="stringLenRestrictions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ValidatePropertiesSensible(Instance? instance, object? stringLenRestrictions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ValidatePropertiesSensible", instance, stringLenRestrictions);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ValidatePropertiesSensible(Instance instance, object? stringLenRestrictions = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ValidatePropertiesSensible", instance, stringLenRestrictions)!;
 
         /// <summary>
         /// <c>UGCValidationService.ValidateSkinnedEditableMesh</c>
         /// </summary>
-        /// <param name="editableMesh">A <c>EditableMesh?</c> value.</param>
+        /// <param name="editableMesh">A <c>EditableMesh</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ValidateSkinnedEditableMesh(EditableMesh? editableMesh)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateSkinnedEditableMesh", editableMesh);
+        public bool ValidateSkinnedEditableMesh(EditableMesh editableMesh)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ValidateSkinnedEditableMesh", editableMesh)!;
 
         /// <summary>
         /// <c>UGCValidationService.CalculateBodyMaxCageDistance</c>
         /// </summary>
-        /// <param name="inputBodyParts">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CalculateBodyMaxCageDistance(object? inputBodyParts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CalculateBodyMaxCageDistance", inputBodyParts);
+        /// <param name="inputBodyParts">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CalculateBodyMaxCageDistance(object inputBodyParts)
+            => global::Roblox.Reflection.Invoke<object>(this, "CalculateBodyMaxCageDistance", inputBodyParts)!;
 
         /// <summary>
         /// <c>UGCValidationService.CanLoadAsset</c>
         /// </summary>
-        /// <param name="assetId">A <c>string?</c> value.</param>
+        /// <param name="assetId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool CanLoadAsset(string? assetId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanLoadAsset", assetId);
+        public bool CanLoadAsset(string assetId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanLoadAsset", assetId)!;
 
         /// <summary>
         /// <c>UGCValidationService.CreateEditableImageOriginalSizeAsync</c>
         /// </summary>
-        /// <param name="textureId">A <c>string?</c> value.</param>
-        /// <returns>A <c>EditableImage?</c> value returned by the engine.</returns>
-        public EditableImage? CreateEditableImageOriginalSizeAsync(string? textureId)
-            => global::Roblox.Reflection.Invoke<EditableImage?>(this, "CreateEditableImageOriginalSizeAsync", textureId);
+        /// <param name="textureId">A <c>string</c> value.</param>
+        /// <returns>A <c>EditableImage</c> value returned by the engine.</returns>
+        public EditableImage CreateEditableImageOriginalSizeAsync(string textureId)
+            => global::Roblox.Reflection.Invoke<EditableImage>(this, "CreateEditableImageOriginalSizeAsync", textureId)!;
 
         /// <summary>
         /// <c>UGCValidationService.DoesMeshHaveSkinningData</c>
         /// </summary>
-        /// <param name="meshId">A <c>string?</c> value.</param>
+        /// <param name="meshId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool DoesMeshHaveSkinningData(string? meshId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "DoesMeshHaveSkinningData", meshId);
+        public bool DoesMeshHaveSkinningData(string meshId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "DoesMeshHaveSkinningData", meshId)!;
 
         /// <summary>
         /// <c>UGCValidationService.DoesSurfaceAppearanceMatchTexturePackAsync</c>
         /// </summary>
-        /// <param name="surfaceAppearance">A <c>SurfaceAppearance?</c> value.</param>
+        /// <param name="surfaceAppearance">A <c>SurfaceAppearance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool DoesSurfaceAppearanceMatchTexturePackAsync(SurfaceAppearance? surfaceAppearance)
-            => global::Roblox.Reflection.Invoke<bool>(this, "DoesSurfaceAppearanceMatchTexturePackAsync", surfaceAppearance);
+        public bool DoesSurfaceAppearanceMatchTexturePackAsync(SurfaceAppearance surfaceAppearance)
+            => global::Roblox.Reflection.Invoke<bool>(this, "DoesSurfaceAppearanceMatchTexturePackAsync", surfaceAppearance)!;
 
         /// <summary>
         /// <c>UGCValidationService.FetchAssetWithFormat</c>
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
-        /// <param name="assetFormat">A <c>string?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
+        /// <param name="assetFormat">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> FetchAssetWithFormat(object? url, string? assetFormat)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FetchAssetWithFormat", url, assetFormat);
+        public IReadOnlyList<Instance> FetchAssetWithFormat(object url, string assetFormat)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FetchAssetWithFormat", url, assetFormat)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetMeshDataBinaryString</c>
         /// </summary>
-        /// <param name="meshId">A <c>string?</c> value.</param>
-        /// <returns>A <c>BinaryStringValue?</c> value returned by the engine.</returns>
-        public BinaryStringValue? GetMeshDataBinaryString(string? meshId)
-            => global::Roblox.Reflection.Invoke<BinaryStringValue?>(this, "GetMeshDataBinaryString", meshId);
+        /// <param name="meshId">A <c>string</c> value.</param>
+        /// <returns>A <c>BinaryStringValue</c> value returned by the engine.</returns>
+        public BinaryStringValue GetMeshDataBinaryString(string meshId)
+            => global::Roblox.Reflection.Invoke<BinaryStringValue>(this, "GetMeshDataBinaryString", meshId)!;
 
         /// <summary>
         /// <c>UGCValidationService.GetMeshVerts</c>
         /// </summary>
-        /// <param name="meshId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMeshVerts(string? meshId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMeshVerts", meshId);
+        /// <param name="meshId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMeshVerts(string meshId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMeshVerts", meshId)!;
 
         /// <summary>
         /// <c>UGCValidationService.IsDeformedLayeredClothingOutOfRenderBounds</c>
         /// </summary>
-        /// <param name="accessory">A <c>Accessory?</c> value.</param>
+        /// <param name="accessory">A <c>Accessory</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsDeformedLayeredClothingOutOfRenderBounds(Accessory? accessory)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsDeformedLayeredClothingOutOfRenderBounds", accessory);
+        public bool IsDeformedLayeredClothingOutOfRenderBounds(Accessory accessory)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsDeformedLayeredClothingOutOfRenderBounds", accessory)!;
 
     }
 }

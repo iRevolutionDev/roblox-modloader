@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CylindricalConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CylindricalConstraint? FromHandle(nuint handle)
+        public static new CylindricalConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new CylindricalConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularActuatorType"/>
         public Enum.ActuatorType AngularActuatorType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorType>(this, "AngularActuatorType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorType>(this, "AngularActuatorType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorType>(this, "AngularActuatorType", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularLimitsEnabled"/>
         public bool AngularLimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AngularLimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AngularLimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AngularLimitsEnabled", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularResponsiveness"/>
         public float AngularResponsiveness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularResponsiveness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularResponsiveness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularResponsiveness", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularRestitution"/>
         public float AngularRestitution
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularRestitution");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularRestitution")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularRestitution", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularSpeed"/>
         public float AngularSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularSpeed", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#AngularVelocity"/>
         public float AngularVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularVelocity", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#CurrentAngle"/>
         public float CurrentAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentAngle", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#InclinationAngle"/>
         public float InclinationAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InclinationAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "InclinationAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "InclinationAngle", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#LowerAngle"/>
         public float LowerAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowerAngle", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#MotorMaxAngularAcceleration"/>
         public float MotorMaxAngularAcceleration
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxAngularAcceleration");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxAngularAcceleration")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MotorMaxAngularAcceleration", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#MotorMaxTorque"/>
         public float MotorMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MotorMaxTorque", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#RotationAxisVisible"/>
         public bool RotationAxisVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RotationAxisVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RotationAxisVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RotationAxisVisible", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#ServoMaxTorque"/>
         public float ServoMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ServoMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ServoMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ServoMaxTorque", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#SoftlockAngularServoUponReachingTarget"/>
         public bool SoftlockAngularServoUponReachingTarget
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "SoftlockAngularServoUponReachingTarget");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "SoftlockAngularServoUponReachingTarget")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "SoftlockAngularServoUponReachingTarget", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#TargetAngle"/>
         public float TargetAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TargetAngle", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#UpperAngle"/>
         public float UpperAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "UpperAngle", value);
         }
 
@@ -189,10 +189,10 @@ namespace Roblox
         /// The unit vector direction of the rotation axis in world coordinates.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylindricalConstraint#WorldRotationAxis"/>
-        public global::Roblox.Vector3? WorldRotationAxis
+        public global::Roblox.Vector3 WorldRotationAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldRotationAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldRotationAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "WorldRotationAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "WorldRotationAxis", value);
         }
 
     }

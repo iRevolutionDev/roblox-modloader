@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Player"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Player? FromHandle(nuint handle)
+        public static new Player? FromHandle(nuint handle)
             => handle == 0 ? null : new Player(handle);
 
         /// <summary>
@@ -31,19 +31,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#AccountAge"/>
         public int AccountAge
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "AccountAge");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "AccountAge")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "AccountAge", value);
         }
 
         public Enum.AgeCheckStatus AgeChecked
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AgeCheckStatus>(this, "AgeChecked");
+            get => global::Roblox.Reflection.GetProperty<Enum.AgeCheckStatus>(this, "AgeChecked")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AgeCheckStatus>(this, "AgeChecked", value);
         }
 
         public bool AppearanceDidLoad
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AppearanceDidLoad");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AppearanceDidLoad")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AppearanceDidLoad", value);
         }
 
@@ -53,7 +53,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#AutoJumpEnabled"/>
         public bool AutoJumpEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoJumpEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoJumpEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoJumpEnabled", value);
         }
 
@@ -63,7 +63,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CameraMaxZoomDistance"/>
         public float CameraMaxZoomDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMaxZoomDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMaxZoomDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraMaxZoomDistance", value);
         }
 
@@ -73,7 +73,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CameraMinZoomDistance"/>
         public float CameraMinZoomDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMinZoomDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMinZoomDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraMinZoomDistance", value);
         }
 
@@ -83,7 +83,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CameraMode"/>
         public Enum.CameraMode CameraMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CameraMode>(this, "CameraMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.CameraMode>(this, "CameraMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CameraMode>(this, "CameraMode", value);
         }
 
@@ -93,7 +93,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CanLoadCharacterAppearance"/>
         public bool CanLoadCharacterAppearance
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanLoadCharacterAppearance");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanLoadCharacterAppearance")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CanLoadCharacterAppearance", value);
         }
 
@@ -111,10 +111,10 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.The URL of the asset containing the character's appearance, clothing, and gear.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAppearance"/>
-        public string? CharacterAppearance
+        public string CharacterAppearance
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CharacterAppearance");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CharacterAppearance", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CharacterAppearance")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CharacterAppearance", value);
         }
 
         /// <summary>
@@ -123,19 +123,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAppearanceId"/>
         public long CharacterAppearanceId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CharacterAppearanceId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CharacterAppearanceId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CharacterAppearanceId", value);
         }
 
-        public string? ChatAvailabilityStatus
+        public string ChatAvailabilityStatus
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ChatAvailabilityStatus");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ChatAvailabilityStatus", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ChatAvailabilityStatus")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ChatAvailabilityStatus", value);
         }
 
         public Enum.ChatMode ChatMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ChatMode>(this, "ChatMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ChatMode>(this, "ChatMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ChatMode>(this, "ChatMode", value);
         }
 
@@ -145,13 +145,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DataComplexity"/>
         public int DataComplexity
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DataComplexity");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "DataComplexity")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DataComplexity", value);
         }
 
         public int DataComplexityLimit
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DataComplexityLimit");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "DataComplexityLimit")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DataComplexityLimit", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DataReady"/>
         public bool DataReady
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DataReady");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DataReady")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DataReady", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DevCameraOcclusionMode"/>
         public Enum.DevCameraOcclusionMode DevCameraOcclusionMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevCameraOcclusionMode>(this, "DevCameraOcclusionMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevCameraOcclusionMode>(this, "DevCameraOcclusionMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevCameraOcclusionMode>(this, "DevCameraOcclusionMode", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DevComputerCameraMode"/>
         public Enum.DevComputerCameraMovementMode DevComputerCameraMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerCameraMovementMode>(this, "DevComputerCameraMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerCameraMovementMode>(this, "DevComputerCameraMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevComputerCameraMovementMode>(this, "DevComputerCameraMode", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DevComputerMovementMode"/>
         public Enum.DevComputerMovementMode DevComputerMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerMovementMode>(this, "DevComputerMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerMovementMode>(this, "DevComputerMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevComputerMovementMode>(this, "DevComputerMovementMode", value);
         }
 
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DevEnableMouseLock"/>
         public bool DevEnableMouseLock
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DevEnableMouseLock");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DevEnableMouseLock")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DevEnableMouseLock", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DevTouchCameraMode"/>
         public Enum.DevTouchCameraMovementMode DevTouchCameraMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchCameraMovementMode>(this, "DevTouchCameraMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchCameraMovementMode>(this, "DevTouchCameraMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevTouchCameraMovementMode>(this, "DevTouchCameraMode", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DevTouchMovementMode"/>
         public Enum.DevTouchMovementMode DevTouchMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchMovementMode>(this, "DevTouchMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchMovementMode>(this, "DevTouchMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevTouchMovementMode>(this, "DevTouchMovementMode", value);
         }
 
@@ -229,10 +229,10 @@ namespace Roblox
         /// The display name of the authenticated user associated with the Player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DisplayName"/>
-        public string? DisplayName
+        public string DisplayName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DisplayName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DisplayName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DisplayName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DisplayName", value);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#FollowUserId"/>
         public long FollowUserId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "FollowUserId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "FollowUserId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "FollowUserId", value);
         }
 
@@ -251,13 +251,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GameplayPaused"/>
         public bool GameplayPaused
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "GameplayPaused");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "GameplayPaused")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "GameplayPaused", value);
         }
 
         public bool Guest
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Guest");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Guest")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Guest", value);
         }
 
@@ -267,7 +267,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#HasRobloxSubscription"/>
         public bool HasRobloxSubscription
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasRobloxSubscription");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasRobloxSubscription")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasRobloxSubscription", value);
         }
 
@@ -277,7 +277,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#HasVerifiedBadge"/>
         public bool HasVerifiedBadge
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasVerifiedBadge");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasVerifiedBadge")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasVerifiedBadge", value);
         }
 
@@ -287,7 +287,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#HealthDisplayDistance"/>
         public float HealthDisplayDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HealthDisplayDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HealthDisplayDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HealthDisplayDistance", value);
         }
 
@@ -297,7 +297,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#InputLatency"/>
         public int InputLatency
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "InputLatency");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "InputLatency")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "InputLatency", value);
         }
 
@@ -305,10 +305,10 @@ namespace Roblox
         /// This property shows the locale ID that the local player has set for their Roblox account.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LocaleId"/>
-        public string? LocaleId
+        public string LocaleId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocaleId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocaleId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocaleId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocaleId", value);
         }
 
         /// <summary>
@@ -317,7 +317,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#MaximumSimulationRadius"/>
         public float MaximumSimulationRadius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaximumSimulationRadius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaximumSimulationRadius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaximumSimulationRadius", value);
         }
 
@@ -327,7 +327,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#MembershipType"/>
         public Enum.MembershipType MembershipType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.MembershipType>(this, "MembershipType");
+            get => global::Roblox.Reflection.GetProperty<Enum.MembershipType>(this, "MembershipType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.MembershipType>(this, "MembershipType", value);
         }
 
@@ -337,7 +337,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#NameDisplayDistance"/>
         public float NameDisplayDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "NameDisplayDistance", value);
         }
 
@@ -347,30 +347,30 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Neutral"/>
         public bool Neutral
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Neutral");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Neutral")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Neutral", value);
         }
 
-        public string? OsPlatform
+        public string OsPlatform
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OsPlatform");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OsPlatform", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OsPlatform")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OsPlatform", value);
         }
 
         /// <summary>
         /// A unique identifier of the party a Player belongs to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#PartyId"/>
-        public string? PartyId
+        public string PartyId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PartyId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PartyId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PartyId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PartyId", value);
         }
 
-        public string? PlatformName
+        public string PlatformName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PlatformName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PlatformName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PlatformName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PlatformName", value);
         }
 
         /// <summary>
@@ -399,7 +399,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SimulationRadius"/>
         public float SimulationRadius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SimulationRadius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SimulationRadius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SimulationRadius", value);
         }
 
@@ -409,7 +409,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#StepIdOffset"/>
         public int StepIdOffset
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "StepIdOffset");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "StepIdOffset")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "StepIdOffset", value);
         }
 
@@ -427,21 +427,21 @@ namespace Roblox
         /// Determines the Team with which the player is associated with according to that team's Team.TeamColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#TeamColor"/>
-        public global::Roblox.BrickColor? TeamColor
+        public global::Roblox.BrickColor TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TeamColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TeamColor", value);
         }
 
         public bool Teleported
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Teleported");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Teleported")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Teleported", value);
         }
 
         public bool TeleportedIn
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TeleportedIn");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TeleportedIn")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TeleportedIn", value);
         }
 
@@ -451,13 +451,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#ThirdPartyTextChatRestrictionStatus"/>
         public Enum.ChatRestrictionStatus ThirdPartyTextChatRestrictionStatus
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ChatRestrictionStatus>(this, "ThirdPartyTextChatRestrictionStatus");
+            get => global::Roblox.Reflection.GetProperty<Enum.ChatRestrictionStatus>(this, "ThirdPartyTextChatRestrictionStatus")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ChatRestrictionStatus>(this, "ThirdPartyTextChatRestrictionStatus", value);
         }
 
         public bool UnfilteredChat
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UnfilteredChat");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UnfilteredChat")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UnfilteredChat", value);
         }
 
@@ -465,10 +465,10 @@ namespace Roblox
         /// The User representing this player's domain-scoped identity within the current experience.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#User"/>
-        public object? User
+        public object User
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "User");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "User", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "User")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "User", value);
         }
 
         /// <summary>
@@ -477,124 +477,124 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#UserId"/>
         public long UserId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "UserId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "UserId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "UserId", value);
         }
 
-        public string? VRDevice
+        public string VRDevice
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "VRDevice");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "VRDevice", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "VRDevice")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "VRDevice", value);
         }
 
         public bool VREnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VREnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VREnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VREnabled", value);
         }
 
         /// <summary>
         /// Adds an additional replication focus for the player.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="part">A <c>BasePart</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#AddReplicationFocus"/>
-        public object? AddReplicationFocus(BasePart? part)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddReplicationFocus", part);
+        public object AddReplicationFocus(BasePart part)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddReplicationFocus", part)!;
 
         /// <summary>
         /// <c>Player.AddReplicationFocusPosition</c>
         /// </summary>
-        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="radius">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddReplicationFocusPosition(global::Roblox.Vector3? center, int radius)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddReplicationFocusPosition", center, radius);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddReplicationFocusPosition(global::Roblox.Vector3 center, int radius)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddReplicationFocusPosition", center, radius)!;
 
         /// <summary>
         /// <c>Player.AddToBlockList</c>
         /// </summary>
-        /// <param name="userIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddToBlockList(object? userIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddToBlockList", userIds);
+        /// <param name="userIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddToBlockList(object userIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddToBlockList", userIds)!;
 
         /// <summary>
         /// Clears the cached avatar appearance for the player, forcing a fresh fetch from the backend on the next respawn.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#ClearCachedAvatarAppearance"/>
-        public object? ClearCachedAvatarAppearance()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearCachedAvatarAppearance");
+        public object ClearCachedAvatarAppearance()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearCachedAvatarAppearance")!;
 
         /// <summary>
         /// Removes all accessories and other character appearance objects from a player's Character.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#ClearCharacterAppearance"/>
-        public object? ClearCharacterAppearance()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearCharacterAppearance");
+        public object ClearCharacterAppearance()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearCharacterAppearance")!;
 
         /// <summary>
         /// Returns the distance between the character's head and the given Vector3, or 0 if the player has no character.
         /// </summary>
-        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="point">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DistanceFromCharacter"/>
-        public float DistanceFromCharacter(global::Roblox.Vector3? point)
-            => global::Roblox.Reflection.Invoke<float>(this, "DistanceFromCharacter", point);
+        public float DistanceFromCharacter(global::Roblox.Vector3 point)
+            => global::Roblox.Reflection.Invoke<float>(this, "DistanceFromCharacter", point)!;
 
         /// <summary>
         /// <c>Player.GetBlockListInitialized</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetBlockListInitialized()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetBlockListInitialized");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetBlockListInitialized")!;
 
         /// <summary>
         /// <c>Player.GetCameraState</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCameraState()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCameraState");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetCameraState()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCameraState")!;
 
         /// <summary>
         /// <c>Player.GetData</c>
         /// </summary>
-        /// <returns>A <c>PlayerData?</c> value returned by the engine.</returns>
-        public PlayerData? GetData()
-            => global::Roblox.Reflection.Invoke<PlayerData?>(this, "GetData");
+        /// <returns>A <c>PlayerData</c> value returned by the engine.</returns>
+        public PlayerData GetData()
+            => global::Roblox.Reflection.Invoke<PlayerData>(this, "GetData")!;
 
         /// <summary>
         /// <c>Player.GetFriendStatus</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <returns>A <c>Enum.FriendStatus</c> value returned by the engine.</returns>
-        public Enum.FriendStatus GetFriendStatus(Player? player)
-            => global::Roblox.Reflection.Invoke<Enum.FriendStatus>(this, "GetFriendStatus", player);
+        public Enum.FriendStatus GetFriendStatus(Player player)
+            => global::Roblox.Reflection.Invoke<Enum.FriendStatus>(this, "GetFriendStatus", player)!;
 
         /// <summary>
         /// <c>Player.GetGameSessionID</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetGameSessionID()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetGameSessionID");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetGameSessionID()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetGameSessionID")!;
 
         /// <summary>
         /// Returns a dictionary containing information describing how the player joins the experience.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetJoinData"/>
-        public object? GetJoinData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetJoinData");
+        public object GetJoinData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetJoinData")!;
 
         /// <summary>
         /// Returns the mouse being used by the client.
         /// </summary>
-        /// <returns>A <c>Mouse?</c> value returned by the engine.</returns>
+        /// <returns>A <c>Mouse</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetMouse"/>
-        public Mouse? GetMouse()
-            => global::Roblox.Reflection.Invoke<Mouse?>(this, "GetMouse");
+        public Mouse GetMouse()
+            => global::Roblox.Reflection.Invoke<Mouse>(this, "GetMouse")!;
 
         /// <summary>
         /// Returns the round-trip, isolated network latency in seconds.
@@ -602,7 +602,7 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetNetworkPing"/>
         public float GetNetworkPing()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetNetworkPing");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetNetworkPing")!;
 
         /// <summary>
         /// <c>Player.GetSeatRequested</c>
@@ -623,7 +623,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetUnder13()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetUnder13");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetUnder13")!;
 
         /// <summary>
         /// Returns whether or not the appearance of the player's character has loaded.
@@ -631,7 +631,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#HasAppearanceLoaded"/>
         public bool HasAppearanceLoaded()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasAppearanceLoaded");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasAppearanceLoaded")!;
 
         /// <summary>
         /// <c>Player.HasBlockedPlayer</c>
@@ -639,7 +639,7 @@ namespace Roblox
         /// <param name="fromPlayer">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool HasBlockedPlayer(long fromPlayer)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasBlockedPlayer", fromPlayer);
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasBlockedPlayer", fromPlayer)!;
 
         /// <summary>
         /// Returns whether the player is verified with concrete, real-world signals.
@@ -647,348 +647,348 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsVerified"/>
         public bool IsVerified()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsVerified");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsVerified")!;
 
         /// <summary>
         /// Forcibly disconnect a player from the experience, optionally providing a message.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Kick"/>
-        public object? Kick(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Kick", message);
+        public object Kick(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "Kick", message)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Returns a boolean value that was previously saved to the player with Player:SaveBoolean() with the same key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadBoolean"/>
-        public bool LoadBoolean(string? key)
-            => global::Roblox.Reflection.Invoke<bool>(this, "LoadBoolean", key);
+        public bool LoadBoolean(string key)
+            => global::Roblox.Reflection.Invoke<bool>(this, "LoadBoolean", key)!;
 
         /// <summary>
         /// Deprecated: Places the given instance either in the player's character, head, or StarterGear based on the instance's class.
         /// </summary>
-        /// <param name="assetInstance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="assetInstance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacterAppearance"/>
-        public object? LoadCharacterAppearance(Instance? assetInstance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadCharacterAppearance", assetInstance);
+        public object LoadCharacterAppearance(Instance assetInstance)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterAppearance", assetInstance)!;
 
         /// <summary>
         /// <c>Player.LoadData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadData()
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadData")!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Returns an instance that was previously saved to the player with Player:SaveInstance() with the same key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadInstance"/>
-        public Instance? LoadInstance(string? key)
+        public Instance? LoadInstance(string key)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "LoadInstance", key);
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Returns a number value that was previously saved to the player.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadNumber"/>
-        public double LoadNumber(string? key)
-            => global::Roblox.Reflection.Invoke<double>(this, "LoadNumber", key);
+        public double LoadNumber(string key)
+            => global::Roblox.Reflection.Invoke<double>(this, "LoadNumber", key)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Returns a string value that was previously saved to the player.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadString"/>
-        public string? LoadString(string? key)
-            => global::Roblox.Reflection.Invoke<string?>(this, "LoadString", key);
+        public string LoadString(string key)
+            => global::Roblox.Reflection.Invoke<string>(this, "LoadString", key)!;
 
         /// <summary>
         /// Causes the player's character to walk in the given direction until stopped, or interrupted by the player (by using their controls).
         /// </summary>
-        /// <param name="walkDirection">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="relativeToCamera">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="walkDirection">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="relativeToCamera">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Move"/>
-        public object? Move(global::Roblox.Vector3? walkDirection, bool relativeToCamera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Move", walkDirection, relativeToCamera);
+        public object Move(global::Roblox.Vector3 walkDirection, bool? relativeToCamera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Move", walkDirection, relativeToCamera)!;
 
         /// <summary>
         /// <c>Player.OverrideStreamingRadii</c>
         /// </summary>
         /// <param name="minRadius">A <c>int</c> value.</param>
         /// <param name="targetRadius">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OverrideStreamingRadii(int minRadius, int targetRadius)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OverrideStreamingRadii", minRadius, targetRadius);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OverrideStreamingRadii(int minRadius, int targetRadius)
+            => global::Roblox.Reflection.Invoke<object>(this, "OverrideStreamingRadii", minRadius, targetRadius)!;
 
         /// <summary>
         /// <c>Player.PinStreamingForInstance</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="depth">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PinStreamingForInstance(Instance? instance, int depth)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PinStreamingForInstance", instance, depth);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PinStreamingForInstance(Instance instance, int depth)
+            => global::Roblox.Reflection.Invoke<object>(this, "PinStreamingForInstance", instance, depth)!;
 
         /// <summary>
         /// <c>Player.PinStreamingForInstanceByUniqueId</c>
         /// </summary>
-        /// <param name="uniqueIdString">A <c>string?</c> value.</param>
+        /// <param name="uniqueIdString">A <c>string</c> value.</param>
         /// <param name="depth">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PinStreamingForInstanceByUniqueId(string? uniqueIdString, int depth)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PinStreamingForInstanceByUniqueId", uniqueIdString, depth);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PinStreamingForInstanceByUniqueId(string uniqueIdString, int depth)
+            => global::Roblox.Reflection.Invoke<object>(this, "PinStreamingForInstanceByUniqueId", uniqueIdString, depth)!;
 
         /// <summary>
         /// <c>Player.PromptAgeCheck</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptAgeCheck()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptAgeCheck");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptAgeCheck()
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptAgeCheck")!;
 
         /// <summary>
         /// <c>Player.RemoveCharacter</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveCharacter()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveCharacter");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveCharacter()
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveCharacter")!;
 
         /// <summary>
         /// Removes a previously added replication focus.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="part">A <c>BasePart</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#RemoveReplicationFocus"/>
-        public object? RemoveReplicationFocus(BasePart? part)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveReplicationFocus", part);
+        public object RemoveReplicationFocus(BasePart part)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveReplicationFocus", part)!;
 
         /// <summary>
         /// <c>Player.RemoveReplicationFocusPosition</c>
         /// </summary>
-        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="radius">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveReplicationFocusPosition(global::Roblox.Vector3? center, int radius)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveReplicationFocusPosition", center, radius);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveReplicationFocusPosition(global::Roblox.Vector3 center, int radius)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveReplicationFocusPosition", center, radius)!;
 
         /// <summary>
         /// <c>Player.RequestFriendship</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestFriendship(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestFriendship", player);
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestFriendship(Player player)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestFriendship", player)!;
 
         /// <summary>
         /// <c>Player.RequestSeat</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestSeat(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestSeat", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestSeat(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestSeat", instance)!;
 
         /// <summary>
         /// <c>Player.RequestTool</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestTool(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestTool", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestTool(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestTool", instance)!;
 
         /// <summary>
         /// <c>Player.RevokeFriendship</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RevokeFriendship(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RevokeFriendship", player);
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RevokeFriendship(Player player)
+            => global::Roblox.Reflection.Invoke<object>(this, "RevokeFriendship", player)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Used to save a boolean value that can be loaded again at a later time using Player:LoadBoolean().
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveBoolean"/>
-        public object? SaveBoolean(string? key, bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveBoolean", key, value);
+        public object SaveBoolean(string key, bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveBoolean", key, value)!;
 
         /// <summary>
         /// <c>Player.SaveData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SaveData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SaveData()
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveData")!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Saves an instance which can be loaded again at a later time.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveInstance"/>
-        public object? SaveInstance(string? key, Instance? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveInstance", key, value);
+        public object SaveInstance(string key, Instance value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveInstance", key, value)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Saves a number value that can be loaded again at a later time using.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <param name="value">A <c>double</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveNumber"/>
-        public object? SaveNumber(string? key, double value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveNumber", key, value);
+        public object SaveNumber(string key, double value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveNumber", key, value)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Saves a string value that can be loaded again at a later time.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveString"/>
-        public object? SaveString(string? key, string? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveString", key, value);
+        public object SaveString(string key, string value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveString", key, value)!;
 
         /// <summary>
         /// Sets the AccountAge of the player.
         /// </summary>
         /// <param name="accountAge">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SetAccountAge"/>
-        public object? SetAccountAge(int accountAge)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAccountAge", accountAge);
+        public object SetAccountAge(int accountAge)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAccountAge", accountAge)!;
 
         /// <summary>
         /// <c>Player.SetBlockListInitialized</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetBlockListInitialized()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBlockListInitialized");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetBlockListInitialized()
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBlockListInitialized")!;
 
         /// <summary>
         /// <c>Player.SetCharacterAppearanceJson</c>
         /// </summary>
-        /// <param name="jsonBlob">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetCharacterAppearanceJson(string? jsonBlob)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCharacterAppearanceJson", jsonBlob);
+        /// <param name="jsonBlob">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetCharacterAppearanceJson(string jsonBlob)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCharacterAppearanceJson", jsonBlob)!;
 
         /// <summary>
         /// <c>Player.SetChatTranslationSettingsLocaleId</c>
         /// </summary>
-        /// <param name="locale">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetChatTranslationSettingsLocaleId(string? locale)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetChatTranslationSettingsLocaleId", locale);
+        /// <param name="locale">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetChatTranslationSettingsLocaleId(string locale)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetChatTranslationSettingsLocaleId", locale)!;
 
         /// <summary>
         /// <c>Player.SetExperienceSettingsLocaleId</c>
         /// </summary>
-        /// <param name="locale">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetExperienceSettingsLocaleId(string? locale)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetExperienceSettingsLocaleId", locale);
+        /// <param name="locale">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetExperienceSettingsLocaleId(string locale)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetExperienceSettingsLocaleId", locale)!;
 
         /// <summary>
         /// <c>Player.SetHasRobloxSubscription</c>
         /// </summary>
         /// <param name="hasRobloxSubscription">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetHasRobloxSubscription(bool hasRobloxSubscription)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetHasRobloxSubscription", hasRobloxSubscription);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetHasRobloxSubscription(bool hasRobloxSubscription)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetHasRobloxSubscription", hasRobloxSubscription)!;
 
         /// <summary>
         /// <c>Player.SetMembershipType</c>
         /// </summary>
         /// <param name="membershipType">A <c>Enum.MembershipType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMembershipType(Enum.MembershipType membershipType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMembershipType", membershipType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetMembershipType(Enum.MembershipType membershipType)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMembershipType", membershipType)!;
 
         /// <summary>
         /// <c>Player.SetModerationAccessKey</c>
         /// </summary>
-        /// <param name="moderationAccessKey">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetModerationAccessKey(string? moderationAccessKey)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetModerationAccessKey", moderationAccessKey);
+        /// <param name="moderationAccessKey">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetModerationAccessKey(string moderationAccessKey)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetModerationAccessKey", moderationAccessKey)!;
 
         /// <summary>
         /// Sets whether or not the player sees filtered chats, rather than normal chats.
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SetSuperSafeChat"/>
-        public object? SetSuperSafeChat(bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetSuperSafeChat", value);
+        public object SetSuperSafeChat(bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetSuperSafeChat", value)!;
 
         /// <summary>
         /// <c>Player.SetUnder13</c>
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetUnder13(bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUnder13", value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetUnder13(bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUnder13", value)!;
 
         /// <summary>
         /// <c>Player.UnpinStreamingForInstance</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="depth">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UnpinStreamingForInstance(Instance? instance, int depth)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnpinStreamingForInstance", instance, depth);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UnpinStreamingForInstance(Instance instance, int depth)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnpinStreamingForInstance", instance, depth)!;
 
         /// <summary>
         /// <c>Player.UpdatePlayerBlocked</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="blocked">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdatePlayerBlocked(long userId, bool blocked)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdatePlayerBlocked", userId, blocked);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdatePlayerBlocked(long userId, bool blocked)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdatePlayerBlocked", userId, blocked)!;
 
         /// <summary>
         /// <c>Player.GetCanManageAsync</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetCanManageAsync()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetCanManageAsync");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetCanManageAsync")!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by GetFriendsOnlineAsync().Returns a dictionary of online friends. Returns the product information of an asset using its asset ID.
         /// </summary>
-        /// <param name="maxFriends">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="maxFriends">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetFriendsOnline"/>
-        public object? GetFriendsOnline(int maxFriends)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFriendsOnline", maxFriends);
+        public object GetFriendsOnline(int? maxFriends = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFriendsOnline", maxFriends)!;
 
         /// <summary>
         /// Returns a dictionary of online friends.
         /// </summary>
-        /// <param name="maxFriends">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="maxFriends">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetFriendsOnlineAsync"/>
-        public object? GetFriendsOnlineAsync(int maxFriends)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFriendsOnlineAsync", maxFriends);
+        public object GetFriendsOnlineAsync(int? maxFriends = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFriendsOnlineAsync", maxFriends)!;
 
         /// <summary>
         /// <c>Player.GetFriendsWhoPlayedAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetFriendsWhoPlayedAsync"/>
-        public object? GetFriendsWhoPlayedAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFriendsWhoPlayedAsync");
+        public object GetFriendsWhoPlayedAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFriendsWhoPlayedAsync")!;
 
         /// <summary>
         /// Deprecated: Returns the player's rank in the group as an integer.
@@ -997,7 +997,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRankInGroup"/>
         public int GetRankInGroup(long groupId)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetRankInGroup", groupId);
+            => global::Roblox.Reflection.Invoke<int>(this, "GetRankInGroup", groupId)!;
 
         /// <summary>
         /// Returns the player's rank in the group as an integer.
@@ -1006,52 +1006,52 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRankInGroupAsync"/>
         public int GetRankInGroupAsync(long groupId)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetRankInGroupAsync", groupId);
+            => global::Roblox.Reflection.Invoke<int>(this, "GetRankInGroupAsync", groupId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by GetRoleInGroup().Returns the player's role in the group as a string, or Guest if the player isn't part of the group.
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRoleInGroup"/>
-        public string? GetRoleInGroup(long groupId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetRoleInGroup", groupId);
+        public string GetRoleInGroup(long groupId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetRoleInGroup", groupId)!;
 
         /// <summary>
         /// Returns the player's role in the group as a string, or Guest if the player isn't part of the group.
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRoleInGroupAsync"/>
-        public string? GetRoleInGroupAsync(long groupId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetRoleInGroupAsync", groupId);
+        public string GetRoleInGroupAsync(long groupId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetRoleInGroupAsync", groupId)!;
 
         /// <summary>
         /// Deprecated: This function is obsolete because the "best friends" feature was removed. Use Player:IsFriendsWithAsync() instead.Returns whether a player is friends with the specified user.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsBestFriendsWith"/>
-        public bool IsBestFriendsWith(object? userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsBestFriendsWith", userId);
+        public bool IsBestFriendsWith(object userId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsBestFriendsWith", userId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by the Player:IsFriendsWithAsync() method which should be used for new work.Checks whether a player is a friend of the user with the given Player.UserId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsFriendsWith"/>
-        public bool IsFriendsWith(object? userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsFriendsWith", userId);
+        public bool IsFriendsWith(object userId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsFriendsWith", userId)!;
 
         /// <summary>
         /// Checks whether a player is a friend of the user with the given Player.UserId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsFriendsWithAsync"/>
-        public bool IsFriendsWithAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsFriendsWithAsync", userId);
+        public bool IsFriendsWithAsync(object userId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsFriendsWithAsync", userId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by IsInGroupAsync().Checks whether a player is a member of a group with the given ID.
@@ -1060,7 +1060,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsInGroup"/>
         public bool IsInGroup(long groupId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsInGroup", groupId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsInGroup", groupId)!;
 
         /// <summary>
         /// Checks whether a player is a member of a group with the given ID.
@@ -1069,75 +1069,75 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsInGroupAsync"/>
         public bool IsInGroupAsync(long groupId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsInGroupAsync", groupId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsInGroupAsync", groupId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by LoadCharacterAsync().Creates a new character for the player, removing the old one. Also clears the player's Backpack and PlayerGui.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacter"/>
-        public object? LoadCharacter()
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadCharacter");
+        public object LoadCharacter()
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacter")!;
 
         /// <summary>
         /// Creates a new character for the player, removing the old one. Also clears the player's Backpack and PlayerGui.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacterAsync"/>
-        public object? LoadCharacterAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadCharacterAsync");
+        public object LoadCharacterAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterAsync")!;
 
         /// <summary>
         /// <c>Player.LoadCharacterBlocking</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadCharacterBlocking()
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadCharacterBlocking");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadCharacterBlocking()
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterBlocking")!;
 
         /// <summary>
         /// <c>Player.LoadCharacterWithAvatarRules</c>
         /// </summary>
-        /// <param name="avatarRules">A <c>AvatarRules?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadCharacterWithAvatarRules(AvatarRules? avatarRules)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadCharacterWithAvatarRules", avatarRules);
+        /// <param name="avatarRules">A <c>AvatarRules</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadCharacterWithAvatarRules(AvatarRules avatarRules)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterWithAvatarRules", avatarRules)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by LoadCharacterWithHumanoidDescriptionAsync().Spawns a player character with everything equipped in the passed in HumanoidDescription.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacterWithHumanoidDescription"/>
-        public object? LoadCharacterWithHumanoidDescription(HumanoidDescription? humanoidDescription, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadCharacterWithHumanoidDescription", humanoidDescription, assetTypeVerification);
+        public object LoadCharacterWithHumanoidDescription(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterWithHumanoidDescription", humanoidDescription, assetTypeVerification)!;
 
         /// <summary>
         /// Spawns a player character with everything equipped in the passed in HumanoidDescription.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacterWithHumanoidDescriptionAsync"/>
-        public object? LoadCharacterWithHumanoidDescriptionAsync(HumanoidDescription? humanoidDescription, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadCharacterWithHumanoidDescriptionAsync", humanoidDescription, assetTypeVerification);
+        public object LoadCharacterWithHumanoidDescriptionAsync(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterWithHumanoidDescriptionAsync", humanoidDescription, assetTypeVerification)!;
 
         /// <summary>
         /// <c>Player.PromptSecurityChallengeAsync</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool PromptSecurityChallengeAsync()
-            => global::Roblox.Reflection.Invoke<bool>(this, "PromptSecurityChallengeAsync");
+            => global::Roblox.Reflection.Invoke<bool>(this, "PromptSecurityChallengeAsync")!;
 
         /// <summary>
         /// Requests that the server stream to the player around the specified location.
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="timeOut">A <c>double</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="timeOut">A <c>double?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#RequestStreamAroundAsync"/>
-        public object? RequestStreamAroundAsync(global::Roblox.Vector3? position, double timeOut)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestStreamAroundAsync", position, timeOut);
+        public object RequestStreamAroundAsync(global::Roblox.Vector3 position, double? timeOut = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestStreamAroundAsync", position, timeOut)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Used to pause the script until the player's data is available to manipulate, or until a certain amount of time has elapsed without fetching the player's data.
@@ -1145,7 +1145,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#WaitForDataReady"/>
         public bool WaitForDataReady()
-            => global::Roblox.Reflection.Invoke<bool>(this, "WaitForDataReady");
+            => global::Roblox.Reflection.Invoke<bool>(this, "WaitForDataReady")!;
 
         public event Action? BlockListChanged
         {
@@ -1156,9 +1156,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a player's character spawns or respawns.
         /// </summary>
-        /// <param name="character">A <c>Model?</c> value.</param>
+        /// <param name="character">A <c>Model</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAdded"/>
-        public event Action<Model?>? CharacterAdded
+        public event Action<Model>? CharacterAdded
         {
             add { if (value is not null) AddEventHandler("CharacterAdded", value); }
             remove { if (value is not null) RemoveEventHandler("CharacterAdded", value); }
@@ -1167,9 +1167,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the full appearance of a Character has been inserted.
         /// </summary>
-        /// <param name="character">A <c>Model?</c> value.</param>
+        /// <param name="character">A <c>Model</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAppearanceLoaded"/>
-        public event Action<Model?>? CharacterAppearanceLoaded
+        public event Action<Model>? CharacterAppearanceLoaded
         {
             add { if (value is not null) AddEventHandler("CharacterAppearanceLoaded", value); }
             remove { if (value is not null) RemoveEventHandler("CharacterAppearanceLoaded", value); }
@@ -1178,9 +1178,9 @@ namespace Roblox
         /// <summary>
         /// Fires right before a player's character is removed.
         /// </summary>
-        /// <param name="character">A <c>Model?</c> value.</param>
+        /// <param name="character">A <c>Model</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterRemoving"/>
-        public event Action<Model?>? CharacterRemoving
+        public event Action<Model>? CharacterRemoving
         {
             add { if (value is not null) AddEventHandler("CharacterRemoving", value); }
             remove { if (value is not null) RemoveEventHandler("CharacterRemoving", value); }
@@ -1189,10 +1189,10 @@ namespace Roblox
         /// <summary>
         /// Fires when a player chats in experience using Roblox's provided chat bar.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="recipient">A <c>Player?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="recipient">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Chatted"/>
-        public event Action<string?, Player?>? Chatted
+        public event Action<string, Player>? Chatted
         {
             add { if (value is not null) AddEventHandler("Chatted", value); }
             remove { if (value is not null) RemoveEventHandler("Chatted", value); }
@@ -1201,8 +1201,8 @@ namespace Roblox
         /// <summary>
         /// <c>Player.CloudEditSelectionChanged</c>
         /// </summary>
-        /// <param name="newSelection">A <c>object?</c> value.</param>
-        public event Action<object?>? CloudEditSelectionChanged
+        /// <param name="newSelection">A <c>object</c> value.</param>
+        public event Action<object>? CloudEditSelectionChanged
         {
             add { if (value is not null) AddEventHandler("CloudEditSelectionChanged", value); }
             remove { if (value is not null) RemoveEventHandler("CloudEditSelectionChanged", value); }
@@ -1211,9 +1211,9 @@ namespace Roblox
         /// <summary>
         /// <c>Player.FriendStatusChanged</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="friendStatus">A <c>Enum.FriendStatus</c> value.</param>
-        public event Action<Player?, Enum.FriendStatus>? FriendStatusChanged
+        public event Action<Player, Enum.FriendStatus>? FriendStatusChanged
         {
             add { if (value is not null) AddEventHandler("FriendStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("FriendStatusChanged", value); }
@@ -1233,9 +1233,9 @@ namespace Roblox
         /// <summary>
         /// <c>Player.InstancePinned</c>
         /// </summary>
-        /// <param name="uniqueIdString">A <c>string?</c> value.</param>
+        /// <param name="uniqueIdString">A <c>string</c> value.</param>
         /// <param name="depth">A <c>int</c> value.</param>
-        public event Action<string?, int>? InstancePinned
+        public event Action<string, int>? InstancePinned
         {
             add { if (value is not null) AddEventHandler("InstancePinned", value); }
             remove { if (value is not null) RemoveEventHandler("InstancePinned", value); }
@@ -1244,9 +1244,9 @@ namespace Roblox
         /// <summary>
         /// <c>Player.InstanceUnpinned</c>
         /// </summary>
-        /// <param name="uniqueIdString">A <c>string?</c> value.</param>
+        /// <param name="uniqueIdString">A <c>string</c> value.</param>
         /// <param name="depth">A <c>int</c> value.</param>
-        public event Action<string?, int>? InstanceUnpinned
+        public event Action<string, int>? InstanceUnpinned
         {
             add { if (value is not null) AddEventHandler("InstanceUnpinned", value); }
             remove { if (value is not null) RemoveEventHandler("InstanceUnpinned", value); }
@@ -1257,9 +1257,9 @@ namespace Roblox
         /// </summary>
         /// <param name="teleportState">A <c>Enum.TeleportState</c> value.</param>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="spawnName">A <c>string?</c> value.</param>
+        /// <param name="spawnName">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#OnTeleport"/>
-        public event Action<Enum.TeleportState, long, string?>? OnTeleport
+        public event Action<Enum.TeleportState, long, string>? OnTeleport
         {
             add { if (value is not null) AddEventHandler("OnTeleport", value); }
             remove { if (value is not null) RemoveEventHandler("OnTeleport", value); }
@@ -1278,8 +1278,8 @@ namespace Roblox
         /// <summary>
         /// <c>Player.StreamingPinComplete</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? StreamingPinComplete
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        public event Action<Instance>? StreamingPinComplete
         {
             add { if (value is not null) AddEventHandler("StreamingPinComplete", value); }
             remove { if (value is not null) RemoveEventHandler("StreamingPinComplete", value); }

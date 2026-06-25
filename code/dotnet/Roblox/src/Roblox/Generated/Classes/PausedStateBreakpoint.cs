@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="PausedStateBreakpoint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PausedStateBreakpoint? FromHandle(nuint handle)
+        public static new PausedStateBreakpoint? FromHandle(nuint handle)
             => handle == 0 ? null : new PausedStateBreakpoint(handle);
 
         public Breakpoint? Breakpoint

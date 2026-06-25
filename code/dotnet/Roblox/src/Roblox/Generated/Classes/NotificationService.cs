@@ -22,18 +22,18 @@ namespace Roblox
         /// Creates a <see cref="NotificationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NotificationService? FromHandle(nuint handle)
+        public static new NotificationService? FromHandle(nuint handle)
             => handle == 0 ? null : new NotificationService(handle);
 
         public bool IsConnected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsConnected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsConnected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsConnected", value);
         }
 
         public bool IsLuaChatEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLuaChatEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLuaChatEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLuaChatEnabled", value);
         }
 
@@ -43,7 +43,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NotificationService#IsLuaGameDetailsEnabled"/>
         public bool IsLuaGameDetailsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLuaGameDetailsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLuaGameDetailsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLuaGameDetailsEnabled", value);
         }
 
@@ -51,88 +51,88 @@ namespace Roblox
         /// <c>NotificationService.SelectedTheme</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NotificationService#SelectedTheme"/>
-        public string? SelectedTheme
+        public string SelectedTheme
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SelectedTheme");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SelectedTheme", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SelectedTheme")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SelectedTheme", value);
         }
 
         /// <summary>
         /// <c>NotificationService.ActionEnabled</c>
         /// </summary>
         /// <param name="actionType">A <c>Enum.AppShellActionType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ActionEnabled(Enum.AppShellActionType actionType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ActionEnabled", actionType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ActionEnabled(Enum.AppShellActionType actionType)
+            => global::Roblox.Reflection.Invoke<object>(this, "ActionEnabled", actionType)!;
 
         /// <summary>
         /// <c>NotificationService.ActionTaken</c>
         /// </summary>
         /// <param name="actionType">A <c>Enum.AppShellActionType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ActionTaken(Enum.AppShellActionType actionType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ActionTaken", actionType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ActionTaken(Enum.AppShellActionType actionType)
+            => global::Roblox.Reflection.Invoke<object>(this, "ActionTaken", actionType)!;
 
         /// <summary>
         /// <c>NotificationService.CancelAllNotification</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CancelAllNotification(long userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CancelAllNotification", userId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CancelAllNotification(long userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "CancelAllNotification", userId)!;
 
         /// <summary>
         /// <c>NotificationService.CancelNotification</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="alertId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CancelNotification(long userId, int alertId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CancelNotification", userId, alertId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CancelNotification(long userId, int alertId)
+            => global::Roblox.Reflection.Invoke<object>(this, "CancelNotification", userId, alertId)!;
 
         /// <summary>
         /// <c>NotificationService.ScheduleNotification</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="alertId">A <c>int</c> value.</param>
-        /// <param name="alertMsg">A <c>string?</c> value.</param>
+        /// <param name="alertMsg">A <c>string</c> value.</param>
         /// <param name="minutesToFire">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ScheduleNotification(long userId, int alertId, string? alertMsg, int minutesToFire)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ScheduleNotification", userId, alertId, alertMsg, minutesToFire);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ScheduleNotification(long userId, int alertId, string alertMsg, int minutesToFire)
+            => global::Roblox.Reflection.Invoke<object>(this, "ScheduleNotification", userId, alertId, alertMsg, minutesToFire)!;
 
         /// <summary>
         /// <c>NotificationService.SubscribeToRccEventNamespace</c>
         /// </summary>
-        /// <param name="eventNamespace">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SubscribeToRccEventNamespace(string? eventNamespace)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SubscribeToRccEventNamespace", eventNamespace);
+        /// <param name="eventNamespace">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SubscribeToRccEventNamespace(string eventNamespace)
+            => global::Roblox.Reflection.Invoke<object>(this, "SubscribeToRccEventNamespace", eventNamespace)!;
 
         /// <summary>
         /// <c>NotificationService.SwitchedToAppShellFeature</c>
         /// </summary>
         /// <param name="appShellFeature">A <c>Enum.AppShellFeature</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SwitchedToAppShellFeature(Enum.AppShellFeature appShellFeature)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SwitchedToAppShellFeature", appShellFeature);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SwitchedToAppShellFeature(Enum.AppShellFeature appShellFeature)
+            => global::Roblox.Reflection.Invoke<object>(this, "SwitchedToAppShellFeature", appShellFeature)!;
 
         /// <summary>
         /// <c>NotificationService.GetScheduledNotifications</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetScheduledNotifications(long userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetScheduledNotifications", userId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetScheduledNotifications(long userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetScheduledNotifications", userId)!;
 
         /// <summary>
         /// <c>NotificationService.RccConnectionChanged</c>
         /// </summary>
-        /// <param name="connectionName">A <c>string?</c> value.</param>
+        /// <param name="connectionName">A <c>string</c> value.</param>
         /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
-        /// <param name="rccSequenceNumber">A <c>string?</c> value.</param>
-        /// <param name="userIdToNamespaceSequenceNumbers">A <c>object?</c> value.</param>
-        public event Action<string?, Enum.ConnectionState, string?, object?>? RccConnectionChanged
+        /// <param name="rccSequenceNumber">A <c>string</c> value.</param>
+        /// <param name="userIdToNamespaceSequenceNumbers">A <c>object</c> value.</param>
+        public event Action<string, Enum.ConnectionState, string, object>? RccConnectionChanged
         {
             add { if (value is not null) AddEventHandler("RccConnectionChanged", value); }
             remove { if (value is not null) RemoveEventHandler("RccConnectionChanged", value); }
@@ -141,9 +141,9 @@ namespace Roblox
         /// <summary>
         /// <c>NotificationService.RccEventReceived</c>
         /// </summary>
-        /// <param name="eventData">A <c>object?</c> value.</param>
+        /// <param name="eventData">A <c>object</c> value.</param>
         /// <param name="userId">A <c>long</c> value.</param>
-        public event Action<object?, long>? RccEventReceived
+        public event Action<object, long>? RccEventReceived
         {
             add { if (value is not null) AddEventHandler("RccEventReceived", value); }
             remove { if (value is not null) RemoveEventHandler("RccEventReceived", value); }
@@ -152,11 +152,11 @@ namespace Roblox
         /// <summary>
         /// <c>NotificationService.Roblox17sConnectionChanged</c>
         /// </summary>
-        /// <param name="connectionName">A <c>string?</c> value.</param>
+        /// <param name="connectionName">A <c>string</c> value.</param>
         /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
-        /// <param name="namespaceSequenceNumbers">A <c>string?</c> value.</param>
+        /// <param name="namespaceSequenceNumbers">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NotificationService#Roblox17sConnectionChanged"/>
-        public event Action<string?, Enum.ConnectionState, string?>? Roblox17sConnectionChanged
+        public event Action<string, Enum.ConnectionState, string>? Roblox17sConnectionChanged
         {
             add { if (value is not null) AddEventHandler("Roblox17sConnectionChanged", value); }
             remove { if (value is not null) RemoveEventHandler("Roblox17sConnectionChanged", value); }
@@ -165,9 +165,9 @@ namespace Roblox
         /// <summary>
         /// <c>NotificationService.Roblox17sEventReceived</c>
         /// </summary>
-        /// <param name="eventData">A <c>object?</c> value.</param>
+        /// <param name="eventData">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NotificationService#Roblox17sEventReceived"/>
-        public event Action<object?>? Roblox17sEventReceived
+        public event Action<object>? Roblox17sEventReceived
         {
             add { if (value is not null) AddEventHandler("Roblox17sEventReceived", value); }
             remove { if (value is not null) RemoveEventHandler("Roblox17sEventReceived", value); }
@@ -176,11 +176,11 @@ namespace Roblox
         /// <summary>
         /// <c>NotificationService.RobloxConnectionChanged</c>
         /// </summary>
-        /// <param name="connectionName">A <c>string?</c> value.</param>
+        /// <param name="connectionName">A <c>string</c> value.</param>
         /// <param name="connectionState">A <c>Enum.ConnectionState</c> value.</param>
-        /// <param name="sequenceNumber">A <c>string?</c> value.</param>
-        /// <param name="namespaceSequenceNumbers">A <c>string?</c> value.</param>
-        public event Action<string?, Enum.ConnectionState, string?, string?>? RobloxConnectionChanged
+        /// <param name="sequenceNumber">A <c>string</c> value.</param>
+        /// <param name="namespaceSequenceNumbers">A <c>string</c> value.</param>
+        public event Action<string, Enum.ConnectionState, string, string>? RobloxConnectionChanged
         {
             add { if (value is not null) AddEventHandler("RobloxConnectionChanged", value); }
             remove { if (value is not null) RemoveEventHandler("RobloxConnectionChanged", value); }
@@ -189,8 +189,8 @@ namespace Roblox
         /// <summary>
         /// <c>NotificationService.RobloxEventReceived</c>
         /// </summary>
-        /// <param name="eventData">A <c>object?</c> value.</param>
-        public event Action<object?>? RobloxEventReceived
+        /// <param name="eventData">A <c>object</c> value.</param>
+        public event Action<object>? RobloxEventReceived
         {
             add { if (value is not null) AddEventHandler("RobloxEventReceived", value); }
             remove { if (value is not null) RemoveEventHandler("RobloxEventReceived", value); }

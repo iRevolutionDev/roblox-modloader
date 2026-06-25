@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TextBoxService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextBoxService? FromHandle(nuint handle)
+        public static new TextBoxService? FromHandle(nuint handle)
             => handle == 0 ? null : new TextBoxService(handle);
 
     }

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="BodyForce"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyForce? FromHandle(nuint handle)
+        public static new BodyForce? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyForce(handle);
 
         /// <summary>
         /// Determines the force exerted on each axis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyForce#Force"/>
-        public global::Roblox.Vector3? Force
+        public global::Roblox.Vector3 Force
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Force");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Force", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Force")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Force", value);
         }
 
     }

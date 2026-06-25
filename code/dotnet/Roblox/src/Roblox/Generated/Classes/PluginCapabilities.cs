@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="PluginCapabilities"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginCapabilities? FromHandle(nuint handle)
+        public static new PluginCapabilities? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginCapabilities(handle);
 
         /// <summary>
         /// <c>PluginCapabilities.Manifest</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginCapabilities#Manifest"/>
-        public string? Manifest
+        public string Manifest
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Manifest");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Manifest", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Manifest")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Manifest", value);
         }
 
     }

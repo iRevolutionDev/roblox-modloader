@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UniversalConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UniversalConstraint? FromHandle(nuint handle)
+        public static new UniversalConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new UniversalConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitsEnabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#MaxAngle"/>
         public float MaxAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxAngle", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint#Restitution"/>
         public float Restitution
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Restitution", value);
         }
 

@@ -22,41 +22,41 @@ namespace Roblox
         /// Creates a <see cref="CustomLog"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CustomLog? FromHandle(nuint handle)
+        public static new CustomLog? FromHandle(nuint handle)
             => handle == 0 ? null : new CustomLog(handle);
 
         /// <summary>
         /// <c>CustomLog.Close</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomLog#Close"/>
-        public object? Close()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Close");
+        public object Close()
+            => global::Roblox.Reflection.Invoke<object>(this, "Close")!;
 
         /// <summary>
         /// <c>CustomLog.GetLogPath</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomLog#GetLogPath"/>
-        public string? GetLogPath()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetLogPath");
+        public string GetLogPath()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetLogPath")!;
 
         /// <summary>
         /// <c>CustomLog.Open</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomLog#Open"/>
-        public object? Open()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Open");
+        public object Open()
+            => global::Roblox.Reflection.Invoke<object>(this, "Open")!;
 
         /// <summary>
         /// <c>CustomLog.WriteAppend</c>
         /// </summary>
-        /// <param name="append">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="append">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomLog#WriteAppend"/>
-        public object? WriteAppend(string? append)
-            => global::Roblox.Reflection.Invoke<object?>(this, "WriteAppend", append);
+        public object WriteAppend(string append)
+            => global::Roblox.Reflection.Invoke<object>(this, "WriteAppend", append)!;
 
     }
 }

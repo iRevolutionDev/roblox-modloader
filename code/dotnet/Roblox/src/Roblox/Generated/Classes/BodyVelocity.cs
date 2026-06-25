@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="BodyVelocity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyVelocity? FromHandle(nuint handle)
+        public static new BodyVelocity? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyVelocity(handle);
 
         /// <summary>
         /// Determines the limit on how much force that may be applied to each axis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#MaxForce"/>
-        public global::Roblox.Vector3? MaxForce
+        public global::Roblox.Vector3 MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxForce");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxForce")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxForce", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#P"/>
         public float P
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "P");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "P")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "P", value);
         }
 
@@ -49,27 +49,27 @@ namespace Roblox
         /// Determines the goal velocity.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#Velocity"/>
-        public global::Roblox.Vector3? Velocity
+        public global::Roblox.Vector3 Velocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Velocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Velocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Velocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Velocity", value);
         }
 
         /// <summary>
         /// Not implemented and will always return the 0 vector.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#GetLastForce"/>
-        public global::Roblox.Vector3? GetLastForce()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetLastForce");
+        public global::Roblox.Vector3 GetLastForce()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetLastForce")!;
 
         /// <summary>
         /// Returns the last force in the object.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity#lastForce"/>
-        public global::Roblox.Vector3? LastForce()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "lastForce");
+        public global::Roblox.Vector3 LastForce()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "lastForce")!;
 
     }
 }

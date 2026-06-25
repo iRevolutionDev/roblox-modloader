@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StarterPlayer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StarterPlayer? FromHandle(nuint handle)
+        public static new StarterPlayer? FromHandle(nuint handle)
             => handle == 0 ? null : new StarterPlayer(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#AllowCustomAnimations"/>
         public bool AllowCustomAnimations
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowCustomAnimations");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowCustomAnimations")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowCustomAnimations", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#AutoJumpEnabled"/>
         public bool AutoJumpEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoJumpEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoJumpEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoJumpEnabled", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#AvatarJointUpgrade"/>
         public Enum.RolloutState AvatarJointUpgrade
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "AvatarJointUpgrade");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "AvatarJointUpgrade")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "AvatarJointUpgrade", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CameraMaxZoomDistance"/>
         public float CameraMaxZoomDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMaxZoomDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMaxZoomDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraMaxZoomDistance", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CameraMinZoomDistance"/>
         public float CameraMinZoomDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMinZoomDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMinZoomDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraMinZoomDistance", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CameraMode"/>
         public Enum.CameraMode CameraMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CameraMode>(this, "CameraMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.CameraMode>(this, "CameraMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CameraMode>(this, "CameraMode", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterBreakJointsOnDeath"/>
         public bool CharacterBreakJointsOnDeath
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CharacterBreakJointsOnDeath");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CharacterBreakJointsOnDeath")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CharacterBreakJointsOnDeath", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterJumpHeight"/>
         public float CharacterJumpHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterJumpHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterJumpHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CharacterJumpHeight", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterJumpPower"/>
         public float CharacterJumpPower
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterJumpPower");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterJumpPower")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CharacterJumpPower", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterMaxSlopeAngle"/>
         public float CharacterMaxSlopeAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterMaxSlopeAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterMaxSlopeAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CharacterMaxSlopeAngle", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterUseJumpPower"/>
         public bool CharacterUseJumpPower
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CharacterUseJumpPower");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CharacterUseJumpPower")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CharacterUseJumpPower", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CharacterWalkSpeed"/>
         public float CharacterWalkSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterWalkSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CharacterWalkSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CharacterWalkSpeed", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#ClassicDeath"/>
         public bool ClassicDeath
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClassicDeath");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClassicDeath")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClassicDeath", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#CreateDefaultPlayerModule"/>
         public bool CreateDefaultPlayerModule
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CreateDefaultPlayerModule");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CreateDefaultPlayerModule")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CreateDefaultPlayerModule", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevCameraOcclusionMode"/>
         public Enum.DevCameraOcclusionMode DevCameraOcclusionMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevCameraOcclusionMode>(this, "DevCameraOcclusionMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevCameraOcclusionMode>(this, "DevCameraOcclusionMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevCameraOcclusionMode>(this, "DevCameraOcclusionMode", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevComputerCameraMovementMode"/>
         public Enum.DevComputerCameraMovementMode DevComputerCameraMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerCameraMovementMode>(this, "DevComputerCameraMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerCameraMovementMode>(this, "DevComputerCameraMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevComputerCameraMovementMode>(this, "DevComputerCameraMovementMode", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevComputerMovementMode"/>
         public Enum.DevComputerMovementMode DevComputerMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerMovementMode>(this, "DevComputerMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevComputerMovementMode>(this, "DevComputerMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevComputerMovementMode>(this, "DevComputerMovementMode", value);
         }
 
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevTouchCameraMovementMode"/>
         public Enum.DevTouchCameraMovementMode DevTouchCameraMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchCameraMovementMode>(this, "DevTouchCameraMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchCameraMovementMode>(this, "DevTouchCameraMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevTouchCameraMovementMode>(this, "DevTouchCameraMovementMode", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#DevTouchMovementMode"/>
         public Enum.DevTouchMovementMode DevTouchMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchMovementMode>(this, "DevTouchMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DevTouchMovementMode>(this, "DevTouchMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DevTouchMovementMode>(this, "DevTouchMovementMode", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#EnableDynamicHeads"/>
         public Enum.LoadDynamicHeads EnableDynamicHeads
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.LoadDynamicHeads>(this, "EnableDynamicHeads");
+            get => global::Roblox.Reflection.GetProperty<Enum.LoadDynamicHeads>(this, "EnableDynamicHeads")!;
             set => global::Roblox.Reflection.SetProperty<Enum.LoadDynamicHeads>(this, "EnableDynamicHeads", value);
         }
 
@@ -231,110 +231,110 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#EnableMouseLockOption"/>
         public bool EnableMouseLockOption
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableMouseLockOption");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableMouseLockOption")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableMouseLockOption", value);
         }
 
         public long GameSettingsAssetIDFace
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDFace");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDFace")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDFace", value);
         }
 
         public long GameSettingsAssetIDHead
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDHead");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDHead")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDHead", value);
         }
 
         public long GameSettingsAssetIDLeftArm
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDLeftArm");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDLeftArm")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDLeftArm", value);
         }
 
         public long GameSettingsAssetIDLeftLeg
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDLeftLeg");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDLeftLeg")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDLeftLeg", value);
         }
 
         public long GameSettingsAssetIDPants
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDPants");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDPants")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDPants", value);
         }
 
         public long GameSettingsAssetIDRightArm
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDRightArm");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDRightArm")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDRightArm", value);
         }
 
         public long GameSettingsAssetIDRightLeg
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDRightLeg");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDRightLeg")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDRightLeg", value);
         }
 
         public long GameSettingsAssetIDShirt
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDShirt");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDShirt")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDShirt", value);
         }
 
         public long GameSettingsAssetIDTeeShirt
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDTeeShirt");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDTeeShirt")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDTeeShirt", value);
         }
 
         public long GameSettingsAssetIDTorso
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDTorso");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameSettingsAssetIDTorso")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameSettingsAssetIDTorso", value);
         }
 
         public Enum.GameAvatarType GameSettingsAvatar
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GameAvatarType>(this, "GameSettingsAvatar");
+            get => global::Roblox.Reflection.GetProperty<Enum.GameAvatarType>(this, "GameSettingsAvatar")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GameAvatarType>(this, "GameSettingsAvatar", value);
         }
 
         public Enum.R15CollisionType GameSettingsR15Collision
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.R15CollisionType>(this, "GameSettingsR15Collision");
+            get => global::Roblox.Reflection.GetProperty<Enum.R15CollisionType>(this, "GameSettingsR15Collision")!;
             set => global::Roblox.Reflection.SetProperty<Enum.R15CollisionType>(this, "GameSettingsR15Collision", value);
         }
 
-        public global::Roblox.NumberRange? GameSettingsScaleRangeBodyType
+        public global::Roblox.NumberRange GameSettingsScaleRangeBodyType
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeBodyType");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeBodyType", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeBodyType")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeBodyType", value);
         }
 
-        public global::Roblox.NumberRange? GameSettingsScaleRangeHead
+        public global::Roblox.NumberRange GameSettingsScaleRangeHead
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHead");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHead", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeHead")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeHead", value);
         }
 
-        public global::Roblox.NumberRange? GameSettingsScaleRangeHeight
+        public global::Roblox.NumberRange GameSettingsScaleRangeHeight
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHeight");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeHeight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeHeight")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeHeight", value);
         }
 
-        public global::Roblox.NumberRange? GameSettingsScaleRangeProportion
+        public global::Roblox.NumberRange GameSettingsScaleRangeProportion
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeProportion");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeProportion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeProportion")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeProportion", value);
         }
 
-        public global::Roblox.NumberRange? GameSettingsScaleRangeWidth
+        public global::Roblox.NumberRange GameSettingsScaleRangeWidth
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeWidth");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "GameSettingsScaleRangeWidth", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeWidth")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "GameSettingsScaleRangeWidth", value);
         }
 
         /// <summary>
@@ -343,7 +343,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#HealthDisplayDistance"/>
         public float HealthDisplayDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HealthDisplayDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HealthDisplayDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HealthDisplayDistance", value);
         }
 
@@ -353,7 +353,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#LoadCharacterAppearance"/>
         public bool LoadCharacterAppearance
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadCharacterAppearance");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadCharacterAppearance")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadCharacterAppearance", value);
         }
 
@@ -363,7 +363,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#LoadCharacterLayeredClothing "/>
         public Enum.LoadCharacterLayeredClothing LoadCharacterLayeredClothing
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.LoadCharacterLayeredClothing>(this, "LoadCharacterLayeredClothing ");
+            get => global::Roblox.Reflection.GetProperty<Enum.LoadCharacterLayeredClothing>(this, "LoadCharacterLayeredClothing ")!;
             set => global::Roblox.Reflection.SetProperty<Enum.LoadCharacterLayeredClothing>(this, "LoadCharacterLayeredClothing ", value);
         }
 
@@ -373,7 +373,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#LuaCharacterController"/>
         public Enum.CharacterControlMode LuaCharacterController
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CharacterControlMode>(this, "LuaCharacterController");
+            get => global::Roblox.Reflection.GetProperty<Enum.CharacterControlMode>(this, "LuaCharacterController")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CharacterControlMode>(this, "LuaCharacterController", value);
         }
 
@@ -383,13 +383,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#NameDisplayDistance"/>
         public float NameDisplayDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "NameDisplayDistance", value);
         }
 
         public int PlayerModuleStatus
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PlayerModuleStatus");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PlayerModuleStatus")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PlayerModuleStatus", value);
         }
 
@@ -399,16 +399,16 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterPlayer#UserEmotesEnabled"/>
         public bool UserEmotesEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UserEmotesEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UserEmotesEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UserEmotesEnabled", value);
         }
 
         /// <summary>
         /// <c>StarterPlayer.ClearDefaults</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearDefaults()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearDefaults");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearDefaults()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearDefaults")!;
 
     }
 }

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="BindableFunction"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BindableFunction? FromHandle(nuint handle)
+        public static new BindableFunction? FromHandle(nuint handle)
             => handle == 0 ? null : new BindableFunction(handle);
 
         /// <summary>
         /// Invokes the BindableFunction which in turn calls the OnInvoke callback, returning any values returned by the callback.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BindableFunction#Invoke"/>
-        public object? Invoke(object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Invoke", arguments);
+        public object Invoke(object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "Invoke", arguments)!;
 
         /// <summary>
         /// Callback for when the BindableFunction is invoked with Invoke().

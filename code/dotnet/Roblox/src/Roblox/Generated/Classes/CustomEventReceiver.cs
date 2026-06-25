@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CustomEventReceiver"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CustomEventReceiver? FromHandle(nuint handle)
+        public static new CustomEventReceiver? FromHandle(nuint handle)
             => handle == 0 ? null : new CustomEventReceiver(handle);
 
         /// <summary>
@@ -41,14 +41,14 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#GetCurrentValue"/>
         public float GetCurrentValue()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetCurrentValue");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetCurrentValue")!;
 
         /// <summary>
         /// Fires when the receiver is attached to a different CustomEvent, when the CustomEventReceiver.Source property is changed.
         /// </summary>
-        /// <param name="event">A <c>Instance?</c> value.</param>
+        /// <param name="@event">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#EventConnected"/>
-        public event Action<Instance?>? EventConnected
+        public event Action<Instance>? EventConnected
         {
             add { if (value is not null) AddEventHandler("EventConnected", value); }
             remove { if (value is not null) RemoveEventHandler("EventConnected", value); }
@@ -57,9 +57,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the receiver is attached to a different CustomEvent instance when the CustomEventReceiver.Source property is changed.
         /// </summary>
-        /// <param name="event">A <c>Instance?</c> value.</param>
+        /// <param name="@event">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#EventDisconnected"/>
-        public event Action<Instance?>? EventDisconnected
+        public event Action<Instance>? EventDisconnected
         {
             add { if (value is not null) AddEventHandler("EventDisconnected", value); }
             remove { if (value is not null) RemoveEventHandler("EventDisconnected", value); }

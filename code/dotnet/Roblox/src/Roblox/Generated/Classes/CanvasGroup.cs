@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="CanvasGroup"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CanvasGroup? FromHandle(nuint handle)
+        public static new CanvasGroup? FromHandle(nuint handle)
             => handle == 0 ? null : new CanvasGroup(handle);
 
         /// <summary>
         /// Color tint that applies to all descendants.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CanvasGroup#GroupColor3"/>
-        public global::Roblox.Color3? GroupColor3
+        public global::Roblox.Color3 GroupColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "GroupColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "GroupColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "GroupColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "GroupColor3", value);
         }
 
         /// <summary>
@@ -41,13 +41,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CanvasGroup#GroupTransparency"/>
         public float GroupTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "GroupTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "GroupTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "GroupTransparency", value);
         }
 
         public float ResolutionScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ResolutionScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ResolutionScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ResolutionScale", value);
         }
 

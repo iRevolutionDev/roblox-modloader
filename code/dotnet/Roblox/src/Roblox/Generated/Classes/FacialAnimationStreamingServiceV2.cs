@@ -18,21 +18,21 @@ namespace Roblox
         /// Creates a <see cref="FacialAnimationStreamingServiceV2"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FacialAnimationStreamingServiceV2? FromHandle(nuint handle)
+        public static new FacialAnimationStreamingServiceV2? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAnimationStreamingServiceV2(handle);
 
         public int ServiceState
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ServiceState");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ServiceState")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ServiceState", value);
         }
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceV2.GetStats</c>
         /// </summary>
-        /// <returns>A <c>FacialAnimationStreamingServiceStats?</c> value returned by the engine.</returns>
-        public FacialAnimationStreamingServiceStats? GetStats()
-            => global::Roblox.Reflection.Invoke<FacialAnimationStreamingServiceStats?>(this, "GetStats");
+        /// <returns>A <c>FacialAnimationStreamingServiceStats</c> value returned by the engine.</returns>
+        public FacialAnimationStreamingServiceStats GetStats()
+            => global::Roblox.Reflection.Invoke<FacialAnimationStreamingServiceStats>(this, "GetStats")!;
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceV2.IsAudioEnabled</c>
@@ -40,7 +40,7 @@ namespace Roblox
         /// <param name="mask">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAudioEnabled(int mask)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAudioEnabled", mask);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAudioEnabled", mask)!;
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceV2.IsPlaceEnabled</c>
@@ -48,7 +48,7 @@ namespace Roblox
         /// <param name="mask">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsPlaceEnabled(int mask)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPlaceEnabled", mask);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPlaceEnabled", mask)!;
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceV2.IsServerEnabled</c>
@@ -56,7 +56,7 @@ namespace Roblox
         /// <param name="mask">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsServerEnabled(int mask)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsServerEnabled", mask);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsServerEnabled", mask)!;
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceV2.IsVideoEnabled</c>
@@ -64,7 +64,7 @@ namespace Roblox
         /// <param name="mask">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsVideoEnabled(int mask)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsVideoEnabled", mask);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsVideoEnabled", mask)!;
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceV2.ResolveStateForUser</c>
@@ -72,7 +72,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int ResolveStateForUser(long userId)
-            => global::Roblox.Reflection.Invoke<int>(this, "ResolveStateForUser", userId);
+            => global::Roblox.Reflection.Invoke<int>(this, "ResolveStateForUser", userId)!;
 
     }
 }

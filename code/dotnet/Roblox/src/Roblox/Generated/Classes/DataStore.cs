@@ -22,63 +22,63 @@ namespace Roblox
         /// Creates a <see cref="DataStore"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStore? FromHandle(nuint handle)
+        public static new DataStore? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStore(handle);
 
         /// <summary>
         /// Retrieves the specified key version.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="version">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="version">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStore#GetVersionAsync"/>
-        public object? GetVersionAsync(string? key, string? version)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVersionAsync", key, version);
+        public object GetVersionAsync(string key, string version)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVersionAsync", key, version)!;
 
         /// <summary>
         /// Retrieves the key version that was current at a given time.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <param name="timestamp">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStore#GetVersionAtTimeAsync"/>
-        public object? GetVersionAtTimeAsync(string? key, long timestamp)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVersionAtTimeAsync", key, timestamp);
+        public object GetVersionAtTimeAsync(string key, long timestamp)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVersionAtTimeAsync", key, timestamp)!;
 
         /// <summary>
         /// Returns a DataStoreKeyPages object for enumerating through keys of a data store.
         /// </summary>
-        /// <param name="prefix">A <c>string?</c> value.</param>
+        /// <param name="prefix">A <c>string</c> value.</param>
         /// <param name="pageSize">A <c>int</c> value.</param>
-        /// <param name="cursor">A <c>string?</c> value.</param>
-        /// <param name="excludeDeleted">A <c>bool</c> value.</param>
-        /// <returns>A <c>DataStoreKeyPages?</c> value returned by the engine.</returns>
+        /// <param name="cursor">A <c>string</c> value.</param>
+        /// <param name="excludeDeleted">A <c>bool?</c> value.</param>
+        /// <returns>A <c>DataStoreKeyPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStore#ListKeysAsync"/>
-        public DataStoreKeyPages? ListKeysAsync(string? prefix, int pageSize, string? cursor, bool excludeDeleted)
-            => global::Roblox.Reflection.Invoke<DataStoreKeyPages?>(this, "ListKeysAsync", prefix, pageSize, cursor, excludeDeleted);
+        public DataStoreKeyPages ListKeysAsync(string prefix, int pageSize, string cursor, bool? excludeDeleted = null)
+            => global::Roblox.Reflection.Invoke<DataStoreKeyPages>(this, "ListKeysAsync", prefix, pageSize, cursor, excludeDeleted)!;
 
         /// <summary>
         /// Enumerates all versions of a key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="sortDirection">A <c>Enum.SortDirection</c> value.</param>
-        /// <param name="minDate">A <c>long</c> value.</param>
-        /// <param name="maxDate">A <c>long</c> value.</param>
-        /// <param name="pageSize">A <c>int</c> value.</param>
-        /// <returns>A <c>DataStoreVersionPages?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="sortDirection">A <c>Enum.SortDirection?</c> value.</param>
+        /// <param name="minDate">A <c>long?</c> value.</param>
+        /// <param name="maxDate">A <c>long?</c> value.</param>
+        /// <param name="pageSize">A <c>int?</c> value.</param>
+        /// <returns>A <c>DataStoreVersionPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStore#ListVersionsAsync"/>
-        public DataStoreVersionPages? ListVersionsAsync(string? key, Enum.SortDirection sortDirection, long minDate, long maxDate, int pageSize)
-            => global::Roblox.Reflection.Invoke<DataStoreVersionPages?>(this, "ListVersionsAsync", key, sortDirection, minDate, maxDate, pageSize);
+        public DataStoreVersionPages ListVersionsAsync(string key, Enum.SortDirection? sortDirection = null, long? minDate = null, long? maxDate = null, int? pageSize = null)
+            => global::Roblox.Reflection.Invoke<DataStoreVersionPages>(this, "ListVersionsAsync", key, sortDirection, minDate, maxDate, pageSize)!;
 
         /// <summary>
         /// Deprecated: Permanently deletes the specified version of a key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="version">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="version">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStore#RemoveVersionAsync"/>
-        public object? RemoveVersionAsync(string? key, string? version)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveVersionAsync", key, version);
+        public object RemoveVersionAsync(string key, string version)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveVersionAsync", key, version)!;
 
     }
 }

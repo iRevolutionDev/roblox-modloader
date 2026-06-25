@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BodyPartDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyPartDescription? FromHandle(nuint handle)
+        public static new BodyPartDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyPartDescription(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#AssetId"/>
         public long AssetId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "AssetId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "AssetId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "AssetId", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#BodyPart"/>
         public Enum.BodyPart BodyPart
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.BodyPart>(this, "BodyPart");
+            get => global::Roblox.Reflection.GetProperty<Enum.BodyPart>(this, "BodyPart")!;
             set => global::Roblox.Reflection.SetProperty<Enum.BodyPart>(this, "BodyPart", value);
         }
 
@@ -49,20 +49,20 @@ namespace Roblox
         /// The Color3 for this body part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
         /// Specifies the head shape identifier to apply to a Dynamic Head when this BodyPartDescription is applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#HeadShape"/>
-        public string? HeadShape
+        public string HeadShape
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "HeadShape");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "HeadShape", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "HeadShape")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "HeadShape", value);
         }
 
         /// <summary>

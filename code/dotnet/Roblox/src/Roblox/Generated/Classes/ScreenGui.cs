@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ScreenGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScreenGui? FromHandle(nuint handle)
+        public static new ScreenGui? FromHandle(nuint handle)
             => handle == 0 ? null : new ScreenGui(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#ClipToDeviceSafeArea"/>
         public bool ClipToDeviceSafeArea
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipToDeviceSafeArea");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipToDeviceSafeArea")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClipToDeviceSafeArea", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#DisplayOrder"/>
         public int DisplayOrder
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DisplayOrder");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "DisplayOrder")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DisplayOrder", value);
         }
 
@@ -51,13 +51,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#IgnoreGuiInset"/>
         public bool IgnoreGuiInset
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IgnoreGuiInset");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IgnoreGuiInset")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IgnoreGuiInset", value);
         }
 
         public bool OnTopOfCoreBlur
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "OnTopOfCoreBlur");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "OnTopOfCoreBlur")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "OnTopOfCoreBlur", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#SafeAreaCompatibility"/>
         public Enum.SafeAreaCompatibility SafeAreaCompatibility
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SafeAreaCompatibility>(this, "SafeAreaCompatibility");
+            get => global::Roblox.Reflection.GetProperty<Enum.SafeAreaCompatibility>(this, "SafeAreaCompatibility")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SafeAreaCompatibility>(this, "SafeAreaCompatibility", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenGui#ScreenInsets"/>
         public Enum.ScreenInsets ScreenInsets
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScreenInsets>(this, "ScreenInsets");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScreenInsets>(this, "ScreenInsets")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScreenInsets>(this, "ScreenInsets", value);
         }
 

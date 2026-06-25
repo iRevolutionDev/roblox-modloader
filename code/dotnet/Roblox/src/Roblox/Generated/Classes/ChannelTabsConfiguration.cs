@@ -22,37 +22,37 @@ namespace Roblox
         /// Creates a <see cref="ChannelTabsConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ChannelTabsConfiguration? FromHandle(nuint handle)
+        public static new ChannelTabsConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new ChannelTabsConfiguration(handle);
 
         /// <summary>
         /// Actual screen position of the channel tab bar, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#AbsolutePosition"/>
-        public global::Roblox.Vector2? AbsolutePosition
+        public global::Roblox.Vector2 AbsolutePosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsolutePosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsolutePosition", value);
         }
 
         /// <summary>
         /// Actual screen size of the channel tab bar, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#AbsoluteSize"/>
-        public global::Roblox.Vector2? AbsoluteSize
+        public global::Roblox.Vector2 AbsoluteSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteSize", value);
         }
 
         /// <summary>
         /// Background color of the channel tabs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#BackgroundColor3"/>
-        public global::Roblox.Color3? BackgroundColor3
+        public global::Roblox.Color3 BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "BackgroundColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#BackgroundTransparency"/>
         public double BackgroundTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "BackgroundTransparency", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -79,40 +79,40 @@ namespace Roblox
         /// Font used to render text in the channel tabs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#FontFace"/>
-        public object? FontFace
+        public object FontFace
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FontFace");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FontFace", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FontFace")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FontFace", value);
         }
 
         /// <summary>
         /// Background color of a channel tab when hovering over it.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#HoverBackgroundColor3"/>
-        public global::Roblox.Color3? HoverBackgroundColor3
+        public global::Roblox.Color3 HoverBackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "HoverBackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "HoverBackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "HoverBackgroundColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "HoverBackgroundColor3", value);
         }
 
         /// <summary>
         /// Color of text in a selected tab.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#SelectedTabTextColor3"/>
-        public global::Roblox.Color3? SelectedTabTextColor3
+        public global::Roblox.Color3 SelectedTabTextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "SelectedTabTextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "SelectedTabTextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "SelectedTabTextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "SelectedTabTextColor3", value);
         }
 
         /// <summary>
         /// Color of text in an unselected tab.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextColor3"/>
-        public global::Roblox.Color3? TextColor3
+        public global::Roblox.Color3 TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextSize"/>
         public long TextSize
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "TextSize", value);
         }
 
@@ -129,10 +129,10 @@ namespace Roblox
         /// Color of the text stroke for text in channel tabs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextStrokeColor3"/>
-        public global::Roblox.Color3? TextStrokeColor3
+        public global::Roblox.Color3 TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextStrokeColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>
@@ -141,25 +141,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChannelTabsConfiguration#TextStrokeTransparency"/>
         public double TextStrokeTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TextStrokeTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TextStrokeTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TextStrokeTransparency", value);
         }
 
         /// <summary>
         /// <c>ChannelTabsConfiguration.SetAbsolutePosition</c>
         /// </summary>
-        /// <param name="value">A <c>global::Roblox.Vector2?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAbsolutePosition(global::Roblox.Vector2? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAbsolutePosition", value);
+        /// <param name="value">A <c>global::Roblox.Vector2</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetAbsolutePosition(global::Roblox.Vector2 value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAbsolutePosition", value)!;
 
         /// <summary>
         /// <c>ChannelTabsConfiguration.SetAbsoluteSize</c>
         /// </summary>
-        /// <param name="value">A <c>global::Roblox.Vector2?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAbsoluteSize(global::Roblox.Vector2? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAbsoluteSize", value);
+        /// <param name="value">A <c>global::Roblox.Vector2</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetAbsoluteSize(global::Roblox.Vector2 value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAbsoluteSize", value)!;
 
     }
 }

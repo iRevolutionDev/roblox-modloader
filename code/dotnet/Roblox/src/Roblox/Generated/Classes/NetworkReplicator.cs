@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="NetworkReplicator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NetworkReplicator? FromHandle(nuint handle)
+        public static new NetworkReplicator? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkReplicator(handle);
 
         /// <summary>

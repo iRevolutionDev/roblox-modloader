@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RodConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RodConstraint? FromHandle(nuint handle)
+        public static new RodConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new RodConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#CurrentDistance"/>
         public float CurrentDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentDistance", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#Length"/>
         public float Length
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Length", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#LimitAngle0"/>
         public float LimitAngle0
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LimitAngle0");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LimitAngle0")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LimitAngle0", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#LimitAngle1"/>
         public float LimitAngle1
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LimitAngle1");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LimitAngle1")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LimitAngle1", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitsEnabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint#Thickness"/>
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TextChatMessage"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextChatMessage? FromHandle(nuint handle)
+        public static new TextChatMessage? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChatMessage(handle);
 
         /// <summary>
@@ -35,10 +35,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<BubbleChatMessageProperties?>(this, "BubbleChatMessageProperties", value);
         }
 
-        public string? ChatActionType
+        public string ChatActionType
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ChatActionType");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ChatActionType", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ChatActionType")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ChatActionType", value);
         }
 
         /// <summary>
@@ -53,13 +53,13 @@ namespace Roblox
 
         public bool ForModeration
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForModeration");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForModeration")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ForModeration", value);
         }
 
         public bool IsHiddenMessage
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsHiddenMessage");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsHiddenMessage")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsHiddenMessage", value);
         }
 
@@ -67,66 +67,66 @@ namespace Roblox
         /// A unique identifier for the TextChatMessage.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#MessageId"/>
-        public string? MessageId
+        public string MessageId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MessageId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MessageId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MessageId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MessageId", value);
         }
 
         /// <summary>
         /// A general purpose field for storing miscellaneous data about the TextChatMessage.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#Metadata"/>
-        public string? Metadata
+        public string Metadata
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Metadata");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Metadata", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Metadata")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Metadata", value);
         }
 
-        public string? OriginalText
+        public string OriginalText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OriginalText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OriginalText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OriginalText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OriginalText", value);
         }
 
         /// <summary>
         /// A prefix to add to a user's message.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#PrefixText"/>
-        public string? PrefixText
+        public string PrefixText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PrefixText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PrefixText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PrefixText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PrefixText", value);
         }
 
-        public string? PrefixTextInternal
+        public string PrefixTextInternal
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PrefixTextInternal");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PrefixTextInternal", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PrefixTextInternal")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PrefixTextInternal", value);
         }
 
-        public string? PresetChatVersion
+        public string PresetChatVersion
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PresetChatVersion");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PresetChatVersion", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PresetChatVersion")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PresetChatVersion", value);
         }
 
-        public string? PresetId
+        public string PresetId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PresetId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PresetId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PresetId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PresetId", value);
         }
 
-        public string? RewrittenText
+        public string RewrittenText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RewrittenText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RewrittenText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RewrittenText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RewrittenText", value);
         }
 
-        public string? RewrittenTranslation
+        public string RewrittenTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RewrittenTranslation");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RewrittenTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RewrittenTranslation")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RewrittenTranslation", value);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#Status"/>
         public Enum.TextChatMessageStatus Status
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextChatMessageStatus>(this, "Status");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextChatMessageStatus>(this, "Status")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextChatMessageStatus>(this, "Status", value);
         }
 
@@ -143,10 +143,10 @@ namespace Roblox
         /// The filtered text message for the user.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         /// <summary>
@@ -159,10 +159,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<TextChannel?>(this, "TextChannel", value);
         }
 
-        public string? TextInternal
+        public string TextInternal
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextInternal");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextInternal", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextInternal")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextInternal", value);
         }
 
         /// <summary>
@@ -179,31 +179,31 @@ namespace Roblox
         /// A timestamp of when the message was originally sent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#Timestamp"/>
-        public object? Timestamp
+        public object Timestamp
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Timestamp");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Timestamp", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Timestamp")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Timestamp", value);
         }
 
         /// <summary>
         /// Translated and filtered text message.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#Translation"/>
-        public string? Translation
+        public string Translation
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Translation");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Translation", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Translation")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Translation", value);
         }
 
-        public string? TranslationInternal
+        public string TranslationInternal
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TranslationInternal");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TranslationInternal", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TranslationInternal")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TranslationInternal", value);
         }
 
         public bool WasRewritten
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "WasRewritten");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "WasRewritten")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "WasRewritten", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FacialAgeEstimationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FacialAgeEstimationService? FromHandle(nuint handle)
+        public static new FacialAgeEstimationService? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAgeEstimationService(handle);
 
         /// <summary>
@@ -31,16 +31,16 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FacialAgeEstimationService#IsAvailable"/>
         public bool IsAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable")!;
 
         /// <summary>
         /// <c>FacialAgeEstimationService.InquiryAsync</c>
         /// </summary>
-        /// <param name="inquiryRequest">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="inquiryRequest">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FacialAgeEstimationService#InquiryAsync"/>
-        public object? InquiryAsync(object? inquiryRequest)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InquiryAsync", inquiryRequest);
+        public object InquiryAsync(object inquiryRequest)
+            => global::Roblox.Reflection.Invoke<object>(this, "InquiryAsync", inquiryRequest)!;
 
     }
 }

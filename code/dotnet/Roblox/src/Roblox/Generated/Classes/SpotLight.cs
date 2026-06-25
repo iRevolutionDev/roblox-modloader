@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SpotLight"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SpotLight? FromHandle(nuint handle)
+        public static new SpotLight? FromHandle(nuint handle)
             => handle == 0 ? null : new SpotLight(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpotLight#Angle"/>
         public float Angle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Angle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Angle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Angle", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpotLight#Face"/>
         public Enum.NormalId Face
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "Face");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "Face")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "Face", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpotLight#Range"/>
         public float Range
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Range");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Range")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Range", value);
         }
 

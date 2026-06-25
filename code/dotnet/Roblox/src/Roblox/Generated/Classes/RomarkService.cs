@@ -18,15 +18,15 @@ namespace Roblox
         /// Creates a <see cref="RomarkService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RomarkService? FromHandle(nuint handle)
+        public static new RomarkService? FromHandle(nuint handle)
             => handle == 0 ? null : new RomarkService(handle);
 
         /// <summary>
         /// <c>RomarkService.EndRemoteRomarkTest</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EndRemoteRomarkTest()
-            => global::Roblox.Reflection.Invoke<object?>(this, "EndRemoteRomarkTest");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EndRemoteRomarkTest()
+            => global::Roblox.Reflection.Invoke<object>(this, "EndRemoteRomarkTest")!;
 
     }
 }

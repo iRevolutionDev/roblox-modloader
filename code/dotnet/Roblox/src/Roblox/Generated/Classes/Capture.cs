@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Capture"/>
     [RobloxClass("Capture")]
-    public class Capture : Object
+    public class Capture : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Capture.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// <c>Capture.CaptureTime</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Capture#CaptureTime"/>
-        public object? CaptureTime
+        public object CaptureTime
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CaptureTime");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CaptureTime", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "CaptureTime")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "CaptureTime", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Capture#CaptureType"/>
         public Enum.CaptureType CaptureType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CaptureType>(this, "CaptureType");
+            get => global::Roblox.Reflection.GetProperty<Enum.CaptureType>(this, "CaptureType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CaptureType>(this, "CaptureType", value);
         }
 
@@ -49,20 +49,20 @@ namespace Roblox
         /// <c>Capture.FilePathString</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Capture#FilePathString"/>
-        public string? FilePathString
+        public string FilePathString
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FilePathString");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FilePathString", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FilePathString")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FilePathString", value);
         }
 
         /// <summary>
         /// <c>Capture.LocalId</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Capture#LocalId"/>
-        public string? LocalId
+        public string LocalId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocalId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocalId", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Capture#SourcePlaceId"/>
         public long SourcePlaceId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "SourcePlaceId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "SourcePlaceId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "SourcePlaceId", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Capture#SourceUniverseId"/>
         public long SourceUniverseId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "SourceUniverseId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "SourceUniverseId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "SourceUniverseId", value);
         }
 

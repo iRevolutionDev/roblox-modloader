@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ValueCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ValueCurve? FromHandle(nuint handle)
+        public static new ValueCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new ValueCurve(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#Length"/>
         public int Length
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Length", value);
         }
 
@@ -39,37 +39,37 @@ namespace Roblox
         /// Read-only value indicating the type held in this curve.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#ValueType"/>
-        public string? ValueType
+        public string ValueType
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ValueType");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ValueType", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ValueType")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ValueType", value);
         }
 
         /// <summary>
         /// Returns a copy of a key at a given index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#GetKeyAtIndex"/>
-        public object? GetKeyAtIndex(int index)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeyAtIndex", index);
+        public object GetKeyAtIndex(int index)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetKeyAtIndex", index)!;
 
         /// <summary>
         /// Returns the index of the last and first key of a period of time.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#GetKeyIndicesAtTime"/>
-        public object? GetKeyIndicesAtTime(float time)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeyIndicesAtTime", time);
+        public object GetKeyIndicesAtTime(float time)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetKeyIndicesAtTime", time)!;
 
         /// <summary>
         /// Returns a copy of all the keys in the ValueCurve as a Luau array of ValueCurveKeys.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#GetKeys"/>
-        public object? GetKeys()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeys");
+        public object GetKeys()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetKeys")!;
 
         /// <summary>
         /// Samples the value curve at a given time passed as argument.
@@ -83,41 +83,41 @@ namespace Roblox
         /// <summary>
         /// Adds the key passed as an argument to this curve. If a key at the same time is found, it will be replaced.
         /// </summary>
-        /// <param name="key">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#InsertKey"/>
-        public object? InsertKey(object? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertKey", key);
+        public object InsertKey(object key)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertKey", key)!;
 
         /// <summary>
         /// Creates a key for the given value and inserts it at the given time. If a key at the same time is found, it will be replaced.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <param name="keyInterpolationMode">A <c>Enum.KeyInterpolationMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <param name="keyInterpolationMode">A <c>Enum.KeyInterpolationMode?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#InsertKeyValue"/>
-        public object? InsertKeyValue(float time, object? value, Enum.KeyInterpolationMode keyInterpolationMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertKeyValue", time, value, keyInterpolationMode);
+        public object InsertKeyValue(float time, object value, Enum.KeyInterpolationMode? keyInterpolationMode = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertKeyValue", time, value, keyInterpolationMode)!;
 
         /// <summary>
         /// Removes a given number of keys starting from a given index.
         /// </summary>
         /// <param name="startingIndex">A <c>int</c> value.</param>
-        /// <param name="count">A <c>int</c> value.</param>
+        /// <param name="count">A <c>int?</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#RemoveKeyAtIndex"/>
-        public int RemoveKeyAtIndex(int startingIndex, int count)
-            => global::Roblox.Reflection.Invoke<int>(this, "RemoveKeyAtIndex", startingIndex, count);
+        public int RemoveKeyAtIndex(int startingIndex, int? count = null)
+            => global::Roblox.Reflection.Invoke<int>(this, "RemoveKeyAtIndex", startingIndex, count)!;
 
         /// <summary>
         /// Resets this curve's keys using the ValueCurveKey array passed as an argument.
         /// </summary>
-        /// <param name="keys">A <c>object?</c> value.</param>
+        /// <param name="keys">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ValueCurve#SetKeys"/>
-        public int SetKeys(object? keys)
-            => global::Roblox.Reflection.Invoke<int>(this, "SetKeys", keys);
+        public int SetKeys(object keys)
+            => global::Roblox.Reflection.Invoke<int>(this, "SetKeys", keys)!;
 
     }
 }

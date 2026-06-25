@@ -22,22 +22,22 @@ namespace Roblox
         /// Creates a <see cref="SmoothVoxelsUpgraderService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SmoothVoxelsUpgraderService? FromHandle(nuint handle)
+        public static new SmoothVoxelsUpgraderService? FromHandle(nuint handle)
             => handle == 0 ? null : new SmoothVoxelsUpgraderService(handle);
 
         /// <summary>
         /// <c>SmoothVoxelsUpgraderService.Cancel</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Cancel()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Cancel");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Cancel()
+            => global::Roblox.Reflection.Invoke<object>(this, "Cancel")!;
 
         /// <summary>
         /// <c>SmoothVoxelsUpgraderService.Start</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Start()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Start");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Start()
+            => global::Roblox.Reflection.Invoke<object>(this, "Start")!;
 
         /// <summary>
         /// <c>SmoothVoxelsUpgraderService.Status</c>

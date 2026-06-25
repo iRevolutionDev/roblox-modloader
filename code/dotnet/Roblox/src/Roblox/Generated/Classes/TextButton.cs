@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="TextButton"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextButton? FromHandle(nuint handle)
+        public static new TextButton? FromHandle(nuint handle)
             => handle == 0 ? null : new TextButton(handle);
 
         /// <summary>
         /// A copy of TextButton.Text that contains exactly what is being rendered by the TextButton.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#ContentText"/>
-        public string? ContentText
+        public string ContentText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ContentText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ContentText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ContentText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ContentText", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#Font"/>
         public Enum.Font Font
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "Font");
+            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "Font")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Font>(this, "Font", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines the font used to render text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#FontFace"/>
-        public object? FontFace
+        public object FontFace
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FontFace");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FontFace", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FontFace")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FontFace", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#FontSize"/>
         public Enum.FontSize FontSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FontSize>(this, "FontSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.FontSize>(this, "FontSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FontSize>(this, "FontSize", value);
         }
 
@@ -71,30 +71,30 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#LineHeight"/>
         public float LineHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LineHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LineHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LineHeight", value);
         }
 
-        public string? LocalizationMatchIdentifier
+        public string LocalizationMatchIdentifier
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalizationMatchIdentifier");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalizationMatchIdentifier", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocalizationMatchIdentifier")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocalizationMatchIdentifier", value);
         }
 
-        public string? LocalizationMatchedSourceText
+        public string LocalizationMatchedSourceText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalizationMatchedSourceText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalizationMatchedSourceText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocalizationMatchedSourceText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocalizationMatchedSourceText", value);
         }
 
         /// <summary>
         /// Sets whether a TextButton should be GuiBase2d.Localize or not.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#LocalizedText"/>
-        public string? LocalizedText
+        public string LocalizedText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalizedText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalizedText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocalizedText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocalizedText", value);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#MaxVisibleGraphemes"/>
         public int MaxVisibleGraphemes
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxVisibleGraphemes");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxVisibleGraphemes")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxVisibleGraphemes", value);
         }
 
@@ -111,20 +111,20 @@ namespace Roblox
         /// <c>TextButton.OpenTypeFeatures</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#OpenTypeFeatures"/>
-        public string? OpenTypeFeatures
+        public string OpenTypeFeatures
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OpenTypeFeatures");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OpenTypeFeatures", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OpenTypeFeatures")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OpenTypeFeatures", value);
         }
 
         /// <summary>
         /// <c>TextButton.OpenTypeFeaturesError</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#OpenTypeFeaturesError"/>
-        public string? OpenTypeFeaturesError
+        public string OpenTypeFeaturesError
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OpenTypeFeaturesError");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OpenTypeFeaturesError", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OpenTypeFeaturesError")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OpenTypeFeaturesError", value);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#RichText"/>
         public bool RichText
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RichText");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RichText")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RichText", value);
         }
 
@@ -141,40 +141,40 @@ namespace Roblox
         /// Determines the string rendered by the TextButton.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         /// <summary>
         /// Read-only property which reflects the absolute size of rendered text in offsets.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextBounds"/>
-        public global::Roblox.Vector2? TextBounds
+        public global::Roblox.Vector2 TextBounds
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "TextBounds");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "TextBounds", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "TextBounds")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "TextBounds", value);
         }
 
         /// <summary>
         /// Deprecated: This item has been superseded by TextButton.TextColor3 which should be used in all new work.Determines the color of text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextColor"/>
-        public global::Roblox.BrickColor? TextColor
+        public global::Roblox.BrickColor TextColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TextColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TextColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TextColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TextColor", value);
         }
 
         /// <summary>
         /// Determines the color of rendered text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextColor3"/>
-        public global::Roblox.Color3? TextColor3
+        public global::Roblox.Color3 TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextDirection"/>
         public Enum.TextDirection TextDirection
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextDirection>(this, "TextDirection");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextDirection>(this, "TextDirection")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextDirection>(this, "TextDirection", value);
         }
 
@@ -193,7 +193,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextFits"/>
         public bool TextFits
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextFits");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextFits")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextFits", value);
         }
 
@@ -203,7 +203,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextScaled"/>
         public bool TextScaled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextScaled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextScaled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextScaled", value);
         }
 
@@ -213,7 +213,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextSize"/>
         public float TextSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextSize", value);
         }
 
@@ -221,10 +221,10 @@ namespace Roblox
         /// Determines the color of the text stroke (outline).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextStrokeColor3"/>
-        public global::Roblox.Color3? TextStrokeColor3
+        public global::Roblox.Color3 TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextStrokeColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextStrokeTransparency"/>
         public float TextStrokeTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextStrokeTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextStrokeTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextStrokeTransparency", value);
         }
 
@@ -243,7 +243,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextTransparency"/>
         public float TextTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextTransparency", value);
         }
 
@@ -253,7 +253,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextTruncate"/>
         public Enum.TextTruncate TextTruncate
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextTruncate>(this, "TextTruncate");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextTruncate>(this, "TextTruncate")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextTruncate>(this, "TextTruncate", value);
         }
 
@@ -263,7 +263,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextWrap"/>
         public bool TextWrap
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrap");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrap")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextWrap", value);
         }
 
@@ -273,7 +273,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextWrapped"/>
         public bool TextWrapped
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrapped");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrapped")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextWrapped", value);
         }
 
@@ -283,7 +283,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextXAlignment"/>
         public Enum.TextXAlignment TextXAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextXAlignment>(this, "TextXAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextXAlignment>(this, "TextXAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextXAlignment>(this, "TextXAlignment", value);
         }
 
@@ -293,17 +293,17 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextYAlignment"/>
         public Enum.TextYAlignment TextYAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextYAlignment>(this, "TextYAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextYAlignment>(this, "TextYAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextYAlignment>(this, "TextYAlignment", value);
         }
 
         /// <summary>
         /// <c>TextButton.SetTextFromInput</c>
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTextFromInput(string? text)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTextFromInput", text);
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTextFromInput(string text)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTextFromInput", text)!;
 
     }
 }

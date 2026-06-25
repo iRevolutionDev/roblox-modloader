@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DynamicRotate"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DynamicRotate? FromHandle(nuint handle)
+        public static new DynamicRotate? FromHandle(nuint handle)
             => handle == 0 ? null : new DynamicRotate(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DynamicRotate#BaseAngle"/>
         public float BaseAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BaseAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BaseAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BaseAngle", value);
         }
 

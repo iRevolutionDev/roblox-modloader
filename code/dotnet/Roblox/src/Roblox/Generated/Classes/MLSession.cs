@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MLSession"/>
     [RobloxClass("MLSession")]
-    public class MLSession : Object
+    public class MLSession : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MLSession.</param>
@@ -28,11 +28,11 @@ namespace Roblox
         /// <summary>
         /// <c>MLSession.ForwardAsync</c>
         /// </summary>
-        /// <param name="data">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="data">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MLSession#ForwardAsync"/>
-        public object? ForwardAsync(object? data)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ForwardAsync", data);
+        public object ForwardAsync(object data)
+            => global::Roblox.Reflection.Invoke<object>(this, "ForwardAsync", data)!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PluginToolbarButton"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginToolbarButton? FromHandle(nuint handle)
+        public static new PluginToolbarButton? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginToolbarButton(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginToolbarButton#ClickableWhenViewportHidden"/>
         public bool ClickableWhenViewportHidden
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClickableWhenViewportHidden");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClickableWhenViewportHidden")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClickableWhenViewportHidden", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginToolbarButton#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -49,34 +49,34 @@ namespace Roblox
         /// Determines what icon should represent the button.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginToolbarButton#Icon"/>
-        public object? Icon
+        public object Icon
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Icon");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Icon", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Icon")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Icon", value);
         }
 
-        public string? IconContent
+        public string IconContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "IconContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "IconContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "IconContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "IconContent", value);
         }
 
         /// <summary>
         /// Sets the state of the plugin button.
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginToolbarButton#SetActive"/>
-        public object? SetActive(bool active)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetActive", active);
+        public object SetActive(bool active)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetActive", active)!;
 
         /// <summary>
         /// <c>PluginToolbarButton.SetDropdownActive</c>
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetDropdownActive(bool active)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDropdownActive", active);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetDropdownActive(bool active)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDropdownActive", active)!;
 
         /// <summary>
         /// Fires when the user presses and releases their cursor on the button.

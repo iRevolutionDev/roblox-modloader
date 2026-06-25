@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HttpService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HttpService? FromHandle(nuint handle)
+        public static new HttpService? FromHandle(nuint handle)
             => handle == 0 ? null : new HttpService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#HttpEnabled"/>
         public bool HttpEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HttpEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HttpEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HttpEnabled", value);
         }
 
@@ -39,152 +39,152 @@ namespace Roblox
         /// Creates a client that opens a persistent connection to stream data.
         /// </summary>
         /// <param name="streamClientType">A <c>Enum.WebStreamClientType</c> value.</param>
-        /// <param name="requestOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>WebStreamClient?</c> value returned by the engine.</returns>
+        /// <param name="requestOptions">A <c>object</c> value.</param>
+        /// <returns>A <c>WebStreamClient</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#CreateWebStreamClient"/>
-        public WebStreamClient? CreateWebStreamClient(Enum.WebStreamClientType streamClientType, object? requestOptions)
-            => global::Roblox.Reflection.Invoke<WebStreamClient?>(this, "CreateWebStreamClient", streamClientType, requestOptions);
+        public WebStreamClient CreateWebStreamClient(Enum.WebStreamClientType streamClientType, object requestOptions)
+            => global::Roblox.Reflection.Invoke<WebStreamClient>(this, "CreateWebStreamClient", streamClientType, requestOptions)!;
 
         /// <summary>
         /// <c>HttpService.CreateWebStreamClientInternal</c>
         /// </summary>
         /// <param name="streamClientType">A <c>Enum.WebStreamClientType</c> value.</param>
-        /// <param name="requestOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>WebStreamClient?</c> value returned by the engine.</returns>
-        public WebStreamClient? CreateWebStreamClientInternal(Enum.WebStreamClientType streamClientType, object? requestOptions)
-            => global::Roblox.Reflection.Invoke<WebStreamClient?>(this, "CreateWebStreamClientInternal", streamClientType, requestOptions);
+        /// <param name="requestOptions">A <c>object</c> value.</param>
+        /// <returns>A <c>WebStreamClient</c> value returned by the engine.</returns>
+        public WebStreamClient CreateWebStreamClientInternal(Enum.WebStreamClientType streamClientType, object requestOptions)
+            => global::Roblox.Reflection.Invoke<WebStreamClient>(this, "CreateWebStreamClientInternal", streamClientType, requestOptions)!;
 
         /// <summary>
         /// Generates a UUID/GUID random string, optionally with curly braces.
         /// </summary>
-        /// <param name="wrapInCurlyBraces">A <c>bool</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="wrapInCurlyBraces">A <c>bool?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#GenerateGUID"/>
-        public string? GenerateGUID(bool wrapInCurlyBraces)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GenerateGUID", wrapInCurlyBraces);
+        public string GenerateGUID(bool? wrapInCurlyBraces = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "GenerateGUID", wrapInCurlyBraces)!;
 
         /// <summary>
         /// <c>HttpService.GetHttpEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetHttpEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetHttpEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetHttpEnabled")!;
 
         /// <summary>
         /// Returns a Secret from the secrets store.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#GetSecret"/>
-        public object? GetSecret(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSecret", key);
+        public object GetSecret(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSecret", key)!;
 
         /// <summary>
         /// <c>HttpService.GetUserAgent</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetUserAgent()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetUserAgent");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetUserAgent()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetUserAgent")!;
 
         /// <summary>
         /// Decodes a JSON string into a Luau table.
         /// </summary>
-        /// <param name="input">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="input">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#JSONDecode"/>
-        public object? JSONDecode(string? input)
-            => global::Roblox.Reflection.Invoke<object?>(this, "JSONDecode", input);
+        public object JSONDecode(string input)
+            => global::Roblox.Reflection.Invoke<object>(this, "JSONDecode", input)!;
 
         /// <summary>
         /// Generate a JSON string from a Luau table.
         /// </summary>
-        /// <param name="input">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="input">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#JSONEncode"/>
-        public string? JSONEncode(object? input)
-            => global::Roblox.Reflection.Invoke<string?>(this, "JSONEncode", input);
+        public string JSONEncode(object input)
+            => global::Roblox.Reflection.Invoke<string>(this, "JSONEncode", input)!;
 
         /// <summary>
         /// <c>HttpService.RequestInternal</c>
         /// </summary>
-        /// <param name="options">A <c>object?</c> value.</param>
+        /// <param name="options">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? RequestInternal(object? options)
+        public Instance? RequestInternal(object options)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "RequestInternal", options);
 
         /// <summary>
         /// <c>HttpService.SetHttpEnabled</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetHttpEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetHttpEnabled", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetHttpEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetHttpEnabled", enabled)!;
 
         /// <summary>
         /// Replaces URL-unsafe characters with '%' and two hexadecimal characters.
         /// </summary>
-        /// <param name="input">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="input">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#UrlEncode"/>
-        public string? UrlEncode(string? input)
-            => global::Roblox.Reflection.Invoke<string?>(this, "UrlEncode", input);
+        public string UrlEncode(string input)
+            => global::Roblox.Reflection.Invoke<string>(this, "UrlEncode", input)!;
 
         /// <summary>
         /// Sends an HTTP GET request.
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
         /// <param name="nocache">A <c>bool</c> value.</param>
-        /// <param name="headers">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="headers">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#GetAsync"/>
-        public string? GetAsync(object? url, bool nocache, object? headers)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetAsync", url, nocache, headers);
+        public string GetAsync(object url, bool nocache, object headers)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetAsync", url, nocache, headers)!;
 
         /// <summary>
         /// <c>HttpService.JSONDecodeAsync</c>
         /// </summary>
-        /// <param name="input">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? JSONDecodeAsync(string? input)
-            => global::Roblox.Reflection.Invoke<object?>(this, "JSONDecodeAsync", input);
+        /// <param name="input">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object JSONDecodeAsync(string input)
+            => global::Roblox.Reflection.Invoke<object>(this, "JSONDecodeAsync", input)!;
 
         /// <summary>
         /// <c>HttpService.JSONEncodeAsync</c>
         /// </summary>
-        /// <param name="obj">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? JSONEncodeAsync(object? obj)
-            => global::Roblox.Reflection.Invoke<string?>(this, "JSONEncodeAsync", obj);
+        /// <param name="obj">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string JSONEncodeAsync(object obj)
+            => global::Roblox.Reflection.Invoke<string>(this, "JSONEncodeAsync", obj)!;
 
         /// <summary>
         /// Sends an HTTP POST request.
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
-        /// <param name="data">A <c>string?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
+        /// <param name="data">A <c>string</c> value.</param>
         /// <param name="content_type">A <c>Enum.HttpContentType</c> value.</param>
         /// <param name="compress">A <c>bool</c> value.</param>
-        /// <param name="headers">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="headers">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#PostAsync"/>
-        public string? PostAsync(object? url, string? data, Enum.HttpContentType content_type, bool compress, object? headers)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PostAsync", url, data, content_type, compress, headers);
+        public string PostAsync(object url, string data, Enum.HttpContentType content_type, bool compress, object headers)
+            => global::Roblox.Reflection.Invoke<string>(this, "PostAsync", url, data, content_type, compress, headers)!;
 
         /// <summary>
         /// <c>HttpService.RequestAccessTokenScopesAsync</c>
         /// </summary>
-        /// <param name="requiredScopes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestAccessTokenScopesAsync(object? requiredScopes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestAccessTokenScopesAsync", requiredScopes);
+        /// <param name="requiredScopes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestAccessTokenScopesAsync(object requiredScopes)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestAccessTokenScopesAsync", requiredScopes)!;
 
         /// <summary>
         /// Sends an HTTP request using any HTTP method given a dictionary of information.
         /// </summary>
-        /// <param name="requestOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="requestOptions">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpService#RequestAsync"/>
-        public object? RequestAsync(object? requestOptions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestAsync", requestOptions);
+        public object RequestAsync(object requestOptions)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestAsync", requestOptions)!;
 
     }
 }

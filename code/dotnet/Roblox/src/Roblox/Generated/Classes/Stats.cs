@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Stats"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Stats? FromHandle(nuint handle)
+        public static new Stats? FromHandle(nuint handle)
             => handle == 0 ? null : new Stats(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#ContactsCount"/>
         public int ContactsCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ContactsCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ContactsCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ContactsCount", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#DataReceiveKbps"/>
         public float DataReceiveKbps
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DataReceiveKbps");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DataReceiveKbps")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DataReceiveKbps", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#DataSendKbps"/>
         public float DataSendKbps
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DataSendKbps");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DataSendKbps")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DataSendKbps", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#FrameTime"/>
         public float FrameTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FrameTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FrameTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FrameTime", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#HeartbeatTime"/>
         public float HeartbeatTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HeartbeatTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HeartbeatTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HeartbeatTime", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#HeartbeatTimeMs"/>
         public float HeartbeatTimeMs
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HeartbeatTimeMs");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HeartbeatTimeMs")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HeartbeatTimeMs", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#InstanceCount"/>
         public int InstanceCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "InstanceCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "InstanceCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "InstanceCount", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#MemoryTrackingEnabled"/>
         public bool MemoryTrackingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MemoryTrackingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MemoryTrackingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MemoryTrackingEnabled", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#MovingPrimitivesCount"/>
         public int MovingPrimitivesCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MovingPrimitivesCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MovingPrimitivesCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MovingPrimitivesCount", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#PhysicsReceiveKbps"/>
         public float PhysicsReceiveKbps
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsReceiveKbps");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsReceiveKbps")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PhysicsReceiveKbps", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#PhysicsSendKbps"/>
         public float PhysicsSendKbps
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsSendKbps");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsSendKbps")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PhysicsSendKbps", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#PhysicsStepTime"/>
         public float PhysicsStepTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsStepTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsStepTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PhysicsStepTime", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#PhysicsStepTimeMs"/>
         public float PhysicsStepTimeMs
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsStepTimeMs");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsStepTimeMs")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PhysicsStepTimeMs", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#PrimitivesCount"/>
         public int PrimitivesCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PrimitivesCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PrimitivesCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PrimitivesCount", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#RenderCPUFrameTime"/>
         public float RenderCPUFrameTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RenderCPUFrameTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RenderCPUFrameTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RenderCPUFrameTime", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#RenderGPUFrameTime"/>
         public float RenderGPUFrameTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RenderGPUFrameTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RenderGPUFrameTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RenderGPUFrameTime", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#SceneDrawcallCount"/>
         public int SceneDrawcallCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "SceneDrawcallCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "SceneDrawcallCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "SceneDrawcallCount", value);
         }
 
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#SceneTriangleCount"/>
         public int SceneTriangleCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "SceneTriangleCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "SceneTriangleCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "SceneTriangleCount", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#ShadowsDrawcallCount"/>
         public int ShadowsDrawcallCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ShadowsDrawcallCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ShadowsDrawcallCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ShadowsDrawcallCount", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#ShadowsTriangleCount"/>
         public int ShadowsTriangleCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ShadowsTriangleCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ShadowsTriangleCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ShadowsTriangleCount", value);
         }
 
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#UI2DDrawcallCount"/>
         public int UI2DDrawcallCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "UI2DDrawcallCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "UI2DDrawcallCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "UI2DDrawcallCount", value);
         }
 
@@ -241,7 +241,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#UI2DTriangleCount"/>
         public int UI2DTriangleCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "UI2DTriangleCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "UI2DTriangleCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "UI2DTriangleCount", value);
         }
 
@@ -251,7 +251,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#UI3DDrawcallCount"/>
         public int UI3DDrawcallCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "UI3DDrawcallCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "UI3DDrawcallCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "UI3DDrawcallCount", value);
         }
 
@@ -261,16 +261,16 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#UI3DTriangleCount"/>
         public int UI3DTriangleCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "UI3DTriangleCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "UI3DTriangleCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "UI3DTriangleCount", value);
         }
 
         /// <summary>
         /// <c>Stats.GetBrowserTrackerId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetBrowserTrackerId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetBrowserTrackerId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetBrowserTrackerId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetBrowserTrackerId")!;
 
         /// <summary>
         /// <c>Stats.GetHarmonyQualityLevel</c>
@@ -278,23 +278,23 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#GetHarmonyQualityLevel"/>
         public int GetHarmonyQualityLevel()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetHarmonyQualityLevel");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetHarmonyQualityLevel")!;
 
         /// <summary>
         /// <c>Stats.GetMemoryCategoryNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#GetMemoryCategoryNames"/>
-        public object? GetMemoryCategoryNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMemoryCategoryNames");
+        public object GetMemoryCategoryNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMemoryCategoryNames")!;
 
         /// <summary>
         /// Returns the number of megabytes that are being consumed by all available categories, or an empty array if MemoryTrackingEnabled is false.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#GetMemoryUsageMbAllCategories"/>
-        public object? GetMemoryUsageMbAllCategories()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMemoryUsageMbAllCategories");
+        public object GetMemoryUsageMbAllCategories()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMemoryUsageMbAllCategories")!;
 
         /// <summary>
         /// Returns the number of megabytes that are being consumed in the specified DeveloperMemoryTag category, or 0 if MemoryTrackingEnabled is false.
@@ -303,7 +303,7 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#GetMemoryUsageMbForTag"/>
         public float GetMemoryUsageMbForTag(Enum.DeveloperMemoryTag tag)
-            => global::Roblox.Reflection.Invoke<float>(this, "GetMemoryUsageMbForTag", tag);
+            => global::Roblox.Reflection.Invoke<float>(this, "GetMemoryUsageMbForTag", tag)!;
 
         /// <summary>
         /// Returns the total amount of memory being consumed by the current game session, in megabytes.
@@ -311,24 +311,24 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#GetTotalMemoryUsageMb"/>
         public float GetTotalMemoryUsageMb()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetTotalMemoryUsageMb");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetTotalMemoryUsageMb")!;
 
         /// <summary>
         /// <c>Stats.ResetHarmonyMemoryTarget</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#ResetHarmonyMemoryTarget"/>
-        public object? ResetHarmonyMemoryTarget()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetHarmonyMemoryTarget");
+        public object ResetHarmonyMemoryTarget()
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetHarmonyMemoryTarget")!;
 
         /// <summary>
         /// <c>Stats.SetHarmonyMemoryTarget</c>
         /// </summary>
         /// <param name="targetMB">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#SetHarmonyMemoryTarget"/>
-        public object? SetHarmonyMemoryTarget(int targetMB)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetHarmonyMemoryTarget", targetMB);
+        public object SetHarmonyMemoryTarget(int targetMB)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetHarmonyMemoryTarget", targetMB)!;
 
         /// <summary>
         /// <c>Stats.GetPaginatedMemoryByTexture</c>
@@ -336,9 +336,9 @@ namespace Roblox
         /// <param name="queryType">A <c>Enum.TextureQueryType</c> value.</param>
         /// <param name="pageIndex">A <c>int</c> value.</param>
         /// <param name="pageSize">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPaginatedMemoryByTexture(Enum.TextureQueryType queryType, int pageIndex, int pageSize)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPaginatedMemoryByTexture", queryType, pageIndex, pageSize);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPaginatedMemoryByTexture(Enum.TextureQueryType queryType, int pageIndex, int pageSize)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPaginatedMemoryByTexture", queryType, pageIndex, pageSize)!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioDeviceInput"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioDeviceInput? FromHandle(nuint handle)
+        public static new AudioDeviceInput? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioDeviceInput(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#AccessType"/>
         public Enum.AccessModifierType AccessType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AccessModifierType>(this, "AccessType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AccessModifierType>(this, "AccessType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AccessModifierType>(this, "AccessType", value);
         }
 
@@ -41,19 +41,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#Active"/>
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
         public bool EchoCancellation
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EchoCancellation");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EchoCancellation")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EchoCancellation", value);
         }
 
         public bool GainControl
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "GainControl");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "GainControl")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "GainControl", value);
         }
 
@@ -63,7 +63,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#IsReady"/>
         public bool IsReady
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReady");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReady")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsReady", value);
         }
 
@@ -73,7 +73,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#Muted"/>
         public bool Muted
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Muted");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Muted")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Muted", value);
         }
 
@@ -83,13 +83,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#MutedByLocalUser"/>
         public bool MutedByLocalUser
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MutedByLocalUser");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MutedByLocalUser")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MutedByLocalUser", value);
         }
 
         public bool NoiseSuppression
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "NoiseSuppression");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "NoiseSuppression")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "NoiseSuppression", value);
         }
 
@@ -109,61 +109,61 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#Volume"/>
         public float Volume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Returns a list of user IDs that are either permitted to hear or blocked from hearing this AudioDeviceInput.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#GetUserIdAccessList"/>
-        public object? GetUserIdAccessList()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserIdAccessList");
+        public object GetUserIdAccessList()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserIdAccessList")!;
 
         /// <summary>
         /// Sets a list of user IDs that are either permitted to hear or blocked from hearing this AudioDeviceInput.
         /// </summary>
-        /// <param name="userIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#SetUserIdAccessList"/>
-        public object? SetUserIdAccessList(object? userIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUserIdAccessList", userIds);
+        public object SetUserIdAccessList(object userIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUserIdAccessList", userIds)!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioDeviceInput via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceInput#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

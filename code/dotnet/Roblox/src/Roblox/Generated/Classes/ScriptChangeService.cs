@@ -18,14 +18,14 @@ namespace Roblox
         /// Creates a <see cref="ScriptChangeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptChangeService? FromHandle(nuint handle)
+        public static new ScriptChangeService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptChangeService(handle);
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptAdded</c>
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        public event Action<LuaSourceContainer?>? ScriptAdded
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        public event Action<LuaSourceContainer>? ScriptAdded
         {
             add { if (value is not null) AddEventHandler("ScriptAdded", value); }
             remove { if (value is not null) RemoveEventHandler("ScriptAdded", value); }
@@ -34,8 +34,8 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptChangeService.ScriptBeingRemoved</c>
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        public event Action<LuaSourceContainer?>? ScriptBeingRemoved
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        public event Action<LuaSourceContainer>? ScriptBeingRemoved
         {
             add { if (value is not null) AddEventHandler("ScriptBeingRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("ScriptBeingRemoved", value); }
@@ -44,9 +44,9 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptChangeService.ScriptChanged</c>
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        /// <param name="property">A <c>string?</c> value.</param>
-        public event Action<LuaSourceContainer?, string?>? ScriptChanged
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        /// <param name="property">A <c>string</c> value.</param>
+        public event Action<LuaSourceContainer, string>? ScriptChanged
         {
             add { if (value is not null) AddEventHandler("ScriptChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ScriptChanged", value); }
@@ -55,8 +55,8 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptChangeService.ScriptFullNameChanged</c>
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        public event Action<LuaSourceContainer?>? ScriptFullNameChanged
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        public event Action<LuaSourceContainer>? ScriptFullNameChanged
         {
             add { if (value is not null) AddEventHandler("ScriptFullNameChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ScriptFullNameChanged", value); }
@@ -65,8 +65,8 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptChangeService.ScriptSourceChanged</c>
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        public event Action<LuaSourceContainer?>? ScriptSourceChanged
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        public event Action<LuaSourceContainer>? ScriptSourceChanged
         {
             add { if (value is not null) AddEventHandler("ScriptSourceChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ScriptSourceChanged", value); }

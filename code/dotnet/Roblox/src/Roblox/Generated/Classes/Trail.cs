@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Trail"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Trail? FromHandle(nuint handle)
+        public static new Trail? FromHandle(nuint handle)
             => handle == 0 ? null : new Trail(handle);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Brightness"/>
         public float Brightness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Brightness", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// The color of the trail throughout its lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Color"/>
-        public global::Roblox.ColorSequence? Color
+        public global::Roblox.ColorSequence Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence>(this, "Color", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#FaceCamera"/>
         public bool FaceCamera
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FaceCamera");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FaceCamera")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FaceCamera", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Lifetime"/>
         public float Lifetime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Lifetime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Lifetime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Lifetime", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#LightEmission"/>
         public float LightEmission
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightEmission");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightEmission")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightEmission", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#LightInfluence"/>
         public float LightInfluence
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightInfluence", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#MaxLength"/>
         public float MaxLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxLength", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#MinLength"/>
         public float MinLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MinLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MinLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MinLength", value);
         }
 
@@ -149,16 +149,16 @@ namespace Roblox
         /// The content ID of the texture to be displayed on the trail.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Texture"/>
-        public object? Texture
+        public object Texture
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Texture");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Texture", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Texture")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Texture", value);
         }
 
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#TextureLength"/>
         public float TextureLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextureLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextureLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextureLength", value);
         }
 
@@ -177,7 +177,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#TextureMode"/>
         public Enum.TextureMode TextureMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextureMode>(this, "TextureMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextureMode>(this, "TextureMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextureMode>(this, "TextureMode", value);
         }
 
@@ -185,29 +185,29 @@ namespace Roblox
         /// Sets the transparency of the trail's segments over its Lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Transparency"/>
-        public global::Roblox.NumberSequence? Transparency
+        public global::Roblox.NumberSequence Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence>(this, "Transparency")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence>(this, "Transparency", value);
         }
 
         /// <summary>
         /// Scales the width of the trail over the course of its lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#WidthScale"/>
-        public global::Roblox.NumberSequence? WidthScale
+        public global::Roblox.NumberSequence WidthScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "WidthScale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "WidthScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence>(this, "WidthScale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence>(this, "WidthScale", value);
         }
 
         /// <summary>
         /// Clears the segments of the trail.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Clear"/>
-        public object? Clear()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
+        public object Clear()
+            => global::Roblox.Reflection.Invoke<object>(this, "Clear")!;
 
     }
 }

@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="ChannelSelectorSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ChannelSelectorSoundEffect? FromHandle(nuint handle)
+        public static new ChannelSelectorSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ChannelSelectorSoundEffect(handle);
 
         public int Channel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Channel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Channel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Channel", value);
         }
 

@@ -22,127 +22,127 @@ namespace Roblox
         /// Creates a <see cref="GenerationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GenerationService? FromHandle(nuint handle)
+        public static new GenerationService? FromHandle(nuint handle)
             => handle == 0 ? null : new GenerationService(handle);
 
         /// <summary>
         /// <c>GenerationService.ConnectAsync</c>
         /// </summary>
-        /// <param name="sessionId">A <c>string?</c> value.</param>
-        /// <param name="sdp">A <c>string?</c> value.</param>
-        /// <param name="type">A <c>string?</c> value.</param>
-        /// <param name="relay">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ConnectAsync(string? sessionId, string? sdp, string? type, string? relay)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ConnectAsync", sessionId, sdp, type, relay);
+        /// <param name="sessionId">A <c>string</c> value.</param>
+        /// <param name="sdp">A <c>string</c> value.</param>
+        /// <param name="type">A <c>string</c> value.</param>
+        /// <param name="relay">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ConnectAsync(string sessionId, string sdp, string type, string relay)
+            => global::Roblox.Reflection.Invoke<object>(this, "ConnectAsync", sessionId, sdp, type, relay)!;
 
         /// <summary>
         /// <c>GenerationService.DisconnectAsync</c>
         /// </summary>
-        /// <param name="sessionId">A <c>string?</c> value.</param>
+        /// <param name="sessionId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool DisconnectAsync(string? sessionId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "DisconnectAsync", sessionId);
+        public bool DisconnectAsync(string sessionId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "DisconnectAsync", sessionId)!;
 
         /// <summary>
         /// Starts the generation of a new 3D mesh from a text prompt and returns unique IDs used to track and retrieve the result.
         /// </summary>
-        /// <param name="inputs">A <c>object?</c> value.</param>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
+        /// <param name="inputs">A <c>object</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="options">A <c>object</c> value.</param>
         /// <param name="intermediateResultCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GenerationService#GenerateMeshAsync"/>
-        public object? GenerateMeshAsync(object? inputs, Player? player, object? options, object? intermediateResultCallback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GenerateMeshAsync", inputs, player, options, intermediateResultCallback);
+        public object GenerateMeshAsync(object inputs, Player player, object options, object? intermediateResultCallback = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GenerateMeshAsync", inputs, player, options, intermediateResultCallback)!;
 
         /// <summary>
         /// Enables generation of multi-mesh geometries according to provided inputs and a schema.
         /// </summary>
-        /// <param name="inputs">A <c>object?</c> value.</param>
-        /// <param name="schema">A <c>object?</c> value.</param>
+        /// <param name="inputs">A <c>object</c> value.</param>
+        /// <param name="schema">A <c>object</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GenerationService#GenerateModelAsync"/>
-        public object? GenerateModelAsync(object? inputs, object? schema, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GenerateModelAsync", inputs, schema, options);
+        public object GenerateModelAsync(object inputs, object schema, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GenerateModelAsync", inputs, schema, options)!;
 
         /// <summary>
         /// <c>GenerationService.GetVideoGenSessionAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetVideoGenSessionAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVideoGenSessionAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetVideoGenSessionAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVideoGenSessionAsync")!;
 
         /// <summary>
         /// <c>GenerationService.GetVideoGenTriggersAsync</c>
         /// </summary>
-        /// <param name="sessionId">A <c>string?</c> value.</param>
+        /// <param name="sessionId">A <c>string</c> value.</param>
         /// <param name="lookbackSeconds">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetVideoGenTriggersAsync(string? sessionId, int lookbackSeconds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVideoGenTriggersAsync", sessionId, lookbackSeconds);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetVideoGenTriggersAsync(string sessionId, int lookbackSeconds)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVideoGenTriggersAsync", sessionId, lookbackSeconds)!;
 
         /// <summary>
         /// <c>GenerationService.InternalGenerateMeshAsync</c>
         /// </summary>
-        /// <param name="inputs">A <c>object?</c> value.</param>
+        /// <param name="inputs">A <c>object</c> value.</param>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
+        /// <param name="options">A <c>object</c> value.</param>
         /// <param name="intermediateResultCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InternalGenerateMeshAsync(object? inputs, long userId, object? options, object? intermediateResultCallback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InternalGenerateMeshAsync", inputs, userId, options, intermediateResultCallback);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InternalGenerateMeshAsync(object inputs, long userId, object options, object? intermediateResultCallback = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "InternalGenerateMeshAsync", inputs, userId, options, intermediateResultCallback)!;
 
         /// <summary>
         /// Retrieves and loads a mesh generated by GenerationService:GenerateMeshAsync() using the provided generationId.
         /// </summary>
-        /// <param name="generationId">A <c>string?</c> value.</param>
-        /// <returns>A <c>MeshPart?</c> value returned by the engine.</returns>
+        /// <param name="generationId">A <c>string</c> value.</param>
+        /// <returns>A <c>MeshPart</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GenerationService#LoadGeneratedMeshAsync"/>
-        public MeshPart? LoadGeneratedMeshAsync(string? generationId)
-            => global::Roblox.Reflection.Invoke<MeshPart?>(this, "LoadGeneratedMeshAsync", generationId);
+        public MeshPart LoadGeneratedMeshAsync(string generationId)
+            => global::Roblox.Reflection.Invoke<MeshPart>(this, "LoadGeneratedMeshAsync", generationId)!;
 
         /// <summary>
         /// <c>GenerationService.LoadModelFromGlbAsync</c>
         /// </summary>
-        /// <param name="glbPath">A <c>string?</c> value.</param>
-        /// <returns>A <c>Model?</c> value returned by the engine.</returns>
-        public Model? LoadModelFromGlbAsync(string? glbPath)
-            => global::Roblox.Reflection.Invoke<Model?>(this, "LoadModelFromGlbAsync", glbPath);
+        /// <param name="glbPath">A <c>string</c> value.</param>
+        /// <returns>A <c>Model</c> value returned by the engine.</returns>
+        public Model LoadModelFromGlbAsync(string glbPath)
+            => global::Roblox.Reflection.Invoke<Model>(this, "LoadModelFromGlbAsync", glbPath)!;
 
         /// <summary>
         /// <c>GenerationService.StartVideoGenSessionAsync</c>
         /// </summary>
-        /// <param name="sessionId">A <c>string?</c> value.</param>
-        /// <param name="prompt">A <c>string?</c> value.</param>
-        /// <param name="imageData">A <c>string?</c> value.</param>
-        /// <param name="imageS3Reference">A <c>string?</c> value.</param>
-        /// <param name="triggers">A <c>object?</c> value.</param>
+        /// <param name="sessionId">A <c>string</c> value.</param>
+        /// <param name="prompt">A <c>string</c> value.</param>
+        /// <param name="imageData">A <c>string</c> value.</param>
+        /// <param name="imageS3Reference">A <c>string</c> value.</param>
+        /// <param name="triggers">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool StartVideoGenSessionAsync(string? sessionId, string? prompt, string? imageData, string? imageS3Reference, object? triggers)
-            => global::Roblox.Reflection.Invoke<bool>(this, "StartVideoGenSessionAsync", sessionId, prompt, imageData, imageS3Reference, triggers);
+        public bool StartVideoGenSessionAsync(string sessionId, string prompt, string imageData, string imageS3Reference, object triggers)
+            => global::Roblox.Reflection.Invoke<bool>(this, "StartVideoGenSessionAsync", sessionId, prompt, imageData, imageS3Reference, triggers)!;
 
         /// <summary>
         /// <c>GenerationService.UpdateVideoGenSessionPromptAsync</c>
         /// </summary>
-        /// <param name="sessionId">A <c>string?</c> value.</param>
-        /// <param name="prompt">A <c>string?</c> value.</param>
-        /// <param name="imageData">A <c>string?</c> value.</param>
-        /// <param name="imageS3Reference">A <c>string?</c> value.</param>
-        /// <param name="mode">A <c>string?</c> value.</param>
+        /// <param name="sessionId">A <c>string</c> value.</param>
+        /// <param name="prompt">A <c>string</c> value.</param>
+        /// <param name="imageData">A <c>string</c> value.</param>
+        /// <param name="imageS3Reference">A <c>string</c> value.</param>
+        /// <param name="mode">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool UpdateVideoGenSessionPromptAsync(string? sessionId, string? prompt, string? imageData, string? imageS3Reference, string? mode)
-            => global::Roblox.Reflection.Invoke<bool>(this, "UpdateVideoGenSessionPromptAsync", sessionId, prompt, imageData, imageS3Reference, mode);
+        public bool UpdateVideoGenSessionPromptAsync(string sessionId, string prompt, string imageData, string imageS3Reference, string mode)
+            => global::Roblox.Reflection.Invoke<bool>(this, "UpdateVideoGenSessionPromptAsync", sessionId, prompt, imageData, imageS3Reference, mode)!;
 
         /// <summary>
         /// <c>GenerationService.UpdateVideoGenSessionTriggersAsync</c>
         /// </summary>
-        /// <param name="sessionId">A <c>string?</c> value.</param>
-        /// <param name="triggers">A <c>object?</c> value.</param>
+        /// <param name="sessionId">A <c>string</c> value.</param>
+        /// <param name="triggers">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool UpdateVideoGenSessionTriggersAsync(string? sessionId, object? triggers)
-            => global::Roblox.Reflection.Invoke<bool>(this, "UpdateVideoGenSessionTriggersAsync", sessionId, triggers);
+        public bool UpdateVideoGenSessionTriggersAsync(string sessionId, object triggers)
+            => global::Roblox.Reflection.Invoke<bool>(this, "UpdateVideoGenSessionTriggersAsync", sessionId, triggers)!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Players"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Players? FromHandle(nuint handle)
+        public static new Players? FromHandle(nuint handle)
             => handle == 0 ? null : new Players(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#BanningEnabled"/>
         public bool BanningEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BanningEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BanningEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BanningEnabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#BubbleChat"/>
         public bool BubbleChat
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BubbleChat");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BubbleChat")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BubbleChat", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#CharacterAutoLoads"/>
         public bool CharacterAutoLoads
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CharacterAutoLoads");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CharacterAutoLoads")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CharacterAutoLoads", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#ClassicChat"/>
         public bool ClassicChat
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClassicChat");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClassicChat")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClassicChat", value);
         }
 
@@ -81,13 +81,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#MaxPlayers"/>
         public int MaxPlayers
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxPlayers");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxPlayers")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxPlayers", value);
         }
 
         public int MaxPlayersInternal
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxPlayersInternal");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxPlayersInternal")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxPlayersInternal", value);
         }
 
@@ -97,7 +97,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#NumPlayers"/>
         public int NumPlayers
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "NumPlayers");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "NumPlayers")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "NumPlayers", value);
         }
 
@@ -107,13 +107,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PreferredPlayers"/>
         public int PreferredPlayers
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PreferredPlayers");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PreferredPlayers")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PreferredPlayers", value);
         }
 
         public int PreferredPlayersInternal
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PreferredPlayersInternal");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PreferredPlayersInternal")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PreferredPlayersInternal", value);
         }
 
@@ -123,7 +123,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#RespawnTime"/>
         public float RespawnTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RespawnTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RespawnTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RespawnTime", value);
         }
 
@@ -133,50 +133,50 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#UseStrafingAnimations"/>
         public bool UseStrafingAnimations
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseStrafingAnimations");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseStrafingAnimations")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseStrafingAnimations", value);
         }
 
         /// <summary>
         /// Makes the local player chat the given message.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#Chat"/>
-        public object? Chat(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Chat", message);
+        public object Chat(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "Chat", message)!;
 
         /// <summary>
         /// <c>Players.CreateLocalPlayer</c>
         /// </summary>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
-        public Player? CreateLocalPlayer()
-            => global::Roblox.Reflection.Invoke<Player?>(this, "CreateLocalPlayer");
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
+        public Player CreateLocalPlayer()
+            => global::Roblox.Reflection.Invoke<Player>(this, "CreateLocalPlayer")!;
 
         /// <summary>
         /// <c>Players.CreateThumbnailPlayer</c>
         /// </summary>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
-        public Player? CreateThumbnailPlayer()
-            => global::Roblox.Reflection.Invoke<Player?>(this, "CreateThumbnailPlayer");
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
+        public Player CreateThumbnailPlayer()
+            => global::Roblox.Reflection.Invoke<Player>(this, "CreateThumbnailPlayer")!;
 
         /// <summary>
         /// Returns the Player with the given UserId if they are in-experience.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetPlayerByUserId"/>
-        public Player? GetPlayerByUserId(object? userId)
-            => global::Roblox.Reflection.Invoke<Player?>(this, "GetPlayerByUserId", userId);
+        public Player GetPlayerByUserId(object userId)
+            => global::Roblox.Reflection.Invoke<Player>(this, "GetPlayerByUserId", userId)!;
 
         /// <summary>
         /// Returns the Player whose Player.Character matches the given instance, or nil if one cannot be found.
         /// </summary>
-        /// <param name="character">A <c>Model?</c> value.</param>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
+        /// <param name="character">A <c>Model</c> value.</param>
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetPlayerFromCharacter"/>
-        public Player? GetPlayerFromCharacter(Model? character)
-            => global::Roblox.Reflection.Invoke<Player?>(this, "GetPlayerFromCharacter", character);
+        public Player GetPlayerFromCharacter(Model character)
+            => global::Roblox.Reflection.Invoke<Player>(this, "GetPlayerFromCharacter", character)!;
 
         /// <summary>
         /// Returns a table of all presently connected Player objects.
@@ -184,102 +184,102 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetPlayers"/>
         public IReadOnlyList<Instance> GetPlayers()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayers");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayers")!;
 
         /// <summary>
         /// <c>Players.ReportAbuse</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="reason">A <c>string?</c> value.</param>
-        /// <param name="optionalMessage">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportAbuse(Player? player, string? reason, string? optionalMessage)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportAbuse", player, reason, optionalMessage);
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="reason">A <c>string</c> value.</param>
+        /// <param name="optionalMessage">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportAbuse(Player player, string reason, string optionalMessage)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportAbuse", player, reason, optionalMessage)!;
 
         /// <summary>
         /// <c>Players.ReportAbuseV3</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="jsonTags">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportAbuseV3(Player? player, string? jsonTags)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportAbuseV3", player, jsonTags);
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="jsonTags">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportAbuseV3(Player player, string jsonTags)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportAbuseV3", player, jsonTags)!;
 
         /// <summary>
         /// <c>Players.ReportAvatarAbuse</c>
         /// </summary>
         /// <param name="targetUserId">A <c>long</c> value.</param>
-        /// <param name="tags">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportAvatarAbuse(long targetUserId, object? tags)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportAvatarAbuse", targetUserId, tags);
+        /// <param name="tags">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportAvatarAbuse(long targetUserId, object tags)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportAvatarAbuse", targetUserId, tags)!;
 
         /// <summary>
         /// <c>Players.ReportChatAbuse</c>
         /// </summary>
-        /// <param name="eligibleChatLines">A <c>object?</c> value.</param>
-        /// <param name="targetChatLines">A <c>object?</c> value.</param>
-        /// <param name="tags">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportChatAbuse(object? eligibleChatLines, object? targetChatLines, object? tags)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatAbuse", eligibleChatLines, targetChatLines, tags);
+        /// <param name="eligibleChatLines">A <c>object</c> value.</param>
+        /// <param name="targetChatLines">A <c>object</c> value.</param>
+        /// <param name="tags">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportChatAbuse(object eligibleChatLines, object targetChatLines, object tags)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportChatAbuse", eligibleChatLines, targetChatLines, tags)!;
 
         /// <summary>
         /// <c>Players.ResetLocalPlayer</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResetLocalPlayer()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetLocalPlayer");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResetLocalPlayer()
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetLocalPlayer")!;
 
         /// <summary>
         /// Sets whether BubbleChat and ClassicChat are being used, and tells TeamChat and Chat what to do.
         /// </summary>
-        /// <param name="style">A <c>Enum.ChatStyle</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="style">A <c>Enum.ChatStyle?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#SetChatStyle"/>
-        public object? SetChatStyle(Enum.ChatStyle style)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetChatStyle", style);
+        public object SetChatStyle(Enum.ChatStyle? style = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetChatStyle", style)!;
 
         /// <summary>
         /// <c>Players.SetLocalPlayerInfo</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="userName">A <c>string?</c> value.</param>
-        /// <param name="displayName">A <c>string?</c> value.</param>
+        /// <param name="userName">A <c>string</c> value.</param>
+        /// <param name="displayName">A <c>string</c> value.</param>
         /// <param name="membershipType">A <c>Enum.MembershipType</c> value.</param>
         /// <param name="isUnder13">A <c>bool</c> value.</param>
-        /// <param name="hasRobloxSubscription">A <c>bool</c> value.</param>
-        /// <param name="ageCheckedStatus">A <c>Enum.AgeCheckStatus</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetLocalPlayerInfo(long userId, string? userName, string? displayName, Enum.MembershipType membershipType, bool isUnder13, bool hasRobloxSubscription, Enum.AgeCheckStatus ageCheckedStatus)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetLocalPlayerInfo", userId, userName, displayName, membershipType, isUnder13, hasRobloxSubscription, ageCheckedStatus);
+        /// <param name="hasRobloxSubscription">A <c>bool?</c> value.</param>
+        /// <param name="ageCheckedStatus">A <c>Enum.AgeCheckStatus?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetLocalPlayerInfo(long userId, string userName, string displayName, Enum.MembershipType membershipType, bool isUnder13, bool? hasRobloxSubscription = null, Enum.AgeCheckStatus? ageCheckedStatus = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetLocalPlayerInfo", userId, userName, displayName, membershipType, isUnder13, hasRobloxSubscription, ageCheckedStatus)!;
 
         /// <summary>
         /// Makes the local player chat the given message, which will only be viewable by users on the same team.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#TeamChat"/>
-        public object? TeamChat(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeamChat", message);
+        public object TeamChat(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "TeamChat", message)!;
 
         /// <summary>
         /// <c>Players.WhisperChat</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? WhisperChat(string? message, Instance? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "WhisperChat", message, player);
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object WhisperChat(string message, Instance player)
+            => global::Roblox.Reflection.Invoke<object>(this, "WhisperChat", message, player)!;
 
         /// <summary>
         /// Deprecated: This function is a deprecated variant of Players:GetPlayerFromCharacter() which should be used in new work.
         /// </summary>
-        /// <param name="character">A <c>Model?</c> value.</param>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
+        /// <param name="character">A <c>Model</c> value.</param>
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#playerFromCharacter"/>
-        public Player? PlayerFromCharacter(Model? character)
-            => global::Roblox.Reflection.Invoke<Player?>(this, "playerFromCharacter", character);
+        public Player PlayerFromCharacter(Model character)
+            => global::Roblox.Reflection.Invoke<Player>(this, "playerFromCharacter", character)!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by Players:GetPlayers() which should be used in all new work.Returns a list of players in an experience.
@@ -287,174 +287,174 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#players"/>
         public IReadOnlyList<Instance> PlayersFunc()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "players");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "players")!;
 
         /// <summary>
         /// Bans users from your experience, with options to specify duration, reason, whether the ban applies to the entire universe or just the current place, and more. This method is enabled and disabled by the Players.BanningEnabled property, which you can toggle in Studio.
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="config">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#BanAsync"/>
-        public object? BanAsync(object? config)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BanAsync", config);
+        public object BanAsync(object config)
+            => global::Roblox.Reflection.Invoke<object>(this, "BanAsync", config)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by CreateHumanoidModelFromDescriptionAsync().Returns a character Model equipped with everything specified in the passed in HumanoidDescription.
         /// </summary>
-        /// <param name="description">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="description">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>Model?</c> value returned by the engine.</returns>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#CreateHumanoidModelFromDescription"/>
-        public Model? CreateHumanoidModelFromDescription(HumanoidDescription? description, Enum.HumanoidRigType rigType, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<Model?>(this, "CreateHumanoidModelFromDescription", description, rigType, assetTypeVerification);
+        public Model CreateHumanoidModelFromDescription(HumanoidDescription description, Enum.HumanoidRigType rigType, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<Model>(this, "CreateHumanoidModelFromDescription", description, rigType, assetTypeVerification)!;
 
         /// <summary>
         /// Returns a character Model equipped with everything specified in the passed in HumanoidDescription. If UseAvatarSettings is set to true, Avatar Settings in the experience will be applied to the returned model.
         /// </summary>
-        /// <param name="description">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="description">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>Model?</c> value returned by the engine.</returns>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#CreateHumanoidModelFromDescriptionAsync"/>
-        public Model? CreateHumanoidModelFromDescriptionAsync(HumanoidDescription? description, Enum.HumanoidRigType rigType, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<Model?>(this, "CreateHumanoidModelFromDescriptionAsync", description, rigType, assetTypeVerification);
+        public Model CreateHumanoidModelFromDescriptionAsync(HumanoidDescription description, Enum.HumanoidRigType rigType, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<Model>(this, "CreateHumanoidModelFromDescriptionAsync", description, rigType, assetTypeVerification)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by CreateHumanoidModelFromUserIdAsync().Returns a character Model set-up with everything equipped to match the avatar of the user specified by the passed in userId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>Model?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#CreateHumanoidModelFromUserId"/>
-        public Model? CreateHumanoidModelFromUserId(object? userId)
-            => global::Roblox.Reflection.Invoke<Model?>(this, "CreateHumanoidModelFromUserId", userId);
+        public Model CreateHumanoidModelFromUserId(object userId)
+            => global::Roblox.Reflection.Invoke<Model>(this, "CreateHumanoidModelFromUserId", userId)!;
 
         /// <summary>
         /// Returns a character Model set-up with everything equipped to match the avatar of the user specified by the passed in userId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>Model?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#CreateHumanoidModelFromUserIdAsync"/>
-        public Model? CreateHumanoidModelFromUserIdAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<Model?>(this, "CreateHumanoidModelFromUserIdAsync", userId);
+        public Model CreateHumanoidModelFromUserIdAsync(object userId)
+            => global::Roblox.Reflection.Invoke<Model>(this, "CreateHumanoidModelFromUserIdAsync", userId)!;
 
         /// <summary>
         /// Retrieves the ban and unban history of any user within the experience's universe. This method is enabled and disabled by the Players.BanningEnabled property, which you can toggle in Studio.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>BanHistoryPages?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>BanHistoryPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetBanHistoryAsync"/>
-        public BanHistoryPages? GetBanHistoryAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<BanHistoryPages?>(this, "GetBanHistoryAsync", userId);
+        public BanHistoryPages GetBanHistoryAsync(object userId)
+            => global::Roblox.Reflection.Invoke<BanHistoryPages>(this, "GetBanHistoryAsync", userId)!;
 
         /// <summary>
         /// Deprecated: Returns a Model containing the assets which the player is wearing, excluding gear.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>Model?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetCharacterAppearanceAsync"/>
-        public Model? GetCharacterAppearanceAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<Model?>(this, "GetCharacterAppearanceAsync", userId);
+        public Model GetCharacterAppearanceAsync(object userId)
+            => global::Roblox.Reflection.Invoke<Model>(this, "GetCharacterAppearanceAsync", userId)!;
 
         /// <summary>
         /// Returns information about the character appearance of a given user.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetCharacterAppearanceInfoAsync"/>
-        public object? GetCharacterAppearanceInfoAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCharacterAppearanceInfoAsync", userId);
+        public object GetCharacterAppearanceInfoAsync(object userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCharacterAppearanceInfoAsync", userId)!;
 
         /// <summary>
         /// Returns a FriendPages object which contains information for all of the given player's friends.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>FriendPages?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>FriendPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetFriendsAsync"/>
-        public FriendPages? GetFriendsAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<FriendPages?>(this, "GetFriendsAsync", userId);
+        public FriendPages GetFriendsAsync(object userId)
+            => global::Roblox.Reflection.Invoke<FriendPages>(this, "GetFriendsAsync", userId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by GetHumanoidDescriptionFromOutfitIdAsync().Returns the HumanoidDescription for a specified outfit, which will be set with the parts/colors/Animations etc of the outfit.
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetHumanoidDescriptionFromOutfitId"/>
-        public HumanoidDescription? GetHumanoidDescriptionFromOutfitId(long outfitId)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "GetHumanoidDescriptionFromOutfitId", outfitId);
+        public HumanoidDescription GetHumanoidDescriptionFromOutfitId(long outfitId)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "GetHumanoidDescriptionFromOutfitId", outfitId)!;
 
         /// <summary>
         /// Returns the HumanoidDescription for a specified outfit, which will be set with the parts/colors/Animations etc of the outfit.
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetHumanoidDescriptionFromOutfitIdAsync"/>
-        public HumanoidDescription? GetHumanoidDescriptionFromOutfitIdAsync(long outfitId)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "GetHumanoidDescriptionFromOutfitIdAsync", outfitId);
+        public HumanoidDescription GetHumanoidDescriptionFromOutfitIdAsync(long outfitId)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "GetHumanoidDescriptionFromOutfitIdAsync", outfitId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by GetHumanoidDescriptionFromUserIdAsync().Returns a HumanoidDescription which specifies everything equipped for the avatar of the user specified by the passed in userId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetHumanoidDescriptionFromUserId"/>
-        public HumanoidDescription? GetHumanoidDescriptionFromUserId(object? userId)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "GetHumanoidDescriptionFromUserId", userId);
+        public HumanoidDescription GetHumanoidDescriptionFromUserId(object userId)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "GetHumanoidDescriptionFromUserId", userId)!;
 
         /// <summary>
         /// Returns a HumanoidDescription which specifies everything equipped for the avatar of the user specified by the passed in userId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetHumanoidDescriptionFromUserIdAsync"/>
-        public HumanoidDescription? GetHumanoidDescriptionFromUserIdAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "GetHumanoidDescriptionFromUserIdAsync", userId);
+        public HumanoidDescription GetHumanoidDescriptionFromUserIdAsync(object userId)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "GetHumanoidDescriptionFromUserIdAsync", userId)!;
 
         /// <summary>
         /// Sends a query to the Roblox website for the username of an account with a given UserId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetNameFromUserIdAsync"/>
-        public string? GetNameFromUserIdAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetNameFromUserIdAsync", userId);
+        public string GetNameFromUserIdAsync(object userId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetNameFromUserIdAsync", userId)!;
 
         /// <summary>
         /// Sends a query to the Roblox website for the userId of an account with a given username.
         /// </summary>
-        /// <param name="userName">A <c>string?</c> value.</param>
+        /// <param name="userName">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetUserIdFromNameAsync"/>
-        public long GetUserIdFromNameAsync(string? userName)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetUserIdFromNameAsync", userName);
+        public long GetUserIdFromNameAsync(string userName)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetUserIdFromNameAsync", userName)!;
 
         /// <summary>
         /// Returns the content URL of a player thumbnail given the size and type, as well as a boolean describing if the image is ready to use.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <param name="thumbnailType">A <c>Enum.ThumbnailType</c> value.</param>
         /// <param name="thumbnailSize">A <c>Enum.ThumbnailSize</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetUserThumbnailAsync"/>
-        public object? GetUserThumbnailAsync(object? userId, Enum.ThumbnailType thumbnailType, Enum.ThumbnailSize thumbnailSize)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserThumbnailAsync", userId, thumbnailType, thumbnailSize);
+        public object GetUserThumbnailAsync(object userId, Enum.ThumbnailType thumbnailType, Enum.ThumbnailSize thumbnailSize)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserThumbnailAsync", userId, thumbnailType, thumbnailSize)!;
 
         /// <summary>
         /// Unbans players banned from Players:BanAsync() or the User Restrictions Open Cloud API. This method is enabled and disabled by the Players.BanningEnabled property, which you can toggle in Studio.
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="config">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#UnbanAsync"/>
-        public object? UnbanAsync(object? config)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbanAsync", config);
+        public object UnbanAsync(object config)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbanAsync", config)!;
 
         /// <summary>
         /// <c>Players.FriendRequestEvent</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="player2">A <c>Player</c> value.</param>
         /// <param name="friendRequestEvent">A <c>Enum.FriendRequestEvent</c> value.</param>
-        public event Action<Player?, Player?, Enum.FriendRequestEvent>? FriendRequestEvent
+        public event Action<Player, Player, Enum.FriendRequestEvent>? FriendRequestEvent
         {
             add { if (value is not null) AddEventHandler("FriendRequestEvent", value); }
             remove { if (value is not null) RemoveEventHandler("FriendRequestEvent", value); }
@@ -463,9 +463,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a player enters the experience.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerAdded"/>
-        public event Action<Player?>? PlayerAdded
+        public event Action<Player>? PlayerAdded
         {
             add { if (value is not null) AddEventHandler("PlayerAdded", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerAdded", value); }
@@ -475,10 +475,10 @@ namespace Roblox
         /// <c>Players.PlayerChatted</c>
         /// </summary>
         /// <param name="chatType">A <c>Enum.PlayerChatType</c> value.</param>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="targetPlayer">A <c>Player?</c> value.</param>
-        public event Action<Enum.PlayerChatType, Player?, string?, Player?>? PlayerChatted
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="targetPlayer">A <c>Player</c> value.</param>
+        public event Action<Enum.PlayerChatType, Player, string, Player>? PlayerChatted
         {
             add { if (value is not null) AddEventHandler("PlayerChatted", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerChatted", value); }
@@ -487,8 +487,8 @@ namespace Roblox
         /// <summary>
         /// <c>Players.PlayerConnecting</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        public event Action<Player?>? PlayerConnecting
+        /// <param name="player">A <c>Player</c> value.</param>
+        public event Action<Player>? PlayerConnecting
         {
             add { if (value is not null) AddEventHandler("PlayerConnecting", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerConnecting", value); }
@@ -497,8 +497,8 @@ namespace Roblox
         /// <summary>
         /// <c>Players.PlayerDisconnecting</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        public event Action<Player?>? PlayerDisconnecting
+        /// <param name="player">A <c>Player</c> value.</param>
+        public event Action<Player>? PlayerDisconnecting
         {
             add { if (value is not null) AddEventHandler("PlayerDisconnecting", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerDisconnecting", value); }
@@ -507,9 +507,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the experience server recognizes that a player's membership has changed.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerMembershipChanged"/>
-        public event Action<Player?>? PlayerMembershipChanged
+        public event Action<Player>? PlayerMembershipChanged
         {
             add { if (value is not null) AddEventHandler("PlayerMembershipChanged", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerMembershipChanged", value); }
@@ -518,8 +518,8 @@ namespace Roblox
         /// <summary>
         /// <c>Players.PlayerRejoining</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        public event Action<Player?>? PlayerRejoining
+        /// <param name="player">A <c>Player</c> value.</param>
+        public event Action<Player>? PlayerRejoining
         {
             add { if (value is not null) AddEventHandler("PlayerRejoining", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerRejoining", value); }
@@ -528,10 +528,10 @@ namespace Roblox
         /// <summary>
         /// Fires when a player is about to leave the experience.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="reason">A <c>Enum.PlayerExitReason</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#PlayerRemoving"/>
-        public event Action<Player?, Enum.PlayerExitReason>? PlayerRemoving
+        public event Action<Player, Enum.PlayerExitReason>? PlayerRemoving
         {
             add { if (value is not null) AddEventHandler("PlayerRemoving", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerRemoving", value); }
@@ -540,8 +540,8 @@ namespace Roblox
         /// <summary>
         /// <c>Players.PromptAgeCheckRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        public event Action<Player?>? PromptAgeCheckRequested
+        /// <param name="player">A <c>Player</c> value.</param>
+        public event Action<Player>? PromptAgeCheckRequested
         {
             add { if (value is not null) AddEventHandler("PromptAgeCheckRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptAgeCheckRequested", value); }
@@ -550,10 +550,10 @@ namespace Roblox
         /// <summary>
         /// Fires when the experience server recognizes that the user's status for a certain subscription has changed.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#UserSubscriptionStatusChanged"/>
-        public event Action<Player?, string?>? UserSubscriptionStatusChanged
+        public event Action<Player, string>? UserSubscriptionStatusChanged
         {
             add { if (value is not null) AddEventHandler("UserSubscriptionStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UserSubscriptionStatusChanged", value); }

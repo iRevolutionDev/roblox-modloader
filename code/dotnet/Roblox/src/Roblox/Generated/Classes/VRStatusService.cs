@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VRStatusService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VRStatusService? FromHandle(nuint handle)
+        public static new VRStatusService? FromHandle(nuint handle)
             => handle == 0 ? null : new VRStatusService(handle);
 
     }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SurfaceGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SurfaceGui? FromHandle(nuint handle)
+        public static new SurfaceGui? FromHandle(nuint handle)
             => handle == 0 ? null : new SurfaceGui(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#AlwaysOnTop"/>
         public bool AlwaysOnTop
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlwaysOnTop");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlwaysOnTop")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AlwaysOnTop", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#Brightness"/>
         public float Brightness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Brightness", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// The size of a "virtual screen" in "virtual pixels" which makes SurfaceGuis pixel-to-pixel compatible with ScreenGuis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#CanvasSize"/>
-        public global::Roblox.Vector2? CanvasSize
+        public global::Roblox.Vector2 CanvasSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "CanvasSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "CanvasSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "CanvasSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "CanvasSize", value);
         }
 
         /// <summary>
@@ -61,13 +61,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#ClipsDescendants"/>
         public bool ClipsDescendants
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipsDescendants");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipsDescendants")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClipsDescendants", value);
         }
 
         public float HorizontalCurvature
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HorizontalCurvature");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HorizontalCurvature")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HorizontalCurvature", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#LightInfluence"/>
         public float LightInfluence
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightInfluence", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#MaxDistance"/>
         public float MaxDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxDistance", value);
         }
 
@@ -97,13 +97,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#PixelsPerStud"/>
         public float PixelsPerStud
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PixelsPerStud");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PixelsPerStud")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PixelsPerStud", value);
         }
 
         public Enum.SurfaceGuiShape Shape
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceGuiShape>(this, "Shape");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceGuiShape>(this, "Shape")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceGuiShape>(this, "Shape", value);
         }
 
@@ -113,7 +113,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#SizingMode"/>
         public Enum.SurfaceGuiSizingMode SizingMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceGuiSizingMode>(this, "SizingMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.SurfaceGuiSizingMode>(this, "SizingMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SurfaceGuiSizingMode>(this, "SizingMode", value);
         }
 
@@ -123,7 +123,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#ToolPunchThroughDistance"/>
         public float ToolPunchThroughDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ToolPunchThroughDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ToolPunchThroughDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ToolPunchThroughDistance", value);
         }
 
@@ -133,7 +133,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui#ZOffset"/>
         public float ZOffset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ZOffset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ZOffset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ZOffset", value);
         }
 

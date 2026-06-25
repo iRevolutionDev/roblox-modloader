@@ -4,14 +4,22 @@ namespace TypeGenerator;
 
 internal static class TypeMapper
 {
-    public static string ToCSharp(ApiValueType? vt, bool nullable = false)
+    private static HashSet<string> _knownClasses = new(StringComparer.Ordinal);
+
+    public static void SetKnownClasses(IEnumerable<string> names)
+        => _knownClasses = new HashSet<string>(names, StringComparer.Ordinal);
+
+    public static string ToCSharp(ApiValueType? vt)
     {
         if (vt is null)
         {
             return "void";
         }
 
-        var suffix = nullable ? "?" : string.Empty;
+        if (vt.Name.EndsWith('?'))
+        {
+            return MakeNullable(ToCSharp(new ApiValueType { Category = vt.Category, Name = vt.Name[..^1] }));
+        }
 
         return vt.Category switch
         {
@@ -22,54 +30,79 @@ internal static class TypeMapper
                 "int64"         => "long",
                 "float"         => "float",
                 "double"        => "double",
-                "string"        => $"string{suffix}",
+                "string"        => "string",
                 "void"          => "void",
-                _               => "object" + suffix,
+                _               => "object",
             },
 
-            "Class"     => $"{TypeSafeName(vt.Name)}{suffix}",
+            "Class"     => ResolveClassName(vt.Name),
             "Enum"      => $"Enum.{TypeSafeName(vt.Name)}",
-            "DataType"  => MapDataType(vt.Name, nullable),
-            "Group"     => "object" + suffix,
+            "DataType"  => MapDataType(vt.Name),
+            "Group"     => "object",
 
-            _           => "object" + suffix,
+            _           => "object",
         };
     }
 
-    public static string ReturnType(ApiValueType? returnType, bool nullable = true) => returnType is null ? "void" : ToCSharp(returnType, nullable);
+    public static string ReturnType(ApiValueType? returnType)
+    {
+        if (returnType is null)
+        {
+            return "void";
+        }
+
+        var t = ToCSharp(returnType);
+        if (returnType.Category == "Class" && returnType.Name == "Instance")
+        {
+            t = MakeNullable(t);
+        }
+
+        return t;
+    }
 
     public static bool IsVoid(string csharpType) => csharpType == "void";
     
-    private static string MapDataType(string name, bool nullable)
+    public static string MakeNullable(string csType)
+        => csType.EndsWith('?') || csType == "void" ? csType : csType + "?";
+    
+    private static string MapDataType(string name) => name switch
     {
-        var suffix = nullable ? "?" : string.Empty;
-        return name switch
-        {
-            "Vector2"           => $"global::Roblox.Vector2{suffix}",
-            "Vector3"           => $"global::Roblox.Vector3{suffix}",
-            "CFrame"            => $"global::Roblox.CFrame{suffix}",
-            "Color3"            => $"global::Roblox.Color3{suffix}",
-            "UDim"              => $"global::Roblox.UDim{suffix}",
-            "UDim2"             => $"global::Roblox.UDim2{suffix}",
-            "Rect"              => $"global::Roblox.Rect{suffix}",
-            "Region3"           => $"global::Roblox.Region3{suffix}",
-            "Ray"               => $"global::Roblox.Ray{suffix}",
-            "NumberRange"       => $"global::Roblox.NumberRange{suffix}",
-            "Faces"             => $"global::Roblox.Faces{suffix}",
-            "Axes"              => $"global::Roblox.Axes{suffix}",
-            "BrickColor"        => $"global::Roblox.BrickColor{suffix}",
-            "NumberSequence"    => $"global::Roblox.NumberSequence{suffix}",
-            "ColorSequence"     => $"global::Roblox.ColorSequence{suffix}",
-            "Content"           => $"string{suffix}",
-            "BinaryString"      => $"byte[]{suffix}",
-            "SharedString"      => $"string{suffix}",
-            "ProtectedString"   => $"string{suffix}",
-            "QDir"              => $"string{suffix}",
-            "QFont"             => $"string{suffix}",
-            "Instances"         => $"IReadOnlyList<Instance>",
-            _                   => "object" + suffix,
-        };
-    }
+        "Vector2"                  => "global::Roblox.Vector2",
+        "Vector3"                  => "global::Roblox.Vector3",
+        "CFrame"                   => "global::Roblox.CFrame",
+        "CoordinateFrame"          => "global::Roblox.CFrame",
+        "OptionalCoordinateFrame"  => "global::Roblox.CFrame?",
+        "Color3"                   => "global::Roblox.Color3",
+        "UDim"                     => "global::Roblox.UDim",
+        "UDim2"                    => "global::Roblox.UDim2",
+        "Rect"                     => "global::Roblox.Rect",
+        "Region3"                  => "global::Roblox.Region3",
+        "Ray"                      => "global::Roblox.Ray",
+        "NumberRange"              => "global::Roblox.NumberRange",
+        "Faces"                    => "global::Roblox.Faces",
+        "Axes"                     => "global::Roblox.Axes",
+        "BrickColor"               => "global::Roblox.BrickColor",
+        "NumberSequence"           => "global::Roblox.NumberSequence",
+        "ColorSequence"            => "global::Roblox.ColorSequence",
+        "Content"                  => "string",
+        "BinaryString"             => "byte[]",
+        "SharedString"             => "string",
+        "ProtectedString"          => "string",
+        "QDir"                     => "string",
+        "QFont"                    => "string",
+        "Instances"                => "IReadOnlyList<Instance>",
+        _                          => "object",
+    };
 
     private static string TypeSafeName(string name) => string.IsNullOrWhiteSpace(name) ? "object" : Utility.ToPascalIdentifier(name);
+
+    private static string ResolveClassName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            return "object";
+
+        return _knownClasses.Count == 0 || _knownClasses.Contains(name)
+            ? Utility.ToPascalIdentifier(name)
+            : "Instance";
+    }
 }

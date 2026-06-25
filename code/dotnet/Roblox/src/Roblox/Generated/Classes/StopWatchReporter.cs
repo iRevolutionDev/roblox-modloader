@@ -22,33 +22,33 @@ namespace Roblox
         /// Creates a <see cref="StopWatchReporter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StopWatchReporter? FromHandle(nuint handle)
+        public static new StopWatchReporter? FromHandle(nuint handle)
             => handle == 0 ? null : new StopWatchReporter(handle);
 
         /// <summary>
         /// <c>StopWatchReporter.FinishTask</c>
         /// </summary>
         /// <param name="taskId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FinishTask(int taskId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FinishTask", taskId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FinishTask(int taskId)
+            => global::Roblox.Reflection.Invoke<object>(this, "FinishTask", taskId)!;
 
         /// <summary>
         /// <c>StopWatchReporter.SendReport</c>
         /// </summary>
-        /// <param name="reportName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendReport(string? reportName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendReport", reportName);
+        /// <param name="reportName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendReport(string reportName)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendReport", reportName)!;
 
         /// <summary>
         /// <c>StopWatchReporter.StartTask</c>
         /// </summary>
-        /// <param name="reportName">A <c>string?</c> value.</param>
-        /// <param name="taskName">A <c>string?</c> value.</param>
+        /// <param name="reportName">A <c>string</c> value.</param>
+        /// <param name="taskName">A <c>string</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int StartTask(string? reportName, string? taskName)
-            => global::Roblox.Reflection.Invoke<int>(this, "StartTask", reportName, taskName);
+        public int StartTask(string reportName, string taskName)
+            => global::Roblox.Reflection.Invoke<int>(this, "StartTask", reportName, taskName)!;
 
     }
 }

@@ -22,37 +22,37 @@ namespace Roblox
         /// Creates a <see cref="TextChatMessageProperties"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextChatMessageProperties? FromHandle(nuint handle)
+        public static new TextChatMessageProperties? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChatMessageProperties(handle);
 
         /// <summary>
         /// The TextChatMessage.PrefixText to override.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessageProperties#PrefixText"/>
-        public string? PrefixText
+        public string PrefixText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PrefixText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PrefixText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PrefixText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PrefixText", value);
         }
 
         /// <summary>
         /// The TextChatMessage.Text to override.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessageProperties#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         /// <summary>
         /// The TextChatMessage.Translation to override.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessageProperties#Translation"/>
-        public string? Translation
+        public string Translation
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Translation");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Translation", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Translation")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Translation", value);
         }
 
     }

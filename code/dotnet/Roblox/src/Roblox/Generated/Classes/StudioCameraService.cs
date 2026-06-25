@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="StudioCameraService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioCameraService? FromHandle(nuint handle)
+        public static new StudioCameraService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioCameraService(handle);
 
         public float FocusDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FocusDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FocusDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FocusDistance", value);
         }
 
         public bool LockCameraSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LockCameraSpeed");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LockCameraSpeed")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LockCameraSpeed", value);
         }
 
         public bool LoggingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoggingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoggingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoggingEnabled", value);
         }
 
@@ -44,23 +44,23 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool InFocusMode()
-            => global::Roblox.Reflection.Invoke<bool>(this, "InFocusMode");
+            => global::Roblox.Reflection.Invoke<bool>(this, "InFocusMode")!;
 
         /// <summary>
         /// <c>StudioCameraService.InterpolateView</c>
         /// </summary>
-        /// <param name="target">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InterpolateView(global::Roblox.CFrame? target)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InterpolateView", target);
+        /// <param name="target">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InterpolateView(global::Roblox.CFrame target)
+            => global::Roblox.Reflection.Invoke<object>(this, "InterpolateView", target)!;
 
         /// <summary>
         /// <c>StudioCameraService.SetFocusLock</c>
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetFocusLock(bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFocusLock", value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetFocusLock(bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFocusLock", value)!;
 
         public event Action? FocusStateChanged
         {
@@ -83,8 +83,8 @@ namespace Roblox
         /// <summary>
         /// <c>StudioCameraService.PointFocused</c>
         /// </summary>
-        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
-        public event Action<global::Roblox.Vector3?>? PointFocused
+        /// <param name="point">A <c>global::Roblox.Vector3</c> value.</param>
+        public event Action<global::Roblox.Vector3>? PointFocused
         {
             add { if (value is not null) AddEventHandler("PointFocused", value); }
             remove { if (value is not null) RemoveEventHandler("PointFocused", value); }

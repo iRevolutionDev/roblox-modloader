@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Constraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Constraint? FromHandle(nuint handle)
+        public static new Constraint? FromHandle(nuint handle)
             => handle == 0 ? null : new Constraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#Active"/>
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// The color of the constraint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#Color"/>
-        public global::Roblox.BrickColor? Color
+        public global::Roblox.BrickColor Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "Color", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#Visible"/>
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 
@@ -89,19 +89,19 @@ namespace Roblox
         /// Deprecated: This method should not be used in new work.
         /// </summary>
         /// <param name="bodyId">A <c>int</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#GetDebugAppliedForce"/>
-        public global::Roblox.Vector3? GetDebugAppliedForce(int bodyId)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetDebugAppliedForce", bodyId);
+        public global::Roblox.Vector3 GetDebugAppliedForce(int bodyId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetDebugAppliedForce", bodyId)!;
 
         /// <summary>
         /// Deprecated: This method should not be used in new work.
         /// </summary>
         /// <param name="bodyId">A <c>int</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#GetDebugAppliedTorque"/>
-        public global::Roblox.Vector3? GetDebugAppliedTorque(int bodyId)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetDebugAppliedTorque", bodyId);
+        public global::Roblox.Vector3 GetDebugAppliedTorque(int bodyId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetDebugAppliedTorque", bodyId)!;
 
     }
 }

@@ -22,82 +22,82 @@ namespace Roblox
         /// Creates a <see cref="BrowserService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BrowserService? FromHandle(nuint handle)
+        public static new BrowserService? FromHandle(nuint handle)
             => handle == 0 ? null : new BrowserService(handle);
 
         /// <summary>
         /// <c>BrowserService.CloseBrowserWindow</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CloseBrowserWindow()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CloseBrowserWindow");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CloseBrowserWindow()
+            => global::Roblox.Reflection.Invoke<object>(this, "CloseBrowserWindow")!;
 
         /// <summary>
         /// <c>BrowserService.CopyAuthCookieFromBrowserToEngine</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CopyAuthCookieFromBrowserToEngine()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CopyAuthCookieFromBrowserToEngine");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CopyAuthCookieFromBrowserToEngine()
+            => global::Roblox.Reflection.Invoke<object>(this, "CopyAuthCookieFromBrowserToEngine")!;
 
         /// <summary>
         /// <c>BrowserService.EmitHybridEvent</c>
         /// </summary>
-        /// <param name="moduleName">A <c>string?</c> value.</param>
-        /// <param name="eventName">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EmitHybridEvent(string? moduleName, string? eventName, string? @params)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EmitHybridEvent", moduleName, eventName, @params);
+        /// <param name="moduleName">A <c>string</c> value.</param>
+        /// <param name="eventName">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EmitHybridEvent(string moduleName, string eventName, string @params)
+            => global::Roblox.Reflection.Invoke<object>(this, "EmitHybridEvent", moduleName, eventName, @params)!;
 
         /// <summary>
         /// <c>BrowserService.ExecuteJavaScript</c>
         /// </summary>
-        /// <param name="javascript">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ExecuteJavaScript(string? javascript)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteJavaScript", javascript);
+        /// <param name="javascript">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ExecuteJavaScript(string javascript)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecuteJavaScript", javascript)!;
 
         /// <summary>
         /// <c>BrowserService.OpenBrowserWindow</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenBrowserWindow(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenBrowserWindow", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenBrowserWindow(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenBrowserWindow", url)!;
 
         /// <summary>
         /// <c>BrowserService.OpenNativeOverlay</c>
         /// </summary>
-        /// <param name="title">A <c>string?</c> value.</param>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenNativeOverlay(string? title, string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenNativeOverlay", title, url);
+        /// <param name="title">A <c>string</c> value.</param>
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenNativeOverlay(string title, string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenNativeOverlay", title, url)!;
 
         /// <summary>
         /// <c>BrowserService.OpenWeChatAuthWindow</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenWeChatAuthWindow()
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenWeChatAuthWindow");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenWeChatAuthWindow()
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenWeChatAuthWindow")!;
 
         /// <summary>
         /// <c>BrowserService.ReturnToJavaScript</c>
         /// </summary>
-        /// <param name="callbackId">A <c>string?</c> value.</param>
+        /// <param name="callbackId">A <c>string</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <param name="params">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReturnToJavaScript(string? callbackId, bool success, string? @params)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReturnToJavaScript", callbackId, success, @params);
+        /// <param name="@params">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReturnToJavaScript(string callbackId, bool success, string @params)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReturnToJavaScript", callbackId, success, @params)!;
 
         /// <summary>
         /// <c>BrowserService.SendCommand</c>
         /// </summary>
-        /// <param name="command">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendCommand(string? command)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendCommand", command);
+        /// <param name="command">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendCommand(string command)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendCommand", command)!;
 
         public event Action? AuthCookieCopiedToEngine
         {
@@ -114,8 +114,8 @@ namespace Roblox
         /// <summary>
         /// <c>BrowserService.BrowserWindowWillNavigate</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        public event Action<string?>? BrowserWindowWillNavigate
+        /// <param name="url">A <c>string</c> value.</param>
+        public event Action<string>? BrowserWindowWillNavigate
         {
             add { if (value is not null) AddEventHandler("BrowserWindowWillNavigate", value); }
             remove { if (value is not null) RemoveEventHandler("BrowserWindowWillNavigate", value); }
@@ -124,8 +124,8 @@ namespace Roblox
         /// <summary>
         /// <c>BrowserService.JavaScriptCallback</c>
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
-        public event Action<string?>? JavaScriptCallback
+        /// <param name="content">A <c>string</c> value.</param>
+        public event Action<string>? JavaScriptCallback
         {
             add { if (value is not null) AddEventHandler("JavaScriptCallback", value); }
             remove { if (value is not null) RemoveEventHandler("JavaScriptCallback", value); }

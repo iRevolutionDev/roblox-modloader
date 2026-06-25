@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SurfaceGuiBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SurfaceGuiBase? FromHandle(nuint handle)
+        public static new SurfaceGuiBase? FromHandle(nuint handle)
             => handle == 0 ? null : new SurfaceGuiBase(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGuiBase#Active"/>
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGuiBase#Face"/>
         public Enum.NormalId Face
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "Face");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "Face")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "Face", value);
         }
 

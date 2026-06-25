@@ -18,168 +18,168 @@ namespace Roblox
         /// Creates a <see cref="RootImportData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RootImportData? FromHandle(nuint handle)
+        public static new RootImportData? FromHandle(nuint handle)
             => handle == 0 ? null : new RootImportData(handle);
 
         public bool AddModelToInventory
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AddModelToInventory");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AddModelToInventory")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AddModelToInventory", value);
         }
 
         public bool Anchored
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Anchored", value);
         }
 
         public float AnimationIdForRestPose
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AnimationIdForRestPose");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AnimationIdForRestPose")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AnimationIdForRestPose", value);
         }
 
-        public string? ExistingPackageId
+        public string ExistingPackageId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ExistingPackageId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ExistingPackageId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ExistingPackageId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ExistingPackageId", value);
         }
 
-        public global::Roblox.Vector3? FileDimensions
+        public global::Roblox.Vector3 FileDimensions
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "FileDimensions");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "FileDimensions", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "FileDimensions")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "FileDimensions", value);
         }
 
         public bool ImportAsModelAsset
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ImportAsModelAsset");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ImportAsModelAsset")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ImportAsModelAsset", value);
         }
 
         public bool ImportAsPackage
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ImportAsPackage");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ImportAsPackage")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ImportAsPackage", value);
         }
 
         public bool InsertInWorkspace
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InsertInWorkspace");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "InsertInWorkspace")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "InsertInWorkspace", value);
         }
 
         public bool InsertWithScenePosition
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InsertWithScenePosition");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "InsertWithScenePosition")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "InsertWithScenePosition", value);
         }
 
         public bool InvertNegativeFaces
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InvertNegativeFaces");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "InvertNegativeFaces")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "InvertNegativeFaces", value);
         }
 
         public bool KeepZeroInfluenceBones
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "KeepZeroInfluenceBones");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "KeepZeroInfluenceBones")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "KeepZeroInfluenceBones", value);
         }
 
         public bool MergeMeshes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MergeMeshes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MergeMeshes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MergeMeshes", value);
         }
 
         public Enum.PhysicalConstraintType PhysicalConstraintType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PhysicalConstraintType>(this, "PhysicalConstraintType");
+            get => global::Roblox.Reflection.GetProperty<Enum.PhysicalConstraintType>(this, "PhysicalConstraintType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PhysicalConstraintType>(this, "PhysicalConstraintType", value);
         }
 
         public float PolygonCount
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PolygonCount");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PolygonCount")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PolygonCount", value);
         }
 
         public long PreferredUploadId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "PreferredUploadId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "PreferredUploadId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "PreferredUploadId", value);
         }
 
         public Enum.RestPose RestPose
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RestPose>(this, "RestPose");
+            get => global::Roblox.Reflection.GetProperty<Enum.RestPose>(this, "RestPose")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RestPose>(this, "RestPose", value);
         }
 
         public Enum.RigScale RigScale
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RigScale>(this, "RigScale");
+            get => global::Roblox.Reflection.GetProperty<Enum.RigScale>(this, "RigScale")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RigScale>(this, "RigScale", value);
         }
 
         public Enum.RigType RigType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RigType>(this, "RigType");
+            get => global::Roblox.Reflection.GetProperty<Enum.RigType>(this, "RigType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RigType>(this, "RigType", value);
         }
 
         public bool RigVisualization
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RigVisualization");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RigVisualization")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RigVisualization", value);
         }
 
         public float ScaleFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ScaleFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ScaleFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ScaleFactor", value);
         }
 
         public Enum.MeshScaleUnit ScaleUnit
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.MeshScaleUnit>(this, "ScaleUnit");
+            get => global::Roblox.Reflection.GetProperty<Enum.MeshScaleUnit>(this, "ScaleUnit")!;
             set => global::Roblox.Reflection.SetProperty<Enum.MeshScaleUnit>(this, "ScaleUnit", value);
         }
 
         public bool UseSceneOriginAsPivot
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseSceneOriginAsPivot");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseSceneOriginAsPivot")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseSceneOriginAsPivot", value);
         }
 
         public bool UsesCages
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsesCages");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsesCages")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UsesCages", value);
         }
 
         public bool ValidateUgcBody
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ValidateUgcBody");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ValidateUgcBody")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ValidateUgcBody", value);
         }
 
         public long VersionedAssetId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "VersionedAssetId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "VersionedAssetId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "VersionedAssetId", value);
         }
 
         public Enum.NormalId WorldForward
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "WorldForward");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "WorldForward")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "WorldForward", value);
         }
 
         public Enum.NormalId WorldUp
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "WorldUp");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "WorldUp")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "WorldUp", value);
         }
 

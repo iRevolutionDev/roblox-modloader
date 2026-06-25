@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CornerWedgePart"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CornerWedgePart? FromHandle(nuint handle)
+        public static new CornerWedgePart? FromHandle(nuint handle)
             => handle == 0 ? null : new CornerWedgePart(handle);
 
     }

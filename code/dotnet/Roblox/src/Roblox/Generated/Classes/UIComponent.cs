@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UIComponent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIComponent? FromHandle(nuint handle)
+        public static new UIComponent? FromHandle(nuint handle)
             => handle == 0 ? null : new UIComponent(handle);
 
     }

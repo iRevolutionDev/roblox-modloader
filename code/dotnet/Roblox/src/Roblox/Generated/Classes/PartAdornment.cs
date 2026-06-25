@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PartAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PartAdornment? FromHandle(nuint handle)
+        public static new PartAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new PartAdornment(handle);
 
         /// <summary>

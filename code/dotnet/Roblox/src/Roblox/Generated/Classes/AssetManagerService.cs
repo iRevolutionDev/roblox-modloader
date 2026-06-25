@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="AssetManagerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetManagerService? FromHandle(nuint handle)
+        public static new AssetManagerService? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetManagerService(handle);
 
         /// <summary>
         /// <c>AssetManagerService.GetMeshIdFromAliasName</c>
         /// </summary>
-        /// <param name="aliasName">A <c>string?</c> value.</param>
+        /// <param name="aliasName">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long GetMeshIdFromAliasName(string? aliasName)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetMeshIdFromAliasName", aliasName);
+        public long GetMeshIdFromAliasName(string aliasName)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetMeshIdFromAliasName", aliasName)!;
 
         /// <summary>
         /// <c>AssetManagerService.GetMeshIdFromAssetId</c>
@@ -35,15 +35,15 @@ namespace Roblox
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long GetMeshIdFromAssetId(long assetId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetMeshIdFromAssetId", assetId);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetMeshIdFromAssetId", assetId)!;
 
         /// <summary>
         /// <c>AssetManagerService.GetTextureIdFromAliasName</c>
         /// </summary>
-        /// <param name="aliasName">A <c>string?</c> value.</param>
+        /// <param name="aliasName">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long GetTextureIdFromAliasName(string? aliasName)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetTextureIdFromAliasName", aliasName);
+        public long GetTextureIdFromAliasName(string aliasName)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetTextureIdFromAliasName", aliasName)!;
 
         /// <summary>
         /// <c>AssetManagerService.GetTextureIdFromAssetId</c>
@@ -51,178 +51,178 @@ namespace Roblox
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long GetTextureIdFromAssetId(long assetId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetTextureIdFromAssetId", assetId);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetTextureIdFromAssetId", assetId)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertAudio</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="assetName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertAudio(long assetId, string? assetName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertAudio", assetId, assetName);
+        /// <param name="assetName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertAudio(long assetId, string assetName)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertAudio", assetId, assetName)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertImage</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertImage(long assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertImage", assetId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertImage(long assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertImage", assetId)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertImages</c>
         /// </summary>
-        /// <param name="assetIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertImages(object? assetIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertImages", assetIds);
+        /// <param name="assetIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertImages(object assetIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertImages", assetIds)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertMesh</c>
         /// </summary>
-        /// <param name="aliasName">A <c>string?</c> value.</param>
+        /// <param name="aliasName">A <c>string</c> value.</param>
         /// <param name="insertWithLocation">A <c>bool</c> value.</param>
         /// <param name="sourceAssetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertMesh(string? aliasName, bool insertWithLocation, long sourceAssetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertMesh", aliasName, insertWithLocation, sourceAssetId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertMesh(string aliasName, bool insertWithLocation, long sourceAssetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertMesh", aliasName, insertWithLocation, sourceAssetId)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertMeshesWithLocation</c>
         /// </summary>
-        /// <param name="aliasNames">A <c>object?</c> value.</param>
-        /// <param name="meshIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertMeshesWithLocation(object? aliasNames, object? meshIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertMeshesWithLocation", aliasNames, meshIds);
+        /// <param name="aliasNames">A <c>object</c> value.</param>
+        /// <param name="meshIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertMeshesWithLocation(object aliasNames, object meshIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertMeshesWithLocation", aliasNames, meshIds)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertModel</c>
         /// </summary>
         /// <param name="modelId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertModel(long modelId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertModel", modelId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertModel(long modelId)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertModel", modelId)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertPackage</c>
         /// </summary>
         /// <param name="packageId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertPackage(long packageId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertPackage", packageId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertPackage(long packageId)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertPackage", packageId)!;
 
         /// <summary>
         /// <c>AssetManagerService.InsertVideo</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="assetName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InsertVideo(long assetId, string? assetName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertVideo", assetId, assetName);
+        /// <param name="assetName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InsertVideo(long assetId, string assetName)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertVideo", assetId, assetName)!;
 
         /// <summary>
         /// <c>AssetManagerService.OpenPlace</c>
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenPlace(long placeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenPlace", placeId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenPlace(long placeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenPlace", placeId)!;
 
         /// <summary>
         /// <c>AssetManagerService.ShowPackageDetails</c>
         /// </summary>
         /// <param name="packageId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowPackageDetails(long packageId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowPackageDetails", packageId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowPackageDetails(long packageId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowPackageDetails", packageId)!;
 
         /// <summary>
         /// <c>AssetManagerService.UpdateAllPackages</c>
         /// </summary>
         /// <param name="packageId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdateAllPackages(long packageId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateAllPackages", packageId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdateAllPackages(long packageId)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateAllPackages", packageId)!;
 
         /// <summary>
         /// <c>AssetManagerService.ViewPackageOnWebsite</c>
         /// </summary>
         /// <param name="packageId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ViewPackageOnWebsite(long packageId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ViewPackageOnWebsite", packageId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ViewPackageOnWebsite(long packageId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ViewPackageOnWebsite", packageId)!;
 
         /// <summary>
         /// <c>AssetManagerService.AddNewPlace</c>
         /// </summary>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long AddNewPlace()
-            => global::Roblox.Reflection.Invoke<long>(this, "AddNewPlace");
+            => global::Roblox.Reflection.Invoke<long>(this, "AddNewPlace")!;
 
         /// <summary>
         /// <c>AssetManagerService.CreateAlias</c>
         /// </summary>
         /// <param name="assetType">A <c>int</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="aliasName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateAlias(int assetType, long assetId, string? aliasName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAlias", assetType, assetId, aliasName);
+        /// <param name="aliasName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateAlias(int assetType, long assetId, string aliasName)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAlias", assetType, assetId, aliasName)!;
 
         /// <summary>
         /// <c>AssetManagerService.DeleteAlias</c>
         /// </summary>
-        /// <param name="aliasName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DeleteAlias(string? aliasName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeleteAlias", aliasName);
+        /// <param name="aliasName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DeleteAlias(string aliasName)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeleteAlias", aliasName)!;
 
         /// <summary>
         /// <c>AssetManagerService.RemovePlace</c>
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemovePlace(long placeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemovePlace", placeId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemovePlace(long placeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemovePlace", placeId)!;
 
         /// <summary>
         /// <c>AssetManagerService.RenameAlias</c>
         /// </summary>
         /// <param name="assetType">A <c>int</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="oldAliasName">A <c>string?</c> value.</param>
-        /// <param name="newAliasName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RenameAlias(int assetType, long assetId, string? oldAliasName, string? newAliasName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RenameAlias", assetType, assetId, oldAliasName, newAliasName);
+        /// <param name="oldAliasName">A <c>string</c> value.</param>
+        /// <param name="newAliasName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RenameAlias(int assetType, long assetId, string oldAliasName, string newAliasName)
+            => global::Roblox.Reflection.Invoke<object>(this, "RenameAlias", assetType, assetId, oldAliasName, newAliasName)!;
 
         /// <summary>
         /// <c>AssetManagerService.RenameModel</c>
         /// </summary>
         /// <param name="modelId">A <c>long</c> value.</param>
-        /// <param name="newName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RenameModel(long modelId, string? newName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RenameModel", modelId, newName);
+        /// <param name="newName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RenameModel(long modelId, string newName)
+            => global::Roblox.Reflection.Invoke<object>(this, "RenameModel", modelId, newName)!;
 
         /// <summary>
         /// <c>AssetManagerService.RenamePlace</c>
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="newName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RenamePlace(long placeId, string? newName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RenamePlace", placeId, newName);
+        /// <param name="newName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RenamePlace(long placeId, string newName)
+            => global::Roblox.Reflection.Invoke<object>(this, "RenamePlace", placeId, newName)!;
 
         /// <summary>
         /// <c>AssetManagerService.AssetImportedSignal</c>
         /// </summary>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
-        /// <param name="assetId">A <c>string?</c> value.</param>
+        /// <param name="assetId">A <c>string</c> value.</param>
         /// <param name="assetName">A <c>long</c> value.</param>
-        public event Action<Enum.AssetType, string?, long>? AssetImportedSignal
+        public event Action<Enum.AssetType, string, long>? AssetImportedSignal
         {
             add { if (value is not null) AddEventHandler("AssetImportedSignal", value); }
             remove { if (value is not null) RemoveEventHandler("AssetImportedSignal", value); }

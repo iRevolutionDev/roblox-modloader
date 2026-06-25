@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="IKControl"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static IKControl? FromHandle(nuint handle)
+        public static new IKControl? FromHandle(nuint handle)
             => handle == 0 ? null : new IKControl(handle);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -59,20 +59,20 @@ namespace Roblox
         /// An additional offset applied on top of the EndEffector in its local space to change where it moves.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#EndEffectorOffset"/>
-        public global::Roblox.CFrame? EndEffectorOffset
+        public global::Roblox.CFrame EndEffectorOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "EndEffectorOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "EndEffectorOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "EndEffectorOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "EndEffectorOffset", value);
         }
 
         /// <summary>
         /// An additional offset applied on top of the Target to change where the EndEffector moves.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Offset"/>
-        public global::Roblox.CFrame? Offset
+        public global::Roblox.CFrame Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Offset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Offset", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Priority"/>
         public int Priority
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Priority", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#SmoothTime"/>
         public float SmoothTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SmoothTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SmoothTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SmoothTime", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Type"/>
         public Enum.IKControlType Type
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.IKControlType>(this, "Type");
+            get => global::Roblox.Reflection.GetProperty<Enum.IKControlType>(this, "Type")!;
             set => global::Roblox.Reflection.SetProperty<Enum.IKControlType>(this, "Type", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Weight"/>
         public float Weight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Weight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Weight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Weight", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#GetChainCount"/>
         public int GetChainCount()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetChainCount");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetChainCount")!;
 
         /// <summary>
         /// <c>IKControl.GetChainLength</c>
@@ -149,48 +149,48 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#GetChainLength"/>
         public float GetChainLength()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetChainLength");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetChainLength")!;
 
         /// <summary>
         /// <c>IKControl.GetNodeLocalCFrame</c>
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#GetNodeLocalCFrame"/>
-        public global::Roblox.CFrame? GetNodeLocalCFrame(int index)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetNodeLocalCFrame", index);
+        public global::Roblox.CFrame GetNodeLocalCFrame(int index)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetNodeLocalCFrame", index)!;
 
         /// <summary>
         /// <c>IKControl.GetNodeWorldCFrame</c>
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#GetNodeWorldCFrame"/>
-        public global::Roblox.CFrame? GetNodeWorldCFrame(int index)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetNodeWorldCFrame", index);
+        public global::Roblox.CFrame GetNodeWorldCFrame(int index)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetNodeWorldCFrame", index)!;
 
         /// <summary>
         /// <c>IKControl.GetRawFinalTarget</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#GetRawFinalTarget"/>
-        public global::Roblox.CFrame? GetRawFinalTarget()
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetRawFinalTarget");
+        public global::Roblox.CFrame GetRawFinalTarget()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetRawFinalTarget")!;
 
         /// <summary>
         /// <c>IKControl.GetSmoothedFinalTarget</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#GetSmoothedFinalTarget"/>
-        public global::Roblox.CFrame? GetSmoothedFinalTarget()
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetSmoothedFinalTarget");
+        public global::Roblox.CFrame GetSmoothedFinalTarget()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetSmoothedFinalTarget")!;
 
         /// <summary>
         /// <c>IKControl.Solve</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Solve()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Solve");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Solve()
+            => global::Roblox.Reflection.Invoke<object>(this, "Solve")!;
 
     }
 }

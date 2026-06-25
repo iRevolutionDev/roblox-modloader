@@ -18,31 +18,31 @@ namespace Roblox
         /// Creates a <see cref="StudioDeviceEmulatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioDeviceEmulatorService? FromHandle(nuint handle)
+        public static new StudioDeviceEmulatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioDeviceEmulatorService(handle);
 
         public bool HasMultiTouchStarted
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasMultiTouchStarted");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasMultiTouchStarted")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasMultiTouchStarted", value);
         }
 
         public bool IsMultiTouchEmulationOn
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsMultiTouchEmulationOn");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsMultiTouchEmulationOn")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsMultiTouchEmulationOn", value);
         }
 
         public bool IsMultiTouchEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsMultiTouchEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsMultiTouchEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsMultiTouchEnabled", value);
         }
 
-        public global::Roblox.Vector2? PivotPosition
+        public global::Roblox.Vector2 PivotPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "PivotPosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "PivotPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "PivotPosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "PivotPosition", value);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetMaxNumTouches()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetMaxNumTouches");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetMaxNumTouches")!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.GetTouchInBounds</c>
@@ -58,62 +58,62 @@ namespace Roblox
         /// <param name="index">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetTouchInBounds(int index)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetTouchInBounds", index);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetTouchInBounds", index)!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.GetTouchPosition</c>
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector2? GetTouchPosition(int index)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTouchPosition", index);
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2 GetTouchPosition(int index)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetTouchPosition", index)!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.EmulatePCDeviceWithResolution</c>
         /// </summary>
-        /// <param name="deviceId">A <c>string?</c> value.</param>
-        /// <param name="resolution">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="deviceId">A <c>string</c> value.</param>
+        /// <param name="resolution">A <c>global::Roblox.Vector2</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool EmulatePCDeviceWithResolution(string? deviceId, global::Roblox.Vector2? resolution)
-            => global::Roblox.Reflection.Invoke<bool>(this, "EmulatePCDeviceWithResolution", deviceId, resolution);
+        public bool EmulatePCDeviceWithResolution(string deviceId, global::Roblox.Vector2 resolution)
+            => global::Roblox.Reflection.Invoke<bool>(this, "EmulatePCDeviceWithResolution", deviceId, resolution)!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.GetCurrentDeviceId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetCurrentDeviceId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetCurrentDeviceId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetCurrentDeviceId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetCurrentDeviceId")!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.GetCurrentOrientation</c>
         /// </summary>
         /// <returns>A <c>Enum.ScreenOrientation</c> value returned by the engine.</returns>
         public Enum.ScreenOrientation GetCurrentOrientation()
-            => global::Roblox.Reflection.Invoke<Enum.ScreenOrientation>(this, "GetCurrentOrientation");
+            => global::Roblox.Reflection.Invoke<Enum.ScreenOrientation>(this, "GetCurrentOrientation")!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.HasDeviceWithId</c>
         /// </summary>
-        /// <param name="deviceId">A <c>string?</c> value.</param>
+        /// <param name="deviceId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool HasDeviceWithId(string? deviceId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasDeviceWithId", deviceId);
+        public bool HasDeviceWithId(string deviceId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasDeviceWithId", deviceId)!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.SetCurrentDeviceId</c>
         /// </summary>
-        /// <param name="deviceId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetCurrentDeviceId(string? deviceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCurrentDeviceId", deviceId);
+        /// <param name="deviceId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetCurrentDeviceId(string deviceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCurrentDeviceId", deviceId)!;
 
         /// <summary>
         /// <c>StudioDeviceEmulatorService.SetCurrentOrientation</c>
         /// </summary>
         /// <param name="orientation">A <c>Enum.ScreenOrientation</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetCurrentOrientation(Enum.ScreenOrientation orientation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCurrentOrientation", orientation);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetCurrentOrientation(Enum.ScreenOrientation orientation)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCurrentOrientation", orientation)!;
 
         public event Action? CurrentDeviceIdChanged
         {

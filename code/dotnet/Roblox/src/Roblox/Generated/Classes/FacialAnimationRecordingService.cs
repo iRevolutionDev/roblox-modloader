@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="FacialAnimationRecordingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FacialAnimationRecordingService? FromHandle(nuint handle)
+        public static new FacialAnimationRecordingService? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAnimationRecordingService(handle);
 
         public bool BiometricDataConsent
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BiometricDataConsent");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BiometricDataConsent")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BiometricDataConsent", value);
         }
 
@@ -32,14 +32,14 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAgeRestricted()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAgeRestricted");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAgeRestricted")!;
 
         /// <summary>
         /// <c>FacialAnimationRecordingService.CheckOrRequestCameraPermission</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? CheckOrRequestCameraPermission()
-            => global::Roblox.Reflection.Invoke<string?>(this, "CheckOrRequestCameraPermission");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string CheckOrRequestCameraPermission()
+            => global::Roblox.Reflection.Invoke<string>(this, "CheckOrRequestCameraPermission")!;
 
     }
 }

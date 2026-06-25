@@ -22,47 +22,47 @@ namespace Roblox
         /// Creates a <see cref="BadgeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BadgeService? FromHandle(nuint handle)
+        public static new BadgeService? FromHandle(nuint handle)
             => handle == 0 ? null : new BadgeService(handle);
 
         /// <summary>
         /// Deprecated: Award a badge to a player given the ID of each.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#AwardBadge"/>
-        public bool AwardBadge(object? userId, long badgeId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "AwardBadge", userId, badgeId);
+        public bool AwardBadge(object userId, long badgeId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "AwardBadge", userId, badgeId)!;
 
         /// <summary>
         /// Award a badge to a player given the ID of each.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#AwardBadgeAsync"/>
-        public bool AwardBadgeAsync(object? userId, long badgeId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "AwardBadgeAsync", userId, badgeId);
+        public bool AwardBadgeAsync(object userId, long badgeId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "AwardBadgeAsync", userId, badgeId)!;
 
         /// <summary>
         /// Checks a list of badge IDs against a UserId and returns a list of badge IDs that the player owns.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <param name="badgeIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <param name="badgeIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#CheckUserBadgesAsync"/>
-        public object? CheckUserBadgesAsync(object? userId, object? badgeIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CheckUserBadgesAsync", userId, badgeIds);
+        public object CheckUserBadgesAsync(object userId, object badgeIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "CheckUserBadgesAsync", userId, badgeIds)!;
 
         /// <summary>
         /// Fetch information about a badge given its ID.
         /// </summary>
         /// <param name="badgeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#GetBadgeInfoAsync"/>
-        public object? GetBadgeInfoAsync(long badgeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBadgeInfoAsync", badgeId);
+        public object GetBadgeInfoAsync(long badgeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBadgeInfoAsync", badgeId)!;
 
         /// <summary>
         /// Deprecated: This function is deprecated. Do not use it for new work. Instead, it can be checked by calling BadgeService:GetBadgeInfoAsync() and checking the IsEnabled field.Returns whether a given badge is disabled.
@@ -71,7 +71,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#IsDisabled"/>
         public bool IsDisabled(long badgeId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsDisabled", badgeId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsDisabled", badgeId)!;
 
         /// <summary>
         /// Deprecated: This function is deprecated and will always return true. Do not use it for new work.Determines if a given badge is associated with the current game.
@@ -80,35 +80,35 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#IsLegal"/>
         public bool IsLegal(long badgeId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsLegal", badgeId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsLegal", badgeId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by BadgeService:UserHasBadgeAsync() which should be used for new work instead.Checks whether a user has the badge given the Player.UserId and the badge ID.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#UserHasBadge"/>
-        public bool UserHasBadge(object? userId, long badgeId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "UserHasBadge", userId, badgeId);
+        public bool UserHasBadge(object userId, long badgeId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "UserHasBadge", userId, badgeId)!;
 
         /// <summary>
         /// Checks whether a player has the badge given the Player.UserId and the badge ID.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#UserHasBadgeAsync"/>
-        public bool UserHasBadgeAsync(object? userId, long badgeId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "UserHasBadgeAsync", userId, badgeId);
+        public bool UserHasBadgeAsync(object userId, long badgeId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "UserHasBadgeAsync", userId, badgeId)!;
 
         /// <summary>
         /// <c>BadgeService.BadgeAwarded</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="badgeId">A <c>long</c> value.</param>
-        public event Action<string?, long, long>? BadgeAwarded
+        public event Action<string, long, long>? BadgeAwarded
         {
             add { if (value is not null) AddEventHandler("BadgeAwarded", value); }
             remove { if (value is not null) RemoveEventHandler("BadgeAwarded", value); }

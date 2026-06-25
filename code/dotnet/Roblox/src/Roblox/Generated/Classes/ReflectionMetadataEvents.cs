@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ReflectionMetadataEvents"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReflectionMetadataEvents? FromHandle(nuint handle)
+        public static new ReflectionMetadataEvents? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionMetadataEvents(handle);
 
     }

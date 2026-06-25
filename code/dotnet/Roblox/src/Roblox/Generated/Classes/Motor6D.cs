@@ -22,37 +22,37 @@ namespace Roblox
         /// Creates a <see cref="Motor6D"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Motor6D? FromHandle(nuint handle)
+        public static new Motor6D? FromHandle(nuint handle)
             => handle == 0 ? null : new Motor6D(handle);
 
         /// <summary>
         /// <c>Motor6D.ChildName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor6D#ChildName"/>
-        public string? ChildName
+        public string ChildName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ChildName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ChildName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ChildName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ChildName", value);
         }
 
         /// <summary>
         /// <c>Motor6D.ParentName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor6D#ParentName"/>
-        public string? ParentName
+        public string ParentName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ParentName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ParentName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ParentName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ParentName", value);
         }
 
         /// <summary>
         /// Describes the current animation offset of the Motor6D joint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor6D#Transform"/>
-        public global::Roblox.CFrame? Transform
+        public global::Roblox.CFrame Transform
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Transform");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Transform", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Transform")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Transform", value);
         }
 
     }

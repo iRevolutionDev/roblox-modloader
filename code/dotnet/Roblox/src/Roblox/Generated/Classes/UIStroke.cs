@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UIStroke"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIStroke? FromHandle(nuint handle)
+        public static new UIStroke? FromHandle(nuint handle)
             => handle == 0 ? null : new UIStroke(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#ApplyStrokeMode"/>
         public Enum.ApplyStrokeMode ApplyStrokeMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ApplyStrokeMode>(this, "ApplyStrokeMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ApplyStrokeMode>(this, "ApplyStrokeMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ApplyStrokeMode>(this, "ApplyStrokeMode", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Specifies an additional offset to the stroke's position, relative to the parent's minimum height or width.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#BorderOffset"/>
-        public global::Roblox.UDim? BorderOffset
+        public global::Roblox.UDim BorderOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "BorderOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "BorderOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "BorderOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "BorderOffset", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#BorderStrokePosition"/>
         public Enum.BorderStrokePosition BorderStrokePosition
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.BorderStrokePosition>(this, "BorderStrokePosition");
+            get => global::Roblox.Reflection.GetProperty<Enum.BorderStrokePosition>(this, "BorderStrokePosition")!;
             set => global::Roblox.Reflection.SetProperty<Enum.BorderStrokePosition>(this, "BorderStrokePosition", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines the stroke color.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#LineJoinMode"/>
         public Enum.LineJoinMode LineJoinMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.LineJoinMode>(this, "LineJoinMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.LineJoinMode>(this, "LineJoinMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.LineJoinMode>(this, "LineJoinMode", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#StrokeSizingMode"/>
         public Enum.StrokeSizingMode StrokeSizingMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StrokeSizingMode>(this, "StrokeSizingMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.StrokeSizingMode>(this, "StrokeSizingMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StrokeSizingMode>(this, "StrokeSizingMode", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Thickness"/>
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#Transparency"/>
         public float Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Transparency", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIStroke#ZIndex"/>
         public int ZIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ZIndex", value);
         }
 

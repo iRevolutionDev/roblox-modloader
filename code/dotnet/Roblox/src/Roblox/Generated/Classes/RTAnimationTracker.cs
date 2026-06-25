@@ -18,52 +18,52 @@ namespace Roblox
         /// Creates a <see cref="RTAnimationTracker"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RTAnimationTracker? FromHandle(nuint handle)
+        public static new RTAnimationTracker? FromHandle(nuint handle)
             => handle == 0 ? null : new RTAnimationTracker(handle);
 
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
         public bool EnableFallbackAudioInput
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFallbackAudioInput");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFallbackAudioInput")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableFallbackAudioInput", value);
         }
 
-        public string? SessionName
+        public string SessionName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SessionName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SessionName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SessionName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SessionName", value);
         }
 
         public Enum.TrackerMode TrackerMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TrackerMode>(this, "TrackerMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TrackerMode>(this, "TrackerMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerMode>(this, "TrackerMode", value);
         }
 
         public Enum.TrackerType TrackerType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TrackerType>(this, "TrackerType");
+            get => global::Roblox.Reflection.GetProperty<Enum.TrackerType>(this, "TrackerType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerType>(this, "TrackerType", value);
         }
 
         /// <summary>
         /// <c>RTAnimationTracker.Step</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Step()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Step");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Step()
+            => global::Roblox.Reflection.Invoke<object>(this, "Step")!;
 
         /// <summary>
         /// <c>RTAnimationTracker.TrackerError</c>
         /// </summary>
         /// <param name="errorCode">A <c>Enum.TrackerError</c> value.</param>
-        /// <param name="msg">A <c>string?</c> value.</param>
-        public event Action<Enum.TrackerError, string?>? TrackerError
+        /// <param name="msg">A <c>string</c> value.</param>
+        public event Action<Enum.TrackerError, string>? TrackerError
         {
             add { if (value is not null) AddEventHandler("TrackerError", value); }
             remove { if (value is not null) RemoveEventHandler("TrackerError", value); }

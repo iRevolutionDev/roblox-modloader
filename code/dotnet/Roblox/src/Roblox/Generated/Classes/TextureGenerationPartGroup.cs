@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="TextureGenerationPartGroup"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextureGenerationPartGroup? FromHandle(nuint handle)
+        public static new TextureGenerationPartGroup? FromHandle(nuint handle)
             => handle == 0 ? null : new TextureGenerationPartGroup(handle);
 
         /// <summary>
@@ -26,14 +26,14 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetInstances()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInstances");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInstances")!;
 
         /// <summary>
         /// <c>TextureGenerationPartGroup.GetMeshIdsHash</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetMeshIdsHash()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetMeshIdsHash");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetMeshIdsHash()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetMeshIdsHash")!;
 
     }
 }

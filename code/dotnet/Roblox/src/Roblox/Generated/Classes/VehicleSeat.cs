@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VehicleSeat"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VehicleSeat? FromHandle(nuint handle)
+        public static new VehicleSeat? FromHandle(nuint handle)
             => handle == 0 ? null : new VehicleSeat(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#AreHingesDetected"/>
         public int AreHingesDetected
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "AreHingesDetected");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "AreHingesDetected")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "AreHingesDetected", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Disabled"/>
         public bool Disabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Disabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Disabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Disabled", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#HeadsUpDisplay"/>
         public bool HeadsUpDisplay
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HeadsUpDisplay");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HeadsUpDisplay")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HeadsUpDisplay", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#MaxSpeed"/>
         public float MaxSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxSpeed", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Steer"/>
         public int Steer
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Steer");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Steer")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Steer", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#SteerFloat"/>
         public float SteerFloat
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SteerFloat");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SteerFloat")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SteerFloat", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Throttle"/>
         public int Throttle
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Throttle");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Throttle")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Throttle", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#ThrottleFloat"/>
         public float ThrottleFloat
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ThrottleFloat");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ThrottleFloat")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ThrottleFloat", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Torque"/>
         public float Torque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Torque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Torque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Torque", value);
         }
 
@@ -131,18 +131,18 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#TurnSpeed"/>
         public float TurnSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TurnSpeed", value);
         }
 
         /// <summary>
         /// Forces the character with the specified Humanoid to sit in the VehicleSeat.
         /// </summary>
-        /// <param name="humanoid">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoid">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Sit"/>
-        public object? Sit(Instance? humanoid)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Sit", humanoid);
+        public object Sit(Instance humanoid)
+            => global::Roblox.Reflection.Invoke<object>(this, "Sit", humanoid)!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CharacterAppearance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CharacterAppearance? FromHandle(nuint handle)
+        public static new CharacterAppearance? FromHandle(nuint handle)
             => handle == 0 ? null : new CharacterAppearance(handle);
 
     }

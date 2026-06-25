@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VoiceChatService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VoiceChatService? FromHandle(nuint handle)
+        public static new VoiceChatService? FromHandle(nuint handle)
             => handle == 0 ? null : new VoiceChatService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#DefaultDistanceAttenuation"/>
         public Enum.VoiceChatDistanceAttenuationType DefaultDistanceAttenuation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VoiceChatDistanceAttenuationType>(this, "DefaultDistanceAttenuation");
+            get => global::Roblox.Reflection.GetProperty<Enum.VoiceChatDistanceAttenuationType>(this, "DefaultDistanceAttenuation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VoiceChatDistanceAttenuationType>(this, "DefaultDistanceAttenuation", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#EnableDefaultVoice"/>
         public bool EnableDefaultVoice
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableDefaultVoice");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableDefaultVoice")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableDefaultVoice", value);
         }
 
@@ -51,73 +51,73 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#UseAudioApi"/>
         public Enum.AudioApiRollout UseAudioApi
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AudioApiRollout>(this, "UseAudioApi");
+            get => global::Roblox.Reflection.GetProperty<Enum.AudioApiRollout>(this, "UseAudioApi")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AudioApiRollout>(this, "UseAudioApi", value);
         }
 
         public bool UseNewAudioApi
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewAudioApi");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewAudioApi")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseNewAudioApi", value);
         }
 
         public bool UseNewControlPaths
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewControlPaths");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewControlPaths")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseNewControlPaths", value);
         }
 
         public bool UseNewJoinFlow
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewJoinFlow");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseNewJoinFlow")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseNewJoinFlow", value);
         }
 
         public bool UseStreamSwitching
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseStreamSwitching");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseStreamSwitching")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseStreamSwitching", value);
         }
 
         public bool VoiceChatEnabledForPlaceOnRcc
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceChatEnabledForPlaceOnRcc");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceChatEnabledForPlaceOnRcc")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VoiceChatEnabledForPlaceOnRcc", value);
         }
 
         public bool VoiceChatEnabledForUniverseOnRcc
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceChatEnabledForUniverseOnRcc");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceChatEnabledForUniverseOnRcc")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VoiceChatEnabledForUniverseOnRcc", value);
         }
 
         /// <summary>
         /// <c>VoiceChatService.getInternalChannelId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetInternalChannelId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "getInternalChannelId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetInternalChannelId()
+            => global::Roblox.Reflection.Invoke<string>(this, "getInternalChannelId")!;
 
         /// <summary>
         /// <c>VoiceChatService.getInternalGroupId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetInternalGroupId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "getInternalGroupId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetInternalGroupId()
+            => global::Roblox.Reflection.Invoke<string>(this, "getInternalGroupId")!;
 
         /// <summary>
         /// <c>VoiceChatService.getInternalPublishPause</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetInternalPublishPause()
-            => global::Roblox.Reflection.Invoke<bool>(this, "getInternalPublishPause");
+            => global::Roblox.Reflection.Invoke<bool>(this, "getInternalPublishPause")!;
 
         /// <summary>
         /// <c>VoiceChatService.getInternalSessionId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetInternalSessionId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "getInternalSessionId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetInternalSessionId()
+            => global::Roblox.Reflection.Invoke<string>(this, "getInternalSessionId")!;
 
         /// <summary>
         /// <c>VoiceChatService.getInternalSubscribePause</c>
@@ -125,82 +125,82 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetInternalSubscribePause(long userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "getInternalSubscribePause", userId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "getInternalSubscribePause", userId)!;
 
         /// <summary>
         /// <c>VoiceChatService.getInternalSubscribePauseAll</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetInternalSubscribePauseAll()
-            => global::Roblox.Reflection.Invoke<bool>(this, "getInternalSubscribePauseAll");
+            => global::Roblox.Reflection.Invoke<bool>(this, "getInternalSubscribePauseAll")!;
 
         /// <summary>
         /// <c>VoiceChatService.getInternalVoiceChatApiVersion</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetInternalVoiceChatApiVersion()
-            => global::Roblox.Reflection.Invoke<int>(this, "getInternalVoiceChatApiVersion");
+            => global::Roblox.Reflection.Invoke<int>(this, "getInternalVoiceChatApiVersion")!;
 
         /// <summary>
         /// <c>VoiceChatService.isInternalPublishPaused</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsInternalPublishPaused()
-            => global::Roblox.Reflection.Invoke<bool>(this, "isInternalPublishPaused");
+            => global::Roblox.Reflection.Invoke<bool>(this, "isInternalPublishPaused")!;
 
         /// <summary>
         /// <c>VoiceChatService.joinVoice</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? JoinVoice()
-            => global::Roblox.Reflection.Invoke<object?>(this, "joinVoice");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object JoinVoice()
+            => global::Roblox.Reflection.Invoke<object>(this, "joinVoice")!;
 
         /// <summary>
         /// <c>VoiceChatService.lastVoiceChatStats</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LastVoiceChatStats()
-            => global::Roblox.Reflection.Invoke<object?>(this, "lastVoiceChatStats");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LastVoiceChatStats()
+            => global::Roblox.Reflection.Invoke<object>(this, "lastVoiceChatStats")!;
 
         /// <summary>
         /// <c>VoiceChatService.leaveVoice</c>
         /// </summary>
-        /// <param name="leaveReason">A <c>Enum.VoiceClientLeaveReasons</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LeaveVoice(Enum.VoiceClientLeaveReasons leaveReason)
-            => global::Roblox.Reflection.Invoke<object?>(this, "leaveVoice", leaveReason);
+        /// <param name="leaveReason">A <c>Enum.VoiceClientLeaveReasons?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LeaveVoice(Enum.VoiceClientLeaveReasons? leaveReason = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "leaveVoice", leaveReason)!;
 
         /// <summary>
         /// <c>VoiceChatService.notifyServerACSCleanup</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? NotifyServerACSCleanup()
-            => global::Roblox.Reflection.Invoke<object?>(this, "notifyServerACSCleanup");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object NotifyServerACSCleanup()
+            => global::Roblox.Reflection.Invoke<object>(this, "notifyServerACSCleanup")!;
 
         /// <summary>
         /// <c>VoiceChatService.rejoinVoice</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RejoinVoice()
-            => global::Roblox.Reflection.Invoke<object?>(this, "rejoinVoice");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RejoinVoice()
+            => global::Roblox.Reflection.Invoke<object>(this, "rejoinVoice")!;
 
         /// <summary>
         /// Returns chat group IDs that indicate which players can voice chat together.
         /// </summary>
         /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#GetChatGroupsAsync"/>
-        public object? GetChatGroupsAsync(IReadOnlyList<Instance> players)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetChatGroupsAsync", players);
+        public object GetChatGroupsAsync(IReadOnlyList<Instance> players)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetChatGroupsAsync", players)!;
 
         /// <summary>
         /// Returns whether or not the given user has voice enabled.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VoiceChatService#IsVoiceEnabledForUserIdAsync"/>
-        public bool IsVoiceEnabledForUserIdAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsVoiceEnabledForUserIdAsync", userId);
+        public bool IsVoiceEnabledForUserIdAsync(object userId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsVoiceEnabledForUserIdAsync", userId)!;
 
         public event Action? VoiceChatStatsCollected
         {

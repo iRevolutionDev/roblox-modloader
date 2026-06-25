@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AssetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetService? FromHandle(nuint handle)
+        public static new AssetService? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#AllowInsertFreeAssets"/>
         public bool AllowInsertFreeAssets
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowInsertFreeAssets");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowInsertFreeAssets")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowInsertFreeAssets", value);
         }
 
@@ -39,192 +39,192 @@ namespace Roblox
         /// Creates a new EditableImage.
         /// </summary>
         /// <param name="editableImageOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>EditableImage?</c> value returned by the engine.</returns>
+        /// <returns>A <c>EditableImage</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateEditableImage"/>
-        public EditableImage? CreateEditableImage(object? editableImageOptions)
-            => global::Roblox.Reflection.Invoke<EditableImage?>(this, "CreateEditableImage", editableImageOptions);
+        public EditableImage CreateEditableImage(object? editableImageOptions = null)
+            => global::Roblox.Reflection.Invoke<EditableImage>(this, "CreateEditableImage", editableImageOptions)!;
 
         /// <summary>
         /// Creates a new, empty EditableMesh.
         /// </summary>
         /// <param name="editableMeshOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>EditableMesh?</c> value returned by the engine.</returns>
+        /// <returns>A <c>EditableMesh</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateEditableMesh"/>
-        public EditableMesh? CreateEditableMesh(object? editableMeshOptions)
-            => global::Roblox.Reflection.Invoke<EditableMesh?>(this, "CreateEditableMesh", editableMeshOptions);
+        public EditableMesh CreateEditableMesh(object? editableMeshOptions = null)
+            => global::Roblox.Reflection.Invoke<EditableMesh>(this, "CreateEditableMesh", editableMeshOptions)!;
 
         /// <summary>
         /// <c>AssetService.DeserializeInstance</c>
         /// </summary>
-        /// <param name="serializedInstance">A <c>string?</c> value.</param>
+        /// <param name="serializedInstance">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? DeserializeInstance(string? serializedInstance)
+        public Instance? DeserializeInstance(string serializedInstance)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "DeserializeInstance", serializedInstance);
 
         /// <summary>
         /// <c>AssetService.GetOpaqueContentMetadataMap</c>
         /// </summary>
-        /// <param name="opaqueContent">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetOpaqueContentMetadataMap(string? opaqueContent)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOpaqueContentMetadataMap", opaqueContent);
+        /// <param name="opaqueContent">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetOpaqueContentMetadataMap(string opaqueContent)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOpaqueContentMetadataMap", opaqueContent)!;
 
         /// <summary>
         /// <c>AssetService.CachePartOperationsAsync</c>
         /// </summary>
-        /// <param name="partOperations">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CachePartOperationsAsync(object? partOperations)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CachePartOperationsAsync", partOperations);
+        /// <param name="partOperations">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CachePartOperationsAsync(object partOperations)
+            => global::Roblox.Reflection.Invoke<object>(this, "CachePartOperationsAsync", partOperations)!;
 
         /// <summary>
         /// <c>AssetService.CanEditAssetAsync</c>
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
+        /// <param name="content">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool CanEditAssetAsync(string? content)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanEditAssetAsync", content);
+        public bool CanEditAssetAsync(string content)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanEditAssetAsync", content)!;
 
         /// <summary>
         /// Modifies an existing Decal to contain a composite PBR textures created by layering the provided textures in the order they are provided in the layers array. Textures layer based on the alpha value of the color map.
         /// </summary>
-        /// <param name="decal">A <c>Decal?</c> value.</param>
-        /// <param name="layers">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="decal">A <c>Decal</c> value.</param>
+        /// <param name="layers">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#ComposeDecalAsync"/>
-        public object? ComposeDecalAsync(Decal? decal, object? layers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ComposeDecalAsync", decal, layers);
+        public object ComposeDecalAsync(Decal decal, object layers)
+            => global::Roblox.Reflection.Invoke<object>(this, "ComposeDecalAsync", decal, layers)!;
 
         /// <summary>
         /// Uploads a new asset to Roblox from the given object.
         /// </summary>
-        /// <param name="object">A <c>Object?</c> value.</param>
+        /// <param name="@object">A <c>Object</c> value.</param>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
         /// <param name="requestParameters">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateAssetAsync"/>
-        public object? CreateAssetAsync(Object? @object, Enum.AssetType assetType, object? requestParameters)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAssetAsync", @object, assetType, requestParameters);
+        public object CreateAssetAsync(Object @object, Enum.AssetType assetType, object? requestParameters = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAssetAsync", @object, assetType, requestParameters)!;
 
         /// <summary>
         /// Uploads a new version for an existing asset from the given object.
         /// </summary>
-        /// <param name="object">A <c>Object?</c> value.</param>
+        /// <param name="@object">A <c>Object</c> value.</param>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="requestParameters">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateAssetVersionAsync"/>
-        public object? CreateAssetVersionAsync(Object? @object, Enum.AssetType assetType, long assetId, object? requestParameters)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAssetVersionAsync", @object, assetType, assetId, requestParameters);
+        public object CreateAssetVersionAsync(Object @object, Enum.AssetType assetType, long assetId, object? requestParameters = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAssetVersionAsync", @object, assetType, assetId, requestParameters)!;
 
         /// <summary>
         /// Creates ephemeral, DataModel-scoped content from the provided content input.
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
+        /// <param name="content">A <c>string</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateDataModelContentAsync"/>
-        public object? CreateDataModelContentAsync(string? content, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateDataModelContentAsync", content, options);
+        public object CreateDataModelContentAsync(string content, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateDataModelContentAsync", content, options)!;
 
         /// <summary>
         /// Creates a new EditableImage object populated with the given image.
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
+        /// <param name="content">A <c>string</c> value.</param>
         /// <param name="editableImageOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>EditableImage?</c> value returned by the engine.</returns>
+        /// <returns>A <c>EditableImage</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateEditableImageAsync"/>
-        public EditableImage? CreateEditableImageAsync(string? content, object? editableImageOptions)
-            => global::Roblox.Reflection.Invoke<EditableImage?>(this, "CreateEditableImageAsync", content, editableImageOptions);
+        public EditableImage CreateEditableImageAsync(string content, object? editableImageOptions = null)
+            => global::Roblox.Reflection.Invoke<EditableImage>(this, "CreateEditableImageAsync", content, editableImageOptions)!;
 
         /// <summary>
         /// Returns a new EditableMesh object created from an existing mesh content ID.
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
+        /// <param name="content">A <c>string</c> value.</param>
         /// <param name="editableMeshOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>EditableMesh?</c> value returned by the engine.</returns>
+        /// <returns>A <c>EditableMesh</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateEditableMeshAsync"/>
-        public EditableMesh? CreateEditableMeshAsync(string? content, object? editableMeshOptions)
-            => global::Roblox.Reflection.Invoke<EditableMesh?>(this, "CreateEditableMeshAsync", content, editableMeshOptions);
+        public EditableMesh CreateEditableMeshAsync(string content, object? editableMeshOptions = null)
+            => global::Roblox.Reflection.Invoke<EditableMesh>(this, "CreateEditableMeshAsync", content, editableMeshOptions)!;
 
         /// <summary>
         /// Creates a new MeshPart with a specified mesh ID and an optional table of fidelity values.
         /// </summary>
-        /// <param name="meshContent">A <c>string?</c> value.</param>
+        /// <param name="meshContent">A <c>string</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>MeshPart?</c> value returned by the engine.</returns>
+        /// <returns>A <c>MeshPart</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateMeshPartAsync"/>
-        public MeshPart? CreateMeshPartAsync(string? meshContent, object? options)
-            => global::Roblox.Reflection.Invoke<MeshPart?>(this, "CreateMeshPartAsync", meshContent, options);
+        public MeshPart CreateMeshPartAsync(string meshContent, object? options = null)
+            => global::Roblox.Reflection.Invoke<MeshPart>(this, "CreateMeshPartAsync", meshContent, options)!;
 
         /// <summary>
         /// Clones a place through the given templatePlaceID.
         /// </summary>
-        /// <param name="placeName">A <c>string?</c> value.</param>
+        /// <param name="placeName">A <c>string</c> value.</param>
         /// <param name="templatePlaceID">A <c>long</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreatePlaceAsync"/>
-        public long CreatePlaceAsync(string? placeName, long templatePlaceID, string? description)
-            => global::Roblox.Reflection.Invoke<long>(this, "CreatePlaceAsync", placeName, templatePlaceID, description);
+        public long CreatePlaceAsync(string placeName, long templatePlaceID, string description)
+            => global::Roblox.Reflection.Invoke<long>(this, "CreatePlaceAsync", placeName, templatePlaceID, description)!;
 
         /// <summary>
         /// Clones a place through the given templatePlaceID and puts it into the inventory of the given player.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="placeName">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="placeName">A <c>string</c> value.</param>
         /// <param name="templatePlaceID">A <c>long</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreatePlaceInPlayerInventoryAsync"/>
-        public long CreatePlaceInPlayerInventoryAsync(Instance? player, string? placeName, long templatePlaceID, string? description)
-            => global::Roblox.Reflection.Invoke<long>(this, "CreatePlaceInPlayerInventoryAsync", player, placeName, templatePlaceID, description);
+        public long CreatePlaceInPlayerInventoryAsync(Instance player, string placeName, long templatePlaceID, string description)
+            => global::Roblox.Reflection.Invoke<long>(this, "CreatePlaceInPlayerInventoryAsync", player, placeName, templatePlaceID, description)!;
 
         /// <summary>
         /// Creates a new SurfaceAppearance object using the provided content maps.
         /// </summary>
-        /// <param name="content">A <c>object?</c> value.</param>
-        /// <returns>A <c>SurfaceAppearance?</c> value returned by the engine.</returns>
+        /// <param name="content">A <c>object</c> value.</param>
+        /// <returns>A <c>SurfaceAppearance</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#CreateSurfaceAppearanceAsync"/>
-        public SurfaceAppearance? CreateSurfaceAppearanceAsync(object? content)
-            => global::Roblox.Reflection.Invoke<SurfaceAppearance?>(this, "CreateSurfaceAppearanceAsync", content);
+        public SurfaceAppearance CreateSurfaceAppearanceAsync(object content)
+            => global::Roblox.Reflection.Invoke<SurfaceAppearance>(this, "CreateSurfaceAppearanceAsync", content)!;
 
         /// <summary>
         /// Deprecated: Returns an array of asset IDs that are contained in a specified package.
         /// </summary>
         /// <param name="packageAssetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#GetAssetIdsForPackage"/>
-        public object? GetAssetIdsForPackage(long packageAssetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAssetIdsForPackage", packageAssetId);
+        public object GetAssetIdsForPackage(long packageAssetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAssetIdsForPackage", packageAssetId)!;
 
         /// <summary>
         /// Returns an array of asset IDs that are contained in a specified package.
         /// </summary>
         /// <param name="packageAssetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#GetAssetIdsForPackageAsync"/>
-        public object? GetAssetIdsForPackageAsync(long packageAssetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAssetIdsForPackageAsync", packageAssetId);
+        public object GetAssetIdsForPackageAsync(long packageAssetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAssetIdsForPackageAsync", packageAssetId)!;
 
         /// <summary>
         /// Provides relevant metadata about a specific audio source.
         /// </summary>
-        /// <param name="idList">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="idList">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#GetAudioMetadataAsync"/>
-        public object? GetAudioMetadataAsync(object? idList)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAudioMetadataAsync", idList);
+        public object GetAudioMetadataAsync(object idList)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAudioMetadataAsync", idList)!;
 
         /// <summary>
         /// Returns details of the contents of specified bundle.
         /// </summary>
         /// <param name="bundleId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#GetBundleDetailsAsync"/>
-        public object? GetBundleDetailsAsync(long bundleId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBundleDetailsAsync", bundleId);
+        public object GetBundleDetailsAsync(long bundleId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBundleDetailsAsync", bundleId)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated and no longer functions correctly. Do not use it for new work.Returns the UserId of the account who created the creationID asset.
@@ -233,7 +233,7 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#GetCreatorAssetID"/>
         public long GetCreatorAssetID(long creationID)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetCreatorAssetID", creationID);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetCreatorAssetID", creationID)!;
 
         /// <summary>
         /// Returns a StandardPages object which contains the name and PlaceId of places within the current experience.
@@ -255,50 +255,50 @@ namespace Roblox
         /// <summary>
         /// Allows in-experience asset creation for users by prompting a publish dialog.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#PromptCreateAssetAsync"/>
-        public object? PromptCreateAssetAsync(Player? player, Instance? instance, Enum.AssetType assetType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptCreateAssetAsync", player, instance, assetType);
+        public object PromptCreateAssetAsync(Player player, Instance instance, Enum.AssetType assetType)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptCreateAssetAsync", player, instance, assetType)!;
 
         /// <summary>
         /// <c>AssetService.PromptImportAnimationClipFromVideoAsync</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="progressCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="progressCallback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#PromptImportAnimationClipFromVideoAsync"/>
-        public object? PromptImportAnimationClipFromVideoAsync(Player? player, object? progressCallback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptImportAnimationClipFromVideoAsync", player, progressCallback);
+        public object PromptImportAnimationClipFromVideoAsync(Player player, object progressCallback)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptImportAnimationClipFromVideoAsync", player, progressCallback)!;
 
         /// <summary>
         /// Saves the state of the current place.
         /// </summary>
         /// <param name="requestParameters">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#SavePlaceAsync"/>
-        public object? SavePlaceAsync(object? requestParameters)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SavePlaceAsync", requestParameters);
+        public object SavePlaceAsync(object? requestParameters = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SavePlaceAsync", requestParameters)!;
 
         /// <summary>
         /// Deprecated: Finds audio assets matching a variety of search criteria.
         /// </summary>
-        /// <param name="searchParameters">A <c>AudioSearchParams?</c> value.</param>
-        /// <returns>A <c>AudioPages?</c> value returned by the engine.</returns>
+        /// <param name="searchParameters">A <c>AudioSearchParams</c> value.</param>
+        /// <returns>A <c>AudioPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#SearchAudio"/>
-        public AudioPages? SearchAudio(AudioSearchParams? searchParameters)
-            => global::Roblox.Reflection.Invoke<AudioPages?>(this, "SearchAudio", searchParameters);
+        public AudioPages SearchAudio(AudioSearchParams searchParameters)
+            => global::Roblox.Reflection.Invoke<AudioPages>(this, "SearchAudio", searchParameters)!;
 
         /// <summary>
         /// Finds audio assets matching a variety of search criteria.
         /// </summary>
-        /// <param name="searchParameters">A <c>AudioSearchParams?</c> value.</param>
-        /// <returns>A <c>AudioPages?</c> value returned by the engine.</returns>
+        /// <param name="searchParameters">A <c>AudioSearchParams</c> value.</param>
+        /// <returns>A <c>AudioPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#SearchAudioAsync"/>
-        public AudioPages? SearchAudioAsync(AudioSearchParams? searchParameters)
-            => global::Roblox.Reflection.Invoke<AudioPages?>(this, "SearchAudioAsync", searchParameters);
+        public AudioPages SearchAudioAsync(AudioSearchParams searchParameters)
+            => global::Roblox.Reflection.Invoke<AudioPages>(this, "SearchAudioAsync", searchParameters)!;
 
         /// <summary>
         /// <c>AssetService.AudioMetadataFailedResponse</c>
@@ -314,8 +314,8 @@ namespace Roblox
         /// <c>AssetService.AudioMetadataRequest</c>
         /// </summary>
         /// <param name="requestid">A <c>long</c> value.</param>
-        /// <param name="request">A <c>object?</c> value.</param>
-        public event Action<long, object?>? AudioMetadataRequest
+        /// <param name="request">A <c>object</c> value.</param>
+        public event Action<long, object>? AudioMetadataRequest
         {
             add { if (value is not null) AddEventHandler("AudioMetadataRequest", value); }
             remove { if (value is not null) RemoveEventHandler("AudioMetadataRequest", value); }
@@ -325,8 +325,8 @@ namespace Roblox
         /// <c>AssetService.AudioMetadataResponse</c>
         /// </summary>
         /// <param name="requestid">A <c>long</c> value.</param>
-        /// <param name="response">A <c>object?</c> value.</param>
-        public event Action<long, object?>? AudioMetadataResponse
+        /// <param name="response">A <c>object</c> value.</param>
+        public event Action<long, object>? AudioMetadataResponse
         {
             add { if (value is not null) AddEventHandler("AudioMetadataResponse", value); }
             remove { if (value is not null) RemoveEventHandler("AudioMetadataResponse", value); }

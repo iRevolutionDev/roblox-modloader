@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SkateboardPlatform"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SkateboardPlatform? FromHandle(nuint handle)
+        public static new SkateboardPlatform? FromHandle(nuint handle)
             => handle == 0 ? null : new SkateboardPlatform(handle);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Steer"/>
         public int Steer
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Steer");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Steer")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Steer", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#StickyWheels"/>
         public bool StickyWheels
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "StickyWheels");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "StickyWheels")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "StickyWheels", value);
         }
 
@@ -71,26 +71,26 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Throttle"/>
         public int Throttle
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Throttle");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Throttle")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Throttle", value);
         }
 
         /// <summary>
         /// Adds ''impulseWorld'' to the SkateboardPlatform's BasePart.Velocity.
         /// </summary>
-        /// <param name="impulseWorld">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="impulseWorld">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#ApplySpecificImpulse"/>
-        public object? ApplySpecificImpulse(global::Roblox.Vector3? impulseWorld)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplySpecificImpulse", impulseWorld);
+        public object ApplySpecificImpulse(global::Roblox.Vector3 impulseWorld)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplySpecificImpulse", impulseWorld)!;
 
         /// <summary>
         /// Fired when the skateboard is equipped.
         /// </summary>
-        /// <param name="humanoid">A <c>Instance?</c> value.</param>
-        /// <param name="skateboardController">A <c>Instance?</c> value.</param>
+        /// <param name="humanoid">A <c>Instance</c> value.</param>
+        /// <param name="skateboardController">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Equipped"/>
-        public event Action<Instance?, Instance?>? Equipped
+        public event Action<Instance, Instance>? Equipped
         {
             add { if (value is not null) AddEventHandler("Equipped", value); }
             remove { if (value is not null) RemoveEventHandler("Equipped", value); }
@@ -111,9 +111,9 @@ namespace Roblox
         /// <summary>
         /// Fired whenever the skateboard is unequipped.
         /// </summary>
-        /// <param name="humanoid">A <c>Instance?</c> value.</param>
+        /// <param name="humanoid">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Unequipped"/>
-        public event Action<Instance?>? Unequipped
+        public event Action<Instance>? Unequipped
         {
             add { if (value is not null) AddEventHandler("Unequipped", value); }
             remove { if (value is not null) RemoveEventHandler("Unequipped", value); }

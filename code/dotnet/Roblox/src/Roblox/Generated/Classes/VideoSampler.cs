@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoSampler"/>
     [RobloxClass("VideoSampler")]
-    public class VideoSampler : Object
+    public class VideoSampler : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VideoSampler.</param>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoSampler#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 
@@ -39,20 +39,20 @@ namespace Roblox
         /// The asset loaded into the VideoSampler.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoSampler#VideoContent"/>
-        public string? VideoContent
+        public string VideoContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "VideoContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "VideoContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "VideoContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "VideoContent", value);
         }
 
         /// <summary>
         /// Gets image frames at the specified timestamps.
         /// </summary>
-        /// <param name="times">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="times">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoSampler#GetSamplesAtTimesAsync"/>
-        public object? GetSamplesAtTimesAsync(object? times)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSamplesAtTimesAsync", times);
+        public object GetSamplesAtTimesAsync(object times)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSamplesAtTimesAsync", times)!;
 
     }
 }

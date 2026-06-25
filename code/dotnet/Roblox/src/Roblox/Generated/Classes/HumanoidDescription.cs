@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="HumanoidDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HumanoidDescription? FromHandle(nuint handle)
+        public static new HumanoidDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new HumanoidDescription(handle);
 
         /// <summary>
         /// A JSON formatted array of Layered clothing where each table in the entry in the array describes an accessory's AssetId, AccessoryType, Order, and (optionally) Puffiness as key-value pairs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#AccessoryBlob"/>
-        public string? AccessoryBlob
+        public string AccessoryBlob
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AccessoryBlob");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AccessoryBlob", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AccessoryBlob")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AccessoryBlob", value);
         }
 
         /// <summary>
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to its back (such as capes).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#BackAccessory"/>
-        public string? BackAccessory
+        public string BackAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "BackAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "BackAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "BackAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "BackAccessory", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#BodyTypeScale"/>
         public float BodyTypeScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BodyTypeScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BodyTypeScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BodyTypeScale", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#ClimbAnimation"/>
         public long ClimbAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "ClimbAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "ClimbAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "ClimbAnimation", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#DepthScale"/>
         public float DepthScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DepthScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DepthScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DepthScale", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Face"/>
         public long Face
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Face");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Face")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Face", value);
         }
 
@@ -89,10 +89,10 @@ namespace Roblox
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to the front of its face (such as glasses).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#FaceAccessory"/>
-        public string? FaceAccessory
+        public string FaceAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FaceAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FaceAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FaceAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FaceAccessory", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#FallAnimation"/>
         public long FallAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "FallAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "FallAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "FallAnimation", value);
         }
 
@@ -109,10 +109,10 @@ namespace Roblox
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to front of its torso (such as medals or ties).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#FrontAccessory"/>
-        public string? FrontAccessory
+        public string FrontAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FrontAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FrontAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FrontAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FrontAccessory", value);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#GraphicTShirt"/>
         public long GraphicTShirt
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GraphicTShirt");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GraphicTShirt")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GraphicTShirt", value);
         }
 
@@ -129,20 +129,20 @@ namespace Roblox
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to its head resembling hair.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HairAccessory"/>
-        public string? HairAccessory
+        public string HairAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "HairAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "HairAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "HairAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "HairAccessory", value);
         }
 
         /// <summary>
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to its head.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HatAccessory"/>
-        public string? HatAccessory
+        public string HatAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "HatAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "HatAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "HatAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "HatAccessory", value);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Head"/>
         public long Head
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Head");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Head")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Head", value);
         }
 
@@ -159,10 +159,10 @@ namespace Roblox
         /// Determines the BodyColors.HeadColor3 and BodyColors.HeadColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HeadColor"/>
-        public global::Roblox.Color3? HeadColor
+        public global::Roblox.Color3 HeadColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "HeadColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "HeadColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "HeadColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "HeadColor", value);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HeadScale"/>
         public float HeadScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HeadScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HeadScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HeadScale", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#HeightScale"/>
         public float HeightScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HeightScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HeightScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HeightScale", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#IdleAnimation"/>
         public long IdleAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "IdleAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "IdleAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "IdleAnimation", value);
         }
 
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#JumpAnimation"/>
         public long JumpAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "JumpAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "JumpAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "JumpAnimation", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftArm"/>
         public long LeftArm
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "LeftArm");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "LeftArm")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "LeftArm", value);
         }
 
@@ -219,10 +219,10 @@ namespace Roblox
         /// Determines the BodyColors.LeftArmColor3 and BodyColors.LeftArmColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftArmColor"/>
-        public global::Roblox.Color3? LeftArmColor
+        public global::Roblox.Color3 LeftArmColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "LeftArmColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "LeftArmColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "LeftArmColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "LeftArmColor", value);
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftLeg"/>
         public long LeftLeg
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "LeftLeg");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "LeftLeg")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "LeftLeg", value);
         }
 
@@ -239,10 +239,10 @@ namespace Roblox
         /// Determines the BodyColors.LeftLegColor3 and BodyColors.LeftLegColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#LeftLegColor"/>
-        public global::Roblox.Color3? LeftLegColor
+        public global::Roblox.Color3 LeftLegColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "LeftLegColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "LeftLegColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "LeftLegColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "LeftLegColor", value);
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#MoodAnimation"/>
         public long MoodAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "MoodAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "MoodAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "MoodAnimation", value);
         }
 
@@ -259,15 +259,15 @@ namespace Roblox
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to its neck (such as scarves or necklaces).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#NeckAccessory"/>
-        public string? NeckAccessory
+        public string NeckAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "NeckAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "NeckAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "NeckAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "NeckAccessory", value);
         }
 
         public int NumberEmotesLoaded
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "NumberEmotesLoaded");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "NumberEmotesLoaded")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "NumberEmotesLoaded", value);
         }
 
@@ -277,7 +277,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Pants"/>
         public long Pants
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Pants");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Pants")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Pants", value);
         }
 
@@ -287,13 +287,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#ProportionScale"/>
         public float ProportionScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ProportionScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ProportionScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ProportionScale", value);
         }
 
         public bool ResetIncludesBodyParts
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetIncludesBodyParts");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetIncludesBodyParts")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ResetIncludesBodyParts", value);
         }
 
@@ -303,7 +303,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightArm"/>
         public long RightArm
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "RightArm");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "RightArm")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "RightArm", value);
         }
 
@@ -311,10 +311,10 @@ namespace Roblox
         /// Determines the BodyColors.RightArmColor3 and BodyColors.RightArmColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightArmColor"/>
-        public global::Roblox.Color3? RightArmColor
+        public global::Roblox.Color3 RightArmColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "RightArmColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "RightArmColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "RightArmColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "RightArmColor", value);
         }
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightLeg"/>
         public long RightLeg
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "RightLeg");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "RightLeg")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "RightLeg", value);
         }
 
@@ -331,10 +331,10 @@ namespace Roblox
         /// Determines the BodyColors.RightLegColor3 and BodyColors.RightLegColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RightLegColor"/>
-        public global::Roblox.Color3? RightLegColor
+        public global::Roblox.Color3 RightLegColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "RightLegColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "RightLegColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "RightLegColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "RightLegColor", value);
         }
 
         /// <summary>
@@ -343,7 +343,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RunAnimation"/>
         public long RunAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "RunAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "RunAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "RunAnimation", value);
         }
 
@@ -353,7 +353,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Shirt"/>
         public long Shirt
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Shirt");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Shirt")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Shirt", value);
         }
 
@@ -361,10 +361,10 @@ namespace Roblox
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to its shoulders (such as shoulder-mounted critters).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#ShouldersAccessory"/>
-        public string? ShouldersAccessory
+        public string ShouldersAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ShouldersAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ShouldersAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ShouldersAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ShouldersAccessory", value);
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#StaticFacialAnimation"/>
         public bool StaticFacialAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "StaticFacialAnimation");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "StaticFacialAnimation")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "StaticFacialAnimation", value);
         }
 
@@ -383,7 +383,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#SwimAnimation"/>
         public long SwimAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "SwimAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "SwimAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "SwimAnimation", value);
         }
 
@@ -393,7 +393,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#Torso"/>
         public long Torso
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Torso");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Torso")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Torso", value);
         }
 
@@ -401,10 +401,10 @@ namespace Roblox
         /// Determines the BodyColors.TorsoColor3 and BodyColors.TorsoColor of a Humanoid when applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#TorsoColor"/>
-        public global::Roblox.Color3? TorsoColor
+        public global::Roblox.Color3 TorsoColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TorsoColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TorsoColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TorsoColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TorsoColor", value);
         }
 
         /// <summary>
@@ -413,7 +413,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#UseAvatarSettings"/>
         public bool UseAvatarSettings
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseAvatarSettings");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseAvatarSettings")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseAvatarSettings", value);
         }
 
@@ -421,10 +421,10 @@ namespace Roblox
         /// A comma-separated list of asset IDs that will be added as Accessories to a Humanoid rig when applied, usually those attached to its waist (such as belts).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#WaistAccessory"/>
-        public string? WaistAccessory
+        public string WaistAccessory
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "WaistAccessory");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "WaistAccessory", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "WaistAccessory")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "WaistAccessory", value);
         }
 
         /// <summary>
@@ -433,7 +433,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#WalkAnimation"/>
         public long WalkAnimation
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "WalkAnimation");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "WalkAnimation")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "WalkAnimation", value);
         }
 
@@ -443,88 +443,88 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#WidthScale"/>
         public float WidthScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WidthScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WidthScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WidthScale", value);
         }
 
         /// <summary>
         /// Adds the emote to the description given a name and its asset ID.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#AddEmote"/>
-        public object? AddEmote(string? name, long assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddEmote", name, assetId);
+        public object AddEmote(string name, long assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddEmote", name, assetId)!;
 
         /// <summary>
         /// Returns a table of an avatar's current accessories.
         /// </summary>
         /// <param name="includeRigidAccessories">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#GetAccessories"/>
-        public object? GetAccessories(bool includeRigidAccessories)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAccessories", includeRigidAccessories);
+        public object GetAccessories(bool includeRigidAccessories)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAccessories", includeRigidAccessories)!;
 
         /// <summary>
         /// Returns a dictionary of emotes that have been added or set to this description.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#GetEmotes"/>
-        public object? GetEmotes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEmotes");
+        public object GetEmotes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEmotes")!;
 
         /// <summary>
         /// Returns an array of tables describing the equipped emotes that have been set.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#GetEquippedEmotes"/>
-        public object? GetEquippedEmotes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEquippedEmotes");
+        public object GetEquippedEmotes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEquippedEmotes")!;
 
         /// <summary>
         /// Removes any emotes that have been added under the given name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#RemoveEmote"/>
-        public object? RemoveEmote(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveEmote", name);
+        public object RemoveEmote(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveEmote", name)!;
 
         /// <summary>
         /// Accepts a table that sets the accessories and related properties for an avatar.
         /// </summary>
-        /// <param name="accessories">A <c>object?</c> value.</param>
+        /// <param name="accessories">A <c>object</c> value.</param>
         /// <param name="includeRigidAccessories">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#SetAccessories"/>
-        public object? SetAccessories(object? accessories, bool includeRigidAccessories)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAccessories", accessories, includeRigidAccessories);
+        public object SetAccessories(object accessories, bool includeRigidAccessories)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAccessories", accessories, includeRigidAccessories)!;
 
         /// <summary>
         /// Sets all of the emotes on this description.
         /// </summary>
-        /// <param name="emotes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="emotes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#SetEmotes"/>
-        public object? SetEmotes(object? emotes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEmotes", emotes);
+        public object SetEmotes(object emotes)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEmotes", emotes)!;
 
         /// <summary>
         /// Sets the currently equipped emotes given an array of emote names.
         /// </summary>
-        /// <param name="equippedEmotes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="equippedEmotes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#SetEquippedEmotes"/>
-        public object? SetEquippedEmotes(object? equippedEmotes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEquippedEmotes", equippedEmotes);
+        public object SetEquippedEmotes(object equippedEmotes)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEquippedEmotes", equippedEmotes)!;
 
         /// <summary>
         /// Fires when emotes are added, removed or set on this description.
         /// </summary>
-        /// <param name="newEmotes">A <c>object?</c> value.</param>
+        /// <param name="newEmotes">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#EmotesChanged"/>
-        public event Action<object?>? EmotesChanged
+        public event Action<object>? EmotesChanged
         {
             add { if (value is not null) AddEventHandler("EmotesChanged", value); }
             remove { if (value is not null) RemoveEventHandler("EmotesChanged", value); }
@@ -533,9 +533,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the equipped emotes are set on this description.
         /// </summary>
-        /// <param name="newEquippedEmotes">A <c>object?</c> value.</param>
+        /// <param name="newEquippedEmotes">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidDescription#EquippedEmotesChanged"/>
-        public event Action<object?>? EquippedEmotesChanged
+        public event Action<object>? EquippedEmotesChanged
         {
             add { if (value is not null) AddEventHandler("EquippedEmotesChanged", value); }
             remove { if (value is not null) RemoveEventHandler("EquippedEmotesChanged", value); }

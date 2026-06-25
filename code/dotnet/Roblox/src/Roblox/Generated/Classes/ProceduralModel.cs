@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="ProceduralModel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ProceduralModel? FromHandle(nuint handle)
+        public static new ProceduralModel? FromHandle(nuint handle)
             => handle == 0 ? null : new ProceduralModel(handle);
 
         /// <summary>
         /// Stores errors that the generator module might encounter during generation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#GenerationError"/>
-        public string? GenerationError
+        public string GenerationError
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GenerationError");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GenerationError", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "GenerationError")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "GenerationError", value);
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Roblox
         /// Defines the bounding volume used for generation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#Size"/>
-        public global::Roblox.Vector3? Size
+        public global::Roblox.Vector3 Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Size")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Size", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#ForceGeneration"/>
         public bool ForceGeneration()
-            => global::Roblox.Reflection.Invoke<bool>(this, "ForceGeneration");
+            => global::Roblox.Reflection.Invoke<bool>(this, "ForceGeneration")!;
 
         /// <summary>
         /// Waits for generation to complete after making parameter changes.
@@ -69,7 +69,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#WaitForGenerationAsync"/>
         public bool WaitForGenerationAsync()
-            => global::Roblox.Reflection.Invoke<bool>(this, "WaitForGenerationAsync");
+            => global::Roblox.Reflection.Invoke<bool>(this, "WaitForGenerationAsync")!;
 
     }
 }

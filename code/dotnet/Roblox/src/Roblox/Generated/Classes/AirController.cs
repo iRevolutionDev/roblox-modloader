@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AirController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AirController? FromHandle(nuint handle)
+        public static new AirController? FromHandle(nuint handle)
             => handle == 0 ? null : new AirController(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#BalanceMaxTorque"/>
         public float BalanceMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceMaxTorque", value);
         }
 
@@ -41,14 +41,14 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#BalanceSpeed"/>
         public float BalanceSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceSpeed", value);
         }
 
-        public global::Roblox.Vector3? LinearImpulse
+        public global::Roblox.Vector3 LinearImpulse
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LinearImpulse");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LinearImpulse", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LinearImpulse")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LinearImpulse", value);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#MaintainAngularMomentum"/>
         public bool MaintainAngularMomentum
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MaintainAngularMomentum");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MaintainAngularMomentum")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MaintainAngularMomentum", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#MaintainLinearMomentum"/>
         public bool MaintainLinearMomentum
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MaintainLinearMomentum");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MaintainLinearMomentum")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MaintainLinearMomentum", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#MoveMaxForce"/>
         public float MoveMaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MoveMaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MoveMaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MoveMaxForce", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#TurnMaxTorque"/>
         public float TurnMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TurnMaxTorque", value);
         }
 
@@ -97,7 +97,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AirController#TurnSpeedFactor"/>
         public float TurnSpeedFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnSpeedFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnSpeedFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TurnSpeedFactor", value);
         }
 

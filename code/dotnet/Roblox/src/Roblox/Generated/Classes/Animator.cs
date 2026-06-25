@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Animator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Animator? FromHandle(nuint handle)
+        public static new Animator? FromHandle(nuint handle)
             => handle == 0 ? null : new Animator(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#EvaluationThrottled"/>
         public bool EvaluationThrottled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EvaluationThrottled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EvaluationThrottled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EvaluationThrottled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#PreferLodEnabled"/>
         public bool PreferLodEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PreferLodEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PreferLodEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PreferLodEnabled", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// <c>Animator.RootMotion</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#RootMotion"/>
-        public global::Roblox.CFrame? RootMotion
+        public global::Roblox.CFrame RootMotion
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RootMotion");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RootMotion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RootMotion")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RootMotion", value);
         }
 
         /// <summary>
@@ -61,129 +61,129 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#RootMotionWeight"/>
         public float RootMotionWeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RootMotionWeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RootMotionWeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RootMotionWeight", value);
         }
 
         /// <summary>
         /// Computes relative velocities between parts and applies them to Motor6D.Part1.
         /// </summary>
-        /// <param name="motors">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="motors">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#ApplyJointVelocities"/>
-        public object? ApplyJointVelocities(object? motors)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyJointVelocities", motors);
+        public object ApplyJointVelocities(object motors)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyJointVelocities", motors)!;
 
         /// <summary>
         /// Returns the list of currently active AnimationTracks.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#GetPlayingAnimationTracks"/>
-        public object? GetPlayingAnimationTracks()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayingAnimationTracks");
+        public object GetPlayingAnimationTracks()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPlayingAnimationTracks")!;
 
         /// <summary>
         /// <c>Animator.GetPlayingAnimationTracksCoreScript</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPlayingAnimationTracksCoreScript()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayingAnimationTracksCoreScript");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPlayingAnimationTracksCoreScript()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPlayingAnimationTracksCoreScript")!;
 
         /// <summary>
         /// Returns an existing AnimationTrack on this Animator that was loaded from an Animation with the given animation ID. Unlike LoadAnimation(), this method does not create a new AnimationTrack instance.
         /// </summary>
-        /// <param name="animationId">A <c>object?</c> value.</param>
-        /// <returns>A <c>AnimationTrack?</c> value returned by the engine.</returns>
+        /// <param name="animationId">A <c>object</c> value.</param>
+        /// <returns>A <c>AnimationTrack</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#GetTrackByAnimationId"/>
-        public AnimationTrack? GetTrackByAnimationId(object? animationId)
-            => global::Roblox.Reflection.Invoke<AnimationTrack?>(this, "GetTrackByAnimationId", animationId);
+        public AnimationTrack GetTrackByAnimationId(object animationId)
+            => global::Roblox.Reflection.Invoke<AnimationTrack>(this, "GetTrackByAnimationId", animationId)!;
 
         /// <summary>
         /// Loads an Animation onto an Animator, returning an AnimationTrack.
         /// </summary>
-        /// <param name="animation">A <c>Animation?</c> value.</param>
-        /// <returns>A <c>AnimationTrack?</c> value returned by the engine.</returns>
+        /// <param name="animation">A <c>Animation</c> value.</param>
+        /// <returns>A <c>AnimationTrack</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#LoadAnimation"/>
-        public AnimationTrack? LoadAnimation(Animation? animation)
-            => global::Roblox.Reflection.Invoke<AnimationTrack?>(this, "LoadAnimation", animation);
+        public AnimationTrack LoadAnimation(Animation animation)
+            => global::Roblox.Reflection.Invoke<AnimationTrack>(this, "LoadAnimation", animation)!;
 
         /// <summary>
         /// <c>Animator.LoadAnimationCoreScript</c>
         /// </summary>
-        /// <param name="animation">A <c>Animation?</c> value.</param>
-        /// <returns>A <c>AnimationTrack?</c> value returned by the engine.</returns>
-        public AnimationTrack? LoadAnimationCoreScript(Animation? animation)
-            => global::Roblox.Reflection.Invoke<AnimationTrack?>(this, "LoadAnimationCoreScript", animation);
+        /// <param name="animation">A <c>Animation</c> value.</param>
+        /// <returns>A <c>AnimationTrack</c> value returned by the engine.</returns>
+        public AnimationTrack LoadAnimationCoreScript(Animation animation)
+            => global::Roblox.Reflection.Invoke<AnimationTrack>(this, "LoadAnimationCoreScript", animation)!;
 
         /// <summary>
         /// <c>Animator.LoadStreamAnimation</c>
         /// </summary>
-        /// <param name="animation">A <c>TrackerStreamAnimation?</c> value.</param>
-        /// <returns>A <c>AnimationStreamTrack?</c> value returned by the engine.</returns>
-        public AnimationStreamTrack? LoadStreamAnimation(TrackerStreamAnimation? animation)
-            => global::Roblox.Reflection.Invoke<AnimationStreamTrack?>(this, "LoadStreamAnimation", animation);
+        /// <param name="animation">A <c>TrackerStreamAnimation</c> value.</param>
+        /// <returns>A <c>AnimationStreamTrack</c> value returned by the engine.</returns>
+        public AnimationStreamTrack LoadStreamAnimation(TrackerStreamAnimation animation)
+            => global::Roblox.Reflection.Invoke<AnimationStreamTrack>(this, "LoadStreamAnimation", animation)!;
 
         /// <summary>
         /// <c>Animator.LoadStreamAnimationForSelfieView_deprecated</c>
         /// </summary>
-        /// <param name="animation">A <c>TrackerStreamAnimation?</c> value.</param>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>AnimationStreamTrack?</c> value returned by the engine.</returns>
-        public AnimationStreamTrack? LoadStreamAnimationForSelfieView_deprecated(TrackerStreamAnimation? animation, Player? player)
-            => global::Roblox.Reflection.Invoke<AnimationStreamTrack?>(this, "LoadStreamAnimationForSelfieView_deprecated", animation, player);
+        /// <param name="animation">A <c>TrackerStreamAnimation</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>AnimationStreamTrack</c> value returned by the engine.</returns>
+        public AnimationStreamTrack LoadStreamAnimationForSelfieView_deprecated(TrackerStreamAnimation animation, Player player)
+            => global::Roblox.Reflection.Invoke<AnimationStreamTrack>(this, "LoadStreamAnimationForSelfieView_deprecated", animation, player)!;
 
         /// <summary>
         /// <c>Animator.LoadStreamAnimationV2</c>
         /// </summary>
-        /// <param name="animation">A <c>TrackerStreamAnimation?</c> value.</param>
+        /// <param name="animation">A <c>TrackerStreamAnimation</c> value.</param>
         /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="shouldLookupPlayer">A <c>bool</c> value.</param>
-        /// <param name="shouldReplicate">A <c>bool</c> value.</param>
-        /// <returns>A <c>AnimationStreamTrack?</c> value returned by the engine.</returns>
-        public AnimationStreamTrack? LoadStreamAnimationV2(TrackerStreamAnimation? animation, Player? player, bool shouldLookupPlayer, bool shouldReplicate)
-            => global::Roblox.Reflection.Invoke<AnimationStreamTrack?>(this, "LoadStreamAnimationV2", animation, player, shouldLookupPlayer, shouldReplicate);
+        /// <param name="shouldLookupPlayer">A <c>bool?</c> value.</param>
+        /// <param name="shouldReplicate">A <c>bool?</c> value.</param>
+        /// <returns>A <c>AnimationStreamTrack</c> value returned by the engine.</returns>
+        public AnimationStreamTrack LoadStreamAnimationV2(TrackerStreamAnimation animation, Player? player = null, bool? shouldLookupPlayer = null, bool? shouldReplicate = null)
+            => global::Roblox.Reflection.Invoke<AnimationStreamTrack>(this, "LoadStreamAnimationV2", animation, player, shouldLookupPlayer, shouldReplicate)!;
 
         /// <summary>
         /// <c>Animator.RegisterEvaluationParallelCallback</c>
         /// </summary>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#RegisterEvaluationParallelCallback"/>
-        public object? RegisterEvaluationParallelCallback(object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterEvaluationParallelCallback", callback);
+        public object RegisterEvaluationParallelCallback(object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterEvaluationParallelCallback", callback)!;
 
         /// <summary>
         /// Increments the AnimationTrack.TimePosition of all playing AnimationTracks that are loaded onto the Animator, applying the offsets to the model associated with the Animator. For use in the command bar or by plugins only.
         /// </summary>
         /// <param name="deltaTime">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#StepAnimations"/>
-        public object? StepAnimations(float deltaTime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StepAnimations", deltaTime);
+        public object StepAnimations(float deltaTime)
+            => global::Roblox.Reflection.Invoke<object>(this, "StepAnimations", deltaTime)!;
 
         /// <summary>
         /// <c>Animator.StepAnimationsInternal</c>
         /// </summary>
         /// <param name="deltaTime">A <c>float</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StepAnimationsInternal(float deltaTime, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StepAnimationsInternal", deltaTime, options);
+        /// <param name="options">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StepAnimationsInternal(float deltaTime, object options)
+            => global::Roblox.Reflection.Invoke<object>(this, "StepAnimationsInternal", deltaTime, options)!;
 
         /// <summary>
         /// <c>Animator.SynchronizeWith</c>
         /// </summary>
-        /// <param name="otherAnimator">A <c>Animator?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SynchronizeWith(Animator? otherAnimator)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SynchronizeWith", otherAnimator);
+        /// <param name="otherAnimator">A <c>Animator</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SynchronizeWith(Animator otherAnimator)
+            => global::Roblox.Reflection.Invoke<object>(this, "SynchronizeWith", otherAnimator)!;
 
         /// <summary>
         /// Fires when the Animator starts playing an AnimationTrack.
         /// </summary>
-        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
+        /// <param name="animationTrack">A <c>AnimationTrack</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animator#AnimationPlayed"/>
-        public event Action<AnimationTrack?>? AnimationPlayed
+        public event Action<AnimationTrack>? AnimationPlayed
         {
             add { if (value is not null) AddEventHandler("AnimationPlayed", value); }
             remove { if (value is not null) RemoveEventHandler("AnimationPlayed", value); }
@@ -192,8 +192,8 @@ namespace Roblox
         /// <summary>
         /// <c>Animator.AnimationPlayedCoreScript</c>
         /// </summary>
-        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
-        public event Action<AnimationTrack?>? AnimationPlayedCoreScript
+        /// <param name="animationTrack">A <c>AnimationTrack</c> value.</param>
+        public event Action<AnimationTrack>? AnimationPlayedCoreScript
         {
             add { if (value is not null) AddEventHandler("AnimationPlayedCoreScript", value); }
             remove { if (value is not null) RemoveEventHandler("AnimationPlayedCoreScript", value); }
@@ -202,8 +202,8 @@ namespace Roblox
         /// <summary>
         /// <c>Animator.AnimationStreamTrackPlayed</c>
         /// </summary>
-        /// <param name="animationTrack">A <c>AnimationStreamTrack?</c> value.</param>
-        public event Action<AnimationStreamTrack?>? AnimationStreamTrackPlayed
+        /// <param name="animationTrack">A <c>AnimationStreamTrack</c> value.</param>
+        public event Action<AnimationStreamTrack>? AnimationStreamTrackPlayed
         {
             add { if (value is not null) AddEventHandler("AnimationStreamTrackPlayed", value); }
             remove { if (value is not null) RemoveEventHandler("AnimationStreamTrackPlayed", value); }

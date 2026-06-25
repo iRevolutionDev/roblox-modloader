@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StyleLink"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StyleLink? FromHandle(nuint handle)
+        public static new StyleLink? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleLink(handle);
 
         /// <summary>

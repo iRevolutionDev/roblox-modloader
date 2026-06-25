@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="OpenCloudApiV1"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static OpenCloudApiV1? FromHandle(nuint handle)
+        public static new OpenCloudApiV1? FromHandle(nuint handle)
             => handle == 0 ? null : new OpenCloudApiV1(handle);
 
         /// <summary>
         /// Deprecated:
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OpenCloudApiV1#CreateModel"/>
-        public object? CreateModel(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateModel", name);
+        public object CreateModel(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateModel", name)!;
 
         /// <summary>
         /// Deprecated:
         /// </summary>
-        /// <param name="user">A <c>string?</c> value.</param>
-        /// <param name="userNotification">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>string</c> value.</param>
+        /// <param name="userNotification">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OpenCloudApiV1#CreateUserNotificationAsync"/>
-        public object? CreateUserNotificationAsync(string? user, object? userNotification)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateUserNotificationAsync", user, userNotification);
+        public object CreateUserNotificationAsync(string user, object userNotification)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateUserNotificationAsync", user, userNotification)!;
 
     }
 }

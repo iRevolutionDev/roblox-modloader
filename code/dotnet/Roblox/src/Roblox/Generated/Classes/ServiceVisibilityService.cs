@@ -22,43 +22,43 @@ namespace Roblox
         /// Creates a <see cref="ServiceVisibilityService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ServiceVisibilityService? FromHandle(nuint handle)
+        public static new ServiceVisibilityService? FromHandle(nuint handle)
             => handle == 0 ? null : new ServiceVisibilityService(handle);
 
         /// <summary>
         /// <c>ServiceVisibilityService.HiddenServices</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceVisibilityService#HiddenServices"/>
-        public byte[]? HiddenServices
+        public byte[] HiddenServices
         {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "HiddenServices");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "HiddenServices", value);
+            get => global::Roblox.Reflection.GetProperty<byte[]>(this, "HiddenServices")!;
+            set => global::Roblox.Reflection.SetProperty<byte[]>(this, "HiddenServices", value);
         }
 
         /// <summary>
         /// <c>ServiceVisibilityService.VisibleServices</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceVisibilityService#VisibleServices"/>
-        public byte[]? VisibleServices
+        public byte[] VisibleServices
         {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "VisibleServices");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "VisibleServices", value);
+            get => global::Roblox.Reflection.GetProperty<byte[]>(this, "VisibleServices")!;
+            set => global::Roblox.Reflection.SetProperty<byte[]>(this, "VisibleServices", value);
         }
 
         /// <summary>
         /// <c>ServiceVisibilityService.SetServiceVisibilityPreference</c>
         /// </summary>
-        /// <param name="service">A <c>Instance?</c> value.</param>
+        /// <param name="service">A <c>Instance</c> value.</param>
         /// <param name="visible">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetServiceVisibilityPreference(Instance? service, bool visible)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetServiceVisibilityPreference", service, visible);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetServiceVisibilityPreference(Instance service, bool visible)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetServiceVisibilityPreference", service, visible)!;
 
         /// <summary>
         /// <c>ServiceVisibilityService.ServiceVisibilityChanged</c>
         /// </summary>
-        /// <param name="serviceName">A <c>string?</c> value.</param>
-        public event Action<string?>? ServiceVisibilityChanged
+        /// <param name="serviceName">A <c>string</c> value.</param>
+        public event Action<string>? ServiceVisibilityChanged
         {
             add { if (value is not null) AddEventHandler("ServiceVisibilityChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ServiceVisibilityChanged", value); }

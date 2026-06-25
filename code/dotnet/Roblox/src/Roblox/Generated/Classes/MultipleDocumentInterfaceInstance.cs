@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="MultipleDocumentInterfaceInstance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MultipleDocumentInterfaceInstance? FromHandle(nuint handle)
+        public static new MultipleDocumentInterfaceInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new MultipleDocumentInterfaceInstance(handle);
 
         public DataModelSession? FocusedDataModelSession
@@ -34,8 +34,8 @@ namespace Roblox
         /// <summary>
         /// <c>MultipleDocumentInterfaceInstance.DataModelSessionEnded</c>
         /// </summary>
-        /// <param name="dataModelSession">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? DataModelSessionEnded
+        /// <param name="dataModelSession">A <c>Instance</c> value.</param>
+        public event Action<Instance>? DataModelSessionEnded
         {
             add { if (value is not null) AddEventHandler("DataModelSessionEnded", value); }
             remove { if (value is not null) RemoveEventHandler("DataModelSessionEnded", value); }
@@ -44,8 +44,8 @@ namespace Roblox
         /// <summary>
         /// <c>MultipleDocumentInterfaceInstance.DataModelSessionStarted</c>
         /// </summary>
-        /// <param name="dataModelSession">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? DataModelSessionStarted
+        /// <param name="dataModelSession">A <c>Instance</c> value.</param>
+        public event Action<Instance>? DataModelSessionStarted
         {
             add { if (value is not null) AddEventHandler("DataModelSessionStarted", value); }
             remove { if (value is not null) RemoveEventHandler("DataModelSessionStarted", value); }

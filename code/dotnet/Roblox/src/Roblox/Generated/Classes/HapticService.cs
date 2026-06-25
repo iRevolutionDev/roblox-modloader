@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HapticService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HapticService? FromHandle(nuint handle)
+        public static new HapticService? FromHandle(nuint handle)
             => handle == 0 ? null : new HapticService(handle);
 
         /// <summary>
@@ -30,10 +30,10 @@ namespace Roblox
         /// </summary>
         /// <param name="inputType">A <c>Enum.UserInputType</c> value.</param>
         /// <param name="vibrationMotor">A <c>Enum.VibrationMotor</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticService#GetMotor"/>
-        public object? GetMotor(Enum.UserInputType inputType, Enum.VibrationMotor vibrationMotor)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMotor", inputType, vibrationMotor);
+        public object GetMotor(Enum.UserInputType inputType, Enum.VibrationMotor vibrationMotor)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMotor", inputType, vibrationMotor)!;
 
         /// <summary>
         /// Returns true if the specified motor is available to be used with the specified UserInputType.
@@ -43,7 +43,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticService#IsMotorSupported"/>
         public bool IsMotorSupported(Enum.UserInputType inputType, Enum.VibrationMotor vibrationMotor)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsMotorSupported", inputType, vibrationMotor);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsMotorSupported", inputType, vibrationMotor)!;
 
         /// <summary>
         /// Returns true if the specified UserInputType supports haptic feedback.
@@ -52,18 +52,18 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticService#IsVibrationSupported"/>
         public bool IsVibrationSupported(Enum.UserInputType inputType)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsVibrationSupported", inputType);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsVibrationSupported", inputType)!;
 
         /// <summary>
         /// Sets the vibration intensity of the specified UserInputType and VibrationMotor.
         /// </summary>
         /// <param name="inputType">A <c>Enum.UserInputType</c> value.</param>
         /// <param name="vibrationMotor">A <c>Enum.VibrationMotor</c> value.</param>
-        /// <param name="vibrationValues">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="vibrationValues">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticService#SetMotor"/>
-        public object? SetMotor(Enum.UserInputType inputType, Enum.VibrationMotor vibrationMotor, object? vibrationValues)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMotor", inputType, vibrationMotor, vibrationValues);
+        public object SetMotor(Enum.UserInputType inputType, Enum.VibrationMotor vibrationMotor, object vibrationValues)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMotor", inputType, vibrationMotor, vibrationValues)!;
 
     }
 }

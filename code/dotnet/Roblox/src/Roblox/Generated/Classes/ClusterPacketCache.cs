@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ClusterPacketCache"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ClusterPacketCache? FromHandle(nuint handle)
+        public static new ClusterPacketCache? FromHandle(nuint handle)
             => handle == 0 ? null : new ClusterPacketCache(handle);
 
     }

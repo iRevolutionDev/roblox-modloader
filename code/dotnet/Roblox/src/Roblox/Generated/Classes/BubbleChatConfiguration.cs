@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="BubbleChatConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BubbleChatConfiguration? FromHandle(nuint handle)
+        public static new BubbleChatConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new BubbleChatConfiguration(handle);
 
         /// <summary>
         /// Body part or Attachment that bubbles will attach to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#AdorneeName"/>
-        public string? AdorneeName
+        public string AdorneeName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AdorneeName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AdorneeName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AdorneeName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AdorneeName", value);
         }
 
         /// <summary>
         /// Background color of bubbles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BackgroundColor3"/>
-        public global::Roblox.Color3? BackgroundColor3
+        public global::Roblox.Color3 BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "BackgroundColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BackgroundTransparency"/>
         public double BackgroundTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "BackgroundTransparency", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BubbleDuration"/>
         public float BubbleDuration
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BubbleDuration");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BubbleDuration")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BubbleDuration", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#BubblesSpacing"/>
         public float BubblesSpacing
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BubblesSpacing");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BubblesSpacing")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BubblesSpacing", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#Font"/>
         public Enum.Font Font
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "Font");
+            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "Font")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Font>(this, "Font", value);
         }
 
@@ -99,20 +99,20 @@ namespace Roblox
         /// Font of the bubble text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#FontFace"/>
-        public object? FontFace
+        public object FontFace
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FontFace");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FontFace", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FontFace")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FontFace", value);
         }
 
         /// <summary>
         /// Offset of bubbles from their adornee, in studs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#LocalPlayerStudsOffset"/>
-        public global::Roblox.Vector3? LocalPlayerStudsOffset
+        public global::Roblox.Vector3 LocalPlayerStudsOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LocalPlayerStudsOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LocalPlayerStudsOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LocalPlayerStudsOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LocalPlayerStudsOffset", value);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#MaxBubbles"/>
         public float MaxBubbles
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxBubbles");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxBubbles")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxBubbles", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#MaxDistance"/>
         public float MaxDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxDistance", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#MinimizeDistance"/>
         public float MinimizeDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MinimizeDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MinimizeDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MinimizeDistance", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#TailVisible"/>
         public bool TailVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TailVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TailVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TailVisible", value);
         }
 
@@ -159,10 +159,10 @@ namespace Roblox
         /// Color of bubble text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#TextColor3"/>
-        public global::Roblox.Color3? TextColor3
+        public global::Roblox.Color3 TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#TextSize"/>
         public long TextSize
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "TextSize", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration#VerticalStudsOffset"/>
         public float VerticalStudsOffset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "VerticalStudsOffset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "VerticalStudsOffset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "VerticalStudsOffset", value);
         }
 

@@ -22,315 +22,315 @@ namespace Roblox
         /// Creates a <see cref="MarketplaceService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MarketplaceService? FromHandle(nuint handle)
+        public static new MarketplaceService? FromHandle(nuint handle)
             => handle == 0 ? null : new MarketplaceService(handle);
 
         /// <summary>
         /// Registers a callback to process receipts of a specific type.
         /// </summary>
         /// <param name="transactionType">A <c>Enum.ReceiptType</c> value.</param>
-        /// <param name="handler">A <c>object?</c> value.</param>
+        /// <param name="handler">A <c>object</c> value.</param>
         /// <param name="filter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#BindReceiptHandler"/>
-        public object? BindReceiptHandler(Enum.ReceiptType transactionType, object? handler, object? filter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindReceiptHandler", transactionType, handler, filter);
+        public object BindReceiptHandler(Enum.ReceiptType transactionType, object handler, object? filter = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindReceiptHandler", transactionType, handler, filter)!;
 
         /// <summary>
         /// <c>MarketplaceService.ClearProductInfoCaches</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearProductInfoCaches()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearProductInfoCaches");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearProductInfoCaches()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearProductInfoCaches")!;
 
         /// <summary>
         /// <c>MarketplaceService.IsPurchaseSimulated</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsPurchaseSimulated()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPurchaseSimulated");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPurchaseSimulated")!;
 
         /// <summary>
         /// <c>MarketplaceService.OpenShop</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenShop(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenShop", player);
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenShop(Player player)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenShop", player)!;
 
         /// <summary>
         /// <c>MarketplaceService.PlayerCanMakePurchases</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool PlayerCanMakePurchases(Instance? player)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerCanMakePurchases", player);
+        public bool PlayerCanMakePurchases(Instance player)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerCanMakePurchases", player)!;
 
         /// <summary>
         /// <c>MarketplaceService.PrepareCollectiblesPurchase</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
-        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
-        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PrepareCollectiblesPurchase(Instance? player, long assetId, string? collectibleItemId, string? collectibleItemInstanceId, string? collectibleProductId, int expectedPrice)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PrepareCollectiblesPurchase", player, assetId, collectibleItemId, collectibleItemInstanceId, collectibleProductId, expectedPrice);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PrepareCollectiblesPurchase(Instance player, long assetId, string collectibleItemId, string collectibleItemInstanceId, string collectibleProductId, int expectedPrice)
+            => global::Roblox.Reflection.Invoke<object>(this, "PrepareCollectiblesPurchase", player, assetId, collectibleItemId, collectibleItemInstanceId, collectibleProductId, expectedPrice)!;
 
         /// <summary>
         /// Prompts a user to purchase multiple avatar items with the given assetId or bundleId.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="lineItems">A <c>object?</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="lineItems">A <c>object</c> value.</param>
+        /// <param name="options">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptBulkPurchase"/>
-        public object? PromptBulkPurchase(Player? player, object? lineItems, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptBulkPurchase", player, lineItems, options);
+        public object PromptBulkPurchase(Player player, object lineItems, object options)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptBulkPurchase", player, lineItems, options)!;
 
         /// <summary>
         /// Prompts a user to purchase a bundle with the given bundleId.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptBundlePurchase"/>
-        public object? PromptBundlePurchase(Instance? player, long bundleId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptBundlePurchase", player, bundleId);
+        public object PromptBundlePurchase(Instance player, long bundleId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptBundlePurchase", player, bundleId)!;
 
         /// <summary>
         /// Prompts a user to cancel a subscription for the given subscriptionId.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptCancelSubscription"/>
-        public object? PromptCancelSubscription(Player? user, string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptCancelSubscription", user, subscriptionId);
+        public object PromptCancelSubscription(Player user, string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptCancelSubscription", user, subscriptionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PromptCollectiblesPurchase</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
-        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
-        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptCollectiblesPurchase(Instance? player, long assetId, string? collectibleItemId, string? collectibleItemInstanceId, string? collectibleProductId, int expectedPrice)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptCollectiblesPurchase", player, assetId, collectibleItemId, collectibleItemInstanceId, collectibleProductId, expectedPrice);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptCollectiblesPurchase(Instance player, long assetId, string collectibleItemId, string collectibleItemInstanceId, string collectibleProductId, int expectedPrice)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptCollectiblesPurchase", player, assetId, collectibleItemId, collectibleItemInstanceId, collectibleProductId, expectedPrice)!;
 
         /// <summary>
         /// Prompts a user to purchase a pass with the given gamePassId.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptGamePassPurchase"/>
-        public object? PromptGamePassPurchase(Instance? player, long gamePassId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptGamePassPurchase", player, gamePassId);
+        public object PromptGamePassPurchase(Instance player, long gamePassId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptGamePassPurchase", player, gamePassId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PromptNativePurchase</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="productId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptNativePurchase(Instance? player, string? productId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptNativePurchase", player, productId);
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptNativePurchase(Instance player, string productId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptNativePurchase", player, productId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PromptNativePurchaseWithLocalPlayer</c>
         /// </summary>
-        /// <param name="productId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptNativePurchaseWithLocalPlayer(string? productId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptNativePurchaseWithLocalPlayer", productId);
+        /// <param name="productId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptNativePurchaseWithLocalPlayer(string productId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptNativePurchaseWithLocalPlayer", productId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PromptNativePurchaseWithLocalPlayerWithPaymentSessionId</c>
         /// </summary>
-        /// <param name="productId">A <c>string?</c> value.</param>
-        /// <param name="paymentSessionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptNativePurchaseWithLocalPlayerWithPaymentSessionId(string? productId, string? paymentSessionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptNativePurchaseWithLocalPlayerWithPaymentSessionId", productId, paymentSessionId);
+        /// <param name="productId">A <c>string</c> value.</param>
+        /// <param name="paymentSessionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptNativePurchaseWithLocalPlayerWithPaymentSessionId(string productId, string paymentSessionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptNativePurchaseWithLocalPlayerWithPaymentSessionId", productId, paymentSessionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PromptNativePurchaseWithPaymentSessionId</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="productId">A <c>string?</c> value.</param>
-        /// <param name="paymentSessionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptNativePurchaseWithPaymentSessionId(Instance? player, string? productId, string? paymentSessionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptNativePurchaseWithPaymentSessionId", player, productId, paymentSessionId);
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
+        /// <param name="paymentSessionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptNativePurchaseWithPaymentSessionId(Instance player, string productId, string paymentSessionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptNativePurchaseWithPaymentSessionId", player, productId, paymentSessionId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by PromptRobloxSubscriptionPurchase().Prompts a user to purchase Roblox Premium.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptPremiumPurchase"/>
-        public object? PromptPremiumPurchase(Instance? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptPremiumPurchase", player);
+        public object PromptPremiumPurchase(Instance player)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptPremiumPurchase", player)!;
 
         /// <summary>
         /// Prompts a user to purchase a developer product with the given productId.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
-        /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
-        /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="equipIfPurchased">A <c>bool?</c> value.</param>
+        /// <param name="currencyType">A <c>Enum.CurrencyType?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptProductPurchase"/>
-        public object? PromptProductPurchase(Instance? player, long productId, bool equipIfPurchased, Enum.CurrencyType currencyType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptProductPurchase", player, productId, equipIfPurchased, currencyType);
+        public object PromptProductPurchase(Instance player, long productId, bool? equipIfPurchased = null, Enum.CurrencyType? currencyType = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptProductPurchase", player, productId, equipIfPurchased, currencyType)!;
 
         /// <summary>
         /// Prompts a user to purchase an item with the given assetId. Does not work for USD Creator Store purchases.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
-        /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="equipIfPurchased">A <c>bool?</c> value.</param>
+        /// <param name="currencyType">A <c>Enum.CurrencyType?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptPurchase"/>
-        public object? PromptPurchase(Instance? player, long assetId, bool equipIfPurchased, Enum.CurrencyType currencyType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptPurchase", player, assetId, equipIfPurchased, currencyType);
+        public object PromptPurchase(Instance player, long assetId, bool? equipIfPurchased = null, Enum.CurrencyType? currencyType = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptPurchase", player, assetId, equipIfPurchased, currencyType)!;
 
         /// <summary>
         /// <c>MarketplaceService.PromptRobloxPurchase</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptRobloxPurchase(long assetId, bool equipIfPurchased)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptRobloxPurchase", assetId, equipIfPurchased);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptRobloxPurchase(long assetId, bool equipIfPurchased)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptRobloxPurchase", assetId, equipIfPurchased)!;
 
         /// <summary>
         /// Prompts a user to purchase a Roblox Plus subscription.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptRobloxSubscriptionPurchase"/>
-        public object? PromptRobloxSubscriptionPurchase(Player? user)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptRobloxSubscriptionPurchase", user);
+        public object PromptRobloxSubscriptionPurchase(Player user)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptRobloxSubscriptionPurchase", user)!;
 
         /// <summary>
         /// Prompts a user to purchase a subscription for the given subscriptionId.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptSubscriptionPurchase"/>
-        public object? PromptSubscriptionPurchase(Player? user, string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptSubscriptionPurchase", user, subscriptionId);
+        public object PromptSubscriptionPurchase(Player user, string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptSubscriptionPurchase", user, subscriptionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PromptThirdPartyPurchase</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="productId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptThirdPartyPurchase(Instance? player, string? productId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptThirdPartyPurchase", player, productId);
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptThirdPartyPurchase(Instance player, string productId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptThirdPartyPurchase", player, productId)!;
 
         /// <summary>
         /// <c>MarketplaceService.ReportAssetSale</c>
         /// </summary>
-        /// <param name="assetId">A <c>string?</c> value.</param>
+        /// <param name="assetId">A <c>string</c> value.</param>
         /// <param name="robuxAmount">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportAssetSale(string? assetId, int robuxAmount)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportAssetSale", assetId, robuxAmount);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportAssetSale(string assetId, int robuxAmount)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportAssetSale", assetId, robuxAmount)!;
 
         /// <summary>
         /// <c>MarketplaceService.ReportRobuxUpsellStarted</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportRobuxUpsellStarted()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportRobuxUpsellStarted");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportRobuxUpsellStarted()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportRobuxUpsellStarted")!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalAssetTypePurchased</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalAssetTypePurchased(Instance? player, Enum.AssetType assetType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalAssetTypePurchased", player, assetType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalAssetTypePurchased(Instance player, Enum.AssetType assetType)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalAssetTypePurchased", player, assetType)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalCheckPlayerHasRobloxSubscription</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalCheckPlayerHasRobloxSubscription()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalCheckPlayerHasRobloxSubscription");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalCheckPlayerHasRobloxSubscription()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalCheckPlayerHasRobloxSubscription")!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalClientPurchaseSuccess</c>
         /// </summary>
-        /// <param name="ticket">A <c>string?</c> value.</param>
+        /// <param name="ticket">A <c>string</c> value.</param>
         /// <param name="playerId">A <c>long</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalClientPurchaseSuccess(string? ticket, long playerId, long productId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalClientPurchaseSuccess", ticket, playerId, productId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalClientPurchaseSuccess(string ticket, long playerId, long productId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalClientPurchaseSuccess", ticket, playerId, productId)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalMockPurchasePremium</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalMockPurchasePremium()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalMockPurchasePremium");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalMockPurchasePremium()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalMockPurchasePremium")!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalMockPurchaseRobloxSubscription</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalMockPurchaseRobloxSubscription()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalMockPurchaseRobloxSubscription");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalMockPurchaseRobloxSubscription()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalMockPurchaseRobloxSubscription")!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptBulkPurchaseFinished</c>
         /// </summary>
         /// <param name="status">A <c>Enum.MarketplaceBulkPurchasePromptStatus</c> value.</param>
-        /// <param name="results">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptBulkPurchaseFinished(Enum.MarketplaceBulkPurchasePromptStatus status, object? results)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptBulkPurchaseFinished", status, results);
+        /// <param name="results">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptBulkPurchaseFinished(Enum.MarketplaceBulkPurchasePromptStatus status, object results)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptBulkPurchaseFinished", status, results)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptBundlePurchaseFinished</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptBundlePurchaseFinished(Instance? player, long bundleId, bool success)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptBundlePurchaseFinished", player, bundleId, success);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptBundlePurchaseFinished(Instance player, long bundleId, bool success)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptBundlePurchaseFinished", player, bundleId, success)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptGamePassPurchaseFinished</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptGamePassPurchaseFinished(Instance? player, long gamePassId, bool success)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptGamePassPurchaseFinished", player, gamePassId, success);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptGamePassPurchaseFinished(Instance player, long gamePassId, bool success)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptGamePassPurchaseFinished", player, gamePassId, success)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptPremiumPurchaseFinished</c>
         /// </summary>
         /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptPremiumPurchaseFinished(bool didTryPurchasing)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptPremiumPurchaseFinished", didTryPurchasing);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptPremiumPurchaseFinished(bool didTryPurchasing)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptPremiumPurchaseFinished", didTryPurchasing)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptProductPurchaseFinished</c>
@@ -338,69 +338,69 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptProductPurchaseFinished(long userId, long productId, bool success)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptProductPurchaseFinished", userId, productId, success);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptProductPurchaseFinished(long userId, long productId, bool success)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptProductPurchaseFinished", userId, productId, success)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptPurchaseFinished</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptPurchaseFinished(Instance? player, long assetId, bool success)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptPurchaseFinished", player, assetId, success);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptPurchaseFinished(Instance player, long assetId, bool success)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptPurchaseFinished", player, assetId, success)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptRobloxSubscriptionPurchaseFinished</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
         /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptRobloxSubscriptionPurchaseFinished(string? subscriptionId, bool didTryPurchasing)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptRobloxSubscriptionPurchaseFinished", subscriptionId, didTryPurchasing);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptRobloxSubscriptionPurchaseFinished(string subscriptionId, bool didTryPurchasing)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptRobloxSubscriptionPurchaseFinished", subscriptionId, didTryPurchasing)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalPromptSubscriptionPurchaseFinished</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
         /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalPromptSubscriptionPurchaseFinished(string? subscriptionId, bool didTryPurchasing)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalPromptSubscriptionPurchaseFinished", subscriptionId, didTryPurchasing);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalPromptSubscriptionPurchaseFinished(string subscriptionId, bool didTryPurchasing)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalPromptSubscriptionPurchaseFinished", subscriptionId, didTryPurchasing)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalRobuxTransferCompleted</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalRobuxTransferCompleted(long userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalRobuxTransferCompleted", userId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalRobuxTransferCompleted(long userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalRobuxTransferCompleted", userId)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalServerLuaDialogClosed</c>
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalServerLuaDialogClosed(bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalServerLuaDialogClosed", value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalServerLuaDialogClosed(bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalServerLuaDialogClosed", value)!;
 
         /// <summary>
         /// <c>MarketplaceService.SignalUserSubscriptionStatusChanged</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalUserSubscriptionStatusChanged(string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalUserSubscriptionStatusChanged", subscriptionId);
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalUserSubscriptionStatusChanged(string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalUserSubscriptionStatusChanged", subscriptionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.GetAvailableSubscriptionProductsAsync</c>
         /// </summary>
-        /// <param name="productType">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAvailableSubscriptionProductsAsync(string? productType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAvailableSubscriptionProductsAsync", productType);
+        /// <param name="productType">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAvailableSubscriptionProductsAsync(string productType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAvailableSubscriptionProductsAsync", productType)!;
 
         /// <summary>
         /// Returns a Pages object which contains information for all of the current experience's developer products.
@@ -414,118 +414,118 @@ namespace Roblox
         /// Deprecated: This method has been superseded by GetProductInfoAsync().Returns the product information of an asset using its asset ID.
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="infoType">A <c>Enum.InfoType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="infoType">A <c>Enum.InfoType?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetProductInfo"/>
-        public object? GetProductInfo(long assetId, Enum.InfoType infoType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetProductInfo", assetId, infoType);
+        public object GetProductInfo(long assetId, Enum.InfoType? infoType = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetProductInfo", assetId, infoType)!;
 
         /// <summary>
         /// Returns the product information of an asset using its asset ID.
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="infoType">A <c>Enum.InfoType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="infoType">A <c>Enum.InfoType?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetProductInfoAsync"/>
-        public object? GetProductInfoAsync(long assetId, Enum.InfoType infoType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetProductInfoAsync", assetId, infoType);
+        public object GetProductInfoAsync(long assetId, Enum.InfoType? infoType = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetProductInfoAsync", assetId, infoType)!;
 
         /// <summary>
         /// Returns the subscription details for the given user for the Roblox Subscription ecosystem.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetRobloxSubscriptionDetailsAsync"/>
-        public object? GetRobloxSubscriptionDetailsAsync(Player? user)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRobloxSubscriptionDetailsAsync", user);
+        public object GetRobloxSubscriptionDetailsAsync(Player user)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRobloxSubscriptionDetailsAsync", user)!;
 
         /// <summary>
         /// <c>MarketplaceService.GetRobuxBalance</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetRobuxBalance()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetRobuxBalance");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetRobuxBalance")!;
 
         /// <summary>
         /// Returns the product information of a subscription for the given subscriptionId.
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetSubscriptionProductInfoAsync"/>
-        public object? GetSubscriptionProductInfoAsync(string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSubscriptionProductInfoAsync", subscriptionId);
+        public object GetSubscriptionProductInfoAsync(string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSubscriptionProductInfoAsync", subscriptionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.GetSubscriptionPurchaseInfoAsync</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSubscriptionPurchaseInfoAsync(string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSubscriptionPurchaseInfoAsync", subscriptionId);
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetSubscriptionPurchaseInfoAsync(string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSubscriptionPurchaseInfoAsync", subscriptionId)!;
 
         /// <summary>
         /// Returns a table that contains the details of the user's subscription for a given subscriptionId.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetUserSubscriptionDetailsAsync"/>
-        public object? GetUserSubscriptionDetailsAsync(Player? user, string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserSubscriptionDetailsAsync", user, subscriptionId);
+        public object GetUserSubscriptionDetailsAsync(Player user, string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserSubscriptionDetailsAsync", user, subscriptionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.GetUserSubscriptionDetailsInternalAsync</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUserSubscriptionDetailsInternalAsync(string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserSubscriptionDetailsInternalAsync", subscriptionId);
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUserSubscriptionDetailsInternalAsync(string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserSubscriptionDetailsInternalAsync", subscriptionId)!;
 
         /// <summary>
         /// Returns an Array that contains up to one year of the user's subscription payment history for the given subscriptionId.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetUserSubscriptionPaymentHistoryAsync"/>
-        public object? GetUserSubscriptionPaymentHistoryAsync(Player? user, string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserSubscriptionPaymentHistoryAsync", user, subscriptionId);
+        public object GetUserSubscriptionPaymentHistoryAsync(Player user, string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserSubscriptionPaymentHistoryAsync", user, subscriptionId)!;
 
         /// <summary>
         /// Returns a table that contains the subscription status of the user for the given subscriptionId.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetUserSubscriptionStatusAsync"/>
-        public object? GetUserSubscriptionStatusAsync(Player? user, string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserSubscriptionStatusAsync", user, subscriptionId);
+        public object GetUserSubscriptionStatusAsync(Player user, string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserSubscriptionStatusAsync", user, subscriptionId)!;
 
         /// <summary>
         /// Returns the regionalized price levels of users, representing the recommended price for an item in each user's regional market.
         /// </summary>
-        /// <param name="userIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetUsersPriceLevelsAsync"/>
-        public object? GetUsersPriceLevelsAsync(object? userIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUsersPriceLevelsAsync", userIds);
+        public object GetUsersPriceLevelsAsync(object userIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUsersPriceLevelsAsync", userIds)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformBulkPurchase</c>
         /// </summary>
-        /// <param name="orderRequest">A <c>object?</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformBulkPurchase(object? orderRequest, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformBulkPurchase", orderRequest, options);
+        /// <param name="orderRequest">A <c>object</c> value.</param>
+        /// <param name="options">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformBulkPurchase(object orderRequest, object options)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformBulkPurchase", orderRequest, options)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformCancelSubscription</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformCancelSubscription(string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformCancelSubscription", subscriptionId);
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformCancelSubscription(string subscriptionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformCancelSubscription", subscriptionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformPurchase</c>
@@ -533,18 +533,18 @@ namespace Roblox
         /// <param name="infoType">A <c>Enum.InfoType</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
-        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="requestId">A <c>string</c> value.</param>
         /// <param name="isRobloxPurchase">A <c>bool</c> value.</param>
-        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
-        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
-        /// <param name="idempotencyKey">A <c>string?</c> value.</param>
-        /// <param name="purchaseAuthToken">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string</c> value.</param>
+        /// <param name="idempotencyKey">A <c>string</c> value.</param>
+        /// <param name="purchaseAuthToken">A <c>string</c> value.</param>
         /// <param name="timedOptionsDays">A <c>long</c> value.</param>
-        /// <param name="purchasePayload">A <c>string?</c> value.</param>
+        /// <param name="purchasePayload">A <c>string</c> value.</param>
         /// <param name="purchaseOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformPurchase(Enum.InfoType infoType, long productId, int expectedPrice, string? requestId, bool isRobloxPurchase, string? collectibleItemId, string? collectibleProductId, string? idempotencyKey, string? purchaseAuthToken, long timedOptionsDays, string? purchasePayload, object? purchaseOptions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformPurchase", infoType, productId, expectedPrice, requestId, isRobloxPurchase, collectibleItemId, collectibleProductId, idempotencyKey, purchaseAuthToken, timedOptionsDays, purchasePayload, purchaseOptions);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformPurchase(Enum.InfoType infoType, long productId, int expectedPrice, string requestId, bool isRobloxPurchase, string collectibleItemId, string collectibleProductId, string idempotencyKey, string purchaseAuthToken, long timedOptionsDays, string purchasePayload, object? purchaseOptions = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformPurchase", infoType, productId, expectedPrice, requestId, isRobloxPurchase, collectibleItemId, collectibleProductId, idempotencyKey, purchaseAuthToken, timedOptionsDays, purchasePayload, purchaseOptions)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformPurchaseV2</c>
@@ -552,134 +552,134 @@ namespace Roblox
         /// <param name="infoType">A <c>Enum.InfoType</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
-        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="requestId">A <c>string</c> value.</param>
         /// <param name="isRobloxPurchase">A <c>bool</c> value.</param>
-        /// <param name="collectiblesProductDetails">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformPurchaseV2(Enum.InfoType infoType, long productId, int expectedPrice, string? requestId, bool isRobloxPurchase, object? collectiblesProductDetails)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformPurchaseV2", infoType, productId, expectedPrice, requestId, isRobloxPurchase, collectiblesProductDetails);
+        /// <param name="collectiblesProductDetails">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformPurchaseV2(Enum.InfoType infoType, long productId, int expectedPrice, string requestId, bool isRobloxPurchase, object collectiblesProductDetails)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformPurchaseV2", infoType, productId, expectedPrice, requestId, isRobloxPurchase, collectiblesProductDetails)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformSubscriptionPurchase</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PerformSubscriptionPurchase(string? subscriptionId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PerformSubscriptionPurchase", subscriptionId);
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PerformSubscriptionPurchase(string subscriptionId)
+            => global::Roblox.Reflection.Invoke<string>(this, "PerformSubscriptionPurchase", subscriptionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformSubscriptionPurchaseV2</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        /// <param name="paymentProvider">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformSubscriptionPurchaseV2(string? subscriptionId, string? paymentProvider)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformSubscriptionPurchaseV2", subscriptionId, paymentProvider);
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        /// <param name="paymentProvider">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformSubscriptionPurchaseV2(string subscriptionId, string paymentProvider)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformSubscriptionPurchaseV2", subscriptionId, paymentProvider)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformSubscriptionPurchaseV3Async</c>
         /// </summary>
-        /// <param name="productType">A <c>string?</c> value.</param>
-        /// <param name="productId">A <c>string?</c> value.</param>
-        /// <param name="paymentProvider">A <c>string?</c> value.</param>
-        /// <param name="paymentSessionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformSubscriptionPurchaseV3Async(string? productType, string? productId, string? paymentProvider, string? paymentSessionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformSubscriptionPurchaseV3Async", productType, productId, paymentProvider, paymentSessionId);
+        /// <param name="productType">A <c>string</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
+        /// <param name="paymentProvider">A <c>string</c> value.</param>
+        /// <param name="paymentSessionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformSubscriptionPurchaseV3Async(string productType, string productId, string paymentProvider, string paymentSessionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformSubscriptionPurchaseV3Async", productType, productId, paymentProvider, paymentSessionId)!;
 
         /// <summary>
         /// <c>MarketplaceService.PerformSubscriptionPurchaseWithRobuxAsync</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
         /// <param name="priceInRobux">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformSubscriptionPurchaseWithRobuxAsync(string? subscriptionId, int priceInRobux)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformSubscriptionPurchaseWithRobuxAsync", subscriptionId, priceInRobux);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformSubscriptionPurchaseWithRobuxAsync(string subscriptionId, int priceInRobux)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformSubscriptionPurchaseWithRobuxAsync", subscriptionId, priceInRobux)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by PlayerOwnsAssetAsync().Returns whether the given user has the given asset.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PlayerOwnsAsset"/>
-        public bool PlayerOwnsAsset(Instance? player, long assetId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsAsset", player, assetId);
+        public bool PlayerOwnsAsset(Instance player, long assetId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsAsset", player, assetId)!;
 
         /// <summary>
         /// Returns whether the given user has the given asset.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PlayerOwnsAssetAsync"/>
-        public bool PlayerOwnsAssetAsync(Instance? player, long assetId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsAssetAsync", player, assetId);
+        public bool PlayerOwnsAssetAsync(Instance player, long assetId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsAssetAsync", player, assetId)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by PlayerOwnsBundleAsync().Returns whether the given player owns the given bundle.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PlayerOwnsBundle"/>
-        public bool PlayerOwnsBundle(Player? player, long bundleId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsBundle", player, bundleId);
+        public bool PlayerOwnsBundle(Player player, long bundleId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsBundle", player, bundleId)!;
 
         /// <summary>
         /// Returns whether the given player owns the given bundle.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PlayerOwnsBundleAsync"/>
-        public bool PlayerOwnsBundleAsync(Player? player, long bundleId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsBundleAsync", player, bundleId);
+        public bool PlayerOwnsBundleAsync(Player player, long bundleId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsBundleAsync", player, bundleId)!;
 
         /// <summary>
         /// Initiates a Robux transfer from the sender to another user.
         /// </summary>
-        /// <param name="sender">A <c>Player?</c> value.</param>
+        /// <param name="sender">A <c>Player</c> value.</param>
         /// <param name="receiverUserId">A <c>long</c> value.</param>
         /// <param name="amount">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptRobuxTransferAsync"/>
-        public string? PromptRobuxTransferAsync(Player? sender, long receiverUserId, long amount)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PromptRobuxTransferAsync", sender, receiverUserId, amount);
+        public string PromptRobuxTransferAsync(Player sender, long receiverUserId, long amount)
+            => global::Roblox.Reflection.Invoke<string>(this, "PromptRobuxTransferAsync", sender, receiverUserId, amount)!;
 
         /// <summary>
         /// Takes a list of product IDs and returns a personalized ordered list of those products.
         /// </summary>
-        /// <param name="productIdentifiers">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="productIdentifiers">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#RankProductsAsync"/>
-        public object? RankProductsAsync(object? productIdentifiers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RankProductsAsync", productIdentifiers);
+        public object RankProductsAsync(object productIdentifiers)
+            => global::Roblox.Reflection.Invoke<object>(this, "RankProductsAsync", productIdentifiers)!;
 
         /// <summary>
         /// Takes an array of InfoType and returns up to 50 items representing the products a user is most likely to engage with and purchase.
         /// </summary>
-        /// <param name="infoTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="infoTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#RecommendTopProductsAsync"/>
-        public object? RecommendTopProductsAsync(object? infoTypes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RecommendTopProductsAsync", infoTypes);
+        public object RecommendTopProductsAsync(object infoTypes)
+            => global::Roblox.Reflection.Invoke<object>(this, "RecommendTopProductsAsync", infoTypes)!;
 
         /// <summary>
         /// Returns true if the player with the given UserId owns the pass with the given gamePassId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#UserOwnsGamePassAsync"/>
-        public bool UserOwnsGamePassAsync(object? userId, long gamePassId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "UserOwnsGamePassAsync", userId, gamePassId);
+        public bool UserOwnsGamePassAsync(object userId, long gamePassId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "UserOwnsGamePassAsync", userId, gamePassId)!;
 
         /// <summary>
         /// <c>MarketplaceService.ClientLuaDialogRequested</c>
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        public event Action<object?>? ClientLuaDialogRequested
+        /// <param name="arguments">A <c>object</c> value.</param>
+        public event Action<object>? ClientLuaDialogRequested
         {
             add { if (value is not null) AddEventHandler("ClientLuaDialogRequested", value); }
             remove { if (value is not null) RemoveEventHandler("ClientLuaDialogRequested", value); }
@@ -688,10 +688,10 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.ClientPurchaseSuccess</c>
         /// </summary>
-        /// <param name="ticket">A <c>string?</c> value.</param>
+        /// <param name="ticket">A <c>string</c> value.</param>
         /// <param name="playerId">A <c>long</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
-        public event Action<string?, long, long>? ClientPurchaseSuccess
+        public event Action<string, long, long>? ClientPurchaseSuccess
         {
             add { if (value is not null) AddEventHandler("ClientPurchaseSuccess", value); }
             remove { if (value is not null) RemoveEventHandler("ClientPurchaseSuccess", value); }
@@ -700,10 +700,10 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.NativePurchaseFinished</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="productId">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
         /// <param name="wasPurchased">A <c>bool</c> value.</param>
-        public event Action<Instance?, string?, bool>? NativePurchaseFinished
+        public event Action<Instance, string, bool>? NativePurchaseFinished
         {
             add { if (value is not null) AddEventHandler("NativePurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("NativePurchaseFinished", value); }
@@ -712,9 +712,9 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.NativePurchaseFinishedWithLocalPlayer</c>
         /// </summary>
-        /// <param name="productId">A <c>string?</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
         /// <param name="wasPurchased">A <c>bool</c> value.</param>
-        public event Action<string?, bool>? NativePurchaseFinishedWithLocalPlayer
+        public event Action<string, bool>? NativePurchaseFinishedWithLocalPlayer
         {
             add { if (value is not null) AddEventHandler("NativePurchaseFinishedWithLocalPlayer", value); }
             remove { if (value is not null) RemoveEventHandler("NativePurchaseFinishedWithLocalPlayer", value); }
@@ -723,8 +723,8 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.OpenShopRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        public event Action<Player?>? OpenShopRequested
+        /// <param name="player">A <c>Player</c> value.</param>
+        public event Action<Player>? OpenShopRequested
         {
             add { if (value is not null) AddEventHandler("OpenShopRequested", value); }
             remove { if (value is not null) RemoveEventHandler("OpenShopRequested", value); }
@@ -733,13 +733,13 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PrepareCollectiblesPurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
-        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
-        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
-        public event Action<Instance?, long, string?, string?, string?, int>? PrepareCollectiblesPurchaseRequested
+        public event Action<Instance, long, string, string, string, int>? PrepareCollectiblesPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PrepareCollectiblesPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PrepareCollectiblesPurchaseRequested", value); }
@@ -748,11 +748,11 @@ namespace Roblox
         /// <summary>
         /// Fires when a purchase prompt for bulk avatar items is closed.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="status">A <c>Enum.MarketplaceBulkPurchasePromptStatus</c> value.</param>
-        /// <param name="results">A <c>object?</c> value.</param>
+        /// <param name="results">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptBulkPurchaseFinished"/>
-        public event Action<Instance?, Enum.MarketplaceBulkPurchasePromptStatus, object?>? PromptBulkPurchaseFinished
+        public event Action<Instance, Enum.MarketplaceBulkPurchasePromptStatus, object>? PromptBulkPurchaseFinished
         {
             add { if (value is not null) AddEventHandler("PromptBulkPurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("PromptBulkPurchaseFinished", value); }
@@ -761,13 +761,13 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptBulkPurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="displayData">A <c>object?</c> value.</param>
-        /// <param name="orderRequest">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="displayData">A <c>object</c> value.</param>
+        /// <param name="orderRequest">A <c>object</c> value.</param>
         /// <param name="purchaserRobuxBalance">A <c>long</c> value.</param>
         /// <param name="orderTotalRobux">A <c>long</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
-        public event Action<Instance?, object?, object?, long, long, object?>? PromptBulkPurchaseRequested
+        /// <param name="options">A <c>object</c> value.</param>
+        public event Action<Instance, object, object, long, long, object>? PromptBulkPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptBulkPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptBulkPurchaseRequested", value); }
@@ -776,14 +776,14 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptBulkPurchaseRequestedV2</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="displayData">A <c>object?</c> value.</param>
-        /// <param name="orderRequest">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="displayData">A <c>object</c> value.</param>
+        /// <param name="orderRequest">A <c>object</c> value.</param>
         /// <param name="purchaserRobuxBalance">A <c>long</c> value.</param>
         /// <param name="orderTotalRobux">A <c>long</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
-        /// <param name="discountInformation">A <c>object?</c> value.</param>
-        public event Action<Instance?, object?, object?, long, long, object?, object?>? PromptBulkPurchaseRequestedV2
+        /// <param name="options">A <c>object</c> value.</param>
+        /// <param name="discountInformation">A <c>object</c> value.</param>
+        public event Action<Instance, object, object, long, long, object, object>? PromptBulkPurchaseRequestedV2
         {
             add { if (value is not null) AddEventHandler("PromptBulkPurchaseRequestedV2", value); }
             remove { if (value is not null) RemoveEventHandler("PromptBulkPurchaseRequestedV2", value); }
@@ -792,11 +792,11 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptBundlePurchaseFinished</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
         /// <param name="wasPurchased">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptBundlePurchaseFinished"/>
-        public event Action<Instance?, long, bool>? PromptBundlePurchaseFinished
+        public event Action<Instance, long, bool>? PromptBundlePurchaseFinished
         {
             add { if (value is not null) AddEventHandler("PromptBundlePurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("PromptBundlePurchaseFinished", value); }
@@ -805,9 +805,9 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptBundlePurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
-        public event Action<Instance?, long>? PromptBundlePurchaseRequested
+        public event Action<Instance, long>? PromptBundlePurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptBundlePurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptBundlePurchaseRequested", value); }
@@ -816,8 +816,8 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptCancelSubscriptionRequested</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        public event Action<string?>? PromptCancelSubscriptionRequested
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        public event Action<string>? PromptCancelSubscriptionRequested
         {
             add { if (value is not null) AddEventHandler("PromptCancelSubscriptionRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptCancelSubscriptionRequested", value); }
@@ -826,15 +826,15 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptCollectibleBundlePurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="bundleId">A <c>long</c> value.</param>
-        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
-        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
-        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
-        /// <param name="idempotencyKey">A <c>string?</c> value.</param>
-        /// <param name="purchaseAuthToken">A <c>string?</c> value.</param>
-        public event Action<Instance?, long, string?, string?, string?, int, string?, string?>? PromptCollectibleBundlePurchaseRequested
+        /// <param name="idempotencyKey">A <c>string</c> value.</param>
+        /// <param name="purchaseAuthToken">A <c>string</c> value.</param>
+        public event Action<Instance, long, string, string, string, int, string, string>? PromptCollectibleBundlePurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptCollectibleBundlePurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptCollectibleBundlePurchaseRequested", value); }
@@ -843,15 +843,15 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptCollectiblesPurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="collectibleItemId">A <c>string?</c> value.</param>
-        /// <param name="collectibleItemInstanceId">A <c>string?</c> value.</param>
-        /// <param name="collectibleProductId">A <c>string?</c> value.</param>
+        /// <param name="collectibleItemId">A <c>string</c> value.</param>
+        /// <param name="collectibleItemInstanceId">A <c>string</c> value.</param>
+        /// <param name="collectibleProductId">A <c>string</c> value.</param>
         /// <param name="expectedPrice">A <c>int</c> value.</param>
-        /// <param name="idempotencyKey">A <c>string?</c> value.</param>
-        /// <param name="purchaseAuthToken">A <c>string?</c> value.</param>
-        public event Action<Instance?, long, string?, string?, string?, int, string?, string?>? PromptCollectiblesPurchaseRequested
+        /// <param name="idempotencyKey">A <c>string</c> value.</param>
+        /// <param name="purchaseAuthToken">A <c>string</c> value.</param>
+        public event Action<Instance, long, string, string, string, int, string, string>? PromptCollectiblesPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptCollectiblesPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptCollectiblesPurchaseRequested", value); }
@@ -860,11 +860,11 @@ namespace Roblox
         /// <summary>
         /// Fires when a purchase prompt for a pass is closed.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
         /// <param name="wasPurchased">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptGamePassPurchaseFinished"/>
-        public event Action<Instance?, long, bool>? PromptGamePassPurchaseFinished
+        public event Action<Instance, long, bool>? PromptGamePassPurchaseFinished
         {
             add { if (value is not null) AddEventHandler("PromptGamePassPurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("PromptGamePassPurchaseFinished", value); }
@@ -873,9 +873,9 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptGamePassPurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="gamePassId">A <c>long</c> value.</param>
-        public event Action<Instance?, long>? PromptGamePassPurchaseRequested
+        public event Action<Instance, long>? PromptGamePassPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptGamePassPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptGamePassPurchaseRequested", value); }
@@ -894,8 +894,8 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptPremiumPurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? PromptPremiumPurchaseRequested
+        /// <param name="player">A <c>Instance</c> value.</param>
+        public event Action<Instance>? PromptPremiumPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptPremiumPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptPremiumPurchaseRequested", value); }
@@ -917,11 +917,11 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptProductPurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="productId">A <c>long</c> value.</param>
         /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
         /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
-        public event Action<Instance?, long, bool, Enum.CurrencyType>? PromptProductPurchaseRequested
+        public event Action<Instance, long, bool, Enum.CurrencyType>? PromptProductPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptProductPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptProductPurchaseRequested", value); }
@@ -930,11 +930,11 @@ namespace Roblox
         /// <summary>
         /// Fires when a purchase prompt for an affiliate gear sale or other asset is closed. Does not fire for developer product or pass prompts.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="isPurchased">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptPurchaseFinished"/>
-        public event Action<Instance?, long, bool>? PromptPurchaseFinished
+        public event Action<Instance, long, bool>? PromptPurchaseFinished
         {
             add { if (value is not null) AddEventHandler("PromptPurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("PromptPurchaseFinished", value); }
@@ -943,11 +943,11 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptPurchaseRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
         /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
-        public event Action<Instance?, long, bool, Enum.CurrencyType>? PromptPurchaseRequested
+        public event Action<Instance, long, bool, Enum.CurrencyType>? PromptPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptPurchaseRequested", value); }
@@ -956,13 +956,13 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptPurchaseRequestedV2</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="equipIfPurchased">A <c>bool</c> value.</param>
         /// <param name="currencyType">A <c>Enum.CurrencyType</c> value.</param>
-        /// <param name="idempotencyKey">A <c>string?</c> value.</param>
-        /// <param name="purchaseAuthToken">A <c>string?</c> value.</param>
-        public event Action<Instance?, long, bool, Enum.CurrencyType, string?, string?>? PromptPurchaseRequestedV2
+        /// <param name="idempotencyKey">A <c>string</c> value.</param>
+        /// <param name="purchaseAuthToken">A <c>string</c> value.</param>
+        public event Action<Instance, long, bool, Enum.CurrencyType, string, string>? PromptPurchaseRequestedV2
         {
             add { if (value is not null) AddEventHandler("PromptPurchaseRequestedV2", value); }
             remove { if (value is not null) RemoveEventHandler("PromptPurchaseRequestedV2", value); }
@@ -982,10 +982,10 @@ namespace Roblox
         /// <summary>
         /// Fires when a purchase prompt for Roblox Plus is closed.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
+        /// <param name="user">A <c>Player</c> value.</param>
         /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptRobloxSubscriptionPurchaseFinished"/>
-        public event Action<Player?, bool>? PromptRobloxSubscriptionPurchaseFinished
+        public event Action<Player, bool>? PromptRobloxSubscriptionPurchaseFinished
         {
             add { if (value is not null) AddEventHandler("PromptRobloxSubscriptionPurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("PromptRobloxSubscriptionPurchaseFinished", value); }
@@ -1000,9 +1000,9 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptRobuxTransferRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="jsonResponse">A <c>string?</c> value.</param>
-        public event Action<Instance?, string?>? PromptRobuxTransferRequested
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="jsonResponse">A <c>string</c> value.</param>
+        public event Action<Instance, string>? PromptRobuxTransferRequested
         {
             add { if (value is not null) AddEventHandler("PromptRobuxTransferRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptRobuxTransferRequested", value); }
@@ -1017,11 +1017,11 @@ namespace Roblox
         /// <summary>
         /// Fires when a purchase prompt for a subscription is closed.
         /// </summary>
-        /// <param name="user">A <c>Player?</c> value.</param>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
+        /// <param name="user">A <c>Player</c> value.</param>
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
         /// <param name="didTryPurchasing">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptSubscriptionPurchaseFinished"/>
-        public event Action<Player?, string?, bool>? PromptSubscriptionPurchaseFinished
+        public event Action<Player, string, bool>? PromptSubscriptionPurchaseFinished
         {
             add { if (value is not null) AddEventHandler("PromptSubscriptionPurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("PromptSubscriptionPurchaseFinished", value); }
@@ -1030,8 +1030,8 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.PromptSubscriptionPurchaseRequested</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        public event Action<string?>? PromptSubscriptionPurchaseRequested
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        public event Action<string>? PromptSubscriptionPurchaseRequested
         {
             add { if (value is not null) AddEventHandler("PromptSubscriptionPurchaseRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptSubscriptionPurchaseRequested", value); }
@@ -1050,8 +1050,8 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.ServerPurchaseVerification</c>
         /// </summary>
-        /// <param name="serverResponseTable">A <c>object?</c> value.</param>
-        public event Action<object?>? ServerPurchaseVerification
+        /// <param name="serverResponseTable">A <c>object</c> value.</param>
+        public event Action<object>? ServerPurchaseVerification
         {
             add { if (value is not null) AddEventHandler("ServerPurchaseVerification", value); }
             remove { if (value is not null) RemoveEventHandler("ServerPurchaseVerification", value); }
@@ -1060,11 +1060,11 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.ThirdPartyPurchaseFinished</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="productId">A <c>string?</c> value.</param>
-        /// <param name="receipt">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="productId">A <c>string</c> value.</param>
+        /// <param name="receipt">A <c>string</c> value.</param>
         /// <param name="wasPurchased">A <c>bool</c> value.</param>
-        public event Action<Instance?, string?, string?, bool>? ThirdPartyPurchaseFinished
+        public event Action<Instance, string, string, bool>? ThirdPartyPurchaseFinished
         {
             add { if (value is not null) AddEventHandler("ThirdPartyPurchaseFinished", value); }
             remove { if (value is not null) RemoveEventHandler("ThirdPartyPurchaseFinished", value); }
@@ -1073,8 +1073,8 @@ namespace Roblox
         /// <summary>
         /// <c>MarketplaceService.UserSubscriptionStatusChanged</c>
         /// </summary>
-        /// <param name="subscriptionId">A <c>string?</c> value.</param>
-        public event Action<string?>? UserSubscriptionStatusChanged
+        /// <param name="subscriptionId">A <c>string</c> value.</param>
+        public event Action<string>? UserSubscriptionStatusChanged
         {
             add { if (value is not null) AddEventHandler("UserSubscriptionStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UserSubscriptionStatusChanged", value); }

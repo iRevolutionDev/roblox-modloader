@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PartOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PartOperation? FromHandle(nuint handle)
+        public static new PartOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new PartOperation(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#RenderFidelity"/>
         public Enum.RenderFidelity RenderFidelity
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RenderFidelity>(this, "RenderFidelity");
+            get => global::Roblox.Reflection.GetProperty<Enum.RenderFidelity>(this, "RenderFidelity")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RenderFidelity>(this, "RenderFidelity", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#SmoothingAngle"/>
         public float SmoothingAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SmoothingAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SmoothingAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SmoothingAngle", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#TriangleCount"/>
         public int TriangleCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "TriangleCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "TriangleCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "TriangleCount", value);
         }
 
@@ -61,18 +61,18 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#UsePartColor"/>
         public bool UsePartColor
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsePartColor");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsePartColor")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UsePartColor", value);
         }
 
         /// <summary>
         /// Substitutes the geometry of this PartOperation with the geometry of another PartOperation.
         /// </summary>
-        /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="source">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartOperation#SubstituteGeometry"/>
-        public object? SubstituteGeometry(Instance? source)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SubstituteGeometry", source);
+        public object SubstituteGeometry(Instance source)
+            => global::Roblox.Reflection.Invoke<object>(this, "SubstituteGeometry", source)!;
 
     }
 }

@@ -22,23 +22,23 @@ namespace Roblox
         /// Creates a <see cref="Shirt"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Shirt? FromHandle(nuint handle)
+        public static new Shirt? FromHandle(nuint handle)
             => handle == 0 ? null : new Shirt(handle);
 
         /// <summary>
         /// Determines the texture of the Shirt.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Shirt#ShirtTemplate"/>
-        public object? ShirtTemplate
+        public object ShirtTemplate
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ShirtTemplate");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ShirtTemplate", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "ShirtTemplate")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "ShirtTemplate", value);
         }
 
-        public string? ShirtTemplateContent
+        public string ShirtTemplateContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ShirtTemplateContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ShirtTemplateContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ShirtTemplateContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ShirtTemplateContent", value);
         }
 
     }

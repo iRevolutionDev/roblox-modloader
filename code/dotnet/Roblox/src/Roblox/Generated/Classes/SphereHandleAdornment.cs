@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SphereHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SphereHandleAdornment? FromHandle(nuint handle)
+        public static new SphereHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new SphereHandleAdornment(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SphereHandleAdornment#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SphereHandleAdornment#Shading"/>
         public Enum.AdornShading Shading
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdornShading>(this, "Shading", value);
         }
 

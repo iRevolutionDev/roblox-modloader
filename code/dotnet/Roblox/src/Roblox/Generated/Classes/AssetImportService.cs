@@ -18,132 +18,132 @@ namespace Roblox
         /// Creates a <see cref="AssetImportService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetImportService? FromHandle(nuint handle)
+        public static new AssetImportService? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetImportService(handle);
 
         /// <summary>
         /// <c>AssetImportService.GetAllPresets</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAllPresets()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAllPresets");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAllPresets()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAllPresets")!;
 
         /// <summary>
         /// <c>AssetImportService.GetPreset</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPreset(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPreset", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPreset(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPreset", name)!;
 
         /// <summary>
         /// <c>AssetImportService.RemovePreset</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemovePreset(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemovePreset", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemovePreset(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemovePreset", name)!;
 
         /// <summary>
         /// <c>AssetImportService.SavePreset</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="preset">A <c>object?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="preset">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool SavePreset(string? name, object? preset)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SavePreset", name, preset);
+        public bool SavePreset(string name, object preset)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SavePreset", name, preset)!;
 
         /// <summary>
         /// <c>AssetImportService.StartSessionWithPath</c>
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>AssetImportSession?</c> value returned by the engine.</returns>
-        public AssetImportSession? StartSessionWithPath(string? filePath)
-            => global::Roblox.Reflection.Invoke<AssetImportSession?>(this, "StartSessionWithPath", filePath);
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>AssetImportSession</c> value returned by the engine.</returns>
+        public AssetImportSession StartSessionWithPath(string filePath)
+            => global::Roblox.Reflection.Invoke<AssetImportSession>(this, "StartSessionWithPath", filePath)!;
 
         /// <summary>
         /// <c>AssetImportService.StartSingleFileWatch</c>
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartSingleFileWatch(string? filePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartSingleFileWatch", filePath);
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartSingleFileWatch(string filePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartSingleFileWatch", filePath)!;
 
         /// <summary>
         /// <c>AssetImportService.StopSingleFileWatch</c>
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopSingleFileWatch(string? filePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopSingleFileWatch", filePath);
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopSingleFileWatch(string filePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "StopSingleFileWatch", filePath)!;
 
         /// <summary>
         /// <c>AssetImportService.GetFilesInDirAsync</c>
         /// </summary>
-        /// <param name="path">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetFilesInDirAsync(string? path)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFilesInDirAsync", path);
+        /// <param name="path">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetFilesInDirAsync(string path)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFilesInDirAsync", path)!;
 
         /// <summary>
         /// <c>AssetImportService.PickFileWithPromptAsync</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PickFileWithPromptAsync()
-            => global::Roblox.Reflection.Invoke<string?>(this, "PickFileWithPromptAsync");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PickFileWithPromptAsync()
+            => global::Roblox.Reflection.Invoke<string>(this, "PickFileWithPromptAsync")!;
 
         /// <summary>
         /// <c>AssetImportService.PickImageFileWithPrompt</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PickImageFileWithPrompt()
-            => global::Roblox.Reflection.Invoke<string?>(this, "PickImageFileWithPrompt");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PickImageFileWithPrompt()
+            => global::Roblox.Reflection.Invoke<string>(this, "PickImageFileWithPrompt")!;
 
         /// <summary>
         /// <c>AssetImportService.PickMeshFileWithPrompt</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PickMeshFileWithPrompt()
-            => global::Roblox.Reflection.Invoke<string?>(this, "PickMeshFileWithPrompt");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PickMeshFileWithPrompt()
+            => global::Roblox.Reflection.Invoke<string>(this, "PickMeshFileWithPrompt")!;
 
         /// <summary>
         /// <c>AssetImportService.PickMultipleFilesWithPrompt</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PickMultipleFilesWithPrompt()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PickMultipleFilesWithPrompt");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PickMultipleFilesWithPrompt()
+            => global::Roblox.Reflection.Invoke<object>(this, "PickMultipleFilesWithPrompt")!;
 
         /// <summary>
         /// <c>AssetImportService.StartSessionWithPathAsync</c>
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>AssetImportSession?</c> value returned by the engine.</returns>
-        public AssetImportSession? StartSessionWithPathAsync(string? filePath)
-            => global::Roblox.Reflection.Invoke<AssetImportSession?>(this, "StartSessionWithPathAsync", filePath);
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>AssetImportSession</c> value returned by the engine.</returns>
+        public AssetImportSession StartSessionWithPathAsync(string filePath)
+            => global::Roblox.Reflection.Invoke<AssetImportSession>(this, "StartSessionWithPathAsync", filePath)!;
 
         /// <summary>
         /// <c>AssetImportService.UploadAssetFromContentAsync</c>
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
-        /// <param name="createAssetRequest">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UploadAssetFromContentAsync(string? content, object? createAssetRequest)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UploadAssetFromContentAsync", content, createAssetRequest);
+        /// <param name="content">A <c>string</c> value.</param>
+        /// <param name="createAssetRequest">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UploadAssetFromContentAsync(string content, object createAssetRequest)
+            => global::Roblox.Reflection.Invoke<object>(this, "UploadAssetFromContentAsync", content, createAssetRequest)!;
 
         /// <summary>
         /// <c>AssetImportService.UploadAssetFromPathAsync</c>
         /// </summary>
-        /// <param name="filepath">A <c>string?</c> value.</param>
-        /// <param name="createAssetRequest">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UploadAssetFromPathAsync(string? filepath, object? createAssetRequest)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UploadAssetFromPathAsync", filepath, createAssetRequest);
+        /// <param name="filepath">A <c>string</c> value.</param>
+        /// <param name="createAssetRequest">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UploadAssetFromPathAsync(string filepath, object createAssetRequest)
+            => global::Roblox.Reflection.Invoke<object>(this, "UploadAssetFromPathAsync", filepath, createAssetRequest)!;
 
         /// <summary>
         /// <c>AssetImportService.SingleFileChanged</c>
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        public event Action<string?>? SingleFileChanged
+        /// <param name="filePath">A <c>string</c> value.</param>
+        public event Action<string>? SingleFileChanged
         {
             add { if (value is not null) AddEventHandler("SingleFileChanged", value); }
             remove { if (value is not null) RemoveEventHandler("SingleFileChanged", value); }
@@ -152,8 +152,8 @@ namespace Roblox
         /// <summary>
         /// <c>AssetImportService.StartSingleMeshImport</c>
         /// </summary>
-        /// <param name="fileName">A <c>string?</c> value.</param>
-        public event Action<string?>? StartSingleMeshImport
+        /// <param name="fileName">A <c>string</c> value.</param>
+        public event Action<string>? StartSingleMeshImport
         {
             add { if (value is not null) AddEventHandler("StartSingleMeshImport", value); }
             remove { if (value is not null) RemoveEventHandler("StartSingleMeshImport", value); }

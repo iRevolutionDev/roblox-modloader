@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Flag"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Flag? FromHandle(nuint handle)
+        public static new Flag? FromHandle(nuint handle)
             => handle == 0 ? null : new Flag(handle);
 
         /// <summary>
         /// The Team this flag is for. Corresponds with the TeamColors in the Teams service.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Flag#TeamColor"/>
-        public global::Roblox.BrickColor? TeamColor
+        public global::Roblox.BrickColor TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TeamColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TeamColor", value);
         }
 
     }

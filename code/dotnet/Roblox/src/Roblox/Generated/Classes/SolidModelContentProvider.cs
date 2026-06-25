@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SolidModelContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SolidModelContentProvider? FromHandle(nuint handle)
+        public static new SolidModelContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new SolidModelContentProvider(handle);
 
     }

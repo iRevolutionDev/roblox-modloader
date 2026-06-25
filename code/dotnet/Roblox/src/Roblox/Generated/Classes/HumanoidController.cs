@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HumanoidController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HumanoidController? FromHandle(nuint handle)
+        public static new HumanoidController? FromHandle(nuint handle)
             => handle == 0 ? null : new HumanoidController(handle);
 
     }

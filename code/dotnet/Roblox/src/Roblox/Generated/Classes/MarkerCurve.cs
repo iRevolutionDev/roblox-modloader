@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="MarkerCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MarkerCurve? FromHandle(nuint handle)
+        public static new MarkerCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new MarkerCurve(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarkerCurve#Length"/>
         public int Length
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Length", value);
         }
 
@@ -39,38 +39,38 @@ namespace Roblox
         /// Returns the time and string value of the marker at the provided index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarkerCurve#GetMarkerAtIndex"/>
-        public object? GetMarkerAtIndex(int index)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMarkerAtIndex", index);
+        public object GetMarkerAtIndex(int index)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMarkerAtIndex", index)!;
 
         /// <summary>
         /// Returns the time and string value of all markers in the MarkerCurve.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarkerCurve#GetMarkers"/>
-        public object? GetMarkers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMarkers");
+        public object GetMarkers()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMarkers")!;
 
         /// <summary>
         /// Inserts a marker with the provided string value at the provided time.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="marker">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="marker">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarkerCurve#InsertMarkerAtTime"/>
-        public object? InsertMarkerAtTime(float time, string? marker)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertMarkerAtTime", time, marker);
+        public object InsertMarkerAtTime(float time, string marker)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertMarkerAtTime", time, marker)!;
 
         /// <summary>
         /// Remove several markers in the MarkerCurve starting at the provided index.
         /// </summary>
         /// <param name="startingIndex">A <c>int</c> value.</param>
-        /// <param name="count">A <c>int</c> value.</param>
+        /// <param name="count">A <c>int?</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarkerCurve#RemoveMarkerAtIndex"/>
-        public int RemoveMarkerAtIndex(int startingIndex, int count)
-            => global::Roblox.Reflection.Invoke<int>(this, "RemoveMarkerAtIndex", startingIndex, count);
+        public int RemoveMarkerAtIndex(int startingIndex, int? count = null)
+            => global::Roblox.Reflection.Invoke<int>(this, "RemoveMarkerAtIndex", startingIndex, count)!;
 
     }
 }

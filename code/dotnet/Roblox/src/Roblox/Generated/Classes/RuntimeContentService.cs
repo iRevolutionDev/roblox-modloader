@@ -18,14 +18,14 @@ namespace Roblox
         /// Creates a <see cref="RuntimeContentService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RuntimeContentService? FromHandle(nuint handle)
+        public static new RuntimeContentService? FromHandle(nuint handle)
             => handle == 0 ? null : new RuntimeContentService(handle);
 
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentFail</c>
         /// </summary>
-        /// <param name="id">A <c>string?</c> value.</param>
-        public event Action<string?>? RuntimeContentFail
+        /// <param name="id">A <c>string</c> value.</param>
+        public event Action<string>? RuntimeContentFail
         {
             add { if (value is not null) AddEventHandler("RuntimeContentFail", value); }
             remove { if (value is not null) RemoveEventHandler("RuntimeContentFail", value); }
@@ -34,9 +34,9 @@ namespace Roblox
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentLRCleanup</c>
         /// </summary>
-        /// <param name="id">A <c>string?</c> value.</param>
-        /// <param name="priorityList">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? RuntimeContentLRCleanup
+        /// <param name="id">A <c>string</c> value.</param>
+        /// <param name="priorityList">A <c>string</c> value.</param>
+        public event Action<string, string>? RuntimeContentLRCleanup
         {
             add { if (value is not null) AddEventHandler("RuntimeContentLRCleanup", value); }
             remove { if (value is not null) RemoveEventHandler("RuntimeContentLRCleanup", value); }
@@ -45,10 +45,10 @@ namespace Roblox
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentQuery</c>
         /// </summary>
-        /// <param name="id">A <c>string?</c> value.</param>
-        /// <param name="expectedType">A <c>string?</c> value.</param>
-        /// <param name="priorityList">A <c>string?</c> value.</param>
-        public event Action<string?, string?, string?>? RuntimeContentQuery
+        /// <param name="id">A <c>string</c> value.</param>
+        /// <param name="expectedType">A <c>string</c> value.</param>
+        /// <param name="priorityList">A <c>string</c> value.</param>
+        public event Action<string, string, string>? RuntimeContentQuery
         {
             add { if (value is not null) AddEventHandler("RuntimeContentQuery", value); }
             remove { if (value is not null) RemoveEventHandler("RuntimeContentQuery", value); }
@@ -57,10 +57,10 @@ namespace Roblox
         /// <summary>
         /// <c>RuntimeContentService.RuntimeContentShare</c>
         /// </summary>
-        /// <param name="id">A <c>string?</c> value.</param>
-        /// <param name="content">A <c>string?</c> value.</param>
-        /// <param name="metadata">A <c>string?</c> value.</param>
-        public event Action<string?, string?, string?>? RuntimeContentShare
+        /// <param name="id">A <c>string</c> value.</param>
+        /// <param name="content">A <c>string</c> value.</param>
+        /// <param name="metadata">A <c>string</c> value.</param>
+        public event Action<string, string, string>? RuntimeContentShare
         {
             add { if (value is not null) AddEventHandler("RuntimeContentShare", value); }
             remove { if (value is not null) RemoveEventHandler("RuntimeContentShare", value); }

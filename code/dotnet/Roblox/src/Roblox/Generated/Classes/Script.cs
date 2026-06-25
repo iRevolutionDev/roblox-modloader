@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="Script"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Script? FromHandle(nuint handle)
+        public static new Script? FromHandle(nuint handle)
             => handle == 0 ? null : new Script(handle);
 
         /// <summary>
         /// The code to be executed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Script#Source"/>
-        public string? Source
+        public string Source
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Source");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Source", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Source")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Source", value);
         }
 
         /// <summary>
         /// <c>Script.GetHash</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetHash()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetHash");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetHash()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetHash")!;
 
     }
 }

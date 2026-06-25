@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Path2D"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Path2D? FromHandle(nuint handle)
+        public static new Path2D? FromHandle(nuint handle)
             => handle == 0 ? null : new Path2D(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Closed"/>
         public bool Closed
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Closed");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Closed")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Closed", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Determines the color of the Path2D.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Color3"/>
-        public global::Roblox.Color3? Color3
+        public global::Roblox.Color3 Color3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color3", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#SelectedControlPoint"/>
         public int SelectedControlPoint
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectedControlPoint");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectedControlPoint")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "SelectedControlPoint", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Path2DControlPoint data type representing the currently selected control point.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#SelectedControlPointData"/>
-        public object? SelectedControlPointData
+        public object SelectedControlPointData
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SelectedControlPointData");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SelectedControlPointData", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SelectedControlPointData")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SelectedControlPointData", value);
         }
 
         /// <summary>
@@ -71,13 +71,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Thickness"/>
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 
         public float Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Transparency", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#Visible"/>
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 
@@ -97,34 +97,34 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#ZIndex"/>
         public int ZIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ZIndex", value);
         }
 
         /// <summary>
         /// Returns the bounding size for the Path2D.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Rect?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Rect</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetBoundingRect"/>
-        public global::Roblox.Rect? GetBoundingRect()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Rect?>(this, "GetBoundingRect");
+        public global::Roblox.Rect GetBoundingRect()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Rect>(this, "GetBoundingRect")!;
 
         /// <summary>
         /// Returns the Path2DControlPoint for a given index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetControlPoint"/>
-        public object? GetControlPoint(int index)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetControlPoint", index);
+        public object GetControlPoint(int index)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetControlPoint", index)!;
 
         /// <summary>
         /// Returns all the Path2DControlPoints for the Path2D.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetControlPoints"/>
-        public object? GetControlPoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetControlPoints");
+        public object GetControlPoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetControlPoints")!;
 
         /// <summary>
         /// Returns the length of the Path2D.
@@ -132,7 +132,7 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetLength"/>
         public float GetLength()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetLength");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetLength")!;
 
         /// <summary>
         /// Returns the maximum allowed number of control points.
@@ -140,88 +140,88 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetMaxControlPoints"/>
         public int GetMaxControlPoints()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetMaxControlPoints");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetMaxControlPoints")!;
 
         /// <summary>
         /// Returns the position at a given value in parameter space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>global::Roblox.UDim2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.UDim2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetPositionOnCurve"/>
-        public global::Roblox.UDim2? GetPositionOnCurve(float t)
-            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2?>(this, "GetPositionOnCurve", t);
+        public global::Roblox.UDim2 GetPositionOnCurve(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2>(this, "GetPositionOnCurve", t)!;
 
         /// <summary>
         /// Returns the position at a given value in arc length space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>global::Roblox.UDim2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.UDim2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetPositionOnCurveArcLength"/>
-        public global::Roblox.UDim2? GetPositionOnCurveArcLength(float t)
-            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2?>(this, "GetPositionOnCurveArcLength", t);
+        public global::Roblox.UDim2 GetPositionOnCurveArcLength(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2>(this, "GetPositionOnCurveArcLength", t)!;
 
         /// <summary>
         /// <c>Path2D.GetSegmentCount</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetSegmentCount()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetSegmentCount");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetSegmentCount")!;
 
         /// <summary>
         /// Returns the tangent at a given value in parameter space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetTangentOnCurve"/>
-        public global::Roblox.Vector2? GetTangentOnCurve(float t)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTangentOnCurve", t);
+        public global::Roblox.Vector2 GetTangentOnCurve(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetTangentOnCurve", t)!;
 
         /// <summary>
         /// Returns the tangent at a given value in arc length space.
         /// </summary>
         /// <param name="t">A <c>float</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#GetTangentOnCurveArcLength"/>
-        public global::Roblox.Vector2? GetTangentOnCurveArcLength(float t)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTangentOnCurveArcLength", t);
+        public global::Roblox.Vector2 GetTangentOnCurveArcLength(float t)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetTangentOnCurveArcLength", t)!;
 
         /// <summary>
         /// Inserts a new control point at a given index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <param name="point">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="point">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#InsertControlPoint"/>
-        public object? InsertControlPoint(int index, object? point)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertControlPoint", index, point);
+        public object InsertControlPoint(int index, object point)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertControlPoint", index, point)!;
 
         /// <summary>
         /// Removes a control at the given index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#RemoveControlPoint"/>
-        public object? RemoveControlPoint(int index)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveControlPoint", index);
+        public object RemoveControlPoint(int index)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveControlPoint", index)!;
 
         /// <summary>
         /// Sets all the control points to the specified array, replacing all existing points with new ones.
         /// </summary>
-        /// <param name="controlPoints">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="controlPoints">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#SetControlPoints"/>
-        public object? SetControlPoints(object? controlPoints)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetControlPoints", controlPoints);
+        public object SetControlPoints(object controlPoints)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetControlPoints", controlPoints)!;
 
         /// <summary>
         /// Updates a control point at the given index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <param name="point">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="point">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D#UpdateControlPoint"/>
-        public object? UpdateControlPoint(int index, object? point)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateControlPoint", index, point);
+        public object UpdateControlPoint(int index, object point)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateControlPoint", index, point)!;
 
         /// <summary>
         /// Fires any time control points change.

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BugReporterService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BugReporterService? FromHandle(nuint handle)
+        public static new BugReporterService? FromHandle(nuint handle)
             => handle == 0 ? null : new BugReporterService(handle);
 
         /// <summary>
@@ -31,14 +31,14 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BugReporterService#IsAvailable"/>
         public bool IsAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvailable")!;
 
         /// <summary>
         /// <c>BugReporterService.BugReportRequested</c>
         /// </summary>
-        /// <param name="trigger">A <c>string?</c> value.</param>
+        /// <param name="trigger">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BugReporterService#BugReportRequested"/>
-        public event Action<string?>? BugReportRequested
+        public event Action<string>? BugReportRequested
         {
             add { if (value is not null) AddEventHandler("BugReportRequested", value); }
             remove { if (value is not null) RemoveEventHandler("BugReportRequested", value); }

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="UIGradient"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIGradient? FromHandle(nuint handle)
+        public static new UIGradient? FromHandle(nuint handle)
             => handle == 0 ? null : new UIGradient(handle);
 
         /// <summary>
         /// Determines the color blended with the parent GuiObject along the length of the gradient.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Color"/>
-        public global::Roblox.ColorSequence? Color
+        public global::Roblox.ColorSequence Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence>(this, "Color", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines the scalar translation of the gradient from the center of the parent GuiObject.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Offset"/>
-        public global::Roblox.Vector2? Offset
+        public global::Roblox.Vector2 Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Offset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Offset", value);
         }
 
         /// <summary>
@@ -61,19 +61,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Rotation"/>
         public float Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Rotation");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Rotation")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Rotation", value);
         }
 
         public float Scale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Scale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Scale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Scale", value);
         }
 
         public Enum.GradientTileMode TileMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GradientTileMode>(this, "TileMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.GradientTileMode>(this, "TileMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GradientTileMode>(this, "TileMode", value);
         }
 
@@ -81,15 +81,15 @@ namespace Roblox
         /// Determines how much the parent GuiObject can be seen through along the length of the gradient.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGradient#Transparency"/>
-        public global::Roblox.NumberSequence? Transparency
+        public global::Roblox.NumberSequence Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence>(this, "Transparency")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence>(this, "Transparency", value);
         }
 
         public Enum.GradientType Type
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GradientType>(this, "Type");
+            get => global::Roblox.Reflection.GetProperty<Enum.GradientType>(this, "Type")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GradientType>(this, "Type", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CompositeValueCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CompositeValueCurve? FromHandle(nuint handle)
+        public static new CompositeValueCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new CompositeValueCurve(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompositeValueCurve#CurveType"/>
         public Enum.CompositeValueCurveType CurveType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CompositeValueCurveType>(this, "CurveType");
+            get => global::Roblox.Reflection.GetProperty<Enum.CompositeValueCurveType>(this, "CurveType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CompositeValueCurveType>(this, "CurveType", value);
         }
 
@@ -41,16 +41,16 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompositeValueCurve#GetComponentCurves"/>
         public IReadOnlyList<Instance> GetComponentCurves()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetComponentCurves");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetComponentCurves")!;
 
         /// <summary>
         /// Returns the sampled animated value at the passed time argument.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompositeValueCurve#GetValueAtTime"/>
-        public object? GetValueAtTime(float time)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValueAtTime", time);
+        public object GetValueAtTime(float time)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetValueAtTime", time)!;
 
     }
 }

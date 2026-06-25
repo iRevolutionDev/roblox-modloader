@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="CharacterMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CharacterMesh? FromHandle(nuint handle)
+        public static new CharacterMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new CharacterMesh(handle);
 
         /// <summary>
         /// <c>CharacterMesh.BaseTextureContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#BaseTextureContent"/>
-        public string? BaseTextureContent
+        public string BaseTextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "BaseTextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "BaseTextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "BaseTextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "BaseTextureContent", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#BaseTextureId"/>
         public long BaseTextureId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "BaseTextureId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "BaseTextureId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "BaseTextureId", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#BodyPart"/>
         public Enum.BodyPart BodyPart
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.BodyPart>(this, "BodyPart");
+            get => global::Roblox.Reflection.GetProperty<Enum.BodyPart>(this, "BodyPart")!;
             set => global::Roblox.Reflection.SetProperty<Enum.BodyPart>(this, "BodyPart", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// <c>CharacterMesh.MeshContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#MeshContent"/>
-        public string? MeshContent
+        public string MeshContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MeshContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MeshContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MeshContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MeshContent", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#MeshId"/>
         public long MeshId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "MeshId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "MeshId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "MeshId", value);
         }
 
@@ -79,10 +79,10 @@ namespace Roblox
         /// <c>CharacterMesh.OverlayTextureContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#OverlayTextureContent"/>
-        public string? OverlayTextureContent
+        public string OverlayTextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OverlayTextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OverlayTextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OverlayTextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OverlayTextureContent", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CharacterMesh#OverlayTextureId"/>
         public long OverlayTextureId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "OverlayTextureId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "OverlayTextureId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "OverlayTextureId", value);
         }
 

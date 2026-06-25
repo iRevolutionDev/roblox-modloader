@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AtmosphereSensor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AtmosphereSensor? FromHandle(nuint handle)
+        public static new AtmosphereSensor? FromHandle(nuint handle)
             => handle == 0 ? null : new AtmosphereSensor(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AtmosphereSensor#AirDensity"/>
         public float AirDensity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AirDensity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AirDensity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AirDensity", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Reports the wind velocity relative to the sensor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AtmosphereSensor#RelativeWindVelocity"/>
-        public global::Roblox.Vector3? RelativeWindVelocity
+        public global::Roblox.Vector3 RelativeWindVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RelativeWindVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RelativeWindVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RelativeWindVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RelativeWindVelocity", value);
         }
 
     }

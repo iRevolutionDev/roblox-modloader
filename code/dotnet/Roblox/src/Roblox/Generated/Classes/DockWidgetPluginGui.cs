@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DockWidgetPluginGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DockWidgetPluginGui? FromHandle(nuint handle)
+        public static new DockWidgetPluginGui? FromHandle(nuint handle)
             => handle == 0 ? null : new DockWidgetPluginGui(handle);
 
         /// <summary>
@@ -31,16 +31,16 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DockWidgetPluginGui#HostWidgetWasRestored"/>
         public bool HostWidgetWasRestored
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HostWidgetWasRestored");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HostWidgetWasRestored")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HostWidgetWasRestored", value);
         }
 
         /// <summary>
         /// <c>DockWidgetPluginGui.RequestRaise</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestRaise()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestRaise");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestRaise()
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestRaise")!;
 
     }
 }

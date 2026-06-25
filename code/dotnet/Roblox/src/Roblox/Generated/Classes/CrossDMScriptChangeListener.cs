@@ -18,35 +18,35 @@ namespace Roblox
         /// Creates a <see cref="CrossDMScriptChangeListener"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CrossDMScriptChangeListener? FromHandle(nuint handle)
+        public static new CrossDMScriptChangeListener? FromHandle(nuint handle)
             => handle == 0 ? null : new CrossDMScriptChangeListener(handle);
 
         /// <summary>
         /// <c>CrossDMScriptChangeListener.IsWatchingScriptLine</c>
         /// </summary>
-        /// <param name="scriptRef">A <c>string?</c> value.</param>
+        /// <param name="scriptRef">A <c>string</c> value.</param>
         /// <param name="lineNumber">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsWatchingScriptLine(string? scriptRef, int lineNumber)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsWatchingScriptLine", scriptRef, lineNumber);
+        public bool IsWatchingScriptLine(string scriptRef, int lineNumber)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsWatchingScriptLine", scriptRef, lineNumber)!;
 
         /// <summary>
         /// <c>CrossDMScriptChangeListener.StartWatchingScriptLine</c>
         /// </summary>
-        /// <param name="scriptRef">A <c>string?</c> value.</param>
+        /// <param name="scriptRef">A <c>string</c> value.</param>
         /// <param name="debuggerConnectionId">A <c>int</c> value.</param>
         /// <param name="lineNumber">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartWatchingScriptLine(string? scriptRef, int debuggerConnectionId, int lineNumber)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartWatchingScriptLine", scriptRef, debuggerConnectionId, lineNumber);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartWatchingScriptLine(string scriptRef, int debuggerConnectionId, int lineNumber)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartWatchingScriptLine", scriptRef, debuggerConnectionId, lineNumber)!;
 
         /// <summary>
         /// <c>CrossDMScriptChangeListener.GuidLineContentsChanged</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
+        /// <param name="guid">A <c>string</c> value.</param>
         /// <param name="lineNumber">A <c>int</c> value.</param>
-        /// <param name="contents">A <c>string?</c> value.</param>
-        public event Action<string?, int, string?>? GuidLineContentsChanged
+        /// <param name="contents">A <c>string</c> value.</param>
+        public event Action<string, int, string>? GuidLineContentsChanged
         {
             add { if (value is not null) AddEventHandler("GuidLineContentsChanged", value); }
             remove { if (value is not null) RemoveEventHandler("GuidLineContentsChanged", value); }
@@ -55,9 +55,9 @@ namespace Roblox
         /// <summary>
         /// <c>CrossDMScriptChangeListener.GuidNameChanged</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
-        /// <param name="fullName">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? GuidNameChanged
+        /// <param name="guid">A <c>string</c> value.</param>
+        /// <param name="fullName">A <c>string</c> value.</param>
+        public event Action<string, string>? GuidNameChanged
         {
             add { if (value is not null) AddEventHandler("GuidNameChanged", value); }
             remove { if (value is not null) RemoveEventHandler("GuidNameChanged", value); }

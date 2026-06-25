@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CacheableContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CacheableContentProvider? FromHandle(nuint handle)
+        public static new CacheableContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new CacheableContentProvider(handle);
 
     }

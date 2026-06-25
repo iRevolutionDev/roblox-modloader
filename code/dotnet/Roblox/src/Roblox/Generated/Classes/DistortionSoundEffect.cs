@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DistortionSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DistortionSoundEffect? FromHandle(nuint handle)
+        public static new DistortionSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new DistortionSoundEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DistortionSoundEffect#Level"/>
         public float Level
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Level");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Level")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Level", value);
         }
 

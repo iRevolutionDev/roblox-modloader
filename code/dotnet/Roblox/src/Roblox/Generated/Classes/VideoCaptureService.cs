@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="VideoCaptureService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VideoCaptureService? FromHandle(nuint handle)
+        public static new VideoCaptureService? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoCaptureService(handle);
 
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
-        public string? CameraID
+        public string CameraID
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CameraID");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CameraID", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CameraID")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CameraID", value);
         }
 
         /// <summary>
         /// <c>VideoCaptureService.GetCameraDevices</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCameraDevices()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCameraDevices");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetCameraDevices()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCameraDevices")!;
 
         public event Action? DevicesChanged
         {
@@ -53,9 +53,9 @@ namespace Roblox
         /// <summary>
         /// <c>VideoCaptureService.Error</c>
         /// </summary>
-        /// <param name="cameraid">A <c>string?</c> value.</param>
-        /// <param name="errorcode">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? Error
+        /// <param name="cameraid">A <c>string</c> value.</param>
+        /// <param name="errorcode">A <c>string</c> value.</param>
+        public event Action<string, string>? Error
         {
             add { if (value is not null) AddEventHandler("Error", value); }
             remove { if (value is not null) RemoveEventHandler("Error", value); }
@@ -64,8 +64,8 @@ namespace Roblox
         /// <summary>
         /// <c>VideoCaptureService.Started</c>
         /// </summary>
-        /// <param name="cameraid">A <c>string?</c> value.</param>
-        public event Action<string?>? Started
+        /// <param name="cameraid">A <c>string</c> value.</param>
+        public event Action<string>? Started
         {
             add { if (value is not null) AddEventHandler("Started", value); }
             remove { if (value is not null) RemoveEventHandler("Started", value); }
@@ -74,8 +74,8 @@ namespace Roblox
         /// <summary>
         /// <c>VideoCaptureService.Stopped</c>
         /// </summary>
-        /// <param name="cameraid">A <c>string?</c> value.</param>
-        public event Action<string?>? Stopped
+        /// <param name="cameraid">A <c>string</c> value.</param>
+        public event Action<string>? Stopped
         {
             add { if (value is not null) AddEventHandler("Stopped", value); }
             remove { if (value is not null) RemoveEventHandler("Stopped", value); }

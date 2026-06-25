@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CustomEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CustomEvent? FromHandle(nuint handle)
+        public static new CustomEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new CustomEvent(handle);
 
         /// <summary>
@@ -31,23 +31,23 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#GetAttachedReceivers"/>
         public IReadOnlyList<Instance> GetAttachedReceivers()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAttachedReceivers");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAttachedReceivers")!;
 
         /// <summary>
         /// Sets the value of the CustomEvent and fires the CustomEventReceiver.SourceValueChanged event for all connected CustomEventReceiver|receivers.
         /// </summary>
         /// <param name="newValue">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#SetValue"/>
-        public object? SetValue(float newValue)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetValue", newValue);
+        public object SetValue(float newValue)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetValue", newValue)!;
 
         /// <summary>
         /// Fires when a receiver is connected to the CustomEvent.
         /// </summary>
-        /// <param name="receiver">A <c>Instance?</c> value.</param>
+        /// <param name="receiver">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#ReceiverConnected"/>
-        public event Action<Instance?>? ReceiverConnected
+        public event Action<Instance>? ReceiverConnected
         {
             add { if (value is not null) AddEventHandler("ReceiverConnected", value); }
             remove { if (value is not null) RemoveEventHandler("ReceiverConnected", value); }
@@ -56,9 +56,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a receiver is disconnected from the CustomEvent.
         /// </summary>
-        /// <param name="receiver">A <c>Instance?</c> value.</param>
+        /// <param name="receiver">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent#ReceiverDisconnected"/>
-        public event Action<Instance?>? ReceiverDisconnected
+        public event Action<Instance>? ReceiverDisconnected
         {
             add { if (value is not null) AddEventHandler("ReceiverDisconnected", value); }
             remove { if (value is not null) RemoveEventHandler("ReceiverDisconnected", value); }

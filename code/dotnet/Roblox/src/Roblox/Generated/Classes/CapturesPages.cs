@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CapturesPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CapturesPages? FromHandle(nuint handle)
+        public static new CapturesPages? FromHandle(nuint handle)
             => handle == 0 ? null : new CapturesPages(handle);
 
     }

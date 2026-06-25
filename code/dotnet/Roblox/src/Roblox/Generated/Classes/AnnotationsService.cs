@@ -18,18 +18,18 @@ namespace Roblox
         /// Creates a <see cref="AnnotationsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnnotationsService? FromHandle(nuint handle)
+        public static new AnnotationsService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnnotationsService(handle);
 
         public Enum.AnnotationRequestStatus AnnotationsLoadingStatus
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnnotationRequestStatus>(this, "AnnotationsLoadingStatus");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnnotationRequestStatus>(this, "AnnotationsLoadingStatus")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnnotationRequestStatus>(this, "AnnotationsLoadingStatus", value);
         }
 
         public bool AnnotationsVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AnnotationsVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AnnotationsVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AnnotationsVisible", value);
         }
 
@@ -41,13 +41,13 @@ namespace Roblox
 
         public Enum.AnnotationEditingMode Mode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnnotationEditingMode>(this, "Mode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnnotationEditingMode>(this, "Mode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnnotationEditingMode>(this, "Mode", value);
         }
 
         public Enum.AnnotationRequestStatus ResolvedLoadingStatus
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnnotationRequestStatus>(this, "ResolvedLoadingStatus");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnnotationRequestStatus>(this, "ResolvedLoadingStatus")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnnotationRequestStatus>(this, "ResolvedLoadingStatus", value);
         }
 
@@ -60,10 +60,10 @@ namespace Roblox
         /// <summary>
         /// <c>AnnotationsService.CreateAnnotation</c>
         /// </summary>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateAnnotation(Annotation? annotation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAnnotation", annotation);
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateAnnotation(Annotation annotation)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAnnotation", annotation)!;
 
         /// <summary>
         /// <c>AnnotationsService.CreateOrUpdatePlacePreference</c>
@@ -71,34 +71,34 @@ namespace Roblox
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="placeContentPreference">A <c>Enum.PlaceContentPreference</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateOrUpdatePlacePreference(long placeId, long userId, Enum.PlaceContentPreference placeContentPreference)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateOrUpdatePlacePreference", placeId, userId, placeContentPreference);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateOrUpdatePlacePreference(long placeId, long userId, Enum.PlaceContentPreference placeContentPreference)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateOrUpdatePlacePreference", placeId, userId, placeContentPreference)!;
 
         /// <summary>
         /// <c>AnnotationsService.DeleteAnnotation</c>
         /// </summary>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DeleteAnnotation(Annotation? annotation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeleteAnnotation", annotation);
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DeleteAnnotation(Annotation annotation)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeleteAnnotation", annotation)!;
 
         /// <summary>
         /// <c>AnnotationsService.EditAnnotation</c>
         /// </summary>
-        /// <param name="uniqueId">A <c>string?</c> value.</param>
-        /// <param name="contents">A <c>string?</c> value.</param>
-        /// <param name="taggedUsers">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EditAnnotation(string? uniqueId, string? contents, string? taggedUsers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EditAnnotation", uniqueId, contents, taggedUsers);
+        /// <param name="uniqueId">A <c>string</c> value.</param>
+        /// <param name="contents">A <c>string</c> value.</param>
+        /// <param name="taggedUsers">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EditAnnotation(string uniqueId, string contents, string taggedUsers)
+            => global::Roblox.Reflection.Invoke<object>(this, "EditAnnotation", uniqueId, contents, taggedUsers)!;
 
         /// <summary>
         /// <c>AnnotationsService.GetAnnotationThreads</c>
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetAnnotationThreads()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAnnotationThreads");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAnnotationThreads")!;
 
         /// <summary>
         /// <c>AnnotationsService.GetPlacePreference</c>
@@ -107,53 +107,53 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>Enum.PlaceContentPreference</c> value returned by the engine.</returns>
         public Enum.PlaceContentPreference GetPlacePreference(long placeId, long userId)
-            => global::Roblox.Reflection.Invoke<Enum.PlaceContentPreference>(this, "GetPlacePreference", placeId, userId);
+            => global::Roblox.Reflection.Invoke<Enum.PlaceContentPreference>(this, "GetPlacePreference", placeId, userId)!;
 
         /// <summary>
         /// <c>AnnotationsService.LoadAnnotationReplies</c>
         /// </summary>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
         /// <param name="reverseOrder">A <c>bool</c> value.</param>
         /// <param name="loadAll">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadAnnotationReplies(Annotation? annotation, bool reverseOrder, bool loadAll)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadAnnotationReplies", annotation, reverseOrder, loadAll);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadAnnotationReplies(Annotation annotation, bool reverseOrder, bool loadAll)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadAnnotationReplies", annotation, reverseOrder, loadAll)!;
 
         /// <summary>
         /// <c>AnnotationsService.LoadAnnotations</c>
         /// </summary>
         /// <param name="resolved">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadAnnotations(bool resolved)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadAnnotations", resolved);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadAnnotations(bool resolved)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadAnnotations", resolved)!;
 
         /// <summary>
         /// <c>AnnotationsService.LoadResolvedAnnotations</c>
         /// </summary>
         /// <param name="count">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadResolvedAnnotations(int count)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadResolvedAnnotations", count);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadResolvedAnnotations(int count)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadResolvedAnnotations", count)!;
 
         /// <summary>
         /// <c>AnnotationsService.ResolveAnnotation</c>
         /// </summary>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
         /// <param name="resolved">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResolveAnnotation(Annotation? annotation, bool resolved)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResolveAnnotation", annotation, resolved);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResolveAnnotation(Annotation annotation, bool resolved)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResolveAnnotation", annotation, resolved)!;
 
         /// <summary>
         /// <c>AnnotationsService.CreateOrUpdateChannelPreferenceAsync</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="channelId">A <c>string?</c> value.</param>
+        /// <param name="channelId">A <c>string</c> value.</param>
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <param name="channelContentPreference">A <c>Enum.AnnotationChannelContentPreference</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateOrUpdateChannelPreferenceAsync(long userId, string? channelId, long placeId, Enum.AnnotationChannelContentPreference channelContentPreference)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateOrUpdateChannelPreferenceAsync", userId, channelId, placeId, channelContentPreference);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateOrUpdateChannelPreferenceAsync(long userId, string channelId, long placeId, Enum.AnnotationChannelContentPreference channelContentPreference)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateOrUpdateChannelPreferenceAsync", userId, channelId, placeId, channelContentPreference)!;
 
         /// <summary>
         /// <c>AnnotationsService.CreateOrUpdatePlacePreferenceAsync</c>
@@ -161,19 +161,19 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="placeContentPreference">A <c>Enum.AnnotationPlaceContentPreference</c> value.</param>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateOrUpdatePlacePreferenceAsync(long userId, Enum.AnnotationPlaceContentPreference placeContentPreference, long placeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateOrUpdatePlacePreferenceAsync", userId, placeContentPreference, placeId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateOrUpdatePlacePreferenceAsync(long userId, Enum.AnnotationPlaceContentPreference placeContentPreference, long placeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateOrUpdatePlacePreferenceAsync", userId, placeContentPreference, placeId)!;
 
         /// <summary>
         /// <c>AnnotationsService.GetChannelPreferenceAsync</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="channelId">A <c>string?</c> value.</param>
+        /// <param name="channelId">A <c>string</c> value.</param>
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <returns>A <c>Enum.AnnotationChannelContentPreference</c> value returned by the engine.</returns>
-        public Enum.AnnotationChannelContentPreference GetChannelPreferenceAsync(long userId, string? channelId, long placeId)
-            => global::Roblox.Reflection.Invoke<Enum.AnnotationChannelContentPreference>(this, "GetChannelPreferenceAsync", userId, channelId, placeId);
+        public Enum.AnnotationChannelContentPreference GetChannelPreferenceAsync(long userId, string channelId, long placeId)
+            => global::Roblox.Reflection.Invoke<Enum.AnnotationChannelContentPreference>(this, "GetChannelPreferenceAsync", userId, channelId, placeId)!;
 
         /// <summary>
         /// <c>AnnotationsService.GetPlacePreferenceAsync</c>
@@ -182,15 +182,15 @@ namespace Roblox
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <returns>A <c>Enum.AnnotationPlaceContentPreference</c> value returned by the engine.</returns>
         public Enum.AnnotationPlaceContentPreference GetPlacePreferenceAsync(long userId, long placeId)
-            => global::Roblox.Reflection.Invoke<Enum.AnnotationPlaceContentPreference>(this, "GetPlacePreferenceAsync", userId, placeId);
+            => global::Roblox.Reflection.Invoke<Enum.AnnotationPlaceContentPreference>(this, "GetPlacePreferenceAsync", userId, placeId)!;
 
         /// <summary>
         /// <c>AnnotationsService.AnnotationAdded</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
-        /// <param name="channelId">A <c>string?</c> value.</param>
-        public event Action<string?, Annotation?, string?>? AnnotationAdded
+        /// <param name="requestId">A <c>string</c> value.</param>
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
+        /// <param name="channelId">A <c>string</c> value.</param>
+        public event Action<string, Annotation, string>? AnnotationAdded
         {
             add { if (value is not null) AddEventHandler("AnnotationAdded", value); }
             remove { if (value is not null) RemoveEventHandler("AnnotationAdded", value); }
@@ -199,9 +199,9 @@ namespace Roblox
         /// <summary>
         /// <c>AnnotationsService.AnnotationDeleted</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
-        public event Action<string?, Annotation?>? AnnotationDeleted
+        /// <param name="requestId">A <c>string</c> value.</param>
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
+        public event Action<string, Annotation>? AnnotationDeleted
         {
             add { if (value is not null) AddEventHandler("AnnotationDeleted", value); }
             remove { if (value is not null) RemoveEventHandler("AnnotationDeleted", value); }
@@ -210,11 +210,11 @@ namespace Roblox
         /// <summary>
         /// <c>AnnotationsService.AnnotationEdited</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
-        /// <param name="uniqueId">A <c>string?</c> value.</param>
-        /// <param name="contents">A <c>string?</c> value.</param>
-        /// <param name="taggedUsers">A <c>string?</c> value.</param>
-        public event Action<string?, string?, string?, string?>? AnnotationEdited
+        /// <param name="requestId">A <c>string</c> value.</param>
+        /// <param name="uniqueId">A <c>string</c> value.</param>
+        /// <param name="contents">A <c>string</c> value.</param>
+        /// <param name="taggedUsers">A <c>string</c> value.</param>
+        public event Action<string, string, string, string>? AnnotationEdited
         {
             add { if (value is not null) AddEventHandler("AnnotationEdited", value); }
             remove { if (value is not null) RemoveEventHandler("AnnotationEdited", value); }
@@ -223,10 +223,10 @@ namespace Roblox
         /// <summary>
         /// <c>AnnotationsService.AnnotationResolved</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        /// <param name="requestId">A <c>string</c> value.</param>
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
         /// <param name="resolved">A <c>bool</c> value.</param>
-        public event Action<string?, Annotation?, bool>? AnnotationResolved
+        public event Action<string, Annotation, bool>? AnnotationResolved
         {
             add { if (value is not null) AddEventHandler("AnnotationResolved", value); }
             remove { if (value is not null) RemoveEventHandler("AnnotationResolved", value); }
@@ -235,10 +235,10 @@ namespace Roblox
         /// <summary>
         /// <c>AnnotationsService.ServerLoadAnnotationReplies</c>
         /// </summary>
-        /// <param name="annotation">A <c>Annotation?</c> value.</param>
+        /// <param name="annotation">A <c>Annotation</c> value.</param>
         /// <param name="reverseOrder">A <c>bool</c> value.</param>
         /// <param name="loadAll">A <c>bool</c> value.</param>
-        public event Action<Annotation?, bool, bool>? ServerLoadAnnotationReplies
+        public event Action<Annotation, bool, bool>? ServerLoadAnnotationReplies
         {
             add { if (value is not null) AddEventHandler("ServerLoadAnnotationReplies", value); }
             remove { if (value is not null) RemoveEventHandler("ServerLoadAnnotationReplies", value); }

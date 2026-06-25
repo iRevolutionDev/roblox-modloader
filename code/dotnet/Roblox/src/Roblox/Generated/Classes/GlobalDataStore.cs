@@ -22,71 +22,71 @@ namespace Roblox
         /// Creates a <see cref="GlobalDataStore"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GlobalDataStore? FromHandle(nuint handle)
+        public static new GlobalDataStore? FromHandle(nuint handle)
             => handle == 0 ? null : new GlobalDataStore(handle);
 
         /// <summary>
         /// Deprecated: This function has been deprecated and should not be used in new work. You can use the Cross Server Messaging Service to publish and subscribe to topics to receive near real-time updates, completely replacing the need for this function.Sets a callback function to be executed any time the value associated with a key is changed.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#OnUpdate"/>
-        public object? OnUpdate(string? key, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnUpdate", key, callback);
+        public object OnUpdate(string key, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnUpdate", key, callback)!;
 
         /// <summary>
         /// Returns the value of a key in a specified data store and a DataStoreKeyInfo instance.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <param name="options">A <c>DataStoreGetOptions?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#GetAsync"/>
-        public object? GetAsync(string? key, DataStoreGetOptions? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAsync", key, options);
+        public object GetAsync(string key, DataStoreGetOptions? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAsync", key, options)!;
 
         /// <summary>
         /// Increments the value of a key by the provided amount (both must be integers).
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="delta">A <c>int</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="delta">A <c>int?</c> value.</param>
         /// <param name="userIds">A <c>object?</c> value.</param>
         /// <param name="options">A <c>DataStoreIncrementOptions?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#IncrementAsync"/>
-        public object? IncrementAsync(string? key, int delta, object? userIds, DataStoreIncrementOptions? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "IncrementAsync", key, delta, userIds, options);
+        public object IncrementAsync(string key, int? delta = null, object? userIds = null, DataStoreIncrementOptions? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "IncrementAsync", key, delta, userIds, options)!;
 
         /// <summary>
         /// Removes the specified key while also retaining an accessible version.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#RemoveAsync"/>
-        public object? RemoveAsync(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveAsync", key);
+        public object RemoveAsync(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveAsync", key)!;
 
         /// <summary>
         /// Sets the value of the data store for the given key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
         /// <param name="userIds">A <c>object?</c> value.</param>
         /// <param name="options">A <c>DataStoreSetOptions?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#SetAsync"/>
-        public object? SetAsync(string? key, object? value, object? userIds, DataStoreSetOptions? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAsync", key, value, userIds, options);
+        public object SetAsync(string key, object value, object? userIds = null, DataStoreSetOptions? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAsync", key, value, userIds, options)!;
 
         /// <summary>
         /// Updates a key's value with a new value from the specified callback function.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="transformFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="transformFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#UpdateAsync"/>
-        public object? UpdateAsync(string? key, object? transformFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateAsync", key, transformFunction);
+        public object UpdateAsync(string key, object transformFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateAsync", key, transformFunction)!;
 
     }
 }

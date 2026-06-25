@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SurfaceSelection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SurfaceSelection? FromHandle(nuint handle)
+        public static new SurfaceSelection? FromHandle(nuint handle)
             => handle == 0 ? null : new SurfaceSelection(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceSelection#TargetSurface"/>
         public Enum.NormalId TargetSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "TargetSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "TargetSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "TargetSurface", value);
         }
 

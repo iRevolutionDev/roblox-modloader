@@ -22,78 +22,78 @@ namespace Roblox
         /// Creates a <see cref="MemStorageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MemStorageService? FromHandle(nuint handle)
+        public static new MemStorageService? FromHandle(nuint handle)
             => handle == 0 ? null : new MemStorageService(handle);
 
         /// <summary>
         /// <c>MemStorageService.Bind</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>MemStorageConnection?</c> value returned by the engine.</returns>
-        public MemStorageConnection? Bind(string? key, object? callback)
-            => global::Roblox.Reflection.Invoke<MemStorageConnection?>(this, "Bind", key, callback);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>MemStorageConnection</c> value returned by the engine.</returns>
+        public MemStorageConnection Bind(string key, object callback)
+            => global::Roblox.Reflection.Invoke<MemStorageConnection>(this, "Bind", key, callback)!;
 
         /// <summary>
         /// <c>MemStorageService.BindAndFire</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>MemStorageConnection?</c> value returned by the engine.</returns>
-        public MemStorageConnection? BindAndFire(string? key, object? callback)
-            => global::Roblox.Reflection.Invoke<MemStorageConnection?>(this, "BindAndFire", key, callback);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>MemStorageConnection</c> value returned by the engine.</returns>
+        public MemStorageConnection BindAndFire(string key, object callback)
+            => global::Roblox.Reflection.Invoke<MemStorageConnection>(this, "BindAndFire", key, callback)!;
 
         /// <summary>
         /// <c>MemStorageService.Call</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="input">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Call(string? key, object? input)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Call", key, input);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="input">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Call(string key, object input)
+            => global::Roblox.Reflection.Invoke<object>(this, "Call", key, input)!;
 
         /// <summary>
         /// <c>MemStorageService.Fire</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Fire(string? key, string? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Fire", key, value);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Fire(string key, string value)
+            => global::Roblox.Reflection.Invoke<object>(this, "Fire", key, value)!;
 
         /// <summary>
         /// <c>MemStorageService.GetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="defaultValue">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetItem(string? key, string? defaultValue)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetItem", key, defaultValue);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="defaultValue">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetItem(string key, string defaultValue)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetItem", key, defaultValue)!;
 
         /// <summary>
         /// <c>MemStorageService.HasItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool HasItem(string? key)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasItem", key);
+        public bool HasItem(string key)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasItem", key)!;
 
         /// <summary>
         /// <c>MemStorageService.RemoveItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool RemoveItem(string? key)
-            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveItem", key);
+        public bool RemoveItem(string key)
+            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveItem", key)!;
 
         /// <summary>
         /// <c>MemStorageService.SetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetItem(string? key, string? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetItem", key, value);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetItem(string key, string value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetItem", key, value)!;
 
     }
 }

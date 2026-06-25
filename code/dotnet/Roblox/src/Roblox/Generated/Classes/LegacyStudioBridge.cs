@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="LegacyStudioBridge"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LegacyStudioBridge? FromHandle(nuint handle)
+        public static new LegacyStudioBridge? FromHandle(nuint handle)
             => handle == 0 ? null : new LegacyStudioBridge(handle);
 
     }

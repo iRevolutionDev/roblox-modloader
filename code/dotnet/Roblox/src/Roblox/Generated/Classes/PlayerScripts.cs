@@ -22,104 +22,104 @@ namespace Roblox
         /// Creates a <see cref="PlayerScripts"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerScripts? FromHandle(nuint handle)
+        public static new PlayerScripts? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerScripts(handle);
 
         /// <summary>
         /// Unregisters all ComputerCameraMovementMode enums from the game's settings menu.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#ClearComputerCameraMovementModes"/>
-        public object? ClearComputerCameraMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearComputerCameraMovementModes");
+        public object ClearComputerCameraMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearComputerCameraMovementModes")!;
 
         /// <summary>
         /// Unregisters all ComputerMovementMode enums from the game's settings menu.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#ClearComputerMovementModes"/>
-        public object? ClearComputerMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearComputerMovementModes");
+        public object ClearComputerMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearComputerMovementModes")!;
 
         /// <summary>
         /// Unregisters all TouchCameraMovementMode enums from the game's settings menu.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#ClearTouchCameraMovementModes"/>
-        public object? ClearTouchCameraMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearTouchCameraMovementModes");
+        public object ClearTouchCameraMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearTouchCameraMovementModes")!;
 
         /// <summary>
         /// Unregisters all TouchMovementMode enums from the game's settings menu.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#ClearTouchMovementModes"/>
-        public object? ClearTouchMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearTouchMovementModes");
+        public object ClearTouchMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearTouchMovementModes")!;
 
         /// <summary>
         /// <c>PlayerScripts.GetRegisteredComputerCameraMovementModes</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegisteredComputerCameraMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegisteredComputerCameraMovementModes");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegisteredComputerCameraMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegisteredComputerCameraMovementModes")!;
 
         /// <summary>
         /// <c>PlayerScripts.GetRegisteredComputerMovementModes</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegisteredComputerMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegisteredComputerMovementModes");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegisteredComputerMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegisteredComputerMovementModes")!;
 
         /// <summary>
         /// <c>PlayerScripts.GetRegisteredTouchCameraMovementModes</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegisteredTouchCameraMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegisteredTouchCameraMovementModes");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegisteredTouchCameraMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegisteredTouchCameraMovementModes")!;
 
         /// <summary>
         /// <c>PlayerScripts.GetRegisteredTouchMovementModes</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegisteredTouchMovementModes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegisteredTouchMovementModes");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegisteredTouchMovementModes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegisteredTouchMovementModes")!;
 
         /// <summary>
         /// Registers that a computer camera movement mode is available to be selected from the game menu.
         /// </summary>
         /// <param name="cameraMovementMode">A <c>Enum.ComputerCameraMovementMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#RegisterComputerCameraMovementMode"/>
-        public object? RegisterComputerCameraMovementMode(Enum.ComputerCameraMovementMode cameraMovementMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterComputerCameraMovementMode", cameraMovementMode);
+        public object RegisterComputerCameraMovementMode(Enum.ComputerCameraMovementMode cameraMovementMode)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterComputerCameraMovementMode", cameraMovementMode)!;
 
         /// <summary>
         /// Registers that a computer movement mode is available to be selected from the game menu.
         /// </summary>
         /// <param name="movementMode">A <c>Enum.ComputerMovementMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#RegisterComputerMovementMode"/>
-        public object? RegisterComputerMovementMode(Enum.ComputerMovementMode movementMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterComputerMovementMode", movementMode);
+        public object RegisterComputerMovementMode(Enum.ComputerMovementMode movementMode)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterComputerMovementMode", movementMode)!;
 
         /// <summary>
         /// Registers that a touch camera movement mode is available to be selected from the game menu.
         /// </summary>
         /// <param name="cameraMovementMode">A <c>Enum.TouchCameraMovementMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#RegisterTouchCameraMovementMode"/>
-        public object? RegisterTouchCameraMovementMode(Enum.TouchCameraMovementMode cameraMovementMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterTouchCameraMovementMode", cameraMovementMode);
+        public object RegisterTouchCameraMovementMode(Enum.TouchCameraMovementMode cameraMovementMode)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterTouchCameraMovementMode", cameraMovementMode)!;
 
         /// <summary>
         /// Registers that a touch movement mode is available to be selected from the game menu.
         /// </summary>
         /// <param name="movementMode">A <c>Enum.TouchMovementMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerScripts#RegisterTouchMovementMode"/>
-        public object? RegisterTouchMovementMode(Enum.TouchMovementMode movementMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterTouchMovementMode", movementMode);
+        public object RegisterTouchMovementMode(Enum.TouchMovementMode movementMode)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterTouchMovementMode", movementMode)!;
 
         public event Action? ComputerCameraMovementModeRegistered
         {

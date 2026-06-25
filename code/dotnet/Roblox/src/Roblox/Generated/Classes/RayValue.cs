@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="RayValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RayValue? FromHandle(nuint handle)
+        public static new RayValue? FromHandle(nuint handle)
             => handle == 0 ? null : new RayValue(handle);
 
         /// <summary>
         /// The stored Ray.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RayValue#Value"/>
-        public global::Roblox.Ray? Value
+        public global::Roblox.Ray Value
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Ray?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Ray?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Ray>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Ray>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired when RayValue.Value is changed.
         /// </summary>
-        /// <param name="value">A <c>global::Roblox.Ray?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.Ray</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RayValue#Changed"/>
-        public event Action<global::Roblox.Ray?>? Changed
+        public new event Action<global::Roblox.Ray>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

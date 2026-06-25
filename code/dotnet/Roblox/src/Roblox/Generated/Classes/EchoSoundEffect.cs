@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="EchoSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static EchoSoundEffect? FromHandle(nuint handle)
+        public static new EchoSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new EchoSoundEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#Delay"/>
         public float Delay
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Delay");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Delay")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Delay", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#DryLevel"/>
         public float DryLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DryLevel", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#Feedback"/>
         public float Feedback
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Feedback");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Feedback")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Feedback", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EchoSoundEffect#WetLevel"/>
         public float WetLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WetLevel", value);
         }
 

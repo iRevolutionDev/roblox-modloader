@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh"/>
     [RobloxClass("EditableMesh")]
-    public class EditableMesh : Object
+    public class EditableMesh : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox EditableMesh.</param>
@@ -31,45 +31,45 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FixedSize"/>
         public bool FixedSize
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FixedSize");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FixedSize")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FixedSize", value);
         }
 
         /// <summary>
         /// Adds a new bone and returns a stable bone ID.
         /// </summary>
-        /// <param name="boneProperties">A <c>object?</c> value.</param>
+        /// <param name="boneProperties">A <c>object</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddBone"/>
-        public long AddBone(object? boneProperties)
-            => global::Roblox.Reflection.Invoke<long>(this, "AddBone", boneProperties);
+        public long AddBone(object boneProperties)
+            => global::Roblox.Reflection.Invoke<long>(this, "AddBone", boneProperties)!;
 
         /// <summary>
         /// Adds a new color to the geometry and returns a stable color ID.
         /// </summary>
-        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
+        /// <param name="color">A <c>global::Roblox.Color3</c> value.</param>
         /// <param name="alpha">A <c>float</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddColor"/>
-        public long AddColor(global::Roblox.Color3? color, float alpha)
-            => global::Roblox.Reflection.Invoke<long>(this, "AddColor", color, alpha);
+        public long AddColor(global::Roblox.Color3 color, float alpha)
+            => global::Roblox.Reflection.Invoke<long>(this, "AddColor", color, alpha)!;
 
         /// <summary>
         /// <c>EditableMesh.AddFace</c>
         /// </summary>
-        /// <param name="vertexIds">A <c>object?</c> value.</param>
+        /// <param name="vertexIds">A <c>object</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long AddFace(object? vertexIds)
-            => global::Roblox.Reflection.Invoke<long>(this, "AddFace", vertexIds);
+        public long AddFace(object vertexIds)
+            => global::Roblox.Reflection.Invoke<long>(this, "AddFace", vertexIds)!;
 
         /// <summary>
         /// Adds a new normal to the geometry and returns a stable normal ID.
         /// </summary>
-        /// <param name="normal">A <c>object?</c> value.</param>
+        /// <param name="normal">A <c>global::Roblox.Vector3?</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddNormal"/>
-        public long AddNormal(object? normal)
-            => global::Roblox.Reflection.Invoke<long>(this, "AddNormal", normal);
+        public long AddNormal(global::Roblox.Vector3? normal = null)
+            => global::Roblox.Reflection.Invoke<long>(this, "AddNormal", normal)!;
 
         /// <summary>
         /// Adds a new triangle to the mesh and returns a stable face ID.
@@ -80,104 +80,104 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddTriangle"/>
         public long AddTriangle(long vertexId0, long vertexId1, long vertexId2)
-            => global::Roblox.Reflection.Invoke<long>(this, "AddTriangle", vertexId0, vertexId1, vertexId2);
+            => global::Roblox.Reflection.Invoke<long>(this, "AddTriangle", vertexId0, vertexId1, vertexId2)!;
 
         /// <summary>
         /// Adds a new UV to the geometry and returns a stable UV ID.
         /// </summary>
-        /// <param name="uv">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="uv">A <c>global::Roblox.Vector2</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddUV"/>
-        public long AddUV(global::Roblox.Vector2? uv)
-            => global::Roblox.Reflection.Invoke<long>(this, "AddUV", uv);
+        public long AddUV(global::Roblox.Vector2 uv)
+            => global::Roblox.Reflection.Invoke<long>(this, "AddUV", uv)!;
 
         /// <summary>
         /// Adds a new vertex to the geometry and returns a stable vertex ID.
         /// </summary>
-        /// <param name="p">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="p">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#AddVertex"/>
-        public long AddVertex(global::Roblox.Vector3? p)
-            => global::Roblox.Reflection.Invoke<long>(this, "AddVertex", p);
+        public long AddVertex(global::Roblox.Vector3 p)
+            => global::Roblox.Reflection.Invoke<long>(this, "AddVertex", p)!;
 
         /// <summary>
         /// <c>EditableMesh.Clear</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Clear()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Clear()
+            => global::Roblox.Reflection.Invoke<object>(this, "Clear")!;
 
         /// <summary>
         /// Destroys the mesh.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#Destroy"/>
-        public object? Destroy()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Destroy");
+        public object Destroy()
+            => global::Roblox.Reflection.Invoke<object>(this, "Destroy")!;
 
         /// <summary>
         /// Finds the closest point on the mesh's surface.
         /// </summary>
-        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="point">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FindClosestPointOnSurface"/>
-        public object? FindClosestPointOnSurface(global::Roblox.Vector3? point)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FindClosestPointOnSurface", point);
+        public object FindClosestPointOnSurface(global::Roblox.Vector3 point)
+            => global::Roblox.Reflection.Invoke<object>(this, "FindClosestPointOnSurface", point)!;
 
         /// <summary>
         /// Finds the closest vertex to a specific point in space.
         /// </summary>
-        /// <param name="toThisPoint">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="toThisPoint">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FindClosestVertex"/>
-        public long FindClosestVertex(global::Roblox.Vector3? toThisPoint)
-            => global::Roblox.Reflection.Invoke<long>(this, "FindClosestVertex", toThisPoint);
+        public long FindClosestVertex(global::Roblox.Vector3 toThisPoint)
+            => global::Roblox.Reflection.Invoke<long>(this, "FindClosestVertex", toThisPoint)!;
 
         /// <summary>
         /// Finds all vertices within a specific sphere.
         /// </summary>
-        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="center">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FindVerticesWithinSphere"/>
-        public object? FindVerticesWithinSphere(global::Roblox.Vector3? center, float radius)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FindVerticesWithinSphere", center, radius);
+        public object FindVerticesWithinSphere(global::Roblox.Vector3 center, float radius)
+            => global::Roblox.Reflection.Invoke<object>(this, "FindVerticesWithinSphere", center, radius)!;
 
         /// <summary>
         /// Returns a list of faces adjacent to a given face.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetAdjacentFaces"/>
-        public object? GetAdjacentFaces(long faceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAdjacentFaces", faceId);
+        public object GetAdjacentFaces(long faceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAdjacentFaces", faceId)!;
 
         /// <summary>
         /// Returns a list of vertices adjacent to a given vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetAdjacentVertices"/>
-        public object? GetAdjacentVertices(long vertexId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAdjacentVertices", vertexId);
+        public object GetAdjacentVertices(long vertexId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAdjacentVertices", vertexId)!;
 
         /// <summary>
         /// Finds the bone ID of the bone with the given name.
         /// </summary>
-        /// <param name="boneName">A <c>string?</c> value.</param>
+        /// <param name="boneName">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetBoneByName"/>
-        public long GetBoneByName(string? boneName)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetBoneByName", boneName);
+        public long GetBoneByName(string boneName)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetBoneByName", boneName)!;
 
         /// <summary>
         /// Returns the initial CFrame of the bone in the bind pose of the mesh.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetBoneCFrame"/>
-        public global::Roblox.CFrame? GetBoneCFrame(long boneId)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetBoneCFrame", boneId);
+        public global::Roblox.CFrame GetBoneCFrame(long boneId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetBoneCFrame", boneId)!;
 
         /// <summary>
         /// Returns true if the bone is virtual.
@@ -186,16 +186,16 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetBoneIsVirtual"/>
         public bool GetBoneIsVirtual(long boneId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetBoneIsVirtual", boneId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetBoneIsVirtual", boneId)!;
 
         /// <summary>
         /// Returns the bone name.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetBoneName"/>
-        public string? GetBoneName(long boneId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetBoneName", boneId);
+        public string GetBoneName(long boneId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetBoneName", boneId)!;
 
         /// <summary>
         /// Returns the parent bone ID, if any.
@@ -204,241 +204,241 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetBoneParent"/>
         public long GetBoneParent(long boneId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetBoneParent", boneId);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetBoneParent", boneId)!;
 
         /// <summary>
         /// Returns all bones of the mesh.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetBones"/>
-        public object? GetBones()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBones");
+        public object GetBones()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBones")!;
 
         /// <summary>
         /// <c>EditableMesh.GetCenter</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetCenter"/>
-        public global::Roblox.Vector3? GetCenter()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetCenter");
+        public global::Roblox.Vector3 GetCenter()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetCenter")!;
 
         /// <summary>
         /// Returns the color for the given color ID.
         /// </summary>
         /// <param name="colorId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Color3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetColor"/>
-        public object? GetColor(long colorId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetColor", colorId);
+        public global::Roblox.Color3? GetColor(long colorId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Color3?>(this, "GetColor", colorId);
 
         /// <summary>
         /// Returns the color alpha (transparency) at the given color ID.
         /// </summary>
         /// <param name="colorId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>float?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetColorAlpha"/>
-        public object? GetColorAlpha(long colorId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetColorAlpha", colorId);
+        public float? GetColorAlpha(long colorId)
+            => global::Roblox.Reflection.Invoke<float?>(this, "GetColorAlpha", colorId);
 
         /// <summary>
         /// Returns all colors of the mesh.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetColors"/>
-        public object? GetColors()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetColors");
+        public object GetColors()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetColors")!;
 
         /// <summary>
         /// Returns the face's color IDs for the vertices on the face.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFaceColors"/>
-        public object? GetFaceColors(long faceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFaceColors", faceId);
+        public object GetFaceColors(long faceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFaceColors", faceId)!;
 
         /// <summary>
         /// Returns the face's normal IDs for the vertices on the face.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFaceNormals"/>
-        public object? GetFaceNormals(long faceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFaceNormals", faceId);
+        public object GetFaceNormals(long faceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFaceNormals", faceId)!;
 
         /// <summary>
         /// Returns the face's UV IDs for the vertices on the face.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFaceUVs"/>
-        public object? GetFaceUVs(long faceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFaceUVs", faceId);
+        public object GetFaceUVs(long faceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFaceUVs", faceId)!;
 
         /// <summary>
         /// Returns the face's vertex IDs.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFaceVertices"/>
-        public object? GetFaceVertices(long faceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFaceVertices", faceId);
+        public object GetFaceVertices(long faceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFaceVertices", faceId)!;
 
         /// <summary>
         /// Returns all faces of the mesh.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFaces"/>
-        public object? GetFaces()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFaces");
+        public object GetFaces()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFaces")!;
 
         /// <summary>
         /// Deprecated: Returns a list of faces that use a given attribute ID.
         /// </summary>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacesWithAttribute"/>
-        public object? GetFacesWithAttribute(long id)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacesWithAttribute", id);
+        public object GetFacesWithAttribute(long id)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacesWithAttribute", id)!;
 
         /// <summary>
         /// Returns an array of face IDs that use the given color ID.
         /// </summary>
         /// <param name="colorId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacesWithColor"/>
-        public object? GetFacesWithColor(long colorId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacesWithColor", colorId);
+        public object GetFacesWithColor(long colorId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacesWithColor", colorId)!;
 
         /// <summary>
         /// Returns an array of face IDs that use the given normal ID.
         /// </summary>
         /// <param name="normalId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacesWithNormal"/>
-        public object? GetFacesWithNormal(long normalId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacesWithNormal", normalId);
+        public object GetFacesWithNormal(long normalId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacesWithNormal", normalId)!;
 
         /// <summary>
         /// Returns an array of face IDs that use the given UV ID.
         /// </summary>
         /// <param name="uvId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacesWithUV"/>
-        public object? GetFacesWithUV(long uvId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacesWithUV", uvId);
+        public object GetFacesWithUV(long uvId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacesWithUV", uvId)!;
 
         /// <summary>
         /// Returns bone IDs and bone CFrames for all bones in a specific FACS corrective pose.
         /// </summary>
-        /// <param name="actions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actions">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacsCorrectivePose"/>
-        public object? GetFacsCorrectivePose(object? actions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacsCorrectivePose", actions);
+        public object GetFacsCorrectivePose(object actions)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacsCorrectivePose", actions)!;
 
         /// <summary>
         /// Returns all FACS corrective poses that are in use.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacsCorrectivePoses"/>
-        public object? GetFacsCorrectivePoses()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacsCorrectivePoses");
+        public object GetFacsCorrectivePoses()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacsCorrectivePoses")!;
 
         /// <summary>
         /// Returns bone IDs and bone CFrames for all bones in a specific FACS action unit.
         /// </summary>
         /// <param name="action">A <c>Enum.FacsActionUnit</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacsPose"/>
-        public object? GetFacsPose(Enum.FacsActionUnit action)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacsPose", action);
+        public object GetFacsPose(Enum.FacsActionUnit action)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacsPose", action)!;
 
         /// <summary>
         /// Returns all FACS action units that have poses defined.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacsPoses"/>
-        public object? GetFacsPoses()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFacsPoses");
+        public object GetFacsPoses()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFacsPoses")!;
 
         /// <summary>
         /// Returns the normal vector for the given normal ID.
         /// </summary>
         /// <param name="normalId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetNormal"/>
-        public object? GetNormal(long normalId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetNormal", normalId);
+        public global::Roblox.Vector3? GetNormal(long normalId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetNormal", normalId);
 
         /// <summary>
         /// Returns all normals of the mesh.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetNormals"/>
-        public object? GetNormals()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetNormals");
+        public object GetNormals()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetNormals")!;
 
         /// <summary>
         /// Gets the position of a vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetPosition"/>
-        public global::Roblox.Vector3? GetPosition(long vertexId)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetPosition", vertexId);
+        public global::Roblox.Vector3 GetPosition(long vertexId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetPosition", vertexId)!;
 
         /// <summary>
         /// <c>EditableMesh.GetSize</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetSize"/>
-        public global::Roblox.Vector3? GetSize()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetSize");
+        public global::Roblox.Vector3 GetSize()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetSize")!;
 
         /// <summary>
         /// Returns UV coordinates at the given UV ID.
         /// </summary>
         /// <param name="uvId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetUV"/>
-        public object? GetUV(long uvId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUV", uvId);
+        public global::Roblox.Vector2? GetUV(long uvId)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetUV", uvId);
 
         /// <summary>
         /// Returns all UVs of the mesh.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetUVs"/>
-        public object? GetUVs()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUVs");
+        public object GetUVs()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUVs")!;
 
         /// <summary>
         /// Returns skinning blend weights for each bone that is associated with the vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexBoneWeights"/>
-        public object? GetVertexBoneWeights(long vertexId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertexBoneWeights", vertexId);
+        public object GetVertexBoneWeights(long vertexId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertexBoneWeights", vertexId)!;
 
         /// <summary>
         /// Returns all bone IDs that are associated with the vertex for skinning.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexBones"/>
-        public object? GetVertexBones(long vertexId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertexBones", vertexId);
+        public object GetVertexBones(long vertexId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertexBones", vertexId)!;
 
         /// <summary>
         /// Returns the color IDs of the faces attached to the given vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexColors"/>
-        public object? GetVertexColors(long vertexId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertexColors", vertexId);
+        public object GetVertexColors(long vertexId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertexColors", vertexId)!;
 
         /// <summary>
         /// Returns the color ID of a vertex/face pair.
@@ -448,7 +448,7 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexFaceColor"/>
         public long GetVertexFaceColor(long vertexId, long faceId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetVertexFaceColor", vertexId, faceId);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetVertexFaceColor", vertexId, faceId)!;
 
         /// <summary>
         /// Returns the normal ID of a vertex/face pair.
@@ -458,7 +458,7 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexFaceNormal"/>
         public long GetVertexFaceNormal(long vertexId, long faceId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetVertexFaceNormal", vertexId, faceId);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetVertexFaceNormal", vertexId, faceId)!;
 
         /// <summary>
         /// Returns the UV ID of a vertex/face pair.
@@ -468,324 +468,324 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexFaceUV"/>
         public long GetVertexFaceUV(long vertexId, long faceId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetVertexFaceUV", vertexId, faceId);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetVertexFaceUV", vertexId, faceId)!;
 
         /// <summary>
         /// Returns the face IDs of the faces attached to the given vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexFaces"/>
-        public object? GetVertexFaces(long vertexId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertexFaces", vertexId);
+        public object GetVertexFaces(long vertexId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertexFaces", vertexId)!;
 
         /// <summary>
         /// Returns the normal IDs of the faces attached to the given vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexNormals"/>
-        public object? GetVertexNormals(long vertexId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertexNormals", vertexId);
+        public object GetVertexNormals(long vertexId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertexNormals", vertexId)!;
 
         /// <summary>
         /// Returns the UV IDs of the faces attached to the given vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertexUVs"/>
-        public object? GetVertexUVs(long vertexId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertexUVs", vertexId);
+        public object GetVertexUVs(long vertexId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertexUVs", vertexId)!;
 
         /// <summary>
         /// Returns all vertices as a list of stable vertex IDs.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVertices"/>
-        public object? GetVertices()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertices");
+        public object GetVertices()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertices")!;
 
         /// <summary>
         /// Deprecated: Returns a list of vertices that use a given attribute ID.
         /// </summary>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVerticesWithAttribute"/>
-        public object? GetVerticesWithAttribute(long id)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVerticesWithAttribute", id);
+        public object GetVerticesWithAttribute(long id)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVerticesWithAttribute", id)!;
 
         /// <summary>
         /// Returns an array of vertex IDs that use the given color ID.
         /// </summary>
         /// <param name="colorId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVerticesWithColor"/>
-        public object? GetVerticesWithColor(long colorId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVerticesWithColor", colorId);
+        public object GetVerticesWithColor(long colorId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVerticesWithColor", colorId)!;
 
         /// <summary>
         /// Returns an array of vertex IDs that use the given normal ID.
         /// </summary>
         /// <param name="normalId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVerticesWithNormal"/>
-        public object? GetVerticesWithNormal(long normalId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVerticesWithNormal", normalId);
+        public object GetVerticesWithNormal(long normalId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVerticesWithNormal", normalId)!;
 
         /// <summary>
         /// Returns an array of vertex IDs that use the given UV ID.
         /// </summary>
         /// <param name="uvId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVerticesWithUV"/>
-        public object? GetVerticesWithUV(long uvId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVerticesWithUV", uvId);
+        public object GetVerticesWithUV(long uvId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVerticesWithUV", uvId)!;
 
         /// <summary>
         /// Returns a string describing a stable ID, useful for debugging purposes.
         /// </summary>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#IdDebugString"/>
-        public string? IdDebugString(long id)
-            => global::Roblox.Reflection.Invoke<string?>(this, "IdDebugString", id);
+        public string IdDebugString(long id)
+            => global::Roblox.Reflection.Invoke<string>(this, "IdDebugString", id)!;
 
         /// <summary>
         /// Merges vertices that touch together.
         /// </summary>
         /// <param name="mergeTolerance">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#MergeVertices"/>
-        public object? MergeVertices(float mergeTolerance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MergeVertices", mergeTolerance);
+        public object MergeVertices(float mergeTolerance)
+            => global::Roblox.Reflection.Invoke<object>(this, "MergeVertices", mergeTolerance)!;
 
         /// <summary>
         /// <c>EditableMesh.RaycastLocal</c>
         /// </summary>
-        /// <param name="origin">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="origin">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#RaycastLocal"/>
-        public object? RaycastLocal(global::Roblox.Vector3? origin, global::Roblox.Vector3? direction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RaycastLocal", origin, direction);
+        public object RaycastLocal(global::Roblox.Vector3 origin, global::Roblox.Vector3 direction)
+            => global::Roblox.Reflection.Invoke<object>(this, "RaycastLocal", origin, direction)!;
 
         /// <summary>
         /// Removes a bone using its stable bone ID.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#RemoveBone"/>
-        public object? RemoveBone(long boneId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveBone", boneId);
+        public object RemoveBone(long boneId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveBone", boneId)!;
 
         /// <summary>
         /// Removes a face using its stable face ID.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#RemoveFace"/>
-        public object? RemoveFace(long faceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveFace", faceId);
+        public object RemoveFace(long faceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveFace", faceId)!;
 
         /// <summary>
         /// Removes all unused vertices, normals, UVs, and colors, and returns the removed IDs.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#RemoveUnused"/>
-        public object? RemoveUnused()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveUnused");
+        public object RemoveUnused()
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveUnused")!;
 
         /// <summary>
         /// Reset this normal ID to be automatically calculated.
         /// </summary>
         /// <param name="normalId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#ResetNormal"/>
-        public object? ResetNormal(long normalId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetNormal", normalId);
+        public object ResetNormal(long normalId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetNormal", normalId)!;
 
         /// <summary>
         /// Set the initial CFrame for a bone in the mesh's bind pose.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="cframe">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetBoneCFrame"/>
-        public object? SetBoneCFrame(long boneId, global::Roblox.CFrame? cframe)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBoneCFrame", boneId, cframe);
+        public object SetBoneCFrame(long boneId, global::Roblox.CFrame cframe)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBoneCFrame", boneId, cframe)!;
 
         /// <summary>
         /// Set whether a bone is virtual.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <param name="virtual">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="@virtual">A <c>bool</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetBoneIsVirtual"/>
-        public object? SetBoneIsVirtual(long boneId, bool @virtual)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBoneIsVirtual", boneId, @virtual);
+        public object SetBoneIsVirtual(long boneId, bool @virtual)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBoneIsVirtual", boneId, @virtual)!;
 
         /// <summary>
         /// Sets the name for a bone.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetBoneName"/>
-        public object? SetBoneName(long boneId, string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBoneName", boneId, name);
+        public object SetBoneName(long boneId, string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBoneName", boneId, name)!;
 
         /// <summary>
         /// Set a parent for a bone.
         /// </summary>
         /// <param name="boneId">A <c>long</c> value.</param>
         /// <param name="parentBoneId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetBoneParent"/>
-        public object? SetBoneParent(long boneId, long parentBoneId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBoneParent", boneId, parentBoneId);
+        public object SetBoneParent(long boneId, long parentBoneId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBoneParent", boneId, parentBoneId)!;
 
         /// <summary>
         /// Sets the color for a color ID.
         /// </summary>
         /// <param name="colorId">A <c>long</c> value.</param>
-        /// <param name="color">A <c>global::Roblox.Color3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="color">A <c>global::Roblox.Color3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetColor"/>
-        public object? SetColor(long colorId, global::Roblox.Color3? color)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetColor", colorId, color);
+        public object SetColor(long colorId, global::Roblox.Color3 color)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetColor", colorId, color)!;
 
         /// <summary>
         /// Sets the color alpha (transparency) for a color ID.
         /// </summary>
         /// <param name="colorId">A <c>long</c> value.</param>
         /// <param name="alpha">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetColorAlpha"/>
-        public object? SetColorAlpha(long colorId, float alpha)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetColorAlpha", colorId, alpha);
+        public object SetColorAlpha(long colorId, float alpha)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetColorAlpha", colorId, alpha)!;
 
         /// <summary>
         /// Sets the face's vertex colors to new color IDs.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <param name="ids">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="ids">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFaceColors"/>
-        public object? SetFaceColors(long faceId, object? ids)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFaceColors", faceId, ids);
+        public object SetFaceColors(long faceId, object ids)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFaceColors", faceId, ids)!;
 
         /// <summary>
         /// Sets the face's vertex normals to new normal IDs.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <param name="ids">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="ids">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFaceNormals"/>
-        public object? SetFaceNormals(long faceId, object? ids)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFaceNormals", faceId, ids);
+        public object SetFaceNormals(long faceId, object ids)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFaceNormals", faceId, ids)!;
 
         /// <summary>
         /// Sets the face's vertex UVs to new UV IDs.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <param name="ids">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="ids">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFaceUVs"/>
-        public object? SetFaceUVs(long faceId, object? ids)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFaceUVs", faceId, ids);
+        public object SetFaceUVs(long faceId, object ids)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFaceUVs", faceId, ids)!;
 
         /// <summary>
         /// Sets the face's vertices to new vertex IDs.
         /// </summary>
         /// <param name="faceId">A <c>long</c> value.</param>
-        /// <param name="ids">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="ids">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFaceVertices"/>
-        public object? SetFaceVertices(long faceId, object? ids)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFaceVertices", faceId, ids);
+        public object SetFaceVertices(long faceId, object ids)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFaceVertices", faceId, ids)!;
 
         /// <summary>
         /// Set CFrame for an individual bone in a specific FACS action unit.
         /// </summary>
         /// <param name="action">A <c>Enum.FacsActionUnit</c> value.</param>
         /// <param name="boneId">A <c>long</c> value.</param>
-        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="cframe">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFacsBonePose"/>
-        public object? SetFacsBonePose(Enum.FacsActionUnit action, long boneId, global::Roblox.CFrame? cframe)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFacsBonePose", action, boneId, cframe);
+        public object SetFacsBonePose(Enum.FacsActionUnit action, long boneId, global::Roblox.CFrame cframe)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFacsBonePose", action, boneId, cframe)!;
 
         /// <summary>
         /// Set pose for all bones in a specific FACS corrective pose.
         /// </summary>
-        /// <param name="actions">A <c>object?</c> value.</param>
-        /// <param name="boneIds">A <c>object?</c> value.</param>
-        /// <param name="cframes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actions">A <c>object</c> value.</param>
+        /// <param name="boneIds">A <c>object</c> value.</param>
+        /// <param name="cframes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFacsCorrectivePose"/>
-        public object? SetFacsCorrectivePose(object? actions, object? boneIds, object? cframes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFacsCorrectivePose", actions, boneIds, cframes);
+        public object SetFacsCorrectivePose(object actions, object boneIds, object cframes)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFacsCorrectivePose", actions, boneIds, cframes)!;
 
         /// <summary>
         /// Set pose for all bones in a specific FACS action unit.
         /// </summary>
         /// <param name="action">A <c>Enum.FacsActionUnit</c> value.</param>
-        /// <param name="boneIds">A <c>object?</c> value.</param>
-        /// <param name="cframes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="boneIds">A <c>object</c> value.</param>
+        /// <param name="cframes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetFacsPose"/>
-        public object? SetFacsPose(Enum.FacsActionUnit action, object? boneIds, object? cframes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFacsPose", action, boneIds, cframes);
+        public object SetFacsPose(Enum.FacsActionUnit action, object boneIds, object cframes)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFacsPose", action, boneIds, cframes)!;
 
         /// <summary>
         /// Set the normal for a normal ID.
         /// </summary>
         /// <param name="normalId">A <c>long</c> value.</param>
-        /// <param name="normal">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="normal">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetNormal"/>
-        public object? SetNormal(long normalId, global::Roblox.Vector3? normal)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetNormal", normalId, normal);
+        public object SetNormal(long normalId, global::Roblox.Vector3 normal)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetNormal", normalId, normal)!;
 
         /// <summary>
         /// Sets a vertex position in the mesh's local object space.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <param name="p">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="p">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetPosition"/>
-        public object? SetPosition(long vertexId, global::Roblox.Vector3? p)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPosition", vertexId, p);
+        public object SetPosition(long vertexId, global::Roblox.Vector3 p)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPosition", vertexId, p)!;
 
         /// <summary>
         /// Sets UV coordinates for a UV ID.
         /// </summary>
         /// <param name="uvId">A <c>long</c> value.</param>
-        /// <param name="uv">A <c>global::Roblox.Vector2?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="uv">A <c>global::Roblox.Vector2</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetUV"/>
-        public object? SetUV(long uvId, global::Roblox.Vector2? uv)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUV", uvId, uv);
+        public object SetUV(long uvId, global::Roblox.Vector2 uv)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUV", uvId, uv)!;
 
         /// <summary>
         /// Sets skinning blend weights for each bone associated with the vertex.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <param name="boneWeights">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="boneWeights">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetVertexBoneWeights"/>
-        public object? SetVertexBoneWeights(long vertexId, object? boneWeights)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetVertexBoneWeights", vertexId, boneWeights);
+        public object SetVertexBoneWeights(long vertexId, object boneWeights)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetVertexBoneWeights", vertexId, boneWeights)!;
 
         /// <summary>
         /// Assign a list of bones with the vertex for skinning.
         /// </summary>
         /// <param name="vertexId">A <c>long</c> value.</param>
-        /// <param name="boneIDs">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="boneIDs">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetVertexBones"/>
-        public object? SetVertexBones(long vertexId, object? boneIDs)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetVertexBones", vertexId, boneIDs);
+        public object SetVertexBones(long vertexId, object boneIDs)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetVertexBones", vertexId, boneIDs)!;
 
         /// <summary>
         /// Sets the color ID of a vertex/face pair.
@@ -793,10 +793,10 @@ namespace Roblox
         /// <param name="vertexId">A <c>long</c> value.</param>
         /// <param name="faceId">A <c>long</c> value.</param>
         /// <param name="colorId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetVertexFaceColor"/>
-        public object? SetVertexFaceColor(long vertexId, long faceId, long colorId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetVertexFaceColor", vertexId, faceId, colorId);
+        public object SetVertexFaceColor(long vertexId, long faceId, long colorId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetVertexFaceColor", vertexId, faceId, colorId)!;
 
         /// <summary>
         /// Sets the normal ID of a vertex/face pair.
@@ -804,10 +804,10 @@ namespace Roblox
         /// <param name="vertexId">A <c>long</c> value.</param>
         /// <param name="faceId">A <c>long</c> value.</param>
         /// <param name="normalId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetVertexFaceNormal"/>
-        public object? SetVertexFaceNormal(long vertexId, long faceId, long normalId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetVertexFaceNormal", vertexId, faceId, normalId);
+        public object SetVertexFaceNormal(long vertexId, long faceId, long normalId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetVertexFaceNormal", vertexId, faceId, normalId)!;
 
         /// <summary>
         /// Sets the UV ID of a vertex/face pair.
@@ -815,18 +815,18 @@ namespace Roblox
         /// <param name="vertexId">A <c>long</c> value.</param>
         /// <param name="faceId">A <c>long</c> value.</param>
         /// <param name="uvId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SetVertexFaceUV"/>
-        public object? SetVertexFaceUV(long vertexId, long faceId, long uvId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetVertexFaceUV", vertexId, faceId, uvId);
+        public object SetVertexFaceUV(long vertexId, long faceId, long uvId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetVertexFaceUV", vertexId, faceId, uvId)!;
 
         /// <summary>
         /// Splits all faces on the mesh to be triangles.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#Triangulate"/>
-        public object? Triangulate()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Triangulate");
+        public object Triangulate()
+            => global::Roblox.Reflection.Invoke<object>(this, "Triangulate")!;
 
     }
 }

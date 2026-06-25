@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Part"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Part? FromHandle(nuint handle)
+        public static new Part? FromHandle(nuint handle)
             => handle == 0 ? null : new Part(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Part#Shape"/>
         public Enum.PartType Shape
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PartType>(this, "Shape");
+            get => global::Roblox.Reflection.GetProperty<Enum.PartType>(this, "Shape")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PartType>(this, "Shape", value);
         }
 

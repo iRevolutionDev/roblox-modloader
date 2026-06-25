@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StudioService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioService? FromHandle(nuint handle)
+        public static new StudioService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioService(handle);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Roblox
 
         public bool AlignDraggedObjects
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlignDraggedObjects");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlignDraggedObjects")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AlignDraggedObjects", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#DraggerSolveConstraints"/>
         public bool DraggerSolveConstraints
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerSolveConstraints");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerSolveConstraints")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerSolveConstraints", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#DrawConstraintsOnTop"/>
         public bool DrawConstraintsOnTop
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawConstraintsOnTop");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawConstraintsOnTop")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DrawConstraintsOnTop", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#GridSize"/>
         public float GridSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "GridSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "GridSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "GridSize", value);
         }
 
@@ -77,15 +77,15 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Instance?>(this, "HoverInstance", value);
         }
 
-        public string? InstalledPluginData
+        public string InstalledPluginData
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "InstalledPluginData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "InstalledPluginData", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "InstalledPluginData")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "InstalledPluginData", value);
         }
 
         public bool PivotSnapToGeometry
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PivotSnapToGeometry");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PivotSnapToGeometry")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PivotSnapToGeometry", value);
         }
 
@@ -95,7 +95,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#RotateIncrement"/>
         public float RotateIncrement
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RotateIncrement");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RotateIncrement")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RotateIncrement", value);
         }
 
@@ -103,10 +103,10 @@ namespace Roblox
         /// <c>StudioService.Secrets</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#Secrets"/>
-        public string? Secrets
+        public string Secrets
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Secrets");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Secrets", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Secrets")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Secrets", value);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#ShowConstraintDetails"/>
         public bool ShowConstraintDetails
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowConstraintDetails");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowConstraintDetails")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowConstraintDetails", value);
         }
 
@@ -125,7 +125,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#ShowWeldDetails"/>
         public bool ShowWeldDetails
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowWeldDetails");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowWeldDetails")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowWeldDetails", value);
         }
 
@@ -133,10 +133,10 @@ namespace Roblox
         /// The locale currently in-use by Studio, e.g. en_US.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#StudioLocaleId"/>
-        public string? StudioLocaleId
+        public string StudioLocaleId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "StudioLocaleId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "StudioLocaleId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "StudioLocaleId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "StudioLocaleId", value);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#UseLocalSpace"/>
         public bool UseLocalSpace
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseLocalSpace");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseLocalSpace")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseLocalSpace", value);
         }
 
@@ -153,77 +153,77 @@ namespace Roblox
         /// <c>StudioService.AnimationIdSelected</c>
         /// </summary>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AnimationIdSelected(long id)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AnimationIdSelected", id);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AnimationIdSelected(long id)
+            => global::Roblox.Reflection.Invoke<object>(this, "AnimationIdSelected", id)!;
 
         /// <summary>
         /// <c>StudioService.CopyToClipboard</c>
         /// </summary>
-        /// <param name="stringToCopy">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CopyToClipboard(string? stringToCopy)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CopyToClipboard", stringToCopy);
+        /// <param name="stringToCopy">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CopyToClipboard(string stringToCopy)
+            => global::Roblox.Reflection.Invoke<object>(this, "CopyToClipboard", stringToCopy)!;
 
         /// <summary>
         /// <c>StudioService.GetBadgeConfigureUrl</c>
         /// </summary>
         /// <param name="badgeId">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetBadgeConfigureUrl(long badgeId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetBadgeConfigureUrl", badgeId);
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetBadgeConfigureUrl(long badgeId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetBadgeConfigureUrl", badgeId)!;
 
         /// <summary>
         /// <c>StudioService.GetBadgeUploadUrl</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetBadgeUploadUrl()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetBadgeUploadUrl");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetBadgeUploadUrl()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetBadgeUploadUrl")!;
 
         /// <summary>
         /// Provides a dictionary that allows the display of a class' Explorer window icon.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="className">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#GetClassIcon"/>
-        public object? GetClassIcon(string? className)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetClassIcon", className);
+        public object GetClassIcon(string className)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetClassIcon", className)!;
 
         /// <summary>
         /// <c>StudioService.GetPlaceIsPersistedToCloud</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetPlaceIsPersistedToCloud()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetPlaceIsPersistedToCloud");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetPlaceIsPersistedToCloud")!;
 
         /// <summary>
         /// <c>StudioService.GetResourceByCategory</c>
         /// </summary>
-        /// <param name="category">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetResourceByCategory(string? category)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetResourceByCategory", category);
+        /// <param name="category">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetResourceByCategory(string category)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetResourceByCategory", category)!;
 
         /// <summary>
         /// <c>StudioService.GetStartupAssetId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetStartupAssetId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetStartupAssetId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetStartupAssetId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetStartupAssetId")!;
 
         /// <summary>
         /// <c>StudioService.GetStartupPluginId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetStartupPluginId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetStartupPluginId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetStartupPluginId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetStartupPluginId")!;
 
         /// <summary>
         /// <c>StudioService.GetTermsOfUseUrl</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetTermsOfUseUrl()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetTermsOfUseUrl");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetTermsOfUseUrl()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetTermsOfUseUrl")!;
 
         /// <summary>
         /// Returns the Studio user's userId if they're logged in, otherwise returns 0.
@@ -231,16 +231,16 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#GetUserId"/>
         public long GetUserId()
-            => global::Roblox.Reflection.Invoke<long>(this, "GetUserId");
+            => global::Roblox.Reflection.Invoke<long>(this, "GetUserId")!;
 
         /// <summary>
         /// <c>StudioService.GizmoRaycast</c>
         /// </summary>
-        /// <param name="origin">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="origin">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="raycastParams">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GizmoRaycast(global::Roblox.Vector3? origin, global::Roblox.Vector3? direction, object? raycastParams)
+        public object? GizmoRaycast(global::Roblox.Vector3 origin, global::Roblox.Vector3 direction, object? raycastParams = null)
             => global::Roblox.Reflection.Invoke<object?>(this, "GizmoRaycast", origin, direction, raycastParams);
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool HasInternalPermission()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasInternalPermission");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasInternalPermission")!;
 
         /// <summary>
         /// <c>StudioService.IsPluginInstalled</c>
@@ -256,7 +256,7 @@ namespace Roblox
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsPluginInstalled(long assetId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPluginInstalled", assetId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPluginInstalled", assetId)!;
 
         /// <summary>
         /// <c>StudioService.IsPluginUpToDate</c>
@@ -265,46 +265,46 @@ namespace Roblox
         /// <param name="currentAssetVersion">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsPluginUpToDate(long assetId, long currentAssetVersion)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPluginUpToDate", assetId, currentAssetVersion);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPluginUpToDate", assetId, currentAssetVersion)!;
 
         /// <summary>
         /// <c>StudioService.OpenInBrowser_DONOTUSE</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenInBrowser_DONOTUSE(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenInBrowser_DONOTUSE", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenInBrowser_DONOTUSE(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenInBrowser_DONOTUSE", url)!;
 
         /// <summary>
         /// <c>StudioService.SetPluginEnabled</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="state">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPluginEnabled(long assetId, bool state)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPluginEnabled", assetId, state);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPluginEnabled(long assetId, bool state)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPluginEnabled", assetId, state)!;
 
         /// <summary>
         /// <c>StudioService.ShowPublishToRoblox</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowPublishToRoblox()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowPublishToRoblox");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowPublishToRoblox()
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowPublishToRoblox")!;
 
         /// <summary>
         /// <c>StudioService.UninstallPlugin</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UninstallPlugin(long assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UninstallPlugin", assetId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UninstallPlugin(long assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "UninstallPlugin", assetId)!;
 
         /// <summary>
         /// <c>StudioService.UpdatePluginManagement</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdatePluginManagement()
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdatePluginManagement");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdatePluginManagement()
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdatePluginManagement")!;
 
         /// <summary>
         /// Deprecated: Prompts the current Studio user to select one file to add as a File.
@@ -312,7 +312,7 @@ namespace Roblox
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFile"/>
-        public Instance? PromptImportFile(object? fileTypeFilter)
+        public Instance? PromptImportFile(object? fileTypeFilter = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "PromptImportFile", fileTypeFilter);
 
         /// <summary>
@@ -321,7 +321,7 @@ namespace Roblox
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFileAsync"/>
-        public Instance? PromptImportFileAsync(object? fileTypeFilter)
+        public Instance? PromptImportFileAsync(object? fileTypeFilter = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "PromptImportFileAsync", fileTypeFilter);
 
         /// <summary>
@@ -330,8 +330,8 @@ namespace Roblox
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFiles"/>
-        public IReadOnlyList<Instance> PromptImportFiles(object? fileTypeFilter)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "PromptImportFiles", fileTypeFilter);
+        public IReadOnlyList<Instance> PromptImportFiles(object? fileTypeFilter = null)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "PromptImportFiles", fileTypeFilter)!;
 
         /// <summary>
         /// Prompts the current Studio user to select files to add as Files.
@@ -339,23 +339,23 @@ namespace Roblox
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFilesAsync"/>
-        public IReadOnlyList<Instance> PromptImportFilesAsync(object? fileTypeFilter)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "PromptImportFilesAsync", fileTypeFilter);
+        public IReadOnlyList<Instance> PromptImportFilesAsync(object? fileTypeFilter = null)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "PromptImportFilesAsync", fileTypeFilter)!;
 
         /// <summary>
         /// <c>StudioService.TryInstallPlugin</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="assetVersionId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TryInstallPlugin(long assetId, long assetVersionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TryInstallPlugin", assetId, assetVersionId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TryInstallPlugin(long assetId, long assetVersionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "TryInstallPlugin", assetId, assetVersionId)!;
 
         /// <summary>
         /// <c>StudioService.OnImportFromRoblox</c>
         /// </summary>
-        /// <param name="assetType">A <c>string?</c> value.</param>
-        public event Action<string?>? OnImportFromRoblox
+        /// <param name="assetType">A <c>string</c> value.</param>
+        public event Action<string>? OnImportFromRoblox
         {
             add { if (value is not null) AddEventHandler("OnImportFromRoblox", value); }
             remove { if (value is not null) RemoveEventHandler("OnImportFromRoblox", value); }
@@ -364,8 +364,8 @@ namespace Roblox
         /// <summary>
         /// <c>StudioService.OnOpenGameSettings</c>
         /// </summary>
-        /// <param name="pageIdentifier">A <c>string?</c> value.</param>
-        public event Action<string?>? OnOpenGameSettings
+        /// <param name="pageIdentifier">A <c>string</c> value.</param>
+        public event Action<string>? OnOpenGameSettings
         {
             add { if (value is not null) AddEventHandler("OnOpenGameSettings", value); }
             remove { if (value is not null) RemoveEventHandler("OnOpenGameSettings", value); }
@@ -391,8 +391,8 @@ namespace Roblox
         /// <summary>
         /// <c>StudioService.OnPluginInstalledFromWeb</c>
         /// </summary>
-        /// <param name="pluginId">A <c>string?</c> value.</param>
-        public event Action<string?>? OnPluginInstalledFromWeb
+        /// <param name="pluginId">A <c>string</c> value.</param>
+        public event Action<string>? OnPluginInstalledFromWeb
         {
             add { if (value is not null) AddEventHandler("OnPluginInstalledFromWeb", value); }
             remove { if (value is not null) RemoveEventHandler("OnPluginInstalledFromWeb", value); }

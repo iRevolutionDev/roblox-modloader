@@ -22,57 +22,57 @@ namespace Roblox
         /// Creates a <see cref="UICorner"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UICorner? FromHandle(nuint handle)
+        public static new UICorner? FromHandle(nuint handle)
             => handle == 0 ? null : new UICorner(handle);
 
         /// <summary>
         /// Determines the radius of the bottom-left corner.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#BottomLeftRadius"/>
-        public global::Roblox.UDim? BottomLeftRadius
+        public global::Roblox.UDim BottomLeftRadius
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "BottomLeftRadius");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "BottomLeftRadius", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "BottomLeftRadius")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "BottomLeftRadius", value);
         }
 
         /// <summary>
         /// Determines the radius of the bottom-right corner.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#BottomRightRadius"/>
-        public global::Roblox.UDim? BottomRightRadius
+        public global::Roblox.UDim BottomRightRadius
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "BottomRightRadius");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "BottomRightRadius", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "BottomRightRadius")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "BottomRightRadius", value);
         }
 
         /// <summary>
         /// Sets all four corner radii at once and reads from TopLeftRadius.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#CornerRadius"/>
-        public global::Roblox.UDim? CornerRadius
+        public global::Roblox.UDim CornerRadius
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "CornerRadius");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "CornerRadius", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "CornerRadius")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "CornerRadius", value);
         }
 
         /// <summary>
         /// Determines the radius of the top-left corner.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#TopLeftRadius"/>
-        public global::Roblox.UDim? TopLeftRadius
+        public global::Roblox.UDim TopLeftRadius
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "TopLeftRadius");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "TopLeftRadius", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "TopLeftRadius")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "TopLeftRadius", value);
         }
 
         /// <summary>
         /// Determines the radius of the top-right corner.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UICorner#TopRightRadius"/>
-        public global::Roblox.UDim? TopRightRadius
+        public global::Roblox.UDim TopRightRadius
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "TopRightRadius");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "TopRightRadius", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "TopRightRadius")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "TopRightRadius", value);
         }
 
     }

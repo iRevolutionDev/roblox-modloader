@@ -22,117 +22,117 @@ namespace Roblox
         /// Creates a <see cref="GeometryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GeometryService? FromHandle(nuint handle)
+        public static new GeometryService? FromHandle(nuint handle)
             => handle == 0 ? null : new GeometryService(handle);
 
         /// <summary>
         /// Returns a table of Constraints and Attachments which you may choose to preserve, along with their respective parents.
         /// </summary>
-        /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="destination">A <c>object?</c> value.</param>
+        /// <param name="source">A <c>Instance</c> value.</param>
+        /// <param name="destination">A <c>object</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeometryService#CalculateConstraintsToPreserve"/>
-        public object? CalculateConstraintsToPreserve(Instance? source, object? destination, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CalculateConstraintsToPreserve", source, destination, options);
+        public object CalculateConstraintsToPreserve(Instance source, object destination, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CalculateConstraintsToPreserve", source, destination, options)!;
 
         /// <summary>
         /// <c>GeometryService.CreateSolidPrimitive</c>
         /// </summary>
         /// <param name="type">A <c>Enum.SolidPrimitiveType</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>MeshPart?</c> value returned by the engine.</returns>
-        public MeshPart? CreateSolidPrimitive(Enum.SolidPrimitiveType type, object? options)
-            => global::Roblox.Reflection.Invoke<MeshPart?>(this, "CreateSolidPrimitive", type, options);
+        /// <returns>A <c>MeshPart</c> value returned by the engine.</returns>
+        public MeshPart CreateSolidPrimitive(Enum.SolidPrimitiveType type, object? options = null)
+            => global::Roblox.Reflection.Invoke<MeshPart>(this, "CreateSolidPrimitive", type, options)!;
 
         /// <summary>
         /// Provides an array of positions which can easily be passed into FragmentAsync to perform simple types of destruction.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
+        /// <param name="part">A <c>BasePart</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeometryService#GenerateFragmentSites"/>
-        public object? GenerateFragmentSites(BasePart? part, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GenerateFragmentSites", part, options);
+        public object GenerateFragmentSites(BasePart part, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GenerateFragmentSites", part, options)!;
 
         /// <summary>
         /// <c>GeometryService.TranscodeMesh</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TranscodeMesh(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TranscodeMesh", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TranscodeMesh(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "TranscodeMesh", instance)!;
 
         /// <summary>
         /// <c>GeometryService.TranscodeModel</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TranscodeModel(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TranscodeModel", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TranscodeModel(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "TranscodeModel", instance)!;
 
         /// <summary>
         /// Breaks a BasePart into multiple MeshPart instances, according to the pattern of points passed in, by using voronoi decomposition.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <param name="sites">A <c>object?</c> value.</param>
+        /// <param name="part">A <c>BasePart</c> value.</param>
+        /// <param name="sites">A <c>object</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeometryService#FragmentAsync"/>
-        public object? FragmentAsync(BasePart? part, object? sites, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FragmentAsync", part, sites, options);
+        public object FragmentAsync(BasePart part, object sites, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "FragmentAsync", part, sites, options)!;
 
         /// <summary>
         /// <c>GeometryService.HashMeshAsync</c>
         /// </summary>
-        /// <param name="meshId">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? HashMeshAsync(object? meshId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "HashMeshAsync", meshId);
+        /// <param name="meshId">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string HashMeshAsync(object meshId)
+            => global::Roblox.Reflection.Invoke<string>(this, "HashMeshAsync", meshId)!;
 
         /// <summary>
         /// Creates one or more PartOperations or MeshParts from the intersecting geometry of multiple parts.
         /// </summary>
-        /// <param name="part">A <c>Instance?</c> value.</param>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="part">A <c>Instance</c> value.</param>
+        /// <param name="parts">A <c>object</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeometryService#IntersectAsync"/>
-        public object? IntersectAsync(Instance? part, object? parts, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "IntersectAsync", part, parts, options);
+        public object IntersectAsync(Instance part, object parts, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "IntersectAsync", part, parts, options)!;
 
         /// <summary>
         /// Creates one or more PartOperations or MeshParts from one part minus the space occupied by other parts.
         /// </summary>
-        /// <param name="part">A <c>Instance?</c> value.</param>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="part">A <c>Instance</c> value.</param>
+        /// <param name="parts">A <c>object</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeometryService#SubtractAsync"/>
-        public object? SubtractAsync(Instance? part, object? parts, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SubtractAsync", part, parts, options);
+        public object SubtractAsync(Instance part, object parts, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SubtractAsync", part, parts, options)!;
 
         /// <summary>
         /// Creates a MeshPart which has the shape of the input part stretched/dragged through the given set of CFrame positions.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <param name="cframes">A <c>object?</c> value.</param>
+        /// <param name="part">A <c>BasePart</c> value.</param>
+        /// <param name="cframes">A <c>object</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>MeshPart?</c> value returned by the engine.</returns>
+        /// <returns>A <c>MeshPart</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeometryService#SweepPartAsync"/>
-        public MeshPart? SweepPartAsync(BasePart? part, object? cframes, object? options)
-            => global::Roblox.Reflection.Invoke<MeshPart?>(this, "SweepPartAsync", part, cframes, options);
+        public MeshPart SweepPartAsync(BasePart part, object cframes, object? options = null)
+            => global::Roblox.Reflection.Invoke<MeshPart>(this, "SweepPartAsync", part, cframes, options)!;
 
         /// <summary>
         /// Creates one or more PartOperations or MeshParts from one part plus the space occupied by other parts.
         /// </summary>
-        /// <param name="part">A <c>Instance?</c> value.</param>
-        /// <param name="parts">A <c>object?</c> value.</param>
+        /// <param name="part">A <c>Instance</c> value.</param>
+        /// <param name="parts">A <c>object</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeometryService#UnionAsync"/>
-        public object? UnionAsync(Instance? part, object? parts, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnionAsync", part, parts, options);
+        public object UnionAsync(Instance part, object parts, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnionAsync", part, parts, options)!;
 
     }
 }

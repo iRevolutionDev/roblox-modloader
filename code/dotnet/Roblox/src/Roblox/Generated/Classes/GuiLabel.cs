@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GuiLabel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GuiLabel? FromHandle(nuint handle)
+        public static new GuiLabel? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiLabel(handle);
 
     }

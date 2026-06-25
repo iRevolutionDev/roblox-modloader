@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="SharedTableRegistry"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SharedTableRegistry? FromHandle(nuint handle)
+        public static new SharedTableRegistry? FromHandle(nuint handle)
             => handle == 0 ? null : new SharedTableRegistry(handle);
 
         /// <summary>
         /// Gets the registered SharedTable with the specified name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SharedTableRegistry#GetSharedTable"/>
-        public object? GetSharedTable(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSharedTable", name);
+        public object GetSharedTable(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSharedTable", name)!;
 
         /// <summary>
         /// Registers the provided SharedTable with the specified name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="st">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SharedTableRegistry#SetSharedTable"/>
-        public object? SetSharedTable(string? name, object? st)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetSharedTable", name, st);
+        public object SetSharedTable(string name, object? st = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetSharedTable", name, st)!;
 
     }
 }

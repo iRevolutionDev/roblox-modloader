@@ -22,80 +22,80 @@ namespace Roblox
         /// Creates a <see cref="AnimationRigData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationRigData? FromHandle(nuint handle)
+        public static new AnimationRigData? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationRigData(handle);
 
         /// <summary>
         /// <c>AnimationRigData.GetLabels</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLabels()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLabels");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetLabels()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLabels")!;
 
         /// <summary>
         /// <c>AnimationRigData.GetNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetNames");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetNames")!;
 
         /// <summary>
         /// <c>AnimationRigData.GetParents</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetParents()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetParents");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetParents()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetParents")!;
 
         /// <summary>
         /// <c>AnimationRigData.GetPostTransforms</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPostTransforms()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPostTransforms");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPostTransforms()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPostTransforms")!;
 
         /// <summary>
         /// <c>AnimationRigData.GetPreTransforms</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPreTransforms()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPreTransforms");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPreTransforms()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPreTransforms")!;
 
         /// <summary>
         /// <c>AnimationRigData.GetTransforms</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetTransforms()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTransforms");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetTransforms()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTransforms")!;
 
         /// <summary>
         /// <c>AnimationRigData.IsValidR15</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsValidR15()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsValidR15");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsValidR15")!;
 
         /// <summary>
         /// <c>AnimationRigData.IsValidR15Plus</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsValidR15Plus()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsValidR15Plus");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsValidR15Plus")!;
 
         /// <summary>
         /// <c>AnimationRigData.LoadFromHumanoid</c>
         /// </summary>
-        /// <param name="humanoid">A <c>Instance?</c> value.</param>
+        /// <param name="humanoid">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool LoadFromHumanoid(Instance? humanoid)
-            => global::Roblox.Reflection.Invoke<bool>(this, "LoadFromHumanoid", humanoid);
+        public bool LoadFromHumanoid(Instance humanoid)
+            => global::Roblox.Reflection.Invoke<bool>(this, "LoadFromHumanoid", humanoid)!;
 
         /// <summary>
         /// <c>AnimationRigData.LoadFromModel</c>
         /// </summary>
-        /// <param name="model">A <c>Instance?</c> value.</param>
+        /// <param name="model">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool LoadFromModel(Instance? model)
-            => global::Roblox.Reflection.Invoke<bool>(this, "LoadFromModel", model);
+        public bool LoadFromModel(Instance model)
+            => global::Roblox.Reflection.Invoke<bool>(this, "LoadFromModel", model)!;
 
     }
 }

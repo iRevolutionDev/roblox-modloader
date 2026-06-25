@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PackageLink"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PackageLink? FromHandle(nuint handle)
+        public static new PackageLink? FromHandle(nuint handle)
             => handle == 0 ? null : new PackageLink(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#AutoUpdate"/>
         public bool AutoUpdate
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoUpdate");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoUpdate")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoUpdate", value);
         }
 
@@ -39,31 +39,31 @@ namespace Roblox
         /// The creator of the package asset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#Creator"/>
-        public string? Creator
+        public string Creator
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Creator");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Creator", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Creator")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Creator", value);
         }
 
         /// <summary>
         /// <c>PackageLink.DefaultName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#DefaultName"/>
-        public string? DefaultName
+        public string DefaultName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DefaultName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DefaultName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DefaultName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DefaultName", value);
         }
 
         public bool HasNewVersion
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasNewVersion");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasNewVersion")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasNewVersion", value);
         }
 
         public int ModifiedState
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ModifiedState");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ModifiedState")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ModifiedState", value);
         }
 
@@ -71,36 +71,36 @@ namespace Roblox
         /// The asset name of the package.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#PackageAssetName"/>
-        public string? PackageAssetName
+        public string PackageAssetName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PackageAssetName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PackageAssetName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PackageAssetName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PackageAssetName", value);
         }
 
-        public string? PackageContent
+        public string PackageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PackageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PackageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PackageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PackageContent", value);
         }
 
         /// <summary>
         /// The ID of the asset this package corresponds to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#PackageId"/>
-        public object? PackageId
+        public object PackageId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PackageId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PackageId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "PackageId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "PackageId", value);
         }
 
         /// <summary>
         /// <c>PackageLink.SerializedDefaultAttributes</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#SerializedDefaultAttributes"/>
-        public byte[]? SerializedDefaultAttributes
+        public byte[] SerializedDefaultAttributes
         {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "SerializedDefaultAttributes");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "SerializedDefaultAttributes", value);
+            get => global::Roblox.Reflection.GetProperty<byte[]>(this, "SerializedDefaultAttributes")!;
+            set => global::Roblox.Reflection.SetProperty<byte[]>(this, "SerializedDefaultAttributes", value);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#VersionNumber"/>
         public long VersionNumber
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "VersionNumber");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "VersionNumber")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "VersionNumber", value);
         }
 
@@ -119,7 +119,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#PermissionLevel"/>
         public Enum.PackagePermission PermissionLevel
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PackagePermission>(this, "PermissionLevel");
+            get => global::Roblox.Reflection.GetProperty<Enum.PackagePermission>(this, "PermissionLevel")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PackagePermission>(this, "PermissionLevel", value);
         }
 
@@ -127,10 +127,10 @@ namespace Roblox
         /// The status of the package.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PackageLink#Status"/>
-        public string? Status
+        public string Status
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Status");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Status", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Status")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Status", value);
         }
 
     }

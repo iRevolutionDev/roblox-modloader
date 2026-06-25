@@ -18,13 +18,13 @@ namespace Roblox
         /// Creates a <see cref="AuroraScriptObject"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AuroraScriptObject? FromHandle(nuint handle)
+        public static new AuroraScriptObject? FromHandle(nuint handle)
             => handle == 0 ? null : new AuroraScriptObject(handle);
 
-        public AuroraScript? BehaviorWeak
+        public Instance? BehaviorWeak
         {
-            get => global::Roblox.Reflection.GetProperty<AuroraScript?>(this, "BehaviorWeak");
-            set => global::Roblox.Reflection.SetProperty<AuroraScript?>(this, "BehaviorWeak", value);
+            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "BehaviorWeak");
+            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "BehaviorWeak", value);
         }
 
         public Instance? BoundInstanceWeak
@@ -35,37 +35,37 @@ namespace Roblox
 
         public int FrameId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "FrameId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "FrameId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "FrameId", value);
         }
 
         public int LODLevel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "LODLevel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "LODLevel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "LODLevel", value);
         }
 
         public int PriorFrameInvoked
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PriorFrameInvoked");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PriorFrameInvoked")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PriorFrameInvoked", value);
         }
 
         /// <summary>
         /// <c>AuroraScriptObject.GetCurrentState</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCurrentState()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCurrentState");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetCurrentState()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCurrentState")!;
 
         /// <summary>
         /// <c>AuroraScriptObject.SetStateFieldValue</c>
         /// </summary>
-        /// <param name="fieldName">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetStateFieldValue(string? fieldName, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetStateFieldValue", fieldName, value);
+        /// <param name="fieldName">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetStateFieldValue(string fieldName, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetStateFieldValue", fieldName, value)!;
 
     }
 }

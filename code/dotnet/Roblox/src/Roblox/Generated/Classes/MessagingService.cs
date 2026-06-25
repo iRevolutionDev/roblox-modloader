@@ -22,28 +22,28 @@ namespace Roblox
         /// Creates a <see cref="MessagingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MessagingService? FromHandle(nuint handle)
+        public static new MessagingService? FromHandle(nuint handle)
             => handle == 0 ? null : new MessagingService(handle);
 
         /// <summary>
         /// Invokes the supplied callback whenever a message is pushed to the topic.
         /// </summary>
-        /// <param name="topic">A <c>string?</c> value.</param>
-        /// <param name="message">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="topic">A <c>string</c> value.</param>
+        /// <param name="message">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MessagingService#PublishAsync"/>
-        public object? PublishAsync(string? topic, object? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishAsync", topic, message);
+        public object PublishAsync(string topic, object message)
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishAsync", topic, message)!;
 
         /// <summary>
         /// Begins listening to the given topic.
         /// </summary>
-        /// <param name="topic">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="topic">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MessagingService#SubscribeAsync"/>
-        public object? SubscribeAsync(string? topic, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SubscribeAsync", topic, callback);
+        public object SubscribeAsync(string topic, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "SubscribeAsync", topic, callback)!;
 
     }
 }

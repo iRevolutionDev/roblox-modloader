@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ObjectValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ObjectValue? FromHandle(nuint handle)
+        public static new ObjectValue? FromHandle(nuint handle)
             => handle == 0 ? null : new ObjectValue(handle);
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace Roblox
         /// <summary>
         /// Fires whenever the ObjectValue.Value is changed.
         /// </summary>
-        /// <param name="value">A <c>Instance?</c> value.</param>
+        /// <param name="value">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ObjectValue#Changed"/>
-        public event Action<Instance?>? Changed
+        public new event Action<Instance>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

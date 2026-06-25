@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="MemoryStoreHashMapPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MemoryStoreHashMapPages? FromHandle(nuint handle)
+        public static new MemoryStoreHashMapPages? FromHandle(nuint handle)
             => handle == 0 ? null : new MemoryStoreHashMapPages(handle);
 
     }

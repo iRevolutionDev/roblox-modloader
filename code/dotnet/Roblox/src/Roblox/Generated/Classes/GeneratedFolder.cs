@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="GeneratedFolder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GeneratedFolder? FromHandle(nuint handle)
+        public static new GeneratedFolder? FromHandle(nuint handle)
             => handle == 0 ? null : new GeneratedFolder(handle);
 
         /// <summary>
         /// Specifies which part within the GeneratedFolder should be set as the PrimaryPart of the ProceduralModel.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="part">A <c>BasePart</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GeneratedFolder#SetPrimaryPart"/>
-        public object? SetPrimaryPart(BasePart? part)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPrimaryPart", part);
+        public object SetPrimaryPart(BasePart part)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPrimaryPart", part)!;
 
     }
 }

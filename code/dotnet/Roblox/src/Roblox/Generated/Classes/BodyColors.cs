@@ -22,127 +22,127 @@ namespace Roblox
         /// Creates a <see cref="BodyColors"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyColors? FromHandle(nuint handle)
+        public static new BodyColors? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyColors(handle);
 
         /// <summary>
         /// Sets the color of the head, as a BrickColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#HeadColor"/>
-        public global::Roblox.BrickColor? HeadColor
+        public global::Roblox.BrickColor HeadColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "HeadColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "HeadColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "HeadColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "HeadColor", value);
         }
 
         /// <summary>
         /// Sets the color of the head, as a Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#HeadColor3"/>
-        public global::Roblox.Color3? HeadColor3
+        public global::Roblox.Color3 HeadColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "HeadColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "HeadColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "HeadColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "HeadColor3", value);
         }
 
         /// <summary>
         /// Sets the color of the left arm, as a BrickColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#LeftArmColor"/>
-        public global::Roblox.BrickColor? LeftArmColor
+        public global::Roblox.BrickColor LeftArmColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "LeftArmColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "LeftArmColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "LeftArmColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "LeftArmColor", value);
         }
 
         /// <summary>
         /// Sets the color of the left arm, as a Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#LeftArmColor3"/>
-        public global::Roblox.Color3? LeftArmColor3
+        public global::Roblox.Color3 LeftArmColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "LeftArmColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "LeftArmColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "LeftArmColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "LeftArmColor3", value);
         }
 
         /// <summary>
         /// Sets the color of the left leg, as a BrickColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#LeftLegColor"/>
-        public global::Roblox.BrickColor? LeftLegColor
+        public global::Roblox.BrickColor LeftLegColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "LeftLegColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "LeftLegColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "LeftLegColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "LeftLegColor", value);
         }
 
         /// <summary>
         /// Sets the color of the left leg, as a Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#LeftLegColor3"/>
-        public global::Roblox.Color3? LeftLegColor3
+        public global::Roblox.Color3 LeftLegColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "LeftLegColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "LeftLegColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "LeftLegColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "LeftLegColor3", value);
         }
 
         /// <summary>
         /// Sets the color of the right arm, as a BrickColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#RightArmColor"/>
-        public global::Roblox.BrickColor? RightArmColor
+        public global::Roblox.BrickColor RightArmColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "RightArmColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "RightArmColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "RightArmColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "RightArmColor", value);
         }
 
         /// <summary>
         /// Sets the color of the right arm, as a Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#RightArmColor3"/>
-        public global::Roblox.Color3? RightArmColor3
+        public global::Roblox.Color3 RightArmColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "RightArmColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "RightArmColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "RightArmColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "RightArmColor3", value);
         }
 
         /// <summary>
         /// Sets the color of the right leg, as a BrickColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#RightLegColor"/>
-        public global::Roblox.BrickColor? RightLegColor
+        public global::Roblox.BrickColor RightLegColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "RightLegColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "RightLegColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "RightLegColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "RightLegColor", value);
         }
 
         /// <summary>
         /// Sets the color of the right leg, as a Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#RightLegColor3"/>
-        public global::Roblox.Color3? RightLegColor3
+        public global::Roblox.Color3 RightLegColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "RightLegColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "RightLegColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "RightLegColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "RightLegColor3", value);
         }
 
         /// <summary>
         /// Sets the color of the torso, as a BrickColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#TorsoColor"/>
-        public global::Roblox.BrickColor? TorsoColor
+        public global::Roblox.BrickColor TorsoColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TorsoColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TorsoColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TorsoColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TorsoColor", value);
         }
 
         /// <summary>
         /// Sets the color of the torso, as a Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyColors#TorsoColor3"/>
-        public global::Roblox.Color3? TorsoColor3
+        public global::Roblox.Color3 TorsoColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TorsoColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TorsoColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TorsoColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TorsoColor3", value);
         }
 
     }

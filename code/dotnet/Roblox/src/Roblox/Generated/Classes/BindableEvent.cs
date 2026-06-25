@@ -22,24 +22,24 @@ namespace Roblox
         /// Creates a <see cref="BindableEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BindableEvent? FromHandle(nuint handle)
+        public static new BindableEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new BindableEvent(handle);
 
         /// <summary>
         /// Fires the BindableEvent which in turn fires the Event event.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BindableEvent#Fire"/>
-        public object? Fire(object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Fire", arguments);
+        public object Fire(object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "Fire", arguments)!;
 
         /// <summary>
         /// Fires when any script calls the Fire() method on the same BindableEvent instance.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BindableEvent#Event"/>
-        public event Action<object?>? Event
+        public event Action<object>? Event
         {
             add { if (value is not null) AddEventHandler("Event", value); }
             remove { if (value is not null) RemoveEventHandler("Event", value); }

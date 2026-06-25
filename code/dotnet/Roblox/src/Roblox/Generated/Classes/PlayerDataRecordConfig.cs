@@ -18,31 +18,31 @@ namespace Roblox
         /// Creates a <see cref="PlayerDataRecordConfig"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerDataRecordConfig? FromHandle(nuint handle)
+        public static new PlayerDataRecordConfig? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerDataRecordConfig(handle);
 
-        public string? RecordName
+        public string RecordName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RecordName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RecordName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RecordName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RecordName", value);
         }
 
         /// <summary>
         /// <c>PlayerDataRecordConfig.GetDefaultValue</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDefaultValue(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDefaultValue", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetDefaultValue(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDefaultValue", key)!;
 
         /// <summary>
         /// <c>PlayerDataRecordConfig.SetDefaultValue</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetDefaultValue(string? key, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDefaultValue", key, value);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetDefaultValue(string key, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDefaultValue", key, value)!;
 
     }
 }

@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="VersionControlService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VersionControlService? FromHandle(nuint handle)
+        public static new VersionControlService? FromHandle(nuint handle)
             => handle == 0 ? null : new VersionControlService(handle);
 
         public bool ScriptCollabEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptCollabEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptCollabEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ScriptCollabEnabled", value);
         }
 

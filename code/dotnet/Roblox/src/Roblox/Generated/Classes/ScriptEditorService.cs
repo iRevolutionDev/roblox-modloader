@@ -22,53 +22,53 @@ namespace Roblox
         /// Creates a <see cref="ScriptEditorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptEditorService? FromHandle(nuint handle)
+        public static new ScriptEditorService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptEditorService(handle);
 
         /// <summary>
         /// Removes a previously registered callback with the name name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#DeregisterAutocompleteCallback"/>
-        public object? DeregisterAutocompleteCallback(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeregisterAutocompleteCallback", name);
+        public object DeregisterAutocompleteCallback(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeregisterAutocompleteCallback", name)!;
 
         /// <summary>
         /// Removes a previously registered callback with the name name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#DeregisterScriptAnalysisCallback"/>
-        public object? DeregisterScriptAnalysisCallback(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeregisterScriptAnalysisCallback", name);
+        public object DeregisterScriptAnalysisCallback(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeregisterScriptAnalysisCallback", name)!;
 
         /// <summary>
         /// Returns the open ScriptDocument corresponding to the given LuaSourceContainer, or nil if the given script is not open.
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        /// <returns>A <c>ScriptDocument?</c> value returned by the engine.</returns>
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        /// <returns>A <c>ScriptDocument</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#FindScriptDocument"/>
-        public ScriptDocument? FindScriptDocument(LuaSourceContainer? script)
-            => global::Roblox.Reflection.Invoke<ScriptDocument?>(this, "FindScriptDocument", script);
+        public ScriptDocument FindScriptDocument(LuaSourceContainer script)
+            => global::Roblox.Reflection.Invoke<ScriptDocument>(this, "FindScriptDocument", script)!;
 
         /// <summary>
         /// <c>ScriptEditorService.ForceReloadSource</c>
         /// </summary>
-        /// <param name="uri">A <c>string?</c> value.</param>
-        /// <param name="newsrc">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ForceReloadSource(string? uri, string? newsrc)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ForceReloadSource", uri, newsrc);
+        /// <param name="uri">A <c>string</c> value.</param>
+        /// <param name="newsrc">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ForceReloadSource(string uri, string newsrc)
+            => global::Roblox.Reflection.Invoke<object>(this, "ForceReloadSource", uri, newsrc)!;
 
         /// <summary>
         /// Returns the edit-time source for the given script.
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#GetEditorSource"/>
-        public string? GetEditorSource(LuaSourceContainer? script)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetEditorSource", script);
+        public string GetEditorSource(LuaSourceContainer script)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetEditorSource", script)!;
 
         /// <summary>
         /// Returns an array of the currently open script documents, including the command bar.
@@ -76,94 +76,94 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#GetScriptDocuments"/>
         public IReadOnlyList<Instance> GetScriptDocuments()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetScriptDocuments");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetScriptDocuments")!;
 
         /// <summary>
         /// <c>ScriptEditorService.IsAutocompleteCallbackRegistered</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsAutocompleteCallbackRegistered(string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAutocompleteCallbackRegistered", name);
+        public bool IsAutocompleteCallbackRegistered(string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAutocompleteCallbackRegistered", name)!;
 
         /// <summary>
         /// <c>ScriptEditorService.IsScriptAnalysisCallbackRegistered</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsScriptAnalysisCallbackRegistered(string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsScriptAnalysisCallbackRegistered", name);
+        public bool IsScriptAnalysisCallbackRegistered(string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsScriptAnalysisCallbackRegistered", name)!;
 
         /// <summary>
         /// Registers an autocomplete callback callbackFunction named name with priority priority.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="callbackFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="callbackFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#RegisterAutocompleteCallback"/>
-        public object? RegisterAutocompleteCallback(string? name, int priority, object? callbackFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterAutocompleteCallback", name, priority, callbackFunction);
+        public object RegisterAutocompleteCallback(string name, int priority, object callbackFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterAutocompleteCallback", name, priority, callbackFunction)!;
 
         /// <summary>
         /// Registers a Script Analysis callback callbackFunction named name with priority.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="callbackFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="callbackFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#RegisterScriptAnalysisCallback"/>
-        public object? RegisterScriptAnalysisCallback(string? name, int priority, object? callbackFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterScriptAnalysisCallback", name, priority, callbackFunction);
+        public object RegisterScriptAnalysisCallback(string name, int priority, object callbackFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterScriptAnalysisCallback", name, priority, callbackFunction)!;
 
         /// <summary>
         /// <c>ScriptEditorService.StripComments</c>
         /// </summary>
-        /// <param name="code">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? StripComments(string? code)
-            => global::Roblox.Reflection.Invoke<string?>(this, "StripComments", code);
+        /// <param name="code">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string StripComments(string code)
+            => global::Roblox.Reflection.Invoke<string>(this, "StripComments", code)!;
 
         /// <summary>
         /// <c>ScriptEditorService.EditSourceAsyncWithRanges</c>
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        /// <param name="newText">A <c>string?</c> value.</param>
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        /// <param name="newText">A <c>string</c> value.</param>
         /// <param name="startLine">A <c>int</c> value.</param>
         /// <param name="startCharacter">A <c>int</c> value.</param>
         /// <param name="endLine">A <c>int</c> value.</param>
         /// <param name="endCharacter">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EditSourceAsyncWithRanges(LuaSourceContainer? script, string? newText, int startLine, int startCharacter, int endLine, int endCharacter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EditSourceAsyncWithRanges", script, newText, startLine, startCharacter, endLine, endCharacter);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EditSourceAsyncWithRanges(LuaSourceContainer script, string newText, int startLine, int startCharacter, int endLine, int endCharacter)
+            => global::Roblox.Reflection.Invoke<object>(this, "EditSourceAsyncWithRanges", script, newText, startLine, startCharacter, endLine, endCharacter)!;
 
         /// <summary>
         /// Requests that a Script Editor open the specified script. Returns (true, nil) if the request succeeds. Returns (false, string) if the request fails, with a string that describes the problem.
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#OpenScriptDocumentAsync"/>
-        public object? OpenScriptDocumentAsync(LuaSourceContainer? script, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenScriptDocumentAsync", script, options);
+        public object OpenScriptDocumentAsync(LuaSourceContainer script, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenScriptDocumentAsync", script, options)!;
 
         /// <summary>
         /// Generates new content from the old script and updates the script editor if it's open, or the Script instance if the script editor is closed.
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#UpdateSourceAsync"/>
-        public object? UpdateSourceAsync(LuaSourceContainer? script, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateSourceAsync", script, callback);
+        public object UpdateSourceAsync(LuaSourceContainer script, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateSourceAsync", script, callback)!;
 
         /// <summary>
         /// Fires just after a ScriptDocument changes.
         /// </summary>
-        /// <param name="document">A <c>ScriptDocument?</c> value.</param>
-        /// <param name="changesArray">A <c>object?</c> value.</param>
+        /// <param name="document">A <c>ScriptDocument</c> value.</param>
+        /// <param name="changesArray">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidChange"/>
-        public event Action<ScriptDocument?, object?>? TextDocumentDidChange
+        public event Action<ScriptDocument, object>? TextDocumentDidChange
         {
             add { if (value is not null) AddEventHandler("TextDocumentDidChange", value); }
             remove { if (value is not null) RemoveEventHandler("TextDocumentDidChange", value); }
@@ -172,9 +172,9 @@ namespace Roblox
         /// <summary>
         /// Fires just before a ScriptDocument object is destroyed, which happens right after the script editor closes.
         /// </summary>
-        /// <param name="oldDocument">A <c>ScriptDocument?</c> value.</param>
+        /// <param name="oldDocument">A <c>ScriptDocument</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidClose"/>
-        public event Action<ScriptDocument?>? TextDocumentDidClose
+        public event Action<ScriptDocument>? TextDocumentDidClose
         {
             add { if (value is not null) AddEventHandler("TextDocumentDidClose", value); }
             remove { if (value is not null) RemoveEventHandler("TextDocumentDidClose", value); }
@@ -183,9 +183,9 @@ namespace Roblox
         /// <summary>
         /// Fires just after a ScriptDocument object is created and parented to the service, which happens right after the script editor opens.
         /// </summary>
-        /// <param name="newDocument">A <c>ScriptDocument?</c> value.</param>
+        /// <param name="newDocument">A <c>ScriptDocument</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#TextDocumentDidOpen"/>
-        public event Action<ScriptDocument?>? TextDocumentDidOpen
+        public event Action<ScriptDocument>? TextDocumentDidOpen
         {
             add { if (value is not null) AddEventHandler("TextDocumentDidOpen", value); }
             remove { if (value is not null) RemoveEventHandler("TextDocumentDidOpen", value); }

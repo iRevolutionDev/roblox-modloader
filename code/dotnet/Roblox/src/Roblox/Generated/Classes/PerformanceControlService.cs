@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="PerformanceControlService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PerformanceControlService? FromHandle(nuint handle)
+        public static new PerformanceControlService? FromHandle(nuint handle)
             => handle == 0 ? null : new PerformanceControlService(handle);
 
         /// <summary>
         /// <c>PerformanceControlService.IsCrossExperienceLaunchFeasible</c>
         /// </summary>
-        /// <param name="type">A <c>string?</c> value.</param>
+        /// <param name="type">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsCrossExperienceLaunchFeasible(string? type)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsCrossExperienceLaunchFeasible", type);
+        public bool IsCrossExperienceLaunchFeasible(string type)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsCrossExperienceLaunchFeasible", type)!;
 
     }
 }

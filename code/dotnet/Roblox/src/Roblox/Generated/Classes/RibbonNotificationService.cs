@@ -18,17 +18,17 @@ namespace Roblox
         /// Creates a <see cref="RibbonNotificationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RibbonNotificationService? FromHandle(nuint handle)
+        public static new RibbonNotificationService? FromHandle(nuint handle)
             => handle == 0 ? null : new RibbonNotificationService(handle);
 
         /// <summary>
         /// <c>RibbonNotificationService.OnNotificationUpdateFromPlugin</c>
         /// </summary>
-        /// <param name="newNotificationId">A <c>string?</c> value.</param>
-        /// <param name="seenNotificationId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnNotificationUpdateFromPlugin(string? newNotificationId, string? seenNotificationId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnNotificationUpdateFromPlugin", newNotificationId, seenNotificationId);
+        /// <param name="newNotificationId">A <c>string</c> value.</param>
+        /// <param name="seenNotificationId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnNotificationUpdateFromPlugin(string newNotificationId, string seenNotificationId)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnNotificationUpdateFromPlugin", newNotificationId, seenNotificationId)!;
 
         public event Action? AllNotificationsReadFromRibbon
         {
@@ -39,8 +39,8 @@ namespace Roblox
         /// <summary>
         /// <c>RibbonNotificationService.NewNotificationFromRibbon</c>
         /// </summary>
-        /// <param name="newNotificationId">A <c>string?</c> value.</param>
-        public event Action<string?>? NewNotificationFromRibbon
+        /// <param name="newNotificationId">A <c>string</c> value.</param>
+        public event Action<string>? NewNotificationFromRibbon
         {
             add { if (value is not null) AddEventHandler("NewNotificationFromRibbon", value); }
             remove { if (value is not null) RemoveEventHandler("NewNotificationFromRibbon", value); }
@@ -49,8 +49,8 @@ namespace Roblox
         /// <summary>
         /// <c>RibbonNotificationService.NotificationReadFromRibbon</c>
         /// </summary>
-        /// <param name="newNotificationId">A <c>string?</c> value.</param>
-        public event Action<string?>? NotificationReadFromRibbon
+        /// <param name="newNotificationId">A <c>string</c> value.</param>
+        public event Action<string>? NotificationReadFromRibbon
         {
             add { if (value is not null) AddEventHandler("NotificationReadFromRibbon", value); }
             remove { if (value is not null) RemoveEventHandler("NotificationReadFromRibbon", value); }
@@ -59,7 +59,7 @@ namespace Roblox
         /// <summary>
         /// <c>RibbonNotificationService.ToggleNotificationTray</c>
         /// </summary>
-        /// <param name="checked">A <c>bool</c> value.</param>
+        /// <param name="@checked">A <c>bool</c> value.</param>
         /// <param name="newNotificationAvailable">A <c>bool</c> value.</param>
         public event Action<bool, bool>? ToggleNotificationTray
         {

@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="LuauScriptAnalyzerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LuauScriptAnalyzerService? FromHandle(nuint handle)
+        public static new LuauScriptAnalyzerService? FromHandle(nuint handle)
             => handle == 0 ? null : new LuauScriptAnalyzerService(handle);
 
     }

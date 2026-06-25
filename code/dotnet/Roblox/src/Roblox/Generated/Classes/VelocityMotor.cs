@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VelocityMotor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VelocityMotor? FromHandle(nuint handle)
+        public static new VelocityMotor? FromHandle(nuint handle)
             => handle == 0 ? null : new VelocityMotor(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor#CurrentAngle"/>
         public float CurrentAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentAngle", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor#DesiredAngle"/>
         public float DesiredAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DesiredAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DesiredAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DesiredAngle", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor#MaxVelocity"/>
         public float MaxVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxVelocity", value);
         }
 

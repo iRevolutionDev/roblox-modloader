@@ -22,34 +22,34 @@ namespace Roblox
         /// Creates a <see cref="ServiceProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ServiceProvider? FromHandle(nuint handle)
+        public static new ServiceProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new ServiceProvider(handle);
 
         /// <summary>
         /// Returns the service specified by the given className if it's already created, errors for an invalid name.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#FindService"/>
-        public Instance? FindService(string? className)
+        public Instance? FindService(string className)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindService", className);
 
         /// <summary>
         /// Returns the service with the requested class name, creating it if it does not exist.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#GetService"/>
-        public Instance? GetService(string? className)
+        public Instance? GetService(string className)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetService", className);
 
         /// <summary>
         /// Deprecated: This item has been superseded by ServiceProvider:GetService() which should be used in all new work.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#service"/>
-        public Instance? Service(string? className)
+        public Instance? Service(string className)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "service", className);
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Roblox
         /// <summary>
         /// Fired when a service is created.
         /// </summary>
-        /// <param name="service">A <c>Instance?</c> value.</param>
+        /// <param name="service">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#ServiceAdded"/>
-        public event Action<Instance?>? ServiceAdded
+        public event Action<Instance>? ServiceAdded
         {
             add { if (value is not null) AddEventHandler("ServiceAdded", value); }
             remove { if (value is not null) RemoveEventHandler("ServiceAdded", value); }
@@ -82,9 +82,9 @@ namespace Roblox
         /// <summary>
         /// Fired when a service is about to be removed.
         /// </summary>
-        /// <param name="service">A <c>Instance?</c> value.</param>
+        /// <param name="service">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#ServiceRemoving"/>
-        public event Action<Instance?>? ServiceRemoving
+        public event Action<Instance>? ServiceRemoving
         {
             add { if (value is not null) AddEventHandler("ServiceRemoving", value); }
             remove { if (value is not null) RemoveEventHandler("ServiceRemoving", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AdGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AdGui? FromHandle(nuint handle)
+        public static new AdGui? FromHandle(nuint handle)
             => handle == 0 ? null : new AdGui(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui#AdShape"/>
         public Enum.AdShape AdShape
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdShape>(this, "AdShape");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdShape>(this, "AdShape")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdShape>(this, "AdShape", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui#EnableVideoAds"/>
         public bool EnableVideoAds
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableVideoAds");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableVideoAds")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableVideoAds", value);
         }
 
@@ -49,16 +49,16 @@ namespace Roblox
         /// <c>AdGui.FallbackImage</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui#FallbackImage"/>
-        public object? FallbackImage
+        public object FallbackImage
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FallbackImage");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FallbackImage", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FallbackImage")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FallbackImage", value);
         }
 
-        public string? FallbackImageContent
+        public string FallbackImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FallbackImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FallbackImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FallbackImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FallbackImageContent", value);
         }
 
         /// <summary>
@@ -67,37 +67,37 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui#Status"/>
         public Enum.AdUnitStatus Status
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdUnitStatus>(this, "Status");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdUnitStatus>(this, "Status")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdUnitStatus>(this, "Status", value);
         }
 
         /// <summary>
         /// <c>AdGui.GetSingleReportAdInfo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSingleReportAdInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSingleReportAdInfo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetSingleReportAdInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSingleReportAdInfo")!;
 
         /// <summary>
         /// <c>AdGui.HandleLuaUIEvent</c>
         /// </summary>
         /// <param name="eventType">A <c>Enum.AdUIEventType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleLuaUIEvent(Enum.AdUIEventType eventType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleLuaUIEvent", eventType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleLuaUIEvent(Enum.AdUIEventType eventType)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleLuaUIEvent", eventType)!;
 
         /// <summary>
         /// <c>AdGui.forwardStateToLuaUI</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ForwardStateToLuaUI()
-            => global::Roblox.Reflection.Invoke<object?>(this, "forwardStateToLuaUI");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ForwardStateToLuaUI()
+            => global::Roblox.Reflection.Invoke<object>(this, "forwardStateToLuaUI")!;
 
         /// <summary>
         /// <c>AdGui.adGuiStateChanged</c>
         /// </summary>
-        /// <param name="adUIState">A <c>object?</c> value.</param>
-        public event Action<object?>? AdGuiStateChanged
+        /// <param name="adUIState">A <c>object</c> value.</param>
+        public event Action<object>? AdGuiStateChanged
         {
             add { if (value is not null) AddEventHandler("adGuiStateChanged", value); }
             remove { if (value is not null) RemoveEventHandler("adGuiStateChanged", value); }

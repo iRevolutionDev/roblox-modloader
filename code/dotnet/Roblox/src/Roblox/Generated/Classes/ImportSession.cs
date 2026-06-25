@@ -18,42 +18,42 @@ namespace Roblox
         /// Creates a <see cref="ImportSession"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ImportSession? FromHandle(nuint handle)
+        public static new ImportSession? FromHandle(nuint handle)
             => handle == 0 ? null : new ImportSession(handle);
 
         /// <summary>
         /// <c>ImportSession.Cancel</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Cancel()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Cancel");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Cancel()
+            => global::Roblox.Reflection.Invoke<object>(this, "Cancel")!;
 
         /// <summary>
         /// <c>ImportSession.GetFilename</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetFilename()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetFilename");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetFilename()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetFilename")!;
 
         /// <summary>
         /// <c>ImportSession.GetStatuses</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStatuses()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStatuses");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetStatuses()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStatuses")!;
 
         /// <summary>
         /// <c>ImportSession.Upload</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Upload()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Upload");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Upload()
+            => global::Roblox.Reflection.Invoke<object>(this, "Upload")!;
 
         /// <summary>
         /// <c>ImportSession.UploadComplete</c>
         /// </summary>
-        /// <param name="results">A <c>object?</c> value.</param>
-        public event Action<object?>? UploadComplete
+        /// <param name="results">A <c>object</c> value.</param>
+        public event Action<object>? UploadComplete
         {
             add { if (value is not null) AddEventHandler("UploadComplete", value); }
             remove { if (value is not null) RemoveEventHandler("UploadComplete", value); }

@@ -22,33 +22,33 @@ namespace Roblox
         /// Creates a <see cref="ShirtGraphic"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ShirtGraphic? FromHandle(nuint handle)
+        public static new ShirtGraphic? FromHandle(nuint handle)
             => handle == 0 ? null : new ShirtGraphic(handle);
 
         /// <summary>
         /// Determines the colorization to be applied to the ShirtGraphic texture.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ShirtGraphic#Color3"/>
-        public global::Roblox.Color3? Color3
+        public global::Roblox.Color3 Color3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color3", value);
         }
 
         /// <summary>
         /// The content ID link pointing to the ShirtGraphic texture hosted on the Roblox website. This property sets the texture associated with a t-shirt.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ShirtGraphic#Graphic"/>
-        public object? Graphic
+        public object Graphic
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Graphic");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Graphic", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Graphic")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Graphic", value);
         }
 
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
     }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ControllerBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ControllerBase? FromHandle(nuint handle)
+        public static new ControllerBase? FromHandle(nuint handle)
             => handle == 0 ? null : new ControllerBase(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerBase#Active"/>
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerBase#BalanceRigidityEnabled"/>
         public bool BalanceRigidityEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BalanceRigidityEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BalanceRigidityEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BalanceRigidityEnabled", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerBase#MoveSpeedFactor"/>
         public float MoveSpeedFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MoveSpeedFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MoveSpeedFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MoveSpeedFactor", value);
         }
 

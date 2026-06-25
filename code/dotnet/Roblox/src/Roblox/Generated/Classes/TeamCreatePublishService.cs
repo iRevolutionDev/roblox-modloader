@@ -18,15 +18,15 @@ namespace Roblox
         /// Creates a <see cref="TeamCreatePublishService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TeamCreatePublishService? FromHandle(nuint handle)
+        public static new TeamCreatePublishService? FromHandle(nuint handle)
             => handle == 0 ? null : new TeamCreatePublishService(handle);
 
         /// <summary>
         /// <c>TeamCreatePublishService.TeamCreateErrorStatus</c>
         /// </summary>
         /// <param name="result">A <c>Enum.TeamCreateErrorState</c> value.</param>
-        /// <param name="teamCreateSaveData">A <c>object?</c> value.</param>
-        public event Action<Enum.TeamCreateErrorState, object?>? TeamCreateErrorStatus
+        /// <param name="teamCreateSaveData">A <c>object</c> value.</param>
+        public event Action<Enum.TeamCreateErrorState, object>? TeamCreateErrorStatus
         {
             add { if (value is not null) AddEventHandler("TeamCreateErrorStatus", value); }
             remove { if (value is not null) RemoveEventHandler("TeamCreateErrorStatus", value); }

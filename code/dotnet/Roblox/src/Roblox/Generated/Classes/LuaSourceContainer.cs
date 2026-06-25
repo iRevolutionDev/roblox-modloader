@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="LuaSourceContainer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LuaSourceContainer? FromHandle(nuint handle)
+        public static new LuaSourceContainer? FromHandle(nuint handle)
             => handle == 0 ? null : new LuaSourceContainer(handle);
 
     }

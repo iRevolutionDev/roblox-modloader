@@ -18,21 +18,21 @@ namespace Roblox
         /// Creates a <see cref="ExampleV2Service"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExampleV2Service? FromHandle(nuint handle)
+        public static new ExampleV2Service? FromHandle(nuint handle)
             => handle == 0 ? null : new ExampleV2Service(handle);
 
         /// <summary>
         /// <c>ExampleV2Service.PrintHello</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PrintHello()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PrintHello");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PrintHello()
+            => global::Roblox.Reflection.Invoke<object>(this, "PrintHello")!;
 
         /// <summary>
         /// <c>ExampleV2Service.OnPolo</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        public event Action<string?>? OnPolo
+        /// <param name="message">A <c>string</c> value.</param>
+        public event Action<string>? OnPolo
         {
             add { if (value is not null) AddEventHandler("OnPolo", value); }
             remove { if (value is not null) RemoveEventHandler("OnPolo", value); }

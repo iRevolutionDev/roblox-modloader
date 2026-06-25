@@ -18,61 +18,61 @@ namespace Roblox
         /// Creates a <see cref="Collaborator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Collaborator? FromHandle(nuint handle)
+        public static new Collaborator? FromHandle(nuint handle)
             => handle == 0 ? null : new Collaborator(handle);
 
-        public global::Roblox.CFrame? CFrame
+        public global::Roblox.CFrame CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
         public int CollaboratorColor
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "CollaboratorColor");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "CollaboratorColor")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "CollaboratorColor", value);
         }
 
-        public global::Roblox.Color3? CollaboratorColor3
+        public global::Roblox.Color3 CollaboratorColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "CollaboratorColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "CollaboratorColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "CollaboratorColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "CollaboratorColor3", value);
         }
 
-        public string? CurDocGUID
+        public string CurDocGUID
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CurDocGUID");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CurDocGUID", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CurDocGUID")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CurDocGUID", value);
         }
 
         public int CurScriptLineNumber
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "CurScriptLineNumber");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "CurScriptLineNumber")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "CurScriptLineNumber", value);
         }
 
         public bool IsIdle
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsIdle");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsIdle")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsIdle", value);
         }
 
         public Enum.CollaboratorStatus Status
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CollaboratorStatus>(this, "Status");
+            get => global::Roblox.Reflection.GetProperty<Enum.CollaboratorStatus>(this, "Status")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CollaboratorStatus>(this, "Status", value);
         }
 
         public long UserId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "UserId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "UserId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "UserId", value);
         }
 
-        public string? Username
+        public string Username
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Username");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Username", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Username")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Username", value);
         }
 
     }

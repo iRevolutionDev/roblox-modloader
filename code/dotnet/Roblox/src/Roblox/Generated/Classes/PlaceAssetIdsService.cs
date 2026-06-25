@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PlaceAssetIdsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlaceAssetIdsService? FromHandle(nuint handle)
+        public static new PlaceAssetIdsService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlaceAssetIdsService(handle);
 
     }

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="PathfindingModifier"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PathfindingModifier? FromHandle(nuint handle)
+        public static new PathfindingModifier? FromHandle(nuint handle)
             => handle == 0 ? null : new PathfindingModifier(handle);
 
         /// <summary>
         /// The name of the navigation area inside or on top of the parts enclosed by the modifier.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingModifier#Label"/>
-        public string? Label
+        public string Label
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Label");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Label", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Label")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Label", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingModifier#PassThrough"/>
         public bool PassThrough
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PassThrough");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PassThrough")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PassThrough", value);
         }
 

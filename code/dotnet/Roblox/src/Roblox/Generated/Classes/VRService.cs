@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VRService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VRService? FromHandle(nuint handle)
+        public static new VRService? FromHandle(nuint handle)
             => handle == 0 ? null : new VRService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#AutomaticScaling"/>
         public Enum.VRScaling AutomaticScaling
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VRScaling>(this, "AutomaticScaling");
+            get => global::Roblox.Reflection.GetProperty<Enum.VRScaling>(this, "AutomaticScaling")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VRScaling>(this, "AutomaticScaling", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#AvatarGestures"/>
         public bool AvatarGestures
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AvatarGestures");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AvatarGestures")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AvatarGestures", value);
         }
 
@@ -51,13 +51,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#ControllerModels"/>
         public Enum.VRControllerModelMode ControllerModels
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VRControllerModelMode>(this, "ControllerModels");
+            get => global::Roblox.Reflection.GetProperty<Enum.VRControllerModelMode>(this, "ControllerModels")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VRControllerModelMode>(this, "ControllerModels", value);
         }
 
         public bool DidPointerHit
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DidPointerHit");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DidPointerHit")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DidPointerHit", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#FadeOutViewOnCollision"/>
         public bool FadeOutViewOnCollision
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FadeOutViewOnCollision");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FadeOutViewOnCollision")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FadeOutViewOnCollision", value);
         }
 
@@ -77,13 +77,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#GuiInputUserCFrame"/>
         public Enum.UserCFrame GuiInputUserCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UserCFrame>(this, "GuiInputUserCFrame");
+            get => global::Roblox.Reflection.GetProperty<Enum.UserCFrame>(this, "GuiInputUserCFrame")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UserCFrame>(this, "GuiInputUserCFrame", value);
         }
 
         public float LaserDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LaserDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LaserDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LaserDistance", value);
         }
 
@@ -93,25 +93,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#LaserPointer"/>
         public Enum.VRLaserPointerMode LaserPointer
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VRLaserPointerMode>(this, "LaserPointer");
+            get => global::Roblox.Reflection.GetProperty<Enum.VRLaserPointerMode>(this, "LaserPointer")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VRLaserPointerMode>(this, "LaserPointer", value);
         }
 
-        public global::Roblox.CFrame? PointerHitCFrame
+        public global::Roblox.CFrame PointerHitCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "PointerHitCFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "PointerHitCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "PointerHitCFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "PointerHitCFrame", value);
         }
 
         public bool QuestASWState
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "QuestASWState");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "QuestASWState")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "QuestASWState", value);
         }
 
         public float QuestDisplayRefreshRate
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "QuestDisplayRefreshRate");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "QuestDisplayRefreshRate")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "QuestDisplayRefreshRate", value);
         }
 
@@ -121,20 +121,20 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#ThirdPersonFollowCamEnabled"/>
         public bool ThirdPersonFollowCamEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ThirdPersonFollowCamEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ThirdPersonFollowCamEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ThirdPersonFollowCamEnabled", value);
         }
 
         public bool VRDeviceAvailable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRDeviceAvailable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRDeviceAvailable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VRDeviceAvailable", value);
         }
 
-        public string? VRDeviceName
+        public string VRDeviceName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "VRDeviceName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "VRDeviceName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "VRDeviceName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "VRDeviceName", value);
         }
 
         /// <summary>
@@ -143,13 +143,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#VREnabled"/>
         public bool VREnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VREnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VREnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VREnabled", value);
         }
 
         public Enum.VRSessionState VRSessionState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VRSessionState>(this, "VRSessionState");
+            get => global::Roblox.Reflection.GetProperty<Enum.VRSessionState>(this, "VRSessionState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VRSessionState>(this, "VRSessionState", value);
         }
 
@@ -160,16 +160,16 @@ namespace Roblox
         /// <returns>A <c>Enum.VRTouchpadMode</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#GetTouchpadMode"/>
         public Enum.VRTouchpadMode GetTouchpadMode(Enum.VRTouchpad pad)
-            => global::Roblox.Reflection.Invoke<Enum.VRTouchpadMode>(this, "GetTouchpadMode", pad);
+            => global::Roblox.Reflection.Invoke<Enum.VRTouchpadMode>(this, "GetTouchpadMode", pad)!;
 
         /// <summary>
         /// Returns a CFrame describing the position &amp; orientation of a specified virtual reality device as an offset from a point in real world space.
         /// </summary>
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#GetUserCFrame"/>
-        public global::Roblox.CFrame? GetUserCFrame(Enum.UserCFrame type)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetUserCFrame", type);
+        public global::Roblox.CFrame GetUserCFrame(Enum.UserCFrame type)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetUserCFrame", type)!;
 
         /// <summary>
         /// Returns true if the specified UserCFrame is available to be listened to.
@@ -178,55 +178,55 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#GetUserCFrameEnabled"/>
         public bool GetUserCFrameEnabled(Enum.UserCFrame type)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetUserCFrameEnabled", type);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetUserCFrameEnabled", type)!;
 
         /// <summary>
         /// <c>VRService.IsMaquettes</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsMaquettes()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsMaquettes");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsMaquettes")!;
 
         /// <summary>
         /// <c>VRService.IsVRAppBuild</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsVRAppBuild()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsVRAppBuild");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsVRAppBuild")!;
 
         /// <summary>
         /// Re-centers the CFrame to the current location of the VR headset being worn by the user.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#RecenterUserHeadCFrame"/>
-        public object? RecenterUserHeadCFrame()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RecenterUserHeadCFrame");
+        public object RecenterUserHeadCFrame()
+            => global::Roblox.Reflection.Invoke<object>(this, "RecenterUserHeadCFrame")!;
 
         /// <summary>
         /// Requests navigation to the specified CFrame using the specified UserCFrame as the origin for the visualizer parabola.
         /// </summary>
-        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame</c> value.</param>
         /// <param name="inputUserCFrame">A <c>Enum.UserCFrame</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#RequestNavigation"/>
-        public object? RequestNavigation(global::Roblox.CFrame? cframe, Enum.UserCFrame inputUserCFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestNavigation", cframe, inputUserCFrame);
+        public object RequestNavigation(global::Roblox.CFrame cframe, Enum.UserCFrame inputUserCFrame)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestNavigation", cframe, inputUserCFrame)!;
 
         /// <summary>
         /// Sets the mode of the specified VRTouchpad to the specified VRTouchpadMode.
         /// </summary>
         /// <param name="pad">A <c>Enum.VRTouchpad</c> value.</param>
         /// <param name="mode">A <c>Enum.VRTouchpadMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#SetTouchpadMode"/>
-        public object? SetTouchpadMode(Enum.VRTouchpad pad, Enum.VRTouchpadMode mode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTouchpadMode", pad, mode);
+        public object SetTouchpadMode(Enum.VRTouchpad pad, Enum.VRTouchpadMode mode)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTouchpadMode", pad, mode)!;
 
         /// <summary>
         /// <c>VRService.LaserPointerTriggered</c>
         /// </summary>
-        /// <param name="input">A <c>InputObject?</c> value.</param>
-        public event Action<InputObject?>? LaserPointerTriggered
+        /// <param name="input">A <c>InputObject</c> value.</param>
+        public event Action<InputObject>? LaserPointerTriggered
         {
             add { if (value is not null) AddEventHandler("LaserPointerTriggered", value); }
             remove { if (value is not null) RemoveEventHandler("LaserPointerTriggered", value); }
@@ -235,10 +235,10 @@ namespace Roblox
         /// <summary>
         /// Fired when navigation is requested from VRService.
         /// </summary>
-        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame</c> value.</param>
         /// <param name="inputUserCFrame">A <c>Enum.UserCFrame</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#NavigationRequested"/>
-        public event Action<global::Roblox.CFrame?, Enum.UserCFrame>? NavigationRequested
+        public event Action<global::Roblox.CFrame, Enum.UserCFrame>? NavigationRequested
         {
             add { if (value is not null) AddEventHandler("NavigationRequested", value); }
             remove { if (value is not null) RemoveEventHandler("NavigationRequested", value); }
@@ -260,9 +260,9 @@ namespace Roblox
         /// Fires when a UserCFrame is changed.
         /// </summary>
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
-        /// <param name="value">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.CFrame</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VRService#UserCFrameChanged"/>
-        public event Action<Enum.UserCFrame, global::Roblox.CFrame?>? UserCFrameChanged
+        public event Action<Enum.UserCFrame, global::Roblox.CFrame>? UserCFrameChanged
         {
             add { if (value is not null) AddEventHandler("UserCFrameChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UserCFrameChanged", value); }

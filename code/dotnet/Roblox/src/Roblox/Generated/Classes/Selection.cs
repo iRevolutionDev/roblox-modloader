@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Selection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Selection? FromHandle(nuint handle)
+        public static new Selection? FromHandle(nuint handle)
             => handle == 0 ? null : new Selection(handle);
 
         public Instance? ActiveInstance
@@ -33,19 +33,19 @@ namespace Roblox
 
         public Enum.SelectionRenderMode RenderMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SelectionRenderMode>(this, "RenderMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.SelectionRenderMode>(this, "RenderMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SelectionRenderMode>(this, "RenderMode", value);
         }
 
         public float SelectionBoxThickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SelectionBoxThickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SelectionBoxThickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SelectionBoxThickness", value);
         }
 
         public int SelectionLineThickness
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectionLineThickness");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectionLineThickness")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "SelectionLineThickness", value);
         }
 
@@ -55,13 +55,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#SelectionThickness"/>
         public float SelectionThickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SelectionThickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SelectionThickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SelectionThickness", value);
         }
 
         public bool ShowActiveInstanceHighlight
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowActiveInstanceHighlight");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowActiveInstanceHighlight")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowActiveInstanceHighlight", value);
         }
 
@@ -69,26 +69,26 @@ namespace Roblox
         /// Adds the given Instances to the current selection in Roblox Studio.
         /// </summary>
         /// <param name="instancesToAdd">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Add"/>
-        public object? Add(IReadOnlyList<Instance> instancesToAdd)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Add", instancesToAdd);
+        public object Add(IReadOnlyList<Instance> instancesToAdd)
+            => global::Roblox.Reflection.Invoke<object>(this, "Add", instancesToAdd)!;
 
         /// <summary>
         /// <c>Selection.AddFocusCallback</c>
         /// </summary>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddFocusCallback(int priority, object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddFocusCallback", priority, function);
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddFocusCallback(int priority, object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddFocusCallback", priority, function)!;
 
         /// <summary>
         /// <c>Selection.ClearTerrainSelectionHack</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearTerrainSelectionHack()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearTerrainSelectionHack");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearTerrainSelectionHack()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearTerrainSelectionHack")!;
 
         /// <summary>
         /// Returns an array of currently selected Instances in Roblox Studio.
@@ -96,34 +96,34 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Get"/>
         public IReadOnlyList<Instance> Get()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Get");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Get")!;
 
         /// <summary>
         /// Removes the given Instances from the current selection in Roblox Studio.
         /// </summary>
         /// <param name="instancesToRemove">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Remove"/>
-        public object? Remove(IReadOnlyList<Instance> instancesToRemove)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Remove", instancesToRemove);
+        public object Remove(IReadOnlyList<Instance> instancesToRemove)
+            => global::Roblox.Reflection.Invoke<object>(this, "Remove", instancesToRemove)!;
 
         /// <summary>
         /// Sets the currently selected objects in Roblox Studio to Instances in the given array.
         /// </summary>
         /// <param name="selection">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection#Set"/>
-        public object? Set(IReadOnlyList<Instance> selection)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Set", selection);
+        public object Set(IReadOnlyList<Instance> selection)
+            => global::Roblox.Reflection.Invoke<object>(this, "Set", selection)!;
 
         /// <summary>
         /// <c>Selection.SetTerrainSelectionHack</c>
         /// </summary>
-        /// <param name="center">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTerrainSelectionHack(global::Roblox.Vector3? center, global::Roblox.Vector3? size)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTerrainSelectionHack", center, size);
+        /// <param name="center">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTerrainSelectionHack(global::Roblox.Vector3 center, global::Roblox.Vector3 size)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTerrainSelectionHack", center, size)!;
 
         /// <summary>
         /// Fires when the Instances selected in Roblox Studio changes.

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("VoxelBuffer")]
-    public class VoxelBuffer : Object
+    public class VoxelBuffer : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VoxelBuffer.</param>
@@ -24,72 +24,72 @@ namespace Roblox
         /// <summary>
         /// <c>VoxelBuffer.GetSizeInVoxels</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector3? GetSizeInVoxels()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetSizeInVoxels");
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3 GetSizeInVoxels()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetSizeInVoxels")!;
 
         /// <summary>
         /// <c>VoxelBuffer.ReadVoxels</c>
         /// </summary>
-        /// <param name="channelIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReadVoxels(object? channelIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReadVoxels", channelIds);
+        /// <param name="channelIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReadVoxels(object channelIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReadVoxels", channelIds)!;
 
         /// <summary>
         /// <c>VoxelBuffer.WriteVoxels</c>
         /// </summary>
-        /// <param name="channels">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? WriteVoxels(object? channels)
-            => global::Roblox.Reflection.Invoke<object?>(this, "WriteVoxels", channels);
+        /// <param name="channels">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object WriteVoxels(object channels)
+            => global::Roblox.Reflection.Invoke<object>(this, "WriteVoxels", channels)!;
 
         /// <summary>
         /// <c>VoxelBuffer.ClearAsync</c>
         /// </summary>
-        /// <param name="sizeInVoxels">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearAsync(object? sizeInVoxels)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearAsync", sizeInVoxels);
+        /// <param name="sizeInVoxels">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearAsync(global::Roblox.Vector3? sizeInVoxels = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearAsync", sizeInVoxels)!;
 
         /// <summary>
         /// <c>VoxelBuffer.DrawBufferAsync</c>
         /// </summary>
-        /// <param name="cframe">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="cframe">A <c>global::Roblox.CFrame</c> value.</param>
         /// <param name="scale">A <c>float</c> value.</param>
-        /// <param name="source">A <c>VoxelBuffer?</c> value.</param>
-        /// <param name="mergeConfig">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DrawBufferAsync(global::Roblox.CFrame? cframe, float scale, VoxelBuffer? source, object? mergeConfig)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DrawBufferAsync", cframe, scale, source, mergeConfig);
+        /// <param name="source">A <c>VoxelBuffer</c> value.</param>
+        /// <param name="mergeConfig">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DrawBufferAsync(global::Roblox.CFrame cframe, float scale, VoxelBuffer source, object mergeConfig)
+            => global::Roblox.Reflection.Invoke<object>(this, "DrawBufferAsync", cframe, scale, source, mergeConfig)!;
 
         /// <summary>
         /// <c>VoxelBuffer.FromHeightmapAsync</c>
         /// </summary>
-        /// <param name="heightMap">A <c>object?</c> value.</param>
+        /// <param name="heightMap">A <c>object</c> value.</param>
         /// <param name="width">A <c>int</c> value.</param>
         /// <param name="height">A <c>int</c> value.</param>
-        /// <param name="heightMapRect">A <c>global::Roblox.Rect?</c> value.</param>
+        /// <param name="heightMapRect">A <c>global::Roblox.Rect</c> value.</param>
         /// <param name="offset">A <c>float</c> value.</param>
         /// <param name="scale">A <c>float</c> value.</param>
         /// <param name="material">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FromHeightmapAsync(object? heightMap, int width, int height, global::Roblox.Rect? heightMapRect, float offset, float scale, int material)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FromHeightmapAsync", heightMap, width, height, heightMapRect, offset, scale, material);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FromHeightmapAsync(object heightMap, int width, int height, global::Roblox.Rect heightMapRect, float offset, float scale, int material)
+            => global::Roblox.Reflection.Invoke<object>(this, "FromHeightmapAsync", heightMap, width, height, heightMapRect, offset, scale, material)!;
 
         /// <summary>
         /// <c>VoxelBuffer.NormalizeAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? NormalizeAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "NormalizeAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object NormalizeAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "NormalizeAsync")!;
 
         /// <summary>
         /// <c>VoxelBuffer.UnclampAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UnclampAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnclampAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UnclampAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "UnclampAsync")!;
 
     }
 }

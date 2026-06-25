@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Motor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Motor? FromHandle(nuint handle)
+        public static new Motor? FromHandle(nuint handle)
             => handle == 0 ? null : new Motor(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor#CurrentAngle"/>
         public float CurrentAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentAngle", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor#DesiredAngle"/>
         public float DesiredAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DesiredAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DesiredAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DesiredAngle", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor#MaxVelocity"/>
         public float MaxVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxVelocity", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Sets Motor.DesiredAngle of the motor.
         /// </summary>
         /// <param name="value">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Motor#SetDesiredAngle"/>
-        public object? SetDesiredAngle(float value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDesiredAngle", value);
+        public object SetDesiredAngle(float value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDesiredAngle", value)!;
 
     }
 }

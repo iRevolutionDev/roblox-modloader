@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioEqualizer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioEqualizer? FromHandle(nuint handle)
+        public static new AudioEqualizer? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioEqualizer(handle);
 
         /// <summary>
@@ -31,13 +31,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#Bypass"/>
         public bool Bypass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
         public bool Editor
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Editor");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Editor")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Editor", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#HighGain"/>
         public float HighGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HighGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HighGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HighGain", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#LowGain"/>
         public float LowGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowGain", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#MidGain"/>
         public float MidGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MidGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MidGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MidGain", value);
         }
 
@@ -75,46 +75,46 @@ namespace Roblox
         /// The frequency range of the band influenced by MidGain.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#MidRange"/>
-        public global::Roblox.NumberRange? MidRange
+        public global::Roblox.NumberRange MidRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "MidRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "MidRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "MidRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "MidRange", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioEqualizer via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioEqualizer#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

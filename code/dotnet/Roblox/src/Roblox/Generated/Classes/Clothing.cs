@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Clothing"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Clothing? FromHandle(nuint handle)
+        public static new Clothing? FromHandle(nuint handle)
             => handle == 0 ? null : new Clothing(handle);
 
         /// <summary>
         /// Determines the colorization to be applied to the Clothing texture.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clothing#Color3"/>
-        public global::Roblox.Color3? Color3
+        public global::Roblox.Color3 Color3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color3", value);
         }
 
     }

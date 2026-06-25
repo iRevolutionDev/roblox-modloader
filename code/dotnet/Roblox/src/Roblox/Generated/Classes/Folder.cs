@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Folder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Folder? FromHandle(nuint handle)
+        public static new Folder? FromHandle(nuint handle)
             => handle == 0 ? null : new Folder(handle);
 
     }

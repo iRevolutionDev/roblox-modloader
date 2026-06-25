@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="RenderingTest"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RenderingTest? FromHandle(nuint handle)
+        public static new RenderingTest? FromHandle(nuint handle)
             => handle == 0 ? null : new RenderingTest(handle);
 
         /// <summary>
         /// <c>RenderingTest.CFrame</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#CFrame"/>
-        public global::Roblox.CFrame? CFrame
+        public global::Roblox.CFrame CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ComparisonDiffThreshold"/>
         public int ComparisonDiffThreshold
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ComparisonDiffThreshold");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ComparisonDiffThreshold")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ComparisonDiffThreshold", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ComparisonMethod"/>
         public Enum.RenderingTestComparisonMethod ComparisonMethod
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RenderingTestComparisonMethod>(this, "ComparisonMethod");
+            get => global::Roblox.Reflection.GetProperty<Enum.RenderingTestComparisonMethod>(this, "ComparisonMethod")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RenderingTestComparisonMethod>(this, "ComparisonMethod", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ComparisonPsnrThreshold"/>
         public float ComparisonPsnrThreshold
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ComparisonPsnrThreshold");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ComparisonPsnrThreshold")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ComparisonPsnrThreshold", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// <c>RenderingTest.Description</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Description"/>
-        public string? Description
+        public string Description
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Description");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Description", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Description")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Description", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#FieldOfView"/>
         public float FieldOfView
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FieldOfView");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FieldOfView")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FieldOfView", value);
         }
 
@@ -89,10 +89,10 @@ namespace Roblox
         /// <c>RenderingTest.Orientation</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Orientation"/>
-        public global::Roblox.Vector3? Orientation
+        public global::Roblox.Vector3 Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Orientation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Orientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Orientation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Orientation", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#PerfTest"/>
         public bool PerfTest
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PerfTest");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PerfTest")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PerfTest", value);
         }
 
@@ -109,10 +109,10 @@ namespace Roblox
         /// <c>RenderingTest.Position</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#QualityAuto"/>
         public bool QualityAuto
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "QualityAuto");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "QualityAuto")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "QualityAuto", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#QualityLevel"/>
         public int QualityLevel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "QualityLevel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "QualityLevel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "QualityLevel", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#RenderingTestFrameCount"/>
         public int RenderingTestFrameCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "RenderingTestFrameCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "RenderingTestFrameCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "RenderingTestFrameCount", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#ShouldSkip"/>
         public bool ShouldSkip
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldSkip");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldSkip")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldSkip", value);
         }
 
@@ -159,10 +159,10 @@ namespace Roblox
         /// <c>RenderingTest.Ticket</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Ticket"/>
-        public string? Ticket
+        public string Ticket
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Ticket");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Ticket", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Ticket")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Ticket", value);
         }
 
         /// <summary>
@@ -171,17 +171,17 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#Timeout"/>
         public int Timeout
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Timeout");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Timeout")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Timeout", value);
         }
 
         /// <summary>
         /// An internal service which cannot be used by developers.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderingTest#RenderdocTriggerCapture"/>
-        public object? RenderdocTriggerCapture()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RenderdocTriggerCapture");
+        public object RenderdocTriggerCapture()
+            => global::Roblox.Reflection.Invoke<object>(this, "RenderdocTriggerCapture")!;
 
     }
 }

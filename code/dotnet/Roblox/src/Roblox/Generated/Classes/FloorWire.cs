@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FloorWire"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FloorWire? FromHandle(nuint handle)
+        public static new FloorWire? FromHandle(nuint handle)
             => handle == 0 ? null : new FloorWire(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#CycleOffset"/>
         public float CycleOffset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CycleOffset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CycleOffset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CycleOffset", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#StudsBetweenTextures"/>
         public float StudsBetweenTextures
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "StudsBetweenTextures");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "StudsBetweenTextures")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "StudsBetweenTextures", value);
         }
 
@@ -59,20 +59,20 @@ namespace Roblox
         /// Sets the texture to be displayed on the FloorWire.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#Texture"/>
-        public object? Texture
+        public object Texture
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Texture");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Texture", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Texture")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Texture", value);
         }
 
         /// <summary>
         /// Sets the size of the texture used with the FloorWire.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#TextureSize"/>
-        public global::Roblox.Vector2? TextureSize
+        public global::Roblox.Vector2 TextureSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "TextureSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "TextureSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "TextureSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "TextureSize", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#Velocity"/>
         public float Velocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Velocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Velocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Velocity", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#WireRadius"/>
         public float WireRadius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WireRadius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WireRadius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WireRadius", value);
         }
 

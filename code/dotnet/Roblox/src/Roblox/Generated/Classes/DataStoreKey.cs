@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="DataStoreKey"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreKey? FromHandle(nuint handle)
+        public static new DataStoreKey? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreKey(handle);
 
         /// <summary>
         /// The name of the key.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreKey#KeyName"/>
-        public string? KeyName
+        public string KeyName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "KeyName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "KeyName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "KeyName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "KeyName", value);
         }
 
     }

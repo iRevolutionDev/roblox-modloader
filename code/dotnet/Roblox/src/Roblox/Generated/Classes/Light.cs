@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Light"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Light? FromHandle(nuint handle)
+        public static new Light? FromHandle(nuint handle)
             => handle == 0 ? null : new Light(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Light#Brightness"/>
         public float Brightness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Brightness", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// The color of the emitted light.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Light#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Light#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Light#Shadows"/>
         public bool Shadows
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Shadows");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Shadows")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Shadows", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GuiService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GuiService? FromHandle(nuint handle)
+        public static new GuiService? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#AutoSelectGuiEnabled"/>
         public bool AutoSelectGuiEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoSelectGuiEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoSelectGuiEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoSelectGuiEnabled", value);
         }
 
@@ -53,13 +53,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#CoreGuiNavigationEnabled"/>
         public bool CoreGuiNavigationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CoreGuiNavigationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CoreGuiNavigationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CoreGuiNavigationEnabled", value);
         }
 
         public Enum.DisplayScalingMode DisplayScalingMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DisplayScalingMode>(this, "DisplayScalingMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DisplayScalingMode>(this, "DisplayScalingMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DisplayScalingMode>(this, "DisplayScalingMode", value);
         }
 
@@ -69,7 +69,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#GuiNavigationEnabled"/>
         public bool GuiNavigationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "GuiNavigationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "GuiNavigationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "GuiNavigationEnabled", value);
         }
 
@@ -79,7 +79,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#IsModalDialog"/>
         public bool IsModalDialog
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsModalDialog");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsModalDialog")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsModalDialog", value);
         }
 
@@ -89,7 +89,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#IsWindows"/>
         public bool IsWindows
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsWindows");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsWindows")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsWindows", value);
         }
 
@@ -99,7 +99,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#MenuIsOpen"/>
         public bool MenuIsOpen
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MenuIsOpen");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MenuIsOpen")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MenuIsOpen", value);
         }
 
@@ -109,7 +109,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#PreferredTextSize"/>
         public Enum.PreferredTextSize PreferredTextSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize", value);
         }
 
@@ -119,7 +119,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#PreferredTransparency"/>
         public float PreferredTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PreferredTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PreferredTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PreferredTransparency", value);
         }
 
@@ -129,7 +129,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#ReducedMotionEnabled"/>
         public bool ReducedMotionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotionEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReducedMotionEnabled", value);
         }
 
@@ -153,10 +153,10 @@ namespace Roblox
         /// Used to determine the absolute size and position of unobstructed area within top bar space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#TopbarInset"/>
-        public global::Roblox.Rect? TopbarInset
+        public global::Roblox.Rect TopbarInset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "TopbarInset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "TopbarInset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect>(this, "TopbarInset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect>(this, "TopbarInset", value);
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#TouchControlsEnabled"/>
         public bool TouchControlsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchControlsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchControlsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TouchControlsEnabled", value);
         }
 
@@ -175,134 +175,134 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#ViewportDisplaySize"/>
         public Enum.DisplaySize ViewportDisplaySize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize");
+            get => global::Roblox.Reflection.GetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize", value);
         }
 
-        public global::Roblox.Vector2? ViewportSizeInMM
+        public global::Roblox.Vector2 ViewportSizeInMM
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ViewportSizeInMM");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ViewportSizeInMM", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "ViewportSizeInMM")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "ViewportSizeInMM", value);
         }
 
         /// <summary>
         /// <c>GuiService.AddCenterDialog</c>
         /// </summary>
-        /// <param name="dialog">A <c>Instance?</c> value.</param>
+        /// <param name="dialog">A <c>Instance</c> value.</param>
         /// <param name="centerDialogType">A <c>Enum.CenterDialogType</c> value.</param>
-        /// <param name="showFunction">A <c>object?</c> value.</param>
-        /// <param name="hideFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddCenterDialog(Instance? dialog, Enum.CenterDialogType centerDialogType, object? showFunction, object? hideFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddCenterDialog", dialog, centerDialogType, showFunction, hideFunction);
+        /// <param name="showFunction">A <c>object</c> value.</param>
+        /// <param name="hideFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddCenterDialog(Instance dialog, Enum.CenterDialogType centerDialogType, object showFunction, object hideFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddCenterDialog", dialog, centerDialogType, showFunction, hideFunction)!;
 
         /// <summary>
         /// <c>GuiService.AddKey</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddKey(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddKey", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddKey(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddKey", key)!;
 
         /// <summary>
         /// Deprecated: Creates a selection group where gamepad GUI navigation will only consider selectable objects that are within the group.
         /// </summary>
-        /// <param name="selectionName">A <c>string?</c> value.</param>
-        /// <param name="selectionParent">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="selectionName">A <c>string</c> value.</param>
+        /// <param name="selectionParent">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#AddSelectionParent"/>
-        public object? AddSelectionParent(string? selectionName, Instance? selectionParent)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddSelectionParent", selectionName, selectionParent);
+        public object AddSelectionParent(string selectionName, Instance selectionParent)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddSelectionParent", selectionName, selectionParent)!;
 
         /// <summary>
         /// Deprecated: AddSelectionTuple works similarly to GuiService:AddSelectionParent(), but you can give it a tuple of GuiObject that you want to be contained in the group. Beware that the second argument is not a table, but rather the first of several GuiObject in the tuple. To pass the contents of a table, use unpack/unpack: local frame = script.Parent -- Passing various GuiObject individually GuiService:AddSelectionTuple("InventoryButtons", frame.Sort, frame.Trash, frame.Drop) -- Unpacking a table of GuiObject (unpack/table.unpack are equivalent) local inventoryButtons = { frame.Sort, frame.Trash, frame.Drop } GuiService:AddSelectionTuple("InventoryButtons", unpack(inventoryButtons))
         /// </summary>
-        /// <param name="selectionName">A <c>string?</c> value.</param>
-        /// <param name="selections">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="selectionName">A <c>string</c> value.</param>
+        /// <param name="selections">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#AddSelectionTuple"/>
-        public object? AddSelectionTuple(string? selectionName, object? selections)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddSelectionTuple", selectionName, selections);
+        public object AddSelectionTuple(string selectionName, object selections)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddSelectionTuple", selectionName, selections)!;
 
         /// <summary>
         /// <c>GuiService.AddSpecialKey</c>
         /// </summary>
         /// <param name="key">A <c>Enum.SpecialKey</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddSpecialKey(Enum.SpecialKey key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddSpecialKey", key);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddSpecialKey(Enum.SpecialKey key)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddSpecialKey", key)!;
 
         /// <summary>
         /// <c>GuiService.BroadcastNotification</c>
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
+        /// <param name="data">A <c>string</c> value.</param>
         /// <param name="notificationType">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? BroadcastNotification(string? data, int notificationType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BroadcastNotification", data, notificationType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object BroadcastNotification(string data, int notificationType)
+            => global::Roblox.Reflection.Invoke<object>(this, "BroadcastNotification", data, notificationType)!;
 
         /// <summary>
         /// <c>GuiService.ClearError</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearError()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearError");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearError()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearError")!;
 
         /// <summary>
         /// Closes the avatar inspection menu, if open.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#CloseInspectMenu"/>
-        public object? CloseInspectMenu()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CloseInspectMenu");
+        public object CloseInspectMenu()
+            => global::Roblox.Reflection.Invoke<object>(this, "CloseInspectMenu")!;
 
         /// <summary>
         /// <c>GuiService.CloseStatsBasedOnInputString</c>
         /// </summary>
-        /// <param name="input">A <c>string?</c> value.</param>
+        /// <param name="input">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool CloseStatsBasedOnInputString(string? input)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CloseStatsBasedOnInputString", input);
+        public bool CloseStatsBasedOnInputString(string input)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CloseStatsBasedOnInputString", input)!;
 
         /// <summary>
         /// <c>GuiService.DismissNotification</c>
         /// </summary>
-        /// <param name="notificationId">A <c>string?</c> value.</param>
+        /// <param name="notificationId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#DismissNotification"/>
-        public bool DismissNotification(string? notificationId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "DismissNotification", notificationId);
+        public bool DismissNotification(string notificationId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "DismissNotification", notificationId)!;
 
         /// <summary>
         /// <c>GuiService.ForceTenFootInterface</c>
         /// </summary>
         /// <param name="isForced">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ForceTenFootInterface(bool isForced)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ForceTenFootInterface", isForced);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ForceTenFootInterface(bool isForced)
+            => global::Roblox.Reflection.Invoke<object>(this, "ForceTenFootInterface", isForced)!;
 
         /// <summary>
         /// <c>GuiService.GetBrickCount</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetBrickCount()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetBrickCount");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetBrickCount")!;
 
         /// <summary>
         /// <c>GuiService.GetClosestDialogToPosition</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? GetClosestDialogToPosition(global::Roblox.Vector3? position)
+        public Instance? GetClosestDialogToPosition(global::Roblox.Vector3 position)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetClosestDialogToPosition", position);
 
         /// <summary>
         /// <c>GuiService.GetClosestVisibleDialogToPosition</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>Dialog?</c> value returned by the engine.</returns>
-        public Dialog? GetClosestVisibleDialogToPosition(global::Roblox.Vector3? position)
-            => global::Roblox.Reflection.Invoke<Dialog?>(this, "GetClosestVisibleDialogToPosition", position);
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>Dialog</c> value returned by the engine.</returns>
+        public Dialog GetClosestVisibleDialogToPosition(global::Roblox.Vector3 position)
+            => global::Roblox.Reflection.Invoke<Dialog>(this, "GetClosestVisibleDialogToPosition", position)!;
 
         /// <summary>
         /// Checks if the player emotes menu is open.
@@ -310,35 +310,35 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#GetEmotesMenuOpen"/>
         public bool GetEmotesMenuOpen()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetEmotesMenuOpen");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetEmotesMenuOpen")!;
 
         /// <summary>
         /// <c>GuiService.GetErrorCode</c>
         /// </summary>
         /// <returns>A <c>Enum.ConnectionError</c> value returned by the engine.</returns>
         public Enum.ConnectionError GetErrorCode()
-            => global::Roblox.Reflection.Invoke<Enum.ConnectionError>(this, "GetErrorCode");
+            => global::Roblox.Reflection.Invoke<Enum.ConnectionError>(this, "GetErrorCode")!;
 
         /// <summary>
         /// <c>GuiService.GetErrorDetails</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetErrorDetails()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetErrorDetails");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetErrorDetails()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetErrorDetails")!;
 
         /// <summary>
         /// <c>GuiService.GetErrorMessage</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetErrorMessage()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetErrorMessage");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetErrorMessage()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetErrorMessage")!;
 
         /// <summary>
         /// <c>GuiService.GetErrorType</c>
         /// </summary>
         /// <returns>A <c>Enum.ConnectionError</c> value returned by the engine.</returns>
         public Enum.ConnectionError GetErrorType()
-            => global::Roblox.Reflection.Invoke<Enum.ConnectionError>(this, "GetErrorType");
+            => global::Roblox.Reflection.Invoke<Enum.ConnectionError>(this, "GetErrorType")!;
 
         /// <summary>
         /// Returns whether or not the Player.GameplayPaused notification has been disabled.
@@ -346,15 +346,15 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#GetGameplayPausedNotificationEnabled"/>
         public bool GetGameplayPausedNotificationEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetGameplayPausedNotificationEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetGameplayPausedNotificationEnabled")!;
 
         /// <summary>
         /// Returns two Vector2 values representing the inset of user GUIs in pixels, from the top‑left corner of the screen and the bottom‑right corner of the screen respectively.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#GetGuiInset"/>
-        public object? GetGuiInset()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetGuiInset");
+        public object GetGuiInset()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetGuiInset")!;
 
         /// <summary>
         /// <c>GuiService.GetGuiIsVisible</c>
@@ -362,23 +362,23 @@ namespace Roblox
         /// <param name="guiType">A <c>Enum.GuiType</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetGuiIsVisible(Enum.GuiType guiType)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetGuiIsVisible", guiType);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetGuiIsVisible", guiType)!;
 
         /// <summary>
         /// <c>GuiService.GetHardwareSafeViewport</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector2? GetHardwareSafeViewport()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetHardwareSafeViewport");
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2 GetHardwareSafeViewport()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetHardwareSafeViewport")!;
 
         /// <summary>
         /// Takes an ScreenInsets value and returns a Rect describing the inset region, relative to the CoreUISafeInsets area.
         /// </summary>
         /// <param name="screenInsets">A <c>Enum.ScreenInsets</c> value.</param>
-        /// <returns>A <c>global::Roblox.Rect?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Rect</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#GetInsetArea"/>
-        public global::Roblox.Rect? GetInsetArea(Enum.ScreenInsets screenInsets)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Rect?>(this, "GetInsetArea", screenInsets);
+        public global::Roblox.Rect GetInsetArea(Enum.ScreenInsets screenInsets)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Rect>(this, "GetInsetArea", screenInsets)!;
 
         /// <summary>
         /// Returns whether the avatar inspection menu is enabled.
@@ -386,77 +386,77 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#GetInspectMenuEnabled"/>
         public bool GetInspectMenuEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetInspectMenuEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetInspectMenuEnabled")!;
 
         /// <summary>
         /// <c>GuiService.GetNotificationTypeList</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetNotificationTypeList()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetNotificationTypeList");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetNotificationTypeList()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetNotificationTypeList")!;
 
         /// <summary>
         /// <c>GuiService.GetRawScreenScale</c>
         /// </summary>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         public float GetRawScreenScale()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetRawScreenScale");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetRawScreenScale")!;
 
         /// <summary>
         /// <c>GuiService.GetResolutionScale</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetResolutionScale()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetResolutionScale");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetResolutionScale")!;
 
         /// <summary>
         /// <c>GuiService.GetSafeZoneOffsets</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSafeZoneOffsets()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSafeZoneOffsets");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetSafeZoneOffsets()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSafeZoneOffsets")!;
 
         /// <summary>
         /// <c>GuiService.GetUiMessage</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetUiMessage()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetUiMessage");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetUiMessage()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetUiMessage")!;
 
         /// <summary>
         /// Allows the avatar inspection menu to appear showing the assets listed in a HumanoidDescription object.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>Instance?</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>Instance</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#InspectPlayerFromHumanoidDescription"/>
-        public object? InspectPlayerFromHumanoidDescription(Instance? humanoidDescription, string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InspectPlayerFromHumanoidDescription", humanoidDescription, name);
+        public object InspectPlayerFromHumanoidDescription(Instance humanoidDescription, string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "InspectPlayerFromHumanoidDescription", humanoidDescription, name)!;
 
         /// <summary>
         /// Allows the avatar inspection menu to appear showing the user that has the given UserId.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#InspectPlayerFromUserId"/>
-        public object? InspectPlayerFromUserId(object? userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InspectPlayerFromUserId", userId);
+        public object InspectPlayerFromUserId(object userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "InspectPlayerFromUserId", userId)!;
 
         /// <summary>
         /// <c>GuiService.InspectPlayerFromUserIdWithCtx</c>
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <param name="ctx">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InspectPlayerFromUserIdWithCtx(object? userId, string? ctx)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InspectPlayerFromUserIdWithCtx", userId, ctx);
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <param name="ctx">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InspectPlayerFromUserIdWithCtx(object userId, string ctx)
+            => global::Roblox.Reflection.Invoke<object>(this, "InspectPlayerFromUserIdWithCtx", userId, ctx)!;
 
         /// <summary>
         /// <c>GuiService.IsMemoryTrackerEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsMemoryTrackerEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsMemoryTrackerEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsMemoryTrackerEnabled")!;
 
         /// <summary>
         /// Returns true if the client is using the ten foot interface, a special version of Roblox's UI exclusive to consoles.
@@ -464,120 +464,120 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#IsTenFootInterface"/>
         public bool IsTenFootInterface()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsTenFootInterface");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsTenFootInterface")!;
 
         /// <summary>
         /// <c>GuiService.OnNotificationDisplayed</c>
         /// </summary>
-        /// <param name="notificationId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnNotificationDisplayed(string? notificationId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnNotificationDisplayed", notificationId);
+        /// <param name="notificationId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnNotificationDisplayed(string notificationId)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnNotificationDisplayed", notificationId)!;
 
         /// <summary>
         /// <c>GuiService.OnNotificationInteraction</c>
         /// </summary>
-        /// <param name="notificationId">A <c>string?</c> value.</param>
+        /// <param name="notificationId">A <c>string</c> value.</param>
         /// <param name="buttonIndex">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnNotificationInteraction(string? notificationId, int buttonIndex)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnNotificationInteraction", notificationId, buttonIndex);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnNotificationInteraction(string notificationId, int buttonIndex)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnNotificationInteraction", notificationId, buttonIndex)!;
 
         /// <summary>
         /// <c>GuiService.OpenBrowserWindow</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenBrowserWindow(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenBrowserWindow", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenBrowserWindow(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenBrowserWindow", url)!;
 
         /// <summary>
         /// <c>GuiService.OpenNativeOverlay</c>
         /// </summary>
-        /// <param name="title">A <c>string?</c> value.</param>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenNativeOverlay(string? title, string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenNativeOverlay", title, url);
+        /// <param name="title">A <c>string</c> value.</param>
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenNativeOverlay(string title, string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenNativeOverlay", title, url)!;
 
         /// <summary>
         /// <c>GuiService.RemoveCenterDialog</c>
         /// </summary>
-        /// <param name="dialog">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveCenterDialog(Instance? dialog)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveCenterDialog", dialog);
+        /// <param name="dialog">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveCenterDialog(Instance dialog)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveCenterDialog", dialog)!;
 
         /// <summary>
         /// <c>GuiService.RemoveKey</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveKey(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveKey", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveKey(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveKey", key)!;
 
         /// <summary>
         /// Deprecated: Removes a group that was created with AddSelectionParent() or AddSelectionTuple().
         /// </summary>
-        /// <param name="selectionName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="selectionName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#RemoveSelectionGroup"/>
-        public object? RemoveSelectionGroup(string? selectionName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveSelectionGroup", selectionName);
+        public object RemoveSelectionGroup(string selectionName)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveSelectionGroup", selectionName)!;
 
         /// <summary>
         /// <c>GuiService.RemoveSpecialKey</c>
         /// </summary>
         /// <param name="key">A <c>Enum.SpecialKey</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveSpecialKey(Enum.SpecialKey key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveSpecialKey", key);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveSpecialKey(Enum.SpecialKey key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveSpecialKey", key)!;
 
         /// <summary>
         /// Sets GuiService.SelectedObject to a child of a provided instance that is the PlayerGui or its descendants.
         /// </summary>
-        /// <param name="selectionParent">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="selectionParent">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#Select"/>
-        public object? Select(Instance? selectionParent)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Select", selectionParent);
+        public object Select(Instance selectionParent)
+            => global::Roblox.Reflection.Invoke<object>(this, "Select", selectionParent)!;
 
         /// <summary>
         /// <c>GuiService.SendNotification</c>
         /// </summary>
-        /// <param name="notificationInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="notificationInfo">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#SendNotification"/>
-        public string? SendNotification(object? notificationInfo)
-            => global::Roblox.Reflection.Invoke<string?>(this, "SendNotification", notificationInfo);
+        public string SendNotification(object notificationInfo)
+            => global::Roblox.Reflection.Invoke<string>(this, "SendNotification", notificationInfo)!;
 
         /// <summary>
         /// <c>GuiService.SendUIOcclusionMetricsForQueryRegion</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="size">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="regionName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendUIOcclusionMetricsForQueryRegion(global::Roblox.UDim2? position, global::Roblox.UDim2? size, string? regionName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendUIOcclusionMetricsForQueryRegion", position, size, regionName);
+        /// <param name="position">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="regionName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendUIOcclusionMetricsForQueryRegion(global::Roblox.UDim2 position, global::Roblox.UDim2 size, string regionName)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendUIOcclusionMetricsForQueryRegion", position, size, regionName)!;
 
         /// <summary>
         /// Opens or closes the player emotes menu.
         /// </summary>
         /// <param name="isOpen">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#SetEmotesMenuOpen"/>
-        public object? SetEmotesMenuOpen(bool isOpen)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEmotesMenuOpen", isOpen);
+        public object SetEmotesMenuOpen(bool isOpen)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEmotesMenuOpen", isOpen)!;
 
         /// <summary>
         /// Lets you disable the built-in notification when a player's gameplay is paused.
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#SetGameplayPausedNotificationEnabled"/>
-        public object? SetGameplayPausedNotificationEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetGameplayPausedNotificationEnabled", enabled);
+        public object SetGameplayPausedNotificationEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetGameplayPausedNotificationEnabled", enabled)!;
 
         /// <summary>
         /// <c>GuiService.SetGlobalGuiInset</c>
@@ -586,9 +586,9 @@ namespace Roblox
         /// <param name="y1">A <c>int</c> value.</param>
         /// <param name="x2">A <c>int</c> value.</param>
         /// <param name="y2">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetGlobalGuiInset(int x1, int y1, int x2, int y2)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetGlobalGuiInset", x1, y1, x2, y2);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetGlobalGuiInset(int x1, int y1, int x2, int y2)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetGlobalGuiInset", x1, y1, x2, y2)!;
 
         /// <summary>
         /// <c>GuiService.SetHardwareSafeAreaInsets</c>
@@ -597,35 +597,35 @@ namespace Roblox
         /// <param name="top">A <c>float</c> value.</param>
         /// <param name="right">A <c>float</c> value.</param>
         /// <param name="bottom">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetHardwareSafeAreaInsets(float left, float top, float right, float bottom)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetHardwareSafeAreaInsets", left, top, right, bottom);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetHardwareSafeAreaInsets(float left, float top, float right, float bottom)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetHardwareSafeAreaInsets", left, top, right, bottom)!;
 
         /// <summary>
         /// Allows you to enable or disable the avatar inspection menu.
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#SetInspectMenuEnabled"/>
-        public object? SetInspectMenuEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetInspectMenuEnabled", enabled);
+        public object SetInspectMenuEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetInspectMenuEnabled", enabled)!;
 
         /// <summary>
         /// <c>GuiService.SetMenuIsOpen</c>
         /// </summary>
         /// <param name="open">A <c>bool</c> value.</param>
         /// <param name="menuName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMenuIsOpen(bool open, string? menuName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMenuIsOpen", open, menuName);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetMenuIsOpen(bool open, string? menuName = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMenuIsOpen", open, menuName)!;
 
         /// <summary>
         /// <c>GuiService.SetPurchasePromptIsShown</c>
         /// </summary>
         /// <param name="isShown">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPurchasePromptIsShown(bool isShown)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPurchasePromptIsShown", isShown);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPurchasePromptIsShown(bool isShown)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPurchasePromptIsShown", isShown)!;
 
         /// <summary>
         /// <c>GuiService.SetSafeZoneOffsets</c>
@@ -634,64 +634,64 @@ namespace Roblox
         /// <param name="bottom">A <c>float</c> value.</param>
         /// <param name="left">A <c>float</c> value.</param>
         /// <param name="right">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetSafeZoneOffsets(float top, float bottom, float left, float right)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetSafeZoneOffsets", top, bottom, left, right);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetSafeZoneOffsets(float top, float bottom, float left, float right)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetSafeZoneOffsets", top, bottom, left, right)!;
 
         /// <summary>
         /// <c>GuiService.SetTopbarInset</c>
         /// </summary>
-        /// <param name="topbarInset">A <c>global::Roblox.Rect?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTopbarInset(global::Roblox.Rect? topbarInset)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTopbarInset", topbarInset);
+        /// <param name="topbarInset">A <c>global::Roblox.Rect</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTopbarInset(global::Roblox.Rect topbarInset)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTopbarInset", topbarInset)!;
 
         /// <summary>
         /// <c>GuiService.SetUiMessage</c>
         /// </summary>
         /// <param name="msgType">A <c>Enum.UiMessageType</c> value.</param>
         /// <param name="uiMessage">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetUiMessage(Enum.UiMessageType msgType, string? uiMessage)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUiMessage", msgType, uiMessage);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetUiMessage(Enum.UiMessageType msgType, string? uiMessage = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUiMessage", msgType, uiMessage)!;
 
         /// <summary>
         /// <c>GuiService.ShowStatsBasedOnInputString</c>
         /// </summary>
-        /// <param name="input">A <c>string?</c> value.</param>
+        /// <param name="input">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ShowStatsBasedOnInputString(string? input)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ShowStatsBasedOnInputString", input);
+        public bool ShowStatsBasedOnInputString(string input)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ShowStatsBasedOnInputString", input)!;
 
         /// <summary>
         /// <c>GuiService.ToggleFullscreen</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleFullscreen()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleFullscreen");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleFullscreen()
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleFullscreen")!;
 
         /// <summary>
         /// <c>GuiService.ToggleGuiIsVisibleForCaptures</c>
         /// </summary>
         /// <param name="guiType">A <c>Enum.GuiType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleGuiIsVisibleForCaptures(Enum.GuiType guiType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleGuiIsVisibleForCaptures", guiType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleGuiIsVisibleForCaptures(Enum.GuiType guiType)
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleGuiIsVisibleForCaptures", guiType)!;
 
         /// <summary>
         /// <c>GuiService.ToggleGuiIsVisibleIfAllowed</c>
         /// </summary>
         /// <param name="guiType">A <c>Enum.GuiType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleGuiIsVisibleIfAllowed(Enum.GuiType guiType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleGuiIsVisibleIfAllowed", guiType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleGuiIsVisibleIfAllowed(Enum.GuiType guiType)
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleGuiIsVisibleIfAllowed", guiType)!;
 
         /// <summary>
         /// <c>GuiService.GetScreenResolution</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector2? GetScreenResolution()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetScreenResolution");
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2 GetScreenResolution()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetScreenResolution")!;
 
         public event Action? BrowserWindowClosed
         {
@@ -724,8 +724,8 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.ErrorMessageChanged</c>
         /// </summary>
-        /// <param name="newErrorMessage">A <c>string?</c> value.</param>
-        public event Action<string?>? ErrorMessageChanged
+        /// <param name="newErrorMessage">A <c>string</c> value.</param>
+        public event Action<string>? ErrorMessageChanged
         {
             add { if (value is not null) AddEventHandler("ErrorMessageChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ErrorMessageChanged", value); }
@@ -755,9 +755,9 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.InspectPlayerFromHumanoidDescriptionRequest</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>Instance?</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        public event Action<Instance?, string?>? InspectPlayerFromHumanoidDescriptionRequest
+        /// <param name="humanoidDescription">A <c>Instance</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        public event Action<Instance, string>? InspectPlayerFromHumanoidDescriptionRequest
         {
             add { if (value is not null) AddEventHandler("InspectPlayerFromHumanoidDescriptionRequest", value); }
             remove { if (value is not null) RemoveEventHandler("InspectPlayerFromHumanoidDescriptionRequest", value); }
@@ -767,8 +767,8 @@ namespace Roblox
         /// <c>GuiService.InspectPlayerFromUserIdWithCtxRequest</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="ctx">A <c>string?</c> value.</param>
-        public event Action<long, string?>? InspectPlayerFromUserIdWithCtxRequest
+        /// <param name="ctx">A <c>string</c> value.</param>
+        public event Action<long, string>? InspectPlayerFromUserIdWithCtxRequest
         {
             add { if (value is not null) AddEventHandler("InspectPlayerFromUserIdWithCtxRequest", value); }
             remove { if (value is not null) RemoveEventHandler("InspectPlayerFromUserIdWithCtxRequest", value); }
@@ -777,9 +777,9 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.KeyPressed</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="modifiers">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? KeyPressed
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="modifiers">A <c>string</c> value.</param>
+        public event Action<string, string>? KeyPressed
         {
             add { if (value is not null) AddEventHandler("KeyPressed", value); }
             remove { if (value is not null) RemoveEventHandler("KeyPressed", value); }
@@ -824,8 +824,8 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.Open9SliceEditor</c>
         /// </summary>
-        /// <param name="selectedImageObject">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? Open9SliceEditor
+        /// <param name="selectedImageObject">A <c>Instance</c> value.</param>
+        public event Action<Instance>? Open9SliceEditor
         {
             add { if (value is not null) AddEventHandler("Open9SliceEditor", value); }
             remove { if (value is not null) RemoveEventHandler("Open9SliceEditor", value); }
@@ -834,8 +834,8 @@ namespace Roblox
         /// <summary>
         /// <c>GuiService.OpenStyleEditor</c>
         /// </summary>
-        /// <param name="styleBase">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? OpenStyleEditor
+        /// <param name="styleBase">A <c>Instance</c> value.</param>
+        public event Action<Instance>? OpenStyleEditor
         {
             add { if (value is not null) AddEventHandler("OpenStyleEditor", value); }
             remove { if (value is not null) RemoveEventHandler("OpenStyleEditor", value); }
@@ -863,8 +863,8 @@ namespace Roblox
         /// <c>GuiService.SpecialKeyPressed</c>
         /// </summary>
         /// <param name="key">A <c>Enum.SpecialKey</c> value.</param>
-        /// <param name="modifiers">A <c>string?</c> value.</param>
-        public event Action<Enum.SpecialKey, string?>? SpecialKeyPressed
+        /// <param name="modifiers">A <c>string</c> value.</param>
+        public event Action<Enum.SpecialKey, string>? SpecialKeyPressed
         {
             add { if (value is not null) AddEventHandler("SpecialKeyPressed", value); }
             remove { if (value is not null) RemoveEventHandler("SpecialKeyPressed", value); }
@@ -874,8 +874,8 @@ namespace Roblox
         /// <c>GuiService.UiMessageChanged</c>
         /// </summary>
         /// <param name="msgType">A <c>Enum.UiMessageType</c> value.</param>
-        /// <param name="newUiMessage">A <c>string?</c> value.</param>
-        public event Action<Enum.UiMessageType, string?>? UiMessageChanged
+        /// <param name="newUiMessage">A <c>string</c> value.</param>
+        public event Action<Enum.UiMessageType, string>? UiMessageChanged
         {
             add { if (value is not null) AddEventHandler("UiMessageChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UiMessageChanged", value); }

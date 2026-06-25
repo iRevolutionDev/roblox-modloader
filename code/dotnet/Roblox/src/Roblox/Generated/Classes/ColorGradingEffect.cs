@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ColorGradingEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ColorGradingEffect? FromHandle(nuint handle)
+        public static new ColorGradingEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ColorGradingEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorGradingEffect#TonemapperPreset"/>
         public Enum.TonemapperPreset TonemapperPreset
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TonemapperPreset>(this, "TonemapperPreset");
+            get => global::Roblox.Reflection.GetProperty<Enum.TonemapperPreset>(this, "TonemapperPreset")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TonemapperPreset>(this, "TonemapperPreset", value);
         }
 

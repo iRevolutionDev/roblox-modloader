@@ -22,107 +22,107 @@ namespace Roblox
         /// Creates a <see cref="ChangeHistoryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ChangeHistoryService? FromHandle(nuint handle)
+        public static new ChangeHistoryService? FromHandle(nuint handle)
             => handle == 0 ? null : new ChangeHistoryService(handle);
 
         /// <summary>
         /// Communicates to Studio that the identified recording is finished and to take the final operation to complete the recording.
         /// </summary>
-        /// <param name="identifier">A <c>string?</c> value.</param>
+        /// <param name="identifier">A <c>string</c> value.</param>
         /// <param name="operation">A <c>Enum.FinishRecordingOperation</c> value.</param>
         /// <param name="finalOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#FinishRecording"/>
-        public object? FinishRecording(string? identifier, Enum.FinishRecordingOperation operation, object? finalOptions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FinishRecording", identifier, operation, finalOptions);
+        public object FinishRecording(string identifier, Enum.FinishRecordingOperation operation, object? finalOptions = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "FinishRecording", identifier, operation, finalOptions)!;
 
         /// <summary>
         /// Returns whether there are actions that can be redone, and, if there are, returns the last of them.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#GetCanRedo"/>
-        public object? GetCanRedo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCanRedo");
+        public object GetCanRedo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCanRedo")!;
 
         /// <summary>
         /// Returns whether there are actions that can be undone, and, if there are, returns the last of them.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#GetCanUndo"/>
-        public object? GetCanUndo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCanUndo");
+        public object GetCanUndo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCanUndo")!;
 
         /// <summary>
         /// <c>ChangeHistoryService.IsRecordingInProgress</c>
         /// </summary>
-        /// <param name="identifier">A <c>object?</c> value.</param>
+        /// <param name="identifier">A <c>string?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#IsRecordingInProgress"/>
-        public bool IsRecordingInProgress(object? identifier)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsRecordingInProgress", identifier);
+        public bool IsRecordingInProgress(string? identifier = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsRecordingInProgress", identifier)!;
 
         /// <summary>
         /// Executes the last action that was undone.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#Redo"/>
-        public object? Redo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Redo");
+        public object Redo()
+            => global::Roblox.Reflection.Invoke<object>(this, "Redo")!;
 
         /// <summary>
         /// Clears the history, causing all undo/redo waypoints to be removed.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#ResetWaypoints"/>
-        public object? ResetWaypoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetWaypoints");
+        public object ResetWaypoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetWaypoints")!;
 
         /// <summary>
         /// Sets whether or not the ChangeHistoryService is enabled.
         /// </summary>
         /// <param name="state">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#SetEnabled"/>
-        public object? SetEnabled(bool state)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEnabled", state);
+        public object SetEnabled(bool state)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEnabled", state)!;
 
         /// <summary>
         /// Sets a new waypoint which can be used as an undo or redo point.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#SetWaypoint"/>
-        public object? SetWaypoint(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetWaypoint", name);
+        public object SetWaypoint(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetWaypoint", name)!;
 
         /// <summary>
         /// Begins tracking changes made to the data model into a recording.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="displayName">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="displayName">A <c>string?</c> value.</param>
+        /// <returns>A <c>string?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#TryBeginRecording"/>
-        public object? TryBeginRecording(string? name, object? displayName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TryBeginRecording", name, displayName);
+        public string? TryBeginRecording(string name, string? displayName = null)
+            => global::Roblox.Reflection.Invoke<string?>(this, "TryBeginRecording", name, displayName);
 
         /// <summary>
         /// Undos the last action taken, for which there exists a waypoint.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#Undo"/>
-        public object? Undo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Undo");
+        public object Undo()
+            => global::Roblox.Reflection.Invoke<object>(this, "Undo")!;
 
         /// <summary>
         /// Fired when the user completes an action. Parameters come from TryBeginRecording() and FinishRecording().
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="displayName">A <c>object?</c> value.</param>
-        /// <param name="identifier">A <c>object?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="displayName">A <c>string?</c> value.</param>
+        /// <param name="identifier">A <c>string?</c> value.</param>
         /// <param name="operation">A <c>Enum.FinishRecordingOperation</c> value.</param>
         /// <param name="finalOptions">A <c>object?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnRecordingFinished"/>
-        public event Action<string?, object?, object?, Enum.FinishRecordingOperation, object?>? OnRecordingFinished
+        public event Action<string, string?, string?, Enum.FinishRecordingOperation, object?>? OnRecordingFinished
         {
             add { if (value is not null) AddEventHandler("OnRecordingFinished", value); }
             remove { if (value is not null) RemoveEventHandler("OnRecordingFinished", value); }
@@ -131,10 +131,10 @@ namespace Roblox
         /// <summary>
         /// Fired when the user begins an action. Parameters come from TryBeginRecording().
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="displayName">A <c>object?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="displayName">A <c>string?</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnRecordingStarted"/>
-        public event Action<string?, object?>? OnRecordingStarted
+        public event Action<string, string?>? OnRecordingStarted
         {
             add { if (value is not null) AddEventHandler("OnRecordingStarted", value); }
             remove { if (value is not null) RemoveEventHandler("OnRecordingStarted", value); }
@@ -143,9 +143,9 @@ namespace Roblox
         /// <summary>
         /// Fired when the user reverses the undo command. Waypoint describes the type action that has been redone.
         /// </summary>
-        /// <param name="waypoint">A <c>string?</c> value.</param>
+        /// <param name="waypoint">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnRedo"/>
-        public event Action<string?>? OnRedo
+        public event Action<string>? OnRedo
         {
             add { if (value is not null) AddEventHandler("OnRedo", value); }
             remove { if (value is not null) RemoveEventHandler("OnRedo", value); }
@@ -154,9 +154,9 @@ namespace Roblox
         /// <summary>
         /// Fired when the user undoes an action in studio. Waypoint describes the type action that has been undone.
         /// </summary>
-        /// <param name="waypoint">A <c>string?</c> value.</param>
+        /// <param name="waypoint">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService#OnUndo"/>
-        public event Action<string?>? OnUndo
+        public event Action<string>? OnUndo
         {
             add { if (value is not null) AddEventHandler("OnUndo", value); }
             remove { if (value is not null) RemoveEventHandler("OnUndo", value); }

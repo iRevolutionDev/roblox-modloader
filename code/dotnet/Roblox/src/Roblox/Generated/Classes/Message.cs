@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Message"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Message? FromHandle(nuint handle)
+        public static new Message? FromHandle(nuint handle)
             => handle == 0 ? null : new Message(handle);
 
         /// <summary>
         /// Sets the text of a Message or Hint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Message#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
     }

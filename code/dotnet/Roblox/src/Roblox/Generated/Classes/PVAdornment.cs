@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PVAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PVAdornment? FromHandle(nuint handle)
+        public static new PVAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new PVAdornment(handle);
 
         /// <summary>

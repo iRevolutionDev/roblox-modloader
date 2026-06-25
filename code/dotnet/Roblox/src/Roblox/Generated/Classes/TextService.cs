@@ -22,86 +22,86 @@ namespace Roblox
         /// Creates a <see cref="TextService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextService? FromHandle(nuint handle)
+        public static new TextService? FromHandle(nuint handle)
             => handle == 0 ? null : new TextService(handle);
 
         /// <summary>
         /// <c>TextService.GetFontMemoryData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetFontMemoryData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFontMemoryData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetFontMemoryData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFontMemoryData")!;
 
         /// <summary>
         /// Computes the Vector2 dimensions (in pixels) that will be taken up with text when using the specified formatting parameters and size constraints.
         /// </summary>
-        /// <param name="string">A <c>string?</c> value.</param>
+        /// <param name="@string">A <c>string</c> value.</param>
         /// <param name="fontSize">A <c>int</c> value.</param>
         /// <param name="font">A <c>Enum.Font</c> value.</param>
-        /// <param name="frameSize">A <c>global::Roblox.Vector2?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        /// <param name="frameSize">A <c>global::Roblox.Vector2</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#GetTextSize"/>
-        public global::Roblox.Vector2? GetTextSize(string? @string, int fontSize, Enum.Font font, global::Roblox.Vector2? frameSize)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTextSize", @string, fontSize, font, frameSize);
+        public global::Roblox.Vector2 GetTextSize(string @string, int fontSize, Enum.Font font, global::Roblox.Vector2 frameSize)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetTextSize", @string, fontSize, font, frameSize)!;
 
         /// <summary>
         /// <c>TextService.SetResolutionScale</c>
         /// </summary>
         /// <param name="scale">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetResolutionScale(float scale)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetResolutionScale", scale);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetResolutionScale(float scale)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetResolutionScale", scale)!;
 
         /// <summary>
         /// Filters and translates a string.
         /// </summary>
-        /// <param name="stringToFilter">A <c>string?</c> value.</param>
+        /// <param name="stringToFilter">A <c>string</c> value.</param>
         /// <param name="fromUserId">A <c>long</c> value.</param>
-        /// <param name="targetLocales">A <c>object?</c> value.</param>
-        /// <param name="textContext">A <c>Enum.TextFilterContext</c> value.</param>
-        /// <returns>A <c>TextFilterTranslatedResult?</c> value returned by the engine.</returns>
+        /// <param name="targetLocales">A <c>object</c> value.</param>
+        /// <param name="textContext">A <c>Enum.TextFilterContext?</c> value.</param>
+        /// <returns>A <c>TextFilterTranslatedResult</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#FilterAndTranslateStringAsync"/>
-        public TextFilterTranslatedResult? FilterAndTranslateStringAsync(string? stringToFilter, long fromUserId, object? targetLocales, Enum.TextFilterContext textContext)
-            => global::Roblox.Reflection.Invoke<TextFilterTranslatedResult?>(this, "FilterAndTranslateStringAsync", stringToFilter, fromUserId, targetLocales, textContext);
+        public TextFilterTranslatedResult FilterAndTranslateStringAsync(string stringToFilter, long fromUserId, object targetLocales, Enum.TextFilterContext? textContext = null)
+            => global::Roblox.Reflection.Invoke<TextFilterTranslatedResult>(this, "FilterAndTranslateStringAsync", stringToFilter, fromUserId, targetLocales, textContext)!;
 
         /// <summary>
         /// Filters a string being received from a user and returns a TextFilterResult which can be used to distribute the correctly filtered text accordingly.
         /// </summary>
-        /// <param name="stringToFilter">A <c>string?</c> value.</param>
+        /// <param name="stringToFilter">A <c>string</c> value.</param>
         /// <param name="fromUserId">A <c>long</c> value.</param>
-        /// <param name="textContext">A <c>Enum.TextFilterContext</c> value.</param>
-        /// <returns>A <c>TextFilterResult?</c> value returned by the engine.</returns>
+        /// <param name="textContext">A <c>Enum.TextFilterContext?</c> value.</param>
+        /// <returns>A <c>TextFilterResult</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#FilterStringAsync"/>
-        public TextFilterResult? FilterStringAsync(string? stringToFilter, long fromUserId, Enum.TextFilterContext textContext)
-            => global::Roblox.Reflection.Invoke<TextFilterResult?>(this, "FilterStringAsync", stringToFilter, fromUserId, textContext);
+        public TextFilterResult FilterStringAsync(string stringToFilter, long fromUserId, Enum.TextFilterContext? textContext = null)
+            => global::Roblox.Reflection.Invoke<TextFilterResult>(this, "FilterStringAsync", stringToFilter, fromUserId, textContext)!;
 
         /// <summary>
         /// Returns a table containing the name and faces of a font family.
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="assetId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#GetFamilyInfoAsync"/>
-        public object? GetFamilyInfoAsync(object? assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFamilyInfoAsync", assetId);
+        public object GetFamilyInfoAsync(object assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFamilyInfoAsync", assetId)!;
 
         /// <summary>
         /// Computes the Vector2 dimensions (in pixels) that will be taken up with text when using a GetTextBoundsParams object.
         /// </summary>
-        /// <param name="params">A <c>GetTextBoundsParams?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        /// <param name="@params">A <c>GetTextBoundsParams</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#GetTextBoundsAsync"/>
-        public global::Roblox.Vector2? GetTextBoundsAsync(GetTextBoundsParams? @params)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetTextBoundsAsync", @params);
+        public global::Roblox.Vector2 GetTextBoundsAsync(GetTextBoundsParams @params)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetTextBoundsAsync", @params)!;
 
         /// <summary>
         /// Returns the offset used to up-scale text based on the current GuiService.PreferredTextSize setting.
         /// </summary>
         /// <param name="fontSize">A <c>int</c> value.</param>
-        /// <param name="font">A <c>object?</c> value.</param>
+        /// <param name="font">A <c>object</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextService#GetTextSizeOffsetAsync"/>
-        public float GetTextSizeOffsetAsync(int fontSize, object? font)
-            => global::Roblox.Reflection.Invoke<float>(this, "GetTextSizeOffsetAsync", fontSize, font);
+        public float GetTextSizeOffsetAsync(int fontSize, object font)
+            => global::Roblox.Reflection.Invoke<float>(this, "GetTextSizeOffsetAsync", fontSize, font)!;
 
     }
 }

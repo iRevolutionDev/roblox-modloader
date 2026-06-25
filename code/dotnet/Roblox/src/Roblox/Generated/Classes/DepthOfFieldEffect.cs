@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DepthOfFieldEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DepthOfFieldEffect? FromHandle(nuint handle)
+        public static new DepthOfFieldEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new DepthOfFieldEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#FarIntensity"/>
         public float FarIntensity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FarIntensity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FarIntensity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FarIntensity", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#FocusDistance"/>
         public float FocusDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FocusDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FocusDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FocusDistance", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#InFocusRadius"/>
         public float InFocusRadius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InFocusRadius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "InFocusRadius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "InFocusRadius", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DepthOfFieldEffect#NearIntensity"/>
         public float NearIntensity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "NearIntensity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "NearIntensity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "NearIntensity", value);
         }
 

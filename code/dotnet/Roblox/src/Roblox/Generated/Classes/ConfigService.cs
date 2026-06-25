@@ -22,44 +22,44 @@ namespace Roblox
         /// Creates a <see cref="ConfigService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ConfigService? FromHandle(nuint handle)
+        public static new ConfigService? FromHandle(nuint handle)
             => handle == 0 ? null : new ConfigService(handle);
 
         /// <summary>
         /// Clears current testing value for the given key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigService#ClearTestingValue"/>
-        public object? ClearTestingValue(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearTestingValue", key);
+        public object ClearTestingValue(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearTestingValue", key)!;
 
         /// <summary>
         /// Sets a testing override for the given key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigService#SetTestingValue"/>
-        public object? SetTestingValue(string? key, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTestingValue", key, value);
+        public object SetTestingValue(string key, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTestingValue", key, value)!;
 
         /// <summary>
         /// Retrieves a snapshot of the latest configuration.
         /// </summary>
-        /// <returns>A <c>ConfigSnapshot?</c> value returned by the engine.</returns>
+        /// <returns>A <c>ConfigSnapshot</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigService#GetConfigAsync"/>
-        public ConfigSnapshot? GetConfigAsync()
-            => global::Roblox.Reflection.Invoke<ConfigSnapshot?>(this, "GetConfigAsync");
+        public ConfigSnapshot GetConfigAsync()
+            => global::Roblox.Reflection.Invoke<ConfigSnapshot>(this, "GetConfigAsync")!;
 
         /// <summary>
         /// Retrieves a snapshot of the latest configuration for a specific player.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>ConfigSnapshot?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>ConfigSnapshot</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConfigService#GetConfigForPlayerAsync"/>
-        public ConfigSnapshot? GetConfigForPlayerAsync(Player? player)
-            => global::Roblox.Reflection.Invoke<ConfigSnapshot?>(this, "GetConfigForPlayerAsync", player);
+        public ConfigSnapshot GetConfigForPlayerAsync(Player player)
+            => global::Roblox.Reflection.Invoke<ConfigSnapshot>(this, "GetConfigForPlayerAsync", player)!;
 
     }
 }

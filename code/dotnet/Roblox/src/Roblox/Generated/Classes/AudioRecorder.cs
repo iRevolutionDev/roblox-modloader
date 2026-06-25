@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioRecorder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioRecorder? FromHandle(nuint handle)
+        public static new AudioRecorder? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioRecorder(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#IsRecording"/>
         public bool IsRecording
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsRecording");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsRecording")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsRecording", value);
         }
 
@@ -41,58 +41,58 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 
         /// <summary>
         /// Clears out the recording from the AudioRecorder.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#Clear"/>
-        public object? Clear()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
+        public object Clear()
+            => global::Roblox.Reflection.Invoke<object>(this, "Clear")!;
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Returns a Content object representing the current audio recording.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#GetTemporaryContent"/>
-        public string? GetTemporaryContent()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetTemporaryContent");
+        public string GetTemporaryContent()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetTemporaryContent")!;
 
         /// <summary>
         /// Stops recording audio.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#Stop"/>
-        public object? Stop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop");
+        public object Stop()
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop")!;
 
         /// <summary>
         /// Returns whether the AudioRecorder can currently record.
@@ -100,7 +100,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#CanRecordAsync"/>
         public bool CanRecordAsync()
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanRecordAsync");
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanRecordAsync")!;
 
         /// <summary>
         /// Returns any instances which cannot be recorded.
@@ -108,25 +108,25 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#GetUnrecordableInstancesAsync"/>
         public IReadOnlyList<Instance> GetUnrecordableInstancesAsync()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetUnrecordableInstancesAsync");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetUnrecordableInstancesAsync")!;
 
         /// <summary>
         /// Starts recording audio.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#RecordAsync"/>
-        public object? RecordAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RecordAsync");
+        public object RecordAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "RecordAsync")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioRecorder via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioRecorder#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="UIDragDetector"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIDragDetector? FromHandle(nuint handle)
+        public static new UIDragDetector? FromHandle(nuint handle)
             => handle == 0 ? null : new UIDragDetector(handle);
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is activated over the parent of this UIDragDetector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#ActivatedCursorIcon"/>
-        public object? ActivatedCursorIcon
+        public object ActivatedCursorIcon
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ActivatedCursorIcon");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ActivatedCursorIcon", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "ActivatedCursorIcon")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "ActivatedCursorIcon", value);
         }
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is activated over the parent of this UIDragDetector. Only supports asset URIs
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#ActivatedCursorIconContent"/>
-        public string? ActivatedCursorIconContent
+        public string ActivatedCursorIconContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ActivatedCursorIconContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ActivatedCursorIconContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ActivatedCursorIconContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ActivatedCursorIconContent", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#BoundingBehavior"/>
         public Enum.UIDragDetectorBoundingBehavior BoundingBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorBoundingBehavior>(this, "BoundingBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorBoundingBehavior>(this, "BoundingBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIDragDetectorBoundingBehavior>(this, "BoundingBehavior", value);
         }
 
@@ -69,30 +69,30 @@ namespace Roblox
         /// Sets the cursor icon to display when the mouse is hovered over the parent of this UIDragDetector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#CursorIcon"/>
-        public object? CursorIcon
+        public object CursorIcon
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CursorIcon");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CursorIcon", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "CursorIcon")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "CursorIcon", value);
         }
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is hovered over the parent of this UIDragDetector. Only asset URIs are supported.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#CursorIconContent"/>
-        public string? CursorIconContent
+        public string CursorIconContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CursorIconContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CursorIconContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CursorIconContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CursorIconContent", value);
         }
 
         /// <summary>
         /// The drag axis for the UIDragDetector instance when DragStyle is set to UIDragDetectorDragStyle.TranslateLine.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragAxis"/>
-        public global::Roblox.Vector2? DragAxis
+        public global::Roblox.Vector2 DragAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "DragAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "DragAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "DragAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "DragAxis", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragRelativity"/>
         public Enum.UIDragDetectorDragRelativity DragRelativity
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorDragRelativity>(this, "DragRelativity");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorDragRelativity>(this, "DragRelativity")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIDragDetectorDragRelativity>(this, "DragRelativity", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragRotation"/>
         public float DragRotation
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DragRotation");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DragRotation")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DragRotation", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragSpace"/>
         public Enum.UIDragDetectorDragSpace DragSpace
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorDragSpace>(this, "DragSpace");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorDragSpace>(this, "DragSpace")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIDragDetectorDragSpace>(this, "DragSpace", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragStyle"/>
         public Enum.UIDragDetectorDragStyle DragStyle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorDragStyle>(this, "DragStyle");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorDragStyle>(this, "DragStyle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIDragDetectorDragStyle>(this, "DragStyle", value);
         }
 
@@ -139,10 +139,10 @@ namespace Roblox
         /// The translation performed by the current drag expressed in a UDim2 value.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragUDim2"/>
-        public global::Roblox.UDim2? DragUDim2
+        public global::Roblox.UDim2 DragUDim2
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "DragUDim2");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "DragUDim2", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "DragUDim2")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "DragUDim2", value);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MaxDragAngle"/>
         public float MaxDragAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDragAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDragAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxDragAngle", value);
         }
 
@@ -169,10 +169,10 @@ namespace Roblox
         /// Along with MinDragTranslation, impedes the detector's attempts to generate linear/planar motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MaxDragTranslation"/>
-        public global::Roblox.UDim2? MaxDragTranslation
+        public global::Roblox.UDim2 MaxDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "MaxDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "MaxDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "MaxDragTranslation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "MaxDragTranslation", value);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MinDragAngle"/>
         public float MinDragAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MinDragAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MinDragAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MinDragAngle", value);
         }
 
@@ -189,10 +189,10 @@ namespace Roblox
         /// Along with MaxDragTranslation, impedes the detector's attempts to generate linear/planar motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#MinDragTranslation"/>
-        public global::Roblox.UDim2? MinDragTranslation
+        public global::Roblox.UDim2 MinDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "MinDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "MinDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "MinDragTranslation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "MinDragTranslation", value);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#ResponseStyle"/>
         public Enum.UIDragDetectorResponseStyle ResponseStyle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorResponseStyle>(this, "ResponseStyle");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIDragDetectorResponseStyle>(this, "ResponseStyle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIDragDetectorResponseStyle>(this, "ResponseStyle", value);
         }
 
@@ -219,10 +219,10 @@ namespace Roblox
         /// Maximum drag speed for translation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#SelectionModeDragSpeed"/>
-        public global::Roblox.UDim2? SelectionModeDragSpeed
+        public global::Roblox.UDim2 SelectionModeDragSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "SelectionModeDragSpeed");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "SelectionModeDragSpeed", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "SelectionModeDragSpeed")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "SelectionModeDragSpeed", value);
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#SelectionModeRotateSpeed"/>
         public float SelectionModeRotateSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SelectionModeRotateSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SelectionModeRotateSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SelectionModeRotateSpeed", value);
         }
 
@@ -241,7 +241,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#UIDragSpeedAxisMapping"/>
         public Enum.UIDragSpeedAxisMapping UIDragSpeedAxisMapping
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIDragSpeedAxisMapping>(this, "UIDragSpeedAxisMapping");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIDragSpeedAxisMapping>(this, "UIDragSpeedAxisMapping")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIDragSpeedAxisMapping>(this, "UIDragSpeedAxisMapping", value);
         }
 
@@ -249,19 +249,19 @@ namespace Roblox
         /// Adds a function to modify or constrain proposed motion.
         /// </summary>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#AddConstraintFunction"/>
-        public object? AddConstraintFunction(int priority, object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddConstraintFunction", priority, function);
+        public object AddConstraintFunction(int priority, object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddConstraintFunction", priority, function)!;
 
         /// <summary>
         /// Returns the reference UDim2 position of the current drag's reference origin.
         /// </summary>
-        /// <returns>A <c>global::Roblox.UDim2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.UDim2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#GetReferencePosition"/>
-        public global::Roblox.UDim2? GetReferencePosition()
-            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2?>(this, "GetReferencePosition");
+        public global::Roblox.UDim2 GetReferencePosition()
+            => global::Roblox.Reflection.Invoke<global::Roblox.UDim2>(this, "GetReferencePosition")!;
 
         /// <summary>
         /// Returns the reference rotation of the current drag's reference element.
@@ -269,23 +269,23 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#GetReferenceRotation"/>
         public float GetReferenceRotation()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetReferenceRotation");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetReferenceRotation")!;
 
         /// <summary>
         /// Passes a function to be used if and only if DragStyle is set to UIDragDetectorDragStyle.Scriptable.
         /// </summary>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#SetDragStyleFunction"/>
-        public object? SetDragStyleFunction(object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDragStyleFunction", function);
+        public object SetDragStyleFunction(object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDragStyleFunction", function)!;
 
         /// <summary>
         /// Fires when a user continues dragging the UI element after DragStart has been initiated.
         /// </summary>
-        /// <param name="inputPosition">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="inputPosition">A <c>global::Roblox.Vector2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragContinue"/>
-        public event Action<global::Roblox.Vector2?>? DragContinue
+        public event Action<global::Roblox.Vector2>? DragContinue
         {
             add { if (value is not null) AddEventHandler("DragContinue", value); }
             remove { if (value is not null) RemoveEventHandler("DragContinue", value); }
@@ -294,9 +294,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a user stops dragging the UI element.
         /// </summary>
-        /// <param name="inputPosition">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="inputPosition">A <c>global::Roblox.Vector2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragEnd"/>
-        public event Action<global::Roblox.Vector2?>? DragEnd
+        public event Action<global::Roblox.Vector2>? DragEnd
         {
             add { if (value is not null) AddEventHandler("DragEnd", value); }
             remove { if (value is not null) RemoveEventHandler("DragEnd", value); }
@@ -305,9 +305,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a user starts dragging the UI element.
         /// </summary>
-        /// <param name="inputPosition">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="inputPosition">A <c>global::Roblox.Vector2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#DragStart"/>
-        public event Action<global::Roblox.Vector2?>? DragStart
+        public event Action<global::Roblox.Vector2>? DragStart
         {
             add { if (value is not null) AddEventHandler("DragStart", value); }
             remove { if (value is not null) RemoveEventHandler("DragStart", value); }

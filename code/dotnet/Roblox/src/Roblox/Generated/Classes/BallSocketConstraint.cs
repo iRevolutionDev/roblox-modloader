@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BallSocketConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BallSocketConstraint? FromHandle(nuint handle)
+        public static new BallSocketConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new BallSocketConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitsEnabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#MaxFrictionTorque"/>
         public float MaxFrictionTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxFrictionTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxFrictionTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxFrictionTorque", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#Restitution"/>
         public float Restitution
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Restitution", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#TwistLimitsEnabled"/>
         public bool TwistLimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TwistLimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TwistLimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TwistLimitsEnabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#TwistLowerAngle"/>
         public float TwistLowerAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TwistLowerAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TwistLowerAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TwistLowerAngle", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#TwistUpperAngle"/>
         public float TwistUpperAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TwistUpperAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TwistUpperAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TwistUpperAngle", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BallSocketConstraint#UpperAngle"/>
         public float UpperAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "UpperAngle", value);
         }
 

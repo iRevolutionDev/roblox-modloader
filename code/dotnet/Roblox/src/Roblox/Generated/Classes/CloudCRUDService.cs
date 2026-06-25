@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="CloudCRUDService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CloudCRUDService? FromHandle(nuint handle)
+        public static new CloudCRUDService? FromHandle(nuint handle)
             => handle == 0 ? null : new CloudCRUDService(handle);
 
     }

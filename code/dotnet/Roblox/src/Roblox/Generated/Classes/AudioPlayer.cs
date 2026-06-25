@@ -22,32 +22,32 @@ namespace Roblox
         /// Creates a <see cref="AudioPlayer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioPlayer? FromHandle(nuint handle)
+        public static new AudioPlayer? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioPlayer(handle);
 
         /// <summary>
         /// The asset to be loaded into the AudioPlayer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Asset"/>
-        public object? Asset
+        public object Asset
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Asset");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Asset", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Asset")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Asset", value);
         }
 
         /// <summary>
         /// Deprecated: This property is deprecated; use Asset instead.The asset to be loaded into the AudioPlayer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#AssetId"/>
-        public string? AssetId
+        public string AssetId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AssetId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AssetId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AssetId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AssetId", value);
         }
 
         public Enum.AssetRepresentation AssetRepresentation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation");
+            get => global::Roblox.Reflection.GetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation", value);
         }
 
@@ -55,10 +55,10 @@ namespace Roblox
         /// The audio content to be loaded into the AudioPlayer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#AudioContent"/>
-        public string? AudioContent
+        public string AudioContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AudioContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AudioContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AudioContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AudioContent", value);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#AutoLoad"/>
         public bool AutoLoad
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLoad");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLoad")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoLoad", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#AutoPlay"/>
         public bool AutoPlay
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoPlay");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoPlay")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoPlay", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#IsPlaying"/>
         public bool IsPlaying
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPlaying", value);
         }
 
@@ -97,7 +97,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#IsReady"/>
         public bool IsReady
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReady");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReady")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsReady", value);
         }
 
@@ -105,10 +105,10 @@ namespace Roblox
         /// A range, in seconds, denoting a desired loop start and loop end within the PlaybackRegion of this AudioPlayer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#LoopRegion"/>
-        public global::Roblox.NumberRange? LoopRegion
+        public global::Roblox.NumberRange LoopRegion
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "LoopRegion");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "LoopRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "LoopRegion")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "LoopRegion", value);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Looping"/>
         public bool Looping
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looping");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looping")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Looping", value);
         }
 
@@ -125,10 +125,10 @@ namespace Roblox
         /// Range in seconds denoting a desired start time (minimum) and stop time (maximum) within the TimeLength.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#PlaybackRegion"/>
-        public global::Roblox.NumberRange? PlaybackRegion
+        public global::Roblox.NumberRange PlaybackRegion
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "PlaybackRegion")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "PlaybackRegion", value);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#PlaybackSpeed"/>
         public double PlaybackSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "PlaybackSpeed");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "PlaybackSpeed")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "PlaybackSpeed", value);
         }
 
@@ -147,7 +147,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 
@@ -157,7 +157,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#TimePosition"/>
         public double TimePosition
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimePosition", value);
         }
 
@@ -167,71 +167,71 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Volume"/>
         public float Volume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
         }
 
         /// <summary>
         /// Attempts to cancel a pre-planned future Play or Stop command.
         /// </summary>
-        /// <param name="actionId">A <c>object?</c> value.</param>
+        /// <param name="actionId">A <c>long?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Cancel"/>
-        public bool Cancel(object? actionId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "Cancel", actionId);
+        public bool Cancel(long? actionId = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "Cancel", actionId)!;
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Plays the AudioPlayer from wherever its TimePosition is.
         /// </summary>
-        /// <param name="atTime">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="atTime">A <c>double?</c> value.</param>
+        /// <returns>A <c>long?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Play"/>
-        public object? Play(object? atTime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play", atTime);
+        public long? Play(double? atTime = null)
+            => global::Roblox.Reflection.Invoke<long?>(this, "Play", atTime);
 
         /// <summary>
         /// Stops the AudioPlayer wherever its TimePosition is.
         /// </summary>
-        /// <param name="atTime">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="atTime">A <c>double?</c> value.</param>
+        /// <returns>A <c>long?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#Stop"/>
-        public object? Stop(object? atTime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop", atTime);
+        public long? Stop(double? atTime = null)
+            => global::Roblox.Reflection.Invoke<long?>(this, "Stop", atTime);
 
         /// <summary>
         /// Returns a sampling of the waveform data for the loaded Asset.
         /// </summary>
-        /// <param name="timeRange">A <c>global::Roblox.NumberRange?</c> value.</param>
+        /// <param name="timeRange">A <c>global::Roblox.NumberRange</c> value.</param>
         /// <param name="samples">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#GetWaveformAsync"/>
-        public object? GetWaveformAsync(global::Roblox.NumberRange? timeRange, int samples)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetWaveformAsync", timeRange, samples);
+        public object GetWaveformAsync(global::Roblox.NumberRange timeRange, int samples)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetWaveformAsync", timeRange, samples)!;
 
         /// <summary>
         /// Fires when the AudioPlayer has completed playback and stopped.
@@ -257,11 +257,11 @@ namespace Roblox
         /// Fires when another instance is connected to or disconnected from the AudioPlayer via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

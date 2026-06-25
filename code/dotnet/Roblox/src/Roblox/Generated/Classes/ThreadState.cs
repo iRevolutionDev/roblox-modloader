@@ -18,31 +18,31 @@ namespace Roblox
         /// Creates a <see cref="ThreadState"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ThreadState? FromHandle(nuint handle)
+        public static new ThreadState? FromHandle(nuint handle)
             => handle == 0 ? null : new ThreadState(handle);
 
         public int FrameCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "FrameCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "FrameCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "FrameCount", value);
         }
 
         public bool Populated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Populated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Populated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Populated", value);
         }
 
         public int ThreadId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ThreadId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ThreadId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ThreadId", value);
         }
 
-        public string? ThreadName
+        public string ThreadName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ThreadName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ThreadName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ThreadName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ThreadName", value);
         }
 
         /// <summary>

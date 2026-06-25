@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PermissionsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PermissionsService? FromHandle(nuint handle)
+        public static new PermissionsService? FromHandle(nuint handle)
             => handle == 0 ? null : new PermissionsService(handle);
 
         /// <summary>
@@ -30,38 +30,38 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetIsThirdPartyAssetAllowed()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsThirdPartyAssetAllowed");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsThirdPartyAssetAllowed")!;
 
         /// <summary>
         /// <c>PermissionsService.GetIsThirdPartyPurchaseAllowed</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetIsThirdPartyPurchaseAllowed()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsThirdPartyPurchaseAllowed");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsThirdPartyPurchaseAllowed")!;
 
         /// <summary>
         /// <c>PermissionsService.GetIsThirdPartyTeleportAllowed</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetIsThirdPartyTeleportAllowed()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsThirdPartyTeleportAllowed");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsThirdPartyTeleportAllowed")!;
 
         /// <summary>
         /// <c>PermissionsService.GetPermissions</c>
         /// </summary>
-        /// <param name="assetId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPermissions(string? assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPermissions", assetId);
+        /// <param name="assetId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPermissions(string assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPermissions", assetId)!;
 
         /// <summary>
         /// <c>PermissionsService.SetPermissions</c>
         /// </summary>
-        /// <param name="assetId">A <c>string?</c> value.</param>
-        /// <param name="permissions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPermissions(string? assetId, object? permissions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPermissions", assetId, permissions);
+        /// <param name="assetId">A <c>string</c> value.</param>
+        /// <param name="permissions">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPermissions(string assetId, object permissions)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPermissions", assetId, permissions)!;
 
     }
 }

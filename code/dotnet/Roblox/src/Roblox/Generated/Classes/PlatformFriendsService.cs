@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="PlatformFriendsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlatformFriendsService? FromHandle(nuint handle)
+        public static new PlatformFriendsService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlatformFriendsService(handle);
 
         /// <summary>
@@ -26,36 +26,36 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsInviteFriendsEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsInviteFriendsEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsInviteFriendsEnabled")!;
 
         /// <summary>
         /// <c>PlatformFriendsService.IsProfileEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsProfileEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsProfileEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsProfileEnabled")!;
 
         /// <summary>
         /// <c>PlatformFriendsService.ShowInviteFriendsUI</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowInviteFriendsUI()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowInviteFriendsUI");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowInviteFriendsUI()
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowInviteFriendsUI")!;
 
         /// <summary>
         /// <c>PlatformFriendsService.ShowProfile</c>
         /// </summary>
-        /// <param name="platformUserId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowProfile(string? platformUserId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowProfile", platformUserId);
+        /// <param name="platformUserId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowProfile(string platformUserId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowProfile", platformUserId)!;
 
         /// <summary>
         /// <c>PlatformFriendsService.GetPartyMembers</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPartyMembers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPartyMembers");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPartyMembers()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPartyMembers")!;
 
     }
 }

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Smoke"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Smoke? FromHandle(nuint handle)
+        public static new Smoke? FromHandle(nuint handle)
             => handle == 0 ? null : new Smoke(handle);
 
         /// <summary>
         /// Determines the color of the smoke particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Opacity"/>
         public float Opacity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Opacity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Opacity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Opacity", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#RiseVelocity"/>
         public float RiseVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RiseVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RiseVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RiseVelocity", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#Size"/>
         public float Size
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Size");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Size")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Size", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Smoke#TimeScale"/>
         public float TimeScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TimeScale", value);
         }
 
@@ -99,9 +99,9 @@ namespace Roblox
         /// <c>Smoke.FastForward</c>
         /// </summary>
         /// <param name="numFrames">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FastForward(int numFrames)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FastForward", numFrames);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FastForward(int numFrames)
+            => global::Roblox.Reflection.Invoke<object>(this, "FastForward", numFrames)!;
 
     }
 }

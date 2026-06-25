@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AssetSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetSoundEffect? FromHandle(nuint handle)
+        public static new AssetSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetSoundEffect(handle);
 
     }

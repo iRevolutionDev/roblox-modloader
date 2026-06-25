@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GameSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GameSettings? FromHandle(nuint handle)
+        public static new GameSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new GameSettings(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GameSettings#VideoCaptureEnabled"/>
         public bool VideoCaptureEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VideoCaptureEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VideoCaptureEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VideoCaptureEnabled", value);
         }
 

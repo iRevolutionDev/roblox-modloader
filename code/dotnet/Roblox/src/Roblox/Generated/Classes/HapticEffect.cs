@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HapticEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HapticEffect? FromHandle(nuint handle)
+        public static new HapticEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new HapticEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Looped"/>
         public bool Looped
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Looped", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Along with Radius, specifies the impact position relative to the input device and, effectively, how broadly that impact effects nearby motors.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -61,34 +61,34 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Type"/>
         public Enum.HapticEffectType Type
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HapticEffectType>(this, "Type");
+            get => global::Roblox.Reflection.GetProperty<Enum.HapticEffectType>(this, "Type")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HapticEffectType>(this, "Type", value);
         }
 
         /// <summary>
         /// Plays the haptic effect.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Play"/>
-        public object? Play()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play");
+        public object Play()
+            => global::Roblox.Reflection.Invoke<object>(this, "Play")!;
 
         /// <summary>
         /// Defines a custom waveform as a table and applies it to the haptic. This method takes in an array of `FloatCurveKey` objects.
         /// </summary>
-        /// <param name="keys">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="keys">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#SetWaveformKeys"/>
-        public object? SetWaveformKeys(object? keys)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetWaveformKeys", keys);
+        public object SetWaveformKeys(object keys)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetWaveformKeys", keys)!;
 
         /// <summary>
         /// Stops the haptic effect.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HapticEffect#Stop"/>
-        public object? Stop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop");
+        public object Stop()
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop")!;
 
         /// <summary>
         /// Fires when the HapticEffect has completed playback and stopped.

@@ -22,73 +22,73 @@ namespace Roblox
         /// Creates a <see cref="ReflectionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReflectionService? FromHandle(nuint handle)
+        public static new ReflectionService? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionService(handle);
 
         /// <summary>
         /// Returns information about a class when given its name, assuming that class is accessible.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <param name="filter">A <c>object?</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionService#GetClass"/>
-        public object? GetClass(string? className, object? filter)
+        public object? GetClass(string className, object? filter = null)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetClass", className, filter);
 
         /// <summary>
         /// Returns a list of all classes accessible with filters applied.
         /// </summary>
         /// <param name="filter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionService#GetClasses"/>
-        public object? GetClasses(object? filter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetClasses", filter);
+        public object GetClasses(object? filter = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetClasses", filter)!;
 
         /// <summary>
         /// Returns a list of events for a given class with filters applied.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <param name="filter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionService#GetEventsOfClass"/>
-        public object? GetEventsOfClass(string? className, object? filter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEventsOfClass", className, filter);
+        public object GetEventsOfClass(string className, object? filter = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEventsOfClass", className, filter)!;
 
         /// <summary>
         /// Returns a list of methods for a given class with filters applied.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <param name="filter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionService#GetMethodsOfClass"/>
-        public object? GetMethodsOfClass(string? className, object? filter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMethodsOfClass", className, filter);
+        public object GetMethodsOfClass(string className, object? filter = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMethodsOfClass", className, filter)!;
 
         /// <summary>
         /// Returns a list of properties for a given class with filters applied.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <param name="filter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionService#GetPropertiesOfClass"/>
-        public object? GetPropertiesOfClass(string? className, object? filter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPropertiesOfClass", className, filter);
+        public object GetPropertiesOfClass(string className, object? filter = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPropertiesOfClass", className, filter)!;
 
         /// <summary>
         /// <c>ReflectionService.GetPropertyNames</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPropertyNames(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPropertyNames", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPropertyNames(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPropertyNames", name)!;
 
         /// <summary>
         /// <c>ReflectionService.GetStyledPropertyNames</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStyledPropertyNames(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStyledPropertyNames", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetStyledPropertyNames(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStyledPropertyNames", name)!;
 
     }
 }

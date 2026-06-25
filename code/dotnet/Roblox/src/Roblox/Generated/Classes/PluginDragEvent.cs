@@ -22,47 +22,47 @@ namespace Roblox
         /// Creates a <see cref="PluginDragEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginDragEvent? FromHandle(nuint handle)
+        public static new PluginDragEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginDragEvent(handle);
 
         /// <summary>
         /// <c>PluginDragEvent.Data</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginDragEvent#Data"/>
-        public string? Data
+        public string Data
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Data");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Data", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Data")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Data", value);
         }
 
         /// <summary>
         /// <c>PluginDragEvent.MimeType</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginDragEvent#MimeType"/>
-        public string? MimeType
+        public string MimeType
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MimeType");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MimeType", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MimeType")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MimeType", value);
         }
 
         /// <summary>
         /// <c>PluginDragEvent.Position</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginDragEvent#Position"/>
-        public global::Roblox.Vector2? Position
+        public global::Roblox.Vector2 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Position", value);
         }
 
         /// <summary>
         /// <c>PluginDragEvent.Sender</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginDragEvent#Sender"/>
-        public string? Sender
+        public string Sender
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Sender");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Sender", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Sender")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Sender", value);
         }
 
     }

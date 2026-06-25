@@ -18,40 +18,40 @@ namespace Roblox
         /// Creates a <see cref="MetaBreakpointManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MetaBreakpointManager? FromHandle(nuint handle)
+        public static new MetaBreakpointManager? FromHandle(nuint handle)
             => handle == 0 ? null : new MetaBreakpointManager(handle);
 
         /// <summary>
         /// <c>MetaBreakpointManager.AddBreakpoint</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <param name="line">A <c>int</c> value.</param>
-        /// <param name="condition">A <c>Instance?</c> value.</param>
+        /// <param name="condition">A <c>Instance</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? AddBreakpoint(Instance? script, int line, Instance? condition)
+        public Instance? AddBreakpoint(Instance script, int line, Instance condition)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "AddBreakpoint", script, line, condition);
 
         /// <summary>
         /// <c>MetaBreakpointManager.GetBreakpointById</c>
         /// </summary>
         /// <param name="metaBreakpointId">A <c>int</c> value.</param>
-        /// <returns>A <c>MetaBreakpoint?</c> value returned by the engine.</returns>
-        public MetaBreakpoint? GetBreakpointById(int metaBreakpointId)
-            => global::Roblox.Reflection.Invoke<MetaBreakpoint?>(this, "GetBreakpointById", metaBreakpointId);
+        /// <returns>A <c>MetaBreakpoint</c> value returned by the engine.</returns>
+        public MetaBreakpoint GetBreakpointById(int metaBreakpointId)
+            => global::Roblox.Reflection.Invoke<MetaBreakpoint>(this, "GetBreakpointById", metaBreakpointId)!;
 
         /// <summary>
         /// <c>MetaBreakpointManager.RemoveBreakpointById</c>
         /// </summary>
         /// <param name="metaBreakpointId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveBreakpointById(int metaBreakpointId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveBreakpointById", metaBreakpointId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveBreakpointById(int metaBreakpointId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveBreakpointById", metaBreakpointId)!;
 
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointAdded</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
-        public event Action<MetaBreakpoint?>? MetaBreakpointAdded
+        /// <param name="breakpoint">A <c>MetaBreakpoint</c> value.</param>
+        public event Action<MetaBreakpoint>? MetaBreakpointAdded
         {
             add { if (value is not null) AddEventHandler("MetaBreakpointAdded", value); }
             remove { if (value is not null) RemoveEventHandler("MetaBreakpointAdded", value); }
@@ -60,8 +60,8 @@ namespace Roblox
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointChanged</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
-        public event Action<MetaBreakpoint?>? MetaBreakpointChanged
+        /// <param name="breakpoint">A <c>MetaBreakpoint</c> value.</param>
+        public event Action<MetaBreakpoint>? MetaBreakpointChanged
         {
             add { if (value is not null) AddEventHandler("MetaBreakpointChanged", value); }
             remove { if (value is not null) RemoveEventHandler("MetaBreakpointChanged", value); }
@@ -70,8 +70,8 @@ namespace Roblox
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointRemoved</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
-        public event Action<MetaBreakpoint?>? MetaBreakpointRemoved
+        /// <param name="breakpoint">A <c>MetaBreakpoint</c> value.</param>
+        public event Action<MetaBreakpoint>? MetaBreakpointRemoved
         {
             add { if (value is not null) AddEventHandler("MetaBreakpointRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("MetaBreakpointRemoved", value); }
@@ -80,9 +80,9 @@ namespace Roblox
         /// <summary>
         /// <c>MetaBreakpointManager.MetaBreakpointSetChanged</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>MetaBreakpoint?</c> value.</param>
-        /// <param name="detail">A <c>object?</c> value.</param>
-        public event Action<MetaBreakpoint?, object?>? MetaBreakpointSetChanged
+        /// <param name="breakpoint">A <c>MetaBreakpoint</c> value.</param>
+        /// <param name="detail">A <c>object</c> value.</param>
+        public event Action<MetaBreakpoint, object>? MetaBreakpointSetChanged
         {
             add { if (value is not null) AddEventHandler("MetaBreakpointSetChanged", value); }
             remove { if (value is not null) RemoveEventHandler("MetaBreakpointSetChanged", value); }

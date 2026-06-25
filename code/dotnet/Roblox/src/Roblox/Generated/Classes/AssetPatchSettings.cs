@@ -22,37 +22,37 @@ namespace Roblox
         /// Creates a <see cref="AssetPatchSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetPatchSettings? FromHandle(nuint handle)
+        public static new AssetPatchSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetPatchSettings(handle);
 
         /// <summary>
         /// <c>AssetPatchSettings.ContentId</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetPatchSettings#ContentId"/>
-        public string? ContentId
+        public string ContentId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ContentId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ContentId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ContentId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ContentId", value);
         }
 
         /// <summary>
         /// <c>AssetPatchSettings.OutputPath</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetPatchSettings#OutputPath"/>
-        public string? OutputPath
+        public string OutputPath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OutputPath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OutputPath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OutputPath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OutputPath", value);
         }
 
         /// <summary>
         /// <c>AssetPatchSettings.PatchId</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetPatchSettings#PatchId"/>
-        public string? PatchId
+        public string PatchId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PatchId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PatchId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PatchId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PatchId", value);
         }
 
     }

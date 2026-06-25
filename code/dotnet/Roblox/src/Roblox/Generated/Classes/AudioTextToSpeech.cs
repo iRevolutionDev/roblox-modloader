@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioTextToSpeech"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioTextToSpeech? FromHandle(nuint handle)
+        public static new AudioTextToSpeech? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioTextToSpeech(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#IsLoaded"/>
         public bool IsLoaded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLoaded", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#IsPlaying"/>
         public bool IsPlaying
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPlaying", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Looping"/>
         public bool Looping
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looping");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looping")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Looping", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Pitch"/>
         public float Pitch
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Pitch");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Pitch")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Pitch", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#PlaybackSpeed"/>
         public float PlaybackSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PlaybackSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PlaybackSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PlaybackSpeed", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Speed"/>
         public float Speed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Speed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Speed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Speed", value);
         }
 
@@ -89,10 +89,10 @@ namespace Roblox
         /// The text to be converted into speech audio by AudioTextToSpeech.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#TimePosition"/>
         public double TimePosition
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimePosition", value);
         }
 
@@ -119,10 +119,10 @@ namespace Roblox
         /// The voice style to be used by AudioTextToSpeech.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#VoiceId"/>
-        public string? VoiceId
+        public string VoiceId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "VoiceId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "VoiceId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "VoiceId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "VoiceId", value);
         }
 
         /// <summary>
@@ -131,52 +131,52 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Volume"/>
         public float Volume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Pauses the AudioTextToSpeech object wherever its TimePosition is.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Pause"/>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// Plays the AudioTextToSpeech from wherever its TimePosition is.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Play"/>
-        public object? Play()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play");
+        public object Play()
+            => global::Roblox.Reflection.Invoke<object>(this, "Play")!;
 
         /// <summary>
         /// Unload the generated speech audio.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#Unload"/>
-        public object? Unload()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Unload");
+        public object Unload()
+            => global::Roblox.Reflection.Invoke<object>(this, "Unload")!;
 
         /// <summary>
         /// Returns a sampling of the waveform data for the generated audio.
         /// </summary>
-        /// <param name="timeRange">A <c>global::Roblox.NumberRange?</c> value.</param>
+        /// <param name="timeRange">A <c>global::Roblox.NumberRange</c> value.</param>
         /// <param name="samples">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#GetWaveformAsync"/>
-        public object? GetWaveformAsync(global::Roblox.NumberRange? timeRange, int samples)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetWaveformAsync", timeRange, samples);
+        public object GetWaveformAsync(global::Roblox.NumberRange timeRange, int samples)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetWaveformAsync", timeRange, samples)!;
 
         /// <summary>
         /// Generates speech audio.
@@ -184,7 +184,7 @@ namespace Roblox
         /// <returns>A <c>Enum.AssetFetchStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#LoadAsync"/>
         public Enum.AssetFetchStatus LoadAsync()
-            => global::Roblox.Reflection.Invoke<Enum.AssetFetchStatus>(this, "LoadAsync");
+            => global::Roblox.Reflection.Invoke<Enum.AssetFetchStatus>(this, "LoadAsync")!;
 
         /// <summary>
         /// Fires when the AudioTextToSpeech object has completed playback and paused.
@@ -210,11 +210,11 @@ namespace Roblox
         /// Fires when another instance is connected to or disconnected from the AudioTextToSpeech via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTextToSpeech#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

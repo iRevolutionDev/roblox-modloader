@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VideoService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VideoService? FromHandle(nuint handle)
+        public static new VideoService? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoService(handle);
 
         /// <summary>
@@ -30,17 +30,17 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GameStreamingEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GameStreamingEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GameStreamingEnabled")!;
 
         /// <summary>
         /// Creates a VideoSampler that samples frames from the provided video content.
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
+        /// <param name="content">A <c>string</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>VideoSampler?</c> value returned by the engine.</returns>
+        /// <returns>A <c>VideoSampler</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoService#CreateVideoSamplerAsync"/>
-        public VideoSampler? CreateVideoSamplerAsync(string? content, object? options)
-            => global::Roblox.Reflection.Invoke<VideoSampler?>(this, "CreateVideoSamplerAsync", content, options);
+        public VideoSampler CreateVideoSamplerAsync(string content, object? options = null)
+            => global::Roblox.Reflection.Invoke<VideoSampler>(this, "CreateVideoSamplerAsync", content, options)!;
 
         public event Action? GameStreamingResolutionReady
         {

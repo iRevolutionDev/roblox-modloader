@@ -22,37 +22,37 @@ namespace Roblox
         /// Creates a <see cref="WrapTextureTransfer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WrapTextureTransfer? FromHandle(nuint handle)
+        public static new WrapTextureTransfer? FromHandle(nuint handle)
             => handle == 0 ? null : new WrapTextureTransfer(handle);
 
         /// <summary>
         /// An optional reference mesh used for pruning and validating the target cage.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTextureTransfer#ReferenceCageMeshContent"/>
-        public string? ReferenceCageMeshContent
+        public string ReferenceCageMeshContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ReferenceCageMeshContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ReferenceCageMeshContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ReferenceCageMeshContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ReferenceCageMeshContent", value);
         }
 
         /// <summary>
         /// Determines the maximum bound of the UV space to include in the transfer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTextureTransfer#UVMaxBound"/>
-        public global::Roblox.Vector2? UVMaxBound
+        public global::Roblox.Vector2 UVMaxBound
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVMaxBound");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVMaxBound", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "UVMaxBound")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "UVMaxBound", value);
         }
 
         /// <summary>
         /// Determines the minimum bound of the UV space to include in the transfer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTextureTransfer#UVMinBound"/>
-        public global::Roblox.Vector2? UVMinBound
+        public global::Roblox.Vector2 UVMinBound
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVMinBound");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVMinBound", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "UVMinBound")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "UVMinBound", value);
         }
 
     }

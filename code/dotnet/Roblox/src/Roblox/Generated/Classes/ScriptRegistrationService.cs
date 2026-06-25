@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="ScriptRegistrationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptRegistrationService? FromHandle(nuint handle)
+        public static new ScriptRegistrationService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptRegistrationService(handle);
 
         /// <summary>
         /// <c>ScriptRegistrationService.GetSourceContainerByScriptGuid</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
-        /// <returns>A <c>LuaSourceContainer?</c> value returned by the engine.</returns>
-        public LuaSourceContainer? GetSourceContainerByScriptGuid(string? guid)
-            => global::Roblox.Reflection.Invoke<LuaSourceContainer?>(this, "GetSourceContainerByScriptGuid", guid);
+        /// <param name="guid">A <c>string</c> value.</param>
+        /// <returns>A <c>LuaSourceContainer</c> value returned by the engine.</returns>
+        public LuaSourceContainer GetSourceContainerByScriptGuid(string guid)
+            => global::Roblox.Reflection.Invoke<LuaSourceContainer>(this, "GetSourceContainerByScriptGuid", guid)!;
 
     }
 }

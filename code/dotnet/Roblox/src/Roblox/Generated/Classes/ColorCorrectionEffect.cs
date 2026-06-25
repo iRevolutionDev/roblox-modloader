@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ColorCorrectionEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ColorCorrectionEffect? FromHandle(nuint handle)
+        public static new ColorCorrectionEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ColorCorrectionEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#Brightness"/>
         public float Brightness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Brightness", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#Contrast"/>
         public float Contrast
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Contrast");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Contrast")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Contrast", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#Saturation"/>
         public float Saturation
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Saturation");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Saturation")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Saturation", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines by how much the RGB channels of pixels are scaled.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ColorCorrectionEffect#TintColor"/>
-        public global::Roblox.Color3? TintColor
+        public global::Roblox.Color3 TintColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TintColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TintColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TintColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TintColor", value);
         }
 
     }

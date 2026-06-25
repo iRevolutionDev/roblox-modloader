@@ -18,75 +18,75 @@ namespace Roblox
         /// Creates a <see cref="StartPageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StartPageService? FromHandle(nuint handle)
+        public static new StartPageService? FromHandle(nuint handle)
             => handle == 0 ? null : new StartPageService(handle);
 
         /// <summary>
         /// <c>StartPageService.generateTempUrlInContentProvider</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GenerateTempUrlInContentProvider(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "generateTempUrlInContentProvider", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GenerateTempUrlInContentProvider(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "generateTempUrlInContentProvider", url)!;
 
         /// <summary>
         /// <c>StartPageService.getDaysSinceFirstUserLogin</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetDaysSinceFirstUserLogin()
-            => global::Roblox.Reflection.Invoke<int>(this, "getDaysSinceFirstUserLogin");
+            => global::Roblox.Reflection.Invoke<int>(this, "getDaysSinceFirstUserLogin")!;
 
         /// <summary>
         /// <c>StartPageService.getLocalGamesFromRegistry</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLocalGamesFromRegistry()
-            => global::Roblox.Reflection.Invoke<object?>(this, "getLocalGamesFromRegistry");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetLocalGamesFromRegistry()
+            => global::Roblox.Reflection.Invoke<object>(this, "getLocalGamesFromRegistry")!;
 
         /// <summary>
         /// <c>StartPageService.getRecentAPIGamesFromRegistry</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRecentAPIGamesFromRegistry()
-            => global::Roblox.Reflection.Invoke<object?>(this, "getRecentAPIGamesFromRegistry");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRecentAPIGamesFromRegistry()
+            => global::Roblox.Reflection.Invoke<object>(this, "getRecentAPIGamesFromRegistry")!;
 
         /// <summary>
         /// <c>StartPageService.getTempUrlInContentProvider</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetTempUrlInContentProvider(string? url)
-            => global::Roblox.Reflection.Invoke<string?>(this, "getTempUrlInContentProvider", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetTempUrlInContentProvider(string url)
+            => global::Roblox.Reflection.Invoke<string>(this, "getTempUrlInContentProvider", url)!;
 
         /// <summary>
         /// <c>StartPageService.isTutorialBannerClosed</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsTutorialBannerClosed()
-            => global::Roblox.Reflection.Invoke<bool>(this, "isTutorialBannerClosed");
+            => global::Roblox.Reflection.Invoke<bool>(this, "isTutorialBannerClosed")!;
 
         /// <summary>
         /// <c>StartPageService.isTutorialPopupClosed</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsTutorialPopupClosed()
-            => global::Roblox.Reflection.Invoke<bool>(this, "isTutorialPopupClosed");
+            => global::Roblox.Reflection.Invoke<bool>(this, "isTutorialPopupClosed")!;
 
         /// <summary>
         /// <c>StartPageService.openLink</c>
         /// </summary>
-        /// <param name="link">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenLink(string? link)
-            => global::Roblox.Reflection.Invoke<object?>(this, "openLink", link);
+        /// <param name="link">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenLink(string link)
+            => global::Roblox.Reflection.Invoke<object>(this, "openLink", link)!;
 
         /// <summary>
         /// <c>StartPageService.openLocalFile</c>
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenLocalFile(string? filePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "openLocalFile", filePath);
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenLocalFile(string filePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "openLocalFile", filePath)!;
 
         /// <summary>
         /// <c>StartPageService.openPlace</c>
@@ -94,71 +94,71 @@ namespace Roblox
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <param name="universeId">A <c>long</c> value.</param>
         /// <param name="launchTutorial">A <c>bool</c> value.</param>
-        /// <param name="shouldSkipSafetyChecks">A <c>bool</c> value.</param>
-        /// <param name="openAsLocalCopy">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenPlace(long placeId, long universeId, bool launchTutorial, bool shouldSkipSafetyChecks, bool openAsLocalCopy)
-            => global::Roblox.Reflection.Invoke<object?>(this, "openPlace", placeId, universeId, launchTutorial, shouldSkipSafetyChecks, openAsLocalCopy);
+        /// <param name="shouldSkipSafetyChecks">A <c>bool?</c> value.</param>
+        /// <param name="openAsLocalCopy">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenPlace(long placeId, long universeId, bool launchTutorial, bool? shouldSkipSafetyChecks = null, bool? openAsLocalCopy = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "openPlace", placeId, universeId, launchTutorial, shouldSkipSafetyChecks, openAsLocalCopy)!;
 
         /// <summary>
         /// <c>StartPageService.removeAPIGameFromRegistry</c>
         /// </summary>
         /// <param name="gameId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveAPIGameFromRegistry(long gameId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "removeAPIGameFromRegistry", gameId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveAPIGameFromRegistry(long gameId)
+            => global::Roblox.Reflection.Invoke<object>(this, "removeAPIGameFromRegistry", gameId)!;
 
         /// <summary>
         /// <c>StartPageService.removeLocalFileFromRegistry</c>
         /// </summary>
-        /// <param name="fileName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveLocalFileFromRegistry(string? fileName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "removeLocalFileFromRegistry", fileName);
+        /// <param name="fileName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveLocalFileFromRegistry(string fileName)
+            => global::Roblox.Reflection.Invoke<object>(this, "removeLocalFileFromRegistry", fileName)!;
 
         /// <summary>
         /// <c>StartPageService.setTutorialBannerClosed</c>
         /// </summary>
         /// <param name="closed">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTutorialBannerClosed(bool closed)
-            => global::Roblox.Reflection.Invoke<object?>(this, "setTutorialBannerClosed", closed);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTutorialBannerClosed(bool closed)
+            => global::Roblox.Reflection.Invoke<object>(this, "setTutorialBannerClosed", closed)!;
 
         /// <summary>
         /// <c>StartPageService.setTutorialPopupClosed</c>
         /// </summary>
         /// <param name="closed">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTutorialPopupClosed(bool closed)
-            => global::Roblox.Reflection.Invoke<object?>(this, "setTutorialPopupClosed", closed);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTutorialPopupClosed(bool closed)
+            => global::Roblox.Reflection.Invoke<object>(this, "setTutorialPopupClosed", closed)!;
 
         /// <summary>
         /// <c>StartPageService.shouldShowMacOSDeprecationWarning</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool ShouldShowMacOSDeprecationWarning()
-            => global::Roblox.Reflection.Invoke<bool>(this, "shouldShowMacOSDeprecationWarning");
+            => global::Roblox.Reflection.Invoke<bool>(this, "shouldShowMacOSDeprecationWarning")!;
 
         /// <summary>
         /// <c>StartPageService.shouldShowWinOSDeprecationWarning</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool ShouldShowWinOSDeprecationWarning()
-            => global::Roblox.Reflection.Invoke<bool>(this, "shouldShowWinOSDeprecationWarning");
+            => global::Roblox.Reflection.Invoke<bool>(this, "shouldShowWinOSDeprecationWarning")!;
 
         /// <summary>
         /// <c>StartPageService.startTutorial</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartTutorial()
-            => global::Roblox.Reflection.Invoke<object?>(this, "startTutorial");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartTutorial()
+            => global::Roblox.Reflection.Invoke<object>(this, "startTutorial")!;
 
         /// <summary>
         /// <c>StartPageService.ImageImportedSignal</c>
         /// </summary>
-        /// <param name="urlImported">A <c>string?</c> value.</param>
-        /// <param name="temporaryId">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? ImageImportedSignal
+        /// <param name="urlImported">A <c>string</c> value.</param>
+        /// <param name="temporaryId">A <c>string</c> value.</param>
+        public event Action<string, string>? ImageImportedSignal
         {
             add { if (value is not null) AddEventHandler("ImageImportedSignal", value); }
             remove { if (value is not null) RemoveEventHandler("ImageImportedSignal", value); }
@@ -167,8 +167,8 @@ namespace Roblox
         /// <summary>
         /// <c>StartPageService.LocalGamesFromRegistryUpdatedSignal</c>
         /// </summary>
-        /// <param name="localGames">A <c>object?</c> value.</param>
-        public event Action<object?>? LocalGamesFromRegistryUpdatedSignal
+        /// <param name="localGames">A <c>object</c> value.</param>
+        public event Action<object>? LocalGamesFromRegistryUpdatedSignal
         {
             add { if (value is not null) AddEventHandler("LocalGamesFromRegistryUpdatedSignal", value); }
             remove { if (value is not null) RemoveEventHandler("LocalGamesFromRegistryUpdatedSignal", value); }
@@ -177,8 +177,8 @@ namespace Roblox
         /// <summary>
         /// <c>StartPageService.RecentApiGamesFromRegistryUpdatedSignal</c>
         /// </summary>
-        /// <param name="recentGames">A <c>object?</c> value.</param>
-        public event Action<object?>? RecentApiGamesFromRegistryUpdatedSignal
+        /// <param name="recentGames">A <c>object</c> value.</param>
+        public event Action<object>? RecentApiGamesFromRegistryUpdatedSignal
         {
             add { if (value is not null) AddEventHandler("RecentApiGamesFromRegistryUpdatedSignal", value); }
             remove { if (value is not null) RemoveEventHandler("RecentApiGamesFromRegistryUpdatedSignal", value); }

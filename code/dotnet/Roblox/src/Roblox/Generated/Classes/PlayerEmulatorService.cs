@@ -18,73 +18,73 @@ namespace Roblox
         /// Creates a <see cref="PlayerEmulatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerEmulatorService? FromHandle(nuint handle)
+        public static new PlayerEmulatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerEmulatorService(handle);
 
         public bool CustomPoliciesEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomPoliciesEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomPoliciesEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomPoliciesEnabled", value);
         }
 
-        public string? EmulatedCountryCode
+        public string EmulatedCountryCode
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EmulatedCountryCode");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EmulatedCountryCode", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "EmulatedCountryCode")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "EmulatedCountryCode", value);
         }
 
-        public string? EmulatedGameLocale
+        public string EmulatedGameLocale
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EmulatedGameLocale");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EmulatedGameLocale", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "EmulatedGameLocale")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "EmulatedGameLocale", value);
         }
 
         public bool PlayerEmulationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayerEmulationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayerEmulationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayerEmulationEnabled", value);
         }
 
         public bool PseudolocalizationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PseudolocalizationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PseudolocalizationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PseudolocalizationEnabled", value);
         }
 
-        public byte[]? SerializedEmulatedPolicyInfo
+        public byte[] SerializedEmulatedPolicyInfo
         {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "SerializedEmulatedPolicyInfo");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "SerializedEmulatedPolicyInfo", value);
+            get => global::Roblox.Reflection.GetProperty<byte[]>(this, "SerializedEmulatedPolicyInfo")!;
+            set => global::Roblox.Reflection.SetProperty<byte[]>(this, "SerializedEmulatedPolicyInfo", value);
         }
 
         public int TextElongationFactor
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "TextElongationFactor");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "TextElongationFactor")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "TextElongationFactor", value);
         }
 
         /// <summary>
         /// <c>PlayerEmulatorService.GetEmulatedPolicyInfo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEmulatedPolicyInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEmulatedPolicyInfo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetEmulatedPolicyInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEmulatedPolicyInfo")!;
 
         /// <summary>
         /// <c>PlayerEmulatorService.RegionCodeWillHaveAutomaticNonCustomPolicies</c>
         /// </summary>
-        /// <param name="regionCode">A <c>string?</c> value.</param>
+        /// <param name="regionCode">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool RegionCodeWillHaveAutomaticNonCustomPolicies(string? regionCode)
-            => global::Roblox.Reflection.Invoke<bool>(this, "RegionCodeWillHaveAutomaticNonCustomPolicies", regionCode);
+        public bool RegionCodeWillHaveAutomaticNonCustomPolicies(string regionCode)
+            => global::Roblox.Reflection.Invoke<bool>(this, "RegionCodeWillHaveAutomaticNonCustomPolicies", regionCode)!;
 
         /// <summary>
         /// <c>PlayerEmulatorService.SetEmulatedPolicyInfo</c>
         /// </summary>
-        /// <param name="emulatedPolicyInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetEmulatedPolicyInfo(object? emulatedPolicyInfo)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEmulatedPolicyInfo", emulatedPolicyInfo);
+        /// <param name="emulatedPolicyInfo">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetEmulatedPolicyInfo(object emulatedPolicyInfo)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEmulatedPolicyInfo", emulatedPolicyInfo)!;
 
     }
 }

@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="SlimDebugSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SlimDebugSettings? FromHandle(nuint handle)
+        public static new SlimDebugSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimDebugSettings(handle);
 
         /// <summary>
@@ -26,15 +26,15 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>Enum.SlimTintMode</c> value returned by the engine.</returns>
         public Enum.SlimTintMode GetTintMode()
-            => global::Roblox.Reflection.Invoke<Enum.SlimTintMode>(this, "GetTintMode");
+            => global::Roblox.Reflection.Invoke<Enum.SlimTintMode>(this, "GetTintMode")!;
 
         /// <summary>
         /// <c>SlimDebugSettings.SetTintMode</c>
         /// </summary>
         /// <param name="mode">A <c>Enum.SlimTintMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTintMode(Enum.SlimTintMode mode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTintMode", mode);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTintMode(Enum.SlimTintMode mode)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTintMode", mode)!;
 
     }
 }

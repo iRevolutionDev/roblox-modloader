@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AppUpdateService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AppUpdateService? FromHandle(nuint handle)
+        public static new AppUpdateService? FromHandle(nuint handle)
             => handle == 0 ? null : new AppUpdateService(handle);
 
         /// <summary>
@@ -26,36 +26,36 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool CanPerformBinaryUpdate()
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanPerformBinaryUpdate");
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanPerformBinaryUpdate")!;
 
         /// <summary>
         /// <c>AppUpdateService.CheckForUpdate</c>
         /// </summary>
         /// <param name="handler">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CheckForUpdate(object? handler)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CheckForUpdate", handler);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CheckForUpdate(object? handler = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CheckForUpdate", handler)!;
 
         /// <summary>
         /// <c>AppUpdateService.GetProtocolLaunchUpdateName</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetProtocolLaunchUpdateName()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetProtocolLaunchUpdateName");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetProtocolLaunchUpdateName()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetProtocolLaunchUpdateName")!;
 
         /// <summary>
         /// <c>AppUpdateService.GetProtocolLaunchUpdateType</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetProtocolLaunchUpdateType()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetProtocolLaunchUpdateType");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetProtocolLaunchUpdateType()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetProtocolLaunchUpdateType")!;
 
         /// <summary>
         /// <c>AppUpdateService.PerformManagedUpdate</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool PerformManagedUpdate()
-            => global::Roblox.Reflection.Invoke<bool>(this, "PerformManagedUpdate");
+            => global::Roblox.Reflection.Invoke<bool>(this, "PerformManagedUpdate")!;
 
     }
 }

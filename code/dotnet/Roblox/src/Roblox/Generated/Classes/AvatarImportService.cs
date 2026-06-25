@@ -18,34 +18,34 @@ namespace Roblox
         /// Creates a <see cref="AvatarImportService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarImportService? FromHandle(nuint handle)
+        public static new AvatarImportService? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarImportService(handle);
 
         /// <summary>
         /// <c>AvatarImportService.ImportFBXAnimationFromFilePathUserMayChooseModel</c>
         /// </summary>
-        /// <param name="fbxFilePath">A <c>string?</c> value.</param>
-        /// <param name="selectedRig">A <c>Instance?</c> value.</param>
-        /// <param name="userChooseModelThenImportCB">A <c>object?</c> value.</param>
+        /// <param name="fbxFilePath">A <c>string</c> value.</param>
+        /// <param name="selectedRig">A <c>Instance</c> value.</param>
+        /// <param name="userChooseModelThenImportCB">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? ImportFBXAnimationFromFilePathUserMayChooseModel(string? fbxFilePath, Instance? selectedRig, object? userChooseModelThenImportCB)
+        public Instance? ImportFBXAnimationFromFilePathUserMayChooseModel(string fbxFilePath, Instance selectedRig, object userChooseModelThenImportCB)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFBXAnimationFromFilePathUserMayChooseModel", fbxFilePath, selectedRig, userChooseModelThenImportCB);
 
         /// <summary>
         /// <c>AvatarImportService.ImportFBXAnimationUserMayChooseModel</c>
         /// </summary>
-        /// <param name="selectedRig">A <c>Instance?</c> value.</param>
-        /// <param name="userChooseModelThenImportCB">A <c>object?</c> value.</param>
+        /// <param name="selectedRig">A <c>Instance</c> value.</param>
+        /// <param name="userChooseModelThenImportCB">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? ImportFBXAnimationUserMayChooseModel(Instance? selectedRig, object? userChooseModelThenImportCB)
+        public Instance? ImportFBXAnimationUserMayChooseModel(Instance selectedRig, object userChooseModelThenImportCB)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFBXAnimationUserMayChooseModel", selectedRig, userChooseModelThenImportCB);
 
         /// <summary>
         /// <c>AvatarImportService.ImportFbxRigWithoutSceneLoad</c>
         /// </summary>
-        /// <param name="isR15">A <c>bool</c> value.</param>
+        /// <param name="isR15">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? ImportFbxRigWithoutSceneLoad(bool isR15)
+        public Instance? ImportFbxRigWithoutSceneLoad(bool? isR15 = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFbxRigWithoutSceneLoad", isR15);
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace Roblox
         /// <summary>
         /// <c>AvatarImportService.LoadRigAndDetectType</c>
         /// </summary>
-        /// <param name="promptR15Callback">A <c>object?</c> value.</param>
+        /// <param name="promptR15Callback">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? LoadRigAndDetectType(object? promptR15Callback)
+        public Instance? LoadRigAndDetectType(object promptR15Callback)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "LoadRigAndDetectType", promptR15Callback);
 
     }

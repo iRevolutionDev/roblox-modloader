@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="LinearVelocity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LinearVelocity? FromHandle(nuint handle)
+        public static new LinearVelocity? FromHandle(nuint handle)
             => handle == 0 ? null : new LinearVelocity(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#ForceLimitMode"/>
         public Enum.ForceLimitMode ForceLimitMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ForceLimitMode>(this, "ForceLimitMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ForceLimitMode>(this, "ForceLimitMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ForceLimitMode>(this, "ForceLimitMode", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#ForceLimitsEnabled"/>
         public bool ForceLimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForceLimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForceLimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ForceLimitsEnabled", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// The normalized Vector3 direction for constraining the velocity along a line.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#LineDirection"/>
-        public global::Roblox.Vector3? LineDirection
+        public global::Roblox.Vector3 LineDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LineDirection");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LineDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LineDirection")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LineDirection", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#LineVelocity"/>
         public float LineVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LineVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LineVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LineVelocity", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// Maximum force along each axis that the constraint can apply to achieve the vector velocity. Only used if ForceLimitsEnabled is true, ForceLimitMode is PerAxis, and VelocityConstraintMode is Vector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxAxesForce"/>
-        public global::Roblox.Vector3? MaxAxesForce
+        public global::Roblox.Vector3 MaxAxesForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxAxesForce")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxAxesForce", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxForce"/>
         public float MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxForce", value);
         }
 
@@ -89,30 +89,30 @@ namespace Roblox
         /// Maximum force along each axis that the constraint can apply to achieve the plane velocity. Only used if ForceLimitsEnabled is true, ForceLimitMode is PerAxis, and VelocityConstraintMode is Plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#MaxPlanarAxesForce"/>
-        public global::Roblox.Vector2? MaxPlanarAxesForce
+        public global::Roblox.Vector2 MaxPlanarAxesForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MaxPlanarAxesForce");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MaxPlanarAxesForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MaxPlanarAxesForce")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MaxPlanarAxesForce", value);
         }
 
         /// <summary>
         /// Vector2 value of the velocity in each tangent direction of the plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#PlaneVelocity"/>
-        public global::Roblox.Vector2? PlaneVelocity
+        public global::Roblox.Vector2 PlaneVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "PlaneVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "PlaneVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "PlaneVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "PlaneVelocity", value);
         }
 
         /// <summary>
         /// The primary axis in the plane, when VelocityConstraintMode is set to Plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#PrimaryTangentAxis"/>
-        public global::Roblox.Vector3? PrimaryTangentAxis
+        public global::Roblox.Vector3 PrimaryTangentAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "PrimaryTangentAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "PrimaryTangentAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "PrimaryTangentAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "PrimaryTangentAxis", value);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#ReactionForceEnabled"/>
         public bool ReactionForceEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionForceEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionForceEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReactionForceEnabled", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo", value);
         }
 
@@ -139,20 +139,20 @@ namespace Roblox
         /// The secondary axis in the plane, when VelocityConstraintMode is set to Plane.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#SecondaryTangentAxis"/>
-        public global::Roblox.Vector3? SecondaryTangentAxis
+        public global::Roblox.Vector3 SecondaryTangentAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SecondaryTangentAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SecondaryTangentAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SecondaryTangentAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SecondaryTangentAxis", value);
         }
 
         /// <summary>
         /// Vector3 velocity value when VelocityConstraintMode is set to Vector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#VectorVelocity"/>
-        public global::Roblox.Vector3? VectorVelocity
+        public global::Roblox.Vector3 VectorVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "VectorVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "VectorVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "VectorVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "VectorVelocity", value);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LinearVelocity#VelocityConstraintMode"/>
         public Enum.VelocityConstraintMode VelocityConstraintMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VelocityConstraintMode>(this, "VelocityConstraintMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.VelocityConstraintMode>(this, "VelocityConstraintMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VelocityConstraintMode>(this, "VelocityConstraintMode", value);
         }
 

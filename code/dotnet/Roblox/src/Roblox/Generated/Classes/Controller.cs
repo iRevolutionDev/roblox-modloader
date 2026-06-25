@@ -22,18 +22,18 @@ namespace Roblox
         /// Creates a <see cref="Controller"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Controller? FromHandle(nuint handle)
+        public static new Controller? FromHandle(nuint handle)
             => handle == 0 ? null : new Controller(handle);
 
         /// <summary>
         /// Activates an overriding bind on the specified button.
         /// </summary>
         /// <param name="button">A <c>Enum.Button</c> value.</param>
-        /// <param name="caption">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="caption">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Controller#BindButton"/>
-        public object? BindButton(Enum.Button button, string? caption)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindButton", button, caption);
+        public object BindButton(Enum.Button button, string caption)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindButton", button, caption)!;
 
         /// <summary>
         /// Returns whether or not Button is being pressed.
@@ -42,16 +42,16 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Controller#GetButton"/>
         public bool GetButton(Enum.Button button)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetButton", button);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetButton", button)!;
 
         /// <summary>
         /// Removes the bind on button.
         /// </summary>
         /// <param name="button">A <c>Enum.Button</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Controller#UnbindButton"/>
-        public object? UnbindButton(Enum.Button button)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbindButton", button);
+        public object UnbindButton(Enum.Button button)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbindButton", button)!;
 
         /// <summary>
         /// Fired when the pressed state of a bound button is changed. This event can be used in conjunction with Controller:GetButton() to see whether a bound button is being pressed down or not.

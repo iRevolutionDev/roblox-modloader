@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="LineForce"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LineForce? FromHandle(nuint handle)
+        public static new LineForce? FromHandle(nuint handle)
             => handle == 0 ? null : new LineForce(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ApplyAtCenterOfMass", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#InverseSquareLaw"/>
         public bool InverseSquareLaw
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InverseSquareLaw");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "InverseSquareLaw")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "InverseSquareLaw", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#Magnitude"/>
         public float Magnitude
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Magnitude");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Magnitude")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Magnitude", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#MaxForce"/>
         public float MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxForce", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineForce#ReactionForceEnabled"/>
         public bool ReactionForceEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionForceEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionForceEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReactionForceEnabled", value);
         }
 

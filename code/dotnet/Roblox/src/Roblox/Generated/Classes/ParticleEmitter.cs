@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="ParticleEmitter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ParticleEmitter? FromHandle(nuint handle)
+        public static new ParticleEmitter? FromHandle(nuint handle)
             => handle == 0 ? null : new ParticleEmitter(handle);
 
         /// <summary>
         /// Determines the global-axis acceleration of all active particles, measured in studs per second squared.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Acceleration"/>
-        public global::Roblox.Vector3? Acceleration
+        public global::Roblox.Vector3 Acceleration
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Acceleration");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Acceleration", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Acceleration")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Acceleration", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Brightness"/>
         public float Brightness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Brightness", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines the color of all active particles over their individual lifetimes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Color"/>
-        public global::Roblox.ColorSequence? Color
+        public global::Roblox.ColorSequence Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence>(this, "Color", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Drag"/>
         public float Drag
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Drag");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Drag")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Drag", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#EmissionDirection"/>
         public Enum.NormalId EmissionDirection
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "EmissionDirection");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "EmissionDirection")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "EmissionDirection", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookBlendFrames"/>
         public bool FlipbookBlendFrames
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlipbookBlendFrames");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlipbookBlendFrames")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FlipbookBlendFrames", value);
         }
 
@@ -99,20 +99,20 @@ namespace Roblox
         /// Determines how fast the flipbook texture animates in frames per second.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookFramerate"/>
-        public global::Roblox.NumberRange? FlipbookFramerate
+        public global::Roblox.NumberRange FlipbookFramerate
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "FlipbookFramerate");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "FlipbookFramerate", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "FlipbookFramerate")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "FlipbookFramerate", value);
         }
 
         /// <summary>
         /// The error message to display if the Texture is incompatible for a flipbook.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookIncompatible"/>
-        public string? FlipbookIncompatible
+        public string FlipbookIncompatible
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FlipbookIncompatible");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FlipbookIncompatible", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FlipbookIncompatible")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FlipbookIncompatible", value);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookLayout"/>
         public Enum.ParticleFlipbookLayout FlipbookLayout
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ParticleFlipbookLayout>(this, "FlipbookLayout");
+            get => global::Roblox.Reflection.GetProperty<Enum.ParticleFlipbookLayout>(this, "FlipbookLayout")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ParticleFlipbookLayout>(this, "FlipbookLayout", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookMode"/>
         public Enum.ParticleFlipbookMode FlipbookMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ParticleFlipbookMode>(this, "FlipbookMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ParticleFlipbookMode>(this, "FlipbookMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ParticleFlipbookMode>(this, "FlipbookMode", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookSizeX"/>
         public int FlipbookSizeX
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "FlipbookSizeX");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "FlipbookSizeX")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "FlipbookSizeX", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookSizeY"/>
         public int FlipbookSizeY
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "FlipbookSizeY");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "FlipbookSizeY")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "FlipbookSizeY", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#FlipbookStartRandom"/>
         public bool FlipbookStartRandom
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlipbookStartRandom");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlipbookStartRandom")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FlipbookStartRandom", value);
         }
 
@@ -169,10 +169,10 @@ namespace Roblox
         /// Defines a random range of ages for newly emitted particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Lifetime"/>
-        public global::Roblox.NumberRange? Lifetime
+        public global::Roblox.NumberRange Lifetime
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "Lifetime");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "Lifetime", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "Lifetime")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "Lifetime", value);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LightEmission"/>
         public float LightEmission
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightEmission");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightEmission")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightEmission", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LightInfluence"/>
         public float LightInfluence
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightInfluence", value);
         }
 
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#LockedToPart"/>
         public bool LockedToPart
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LockedToPart");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LockedToPart")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LockedToPart", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Orientation"/>
         public Enum.ParticleOrientation Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ParticleOrientation>(this, "Orientation");
+            get => global::Roblox.Reflection.GetProperty<Enum.ParticleOrientation>(this, "Orientation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ParticleOrientation>(this, "Orientation", value);
         }
 
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Rate"/>
         public float Rate
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Rate");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Rate")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Rate", value);
         }
 
@@ -239,20 +239,20 @@ namespace Roblox
         /// Determines the range of angular speeds of emitted particles, measured in degrees per second.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#RotSpeed"/>
-        public global::Roblox.NumberRange? RotSpeed
+        public global::Roblox.NumberRange RotSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "RotSpeed");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "RotSpeed", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "RotSpeed")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "RotSpeed", value);
         }
 
         /// <summary>
         /// Determines the range of rotations in degrees for newly emitted particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Rotation"/>
-        public global::Roblox.NumberRange? Rotation
+        public global::Roblox.NumberRange Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "Rotation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "Rotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "Rotation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "Rotation", value);
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Shape"/>
         public Enum.ParticleEmitterShape Shape
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ParticleEmitterShape>(this, "Shape");
+            get => global::Roblox.Reflection.GetProperty<Enum.ParticleEmitterShape>(this, "Shape")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ParticleEmitterShape>(this, "Shape", value);
         }
 
@@ -271,7 +271,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ShapeInOut"/>
         public Enum.ParticleEmitterShapeInOut ShapeInOut
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ParticleEmitterShapeInOut>(this, "ShapeInOut");
+            get => global::Roblox.Reflection.GetProperty<Enum.ParticleEmitterShapeInOut>(this, "ShapeInOut")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ParticleEmitterShapeInOut>(this, "ShapeInOut", value);
         }
 
@@ -281,7 +281,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ShapePartial"/>
         public float ShapePartial
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ShapePartial");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ShapePartial")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ShapePartial", value);
         }
 
@@ -291,7 +291,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ShapeStyle"/>
         public Enum.ParticleEmitterShapeStyle ShapeStyle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ParticleEmitterShapeStyle>(this, "ShapeStyle");
+            get => global::Roblox.Reflection.GetProperty<Enum.ParticleEmitterShapeStyle>(this, "ShapeStyle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ParticleEmitterShapeStyle>(this, "ShapeStyle", value);
         }
 
@@ -299,56 +299,56 @@ namespace Roblox
         /// Determines the world size over individual particles' lifetimes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Size"/>
-        public global::Roblox.NumberSequence? Size
+        public global::Roblox.NumberSequence Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence>(this, "Size")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence>(this, "Size", value);
         }
 
         /// <summary>
         /// Determines a random range of velocities (minimum to maximum) at which new particles will emit, measured in studs per second.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Speed"/>
-        public global::Roblox.NumberRange? Speed
+        public global::Roblox.NumberRange Speed
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "Speed");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "Speed", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "Speed")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "Speed", value);
         }
 
         /// <summary>
         /// Determines the angles at which particles may be randomly emit, measured in degrees.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#SpreadAngle"/>
-        public global::Roblox.Vector2? SpreadAngle
+        public global::Roblox.Vector2 SpreadAngle
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "SpreadAngle");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "SpreadAngle", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "SpreadAngle")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "SpreadAngle", value);
         }
 
         /// <summary>
         /// Allows for non-uniform scaling of particles, curve-controlled over their lifetime.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Squash"/>
-        public global::Roblox.NumberSequence? Squash
+        public global::Roblox.NumberSequence Squash
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Squash");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Squash", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence>(this, "Squash")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence>(this, "Squash", value);
         }
 
         /// <summary>
         /// Determines the image rendered on particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Texture"/>
-        public object? Texture
+        public object Texture
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Texture");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Texture", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Texture")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Texture", value);
         }
 
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
         /// <summary>
@@ -357,7 +357,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#TimeScale"/>
         public float TimeScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TimeScale", value);
         }
 
@@ -365,10 +365,10 @@ namespace Roblox
         /// Determines the transparency of particles over their individual lifetimes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Transparency"/>
-        public global::Roblox.NumberSequence? Transparency
+        public global::Roblox.NumberSequence Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence>(this, "Transparency")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence>(this, "Transparency", value);
         }
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#VelocityInheritance"/>
         public float VelocityInheritance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "VelocityInheritance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "VelocityInheritance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "VelocityInheritance", value);
         }
 
@@ -387,7 +387,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#VelocitySpread"/>
         public float VelocitySpread
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "VelocitySpread");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "VelocitySpread")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "VelocitySpread", value);
         }
 
@@ -397,7 +397,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#WindAffectsDrag"/>
         public bool WindAffectsDrag
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "WindAffectsDrag");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "WindAffectsDrag")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "WindAffectsDrag", value);
         }
 
@@ -407,34 +407,34 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#ZOffset"/>
         public float ZOffset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ZOffset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ZOffset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ZOffset", value);
         }
 
         /// <summary>
         /// Clears all particles that have been emitted.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Clear"/>
-        public object? Clear()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
+        public object Clear()
+            => global::Roblox.Reflection.Invoke<object>(this, "Clear")!;
 
         /// <summary>
         /// Emits a given number of particles.
         /// </summary>
-        /// <param name="particleCount">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="particleCount">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#Emit"/>
-        public object? Emit(int particleCount)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Emit", particleCount);
+        public object Emit(int? particleCount = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Emit", particleCount)!;
 
         /// <summary>
         /// <c>ParticleEmitter.FastForward</c>
         /// </summary>
         /// <param name="numFrames">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FastForward(int numFrames)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FastForward", numFrames);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FastForward(int numFrames)
+            => global::Roblox.Reflection.Invoke<object>(this, "FastForward", numFrames)!;
 
     }
 }

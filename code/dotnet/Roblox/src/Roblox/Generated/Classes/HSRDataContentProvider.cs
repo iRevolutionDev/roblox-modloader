@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HSRDataContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HSRDataContentProvider? FromHandle(nuint handle)
+        public static new HSRDataContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new HSRDataContentProvider(handle);
 
     }

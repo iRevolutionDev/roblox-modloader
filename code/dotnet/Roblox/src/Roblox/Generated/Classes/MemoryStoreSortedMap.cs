@@ -22,29 +22,29 @@ namespace Roblox
         /// Creates a <see cref="MemoryStoreSortedMap"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MemoryStoreSortedMap? FromHandle(nuint handle)
+        public static new MemoryStoreSortedMap? FromHandle(nuint handle)
             => handle == 0 ? null : new MemoryStoreSortedMap(handle);
 
         /// <summary>
         /// Retrieves the value and sort key of a key in the sorted map.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreSortedMap#GetAsync"/>
-        public object? GetAsync(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAsync", key);
+        public object GetAsync(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAsync", key)!;
 
         /// <summary>
         /// Retrieves items within a sorted range of keys and sort keys.
         /// </summary>
         /// <param name="direction">A <c>Enum.SortDirection</c> value.</param>
         /// <param name="count">A <c>int</c> value.</param>
-        /// <param name="exclusiveLowerBound">A <c>object?</c> value.</param>
-        /// <param name="exclusiveUpperBound">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="exclusiveLowerBound">A <c>object</c> value.</param>
+        /// <param name="exclusiveUpperBound">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreSortedMap#GetRangeAsync"/>
-        public object? GetRangeAsync(Enum.SortDirection direction, int count, object? exclusiveLowerBound, object? exclusiveUpperBound)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRangeAsync", direction, count, exclusiveLowerBound, exclusiveUpperBound);
+        public object GetRangeAsync(Enum.SortDirection direction, int count, object exclusiveLowerBound, object exclusiveUpperBound)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRangeAsync", direction, count, exclusiveLowerBound, exclusiveUpperBound)!;
 
         /// <summary>
         /// Gets the size of the sorted map.
@@ -52,39 +52,39 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreSortedMap#GetSizeAsync"/>
         public int GetSizeAsync()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetSizeAsync");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetSizeAsync")!;
 
         /// <summary>
         /// Removes the provided key from the sorted map.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreSortedMap#RemoveAsync"/>
-        public object? RemoveAsync(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveAsync", key);
+        public object RemoveAsync(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveAsync", key)!;
 
         /// <summary>
         /// Sets the value of a key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
         /// <param name="expiration">A <c>long</c> value.</param>
-        /// <param name="sortKey">A <c>object?</c> value.</param>
+        /// <param name="sortKey">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreSortedMap#SetAsync"/>
-        public bool SetAsync(string? key, object? value, long expiration, object? sortKey)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SetAsync", key, value, expiration, sortKey);
+        public bool SetAsync(string key, object value, long expiration, object sortKey)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SetAsync", key, value, expiration, sortKey)!;
 
         /// <summary>
         /// Retrieves the value and sort key of a key from a sorted map and updates it with a new value and sort key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="transformFunction">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="transformFunction">A <c>object</c> value.</param>
         /// <param name="expiration">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreSortedMap#UpdateAsync"/>
-        public object? UpdateAsync(string? key, object? transformFunction, long expiration)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateAsync", key, transformFunction, expiration);
+        public object UpdateAsync(string key, object transformFunction, long expiration)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateAsync", key, transformFunction, expiration)!;
 
     }
 }

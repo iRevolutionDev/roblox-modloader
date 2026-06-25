@@ -18,31 +18,31 @@ namespace Roblox
         /// Creates a <see cref="AvatarCollisionRules"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarCollisionRules? FromHandle(nuint handle)
+        public static new AvatarCollisionRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarCollisionRules(handle);
 
         public Enum.AvatarSettingsCollisionMode CollisionMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCollisionMode>(this, "CollisionMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCollisionMode>(this, "CollisionMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCollisionMode>(this, "CollisionMode", value);
         }
 
         public Enum.AvatarSettingsHitAndTouchDetectionMode HitAndTouchDetectionMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsHitAndTouchDetectionMode>(this, "HitAndTouchDetectionMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsHitAndTouchDetectionMode>(this, "HitAndTouchDetectionMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsHitAndTouchDetectionMode>(this, "HitAndTouchDetectionMode", value);
         }
 
         public Enum.AvatarSettingsLegacyCollisionMode LegacyCollisionMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsLegacyCollisionMode>(this, "LegacyCollisionMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsLegacyCollisionMode>(this, "LegacyCollisionMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsLegacyCollisionMode>(this, "LegacyCollisionMode", value);
         }
 
-        public global::Roblox.Vector3? SingleColliderSize
+        public global::Roblox.Vector3 SingleColliderSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SingleColliderSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SingleColliderSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SingleColliderSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SingleColliderSize", value);
         }
 
     }

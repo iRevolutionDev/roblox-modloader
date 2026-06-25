@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="InternalMessagingServiceVerifier"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InternalMessagingServiceVerifier? FromHandle(nuint handle)
+        public static new InternalMessagingServiceVerifier? FromHandle(nuint handle)
             => handle == 0 ? null : new InternalMessagingServiceVerifier(handle);
 
     }

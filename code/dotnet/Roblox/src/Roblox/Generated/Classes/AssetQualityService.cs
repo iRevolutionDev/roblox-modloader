@@ -18,52 +18,52 @@ namespace Roblox
         /// Creates a <see cref="AssetQualityService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetQualityService? FromHandle(nuint handle)
+        public static new AssetQualityService? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetQualityService(handle);
 
         /// <summary>
         /// <c>AssetQualityService.FetchAssetQualitySummaryFromGltfAsync</c>
         /// </summary>
-        /// <param name="gltfData">A <c>string?</c> value.</param>
-        /// <param name="desiredQualityChecks">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FetchAssetQualitySummaryFromGltfAsync(string? gltfData, object? desiredQualityChecks)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FetchAssetQualitySummaryFromGltfAsync", gltfData, desiredQualityChecks);
+        /// <param name="gltfData">A <c>string</c> value.</param>
+        /// <param name="desiredQualityChecks">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FetchAssetQualitySummaryFromGltfAsync(string gltfData, object desiredQualityChecks)
+            => global::Roblox.Reflection.Invoke<object>(this, "FetchAssetQualitySummaryFromGltfAsync", gltfData, desiredQualityChecks)!;
 
         /// <summary>
         /// <c>AssetQualityService.FetchAssetQualitySummaryFromJobIdAsync</c>
         /// </summary>
-        /// <param name="jobId">A <c>string?</c> value.</param>
-        /// <param name="desiredQualityChecks">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FetchAssetQualitySummaryFromJobIdAsync(string? jobId, object? desiredQualityChecks)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FetchAssetQualitySummaryFromJobIdAsync", jobId, desiredQualityChecks);
+        /// <param name="jobId">A <c>string</c> value.</param>
+        /// <param name="desiredQualityChecks">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FetchAssetQualitySummaryFromJobIdAsync(string jobId, object desiredQualityChecks)
+            => global::Roblox.Reflection.Invoke<object>(this, "FetchAssetQualitySummaryFromJobIdAsync", jobId, desiredQualityChecks)!;
 
         /// <summary>
         /// <c>AssetQualityService.FetchAssetQualityValidationEntriesFromModelsAsync</c>
         /// </summary>
-        /// <param name="models">A <c>object?</c> value.</param>
-        /// <param name="assetTypeIds">A <c>object?</c> value.</param>
-        /// <param name="settings">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FetchAssetQualityValidationEntriesFromModelsAsync(object? models, object? assetTypeIds, object? settings)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FetchAssetQualityValidationEntriesFromModelsAsync", models, assetTypeIds, settings);
+        /// <param name="models">A <c>object</c> value.</param>
+        /// <param name="assetTypeIds">A <c>object</c> value.</param>
+        /// <param name="settings">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FetchAssetQualityValidationEntriesFromModelsAsync(object models, object assetTypeIds, object settings)
+            => global::Roblox.Reflection.Invoke<object>(this, "FetchAssetQualityValidationEntriesFromModelsAsync", models, assetTypeIds, settings)!;
 
         /// <summary>
         /// <c>AssetQualityService.FetchAssetQualityVisualizationDataFromUrlAsync</c>
         /// </summary>
-        /// <param name="visualizationUrl">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FetchAssetQualityVisualizationDataFromUrlAsync(string? visualizationUrl)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FetchAssetQualityVisualizationDataFromUrlAsync", visualizationUrl);
+        /// <param name="visualizationUrl">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FetchAssetQualityVisualizationDataFromUrlAsync(string visualizationUrl)
+            => global::Roblox.Reflection.Invoke<object>(this, "FetchAssetQualityVisualizationDataFromUrlAsync", visualizationUrl)!;
 
         /// <summary>
         /// <c>AssetQualityService.GenerateAssetQualityGltfFromInstanceAsync</c>
         /// </summary>
-        /// <param name="uploadModel">A <c>Model?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GenerateAssetQualityGltfFromInstanceAsync(Model? uploadModel)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GenerateAssetQualityGltfFromInstanceAsync", uploadModel);
+        /// <param name="uploadModel">A <c>Model</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GenerateAssetQualityGltfFromInstanceAsync(Model uploadModel)
+            => global::Roblox.Reflection.Invoke<string>(this, "GenerateAssetQualityGltfFromInstanceAsync", uploadModel)!;
 
     }
 }

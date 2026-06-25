@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="PausedState"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PausedState? FromHandle(nuint handle)
+        public static new PausedState? FromHandle(nuint handle)
             => handle == 0 ? null : new PausedState(handle);
 
         public bool AllThreadsPaused
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllThreadsPaused");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllThreadsPaused")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllThreadsPaused", value);
         }
 
         public Enum.DebuggerPauseReason Reason
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DebuggerPauseReason>(this, "Reason");
+            get => global::Roblox.Reflection.GetProperty<Enum.DebuggerPauseReason>(this, "Reason")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DebuggerPauseReason>(this, "Reason", value);
         }
 
         public int ThreadId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ThreadId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ThreadId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ThreadId", value);
         }
 

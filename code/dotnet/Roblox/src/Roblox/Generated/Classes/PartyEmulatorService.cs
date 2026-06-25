@@ -18,84 +18,84 @@ namespace Roblox
         /// Creates a <see cref="PartyEmulatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PartyEmulatorService? FromHandle(nuint handle)
+        public static new PartyEmulatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new PartyEmulatorService(handle);
 
         /// <summary>
         /// <c>PartyEmulatorService.CreateNewParty</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? CreateNewParty()
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateNewParty");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string CreateNewParty()
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateNewParty")!;
 
         /// <summary>
         /// <c>PartyEmulatorService.DeleteParty</c>
         /// </summary>
-        /// <param name="partyId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DeleteParty(string? partyId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeleteParty", partyId);
+        /// <param name="partyId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DeleteParty(string partyId)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeleteParty", partyId)!;
 
         /// <summary>
         /// <c>PartyEmulatorService.GetEmulatedPartyConfiguration</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEmulatedPartyConfiguration()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEmulatedPartyConfiguration");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetEmulatedPartyConfiguration()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEmulatedPartyConfiguration")!;
 
         /// <summary>
         /// <c>PartyEmulatorService.GetIsEmulationEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetIsEmulationEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsEmulationEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsEmulationEnabled")!;
 
         /// <summary>
         /// <c>PartyEmulatorService.OnTestPlayerCountChanged</c>
         /// </summary>
         /// <param name="newPlayerCount">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnTestPlayerCountChanged(int newPlayerCount)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnTestPlayerCountChanged", newPlayerCount);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnTestPlayerCountChanged(int newPlayerCount)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnTestPlayerCountChanged", newPlayerCount)!;
 
         /// <summary>
         /// <c>PartyEmulatorService.SetIsEmulationEnabled</c>
         /// </summary>
         /// <param name="isEnabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetIsEmulationEnabled(bool isEnabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetIsEmulationEnabled", isEnabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetIsEmulationEnabled(bool isEnabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetIsEmulationEnabled", isEnabled)!;
 
         /// <summary>
         /// <c>PartyEmulatorService.SetPlayerPartyId</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="partyId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPlayerPartyId(long userId, string? partyId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPlayerPartyId", userId, partyId);
+        /// <param name="partyId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPlayerPartyId(long userId, string partyId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPlayerPartyId", userId, partyId)!;
 
         /// <summary>
         /// <c>PartyEmulatorService.applyPartyIdToPlayer</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyPartyIdToPlayer(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "applyPartyIdToPlayer", player);
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplyPartyIdToPlayer(Player player)
+            => global::Roblox.Reflection.Invoke<object>(this, "applyPartyIdToPlayer", player)!;
 
         /// <summary>
         /// <c>PartyEmulatorService.GetEmulatedPartyAsync</c>
         /// </summary>
-        /// <param name="partyId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetEmulatedPartyAsync(string? partyId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEmulatedPartyAsync", partyId);
+        /// <param name="partyId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetEmulatedPartyAsync(string partyId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEmulatedPartyAsync", partyId)!;
 
         /// <summary>
         /// <c>PartyEmulatorService.ConfigurationChanged</c>
         /// </summary>
-        /// <param name="configuration">A <c>object?</c> value.</param>
-        public event Action<object?>? ConfigurationChanged
+        /// <param name="configuration">A <c>object</c> value.</param>
+        public event Action<object>? ConfigurationChanged
         {
             add { if (value is not null) AddEventHandler("ConfigurationChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ConfigurationChanged", value); }

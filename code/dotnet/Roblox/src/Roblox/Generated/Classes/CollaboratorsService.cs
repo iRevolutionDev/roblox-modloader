@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="CollaboratorsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CollaboratorsService? FromHandle(nuint handle)
+        public static new CollaboratorsService? FromHandle(nuint handle)
             => handle == 0 ? null : new CollaboratorsService(handle);
 
         /// <summary>
@@ -26,46 +26,46 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetCollaboratorsList()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCollaboratorsList");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCollaboratorsList")!;
 
         /// <summary>
         /// <c>CollaboratorsService.GetSelectionHighlightsEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetSelectionHighlightsEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetSelectionHighlightsEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetSelectionHighlightsEnabled")!;
 
         /// <summary>
         /// <c>CollaboratorsService.MultiGetCanCollaborate</c>
         /// </summary>
-        /// <param name="userIds">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? MultiGetCanCollaborate(string? userIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MultiGetCanCollaborate", userIds);
+        /// <param name="userIds">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object MultiGetCanCollaborate(string userIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "MultiGetCanCollaborate", userIds)!;
 
         /// <summary>
         /// <c>CollaboratorsService.RequestFlyToCollaborator</c>
         /// </summary>
         /// <param name="collaboratorId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestFlyToCollaborator(long collaboratorId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestFlyToCollaborator", collaboratorId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestFlyToCollaborator(long collaboratorId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestFlyToCollaborator", collaboratorId)!;
 
         /// <summary>
         /// <c>CollaboratorsService.ToggleSelectionHighlights</c>
         /// </summary>
         /// <param name="showHighlights">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleSelectionHighlights(bool showHighlights)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleSelectionHighlights", showHighlights);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleSelectionHighlights(bool showHighlights)
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleSelectionHighlights", showHighlights)!;
 
         /// <summary>
         /// <c>CollaboratorsService.ToggleTeamCreate</c>
         /// </summary>
         /// <param name="on">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleTeamCreate(bool on)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleTeamCreate", on);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleTeamCreate(bool on)
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleTeamCreate", on)!;
 
         /// <summary>
         /// <c>CollaboratorsService.CollaboratorIdleUpdate</c>
@@ -112,9 +112,9 @@ namespace Roblox
         /// <summary>
         /// <c>CollaboratorsService.MultiGetCanCollaborateRetrieved</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
-        /// <param name="canCollaborateResponses">A <c>object?</c> value.</param>
-        public event Action<string?, object?>? MultiGetCanCollaborateRetrieved
+        /// <param name="requestId">A <c>string</c> value.</param>
+        /// <param name="canCollaborateResponses">A <c>object</c> value.</param>
+        public event Action<string, object>? MultiGetCanCollaborateRetrieved
         {
             add { if (value is not null) AddEventHandler("MultiGetCanCollaborateRetrieved", value); }
             remove { if (value is not null) RemoveEventHandler("MultiGetCanCollaborateRetrieved", value); }
@@ -123,8 +123,8 @@ namespace Roblox
         /// <summary>
         /// <c>CollaboratorsService.ServerMultiGetCanCollaborateRequested</c>
         /// </summary>
-        /// <param name="userIds">A <c>string?</c> value.</param>
-        public event Action<string?>? ServerMultiGetCanCollaborateRequested
+        /// <param name="userIds">A <c>string</c> value.</param>
+        public event Action<string>? ServerMultiGetCanCollaborateRequested
         {
             add { if (value is not null) AddEventHandler("ServerMultiGetCanCollaborateRequested", value); }
             remove { if (value is not null) RemoveEventHandler("ServerMultiGetCanCollaborateRequested", value); }

@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AccountService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AccountService? FromHandle(nuint handle)
+        public static new AccountService? FromHandle(nuint handle)
             => handle == 0 ? null : new AccountService(handle);
 
         /// <summary>
@@ -26,58 +26,58 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool DeviceAccessTokenAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "DeviceAccessTokenAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "DeviceAccessTokenAvailable")!;
 
         /// <summary>
         /// <c>AccountService.DeviceIntegrityAvailable</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool DeviceIntegrityAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "DeviceIntegrityAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "DeviceIntegrityAvailable")!;
 
         /// <summary>
         /// <c>AccountService.GetDeviceIntegrityToken</c>
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetDeviceIntegrityToken(string? data)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetDeviceIntegrityToken", data);
+        /// <param name="data">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetDeviceIntegrityToken(string data)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetDeviceIntegrityToken", data)!;
 
         /// <summary>
         /// <c>AccountService.MagicLogin</c>
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? MagicLogin(string? data)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MagicLogin", data);
+        /// <param name="data">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object MagicLogin(string data)
+            => global::Roblox.Reflection.Invoke<object>(this, "MagicLogin", data)!;
 
         /// <summary>
         /// <c>AccountService.GetCredentialsHeaders</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetCredentialsHeaders()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetCredentialsHeaders");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetCredentialsHeaders()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetCredentialsHeaders")!;
 
         /// <summary>
         /// <c>AccountService.GetDeviceAccessToken</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetDeviceAccessToken()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetDeviceAccessToken");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetDeviceAccessToken()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetDeviceAccessToken")!;
 
         /// <summary>
         /// <c>AccountService.GetDeviceIntegrityTokenYield</c>
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetDeviceIntegrityTokenYield(string? data)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetDeviceIntegrityTokenYield", data);
+        /// <param name="data">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetDeviceIntegrityTokenYield(string data)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetDeviceIntegrityTokenYield", data)!;
 
         /// <summary>
         /// <c>AccountService.MagicLoginEvent</c>
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
-        public event Action<string?>? MagicLoginEvent
+        /// <param name="data">A <c>string</c> value.</param>
+        public event Action<string>? MagicLoginEvent
         {
             add { if (value is not null) AddEventHandler("MagicLoginEvent", value); }
             remove { if (value is not null) RemoveEventHandler("MagicLoginEvent", value); }

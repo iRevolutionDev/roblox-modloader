@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="Packages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Packages? FromHandle(nuint handle)
+        public static new Packages? FromHandle(nuint handle)
             => handle == 0 ? null : new Packages(handle);
 
         public bool IsDehydrated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDehydrated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDehydrated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsDehydrated", value);
         }
 
         public int ShellPackagesCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ShellPackagesCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ShellPackagesCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ShellPackagesCount", value);
         }
 
         public int SkippedInstancesCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "SkippedInstancesCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "SkippedInstancesCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "SkippedInstancesCount", value);
         }
 

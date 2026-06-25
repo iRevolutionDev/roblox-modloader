@@ -18,126 +18,126 @@ namespace Roblox
         /// Creates a <see cref="MeshImportData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MeshImportData? FromHandle(nuint handle)
+        public static new MeshImportData? FromHandle(nuint handle)
             => handle == 0 ? null : new MeshImportData(handle);
 
         public bool Anchored
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Anchored")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Anchored", value);
         }
 
         public bool CageManifold
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageManifold");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageManifold")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageManifold", value);
         }
 
         public bool CageMeshIntersectedPreview
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageMeshIntersectedPreview");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageMeshIntersectedPreview")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageMeshIntersectedPreview", value);
         }
 
         public bool CageMeshNotIntersected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageMeshNotIntersected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageMeshNotIntersected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageMeshNotIntersected", value);
         }
 
         public bool CageNoOverlappingVertices
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageNoOverlappingVertices");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageNoOverlappingVertices")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageNoOverlappingVertices", value);
         }
 
         public bool CageNonManifoldPreview
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageNonManifoldPreview");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageNonManifoldPreview")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageNonManifoldPreview", value);
         }
 
         public bool CageOverlappingVerticesPreview
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageOverlappingVerticesPreview");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageOverlappingVerticesPreview")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageOverlappingVerticesPreview", value);
         }
 
         public bool CageUVMatched
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageUVMatched");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageUVMatched")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageUVMatched", value);
         }
 
         public bool CageUVMisMatchedPreview
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageUVMisMatchedPreview");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CageUVMisMatchedPreview")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CageUVMisMatchedPreview", value);
         }
 
-        public global::Roblox.Vector3? Dimensions
+        public global::Roblox.Vector3 Dimensions
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Dimensions");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Dimensions", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Dimensions")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Dimensions", value);
         }
 
         public bool DoubleSided
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DoubleSided");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DoubleSided")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DoubleSided", value);
         }
 
         public bool IgnoreVertexColors
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IgnoreVertexColors");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IgnoreVertexColors")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IgnoreVertexColors", value);
         }
 
         public bool IrrelevantCageModifiedPreview
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IrrelevantCageModifiedPreview");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IrrelevantCageModifiedPreview")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IrrelevantCageModifiedPreview", value);
         }
 
         public bool MeshHoleDetectedPreview
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MeshHoleDetectedPreview");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MeshHoleDetectedPreview")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MeshHoleDetectedPreview", value);
         }
 
         public bool MeshNoHoleDetected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MeshNoHoleDetected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MeshNoHoleDetected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MeshNoHoleDetected", value);
         }
 
         public bool NoIrrelevantCageModified
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "NoIrrelevantCageModified");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "NoIrrelevantCageModified")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "NoIrrelevantCageModified", value);
         }
 
         public bool NoOuterCageFarExtendedFromMesh
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "NoOuterCageFarExtendedFromMesh");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "NoOuterCageFarExtendedFromMesh")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "NoOuterCageFarExtendedFromMesh", value);
         }
 
         public bool OuterCageFarExtendedFromMeshPreview
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "OuterCageFarExtendedFromMeshPreview");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "OuterCageFarExtendedFromMeshPreview")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "OuterCageFarExtendedFromMeshPreview", value);
         }
 
         public float PolygonCount
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PolygonCount");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PolygonCount")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PolygonCount", value);
         }
 
         public bool UseImportedPivot
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseImportedPivot");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseImportedPivot")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseImportedPivot", value);
         }
 

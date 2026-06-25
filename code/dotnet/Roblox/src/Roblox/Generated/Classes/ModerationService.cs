@@ -22,45 +22,45 @@ namespace Roblox
         /// Creates a <see cref="ModerationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ModerationService? FromHandle(nuint handle)
+        public static new ModerationService? FromHandle(nuint handle)
             => handle == 0 ? null : new ModerationService(handle);
 
         /// <summary>
         /// <c>ModerationService.BindReviewableContentEventProcessor</c>
         /// </summary>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModerationService#BindReviewableContentEventProcessor"/>
-        public object? BindReviewableContentEventProcessor(int priority, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindReviewableContentEventProcessor", priority, callback);
+        public object BindReviewableContentEventProcessor(int priority, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindReviewableContentEventProcessor", priority, callback)!;
 
         /// <summary>
         /// <c>ModerationService.CreateReviewableContentKey</c>
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="content">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModerationService#CreateReviewableContentKey"/>
-        public string? CreateReviewableContentKey(string? content)
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateReviewableContentKey", content);
+        public string CreateReviewableContentKey(string content)
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateReviewableContentKey", content)!;
 
         /// <summary>
         /// <c>ModerationService.CreateReviewableContentAsync</c>
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="config">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModerationService#CreateReviewableContentAsync"/>
-        public string? CreateReviewableContentAsync(object? config)
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateReviewableContentAsync", config);
+        public string CreateReviewableContentAsync(object config)
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateReviewableContentAsync", config)!;
 
         /// <summary>
         /// <c>ModerationService.InternalRequestReviewableContentReviewAsync</c>
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="config">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModerationService#InternalRequestReviewableContentReviewAsync"/>
-        public object? InternalRequestReviewableContentReviewAsync(object? config)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InternalRequestReviewableContentReviewAsync", config);
+        public object InternalRequestReviewableContentReviewAsync(object config)
+            => global::Roblox.Reflection.Invoke<object>(this, "InternalRequestReviewableContentReviewAsync", config)!;
 
     }
 }

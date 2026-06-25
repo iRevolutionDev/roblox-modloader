@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DataStoreObjectVersionInfo"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreObjectVersionInfo? FromHandle(nuint handle)
+        public static new DataStoreObjectVersionInfo? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreObjectVersionInfo(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreObjectVersionInfo#CreatedTime"/>
         public long CreatedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreatedTime", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreObjectVersionInfo#IsDeleted"/>
         public bool IsDeleted
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDeleted");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDeleted")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsDeleted", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Uniquely identifies a particular version of the key.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreObjectVersionInfo#Version"/>
-        public string? Version
+        public string Version
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Version");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Version", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Version")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Version", value);
         }
 
     }

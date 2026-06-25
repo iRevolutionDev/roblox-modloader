@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="AudioSearchParams"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioSearchParams? FromHandle(nuint handle)
+        public static new AudioSearchParams? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioSearchParams(handle);
 
         /// <summary>
         /// The album the audio asset belongs to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#Album"/>
-        public string? Album
+        public string Album
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Album");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Album", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Album")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Album", value);
         }
 
         /// <summary>
         /// The artist that created the audio asset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#Artist"/>
-        public string? Artist
+        public string Artist
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Artist");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Artist", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Artist")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Artist", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#AudioSubType"/>
         public Enum.AudioSubType AudioSubType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AudioSubType>(this, "AudioSubType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AudioSubType>(this, "AudioSubType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AudioSubType>(this, "AudioSubType", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#AudioSubtype"/>
         public Enum.AudioSubType AudioSubtype
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AudioSubType>(this, "AudioSubtype");
+            get => global::Roblox.Reflection.GetProperty<Enum.AudioSubType>(this, "AudioSubtype")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AudioSubType>(this, "AudioSubtype", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#MaxDuration"/>
         public int MaxDuration
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxDuration");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxDuration")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxDuration", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#MinDuration"/>
         public int MinDuration
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MinDuration");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MinDuration")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MinDuration", value);
         }
 
@@ -89,30 +89,30 @@ namespace Roblox
         /// The keyword to search for.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#SearchKeyword"/>
-        public string? SearchKeyword
+        public string SearchKeyword
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SearchKeyword");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SearchKeyword", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SearchKeyword")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SearchKeyword", value);
         }
 
         /// <summary>
         /// The tag of the audio asset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#Tag"/>
-        public string? Tag
+        public string Tag
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Tag");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Tag", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Tag")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Tag", value);
         }
 
         /// <summary>
         /// The title of the audio asset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#Title"/>
-        public string? Title
+        public string Title
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Title");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Title", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Title")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Title", value);
         }
 
     }

@@ -18,52 +18,52 @@ namespace Roblox
         /// Creates a <see cref="StudioCallout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioCallout? FromHandle(nuint handle)
+        public static new StudioCallout? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioCallout(handle);
 
-        public global::Roblox.Vector2? AnchorPoint
+        public global::Roblox.Vector2 AnchorPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AnchorPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AnchorPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AnchorPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AnchorPoint", value);
         }
 
         public bool IsArrowVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsArrowVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsArrowVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsArrowVisible", value);
         }
 
         public bool IsNextVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNextVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNextVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsNextVisible", value);
         }
 
-        public string? RowName
+        public string RowName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RowName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RowName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RowName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RowName", value);
         }
 
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
-        public string? Title
+        public string Title
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Title");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Title", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Title")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Title", value);
         }
 
         /// <summary>
         /// <c>StudioCallout.SetOnNextClicked</c>
         /// </summary>
-        /// <param name="onClick">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetOnNextClicked(object? onClick)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetOnNextClicked", onClick);
+        /// <param name="onClick">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetOnNextClicked(object onClick)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetOnNextClicked", onClick)!;
 
     }
 }

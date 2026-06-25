@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UITextSizeConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UITextSizeConstraint? FromHandle(nuint handle)
+        public static new UITextSizeConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new UITextSizeConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITextSizeConstraint#MaxTextSize"/>
         public int MaxTextSize
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxTextSize");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxTextSize")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxTextSize", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITextSizeConstraint#MinTextSize"/>
         public int MinTextSize
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MinTextSize");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MinTextSize")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MinTextSize", value);
         }
 

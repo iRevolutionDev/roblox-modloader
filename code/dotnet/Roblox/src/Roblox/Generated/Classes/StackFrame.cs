@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="StackFrame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StackFrame? FromHandle(nuint handle)
+        public static new StackFrame? FromHandle(nuint handle)
             => handle == 0 ? null : new StackFrame(handle);
 
         public int FrameId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "FrameId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "FrameId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "FrameId", value);
         }
 
-        public string? FrameName
+        public string FrameName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FrameName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FrameName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FrameName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FrameName", value);
         }
 
         public Enum.DebuggerFrameType FrameType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DebuggerFrameType>(this, "FrameType");
+            get => global::Roblox.Reflection.GetProperty<Enum.DebuggerFrameType>(this, "FrameType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DebuggerFrameType>(this, "FrameType", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
 
         public int Line
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Line");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Line")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Line", value);
         }
 
@@ -59,14 +59,14 @@ namespace Roblox
 
         public bool Populated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Populated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Populated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Populated", value);
         }
 
-        public string? Script
+        public string Script
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Script");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Script", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Script")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Script", value);
         }
 
         public DebuggerVariable? Upvalues

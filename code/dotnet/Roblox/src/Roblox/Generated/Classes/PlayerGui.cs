@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PlayerGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerGui? FromHandle(nuint handle)
+        public static new PlayerGui? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerGui(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#CurrentScreenOrientation"/>
         public Enum.ScreenOrientation CurrentScreenOrientation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScreenOrientation>(this, "CurrentScreenOrientation");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScreenOrientation>(this, "CurrentScreenOrientation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScreenOrientation>(this, "CurrentScreenOrientation", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#ScreenOrientation"/>
         public Enum.ScreenOrientation ScreenOrientation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScreenOrientation>(this, "ScreenOrientation");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScreenOrientation>(this, "ScreenOrientation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScreenOrientation>(this, "ScreenOrientation", value);
         }
 
@@ -61,16 +61,16 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#GetTopbarTransparency"/>
         public float GetTopbarTransparency()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetTopbarTransparency");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetTopbarTransparency")!;
 
         /// <summary>
         /// Deprecated: Sets the transparency of the top bar.
         /// </summary>
         /// <param name="transparency">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#SetTopbarTransparency"/>
-        public object? SetTopbarTransparency(float transparency)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTopbarTransparency", transparency);
+        public object SetTopbarTransparency(float transparency)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTopbarTransparency", transparency)!;
 
         /// <summary>
         /// Deprecated: Fires when the transparency of the Topbar CoreGui changes.

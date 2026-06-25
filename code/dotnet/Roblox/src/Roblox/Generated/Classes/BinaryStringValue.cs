@@ -22,15 +22,15 @@ namespace Roblox
         /// Creates a <see cref="BinaryStringValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BinaryStringValue? FromHandle(nuint handle)
+        public static new BinaryStringValue? FromHandle(nuint handle)
             => handle == 0 ? null : new BinaryStringValue(handle);
 
         /// <summary>
         /// Fires if the BinaryStringValue's value is changed.
         /// </summary>
-        /// <param name="value">A <c>byte[]?</c> value.</param>
+        /// <param name="value">A <c>byte[]</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BinaryStringValue#Changed"/>
-        public event Action<byte[]?>? Changed
+        public new event Action<byte[]>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UILayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UILayout? FromHandle(nuint handle)
+        public static new UILayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UILayout(handle);
 
     }

@@ -22,106 +22,106 @@ namespace Roblox
         /// Creates a <see cref="ScriptDebuggerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptDebuggerService? FromHandle(nuint handle)
+        public static new ScriptDebuggerService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptDebuggerService(handle);
 
         /// <summary>
         /// Adds a breakpoint to a script. If a breakpoint already exists on the same script and line, its data is replaced.
         /// </summary>
-        /// <param name="scriptInstance">A <c>LuaSourceContainer?</c> value.</param>
-        /// <param name="breakpoint">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="scriptInstance">A <c>LuaSourceContainer</c> value.</param>
+        /// <param name="breakpoint">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#AddBreakpoint"/>
-        public object? AddBreakpoint(LuaSourceContainer? scriptInstance, object? breakpoint)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddBreakpoint", scriptInstance, breakpoint);
+        public object AddBreakpoint(LuaSourceContainer scriptInstance, object breakpoint)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddBreakpoint", scriptInstance, breakpoint)!;
 
         /// <summary>
         /// Removes all breakpoints across all scripts.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#ClearBreakpoints"/>
-        public object? ClearBreakpoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearBreakpoints");
+        public object ClearBreakpoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearBreakpoints")!;
 
         /// <summary>
         /// Evaluates a Luau expression in a stack frame's context.
         /// </summary>
-        /// <param name="expression">A <c>string?</c> value.</param>
-        /// <param name="frameId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="expression">A <c>string</c> value.</param>
+        /// <param name="frameId">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#Evaluate"/>
-        public object? Evaluate(string? expression, object? frameId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Evaluate", expression, frameId);
+        public object Evaluate(string expression, int? frameId = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Evaluate", expression, frameId)!;
 
         /// <summary>
         /// Returns the root variables (locals, upvalues, globals) for a stack frame.
         /// </summary>
         /// <param name="frameId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#GetRootVariables"/>
-        public object? GetRootVariables(int frameId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRootVariables", frameId);
+        public object GetRootVariables(int frameId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRootVariables", frameId)!;
 
         /// <summary>
         /// Returns the call stack for a paused thread.
         /// </summary>
         /// <param name="threadId">A <c>int</c> value.</param>
-        /// <param name="startFrame">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="startFrame">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#GetStackTrace"/>
-        public object? GetStackTrace(int threadId, object? startFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStackTrace", threadId, startFrame);
+        public object GetStackTrace(int threadId, int? startFrame = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStackTrace", threadId, startFrame)!;
 
         /// <summary>
         /// Returns all paused Luau threads.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#GetThreads"/>
-        public object? GetThreads()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetThreads");
+        public object GetThreads()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetThreads")!;
 
         /// <summary>
         /// Drills into structured variables (tables, Instances).
         /// </summary>
         /// <param name="variablesReference">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#GetVariables"/>
-        public object? GetVariables(int variablesReference)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVariables", variablesReference);
+        public object GetVariables(int variablesReference)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVariables", variablesReference)!;
 
         /// <summary>
         /// Requests the debugger to pause at the next safe point.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#Pause"/>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// Removes the breakpoint on the given script and line.
         /// </summary>
-        /// <param name="scriptInstance">A <c>LuaSourceContainer?</c> value.</param>
+        /// <param name="scriptInstance">A <c>LuaSourceContainer</c> value.</param>
         /// <param name="line">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#RemoveBreakpoint"/>
-        public bool RemoveBreakpoint(LuaSourceContainer? scriptInstance, int line)
-            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveBreakpoint", scriptInstance, line);
+        public bool RemoveBreakpoint(LuaSourceContainer scriptInstance, int line)
+            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveBreakpoint", scriptInstance, line)!;
 
         /// <summary>
         /// Controls when the debugger pauses on exceptions.
         /// </summary>
         /// <param name="breakMode">A <c>Enum.DebugBreakModeType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#SetExceptionBreakMode"/>
-        public object? SetExceptionBreakMode(Enum.DebugBreakModeType breakMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetExceptionBreakMode", breakMode);
+        public object SetExceptionBreakMode(Enum.DebugBreakModeType breakMode)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetExceptionBreakMode", breakMode)!;
 
         /// <summary>
         /// Fires when a previously paused thread resumes execution.
         /// </summary>
-        /// <param name="threadIds">A <c>object?</c> value.</param>
+        /// <param name="threadIds">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDebuggerService#Resumed"/>
-        public event Action<object?>? Resumed
+        public event Action<object>? Resumed
         {
             add { if (value is not null) AddEventHandler("Resumed", value); }
             remove { if (value is not null) RemoveEventHandler("Resumed", value); }

@@ -18,13 +18,13 @@ namespace Roblox
         /// Creates a <see cref="DebuggerWatch"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerWatch? FromHandle(nuint handle)
+        public static new DebuggerWatch? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerWatch(handle);
 
-        public string? Expression
+        public string Expression
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Expression");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Expression", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Expression")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Expression", value);
         }
 
     }

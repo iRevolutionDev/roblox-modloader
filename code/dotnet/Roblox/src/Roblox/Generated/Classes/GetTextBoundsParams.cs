@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="GetTextBoundsParams"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GetTextBoundsParams? FromHandle(nuint handle)
+        public static new GetTextBoundsParams? FromHandle(nuint handle)
             => handle == 0 ? null : new GetTextBoundsParams(handle);
 
         /// <summary>
         /// The Font of the text being measured.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#Font"/>
-        public object? Font
+        public object Font
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Font");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Font", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Font")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Font", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#RichText"/>
         public bool RichText
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RichText");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RichText")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RichText", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#Size"/>
         public float Size
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Size");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Size")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Size", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// The text being measured.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GetTextBoundsParams#Width"/>
         public float Width
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Width");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Width")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Width", value);
         }
 

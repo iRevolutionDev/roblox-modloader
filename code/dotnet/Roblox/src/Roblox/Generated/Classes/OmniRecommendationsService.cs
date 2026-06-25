@@ -18,30 +18,30 @@ namespace Roblox
         /// Creates a <see cref="OmniRecommendationsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static OmniRecommendationsService? FromHandle(nuint handle)
+        public static new OmniRecommendationsService? FromHandle(nuint handle)
             => handle == 0 ? null : new OmniRecommendationsService(handle);
 
         /// <summary>
         /// <c>OmniRecommendationsService.ClearSessionId</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearSessionId()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearSessionId");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearSessionId()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearSessionId")!;
 
         /// <summary>
         /// <c>OmniRecommendationsService.GetSessionId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetSessionId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetSessionId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetSessionId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetSessionId")!;
 
         /// <summary>
         /// <c>OmniRecommendationsService.MakeRequest</c>
         /// </summary>
-        /// <param name="nextPageToken">A <c>string?</c> value.</param>
-        /// <returns>A <c>HttpRequest?</c> value returned by the engine.</returns>
-        public HttpRequest? MakeRequest(string? nextPageToken)
-            => global::Roblox.Reflection.Invoke<HttpRequest?>(this, "MakeRequest", nextPageToken);
+        /// <param name="nextPageToken">A <c>string</c> value.</param>
+        /// <returns>A <c>HttpRequest</c> value returned by the engine.</returns>
+        public HttpRequest MakeRequest(string nextPageToken)
+            => global::Roblox.Reflection.Invoke<HttpRequest>(this, "MakeRequest", nextPageToken)!;
 
     }
 }

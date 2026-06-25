@@ -22,12 +22,12 @@ namespace Roblox
         /// Creates a <see cref="SwimController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SwimController? FromHandle(nuint handle)
+        public static new SwimController? FromHandle(nuint handle)
             => handle == 0 ? null : new SwimController(handle);
 
         public float AccelerationTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AccelerationTime", value);
         }
 
@@ -37,7 +37,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#PitchMaxTorque"/>
         public float PitchMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PitchMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PitchMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PitchMaxTorque", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#PitchSpeedFactor"/>
         public float PitchSpeedFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PitchSpeedFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PitchSpeedFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PitchSpeedFactor", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#RollMaxTorque"/>
         public float RollMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RollMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RollMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RollMaxTorque", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SwimController#RollSpeedFactor"/>
         public float RollSpeedFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RollSpeedFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RollSpeedFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RollSpeedFactor", value);
         }
 

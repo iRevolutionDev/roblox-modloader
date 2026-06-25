@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="InputAction"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InputAction? FromHandle(nuint handle)
+        public static new InputAction? FromHandle(nuint handle)
             => handle == 0 ? null : new InputAction(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#BoolState"/>
         public bool BoolState
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BoolState");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BoolState")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BoolState", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Direction1DState"/>
         public float Direction1DState
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Direction1DState");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Direction1DState")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Direction1DState", value);
         }
 
@@ -49,20 +49,20 @@ namespace Roblox
         /// Non-scriptable read-only property useful for debugging Direction2D input actions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Direction2DState"/>
-        public global::Roblox.Vector2? Direction2DState
+        public global::Roblox.Vector2 Direction2DState
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Direction2DState");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Direction2DState", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Direction2DState")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Direction2DState", value);
         }
 
         /// <summary>
         /// Non-scriptable read-only property useful for debugging Direction3D input actions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Direction3DState"/>
-        public global::Roblox.Vector3? Direction3DState
+        public global::Roblox.Vector3 Direction3DState
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Direction3DState");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Direction3DState", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Direction3DState")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Direction3DState", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Type"/>
         public Enum.InputActionType Type
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputActionType>(this, "Type");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputActionType>(this, "Type")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputActionType>(this, "Type", value);
         }
 
@@ -89,35 +89,35 @@ namespace Roblox
         /// Non-scriptable read-only property useful for debugging ViewportPosition input actions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#ViewportPositionState"/>
-        public global::Roblox.Vector2? ViewportPositionState
+        public global::Roblox.Vector2 ViewportPositionState
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ViewportPositionState");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ViewportPositionState", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "ViewportPositionState")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "ViewportPositionState", value);
         }
 
         /// <summary>
         /// Updates the InputAction to the given state and fires the appropriate signals.
         /// </summary>
-        /// <param name="state">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="state">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Fire"/>
-        public object? Fire(object? state)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Fire", state);
+        public object Fire(object state)
+            => global::Roblox.Reflection.Invoke<object>(this, "Fire", state)!;
 
         /// <summary>
         /// <c>InputAction.GetInputBindings</c>
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetInputBindings()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputBindings");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputBindings")!;
 
         /// <summary>
         /// Returns the current state of the InputAction.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#GetState"/>
-        public object? GetState()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetState");
+        public object GetState()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetState")!;
 
         public event Action? InputBindingsChanged
         {
@@ -148,9 +148,9 @@ namespace Roblox
         /// <summary>
         /// Fires for all InputActionType types whenever the state changes, except if the state attempts to transition to the same state.
         /// </summary>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#StateChanged"/>
-        public event Action<object?>? StateChanged
+        public event Action<object>? StateChanged
         {
             add { if (value is not null) AddEventHandler("StateChanged", value); }
             remove { if (value is not null) RemoveEventHandler("StateChanged", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AlignPosition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AlignPosition? FromHandle(nuint handle)
+        public static new AlignPosition? FromHandle(nuint handle)
             => handle == 0 ? null : new AlignPosition(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ApplyAtCenterOfMass", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ForceLimitMode"/>
         public Enum.ForceLimitMode ForceLimitMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ForceLimitMode>(this, "ForceLimitMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ForceLimitMode>(this, "ForceLimitMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ForceLimitMode>(this, "ForceLimitMode", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ForceRelativeTo"/>
         public Enum.ActuatorRelativeTo ForceRelativeTo
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "ForceRelativeTo");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "ForceRelativeTo")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorRelativeTo>(this, "ForceRelativeTo", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Maximum force along each axis that the constraint can apply to achieve its goal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#MaxAxesForce"/>
-        public global::Roblox.Vector3? MaxAxesForce
+        public global::Roblox.Vector3 MaxAxesForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxAxesForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxAxesForce")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxAxesForce", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#MaxForce"/>
         public float MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxForce", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#MaxVelocity"/>
         public float MaxVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxVelocity", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#Mode"/>
         public Enum.PositionAlignmentMode Mode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PositionAlignmentMode>(this, "Mode");
+            get => global::Roblox.Reflection.GetProperty<Enum.PositionAlignmentMode>(this, "Mode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PositionAlignmentMode>(this, "Mode", value);
         }
 
@@ -99,10 +99,10 @@ namespace Roblox
         /// The position to which the constraint should move its Attachment0.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#ReactionForceEnabled"/>
         public bool ReactionForceEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionForceEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionForceEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReactionForceEnabled", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#Responsiveness"/>
         public float Responsiveness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Responsiveness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Responsiveness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Responsiveness", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignPosition#RigidityEnabled"/>
         public bool RigidityEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RigidityEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RigidityEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RigidityEnabled", value);
         }
 

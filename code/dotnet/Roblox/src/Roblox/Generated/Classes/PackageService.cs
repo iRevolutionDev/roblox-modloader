@@ -22,16 +22,16 @@ namespace Roblox
         /// Creates a <see cref="PackageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PackageService? FromHandle(nuint handle)
+        public static new PackageService? FromHandle(nuint handle)
             => handle == 0 ? null : new PackageService(handle);
 
         /// <summary>
         /// <c>PackageService.UpdateAsync</c>
         /// </summary>
-        /// <param name="packageRoot">A <c>Instance?</c> value.</param>
-        /// <param name="version">A <c>long</c> value.</param>
+        /// <param name="packageRoot">A <c>Instance</c> value.</param>
+        /// <param name="version">A <c>long?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? UpdateAsync(Instance? packageRoot, long version)
+        public Instance? UpdateAsync(Instance packageRoot, long? version = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "UpdateAsync", packageRoot, version);
 
     }

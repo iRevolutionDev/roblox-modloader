@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="NetworkSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NetworkSettings? FromHandle(nuint handle)
+        public static new NetworkSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkSettings(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#EmulatedTotalMemoryInMB"/>
         public int EmulatedTotalMemoryInMB
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "EmulatedTotalMemoryInMB");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "EmulatedTotalMemoryInMB")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "EmulatedTotalMemoryInMB", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#FreeMemoryMBytes"/>
         public float FreeMemoryMBytes
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FreeMemoryMBytes");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FreeMemoryMBytes")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FreeMemoryMBytes", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#HttpProxyEnabled"/>
         public bool HttpProxyEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HttpProxyEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HttpProxyEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HttpProxyEnabled", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// <c>NetworkSettings.HttpProxyURL</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#HttpProxyURL"/>
-        public string? HttpProxyURL
+        public string HttpProxyURL
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "HttpProxyURL");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "HttpProxyURL", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "HttpProxyURL")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "HttpProxyURL", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#InboundNetworkJitterMs"/>
         public float InboundNetworkJitterMs
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InboundNetworkJitterMs");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "InboundNetworkJitterMs")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "InboundNetworkJitterMs", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#InboundNetworkLossPercent"/>
         public float InboundNetworkLossPercent
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InboundNetworkLossPercent");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "InboundNetworkLossPercent")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "InboundNetworkLossPercent", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#InboundNetworkMinDelayMs"/>
         public float InboundNetworkMinDelayMs
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InboundNetworkMinDelayMs");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "InboundNetworkMinDelayMs")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "InboundNetworkMinDelayMs", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#IncomingReplicationLag"/>
         public double IncomingReplicationLag
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "IncomingReplicationLag");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "IncomingReplicationLag")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "IncomingReplicationLag", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#OutboundNetworkJitterMs"/>
         public float OutboundNetworkJitterMs
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "OutboundNetworkJitterMs");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "OutboundNetworkJitterMs")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "OutboundNetworkJitterMs", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#OutboundNetworkLossPercent"/>
         public float OutboundNetworkLossPercent
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "OutboundNetworkLossPercent");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "OutboundNetworkLossPercent")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "OutboundNetworkLossPercent", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#OutboundNetworkMinDelayMs"/>
         public float OutboundNetworkMinDelayMs
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "OutboundNetworkMinDelayMs");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "OutboundNetworkMinDelayMs")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "OutboundNetworkMinDelayMs", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#PrintJoinSizeBreakdown"/>
         public bool PrintJoinSizeBreakdown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrintJoinSizeBreakdown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrintJoinSizeBreakdown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PrintJoinSizeBreakdown", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#PrintPhysicsErrors"/>
         public bool PrintPhysicsErrors
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrintPhysicsErrors");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrintPhysicsErrors")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PrintPhysicsErrors", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#PrintStreamInstanceQuota"/>
         public bool PrintStreamInstanceQuota
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrintStreamInstanceQuota");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrintStreamInstanceQuota")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PrintStreamInstanceQuota", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#RandomizeJoinInstanceOrder"/>
         public bool RandomizeJoinInstanceOrder
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RandomizeJoinInstanceOrder");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RandomizeJoinInstanceOrder")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RandomizeJoinInstanceOrder", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#RenderStreamedRegions"/>
         public bool RenderStreamedRegions
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RenderStreamedRegions");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RenderStreamedRegions")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RenderStreamedRegions", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkSettings#ShowActiveAnimationAsset"/>
         public bool ShowActiveAnimationAsset
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowActiveAnimationAsset");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowActiveAnimationAsset")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowActiveAnimationAsset", value);
         }
 

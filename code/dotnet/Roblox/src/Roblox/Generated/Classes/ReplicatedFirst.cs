@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ReplicatedFirst"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReplicatedFirst? FromHandle(nuint handle)
+        public static new ReplicatedFirst? FromHandle(nuint handle)
             => handle == 0 ? null : new ReplicatedFirst(handle);
 
         /// <summary>
@@ -30,29 +30,29 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsDefaultLoadingGuiRemoved()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsDefaultLoadingGuiRemoved");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsDefaultLoadingGuiRemoved")!;
 
         /// <summary>
         /// <c>ReplicatedFirst.IsFinishedReplicating</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsFinishedReplicating()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsFinishedReplicating");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsFinishedReplicating")!;
 
         /// <summary>
         /// Immediately removes the default Roblox loading screen.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReplicatedFirst#RemoveDefaultLoadingScreen"/>
-        public object? RemoveDefaultLoadingScreen()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveDefaultLoadingScreen");
+        public object RemoveDefaultLoadingScreen()
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveDefaultLoadingScreen")!;
 
         /// <summary>
         /// <c>ReplicatedFirst.SetDefaultLoadingGuiRemoved</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetDefaultLoadingGuiRemoved()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDefaultLoadingGuiRemoved");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetDefaultLoadingGuiRemoved()
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDefaultLoadingGuiRemoved")!;
 
         public event Action? DefaultLoadingGuiRemoved
         {

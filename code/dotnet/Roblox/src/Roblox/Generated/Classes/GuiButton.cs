@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GuiButton"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GuiButton? FromHandle(nuint handle)
+        public static new GuiButton? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiButton(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#AutoButtonColor"/>
         public bool AutoButtonColor
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoButtonColor");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoButtonColor")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoButtonColor", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#Modal"/>
         public bool Modal
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Modal");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Modal")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Modal", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#Selected"/>
         public bool Selected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Selected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Selected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Selected", value);
         }
 
@@ -81,17 +81,17 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#Style"/>
         public Enum.ButtonStyle Style
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ButtonStyle>(this, "Style");
+            get => global::Roblox.Reflection.GetProperty<Enum.ButtonStyle>(this, "Style")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ButtonStyle>(this, "Style", value);
         }
 
         /// <summary>
         /// Fires when the button is activated.
         /// </summary>
-        /// <param name="inputObject">A <c>InputObject?</c> value.</param>
+        /// <param name="inputObject">A <c>InputObject</c> value.</param>
         /// <param name="clickCount">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#Activated"/>
-        public event Action<InputObject?, int>? Activated
+        public event Action<InputObject, int>? Activated
         {
             add { if (value is not null) AddEventHandler("Activated", value); }
             remove { if (value is not null) RemoveEventHandler("Activated", value); }
@@ -168,8 +168,8 @@ namespace Roblox
         /// <summary>
         /// <c>GuiButton.SecondaryActivated</c>
         /// </summary>
-        /// <param name="inputObject">A <c>InputObject?</c> value.</param>
-        public event Action<InputObject?>? SecondaryActivated
+        /// <param name="inputObject">A <c>InputObject</c> value.</param>
+        public event Action<InputObject>? SecondaryActivated
         {
             add { if (value is not null) AddEventHandler("SecondaryActivated", value); }
             remove { if (value is not null) RemoveEventHandler("SecondaryActivated", value); }

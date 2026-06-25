@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="PlatformCloudStorageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlatformCloudStorageService? FromHandle(nuint handle)
+        public static new PlatformCloudStorageService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlatformCloudStorageService(handle);
 
         /// <summary>
@@ -26,24 +26,24 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsUserDataAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsUserDataAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsUserDataAvailable")!;
 
         /// <summary>
         /// <c>PlatformCloudStorageService.GetUserDataAsync</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUserDataAsync(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserDataAsync", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUserDataAsync(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserDataAsync", key)!;
 
         /// <summary>
         /// <c>PlatformCloudStorageService.SetUserDataAsync</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="data">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetUserDataAsync(string? key, object? data)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUserDataAsync", key, data);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="data">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetUserDataAsync(string key, object data)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUserDataAsync", key, data)!;
 
     }
 }

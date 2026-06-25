@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DataStoreGetOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreGetOptions? FromHandle(nuint handle)
+        public static new DataStoreGetOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreGetOptions(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreGetOptions#UseCache"/>
         public bool UseCache
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseCache");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseCache")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseCache", value);
         }
 

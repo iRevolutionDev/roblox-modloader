@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StudioCaptureService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioCaptureService? FromHandle(nuint handle)
+        public static new StudioCaptureService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioCaptureService(handle);
 
         /// <summary>
@@ -31,16 +31,16 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioCaptureService#CanCaptureScreenshot"/>
         public bool CanCaptureScreenshot()
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanCaptureScreenshot");
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanCaptureScreenshot")!;
 
         /// <summary>
         /// <c>StudioCaptureService.CaptureScreenshot</c>
         /// </summary>
-        /// <param name="screenshotOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>StudioScreenshotCapture?</c> value returned by the engine.</returns>
+        /// <param name="screenshotOptions">A <c>object</c> value.</param>
+        /// <returns>A <c>StudioScreenshotCapture</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioCaptureService#CaptureScreenshot"/>
-        public StudioScreenshotCapture? CaptureScreenshot(object? screenshotOptions)
-            => global::Roblox.Reflection.Invoke<StudioScreenshotCapture?>(this, "CaptureScreenshot", screenshotOptions);
+        public StudioScreenshotCapture CaptureScreenshot(object screenshotOptions)
+            => global::Roblox.Reflection.Invoke<StudioScreenshotCapture>(this, "CaptureScreenshot", screenshotOptions)!;
 
         /// <summary>
         /// <c>StudioCaptureService.RequestScreenshotPermissionAsync</c>
@@ -48,7 +48,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioCaptureService#RequestScreenshotPermissionAsync"/>
         public bool RequestScreenshotPermissionAsync()
-            => global::Roblox.Reflection.Invoke<bool>(this, "RequestScreenshotPermissionAsync");
+            => global::Roblox.Reflection.Invoke<bool>(this, "RequestScreenshotPermissionAsync")!;
 
     }
 }

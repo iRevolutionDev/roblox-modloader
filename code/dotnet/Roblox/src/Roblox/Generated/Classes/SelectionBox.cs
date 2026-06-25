@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SelectionBox"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SelectionBox? FromHandle(nuint handle)
+        public static new SelectionBox? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionBox(handle);
 
         /// <summary>
@@ -31,13 +31,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#LineThickness"/>
         public float LineThickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LineThickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LineThickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LineThickness", value);
         }
 
         public bool StudioSelectionBox
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "StudioSelectionBox");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "StudioSelectionBox")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "StudioSelectionBox", value);
         }
 
@@ -45,20 +45,20 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of SurfaceColor3 which uses the more precise Color3 data type instead of a BrickColor used by this property.A BrickColor version of SurfaceColor3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#SurfaceColor"/>
-        public global::Roblox.BrickColor? SurfaceColor
+        public global::Roblox.BrickColor SurfaceColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "SurfaceColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "SurfaceColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "SurfaceColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "SurfaceColor", value);
         }
 
         /// <summary>
         /// Determines the color of the box's surfaces.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#SurfaceColor3"/>
-        public global::Roblox.Color3? SurfaceColor3
+        public global::Roblox.Color3 SurfaceColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "SurfaceColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "SurfaceColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "SurfaceColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "SurfaceColor3", value);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#SurfaceTransparency"/>
         public float SurfaceTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SurfaceTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SurfaceTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SurfaceTransparency", value);
         }
 

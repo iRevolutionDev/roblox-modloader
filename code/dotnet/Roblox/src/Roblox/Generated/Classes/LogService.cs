@@ -22,117 +22,117 @@ namespace Roblox
         /// Creates a <see cref="LogService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LogService? FromHandle(nuint handle)
+        public static new LogService? FromHandle(nuint handle)
             => handle == 0 ? null : new LogService(handle);
 
         /// <summary>
         /// Clears Roblox Studio's Output window.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#ClearOutput"/>
-        public object? ClearOutput()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearOutput");
+        public object ClearOutput()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearOutput")!;
 
         /// <summary>
         /// Logs a message at the MessageType.MessageError level and throws a structured error with optional context.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="context">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Error"/>
-        public object? Error(string? message, object? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Error", message, context);
+        public object Error(string message, object? context = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Error", message, context)!;
 
         /// <summary>
         /// <c>LogService.ExecuteScript</c>
         /// </summary>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ExecuteScript(string? source)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteScript", source);
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ExecuteScript(string source)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecuteScript", source)!;
 
         /// <summary>
         /// <c>LogService.GetHttpResultHistory</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetHttpResultHistory()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetHttpResultHistory");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetHttpResultHistory()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetHttpResultHistory")!;
 
         /// <summary>
         /// Returns a table of tables, each with the message string, message type, and timestamp of a message that the client displays in the Output window.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#GetLogHistory"/>
-        public object? GetLogHistory()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLogHistory");
+        public object GetLogHistory()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLogHistory")!;
 
         /// <summary>
         /// Logs a message at the MessageType.MessageInfo level with optional structured context.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="context">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Info"/>
-        public object? Info(string? message, object? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Info", message, context);
+        public object Info(string message, object? context = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Info", message, context)!;
 
         /// <summary>
         /// Logs a message at the specified level with optional structured context.
         /// </summary>
         /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="context">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Log"/>
-        public object? Log(Enum.MessageType messageType, string? message, object? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Log", messageType, message, context);
+        public object Log(Enum.MessageType messageType, string message, object? context = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Log", messageType, message, context)!;
 
         /// <summary>
         /// Logs a message at the MessageType.MessageOutput level with optional structured context.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="context">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Output"/>
-        public object? Output(string? message, object? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Output", message, context);
+        public object Output(string message, object? context = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Output", message, context)!;
 
         /// <summary>
         /// <c>LogService.RequestHttpResultApproved</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestHttpResultApproved()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestHttpResultApproved");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestHttpResultApproved()
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestHttpResultApproved")!;
 
         /// <summary>
         /// <c>LogService.RequestServerHttpResult</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestServerHttpResult()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestServerHttpResult");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestServerHttpResult()
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestServerHttpResult")!;
 
         /// <summary>
         /// <c>LogService.RequestServerOutput</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestServerOutput()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestServerOutput");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestServerOutput()
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestServerOutput")!;
 
         /// <summary>
         /// Logs a message at the MessageType.MessageWarning level with optional structured context.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="context">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#Warn"/>
-        public object? Warn(string? message, object? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Warn", message, context);
+        public object Warn(string message, object? context = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Warn", message, context)!;
 
         /// <summary>
         /// <c>LogService.HttpResultOut</c>
         /// </summary>
-        /// <param name="httpResult">A <c>object?</c> value.</param>
-        public event Action<object?>? HttpResultOut
+        /// <param name="httpResult">A <c>object</c> value.</param>
+        public event Action<object>? HttpResultOut
         {
             add { if (value is not null) AddEventHandler("HttpResultOut", value); }
             remove { if (value is not null) RemoveEventHandler("HttpResultOut", value); }
@@ -141,11 +141,11 @@ namespace Roblox
         /// <summary>
         /// Fires when the client outputs text.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
-        /// <param name="context">A <c>object?</c> value.</param>
+        /// <param name="context">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LogService#MessageOut"/>
-        public event Action<string?, Enum.MessageType, object?>? MessageOut
+        public event Action<string, Enum.MessageType, object>? MessageOut
         {
             add { if (value is not null) AddEventHandler("MessageOut", value); }
             remove { if (value is not null) RemoveEventHandler("MessageOut", value); }
@@ -164,8 +164,8 @@ namespace Roblox
         /// <summary>
         /// <c>LogService.ServerContextOut</c>
         /// </summary>
-        /// <param name="contextData">A <c>object?</c> value.</param>
-        public event Action<object?>? ServerContextOut
+        /// <param name="contextData">A <c>object</c> value.</param>
+        public event Action<object>? ServerContextOut
         {
             add { if (value is not null) AddEventHandler("ServerContextOut", value); }
             remove { if (value is not null) RemoveEventHandler("ServerContextOut", value); }
@@ -174,8 +174,8 @@ namespace Roblox
         /// <summary>
         /// <c>LogService.ServerHttpResultOut</c>
         /// </summary>
-        /// <param name="httpResult">A <c>object?</c> value.</param>
-        public event Action<object?>? ServerHttpResultOut
+        /// <param name="httpResult">A <c>object</c> value.</param>
+        public event Action<object>? ServerHttpResultOut
         {
             add { if (value is not null) AddEventHandler("ServerHttpResultOut", value); }
             remove { if (value is not null) RemoveEventHandler("ServerHttpResultOut", value); }
@@ -184,10 +184,10 @@ namespace Roblox
         /// <summary>
         /// <c>LogService.ServerMessageOut</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="messageType">A <c>Enum.MessageType</c> value.</param>
         /// <param name="timestamp">A <c>double</c> value.</param>
-        public event Action<string?, Enum.MessageType, double>? ServerMessageOut
+        public event Action<string, Enum.MessageType, double>? ServerMessageOut
         {
             add { if (value is not null) AddEventHandler("ServerMessageOut", value); }
             remove { if (value is not null) RemoveEventHandler("ServerMessageOut", value); }

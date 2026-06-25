@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="DragDetector"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DragDetector? FromHandle(nuint handle)
+        public static new DragDetector? FromHandle(nuint handle)
             => handle == 0 ? null : new DragDetector(handle);
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is activated over the parent of this DragDetector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#ActivatedCursorIcon"/>
-        public object? ActivatedCursorIcon
+        public object ActivatedCursorIcon
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ActivatedCursorIcon");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ActivatedCursorIcon", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "ActivatedCursorIcon")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "ActivatedCursorIcon", value);
         }
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is activated over the parent of this DragDetector. Only supports asset URIs
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#ActivatedCursorIconContent"/>
-        public string? ActivatedCursorIconContent
+        public string ActivatedCursorIconContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ActivatedCursorIconContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ActivatedCursorIconContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ActivatedCursorIconContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ActivatedCursorIconContent", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#ApplyAtCenterOfMass"/>
         public bool ApplyAtCenterOfMass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ApplyAtCenterOfMass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ApplyAtCenterOfMass", value);
         }
 
@@ -59,20 +59,20 @@ namespace Roblox
         /// The primary axis of motion, expressed relative to the reference frame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Axis"/>
-        public global::Roblox.Vector3? Axis
+        public global::Roblox.Vector3 Axis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Axis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Axis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Axis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Axis", value);
         }
 
         /// <summary>
         /// The CFrame of the pivot, dependent on the drag detector's ReferenceInstance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragFrame"/>
-        public global::Roblox.CFrame? DragFrame
+        public global::Roblox.CFrame DragFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "DragFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "DragFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "DragFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "DragFrame", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragStyle"/>
         public Enum.DragDetectorDragStyle DragStyle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DragDetectorDragStyle>(this, "DragStyle");
+            get => global::Roblox.Reflection.GetProperty<Enum.DragDetectorDragStyle>(this, "DragStyle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DragDetectorDragStyle>(this, "DragStyle", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#GamepadModeSwitchKeyCode"/>
         public Enum.KeyCode GamepadModeSwitchKeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "GamepadModeSwitchKeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "GamepadModeSwitchKeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "GamepadModeSwitchKeyCode", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#KeyboardModeSwitchKeyCode"/>
         public Enum.KeyCode KeyboardModeSwitchKeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyboardModeSwitchKeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyboardModeSwitchKeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "KeyboardModeSwitchKeyCode", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxDragAngle"/>
         public float MaxDragAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDragAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDragAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxDragAngle", value);
         }
 
@@ -129,10 +129,10 @@ namespace Roblox
         /// Along with MinDragTranslation, impedes the drag detector's attempts to generate motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxDragTranslation"/>
-        public global::Roblox.Vector3? MaxDragTranslation
+        public global::Roblox.Vector3 MaxDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxDragTranslation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxDragTranslation", value);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxForce"/>
         public float MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxForce", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MaxTorque"/>
         public float MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxTorque", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MinDragAngle"/>
         public float MinDragAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MinDragAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MinDragAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MinDragAngle", value);
         }
 
@@ -169,20 +169,20 @@ namespace Roblox
         /// Along with MaxDragTranslation, impedes the drag detector's attempts to generate motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#MinDragTranslation"/>
-        public global::Roblox.Vector3? MinDragTranslation
+        public global::Roblox.Vector3 MinDragTranslation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MinDragTranslation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MinDragTranslation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MinDragTranslation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MinDragTranslation", value);
         }
 
         /// <summary>
         /// Specifies the YXZ rotation of axes of motion relative to the reference frame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Orientation"/>
-        public global::Roblox.Vector3? Orientation
+        public global::Roblox.Vector3 Orientation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Orientation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Orientation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Orientation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Orientation", value);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#PermissionPolicy"/>
         public Enum.DragDetectorPermissionPolicy PermissionPolicy
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DragDetectorPermissionPolicy>(this, "PermissionPolicy");
+            get => global::Roblox.Reflection.GetProperty<Enum.DragDetectorPermissionPolicy>(this, "PermissionPolicy")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DragDetectorPermissionPolicy>(this, "PermissionPolicy", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#ResponseStyle"/>
         public Enum.DragDetectorResponseStyle ResponseStyle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DragDetectorResponseStyle>(this, "ResponseStyle");
+            get => global::Roblox.Reflection.GetProperty<Enum.DragDetectorResponseStyle>(this, "ResponseStyle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DragDetectorResponseStyle>(this, "ResponseStyle", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#Responsiveness"/>
         public float Responsiveness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Responsiveness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Responsiveness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Responsiveness", value);
         }
 
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#RunLocally"/>
         public bool RunLocally
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RunLocally");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RunLocally")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RunLocally", value);
         }
 
@@ -239,10 +239,10 @@ namespace Roblox
         /// The secondary axis of the motion.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#SecondaryAxis"/>
-        public global::Roblox.Vector3? SecondaryAxis
+        public global::Roblox.Vector3 SecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SecondaryAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SecondaryAxis", value);
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#TrackballRadialPullFactor"/>
         public float TrackballRadialPullFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TrackballRadialPullFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TrackballRadialPullFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TrackballRadialPullFactor", value);
         }
 
@@ -261,7 +261,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#TrackballRollFactor"/>
         public float TrackballRollFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TrackballRollFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TrackballRollFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TrackballRollFactor", value);
         }
 
@@ -271,7 +271,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#VRSwitchKeyCode"/>
         public Enum.KeyCode VRSwitchKeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "VRSwitchKeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "VRSwitchKeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "VRSwitchKeyCode", value);
         }
 
@@ -279,76 +279,76 @@ namespace Roblox
         /// The Axis expressed in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#WorldAxis"/>
-        public global::Roblox.Vector3? WorldAxis
+        public global::Roblox.Vector3 WorldAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "WorldAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "WorldAxis", value);
         }
 
         /// <summary>
         /// The SecondaryAxis expressed in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#WorldSecondaryAxis"/>
-        public global::Roblox.Vector3? WorldSecondaryAxis
+        public global::Roblox.Vector3 WorldSecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WorldSecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WorldSecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "WorldSecondaryAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "WorldSecondaryAxis", value);
         }
 
         /// <summary>
         /// Adds a function to modify or constrain proposed motion.
         /// </summary>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#AddConstraintFunction"/>
-        public object? AddConstraintFunction(int priority, object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddConstraintFunction", priority, function);
+        public object AddConstraintFunction(int priority, object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddConstraintFunction", priority, function)!;
 
         /// <summary>
         /// Returns the reference CFrame in which motion is expressed.
         /// </summary>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#GetReferenceFrame"/>
-        public global::Roblox.CFrame? GetReferenceFrame()
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetReferenceFrame");
+        public global::Roblox.CFrame GetReferenceFrame()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetReferenceFrame")!;
 
         /// <summary>
         /// May be invoked from a script to restart the drag using new parameters.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#RestartDrag"/>
-        public object? RestartDrag()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RestartDrag");
+        public object RestartDrag()
+            => global::Roblox.Reflection.Invoke<object>(this, "RestartDrag")!;
 
         /// <summary>
         /// Passes a function to be used if and only if DragStyle is set to DragDetectorDragStyle.Scriptable.
         /// </summary>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#SetDragStyleFunction"/>
-        public object? SetDragStyleFunction(object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDragStyleFunction", function);
+        public object SetDragStyleFunction(object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDragStyleFunction", function)!;
 
         /// <summary>
         /// Passes a function to be used if and only if PermissionPolicy is set to DragDetectorPermissionPolicy.Scriptable.
         /// </summary>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#SetPermissionPolicyFunction"/>
-        public object? SetPermissionPolicyFunction(object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPermissionPolicyFunction", function);
+        public object SetPermissionPolicyFunction(object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPermissionPolicyFunction", function)!;
 
         /// <summary>
         /// Fires when a user continues dragging the object after DragStart has been initiated.
         /// </summary>
-        /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
-        /// <param name="cursorRay">A <c>global::Roblox.Ray?</c> value.</param>
-        /// <param name="viewFrame">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="vrInputFrame">A <c>object?</c> value.</param>
+        /// <param name="playerWhoDragged">A <c>Player</c> value.</param>
+        /// <param name="cursorRay">A <c>global::Roblox.Ray</c> value.</param>
+        /// <param name="viewFrame">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="vrInputFrame">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="isModeSwitchKeyDown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragContinue"/>
-        public event Action<Player?, global::Roblox.Ray?, global::Roblox.CFrame?, object?, bool>? DragContinue
+        public event Action<Player, global::Roblox.Ray, global::Roblox.CFrame, global::Roblox.CFrame?, bool>? DragContinue
         {
             add { if (value is not null) AddEventHandler("DragContinue", value); }
             remove { if (value is not null) RemoveEventHandler("DragContinue", value); }
@@ -357,9 +357,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a user stops dragging the object.
         /// </summary>
-        /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoDragged">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragEnd"/>
-        public event Action<Player?>? DragEnd
+        public event Action<Player>? DragEnd
         {
             add { if (value is not null) AddEventHandler("DragEnd", value); }
             remove { if (value is not null) RemoveEventHandler("DragEnd", value); }
@@ -368,15 +368,15 @@ namespace Roblox
         /// <summary>
         /// Fires when a user starts dragging the object.
         /// </summary>
-        /// <param name="playerWhoDragged">A <c>Player?</c> value.</param>
-        /// <param name="cursorRay">A <c>global::Roblox.Ray?</c> value.</param>
-        /// <param name="viewFrame">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="hitFrame">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="clickedPart">A <c>BasePart?</c> value.</param>
-        /// <param name="vrInputFrame">A <c>object?</c> value.</param>
+        /// <param name="playerWhoDragged">A <c>Player</c> value.</param>
+        /// <param name="cursorRay">A <c>global::Roblox.Ray</c> value.</param>
+        /// <param name="viewFrame">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="hitFrame">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="clickedPart">A <c>BasePart</c> value.</param>
+        /// <param name="vrInputFrame">A <c>global::Roblox.CFrame?</c> value.</param>
         /// <param name="isModeSwitchKeyDown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#DragStart"/>
-        public event Action<Player?, global::Roblox.Ray?, global::Roblox.CFrame?, global::Roblox.CFrame?, BasePart?, object?, bool>? DragStart
+        public event Action<Player, global::Roblox.Ray, global::Roblox.CFrame, global::Roblox.CFrame, BasePart, global::Roblox.CFrame?, bool>? DragStart
         {
             add { if (value is not null) AddEventHandler("DragStart", value); }
             remove { if (value is not null) RemoveEventHandler("DragStart", value); }

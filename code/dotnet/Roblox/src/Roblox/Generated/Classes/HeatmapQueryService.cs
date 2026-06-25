@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="HeatmapQueryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HeatmapQueryService? FromHandle(nuint handle)
+        public static new HeatmapQueryService? FromHandle(nuint handle)
             => handle == 0 ? null : new HeatmapQueryService(handle);
 
     }

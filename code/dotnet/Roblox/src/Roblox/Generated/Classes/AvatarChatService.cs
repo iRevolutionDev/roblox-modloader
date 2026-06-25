@@ -18,42 +18,42 @@ namespace Roblox
         /// Creates a <see cref="AvatarChatService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarChatService? FromHandle(nuint handle)
+        public static new AvatarChatService? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarChatService(handle);
 
         public int ClientFeatures
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ClientFeatures");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ClientFeatures")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ClientFeatures", value);
         }
 
         public bool ClientFeaturesInitialized
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClientFeaturesInitialized");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClientFeaturesInitialized")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClientFeaturesInitialized", value);
         }
 
         public int ServerFeatures
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ServerFeatures");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ServerFeatures")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ServerFeatures", value);
         }
 
         /// <summary>
         /// <c>AvatarChatService.DebugCounterGet</c>
         /// </summary>
-        /// <param name="label">A <c>string?</c> value.</param>
+        /// <param name="label">A <c>string</c> value.</param>
         /// <param name="playerId">A <c>long</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long DebugCounterGet(string? label, long playerId)
-            => global::Roblox.Reflection.Invoke<long>(this, "DebugCounterGet", label, playerId);
+        public long DebugCounterGet(string label, long playerId)
+            => global::Roblox.Reflection.Invoke<long>(this, "DebugCounterGet", label, playerId)!;
 
         /// <summary>
         /// <c>AvatarChatService.EnableVoice</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool EnableVoice()
-            => global::Roblox.Reflection.Invoke<bool>(this, "EnableVoice");
+            => global::Roblox.Reflection.Invoke<bool>(this, "EnableVoice")!;
 
         /// <summary>
         /// <c>AvatarChatService.IsEnabled</c>
@@ -62,35 +62,35 @@ namespace Roblox
         /// <param name="feature">A <c>Enum.AvatarChatServiceFeature</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsEnabled(int mask, Enum.AvatarChatServiceFeature feature)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsEnabled", mask, feature);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsEnabled", mask, feature)!;
 
         /// <summary>
         /// <c>AvatarChatService.IsPlaceEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsPlaceEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPlaceEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPlaceEnabled")!;
 
         /// <summary>
         /// <c>AvatarChatService.IsUniverseEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsUniverseEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsUniverseEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsUniverseEnabled")!;
 
         /// <summary>
         /// <c>AvatarChatService.PollClientFeatures</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int PollClientFeatures()
-            => global::Roblox.Reflection.Invoke<int>(this, "PollClientFeatures");
+            => global::Roblox.Reflection.Invoke<int>(this, "PollClientFeatures")!;
 
         /// <summary>
         /// <c>AvatarChatService.PollServerFeatures</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int PollServerFeatures()
-            => global::Roblox.Reflection.Invoke<int>(this, "PollServerFeatures");
+            => global::Roblox.Reflection.Invoke<int>(this, "PollServerFeatures")!;
 
         /// <summary>
         /// <c>AvatarChatService.deviceMeetsRequirementsForFeature</c>
@@ -98,21 +98,21 @@ namespace Roblox
         /// <param name="feature">A <c>Enum.DeviceFeatureType</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool DeviceMeetsRequirementsForFeature(Enum.DeviceFeatureType feature)
-            => global::Roblox.Reflection.Invoke<bool>(this, "deviceMeetsRequirementsForFeature", feature);
+            => global::Roblox.Reflection.Invoke<bool>(this, "deviceMeetsRequirementsForFeature", feature)!;
 
         /// <summary>
         /// <c>AvatarChatService.GetClientFeaturesAsync</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetClientFeaturesAsync()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetClientFeaturesAsync");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetClientFeaturesAsync")!;
 
         /// <summary>
         /// <c>AvatarChatService.GetServerFeaturesAsync</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetServerFeaturesAsync()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetServerFeaturesAsync");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetServerFeaturesAsync")!;
 
     }
 }

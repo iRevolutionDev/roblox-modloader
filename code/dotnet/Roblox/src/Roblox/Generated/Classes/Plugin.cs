@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Plugin"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Plugin? FromHandle(nuint handle)
+        public static new Plugin? FromHandle(nuint handle)
             => handle == 0 ? null : new Plugin(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#CollisionEnabled"/>
         public bool CollisionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CollisionEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CollisionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CollisionEnabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#DisableUIDragDetectorDrags"/>
         public bool DisableUIDragDetectorDrags
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DisableUIDragDetectorDrags");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DisableUIDragDetectorDrags")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DisableUIDragDetectorDrags", value);
         }
 
@@ -51,19 +51,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#GridSize"/>
         public float GridSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "GridSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "GridSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "GridSize", value);
         }
 
         public Enum.StudioDataModelType HostDataModelType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StudioDataModelType>(this, "HostDataModelType");
+            get => global::Roblox.Reflection.GetProperty<Enum.StudioDataModelType>(this, "HostDataModelType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StudioDataModelType>(this, "HostDataModelType", value);
         }
 
         public bool HostDataModelTypeIsCurrent
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HostDataModelTypeIsCurrent");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HostDataModelTypeIsCurrent")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HostDataModelTypeIsCurrent", value);
         }
 
@@ -73,7 +73,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#IsDebuggable"/>
         public bool IsDebuggable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDebuggable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDebuggable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsDebuggable", value);
         }
 
@@ -85,7 +85,7 @@ namespace Roblox
 
         public bool UsesAssetInsertionDrag
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsesAssetInsertionDrag");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsesAssetInsertionDrag")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UsesAssetInsertionDrag", value);
         }
 
@@ -93,67 +93,67 @@ namespace Roblox
         /// Sets the state of the calling plugin to activated.
         /// </summary>
         /// <param name="exclusiveMouse">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Activate"/>
-        public object? Activate(bool exclusiveMouse)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Activate", exclusiveMouse);
+        public object Activate(bool exclusiveMouse)
+            => global::Roblox.Reflection.Invoke<object>(this, "Activate", exclusiveMouse)!;
 
         /// <summary>
         /// Creates a PluginAction which represents a generic performable action in Studio with no directly‑associated PluginToolbarButton.
         /// </summary>
-        /// <param name="actionId">A <c>string?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <param name="statusTip">A <c>string?</c> value.</param>
-        /// <param name="iconName">A <c>string?</c> value.</param>
-        /// <param name="allowBinding">A <c>bool</c> value.</param>
-        /// <returns>A <c>PluginAction?</c> value returned by the engine.</returns>
+        /// <param name="actionId">A <c>string</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <param name="statusTip">A <c>string</c> value.</param>
+        /// <param name="iconName">A <c>string</c> value.</param>
+        /// <param name="allowBinding">A <c>bool?</c> value.</param>
+        /// <returns>A <c>PluginAction</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#CreatePluginAction"/>
-        public PluginAction? CreatePluginAction(string? actionId, string? text, string? statusTip, string? iconName, bool allowBinding)
-            => global::Roblox.Reflection.Invoke<PluginAction?>(this, "CreatePluginAction", actionId, text, statusTip, iconName, allowBinding);
+        public PluginAction CreatePluginAction(string actionId, string text, string statusTip, string iconName, bool? allowBinding = null)
+            => global::Roblox.Reflection.Invoke<PluginAction>(this, "CreatePluginAction", actionId, text, statusTip, iconName, allowBinding)!;
 
         /// <summary>
         /// Creates a new plugin menu.
         /// </summary>
-        /// <param name="id">A <c>string?</c> value.</param>
-        /// <param name="title">A <c>string?</c> value.</param>
-        /// <param name="icon">A <c>string?</c> value.</param>
-        /// <returns>A <c>PluginMenu?</c> value returned by the engine.</returns>
+        /// <param name="id">A <c>string</c> value.</param>
+        /// <param name="title">A <c>string</c> value.</param>
+        /// <param name="icon">A <c>string</c> value.</param>
+        /// <returns>A <c>PluginMenu</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#CreatePluginMenu"/>
-        public PluginMenu? CreatePluginMenu(string? id, string? title, string? icon)
-            => global::Roblox.Reflection.Invoke<PluginMenu?>(this, "CreatePluginMenu", id, title, icon);
+        public PluginMenu CreatePluginMenu(string id, string title, string icon)
+            => global::Roblox.Reflection.Invoke<PluginMenu>(this, "CreatePluginMenu", id, title, icon)!;
 
         /// <summary>
         /// Creates a new PluginToolbar with the given name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>PluginToolbar?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>PluginToolbar</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#CreateToolbar"/>
-        public PluginToolbar? CreateToolbar(string? name)
-            => global::Roblox.Reflection.Invoke<PluginToolbar?>(this, "CreateToolbar", name);
+        public PluginToolbar CreateToolbar(string name)
+            => global::Roblox.Reflection.Invoke<PluginToolbar>(this, "CreateToolbar", name)!;
 
         /// <summary>
         /// Deactivates the plugin.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Deactivate"/>
-        public object? Deactivate()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Deactivate");
+        public object Deactivate()
+            => global::Roblox.Reflection.Invoke<object>(this, "Deactivate")!;
 
         /// <summary>
         /// <c>Plugin.FinishFullLoading</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FinishFullLoading()
-            => global::Roblox.Reflection.Invoke<object?>(this, "FinishFullLoading");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FinishFullLoading()
+            => global::Roblox.Reflection.Invoke<object>(this, "FinishFullLoading")!;
 
         /// <summary>
         /// <c>Plugin.GetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="defaultValue">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetItem(string? key, object? defaultValue)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetItem", key, defaultValue);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="defaultValue">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetItem(string key, object defaultValue)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetItem", key, defaultValue)!;
 
         /// <summary>
         /// Returns the JointCreationMode the user has set in Studio's toolbar.
@@ -161,23 +161,23 @@ namespace Roblox
         /// <returns>A <c>Enum.JointCreationMode</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#GetJoinMode"/>
         public Enum.JointCreationMode GetJoinMode()
-            => global::Roblox.Reflection.Invoke<Enum.JointCreationMode>(this, "GetJoinMode");
+            => global::Roblox.Reflection.Invoke<Enum.JointCreationMode>(this, "GetJoinMode")!;
 
         /// <summary>
         /// Returns a Mouse that can be used while the plugin is active.
         /// </summary>
-        /// <returns>A <c>PluginMouse?</c> value returned by the engine.</returns>
+        /// <returns>A <c>PluginMouse</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#GetMouse"/>
-        public PluginMouse? GetMouse()
-            => global::Roblox.Reflection.Invoke<PluginMouse?>(this, "GetMouse");
+        public PluginMouse GetMouse()
+            => global::Roblox.Reflection.Invoke<PluginMouse>(this, "GetMouse")!;
 
         /// <summary>
         /// <c>Plugin.GetPluginComponent</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPluginComponent(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPluginComponent", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPluginComponent(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPluginComponent", name)!;
 
         /// <summary>
         /// Returns the currently selected RibbonTool.
@@ -185,16 +185,16 @@ namespace Roblox
         /// <returns>A <c>Enum.RibbonTool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#GetSelectedRibbonTool"/>
         public Enum.RibbonTool GetSelectedRibbonTool()
-            => global::Roblox.Reflection.Invoke<Enum.RibbonTool>(this, "GetSelectedRibbonTool");
+            => global::Roblox.Reflection.Invoke<Enum.RibbonTool>(this, "GetSelectedRibbonTool")!;
 
         /// <summary>
         /// Retrieves a previously stored value with the given key, or nil if the given key doesn't exist.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#GetSetting"/>
-        public object? GetSetting(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSetting", key);
+        public object GetSetting(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSetting", key)!;
 
         /// <summary>
         /// Deprecated: Returns the Studio user's userId if they're logged in, otherwise returns 0.
@@ -202,14 +202,14 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#GetStudioUserId"/>
         public long GetStudioUserId()
-            => global::Roblox.Reflection.Invoke<long>(this, "GetStudioUserId");
+            => global::Roblox.Reflection.Invoke<long>(this, "GetStudioUserId")!;
 
         /// <summary>
         /// <c>Plugin.GetUri</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUri()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUri");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUri()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUri")!;
 
         /// <summary>
         /// Intersects the given parts and returns the resulting IntersectOperation.
@@ -223,11 +223,11 @@ namespace Roblox
         /// <summary>
         /// <c>Plugin.Invoke</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Invoke(string? key, object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Invoke", key, arguments);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Invoke(string key, object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "Invoke", key, arguments)!;
 
         /// <summary>
         /// Returns true if this plugin is currently active, after having been activated via the Activate() function.
@@ -235,7 +235,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#IsActivated"/>
         public bool IsActivated()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsActivated");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsActivated")!;
 
         /// <summary>
         /// Returns true if this plugin is currently active with an exclusive mouse.
@@ -243,14 +243,14 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#IsActivatedWithExclusiveMouse"/>
         public bool IsActivatedWithExclusiveMouse()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsActivatedWithExclusiveMouse");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsActivatedWithExclusiveMouse")!;
 
         /// <summary>
         /// <c>Plugin.IsLoadedFromProject</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsLoadedFromProject()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsLoadedFromProject");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsLoadedFromProject")!;
 
         /// <summary>
         /// Negates the given parts and returns the resulting NegateOperations.
@@ -259,96 +259,96 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Negate"/>
         public IReadOnlyList<Instance> Negate(IReadOnlyList<Instance> objects)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Negate", objects);
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Negate", objects)!;
 
         /// <summary>
         /// <c>Plugin.OnInvoke</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? OnInvoke(string? key, object? callback)
+        public Instance? OnInvoke(string key, object callback)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "OnInvoke", key, callback);
 
         /// <summary>
         /// <c>Plugin.OnInvokeSuspendOverride</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? OnInvokeSuspendOverride(string? key, object? callback)
+        public Instance? OnInvokeSuspendOverride(string key, object callback)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "OnInvokeSuspendOverride", key, callback);
 
         /// <summary>
         /// <c>Plugin.OnSetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? OnSetItem(string? key, object? callback)
+        public Instance? OnSetItem(string key, object callback)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "OnSetItem", key, callback);
 
         /// <summary>
         /// Deprecated: Used to open the given script instance in an editor window, in Roblox studio, at the given line. If no line is given as an argument it will default to 1.
         /// </summary>
-        /// <param name="script">A <c>LuaSourceContainer?</c> value.</param>
-        /// <param name="lineNumber">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="script">A <c>LuaSourceContainer</c> value.</param>
+        /// <param name="lineNumber">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#OpenScript"/>
-        public object? OpenScript(LuaSourceContainer? script, int lineNumber)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenScript", script, lineNumber);
+        public object OpenScript(LuaSourceContainer script, int? lineNumber = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenScript", script, lineNumber)!;
 
         /// <summary>
         /// Opens the context help window to the wiki page that url links to.
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#OpenWikiPage"/>
-        public object? OpenWikiPage(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenWikiPage", url);
+        public object OpenWikiPage(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenWikiPage", url)!;
 
         /// <summary>
         /// <c>Plugin.PauseSound</c>
         /// </summary>
-        /// <param name="sound">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PauseSound(Instance? sound)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PauseSound", sound);
+        /// <param name="sound">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PauseSound(Instance sound)
+            => global::Roblox.Reflection.Invoke<object>(this, "PauseSound", sound)!;
 
         /// <summary>
         /// <c>Plugin.PlaySound</c>
         /// </summary>
-        /// <param name="sound">A <c>Instance?</c> value.</param>
-        /// <param name="normalizedTimePosition">A <c>double</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PlaySound(Instance? sound, double normalizedTimePosition)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PlaySound", sound, normalizedTimePosition);
+        /// <param name="sound">A <c>Instance</c> value.</param>
+        /// <param name="normalizedTimePosition">A <c>double?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PlaySound(Instance sound, double? normalizedTimePosition = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PlaySound", sound, normalizedTimePosition)!;
 
         /// <summary>
         /// <c>Plugin.ResumeSound</c>
         /// </summary>
-        /// <param name="sound">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResumeSound(Instance? sound)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResumeSound", sound);
+        /// <param name="sound">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResumeSound(Instance sound)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResumeSound", sound)!;
 
         /// <summary>
         /// Opens an upload window for the user's current selection.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#SaveSelectedToRoblox"/>
-        public object? SaveSelectedToRoblox()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveSelectedToRoblox");
+        public object SaveSelectedToRoblox()
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveSelectedToRoblox")!;
 
         /// <summary>
         /// Activates the specified Roblox Studio tool.
         /// </summary>
         /// <param name="tool">A <c>Enum.RibbonTool</c> value.</param>
-        /// <param name="position">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="position">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#SelectRibbonTool"/>
-        public object? SelectRibbonTool(Enum.RibbonTool tool, global::Roblox.UDim2? position)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SelectRibbonTool", tool, position);
+        public object SelectRibbonTool(Enum.RibbonTool tool, global::Roblox.UDim2 position)
+            => global::Roblox.Reflection.Invoke<object>(this, "SelectRibbonTool", tool, position)!;
 
         /// <summary>
         /// Separates the given UnionOperations and returns the resulting parts.
@@ -357,57 +357,57 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#Separate"/>
         public IReadOnlyList<Instance> Separate(IReadOnlyList<Instance> objects)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Separate", objects);
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "Separate", objects)!;
 
         /// <summary>
         /// <c>Plugin.SetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetItem(string? key, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetItem", key, value);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetItem(string key, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetItem", key, value)!;
 
         /// <summary>
         /// <c>Plugin.SetReady</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetReady()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetReady");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetReady()
+            => global::Roblox.Reflection.Invoke<object>(this, "SetReady")!;
 
         /// <summary>
         /// Stores a given value for later use under the given key. The value will persist even after Studio is closed.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#SetSetting"/>
-        public object? SetSetting(string? key, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetSetting", key, value);
+        public object SetSetting(string key, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetSetting", key, value)!;
 
         /// <summary>
         /// <c>Plugin.StartDecalDrag</c>
         /// </summary>
-        /// <param name="decal">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartDecalDrag(Instance? decal)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartDecalDrag", decal);
+        /// <param name="decal">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartDecalDrag(Instance decal)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartDecalDrag", decal)!;
 
         /// <summary>
         /// Starts a drag action given a dictionary of parameters.
         /// </summary>
-        /// <param name="dragData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="dragData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#StartDrag"/>
-        public object? StartDrag(object? dragData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartDrag", dragData);
+        public object StartDrag(object dragData)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartDrag", dragData)!;
 
         /// <summary>
         /// <c>Plugin.StopAllSounds</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopAllSounds()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopAllSounds");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopAllSounds()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopAllSounds")!;
 
         /// <summary>
         /// Unions the given parts and returns the resulting UnionOperation.
@@ -421,105 +421,105 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This method has been superseded by CreateDockWidgetPluginGuiAsync().Creates a DockWidgetPluginGui given a DockWidgetPluginGuiInfo.
         /// </summary>
-        /// <param name="pluginGuiId">A <c>string?</c> value.</param>
-        /// <param name="dockWidgetPluginGuiInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>DockWidgetPluginGui?</c> value returned by the engine.</returns>
+        /// <param name="pluginGuiId">A <c>string</c> value.</param>
+        /// <param name="dockWidgetPluginGuiInfo">A <c>object</c> value.</param>
+        /// <returns>A <c>DockWidgetPluginGui</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#CreateDockWidgetPluginGui"/>
-        public DockWidgetPluginGui? CreateDockWidgetPluginGui(string? pluginGuiId, object? dockWidgetPluginGuiInfo)
-            => global::Roblox.Reflection.Invoke<DockWidgetPluginGui?>(this, "CreateDockWidgetPluginGui", pluginGuiId, dockWidgetPluginGuiInfo);
+        public DockWidgetPluginGui CreateDockWidgetPluginGui(string pluginGuiId, object dockWidgetPluginGuiInfo)
+            => global::Roblox.Reflection.Invoke<DockWidgetPluginGui>(this, "CreateDockWidgetPluginGui", pluginGuiId, dockWidgetPluginGuiInfo)!;
 
         /// <summary>
         /// Creates a DockWidgetPluginGui given a DockWidgetPluginGuiInfo.
         /// </summary>
-        /// <param name="pluginGuiId">A <c>string?</c> value.</param>
-        /// <param name="dockWidgetPluginGuiInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>DockWidgetPluginGui?</c> value returned by the engine.</returns>
+        /// <param name="pluginGuiId">A <c>string</c> value.</param>
+        /// <param name="dockWidgetPluginGuiInfo">A <c>object</c> value.</param>
+        /// <returns>A <c>DockWidgetPluginGui</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#CreateDockWidgetPluginGuiAsync"/>
-        public DockWidgetPluginGui? CreateDockWidgetPluginGuiAsync(string? pluginGuiId, object? dockWidgetPluginGuiInfo)
-            => global::Roblox.Reflection.Invoke<DockWidgetPluginGui?>(this, "CreateDockWidgetPluginGuiAsync", pluginGuiId, dockWidgetPluginGuiInfo);
+        public DockWidgetPluginGui CreateDockWidgetPluginGuiAsync(string pluginGuiId, object dockWidgetPluginGuiInfo)
+            => global::Roblox.Reflection.Invoke<DockWidgetPluginGui>(this, "CreateDockWidgetPluginGuiAsync", pluginGuiId, dockWidgetPluginGuiInfo)!;
 
         /// <summary>
         /// <c>Plugin.CreateQWidgetPluginGui</c>
         /// </summary>
-        /// <param name="pluginGuiId">A <c>string?</c> value.</param>
-        /// <param name="pluginGuiOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>QWidgetPluginGui?</c> value returned by the engine.</returns>
-        public QWidgetPluginGui? CreateQWidgetPluginGui(string? pluginGuiId, object? pluginGuiOptions)
-            => global::Roblox.Reflection.Invoke<QWidgetPluginGui?>(this, "CreateQWidgetPluginGui", pluginGuiId, pluginGuiOptions);
+        /// <param name="pluginGuiId">A <c>string</c> value.</param>
+        /// <param name="pluginGuiOptions">A <c>object</c> value.</param>
+        /// <returns>A <c>QWidgetPluginGui</c> value returned by the engine.</returns>
+        public QWidgetPluginGui CreateQWidgetPluginGui(string pluginGuiId, object pluginGuiOptions)
+            => global::Roblox.Reflection.Invoke<QWidgetPluginGui>(this, "CreateQWidgetPluginGui", pluginGuiId, pluginGuiOptions)!;
 
         /// <summary>
         /// Deprecated: Prompts the user to open a .fbx animation file that can be loaded onto the rigModel, then proceeds to insert the animation as a KeyframeSequence in the Workspace.
         /// </summary>
-        /// <param name="rigModel">A <c>Instance?</c> value.</param>
-        /// <param name="isR15">A <c>bool</c> value.</param>
+        /// <param name="rigModel">A <c>Instance</c> value.</param>
+        /// <param name="isR15">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#ImportFbxAnimation"/>
-        public Instance? ImportFbxAnimation(Instance? rigModel, bool isR15)
+        public Instance? ImportFbxAnimation(Instance rigModel, bool? isR15 = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFbxAnimation", rigModel, isR15);
 
         /// <summary>
         /// Prompts the user to open a .fbx animation file that can be loaded onto the rigModel, then proceeds to insert the animation as a KeyframeSequence in the Workspace.
         /// </summary>
-        /// <param name="rigModel">A <c>Instance?</c> value.</param>
-        /// <param name="isR15">A <c>bool</c> value.</param>
+        /// <param name="rigModel">A <c>Instance</c> value.</param>
+        /// <param name="isR15">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#ImportFbxAnimationAsync"/>
-        public Instance? ImportFbxAnimationAsync(Instance? rigModel, bool isR15)
+        public Instance? ImportFbxAnimationAsync(Instance rigModel, bool? isR15 = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFbxAnimationAsync", rigModel, isR15);
 
         /// <summary>
         /// Deprecated: This method has been superseded by ImportFbxRigAsync().Prompts the user to open a .fbx file, uploads the individual components of the model as meshes, and generates a character rig for use in animation, which is loaded into the Workspace.
         /// </summary>
-        /// <param name="isR15">A <c>bool</c> value.</param>
+        /// <param name="isR15">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#ImportFbxRig"/>
-        public Instance? ImportFbxRig(bool isR15)
+        public Instance? ImportFbxRig(bool? isR15 = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFbxRig", isR15);
 
         /// <summary>
         /// Prompts the user to open a .fbx file, uploads the individual components of the model as meshes, and generates a character rig for use in animation, which is loaded into the Workspace.
         /// </summary>
-        /// <param name="isR15">A <c>bool</c> value.</param>
+        /// <param name="isR15">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#ImportFbxRigAsync"/>
-        public Instance? ImportFbxRigAsync(bool isR15)
+        public Instance? ImportFbxRigAsync(bool? isR15 = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFbxRigAsync", isR15);
 
         /// <summary>
         /// Opens a window in Roblox Studio which prompts the user to select an asset based on the assetType specified.
         /// </summary>
-        /// <param name="assetType">A <c>string?</c> value.</param>
+        /// <param name="assetType">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#PromptForExistingAssetId"/>
-        public long PromptForExistingAssetId(string? assetType)
-            => global::Roblox.Reflection.Invoke<long>(this, "PromptForExistingAssetId", assetType);
+        public long PromptForExistingAssetId(string assetType)
+            => global::Roblox.Reflection.Invoke<long>(this, "PromptForExistingAssetId", assetType)!;
 
         /// <summary>
         /// Opens a window in Roblox Studio which prompts the user to select an asset based on the assetType specified.
         /// </summary>
-        /// <param name="assetType">A <c>string?</c> value.</param>
+        /// <param name="assetType">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#PromptForExistingAssetIdAsync"/>
-        public long PromptForExistingAssetIdAsync(string? assetType)
-            => global::Roblox.Reflection.Invoke<long>(this, "PromptForExistingAssetIdAsync", assetType);
+        public long PromptForExistingAssetIdAsync(string assetType)
+            => global::Roblox.Reflection.Invoke<long>(this, "PromptForExistingAssetIdAsync", assetType)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by PromptSaveSelectionAsync().Prompts the user to save their current selection with the specified file name.
         /// </summary>
-        /// <param name="suggestedFileName">A <c>string?</c> value.</param>
+        /// <param name="suggestedFileName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#PromptSaveSelection"/>
-        public bool PromptSaveSelection(string? suggestedFileName)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PromptSaveSelection", suggestedFileName);
+        public bool PromptSaveSelection(string suggestedFileName)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PromptSaveSelection", suggestedFileName)!;
 
         /// <summary>
         /// Prompts the user to save their current selection with the specified file name.
         /// </summary>
-        /// <param name="suggestedFileName">A <c>string?</c> value.</param>
+        /// <param name="suggestedFileName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#PromptSaveSelectionAsync"/>
-        public bool PromptSaveSelectionAsync(string? suggestedFileName)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PromptSaveSelectionAsync", suggestedFileName);
+        public bool PromptSaveSelectionAsync(string suggestedFileName)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PromptSaveSelectionAsync", suggestedFileName)!;
 
         /// <summary>
         /// Fired when the plugin is deactivated.
@@ -550,8 +550,8 @@ namespace Roblox
         /// <summary>
         /// <c>Plugin.ViewportDragDropped</c>
         /// </summary>
-        /// <param name="dragData">A <c>object?</c> value.</param>
-        public event Action<object?>? ViewportDragDropped
+        /// <param name="dragData">A <c>object</c> value.</param>
+        public event Action<object>? ViewportDragDropped
         {
             add { if (value is not null) AddEventHandler("ViewportDragDropped", value); }
             remove { if (value is not null) RemoveEventHandler("ViewportDragDropped", value); }
@@ -560,8 +560,8 @@ namespace Roblox
         /// <summary>
         /// <c>Plugin.ViewportDragEntered</c>
         /// </summary>
-        /// <param name="dragData">A <c>object?</c> value.</param>
-        public event Action<object?>? ViewportDragEntered
+        /// <param name="dragData">A <c>object</c> value.</param>
+        public event Action<object>? ViewportDragEntered
         {
             add { if (value is not null) AddEventHandler("ViewportDragEntered", value); }
             remove { if (value is not null) RemoveEventHandler("ViewportDragEntered", value); }

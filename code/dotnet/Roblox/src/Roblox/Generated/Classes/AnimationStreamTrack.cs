@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AnimationStreamTrack"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationStreamTrack? FromHandle(nuint handle)
+        public static new AnimationStreamTrack? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationStreamTrack(handle);
 
         public TrackerStreamAnimation? Animation
@@ -29,81 +29,81 @@ namespace Roblox
 
         public Enum.FACSDataLod FACSDataLod
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FACSDataLod>(this, "FACSDataLod");
+            get => global::Roblox.Reflection.GetProperty<Enum.FACSDataLod>(this, "FACSDataLod")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FACSDataLod>(this, "FACSDataLod", value);
         }
 
         public bool IsPlaying
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPlaying", value);
         }
 
         public Enum.AnimationPriority Priority
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnimationPriority>(this, "Priority");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnimationPriority>(this, "Priority")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnimationPriority>(this, "Priority", value);
         }
 
         public float WeightCurrent
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightCurrent");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightCurrent")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WeightCurrent", value);
         }
 
         public float WeightTarget
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightTarget");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightTarget")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WeightTarget", value);
         }
 
         /// <summary>
         /// <c>AnimationStreamTrack.AdjustWeight</c>
         /// </summary>
-        /// <param name="weight">A <c>float</c> value.</param>
-        /// <param name="fadeTime">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AdjustWeight(float weight, float fadeTime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AdjustWeight", weight, fadeTime);
+        /// <param name="weight">A <c>float?</c> value.</param>
+        /// <param name="fadeTime">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AdjustWeight(float? weight = null, float? fadeTime = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "AdjustWeight", weight, fadeTime)!;
 
         /// <summary>
         /// <c>AnimationStreamTrack.GetActive</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetActive()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetActive");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetActive")!;
 
         /// <summary>
         /// <c>AnimationStreamTrack.GetTrackerData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetTrackerData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTrackerData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetTrackerData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTrackerData")!;
 
         /// <summary>
         /// <c>AnimationStreamTrack.Play</c>
         /// </summary>
-        /// <param name="fadeTime">A <c>float</c> value.</param>
-        /// <param name="weight">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Play(float fadeTime, float weight)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play", fadeTime, weight);
+        /// <param name="fadeTime">A <c>float?</c> value.</param>
+        /// <param name="weight">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Play(float? fadeTime = null, float? weight = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Play", fadeTime, weight)!;
 
         /// <summary>
         /// <c>AnimationStreamTrack.Stop</c>
         /// </summary>
-        /// <param name="fadeTime">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Stop(float fadeTime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop", fadeTime);
+        /// <param name="fadeTime">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Stop(float? fadeTime = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop", fadeTime)!;
 
         /// <summary>
         /// <c>AnimationStreamTrack.TogglePause</c>
         /// </summary>
         /// <param name="paused">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TogglePause(bool paused)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TogglePause", paused);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TogglePause(bool paused)
+            => global::Roblox.Reflection.Invoke<object>(this, "TogglePause", paused)!;
 
         public event Action? Stopped
         {

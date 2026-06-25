@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="BubbleChatMessageProperties"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BubbleChatMessageProperties? FromHandle(nuint handle)
+        public static new BubbleChatMessageProperties? FromHandle(nuint handle)
             => handle == 0 ? null : new BubbleChatMessageProperties(handle);
 
         /// <summary>
         /// Background color of bubbles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#BackgroundColor3"/>
-        public global::Roblox.Color3? BackgroundColor3
+        public global::Roblox.Color3 BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "BackgroundColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#BackgroundTransparency"/>
         public double BackgroundTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "BackgroundTransparency", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Font of the bubble text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#FontFace"/>
-        public object? FontFace
+        public object FontFace
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FontFace");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FontFace", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FontFace")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FontFace", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#TailVisible"/>
         public bool TailVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TailVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TailVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TailVisible", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// Color of bubble text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#TextColor3"/>
-        public global::Roblox.Color3? TextColor3
+        public global::Roblox.Color3 TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatMessageProperties#TextSize"/>
         public long TextSize
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "TextSize", value);
         }
 

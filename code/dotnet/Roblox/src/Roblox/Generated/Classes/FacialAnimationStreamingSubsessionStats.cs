@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="FacialAnimationStreamingSubsessionStats"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FacialAnimationStreamingSubsessionStats? FromHandle(nuint handle)
+        public static new FacialAnimationStreamingSubsessionStats? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAnimationStreamingSubsessionStats(handle);
 
     }

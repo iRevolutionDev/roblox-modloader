@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="FlyweightService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FlyweightService? FromHandle(nuint handle)
+        public static new FlyweightService? FromHandle(nuint handle)
             => handle == 0 ? null : new FlyweightService(handle);
 
     }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RunningAverageTimeIntervalItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RunningAverageTimeIntervalItem? FromHandle(nuint handle)
+        public static new RunningAverageTimeIntervalItem? FromHandle(nuint handle)
             => handle == 0 ? null : new RunningAverageTimeIntervalItem(handle);
 
     }

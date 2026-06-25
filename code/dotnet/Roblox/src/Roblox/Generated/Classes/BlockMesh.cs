@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BlockMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BlockMesh? FromHandle(nuint handle)
+        public static new BlockMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new BlockMesh(handle);
 
     }

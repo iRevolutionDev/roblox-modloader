@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CookiesService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CookiesService? FromHandle(nuint handle)
+        public static new CookiesService? FromHandle(nuint handle)
             => handle == 0 ? null : new CookiesService(handle);
 
     }

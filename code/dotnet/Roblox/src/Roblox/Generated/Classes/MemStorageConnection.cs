@@ -22,16 +22,16 @@ namespace Roblox
         /// Creates a <see cref="MemStorageConnection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MemStorageConnection? FromHandle(nuint handle)
+        public static new MemStorageConnection? FromHandle(nuint handle)
             => handle == 0 ? null : new MemStorageConnection(handle);
 
         /// <summary>
         /// <c>MemStorageConnection.Disconnect</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemStorageConnection#Disconnect"/>
-        public object? Disconnect()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Disconnect");
+        public object Disconnect()
+            => global::Roblox.Reflection.Invoke<object>(this, "Disconnect")!;
 
     }
 }

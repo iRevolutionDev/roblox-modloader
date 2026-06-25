@@ -22,15 +22,15 @@ namespace Roblox
         /// Creates a <see cref="SlimContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SlimContentProvider? FromHandle(nuint handle)
+        public static new SlimContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimContentProvider(handle);
 
         /// <summary>
         /// <c>SlimContentProvider.GetContentMemoryData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetContentMemoryData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetContentMemoryData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetContentMemoryData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetContentMemoryData")!;
 
     }
 }

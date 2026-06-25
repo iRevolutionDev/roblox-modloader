@@ -18,107 +18,107 @@ namespace Roblox
         /// Creates a <see cref="SafetyService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SafetyService? FromHandle(nuint handle)
+        public static new SafetyService? FromHandle(nuint handle)
             => handle == 0 ? null : new SafetyService(handle);
 
         public bool IsCaptureModeForReport
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsCaptureModeForReport");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsCaptureModeForReport")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsCaptureModeForReport", value);
         }
 
         /// <summary>
         /// <c>SafetyService.DecodeAvatarMovementProto</c>
         /// </summary>
-        /// <param name="avatarMovementProtoString">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DecodeAvatarMovementProto(string? avatarMovementProtoString)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DecodeAvatarMovementProto", avatarMovementProtoString);
+        /// <param name="avatarMovementProtoString">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DecodeAvatarMovementProto(string avatarMovementProtoString)
+            => global::Roblox.Reflection.Invoke<object>(this, "DecodeAvatarMovementProto", avatarMovementProtoString)!;
 
         /// <summary>
         /// <c>SafetyService.ReportCapturesUIClose</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportCapturesUIClose()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportCapturesUIClose");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportCapturesUIClose()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportCapturesUIClose")!;
 
         /// <summary>
         /// <c>SafetyService.ReportCapturesUIOpen</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportCapturesUIOpen()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportCapturesUIOpen");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportCapturesUIOpen()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportCapturesUIOpen")!;
 
         /// <summary>
         /// <c>SafetyService.ReportChatLineReportingClose</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportChatLineReportingClose()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatLineReportingClose");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportChatLineReportingClose()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportChatLineReportingClose")!;
 
         /// <summary>
         /// <c>SafetyService.ReportChatLineReportingOpen</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportChatLineReportingOpen()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatLineReportingOpen");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportChatLineReportingOpen()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportChatLineReportingOpen")!;
 
         /// <summary>
         /// <c>SafetyService.ReportChatSuspensionDialogClose</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportChatSuspensionDialogClose()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatSuspensionDialogClose");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportChatSuspensionDialogClose()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportChatSuspensionDialogClose")!;
 
         /// <summary>
         /// <c>SafetyService.ReportChatSuspensionDialogOpen</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportChatSuspensionDialogOpen()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportChatSuspensionDialogOpen");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportChatSuspensionDialogOpen()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportChatSuspensionDialogOpen")!;
 
         /// <summary>
         /// <c>SafetyService.ReportMenuTabClose</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportMenuTabClose()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportMenuTabClose");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportMenuTabClose()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportMenuTabClose")!;
 
         /// <summary>
         /// <c>SafetyService.ReportMenuTabOpen</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportMenuTabOpen()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportMenuTabOpen");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportMenuTabOpen()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportMenuTabOpen")!;
 
         /// <summary>
         /// <c>SafetyService.ReportPartyChatWindowClose</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportPartyChatWindowClose()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportPartyChatWindowClose");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportPartyChatWindowClose()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportPartyChatWindowClose")!;
 
         /// <summary>
         /// <c>SafetyService.ReportPartyChatWindowOpen</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportPartyChatWindowOpen()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportPartyChatWindowOpen");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportPartyChatWindowOpen()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportPartyChatWindowOpen")!;
 
         /// <summary>
         /// <c>SafetyService.TakeScreenshot</c>
         /// </summary>
-        /// <param name="screenshotOptions">A <c>object?</c> value.</param>
+        /// <param name="screenshotOptions">A <c>object</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long TakeScreenshot(object? screenshotOptions)
-            => global::Roblox.Reflection.Invoke<long>(this, "TakeScreenshot", screenshotOptions);
+        public long TakeScreenshot(object screenshotOptions)
+            => global::Roblox.Reflection.Invoke<long>(this, "TakeScreenshot", screenshotOptions)!;
 
         /// <summary>
         /// <c>SafetyService.ScreenshotContentReady</c>
         /// </summary>
         /// <param name="screenshotJobId">A <c>long</c> value.</param>
-        /// <param name="contentId">A <c>object?</c> value.</param>
-        public event Action<long, object?>? ScreenshotContentReady
+        /// <param name="contentId">A <c>object</c> value.</param>
+        public event Action<long, object>? ScreenshotContentReady
         {
             add { if (value is not null) AddEventHandler("ScreenshotContentReady", value); }
             remove { if (value is not null) RemoveEventHandler("ScreenshotContentReady", value); }
@@ -128,8 +128,8 @@ namespace Roblox
         /// <c>SafetyService.ScreenshotUploaded</c>
         /// </summary>
         /// <param name="screenshotJobId">A <c>long</c> value.</param>
-        /// <param name="screenshotId">A <c>string?</c> value.</param>
-        public event Action<long, string?>? ScreenshotUploaded
+        /// <param name="screenshotId">A <c>string</c> value.</param>
+        public event Action<long, string>? ScreenshotUploaded
         {
             add { if (value is not null) AddEventHandler("ScreenshotUploaded", value); }
             remove { if (value is not null) RemoveEventHandler("ScreenshotUploaded", value); }

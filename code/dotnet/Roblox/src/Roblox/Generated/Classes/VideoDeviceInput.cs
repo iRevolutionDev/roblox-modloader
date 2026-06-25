@@ -18,30 +18,30 @@ namespace Roblox
         /// Creates a <see cref="VideoDeviceInput"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VideoDeviceInput? FromHandle(nuint handle)
+        public static new VideoDeviceInput? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoDeviceInput(handle);
 
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
-        public string? CameraId
+        public string CameraId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CameraId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CameraId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CameraId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CameraId", value);
         }
 
         public Enum.VideoDeviceCaptureQuality CaptureQuality
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VideoDeviceCaptureQuality>(this, "CaptureQuality");
+            get => global::Roblox.Reflection.GetProperty<Enum.VideoDeviceCaptureQuality>(this, "CaptureQuality")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VideoDeviceCaptureQuality>(this, "CaptureQuality", value);
         }
 
         public bool IsReady
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReady");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReady")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsReady", value);
         }
 

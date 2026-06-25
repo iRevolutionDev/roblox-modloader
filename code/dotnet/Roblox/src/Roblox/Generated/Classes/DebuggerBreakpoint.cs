@@ -18,42 +18,42 @@ namespace Roblox
         /// Creates a <see cref="DebuggerBreakpoint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerBreakpoint? FromHandle(nuint handle)
+        public static new DebuggerBreakpoint? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerBreakpoint(handle);
 
-        public string? Condition
+        public string Condition
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Condition");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Condition", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Condition")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Condition", value);
         }
 
         public bool ContinueExecution
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ContinueExecution", value);
         }
 
         public bool IsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsEnabled", value);
         }
 
         public int Line
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Line");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Line")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Line", value);
         }
 
-        public string? LogExpression
+        public string LogExpression
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LogExpression");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LogExpression", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LogExpression")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LogExpression", value);
         }
 
         public bool IsContextDependentBreakpoint
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "isContextDependentBreakpoint");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "isContextDependentBreakpoint")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "isContextDependentBreakpoint", value);
         }
 

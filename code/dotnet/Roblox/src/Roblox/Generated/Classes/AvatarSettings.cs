@@ -18,28 +18,28 @@ namespace Roblox
         /// Creates a <see cref="AvatarSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarSettings? FromHandle(nuint handle)
+        public static new AvatarSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarSettings(handle);
 
         public bool Loaded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Loaded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Loaded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Loaded", value);
         }
 
         /// <summary>
         /// <c>AvatarSettings.Discard</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Discard()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Discard");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Discard()
+            => global::Roblox.Reflection.Invoke<object>(this, "Discard")!;
 
         /// <summary>
         /// <c>AvatarSettings.Publish</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Publish()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Publish");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Publish()
+            => global::Roblox.Reflection.Invoke<object>(this, "Publish")!;
 
         public event Action? RefreshPluginState
         {

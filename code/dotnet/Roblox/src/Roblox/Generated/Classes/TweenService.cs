@@ -22,19 +22,19 @@ namespace Roblox
         /// Creates a <see cref="TweenService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TweenService? FromHandle(nuint handle)
+        public static new TweenService? FromHandle(nuint handle)
             => handle == 0 ? null : new TweenService(handle);
 
         /// <summary>
         /// Creates a new Tween given the object whose properties are to be tweened, a TweenInfo, and a dictionary of goal property values.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="tweenInfo">A <c>object?</c> value.</param>
-        /// <param name="propertyTable">A <c>object?</c> value.</param>
-        /// <returns>A <c>Tween?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="tweenInfo">A <c>object</c> value.</param>
+        /// <param name="propertyTable">A <c>object</c> value.</param>
+        /// <returns>A <c>Tween</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenService#Create"/>
-        public Tween? Create(Instance? instance, object? tweenInfo, object? propertyTable)
-            => global::Roblox.Reflection.Invoke<Tween?>(this, "Create", instance, tweenInfo, propertyTable);
+        public Tween Create(Instance instance, object tweenInfo, object propertyTable)
+            => global::Roblox.Reflection.Invoke<Tween>(this, "Create", instance, tweenInfo, propertyTable)!;
 
         /// <summary>
         /// Calculates a new alpha given an EasingStyle and EasingDirection.
@@ -45,21 +45,21 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenService#GetValue"/>
         public float GetValue(float alpha, Enum.EasingStyle easingStyle, Enum.EasingDirection easingDirection)
-            => global::Roblox.Reflection.Invoke<float>(this, "GetValue", alpha, easingStyle, easingDirection);
+            => global::Roblox.Reflection.Invoke<float>(this, "GetValue", alpha, easingStyle, easingDirection)!;
 
         /// <summary>
         /// Smoothly interpolates a value towards a target, simulating a critically damped spring.
         /// </summary>
-        /// <param name="current">A <c>object?</c> value.</param>
-        /// <param name="target">A <c>object?</c> value.</param>
-        /// <param name="velocity">A <c>object?</c> value.</param>
+        /// <param name="current">A <c>object</c> value.</param>
+        /// <param name="target">A <c>object</c> value.</param>
+        /// <param name="velocity">A <c>object</c> value.</param>
         /// <param name="smoothTime">A <c>float</c> value.</param>
-        /// <param name="maxSpeed">A <c>object?</c> value.</param>
-        /// <param name="dt">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="maxSpeed">A <c>float?</c> value.</param>
+        /// <param name="dt">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenService#SmoothDamp"/>
-        public object? SmoothDamp(object? current, object? target, object? velocity, float smoothTime, object? maxSpeed, object? dt)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SmoothDamp", current, target, velocity, smoothTime, maxSpeed, dt);
+        public object SmoothDamp(object current, object target, object velocity, float smoothTime, float? maxSpeed = null, float? dt = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SmoothDamp", current, target, velocity, smoothTime, maxSpeed, dt)!;
 
     }
 }

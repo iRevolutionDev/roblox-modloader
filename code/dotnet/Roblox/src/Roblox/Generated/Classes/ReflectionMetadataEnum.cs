@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ReflectionMetadataEnum"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReflectionMetadataEnum? FromHandle(nuint handle)
+        public static new ReflectionMetadataEnum? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionMetadataEnum(handle);
 
     }

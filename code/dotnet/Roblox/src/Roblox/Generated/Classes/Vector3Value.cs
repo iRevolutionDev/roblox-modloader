@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="Vector3Value"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Vector3Value? FromHandle(nuint handle)
+        public static new Vector3Value? FromHandle(nuint handle)
             => handle == 0 ? null : new Vector3Value(handle);
 
         /// <summary>
         /// The stored Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Value#Value"/>
-        public global::Roblox.Vector3? Value
+        public global::Roblox.Vector3 Value
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired whenever Vector3Value.Value is changed.
         /// </summary>
-        /// <param name="value">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.Vector3</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Value#Changed"/>
-        public event Action<global::Roblox.Vector3?>? Changed
+        public new event Action<global::Roblox.Vector3>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

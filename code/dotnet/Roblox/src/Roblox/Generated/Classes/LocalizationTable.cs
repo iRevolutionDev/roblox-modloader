@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="LocalizationTable"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LocalizationTable? FromHandle(nuint handle)
+        public static new LocalizationTable? FromHandle(nuint handle)
             => handle == 0 ? null : new LocalizationTable(handle);
 
         /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable.SourceLocaleId which should be used in all new work.The default IETF tag to use if the ''languageKey'' parameter is excluded from the LocalizationTable:GetString() method.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#DevelopmentLanguage"/>
-        public string? DevelopmentLanguage
+        public string DevelopmentLanguage
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DevelopmentLanguage");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DevelopmentLanguage", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DevelopmentLanguage")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DevelopmentLanguage", value);
         }
 
         /// <summary>
@@ -49,185 +49,185 @@ namespace Roblox
         /// The locale of source strings.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SourceLocaleId"/>
-        public string? SourceLocaleId
+        public string SourceLocaleId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SourceLocaleId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SourceLocaleId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SourceLocaleId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SourceLocaleId", value);
         }
 
         /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable:GetEntries() which should be used in all new work.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#GetContents"/>
-        public string? GetContents()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetContents");
+        public string GetContents()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetContents")!;
 
         /// <summary>
         /// Returns an array of dictionaries, where each dictionary represents an entry of localization data.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#GetEntries"/>
-        public object? GetEntries()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetEntries");
+        public object GetEntries()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetEntries")!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable:GetTranslator() which should be used in all new work.Returns a translation based on the specified language and key.
         /// </summary>
-        /// <param name="targetLocaleId">A <c>string?</c> value.</param>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="targetLocaleId">A <c>string</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#GetString"/>
-        public string? GetString(string? targetLocaleId, string? key)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetString", targetLocaleId, key);
+        public string GetString(string targetLocaleId, string key)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetString", targetLocaleId, key)!;
 
         /// <summary>
         /// Returns a Translator for entries in this LocalizationTable, in the specified locale.
         /// </summary>
-        /// <param name="localeId">A <c>string?</c> value.</param>
+        /// <param name="localeId">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#GetTranslator"/>
-        public Instance? GetTranslator(string? localeId)
+        public Instance? GetTranslator(string localeId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetTranslator", localeId);
 
         /// <summary>
         /// Removes an entry from the LocalizationTable, using the specified key, source, and context to narrow down the specific entry to be removed.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#RemoveEntry"/>
-        public object? RemoveEntry(string? key, string? source, string? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveEntry", key, source, context);
+        public object RemoveEntry(string key, string source, string context)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveEntry", key, source, context)!;
 
         /// <summary>
         /// Removes a single language translation from the LocalizationTable, using the provided key, source, context, and localeId to narrow down the specific entry to be removed.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <param name="localeId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <param name="localeId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#RemoveEntryValue"/>
-        public object? RemoveEntryValue(string? key, string? source, string? context, string? localeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveEntryValue", key, source, context, localeId);
+        public object RemoveEntryValue(string key, string source, string context, string localeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveEntryValue", key, source, context, localeId)!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable:RemoveEntry() which should be used in all new workDeprecated in favor of LocalizationTable:RemoveEntry().
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#RemoveKey"/>
-        public object? RemoveKey(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveKey", key);
+        public object RemoveKey(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveKey", key)!;
 
         /// <summary>
         /// Removes all translations from the LocalizationTable with the specified localeId.
         /// </summary>
-        /// <param name="localeId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="localeId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#RemoveTargetLocale"/>
-        public object? RemoveTargetLocale(string? localeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveTargetLocale", localeId);
+        public object RemoveTargetLocale(string localeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveTargetLocale", localeId)!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable:SetEntries() which should be used in all new workSets the contents of the LocalizationTable, via the legacy JSON format.
         /// </summary>
-        /// <param name="contents">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="contents">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetContents"/>
-        public object? SetContents(string? contents)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetContents", contents);
+        public object SetContents(string contents)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetContents", contents)!;
 
         /// <summary>
         /// Sets the contents of the LocalizationTable.
         /// </summary>
-        /// <param name="entries">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="entries">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntries"/>
-        public object? SetEntries(object? entries)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEntries", entries);
+        public object SetEntries(object entries)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEntries", entries)!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable:SetEntries() which should be used in all new work
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="targetLocaleId">A <c>string?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="targetLocaleId">A <c>string</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntry"/>
-        public object? SetEntry(string? key, string? targetLocaleId, string? text)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEntry", key, targetLocaleId, text);
+        public object SetEntry(string key, string targetLocaleId, string text)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEntry", key, targetLocaleId, text)!;
 
         /// <summary>
         /// Sets the Context field of a LocalizationTable entry to newContext, using the specified key, source, and context to narrow down the entry that will have this change applied.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <param name="newContext">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <param name="newContext">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntryContext"/>
-        public object? SetEntryContext(string? key, string? source, string? context, string? newContext)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEntryContext", key, source, context, newContext);
+        public object SetEntryContext(string key, string source, string context, string newContext)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEntryContext", key, source, context, newContext)!;
 
         /// <summary>
         /// Sets the Example field of a LocalizationTable entry to example, using the specified key, source, and context to narrow down the entry that will have this change applied.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <param name="example">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <param name="example">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntryExample"/>
-        public object? SetEntryExample(string? key, string? source, string? context, string? example)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEntryExample", key, source, context, example);
+        public object SetEntryExample(string key, string source, string context, string example)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEntryExample", key, source, context, example)!;
 
         /// <summary>
         /// Sets the Key field of a LocalizationTable entry to newKey, using the specified key, source, and context to narrow down the entry that will have this change applied.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <param name="newKey">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <param name="newKey">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntryKey"/>
-        public object? SetEntryKey(string? key, string? source, string? context, string? newKey)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEntryKey", key, source, context, newKey);
+        public object SetEntryKey(string key, string source, string context, string newKey)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEntryKey", key, source, context, newKey)!;
 
         /// <summary>
         /// Sets the Source field of a LocalizationTable entry to newSource, using the specified key, source, and context to narrow down the entry that will have this change applied.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <param name="newSource">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <param name="newSource">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntrySource"/>
-        public object? SetEntrySource(string? key, string? source, string? context, string? newSource)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEntrySource", key, source, context, newSource);
+        public object SetEntrySource(string key, string source, string context, string newSource)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEntrySource", key, source, context, newSource)!;
 
         /// <summary>
         /// Sets the text of the specified localeId in a LocalizationTable entry, using the specified key, source, and context to narrow down the entry that will have this change applied.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <param name="localeId">A <c>string?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <param name="localeId">A <c>string</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntryValue"/>
-        public object? SetEntryValue(string? key, string? source, string? context, string? localeId, string? text)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEntryValue", key, source, context, localeId, text);
+        public object SetEntryValue(string key, string source, string context, string localeId, string text)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEntryValue", key, source, context, localeId, text)!;
 
         /// <summary>
         /// <c>LocalizationTable.SetIsExemptFromUGCAnalytics</c>
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetIsExemptFromUGCAnalytics(bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetIsExemptFromUGCAnalytics", value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetIsExemptFromUGCAnalytics(bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetIsExemptFromUGCAnalytics", value)!;
 
     }
 }

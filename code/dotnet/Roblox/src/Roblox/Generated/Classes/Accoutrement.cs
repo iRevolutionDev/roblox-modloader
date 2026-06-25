@@ -22,57 +22,57 @@ namespace Roblox
         /// Creates a <see cref="Accoutrement"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Accoutrement? FromHandle(nuint handle)
+        public static new Accoutrement? FromHandle(nuint handle)
             => handle == 0 ? null : new Accoutrement(handle);
 
         /// <summary>
         /// Sets the offset position of the object on the Player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentForward"/>
-        public global::Roblox.Vector3? AttachmentForward
+        public global::Roblox.Vector3 AttachmentForward
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AttachmentForward");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AttachmentForward", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AttachmentForward")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AttachmentForward", value);
         }
 
         /// <summary>
         /// The exact CFrame of the Accoutrement.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentPoint"/>
-        public global::Roblox.CFrame? AttachmentPoint
+        public global::Roblox.CFrame AttachmentPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "AttachmentPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "AttachmentPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "AttachmentPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "AttachmentPoint", value);
         }
 
         /// <summary>
         /// Sets the position of the object on the Player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentPos"/>
-        public global::Roblox.Vector3? AttachmentPos
+        public global::Roblox.Vector3 AttachmentPos
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AttachmentPos");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AttachmentPos", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AttachmentPos")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AttachmentPos", value);
         }
 
         /// <summary>
         /// Sets the offset position of the object on the Player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentRight"/>
-        public global::Roblox.Vector3? AttachmentRight
+        public global::Roblox.Vector3 AttachmentRight
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AttachmentRight");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AttachmentRight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AttachmentRight")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AttachmentRight", value);
         }
 
         /// <summary>
         /// Sets the offset position of the object on the Player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accoutrement#AttachmentUp"/>
-        public global::Roblox.Vector3? AttachmentUp
+        public global::Roblox.Vector3 AttachmentUp
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AttachmentUp");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AttachmentUp", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AttachmentUp")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AttachmentUp", value);
         }
 
     }

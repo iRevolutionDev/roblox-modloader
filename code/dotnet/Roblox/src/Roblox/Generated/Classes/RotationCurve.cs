@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RotationCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RotationCurve? FromHandle(nuint handle)
+        public static new RotationCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new RotationCurve(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#Length"/>
         public int Length
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Length", value);
         }
 
@@ -39,64 +39,64 @@ namespace Roblox
         /// Returns a copy of a key at a given index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#GetKeyAtIndex"/>
-        public object? GetKeyAtIndex(int index)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeyAtIndex", index);
+        public object GetKeyAtIndex(int index)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetKeyAtIndex", index)!;
 
         /// <summary>
         /// Returns the index of the last and first key of a period of time.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#GetKeyIndicesAtTime"/>
-        public object? GetKeyIndicesAtTime(float time)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeyIndicesAtTime", time);
+        public object GetKeyIndicesAtTime(float time)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetKeyIndicesAtTime", time)!;
 
         /// <summary>
         /// Returns a copy of all the keys in the rotation curve as a Luau array of RotationCurveKeys.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#GetKeys"/>
-        public object? GetKeys()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetKeys");
+        public object GetKeys()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetKeys")!;
 
         /// <summary>
         /// Samples the rotation curve at a given time and returns the corresponding rotation as a CFrame.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#GetValueAtTime"/>
-        public object? GetValueAtTime(float time)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValueAtTime", time);
+        public global::Roblox.CFrame? GetValueAtTime(float time)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetValueAtTime", time);
 
         /// <summary>
         /// Adds the key passed as an argument to this curve. If a key at the same time is found, it will be replaced.
         /// </summary>
-        /// <param name="key">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#InsertKey"/>
-        public object? InsertKey(object? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertKey", key);
+        public object InsertKey(object key)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertKey", key)!;
 
         /// <summary>
         /// Removes a given number of keys starting from a given index.
         /// </summary>
         /// <param name="startingIndex">A <c>int</c> value.</param>
-        /// <param name="count">A <c>int</c> value.</param>
+        /// <param name="count">A <c>int?</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#RemoveKeyAtIndex"/>
-        public int RemoveKeyAtIndex(int startingIndex, int count)
-            => global::Roblox.Reflection.Invoke<int>(this, "RemoveKeyAtIndex", startingIndex, count);
+        public int RemoveKeyAtIndex(int startingIndex, int? count = null)
+            => global::Roblox.Reflection.Invoke<int>(this, "RemoveKeyAtIndex", startingIndex, count)!;
 
         /// <summary>
         /// Resets this curve's keys using the RotationCurveKey array passed as an argument.
         /// </summary>
-        /// <param name="keys">A <c>object?</c> value.</param>
+        /// <param name="keys">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotationCurve#SetKeys"/>
-        public int SetKeys(object? keys)
-            => global::Roblox.Reflection.Invoke<int>(this, "SetKeys", keys);
+        public int SetKeys(object keys)
+            => global::Roblox.Reflection.Invoke<int>(this, "SetKeys", keys)!;
 
     }
 }

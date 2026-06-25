@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="LodDataEntity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LodDataEntity? FromHandle(nuint handle)
+        public static new LodDataEntity? FromHandle(nuint handle)
             => handle == 0 ? null : new LodDataEntity(handle);
 
         public bool EntityLodEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EntityLodEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EntityLodEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EntityLodEnabled", value);
         }
 

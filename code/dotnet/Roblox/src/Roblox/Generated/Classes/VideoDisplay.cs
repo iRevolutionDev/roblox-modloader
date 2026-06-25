@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VideoDisplay"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VideoDisplay? FromHandle(nuint handle)
+        public static new VideoDisplay? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoDisplay(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#ResampleMode"/>
         public Enum.ResamplerMode ResampleMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ResamplerMode>(this, "ResampleMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ResamplerMode>(this, "ResampleMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ResamplerMode>(this, "ResampleMode", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#ScaleType"/>
         public Enum.ScaleType ScaleType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScaleType>(this, "ScaleType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScaleType>(this, "ScaleType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScaleType>(this, "ScaleType", value);
         }
 
@@ -49,40 +49,40 @@ namespace Roblox
         /// <c>VideoDisplay.TileSize</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#TileSize"/>
-        public global::Roblox.UDim2? TileSize
+        public global::Roblox.UDim2 TileSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "TileSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "TileSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "TileSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "TileSize", value);
         }
 
         /// <summary>
         /// Determines how a rendered video will be colorized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoColor3"/>
-        public global::Roblox.Color3? VideoColor3
+        public global::Roblox.Color3 VideoColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "VideoColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "VideoColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "VideoColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "VideoColor3", value);
         }
 
         /// <summary>
         /// The offset in pixels of the sub-area of a video to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoRectOffset"/>
-        public global::Roblox.Vector2? VideoRectOffset
+        public global::Roblox.Vector2 VideoRectOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "VideoRectOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "VideoRectOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "VideoRectOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "VideoRectOffset", value);
         }
 
         /// <summary>
         /// Determines the size in pixels of the sub-area of a video to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoRectSize"/>
-        public global::Roblox.Vector2? VideoRectSize
+        public global::Roblox.Vector2 VideoRectSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "VideoRectSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "VideoRectSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "VideoRectSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "VideoRectSize", value);
         }
 
         /// <summary>
@@ -91,44 +91,44 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#VideoTransparency"/>
         public float VideoTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "VideoTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "VideoTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "VideoTransparency", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the VideoDisplay via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

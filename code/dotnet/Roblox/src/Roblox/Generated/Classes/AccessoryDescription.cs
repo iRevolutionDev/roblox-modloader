@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AccessoryDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AccessoryDescription? FromHandle(nuint handle)
+        public static new AccessoryDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new AccessoryDescription(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#AccessoryType"/>
         public Enum.AccessoryType AccessoryType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AccessoryType>(this, "AccessoryType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AccessoryType>(this, "AccessoryType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AccessoryType>(this, "AccessoryType", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#AssetId"/>
         public long AssetId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "AssetId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "AssetId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "AssetId", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#IsLayered"/>
         public bool IsLayered
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLayered");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLayered")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLayered", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Order"/>
         public int Order
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Order");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Order")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Order", value);
         }
 
@@ -79,10 +79,10 @@ namespace Roblox
         /// The accessory adjustment position offset, if the Accessory is rigid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Puffiness"/>
         public float Puffiness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Puffiness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Puffiness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Puffiness", value);
         }
 
@@ -99,20 +99,20 @@ namespace Roblox
         /// The accessory adjustment rotation offset, if the Accessory is rigid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Rotation"/>
-        public global::Roblox.Vector3? Rotation
+        public global::Roblox.Vector3 Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Rotation");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Rotation", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Rotation")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Rotation", value);
         }
 
         /// <summary>
         /// The accessory adjustment scale, if the Accessory is rigid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Scale"/>
-        public global::Roblox.Vector3? Scale
+        public global::Roblox.Vector3 Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Scale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Scale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Scale", value);
         }
 
         /// <summary>

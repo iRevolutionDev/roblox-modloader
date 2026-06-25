@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="SlimAnimationReplicationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SlimAnimationReplicationService? FromHandle(nuint handle)
+        public static new SlimAnimationReplicationService? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimAnimationReplicationService(handle);
 
     }

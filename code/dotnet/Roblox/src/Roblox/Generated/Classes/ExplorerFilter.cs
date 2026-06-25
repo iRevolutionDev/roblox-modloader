@@ -18,37 +18,37 @@ namespace Roblox
         /// Creates a <see cref="ExplorerFilter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExplorerFilter? FromHandle(nuint handle)
+        public static new ExplorerFilter? FromHandle(nuint handle)
             => handle == 0 ? null : new ExplorerFilter(handle);
 
         /// <summary>
         /// <c>ExplorerFilter.BeginSearch</c>
         /// </summary>
-        /// <param name="root">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? BeginSearch(Instance? root)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BeginSearch", root);
+        /// <param name="root">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object BeginSearch(Instance root)
+            => global::Roblox.Reflection.Invoke<object>(this, "BeginSearch", root)!;
 
         /// <summary>
         /// <c>ExplorerFilter.GetAutocompleter</c>
         /// </summary>
-        /// <returns>A <c>ExplorerFilterAutocompleter?</c> value returned by the engine.</returns>
-        public ExplorerFilterAutocompleter? GetAutocompleter()
-            => global::Roblox.Reflection.Invoke<ExplorerFilterAutocompleter?>(this, "GetAutocompleter");
+        /// <returns>A <c>ExplorerFilterAutocompleter</c> value returned by the engine.</returns>
+        public ExplorerFilterAutocompleter GetAutocompleter()
+            => global::Roblox.Reflection.Invoke<ExplorerFilterAutocompleter>(this, "GetAutocompleter")!;
 
         /// <summary>
         /// <c>ExplorerFilter.GetErrors</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetErrors()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetErrors");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetErrors()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetErrors")!;
 
         /// <summary>
         /// <c>ExplorerFilter.GetLexemes</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLexemes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLexemes");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetLexemes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLexemes")!;
 
         /// <summary>
         /// <c>ExplorerFilter.GetSearchResults</c>
@@ -56,30 +56,30 @@ namespace Roblox
         /// <param name="maxCandidatesToExplore">A <c>int</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetSearchResults(int maxCandidatesToExplore)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetSearchResults", maxCandidatesToExplore);
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetSearchResults", maxCandidatesToExplore)!;
 
         /// <summary>
         /// <c>ExplorerFilter.HasMoreResults</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool HasMoreResults()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasMoreResults");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasMoreResults")!;
 
         /// <summary>
         /// <c>ExplorerFilter.InstancePassesFilter</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool InstancePassesFilter(Instance? instance)
-            => global::Roblox.Reflection.Invoke<bool>(this, "InstancePassesFilter", instance);
+        public bool InstancePassesFilter(Instance instance)
+            => global::Roblox.Reflection.Invoke<bool>(this, "InstancePassesFilter", instance)!;
 
         /// <summary>
         /// <c>ExplorerFilter.SetFilter</c>
         /// </summary>
-        /// <param name="search">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetFilter(string? search)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFilter", search);
+        /// <param name="search">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetFilter(string search)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFilter", search)!;
 
     }
 }

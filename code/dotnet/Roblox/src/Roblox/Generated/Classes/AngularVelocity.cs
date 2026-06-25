@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="AngularVelocity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AngularVelocity? FromHandle(nuint handle)
+        public static new AngularVelocity? FromHandle(nuint handle)
             => handle == 0 ? null : new AngularVelocity(handle);
 
         /// <summary>
         /// A Vector3 that gives the desired or target angular velocity.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#AngularVelocity"/>
-        public global::Roblox.Vector3? AngularVelocityValue
+        public global::Roblox.Vector3 AngularVelocityValue
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AngularVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AngularVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AngularVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AngularVelocity", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#MaxTorque"/>
         public float MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxTorque", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#ReactionTorqueEnabled"/>
         public bool ReactionTorqueEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionTorqueEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionTorqueEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReactionTorqueEnabled", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AngularVelocity#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo", value);
         }
 

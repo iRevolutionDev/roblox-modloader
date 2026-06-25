@@ -18,70 +18,70 @@ namespace Roblox
         /// Creates a <see cref="DebuggerManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerManager? FromHandle(nuint handle)
+        public static new DebuggerManager? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerManager(handle);
 
         public bool DebuggingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DebuggingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DebuggingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DebuggingEnabled", value);
         }
 
         /// <summary>
         /// <c>DebuggerManager.AddDebugger</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? AddDebugger(Instance? script)
+        public Instance? AddDebugger(Instance script)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "AddDebugger", script);
 
         /// <summary>
         /// <c>DebuggerManager.EnableDebugging</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EnableDebugging()
-            => global::Roblox.Reflection.Invoke<object?>(this, "EnableDebugging");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EnableDebugging()
+            => global::Roblox.Reflection.Invoke<object>(this, "EnableDebugging")!;
 
         /// <summary>
         /// <c>DebuggerManager.GetDebuggers</c>
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetDebuggers()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDebuggers");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDebuggers")!;
 
         /// <summary>
         /// <c>DebuggerManager.Resume</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Resume()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Resume");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Resume()
+            => global::Roblox.Reflection.Invoke<object>(this, "Resume")!;
 
         /// <summary>
         /// <c>DebuggerManager.StepIn</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StepIn()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StepIn");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StepIn()
+            => global::Roblox.Reflection.Invoke<object>(this, "StepIn")!;
 
         /// <summary>
         /// <c>DebuggerManager.StepOut</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StepOut()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StepOut");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StepOut()
+            => global::Roblox.Reflection.Invoke<object>(this, "StepOut")!;
 
         /// <summary>
         /// <c>DebuggerManager.StepOver</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StepOver()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StepOver");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StepOver()
+            => global::Roblox.Reflection.Invoke<object>(this, "StepOver")!;
 
         /// <summary>
         /// <c>DebuggerManager.DebuggerAdded</c>
         /// </summary>
-        /// <param name="debugger">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? DebuggerAdded
+        /// <param name="debugger">A <c>Instance</c> value.</param>
+        public event Action<Instance>? DebuggerAdded
         {
             add { if (value is not null) AddEventHandler("DebuggerAdded", value); }
             remove { if (value is not null) RemoveEventHandler("DebuggerAdded", value); }
@@ -90,8 +90,8 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerManager.DebuggerRemoved</c>
         /// </summary>
-        /// <param name="debugger">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? DebuggerRemoved
+        /// <param name="debugger">A <c>Instance</c> value.</param>
+        public event Action<Instance>? DebuggerRemoved
         {
             add { if (value is not null) AddEventHandler("DebuggerRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("DebuggerRemoved", value); }

@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="ClickDetector"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ClickDetector? FromHandle(nuint handle)
+        public static new ClickDetector? FromHandle(nuint handle)
             => handle == 0 ? null : new ClickDetector(handle);
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is hovered over the parent of this ClickDetector or DragDetector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#CursorIcon"/>
-        public object? CursorIcon
+        public object CursorIcon
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CursorIcon");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CursorIcon", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "CursorIcon")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "CursorIcon", value);
         }
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is hovered over the parent of this ClickDetector or DragDetector. Only supports asset URIs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#CursorIconContent"/>
-        public string? CursorIconContent
+        public string CursorIconContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CursorIconContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CursorIconContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CursorIconContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CursorIconContent", value);
         }
 
         /// <summary>
@@ -51,16 +51,16 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MaxActivationDistance"/>
         public float MaxActivationDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxActivationDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxActivationDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxActivationDistance", value);
         }
 
         /// <summary>
         /// Fires when a player interacts with the parent of a ClickDetector or DragDetector.
         /// </summary>
-        /// <param name="playerWhoClicked">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoClicked">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseClick"/>
-        public event Action<Player?>? MouseClick
+        public event Action<Player>? MouseClick
         {
             add { if (value is not null) AddEventHandler("MouseClick", value); }
             remove { if (value is not null) RemoveEventHandler("MouseClick", value); }
@@ -69,9 +69,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the parent of a ClickDetector or DragDetector is hovered over by a player.
         /// </summary>
-        /// <param name="playerWhoHovered">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoHovered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseHoverEnter"/>
-        public event Action<Player?>? MouseHoverEnter
+        public event Action<Player>? MouseHoverEnter
         {
             add { if (value is not null) AddEventHandler("MouseHoverEnter", value); }
             remove { if (value is not null) RemoveEventHandler("MouseHoverEnter", value); }
@@ -80,9 +80,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a player's cursor hovers off the parent of a ClickDetector or DragDetector.
         /// </summary>
-        /// <param name="playerWhoHovered">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoHovered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#MouseHoverLeave"/>
-        public event Action<Player?>? MouseHoverLeave
+        public event Action<Player>? MouseHoverLeave
         {
             add { if (value is not null) AddEventHandler("MouseHoverLeave", value); }
             remove { if (value is not null) RemoveEventHandler("MouseHoverLeave", value); }
@@ -91,9 +91,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a player right clicks their mouse cursor on a ClickDetector or DragDetector.
         /// </summary>
-        /// <param name="playerWhoClicked">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoClicked">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClickDetector#RightMouseClick"/>
-        public event Action<Player?>? RightMouseClick
+        public event Action<Player>? RightMouseClick
         {
             add { if (value is not null) AddEventHandler("RightMouseClick", value); }
             remove { if (value is not null) RemoveEventHandler("RightMouseClick", value); }

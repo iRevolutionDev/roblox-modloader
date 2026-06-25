@@ -22,39 +22,39 @@ namespace Roblox
         /// Creates a <see cref="ChatInputBarConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ChatInputBarConfiguration? FromHandle(nuint handle)
+        public static new ChatInputBarConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new ChatInputBarConfiguration(handle);
 
         /// <summary>
         /// Actual screen position of the default chat input bar in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#AbsolutePosition"/>
-        public global::Roblox.Vector2? AbsolutePosition
+        public global::Roblox.Vector2 AbsolutePosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsolutePosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsolutePosition", value);
         }
 
-        public global::Roblox.Vector2? AbsolutePositionWrite
+        public global::Roblox.Vector2 AbsolutePositionWrite
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePositionWrite");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePositionWrite", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsolutePositionWrite")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsolutePositionWrite", value);
         }
 
         /// <summary>
         /// Actual screen size of the default chat input bar in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#AbsoluteSize"/>
-        public global::Roblox.Vector2? AbsoluteSize
+        public global::Roblox.Vector2 AbsoluteSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteSize", value);
         }
 
-        public global::Roblox.Vector2? AbsoluteSizeWrite
+        public global::Roblox.Vector2 AbsoluteSizeWrite
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSizeWrite");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSizeWrite", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteSizeWrite")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteSizeWrite", value);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#AutocompleteEnabled"/>
         public bool AutocompleteEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutocompleteEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutocompleteEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutocompleteEnabled", value);
         }
 
@@ -71,10 +71,10 @@ namespace Roblox
         /// Background color of the default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#BackgroundColor3"/>
-        public global::Roblox.Color3? BackgroundColor3
+        public global::Roblox.Color3 BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "BackgroundColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#BackgroundTransparency"/>
         public double BackgroundTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "BackgroundTransparency", value);
         }
 
@@ -93,7 +93,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -101,10 +101,10 @@ namespace Roblox
         /// Font used to render text in the default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#FontFace"/>
-        public object? FontFace
+        public object FontFace
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FontFace");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FontFace", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FontFace")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FontFace", value);
         }
 
         /// <summary>
@@ -113,13 +113,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#IsFocused"/>
         public bool IsFocused
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsFocused");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsFocused")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsFocused", value);
         }
 
         public bool IsFocusedWrite
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsFocusedWrite");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsFocusedWrite")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsFocusedWrite", value);
         }
 
@@ -129,7 +129,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#KeyboardKeyCode"/>
         public Enum.KeyCode KeyboardKeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyboardKeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyboardKeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "KeyboardKeyCode", value);
         }
 
@@ -137,10 +137,10 @@ namespace Roblox
         /// Color of the text of the placeholder text in the default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#PlaceholderColor3"/>
-        public global::Roblox.Color3? PlaceholderColor3
+        public global::Roblox.Color3 PlaceholderColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "PlaceholderColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "PlaceholderColor3", value);
         }
 
         /// <summary>
@@ -167,10 +167,10 @@ namespace Roblox
         /// Color of the text in default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TextColor3"/>
-        public global::Roblox.Color3? TextColor3
+        public global::Roblox.Color3 TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TextSize"/>
         public long TextSize
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "TextSize", value);
         }
 
@@ -187,10 +187,10 @@ namespace Roblox
         /// Color of the text stroke for text in default chat input bar.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TextStrokeColor3"/>
-        public global::Roblox.Color3? TextStrokeColor3
+        public global::Roblox.Color3 TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextStrokeColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TextStrokeTransparency"/>
         public double TextStrokeTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TextStrokeTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TextStrokeTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TextStrokeTransparency", value);
         }
 

@@ -22,47 +22,47 @@ namespace Roblox
         /// Creates a <see cref="Mouse"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Mouse? FromHandle(nuint handle)
+        public static new Mouse? FromHandle(nuint handle)
             => handle == 0 ? null : new Mouse(handle);
 
         /// <summary>
         /// The CFrame of the mouse's position in 3D space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Hit"/>
-        public global::Roblox.CFrame? Hit
+        public global::Roblox.CFrame Hit
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Hit");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Hit", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Hit")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Hit", value);
         }
 
         /// <summary>
         /// The content ID of the image used as the Mouse icon.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Icon"/>
-        public object? Icon
+        public object Icon
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Icon");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Icon", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Icon")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Icon", value);
         }
 
         /// <summary>
         /// The content of the image used as the Mouse icon. Only supports asset URIs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#IconContent"/>
-        public string? IconContent
+        public string IconContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "IconContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "IconContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "IconContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "IconContent", value);
         }
 
         /// <summary>
         /// A CFrame positioned at the Workspace.CurrentCamera and oriented toward the mouse's 3D position.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Origin"/>
-        public global::Roblox.CFrame? Origin
+        public global::Roblox.CFrame Origin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Origin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Origin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Origin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Origin", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#TargetSurface"/>
         public Enum.NormalId TargetSurface
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "TargetSurface");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "TargetSurface")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "TargetSurface", value);
         }
 
@@ -99,10 +99,10 @@ namespace Roblox
         /// A Ray directed towards the mouse's world position, originating from the Workspace.CurrentCamera world position.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#UnitRay"/>
-        public global::Roblox.Ray? UnitRay
+        public global::Roblox.Ray UnitRay
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Ray?>(this, "UnitRay");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Ray?>(this, "UnitRay", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Ray>(this, "UnitRay")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Ray>(this, "UnitRay", value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#ViewSizeX"/>
         public int ViewSizeX
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ViewSizeX");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ViewSizeX")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ViewSizeX", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#ViewSizeY"/>
         public int ViewSizeY
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ViewSizeY");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ViewSizeY")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ViewSizeY", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#X"/>
         public int X
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "X");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "X")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "X", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Y"/>
         public int Y
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Y");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Y")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Y", value);
         }
 
@@ -198,9 +198,9 @@ namespace Roblox
         /// <summary>
         /// Deprecated: Mouse events have been superseded by UserInputService which should be used in all new work.Fires when a Key is pressed.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyDown"/>
-        public event Action<string?>? KeyDown
+        public event Action<string>? KeyDown
         {
             add { if (value is not null) AddEventHandler("KeyDown", value); }
             remove { if (value is not null) RemoveEventHandler("KeyDown", value); }
@@ -209,9 +209,9 @@ namespace Roblox
         /// <summary>
         /// Deprecated: Mouse events have been superseded by UserInputService which should be used in all new work.Fires when a Key is released.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyUp"/>
-        public event Action<string?>? KeyUp
+        public event Action<string>? KeyUp
         {
             add { if (value is not null) AddEventHandler("KeyUp", value); }
             remove { if (value is not null) RemoveEventHandler("KeyUp", value); }

@@ -22,47 +22,47 @@ namespace Roblox
         /// Creates a <see cref="Glue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Glue? FromHandle(nuint handle)
+        public static new Glue? FromHandle(nuint handle)
             => handle == 0 ? null : new Glue(handle);
 
         /// <summary>
         /// Determines the face of a Glue.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F0"/>
-        public global::Roblox.Vector3? F0
+        public global::Roblox.Vector3 F0
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "F0");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "F0", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "F0")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "F0", value);
         }
 
         /// <summary>
         /// Determines the face of a Glue.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F1"/>
-        public global::Roblox.Vector3? F1
+        public global::Roblox.Vector3 F1
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "F1");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "F1", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "F1")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "F1", value);
         }
 
         /// <summary>
         /// Determines the face of a Glue.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F2"/>
-        public global::Roblox.Vector3? F2
+        public global::Roblox.Vector3 F2
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "F2");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "F2", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "F2")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "F2", value);
         }
 
         /// <summary>
         /// Determines the face of a Glue.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Glue#F3"/>
-        public global::Roblox.Vector3? F3
+        public global::Roblox.Vector3 F3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "F3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "F3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "F3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "F3", value);
         }
 
     }

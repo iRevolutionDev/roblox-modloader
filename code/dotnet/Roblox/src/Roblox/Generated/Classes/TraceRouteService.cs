@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="TraceRouteService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TraceRouteService? FromHandle(nuint handle)
+        public static new TraceRouteService? FromHandle(nuint handle)
             => handle == 0 ? null : new TraceRouteService(handle);
 
     }

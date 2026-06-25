@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="PlayerDataService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerDataService? FromHandle(nuint handle)
+        public static new PlayerDataService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerDataService(handle);
 
         public Enum.PlayerDataLoadFailureBehavior LoadFailureBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PlayerDataLoadFailureBehavior>(this, "LoadFailureBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.PlayerDataLoadFailureBehavior>(this, "LoadFailureBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PlayerDataLoadFailureBehavior>(this, "LoadFailureBehavior", value);
         }
 
@@ -31,9 +31,9 @@ namespace Roblox
         /// <c>PlayerDataService.GetRecordConfig</c>
         /// </summary>
         /// <param name="recordName">A <c>string?</c> value.</param>
-        /// <returns>A <c>PlayerDataRecordConfig?</c> value returned by the engine.</returns>
-        public PlayerDataRecordConfig? GetRecordConfig(string? recordName)
-            => global::Roblox.Reflection.Invoke<PlayerDataRecordConfig?>(this, "GetRecordConfig", recordName);
+        /// <returns>A <c>PlayerDataRecordConfig</c> value returned by the engine.</returns>
+        public PlayerDataRecordConfig GetRecordConfig(string? recordName = null)
+            => global::Roblox.Reflection.Invoke<PlayerDataRecordConfig>(this, "GetRecordConfig", recordName)!;
 
     }
 }

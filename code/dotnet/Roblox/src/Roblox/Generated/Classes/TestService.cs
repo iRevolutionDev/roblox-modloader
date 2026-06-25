@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TestService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TestService? FromHandle(nuint handle)
+        public static new TestService? FromHandle(nuint handle)
             => handle == 0 ? null : new TestService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#AutoRuns"/>
         public bool AutoRuns
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoRuns");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoRuns")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoRuns", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// A description of the test being executed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Description"/>
-        public string? Description
+        public string Description
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Description");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Description", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Description")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Description", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ErrorCount"/>
         public int ErrorCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ErrorCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ErrorCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ErrorCount", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ExecuteWithStudioRun"/>
         public bool ExecuteWithStudioRun
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ExecuteWithStudioRun");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ExecuteWithStudioRun")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ExecuteWithStudioRun", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Is30FpsThrottleEnabled"/>
         public bool Is30FpsThrottleEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Is30FpsThrottleEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Is30FpsThrottleEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Is30FpsThrottleEnabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#IsPhysicsEnvironmentalThrottled"/>
         public bool IsPhysicsEnvironmentalThrottled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPhysicsEnvironmentalThrottled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPhysicsEnvironmentalThrottled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPhysicsEnvironmentalThrottled", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#IsSleepAllowed"/>
         public bool IsSleepAllowed
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSleepAllowed");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSleepAllowed")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsSleepAllowed", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#NumberOfPlayers"/>
         public int NumberOfPlayers
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "NumberOfPlayers");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "NumberOfPlayers")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "NumberOfPlayers", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#SimulateSecondsLag"/>
         public double SimulateSecondsLag
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "SimulateSecondsLag");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "SimulateSecondsLag")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "SimulateSecondsLag", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#TestCount"/>
         public int TestCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "TestCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "TestCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "TestCount", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ThrottlePhysicsToRealtime"/>
         public bool ThrottlePhysicsToRealtime
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ThrottlePhysicsToRealtime");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ThrottlePhysicsToRealtime")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ThrottlePhysicsToRealtime", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Timeout"/>
         public double Timeout
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "Timeout");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "Timeout")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "Timeout", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#WarnCount"/>
         public int WarnCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "WarnCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "WarnCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "WarnCount", value);
         }
 
@@ -159,233 +159,233 @@ namespace Roblox
         /// Prints result of a condition to the output.
         /// </summary>
         /// <param name="condition">A <c>bool</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Check"/>
-        public object? Check(bool condition, string? description, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Check", condition, description, source, line);
+        public object Check(bool condition, string description, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Check", condition, description, source, line)!;
 
         /// <summary>
         /// Prints Test checkpoint: followed by a string to the output in blue text.
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Checkpoint"/>
-        public object? Checkpoint(string? text, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Checkpoint", text, source, line);
+        public object Checkpoint(string text, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Checkpoint", text, source, line)!;
 
         /// <summary>
         /// <c>TestService.ConvertSlimAcrToObj</c>
         /// </summary>
-        /// <param name="acrFullFilePath">A <c>string?</c> value.</param>
-        /// <param name="objFileName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? ConvertSlimAcrToObj(string? acrFullFilePath, string? objFileName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "ConvertSlimAcrToObj", acrFullFilePath, objFileName);
+        /// <param name="acrFullFilePath">A <c>string</c> value.</param>
+        /// <param name="objFileName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string ConvertSlimAcrToObj(string acrFullFilePath, string objFileName)
+            => global::Roblox.Reflection.Invoke<string>(this, "ConvertSlimAcrToObj", acrFullFilePath, objFileName)!;
 
         /// <summary>
         /// <c>TestService.CreateAndSavePropertySet</c>
         /// </summary>
-        /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? CreateAndSavePropertySet(Instance? source)
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateAndSavePropertySet", source);
+        /// <param name="source">A <c>Instance</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string CreateAndSavePropertySet(Instance source)
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateAndSavePropertySet", source)!;
 
         /// <summary>
         /// <c>TestService.CreateExtraAssetsFileFromPropertySet</c>
         /// </summary>
-        /// <param name="psetFileName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? CreateExtraAssetsFileFromPropertySet(string? psetFileName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateExtraAssetsFileFromPropertySet", psetFileName);
+        /// <param name="psetFileName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string CreateExtraAssetsFileFromPropertySet(string psetFileName)
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateExtraAssetsFileFromPropertySet", psetFileName)!;
 
         /// <summary>
         /// Prints Testing Done to the output in blue text.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Done"/>
-        public object? Done()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Done");
+        public object Done()
+            => global::Roblox.Reflection.Invoke<object>(this, "Done")!;
 
         /// <summary>
         /// Prints a red error message to the output, prefixed by TestService:.
         /// </summary>
-        /// <param name="description">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Error"/>
-        public object? Error(string? description, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Error", description, source, line);
+        public object Error(string description, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Error", description, source, line)!;
 
         /// <summary>
         /// Indicates a fatal error in a TestService run.
         /// </summary>
-        /// <param name="description">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Fail"/>
-        public object? Fail(string? description, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Fail", description, source, line);
+        public object Fail(string description, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Fail", description, source, line)!;
 
         /// <summary>
         /// <c>TestService.FetchExtraAssets</c>
         /// </summary>
-        /// <param name="extraAssetsFileName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? FetchExtraAssets(string? extraAssetsFileName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "FetchExtraAssets", extraAssetsFileName);
+        /// <param name="extraAssetsFileName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string FetchExtraAssets(string extraAssetsFileName)
+            => global::Roblox.Reflection.Invoke<string>(this, "FetchExtraAssets", extraAssetsFileName)!;
 
         /// <summary>
         /// Prints TestService: followed by a string to the output in blue text.
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Message"/>
-        public object? Message(string? text, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Message", text, source, line);
+        public object Message(string text, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Message", text, source, line)!;
 
         /// <summary>
         /// <c>TestService.RegisterTest</c>
         /// </summary>
-        /// <param name="testOptions">A <c>object?</c> value.</param>
-        /// <returns>A <c>TestCase?</c> value returned by the engine.</returns>
+        /// <param name="testOptions">A <c>object</c> value.</param>
+        /// <returns>A <c>TestCase</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#RegisterTest"/>
-        public TestCase? RegisterTest(object? testOptions)
-            => global::Roblox.Reflection.Invoke<TestCase?>(this, "RegisterTest", testOptions);
+        public TestCase RegisterTest(object testOptions)
+            => global::Roblox.Reflection.Invoke<TestCase>(this, "RegisterTest", testOptions)!;
 
         /// <summary>
         /// Prints whether a condition is true along with a description string.
         /// </summary>
         /// <param name="condition">A <c>bool</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Require"/>
-        public object? Require(bool condition, string? description, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Require", condition, description, source, line);
+        public object Require(bool condition, string description, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Require", condition, description, source, line)!;
 
         /// <summary>
         /// <c>TestService.ScopeTime</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ScopeTime"/>
-        public object? ScopeTime()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ScopeTime");
+        public object ScopeTime()
+            => global::Roblox.Reflection.Invoke<object>(this, "ScopeTime")!;
 
         /// <summary>
         /// <c>TestService.StartTestSession</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartTestSession()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartTestSession");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartTestSession()
+            => global::Roblox.Reflection.Invoke<object>(this, "StartTestSession")!;
 
         /// <summary>
         /// <c>TestService.StopTestSession</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopTestSession()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopTestSession");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopTestSession()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopTestSession")!;
 
         /// <summary>
         /// <c>TestService.TakeSnapshot</c>
         /// </summary>
-        /// <param name="snapshotname">A <c>string?</c> value.</param>
+        /// <param name="snapshotname">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#TakeSnapshot"/>
-        public object? TakeSnapshot(string? snapshotname, Instance? source)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TakeSnapshot", snapshotname, source);
+        public object TakeSnapshot(string snapshotname, Instance? source = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "TakeSnapshot", snapshotname, source)!;
 
         /// <summary>
         /// <c>TestService.TranscodePropertySet</c>
         /// </summary>
-        /// <param name="extraAssetsFileName">A <c>string?</c> value.</param>
-        /// <param name="psetFileName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? TranscodePropertySet(string? extraAssetsFileName, string? psetFileName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "TranscodePropertySet", extraAssetsFileName, psetFileName);
+        /// <param name="extraAssetsFileName">A <c>string</c> value.</param>
+        /// <param name="psetFileName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string TranscodePropertySet(string extraAssetsFileName, string psetFileName)
+            => global::Roblox.Reflection.Invoke<string>(this, "TranscodePropertySet", extraAssetsFileName, psetFileName)!;
 
         /// <summary>
         /// Prints if a condition is true, otherwise prints a warning.
         /// </summary>
         /// <param name="condition">A <c>bool</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Warn"/>
-        public object? Warn(bool condition, string? description, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Warn", condition, description, source, line);
+        public object Warn(bool condition, string description, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Warn", condition, description, source, line)!;
 
         /// <summary>
         /// <c>TestService.getTestSessionProviderStats</c>
         /// </summary>
-        /// <param name="providerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetTestSessionProviderStats(string? providerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "getTestSessionProviderStats", providerName);
+        /// <param name="providerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetTestSessionProviderStats(string providerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "getTestSessionProviderStats", providerName)!;
 
         /// <summary>
         /// <c>TestService.isFeatureEnabled</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#isFeatureEnabled"/>
-        public bool IsFeatureEnabled(string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "isFeatureEnabled", name);
+        public bool IsFeatureEnabled(string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "isFeatureEnabled", name)!;
 
         /// <summary>
         /// <c>TestService.CaptureScreenshotAsync</c>
         /// </summary>
-        /// <param name="artifactName">A <c>string?</c> value.</param>
+        /// <param name="artifactName">A <c>string</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CaptureScreenshotAsync(string? artifactName, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CaptureScreenshotAsync", artifactName, options);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CaptureScreenshotAsync(string artifactName, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CaptureScreenshotAsync", artifactName, options)!;
 
         /// <summary>
         /// <c>TestService.RequestValidationAsync</c>
         /// </summary>
-        /// <param name="artifactType">A <c>string?</c> value.</param>
-        /// <param name="artifactName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestValidationAsync(string? artifactType, string? artifactName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestValidationAsync", artifactType, artifactName);
+        /// <param name="artifactType">A <c>string</c> value.</param>
+        /// <param name="artifactName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestValidationAsync(string artifactType, string artifactName)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestValidationAsync", artifactType, artifactName)!;
 
         /// <summary>
         /// Deprecated: Runs scripts which are parented to TestService.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Run"/>
-        public object? Run()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Run");
+        public object Run()
+            => global::Roblox.Reflection.Invoke<object>(this, "Run")!;
 
         /// <summary>
         /// Runs scripts which are parented to TestService.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#RunAsync"/>
-        public object? RunAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RunAsync");
+        public object RunAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "RunAsync")!;
 
         /// <summary>
         /// Fires when the server should collect a conditional test result.
         /// </summary>
         /// <param name="condition">A <c>bool</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <param name="line">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ServerCollectConditionalResult"/>
-        public event Action<bool, string?, Instance?, int>? ServerCollectConditionalResult
+        public event Action<bool, string, Instance, int>? ServerCollectConditionalResult
         {
             add { if (value is not null) AddEventHandler("ServerCollectConditionalResult", value); }
             remove { if (value is not null) RemoveEventHandler("ServerCollectConditionalResult", value); }
@@ -394,11 +394,11 @@ namespace Roblox
         /// <summary>
         /// Fires when the server should collect a test result.
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <param name="line">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#ServerCollectResult"/>
-        public event Action<string?, Instance?, int>? ServerCollectResult
+        public event Action<string, Instance, int>? ServerCollectResult
         {
             add { if (value is not null) AddEventHandler("ServerCollectResult", value); }
             remove { if (value is not null) RemoveEventHandler("ServerCollectResult", value); }

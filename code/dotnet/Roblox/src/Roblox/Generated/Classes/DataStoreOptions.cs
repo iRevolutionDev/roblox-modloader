@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DataStoreOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreOptions? FromHandle(nuint handle)
+        public static new DataStoreOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreOptions(handle);
 
         /// <summary>
@@ -31,18 +31,18 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreOptions#AllScopes"/>
         public bool AllScopes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllScopes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllScopes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllScopes", value);
         }
 
         /// <summary>
         /// <c>DataStoreOptions.SetExperimentalFeatures</c>
         /// </summary>
-        /// <param name="experimentalFeatures">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="experimentalFeatures">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreOptions#SetExperimentalFeatures"/>
-        public object? SetExperimentalFeatures(object? experimentalFeatures)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetExperimentalFeatures", experimentalFeatures);
+        public object SetExperimentalFeatures(object experimentalFeatures)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetExperimentalFeatures", experimentalFeatures)!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="MakeupDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MakeupDescription? FromHandle(nuint handle)
+        public static new MakeupDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new MakeupDescription(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription#AssetId"/>
         public long AssetId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "AssetId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "AssetId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "AssetId", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription#MakeupType"/>
         public Enum.MakeupType MakeupType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.MakeupType>(this, "MakeupType");
+            get => global::Roblox.Reflection.GetProperty<Enum.MakeupType>(this, "MakeupType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.MakeupType>(this, "MakeupType", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription#Order"/>
         public int Order
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Order");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Order")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Order", value);
         }
 

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="DataStoreKeyPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreKeyPages? FromHandle(nuint handle)
+        public static new DataStoreKeyPages? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreKeyPages(handle);
 
         /// <summary>
         /// <c>DataStoreKeyPages.Cursor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreKeyPages#Cursor"/>
-        public string? Cursor
+        public string Cursor
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Cursor");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Cursor", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Cursor")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Cursor", value);
         }
 
     }

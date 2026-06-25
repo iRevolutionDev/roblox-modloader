@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BasePlayerGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BasePlayerGui? FromHandle(nuint handle)
+        public static new BasePlayerGui? FromHandle(nuint handle)
             => handle == 0 ? null : new BasePlayerGui(handle);
 
         /// <summary>
@@ -33,16 +33,16 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePlayerGui#GetGuiObjectsAtPosition"/>
         public IReadOnlyList<Instance> GetGuiObjectsAtPosition(int x, int y)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsAtPosition", x, y);
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsAtPosition", x, y)!;
 
         /// <summary>
         /// <c>BasePlayerGui.GetGuiObjectsInCircle</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="radius">A <c>float</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetGuiObjectsInCircle(global::Roblox.Vector2? position, float radius)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsInCircle", position, radius);
+        public IReadOnlyList<Instance> GetGuiObjectsInCircle(global::Roblox.Vector2 position, float radius)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsInCircle", position, radius)!;
 
     }
 }

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TerrainModifyOperation")]
-    public class TerrainModifyOperation : Object
+    public class TerrainModifyOperation : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TerrainModifyOperation.</param>
@@ -24,16 +24,16 @@ namespace Roblox
         /// <summary>
         /// <c>TerrainModifyOperation.CommitBlock</c>
         /// </summary>
-        /// <param name="block">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CommitBlock(object? block)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CommitBlock", block);
+        /// <param name="block">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CommitBlock(object block)
+            => global::Roblox.Reflection.Invoke<object>(this, "CommitBlock", block)!;
 
         /// <summary>
         /// <c>TerrainModifyOperation.Ready</c>
         /// </summary>
-        /// <param name="block">A <c>object?</c> value.</param>
-        public event Action<object?>? Ready
+        /// <param name="block">A <c>object</c> value.</param>
+        public event Action<object>? Ready
         {
             add { if (value is not null) AddEventHandler("Ready", value); }
             remove { if (value is not null) RemoveEventHandler("Ready", value); }

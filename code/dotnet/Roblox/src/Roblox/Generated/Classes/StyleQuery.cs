@@ -22,13 +22,13 @@ namespace Roblox
         /// Creates a <see cref="StyleQuery"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StyleQuery? FromHandle(nuint handle)
+        public static new StyleQuery? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleQuery(handle);
 
-        public global::Roblox.NumberRange? AspectRatioRange
+        public global::Roblox.NumberRange AspectRatioRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "AspectRatioRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "AspectRatioRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "AspectRatioRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "AspectRatioRange", value);
         }
 
         /// <summary>
@@ -37,81 +37,81 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#IsActive"/>
         public bool IsActive
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsActive");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsActive")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsActive", value);
         }
 
-        public global::Roblox.Vector2? MaxSize
+        public global::Roblox.Vector2 MaxSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MaxSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MaxSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MaxSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MaxSize", value);
         }
 
-        public global::Roblox.Vector2? MinSize
+        public global::Roblox.Vector2 MinSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MinSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MinSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MinSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MinSize", value);
         }
 
         public Enum.PreferredInput PreferredInput
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PreferredInput>(this, "PreferredInput");
+            get => global::Roblox.Reflection.GetProperty<Enum.PreferredInput>(this, "PreferredInput")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredInput>(this, "PreferredInput", value);
         }
 
         public Enum.PreferredTextSize PreferredTextSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize", value);
         }
 
         public bool ReducedMotionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotionEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReducedMotionEnabled", value);
         }
 
         public Enum.DisplaySize ViewportDisplaySize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize");
+            get => global::Roblox.Reflection.GetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DisplaySize>(this, "ViewportDisplaySize", value);
         }
 
         /// <summary>
         /// Returns the value of a specific condition in the StyleQuery.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#GetCondition"/>
-        public object? GetCondition(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCondition", name);
+        public object GetCondition(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCondition", name)!;
 
         /// <summary>
         /// Returns a dictionary of key-value pairs describing the conditoins set on the StyleQuery.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#GetConditions"/>
-        public object? GetConditions()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetConditions");
+        public object GetConditions()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetConditions")!;
 
         /// <summary>
         /// <c>StyleQuery.SetCondition</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#SetCondition"/>
-        public object? SetCondition(string? name, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCondition", name, value);
+        public object SetCondition(string name, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCondition", name, value)!;
 
         /// <summary>
         /// Lets you declare and set multiple conditions of the StyleQuery at once.
         /// </summary>
-        /// <param name="conditions">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="conditions">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleQuery#SetConditions"/>
-        public object? SetConditions(object? conditions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetConditions", conditions);
+        public object SetConditions(object conditions)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetConditions", conditions)!;
 
     }
 }

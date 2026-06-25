@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FlangeSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FlangeSoundEffect? FromHandle(nuint handle)
+        public static new FlangeSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new FlangeSoundEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlangeSoundEffect#Depth"/>
         public float Depth
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Depth");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Depth")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Depth", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlangeSoundEffect#Mix"/>
         public float Mix
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Mix");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Mix")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Mix", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlangeSoundEffect#Rate"/>
         public float Rate
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Rate");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Rate")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Rate", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SoundGroup"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SoundGroup? FromHandle(nuint handle)
+        public static new SoundGroup? FromHandle(nuint handle)
             => handle == 0 ? null : new SoundGroup(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundGroup#Volume"/>
         public float Volume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
         }
 

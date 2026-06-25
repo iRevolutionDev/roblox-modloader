@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CompressorSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CompressorSoundEffect? FromHandle(nuint handle)
+        public static new CompressorSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new CompressorSoundEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Attack"/>
         public float Attack
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Attack");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Attack")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Attack", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#GainMakeup"/>
         public float GainMakeup
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "GainMakeup");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "GainMakeup")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "GainMakeup", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Ratio"/>
         public float Ratio
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Ratio");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Ratio")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Ratio", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Release"/>
         public float Release
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Release");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Release")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Release", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#Threshold"/>
         public float Threshold
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Threshold");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Threshold")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Threshold", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Humanoid"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Humanoid? FromHandle(nuint handle)
+        public static new Humanoid? FromHandle(nuint handle)
             => handle == 0 ? null : new Humanoid(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AutoJumpEnabled"/>
         public bool AutoJumpEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoJumpEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoJumpEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoJumpEnabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AutoRotate"/>
         public bool AutoRotate
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoRotate");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoRotate")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoRotate", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AutomaticScalingEnabled"/>
         public bool AutomaticScalingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutomaticScalingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutomaticScalingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutomaticScalingEnabled", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#BreakJointsOnDeath"/>
         public bool BreakJointsOnDeath
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BreakJointsOnDeath");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BreakJointsOnDeath")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BreakJointsOnDeath", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// An offset applied to the Camera's subject position when its CameraSubject is set to this Humanoid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CameraOffset"/>
-        public global::Roblox.Vector3? CameraOffset
+        public global::Roblox.Vector3 CameraOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "CameraOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "CameraOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "CameraOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "CameraOffset", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CollisionType"/>
         public Enum.HumanoidCollisionType CollisionType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidCollisionType>(this, "CollisionType");
+            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidCollisionType>(this, "CollisionType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HumanoidCollisionType>(this, "CollisionType", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#DisplayDistanceType"/>
         public Enum.HumanoidDisplayDistanceType DisplayDistanceType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidDisplayDistanceType>(this, "DisplayDistanceType");
+            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidDisplayDistanceType>(this, "DisplayDistanceType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HumanoidDisplayDistanceType>(this, "DisplayDistanceType", value);
         }
 
@@ -99,10 +99,10 @@ namespace Roblox
         /// Sets the text of a Humanoid, displayed above their head.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#DisplayName"/>
-        public string? DisplayName
+        public string DisplayName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DisplayName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DisplayName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DisplayName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DisplayName", value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#EvaluateStateMachine"/>
         public bool EvaluateStateMachine
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EvaluateStateMachine");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EvaluateStateMachine")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EvaluateStateMachine", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#FloorMaterial"/>
         public Enum.Material FloorMaterial
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Material>(this, "FloorMaterial");
+            get => global::Roblox.Reflection.GetProperty<Enum.Material>(this, "FloorMaterial")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Material>(this, "FloorMaterial", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Health"/>
         public float Health
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Health");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Health")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Health", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HealthDisplayDistance"/>
         public float HealthDisplayDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HealthDisplayDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HealthDisplayDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HealthDisplayDistance", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HealthDisplayType"/>
         public Enum.HumanoidHealthDisplayType HealthDisplayType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidHealthDisplayType>(this, "HealthDisplayType");
+            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidHealthDisplayType>(this, "HealthDisplayType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HumanoidHealthDisplayType>(this, "HealthDisplayType", value);
         }
 
@@ -161,14 +161,14 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HipHeight"/>
         public float HipHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HipHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HipHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HipHeight", value);
         }
 
-        public string? InternalDisplayName
+        public string InternalDisplayName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "InternalDisplayName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "InternalDisplayName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "InternalDisplayName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "InternalDisplayName", value);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Jump"/>
         public bool Jump
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Jump");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Jump")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Jump", value);
         }
 
@@ -187,7 +187,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#JumpHeight"/>
         public float JumpHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "JumpHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "JumpHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "JumpHeight", value);
         }
 
@@ -197,7 +197,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#JumpPower"/>
         public float JumpPower
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "JumpPower");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "JumpPower")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "JumpPower", value);
         }
 
@@ -217,7 +217,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MaxHealth"/>
         public float MaxHealth
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxHealth");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxHealth")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxHealth", value);
         }
 
@@ -227,7 +227,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MaxSlopeAngle"/>
         public float MaxSlopeAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxSlopeAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxSlopeAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxSlopeAngle", value);
         }
 
@@ -235,10 +235,10 @@ namespace Roblox
         /// Describes the direction that the Humanoid is walking in.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MoveDirection"/>
-        public global::Roblox.Vector3? MoveDirection
+        public global::Roblox.Vector3 MoveDirection
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MoveDirection");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MoveDirection", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MoveDirection")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MoveDirection", value);
         }
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#NameDisplayDistance"/>
         public float NameDisplayDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "NameDisplayDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "NameDisplayDistance", value);
         }
 
@@ -257,7 +257,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#NameOcclusion"/>
         public Enum.NameOcclusion NameOcclusion
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NameOcclusion>(this, "NameOcclusion");
+            get => global::Roblox.Reflection.GetProperty<Enum.NameOcclusion>(this, "NameOcclusion")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NameOcclusion>(this, "NameOcclusion", value);
         }
 
@@ -267,7 +267,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#PlatformStand"/>
         public bool PlatformStand
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlatformStand");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlatformStand")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PlatformStand", value);
         }
 
@@ -277,7 +277,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RequiresNeck"/>
         public bool RequiresNeck
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresNeck");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresNeck")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RequiresNeck", value);
         }
 
@@ -287,7 +287,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RigType"/>
         public Enum.HumanoidRigType RigType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidRigType>(this, "RigType");
+            get => global::Roblox.Reflection.GetProperty<Enum.HumanoidRigType>(this, "RigType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HumanoidRigType>(this, "RigType", value);
         }
 
@@ -327,7 +327,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Sit"/>
         public bool Sit
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Sit");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Sit")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Sit", value);
         }
 
@@ -335,10 +335,10 @@ namespace Roblox
         /// Describes the 3D position where the Player controlling the Humanoid last clicked in the world while using a Tool.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#TargetPoint"/>
-        public global::Roblox.Vector3? TargetPoint
+        public global::Roblox.Vector3 TargetPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "TargetPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "TargetPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "TargetPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "TargetPoint", value);
         }
 
         /// <summary>
@@ -357,7 +357,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#UseJumpPower"/>
         public bool UseJumpPower
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseJumpPower");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseJumpPower")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseJumpPower", value);
         }
 
@@ -367,7 +367,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#WalkSpeed"/>
         public float WalkSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WalkSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WalkSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WalkSpeed", value);
         }
 
@@ -385,146 +385,146 @@ namespace Roblox
         /// The position that a humanoid is trying to reach, after a call to Humanoid:MoveTo() is made.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#WalkToPoint"/>
-        public global::Roblox.Vector3? WalkToPoint
+        public global::Roblox.Vector3 WalkToPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WalkToPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WalkToPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "WalkToPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "WalkToPoint", value);
         }
 
         /// <summary>
         /// Attaches the specified Accessory to the humanoid's parent.
         /// </summary>
-        /// <param name="accessory">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="accessory">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AddAccessory"/>
-        public object? AddAccessory(Instance? accessory)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddAccessory", accessory);
+        public object AddAccessory(Instance accessory)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddAccessory", accessory)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Adds a custom status to the Humanoid.
         /// </summary>
-        /// <param name="status">A <c>string?</c> value.</param>
+        /// <param name="status">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AddCustomStatus"/>
-        public bool AddCustomStatus(string? status)
-            => global::Roblox.Reflection.Invoke<bool>(this, "AddCustomStatus", status);
+        public bool AddCustomStatus(string status)
+            => global::Roblox.Reflection.Invoke<bool>(this, "AddCustomStatus", status)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Adds a BoolValue to the Humanoid's Status object.
         /// </summary>
-        /// <param name="status">A <c>Enum.Status</c> value.</param>
+        /// <param name="status">A <c>Enum.Status?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AddStatus"/>
-        public bool AddStatus(Enum.Status status)
-            => global::Roblox.Reflection.Invoke<bool>(this, "AddStatus", status);
+        public bool AddStatus(Enum.Status? status = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "AddStatus", status)!;
 
         /// <summary>
         /// Assembles a tree of Motor6D joints by attaching together Attachment objects in a humanoid's character.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#BuildRigFromAttachments"/>
-        public object? BuildRigFromAttachments()
-            => global::Roblox.Reflection.Invoke<object?>(this, "BuildRigFromAttachments");
+        public object BuildRigFromAttachments()
+            => global::Roblox.Reflection.Invoke<object>(this, "BuildRigFromAttachments")!;
 
         /// <summary>
         /// Sets the Humanoid to enter the given HumanoidStateType.
         /// </summary>
-        /// <param name="state">A <c>Enum.HumanoidStateType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="state">A <c>Enum.HumanoidStateType?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ChangeState"/>
-        public object? ChangeState(Enum.HumanoidStateType state)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ChangeState", state);
+        public object ChangeState(Enum.HumanoidStateType? state = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ChangeState", state)!;
 
         /// <summary>
         /// <c>Humanoid.ComputeOriginalSizeForPart</c>
         /// </summary>
-        /// <param name="part">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ComputeOriginalSizeForPart(Instance? part)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ComputeOriginalSizeForPart", part);
+        /// <param name="part">A <c>Instance</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3? ComputeOriginalSizeForPart(Instance part)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "ComputeOriginalSizeForPart", part);
 
         /// <summary>
         /// <c>Humanoid.ComputeR15BodyBoundingBox</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
-        public global::Roblox.CFrame? ComputeR15BodyBoundingBox()
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "ComputeR15BodyBoundingBox");
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
+        public global::Roblox.CFrame ComputeR15BodyBoundingBox()
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "ComputeR15BodyBoundingBox")!;
 
         /// <summary>
         /// Makes the Humanoid equip the given Tool.
         /// </summary>
-        /// <param name="tool">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="tool">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#EquipTool"/>
-        public object? EquipTool(Instance? tool)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EquipTool", tool);
+        public object EquipTool(Instance tool)
+            => global::Roblox.Reflection.Invoke<object>(this, "EquipTool", tool)!;
 
         /// <summary>
         /// Returns an array of Accessory objects that the humanoid's parent is currently wearing.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetAccessories"/>
-        public object? GetAccessories()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAccessories");
+        public object GetAccessories()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAccessories")!;
 
         /// <summary>
         /// <c>Humanoid.GetAccessoryHandleScale</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="partType">A <c>Enum.BodyPartR15</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector3? GetAccessoryHandleScale(Instance? instance, Enum.BodyPartR15 partType)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetAccessoryHandleScale", instance, partType);
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3 GetAccessoryHandleScale(Instance instance, Enum.BodyPartR15 partType)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetAccessoryHandleScale", instance, partType)!;
 
         /// <summary>
         /// Returns a copy of the humanoid's cached HumanoidDescription which describes its current look.
         /// </summary>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetAppliedDescription"/>
-        public HumanoidDescription? GetAppliedDescription()
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "GetAppliedDescription");
+        public HumanoidDescription GetAppliedDescription()
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "GetAppliedDescription")!;
 
         /// <summary>
         /// Pass a body part to this method (the body part should be a sibling of Humanoid, and a child of a Model) to get the BodyPartR15 of the Part.
         /// </summary>
-        /// <param name="part">A <c>Instance?</c> value.</param>
+        /// <param name="part">A <c>Instance</c> value.</param>
         /// <returns>A <c>Enum.BodyPartR15</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetBodyPartR15"/>
-        public Enum.BodyPartR15 GetBodyPartR15(Instance? part)
-            => global::Roblox.Reflection.Invoke<Enum.BodyPartR15>(this, "GetBodyPartR15", part);
+        public Enum.BodyPartR15 GetBodyPartR15(Instance part)
+            => global::Roblox.Reflection.Invoke<Enum.BodyPartR15>(this, "GetBodyPartR15", part)!;
 
         /// <summary>
         /// Returns the Limb enum that is associated with the given Part.
         /// </summary>
-        /// <param name="part">A <c>Instance?</c> value.</param>
+        /// <param name="part">A <c>Instance</c> value.</param>
         /// <returns>A <c>Enum.Limb</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetLimb"/>
-        public Enum.Limb GetLimb(Instance? part)
-            => global::Roblox.Reflection.Invoke<Enum.Limb>(this, "GetLimb", part);
+        public Enum.Limb GetLimb(Instance part)
+            => global::Roblox.Reflection.Invoke<Enum.Limb>(this, "GetLimb", part)!;
 
         /// <summary>
         /// <c>Humanoid.GetMoveVelocity</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetMoveVelocity"/>
-        public global::Roblox.Vector3? GetMoveVelocity()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetMoveVelocity");
+        public global::Roblox.Vector3 GetMoveVelocity()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetMoveVelocity")!;
 
         /// <summary>
         /// Deprecated: Returns an array of all AnimationTracks that are currently being played on the Humanoid.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetPlayingAnimationTracks"/>
-        public object? GetPlayingAnimationTracks()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayingAnimationTracks");
+        public object GetPlayingAnimationTracks()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPlayingAnimationTracks")!;
 
         /// <summary>
         /// Returns the humanoid's actual physical velocity relative to the surface it is standing on as a Vector3 in world-space orientation.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetRelativeVelocityAtFloor"/>
-        public global::Roblox.Vector3? GetRelativeVelocityAtFloor()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetRelativeVelocityAtFloor");
+        public global::Roblox.Vector3 GetRelativeVelocityAtFloor()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetRelativeVelocityAtFloor")!;
 
         /// <summary>
         /// Returns the humanoid's current HumanoidStateType.
@@ -532,7 +532,7 @@ namespace Roblox
         /// <returns>A <c>Enum.HumanoidStateType</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetState"/>
         public Enum.HumanoidStateType GetState()
-            => global::Roblox.Reflection.Invoke<Enum.HumanoidStateType>(this, "GetState");
+            => global::Roblox.Reflection.Invoke<Enum.HumanoidStateType>(this, "GetState")!;
 
         /// <summary>
         /// Returns whether a HumanoidStateType is enabled for the Humanoid.
@@ -541,221 +541,221 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetStateEnabled"/>
         public bool GetStateEnabled(Enum.HumanoidStateType state)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetStateEnabled", state);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetStateEnabled", state)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Returns a table of the Humanoid's statuses, and custom statuses.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetStatuses"/>
-        public object? GetStatuses()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStatuses");
+        public object GetStatuses()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStatuses")!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Returns boolean based on if custom statuses exist.
         /// </summary>
-        /// <param name="status">A <c>string?</c> value.</param>
+        /// <param name="status">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HasCustomStatus"/>
-        public bool HasCustomStatus(string? status)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasCustomStatus", status);
+        public bool HasCustomStatus(string status)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasCustomStatus", status)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Returns a boolean based on if a status exists.
         /// </summary>
-        /// <param name="status">A <c>Enum.Status</c> value.</param>
+        /// <param name="status">A <c>Enum.Status?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HasStatus"/>
-        public bool HasStatus(Enum.Status status)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasStatus", status);
+        public bool HasStatus(Enum.Status? status = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasStatus", status)!;
 
         /// <summary>
         /// Deprecated: This function is deprecated in favor of using Animator:LoadAnimation() directly (the Animator may be created while editing or at runtime).Loads an Animation onto a Humanoid, returning an AnimationTrack that can be used for playback.
         /// </summary>
-        /// <param name="animation">A <c>Animation?</c> value.</param>
-        /// <returns>A <c>AnimationTrack?</c> value returned by the engine.</returns>
+        /// <param name="animation">A <c>Animation</c> value.</param>
+        /// <returns>A <c>AnimationTrack</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#LoadAnimation"/>
-        public AnimationTrack? LoadAnimation(Animation? animation)
-            => global::Roblox.Reflection.Invoke<AnimationTrack?>(this, "LoadAnimation", animation);
+        public AnimationTrack LoadAnimation(Animation animation)
+            => global::Roblox.Reflection.Invoke<AnimationTrack>(this, "LoadAnimation", animation)!;
 
         /// <summary>
         /// Causes the Humanoid to walk in the given direction.
         /// </summary>
-        /// <param name="moveDirection">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="relativeToCamera">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="moveDirection">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="relativeToCamera">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Move"/>
-        public object? Move(global::Roblox.Vector3? moveDirection, bool relativeToCamera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Move", moveDirection, relativeToCamera);
+        public object Move(global::Roblox.Vector3 moveDirection, bool? relativeToCamera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Move", moveDirection, relativeToCamera)!;
 
         /// <summary>
         /// Causes the Humanoid to attempt to walk to the given location by setting the Humanoid.WalkToPoint and Humanoid.WalkToPart properties.
         /// </summary>
-        /// <param name="location">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="location">A <c>global::Roblox.Vector3</c> value.</param>
         /// <param name="part">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#MoveTo"/>
-        public object? MoveTo(global::Roblox.Vector3? location, Instance? part)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MoveTo", location, part);
+        public object MoveTo(global::Roblox.Vector3 location, Instance? part = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "MoveTo", location, part)!;
 
         /// <summary>
         /// Removes all Accessory objects worn by the humanoid's parent.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RemoveAccessories"/>
-        public object? RemoveAccessories()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveAccessories");
+        public object RemoveAccessories()
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveAccessories")!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Removes the defined custom status from the Status model in the Humanoid..
         /// </summary>
-        /// <param name="status">A <c>string?</c> value.</param>
+        /// <param name="status">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RemoveCustomStatus"/>
-        public bool RemoveCustomStatus(string? status)
-            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveCustomStatus", status);
+        public bool RemoveCustomStatus(string status)
+            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveCustomStatus", status)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Removes the defined status from the Status model in the Humanoid.
         /// </summary>
-        /// <param name="status">A <c>Enum.Status</c> value.</param>
+        /// <param name="status">A <c>Enum.Status?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RemoveStatus"/>
-        public bool RemoveStatus(Enum.Status status)
-            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveStatus", status);
+        public bool RemoveStatus(Enum.Status? status = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "RemoveStatus", status)!;
 
         /// <summary>
         /// Dynamically replaces a Humanoid body part with a different part.
         /// </summary>
         /// <param name="bodyPart">A <c>Enum.BodyPartR15</c> value.</param>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
+        /// <param name="part">A <c>BasePart</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ReplaceBodyPartR15"/>
-        public bool ReplaceBodyPartR15(Enum.BodyPartR15 bodyPart, BasePart? part)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ReplaceBodyPartR15", bodyPart, part);
+        public bool ReplaceBodyPartR15(Enum.BodyPartR15 bodyPart, BasePart part)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ReplaceBodyPartR15", bodyPart, part)!;
 
         /// <summary>
         /// <c>Humanoid.SetClickToWalkEnabled</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetClickToWalkEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetClickToWalkEnabled", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetClickToWalkEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetClickToWalkEnabled", enabled)!;
 
         /// <summary>
         /// Sets whether a given HumanoidStateType is enabled for the Humanoid.
         /// </summary>
         /// <param name="state">A <c>Enum.HumanoidStateType</c> value.</param>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#SetStateEnabled"/>
-        public object? SetStateEnabled(Enum.HumanoidStateType state, bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetStateEnabled", state, enabled);
+        public object SetStateEnabled(Enum.HumanoidStateType state, bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetStateEnabled", state, enabled)!;
 
         /// <summary>
         /// Lowers the Humanoid.Health of the Humanoid by the given amount if it is not protected by a ForceField.
         /// </summary>
         /// <param name="amount">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#TakeDamage"/>
-        public object? TakeDamage(float amount)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TakeDamage", amount);
+        public object TakeDamage(float amount)
+            => global::Roblox.Reflection.Invoke<object>(this, "TakeDamage", amount)!;
 
         /// <summary>
         /// Unequips any Tool currently equipped by the Humanoid.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#UnequipTools"/>
-        public object? UnequipTools()
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnequipTools");
+        public object UnequipTools()
+            => global::Roblox.Reflection.Invoke<object>(this, "UnequipTools")!;
 
         /// <summary>
         /// <c>Humanoid.CacheDefaults</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CacheDefaults()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CacheDefaults");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CacheDefaults()
+            => global::Roblox.Reflection.Invoke<object>(this, "CacheDefaults")!;
 
         /// <summary>
         /// <c>Humanoid.ApplyAvatarRules</c>
         /// </summary>
-        /// <param name="avatarRules">A <c>AvatarRules?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyAvatarRules(AvatarRules? avatarRules)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyAvatarRules", avatarRules);
+        /// <param name="avatarRules">A <c>AvatarRules</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplyAvatarRules(AvatarRules avatarRules)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyAvatarRules", avatarRules)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by ApplyDescriptionAsync().Makes the character's look match that of the passed in HumanoidDescription.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescription"/>
-        public object? ApplyDescription(HumanoidDescription? humanoidDescription, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyDescription", humanoidDescription, assetTypeVerification);
+        public object ApplyDescription(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyDescription", humanoidDescription, assetTypeVerification)!;
 
         /// <summary>
         /// Makes the character's look match that of the passed in HumanoidDescription. If UseAvatarSettings is true, the Avatar Settings for the experience will also be applied to the character.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescriptionAsync"/>
-        public object? ApplyDescriptionAsync(HumanoidDescription? humanoidDescription, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyDescriptionAsync", humanoidDescription, assetTypeVerification);
+        public object ApplyDescriptionAsync(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyDescriptionAsync", humanoidDescription, assetTypeVerification)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by ApplyDescriptionResetAsync().Makes the character's look match that of the passed in HumanoidDescription, even after external changes.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescriptionReset"/>
-        public object? ApplyDescriptionReset(HumanoidDescription? humanoidDescription, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyDescriptionReset", humanoidDescription, assetTypeVerification);
+        public object ApplyDescriptionReset(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyDescriptionReset", humanoidDescription, assetTypeVerification)!;
 
         /// <summary>
         /// Makes the character's look match that of the passed in HumanoidDescription, even after external changes.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescriptionResetAsync"/>
-        public object? ApplyDescriptionResetAsync(HumanoidDescription? humanoidDescription, Enum.AssetTypeVerification assetTypeVerification)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyDescriptionResetAsync", humanoidDescription, assetTypeVerification);
+        public object ApplyDescriptionResetAsync(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyDescriptionResetAsync", humanoidDescription, assetTypeVerification)!;
 
         /// <summary>
         /// Deprecated: This method has been superseded by PlayEmoteAsync().Plays emotes and returns if was successfully ran.
         /// </summary>
-        /// <param name="emoteName">A <c>string?</c> value.</param>
+        /// <param name="emoteName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#PlayEmote"/>
-        public bool PlayEmote(string? emoteName)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayEmote", emoteName);
+        public bool PlayEmote(string emoteName)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayEmote", emoteName)!;
 
         /// <summary>
         /// <c>Humanoid.PlayEmoteAndGetAnimTrackById</c>
         /// </summary>
         /// <param name="emoteId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PlayEmoteAndGetAnimTrackById(long emoteId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PlayEmoteAndGetAnimTrackById", emoteId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PlayEmoteAndGetAnimTrackById(long emoteId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PlayEmoteAndGetAnimTrackById", emoteId)!;
 
         /// <summary>
         /// Plays emotes and returns if was successfully ran.
         /// </summary>
-        /// <param name="emoteName">A <c>string?</c> value.</param>
+        /// <param name="emoteName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#PlayEmoteAsync"/>
-        public bool PlayEmoteAsync(string? emoteName)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PlayEmoteAsync", emoteName);
+        public bool PlayEmoteAsync(string emoteName)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PlayEmoteAsync", emoteName)!;
 
         /// <summary>
         /// Deprecated: Fires when an AnimationTrack begins playing on the Humanoid.
         /// </summary>
-        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
+        /// <param name="animationTrack">A <c>AnimationTrack</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AnimationPlayed"/>
-        public event Action<AnimationTrack?>? AnimationPlayed
+        public event Action<AnimationTrack>? AnimationPlayed
         {
             add { if (value is not null) AddEventHandler("AnimationPlayed", value); }
             remove { if (value is not null) RemoveEventHandler("AnimationPlayed", value); }
@@ -764,9 +764,9 @@ namespace Roblox
         /// <summary>
         /// <c>Humanoid.ApplyDescriptionFinished</c>
         /// </summary>
-        /// <param name="description">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="description">A <c>HumanoidDescription</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescriptionFinished"/>
-        public event Action<HumanoidDescription?>? ApplyDescriptionFinished
+        public event Action<HumanoidDescription>? ApplyDescriptionFinished
         {
             add { if (value is not null) AddEventHandler("ApplyDescriptionFinished", value); }
             remove { if (value is not null) RemoveEventHandler("ApplyDescriptionFinished", value); }
@@ -792,9 +792,9 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is added to the Humanoid.
         /// </summary>
-        /// <param name="status">A <c>string?</c> value.</param>
+        /// <param name="status">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusAdded"/>
-        public event Action<string?>? CustomStatusAdded
+        public event Action<string>? CustomStatusAdded
         {
             add { if (value is not null) AddEventHandler("CustomStatusAdded", value); }
             remove { if (value is not null) RemoveEventHandler("CustomStatusAdded", value); }
@@ -803,9 +803,9 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This item is deprecated, as it was a part of the unfinished RbxStatus library which would have allowed you to add conditions to a Humanoid. Do not use it for new work.Fired when a status is removed from the Humanoid.
         /// </summary>
-        /// <param name="status">A <c>string?</c> value.</param>
+        /// <param name="status">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusRemoved"/>
-        public event Action<string?>? CustomStatusRemoved
+        public event Action<string>? CustomStatusRemoved
         {
             add { if (value is not null) AddEventHandler("CustomStatusRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("CustomStatusRemoved", value); }
@@ -825,8 +825,8 @@ namespace Roblox
         /// <c>Humanoid.EmoteTriggered</c>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
-        public event Action<bool, AnimationTrack?>? EmoteTriggered
+        /// <param name="animationTrack">A <c>AnimationTrack</c> value.</param>
+        public event Action<bool, AnimationTrack>? EmoteTriggered
         {
             add { if (value is not null) AddEventHandler("EmoteTriggered", value); }
             remove { if (value is not null) RemoveEventHandler("EmoteTriggered", value); }
@@ -935,9 +935,9 @@ namespace Roblox
         /// Fired when a Humanoid either sits in a Seat or VehicleSeat or gets up.
         /// </summary>
         /// <param name="active">A <c>bool</c> value.</param>
-        /// <param name="currentSeatPart">A <c>BasePart?</c> value.</param>
+        /// <param name="currentSeatPart">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Seated"/>
-        public event Action<bool, BasePart?>? Seated
+        public event Action<bool, BasePart>? Seated
         {
             add { if (value is not null) AddEventHandler("Seated", value); }
             remove { if (value is not null) RemoveEventHandler("Seated", value); }
@@ -947,7 +947,7 @@ namespace Roblox
         /// Fires when the state of the Humanoid is changed.
         /// </summary>
         /// <param name="old">A <c>Enum.HumanoidStateType</c> value.</param>
-        /// <param name="new">A <c>Enum.HumanoidStateType</c> value.</param>
+        /// <param name="@new">A <c>Enum.HumanoidStateType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StateChanged"/>
         public event Action<Enum.HumanoidStateType, Enum.HumanoidStateType>? StateChanged
         {
@@ -1014,10 +1014,10 @@ namespace Roblox
         /// <summary>
         /// Fires when one of the humanoid's limbs come in contact with another BasePart.
         /// </summary>
-        /// <param name="touchingPart">A <c>BasePart?</c> value.</param>
-        /// <param name="humanoidPart">A <c>BasePart?</c> value.</param>
+        /// <param name="touchingPart">A <c>BasePart</c> value.</param>
+        /// <param name="humanoidPart">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Touched"/>
-        public event Action<BasePart?, BasePart?>? Touched
+        public event Action<BasePart, BasePart>? Touched
         {
             add { if (value is not null) AddEventHandler("Touched", value); }
             remove { if (value is not null) RemoveEventHandler("Touched", value); }

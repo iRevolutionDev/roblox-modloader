@@ -18,42 +18,42 @@ namespace Roblox
         /// Creates a <see cref="DebuggerVariable"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerVariable? FromHandle(nuint handle)
+        public static new DebuggerVariable? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerVariable(handle);
 
-        public string? Name
+        public new string Name
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Name");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Name", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Name")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Name", value);
         }
 
         public bool Populated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Populated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Populated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Populated", value);
         }
 
-        public string? Type
+        public string Type
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Type");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Type", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Type")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Type", value);
         }
 
-        public string? Value
+        public string Value
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Value", value);
         }
 
         public int VariableId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "VariableId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "VariableId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "VariableId", value);
         }
 
         public int VariablesCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "VariablesCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "VariablesCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "VariablesCount", value);
         }
 
@@ -61,17 +61,17 @@ namespace Roblox
         /// <c>DebuggerVariable.GetVariableByIndex</c>
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>DebuggerVariable?</c> value returned by the engine.</returns>
-        public DebuggerVariable? GetVariableByIndex(int index)
-            => global::Roblox.Reflection.Invoke<DebuggerVariable?>(this, "GetVariableByIndex", index);
+        /// <returns>A <c>DebuggerVariable</c> value returned by the engine.</returns>
+        public DebuggerVariable GetVariableByIndex(int index)
+            => global::Roblox.Reflection.Invoke<DebuggerVariable>(this, "GetVariableByIndex", index)!;
 
         /// <summary>
         /// <c>DebuggerVariable.GetVariableByName</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>DebuggerVariable?</c> value returned by the engine.</returns>
-        public DebuggerVariable? GetVariableByName(string? name)
-            => global::Roblox.Reflection.Invoke<DebuggerVariable?>(this, "GetVariableByName", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>DebuggerVariable</c> value returned by the engine.</returns>
+        public DebuggerVariable GetVariableByName(string name)
+            => global::Roblox.Reflection.Invoke<DebuggerVariable>(this, "GetVariableByName", name)!;
 
     }
 }

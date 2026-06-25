@@ -18,75 +18,75 @@ namespace Roblox
         /// Creates a <see cref="ThirdPartyUserService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ThirdPartyUserService? FromHandle(nuint handle)
+        public static new ThirdPartyUserService? FromHandle(nuint handle)
             => handle == 0 ? null : new ThirdPartyUserService(handle);
 
         public Enum.ChatRestrictionStatus FriendCommunicationRestrictionStatus
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ChatRestrictionStatus>(this, "FriendCommunicationRestrictionStatus");
+            get => global::Roblox.Reflection.GetProperty<Enum.ChatRestrictionStatus>(this, "FriendCommunicationRestrictionStatus")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ChatRestrictionStatus>(this, "FriendCommunicationRestrictionStatus", value);
         }
 
         public bool HasActiveUser
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasActiveUser");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasActiveUser")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasActiveUser", value);
         }
 
         public Enum.ChatRestrictionStatus VoiceChatRestrictionStatus
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ChatRestrictionStatus>(this, "VoiceChatRestrictionStatus");
+            get => global::Roblox.Reflection.GetProperty<Enum.ChatRestrictionStatus>(this, "VoiceChatRestrictionStatus")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ChatRestrictionStatus>(this, "VoiceChatRestrictionStatus", value);
         }
 
         /// <summary>
         /// <c>ThirdPartyUserService.GetUserPlatformName</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetUserPlatformName()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetUserPlatformName");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetUserPlatformName()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetUserPlatformName")!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.GetVoiceChatRestrictionStatus</c>
         /// </summary>
         /// <returns>A <c>Enum.ChatRestrictionStatus</c> value returned by the engine.</returns>
         public Enum.ChatRestrictionStatus GetVoiceChatRestrictionStatus()
-            => global::Roblox.Reflection.Invoke<Enum.ChatRestrictionStatus>(this, "GetVoiceChatRestrictionStatus");
+            => global::Roblox.Reflection.Invoke<Enum.ChatRestrictionStatus>(this, "GetVoiceChatRestrictionStatus")!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.HaveActiveUser</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool HaveActiveUser()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HaveActiveUser");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HaveActiveUser")!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.IsAccountSwitchingSupported</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAccountSwitchingSupported()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAccountSwitchingSupported");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAccountSwitchingSupported")!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.IsChatRestrictionSupported</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsChatRestrictionSupported()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsChatRestrictionSupported");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsChatRestrictionSupported")!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.IsSingleSignOnSupported</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsSingleSignOnSupported()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsSingleSignOnSupported");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsSingleSignOnSupported")!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.ShowAccountPicker</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowAccountPicker()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowAccountPicker");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowAccountPicker()
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowAccountPicker")!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.RegisterActiveUser</c>
@@ -94,7 +94,7 @@ namespace Roblox
         /// <param name="gamepadId">A <c>Enum.UserInputType</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int RegisterActiveUser(Enum.UserInputType gamepadId)
-            => global::Roblox.Reflection.Invoke<int>(this, "RegisterActiveUser", gamepadId);
+            => global::Roblox.Reflection.Invoke<int>(this, "RegisterActiveUser", gamepadId)!;
 
         /// <summary>
         /// <c>ThirdPartyUserService.ActiveUserSignedOut</c>

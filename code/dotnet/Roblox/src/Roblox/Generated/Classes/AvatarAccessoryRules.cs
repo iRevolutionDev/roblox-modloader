@@ -18,149 +18,149 @@ namespace Roblox
         /// Creates a <see cref="AvatarAccessoryRules"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarAccessoryRules? FromHandle(nuint handle)
+        public static new AvatarAccessoryRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarAccessoryRules(handle);
 
         public Enum.AvatarSettingsAccessoryMode AccessoryMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAccessoryMode>(this, "AccessoryMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAccessoryMode>(this, "AccessoryMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsAccessoryMode>(this, "AccessoryMode", value);
         }
 
         public Enum.AvatarSettingsCustomAccessoryMode CustomAccessoryMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCustomAccessoryMode>(this, "CustomAccessoryMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCustomAccessoryMode>(this, "CustomAccessoryMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCustomAccessoryMode>(this, "CustomAccessoryMode", value);
         }
 
         public bool CustomBackAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomBackAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomBackAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomBackAccessoryEnabled", value);
         }
 
         public long CustomBackAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomBackAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomBackAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomBackAccessoryId", value);
         }
 
         public bool CustomFaceAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomFaceAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomFaceAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomFaceAccessoryEnabled", value);
         }
 
         public long CustomFaceAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomFaceAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomFaceAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomFaceAccessoryId", value);
         }
 
         public bool CustomFrontAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomFrontAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomFrontAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomFrontAccessoryEnabled", value);
         }
 
         public long CustomFrontAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomFrontAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomFrontAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomFrontAccessoryId", value);
         }
 
         public bool CustomHairAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomHairAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomHairAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomHairAccessoryEnabled", value);
         }
 
         public long CustomHairAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomHairAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomHairAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomHairAccessoryId", value);
         }
 
         public bool CustomHeadAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomHeadAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomHeadAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomHeadAccessoryEnabled", value);
         }
 
         public long CustomHeadAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomHeadAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomHeadAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomHeadAccessoryId", value);
         }
 
         public bool CustomNeckAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomNeckAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomNeckAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomNeckAccessoryEnabled", value);
         }
 
         public long CustomNeckAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomNeckAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomNeckAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomNeckAccessoryId", value);
         }
 
         public bool CustomShoulderAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomShoulderAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomShoulderAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomShoulderAccessoryEnabled", value);
         }
 
         public long CustomShoulderAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomShoulderAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomShoulderAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomShoulderAccessoryId", value);
         }
 
         public bool CustomWaistAccessoryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomWaistAccessoryEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomWaistAccessoryEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomWaistAccessoryEnabled", value);
         }
 
         public long CustomWaistAccessoryId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomWaistAccessoryId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomWaistAccessoryId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomWaistAccessoryId", value);
         }
 
         public bool EnableSound
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSound");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSound")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableSound", value);
         }
 
         public bool EnableVFX
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableVFX");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableVFX")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableVFX", value);
         }
 
-        public global::Roblox.Vector3? LimitBounds
+        public global::Roblox.Vector3 LimitBounds
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LimitBounds");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LimitBounds", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LimitBounds")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LimitBounds", value);
         }
 
         public Enum.AvatarSettingsAccessoryLimitMethod LimitMethod
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAccessoryLimitMethod>(this, "LimitMethod");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAccessoryLimitMethod>(this, "LimitMethod")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsAccessoryLimitMethod>(this, "LimitMethod", value);
         }
 
         /// <summary>
         /// <c>AvatarAccessoryRules.willRemoveAccessory</c>
         /// </summary>
-        /// <param name="humanoid">A <c>Humanoid?</c> value.</param>
-        /// <param name="accessory">A <c>Accoutrement?</c> value.</param>
+        /// <param name="humanoid">A <c>Humanoid</c> value.</param>
+        /// <param name="accessory">A <c>Accoutrement</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool WillRemoveAccessory(Humanoid? humanoid, Accoutrement? accessory)
-            => global::Roblox.Reflection.Invoke<bool>(this, "willRemoveAccessory", humanoid, accessory);
+        public bool WillRemoveAccessory(Humanoid humanoid, Accoutrement accessory)
+            => global::Roblox.Reflection.Invoke<bool>(this, "willRemoveAccessory", humanoid, accessory)!;
 
     }
 }

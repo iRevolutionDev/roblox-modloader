@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DialogChoice"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DialogChoice? FromHandle(nuint handle)
+        public static new DialogChoice? FromHandle(nuint handle)
             => handle == 0 ? null : new DialogChoice(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DialogChoice#GoodbyeChoiceActive"/>
         public bool GoodbyeChoiceActive
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "GoodbyeChoiceActive");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "GoodbyeChoiceActive")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "GoodbyeChoiceActive", value);
         }
 
@@ -39,30 +39,30 @@ namespace Roblox
         /// Sets the sentence that the dialog will show to the player when the chat ends.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DialogChoice#GoodbyeDialog"/>
-        public string? GoodbyeDialog
+        public string GoodbyeDialog
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GoodbyeDialog");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GoodbyeDialog", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "GoodbyeDialog")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "GoodbyeDialog", value);
         }
 
         /// <summary>
         /// Sets what the NPC will say when the player chooses this DialogChoice.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DialogChoice#ResponseDialog"/>
-        public string? ResponseDialog
+        public string ResponseDialog
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ResponseDialog");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ResponseDialog", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ResponseDialog")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ResponseDialog", value);
         }
 
         /// <summary>
         /// Sets what the player will say when they choose this DialogChoice.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DialogChoice#UserDialog"/>
-        public string? UserDialog
+        public string UserDialog
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "UserDialog");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "UserDialog", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "UserDialog")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "UserDialog", value);
         }
 
     }

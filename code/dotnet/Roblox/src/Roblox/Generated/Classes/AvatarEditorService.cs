@@ -22,15 +22,15 @@ namespace Roblox
         /// Creates a <see cref="AvatarEditorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarEditorService? FromHandle(nuint handle)
+        public static new AvatarEditorService? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarEditorService(handle);
 
         /// <summary>
         /// <c>AvatarEditorService.BustAvatarFetchCache</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? BustAvatarFetchCache()
-            => global::Roblox.Reflection.Invoke<object?>(this, "BustAvatarFetchCache");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object BustAvatarFetchCache()
+            => global::Roblox.Reflection.Invoke<object>(this, "BustAvatarFetchCache")!;
 
         /// <summary>
         /// <c>AvatarEditorService.GetAccessoryType</c>
@@ -39,20 +39,20 @@ namespace Roblox
         /// <returns>A <c>Enum.AccessoryType</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetAccessoryType"/>
         public Enum.AccessoryType GetAccessoryType(Enum.AvatarAssetType avatarAssetType)
-            => global::Roblox.Reflection.Invoke<Enum.AccessoryType>(this, "GetAccessoryType", avatarAssetType);
+            => global::Roblox.Reflection.Invoke<Enum.AccessoryType>(this, "GetAccessoryType", avatarAssetType)!;
 
         /// <summary>
         /// <c>AvatarEditorService.NoPromptCreateOutfit</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="gearAssetId">A <c>long</c> value.</param>
-        /// <param name="outfitOptions">A <c>object?</c> value.</param>
-        /// <param name="outfitType">A <c>object?</c> value.</param>
+        /// <param name="outfitOptions">A <c>object</c> value.</param>
+        /// <param name="outfitType">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool NoPromptCreateOutfit(HumanoidDescription? humanoidDescription, Enum.HumanoidRigType rigType, string? name, long gearAssetId, object? outfitOptions, object? outfitType)
-            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptCreateOutfit", humanoidDescription, rigType, name, gearAssetId, outfitOptions, outfitType);
+        public bool NoPromptCreateOutfit(HumanoidDescription humanoidDescription, Enum.HumanoidRigType rigType, string name, long gearAssetId, object outfitOptions, object outfitType)
+            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptCreateOutfit", humanoidDescription, rigType, name, gearAssetId, outfitOptions, outfitType)!;
 
         /// <summary>
         /// <c>AvatarEditorService.NoPromptDeleteOutfit</c>
@@ -60,28 +60,28 @@ namespace Roblox
         /// <param name="outfitId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool NoPromptDeleteOutfit(long outfitId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptDeleteOutfit", outfitId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptDeleteOutfit", outfitId)!;
 
         /// <summary>
         /// <c>AvatarEditorService.NoPromptRenameOutfit</c>
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool NoPromptRenameOutfit(long outfitId, string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptRenameOutfit", outfitId, name);
+        public bool NoPromptRenameOutfit(long outfitId, string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptRenameOutfit", outfitId, name)!;
 
         /// <summary>
         /// <c>AvatarEditorService.NoPromptSaveAvatar</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <param name="saveDict">A <c>object?</c> value.</param>
-        /// <param name="gearAssetId">A <c>long</c> value.</param>
+        /// <param name="saveDict">A <c>object</c> value.</param>
+        /// <param name="gearAssetId">A <c>long?</c> value.</param>
         /// <param name="profileConfiguration">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool NoPromptSaveAvatar(HumanoidDescription? humanoidDescription, Enum.HumanoidRigType rigType, object? saveDict, long gearAssetId, object? profileConfiguration)
-            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptSaveAvatar", humanoidDescription, rigType, saveDict, gearAssetId, profileConfiguration);
+        public bool NoPromptSaveAvatar(HumanoidDescription humanoidDescription, Enum.HumanoidRigType rigType, object saveDict, long? gearAssetId = null, object? profileConfiguration = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptSaveAvatar", humanoidDescription, rigType, saveDict, gearAssetId, profileConfiguration)!;
 
         /// <summary>
         /// <c>AvatarEditorService.NoPromptSaveAvatarThumbnailCustomization</c>
@@ -90,10 +90,10 @@ namespace Roblox
         /// <param name="emoteAssetId">A <c>long</c> value.</param>
         /// <param name="cameraDistanceScale">A <c>float</c> value.</param>
         /// <param name="yRotDeg">A <c>float</c> value.</param>
-        /// <param name="fieldOfViewDeg">A <c>float</c> value.</param>
+        /// <param name="fieldOfViewDeg">A <c>float?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool NoPromptSaveAvatarThumbnailCustomization(Enum.AvatarThumbnailCustomizationType thumbnailType, long emoteAssetId, float cameraDistanceScale, float yRotDeg, float fieldOfViewDeg)
-            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptSaveAvatarThumbnailCustomization", thumbnailType, emoteAssetId, cameraDistanceScale, yRotDeg, fieldOfViewDeg);
+        public bool NoPromptSaveAvatarThumbnailCustomization(Enum.AvatarThumbnailCustomizationType thumbnailType, long emoteAssetId, float cameraDistanceScale, float yRotDeg, float? fieldOfViewDeg = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptSaveAvatarThumbnailCustomization", thumbnailType, emoteAssetId, cameraDistanceScale, yRotDeg, fieldOfViewDeg)!;
 
         /// <summary>
         /// <c>AvatarEditorService.NoPromptSetFavorite</c>
@@ -103,115 +103,115 @@ namespace Roblox
         /// <param name="shouldFavorite">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool NoPromptSetFavorite(long itemId, Enum.AvatarItemType itemType, bool shouldFavorite)
-            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptSetFavorite", itemId, itemType, shouldFavorite);
+            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptSetFavorite", itemId, itemType, shouldFavorite)!;
 
         /// <summary>
         /// <c>AvatarEditorService.NoPromptUpdateOutfit</c>
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <param name="gearAssetId">A <c>long</c> value.</param>
+        /// <param name="gearAssetId">A <c>long?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool NoPromptUpdateOutfit(long outfitId, HumanoidDescription? humanoidDescription, Enum.HumanoidRigType rigType, long gearAssetId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptUpdateOutfit", outfitId, humanoidDescription, rigType, gearAssetId);
+        public bool NoPromptUpdateOutfit(long outfitId, HumanoidDescription humanoidDescription, Enum.HumanoidRigType rigType, long? gearAssetId = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "NoPromptUpdateOutfit", outfitId, humanoidDescription, rigType, gearAssetId)!;
 
         /// <summary>
         /// <c>AvatarEditorService.PerformCreateOutfitWithDescription</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformCreateOutfitWithDescription(HumanoidDescription? humanoidDescription, string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformCreateOutfitWithDescription", humanoidDescription, name);
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformCreateOutfitWithDescription(HumanoidDescription humanoidDescription, string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformCreateOutfitWithDescription", humanoidDescription, name)!;
 
         /// <summary>
         /// <c>AvatarEditorService.PerformDeleteOutfit</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformDeleteOutfit()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformDeleteOutfit");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformDeleteOutfit()
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformDeleteOutfit")!;
 
         /// <summary>
         /// <c>AvatarEditorService.PerformRenameOutfit</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformRenameOutfit(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformRenameOutfit", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformRenameOutfit(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformRenameOutfit", name)!;
 
         /// <summary>
         /// <c>AvatarEditorService.PerformSaveAvatarWithDescription</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <param name="addedAssets">A <c>object?</c> value.</param>
-        /// <param name="removedAssets">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformSaveAvatarWithDescription(HumanoidDescription? humanoidDescription, object? addedAssets, object? removedAssets)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformSaveAvatarWithDescription", humanoidDescription, addedAssets, removedAssets);
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <param name="addedAssets">A <c>object</c> value.</param>
+        /// <param name="removedAssets">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformSaveAvatarWithDescription(HumanoidDescription humanoidDescription, object addedAssets, object removedAssets)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformSaveAvatarWithDescription", humanoidDescription, addedAssets, removedAssets)!;
 
         /// <summary>
         /// <c>AvatarEditorService.PerformSetFavorite</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformSetFavorite()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformSetFavorite");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformSetFavorite()
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformSetFavorite")!;
 
         /// <summary>
         /// <c>AvatarEditorService.PerformUpdateOutfit</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformUpdateOutfit(HumanoidDescription? humanoidDescription)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformUpdateOutfit", humanoidDescription);
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformUpdateOutfit(HumanoidDescription humanoidDescription)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformUpdateOutfit", humanoidDescription)!;
 
         /// <summary>
         /// Prompts the Players.LocalPlayer to allow the developer to read what items the user has in their inventory and other avatar editor related information.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptAllowInventoryReadAccess"/>
-        public object? PromptAllowInventoryReadAccess()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptAllowInventoryReadAccess");
+        public object PromptAllowInventoryReadAccess()
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptAllowInventoryReadAccess")!;
 
         /// <summary>
         /// Prompts the Players.LocalPlayer to save the given HumanoidDescription as an outfit.
         /// </summary>
-        /// <param name="outfit">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="outfit">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <param name="outfitOptions">A <c>object?</c> value.</param>
-        /// <param name="outfitType">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="outfitOptions">A <c>object</c> value.</param>
+        /// <param name="outfitType">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptCreateOutfit"/>
-        public object? PromptCreateOutfit(HumanoidDescription? outfit, Enum.HumanoidRigType rigType, object? outfitOptions, object? outfitType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptCreateOutfit", outfit, rigType, outfitOptions, outfitType);
+        public object PromptCreateOutfit(HumanoidDescription outfit, Enum.HumanoidRigType rigType, object outfitOptions, object outfitType)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptCreateOutfit", outfit, rigType, outfitOptions, outfitType)!;
 
         /// <summary>
         /// Prompts the Players.LocalPlayer to delete the given outfit.
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptDeleteOutfit"/>
-        public object? PromptDeleteOutfit(long outfitId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptDeleteOutfit", outfitId);
+        public object PromptDeleteOutfit(long outfitId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptDeleteOutfit", outfitId)!;
 
         /// <summary>
         /// Prompts the Players.LocalPlayer to rename the given outfit.
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptRenameOutfit"/>
-        public object? PromptRenameOutfit(long outfitId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptRenameOutfit", outfitId);
+        public object PromptRenameOutfit(long outfitId)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptRenameOutfit", outfitId)!;
 
         /// <summary>
         /// Prompts the Players.LocalPlayer to update their avatar based on the given HumanoidDescription and RigType of R6 or R15.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptSaveAvatar"/>
-        public object? PromptSaveAvatar(HumanoidDescription? humanoidDescription, Enum.HumanoidRigType rigType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptSaveAvatar", humanoidDescription, rigType);
+        public object PromptSaveAvatar(HumanoidDescription humanoidDescription, Enum.HumanoidRigType rigType)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptSaveAvatar", humanoidDescription, rigType)!;
 
         /// <summary>
         /// Prompts the Players.LocalPlayer to favorite or unfavorite the given asset or bundle.
@@ -219,202 +219,202 @@ namespace Roblox
         /// <param name="itemId">A <c>long</c> value.</param>
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
         /// <param name="shouldFavorite">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptSetFavorite"/>
-        public object? PromptSetFavorite(long itemId, Enum.AvatarItemType itemType, bool shouldFavorite)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptSetFavorite", itemId, itemType, shouldFavorite);
+        public object PromptSetFavorite(long itemId, Enum.AvatarItemType itemType, bool shouldFavorite)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptSetFavorite", itemId, itemType, shouldFavorite)!;
 
         /// <summary>
         /// Prompts the Players.LocalPlayer to update the given outfit.
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <param name="updatedOutfit">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="updatedOutfit">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptUpdateOutfit"/>
-        public object? PromptUpdateOutfit(long outfitId, HumanoidDescription? updatedOutfit, Enum.HumanoidRigType rigType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptUpdateOutfit", outfitId, updatedOutfit, rigType);
+        public object PromptUpdateOutfit(long outfitId, HumanoidDescription updatedOutfit, Enum.HumanoidRigType rigType)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptUpdateOutfit", outfitId, updatedOutfit, rigType)!;
 
         /// <summary>
         /// <c>AvatarEditorService.SetAllowInventoryReadAccess</c>
         /// </summary>
         /// <param name="inventoryReadAccessGranted">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAllowInventoryReadAccess(bool inventoryReadAccessGranted)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAllowInventoryReadAccess", inventoryReadAccessGranted);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetAllowInventoryReadAccess(bool inventoryReadAccessGranted)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAllowInventoryReadAccess", inventoryReadAccessGranted)!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalCreateOutfitFailed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalCreateOutfitFailed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalCreateOutfitFailed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalCreateOutfitFailed()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalCreateOutfitFailed")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalCreateOutfitPermissionDenied</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalCreateOutfitPermissionDenied()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalCreateOutfitPermissionDenied");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalCreateOutfitPermissionDenied()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalCreateOutfitPermissionDenied")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalDeleteOutfitFailed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalDeleteOutfitFailed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalDeleteOutfitFailed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalDeleteOutfitFailed()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalDeleteOutfitFailed")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalDeleteOutfitPermissionDenied</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalDeleteOutfitPermissionDenied()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalDeleteOutfitPermissionDenied");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalDeleteOutfitPermissionDenied()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalDeleteOutfitPermissionDenied")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalRenameOutfitFailed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalRenameOutfitFailed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalRenameOutfitFailed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalRenameOutfitFailed()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalRenameOutfitFailed")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalRenameOutfitPermissionDenied</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalRenameOutfitPermissionDenied()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalRenameOutfitPermissionDenied");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalRenameOutfitPermissionDenied()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalRenameOutfitPermissionDenied")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalSaveAvatarFailed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalSaveAvatarFailed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalSaveAvatarFailed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalSaveAvatarFailed()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalSaveAvatarFailed")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalSaveAvatarPermissionDenied</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalSaveAvatarPermissionDenied()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalSaveAvatarPermissionDenied");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalSaveAvatarPermissionDenied()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalSaveAvatarPermissionDenied")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalSetFavoriteFailed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalSetFavoriteFailed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalSetFavoriteFailed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalSetFavoriteFailed()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalSetFavoriteFailed")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalSetFavoritePermissionDenied</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalSetFavoritePermissionDenied()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalSetFavoritePermissionDenied");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalSetFavoritePermissionDenied()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalSetFavoritePermissionDenied")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalUpdateOutfitFailed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalUpdateOutfitFailed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalUpdateOutfitFailed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalUpdateOutfitFailed()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalUpdateOutfitFailed")!;
 
         /// <summary>
         /// <c>AvatarEditorService.SignalUpdateOutfitPermissionDenied</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalUpdateOutfitPermissionDenied()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalUpdateOutfitPermissionDenied");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalUpdateOutfitPermissionDenied()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalUpdateOutfitPermissionDenied")!;
 
         /// <summary>
         /// <c>AvatarEditorService.refreshAvatarThumbnails</c>
         /// </summary>
-        /// <param name="thumbnailTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RefreshAvatarThumbnails(object? thumbnailTypes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "refreshAvatarThumbnails", thumbnailTypes);
+        /// <param name="thumbnailTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RefreshAvatarThumbnails(object thumbnailTypes)
+            => global::Roblox.Reflection.Invoke<object>(this, "refreshAvatarThumbnails", thumbnailTypes)!;
 
         /// <summary>
         /// Deprecated: Used to apply default clothing to the HumanoidDescription if necessary.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#CheckApplyDefaultClothing"/>
-        public HumanoidDescription? CheckApplyDefaultClothing(HumanoidDescription? humanoidDescription)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "CheckApplyDefaultClothing", humanoidDescription);
+        public HumanoidDescription CheckApplyDefaultClothing(HumanoidDescription humanoidDescription)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "CheckApplyDefaultClothing", humanoidDescription)!;
 
         /// <summary>
         /// Used to apply default clothing to the HumanoidDescription if necessary.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#CheckApplyDefaultClothingAsync"/>
-        public HumanoidDescription? CheckApplyDefaultClothingAsync(HumanoidDescription? humanoidDescription)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "CheckApplyDefaultClothingAsync", humanoidDescription);
+        public HumanoidDescription CheckApplyDefaultClothingAsync(HumanoidDescription humanoidDescription)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "CheckApplyDefaultClothingAsync", humanoidDescription)!;
 
         /// <summary>
         /// Deprecated:
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#ConformToAvatarRules"/>
-        public HumanoidDescription? ConformToAvatarRules(HumanoidDescription? humanoidDescription)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "ConformToAvatarRules", humanoidDescription);
+        public HumanoidDescription ConformToAvatarRules(HumanoidDescription humanoidDescription)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "ConformToAvatarRules", humanoidDescription)!;
 
         /// <summary>
         /// Returns a copy of the given HumanoidDescription that conforms to the platform Avatar rules.
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#ConformToAvatarRulesAsync"/>
-        public HumanoidDescription? ConformToAvatarRulesAsync(HumanoidDescription? humanoidDescription)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "ConformToAvatarRulesAsync", humanoidDescription);
+        public HumanoidDescription ConformToAvatarRulesAsync(HumanoidDescription humanoidDescription)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "ConformToAvatarRulesAsync", humanoidDescription)!;
 
         /// <summary>
         /// Deprecated: Returns the platform Avatar rules for things such as scaling, default shirts and pants, number of wearable assets.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetAvatarRules"/>
-        public object? GetAvatarRules()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAvatarRules");
+        public object GetAvatarRules()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAvatarRules")!;
 
         /// <summary>
         /// Returns the platform Avatar rules for things such as scaling, default shirts and pants, number of wearable assets.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetAvatarRulesAsync"/>
-        public object? GetAvatarRulesAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAvatarRulesAsync");
+        public object GetAvatarRulesAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAvatarRulesAsync")!;
 
         /// <summary>
         /// Deprecated: Gets the item details for a list of items at once.
         /// </summary>
-        /// <param name="itemIds">A <c>object?</c> value.</param>
+        /// <param name="itemIds">A <c>object</c> value.</param>
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetBatchItemDetails"/>
-        public object? GetBatchItemDetails(object? itemIds, Enum.AvatarItemType itemType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBatchItemDetails", itemIds, itemType);
+        public object GetBatchItemDetails(object itemIds, Enum.AvatarItemType itemType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBatchItemDetails", itemIds, itemType)!;
 
         /// <summary>
         /// Gets the item details for a list of items at once.
         /// </summary>
-        /// <param name="itemIds">A <c>object?</c> value.</param>
+        /// <param name="itemIds">A <c>object</c> value.</param>
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetBatchItemDetailsAsync"/>
-        public object? GetBatchItemDetailsAsync(object? itemIds, Enum.AvatarItemType itemType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBatchItemDetailsAsync", itemIds, itemType);
+        public object GetBatchItemDetailsAsync(object itemIds, Enum.AvatarItemType itemType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBatchItemDetailsAsync", itemIds, itemType)!;
 
         /// <summary>
         /// <c>AvatarEditorService.GetBundlesByAssetIdAsync</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="limit">A <c>long</c> value.</param>
-        /// <returns>A <c>CatalogPages?</c> value returned by the engine.</returns>
-        public CatalogPages? GetBundlesByAssetIdAsync(long assetId, long limit)
-            => global::Roblox.Reflection.Invoke<CatalogPages?>(this, "GetBundlesByAssetIdAsync", assetId, limit);
+        /// <param name="limit">A <c>long?</c> value.</param>
+        /// <returns>A <c>CatalogPages</c> value returned by the engine.</returns>
+        public CatalogPages GetBundlesByAssetIdAsync(long assetId, long? limit = null)
+            => global::Roblox.Reflection.Invoke<CatalogPages>(this, "GetBundlesByAssetIdAsync", assetId, limit)!;
 
         /// <summary>
         /// Deprecated: Returns if the Players.LocalPlayer has favorited the given bundle or asset.
@@ -424,7 +424,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetFavorite"/>
         public bool GetFavorite(long itemId, Enum.AvatarItemType itemType)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetFavorite", itemId, itemType);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetFavorite", itemId, itemType)!;
 
         /// <summary>
         /// Returns if the Players.LocalPlayer has favorited the given bundle or asset.
@@ -434,147 +434,147 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetFavoriteAsync"/>
         public bool GetFavoriteAsync(long itemId, Enum.AvatarItemType itemType)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetFavoriteAsync", itemId, itemType);
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetFavoriteAsync", itemId, itemType)!;
 
         /// <summary>
         /// Returns an array of head shape names that the Players.LocalPlayer owns.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetHeadShapesAsync"/>
-        public object? GetHeadShapesAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetHeadShapesAsync");
+        public object GetHeadShapesAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetHeadShapesAsync")!;
 
         /// <summary>
         /// Deprecated: Returns an InventoryPages object with information about owned items in the users inventory with the given AvatarAssetTypes.
         /// </summary>
-        /// <param name="assetTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>InventoryPages?</c> value returned by the engine.</returns>
+        /// <param name="assetTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>InventoryPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetInventory"/>
-        public InventoryPages? GetInventory(object? assetTypes)
-            => global::Roblox.Reflection.Invoke<InventoryPages?>(this, "GetInventory", assetTypes);
+        public InventoryPages GetInventory(object assetTypes)
+            => global::Roblox.Reflection.Invoke<InventoryPages>(this, "GetInventory", assetTypes)!;
 
         /// <summary>
         /// Returns an InventoryPages object with information about owned items in the users inventory with the given AvatarAssetTypes.
         /// </summary>
-        /// <param name="assetTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>InventoryPages?</c> value returned by the engine.</returns>
+        /// <param name="assetTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>InventoryPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetInventoryAsync"/>
-        public InventoryPages? GetInventoryAsync(object? assetTypes)
-            => global::Roblox.Reflection.Invoke<InventoryPages?>(this, "GetInventoryAsync", assetTypes);
+        public InventoryPages GetInventoryAsync(object assetTypes)
+            => global::Roblox.Reflection.Invoke<InventoryPages>(this, "GetInventoryAsync", assetTypes)!;
 
         /// <summary>
         /// Deprecated: Returns the item details for the given item.
         /// </summary>
         /// <param name="itemId">A <c>long</c> value.</param>
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetItemDetails"/>
-        public object? GetItemDetails(long itemId, Enum.AvatarItemType itemType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetItemDetails", itemId, itemType);
+        public object GetItemDetails(long itemId, Enum.AvatarItemType itemType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetItemDetails", itemId, itemType)!;
 
         /// <summary>
         /// Returns the item details for the given item.
         /// </summary>
         /// <param name="itemId">A <c>long</c> value.</param>
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetItemDetailsAsync"/>
-        public object? GetItemDetailsAsync(long itemId, Enum.AvatarItemType itemType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetItemDetailsAsync", itemId, itemType);
+        public object GetItemDetailsAsync(long itemId, Enum.AvatarItemType itemType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetItemDetailsAsync", itemId, itemType)!;
 
         /// <summary>
         /// Deprecated: Returns the outfit details for the given outfit.
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetOutfitDetails"/>
-        public object? GetOutfitDetails(long outfitId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutfitDetails", outfitId);
+        public object GetOutfitDetails(long outfitId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutfitDetails", outfitId)!;
 
         /// <summary>
         /// Returns the outfit details for the given outfit.
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetOutfitDetailsAsync"/>
-        public object? GetOutfitDetailsAsync(long outfitId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutfitDetailsAsync", outfitId);
+        public object GetOutfitDetailsAsync(long outfitId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutfitDetailsAsync", outfitId)!;
 
         /// <summary>
         /// Deprecated: Returns outfit data for the Players.LocalPlayer.
         /// </summary>
-        /// <param name="outfitSource">A <c>Enum.OutfitSource</c> value.</param>
-        /// <param name="outfitType">A <c>Enum.OutfitType</c> value.</param>
-        /// <returns>A <c>OutfitPages?</c> value returned by the engine.</returns>
+        /// <param name="outfitSource">A <c>Enum.OutfitSource?</c> value.</param>
+        /// <param name="outfitType">A <c>Enum.OutfitType?</c> value.</param>
+        /// <returns>A <c>OutfitPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetOutfits"/>
-        public OutfitPages? GetOutfits(Enum.OutfitSource outfitSource, Enum.OutfitType outfitType)
-            => global::Roblox.Reflection.Invoke<OutfitPages?>(this, "GetOutfits", outfitSource, outfitType);
+        public OutfitPages GetOutfits(Enum.OutfitSource? outfitSource = null, Enum.OutfitType? outfitType = null)
+            => global::Roblox.Reflection.Invoke<OutfitPages>(this, "GetOutfits", outfitSource, outfitType)!;
 
         /// <summary>
         /// Returns outfit data for the Players.LocalPlayer.
         /// </summary>
-        /// <param name="outfitSource">A <c>Enum.OutfitSource</c> value.</param>
-        /// <param name="outfitType">A <c>Enum.OutfitType</c> value.</param>
-        /// <returns>A <c>OutfitPages?</c> value returned by the engine.</returns>
+        /// <param name="outfitSource">A <c>Enum.OutfitSource?</c> value.</param>
+        /// <param name="outfitType">A <c>Enum.OutfitType?</c> value.</param>
+        /// <returns>A <c>OutfitPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetOutfitsAsync"/>
-        public OutfitPages? GetOutfitsAsync(Enum.OutfitSource outfitSource, Enum.OutfitType outfitType)
-            => global::Roblox.Reflection.Invoke<OutfitPages?>(this, "GetOutfitsAsync", outfitSource, outfitType);
+        public OutfitPages GetOutfitsAsync(Enum.OutfitSource? outfitSource = null, Enum.OutfitType? outfitType = null)
+            => global::Roblox.Reflection.Invoke<OutfitPages>(this, "GetOutfitsAsync", outfitSource, outfitType)!;
 
         /// <summary>
         /// Deprecated: Returns a list of recommended assets based on a given AssetType and asset ID.
         /// </summary>
         /// <param name="assetType">A <c>Enum.AvatarAssetType</c> value.</param>
-        /// <param name="contextAssetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="contextAssetId">A <c>long?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetRecommendedAssets"/>
-        public object? GetRecommendedAssets(Enum.AvatarAssetType assetType, long contextAssetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRecommendedAssets", assetType, contextAssetId);
+        public object GetRecommendedAssets(Enum.AvatarAssetType assetType, long? contextAssetId = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRecommendedAssets", assetType, contextAssetId)!;
 
         /// <summary>
         /// Returns a list of recommended assets based on a given AssetType and asset ID.
         /// </summary>
         /// <param name="assetType">A <c>Enum.AvatarAssetType</c> value.</param>
-        /// <param name="contextAssetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="contextAssetId">A <c>long?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetRecommendedAssetsAsync"/>
-        public object? GetRecommendedAssetsAsync(Enum.AvatarAssetType assetType, long contextAssetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRecommendedAssetsAsync", assetType, contextAssetId);
+        public object GetRecommendedAssetsAsync(Enum.AvatarAssetType assetType, long? contextAssetId = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRecommendedAssetsAsync", assetType, contextAssetId)!;
 
         /// <summary>
         /// Deprecated: Returns a list of recommended bundles for a given bundle id.
         /// </summary>
         /// <param name="bundleId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetRecommendedBundles"/>
-        public object? GetRecommendedBundles(long bundleId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRecommendedBundles", bundleId);
+        public object GetRecommendedBundles(long bundleId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRecommendedBundles", bundleId)!;
 
         /// <summary>
         /// Returns a list of recommended bundles for a given bundle id.
         /// </summary>
         /// <param name="bundleId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetRecommendedBundlesAsync"/>
-        public object? GetRecommendedBundlesAsync(long bundleId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRecommendedBundlesAsync", bundleId);
+        public object GetRecommendedBundlesAsync(long bundleId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRecommendedBundlesAsync", bundleId)!;
 
         /// <summary>
         /// Deprecated: Returns a CatalogPages object containing the result of the given search.
         /// </summary>
-        /// <param name="searchParameters">A <c>object?</c> value.</param>
-        /// <returns>A <c>CatalogPages?</c> value returned by the engine.</returns>
+        /// <param name="searchParameters">A <c>object</c> value.</param>
+        /// <returns>A <c>CatalogPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#SearchCatalog"/>
-        public CatalogPages? SearchCatalog(object? searchParameters)
-            => global::Roblox.Reflection.Invoke<CatalogPages?>(this, "SearchCatalog", searchParameters);
+        public CatalogPages SearchCatalog(object searchParameters)
+            => global::Roblox.Reflection.Invoke<CatalogPages>(this, "SearchCatalog", searchParameters)!;
 
         /// <summary>
         /// Returns a CatalogPages object containing the result of the given search.
         /// </summary>
-        /// <param name="searchParameters">A <c>object?</c> value.</param>
-        /// <returns>A <c>CatalogPages?</c> value returned by the engine.</returns>
+        /// <param name="searchParameters">A <c>object</c> value.</param>
+        /// <returns>A <c>CatalogPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#SearchCatalogAsync"/>
-        public CatalogPages? SearchCatalogAsync(object? searchParameters)
-            => global::Roblox.Reflection.Invoke<CatalogPages?>(this, "SearchCatalogAsync", searchParameters);
+        public CatalogPages SearchCatalogAsync(object searchParameters)
+            => global::Roblox.Reflection.Invoke<CatalogPages>(this, "SearchCatalogAsync", searchParameters)!;
 
         public event Action? OpenAllowInventoryReadAccess
         {
@@ -585,9 +585,9 @@ namespace Roblox
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptCreateOufit</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        public event Action<HumanoidDescription?, Enum.HumanoidRigType>? OpenPromptCreateOufit
+        public event Action<HumanoidDescription, Enum.HumanoidRigType>? OpenPromptCreateOufit
         {
             add { if (value is not null) AddEventHandler("OpenPromptCreateOufit", value); }
             remove { if (value is not null) RemoveEventHandler("OpenPromptCreateOufit", value); }
@@ -616,9 +616,9 @@ namespace Roblox
         /// <summary>
         /// <c>AvatarEditorService.OpenPromptSaveAvatar</c>
         /// </summary>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        public event Action<HumanoidDescription?, Enum.HumanoidRigType>? OpenPromptSaveAvatar
+        public event Action<HumanoidDescription, Enum.HumanoidRigType>? OpenPromptSaveAvatar
         {
             add { if (value is not null) AddEventHandler("OpenPromptSaveAvatar", value); }
             remove { if (value is not null) RemoveEventHandler("OpenPromptSaveAvatar", value); }
@@ -640,9 +640,9 @@ namespace Roblox
         /// <c>AvatarEditorService.OpenPromptUpdateOutfit</c>
         /// </summary>
         /// <param name="outfitId">A <c>long</c> value.</param>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <param name="rigType">A <c>Enum.HumanoidRigType</c> value.</param>
-        public event Action<long, HumanoidDescription?, Enum.HumanoidRigType>? OpenPromptUpdateOutfit
+        public event Action<long, HumanoidDescription, Enum.HumanoidRigType>? OpenPromptUpdateOutfit
         {
             add { if (value is not null) AddEventHandler("OpenPromptUpdateOutfit", value); }
             remove { if (value is not null) RemoveEventHandler("OpenPromptUpdateOutfit", value); }
@@ -663,9 +663,9 @@ namespace Roblox
         /// Fires when the PromptSaveOutfit operation is completed.
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
-        /// <param name="failureType">A <c>object?</c> value.</param>
+        /// <param name="failureType">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptCreateOutfitCompleted"/>
-        public event Action<Enum.AvatarPromptResult, object?>? PromptCreateOutfitCompleted
+        public event Action<Enum.AvatarPromptResult, object>? PromptCreateOutfitCompleted
         {
             add { if (value is not null) AddEventHandler("PromptCreateOutfitCompleted", value); }
             remove { if (value is not null) RemoveEventHandler("PromptCreateOutfitCompleted", value); }
@@ -697,9 +697,9 @@ namespace Roblox
         /// Fires when the AvatarEditorService:PromptSaveAvatar() operation is completed.
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#PromptSaveAvatarCompleted"/>
-        public event Action<Enum.AvatarPromptResult, HumanoidDescription?>? PromptSaveAvatarCompleted
+        public event Action<Enum.AvatarPromptResult, HumanoidDescription>? PromptSaveAvatarCompleted
         {
             add { if (value is not null) AddEventHandler("PromptSaveAvatarCompleted", value); }
             remove { if (value is not null) RemoveEventHandler("PromptSaveAvatarCompleted", value); }
@@ -709,8 +709,8 @@ namespace Roblox
         /// <c>AvatarEditorService.PromptSaveAvatarThumbnailCustomizationCompleted</c>
         /// </summary>
         /// <param name="result">A <c>Enum.AvatarPromptResult</c> value.</param>
-        /// <param name="failureType">A <c>object?</c> value.</param>
-        public event Action<Enum.AvatarPromptResult, object?>? PromptSaveAvatarThumbnailCustomizationCompleted
+        /// <param name="failureType">A <c>object</c> value.</param>
+        public event Action<Enum.AvatarPromptResult, object>? PromptSaveAvatarThumbnailCustomizationCompleted
         {
             add { if (value is not null) AddEventHandler("PromptSaveAvatarThumbnailCustomizationCompleted", value); }
             remove { if (value is not null) RemoveEventHandler("PromptSaveAvatarThumbnailCustomizationCompleted", value); }

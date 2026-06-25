@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ReverbSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReverbSoundEffect? FromHandle(nuint handle)
+        public static new ReverbSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ReverbSoundEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#DecayTime"/>
         public float DecayTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DecayTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DecayTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DecayTime", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#Density"/>
         public float Density
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Density");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Density")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Density", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#Diffusion"/>
         public float Diffusion
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Diffusion");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Diffusion")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Diffusion", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#DryLevel"/>
         public float DryLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DryLevel", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect#WetLevel"/>
         public float WetLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WetLevel", value);
         }
 

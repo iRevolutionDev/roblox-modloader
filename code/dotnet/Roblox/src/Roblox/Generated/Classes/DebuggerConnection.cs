@@ -18,196 +18,196 @@ namespace Roblox
         /// Creates a <see cref="DebuggerConnection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerConnection? FromHandle(nuint handle)
+        public static new DebuggerConnection? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerConnection(handle);
 
-        public string? ErrorMessage
+        public string ErrorMessage
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ErrorMessage");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ErrorMessage", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ErrorMessage")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ErrorMessage", value);
         }
 
         public bool HasError
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasError");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasError")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasError", value);
         }
 
         public int Id
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Id");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Id")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Id", value);
         }
 
         public bool IsPaused
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPaused");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPaused")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPaused", value);
         }
 
         /// <summary>
         /// <c>DebuggerConnection.AddBreakpoint</c>
         /// </summary>
-        /// <param name="script">A <c>string?</c> value.</param>
+        /// <param name="script">A <c>string</c> value.</param>
         /// <param name="line">A <c>int</c> value.</param>
-        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddBreakpoint(string? script, int line, Breakpoint? breakpoint)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddBreakpoint", script, line, breakpoint);
+        /// <param name="breakpoint">A <c>Breakpoint</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddBreakpoint(string script, int line, Breakpoint breakpoint)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddBreakpoint", script, line, breakpoint)!;
 
         /// <summary>
         /// <c>DebuggerConnection.Close</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Close()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Close");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Close()
+            => global::Roblox.Reflection.Invoke<object>(this, "Close")!;
 
         /// <summary>
         /// <c>DebuggerConnection.EvaluateWatch</c>
         /// </summary>
-        /// <param name="expression">A <c>string?</c> value.</param>
-        /// <param name="frame">A <c>StackFrame?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="expression">A <c>string</c> value.</param>
+        /// <param name="frame">A <c>StackFrame</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int EvaluateWatch(string? expression, StackFrame? frame, object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "EvaluateWatch", expression, frame, callback);
+        public int EvaluateWatch(string expression, StackFrame frame, object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "EvaluateWatch", expression, frame, callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.GetFrameById</c>
         /// </summary>
         /// <param name="id">A <c>int</c> value.</param>
-        /// <returns>A <c>StackFrame?</c> value returned by the engine.</returns>
-        public StackFrame? GetFrameById(int id)
-            => global::Roblox.Reflection.Invoke<StackFrame?>(this, "GetFrameById", id);
+        /// <returns>A <c>StackFrame</c> value returned by the engine.</returns>
+        public StackFrame GetFrameById(int id)
+            => global::Roblox.Reflection.Invoke<StackFrame>(this, "GetFrameById", id)!;
 
         /// <summary>
         /// <c>DebuggerConnection.GetSource</c>
         /// </summary>
-        /// <param name="scriptRef">A <c>string?</c> value.</param>
-        /// <param name="status">A <c>object?</c> value.</param>
+        /// <param name="scriptRef">A <c>string</c> value.</param>
+        /// <param name="status">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetSource(string? scriptRef, object? status)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetSource", scriptRef, status);
+        public int GetSource(string scriptRef, object status)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetSource", scriptRef, status)!;
 
         /// <summary>
         /// <c>DebuggerConnection.GetThreadById</c>
         /// </summary>
         /// <param name="id">A <c>int</c> value.</param>
-        /// <returns>A <c>ThreadState?</c> value returned by the engine.</returns>
-        public ThreadState? GetThreadById(int id)
-            => global::Roblox.Reflection.Invoke<ThreadState?>(this, "GetThreadById", id);
+        /// <returns>A <c>ThreadState</c> value returned by the engine.</returns>
+        public ThreadState GetThreadById(int id)
+            => global::Roblox.Reflection.Invoke<ThreadState>(this, "GetThreadById", id)!;
 
         /// <summary>
         /// <c>DebuggerConnection.GetThreads</c>
         /// </summary>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetThreads(object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetThreads", callback);
+        public int GetThreads(object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetThreads", callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.GetVariableById</c>
         /// </summary>
         /// <param name="id">A <c>int</c> value.</param>
-        /// <returns>A <c>DebuggerVariable?</c> value returned by the engine.</returns>
-        public DebuggerVariable? GetVariableById(int id)
-            => global::Roblox.Reflection.Invoke<DebuggerVariable?>(this, "GetVariableById", id);
+        /// <returns>A <c>DebuggerVariable</c> value returned by the engine.</returns>
+        public DebuggerVariable GetVariableById(int id)
+            => global::Roblox.Reflection.Invoke<DebuggerVariable>(this, "GetVariableById", id)!;
 
         /// <summary>
         /// <c>DebuggerConnection.Pause</c>
         /// </summary>
-        /// <param name="thread">A <c>ThreadState?</c> value.</param>
-        /// <param name="status">A <c>object?</c> value.</param>
+        /// <param name="thread">A <c>ThreadState</c> value.</param>
+        /// <param name="status">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int Pause(ThreadState? thread, object? status)
-            => global::Roblox.Reflection.Invoke<int>(this, "Pause", thread, status);
+        public int Pause(ThreadState thread, object status)
+            => global::Roblox.Reflection.Invoke<int>(this, "Pause", thread, status)!;
 
         /// <summary>
         /// <c>DebuggerConnection.Populate</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int Populate(Instance? instance, object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "Populate", instance, callback);
+        public int Populate(Instance instance, object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "Populate", instance, callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.RemoveBreakpoint</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveBreakpoint(Breakpoint? breakpoint)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveBreakpoint", breakpoint);
+        /// <param name="breakpoint">A <c>Breakpoint</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveBreakpoint(Breakpoint breakpoint)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveBreakpoint", breakpoint)!;
 
         /// <summary>
         /// <c>DebuggerConnection.Resume</c>
         /// </summary>
-        /// <param name="thread">A <c>ThreadState?</c> value.</param>
-        /// <param name="status">A <c>object?</c> value.</param>
+        /// <param name="thread">A <c>ThreadState</c> value.</param>
+        /// <param name="status">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int Resume(ThreadState? thread, object? status)
-            => global::Roblox.Reflection.Invoke<int>(this, "Resume", thread, status);
+        public int Resume(ThreadState thread, object status)
+            => global::Roblox.Reflection.Invoke<int>(this, "Resume", thread, status)!;
 
         /// <summary>
         /// <c>DebuggerConnection.SetExceptionBreakMode</c>
         /// </summary>
         /// <param name="breakMode">A <c>Enum.DebuggerExceptionBreakMode</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int SetExceptionBreakMode(Enum.DebuggerExceptionBreakMode breakMode, object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "SetExceptionBreakMode", breakMode, callback);
+        public int SetExceptionBreakMode(Enum.DebuggerExceptionBreakMode breakMode, object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "SetExceptionBreakMode", breakMode, callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.SetVariable</c>
         /// </summary>
-        /// <param name="variable">A <c>DebuggerVariable?</c> value.</param>
-        /// <param name="value">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="variable">A <c>DebuggerVariable</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int SetVariable(DebuggerVariable? variable, string? value, object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "SetVariable", variable, value, callback);
+        public int SetVariable(DebuggerVariable variable, string value, object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "SetVariable", variable, value, callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.Step</c>
         /// </summary>
-        /// <param name="thread">A <c>ThreadState?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="thread">A <c>ThreadState</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int Step(ThreadState? thread, object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "Step", thread, callback);
+        public int Step(ThreadState thread, object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "Step", thread, callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.StepIn</c>
         /// </summary>
-        /// <param name="thread">A <c>ThreadState?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="thread">A <c>ThreadState</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int StepIn(ThreadState? thread, object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "StepIn", thread, callback);
+        public int StepIn(ThreadState thread, object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "StepIn", thread, callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.StepOut</c>
         /// </summary>
-        /// <param name="thread">A <c>ThreadState?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="thread">A <c>ThreadState</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int StepOut(ThreadState? thread, object? callback)
-            => global::Roblox.Reflection.Invoke<int>(this, "StepOut", thread, callback);
+        public int StepOut(ThreadState thread, object callback)
+            => global::Roblox.Reflection.Invoke<int>(this, "StepOut", thread, callback)!;
 
         /// <summary>
         /// <c>DebuggerConnection.UpdateSelectedFrame</c>
         /// </summary>
         /// <param name="threadId">A <c>int</c> value.</param>
         /// <param name="frameNumber">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdateSelectedFrame(int threadId, int frameNumber)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateSelectedFrame", threadId, frameNumber);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdateSelectedFrame(int threadId, int frameNumber)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateSelectedFrame", threadId, frameNumber)!;
 
         /// <summary>
         /// <c>DebuggerConnection.BreakpointAdded</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
-        public event Action<Breakpoint?>? BreakpointAdded
+        /// <param name="breakpoint">A <c>Breakpoint</c> value.</param>
+        public event Action<Breakpoint>? BreakpointAdded
         {
             add { if (value is not null) AddEventHandler("BreakpointAdded", value); }
             remove { if (value is not null) RemoveEventHandler("BreakpointAdded", value); }
@@ -216,8 +216,8 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerConnection.BreakpointChanged</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
-        public event Action<Breakpoint?>? BreakpointChanged
+        /// <param name="breakpoint">A <c>Breakpoint</c> value.</param>
+        public event Action<Breakpoint>? BreakpointChanged
         {
             add { if (value is not null) AddEventHandler("BreakpointChanged", value); }
             remove { if (value is not null) RemoveEventHandler("BreakpointChanged", value); }
@@ -226,9 +226,9 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerConnection.BreakpointRemoved</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>Breakpoint?</c> value.</param>
+        /// <param name="breakpoint">A <c>Breakpoint</c> value.</param>
         /// <param name="reason">A <c>Enum.BreakpointRemoveReason</c> value.</param>
-        public event Action<Breakpoint?, Enum.BreakpointRemoveReason>? BreakpointRemoved
+        public event Action<Breakpoint, Enum.BreakpointRemoveReason>? BreakpointRemoved
         {
             add { if (value is not null) AddEventHandler("BreakpointRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("BreakpointRemoved", value); }
@@ -237,9 +237,9 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerConnection.Paused</c>
         /// </summary>
-        /// <param name="pausedState">A <c>PausedState?</c> value.</param>
+        /// <param name="pausedState">A <c>PausedState</c> value.</param>
         /// <param name="reason">A <c>Enum.DebuggerPauseReason</c> value.</param>
-        public event Action<PausedState?, Enum.DebuggerPauseReason>? Paused
+        public event Action<PausedState, Enum.DebuggerPauseReason>? Paused
         {
             add { if (value is not null) AddEventHandler("Paused", value); }
             remove { if (value is not null) RemoveEventHandler("Paused", value); }
@@ -248,8 +248,8 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerConnection.Resumed</c>
         /// </summary>
-        /// <param name="pausedState">A <c>PausedState?</c> value.</param>
-        public event Action<PausedState?>? Resumed
+        /// <param name="pausedState">A <c>PausedState</c> value.</param>
+        public event Action<PausedState>? Resumed
         {
             add { if (value is not null) AddEventHandler("Resumed", value); }
             remove { if (value is not null) RemoveEventHandler("Resumed", value); }

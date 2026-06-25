@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HopperBin"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HopperBin? FromHandle(nuint handle)
+        public static new HopperBin? FromHandle(nuint handle)
             => handle == 0 ? null : new HopperBin(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#Active"/>
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
@@ -41,23 +41,23 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#BinType"/>
         public Enum.BinType BinType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.BinType>(this, "BinType");
+            get => global::Roblox.Reflection.GetProperty<Enum.BinType>(this, "BinType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.BinType>(this, "BinType", value);
         }
 
         /// <summary>
         /// <c>HopperBin.Disable</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Disable()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Disable");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Disable()
+            => global::Roblox.Reflection.Invoke<object>(this, "Disable")!;
 
         /// <summary>
         /// <c>HopperBin.ToggleSelect</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleSelect()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleSelect");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleSelect()
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleSelect")!;
 
         /// <summary>
         /// <c>HopperBin.Deselected</c>
@@ -72,9 +72,9 @@ namespace Roblox
         /// <summary>
         /// <c>HopperBin.Selected</c>
         /// </summary>
-        /// <param name="mouse">A <c>Instance?</c> value.</param>
+        /// <param name="mouse">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HopperBin#Selected"/>
-        public event Action<Instance?>? Selected
+        public event Action<Instance>? Selected
         {
             add { if (value is not null) AddEventHandler("Selected", value); }
             remove { if (value is not null) RemoveEventHandler("Selected", value); }

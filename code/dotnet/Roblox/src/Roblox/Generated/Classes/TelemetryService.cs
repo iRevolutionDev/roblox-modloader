@@ -18,54 +18,54 @@ namespace Roblox
         /// Creates a <see cref="TelemetryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TelemetryService? FromHandle(nuint handle)
+        public static new TelemetryService? FromHandle(nuint handle)
             => handle == 0 ? null : new TelemetryService(handle);
 
         /// <summary>
         /// <c>TelemetryService.LogCounter</c>
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
+        /// <param name="config">A <c>object</c> value.</param>
         /// <param name="data">A <c>object?</c> value.</param>
-        /// <param name="value">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogCounter(object? config, object? data, float value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogCounter", config, data, value);
+        /// <param name="value">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogCounter(object config, object? data = null, float? value = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogCounter", config, data, value)!;
 
         /// <summary>
         /// <c>TelemetryService.LogDurationEvent</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogDurationEvent(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogDurationEvent", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogDurationEvent(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogDurationEvent", key)!;
 
         /// <summary>
         /// <c>TelemetryService.LogDurationEventWithTimestamp</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
         /// <param name="timestamp">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogDurationEventWithTimestamp(string? key, long timestamp)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogDurationEventWithTimestamp", key, timestamp);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogDurationEventWithTimestamp(string key, long timestamp)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogDurationEventWithTimestamp", key, timestamp)!;
 
         /// <summary>
         /// <c>TelemetryService.LogEvent</c>
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
+        /// <param name="config">A <c>object</c> value.</param>
         /// <param name="data">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogEvent(object? config, object? data)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogEvent", config, data);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogEvent(object config, object? data = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogEvent", config, data)!;
 
         /// <summary>
         /// <c>TelemetryService.LogStat</c>
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
+        /// <param name="config">A <c>object</c> value.</param>
         /// <param name="data">A <c>object?</c> value.</param>
         /// <param name="value">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogStat(object? config, object? data, float value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogStat", config, data, value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogStat(object config, object? data, float value)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogStat", config, data, value)!;
 
     }
 }

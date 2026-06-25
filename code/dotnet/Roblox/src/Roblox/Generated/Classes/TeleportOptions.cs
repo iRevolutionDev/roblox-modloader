@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="TeleportOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TeleportOptions? FromHandle(nuint handle)
+        public static new TeleportOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new TeleportOptions(handle);
 
         /// <summary>
         /// The reserved server access code that indicates the reserved server that the teleport should be to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportOptions#ReservedServerAccessCode"/>
-        public string? ReservedServerAccessCode
+        public string ReservedServerAccessCode
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ReservedServerAccessCode");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ReservedServerAccessCode", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ReservedServerAccessCode")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ReservedServerAccessCode", value);
         }
 
         /// <summary>
         /// The DataModel.JobId of the server instance to teleport to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportOptions#ServerInstanceId"/>
-        public string? ServerInstanceId
+        public string ServerInstanceId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ServerInstanceId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ServerInstanceId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ServerInstanceId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ServerInstanceId", value);
         }
 
         /// <summary>
@@ -51,26 +51,26 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportOptions#ShouldReserveServer"/>
         public bool ShouldReserveServer
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldReserveServer");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldReserveServer")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldReserveServer", value);
         }
 
         /// <summary>
         /// Returns the teleport data stored in the TeleportOptions instance by TeleportOptions:SetTeleportData().
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportOptions#GetTeleportData"/>
-        public object? GetTeleportData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTeleportData");
+        public object GetTeleportData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTeleportData")!;
 
         /// <summary>
         /// Setter function for data to be passed to the destination place.
         /// </summary>
-        /// <param name="teleportData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="teleportData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportOptions#SetTeleportData"/>
-        public object? SetTeleportData(object? teleportData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTeleportData", teleportData);
+        public object SetTeleportData(object teleportData)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTeleportData", teleportData)!;
 
     }
 }

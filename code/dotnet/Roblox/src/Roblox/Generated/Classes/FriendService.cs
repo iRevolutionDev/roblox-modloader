@@ -22,21 +22,21 @@ namespace Roblox
         /// Creates a <see cref="FriendService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FriendService? FromHandle(nuint handle)
+        public static new FriendService? FromHandle(nuint handle)
             => handle == 0 ? null : new FriendService(handle);
 
         /// <summary>
         /// <c>FriendService.GetPlatformFriends</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPlatformFriends()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlatformFriends");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPlatformFriends()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPlatformFriends")!;
 
         /// <summary>
         /// <c>FriendService.FriendsUpdated</c>
         /// </summary>
-        /// <param name="friendData">A <c>object?</c> value.</param>
-        public event Action<object?>? FriendsUpdated
+        /// <param name="friendData">A <c>object</c> value.</param>
+        public event Action<object>? FriendsUpdated
         {
             add { if (value is not null) AddEventHandler("FriendsUpdated", value); }
             remove { if (value is not null) RemoveEventHandler("FriendsUpdated", value); }

@@ -22,31 +22,31 @@ namespace Roblox
         /// Creates a <see cref="PluginToolbar"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginToolbar? FromHandle(nuint handle)
+        public static new PluginToolbar? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginToolbar(handle);
 
         /// <summary>
         /// Creates a PluginToolbarButton that allows the user to initiate a single, one-off action in Studio.
         /// </summary>
-        /// <param name="buttonId">A <c>string?</c> value.</param>
-        /// <param name="tooltip">A <c>string?</c> value.</param>
-        /// <param name="iconname">A <c>string?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>PluginToolbarButton?</c> value returned by the engine.</returns>
+        /// <param name="buttonId">A <c>string</c> value.</param>
+        /// <param name="tooltip">A <c>string</c> value.</param>
+        /// <param name="iconname">A <c>string</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>PluginToolbarButton</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginToolbar#CreateButton"/>
-        public PluginToolbarButton? CreateButton(string? buttonId, string? tooltip, string? iconname, string? text)
-            => global::Roblox.Reflection.Invoke<PluginToolbarButton?>(this, "CreateButton", buttonId, tooltip, iconname, text);
+        public PluginToolbarButton CreateButton(string buttonId, string tooltip, string iconname, string text)
+            => global::Roblox.Reflection.Invoke<PluginToolbarButton>(this, "CreateButton", buttonId, tooltip, iconname, text)!;
 
         /// <summary>
         /// <c>PluginToolbar.CreatePopupButton</c>
         /// </summary>
-        /// <param name="buttonId">A <c>string?</c> value.</param>
-        /// <param name="tooltip">A <c>string?</c> value.</param>
-        /// <param name="iconname">A <c>string?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>PluginToolbarButton?</c> value returned by the engine.</returns>
-        public PluginToolbarButton? CreatePopupButton(string? buttonId, string? tooltip, string? iconname, string? text)
-            => global::Roblox.Reflection.Invoke<PluginToolbarButton?>(this, "CreatePopupButton", buttonId, tooltip, iconname, text);
+        /// <param name="buttonId">A <c>string</c> value.</param>
+        /// <param name="tooltip">A <c>string</c> value.</param>
+        /// <param name="iconname">A <c>string</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>PluginToolbarButton</c> value returned by the engine.</returns>
+        public PluginToolbarButton CreatePopupButton(string buttonId, string tooltip, string iconname, string text)
+            => global::Roblox.Reflection.Invoke<PluginToolbarButton>(this, "CreatePopupButton", buttonId, tooltip, iconname, text)!;
 
     }
 }

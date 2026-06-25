@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HumanoidRigDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HumanoidRigDescription? FromHandle(nuint handle)
+        public static new HumanoidRigDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new HumanoidRigDescription(handle);
 
         /// <summary>
@@ -39,20 +39,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.ChestRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestRangeMax"/>
-        public global::Roblox.Vector3? ChestRangeMax
+        public global::Roblox.Vector3 ChestRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ChestRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ChestRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "ChestRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "ChestRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.ChestRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestRangeMin"/>
-        public global::Roblox.Vector3? ChestRangeMin
+        public global::Roblox.Vector3 ChestRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ChestRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ChestRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "ChestRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "ChestRangeMin", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestSize"/>
         public float ChestSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ChestSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ChestSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ChestSize", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.ChestTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#ChestTposeAdjustment"/>
-        public global::Roblox.CFrame? ChestTposeAdjustment
+        public global::Roblox.CFrame ChestTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ChestTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ChestTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "ChestTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "ChestTposeAdjustment", value);
         }
 
         /// <summary>
@@ -89,20 +89,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.HeadBaseRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseRangeMax"/>
-        public global::Roblox.Vector3? HeadBaseRangeMax
+        public global::Roblox.Vector3 HeadBaseRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "HeadBaseRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "HeadBaseRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "HeadBaseRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "HeadBaseRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.HeadBaseRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseRangeMin"/>
-        public global::Roblox.Vector3? HeadBaseRangeMin
+        public global::Roblox.Vector3 HeadBaseRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "HeadBaseRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "HeadBaseRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "HeadBaseRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "HeadBaseRangeMin", value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseSize"/>
         public float HeadBaseSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HeadBaseSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HeadBaseSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HeadBaseSize", value);
         }
 
@@ -119,10 +119,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.HeadBaseTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBaseTposeAdjustment"/>
-        public global::Roblox.CFrame? HeadBaseTposeAdjustment
+        public global::Roblox.CFrame HeadBaseTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "HeadBaseTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "HeadBaseTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "HeadBaseTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "HeadBaseTposeAdjustment", value);
         }
 
         /// <summary>
@@ -139,20 +139,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftAnkleRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleRangeMax"/>
-        public global::Roblox.Vector3? LeftAnkleRangeMax
+        public global::Roblox.Vector3 LeftAnkleRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftAnkleRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftAnkleRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftAnkleRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftAnkleRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftAnkleRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleRangeMin"/>
-        public global::Roblox.Vector3? LeftAnkleRangeMin
+        public global::Roblox.Vector3 LeftAnkleRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftAnkleRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftAnkleRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftAnkleRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftAnkleRangeMin", value);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleSize"/>
         public float LeftAnkleSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftAnkleSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftAnkleSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftAnkleSize", value);
         }
 
@@ -169,10 +169,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftAnkleTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkleTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftAnkleTposeAdjustment
+        public global::Roblox.CFrame LeftAnkleTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftAnkleTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftAnkleTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftAnkleTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftAnkleTposeAdjustment", value);
         }
 
         /// <summary>
@@ -189,20 +189,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftClavicleRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleRangeMax"/>
-        public global::Roblox.Vector3? LeftClavicleRangeMax
+        public global::Roblox.Vector3 LeftClavicleRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftClavicleRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftClavicleRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftClavicleRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftClavicleRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftClavicleRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleRangeMin"/>
-        public global::Roblox.Vector3? LeftClavicleRangeMin
+        public global::Roblox.Vector3 LeftClavicleRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftClavicleRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftClavicleRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftClavicleRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftClavicleRangeMin", value);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleSize"/>
         public float LeftClavicleSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftClavicleSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftClavicleSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftClavicleSize", value);
         }
 
@@ -219,10 +219,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftClavicleTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicleTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftClavicleTposeAdjustment
+        public global::Roblox.CFrame LeftClavicleTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftClavicleTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftClavicleTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftClavicleTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftClavicleTposeAdjustment", value);
         }
 
         /// <summary>
@@ -239,20 +239,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftElbowRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowRangeMax"/>
-        public global::Roblox.Vector3? LeftElbowRangeMax
+        public global::Roblox.Vector3 LeftElbowRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftElbowRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftElbowRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftElbowRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftElbowRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftElbowRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowRangeMin"/>
-        public global::Roblox.Vector3? LeftElbowRangeMin
+        public global::Roblox.Vector3 LeftElbowRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftElbowRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftElbowRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftElbowRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftElbowRangeMin", value);
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowSize"/>
         public float LeftElbowSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftElbowSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftElbowSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftElbowSize", value);
         }
 
@@ -269,10 +269,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftElbowTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbowTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftElbowTposeAdjustment
+        public global::Roblox.CFrame LeftElbowTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftElbowTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftElbowTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftElbowTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftElbowTposeAdjustment", value);
         }
 
         /// <summary>
@@ -289,20 +289,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftHipRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipRangeMax"/>
-        public global::Roblox.Vector3? LeftHipRangeMax
+        public global::Roblox.Vector3 LeftHipRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftHipRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftHipRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftHipRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftHipRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftHipRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipRangeMin"/>
-        public global::Roblox.Vector3? LeftHipRangeMin
+        public global::Roblox.Vector3 LeftHipRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftHipRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftHipRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftHipRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftHipRangeMin", value);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipSize"/>
         public float LeftHipSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftHipSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftHipSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftHipSize", value);
         }
 
@@ -319,10 +319,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftHipTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHipTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftHipTposeAdjustment
+        public global::Roblox.CFrame LeftHipTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftHipTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftHipTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftHipTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftHipTposeAdjustment", value);
         }
 
         /// <summary>
@@ -339,20 +339,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftKneeRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeRangeMax"/>
-        public global::Roblox.Vector3? LeftKneeRangeMax
+        public global::Roblox.Vector3 LeftKneeRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftKneeRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftKneeRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftKneeRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftKneeRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftKneeRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeRangeMin"/>
-        public global::Roblox.Vector3? LeftKneeRangeMin
+        public global::Roblox.Vector3 LeftKneeRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftKneeRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftKneeRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftKneeRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftKneeRangeMin", value);
         }
 
         /// <summary>
@@ -361,7 +361,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeSize"/>
         public float LeftKneeSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftKneeSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftKneeSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftKneeSize", value);
         }
 
@@ -369,10 +369,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftKneeTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKneeTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftKneeTposeAdjustment
+        public global::Roblox.CFrame LeftKneeTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftKneeTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftKneeTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftKneeTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftKneeTposeAdjustment", value);
         }
 
         /// <summary>
@@ -389,20 +389,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftShoulderRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderRangeMax"/>
-        public global::Roblox.Vector3? LeftShoulderRangeMax
+        public global::Roblox.Vector3 LeftShoulderRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftShoulderRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftShoulderRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftShoulderRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftShoulderRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftShoulderRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderRangeMin"/>
-        public global::Roblox.Vector3? LeftShoulderRangeMin
+        public global::Roblox.Vector3 LeftShoulderRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftShoulderRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftShoulderRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftShoulderRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftShoulderRangeMin", value);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderSize"/>
         public float LeftShoulderSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftShoulderSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftShoulderSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftShoulderSize", value);
         }
 
@@ -419,10 +419,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftShoulderTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulderTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftShoulderTposeAdjustment
+        public global::Roblox.CFrame LeftShoulderTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftShoulderTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftShoulderTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftShoulderTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftShoulderTposeAdjustment", value);
         }
 
         /// <summary>
@@ -439,20 +439,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftToeBaseRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseRangeMax"/>
-        public global::Roblox.Vector3? LeftToeBaseRangeMax
+        public global::Roblox.Vector3 LeftToeBaseRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftToeBaseRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftToeBaseRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftToeBaseRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftToeBaseRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftToeBaseRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseRangeMin"/>
-        public global::Roblox.Vector3? LeftToeBaseRangeMin
+        public global::Roblox.Vector3 LeftToeBaseRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftToeBaseRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftToeBaseRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftToeBaseRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftToeBaseRangeMin", value);
         }
 
         /// <summary>
@@ -461,7 +461,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseSize"/>
         public float LeftToeBaseSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftToeBaseSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftToeBaseSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftToeBaseSize", value);
         }
 
@@ -469,10 +469,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftToeBaseTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBaseTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftToeBaseTposeAdjustment
+        public global::Roblox.CFrame LeftToeBaseTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftToeBaseTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftToeBaseTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftToeBaseTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftToeBaseTposeAdjustment", value);
         }
 
         /// <summary>
@@ -489,20 +489,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftWristRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristRangeMax"/>
-        public global::Roblox.Vector3? LeftWristRangeMax
+        public global::Roblox.Vector3 LeftWristRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftWristRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftWristRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftWristRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftWristRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.LeftWristRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristRangeMin"/>
-        public global::Roblox.Vector3? LeftWristRangeMin
+        public global::Roblox.Vector3 LeftWristRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LeftWristRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LeftWristRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LeftWristRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LeftWristRangeMin", value);
         }
 
         /// <summary>
@@ -511,7 +511,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristSize"/>
         public float LeftWristSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftWristSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LeftWristSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LeftWristSize", value);
         }
 
@@ -519,10 +519,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftWristTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWristTposeAdjustment"/>
-        public global::Roblox.CFrame? LeftWristTposeAdjustment
+        public global::Roblox.CFrame LeftWristTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "LeftWristTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "LeftWristTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "LeftWristTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "LeftWristTposeAdjustment", value);
         }
 
         /// <summary>
@@ -539,20 +539,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.NeckRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckRangeMax"/>
-        public global::Roblox.Vector3? NeckRangeMax
+        public global::Roblox.Vector3 NeckRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "NeckRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "NeckRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "NeckRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "NeckRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.NeckRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckRangeMin"/>
-        public global::Roblox.Vector3? NeckRangeMin
+        public global::Roblox.Vector3 NeckRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "NeckRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "NeckRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "NeckRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "NeckRangeMin", value);
         }
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckSize"/>
         public float NeckSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "NeckSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "NeckSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "NeckSize", value);
         }
 
@@ -569,20 +569,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.NeckTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#NeckTposeAdjustment"/>
-        public global::Roblox.CFrame? NeckTposeAdjustment
+        public global::Roblox.CFrame NeckTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "NeckTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "NeckTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "NeckTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "NeckTposeAdjustment", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.OriginOffset</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#OriginOffset"/>
-        public global::Roblox.CFrame? OriginOffset
+        public global::Roblox.CFrame OriginOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "OriginOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "OriginOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "OriginOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "OriginOffset", value);
         }
 
         /// <summary>
@@ -599,20 +599,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightAnkleRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleRangeMax"/>
-        public global::Roblox.Vector3? RightAnkleRangeMax
+        public global::Roblox.Vector3 RightAnkleRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightAnkleRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightAnkleRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightAnkleRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightAnkleRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightAnkleRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleRangeMin"/>
-        public global::Roblox.Vector3? RightAnkleRangeMin
+        public global::Roblox.Vector3 RightAnkleRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightAnkleRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightAnkleRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightAnkleRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightAnkleRangeMin", value);
         }
 
         /// <summary>
@@ -621,7 +621,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleSize"/>
         public float RightAnkleSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightAnkleSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightAnkleSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightAnkleSize", value);
         }
 
@@ -629,10 +629,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightAnkleTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkleTposeAdjustment"/>
-        public global::Roblox.CFrame? RightAnkleTposeAdjustment
+        public global::Roblox.CFrame RightAnkleTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightAnkleTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightAnkleTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightAnkleTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightAnkleTposeAdjustment", value);
         }
 
         /// <summary>
@@ -649,20 +649,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightClavicleRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleRangeMax"/>
-        public global::Roblox.Vector3? RightClavicleRangeMax
+        public global::Roblox.Vector3 RightClavicleRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightClavicleRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightClavicleRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightClavicleRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightClavicleRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightClavicleRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleRangeMin"/>
-        public global::Roblox.Vector3? RightClavicleRangeMin
+        public global::Roblox.Vector3 RightClavicleRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightClavicleRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightClavicleRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightClavicleRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightClavicleRangeMin", value);
         }
 
         /// <summary>
@@ -671,7 +671,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleSize"/>
         public float RightClavicleSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightClavicleSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightClavicleSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightClavicleSize", value);
         }
 
@@ -679,10 +679,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightClavicleTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicleTposeAdjustment"/>
-        public global::Roblox.CFrame? RightClavicleTposeAdjustment
+        public global::Roblox.CFrame RightClavicleTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightClavicleTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightClavicleTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightClavicleTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightClavicleTposeAdjustment", value);
         }
 
         /// <summary>
@@ -699,20 +699,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightElbowRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowRangeMax"/>
-        public global::Roblox.Vector3? RightElbowRangeMax
+        public global::Roblox.Vector3 RightElbowRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightElbowRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightElbowRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightElbowRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightElbowRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightElbowRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowRangeMin"/>
-        public global::Roblox.Vector3? RightElbowRangeMin
+        public global::Roblox.Vector3 RightElbowRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightElbowRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightElbowRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightElbowRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightElbowRangeMin", value);
         }
 
         /// <summary>
@@ -721,7 +721,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowSize"/>
         public float RightElbowSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightElbowSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightElbowSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightElbowSize", value);
         }
 
@@ -729,10 +729,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightElbowTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbowTposeAdjustment"/>
-        public global::Roblox.CFrame? RightElbowTposeAdjustment
+        public global::Roblox.CFrame RightElbowTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightElbowTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightElbowTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightElbowTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightElbowTposeAdjustment", value);
         }
 
         /// <summary>
@@ -749,20 +749,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightHipRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipRangeMax"/>
-        public global::Roblox.Vector3? RightHipRangeMax
+        public global::Roblox.Vector3 RightHipRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightHipRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightHipRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightHipRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightHipRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightHipRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipRangeMin"/>
-        public global::Roblox.Vector3? RightHipRangeMin
+        public global::Roblox.Vector3 RightHipRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightHipRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightHipRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightHipRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightHipRangeMin", value);
         }
 
         /// <summary>
@@ -771,7 +771,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipSize"/>
         public float RightHipSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightHipSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightHipSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightHipSize", value);
         }
 
@@ -779,10 +779,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightHipTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHipTposeAdjustment"/>
-        public global::Roblox.CFrame? RightHipTposeAdjustment
+        public global::Roblox.CFrame RightHipTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightHipTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightHipTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightHipTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightHipTposeAdjustment", value);
         }
 
         /// <summary>
@@ -799,20 +799,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightKneeRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeRangeMax"/>
-        public global::Roblox.Vector3? RightKneeRangeMax
+        public global::Roblox.Vector3 RightKneeRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightKneeRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightKneeRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightKneeRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightKneeRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightKneeRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeRangeMin"/>
-        public global::Roblox.Vector3? RightKneeRangeMin
+        public global::Roblox.Vector3 RightKneeRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightKneeRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightKneeRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightKneeRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightKneeRangeMin", value);
         }
 
         /// <summary>
@@ -821,7 +821,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeSize"/>
         public float RightKneeSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightKneeSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightKneeSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightKneeSize", value);
         }
 
@@ -829,10 +829,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightKneeTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKneeTposeAdjustment"/>
-        public global::Roblox.CFrame? RightKneeTposeAdjustment
+        public global::Roblox.CFrame RightKneeTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightKneeTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightKneeTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightKneeTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightKneeTposeAdjustment", value);
         }
 
         /// <summary>
@@ -849,20 +849,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightShoulderRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderRangeMax"/>
-        public global::Roblox.Vector3? RightShoulderRangeMax
+        public global::Roblox.Vector3 RightShoulderRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightShoulderRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightShoulderRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightShoulderRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightShoulderRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightShoulderRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderRangeMin"/>
-        public global::Roblox.Vector3? RightShoulderRangeMin
+        public global::Roblox.Vector3 RightShoulderRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightShoulderRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightShoulderRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightShoulderRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightShoulderRangeMin", value);
         }
 
         /// <summary>
@@ -871,7 +871,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderSize"/>
         public float RightShoulderSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightShoulderSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightShoulderSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightShoulderSize", value);
         }
 
@@ -879,10 +879,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightShoulderTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulderTposeAdjustment"/>
-        public global::Roblox.CFrame? RightShoulderTposeAdjustment
+        public global::Roblox.CFrame RightShoulderTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightShoulderTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightShoulderTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightShoulderTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightShoulderTposeAdjustment", value);
         }
 
         /// <summary>
@@ -899,20 +899,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightToeBaseRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseRangeMax"/>
-        public global::Roblox.Vector3? RightToeBaseRangeMax
+        public global::Roblox.Vector3 RightToeBaseRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightToeBaseRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightToeBaseRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightToeBaseRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightToeBaseRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightToeBaseRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseRangeMin"/>
-        public global::Roblox.Vector3? RightToeBaseRangeMin
+        public global::Roblox.Vector3 RightToeBaseRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightToeBaseRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightToeBaseRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightToeBaseRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightToeBaseRangeMin", value);
         }
 
         /// <summary>
@@ -921,7 +921,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseSize"/>
         public float RightToeBaseSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightToeBaseSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightToeBaseSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightToeBaseSize", value);
         }
 
@@ -929,10 +929,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightToeBaseTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBaseTposeAdjustment"/>
-        public global::Roblox.CFrame? RightToeBaseTposeAdjustment
+        public global::Roblox.CFrame RightToeBaseTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightToeBaseTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightToeBaseTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightToeBaseTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightToeBaseTposeAdjustment", value);
         }
 
         /// <summary>
@@ -949,20 +949,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightWristRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristRangeMax"/>
-        public global::Roblox.Vector3? RightWristRangeMax
+        public global::Roblox.Vector3 RightWristRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightWristRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightWristRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightWristRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightWristRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RightWristRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristRangeMin"/>
-        public global::Roblox.Vector3? RightWristRangeMin
+        public global::Roblox.Vector3 RightWristRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RightWristRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RightWristRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RightWristRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RightWristRangeMin", value);
         }
 
         /// <summary>
@@ -971,7 +971,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristSize"/>
         public float RightWristSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RightWristSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RightWristSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RightWristSize", value);
         }
 
@@ -979,10 +979,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightWristTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWristTposeAdjustment"/>
-        public global::Roblox.CFrame? RightWristTposeAdjustment
+        public global::Roblox.CFrame RightWristTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RightWristTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RightWristTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RightWristTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RightWristTposeAdjustment", value);
         }
 
         /// <summary>
@@ -999,20 +999,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RootRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootRangeMax"/>
-        public global::Roblox.Vector3? RootRangeMax
+        public global::Roblox.Vector3 RootRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RootRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RootRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RootRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RootRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.RootRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootRangeMin"/>
-        public global::Roblox.Vector3? RootRangeMin
+        public global::Roblox.Vector3 RootRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RootRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RootRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RootRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RootRangeMin", value);
         }
 
         /// <summary>
@@ -1021,7 +1021,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootSize"/>
         public float RootSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RootSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RootSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RootSize", value);
         }
 
@@ -1029,10 +1029,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RootTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RootTposeAdjustment"/>
-        public global::Roblox.CFrame? RootTposeAdjustment
+        public global::Roblox.CFrame RootTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "RootTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "RootTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "RootTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "RootTposeAdjustment", value);
         }
 
         /// <summary>
@@ -1049,20 +1049,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.SpineRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineRangeMax"/>
-        public global::Roblox.Vector3? SpineRangeMax
+        public global::Roblox.Vector3 SpineRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SpineRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SpineRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SpineRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SpineRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.SpineRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineRangeMin"/>
-        public global::Roblox.Vector3? SpineRangeMin
+        public global::Roblox.Vector3 SpineRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SpineRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SpineRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SpineRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SpineRangeMin", value);
         }
 
         /// <summary>
@@ -1071,7 +1071,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineSize"/>
         public float SpineSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SpineSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SpineSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SpineSize", value);
         }
 
@@ -1079,10 +1079,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.SpineTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#SpineTposeAdjustment"/>
-        public global::Roblox.CFrame? SpineTposeAdjustment
+        public global::Roblox.CFrame SpineTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "SpineTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "SpineTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "SpineTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "SpineTposeAdjustment", value);
         }
 
         /// <summary>
@@ -1099,20 +1099,20 @@ namespace Roblox
         /// <c>HumanoidRigDescription.WaistRangeMax</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistRangeMax"/>
-        public global::Roblox.Vector3? WaistRangeMax
+        public global::Roblox.Vector3 WaistRangeMax
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WaistRangeMax");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WaistRangeMax", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "WaistRangeMax")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "WaistRangeMax", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.WaistRangeMin</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistRangeMin"/>
-        public global::Roblox.Vector3? WaistRangeMin
+        public global::Roblox.Vector3 WaistRangeMin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "WaistRangeMin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "WaistRangeMin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "WaistRangeMin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "WaistRangeMin", value);
         }
 
         /// <summary>
@@ -1121,7 +1121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistSize"/>
         public float WaistSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WaistSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WaistSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WaistSize", value);
         }
 
@@ -1129,28 +1129,28 @@ namespace Roblox
         /// <c>HumanoidRigDescription.WaistTposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#WaistTposeAdjustment"/>
-        public global::Roblox.CFrame? WaistTposeAdjustment
+        public global::Roblox.CFrame WaistTposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "WaistTposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "WaistTposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "WaistTposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "WaistTposeAdjustment", value);
         }
 
         /// <summary>
         /// <c>HumanoidRigDescription.AutoRig</c>
         /// </summary>
-        /// <param name="character">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="character">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#AutoRig"/>
-        public object? AutoRig(Instance? character)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AutoRig", character);
+        public object AutoRig(Instance character)
+            => global::Roblox.Reflection.Invoke<object>(this, "AutoRig", character)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetContainedJointLabels</c>
         /// </summary>
-        /// <param name="bodyMeshPartName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetContainedJointLabels(string? bodyMeshPartName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetContainedJointLabels", bodyMeshPartName);
+        /// <param name="bodyMeshPartName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetContainedJointLabels(string bodyMeshPartName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetContainedJointLabels", bodyMeshPartName)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetJoint</c>
@@ -1163,42 +1163,42 @@ namespace Roblox
         /// <summary>
         /// <c>HumanoidRigDescription.GetJointFromName</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#GetJointFromName"/>
-        public Instance? GetJointFromName(string? name)
+        public Instance? GetJointFromName(string name)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetJointFromName", name);
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetJointLabels</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetJointLabels()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetJointLabels");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetJointLabels()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetJointLabels")!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetJointNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#GetJointNames"/>
-        public object? GetJointNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetJointNames");
+        public object GetJointNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetJointNames")!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetJointRangeMax</c>
         /// </summary>
         /// <param name="rigLabel">A <c>Enum.RigLabel</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector3? GetJointRangeMax(Enum.RigLabel rigLabel)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetJointRangeMax", rigLabel);
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3 GetJointRangeMax(Enum.RigLabel rigLabel)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetJointRangeMax", rigLabel)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetJointRangeMin</c>
         /// </summary>
         /// <param name="rigLabel">A <c>Enum.RigLabel</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector3? GetJointRangeMin(Enum.RigLabel rigLabel)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetJointRangeMin", rigLabel);
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3 GetJointRangeMin(Enum.RigLabel rigLabel)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetJointRangeMin", rigLabel)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetJointSize</c>
@@ -1206,98 +1206,98 @@ namespace Roblox
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         public float GetJointSize(Enum.RigLabel label)
-            => global::Roblox.Reflection.Invoke<float>(this, "GetJointSize", label);
+            => global::Roblox.Reflection.Invoke<float>(this, "GetJointSize", label)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetR15JointLabels</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetR15JointLabels()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetR15JointLabels");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetR15JointLabels()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetR15JointLabels")!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetR15JointNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#GetR15JointNames"/>
-        public object? GetR15JointNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetR15JointNames");
+        public object GetR15JointNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetR15JointNames")!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetR6JointLabels</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetR6JointLabels()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetR6JointLabels");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetR6JointLabels()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetR6JointLabels")!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetR6JointNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#GetR6JointNames"/>
-        public object? GetR6JointNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetR6JointNames");
+        public object GetR6JointNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetR6JointNames")!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.GetTposeAdjustment</c>
         /// </summary>
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
-        public global::Roblox.CFrame? GetTposeAdjustment(Enum.RigLabel label)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetTposeAdjustment", label);
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
+        public global::Roblox.CFrame GetTposeAdjustment(Enum.RigLabel label)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetTposeAdjustment", label)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.SetJoint</c>
         /// </summary>
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
-        /// <param name="joint">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetJoint(Enum.RigLabel label, Instance? joint)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetJoint", label, joint);
+        /// <param name="joint">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetJoint(Enum.RigLabel label, Instance joint)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetJoint", label, joint)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.SetJointRangeMax</c>
         /// </summary>
         /// <param name="rigLabel">A <c>Enum.RigLabel</c> value.</param>
-        /// <param name="rangeMax">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetJointRangeMax(Enum.RigLabel rigLabel, global::Roblox.Vector3? rangeMax)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetJointRangeMax", rigLabel, rangeMax);
+        /// <param name="rangeMax">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetJointRangeMax(Enum.RigLabel rigLabel, global::Roblox.Vector3 rangeMax)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetJointRangeMax", rigLabel, rangeMax)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.SetJointRangeMin</c>
         /// </summary>
         /// <param name="rigLabel">A <c>Enum.RigLabel</c> value.</param>
-        /// <param name="rangeMin">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetJointRangeMin(Enum.RigLabel rigLabel, global::Roblox.Vector3? rangeMin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetJointRangeMin", rigLabel, rangeMin);
+        /// <param name="rangeMin">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetJointRangeMin(Enum.RigLabel rigLabel, global::Roblox.Vector3 rangeMin)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetJointRangeMin", rigLabel, rangeMin)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.SetJointSize</c>
         /// </summary>
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
         /// <param name="size">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetJointSize(Enum.RigLabel label, float size)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetJointSize", label, size);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetJointSize(Enum.RigLabel label, float size)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetJointSize", label, size)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.SetTposeAdjustment</c>
         /// </summary>
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
-        /// <param name="transform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTposeAdjustment(Enum.RigLabel label, global::Roblox.CFrame? transform)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTposeAdjustment", label, transform);
+        /// <param name="transform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTposeAdjustment(Enum.RigLabel label, global::Roblox.CFrame transform)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTposeAdjustment", label, transform)!;
 
         /// <summary>
         /// <c>HumanoidRigDescription.ShowVolumes</c>
         /// </summary>
         /// <param name="show">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowVolumes(bool show)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowVolumes", show);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowVolumes(bool show)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowVolumes", show)!;
 
     }
 }

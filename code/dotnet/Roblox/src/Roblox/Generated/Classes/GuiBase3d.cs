@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="GuiBase3d"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GuiBase3d? FromHandle(nuint handle)
+        public static new GuiBase3d? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiBase3d(handle);
 
         /// <summary>
         /// Deprecated: This property has been deprecated in favor of GuiBase3d.Color3, which allows for greater color customization and should be used in new work instead.Sets the color of a GUI object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase3d#Color"/>
-        public global::Roblox.BrickColor? Color
+        public global::Roblox.BrickColor Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "Color", value);
         }
 
         /// <summary>
         /// Sets the color of this GuiBase3d object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase3d#Color3"/>
-        public global::Roblox.Color3? Color3
+        public global::Roblox.Color3 Color3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color3", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase3d#Transparency"/>
         public float Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Transparency", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase3d#Visible"/>
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 

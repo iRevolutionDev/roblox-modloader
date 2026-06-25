@@ -18,33 +18,33 @@ namespace Roblox
         /// Creates a <see cref="BaseImportData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BaseImportData? FromHandle(nuint handle)
+        public static new BaseImportData? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseImportData(handle);
 
-        public string? Id
+        public string Id
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Id");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Id", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Id")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Id", value);
         }
 
-        public string? ImportName
+        public string ImportName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ImportName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ImportName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ImportName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ImportName", value);
         }
 
         public bool ShouldImport
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldImport");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldImport")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldImport", value);
         }
 
         /// <summary>
         /// <c>BaseImportData.CreatePresetFromData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreatePresetFromData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreatePresetFromData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreatePresetFromData()
+            => global::Roblox.Reflection.Invoke<object>(this, "CreatePresetFromData")!;
 
         /// <summary>
         /// <c>BaseImportData.GetPreview</c>
@@ -56,15 +56,15 @@ namespace Roblox
         /// <summary>
         /// <c>BaseImportData.GetStatuses</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStatuses()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStatuses");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetStatuses()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStatuses")!;
 
         /// <summary>
         /// <c>BaseImportData.StatusRemoved</c>
         /// </summary>
-        /// <param name="status">A <c>object?</c> value.</param>
-        public event Action<object?>? StatusRemoved
+        /// <param name="status">A <c>object</c> value.</param>
+        public event Action<object>? StatusRemoved
         {
             add { if (value is not null) AddEventHandler("StatusRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("StatusRemoved", value); }
@@ -73,8 +73,8 @@ namespace Roblox
         /// <summary>
         /// <c>BaseImportData.StatusReported</c>
         /// </summary>
-        /// <param name="status">A <c>object?</c> value.</param>
-        public event Action<object?>? StatusReported
+        /// <param name="status">A <c>object</c> value.</param>
+        public event Action<object>? StatusReported
         {
             add { if (value is not null) AddEventHandler("StatusReported", value); }
             remove { if (value is not null) RemoveEventHandler("StatusReported", value); }

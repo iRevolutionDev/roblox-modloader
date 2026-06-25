@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="SessionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SessionService? FromHandle(nuint handle)
+        public static new SessionService? FromHandle(nuint handle)
             => handle == 0 ? null : new SessionService(handle);
 
         /// <summary>
         /// <c>SessionService.AcquireContextFocus</c>
         /// </summary>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AcquireContextFocus(string? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AcquireContextFocus", context);
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AcquireContextFocus(string context)
+            => global::Roblox.Reflection.Invoke<object>(this, "AcquireContextFocus", context)!;
 
         /// <summary>
         /// <c>SessionService.GenerateSessionInfoString</c>
@@ -36,155 +36,155 @@ namespace Roblox
         /// <param name="includeTag">A <c>bool</c> value.</param>
         /// <param name="includeTimestamps">A <c>bool</c> value.</param>
         /// <param name="includeMetadata">A <c>bool</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GenerateSessionInfoString(bool includeArbitrarySessions, bool includeTag, bool includeTimestamps, bool includeMetadata)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GenerateSessionInfoString", includeArbitrarySessions, includeTag, includeTimestamps, includeMetadata);
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GenerateSessionInfoString(bool includeArbitrarySessions, bool includeTag, bool includeTimestamps, bool includeMetadata)
+            => global::Roblox.Reflection.Invoke<string>(this, "GenerateSessionInfoString", includeArbitrarySessions, includeTag, includeTimestamps, includeMetadata)!;
 
         /// <summary>
         /// <c>SessionService.GetBreadcrumbs</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBreadcrumbs()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBreadcrumbs");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetBreadcrumbs()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBreadcrumbs")!;
 
         /// <summary>
         /// <c>SessionService.GetCreatedTimestampUtcMs</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
+        /// <param name="sid">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long GetCreatedTimestampUtcMs(string? sid)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetCreatedTimestampUtcMs", sid);
+        public long GetCreatedTimestampUtcMs(string sid)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetCreatedTimestampUtcMs", sid)!;
 
         /// <summary>
         /// <c>SessionService.GetHistory</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetHistory()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetHistory");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetHistory()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetHistory")!;
 
         /// <summary>
         /// <c>SessionService.GetMetadata</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMetadata(string? sid, string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMetadata", sid, key);
+        /// <param name="sid">A <c>string</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMetadata(string sid, string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMetadata", sid, key)!;
 
         /// <summary>
         /// <c>SessionService.GetRootSID</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetRootSID()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetRootSID");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetRootSID()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetRootSID")!;
 
         /// <summary>
         /// <c>SessionService.GetSessionID</c>
         /// </summary>
-        /// <param name="structuralId">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetSessionID(string? structuralId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetSessionID", structuralId);
+        /// <param name="structuralId">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetSessionID(string structuralId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetSessionID", structuralId)!;
 
         /// <summary>
         /// <c>SessionService.GetSessionTag</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetSessionTag(string? sid)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetSessionTag", sid);
+        /// <param name="sid">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetSessionTag(string sid)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetSessionTag", sid)!;
 
         /// <summary>
         /// <c>SessionService.IsContextFocused</c>
         /// </summary>
-        /// <param name="context">A <c>string?</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsContextFocused(string? context)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsContextFocused", context);
+        public bool IsContextFocused(string context)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsContextFocused", context)!;
 
         /// <summary>
         /// <c>SessionService.ReleaseContextFocus</c>
         /// </summary>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReleaseContextFocus(string? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReleaseContextFocus", context);
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReleaseContextFocus(string context)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReleaseContextFocus", context)!;
 
         /// <summary>
         /// <c>SessionService.RemoveMetadata</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveMetadata(string? sid, string? key, string? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveMetadata", sid, key, context);
+        /// <param name="sid">A <c>string</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveMetadata(string sid, string key, string context)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveMetadata", sid, key, context)!;
 
         /// <summary>
         /// <c>SessionService.RemoveSession</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveSession(string? sid, string? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveSession", sid, context);
+        /// <param name="sid">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveSession(string sid, string context)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveSession", sid, context)!;
 
         /// <summary>
         /// <c>SessionService.RemoveSessionsWithMetadataKey</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveSessionsWithMetadataKey(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveSessionsWithMetadataKey", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveSessionsWithMetadataKey(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveSessionsWithMetadataKey", key)!;
 
         /// <summary>
         /// <c>SessionService.ReplaceSession</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReplaceSession(string? sid, string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReplaceSession", sid, tag);
+        /// <param name="sid">A <c>string</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReplaceSession(string sid, string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReplaceSession", sid, tag)!;
 
         /// <summary>
         /// <c>SessionService.SessionExists</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
+        /// <param name="sid">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool SessionExists(string? sid)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SessionExists", sid);
+        public bool SessionExists(string sid)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SessionExists", sid)!;
 
         /// <summary>
         /// <c>SessionService.SetMetadata</c>
         /// </summary>
-        /// <param name="sid">A <c>string?</c> value.</param>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetMetadata(string? sid, string? key, object? value, string? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMetadata", sid, key, value, context);
+        /// <param name="sid">A <c>string</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetMetadata(string sid, string key, object value, string context)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMetadata", sid, key, value, context)!;
 
         /// <summary>
         /// <c>SessionService.SetSession</c>
         /// </summary>
-        /// <param name="parentSid">A <c>string?</c> value.</param>
-        /// <param name="childSid">A <c>string?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetSession(string? parentSid, string? childSid, string? tag, string? context)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetSession", parentSid, childSid, tag, context);
+        /// <param name="parentSid">A <c>string</c> value.</param>
+        /// <param name="childSid">A <c>string</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetSession(string parentSid, string childSid, string tag, string context)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetSession", parentSid, childSid, tag, context)!;
 
         /// <summary>
         /// <c>SessionService.SessionChanged</c>
         /// </summary>
-        /// <param name="structuralId">A <c>string?</c> value.</param>
-        /// <param name="currentTag">A <c>string?</c> value.</param>
-        /// <param name="currentSessionId">A <c>string?</c> value.</param>
-        /// <param name="previousTag">A <c>string?</c> value.</param>
-        /// <param name="previousSessionId">A <c>string?</c> value.</param>
-        public event Action<string?, string?, string?, string?, string?>? SessionChanged
+        /// <param name="structuralId">A <c>string</c> value.</param>
+        /// <param name="currentTag">A <c>string</c> value.</param>
+        /// <param name="currentSessionId">A <c>string</c> value.</param>
+        /// <param name="previousTag">A <c>string</c> value.</param>
+        /// <param name="previousSessionId">A <c>string</c> value.</param>
+        public event Action<string, string, string, string, string>? SessionChanged
         {
             add { if (value is not null) AddEventHandler("SessionChanged", value); }
             remove { if (value is not null) RemoveEventHandler("SessionChanged", value); }

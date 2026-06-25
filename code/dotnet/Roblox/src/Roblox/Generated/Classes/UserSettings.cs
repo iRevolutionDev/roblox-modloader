@@ -22,32 +22,32 @@ namespace Roblox
         /// Creates a <see cref="UserSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UserSettings? FromHandle(nuint handle)
+        public static new UserSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new UserSettings(handle);
 
         /// <summary>
         /// Returns true if the specified user feature is enabled. This will throw an error if the user feature does not exist.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserSettings#IsUserFeatureEnabled"/>
-        public bool IsUserFeatureEnabled(string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsUserFeatureEnabled", name);
+        public bool IsUserFeatureEnabled(string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsUserFeatureEnabled", name)!;
 
         /// <summary>
         /// Erases the saved state of the UserSettings, and restores its default values.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserSettings#Reset"/>
-        public object? Reset()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Reset");
+        public object Reset()
+            => global::Roblox.Reflection.Invoke<object>(this, "Reset")!;
 
         /// <summary>
         /// <c>UserSettings.SaveState</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SaveState()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveState");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SaveState()
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveState")!;
 
     }
 }

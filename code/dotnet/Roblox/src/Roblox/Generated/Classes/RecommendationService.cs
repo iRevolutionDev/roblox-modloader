@@ -22,91 +22,91 @@ namespace Roblox
         /// Creates a <see cref="RecommendationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RecommendationService? FromHandle(nuint handle)
+        public static new RecommendationService? FromHandle(nuint handle)
             => handle == 0 ? null : new RecommendationService(handle);
 
         /// <summary>
         /// <c>RecommendationService.LogActionEvent</c>
         /// </summary>
         /// <param name="actionType">A <c>Enum.RecommendationActionType</c> value.</param>
-        /// <param name="itemId">A <c>string?</c> value.</param>
-        /// <param name="tracingId">A <c>string?</c> value.</param>
+        /// <param name="itemId">A <c>string</c> value.</param>
+        /// <param name="tracingId">A <c>string</c> value.</param>
         /// <param name="actionEventDetails">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#LogActionEvent"/>
-        public object? LogActionEvent(Enum.RecommendationActionType actionType, string? itemId, string? tracingId, object? actionEventDetails)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogActionEvent", actionType, itemId, tracingId, actionEventDetails);
+        public object LogActionEvent(Enum.RecommendationActionType actionType, string itemId, string tracingId, object? actionEventDetails = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogActionEvent", actionType, itemId, tracingId, actionEventDetails)!;
 
         /// <summary>
         /// <c>RecommendationService.LogImpressionEvent</c>
         /// </summary>
         /// <param name="impressionType">A <c>Enum.RecommendationImpressionType</c> value.</param>
-        /// <param name="itemId">A <c>string?</c> value.</param>
-        /// <param name="tracingId">A <c>string?</c> value.</param>
+        /// <param name="itemId">A <c>string</c> value.</param>
+        /// <param name="tracingId">A <c>string</c> value.</param>
         /// <param name="impressionEventDetails">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#LogImpressionEvent"/>
-        public object? LogImpressionEvent(Enum.RecommendationImpressionType impressionType, string? itemId, string? tracingId, object? impressionEventDetails)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogImpressionEvent", impressionType, itemId, tracingId, impressionEventDetails);
+        public object LogImpressionEvent(Enum.RecommendationImpressionType impressionType, string itemId, string tracingId, object? impressionEventDetails = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogImpressionEvent", impressionType, itemId, tracingId, impressionEventDetails)!;
 
         /// <summary>
         /// <c>RecommendationService.LogPreferenceEvent</c>
         /// </summary>
         /// <param name="preferenceType">A <c>Enum.RecommendationPreferenceType</c> value.</param>
         /// <param name="targetType">A <c>Enum.RecommendationPreferenceTargetType</c> value.</param>
-        /// <param name="targetId">A <c>string?</c> value.</param>
-        /// <param name="tracingId">A <c>string?</c> value.</param>
-        /// <param name="itemId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="targetId">A <c>string</c> value.</param>
+        /// <param name="tracingId">A <c>string</c> value.</param>
+        /// <param name="itemId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#LogPreferenceEvent"/>
-        public object? LogPreferenceEvent(Enum.RecommendationPreferenceType preferenceType, Enum.RecommendationPreferenceTargetType targetType, string? targetId, string? tracingId, string? itemId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogPreferenceEvent", preferenceType, targetType, targetId, tracingId, itemId);
+        public object LogPreferenceEvent(Enum.RecommendationPreferenceType preferenceType, Enum.RecommendationPreferenceTargetType targetType, string targetId, string tracingId, string itemId)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogPreferenceEvent", preferenceType, targetType, targetId, tracingId, itemId)!;
 
         /// <summary>
         /// <c>RecommendationService.GenerateItemListAsync</c>
         /// </summary>
-        /// <param name="generateRecommendationItemListRequest">A <c>object?</c> value.</param>
-        /// <returns>A <c>RecommendationPages?</c> value returned by the engine.</returns>
+        /// <param name="generateRecommendationItemListRequest">A <c>object</c> value.</param>
+        /// <returns>A <c>RecommendationPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#GenerateItemListAsync"/>
-        public RecommendationPages? GenerateItemListAsync(object? generateRecommendationItemListRequest)
-            => global::Roblox.Reflection.Invoke<RecommendationPages?>(this, "GenerateItemListAsync", generateRecommendationItemListRequest);
+        public RecommendationPages GenerateItemListAsync(object generateRecommendationItemListRequest)
+            => global::Roblox.Reflection.Invoke<RecommendationPages>(this, "GenerateItemListAsync", generateRecommendationItemListRequest)!;
 
         /// <summary>
         /// <c>RecommendationService.GetRecommendationItemAsync</c>
         /// </summary>
-        /// <param name="itemId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="itemId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#GetRecommendationItemAsync"/>
-        public object? GetRecommendationItemAsync(string? itemId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRecommendationItemAsync", itemId);
+        public object GetRecommendationItemAsync(string itemId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRecommendationItemAsync", itemId)!;
 
         /// <summary>
         /// <c>RecommendationService.RegisterItemAsync</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="registerRecommendationItemsRequest">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="registerRecommendationItemsRequest">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#RegisterItemAsync"/>
-        public object? RegisterItemAsync(Player? player, object? registerRecommendationItemsRequest)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterItemAsync", player, registerRecommendationItemsRequest);
+        public object RegisterItemAsync(Player player, object registerRecommendationItemsRequest)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterItemAsync", player, registerRecommendationItemsRequest)!;
 
         /// <summary>
         /// <c>RecommendationService.RemoveItemAsync</c>
         /// </summary>
-        /// <param name="itemId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="itemId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#RemoveItemAsync"/>
-        public object? RemoveItemAsync(string? itemId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveItemAsync", itemId);
+        public object RemoveItemAsync(string itemId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveItemAsync", itemId)!;
 
         /// <summary>
         /// <c>RecommendationService.UpdateItemAsync</c>
         /// </summary>
-        /// <param name="updateRecommendationItemRequest">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="updateRecommendationItemRequest">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RecommendationService#UpdateItemAsync"/>
-        public object? UpdateItemAsync(object? updateRecommendationItemRequest)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateItemAsync", updateRecommendationItemRequest);
+        public object UpdateItemAsync(object updateRecommendationItemRequest)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateItemAsync", updateRecommendationItemRequest)!;
 
     }
 }

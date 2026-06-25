@@ -18,37 +18,37 @@ namespace Roblox
         /// Creates a <see cref="Noise"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Noise? FromHandle(nuint handle)
+        public static new Noise? FromHandle(nuint handle)
             => handle == 0 ? null : new Noise(handle);
 
         public Enum.NoiseType NoiseType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NoiseType>(this, "NoiseType");
+            get => global::Roblox.Reflection.GetProperty<Enum.NoiseType>(this, "NoiseType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NoiseType>(this, "NoiseType", value);
         }
 
         public int Seed
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Seed");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Seed")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Seed", value);
         }
 
         /// <summary>
         /// <c>Noise.SampleDirectional</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="direction">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="direction">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float SampleDirectional(global::Roblox.Vector3? position, global::Roblox.Vector3? direction)
-            => global::Roblox.Reflection.Invoke<float>(this, "SampleDirectional", position, direction);
+        public float SampleDirectional(global::Roblox.Vector3 position, global::Roblox.Vector3 direction)
+            => global::Roblox.Reflection.Invoke<float>(this, "SampleDirectional", position, direction)!;
 
         /// <summary>
         /// <c>Noise.SampleUniform</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
-        public float SampleUniform(global::Roblox.Vector3? position)
-            => global::Roblox.Reflection.Invoke<float>(this, "SampleUniform", position);
+        public float SampleUniform(global::Roblox.Vector3 position)
+            => global::Roblox.Reflection.Invoke<float>(this, "SampleUniform", position)!;
 
     }
 }

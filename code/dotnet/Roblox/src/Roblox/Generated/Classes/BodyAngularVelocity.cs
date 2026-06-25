@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="BodyAngularVelocity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyAngularVelocity? FromHandle(nuint handle)
+        public static new BodyAngularVelocity? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyAngularVelocity(handle);
 
         /// <summary>
         /// Determines the axis of rotation (direction) and the rotational velocity (magnitude) in radians/s.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#AngularVelocity"/>
-        public global::Roblox.Vector3? AngularVelocity
+        public global::Roblox.Vector3 AngularVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "AngularVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "AngularVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "AngularVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "AngularVelocity", value);
         }
 
         /// <summary>
         /// Determines the limit of torque that may be exerted on each world axis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#MaxTorque"/>
-        public global::Roblox.Vector3? MaxTorque
+        public global::Roblox.Vector3 MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxTorque");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxTorque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxTorque")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxTorque", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#P"/>
         public float P
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "P");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "P")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "P", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Deprecated: This deprecated property is a variant of BodyAngularVelocity.AngularVelocity which should be used instead.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#angularvelocity"/>
-        public global::Roblox.Vector3? Angularvelocity
+        public global::Roblox.Vector3 Angularvelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "angularvelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "angularvelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "angularvelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "angularvelocity", value);
         }
 
     }

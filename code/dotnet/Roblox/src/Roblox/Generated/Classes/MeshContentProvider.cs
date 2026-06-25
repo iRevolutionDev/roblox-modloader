@@ -22,15 +22,15 @@ namespace Roblox
         /// Creates a <see cref="MeshContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MeshContentProvider? FromHandle(nuint handle)
+        public static new MeshContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new MeshContentProvider(handle);
 
         /// <summary>
         /// <c>MeshContentProvider.GetContentMemoryData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetContentMemoryData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetContentMemoryData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetContentMemoryData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetContentMemoryData")!;
 
     }
 }

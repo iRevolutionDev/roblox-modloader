@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Sparkles"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Sparkles? FromHandle(nuint handle)
+        public static new Sparkles? FromHandle(nuint handle)
             => handle == 0 ? null : new Sparkles(handle);
 
         /// <summary>
         /// Determines the color of the sparkle particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines the color of the sparkle particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#SparkleColor"/>
-        public global::Roblox.Color3? SparkleColor
+        public global::Roblox.Color3 SparkleColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "SparkleColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "SparkleColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "SparkleColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "SparkleColor", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sparkles#TimeScale"/>
         public float TimeScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TimeScale", value);
         }
 
@@ -79,9 +79,9 @@ namespace Roblox
         /// <c>Sparkles.FastForward</c>
         /// </summary>
         /// <param name="numFrames">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FastForward(int numFrames)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FastForward", numFrames);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FastForward(int numFrames)
+            => global::Roblox.Reflection.Invoke<object>(this, "FastForward", numFrames)!;
 
     }
 }

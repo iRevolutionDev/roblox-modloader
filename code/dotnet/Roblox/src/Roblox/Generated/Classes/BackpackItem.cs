@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="BackpackItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BackpackItem? FromHandle(nuint handle)
+        public static new BackpackItem? FromHandle(nuint handle)
             => handle == 0 ? null : new BackpackItem(handle);
 
         /// <summary>
         /// The texture icon that is displayed for a tool in the player's backpack. Only supports asset URIs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BackpackItem#TextureContent"/>
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
         /// <summary>
         /// The texture icon that is displayed for a tool in the player's backpack.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BackpackItem#TextureId"/>
-        public object? TextureId
+        public object TextureId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextureId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextureId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "TextureId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "TextureId", value);
         }
 
     }

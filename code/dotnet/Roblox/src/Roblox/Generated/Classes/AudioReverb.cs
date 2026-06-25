@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioReverb"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioReverb? FromHandle(nuint handle)
+        public static new AudioReverb? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioReverb(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#Bypass"/>
         public bool Bypass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#DecayRatio"/>
         public float DecayRatio
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DecayRatio");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DecayRatio")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DecayRatio", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#DecayTime"/>
         public float DecayTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DecayTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DecayTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DecayTime", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#Density"/>
         public float Density
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Density");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Density")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Density", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#Diffusion"/>
         public float Diffusion
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Diffusion");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Diffusion")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Diffusion", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#DryLevel"/>
         public float DryLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DryLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DryLevel", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#EarlyDelayTime"/>
         public float EarlyDelayTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "EarlyDelayTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "EarlyDelayTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "EarlyDelayTime", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#HighCutFrequency"/>
         public float HighCutFrequency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HighCutFrequency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HighCutFrequency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HighCutFrequency", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#LateDelayTime"/>
         public float LateDelayTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LateDelayTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LateDelayTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LateDelayTime", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#LowShelfFrequency"/>
         public float LowShelfFrequency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowShelfFrequency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowShelfFrequency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowShelfFrequency", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#LowShelfGain"/>
         public float LowShelfGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowShelfGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowShelfGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowShelfGain", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#ReferenceFrequency"/>
         public float ReferenceFrequency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ReferenceFrequency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ReferenceFrequency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ReferenceFrequency", value);
         }
 
@@ -151,51 +151,51 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#WetLevel"/>
         public float WetLevel
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WetLevel")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WetLevel", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// <c>AudioReverb.Reset</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Reset()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Reset");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Reset()
+            => global::Roblox.Reflection.Invoke<object>(this, "Reset")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioReverb via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioReverb#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

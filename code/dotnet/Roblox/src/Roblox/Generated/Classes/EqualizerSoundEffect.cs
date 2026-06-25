@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="EqualizerSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static EqualizerSoundEffect? FromHandle(nuint handle)
+        public static new EqualizerSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new EqualizerSoundEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EqualizerSoundEffect#HighGain"/>
         public float HighGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HighGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HighGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HighGain", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EqualizerSoundEffect#LowGain"/>
         public float LowGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowGain", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EqualizerSoundEffect#MidGain"/>
         public float MidGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MidGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MidGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MidGain", value);
         }
 

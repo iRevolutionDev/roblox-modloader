@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="InputObject"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InputObject? FromHandle(nuint handle)
+        public static new InputObject? FromHandle(nuint handle)
             => handle == 0 ? null : new InputObject(handle);
 
         /// <summary>
         /// A Vector3 describing the delta between input movements.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#Delta"/>
-        public global::Roblox.Vector3? Delta
+        public global::Roblox.Vector3 Delta
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Delta");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Delta", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Delta")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Delta", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#KeyCode"/>
         public Enum.KeyCode KeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "KeyCode", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// A Vector3 describing the positional value of this input.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#UserInputState"/>
         public Enum.UserInputState UserInputState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UserInputState>(this, "UserInputState");
+            get => global::Roblox.Reflection.GetProperty<Enum.UserInputState>(this, "UserInputState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UserInputState>(this, "UserInputState", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#UserInputType"/>
         public Enum.UserInputType UserInputType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UserInputType>(this, "UserInputType");
+            get => global::Roblox.Reflection.GetProperty<Enum.UserInputType>(this, "UserInputType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UserInputType>(this, "UserInputType", value);
         }
 
@@ -82,7 +82,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputObject#IsModifierKeyDown"/>
         public bool IsModifierKeyDown(Enum.ModifierKey modifierKey)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsModifierKeyDown", modifierKey);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsModifierKeyDown", modifierKey)!;
 
     }
 }

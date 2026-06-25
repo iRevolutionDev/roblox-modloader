@@ -18,47 +18,47 @@ namespace Roblox
         /// Creates a <see cref="LocalStorageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LocalStorageService? FromHandle(nuint handle)
+        public static new LocalStorageService? FromHandle(nuint handle)
             => handle == 0 ? null : new LocalStorageService(handle);
 
         /// <summary>
         /// <c>LocalStorageService.Flush</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Flush()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Flush");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Flush()
+            => global::Roblox.Reflection.Invoke<object>(this, "Flush")!;
 
         /// <summary>
         /// <c>LocalStorageService.GetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetItem(string? key)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetItem", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetItem(string key)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetItem", key)!;
 
         /// <summary>
         /// <c>LocalStorageService.SetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetItem(string? key, string? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetItem", key, value);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetItem(string key, string value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetItem", key, value)!;
 
         /// <summary>
         /// <c>LocalStorageService.WhenLoaded</c>
         /// </summary>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? WhenLoaded(object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "WhenLoaded", callback);
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object WhenLoaded(object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "WhenLoaded", callback)!;
 
         /// <summary>
         /// <c>LocalStorageService.ItemWasSet</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? ItemWasSet
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
+        public event Action<string, string>? ItemWasSet
         {
             add { if (value is not null) AddEventHandler("ItemWasSet", value); }
             remove { if (value is not null) RemoveEventHandler("ItemWasSet", value); }

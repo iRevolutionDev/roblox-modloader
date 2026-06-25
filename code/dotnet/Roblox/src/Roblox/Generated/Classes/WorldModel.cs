@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="WorldModel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WorldModel? FromHandle(nuint handle)
+        public static new WorldModel? FromHandle(nuint handle)
             => handle == 0 ? null : new WorldModel(handle);
 
     }

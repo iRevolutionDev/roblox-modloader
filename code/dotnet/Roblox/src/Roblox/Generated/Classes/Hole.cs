@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Hole"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Hole? FromHandle(nuint handle)
+        public static new Hole? FromHandle(nuint handle)
             => handle == 0 ? null : new Hole(handle);
 
     }

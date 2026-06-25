@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UIPageLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIPageLayout? FromHandle(nuint handle)
+        public static new UIPageLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UIPageLayout(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Animated"/>
         public bool Animated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Animated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Animated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Animated", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Circular"/>
         public bool Circular
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Circular");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Circular")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Circular", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#EasingDirection"/>
         public Enum.EasingDirection EasingDirection
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.EasingDirection>(this, "EasingDirection");
+            get => global::Roblox.Reflection.GetProperty<Enum.EasingDirection>(this, "EasingDirection")!;
             set => global::Roblox.Reflection.SetProperty<Enum.EasingDirection>(this, "EasingDirection", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#EasingStyle"/>
         public Enum.EasingStyle EasingStyle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.EasingStyle>(this, "EasingStyle");
+            get => global::Roblox.Reflection.GetProperty<Enum.EasingStyle>(this, "EasingStyle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.EasingStyle>(this, "EasingStyle", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#GamepadInputEnabled"/>
         public bool GamepadInputEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "GamepadInputEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "GamepadInputEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "GamepadInputEnabled", value);
         }
 
@@ -89,10 +89,10 @@ namespace Roblox
         /// Determines the amount that pages are separated from each other by.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Padding"/>
-        public global::Roblox.UDim? Padding
+        public global::Roblox.UDim Padding
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "Padding");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "Padding", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "Padding")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "Padding", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#ScrollWheelInputEnabled"/>
         public bool ScrollWheelInputEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScrollWheelInputEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScrollWheelInputEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ScrollWheelInputEnabled", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#TouchInputEnabled"/>
         public bool TouchInputEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchInputEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TouchInputEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TouchInputEnabled", value);
         }
 
@@ -121,50 +121,50 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#TweenTime"/>
         public float TweenTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TweenTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TweenTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TweenTime", value);
         }
 
         /// <summary>
         /// If the page is in the UIPageLayout, then it sets UIPageLayout.CurrentPage to it and animates to it. If the circular layout is enabled, it will take the shortest path to this page.
         /// </summary>
-        /// <param name="page">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="page">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#JumpTo"/>
-        public object? JumpTo(Instance? page)
-            => global::Roblox.Reflection.Invoke<object?>(this, "JumpTo", page);
+        public object JumpTo(Instance page)
+            => global::Roblox.Reflection.Invoke<object>(this, "JumpTo", page)!;
 
         /// <summary>
         /// If the index is >= 0 and less than the size of the layout, this method acts like UIPageLayout:JumpTo(). If it's out of bounds and circular is set, it will animate the full distance between the in-bounds index of UIPageLayout.CurrentPage and the new index.
         /// </summary>
         /// <param name="index">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#JumpToIndex"/>
-        public object? JumpToIndex(int index)
-            => global::Roblox.Reflection.Invoke<object?>(this, "JumpToIndex", index);
+        public object JumpToIndex(int index)
+            => global::Roblox.Reflection.Invoke<object>(this, "JumpToIndex", index)!;
 
         /// <summary>
         /// Sets UIPageLayout.CurrentPage to the page after the current page and animates to it, or does nothing if there isn't a next page.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Next"/>
-        public object? Next()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Next");
+        public object Next()
+            => global::Roblox.Reflection.Invoke<object>(this, "Next")!;
 
         /// <summary>
         /// Sets UIPageLayout.CurrentPage to the page before the current page and animates to it, or does nothing if there isn't a previous page.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Previous"/>
-        public object? Previous()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Previous");
+        public object Previous()
+            => global::Roblox.Reflection.Invoke<object>(this, "Previous")!;
 
         /// <summary>
         /// Fires when a page comes into view, and is going to be rendered.
         /// </summary>
-        /// <param name="page">A <c>Instance?</c> value.</param>
+        /// <param name="page">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#PageEnter"/>
-        public event Action<Instance?>? PageEnter
+        public event Action<Instance>? PageEnter
         {
             add { if (value is not null) AddEventHandler("PageEnter", value); }
             remove { if (value is not null) RemoveEventHandler("PageEnter", value); }
@@ -173,9 +173,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a page leaves view, and will not be rendered.
         /// </summary>
-        /// <param name="page">A <c>Instance?</c> value.</param>
+        /// <param name="page">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#PageLeave"/>
-        public event Action<Instance?>? PageLeave
+        public event Action<Instance>? PageLeave
         {
             add { if (value is not null) AddEventHandler("PageLeave", value); }
             remove { if (value is not null) RemoveEventHandler("PageLeave", value); }
@@ -184,9 +184,9 @@ namespace Roblox
         /// <summary>
         /// Fires when an animation to UIPageLayout.CurrentPage is completed without being canceled, and the view stops scrolling.
         /// </summary>
-        /// <param name="currentPage">A <c>Instance?</c> value.</param>
+        /// <param name="currentPage">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#Stopped"/>
-        public event Action<Instance?>? Stopped
+        public event Action<Instance>? Stopped
         {
             add { if (value is not null) AddEventHandler("Stopped", value); }
             remove { if (value is not null) RemoveEventHandler("Stopped", value); }

@@ -22,39 +22,39 @@ namespace Roblox
         /// Creates a <see cref="FileMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FileMesh? FromHandle(nuint handle)
+        public static new FileMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new FileMesh(handle);
 
-        public string? MeshContent
+        public string MeshContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MeshContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MeshContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MeshContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MeshContent", value);
         }
 
         /// <summary>
         /// The MeshId is the content ID of the mesh that is to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FileMesh#MeshId"/>
-        public object? MeshId
+        public object MeshId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MeshId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MeshId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "MeshId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "MeshId", value);
         }
 
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
         /// <summary>
         /// The TextureId is the content ID of the texture that is to be applied to the mesh.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FileMesh#TextureId"/>
-        public object? TextureId
+        public object TextureId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextureId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextureId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "TextureId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "TextureId", value);
         }
 
     }

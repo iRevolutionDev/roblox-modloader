@@ -22,63 +22,63 @@ namespace Roblox
         /// Creates a <see cref="FunctionalTest"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FunctionalTest? FromHandle(nuint handle)
+        public static new FunctionalTest? FromHandle(nuint handle)
             => handle == 0 ? null : new FunctionalTest(handle);
 
         /// <summary>
         /// The description of the FunctionalTest.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest#Description"/>
-        public string? Description
+        public string Description
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Description");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Description", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Description")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Description", value);
         }
 
         /// <summary>
         /// <c>FunctionalTest.Error</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest#Error"/>
-        public object? Error(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Error", message);
+        public object Error(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "Error", message)!;
 
         /// <summary>
         /// Prints a red message to the output, prefixed by "TestService: ".
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest#Failed"/>
-        public object? Failed(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Failed", message);
+        public object Failed(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "Failed", message)!;
 
         /// <summary>
         /// <c>FunctionalTest.Pass</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest#Pass"/>
-        public object? Pass(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pass", message);
+        public object Pass(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "Pass", message)!;
 
         /// <summary>
         /// <c>FunctionalTest.Passed</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest#Passed"/>
-        public object? Passed(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Passed", message);
+        public object Passed(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "Passed", message)!;
 
         /// <summary>
         /// Prints if a condition is true, otherwise prints a warning.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest#Warn"/>
-        public object? Warn(string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Warn", message);
+        public object Warn(string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "Warn", message)!;
 
     }
 }

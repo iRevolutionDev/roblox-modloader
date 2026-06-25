@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SelectionLasso"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SelectionLasso? FromHandle(nuint handle)
+        public static new SelectionLasso? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionLasso(handle);
 
         /// <summary>

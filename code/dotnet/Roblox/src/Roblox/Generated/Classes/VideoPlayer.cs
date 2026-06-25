@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VideoPlayer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VideoPlayer? FromHandle(nuint handle)
+        public static new VideoPlayer? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoPlayer(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#AutoLoadInStudio"/>
         public bool AutoLoadInStudio
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLoadInStudio");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLoadInStudio")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoLoadInStudio", value);
         }
 
@@ -41,13 +41,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#AutoPlayInStudio"/>
         public bool AutoPlayInStudio
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoPlayInStudio");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoPlayInStudio")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoPlayInStudio", value);
         }
 
         public Enum.InternalVideoUsage InternalVideoUsage
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage");
+            get => global::Roblox.Reflection.GetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InternalVideoUsage>(this, "InternalVideoUsage", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#IsLoaded"/>
         public bool IsLoaded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLoaded", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#IsPlaying"/>
         public bool IsPlaying
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPlaying", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Looping"/>
         public bool Looping
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looping");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looping")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Looping", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#MaximumResolution"/>
         public Enum.VideoSampleSize MaximumResolution
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VideoSampleSize>(this, "MaximumResolution");
+            get => global::Roblox.Reflection.GetProperty<Enum.VideoSampleSize>(this, "MaximumResolution")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VideoSampleSize>(this, "MaximumResolution", value);
         }
 
@@ -97,7 +97,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#PlaybackSpeed"/>
         public float PlaybackSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PlaybackSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PlaybackSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PlaybackSpeed", value);
         }
 
@@ -105,10 +105,10 @@ namespace Roblox
         /// Gets the original source resolution of the VideoContent file.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Resolution"/>
-        public global::Roblox.Vector2? Resolution
+        public global::Roblox.Vector2 Resolution
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Resolution");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Resolution", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Resolution")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Resolution", value);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 
@@ -127,7 +127,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#TimePosition"/>
         public double TimePosition
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimePosition", value);
         }
 
@@ -135,10 +135,10 @@ namespace Roblox
         /// The asset to be loaded into the VideoPlayer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#VideoContent"/>
-        public string? VideoContent
+        public string VideoContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "VideoContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "VideoContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "VideoContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "VideoContent", value);
         }
 
         /// <summary>
@@ -147,66 +147,66 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Volume"/>
         public float Volume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Pauses the VideoPlayer wherever its TimePosition is.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Pause"/>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// Plays the VideoPlayer from wherever its TimePosition is.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Play"/>
-        public object? Play()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play");
+        public object Play()
+            => global::Roblox.Reflection.Invoke<object>(this, "Play")!;
 
         /// <summary>
         /// <c>VideoPlayer.SetStudioPreview</c>
         /// </summary>
         /// <param name="isPreview">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetStudioPreview(bool isPreview)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetStudioPreview", isPreview);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetStudioPreview(bool isPreview)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetStudioPreview", isPreview)!;
 
         /// <summary>
         /// Unloads the VideoPlayer.VideoContent to save resources.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Unload"/>
-        public object? Unload()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Unload");
+        public object Unload()
+            => global::Roblox.Reflection.Invoke<object>(this, "Unload")!;
 
         /// <summary>
         /// Loads the VideoContent before it is played.
@@ -214,7 +214,7 @@ namespace Roblox
         /// <returns>A <c>Enum.AssetFetchStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#LoadAsync"/>
         public Enum.AssetFetchStatus LoadAsync()
-            => global::Roblox.Reflection.Invoke<Enum.AssetFetchStatus>(this, "LoadAsync");
+            => global::Roblox.Reflection.Invoke<Enum.AssetFetchStatus>(this, "LoadAsync")!;
 
         /// <summary>
         /// Fires when the VideoContent has completed playback and stopped.
@@ -251,11 +251,11 @@ namespace Roblox
         /// Fires when another instance is connected to or disconnected from the VideoPlayer via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

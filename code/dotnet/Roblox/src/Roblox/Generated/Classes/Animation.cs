@@ -22,23 +22,23 @@ namespace Roblox
         /// Creates a <see cref="Animation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Animation? FromHandle(nuint handle)
+        public static new Animation? FromHandle(nuint handle)
             => handle == 0 ? null : new Animation(handle);
 
-        public string? AnimationContent
+        public string AnimationContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AnimationContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AnimationContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AnimationContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AnimationContent", value);
         }
 
         /// <summary>
         /// Asset ID of the animation an Animation object is referencing.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Animation#AnimationId"/>
-        public object? AnimationId
+        public object AnimationId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "AnimationId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "AnimationId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "AnimationId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "AnimationId", value);
         }
 
     }

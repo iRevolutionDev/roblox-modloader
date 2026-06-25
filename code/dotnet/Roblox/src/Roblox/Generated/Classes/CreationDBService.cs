@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="CreationDBService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CreationDBService? FromHandle(nuint handle)
+        public static new CreationDBService? FromHandle(nuint handle)
             => handle == 0 ? null : new CreationDBService(handle);
 
     }

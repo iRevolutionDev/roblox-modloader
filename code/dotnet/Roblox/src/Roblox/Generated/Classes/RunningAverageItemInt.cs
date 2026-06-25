@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RunningAverageItemInt"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RunningAverageItemInt? FromHandle(nuint handle)
+        public static new RunningAverageItemInt? FromHandle(nuint handle)
             => handle == 0 ? null : new RunningAverageItemInt(handle);
 
     }

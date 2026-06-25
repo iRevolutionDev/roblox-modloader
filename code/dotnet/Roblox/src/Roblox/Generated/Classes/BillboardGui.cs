@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BillboardGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BillboardGui? FromHandle(nuint handle)
+        public static new BillboardGui? FromHandle(nuint handle)
             => handle == 0 ? null : new BillboardGui(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Active"/>
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#AlwaysOnTop"/>
         public bool AlwaysOnTop
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlwaysOnTop");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlwaysOnTop")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AlwaysOnTop", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Brightness"/>
         public float Brightness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Brightness", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ClipsDescendants"/>
         public bool ClipsDescendants
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipsDescendants");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipsDescendants")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClipsDescendants", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#CurrentDistance"/>
         public float CurrentDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentDistance", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceLowerLimit"/>
         public float DistanceLowerLimit
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceLowerLimit");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceLowerLimit")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DistanceLowerLimit", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceStep"/>
         public float DistanceStep
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceStep");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceStep")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DistanceStep", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceUpperLimit"/>
         public float DistanceUpperLimit
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceUpperLimit");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceUpperLimit")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DistanceUpperLimit", value);
         }
 
@@ -119,20 +119,20 @@ namespace Roblox
         /// Determines how the BillboardGui is offset from its Adornee, relative to the Camera orientation, in units half the dimensions of the model's Camera-aligned bounding box.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ExtentsOffset"/>
-        public global::Roblox.Vector3? ExtentsOffset
+        public global::Roblox.Vector3 ExtentsOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ExtentsOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ExtentsOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "ExtentsOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "ExtentsOffset", value);
         }
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee, relative to the global axes, in units half the dimensions of the model's axis-aligned bounding box.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#ExtentsOffsetWorldSpace"/>
-        public global::Roblox.Vector3? ExtentsOffsetWorldSpace
+        public global::Roblox.Vector3 ExtentsOffsetWorldSpace
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ExtentsOffsetWorldSpace");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ExtentsOffsetWorldSpace", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "ExtentsOffsetWorldSpace")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "ExtentsOffsetWorldSpace", value);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#LightInfluence"/>
         public float LightInfluence
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightInfluence", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#MaxDistance"/>
         public float MaxDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxDistance", value);
         }
 
@@ -169,48 +169,48 @@ namespace Roblox
         /// Controls the size that the BillboardGui will have on screen.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Size"/>
-        public global::Roblox.UDim2? Size
+        public global::Roblox.UDim2 Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "Size")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "Size", value);
         }
 
         /// <summary>
         /// A 2D offset in size-relative units that acts like an anchor point.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#SizeOffset"/>
-        public global::Roblox.Vector2? SizeOffset
+        public global::Roblox.Vector2 SizeOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "SizeOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "SizeOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "SizeOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "SizeOffset", value);
         }
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee in studs, relative to the Camera orientation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#StudsOffset"/>
-        public global::Roblox.Vector3? StudsOffset
+        public global::Roblox.Vector3 StudsOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "StudsOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "StudsOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "StudsOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "StudsOffset", value);
         }
 
         /// <summary>
         /// Determines how the BillboardGui is offset from its Adornee in studs, relative to the global axes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#StudsOffsetWorldSpace"/>
-        public global::Roblox.Vector3? StudsOffsetWorldSpace
+        public global::Roblox.Vector3 StudsOffsetWorldSpace
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "StudsOffsetWorldSpace");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "StudsOffsetWorldSpace", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "StudsOffsetWorldSpace")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "StudsOffsetWorldSpace", value);
         }
 
         /// <summary>
         /// <c>BillboardGui.GetScreenSpaceBounds</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetScreenSpaceBounds()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetScreenSpaceBounds");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetScreenSpaceBounds()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetScreenSpaceBounds")!;
 
     }
 }

@@ -18,50 +18,50 @@ namespace Roblox
         /// Creates a <see cref="TestCase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TestCase? FromHandle(nuint handle)
+        public static new TestCase? FromHandle(nuint handle)
             => handle == 0 ? null : new TestCase(handle);
 
         /// <summary>
         /// <c>TestCase.Assert</c>
         /// </summary>
         /// <param name="condition">A <c>bool</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Assert(bool condition, string? message, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Assert", condition, message, source, line);
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Assert(bool condition, string message, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Assert", condition, message, source, line)!;
 
         /// <summary>
         /// <c>TestCase.EndTest</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EndTest(string? message, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EndTest", message, source, line);
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EndTest(string message, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "EndTest", message, source, line)!;
 
         /// <summary>
         /// <c>TestCase.Message</c>
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Message(string? text, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Message", text, source, line);
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Message(string text, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Message", text, source, line)!;
 
         /// <summary>
         /// <c>TestCase.Require</c>
         /// </summary>
         /// <param name="condition">A <c>bool</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="source">A <c>Instance?</c> value.</param>
-        /// <param name="line">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Require(bool condition, string? message, Instance? source, int line)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Require", condition, message, source, line);
+        /// <param name="line">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Require(bool condition, string message, Instance? source = null, int? line = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Require", condition, message, source, line)!;
 
     }
 }

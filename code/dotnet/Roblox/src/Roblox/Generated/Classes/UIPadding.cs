@@ -22,47 +22,47 @@ namespace Roblox
         /// Creates a <see cref="UIPadding"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIPadding? FromHandle(nuint handle)
+        public static new UIPadding? FromHandle(nuint handle)
             => handle == 0 ? null : new UIPadding(handle);
 
         /// <summary>
         /// Padding to apply on the bottom side, relative to the parent's normal size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingBottom"/>
-        public global::Roblox.UDim? PaddingBottom
+        public global::Roblox.UDim PaddingBottom
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "PaddingBottom");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "PaddingBottom", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "PaddingBottom")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "PaddingBottom", value);
         }
 
         /// <summary>
         /// Padding to apply on the left side, relative to the parent's normal size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingLeft"/>
-        public global::Roblox.UDim? PaddingLeft
+        public global::Roblox.UDim PaddingLeft
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "PaddingLeft");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "PaddingLeft", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "PaddingLeft")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "PaddingLeft", value);
         }
 
         /// <summary>
         /// Padding to apply on the right side, relative to the parent's normal size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingRight"/>
-        public global::Roblox.UDim? PaddingRight
+        public global::Roblox.UDim PaddingRight
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "PaddingRight");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "PaddingRight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "PaddingRight")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "PaddingRight", value);
         }
 
         /// <summary>
         /// Padding to apply on the top side, relative to the parent's normal size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPadding#PaddingTop"/>
-        public global::Roblox.UDim? PaddingTop
+        public global::Roblox.UDim PaddingTop
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "PaddingTop");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "PaddingTop", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "PaddingTop")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "PaddingTop", value);
         }
 
     }

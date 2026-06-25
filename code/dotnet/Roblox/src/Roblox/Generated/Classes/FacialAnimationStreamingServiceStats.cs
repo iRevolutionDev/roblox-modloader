@@ -18,25 +18,25 @@ namespace Roblox
         /// Creates a <see cref="FacialAnimationStreamingServiceStats"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FacialAnimationStreamingServiceStats? FromHandle(nuint handle)
+        public static new FacialAnimationStreamingServiceStats? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAnimationStreamingServiceStats(handle);
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceStats.Get</c>
         /// </summary>
-        /// <param name="label">A <c>string?</c> value.</param>
+        /// <param name="label">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long Get(string? label)
-            => global::Roblox.Reflection.Invoke<long>(this, "Get", label);
+        public long Get(string label)
+            => global::Roblox.Reflection.Invoke<long>(this, "Get", label)!;
 
         /// <summary>
         /// <c>FacialAnimationStreamingServiceStats.GetWithPlayerId</c>
         /// </summary>
-        /// <param name="label">A <c>string?</c> value.</param>
+        /// <param name="label">A <c>string</c> value.</param>
         /// <param name="playerId">A <c>long</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long GetWithPlayerId(string? label, long playerId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetWithPlayerId", label, playerId);
+        public long GetWithPlayerId(string label, long playerId)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetWithPlayerId", label, playerId)!;
 
     }
 }

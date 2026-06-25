@@ -18,15 +18,15 @@ namespace Roblox
         /// Creates a <see cref="DeviceIdService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DeviceIdService? FromHandle(nuint handle)
+        public static new DeviceIdService? FromHandle(nuint handle)
             => handle == 0 ? null : new DeviceIdService(handle);
 
         /// <summary>
         /// <c>DeviceIdService.GetDeviceId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetDeviceId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetDeviceId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetDeviceId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetDeviceId")!;
 
     }
 }

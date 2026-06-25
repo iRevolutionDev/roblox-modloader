@@ -18,15 +18,15 @@ namespace Roblox
         /// Creates a <see cref="MessageBusConnection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MessageBusConnection? FromHandle(nuint handle)
+        public static new MessageBusConnection? FromHandle(nuint handle)
             => handle == 0 ? null : new MessageBusConnection(handle);
 
         /// <summary>
         /// <c>MessageBusConnection.Disconnect</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Disconnect()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Disconnect");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Disconnect()
+            => global::Roblox.Reflection.Invoke<object>(this, "Disconnect")!;
 
     }
 }

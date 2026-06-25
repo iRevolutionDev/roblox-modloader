@@ -18,135 +18,135 @@ namespace Roblox
         /// Creates a <see cref="MetaBreakpoint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MetaBreakpoint? FromHandle(nuint handle)
+        public static new MetaBreakpoint? FromHandle(nuint handle)
             => handle == 0 ? null : new MetaBreakpoint(handle);
 
-        public string? Condition
+        public string Condition
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Condition");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Condition", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Condition")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Condition", value);
         }
 
         public bool ContinueExecution
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ContinueExecution", value);
         }
 
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
         public int Id
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Id");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Id")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Id", value);
         }
 
         public bool IsLogpoint
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLogpoint");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLogpoint")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLogpoint", value);
         }
 
         public int Line
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Line");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Line")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Line", value);
         }
 
-        public string? LogMessage
+        public string LogMessage
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LogMessage");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LogMessage", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LogMessage")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LogMessage", value);
         }
 
         public bool RemoveOnHit
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RemoveOnHit");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RemoveOnHit")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RemoveOnHit", value);
         }
 
-        public string? Script
+        public string Script
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Script");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Script", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Script")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Script", value);
         }
 
         public bool Valid
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Valid");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Valid")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Valid", value);
         }
 
         /// <summary>
         /// <c>MetaBreakpoint.GetContextBreakpoints</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetContextBreakpoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetContextBreakpoints");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetContextBreakpoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetContextBreakpoints")!;
 
         /// <summary>
         /// <c>MetaBreakpoint.Remove</c>
         /// </summary>
-        /// <param name="status">A <c>object?</c> value.</param>
+        /// <param name="status">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int Remove(object? status)
-            => global::Roblox.Reflection.Invoke<int>(this, "Remove", status);
+        public int Remove(object status)
+            => global::Roblox.Reflection.Invoke<int>(this, "Remove", status)!;
 
         /// <summary>
         /// <c>MetaBreakpoint.SetChildBreakpointEnabledByScriptAndContext</c>
         /// </summary>
-        /// <param name="script">A <c>string?</c> value.</param>
+        /// <param name="script">A <c>string</c> value.</param>
         /// <param name="contextGST">A <c>int</c> value.</param>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetChildBreakpointEnabledByScriptAndContext(string? script, int contextGST, bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetChildBreakpointEnabledByScriptAndContext", script, contextGST, enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetChildBreakpointEnabledByScriptAndContext(string script, int contextGST, bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetChildBreakpointEnabledByScriptAndContext", script, contextGST, enabled)!;
 
         /// <summary>
         /// <c>MetaBreakpoint.SetContextEnabled</c>
         /// </summary>
         /// <param name="context">A <c>int</c> value.</param>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetContextEnabled(int context, bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetContextEnabled", context, enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetContextEnabled(int context, bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetContextEnabled", context, enabled)!;
 
         /// <summary>
         /// <c>MetaBreakpoint.SetContinueExecution</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetContinueExecution(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetContinueExecution", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetContinueExecution(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetContinueExecution", enabled)!;
 
         /// <summary>
         /// <c>MetaBreakpoint.SetEnabled</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEnabled", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEnabled", enabled)!;
 
         /// <summary>
         /// <c>MetaBreakpoint.SetLine</c>
         /// </summary>
         /// <param name="line">A <c>int</c> value.</param>
-        /// <param name="status">A <c>object?</c> value.</param>
+        /// <param name="status">A <c>object</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int SetLine(int line, object? status)
-            => global::Roblox.Reflection.Invoke<int>(this, "SetLine", line, status);
+        public int SetLine(int line, object status)
+            => global::Roblox.Reflection.Invoke<int>(this, "SetLine", line, status)!;
 
         /// <summary>
         /// <c>MetaBreakpoint.SetRemoveOnHit</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetRemoveOnHit(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetRemoveOnHit", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetRemoveOnHit(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetRemoveOnHit", enabled)!;
 
     }
 }

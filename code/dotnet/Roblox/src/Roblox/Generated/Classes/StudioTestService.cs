@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StudioTestService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioTestService? FromHandle(nuint handle)
+        public static new StudioTestService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioTestService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#EditModeActive"/>
         public bool EditModeActive
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EditModeActive");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EditModeActive")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EditModeActive", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// <c>StudioTestService.AddPlayers</c>
         /// </summary>
         /// <param name="numPlayers">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#AddPlayers"/>
-        public object? AddPlayers(int numPlayers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddPlayers", numPlayers);
+        public object AddPlayers(int numPlayers)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddPlayers", numPlayers)!;
 
         /// <summary>
         /// <c>StudioTestService.CanLeaveTest</c>
@@ -50,60 +50,60 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#CanLeaveTest"/>
         public bool CanLeaveTest()
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanLeaveTest");
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanLeaveTest")!;
 
         /// <summary>
         /// <c>StudioTestService.EndTest</c>
         /// </summary>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#EndTest"/>
-        public object? EndTest(object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EndTest", value);
+        public object EndTest(object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "EndTest", value)!;
 
         /// <summary>
         /// <c>StudioTestService.GetTestArgs</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#GetTestArgs"/>
-        public object? GetTestArgs()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTestArgs");
+        public object GetTestArgs()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTestArgs")!;
 
         /// <summary>
         /// <c>StudioTestService.LeaveTest</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#LeaveTest"/>
-        public object? LeaveTest()
-            => global::Roblox.Reflection.Invoke<object?>(this, "LeaveTest");
+        public object LeaveTest()
+            => global::Roblox.Reflection.Invoke<object>(this, "LeaveTest")!;
 
         /// <summary>
         /// <c>StudioTestService.ExecuteMultiplayerTestAsync</c>
         /// </summary>
         /// <param name="numPlayers">A <c>int</c> value.</param>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#ExecuteMultiplayerTestAsync"/>
-        public object? ExecuteMultiplayerTestAsync(int numPlayers, object? args)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteMultiplayerTestAsync", numPlayers, args);
+        public object ExecuteMultiplayerTestAsync(int numPlayers, object args)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecuteMultiplayerTestAsync", numPlayers, args)!;
 
         /// <summary>
         /// <c>StudioTestService.ExecutePlayModeAsync</c>
         /// </summary>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#ExecutePlayModeAsync"/>
-        public object? ExecutePlayModeAsync(object? args)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecutePlayModeAsync", args);
+        public object ExecutePlayModeAsync(object args)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecutePlayModeAsync", args)!;
 
         /// <summary>
         /// <c>StudioTestService.ExecuteRunModeAsync</c>
         /// </summary>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService#ExecuteRunModeAsync"/>
-        public object? ExecuteRunModeAsync(object? args)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteRunModeAsync", args);
+        public object ExecuteRunModeAsync(object args)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecuteRunModeAsync", args)!;
 
     }
 }

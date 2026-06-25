@@ -22,49 +22,49 @@ namespace Roblox
         /// Creates a <see cref="DataStoreService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreService? FromHandle(nuint handle)
+        public static new DataStoreService? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreService(handle);
 
         public bool AutomaticRetry
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutomaticRetry");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutomaticRetry")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutomaticRetry", value);
         }
 
         public bool LegacyNamingScheme
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LegacyNamingScheme");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LegacyNamingScheme")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LegacyNamingScheme", value);
         }
 
         /// <summary>
         /// Creates a DataStore instance with the provided name and scope.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="scope">A <c>string?</c> value.</param>
         /// <param name="options">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>DataStore?</c> value returned by the engine.</returns>
+        /// <returns>A <c>DataStore</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreService#GetDataStore"/>
-        public DataStore? GetDataStore(string? name, string? scope, Instance? options)
-            => global::Roblox.Reflection.Invoke<DataStore?>(this, "GetDataStore", name, scope, options);
+        public DataStore GetDataStore(string name, string? scope = null, Instance? options = null)
+            => global::Roblox.Reflection.Invoke<DataStore>(this, "GetDataStore", name, scope, options)!;
 
         /// <summary>
         /// Returns the default data store.
         /// </summary>
-        /// <returns>A <c>DataStore?</c> value returned by the engine.</returns>
+        /// <returns>A <c>DataStore</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreService#GetGlobalDataStore"/>
-        public DataStore? GetGlobalDataStore()
-            => global::Roblox.Reflection.Invoke<DataStore?>(this, "GetGlobalDataStore");
+        public DataStore GetGlobalDataStore()
+            => global::Roblox.Reflection.Invoke<DataStore>(this, "GetGlobalDataStore")!;
 
         /// <summary>
         /// Get an OrderedDataStore given a name and optional scope.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="scope">A <c>string?</c> value.</param>
-        /// <returns>A <c>OrderedDataStore?</c> value returned by the engine.</returns>
+        /// <returns>A <c>OrderedDataStore</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreService#GetOrderedDataStore"/>
-        public OrderedDataStore? GetOrderedDataStore(string? name, string? scope)
-            => global::Roblox.Reflection.Invoke<OrderedDataStore?>(this, "GetOrderedDataStore", name, scope);
+        public OrderedDataStore GetOrderedDataStore(string name, string? scope = null)
+            => global::Roblox.Reflection.Invoke<OrderedDataStore>(this, "GetOrderedDataStore", name, scope)!;
 
         /// <summary>
         /// Returns the number of requests that can be made by the given request type.
@@ -73,7 +73,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreService#GetRequestBudgetForRequestType"/>
         public int GetRequestBudgetForRequestType(Enum.DataStoreRequestType requestType)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetRequestBudgetForRequestType", requestType);
+            => global::Roblox.Reflection.Invoke<int>(this, "GetRequestBudgetForRequestType", requestType)!;
 
         /// <summary>
         /// Sets the rate limit for a given request type per minute.
@@ -81,21 +81,21 @@ namespace Roblox
         /// <param name="requestType">A <c>Enum.DataStoreRequestType</c> value.</param>
         /// <param name="baseLimit">A <c>int</c> value.</param>
         /// <param name="perPlayerLimit">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreService#SetRateLimitForRequestType"/>
-        public object? SetRateLimitForRequestType(Enum.DataStoreRequestType requestType, int baseLimit, int perPlayerLimit)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetRateLimitForRequestType", requestType, baseLimit, perPlayerLimit);
+        public object SetRateLimitForRequestType(Enum.DataStoreRequestType requestType, int baseLimit, int perPlayerLimit)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetRateLimitForRequestType", requestType, baseLimit, perPlayerLimit)!;
 
         /// <summary>
         /// Returns a DataStoreListingPages object for enumerating through all of the experience's data stores.
         /// </summary>
-        /// <param name="prefix">A <c>string?</c> value.</param>
+        /// <param name="prefix">A <c>string</c> value.</param>
         /// <param name="pageSize">A <c>int</c> value.</param>
-        /// <param name="cursor">A <c>string?</c> value.</param>
-        /// <returns>A <c>DataStoreListingPages?</c> value returned by the engine.</returns>
+        /// <param name="cursor">A <c>string</c> value.</param>
+        /// <returns>A <c>DataStoreListingPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreService#ListDataStoresAsync"/>
-        public DataStoreListingPages? ListDataStoresAsync(string? prefix, int pageSize, string? cursor)
-            => global::Roblox.Reflection.Invoke<DataStoreListingPages?>(this, "ListDataStoresAsync", prefix, pageSize, cursor);
+        public DataStoreListingPages ListDataStoresAsync(string prefix, int pageSize, string cursor)
+            => global::Roblox.Reflection.Invoke<DataStoreListingPages>(this, "ListDataStoresAsync", prefix, pageSize, cursor)!;
 
     }
 }

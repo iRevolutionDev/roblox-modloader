@@ -18,52 +18,52 @@ namespace Roblox
         /// Creates a <see cref="EventIngestService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static EventIngestService? FromHandle(nuint handle)
+        public static new EventIngestService? FromHandle(nuint handle)
             => handle == 0 ? null : new EventIngestService(handle);
 
         /// <summary>
         /// <c>EventIngestService.SendEventDeferred</c>
         /// </summary>
-        /// <param name="target">A <c>string?</c> value.</param>
-        /// <param name="eventContext">A <c>string?</c> value.</param>
-        /// <param name="eventName">A <c>string?</c> value.</param>
-        /// <param name="additionalArgs">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendEventDeferred(string? target, string? eventContext, string? eventName, object? additionalArgs)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendEventDeferred", target, eventContext, eventName, additionalArgs);
+        /// <param name="target">A <c>string</c> value.</param>
+        /// <param name="eventContext">A <c>string</c> value.</param>
+        /// <param name="eventName">A <c>string</c> value.</param>
+        /// <param name="additionalArgs">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendEventDeferred(string target, string eventContext, string eventName, object additionalArgs)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendEventDeferred", target, eventContext, eventName, additionalArgs)!;
 
         /// <summary>
         /// <c>EventIngestService.SendEventImmediately</c>
         /// </summary>
-        /// <param name="target">A <c>string?</c> value.</param>
-        /// <param name="eventContext">A <c>string?</c> value.</param>
-        /// <param name="eventName">A <c>string?</c> value.</param>
-        /// <param name="additionalArgs">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendEventImmediately(string? target, string? eventContext, string? eventName, object? additionalArgs)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendEventImmediately", target, eventContext, eventName, additionalArgs);
+        /// <param name="target">A <c>string</c> value.</param>
+        /// <param name="eventContext">A <c>string</c> value.</param>
+        /// <param name="eventName">A <c>string</c> value.</param>
+        /// <param name="additionalArgs">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendEventImmediately(string target, string eventContext, string eventName, object additionalArgs)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendEventImmediately", target, eventContext, eventName, additionalArgs)!;
 
         /// <summary>
         /// <c>EventIngestService.SetRBXEvent</c>
         /// </summary>
-        /// <param name="target">A <c>string?</c> value.</param>
-        /// <param name="eventContext">A <c>string?</c> value.</param>
-        /// <param name="eventName">A <c>string?</c> value.</param>
-        /// <param name="additionalArgs">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetRBXEvent(string? target, string? eventContext, string? eventName, object? additionalArgs)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetRBXEvent", target, eventContext, eventName, additionalArgs);
+        /// <param name="target">A <c>string</c> value.</param>
+        /// <param name="eventContext">A <c>string</c> value.</param>
+        /// <param name="eventName">A <c>string</c> value.</param>
+        /// <param name="additionalArgs">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetRBXEvent(string target, string eventContext, string eventName, object additionalArgs)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetRBXEvent", target, eventContext, eventName, additionalArgs)!;
 
         /// <summary>
         /// <c>EventIngestService.SetRBXEventStream</c>
         /// </summary>
-        /// <param name="target">A <c>string?</c> value.</param>
-        /// <param name="eventContext">A <c>string?</c> value.</param>
-        /// <param name="eventName">A <c>string?</c> value.</param>
-        /// <param name="additionalArgs">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetRBXEventStream(string? target, string? eventContext, string? eventName, object? additionalArgs)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetRBXEventStream", target, eventContext, eventName, additionalArgs);
+        /// <param name="target">A <c>string</c> value.</param>
+        /// <param name="eventContext">A <c>string</c> value.</param>
+        /// <param name="eventName">A <c>string</c> value.</param>
+        /// <param name="additionalArgs">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetRBXEventStream(string target, string eventContext, string eventName, object additionalArgs)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetRBXEventStream", target, eventContext, eventName, additionalArgs)!;
 
     }
 }

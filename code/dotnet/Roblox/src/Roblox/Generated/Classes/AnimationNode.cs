@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AnimationNode")]
-    public class AnimationNode : Object
+    public class AnimationNode : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AnimationNode.</param>

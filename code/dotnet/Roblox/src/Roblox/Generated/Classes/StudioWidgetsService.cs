@@ -18,64 +18,64 @@ namespace Roblox
         /// Creates a <see cref="StudioWidgetsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioWidgetsService? FromHandle(nuint handle)
+        public static new StudioWidgetsService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioWidgetsService(handle);
 
         /// <summary>
         /// <c>StudioWidgetsService.ApplyFillInBox</c>
         /// </summary>
-        /// <param name="target">A <c>StudioWidget?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyFillInBox(StudioWidget? target)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyFillInBox", target);
+        /// <param name="target">A <c>StudioWidget</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplyFillInBox(StudioWidget target)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyFillInBox", target)!;
 
         /// <summary>
         /// <c>StudioWidgetsService.ApplyHighlight</c>
         /// </summary>
-        /// <param name="target">A <c>StudioWidget?</c> value.</param>
-        /// <param name="rowName">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyHighlight(StudioWidget? target, object? rowName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyHighlight", target, rowName);
+        /// <param name="target">A <c>StudioWidget</c> value.</param>
+        /// <param name="rowName">A <c>string?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplyHighlight(StudioWidget target, string? rowName = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyHighlight", target, rowName)!;
 
         /// <summary>
         /// <c>StudioWidgetsService.ApplyShadows</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyShadows()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyShadows");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplyShadows()
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyShadows")!;
 
         /// <summary>
         /// <c>StudioWidgetsService.ApplySpotlight</c>
         /// </summary>
-        /// <param name="target">A <c>StudioWidget?</c> value.</param>
-        /// <param name="rowName">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplySpotlight(StudioWidget? target, object? rowName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplySpotlight", target, rowName);
+        /// <param name="target">A <c>StudioWidget</c> value.</param>
+        /// <param name="rowName">A <c>string?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplySpotlight(StudioWidget target, string? rowName = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplySpotlight", target, rowName)!;
 
         /// <summary>
         /// <c>StudioWidgetsService.GetWidgetFromLabel</c>
         /// </summary>
-        /// <param name="label">A <c>string?</c> value.</param>
-        /// <returns>A <c>StudioWidget?</c> value returned by the engine.</returns>
-        public StudioWidget? GetWidgetFromLabel(string? label)
-            => global::Roblox.Reflection.Invoke<StudioWidget?>(this, "GetWidgetFromLabel", label);
+        /// <param name="label">A <c>string</c> value.</param>
+        /// <returns>A <c>StudioWidget</c> value returned by the engine.</returns>
+        public StudioWidget GetWidgetFromLabel(string label)
+            => global::Roblox.Reflection.Invoke<StudioWidget>(this, "GetWidgetFromLabel", label)!;
 
         /// <summary>
         /// <c>StudioWidgetsService.GetWidgetFromPluginGui</c>
         /// </summary>
-        /// <param name="gui">A <c>PluginGui?</c> value.</param>
-        /// <returns>A <c>StudioWidget?</c> value returned by the engine.</returns>
-        public StudioWidget? GetWidgetFromPluginGui(PluginGui? gui)
-            => global::Roblox.Reflection.Invoke<StudioWidget?>(this, "GetWidgetFromPluginGui", gui);
+        /// <param name="gui">A <c>PluginGui</c> value.</param>
+        /// <returns>A <c>StudioWidget</c> value returned by the engine.</returns>
+        public StudioWidget GetWidgetFromPluginGui(PluginGui gui)
+            => global::Roblox.Reflection.Invoke<StudioWidget>(this, "GetWidgetFromPluginGui", gui)!;
 
         /// <summary>
         /// <c>StudioWidgetsService.HideSpotlight</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HideSpotlight()
-            => global::Roblox.Reflection.Invoke<object?>(this, "HideSpotlight");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HideSpotlight()
+            => global::Roblox.Reflection.Invoke<object>(this, "HideSpotlight")!;
 
     }
 }

@@ -18,13 +18,13 @@ namespace Roblox
         /// Creates a <see cref="RobloxSerializableInstance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RobloxSerializableInstance? FromHandle(nuint handle)
+        public static new RobloxSerializableInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new RobloxSerializableInstance(handle);
 
-        public byte[]? Data
+        public byte[] Data
         {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "Data");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "Data", value);
+            get => global::Roblox.Reflection.GetProperty<byte[]>(this, "Data")!;
+            set => global::Roblox.Reflection.SetProperty<byte[]>(this, "Data", value);
         }
 
     }

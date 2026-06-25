@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Studio"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Studio? FromHandle(nuint handle)
+        public static new Studio? FromHandle(nuint handle)
             => handle == 0 ? null : new Studio(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ActionOnAutoResumeSync"/>
         public Enum.ActionOnAutoResumeSync ActionOnAutoResumeSync
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActionOnAutoResumeSync>(this, "ActionOnAutoResumeSync");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActionOnAutoResumeSync>(this, "ActionOnAutoResumeSync")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActionOnAutoResumeSync>(this, "ActionOnAutoResumeSync", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ActionOnStopSync"/>
         public Enum.ActionOnStopSync ActionOnStopSync
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActionOnStopSync>(this, "ActionOnStopSync");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActionOnStopSync>(this, "ActionOnStopSync")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActionOnStopSync>(this, "ActionOnStopSync", value);
         }
 
@@ -49,20 +49,20 @@ namespace Roblox
         /// <c>Studio.Active Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Active Color"/>
-        public global::Roblox.Color3? ActiveColor
+        public global::Roblox.Color3 ActiveColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Active Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Active Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Active Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Active Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Active Hover Over Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Active Hover Over Color"/>
-        public global::Roblox.Color3? ActiveHoverOverColor
+        public global::Roblox.Color3 ActiveHoverOverColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Active Hover Over Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Active Hover Over Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Active Hover Over Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Active Hover Over Color", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Always Save Script Changes"/>
         public bool AlwaysSaveScriptChanges
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Always Save Script Changes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Always Save Script Changes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Always Save Script Changes", value);
         }
 
@@ -81,19 +81,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Animate Hover Over"/>
         public bool AnimateHoverOver
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Animate Hover Over");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Animate Hover Over")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Animate Hover Over", value);
         }
 
         public float AnimationSkeletonScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Animation Skeleton Scale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Animation Skeleton Scale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Animation Skeleton Scale", value);
         }
 
         public float AnimationSkeletonTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Animation Skeleton Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Animation Skeleton Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Animation Skeleton Transparency", value);
         }
 
@@ -103,7 +103,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#AutoResumeSyncOnPlaceOpen"/>
         public bool AutoResumeSyncOnPlaceOpen
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoResumeSyncOnPlaceOpen");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoResumeSyncOnPlaceOpen")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoResumeSyncOnPlaceOpen", value);
         }
 
@@ -113,7 +113,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#AutoUpdateEnabled"/>
         public bool AutoUpdateEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoUpdateEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoUpdateEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoUpdateEnabled", value);
         }
 
@@ -123,7 +123,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Auto Clean Empty Line"/>
         public bool AutoCleanEmptyLine
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Clean Empty Line");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Clean Empty Line")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Auto Clean Empty Line", value);
         }
 
@@ -133,7 +133,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Auto Closing Brackets"/>
         public bool AutoClosingBrackets
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Closing Brackets");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Closing Brackets")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Auto Closing Brackets", value);
         }
 
@@ -143,7 +143,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Auto Closing Quotes"/>
         public bool AutoClosingQuotes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Closing Quotes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Closing Quotes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Auto Closing Quotes", value);
         }
 
@@ -153,7 +153,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Auto Delete Closing Brackets and Quotes"/>
         public bool AutoDeleteClosingBracketsAndQuotes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Delete Closing Brackets and Quotes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto Delete Closing Brackets and Quotes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Auto Delete Closing Brackets and Quotes", value);
         }
 
@@ -163,7 +163,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Auto Indent Rule"/>
         public Enum.AutoIndentRule AutoIndentRule
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AutoIndentRule>(this, "Auto Indent Rule");
+            get => global::Roblox.Reflection.GetProperty<Enum.AutoIndentRule>(this, "Auto Indent Rule")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AutoIndentRule>(this, "Auto Indent Rule", value);
         }
 
@@ -173,13 +173,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Auto-Recovery Enabled"/>
         public bool AutoRecoveryEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto-Recovery Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Auto-Recovery Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Auto-Recovery Enabled", value);
         }
 
         public int AutoRecoveryIntervalMinutes
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Auto-Recovery Interval (Minutes)");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Auto-Recovery Interval (Minutes)")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Auto-Recovery Interval (Minutes)", value);
         }
 
@@ -189,7 +189,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#AutocompleteAcceptanceBehavior"/>
         public Enum.CompletionAcceptanceBehavior AutocompleteAcceptanceBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CompletionAcceptanceBehavior>(this, "AutocompleteAcceptanceBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.CompletionAcceptanceBehavior>(this, "AutocompleteAcceptanceBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CompletionAcceptanceBehavior>(this, "AutocompleteAcceptanceBehavior", value);
         }
 
@@ -199,7 +199,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Automatically trigger AI Code Completion"/>
         public bool AutomaticallyTriggerAICodeCompletion
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Automatically trigger AI Code Completion");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Automatically trigger AI Code Completion")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Automatically trigger AI Code Completion", value);
         }
 
@@ -207,10 +207,10 @@ namespace Roblox
         /// Specifies the background color of Roblox Studio's script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Background Color"/>
-        public global::Roblox.Color3? BackgroundColor
+        public global::Roblox.Color3 BackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Background Color", value);
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Basic Objects Display Mode"/>
         public Enum.ListDisplayMode BasicObjectsDisplayMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ListDisplayMode>(this, "Basic Objects Display Mode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ListDisplayMode>(this, "Basic Objects Display Mode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ListDisplayMode>(this, "Basic Objects Display Mode", value);
         }
 
@@ -227,30 +227,30 @@ namespace Roblox
         /// <c>Studio.Bool Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Bool Color"/>
-        public global::Roblox.Color3? BoolColor
+        public global::Roblox.Color3 BoolColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Bool Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Bool Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Bool Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Bool Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Bracket Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Bracket Color"/>
-        public global::Roblox.Color3? BracketColor
+        public global::Roblox.Color3 BracketColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Bracket Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Bracket Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Bracket Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Bracket Color", value);
         }
 
         /// <summary>
         /// Sets the color of built-in functions and keywords in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Built-in Function Color"/>
-        public global::Roblox.Color3? BuiltInFunctionColor
+        public global::Roblox.Color3 BuiltInFunctionColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Built-in Function Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Built-in Function Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Built-in Function Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Built-in Function Color", value);
         }
 
         /// <summary>
@@ -259,19 +259,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CameraAdaptiveSpeed"/>
         public bool CameraAdaptiveSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraAdaptiveSpeed");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraAdaptiveSpeed")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CameraAdaptiveSpeed", value);
         }
 
         public bool CameraAltLeftMouseToRotate
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraAltLeftMouseToRotate");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraAltLeftMouseToRotate")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CameraAltLeftMouseToRotate", value);
         }
 
         public float CameraMouseMultiplier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMouseMultiplier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraMouseMultiplier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraMouseMultiplier", value);
         }
 
@@ -281,7 +281,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CameraNavigationModel"/>
         public Enum.CameraNavigationModel CameraNavigationModel
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CameraNavigationModel>(this, "CameraNavigationModel");
+            get => global::Roblox.Reflection.GetProperty<Enum.CameraNavigationModel>(this, "CameraNavigationModel")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CameraNavigationModel>(this, "CameraNavigationModel", value);
         }
 
@@ -291,7 +291,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CameraOrbitSensitivity"/>
         public float CameraOrbitSensitivity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraOrbitSensitivity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraOrbitSensitivity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraOrbitSensitivity", value);
         }
 
@@ -301,7 +301,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CameraPanSensitivity"/>
         public float CameraPanSensitivity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraPanSensitivity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraPanSensitivity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraPanSensitivity", value);
         }
 
@@ -311,7 +311,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CameraShiftFactor"/>
         public float CameraShiftFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraShiftFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraShiftFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraShiftFactor", value);
         }
 
@@ -321,7 +321,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CameraTweenFocus"/>
         public bool CameraTweenFocus
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraTweenFocus");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraTweenFocus")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CameraTweenFocus", value);
         }
 
@@ -331,7 +331,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CameraZoomSpeed"/>
         public float CameraZoomSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraZoomSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CameraZoomSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CameraZoomSpeed", value);
         }
 
@@ -341,7 +341,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Camera Mouse Wheel Speed"/>
         public float CameraMouseWheelSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Mouse Wheel Speed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Mouse Wheel Speed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Camera Mouse Wheel Speed", value);
         }
 
@@ -351,7 +351,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Camera Pan Speed"/>
         public float CameraPanSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Pan Speed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Pan Speed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Camera Pan Speed", value);
         }
 
@@ -361,7 +361,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Camera Shift Speed"/>
         public float CameraShiftSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Shift Speed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Shift Speed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Camera Shift Speed", value);
         }
 
@@ -371,7 +371,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Camera Speed"/>
         public float CameraSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Speed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Camera Speed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Camera Speed", value);
         }
 
@@ -381,7 +381,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Camera Speed Adjust Binding"/>
         public Enum.CameraSpeedAdjustBinding CameraSpeedAdjustBinding
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CameraSpeedAdjustBinding>(this, "Camera Speed Adjust Binding");
+            get => global::Roblox.Reflection.GetProperty<Enum.CameraSpeedAdjustBinding>(this, "Camera Speed Adjust Binding")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CameraSpeedAdjustBinding>(this, "Camera Speed Adjust Binding", value);
         }
 
@@ -391,7 +391,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Camera Zoom to Mouse Position"/>
         public bool CameraZoomToMousePosition
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Camera Zoom to Mouse Position");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Camera Zoom to Mouse Position")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Camera Zoom to Mouse Position", value);
         }
 
@@ -401,7 +401,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Clear Output On Start"/>
         public bool ClearOutputOnStart
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Clear Output On Start");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Clear Output On Start")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Clear Output On Start", value);
         }
 
@@ -411,7 +411,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CommandBarEnterExec"/>
         public bool CommandBarEnterExec
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CommandBarEnterExec");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CommandBarEnterExec")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CommandBarEnterExec", value);
         }
 
@@ -419,15 +419,15 @@ namespace Roblox
         /// <c>Studio.CommandBarFont</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CommandBarFont"/>
-        public string? CommandBarFont
+        public string CommandBarFont
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CommandBarFont");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CommandBarFont", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CommandBarFont")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CommandBarFont", value);
         }
 
         public int CommandBarHistoryLen
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "CommandBarHistoryLen");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "CommandBarHistoryLen")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "CommandBarHistoryLen", value);
         }
 
@@ -437,7 +437,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#CommandBarLocalState"/>
         public bool CommandBarLocalState
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CommandBarLocalState");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CommandBarLocalState")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CommandBarLocalState", value);
         }
 
@@ -445,50 +445,50 @@ namespace Roblox
         /// Specifies the color of comments in Roblox Studio's script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Comment Color"/>
-        public global::Roblox.Color3? CommentColor
+        public global::Roblox.Color3 CommentColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Comment Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Comment Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Comment Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Comment Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Current Line Highlight Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Current Line Highlight Color"/>
-        public global::Roblox.Color3? CurrentLineHighlightColor
+        public global::Roblox.Color3 CurrentLineHighlightColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Current Line Highlight Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Current Line Highlight Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Current Line Highlight Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Current Line Highlight Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Debugger Current Line Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Debugger Current Line Color"/>
-        public global::Roblox.Color3? DebuggerCurrentLineColor
+        public global::Roblox.Color3 DebuggerCurrentLineColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Debugger Current Line Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Debugger Current Line Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Debugger Current Line Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Debugger Current Line Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Debugger Error Line Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Debugger Error Line Color"/>
-        public global::Roblox.Color3? DebuggerErrorLineColor
+        public global::Roblox.Color3 DebuggerErrorLineColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Debugger Error Line Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Debugger Error Line Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Debugger Error Line Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Debugger Error Line Color", value);
         }
 
         /// <summary>
         /// <c>Studio.DefaultInstancesDir</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DefaultInstancesDir"/>
-        public string? DefaultInstancesDir
+        public string DefaultInstancesDir
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DefaultInstancesDir");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DefaultInstancesDir", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DefaultInstancesDir")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DefaultInstancesDir", value);
         }
 
         /// <summary>
@@ -497,7 +497,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DefaultScriptSyncFileType"/>
         public Enum.DefaultScriptSyncFileType DefaultScriptSyncFileType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DefaultScriptSyncFileType>(this, "DefaultScriptSyncFileType");
+            get => global::Roblox.Reflection.GetProperty<Enum.DefaultScriptSyncFileType>(this, "DefaultScriptSyncFileType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DefaultScriptSyncFileType>(this, "DefaultScriptSyncFileType", value);
         }
 
@@ -507,7 +507,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DeprecatedObjectsShown"/>
         public bool DeprecatedObjectsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DeprecatedObjectsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DeprecatedObjectsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DeprecatedObjectsShown", value);
         }
 
@@ -515,26 +515,26 @@ namespace Roblox
         /// <c>Studio.DisplayLanguage</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DisplayLanguage"/>
-        public string? DisplayLanguage
+        public string DisplayLanguage
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DisplayLanguage");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DisplayLanguage", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DisplayLanguage")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DisplayLanguage", value);
         }
 
-        public global::Roblox.Color3? DocViewCodeBackgroundColor
+        public global::Roblox.Color3 DocViewCodeBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Doc View Code Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Doc View Code Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Doc View Code Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Doc View Code Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.DraggerActiveColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerActiveColor"/>
-        public global::Roblox.Color3? DraggerActiveColor
+        public global::Roblox.Color3 DraggerActiveColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "DraggerActiveColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "DraggerActiveColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "DraggerActiveColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "DraggerActiveColor", value);
         }
 
         /// <summary>
@@ -543,7 +543,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerLengthFactor"/>
         public float DraggerLengthFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerLengthFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerLengthFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DraggerLengthFactor", value);
         }
 
@@ -553,7 +553,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerMajorGridIncrement"/>
         public int DraggerMajorGridIncrement
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DraggerMajorGridIncrement");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "DraggerMajorGridIncrement")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DraggerMajorGridIncrement", value);
         }
 
@@ -563,7 +563,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerMaxSoftSnaps"/>
         public int DraggerMaxSoftSnaps
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DraggerMaxSoftSnaps");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "DraggerMaxSoftSnaps")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DraggerMaxSoftSnaps", value);
         }
 
@@ -571,10 +571,10 @@ namespace Roblox
         /// <c>Studio.DraggerPassiveColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerPassiveColor"/>
-        public global::Roblox.Color3? DraggerPassiveColor
+        public global::Roblox.Color3 DraggerPassiveColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "DraggerPassiveColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "DraggerPassiveColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "DraggerPassiveColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "DraggerPassiveColor", value);
         }
 
         /// <summary>
@@ -583,7 +583,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerScaleFactor"/>
         public float DraggerScaleFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerScaleFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerScaleFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DraggerScaleFactor", value);
         }
 
@@ -593,7 +593,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowAxisTicks"/>
         public bool DraggerShowAxisTicks
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowAxisTicks");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowAxisTicks")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowAxisTicks", value);
         }
 
@@ -603,7 +603,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowHoverRuler"/>
         public bool DraggerShowHoverRuler
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowHoverRuler");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowHoverRuler")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowHoverRuler", value);
         }
 
@@ -613,7 +613,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowMeasurement"/>
         public bool DraggerShowMeasurement
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowMeasurement");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowMeasurement")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowMeasurement", value);
         }
 
@@ -623,7 +623,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowNegativeAxes"/>
         public bool DraggerShowNegativeAxes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowNegativeAxes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowNegativeAxes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowNegativeAxes", value);
         }
 
@@ -633,7 +633,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowPlanes"/>
         public bool DraggerShowPlanes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowPlanes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowPlanes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowPlanes", value);
         }
 
@@ -643,7 +643,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowTargetSnap"/>
         public bool DraggerShowTargetSnap
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowTargetSnap");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowTargetSnap")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowTargetSnap", value);
         }
 
@@ -653,7 +653,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowTrackball"/>
         public bool DraggerShowTrackball
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowTrackball");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowTrackball")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowTrackball", value);
         }
 
@@ -663,7 +663,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerShowWhileDragging"/>
         public bool DraggerShowWhileDragging
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowWhileDragging");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DraggerShowWhileDragging")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DraggerShowWhileDragging", value);
         }
 
@@ -673,7 +673,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerSoftSnapMarginFactor"/>
         public float DraggerSoftSnapMarginFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerSoftSnapMarginFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerSoftSnapMarginFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DraggerSoftSnapMarginFactor", value);
         }
 
@@ -683,7 +683,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerSummonMarginFactor"/>
         public float DraggerSummonMarginFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerSummonMarginFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerSummonMarginFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DraggerSummonMarginFactor", value);
         }
 
@@ -693,7 +693,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#DraggerTiltRotateDuration"/>
         public float DraggerTiltRotateDuration
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerTiltRotateDuration");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DraggerTiltRotateDuration")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DraggerTiltRotateDuration", value);
         }
 
@@ -703,7 +703,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#EnableCodeAssist"/>
         public bool EnableCodeAssist
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableCodeAssist");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableCodeAssist")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableCodeAssist", value);
         }
 
@@ -713,7 +713,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#EnableFindOnType"/>
         public bool EnableFindOnType
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFindOnType");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFindOnType")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableFindOnType", value);
         }
 
@@ -723,13 +723,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#EnableIndentationRulers"/>
         public bool EnableIndentationRulers
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableIndentationRulers");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableIndentationRulers")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableIndentationRulers", value);
         }
 
         public bool EnableOnTypeAutocomplete
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableOnTypeAutocomplete");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableOnTypeAutocomplete")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableOnTypeAutocomplete", value);
         }
 
@@ -739,7 +739,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#EnableSelectionTooltips"/>
         public bool EnableSelectionTooltips
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSelectionTooltips");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableSelectionTooltips")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableSelectionTooltips", value);
         }
 
@@ -749,7 +749,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#EnableStudioStreaming"/>
         public bool EnableStudioStreaming
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableStudioStreaming");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableStudioStreaming")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableStudioStreaming", value);
         }
 
@@ -759,7 +759,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Autocomplete"/>
         public bool EnableAutocomplete
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Autocomplete");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Autocomplete")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Autocomplete", value);
         }
 
@@ -769,7 +769,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Autocomplete Doc View"/>
         public bool EnableAutocompleteDocView
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Autocomplete Doc View");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Autocomplete Doc View")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Autocomplete Doc View", value);
         }
 
@@ -779,7 +779,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable CoreScript Debugger"/>
         public bool EnableCoreScriptDebugger
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable CoreScript Debugger");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable CoreScript Debugger")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable CoreScript Debugger", value);
         }
 
@@ -789,7 +789,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Http Sandboxing"/>
         public bool EnableHttpSandboxing
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Http Sandboxing");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Http Sandboxing")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Http Sandboxing", value);
         }
 
@@ -799,7 +799,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Internal Beta Features"/>
         public bool EnableInternalBetaFeatures
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Internal Beta Features");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Internal Beta Features")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Internal Beta Features", value);
         }
 
@@ -809,7 +809,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Internal Features"/>
         public bool EnableInternalFeatures
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Internal Features");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Internal Features")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Internal Features", value);
         }
 
@@ -819,7 +819,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Script Analysis"/>
         public bool EnableScriptAnalysis
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Script Analysis");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Script Analysis")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Script Analysis", value);
         }
 
@@ -829,7 +829,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Scrollbar Markers"/>
         public bool EnableScrollbarMarkers
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Scrollbar Markers");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Scrollbar Markers")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Scrollbar Markers", value);
         }
 
@@ -839,7 +839,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Signature Help"/>
         public bool EnableSignatureHelp
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Signature Help");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Signature Help")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Signature Help", value);
         }
 
@@ -849,7 +849,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Signature Help Doc View"/>
         public bool EnableSignatureHelpDocView
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Signature Help Doc View");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Signature Help Doc View")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Signature Help Doc View", value);
         }
 
@@ -859,7 +859,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Temporary Tabs"/>
         public bool EnableTemporaryTabs
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Temporary Tabs");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Temporary Tabs")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Temporary Tabs", value);
         }
 
@@ -869,7 +869,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Temporary Tabs In Explorer"/>
         public bool EnableTemporaryTabsInExplorer
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Temporary Tabs In Explorer");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Temporary Tabs In Explorer")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Temporary Tabs In Explorer", value);
         }
 
@@ -879,7 +879,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Enable Type Hover"/>
         public bool EnableTypeHover
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Type Hover");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable Type Hover")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable Type Hover", value);
         }
 
@@ -887,10 +887,10 @@ namespace Roblox
         /// Specifies the color of the wavy underline shown when malformed code is detected in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Error Color"/>
-        public global::Roblox.Color3? ErrorColor
+        public global::Roblox.Color3 ErrorColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Error Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Error Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Error Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Error Color", value);
         }
 
         /// <summary>
@@ -899,7 +899,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ExternalEditorMode"/>
         public Enum.ExternalEditorMode ExternalEditorMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ExternalEditorMode>(this, "ExternalEditorMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ExternalEditorMode>(this, "ExternalEditorMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ExternalEditorMode>(this, "ExternalEditorMode", value);
         }
 
@@ -907,30 +907,30 @@ namespace Roblox
         /// <c>Studio.ExternalEditorSelection</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ExternalEditorSelection"/>
-        public string? ExternalEditorSelection
+        public string ExternalEditorSelection
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ExternalEditorSelection");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ExternalEditorSelection", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ExternalEditorSelection")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ExternalEditorSelection", value);
         }
 
         /// <summary>
         /// Sets the highlight color of matches in the script editor's Find Selection operation (Ctrl+F).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Find Selection Background Color"/>
-        public global::Roblox.Color3? FindSelectionBackgroundColor
+        public global::Roblox.Color3 FindSelectionBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Find Selection Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Find Selection Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Find Selection Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Find Selection Background Color", value);
         }
 
         /// <summary>
         /// Specifies the font used in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Font"/>
-        public string? Font
+        public string Font
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Font");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Font", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Font")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Font", value);
         }
 
         /// <summary>
@@ -939,7 +939,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Format On Paste"/>
         public bool FormatOnPaste
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Format On Paste");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Format On Paste")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Format On Paste", value);
         }
 
@@ -949,7 +949,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Format On Type"/>
         public bool FormatOnType
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Format On Type");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Format On Type")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Format On Type", value);
         }
 
@@ -957,10 +957,10 @@ namespace Roblox
         /// <c>Studio.Function Name Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Function Name Color"/>
-        public global::Roblox.Color3? FunctionNameColor
+        public global::Roblox.Color3 FunctionNameColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Function Name Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Function Name Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Function Name Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Function Name Color", value);
         }
 
         /// <summary>
@@ -969,7 +969,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Highlight Current Line"/>
         public bool HighlightCurrentLine
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Highlight Current Line");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Highlight Current Line")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Highlight Current Line", value);
         }
 
@@ -979,7 +979,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Highlight Occurances"/>
         public bool HighlightOccurances
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Highlight Occurances");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Highlight Occurances")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Highlight Occurances", value);
         }
 
@@ -987,10 +987,10 @@ namespace Roblox
         /// <c>Studio.HintColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#HintColor"/>
-        public global::Roblox.Color3? HintColor
+        public global::Roblox.Color3 HintColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "HintColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "HintColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "HintColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "HintColor", value);
         }
 
         /// <summary>
@@ -999,7 +999,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Hover Animate Speed"/>
         public Enum.HoverAnimateSpeed HoverAnimateSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HoverAnimateSpeed>(this, "Hover Animate Speed");
+            get => global::Roblox.Reflection.GetProperty<Enum.HoverAnimateSpeed>(this, "Hover Animate Speed")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HoverAnimateSpeed>(this, "Hover Animate Speed", value);
         }
 
@@ -1009,7 +1009,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Hover Box Thickness"/>
         public float HoverBoxThickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Hover Box Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Hover Box Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Hover Box Thickness", value);
         }
 
@@ -1019,7 +1019,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Hover Line Thickness"/>
         public int HoverLineThickness
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Hover Line Thickness");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Hover Line Thickness")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Hover Line Thickness", value);
         }
 
@@ -1027,20 +1027,20 @@ namespace Roblox
         /// Specifies the color that the hover selection box uses.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Hover Over Color"/>
-        public global::Roblox.Color3? HoverOverColor
+        public global::Roblox.Color3 HoverOverColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Hover Over Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Hover Over Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Hover Over Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Hover Over Color", value);
         }
 
         /// <summary>
         /// <c>Studio.IconOverrideDir</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#IconOverrideDir"/>
-        public string? IconOverrideDir
+        public string IconOverrideDir
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "IconOverrideDir");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "IconOverrideDir", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "IconOverrideDir")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "IconOverrideDir", value);
         }
 
         /// <summary>
@@ -1049,7 +1049,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Indent Using Spaces"/>
         public bool IndentUsingSpaces
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Indent Using Spaces");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Indent Using Spaces")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Indent Using Spaces", value);
         }
 
@@ -1057,30 +1057,30 @@ namespace Roblox
         /// <c>Studio.IndentationRulerColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#IndentationRulerColor"/>
-        public global::Roblox.Color3? IndentationRulerColor
+        public global::Roblox.Color3 IndentationRulerColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "IndentationRulerColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "IndentationRulerColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "IndentationRulerColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "IndentationRulerColor", value);
         }
 
         /// <summary>
         /// <c>Studio.InformationColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#InformationColor"/>
-        public global::Roblox.Color3? InformationColor
+        public global::Roblox.Color3 InformationColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "InformationColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "InformationColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "InformationColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "InformationColor", value);
         }
 
         /// <summary>
         /// Sets the text color of built-in Luau keywords.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Keyword Color"/>
-        public global::Roblox.Color3? KeywordColor
+        public global::Roblox.Color3 KeywordColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Keyword Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Keyword Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Keyword Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Keyword Color", value);
         }
 
         /// <summary>
@@ -1089,7 +1089,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LargeFileLineCountThreshold"/>
         public int LargeFileLineCountThreshold
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "LargeFileLineCountThreshold");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "LargeFileLineCountThreshold")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "LargeFileLineCountThreshold", value);
         }
 
@@ -1099,7 +1099,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LargeFileThreshold"/>
         public int LargeFileThreshold
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "LargeFileThreshold");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "LargeFileThreshold")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "LargeFileThreshold", value);
         }
 
@@ -1109,7 +1109,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Line Thickness"/>
         public float LineThickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Line Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Line Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Line Thickness", value);
         }
 
@@ -1119,7 +1119,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LoadAllBuiltinPluginsInRunModes"/>
         public bool LoadAllBuiltinPluginsInRunModes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadAllBuiltinPluginsInRunModes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadAllBuiltinPluginsInRunModes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadAllBuiltinPluginsInRunModes", value);
         }
 
@@ -1129,7 +1129,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LoadInternalPlugins"/>
         public bool LoadInternalPlugins
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadInternalPlugins");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadInternalPlugins")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadInternalPlugins", value);
         }
 
@@ -1139,7 +1139,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LoadUserPluginsInRunModes"/>
         public bool LoadUserPluginsInRunModes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadUserPluginsInRunModes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadUserPluginsInRunModes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadUserPluginsInRunModes", value);
         }
 
@@ -1147,10 +1147,10 @@ namespace Roblox
         /// <c>Studio.LocalAssetsFolder</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LocalAssetsFolder"/>
-        public string? LocalAssetsFolder
+        public string LocalAssetsFolder
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalAssetsFolder");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalAssetsFolder", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocalAssetsFolder")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocalAssetsFolder", value);
         }
 
         /// <summary>
@@ -1159,7 +1159,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LuaDebuggerEnabled"/>
         public bool LuaDebuggerEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LuaDebuggerEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LuaDebuggerEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LuaDebuggerEnabled", value);
         }
 
@@ -1169,7 +1169,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#LuaDebuggerEnabledAtStartup"/>
         public bool LuaDebuggerEnabledAtStartup
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LuaDebuggerEnabledAtStartup");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LuaDebuggerEnabledAtStartup")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LuaDebuggerEnabledAtStartup", value);
         }
 
@@ -1177,10 +1177,10 @@ namespace Roblox
         /// <c>Studio.Luau Keyword Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Luau Keyword Color"/>
-        public global::Roblox.Color3? LuauKeywordColor
+        public global::Roblox.Color3 LuauKeywordColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Luau Keyword Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Luau Keyword Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Luau Keyword Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Luau Keyword Color", value);
         }
 
         /// <summary>
@@ -1189,7 +1189,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Main Volume"/>
         public float MainVolume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Main Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Main Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Main Volume", value);
         }
 
@@ -1197,10 +1197,10 @@ namespace Roblox
         /// Sets the highlight color of double-clicked variables in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Matching Word Background Color"/>
-        public global::Roblox.Color3? MatchingWordBackgroundColor
+        public global::Roblox.Color3 MatchingWordBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Matching Word Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Matching Word Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Matching Word Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Matching Word Background Color", value);
         }
 
         /// <summary>
@@ -1209,7 +1209,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#MaxFindReplaceAllResults"/>
         public int MaxFindReplaceAllResults
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxFindReplaceAllResults");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxFindReplaceAllResults")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxFindReplaceAllResults", value);
         }
 
@@ -1219,7 +1219,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Maximum Output Lines"/>
         public int MaximumOutputLines
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Maximum Output Lines");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Maximum Output Lines")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Maximum Output Lines", value);
         }
 
@@ -1227,30 +1227,30 @@ namespace Roblox
         /// <c>Studio.Menu Item Background Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Menu Item Background Color"/>
-        public global::Roblox.Color3? MenuItemBackgroundColor
+        public global::Roblox.Color3 MenuItemBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Menu Item Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Menu Item Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Menu Item Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Menu Item Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Method Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Method Color"/>
-        public global::Roblox.Color3? MethodColor
+        public global::Roblox.Color3 MethodColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Method Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Method Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Method Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Method Color", value);
         }
 
         /// <summary>
         /// Specifies the color of numbers in Roblox Studio's script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Number Color"/>
-        public global::Roblox.Color3? NumberColor
+        public global::Roblox.Color3 NumberColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Number Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Number Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Number Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Number Color", value);
         }
 
         /// <summary>
@@ -1259,7 +1259,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Only Play Audio from Window in Focus"/>
         public bool OnlyPlayAudioFromWindowInFocus
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Only Play Audio from Window in Focus");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Only Play Audio from Window in Focus")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Only Play Audio from Window in Focus", value);
         }
 
@@ -1267,20 +1267,20 @@ namespace Roblox
         /// Sets the text color of operator characters in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Operator Color"/>
-        public global::Roblox.Color3? OperatorColor
+        public global::Roblox.Color3 OperatorColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Operator Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Operator Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Operator Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Operator Color", value);
         }
 
         /// <summary>
         /// Specifies the font used by the output.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Output Font"/>
-        public string? OutputFont
+        public string OutputFont
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Output Font");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Output Font", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Output Font")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Output Font", value);
         }
 
         /// <summary>
@@ -1289,7 +1289,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Output Layout Mode"/>
         public Enum.OutputLayoutMode OutputLayoutMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.OutputLayoutMode>(this, "Output Layout Mode");
+            get => global::Roblox.Reflection.GetProperty<Enum.OutputLayoutMode>(this, "Output Layout Mode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.OutputLayoutMode>(this, "Output Layout Mode", value);
         }
 
@@ -1299,7 +1299,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#PermissionLevelShown"/>
         public Enum.PermissionLevelShown PermissionLevelShown
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PermissionLevelShown>(this, "PermissionLevelShown");
+            get => global::Roblox.Reflection.GetProperty<Enum.PermissionLevelShown>(this, "PermissionLevelShown")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PermissionLevelShown>(this, "PermissionLevelShown", value);
         }
 
@@ -1309,7 +1309,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Physical Draggers Select Scope By Default"/>
         public bool PhysicalDraggersSelectScopeByDefault
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Physical Draggers Select Scope By Default");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Physical Draggers Select Scope By Default")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Physical Draggers Select Scope By Default", value);
         }
 
@@ -1317,10 +1317,10 @@ namespace Roblox
         /// <c>Studio.Pivot Snap To Geometry Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Pivot Snap To Geometry Color"/>
-        public global::Roblox.Color3? PivotSnapToGeometryColor
+        public global::Roblox.Color3 PivotSnapToGeometryColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Pivot Snap To Geometry Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Pivot Snap To Geometry Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Pivot Snap To Geometry Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Pivot Snap To Geometry Color", value);
         }
 
         /// <summary>
@@ -1329,7 +1329,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#PluginDebuggingEnabled"/>
         public bool PluginDebuggingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PluginDebuggingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PluginDebuggingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PluginDebuggingEnabled", value);
         }
 
@@ -1337,10 +1337,10 @@ namespace Roblox
         /// The directory where local plugins are stored.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#PluginsDir"/>
-        public string? PluginsDir
+        public string PluginsDir
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PluginsDir");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PluginsDir", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PluginsDir")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PluginsDir", value);
         }
 
         /// <summary>
@@ -1349,7 +1349,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#PreferredTextSize"/>
         public Enum.PreferredTextSize PreferredTextSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize", value);
         }
 
@@ -1357,20 +1357,20 @@ namespace Roblox
         /// <c>Studio.Primary Text Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Primary Text Color"/>
-        public global::Roblox.Color3? PrimaryTextColor
+        public global::Roblox.Color3 PrimaryTextColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Primary Text Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Primary Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Primary Text Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Primary Text Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Property Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Property Color"/>
-        public global::Roblox.Color3? PropertyColor
+        public global::Roblox.Color3 PropertyColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Property Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Property Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Property Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Property Color", value);
         }
 
         /// <summary>
@@ -1379,7 +1379,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ReloadBuiltinPluginsOnChange"/>
         public bool ReloadBuiltinPluginsOnChange
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReloadBuiltinPluginsOnChange");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReloadBuiltinPluginsOnChange")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReloadBuiltinPluginsOnChange", value);
         }
 
@@ -1389,7 +1389,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ReloadLocalPluginsOnChange"/>
         public bool ReloadLocalPluginsOnChange
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReloadLocalPluginsOnChange");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReloadLocalPluginsOnChange")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReloadLocalPluginsOnChange", value);
         }
 
@@ -1399,7 +1399,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Respect Studio shortcuts when game has focus"/>
         public bool RespectStudioShortcutsWhenGameHasFocus
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Respect Studio shortcuts when game has focus");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Respect Studio shortcuts when game has focus")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Respect Studio shortcuts when game has focus", value);
         }
 
@@ -1407,20 +1407,20 @@ namespace Roblox
         /// <c>Studio.Ruler Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Ruler Color"/>
-        public global::Roblox.Color3? RulerColor
+        public global::Roblox.Color3 RulerColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Ruler Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Ruler Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Ruler Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Ruler Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Rulers</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Rulers"/>
-        public string? Rulers
+        public string Rulers
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Rulers");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Rulers", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Rulers")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Rulers", value);
         }
 
         /// <summary>
@@ -1429,19 +1429,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#RuntimeUndoBehavior"/>
         public Enum.RuntimeUndoBehavior RuntimeUndoBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RuntimeUndoBehavior>(this, "RuntimeUndoBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.RuntimeUndoBehavior>(this, "RuntimeUndoBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RuntimeUndoBehavior>(this, "RuntimeUndoBehavior", value);
         }
 
-        public global::Roblox.Color3? ScriptEditorMenuBorderColor
+        public global::Roblox.Color3 ScriptEditorMenuBorderColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ScriptEditorMenuBorderColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ScriptEditorMenuBorderColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "ScriptEditorMenuBorderColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "ScriptEditorMenuBorderColor", value);
         }
 
         public bool ScriptEditorShouldShowPluginMethods
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptEditorShouldShowPluginMethods");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptEditorShouldShowPluginMethods")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ScriptEditorShouldShowPluginMethods", value);
         }
 
@@ -1451,7 +1451,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ScriptTimeoutLength"/>
         public int ScriptTimeoutLength
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ScriptTimeoutLength");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ScriptTimeoutLength")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ScriptTimeoutLength", value);
         }
 
@@ -1461,7 +1461,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Script Editor Color Preset"/>
         public Enum.StudioScriptEditorColorPresets ScriptEditorColorPreset
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StudioScriptEditorColorPresets>(this, "Script Editor Color Preset");
+            get => global::Roblox.Reflection.GetProperty<Enum.StudioScriptEditorColorPresets>(this, "Script Editor Color Preset")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StudioScriptEditorColorPresets>(this, "Script Editor Color Preset", value);
         }
 
@@ -1469,20 +1469,20 @@ namespace Roblox
         /// <c>Studio.Script Editor Scrollbar Background Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Script Editor Scrollbar Background Color"/>
-        public global::Roblox.Color3? ScriptEditorScrollbarBackgroundColor
+        public global::Roblox.Color3 ScriptEditorScrollbarBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Script Editor Scrollbar Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Script Editor Scrollbar Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Script Editor Scrollbar Handle Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Script Editor Scrollbar Handle Color"/>
-        public global::Roblox.Color3? ScriptEditorScrollbarHandleColor
+        public global::Roblox.Color3 ScriptEditorScrollbarHandleColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Handle Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Script Editor Scrollbar Handle Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Script Editor Scrollbar Handle Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Script Editor Scrollbar Handle Color", value);
         }
 
         /// <summary>
@@ -1491,7 +1491,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Scroll Past Last Line"/>
         public bool ScrollPastLastLine
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Scroll Past Last Line");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Scroll Past Last Line")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Scroll Past Last Line", value);
         }
 
@@ -1499,56 +1499,56 @@ namespace Roblox
         /// <c>Studio.Secondary Text Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Secondary Text Color"/>
-        public global::Roblox.Color3? SecondaryTextColor
+        public global::Roblox.Color3 SecondaryTextColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Secondary Text Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Secondary Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Secondary Text Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Secondary Text Color", value);
         }
 
         /// <summary>
         /// The color of the selection box used with object selections in the Workspace.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Select Color"/>
-        public global::Roblox.Color3? SelectColor
+        public global::Roblox.Color3 SelectColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Select Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Select Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Select Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Select Color", value);
         }
 
-        public global::Roblox.Color3? SelectHoverColor
+        public global::Roblox.Color3 SelectHoverColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Select/Hover Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Select/Hover Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Select/Hover Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Select/Hover Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Selected Menu Item Background Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selected Menu Item Background Color"/>
-        public global::Roblox.Color3? SelectedMenuItemBackgroundColor
+        public global::Roblox.Color3 SelectedMenuItemBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selected Menu Item Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selected Menu Item Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Selected Menu Item Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Selected Menu Item Background Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Selected Text Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selected Text Color"/>
-        public global::Roblox.Color3? SelectedTextColor
+        public global::Roblox.Color3 SelectedTextColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selected Text Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selected Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Selected Text Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Selected Text Color", value);
         }
 
         /// <summary>
         /// Sets the background color of selected text in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selection Background Color"/>
-        public global::Roblox.Color3? SelectionBackgroundColor
+        public global::Roblox.Color3 SelectionBackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selection Background Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selection Background Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Selection Background Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Selection Background Color", value);
         }
 
         /// <summary>
@@ -1557,7 +1557,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selection Box Thickness"/>
         public float SelectionBoxThickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Selection Box Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Selection Box Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Selection Box Thickness", value);
         }
 
@@ -1565,10 +1565,10 @@ namespace Roblox
         /// Sets the text color of selected text in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selection Color"/>
-        public global::Roblox.Color3? SelectionColor
+        public global::Roblox.Color3 SelectionColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Selection Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Selection Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Selection Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Selection Color", value);
         }
 
         /// <summary>
@@ -1577,7 +1577,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Selection Line Thickness"/>
         public int SelectionLineThickness
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Selection Line Thickness");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Selection Line Thickness")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Selection Line Thickness", value);
         }
 
@@ -1587,7 +1587,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Set Pivot of Imported Parts"/>
         public bool SetPivotOfImportedParts
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Set Pivot of Imported Parts");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Set Pivot of Imported Parts")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Set Pivot of Imported Parts", value);
         }
 
@@ -1597,37 +1597,37 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ShowCorePackagesInExplorer"/>
         public bool ShowCorePackagesInExplorer
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowCorePackagesInExplorer");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowCorePackagesInExplorer")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowCorePackagesInExplorer", value);
         }
 
         public bool ShowAnimationSkeleton
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton", value);
         }
 
         public bool ShowAnimationSkeletonAttachments
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Attachments");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Attachments")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Attachments", value);
         }
 
         public bool ShowAnimationSkeletonAxes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Axes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Axes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Axes", value);
         }
 
         public bool ShowAnimationSkeletonRotations
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Rotations");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Rotations")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Rotations", value);
         }
 
         public bool ShowAnimationSkeletonText
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Text");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Animation Skeleton Text")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Animation Skeleton Text", value);
         }
 
@@ -1637,7 +1637,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Core GUI in Explorer while Playing"/>
         public bool ShowCoreGUIInExplorerWhilePlaying
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Core GUI in Explorer while Playing");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Core GUI in Explorer while Playing")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Core GUI in Explorer while Playing", value);
         }
 
@@ -1647,7 +1647,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Diagnostics Bar"/>
         public bool ShowDiagnosticsBar
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Diagnostics Bar");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Diagnostics Bar")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Diagnostics Bar", value);
         }
 
@@ -1657,7 +1657,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show FileSyncService"/>
         public bool ShowFileSyncService
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show FileSyncService");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show FileSyncService")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show FileSyncService", value);
         }
 
@@ -1667,7 +1667,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Hidden Objects in Explorer"/>
         public bool ShowHiddenObjectsInExplorer
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Hidden Objects in Explorer");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Hidden Objects in Explorer")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Hidden Objects in Explorer", value);
         }
 
@@ -1677,7 +1677,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Hover Over"/>
         public bool ShowHoverOver
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Hover Over");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Hover Over")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Hover Over", value);
         }
 
@@ -1687,7 +1687,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Light Guides"/>
         public bool ShowLightGuides
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Light Guides");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Light Guides")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Light Guides", value);
         }
 
@@ -1697,7 +1697,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Navigation Labels"/>
         public bool ShowNavigationLabels
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Navigation Labels");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Navigation Labels")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Navigation Labels", value);
         }
 
@@ -1707,7 +1707,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Navigation Mesh"/>
         public bool ShowNavigationMesh
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Navigation Mesh");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Navigation Mesh")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Navigation Mesh", value);
         }
 
@@ -1717,7 +1717,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Pathfinding Links"/>
         public bool ShowPathfindingLinks
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Pathfinding Links");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Pathfinding Links")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Pathfinding Links", value);
         }
 
@@ -1727,7 +1727,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Plugin GUI Service in Explorer"/>
         public bool ShowPluginGUIServiceInExplorer
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Plugin GUI Service in Explorer");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Plugin GUI Service in Explorer")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Plugin GUI Service in Explorer", value);
         }
 
@@ -1737,7 +1737,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Singly Selected Attachment Parent Frame"/>
         public bool ShowSinglySelectedAttachmentParentFrame
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Singly Selected Attachment Parent Frame");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Singly Selected Attachment Parent Frame")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Singly Selected Attachment Parent Frame", value);
         }
 
@@ -1747,7 +1747,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show Whitespace"/>
         public bool ShowWhitespace
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Whitespace");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show Whitespace")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show Whitespace", value);
         }
 
@@ -1757,7 +1757,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Show plus button on hover in Explorer"/>
         public bool ShowPlusButtonOnHoverInExplorer
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show plus button on hover in Explorer");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Show plus button on hover in Explorer")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Show plus button on hover in Explorer", value);
         }
 
@@ -1767,7 +1767,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Skip Closing Brackets and Quotes"/>
         public bool SkipClosingBracketsAndQuotes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Skip Closing Brackets and Quotes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Skip Closing Brackets and Quotes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Skip Closing Brackets and Quotes", value);
         }
 
@@ -1775,16 +1775,16 @@ namespace Roblox
         /// Specifies the color of strings in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#String Color"/>
-        public global::Roblox.Color3? StringColor
+        public global::Roblox.Color3 StringColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "String Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "String Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "String Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "String Color", value);
         }
 
-        public global::Roblox.Color3? TODOColor
+        public global::Roblox.Color3 TODOColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"TODO\" Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"TODO\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "\"TODO\" Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "\"TODO\" Color", value);
         }
 
         /// <summary>
@@ -1793,7 +1793,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Tab Width"/>
         public int TabWidth
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Tab Width");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Tab Width")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Tab Width", value);
         }
 
@@ -1801,10 +1801,10 @@ namespace Roblox
         /// Specifies the color of normal text in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Text Color"/>
-        public global::Roblox.Color3? TextColor
+        public global::Roblox.Color3 TextColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Text Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Text Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Text Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Text Color", value);
         }
 
         /// <summary>
@@ -1813,7 +1813,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Text Wrapping"/>
         public bool TextWrapping
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Text Wrapping");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Text Wrapping")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Text Wrapping", value);
         }
 
@@ -1831,10 +1831,10 @@ namespace Roblox
         /// <c>Studio.TypeColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#TypeColor"/>
-        public global::Roblox.Color3? TypeColor
+        public global::Roblox.Color3 TypeColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TypeColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TypeColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TypeColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TypeColor", value);
         }
 
         /// <summary>
@@ -1843,7 +1843,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#UI Theme"/>
         public Enum.UITheme UITheme
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UITheme>(this, "UI Theme");
+            get => global::Roblox.Reflection.GetProperty<Enum.UITheme>(this, "UI Theme")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UITheme>(this, "UI Theme", value);
         }
 
@@ -1853,7 +1853,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#UseDefaultExternalEditor"/>
         public bool UseDefaultExternalEditor
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseDefaultExternalEditor");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseDefaultExternalEditor")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseDefaultExternalEditor", value);
         }
 
@@ -1863,7 +1863,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Use Bounding Box Move Handles"/>
         public bool UseBoundingBoxMoveHandles
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Use Bounding Box Move Handles");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Use Bounding Box Move Handles")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Use Bounding Box Move Handles", value);
         }
 
@@ -1871,93 +1871,93 @@ namespace Roblox
         /// <c>Studio.VAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#VAxisColor"/>
-        public global::Roblox.Color3? VAxisColor
+        public global::Roblox.Color3 VAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "VAxisColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "VAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "VAxisColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "VAxisColor", value);
         }
 
         /// <summary>
         /// Specifies the color of the wavy underline shown when the script analyzer picks up a problem that should be addressed in the script editor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Warning Color"/>
-        public global::Roblox.Color3? WarningColor
+        public global::Roblox.Color3 WarningColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Warning Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Warning Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Warning Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Warning Color", value);
         }
 
         /// <summary>
         /// <c>Studio.Whitespace Color</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Whitespace Color"/>
-        public global::Roblox.Color3? WhitespaceColor
+        public global::Roblox.Color3 WhitespaceColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Whitespace Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Whitespace Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Whitespace Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Whitespace Color", value);
         }
 
         /// <summary>
         /// <c>Studio.XAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#XAxisColor"/>
-        public global::Roblox.Color3? XAxisColor
+        public global::Roblox.Color3 XAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "XAxisColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "XAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "XAxisColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "XAxisColor", value);
         }
 
         /// <summary>
         /// <c>Studio.YAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#YAxisColor"/>
-        public global::Roblox.Color3? YAxisColor
+        public global::Roblox.Color3 YAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "YAxisColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "YAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "YAxisColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "YAxisColor", value);
         }
 
         /// <summary>
         /// <c>Studio.ZAxisColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#ZAxisColor"/>
-        public global::Roblox.Color3? ZAxisColor
+        public global::Roblox.Color3 ZAxisColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ZAxisColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ZAxisColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "ZAxisColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "ZAxisColor", value);
         }
 
-        public global::Roblox.Color3? functionColor
+        public global::Roblox.Color3 functionColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"function\" Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"function\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "\"function\" Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "\"function\" Color", value);
         }
 
-        public global::Roblox.Color3? localColor
+        public global::Roblox.Color3 localColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"local\" Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"local\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "\"local\" Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "\"local\" Color", value);
         }
 
-        public global::Roblox.Color3? nilColor
+        public global::Roblox.Color3 nilColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"nil\" Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"nil\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "\"nil\" Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "\"nil\" Color", value);
         }
 
-        public global::Roblox.Color3? selfColor
+        public global::Roblox.Color3 selfColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "\"self\" Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "\"self\" Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "\"self\" Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "\"self\" Color", value);
         }
 
         /// <summary>
         /// Returns a list of themes available in Studio.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#GetAvailableThemes"/>
-        public object? GetAvailableThemes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAvailableThemes");
+        public object GetAvailableThemes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAvailableThemes")!;
 
         /// <summary>
         /// Event called when Studio's theme changes.

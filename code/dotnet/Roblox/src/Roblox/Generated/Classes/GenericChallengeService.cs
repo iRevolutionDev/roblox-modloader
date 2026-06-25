@@ -22,59 +22,59 @@ namespace Roblox
         /// Creates a <see cref="GenericChallengeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GenericChallengeService? FromHandle(nuint handle)
+        public static new GenericChallengeService? FromHandle(nuint handle)
             => handle == 0 ? null : new GenericChallengeService(handle);
 
         /// <summary>
         /// <c>GenericChallengeService.SignalChallengeAbandoned</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalChallengeAbandoned(string? challengeID)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalChallengeAbandoned", challengeID);
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalChallengeAbandoned(string challengeID)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalChallengeAbandoned", challengeID)!;
 
         /// <summary>
         /// <c>GenericChallengeService.SignalChallengeCompleted</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        /// <param name="challengeType">A <c>string?</c> value.</param>
-        /// <param name="challengeMetadata">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalChallengeCompleted(string? challengeID, string? challengeType, string? challengeMetadata)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalChallengeCompleted", challengeID, challengeType, challengeMetadata);
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        /// <param name="challengeType">A <c>string</c> value.</param>
+        /// <param name="challengeMetadata">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalChallengeCompleted(string challengeID, string challengeType, string challengeMetadata)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalChallengeCompleted", challengeID, challengeType, challengeMetadata)!;
 
         /// <summary>
         /// <c>GenericChallengeService.SignalChallengeInvalidated</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalChallengeInvalidated(string? challengeID)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalChallengeInvalidated", challengeID);
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalChallengeInvalidated(string challengeID)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalChallengeInvalidated", challengeID)!;
 
         /// <summary>
         /// <c>GenericChallengeService.SignalChallengeLoaded</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
+        /// <param name="challengeID">A <c>string</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalChallengeLoaded(string? challengeID, bool success)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalChallengeLoaded", challengeID, success);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalChallengeLoaded(string challengeID, bool success)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalChallengeLoaded", challengeID, success)!;
 
         /// <summary>
         /// <c>GenericChallengeService.SignalChallengeRequired</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        /// <param name="challengeType">A <c>string?</c> value.</param>
-        /// <param name="challengeMetadata">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalChallengeRequired(string? challengeID, string? challengeType, string? challengeMetadata)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalChallengeRequired", challengeID, challengeType, challengeMetadata);
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        /// <param name="challengeType">A <c>string</c> value.</param>
+        /// <param name="challengeMetadata">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalChallengeRequired(string challengeID, string challengeType, string challengeMetadata)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalChallengeRequired", challengeID, challengeType, challengeMetadata)!;
 
         /// <summary>
         /// <c>GenericChallengeService.ChallengeAbandonedEvent</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        public event Action<string?>? ChallengeAbandonedEvent
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        public event Action<string>? ChallengeAbandonedEvent
         {
             add { if (value is not null) AddEventHandler("ChallengeAbandonedEvent", value); }
             remove { if (value is not null) RemoveEventHandler("ChallengeAbandonedEvent", value); }
@@ -83,10 +83,10 @@ namespace Roblox
         /// <summary>
         /// <c>GenericChallengeService.ChallengeCompletedEvent</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        /// <param name="challengeType">A <c>string?</c> value.</param>
-        /// <param name="challengeMetadata">A <c>string?</c> value.</param>
-        public event Action<string?, string?, string?>? ChallengeCompletedEvent
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        /// <param name="challengeType">A <c>string</c> value.</param>
+        /// <param name="challengeMetadata">A <c>string</c> value.</param>
+        public event Action<string, string, string>? ChallengeCompletedEvent
         {
             add { if (value is not null) AddEventHandler("ChallengeCompletedEvent", value); }
             remove { if (value is not null) RemoveEventHandler("ChallengeCompletedEvent", value); }
@@ -95,8 +95,8 @@ namespace Roblox
         /// <summary>
         /// <c>GenericChallengeService.ChallengeInvalidatedEvent</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        public event Action<string?>? ChallengeInvalidatedEvent
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        public event Action<string>? ChallengeInvalidatedEvent
         {
             add { if (value is not null) AddEventHandler("ChallengeInvalidatedEvent", value); }
             remove { if (value is not null) RemoveEventHandler("ChallengeInvalidatedEvent", value); }
@@ -105,9 +105,9 @@ namespace Roblox
         /// <summary>
         /// <c>GenericChallengeService.ChallengeLoadedEvent</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
+        /// <param name="challengeID">A <c>string</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        public event Action<string?, bool>? ChallengeLoadedEvent
+        public event Action<string, bool>? ChallengeLoadedEvent
         {
             add { if (value is not null) AddEventHandler("ChallengeLoadedEvent", value); }
             remove { if (value is not null) RemoveEventHandler("ChallengeLoadedEvent", value); }
@@ -116,10 +116,10 @@ namespace Roblox
         /// <summary>
         /// <c>GenericChallengeService.ChallengeRequiredEvent</c>
         /// </summary>
-        /// <param name="challengeID">A <c>string?</c> value.</param>
-        /// <param name="challengeType">A <c>string?</c> value.</param>
-        /// <param name="challengeMetadata">A <c>string?</c> value.</param>
-        public event Action<string?, string?, string?>? ChallengeRequiredEvent
+        /// <param name="challengeID">A <c>string</c> value.</param>
+        /// <param name="challengeType">A <c>string</c> value.</param>
+        /// <param name="challengeMetadata">A <c>string</c> value.</param>
+        public event Action<string, string, string>? ChallengeRequiredEvent
         {
             add { if (value is not null) AddEventHandler("ChallengeRequiredEvent", value); }
             remove { if (value is not null) RemoveEventHandler("ChallengeRequiredEvent", value); }

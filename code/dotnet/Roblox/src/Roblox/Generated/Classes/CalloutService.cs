@@ -18,37 +18,37 @@ namespace Roblox
         /// Creates a <see cref="CalloutService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CalloutService? FromHandle(nuint handle)
+        public static new CalloutService? FromHandle(nuint handle)
             => handle == 0 ? null : new CalloutService(handle);
 
         /// <summary>
         /// <c>CalloutService.AttachCallout</c>
         /// </summary>
-        /// <param name="definitionId">A <c>string?</c> value.</param>
-        /// <param name="locationId">A <c>string?</c> value.</param>
-        /// <param name="target">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AttachCallout(string? definitionId, string? locationId, Instance? target)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AttachCallout", definitionId, locationId, target);
+        /// <param name="definitionId">A <c>string</c> value.</param>
+        /// <param name="locationId">A <c>string</c> value.</param>
+        /// <param name="target">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AttachCallout(string definitionId, string locationId, Instance target)
+            => global::Roblox.Reflection.Invoke<object>(this, "AttachCallout", definitionId, locationId, target)!;
 
         /// <summary>
         /// <c>CalloutService.DefineCallout</c>
         /// </summary>
-        /// <param name="definitionId">A <c>string?</c> value.</param>
-        /// <param name="title">A <c>string?</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
-        /// <param name="learnMoreURL">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DefineCallout(string? definitionId, string? title, string? description, string? learnMoreURL)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DefineCallout", definitionId, title, description, learnMoreURL);
+        /// <param name="definitionId">A <c>string</c> value.</param>
+        /// <param name="title">A <c>string</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
+        /// <param name="learnMoreURL">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DefineCallout(string definitionId, string title, string description, string learnMoreURL)
+            => global::Roblox.Reflection.Invoke<object>(this, "DefineCallout", definitionId, title, description, learnMoreURL)!;
 
         /// <summary>
         /// <c>CalloutService.DetachCalloutsByDefinitionId</c>
         /// </summary>
-        /// <param name="definitionId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DetachCalloutsByDefinitionId(string? definitionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DetachCalloutsByDefinitionId", definitionId);
+        /// <param name="definitionId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DetachCalloutsByDefinitionId(string definitionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "DetachCalloutsByDefinitionId", definitionId)!;
 
     }
 }

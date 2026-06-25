@@ -79,6 +79,7 @@ public sealed class Parameter
 {
     public string Name { get; set; }
     public RobloxValueType Type { get; set; }
+    public string? Default { get; set; }
 }
 
 internal sealed class RobloxValueTypeFlexConverter : JsonConverter<RobloxValueType?>

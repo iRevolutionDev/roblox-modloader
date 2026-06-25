@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BaseCoreGuiConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BaseCoreGuiConfiguration? FromHandle(nuint handle)
+        public static new BaseCoreGuiConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseCoreGuiConfiguration(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseCoreGuiConfiguration#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 

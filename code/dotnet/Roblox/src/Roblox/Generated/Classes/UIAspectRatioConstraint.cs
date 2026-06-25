@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UIAspectRatioConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIAspectRatioConstraint? FromHandle(nuint handle)
+        public static new UIAspectRatioConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new UIAspectRatioConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIAspectRatioConstraint#AspectRatio"/>
         public float AspectRatio
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AspectRatio");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AspectRatio")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AspectRatio", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIAspectRatioConstraint#AspectType"/>
         public Enum.AspectType AspectType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AspectType>(this, "AspectType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AspectType>(this, "AspectType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AspectType>(this, "AspectType", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIAspectRatioConstraint#DominantAxis"/>
         public Enum.DominantAxis DominantAxis
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DominantAxis>(this, "DominantAxis");
+            get => global::Roblox.Reflection.GetProperty<Enum.DominantAxis>(this, "DominantAxis")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DominantAxis>(this, "DominantAxis", value);
         }
 

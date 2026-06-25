@@ -18,140 +18,140 @@ namespace Roblox
         /// Creates a <see cref="MessageBusService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MessageBusService? FromHandle(nuint handle)
+        public static new MessageBusService? FromHandle(nuint handle)
             => handle == 0 ? null : new MessageBusService(handle);
 
         /// <summary>
         /// <c>MessageBusService.Call</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="input">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Call(string? key, object? input)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Call", key, input);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="input">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Call(string key, object input)
+            => global::Roblox.Reflection.Invoke<object>(this, "Call", key, input)!;
 
         /// <summary>
         /// <c>MessageBusService.GetLast</c>
         /// </summary>
-        /// <param name="mid">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLast(string? mid)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLast", mid);
+        /// <param name="mid">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetLast(string mid)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLast", mid)!;
 
         /// <summary>
         /// <c>MessageBusService.GetMessageId</c>
         /// </summary>
-        /// <param name="domainName">A <c>string?</c> value.</param>
-        /// <param name="messageName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetMessageId(string? domainName, string? messageName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetMessageId", domainName, messageName);
+        /// <param name="domainName">A <c>string</c> value.</param>
+        /// <param name="messageName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetMessageId(string domainName, string messageName)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetMessageId", domainName, messageName)!;
 
         /// <summary>
         /// <c>MessageBusService.GetProtocolMethodRequestMessageId</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetProtocolMethodRequestMessageId(string? protocolName, string? methodName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetProtocolMethodRequestMessageId", protocolName, methodName);
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetProtocolMethodRequestMessageId(string protocolName, string methodName)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetProtocolMethodRequestMessageId", protocolName, methodName)!;
 
         /// <summary>
         /// <c>MessageBusService.GetProtocolMethodResponseMessageId</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetProtocolMethodResponseMessageId(string? protocolName, string? methodName)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetProtocolMethodResponseMessageId", protocolName, methodName);
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetProtocolMethodResponseMessageId(string protocolName, string methodName)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetProtocolMethodResponseMessageId", protocolName, methodName)!;
 
         /// <summary>
         /// <c>MessageBusService.MakeRequest</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="message">A <c>object?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <param name="customTelemetryData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? MakeRequest(string? protocolName, string? methodName, object? message, object? callback, object? customTelemetryData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MakeRequest", protocolName, methodName, message, callback, customTelemetryData);
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="message">A <c>object</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <param name="customTelemetryData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object MakeRequest(string protocolName, string methodName, object message, object callback, object customTelemetryData)
+            => global::Roblox.Reflection.Invoke<object>(this, "MakeRequest", protocolName, methodName, message, callback, customTelemetryData)!;
 
         /// <summary>
         /// <c>MessageBusService.Publish</c>
         /// </summary>
-        /// <param name="mid">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Publish(string? mid, object? @params)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Publish", mid, @params);
+        /// <param name="mid">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Publish(string mid, object @params)
+            => global::Roblox.Reflection.Invoke<object>(this, "Publish", mid, @params)!;
 
         /// <summary>
         /// <c>MessageBusService.PublishProtocolMethodRequest</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="message">A <c>object?</c> value.</param>
-        /// <param name="customTelemetryData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PublishProtocolMethodRequest(string? protocolName, string? methodName, object? message, object? customTelemetryData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishProtocolMethodRequest", protocolName, methodName, message, customTelemetryData);
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="message">A <c>object</c> value.</param>
+        /// <param name="customTelemetryData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PublishProtocolMethodRequest(string protocolName, string methodName, object message, object customTelemetryData)
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishProtocolMethodRequest", protocolName, methodName, message, customTelemetryData)!;
 
         /// <summary>
         /// <c>MessageBusService.PublishProtocolMethodResponse</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="message">A <c>object?</c> value.</param>
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="message">A <c>object</c> value.</param>
         /// <param name="responseCode">A <c>int</c> value.</param>
-        /// <param name="customTelemetryData">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PublishProtocolMethodResponse(string? protocolName, string? methodName, object? message, int responseCode, object? customTelemetryData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishProtocolMethodResponse", protocolName, methodName, message, responseCode, customTelemetryData);
+        /// <param name="customTelemetryData">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PublishProtocolMethodResponse(string protocolName, string methodName, object message, int responseCode, object customTelemetryData)
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishProtocolMethodResponse", protocolName, methodName, message, responseCode, customTelemetryData)!;
 
         /// <summary>
         /// <c>MessageBusService.SetRequestHandler</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetRequestHandler(string? protocolName, string? methodName, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetRequestHandler", protocolName, methodName, callback);
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetRequestHandler(string protocolName, string methodName, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetRequestHandler", protocolName, methodName, callback)!;
 
         /// <summary>
         /// <c>MessageBusService.Subscribe</c>
         /// </summary>
-        /// <param name="mid">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="mid">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <param name="once">A <c>bool</c> value.</param>
         /// <param name="sticky">A <c>bool</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? Subscribe(string? mid, object? callback, bool once, bool sticky)
+        public Instance? Subscribe(string mid, object callback, bool once, bool sticky)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "Subscribe", mid, callback, once, sticky);
 
         /// <summary>
         /// <c>MessageBusService.SubscribeToProtocolMethodRequest</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <param name="once">A <c>bool</c> value.</param>
         /// <param name="sticky">A <c>bool</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? SubscribeToProtocolMethodRequest(string? protocolName, string? methodName, object? callback, bool once, bool sticky)
+        public Instance? SubscribeToProtocolMethodRequest(string protocolName, string methodName, object callback, bool once, bool sticky)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "SubscribeToProtocolMethodRequest", protocolName, methodName, callback, once, sticky);
 
         /// <summary>
         /// <c>MessageBusService.SubscribeToProtocolMethodResponse</c>
         /// </summary>
-        /// <param name="protocolName">A <c>string?</c> value.</param>
-        /// <param name="methodName">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
+        /// <param name="protocolName">A <c>string</c> value.</param>
+        /// <param name="methodName">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
         /// <param name="once">A <c>bool</c> value.</param>
         /// <param name="sticky">A <c>bool</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? SubscribeToProtocolMethodResponse(string? protocolName, string? methodName, object? callback, bool once, bool sticky)
+        public Instance? SubscribeToProtocolMethodResponse(string protocolName, string methodName, object callback, bool once, bool sticky)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "SubscribeToProtocolMethodResponse", protocolName, methodName, callback, once, sticky);
 
     }

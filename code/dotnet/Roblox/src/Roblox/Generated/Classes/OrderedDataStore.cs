@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="OrderedDataStore"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static OrderedDataStore? FromHandle(nuint handle)
+        public static new OrderedDataStore? FromHandle(nuint handle)
             => handle == 0 ? null : new OrderedDataStore(handle);
 
         /// <summary>
@@ -30,12 +30,12 @@ namespace Roblox
         /// </summary>
         /// <param name="ascending">A <c>bool</c> value.</param>
         /// <param name="pagesize">A <c>int</c> value.</param>
-        /// <param name="minValue">A <c>object?</c> value.</param>
-        /// <param name="maxValue">A <c>object?</c> value.</param>
-        /// <returns>A <c>DataStorePages?</c> value returned by the engine.</returns>
+        /// <param name="minValue">A <c>object</c> value.</param>
+        /// <param name="maxValue">A <c>object</c> value.</param>
+        /// <returns>A <c>DataStorePages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OrderedDataStore#GetSortedAsync"/>
-        public DataStorePages? GetSortedAsync(bool ascending, int pagesize, object? minValue, object? maxValue)
-            => global::Roblox.Reflection.Invoke<DataStorePages?>(this, "GetSortedAsync", ascending, pagesize, minValue, maxValue);
+        public DataStorePages GetSortedAsync(bool ascending, int pagesize, object minValue, object maxValue)
+            => global::Roblox.Reflection.Invoke<DataStorePages>(this, "GetSortedAsync", ascending, pagesize, minValue, maxValue)!;
 
     }
 }

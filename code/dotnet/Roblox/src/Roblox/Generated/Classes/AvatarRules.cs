@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="AvatarRules"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarRules? FromHandle(nuint handle)
+        public static new AvatarRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarRules(handle);
 
         public Enum.GameAvatarType AvatarType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GameAvatarType>(this, "AvatarType");
+            get => global::Roblox.Reflection.GetProperty<Enum.GameAvatarType>(this, "AvatarType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GameAvatarType>(this, "AvatarType", value);
         }
 

@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="SnippetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SnippetService? FromHandle(nuint handle)
+        public static new SnippetService? FromHandle(nuint handle)
             => handle == 0 ? null : new SnippetService(handle);
 
     }

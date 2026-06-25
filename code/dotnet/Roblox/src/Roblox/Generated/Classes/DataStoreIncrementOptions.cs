@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="DataStoreIncrementOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreIncrementOptions? FromHandle(nuint handle)
+        public static new DataStoreIncrementOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreIncrementOptions(handle);
 
         /// <summary>
         /// Gets the custom metadata set with this DataStoreIncrementOptions instance.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreIncrementOptions#GetMetadata"/>
-        public object? GetMetadata()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMetadata");
+        public object GetMetadata()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMetadata")!;
 
         /// <summary>
         /// Sets custom metadata to be associated with the key.
         /// </summary>
-        /// <param name="attributes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="attributes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreIncrementOptions#SetMetadata"/>
-        public object? SetMetadata(object? attributes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetMetadata", attributes);
+        public object SetMetadata(object attributes)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetMetadata", attributes)!;
 
     }
 }

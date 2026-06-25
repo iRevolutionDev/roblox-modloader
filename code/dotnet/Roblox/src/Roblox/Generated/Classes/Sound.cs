@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Sound"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Sound? FromHandle(nuint handle)
+        public static new Sound? FromHandle(nuint handle)
             => handle == 0 ? null : new Sound(handle);
 
         /// <summary>
@@ -31,13 +31,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#AcousticSimulationEnabled"/>
         public bool AcousticSimulationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AcousticSimulationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AcousticSimulationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AcousticSimulationEnabled", value);
         }
 
         public Enum.AssetRepresentation AssetRepresentation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation");
+            get => global::Roblox.Reflection.GetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AssetRepresentation>(this, "AssetRepresentation", value);
         }
 
@@ -45,10 +45,10 @@ namespace Roblox
         /// A reference to an audio asset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#AudioContent"/>
-        public string? AudioContent
+        public string AudioContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AudioContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AudioContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AudioContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AudioContent", value);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#ChannelCount"/>
         public int ChannelCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ChannelCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ChannelCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ChannelCount", value);
         }
 
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#EmitterSize"/>
         public float EmitterSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "EmitterSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "EmitterSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "EmitterSize", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#IsLoaded"/>
         public bool IsLoaded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLoaded", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#IsPaused"/>
         public bool IsPaused
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPaused");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPaused")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPaused", value);
         }
 
@@ -97,13 +97,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#IsPlaying"/>
         public bool IsPlaying
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPlaying", value);
         }
 
         public bool IsSpatial
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSpatial");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSpatial")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsSpatial", value);
         }
 
@@ -111,10 +111,10 @@ namespace Roblox
         /// A range denoting a desired loop start and loop end within the PlaybackRegion, in seconds.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#LoopRegion"/>
-        public global::Roblox.NumberRange? LoopRegion
+        public global::Roblox.NumberRange LoopRegion
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "LoopRegion");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "LoopRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "LoopRegion")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "LoopRegion", value);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Looped"/>
         public bool Looped
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Looped", value);
         }
 
@@ -133,7 +133,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#MaxDistance"/>
         public float MaxDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxDistance", value);
         }
 
@@ -143,7 +143,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#MinDistance"/>
         public float MinDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MinDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MinDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MinDistance", value);
         }
 
@@ -153,7 +153,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Pitch"/>
         public float Pitch
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Pitch");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Pitch")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Pitch", value);
         }
 
@@ -163,7 +163,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlayOnRemove"/>
         public bool PlayOnRemove
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayOnRemove");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayOnRemove")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayOnRemove", value);
         }
 
@@ -173,7 +173,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackLoudness"/>
         public double PlaybackLoudness
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "PlaybackLoudness");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "PlaybackLoudness")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "PlaybackLoudness", value);
         }
 
@@ -181,10 +181,10 @@ namespace Roblox
         /// A range denoting a desired start and stop time within the TimeLength, in seconds.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackRegion"/>
-        public global::Roblox.NumberRange? PlaybackRegion
+        public global::Roblox.NumberRange PlaybackRegion
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "PlaybackRegion", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "PlaybackRegion")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "PlaybackRegion", value);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackRegionsEnabled"/>
         public bool PlaybackRegionsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlaybackRegionsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlaybackRegionsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PlaybackRegionsEnabled", value);
         }
 
@@ -203,7 +203,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#PlaybackSpeed"/>
         public float PlaybackSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PlaybackSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PlaybackSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PlaybackSpeed", value);
         }
 
@@ -213,13 +213,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Playing"/>
         public bool Playing
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Playing");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Playing")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Playing", value);
         }
 
         public float RollOffGain
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffGain");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffGain")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RollOffGain", value);
         }
 
@@ -229,7 +229,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#RollOffMaxDistance"/>
         public float RollOffMaxDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMaxDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMaxDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RollOffMaxDistance", value);
         }
 
@@ -239,7 +239,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#RollOffMinDistance"/>
         public float RollOffMinDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMinDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RollOffMinDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RollOffMinDistance", value);
         }
 
@@ -249,7 +249,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#RollOffMode"/>
         public Enum.RollOffMode RollOffMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RollOffMode>(this, "RollOffMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.RollOffMode>(this, "RollOffMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RollOffMode>(this, "RollOffMode", value);
         }
 
@@ -267,10 +267,10 @@ namespace Roblox
         /// Content ID of the sound file to associate with the Sound.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#SoundId"/>
-        public object? SoundId
+        public object SoundId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "SoundId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "SoundId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "SoundId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "SoundId", value);
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#TimeLength"/>
         public double TimeLength
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimeLength")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimeLength", value);
         }
 
@@ -289,13 +289,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#TimePosition"/>
         public double TimePosition
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TimePosition")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TimePosition", value);
         }
 
         public Enum.UsageContext UsageContextPermission
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UsageContext>(this, "UsageContextPermission");
+            get => global::Roblox.Reflection.GetProperty<Enum.UsageContext>(this, "UsageContextPermission")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UsageContext>(this, "UsageContextPermission", value);
         }
 
@@ -305,56 +305,56 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Volume"/>
         public float Volume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Volume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Volume", value);
         }
 
         /// <summary>
         /// <c>Sound.GetUnderlyingAudioPlayer</c>
         /// </summary>
-        /// <returns>A <c>AudioPlayer?</c> value returned by the engine.</returns>
-        public AudioPlayer? GetUnderlyingAudioPlayer()
-            => global::Roblox.Reflection.Invoke<AudioPlayer?>(this, "GetUnderlyingAudioPlayer");
+        /// <returns>A <c>AudioPlayer</c> value returned by the engine.</returns>
+        public AudioPlayer GetUnderlyingAudioPlayer()
+            => global::Roblox.Reflection.Invoke<AudioPlayer>(this, "GetUnderlyingAudioPlayer")!;
 
         /// <summary>
         /// Pauses playback of the Sound if it is playing.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Pause"/>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// Plays the Sound.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Play"/>
-        public object? Play()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play");
+        public object Play()
+            => global::Roblox.Reflection.Invoke<object>(this, "Play")!;
 
         /// <summary>
         /// Resumes the Sound.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Resume"/>
-        public object? Resume()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Resume");
+        public object Resume()
+            => global::Roblox.Reflection.Invoke<object>(this, "Resume")!;
 
         /// <summary>
         /// Stops the Sound.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Stop"/>
-        public object? Stop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop");
+        public object Stop()
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop")!;
 
         /// <summary>
         /// Fires whenever the Sound loops.
         /// </summary>
-        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="soundId">A <c>string</c> value.</param>
         /// <param name="numOfTimesLooped">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#DidLoop"/>
-        public event Action<string?, int>? DidLoop
+        public event Action<string, int>? DidLoop
         {
             add { if (value is not null) AddEventHandler("DidLoop", value); }
             remove { if (value is not null) RemoveEventHandler("DidLoop", value); }
@@ -363,9 +363,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the Sound has completed playback and stopped.
         /// </summary>
-        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="soundId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Ended"/>
-        public event Action<string?>? Ended
+        public event Action<string>? Ended
         {
             add { if (value is not null) AddEventHandler("Ended", value); }
             remove { if (value is not null) RemoveEventHandler("Ended", value); }
@@ -374,9 +374,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the Sound is loaded.
         /// </summary>
-        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="soundId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Loaded"/>
-        public event Action<string?>? Loaded
+        public event Action<string>? Loaded
         {
             add { if (value is not null) AddEventHandler("Loaded", value); }
             remove { if (value is not null) RemoveEventHandler("Loaded", value); }
@@ -385,9 +385,9 @@ namespace Roblox
         /// <summary>
         /// Fires whenever the Sound is paused using Pause().
         /// </summary>
-        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="soundId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Paused"/>
-        public event Action<string?>? Paused
+        public event Action<string>? Paused
         {
             add { if (value is not null) AddEventHandler("Paused", value); }
             remove { if (value is not null) RemoveEventHandler("Paused", value); }
@@ -396,9 +396,9 @@ namespace Roblox
         /// <summary>
         /// Fires whenever the Sound is played using Play().
         /// </summary>
-        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="soundId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Played"/>
-        public event Action<string?>? Played
+        public event Action<string>? Played
         {
             add { if (value is not null) AddEventHandler("Played", value); }
             remove { if (value is not null) RemoveEventHandler("Played", value); }
@@ -407,9 +407,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the Sound is resumed using Resume().
         /// </summary>
-        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="soundId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Resumed"/>
-        public event Action<string?>? Resumed
+        public event Action<string>? Resumed
         {
             add { if (value is not null) AddEventHandler("Resumed", value); }
             remove { if (value is not null) RemoveEventHandler("Resumed", value); }
@@ -418,9 +418,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the Sound is stopped through using Stop().
         /// </summary>
-        /// <param name="soundId">A <c>string?</c> value.</param>
+        /// <param name="soundId">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Stopped"/>
-        public event Action<string?>? Stopped
+        public event Action<string>? Stopped
         {
             add { if (value is not null) AddEventHandler("Stopped", value); }
             remove { if (value is not null) RemoveEventHandler("Stopped", value); }

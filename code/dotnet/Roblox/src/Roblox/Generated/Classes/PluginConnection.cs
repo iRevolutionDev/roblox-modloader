@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnection"/>
     [RobloxClass("PluginConnection")]
-    public class PluginConnection : Object
+    public class PluginConnection : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PluginConnection.</param>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnection#Connected"/>
         public bool Connected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Connected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Connected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Connected", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// A unique ID for the target data model.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnection#TargetId"/>
-        public string? TargetId
+        public string TargetId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TargetId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TargetId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TargetId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TargetId", value);
         }
 
         /// <summary>
@@ -51,27 +51,27 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnection#Type"/>
         public Enum.PluginConnectionTargetType Type
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PluginConnectionTargetType>(this, "Type");
+            get => global::Roblox.Reflection.GetProperty<Enum.PluginConnectionTargetType>(this, "Type")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PluginConnectionTargetType>(this, "Type", value);
         }
 
         /// <summary>
         /// Binds a callback to this PluginConnection to receive messages from SendMessage().
         /// </summary>
-        /// <param name="callbackFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="callbackFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnection#BindToMessage"/>
-        public object? BindToMessage(object? callbackFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindToMessage", callbackFunction);
+        public object BindToMessage(object callbackFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindToMessage", callbackFunction)!;
 
         /// <summary>
         /// Sends a payload to the remote data model.
         /// </summary>
-        /// <param name="message">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="message">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnection#SendMessage"/>
-        public object? SendMessage(object? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendMessage", message);
+        public object SendMessage(object message)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendMessage", message)!;
 
     }
 }

@@ -22,83 +22,83 @@ namespace Roblox
         /// Creates a <see cref="HttpRbxApiService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HttpRbxApiService? FromHandle(nuint handle)
+        public static new HttpRbxApiService? FromHandle(nuint handle)
             => handle == 0 ? null : new HttpRbxApiService(handle);
 
         /// <summary>
         /// <c>HttpRbxApiService.GetDocumentationUrl</c>
         /// </summary>
-        /// <param name="partialUrl">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetDocumentationUrl(string? partialUrl)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetDocumentationUrl", partialUrl);
+        /// <param name="partialUrl">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetDocumentationUrl(string partialUrl)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetDocumentationUrl", partialUrl)!;
 
         /// <summary>
         /// <c>HttpRbxApiService.GetAsync</c>
         /// </summary>
-        /// <param name="apiUrlPath">A <c>string?</c> value.</param>
-        /// <param name="priority">A <c>Enum.ThrottlingPriority</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetAsync(string? apiUrlPath, Enum.ThrottlingPriority priority, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetAsync", apiUrlPath, priority, httpRequestType);
+        /// <param name="apiUrlPath">A <c>string</c> value.</param>
+        /// <param name="priority">A <c>Enum.ThrottlingPriority?</c> value.</param>
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetAsync(string apiUrlPath, Enum.ThrottlingPriority? priority = null, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetAsync", apiUrlPath, priority, httpRequestType)!;
 
         /// <summary>
         /// <c>HttpRbxApiService.GetAsyncFullUrl</c>
         /// </summary>
-        /// <param name="apiUrl">A <c>string?</c> value.</param>
-        /// <param name="priority">A <c>Enum.ThrottlingPriority</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetAsyncFullUrl(string? apiUrl, Enum.ThrottlingPriority priority, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetAsyncFullUrl", apiUrl, priority, httpRequestType);
+        /// <param name="apiUrl">A <c>string</c> value.</param>
+        /// <param name="priority">A <c>Enum.ThrottlingPriority?</c> value.</param>
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetAsyncFullUrl(string apiUrl, Enum.ThrottlingPriority? priority = null, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetAsyncFullUrl", apiUrl, priority, httpRequestType)!;
 
         /// <summary>
         /// <c>HttpRbxApiService.PostAsync</c>
         /// </summary>
-        /// <param name="apiUrlPath">A <c>string?</c> value.</param>
-        /// <param name="data">A <c>string?</c> value.</param>
-        /// <param name="priority">A <c>Enum.ThrottlingPriority</c> value.</param>
-        /// <param name="content_type">A <c>Enum.HttpContentType</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PostAsync(string? apiUrlPath, string? data, Enum.ThrottlingPriority priority, Enum.HttpContentType content_type, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PostAsync", apiUrlPath, data, priority, content_type, httpRequestType);
+        /// <param name="apiUrlPath">A <c>string</c> value.</param>
+        /// <param name="data">A <c>string</c> value.</param>
+        /// <param name="priority">A <c>Enum.ThrottlingPriority?</c> value.</param>
+        /// <param name="content_type">A <c>Enum.HttpContentType?</c> value.</param>
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PostAsync(string apiUrlPath, string data, Enum.ThrottlingPriority? priority = null, Enum.HttpContentType? content_type = null, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "PostAsync", apiUrlPath, data, priority, content_type, httpRequestType)!;
 
         /// <summary>
         /// <c>HttpRbxApiService.PostAsyncFullUrl</c>
         /// </summary>
-        /// <param name="apiUrl">A <c>string?</c> value.</param>
-        /// <param name="data">A <c>string?</c> value.</param>
-        /// <param name="priority">A <c>Enum.ThrottlingPriority</c> value.</param>
-        /// <param name="content_type">A <c>Enum.HttpContentType</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PostAsyncFullUrl(string? apiUrl, string? data, Enum.ThrottlingPriority priority, Enum.HttpContentType content_type, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PostAsyncFullUrl", apiUrl, data, priority, content_type, httpRequestType);
+        /// <param name="apiUrl">A <c>string</c> value.</param>
+        /// <param name="data">A <c>string</c> value.</param>
+        /// <param name="priority">A <c>Enum.ThrottlingPriority?</c> value.</param>
+        /// <param name="content_type">A <c>Enum.HttpContentType?</c> value.</param>
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PostAsyncFullUrl(string apiUrl, string data, Enum.ThrottlingPriority? priority = null, Enum.HttpContentType? content_type = null, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "PostAsyncFullUrl", apiUrl, data, priority, content_type, httpRequestType)!;
 
         /// <summary>
         /// <c>HttpRbxApiService.RequestAsync</c>
         /// </summary>
-        /// <param name="requestOptions">A <c>object?</c> value.</param>
-        /// <param name="priority">A <c>Enum.ThrottlingPriority</c> value.</param>
-        /// <param name="content_type">A <c>Enum.HttpContentType</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? RequestAsync(object? requestOptions, Enum.ThrottlingPriority priority, Enum.HttpContentType content_type, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "RequestAsync", requestOptions, priority, content_type, httpRequestType);
+        /// <param name="requestOptions">A <c>object</c> value.</param>
+        /// <param name="priority">A <c>Enum.ThrottlingPriority?</c> value.</param>
+        /// <param name="content_type">A <c>Enum.HttpContentType?</c> value.</param>
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string RequestAsync(object requestOptions, Enum.ThrottlingPriority? priority = null, Enum.HttpContentType? content_type = null, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "RequestAsync", requestOptions, priority, content_type, httpRequestType)!;
 
         /// <summary>
         /// <c>HttpRbxApiService.RequestLimitedAsync</c>
         /// </summary>
-        /// <param name="requestOptions">A <c>object?</c> value.</param>
-        /// <param name="priority">A <c>Enum.ThrottlingPriority</c> value.</param>
-        /// <param name="content_type">A <c>Enum.HttpContentType</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="requestOptions">A <c>object</c> value.</param>
+        /// <param name="priority">A <c>Enum.ThrottlingPriority?</c> value.</param>
+        /// <param name="content_type">A <c>Enum.HttpContentType?</c> value.</param>
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HttpRbxApiService#RequestLimitedAsync"/>
-        public string? RequestLimitedAsync(object? requestOptions, Enum.ThrottlingPriority priority, Enum.HttpContentType content_type, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "RequestLimitedAsync", requestOptions, priority, content_type, httpRequestType);
+        public string RequestLimitedAsync(object requestOptions, Enum.ThrottlingPriority? priority = null, Enum.HttpContentType? content_type = null, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "RequestLimitedAsync", requestOptions, priority, content_type, httpRequestType)!;
 
     }
 }

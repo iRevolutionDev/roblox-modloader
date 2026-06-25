@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Clouds"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Clouds? FromHandle(nuint handle)
+        public static new Clouds? FromHandle(nuint handle)
             => handle == 0 ? null : new Clouds(handle);
 
         /// <summary>
         /// Controls the material color of cloud particles.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Cover"/>
         public float Cover
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Cover");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Cover")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Cover", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Density"/>
         public float Density
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Density");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Density")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Density", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Clouds#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 

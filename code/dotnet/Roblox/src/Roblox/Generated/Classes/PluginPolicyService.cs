@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="PluginPolicyService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginPolicyService? FromHandle(nuint handle)
+        public static new PluginPolicyService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginPolicyService(handle);
 
         /// <summary>
         /// <c>PluginPolicyService.GetPluginPolicy</c>
         /// </summary>
-        /// <param name="pluginName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPluginPolicy(string? pluginName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPluginPolicy", pluginName);
+        /// <param name="pluginName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPluginPolicy(string pluginName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPluginPolicy", pluginName)!;
 
     }
 }

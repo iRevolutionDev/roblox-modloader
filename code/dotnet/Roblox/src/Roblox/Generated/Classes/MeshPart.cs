@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="MeshPart"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MeshPart? FromHandle(nuint handle)
+        public static new MeshPart? FromHandle(nuint handle)
             => handle == 0 ? null : new MeshPart(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#DoubleSided"/>
         public bool DoubleSided
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DoubleSided");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DoubleSided")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DoubleSided", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#HasJointOffset"/>
         public bool HasJointOffset
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasJointOffset");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasJointOffset")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasJointOffset", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#HasSkinnedMesh"/>
         public bool HasSkinnedMesh
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSkinnedMesh");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSkinnedMesh")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasSkinnedMesh", value);
         }
 
@@ -59,30 +59,30 @@ namespace Roblox
         /// Deprecated:
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#JointOffset"/>
-        public global::Roblox.Vector3? JointOffset
+        public global::Roblox.Vector3 JointOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "JointOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "JointOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "JointOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "JointOffset", value);
         }
 
         /// <summary>
         /// The mesh that is displayed on the MeshPart. Supports asset URIs and EditableMesh objects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#MeshContent"/>
-        public string? MeshContent
+        public string MeshContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MeshContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MeshContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MeshContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MeshContent", value);
         }
 
         /// <summary>
         /// The asset URIs of the mesh that is displayed on the MeshPart. Reads and writes to MeshContent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#MeshId"/>
-        public object? MeshId
+        public object MeshId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MeshId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MeshId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "MeshId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "MeshId", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#RenderFidelity"/>
         public Enum.RenderFidelity RenderFidelity
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RenderFidelity>(this, "RenderFidelity");
+            get => global::Roblox.Reflection.GetProperty<Enum.RenderFidelity>(this, "RenderFidelity")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RenderFidelity>(this, "RenderFidelity", value);
         }
 
@@ -99,30 +99,30 @@ namespace Roblox
         /// The texture applied to the MeshPart. Supports asset URIs and EditableImage objects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#TextureContent"/>
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
         /// <summary>
         /// The texture applied to the MeshPart. Reads and writes to TextureContent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#TextureID"/>
-        public object? TextureID
+        public object TextureID
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TextureID");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TextureID", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "TextureID")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "TextureID", value);
         }
 
         /// <summary>
         /// Overwrites the MeshContent, TextureContent, and collision geometry properties of this MeshPart from the given source meshPart.
         /// </summary>
-        /// <param name="meshPart">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="meshPart">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#ApplyMesh"/>
-        public object? ApplyMesh(Instance? meshPart)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyMesh", meshPart);
+        public object ApplyMesh(Instance meshPart)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyMesh", meshPart)!;
 
     }
 }

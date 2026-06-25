@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="StudioObjectBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioObjectBase? FromHandle(nuint handle)
+        public static new StudioObjectBase? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioObjectBase(handle);
 
     }

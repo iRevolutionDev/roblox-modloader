@@ -22,97 +22,97 @@ namespace Roblox
         /// Creates a <see cref="Annotation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Annotation? FromHandle(nuint handle)
+        public static new Annotation? FromHandle(nuint handle)
             => handle == 0 ? null : new Annotation(handle);
 
-        public global::Roblox.Color3? AuthorColor3
+        public global::Roblox.Color3 AuthorColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "AuthorColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "AuthorColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "AuthorColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "AuthorColor3", value);
         }
 
         public long AuthorId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "AuthorId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "AuthorId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "AuthorId", value);
         }
 
-        public string? ChannelId
+        public string ChannelId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ChannelId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ChannelId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ChannelId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ChannelId", value);
         }
 
-        public string? Contents
+        public string Contents
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Contents");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Contents", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Contents")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Contents", value);
         }
 
         public long CreationTimeUnix
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CreationTimeUnix");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CreationTimeUnix")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreationTimeUnix", value);
         }
 
         public long LastModifiedTimeUnix
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "LastModifiedTimeUnix");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "LastModifiedTimeUnix")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "LastModifiedTimeUnix", value);
         }
 
         public bool LoadingReplies
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadingReplies");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadingReplies")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadingReplies", value);
         }
 
         public long ReplyCount
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "ReplyCount");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "ReplyCount")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "ReplyCount", value);
         }
 
         public bool Resolved
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Resolved");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Resolved")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Resolved", value);
         }
 
-        public string? TaggedUsers
+        public string TaggedUsers
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TaggedUsers");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TaggedUsers", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TaggedUsers")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TaggedUsers", value);
         }
 
         /// <summary>
         /// <c>Annotation.GetRequests</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRequests()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRequests");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRequests()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRequests")!;
 
         /// <summary>
         /// <c>Annotation.GetStringUniqueId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetStringUniqueId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetStringUniqueId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetStringUniqueId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetStringUniqueId")!;
 
         /// <summary>
         /// <c>Annotation.IsThreadParent</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsThreadParent()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsThreadParent");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsThreadParent")!;
 
         /// <summary>
         /// <c>Annotation.RequestCompleted</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="requestId">A <c>string</c> value.</param>
         /// <param name="requestType">A <c>Enum.AnnotationRequestType</c> value.</param>
         /// <param name="result">A <c>Enum.AnnotationRequestStatus</c> value.</param>
-        public event Action<string?, Enum.AnnotationRequestType, Enum.AnnotationRequestStatus>? RequestCompleted
+        public event Action<string, Enum.AnnotationRequestType, Enum.AnnotationRequestStatus>? RequestCompleted
         {
             add { if (value is not null) AddEventHandler("RequestCompleted", value); }
             remove { if (value is not null) RemoveEventHandler("RequestCompleted", value); }
@@ -121,9 +121,9 @@ namespace Roblox
         /// <summary>
         /// <c>Annotation.RequestInitiated</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
+        /// <param name="requestId">A <c>string</c> value.</param>
         /// <param name="requestType">A <c>Enum.AnnotationRequestType</c> value.</param>
-        public event Action<string?, Enum.AnnotationRequestType>? RequestInitiated
+        public event Action<string, Enum.AnnotationRequestType>? RequestInitiated
         {
             add { if (value is not null) AddEventHandler("RequestInitiated", value); }
             remove { if (value is not null) RemoveEventHandler("RequestInitiated", value); }

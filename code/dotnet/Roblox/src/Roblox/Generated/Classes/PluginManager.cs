@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PluginManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginManager? FromHandle(nuint handle)
+        public static new PluginManager? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginManager(handle);
 
         /// <summary>
@@ -36,20 +36,20 @@ namespace Roblox
         /// <summary>
         /// Exports the place to an .obj file that is saved to the path chosen by the user in a file save dialogue.
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginManager#ExportPlace"/>
-        public object? ExportPlace(string? filePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExportPlace", filePath);
+        public object ExportPlace(string filePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExportPlace", filePath)!;
 
         /// <summary>
         /// Exports the current Selection to an .obj file that is saved to the path chosen by the user in a file save dialogue.
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginManager#ExportSelection"/>
-        public object? ExportSelection(string? filePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExportSelection", filePath);
+        public object ExportSelection(string filePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExportSelection", filePath)!;
 
     }
 }

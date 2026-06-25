@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="CoreScriptSyncService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CoreScriptSyncService? FromHandle(nuint handle)
+        public static new CoreScriptSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new CoreScriptSyncService(handle);
 
         /// <summary>
         /// <c>CoreScriptSyncService.GetScriptFilePath</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetScriptFilePath(Instance? script)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetScriptFilePath", script);
+        /// <param name="script">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetScriptFilePath(Instance script)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetScriptFilePath", script)!;
 
     }
 }

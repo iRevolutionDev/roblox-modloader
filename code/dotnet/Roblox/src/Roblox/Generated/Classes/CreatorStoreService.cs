@@ -22,34 +22,34 @@ namespace Roblox
         /// Creates a <see cref="CreatorStoreService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CreatorStoreService? FromHandle(nuint handle)
+        public static new CreatorStoreService? FromHandle(nuint handle)
             => handle == 0 ? null : new CreatorStoreService(handle);
 
         /// <summary>
         /// <c>CreatorStoreService.GetAssetInfoAsync</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAssetInfoAsync(long assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAssetInfoAsync", assetId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAssetInfoAsync(long assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAssetInfoAsync", assetId)!;
 
         /// <summary>
         /// <c>CreatorStoreService.GetCreatorStoreProductInfoAsync</c>
         /// </summary>
         /// <param name="productTargetId">A <c>long</c> value.</param>
-        /// <param name="assetType">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCreatorStoreProductInfoAsync(long productTargetId, string? assetType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCreatorStoreProductInfoAsync", productTargetId, assetType);
+        /// <param name="assetType">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetCreatorStoreProductInfoAsync(long productTargetId, string assetType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCreatorStoreProductInfoAsync", productTargetId, assetType)!;
 
         /// <summary>
         /// <c>CreatorStoreService.PerformCreatorStorePurchase</c>
         /// </summary>
         /// <param name="productTargetId">A <c>long</c> value.</param>
-        /// <param name="assetType">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PerformCreatorStorePurchase(long productTargetId, string? assetType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PerformCreatorStorePurchase", productTargetId, assetType);
+        /// <param name="assetType">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PerformCreatorStorePurchase(long productTargetId, string assetType)
+            => global::Roblox.Reflection.Invoke<object>(this, "PerformCreatorStorePurchase", productTargetId, assetType)!;
 
     }
 }

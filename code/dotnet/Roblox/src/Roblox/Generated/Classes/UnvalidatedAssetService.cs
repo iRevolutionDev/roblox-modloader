@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="UnvalidatedAssetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UnvalidatedAssetService? FromHandle(nuint handle)
+        public static new UnvalidatedAssetService? FromHandle(nuint handle)
             => handle == 0 ? null : new UnvalidatedAssetService(handle);
 
         /// <summary>
@@ -26,23 +26,23 @@ namespace Roblox
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <param name="lookAt">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="camPos">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="usage">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AppendTempAssetId(long userId, long id, global::Roblox.Vector3? lookAt, global::Roblox.Vector3? camPos, string? usage)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AppendTempAssetId", userId, id, lookAt, camPos, usage);
+        /// <param name="lookAt">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="camPos">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="usage">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AppendTempAssetId(long userId, long id, global::Roblox.Vector3 lookAt, global::Roblox.Vector3 camPos, string usage)
+            => global::Roblox.Reflection.Invoke<object>(this, "AppendTempAssetId", userId, id, lookAt, camPos, usage)!;
 
         /// <summary>
         /// <c>UnvalidatedAssetService.AppendVantagePoint</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="id">A <c>long</c> value.</param>
-        /// <param name="lookAt">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="camPos">A <c>global::Roblox.Vector3?</c> value.</param>
+        /// <param name="lookAt">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="camPos">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool AppendVantagePoint(long userId, long id, global::Roblox.Vector3? lookAt, global::Roblox.Vector3? camPos)
-            => global::Roblox.Reflection.Invoke<bool>(this, "AppendVantagePoint", userId, id, lookAt, camPos);
+        public bool AppendVantagePoint(long userId, long id, global::Roblox.Vector3 lookAt, global::Roblox.Vector3 camPos)
+            => global::Roblox.Reflection.Invoke<bool>(this, "AppendVantagePoint", userId, id, lookAt, camPos)!;
 
         /// <summary>
         /// <c>UnvalidatedAssetService.UpgradeTempAssetId</c>
@@ -52,7 +52,7 @@ namespace Roblox
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool UpgradeTempAssetId(long userId, long tempId, long assetId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "UpgradeTempAssetId", userId, tempId, assetId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "UpgradeTempAssetId", userId, tempId, assetId)!;
 
     }
 }

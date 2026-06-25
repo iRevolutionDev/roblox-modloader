@@ -18,23 +18,23 @@ namespace Roblox
         /// Creates a <see cref="TextureGenerationUnwrappingRequest"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextureGenerationUnwrappingRequest? FromHandle(nuint handle)
+        public static new TextureGenerationUnwrappingRequest? FromHandle(nuint handle)
             => handle == 0 ? null : new TextureGenerationUnwrappingRequest(handle);
 
         /// <summary>
         /// <c>TextureGenerationUnwrappingRequest.ApplyToDataModel</c>
         /// </summary>
-        /// <param name="partGroup">A <c>TextureGenerationPartGroup?</c> value.</param>
-        /// <returns>A <c>TextureGenerationPartGroup?</c> value returned by the engine.</returns>
-        public TextureGenerationPartGroup? ApplyToDataModel(TextureGenerationPartGroup? partGroup)
-            => global::Roblox.Reflection.Invoke<TextureGenerationPartGroup?>(this, "ApplyToDataModel", partGroup);
+        /// <param name="partGroup">A <c>TextureGenerationPartGroup</c> value.</param>
+        /// <returns>A <c>TextureGenerationPartGroup</c> value returned by the engine.</returns>
+        public TextureGenerationPartGroup ApplyToDataModel(TextureGenerationPartGroup partGroup)
+            => global::Roblox.Reflection.Invoke<TextureGenerationPartGroup>(this, "ApplyToDataModel", partGroup)!;
 
         /// <summary>
         /// <c>TextureGenerationUnwrappingRequest.GetPartGroup</c>
         /// </summary>
-        /// <returns>A <c>TextureGenerationPartGroup?</c> value returned by the engine.</returns>
-        public TextureGenerationPartGroup? GetPartGroup()
-            => global::Roblox.Reflection.Invoke<TextureGenerationPartGroup?>(this, "GetPartGroup");
+        /// <returns>A <c>TextureGenerationPartGroup</c> value returned by the engine.</returns>
+        public TextureGenerationPartGroup GetPartGroup()
+            => global::Roblox.Reflection.Invoke<TextureGenerationPartGroup>(this, "GetPartGroup")!;
 
     }
 }

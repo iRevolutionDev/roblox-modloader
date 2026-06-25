@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="ArcHandles"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ArcHandles? FromHandle(nuint handle)
+        public static new ArcHandles? FromHandle(nuint handle)
             => handle == 0 ? null : new ArcHandles(handle);
 
         /// <summary>
         /// Sets the current Axes ArcHandles will show.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ArcHandles#Axes"/>
-        public global::Roblox.Axes? Axes
+        public global::Roblox.Axes Axes
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Axes?>(this, "Axes");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Axes?>(this, "Axes", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Axes>(this, "Axes")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Axes>(this, "Axes", value);
         }
 
         /// <summary>

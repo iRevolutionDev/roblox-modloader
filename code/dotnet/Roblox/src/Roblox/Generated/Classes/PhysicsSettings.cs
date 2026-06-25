@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PhysicsSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PhysicsSettings? FromHandle(nuint handle)
+        public static new PhysicsSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new PhysicsSettings(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AllowSleep"/>
         public bool AllowSleep
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowSleep");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowSleep")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowSleep", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreAnchorsShown"/>
         public bool AreAnchorsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAnchorsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAnchorsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreAnchorsShown", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreAssembliesShown"/>
         public bool AreAssembliesShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAssembliesShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAssembliesShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreAssembliesShown", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreAssemblyCentersOfMassShown"/>
         public bool AreAssemblyCentersOfMassShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAssemblyCentersOfMassShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAssemblyCentersOfMassShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreAssemblyCentersOfMassShown", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreAwakePartsHighlighted"/>
         public bool AreAwakePartsHighlighted
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAwakePartsHighlighted");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreAwakePartsHighlighted")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreAwakePartsHighlighted", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreBodyTypesShown"/>
         public bool AreBodyTypesShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreBodyTypesShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreBodyTypesShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreBodyTypesShown", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreCollisionCostsShown"/>
         public bool AreCollisionCostsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreCollisionCostsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreCollisionCostsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreCollisionCostsShown", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreConstraintForcesShownForSelectedOrHoveredInstances"/>
         public bool AreConstraintForcesShownForSelectedOrHoveredInstances
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreConstraintForcesShownForSelectedOrHoveredInstances");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreConstraintForcesShownForSelectedOrHoveredInstances")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreConstraintForcesShownForSelectedOrHoveredInstances", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreConstraintTorquesShownForSelectedOrHoveredInstances"/>
         public bool AreConstraintTorquesShownForSelectedOrHoveredInstances
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreConstraintTorquesShownForSelectedOrHoveredInstances");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreConstraintTorquesShownForSelectedOrHoveredInstances")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreConstraintTorquesShownForSelectedOrHoveredInstances", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreContactForcesShownForSelectedOrHoveredAssemblies"/>
         public bool AreContactForcesShownForSelectedOrHoveredAssemblies
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreContactForcesShownForSelectedOrHoveredAssemblies");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreContactForcesShownForSelectedOrHoveredAssemblies")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreContactForcesShownForSelectedOrHoveredAssemblies", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreContactIslandsShown"/>
         public bool AreContactIslandsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreContactIslandsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreContactIslandsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreContactIslandsShown", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreContactPointsShown"/>
         public bool AreContactPointsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreContactPointsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreContactPointsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreContactPointsShown", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreGravityForcesShownForSelectedOrHoveredAssemblies"/>
         public bool AreGravityForcesShownForSelectedOrHoveredAssemblies
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreGravityForcesShownForSelectedOrHoveredAssemblies");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreGravityForcesShownForSelectedOrHoveredAssemblies")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreGravityForcesShownForSelectedOrHoveredAssemblies", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreJointCoordinatesShown"/>
         public bool AreJointCoordinatesShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreJointCoordinatesShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreJointCoordinatesShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreJointCoordinatesShown", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreMagnitudesShownForDrawnForcesAndTorques"/>
         public bool AreMagnitudesShownForDrawnForcesAndTorques
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreMagnitudesShownForDrawnForcesAndTorques");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreMagnitudesShownForDrawnForcesAndTorques")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreMagnitudesShownForDrawnForcesAndTorques", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreMechanismsShown"/>
         public bool AreMechanismsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreMechanismsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreMechanismsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreMechanismsShown", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreModelCoordsShown"/>
         public bool AreModelCoordsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreModelCoordsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreModelCoordsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreModelCoordsShown", value);
         }
 
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreNonAnchorsShown"/>
         public bool AreNonAnchorsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreNonAnchorsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreNonAnchorsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreNonAnchorsShown", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreOwnersShown"/>
         public bool AreOwnersShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreOwnersShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreOwnersShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreOwnersShown", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ArePartCoordsShown"/>
         public bool ArePartCoordsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ArePartCoordsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ArePartCoordsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ArePartCoordsShown", value);
         }
 
@@ -231,7 +231,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreRegionsShown"/>
         public bool AreRegionsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreRegionsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreRegionsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreRegionsShown", value);
         }
 
@@ -241,7 +241,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreSolverIslandsShown"/>
         public bool AreSolverIslandsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreSolverIslandsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreSolverIslandsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreSolverIslandsShown", value);
         }
 
@@ -251,7 +251,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreTerrainReplicationRegionsShown"/>
         public bool AreTerrainReplicationRegionsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreTerrainReplicationRegionsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreTerrainReplicationRegionsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreTerrainReplicationRegionsShown", value);
         }
 
@@ -261,7 +261,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreTimestepsShown"/>
         public bool AreTimestepsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreTimestepsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreTimestepsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreTimestepsShown", value);
         }
 
@@ -271,7 +271,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreUnalignedPartsShown"/>
         public bool AreUnalignedPartsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreUnalignedPartsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreUnalignedPartsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreUnalignedPartsShown", value);
         }
 
@@ -281,7 +281,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#AreWorldCoordsShown"/>
         public bool AreWorldCoordsShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreWorldCoordsShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AreWorldCoordsShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AreWorldCoordsShown", value);
         }
 
@@ -291,7 +291,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#DisableCSGv2"/>
         public bool DisableCSGv2
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DisableCSGv2");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DisableCSGv2")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DisableCSGv2", value);
         }
 
@@ -301,7 +301,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#DisableCSGv3ForPlugins"/>
         public bool DisableCSGv3ForPlugins
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DisableCSGv3ForPlugins");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DisableCSGv3ForPlugins")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DisableCSGv3ForPlugins", value);
         }
 
@@ -311,7 +311,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#DrawConstraintsNetForce"/>
         public bool DrawConstraintsNetForce
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawConstraintsNetForce");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawConstraintsNetForce")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DrawConstraintsNetForce", value);
         }
 
@@ -321,7 +321,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#DrawContactsNetForce"/>
         public bool DrawContactsNetForce
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawContactsNetForce");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawContactsNetForce")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DrawContactsNetForce", value);
         }
 
@@ -331,7 +331,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#DrawTotalNetForce"/>
         public bool DrawTotalNetForce
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawTotalNetForce");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawTotalNetForce")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DrawTotalNetForce", value);
         }
 
@@ -341,7 +341,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#EnableForceVisualizationSmoothing"/>
         public bool EnableForceVisualizationSmoothing
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableForceVisualizationSmoothing");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableForceVisualizationSmoothing")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableForceVisualizationSmoothing", value);
         }
 
@@ -351,7 +351,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#FluidForceDrawScale"/>
         public float FluidForceDrawScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FluidForceDrawScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FluidForceDrawScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FluidForceDrawScale", value);
         }
 
@@ -361,7 +361,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ForceCSGv2"/>
         public bool ForceCSGv2
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForceCSGv2");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForceCSGv2")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ForceCSGv2", value);
         }
 
@@ -371,7 +371,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ForceDrawScale"/>
         public float ForceDrawScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ForceDrawScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ForceDrawScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ForceDrawScale", value);
         }
 
@@ -381,7 +381,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ForceVisualizationSmoothingSteps"/>
         public int ForceVisualizationSmoothingSteps
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ForceVisualizationSmoothingSteps");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ForceVisualizationSmoothingSteps")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ForceVisualizationSmoothingSteps", value);
         }
 
@@ -391,7 +391,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#IsInterpolationThrottleShown"/>
         public bool IsInterpolationThrottleShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInterpolationThrottleShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInterpolationThrottleShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsInterpolationThrottleShown", value);
         }
 
@@ -401,7 +401,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#IsReceiveAgeShown"/>
         public bool IsReceiveAgeShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReceiveAgeShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsReceiveAgeShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsReceiveAgeShown", value);
         }
 
@@ -411,7 +411,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#IsTreeShown"/>
         public bool IsTreeShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsTreeShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsTreeShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsTreeShown", value);
         }
 
@@ -421,7 +421,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#PhysicsEnvironmentalThrottle"/>
         public Enum.EnviromentalPhysicsThrottle PhysicsEnvironmentalThrottle
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.EnviromentalPhysicsThrottle>(this, "PhysicsEnvironmentalThrottle");
+            get => global::Roblox.Reflection.GetProperty<Enum.EnviromentalPhysicsThrottle>(this, "PhysicsEnvironmentalThrottle")!;
             set => global::Roblox.Reflection.SetProperty<Enum.EnviromentalPhysicsThrottle>(this, "PhysicsEnvironmentalThrottle", value);
         }
 
@@ -431,7 +431,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ShowDecompositionGeometry"/>
         public bool ShowDecompositionGeometry
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowDecompositionGeometry");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowDecompositionGeometry")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowDecompositionGeometry", value);
         }
 
@@ -441,7 +441,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ShowFluidForcesForSelectedOrHoveredMechanisms"/>
         public bool ShowFluidForcesForSelectedOrHoveredMechanisms
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowFluidForcesForSelectedOrHoveredMechanisms");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowFluidForcesForSelectedOrHoveredMechanisms")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowFluidForcesForSelectedOrHoveredMechanisms", value);
         }
 
@@ -451,7 +451,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ShowInstanceNamesForDrawnForcesAndTorques"/>
         public bool ShowInstanceNamesForDrawnForcesAndTorques
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowInstanceNamesForDrawnForcesAndTorques");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowInstanceNamesForDrawnForcesAndTorques")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowInstanceNamesForDrawnForcesAndTorques", value);
         }
 
@@ -461,7 +461,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#SolverConvergenceMetricType"/>
         public Enum.SolverConvergenceMetricType SolverConvergenceMetricType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SolverConvergenceMetricType>(this, "SolverConvergenceMetricType");
+            get => global::Roblox.Reflection.GetProperty<Enum.SolverConvergenceMetricType>(this, "SolverConvergenceMetricType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SolverConvergenceMetricType>(this, "SolverConvergenceMetricType", value);
         }
 
@@ -471,7 +471,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#SolverConvergenceVisualizationMode"/>
         public Enum.SolverConvergenceVisualizationMode SolverConvergenceVisualizationMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SolverConvergenceVisualizationMode>(this, "SolverConvergenceVisualizationMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.SolverConvergenceVisualizationMode>(this, "SolverConvergenceVisualizationMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SolverConvergenceVisualizationMode>(this, "SolverConvergenceVisualizationMode", value);
         }
 
@@ -481,7 +481,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#ThrottleAdjustTime"/>
         public double ThrottleAdjustTime
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "ThrottleAdjustTime");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "ThrottleAdjustTime")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "ThrottleAdjustTime", value);
         }
 
@@ -491,7 +491,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#TorqueDrawScale"/>
         public float TorqueDrawScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TorqueDrawScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TorqueDrawScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TorqueDrawScale", value);
         }
 
@@ -501,7 +501,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings#UseCSGv2"/>
         public bool UseCSGv2
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseCSGv2");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseCSGv2")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseCSGv2", value);
         }
 

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="ContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ContentProvider? FromHandle(nuint handle)
+        public static new ContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new ContentProvider(handle);
 
         /// <summary>
         /// Used by the ContentProvider to download assets from the Roblox website.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#BaseUrl"/>
-        public string? BaseUrl
+        public string BaseUrl
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "BaseUrl");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "BaseUrl", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "BaseUrl")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "BaseUrl", value);
         }
 
         /// <summary>
@@ -41,146 +41,146 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#RequestQueueSize"/>
         public int RequestQueueSize
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "RequestQueueSize");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "RequestQueueSize")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "RequestQueueSize", value);
         }
 
         /// <summary>
         /// Gets the current AssetFetchStatus of the contentId provided.
         /// </summary>
-        /// <param name="contentId">A <c>object?</c> value.</param>
+        /// <param name="contentId">A <c>object</c> value.</param>
         /// <returns>A <c>Enum.AssetFetchStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#GetAssetFetchStatus"/>
-        public Enum.AssetFetchStatus GetAssetFetchStatus(object? contentId)
-            => global::Roblox.Reflection.Invoke<Enum.AssetFetchStatus>(this, "GetAssetFetchStatus", contentId);
+        public Enum.AssetFetchStatus GetAssetFetchStatus(object contentId)
+            => global::Roblox.Reflection.Invoke<Enum.AssetFetchStatus>(this, "GetAssetFetchStatus", contentId)!;
 
         /// <summary>
         /// A signal that fires when the AssetFetchStatus of the provided content changes.
         /// </summary>
-        /// <param name="contentId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="contentId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#GetAssetFetchStatusChangedSignal"/>
-        public object? GetAssetFetchStatusChangedSignal(object? contentId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAssetFetchStatusChangedSignal", contentId);
+        public object GetAssetFetchStatusChangedSignal(object contentId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAssetFetchStatusChangedSignal", contentId)!;
 
         /// <summary>
         /// <c>ContentProvider.GetDependencyContentIds</c>
         /// </summary>
-        /// <param name="root">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDependencyContentIds(Instance? root)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDependencyContentIds", root);
+        /// <param name="root">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetDependencyContentIds(Instance root)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDependencyContentIds", root)!;
 
         /// <summary>
         /// <c>ContentProvider.GetDetailedFailedRequests</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDetailedFailedRequests()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDetailedFailedRequests");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetDetailedFailedRequests()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDetailedFailedRequests")!;
 
         /// <summary>
         /// <c>ContentProvider.GetFailedRequests</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetFailedRequests()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFailedRequests");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetFailedRequests()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFailedRequests")!;
 
         /// <summary>
         /// <c>ContentProvider.ListEncryptedAssets</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#ListEncryptedAssets"/>
-        public object? ListEncryptedAssets()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ListEncryptedAssets");
+        public object ListEncryptedAssets()
+            => global::Roblox.Reflection.Invoke<object>(this, "ListEncryptedAssets")!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by ContentProvider:PreloadAsync() which should be used in all new work.Queues an asset to be downloaded by the ContentProvider.
         /// </summary>
-        /// <param name="contentId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="contentId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#Preload"/>
-        public object? Preload(object? contentId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Preload", contentId);
+        public object Preload(object contentId)
+            => global::Roblox.Reflection.Invoke<object>(this, "Preload", contentId)!;
 
         /// <summary>
         /// <c>ContentProvider.RegisterDefaultEncryptionKey</c>
         /// </summary>
-        /// <param name="encryptionKey">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="encryptionKey">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#RegisterDefaultEncryptionKey"/>
-        public object? RegisterDefaultEncryptionKey(string? encryptionKey)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterDefaultEncryptionKey", encryptionKey);
+        public object RegisterDefaultEncryptionKey(string encryptionKey)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterDefaultEncryptionKey", encryptionKey)!;
 
         /// <summary>
         /// <c>ContentProvider.RegisterDefaultSessionKey</c>
         /// </summary>
-        /// <param name="sessionKey">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="sessionKey">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#RegisterDefaultSessionKey"/>
-        public object? RegisterDefaultSessionKey(string? sessionKey)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterDefaultSessionKey", sessionKey);
+        public object RegisterDefaultSessionKey(string sessionKey)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterDefaultSessionKey", sessionKey)!;
 
         /// <summary>
         /// <c>ContentProvider.RegisterEncryptedAsset</c>
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <param name="encryptionKey">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="assetId">A <c>object</c> value.</param>
+        /// <param name="encryptionKey">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#RegisterEncryptedAsset"/>
-        public object? RegisterEncryptedAsset(object? assetId, string? encryptionKey)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterEncryptedAsset", assetId, encryptionKey);
+        public object RegisterEncryptedAsset(object assetId, string encryptionKey)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterEncryptedAsset", assetId, encryptionKey)!;
 
         /// <summary>
         /// <c>ContentProvider.RegisterSessionEncryptedAsset</c>
         /// </summary>
-        /// <param name="contentId">A <c>object?</c> value.</param>
-        /// <param name="sessionKey">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="contentId">A <c>object</c> value.</param>
+        /// <param name="sessionKey">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#RegisterSessionEncryptedAsset"/>
-        public object? RegisterSessionEncryptedAsset(object? contentId, string? sessionKey)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterSessionEncryptedAsset", contentId, sessionKey);
+        public object RegisterSessionEncryptedAsset(object contentId, string sessionKey)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterSessionEncryptedAsset", contentId, sessionKey)!;
 
         /// <summary>
         /// <c>ContentProvider.SetBaseUrl</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetBaseUrl(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBaseUrl", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetBaseUrl(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBaseUrl", url)!;
 
         /// <summary>
         /// <c>ContentProvider.UnregisterDefaultEncryptionKey</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#UnregisterDefaultEncryptionKey"/>
-        public object? UnregisterDefaultEncryptionKey()
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnregisterDefaultEncryptionKey");
+        public object UnregisterDefaultEncryptionKey()
+            => global::Roblox.Reflection.Invoke<object>(this, "UnregisterDefaultEncryptionKey")!;
 
         /// <summary>
         /// <c>ContentProvider.UnregisterEncryptedAsset</c>
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="assetId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#UnregisterEncryptedAsset"/>
-        public object? UnregisterEncryptedAsset(object? assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnregisterEncryptedAsset", assetId);
+        public object UnregisterEncryptedAsset(object assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnregisterEncryptedAsset", assetId)!;
 
         /// <summary>
         /// Yields until all of the assets associated with the given Instances have loaded.
         /// </summary>
-        /// <param name="contentIdList">A <c>object?</c> value.</param>
+        /// <param name="contentIdList">A <c>object</c> value.</param>
         /// <param name="callbackFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#PreloadAsync"/>
-        public object? PreloadAsync(object? contentIdList, object? callbackFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PreloadAsync", contentIdList, callbackFunction);
+        public object PreloadAsync(object contentIdList, object? callbackFunction = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PreloadAsync", contentIdList, callbackFunction)!;
 
         /// <summary>
         /// <c>ContentProvider.AssetFetchFailed</c>
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
+        /// <param name="assetId">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#AssetFetchFailed"/>
-        public event Action<object?>? AssetFetchFailed
+        public event Action<object>? AssetFetchFailed
         {
             add { if (value is not null) AddEventHandler("AssetFetchFailed", value); }
             remove { if (value is not null) RemoveEventHandler("AssetFetchFailed", value); }

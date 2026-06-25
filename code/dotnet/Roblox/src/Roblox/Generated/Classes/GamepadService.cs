@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GamepadService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GamepadService? FromHandle(nuint handle)
+        public static new GamepadService? FromHandle(nuint handle)
             => handle == 0 ? null : new GamepadService(handle);
 
         /// <summary>
@@ -31,54 +31,54 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GamepadService#GamepadCursorEnabled"/>
         public bool GamepadCursorEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "GamepadCursorEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "GamepadCursorEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "GamepadCursorEnabled", value);
         }
 
         /// <summary>
         /// <c>GamepadService.AutoSelectGui</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AutoSelectGui()
-            => global::Roblox.Reflection.Invoke<object?>(this, "AutoSelectGui");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AutoSelectGui()
+            => global::Roblox.Reflection.Invoke<object>(this, "AutoSelectGui")!;
 
         /// <summary>
         /// Disables the gamepad cursor, if currently enabled.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GamepadService#DisableGamepadCursor"/>
-        public object? DisableGamepadCursor()
-            => global::Roblox.Reflection.Invoke<object?>(this, "DisableGamepadCursor");
+        public object DisableGamepadCursor()
+            => global::Roblox.Reflection.Invoke<object>(this, "DisableGamepadCursor")!;
 
         /// <summary>
         /// Enables the gamepad cursor or updates its position.
         /// </summary>
-        /// <param name="guiObject">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="guiObject">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GamepadService#EnableGamepadCursor"/>
-        public object? EnableGamepadCursor(Instance? guiObject)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EnableGamepadCursor", guiObject);
+        public object EnableGamepadCursor(Instance guiObject)
+            => global::Roblox.Reflection.Invoke<object>(this, "EnableGamepadCursor", guiObject)!;
 
         /// <summary>
         /// <c>GamepadService.GetGamepadCursorPosition</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector2? GetGamepadCursorPosition()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetGamepadCursorPosition");
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2 GetGamepadCursorPosition()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetGamepadCursorPosition")!;
 
         /// <summary>
         /// <c>GamepadService.SetGamepadCursorPosition</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetGamepadCursorPosition(global::Roblox.Vector2? position)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetGamepadCursorPosition", position);
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetGamepadCursorPosition(global::Roblox.Vector2 position)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetGamepadCursorPosition", position)!;
 
         /// <summary>
         /// <c>GamepadService.GamepadThumbstick1Changed</c>
         /// </summary>
-        /// <param name="event">A <c>global::Roblox.Vector2?</c> value.</param>
-        public event Action<global::Roblox.Vector2?>? GamepadThumbstick1Changed
+        /// <param name="@event">A <c>global::Roblox.Vector2</c> value.</param>
+        public event Action<global::Roblox.Vector2>? GamepadThumbstick1Changed
         {
             add { if (value is not null) AddEventHandler("GamepadThumbstick1Changed", value); }
             remove { if (value is not null) RemoveEventHandler("GamepadThumbstick1Changed", value); }

@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AudioFocusService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioFocusService? FromHandle(nuint handle)
+        public static new AudioFocusService? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioFocusService(handle);
 
         /// <summary>
@@ -27,29 +27,29 @@ namespace Roblox
         /// <param name="contextId">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool AcquireFocus(int contextId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "AcquireFocus", contextId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "AcquireFocus", contextId)!;
 
         /// <summary>
         /// <c>AudioFocusService.GetFocusedContextId</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetFocusedContextId()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetFocusedContextId");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetFocusedContextId")!;
 
         /// <summary>
         /// <c>AudioFocusService.GetRegisteredContexts</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegisteredContexts()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegisteredContexts");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegisteredContexts()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegisteredContexts")!;
 
         /// <summary>
         /// <c>AudioFocusService.RegisterContextIdFromLua</c>
         /// </summary>
         /// <param name="contextId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterContextIdFromLua(int contextId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterContextIdFromLua", contextId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterContextIdFromLua(int contextId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterContextIdFromLua", contextId)!;
 
         /// <summary>
         /// <c>AudioFocusService.RequestFocus</c>
@@ -58,7 +58,7 @@ namespace Roblox
         /// <param name="priority">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool RequestFocus(int contextId, int priority)
-            => global::Roblox.Reflection.Invoke<bool>(this, "RequestFocus", contextId, priority);
+            => global::Roblox.Reflection.Invoke<bool>(this, "RequestFocus", contextId, priority)!;
 
         /// <summary>
         /// <c>AudioFocusService.OnContextRegistered</c>

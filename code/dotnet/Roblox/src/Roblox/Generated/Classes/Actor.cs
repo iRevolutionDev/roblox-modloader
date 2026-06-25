@@ -22,38 +22,38 @@ namespace Roblox
         /// Creates a <see cref="Actor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Actor? FromHandle(nuint handle)
+        public static new Actor? FromHandle(nuint handle)
             => handle == 0 ? null : new Actor(handle);
 
         /// <summary>
         /// Binds a Luau callback to a message with the specified topic.
         /// </summary>
-        /// <param name="topic">A <c>string?</c> value.</param>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="topic">A <c>string</c> value.</param>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Actor#BindToMessage"/>
-        public object? BindToMessage(string? topic, object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindToMessage", topic, function);
+        public object BindToMessage(string topic, object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindToMessage", topic, function)!;
 
         /// <summary>
         /// Binds a Luau callback to a message with the specified topic.
         /// </summary>
-        /// <param name="topic">A <c>string?</c> value.</param>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="topic">A <c>string</c> value.</param>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Actor#BindToMessageParallel"/>
-        public object? BindToMessageParallel(string? topic, object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindToMessageParallel", topic, function);
+        public object BindToMessageParallel(string topic, object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindToMessageParallel", topic, function)!;
 
         /// <summary>
         /// Sends a message to an Actor.
         /// </summary>
-        /// <param name="topic">A <c>string?</c> value.</param>
-        /// <param name="message">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="topic">A <c>string</c> value.</param>
+        /// <param name="message">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Actor#SendMessage"/>
-        public object? SendMessage(string? topic, object? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendMessage", topic, message);
+        public object SendMessage(string topic, object message)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendMessage", topic, message)!;
 
     }
 }

@@ -22,188 +22,188 @@ namespace Roblox
         /// Creates a <see cref="AvatarCreationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarCreationService? FromHandle(nuint handle)
+        public static new AvatarCreationService? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarCreationService(handle);
 
         /// <summary>
         /// <c>AvatarCreationService.DeserializeAvatarModel</c>
         /// </summary>
-        /// <param name="serializedModel">A <c>string?</c> value.</param>
+        /// <param name="serializedModel">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? DeserializeAvatarModel(string? serializedModel)
+        public Instance? DeserializeAvatarModel(string serializedModel)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "DeserializeAvatarModel", serializedModel);
 
         /// <summary>
         /// Gets data regarding rules that assets must abide by to pass UGC validation.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#GetValidationRules"/>
-        public object? GetValidationRules()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValidationRules");
+        public object GetValidationRules()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetValidationRules")!;
 
         /// <summary>
         /// <c>AvatarCreationService.HandleSelfieConsentResult</c>
         /// </summary>
         /// <param name="consentAccepted">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleSelfieConsentResult(bool consentAccepted)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleSelfieConsentResult", consentAccepted);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleSelfieConsentResult(bool consentAccepted)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleSelfieConsentResult", consentAccepted)!;
 
         /// <summary>
         /// <c>AvatarCreationService.HandleSelfieQRResult</c>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <param name="resultString">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleSelfieQRResult(bool success, string? resultString)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleSelfieQRResult", success, resultString);
+        /// <param name="resultString">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleSelfieQRResult(bool success, string resultString)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleSelfieQRResult", success, resultString)!;
 
         /// <summary>
         /// Automatically sets up a custom Model and/or avatar accessories.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="autoSetupParams">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="autoSetupParams">A <c>object</c> value.</param>
         /// <param name="progressCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#AutoSetupAvatarAsync"/>
-        public string? AutoSetupAvatarAsync(Player? player, object? autoSetupParams, object? progressCallback)
-            => global::Roblox.Reflection.Invoke<string?>(this, "AutoSetupAvatarAsync", player, autoSetupParams, progressCallback);
+        public string AutoSetupAvatarAsync(Player player, object autoSetupParams, object? progressCallback = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "AutoSetupAvatarAsync", player, autoSetupParams, progressCallback)!;
 
         /// <summary>
         /// <c>AvatarCreationService.CreateCageMeshPartsWithScaleForExportAsync</c>
         /// </summary>
-        /// <param name="model">A <c>Model?</c> value.</param>
-        /// <returns>A <c>Folder?</c> value returned by the engine.</returns>
-        public Folder? CreateCageMeshPartsWithScaleForExportAsync(Model? model)
-            => global::Roblox.Reflection.Invoke<Folder?>(this, "CreateCageMeshPartsWithScaleForExportAsync", model);
+        /// <param name="model">A <c>Model</c> value.</param>
+        /// <returns>A <c>Folder</c> value returned by the engine.</returns>
+        public Folder CreateCageMeshPartsWithScaleForExportAsync(Model model)
+            => global::Roblox.Reflection.Invoke<Folder>(this, "CreateCageMeshPartsWithScaleForExportAsync", model)!;
 
         /// <summary>
         /// Creates a 2D avatar preview and returns a previewId.
         /// </summary>
-        /// <param name="avatarGeneration2dPreviewParams">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="avatarGeneration2dPreviewParams">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#GenerateAvatar2DPreviewAsync"/>
-        public string? GenerateAvatar2DPreviewAsync(object? avatarGeneration2dPreviewParams)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GenerateAvatar2DPreviewAsync", avatarGeneration2dPreviewParams);
+        public string GenerateAvatar2DPreviewAsync(object avatarGeneration2dPreviewParams)
+            => global::Roblox.Reflection.Invoke<string>(this, "GenerateAvatar2DPreviewAsync", avatarGeneration2dPreviewParams)!;
 
         /// <summary>
         /// Generates an avatar and returns a generationId.
         /// </summary>
-        /// <param name="avatarGenerationParams">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="avatarGenerationParams">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#GenerateAvatarAsync"/>
-        public string? GenerateAvatarAsync(object? avatarGenerationParams)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GenerateAvatarAsync", avatarGenerationParams);
+        public string GenerateAvatarAsync(object avatarGenerationParams)
+            => global::Roblox.Reflection.Invoke<string>(this, "GenerateAvatarAsync", avatarGenerationParams)!;
 
         /// <summary>
         /// Gets the avatar creation token details for a list of avatar creation tokens at once.
         /// </summary>
-        /// <param name="tokenIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="tokenIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#GetBatchTokenDetailsAsync"/>
-        public object? GetBatchTokenDetailsAsync(object? tokenIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBatchTokenDetailsAsync", tokenIds);
+        public object GetBatchTokenDetailsAsync(object tokenIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBatchTokenDetailsAsync", tokenIds)!;
 
         /// <summary>
         /// Load an AvatarGeneration 2D preview on the client from a previewId.
         /// </summary>
-        /// <param name="previewId">A <c>string?</c> value.</param>
-        /// <returns>A <c>EditableImage?</c> value returned by the engine.</returns>
+        /// <param name="previewId">A <c>string</c> value.</param>
+        /// <returns>A <c>EditableImage</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#LoadAvatar2DPreviewAsync"/>
-        public EditableImage? LoadAvatar2DPreviewAsync(string? previewId)
-            => global::Roblox.Reflection.Invoke<EditableImage?>(this, "LoadAvatar2DPreviewAsync", previewId);
+        public EditableImage LoadAvatar2DPreviewAsync(string previewId)
+            => global::Roblox.Reflection.Invoke<EditableImage>(this, "LoadAvatar2DPreviewAsync", previewId)!;
 
         /// <summary>
         /// Loads a generated avatar using an avatar generation ID.
         /// </summary>
-        /// <param name="generationId">A <c>string?</c> value.</param>
-        /// <returns>A <c>HumanoidDescription?</c> value returned by the engine.</returns>
+        /// <param name="generationId">A <c>string</c> value.</param>
+        /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#LoadGeneratedAvatarAsync"/>
-        public HumanoidDescription? LoadGeneratedAvatarAsync(string? generationId)
-            => global::Roblox.Reflection.Invoke<HumanoidDescription?>(this, "LoadGeneratedAvatarAsync", generationId);
+        public HumanoidDescription LoadGeneratedAvatarAsync(string generationId)
+            => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "LoadGeneratedAvatarAsync", generationId)!;
 
         /// <summary>
         /// Prepares in-experience avatar for preview.
         /// </summary>
-        /// <param name="humanoidModel">A <c>Model?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoidModel">A <c>Model</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#PrepareAvatarForPreviewAsync"/>
-        public object? PrepareAvatarForPreviewAsync(Model? humanoidModel)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PrepareAvatarForPreviewAsync", humanoidModel);
+        public object PrepareAvatarForPreviewAsync(Model humanoidModel)
+            => global::Roblox.Reflection.Invoke<object>(this, "PrepareAvatarForPreviewAsync", humanoidModel)!;
 
         /// <summary>
         /// Prompts a Player to purchase and create an avatar asset from an Instance.
         /// </summary>
-        /// <param name="tokenId">A <c>string?</c> value.</param>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="assetInstance">A <c>Instance?</c> value.</param>
+        /// <param name="tokenId">A <c>string</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="assetInstance">A <c>Instance</c> value.</param>
         /// <param name="assetType">A <c>Enum.AvatarAssetType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#PromptCreateAvatarAssetAsync"/>
-        public object? PromptCreateAvatarAssetAsync(string? tokenId, Player? player, Instance? assetInstance, Enum.AvatarAssetType assetType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptCreateAvatarAssetAsync", tokenId, player, assetInstance, assetType);
+        public object PromptCreateAvatarAssetAsync(string tokenId, Player player, Instance assetInstance, Enum.AvatarAssetType assetType)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptCreateAvatarAssetAsync", tokenId, player, assetInstance, assetType)!;
 
         /// <summary>
         /// Prompts a Player to purchase and create an avatar from a HumanoidDescription.
         /// </summary>
-        /// <param name="tokenId">A <c>string?</c> value.</param>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="tokenId">A <c>string</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#PromptCreateAvatarAsync"/>
-        public object? PromptCreateAvatarAsync(string? tokenId, Player? player, HumanoidDescription? humanoidDescription)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptCreateAvatarAsync", tokenId, player, humanoidDescription);
+        public object PromptCreateAvatarAsync(string tokenId, Player player, HumanoidDescription humanoidDescription)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptCreateAvatarAsync", tokenId, player, humanoidDescription)!;
 
         /// <summary>
         /// Prompt the Player to take a selfie and return the FileId.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#PromptSelectAvatarGenerationImageAsync"/>
-        public string? PromptSelectAvatarGenerationImageAsync(Player? player)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PromptSelectAvatarGenerationImageAsync", player);
+        public string PromptSelectAvatarGenerationImageAsync(Player player)
+            => global::Roblox.Reflection.Invoke<string>(this, "PromptSelectAvatarGenerationImageAsync", player)!;
 
         /// <summary>
         /// Request an AvatarGeneration session for a Player.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#RequestAvatarGenerationSessionAsync"/>
-        public object? RequestAvatarGenerationSessionAsync(Player? player, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestAvatarGenerationSessionAsync", player, callback);
+        public object RequestAvatarGenerationSessionAsync(Player player, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestAvatarGenerationSessionAsync", player, callback)!;
 
         /// <summary>
         /// Studio only. Runs UGC validation for an AccessoryType.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="accessory">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="accessory">A <c>Instance</c> value.</param>
         /// <param name="accessoryType">A <c>Enum.AccessoryType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#ValidateUGCAccessoryAsync"/>
-        public object? ValidateUGCAccessoryAsync(Player? player, Instance? accessory, Enum.AccessoryType accessoryType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ValidateUGCAccessoryAsync", player, accessory, accessoryType);
+        public object ValidateUGCAccessoryAsync(Player player, Instance accessory, Enum.AccessoryType accessoryType)
+            => global::Roblox.Reflection.Invoke<object>(this, "ValidateUGCAccessoryAsync", player, accessory, accessoryType)!;
 
         /// <summary>
         /// Studio only. Runs UGC validation for an BodyPart.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="bodyPart">A <c>Enum.BodyPart</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#ValidateUGCBodyPartAsync"/>
-        public object? ValidateUGCBodyPartAsync(Player? player, Instance? instance, Enum.BodyPart bodyPart)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ValidateUGCBodyPartAsync", player, instance, bodyPart);
+        public object ValidateUGCBodyPartAsync(Player player, Instance instance, Enum.BodyPart bodyPart)
+            => global::Roblox.Reflection.Invoke<object>(this, "ValidateUGCBodyPartAsync", player, instance, bodyPart)!;
 
         /// <summary>
         /// Studio only. Runs UGC validation for a whole body.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="humanoidDescription">A <c>HumanoidDescription?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarCreationService#ValidateUGCFullBodyAsync"/>
-        public object? ValidateUGCFullBodyAsync(Player? player, HumanoidDescription? humanoidDescription)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ValidateUGCFullBodyAsync", player, humanoidDescription);
+        public object ValidateUGCFullBodyAsync(Player player, HumanoidDescription humanoidDescription)
+            => global::Roblox.Reflection.Invoke<object>(this, "ValidateUGCFullBodyAsync", player, humanoidDescription)!;
 
         /// <summary>
         /// Fires when an in-experience-created avatar asset's moderation status has been updated from pending.
@@ -238,9 +238,9 @@ namespace Roblox
         /// <summary>
         /// <c>AvatarCreationService.OpenSelfieQRCode</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <param name="jobId">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? OpenSelfieQRCode
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <param name="jobId">A <c>string</c> value.</param>
+        public event Action<string, string>? OpenSelfieQRCode
         {
             add { if (value is not null) AddEventHandler("OpenSelfieQRCode", value); }
             remove { if (value is not null) RemoveEventHandler("OpenSelfieQRCode", value); }
@@ -249,9 +249,9 @@ namespace Roblox
         /// <summary>
         /// <c>AvatarCreationService.UgcValidationFailure</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? UgcValidationFailure
+        /// <param name="guid">A <c>string</c> value.</param>
+        /// <param name="errorMessage">A <c>string</c> value.</param>
+        public event Action<string, string>? UgcValidationFailure
         {
             add { if (value is not null) AddEventHandler("UgcValidationFailure", value); }
             remove { if (value is not null) RemoveEventHandler("UgcValidationFailure", value); }
@@ -260,10 +260,10 @@ namespace Roblox
         /// <summary>
         /// <c>AvatarCreationService.UgcValidationSuccess</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
-        /// <param name="serializedModel">A <c>string?</c> value.</param>
+        /// <param name="guid">A <c>string</c> value.</param>
+        /// <param name="serializedModel">A <c>string</c> value.</param>
         /// <param name="price">A <c>long</c> value.</param>
-        public event Action<string?, string?, long>? UgcValidationSuccess
+        public event Action<string, string, long>? UgcValidationSuccess
         {
             add { if (value is not null) AddEventHandler("UgcValidationSuccess", value); }
             remove { if (value is not null) RemoveEventHandler("UgcValidationSuccess", value); }

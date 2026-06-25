@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="TeleportAsyncResult"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TeleportAsyncResult? FromHandle(nuint handle)
+        public static new TeleportAsyncResult? FromHandle(nuint handle)
             => handle == 0 ? null : new TeleportAsyncResult(handle);
 
         /// <summary>
         /// The private server ID of the reserved server that the players are being teleported to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportAsyncResult#PrivateServerId"/>
-        public string? PrivateServerId
+        public string PrivateServerId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PrivateServerId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PrivateServerId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PrivateServerId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PrivateServerId", value);
         }
 
         /// <summary>
         /// The access code of the reserved server that the players are being teleported to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportAsyncResult#ReservedServerAccessCode"/>
-        public string? ReservedServerAccessCode
+        public string ReservedServerAccessCode
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ReservedServerAccessCode");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ReservedServerAccessCode", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ReservedServerAccessCode")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ReservedServerAccessCode", value);
         }
 
     }

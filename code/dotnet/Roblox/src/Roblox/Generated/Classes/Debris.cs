@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Debris"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Debris? FromHandle(nuint handle)
+        public static new Debris? FromHandle(nuint handle)
             => handle == 0 ? null : new Debris(handle);
 
         /// <summary>
@@ -31,27 +31,27 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Debris#MaxItems"/>
         public int MaxItems
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxItems");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxItems")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxItems", value);
         }
 
         /// <summary>
         /// Schedules a given Instance for destruction within the specified lifetime.
         /// </summary>
-        /// <param name="item">A <c>Instance?</c> value.</param>
-        /// <param name="lifetime">A <c>double</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="item">A <c>Instance</c> value.</param>
+        /// <param name="lifetime">A <c>double?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Debris#AddItem"/>
-        public object? AddItem(Instance? item, double lifetime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddItem", item, lifetime);
+        public object AddItem(Instance item, double? lifetime = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddItem", item, lifetime)!;
 
         /// <summary>
         /// <c>Debris.SetLegacyMaxItems</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetLegacyMaxItems(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetLegacyMaxItems", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetLegacyMaxItems(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetLegacyMaxItems", enabled)!;
 
     }
 }

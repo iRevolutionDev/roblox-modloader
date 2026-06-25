@@ -22,24 +22,24 @@ namespace Roblox
         /// Creates a <see cref="ScriptDocument"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptDocument? FromHandle(nuint handle)
+        public static new ScriptDocument? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptDocument(handle);
 
         /// <summary>
         /// <c>ScriptDocument.GetInternalUri</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetInternalUri()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetInternalUri");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetInternalUri()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetInternalUri")!;
 
         /// <summary>
         /// Returns the text of the specified line. When no argument is provided, returns the line of the current cursor position.
         /// </summary>
-        /// <param name="lineIndex">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="lineIndex">A <c>int?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetLine"/>
-        public string? GetLine(object? lineIndex)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetLine", lineIndex);
+        public string GetLine(int? lineIndex = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetLine", lineIndex)!;
 
         /// <summary>
         /// Returns the number of lines in the document.
@@ -47,67 +47,67 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetLineCount"/>
         public int GetLineCount()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetLineCount");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetLineCount")!;
 
         /// <summary>
         /// Returns the underlying LuaSourceContainer instance, if one exists, otherwise nil.
         /// </summary>
-        /// <returns>A <c>LuaSourceContainer?</c> value returned by the engine.</returns>
+        /// <returns>A <c>LuaSourceContainer</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetScript"/>
-        public LuaSourceContainer? GetScript()
-            => global::Roblox.Reflection.Invoke<LuaSourceContainer?>(this, "GetScript");
+        public LuaSourceContainer GetScript()
+            => global::Roblox.Reflection.Invoke<LuaSourceContainer>(this, "GetScript")!;
 
         /// <summary>
         /// Gets the text selected in the editor, or an empty string if there is no selection.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetSelectedText"/>
-        public string? GetSelectedText()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetSelectedText");
+        public string GetSelectedText()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetSelectedText")!;
 
         /// <summary>
         /// Returns the last known selection of the Script Editor in the format: CursorLine, CursorChar, AnchorLine, AnchorChar. If the Script Editor has no selection, CursorLine == AnchorLine and CursorChar == AnchorChar.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetSelection"/>
-        public object? GetSelection()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSelection");
+        public object GetSelection()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSelection")!;
 
         /// <summary>
         /// Gets the larger of the cursor position and anchor. If the editor has no selection, they are the same value.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetSelectionEnd"/>
-        public object? GetSelectionEnd()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSelectionEnd");
+        public object GetSelectionEnd()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSelectionEnd")!;
 
         /// <summary>
         /// Gets the smaller of the cursor position and anchor. If the editor has no selection, they are the same value.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetSelectionStart"/>
-        public object? GetSelectionStart()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSelectionStart");
+        public object GetSelectionStart()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSelectionStart")!;
 
         /// <summary>
         /// Returns text from the open editor.
         /// </summary>
-        /// <param name="startLine">A <c>object?</c> value.</param>
-        /// <param name="startCharacter">A <c>object?</c> value.</param>
-        /// <param name="endLine">A <c>object?</c> value.</param>
-        /// <param name="endCharacter">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="startLine">A <c>int?</c> value.</param>
+        /// <param name="startCharacter">A <c>int?</c> value.</param>
+        /// <param name="endLine">A <c>int?</c> value.</param>
+        /// <param name="endCharacter">A <c>int?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetText"/>
-        public string? GetText(object? startLine, object? startCharacter, object? endLine, object? endCharacter)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetText", startLine, startCharacter, endLine, endCharacter);
+        public string GetText(int? startLine = null, int? startCharacter = null, int? endLine = null, int? endCharacter = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetText", startLine, startCharacter, endLine, endCharacter)!;
 
         /// <summary>
         /// Returns the currently displayed line numbers in the editor change.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#GetViewport"/>
-        public object? GetViewport()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetViewport");
+        public object GetViewport()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetViewport")!;
 
         /// <summary>
         /// Returns whether or not the editor has any text selected.
@@ -115,7 +115,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#HasSelectedText"/>
         public bool HasSelectedText()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasSelectedText");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasSelectedText")!;
 
         /// <summary>
         /// Returns true if the ScriptDocument represents the Command bar.
@@ -123,61 +123,61 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#IsCommandBar"/>
         public bool IsCommandBar()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsCommandBar");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsCommandBar")!;
 
         /// <summary>
         /// Requests that the editor associated with this document close. Yields the current thread until the editor responds to the request.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#CloseAsync"/>
-        public object? CloseAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CloseAsync");
+        public object CloseAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "CloseAsync")!;
 
         /// <summary>
         /// Replaces the text in the specified range from (startLine, startColumn) to (endLine, endColumn) with newText.
         /// </summary>
-        /// <param name="newText">A <c>string?</c> value.</param>
+        /// <param name="newText">A <c>string</c> value.</param>
         /// <param name="startLine">A <c>int</c> value.</param>
         /// <param name="startCharacter">A <c>int</c> value.</param>
         /// <param name="endLine">A <c>int</c> value.</param>
         /// <param name="endCharacter">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#EditTextAsync"/>
-        public object? EditTextAsync(string? newText, int startLine, int startCharacter, int endLine, int endCharacter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EditTextAsync", newText, startLine, startCharacter, endLine, endCharacter);
+        public object EditTextAsync(string newText, int startLine, int startCharacter, int endLine, int endCharacter)
+            => global::Roblox.Reflection.Invoke<object>(this, "EditTextAsync", newText, startLine, startCharacter, endLine, endCharacter)!;
 
         /// <summary>
         /// Asks the editor to set its cursor selection to the argument values.
         /// </summary>
         /// <param name="cursorLine">A <c>int</c> value.</param>
         /// <param name="cursorCharacter">A <c>int</c> value.</param>
-        /// <param name="anchorLine">A <c>object?</c> value.</param>
-        /// <param name="anchorCharacter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="anchorLine">A <c>int?</c> value.</param>
+        /// <param name="anchorCharacter">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#ForceSetSelectionAsync"/>
-        public object? ForceSetSelectionAsync(int cursorLine, int cursorCharacter, object? anchorLine, object? anchorCharacter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ForceSetSelectionAsync", cursorLine, cursorCharacter, anchorLine, anchorCharacter);
+        public object ForceSetSelectionAsync(int cursorLine, int cursorCharacter, int? anchorLine = null, int? anchorCharacter = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ForceSetSelectionAsync", cursorLine, cursorCharacter, anchorLine, anchorCharacter)!;
 
         /// <summary>
         /// <c>ScriptDocument.MultiEditTextAsync</c>
         /// </summary>
-        /// <param name="edits">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="edits">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#MultiEditTextAsync"/>
-        public object? MultiEditTextAsync(object? edits)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MultiEditTextAsync", edits);
+        public object MultiEditTextAsync(object edits)
+            => global::Roblox.Reflection.Invoke<object>(this, "MultiEditTextAsync", edits)!;
 
         /// <summary>
         /// Asks the editor to set its cursor selection to the argument values.
         /// </summary>
         /// <param name="cursorLine">A <c>int</c> value.</param>
         /// <param name="cursorCharacter">A <c>int</c> value.</param>
-        /// <param name="anchorLine">A <c>object?</c> value.</param>
-        /// <param name="anchorCharacter">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="anchorLine">A <c>int?</c> value.</param>
+        /// <param name="anchorCharacter">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptDocument#RequestSetSelectionAsync"/>
-        public object? RequestSetSelectionAsync(int cursorLine, int cursorCharacter, object? anchorLine, object? anchorCharacter)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestSetSelectionAsync", cursorLine, cursorCharacter, anchorLine, anchorCharacter);
+        public object RequestSetSelectionAsync(int cursorLine, int cursorCharacter, int? anchorLine = null, int? anchorCharacter = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestSetSelectionAsync", cursorLine, cursorCharacter, anchorLine, anchorCharacter)!;
 
         /// <summary>
         /// Fires when the ScriptDocument changes, including immediately after a text change.

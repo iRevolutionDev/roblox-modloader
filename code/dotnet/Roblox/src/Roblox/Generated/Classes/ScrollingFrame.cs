@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="ScrollingFrame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScrollingFrame? FromHandle(nuint handle)
+        public static new ScrollingFrame? FromHandle(nuint handle)
             => handle == 0 ? null : new ScrollingFrame(handle);
 
         /// <summary>
         /// The size of the area that is scrollable, in offsets.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#AbsoluteCanvasSize"/>
-        public global::Roblox.Vector2? AbsoluteCanvasSize
+        public global::Roblox.Vector2 AbsoluteCanvasSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteCanvasSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteCanvasSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteCanvasSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteCanvasSize", value);
         }
 
         /// <summary>
         /// The size of the frame, in offsets, without the scroll bars.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#AbsoluteWindowSize"/>
-        public global::Roblox.Vector2? AbsoluteWindowSize
+        public global::Roblox.Vector2 AbsoluteWindowSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteWindowSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteWindowSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteWindowSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteWindowSize", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#AutomaticCanvasSize"/>
         public Enum.AutomaticSize AutomaticCanvasSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AutomaticSize>(this, "AutomaticCanvasSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.AutomaticSize>(this, "AutomaticCanvasSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AutomaticSize>(this, "AutomaticCanvasSize", value);
         }
 
@@ -59,45 +59,45 @@ namespace Roblox
         /// Image that displays on the bottom of a vertical scroll bar, or the right of a horizontal scroll bar (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#BottomImage"/>
-        public object? BottomImage
+        public object BottomImage
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "BottomImage");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "BottomImage", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "BottomImage")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "BottomImage", value);
         }
 
         /// <summary>
         /// Image that displays on the bottom of a vertical scroll bar, or the right of a horizontal scroll bar (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar). Only supports asset URIs as textures.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#BottomImageContent"/>
-        public string? BottomImageContent
+        public string BottomImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "BottomImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "BottomImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "BottomImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "BottomImageContent", value);
         }
 
         /// <summary>
         /// Reflects the current positional offset of the canvas within the frame, in pixels, and sets the position of scroll bars accordingly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#CanvasPosition"/>
-        public global::Roblox.Vector2? CanvasPosition
+        public global::Roblox.Vector2 CanvasPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "CanvasPosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "CanvasPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "CanvasPosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "CanvasPosition", value);
         }
 
         /// <summary>
         /// Determines the size of the scrollable area.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#CanvasSize"/>
-        public global::Roblox.UDim2? CanvasSize
+        public global::Roblox.UDim2 CanvasSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CanvasSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CanvasSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "CanvasSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "CanvasSize", value);
         }
 
         public Enum.DraggingScrollBar DraggingScrollBar
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DraggingScrollBar>(this, "DraggingScrollBar");
+            get => global::Roblox.Reflection.GetProperty<Enum.DraggingScrollBar>(this, "DraggingScrollBar")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DraggingScrollBar>(this, "DraggingScrollBar", value);
         }
 
@@ -107,14 +107,14 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ElasticBehavior"/>
         public Enum.ElasticBehavior ElasticBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ElasticBehavior>(this, "ElasticBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.ElasticBehavior>(this, "ElasticBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ElasticBehavior>(this, "ElasticBehavior", value);
         }
 
-        public global::Roblox.Rect? HorizontalBarRect
+        public global::Roblox.Rect HorizontalBarRect
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "HorizontalBarRect");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "HorizontalBarRect", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect>(this, "HorizontalBarRect")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect>(this, "HorizontalBarRect", value);
         }
 
         /// <summary>
@@ -123,44 +123,44 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#HorizontalScrollBarInset"/>
         public Enum.ScrollBarInset HorizontalScrollBarInset
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScrollBarInset>(this, "HorizontalScrollBarInset");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScrollBarInset>(this, "HorizontalScrollBarInset")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScrollBarInset>(this, "HorizontalScrollBarInset", value);
         }
 
-        public global::Roblox.Vector2? MaxCanvasPosition
+        public global::Roblox.Vector2 MaxCanvasPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MaxCanvasPosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MaxCanvasPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MaxCanvasPosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MaxCanvasPosition", value);
         }
 
         /// <summary>
         /// Image which spans the area between TopImage and BottomImage (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#MidImage"/>
-        public object? MidImage
+        public object MidImage
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MidImage");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MidImage", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "MidImage")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "MidImage", value);
         }
 
         /// <summary>
         /// Image which spans the area between TopImageContent and BottomImageContent (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar). Only supports asset URIs as textures.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#MidImageContent"/>
-        public string? MidImageContent
+        public string MidImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MidImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MidImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MidImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MidImageContent", value);
         }
 
         /// <summary>
         /// Determines how the rendered scroll bar images are colorized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollBarImageColor3"/>
-        public global::Roblox.Color3? ScrollBarImageColor3
+        public global::Roblox.Color3 ScrollBarImageColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ScrollBarImageColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ScrollBarImageColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "ScrollBarImageColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "ScrollBarImageColor3", value);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollBarImageTransparency"/>
         public float ScrollBarImageTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ScrollBarImageTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ScrollBarImageTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ScrollBarImageTransparency", value);
         }
 
@@ -179,20 +179,20 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollBarThickness"/>
         public int ScrollBarThickness
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ScrollBarThickness");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ScrollBarThickness")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ScrollBarThickness", value);
         }
 
         public float ScrollRate
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ScrollRate");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ScrollRate")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ScrollRate", value);
         }
 
-        public global::Roblox.Vector2? ScrollVelocity
+        public global::Roblox.Vector2 ScrollVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ScrollVelocity");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ScrollVelocity", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "ScrollVelocity")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "ScrollVelocity", value);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollingDirection"/>
         public Enum.ScrollingDirection ScrollingDirection
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScrollingDirection>(this, "ScrollingDirection");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScrollingDirection>(this, "ScrollingDirection")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScrollingDirection>(this, "ScrollingDirection", value);
         }
 
@@ -211,13 +211,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ScrollingEnabled"/>
         public bool ScrollingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScrollingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScrollingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ScrollingEnabled", value);
         }
 
         public bool SmoothScroll
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "SmoothScroll");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "SmoothScroll")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "SmoothScroll", value);
         }
 
@@ -225,26 +225,26 @@ namespace Roblox
         /// Image which displays on the top of a vertical scroll bar, or the left of a horizontal scroll bar (rotated 90&amp;deg; counterclockwise for a horizontal scroll bar).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#TopImage"/>
-        public object? TopImage
+        public object TopImage
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TopImage");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TopImage", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "TopImage")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "TopImage", value);
         }
 
         /// <summary>
         /// <c>ScrollingFrame.TopImageContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#TopImageContent"/>
-        public string? TopImageContent
+        public string TopImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TopImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TopImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TopImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TopImageContent", value);
         }
 
-        public global::Roblox.Rect? VerticalBarRect
+        public global::Roblox.Rect VerticalBarRect
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "VerticalBarRect");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "VerticalBarRect", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect>(this, "VerticalBarRect")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect>(this, "VerticalBarRect", value);
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#VerticalScrollBarInset"/>
         public Enum.ScrollBarInset VerticalScrollBarInset
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScrollBarInset>(this, "VerticalScrollBarInset");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScrollBarInset>(this, "VerticalScrollBarInset")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScrollBarInset>(this, "VerticalScrollBarInset", value);
         }
 
@@ -263,46 +263,46 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#VerticalScrollBarPosition"/>
         public Enum.VerticalScrollBarPosition VerticalScrollBarPosition
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VerticalScrollBarPosition>(this, "VerticalScrollBarPosition");
+            get => global::Roblox.Reflection.GetProperty<Enum.VerticalScrollBarPosition>(this, "VerticalScrollBarPosition")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VerticalScrollBarPosition>(this, "VerticalScrollBarPosition", value);
         }
 
         /// <summary>
         /// <c>ScrollingFrame.ClearInertialScrolling</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearInertialScrolling()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearInertialScrolling");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearInertialScrolling()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearInertialScrolling")!;
 
         /// <summary>
         /// <c>ScrollingFrame.GetSampledInertialVelocity</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector2? GetSampledInertialVelocity()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetSampledInertialVelocity");
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2 GetSampledInertialVelocity()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetSampledInertialVelocity")!;
 
         /// <summary>
         /// Returns a Vector2 representing the current inertial scroll velocity after the user stops their input.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#GetScrollVelocity"/>
-        public global::Roblox.Vector2? GetScrollVelocity()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetScrollVelocity");
+        public global::Roblox.Vector2 GetScrollVelocity()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetScrollVelocity")!;
 
         /// <summary>
         /// Resets the inertial scroll velocity of the ScrollingFrame to 0 on both axes.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ResetScrollVelocity"/>
-        public object? ResetScrollVelocity()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetScrollVelocity");
+        public object ResetScrollVelocity()
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetScrollVelocity")!;
 
         /// <summary>
         /// <c>ScrollingFrame.ScrollToTop</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ScrollToTop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ScrollToTop");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ScrollToTop()
+            => global::Roblox.Reflection.Invoke<object>(this, "ScrollToTop")!;
 
     }
 }

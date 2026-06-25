@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("StudioActionOverride")]
-    public class StudioActionOverride : Object
+    public class StudioActionOverride : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StudioActionOverride.</param>
@@ -23,28 +23,28 @@ namespace Roblox
 
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
         public bool Released
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Released");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Released")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Released", value);
         }
 
         public Enum.StudioAction StudioAction
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StudioAction>(this, "StudioAction");
+            get => global::Roblox.Reflection.GetProperty<Enum.StudioAction>(this, "StudioAction")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StudioAction>(this, "StudioAction", value);
         }
 
         /// <summary>
         /// <c>StudioActionOverride.Release</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Release()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Release");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Release()
+            => global::Roblox.Reflection.Invoke<object>(this, "Release")!;
 
         public event Action? Triggered
         {

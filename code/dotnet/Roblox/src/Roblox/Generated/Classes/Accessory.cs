@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Accessory"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Accessory? FromHandle(nuint handle)
+        public static new Accessory? FromHandle(nuint handle)
             => handle == 0 ? null : new Accessory(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Accessory#AccessoryType"/>
         public Enum.AccessoryType AccessoryType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AccessoryType>(this, "AccessoryType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AccessoryType>(this, "AccessoryType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AccessoryType>(this, "AccessoryType", value);
         }
 

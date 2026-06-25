@@ -22,35 +22,35 @@ namespace Roblox
         /// Creates a <see cref="WrapDeformer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WrapDeformer? FromHandle(nuint handle)
+        public static new WrapDeformer? FromHandle(nuint handle)
             => handle == 0 ? null : new WrapDeformer(handle);
 
         /// <summary>
         /// Sets the cage mesh used to deform against a sibling WrapTarget cage mesh.
         /// </summary>
-        /// <param name="content">A <c>string?</c> value.</param>
-        /// <param name="cageOrigin">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="content">A <c>string</c> value.</param>
+        /// <param name="cageOrigin">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapDeformer#SetCageMeshContent"/>
-        public object? SetCageMeshContent(string? content, object? cageOrigin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCageMeshContent", content, cageOrigin);
+        public object SetCageMeshContent(string content, global::Roblox.CFrame? cageOrigin = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCageMeshContent", content, cageOrigin)!;
 
         /// <summary>
         /// Returns an EditableMesh (currently unskinned) equivalent to the deformed parent mesh.
         /// </summary>
-        /// <returns>A <c>EditableMesh?</c> value returned by the engine.</returns>
+        /// <returns>A <c>EditableMesh</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapDeformer#CreateEditableMeshAsync"/>
-        public EditableMesh? CreateEditableMeshAsync()
-            => global::Roblox.Reflection.Invoke<EditableMesh?>(this, "CreateEditableMeshAsync");
+        public EditableMesh CreateEditableMeshAsync()
+            => global::Roblox.Reflection.Invoke<EditableMesh>(this, "CreateEditableMeshAsync")!;
 
         /// <summary>
         /// Returns a CFrame deformed comparably to the MeshPart.
         /// </summary>
-        /// <param name="originalCFrame">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <param name="originalCFrame">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapDeformer#GetDeformedCFrameAsync"/>
-        public global::Roblox.CFrame? GetDeformedCFrameAsync(global::Roblox.CFrame? originalCFrame)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetDeformedCFrameAsync", originalCFrame);
+        public global::Roblox.CFrame GetDeformedCFrameAsync(global::Roblox.CFrame originalCFrame)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetDeformedCFrameAsync", originalCFrame)!;
 
     }
 }

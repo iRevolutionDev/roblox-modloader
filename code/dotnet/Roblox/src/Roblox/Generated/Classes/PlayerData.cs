@@ -18,23 +18,23 @@ namespace Roblox
         /// Creates a <see cref="PlayerData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerData? FromHandle(nuint handle)
+        public static new PlayerData? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerData(handle);
 
         /// <summary>
         /// <c>PlayerData.GetPlayer</c>
         /// </summary>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
-        public Player? GetPlayer()
-            => global::Roblox.Reflection.Invoke<Player?>(this, "GetPlayer");
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
+        public Player GetPlayer()
+            => global::Roblox.Reflection.Invoke<Player>(this, "GetPlayer")!;
 
         /// <summary>
         /// <c>PlayerData.GetRecordAsync</c>
         /// </summary>
         /// <param name="recordName">A <c>string?</c> value.</param>
-        /// <returns>A <c>PlayerDataRecord?</c> value returned by the engine.</returns>
-        public PlayerDataRecord? GetRecordAsync(string? recordName)
-            => global::Roblox.Reflection.Invoke<PlayerDataRecord?>(this, "GetRecordAsync", recordName);
+        /// <returns>A <c>PlayerDataRecord</c> value returned by the engine.</returns>
+        public PlayerDataRecord GetRecordAsync(string? recordName = null)
+            => global::Roblox.Reflection.Invoke<PlayerDataRecord>(this, "GetRecordAsync", recordName)!;
 
     }
 }

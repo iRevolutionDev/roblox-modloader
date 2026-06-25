@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="WrapTarget"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WrapTarget? FromHandle(nuint handle)
+        public static new WrapTarget? FromHandle(nuint handle)
             => handle == 0 ? null : new WrapTarget(handle);
 
         /// <summary>
         /// Sets color used for the debug rendering. See WrapTarget.DebugMode.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget#DebugMode"/>
         public Enum.WrapTargetDebugMode DebugMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.WrapTargetDebugMode>(this, "DebugMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.WrapTargetDebugMode>(this, "DebugMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.WrapTargetDebugMode>(this, "DebugMode", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget#Stiffness"/>
         public float Stiffness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Stiffness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Stiffness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Stiffness", value);
         }
 

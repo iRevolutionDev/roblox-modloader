@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="WireframeHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WireframeHandleAdornment? FromHandle(nuint handle)
+        public static new WireframeHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new WireframeHandleAdornment(handle);
 
         /// <summary>
         /// The XYZ scale of the wireframe adornment.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#Scale"/>
-        public global::Roblox.Vector3? Scale
+        public global::Roblox.Vector3 Scale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Scale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Scale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Scale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Scale", value);
         }
 
         /// <summary>
@@ -41,57 +41,57 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#Thickness"/>
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 
         /// <summary>
         /// Adds a line to the wireframe adornment from a starting point to an ending point relative to the center of the Adornee.
         /// </summary>
-        /// <param name="from">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="to">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="from">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="to">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#AddLine"/>
-        public object? AddLine(global::Roblox.Vector3? from, global::Roblox.Vector3? to)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddLine", from, to);
+        public object AddLine(global::Roblox.Vector3 from, global::Roblox.Vector3 to)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddLine", from, to)!;
 
         /// <summary>
         /// Adds one or more lines to the wireframe adornment using an array.
         /// </summary>
-        /// <param name="points">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="points">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#AddLines"/>
-        public object? AddLines(object? points)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddLines", points);
+        public object AddLines(object points)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddLines", points)!;
 
         /// <summary>
         /// Adds multiple line segments to the wireframe adornment in a sequence from point to point.
         /// </summary>
-        /// <param name="points">A <c>object?</c> value.</param>
+        /// <param name="points">A <c>object</c> value.</param>
         /// <param name="loop">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#AddPath"/>
-        public object? AddPath(object? points, bool loop)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddPath", points, loop);
+        public object AddPath(object points, bool loop)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddPath", points, loop)!;
 
         /// <summary>
         /// Adds a text label to the wireframe adornment.
         /// </summary>
-        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <param name="size">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="point">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <param name="size">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#AddText"/>
-        public object? AddText(global::Roblox.Vector3? point, string? text, int size)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddText", point, text, size);
+        public object AddText(global::Roblox.Vector3 point, string text, int? size = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddText", point, text, size)!;
 
         /// <summary>
         /// Instantly clears all lines and text in the wireframe adornment.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WireframeHandleAdornment#Clear"/>
-        public object? Clear()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
+        public object Clear()
+            => global::Roblox.Reflection.Invoke<object>(this, "Clear")!;
 
     }
 }

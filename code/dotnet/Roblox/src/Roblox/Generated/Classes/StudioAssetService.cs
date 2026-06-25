@@ -18,144 +18,144 @@ namespace Roblox
         /// Creates a <see cref="StudioAssetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioAssetService? FromHandle(nuint handle)
+        public static new StudioAssetService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioAssetService(handle);
 
         /// <summary>
         /// <c>StudioAssetService.ConvertToPackageUpload</c>
         /// </summary>
-        /// <param name="uploadUrl">A <c>string?</c> value.</param>
+        /// <param name="uploadUrl">A <c>string</c> value.</param>
         /// <param name="cloneInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="originalInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ConvertToPackageUpload(string? uploadUrl, IReadOnlyList<Instance> cloneInstances, IReadOnlyList<Instance> originalInstances)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ConvertToPackageUpload", uploadUrl, cloneInstances, originalInstances);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ConvertToPackageUpload(string uploadUrl, IReadOnlyList<Instance> cloneInstances, IReadOnlyList<Instance> originalInstances)
+            => global::Roblox.Reflection.Invoke<object>(this, "ConvertToPackageUpload", uploadUrl, cloneInstances, originalInstances)!;
 
         /// <summary>
         /// <c>StudioAssetService.FireOnUGCSubmitCompleted</c>
         /// </summary>
         /// <param name="cancelled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FireOnUGCSubmitCompleted(bool cancelled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireOnUGCSubmitCompleted", cancelled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FireOnUGCSubmitCompleted(bool cancelled)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireOnUGCSubmitCompleted", cancelled)!;
 
         /// <summary>
         /// <c>StudioAssetService.PublishPackage</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="publishInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PublishPackage(Instance? instance, object? publishInfo)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishPackage", instance, publishInfo);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="publishInfo">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PublishPackage(Instance instance, object publishInfo)
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishPackage", instance, publishInfo)!;
 
         /// <summary>
         /// <c>StudioAssetService.ResolveSaveInstanceToRoblox</c>
         /// </summary>
-        /// <param name="requestId">A <c>string?</c> value.</param>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <param name="assetName">A <c>object?</c> value.</param>
-        /// <param name="errorMessage">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResolveSaveInstanceToRoblox(string? requestId, object? assetId, object? assetName, object? errorMessage)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResolveSaveInstanceToRoblox", requestId, assetId, assetName, errorMessage);
+        /// <param name="requestId">A <c>string</c> value.</param>
+        /// <param name="assetId">A <c>long?</c> value.</param>
+        /// <param name="assetName">A <c>string?</c> value.</param>
+        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResolveSaveInstanceToRoblox(string requestId, long? assetId = null, string? assetName = null, string? errorMessage = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResolveSaveInstanceToRoblox", requestId, assetId, assetName, errorMessage)!;
 
         /// <summary>
         /// <c>StudioAssetService.ShowSaveToRoblox</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="assetType">A <c>object?</c> value.</param>
-        /// <param name="hasSubsequent">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowSaveToRoblox(IReadOnlyList<Instance> instances, object? assetType, bool hasSubsequent)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowSaveToRoblox", instances, assetType, hasSubsequent);
+        /// <param name="assetType">A <c>object</c> value.</param>
+        /// <param name="hasSubsequent">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowSaveToRoblox(IReadOnlyList<Instance> instances, object assetType, bool? hasSubsequent = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowSaveToRoblox", instances, assetType, hasSubsequent)!;
 
         /// <summary>
         /// <c>StudioAssetService.UpdatePublishedPackage</c>
         /// </summary>
-        /// <param name="assetmetadata">A <c>object?</c> value.</param>
-        /// <param name="rootInstance">A <c>Instance?</c> value.</param>
-        /// <param name="isConvert">A <c>bool</c> value.</param>
-        /// <param name="addUndoWaypoint">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdatePublishedPackage(object? assetmetadata, Instance? rootInstance, bool isConvert, bool addUndoWaypoint)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdatePublishedPackage", assetmetadata, rootInstance, isConvert, addUndoWaypoint);
+        /// <param name="assetmetadata">A <c>object</c> value.</param>
+        /// <param name="rootInstance">A <c>Instance</c> value.</param>
+        /// <param name="isConvert">A <c>bool?</c> value.</param>
+        /// <param name="addUndoWaypoint">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdatePublishedPackage(object assetmetadata, Instance rootInstance, bool? isConvert = null, bool? addUndoWaypoint = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdatePublishedPackage", assetmetadata, rootInstance, isConvert, addUndoWaypoint)!;
 
         /// <summary>
         /// <c>StudioAssetService.AutoSetupAvatarAsync</c>
         /// </summary>
-        /// <param name="modelId">A <c>object?</c> value.</param>
-        /// <param name="progressCallback">A <c>object?</c> value.</param>
+        /// <param name="modelId">A <c>object</c> value.</param>
+        /// <param name="progressCallback">A <c>object</c> value.</param>
         /// <param name="notificationCallback">A <c>object?</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? AutoSetupAvatarAsync(object? modelId, object? progressCallback, object? notificationCallback, object? options)
+        public Instance? AutoSetupAvatarAsync(object modelId, object progressCallback, object? notificationCallback = null, object? options = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "AutoSetupAvatarAsync", modelId, progressCallback, notificationCallback, options);
 
         /// <summary>
         /// <c>StudioAssetService.AutoSetupSerializedAvatarAsync</c>
         /// </summary>
-        /// <param name="serializedInstance">A <c>string?</c> value.</param>
-        /// <param name="publishInfo">A <c>object?</c> value.</param>
-        /// <param name="telemetryMetadata">A <c>object?</c> value.</param>
-        /// <param name="progressCallback">A <c>object?</c> value.</param>
+        /// <param name="serializedInstance">A <c>string</c> value.</param>
+        /// <param name="publishInfo">A <c>object</c> value.</param>
+        /// <param name="telemetryMetadata">A <c>object</c> value.</param>
+        /// <param name="progressCallback">A <c>object</c> value.</param>
         /// <param name="notificationCallback">A <c>object?</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? AutoSetupSerializedAvatarAsync(string? serializedInstance, object? publishInfo, object? telemetryMetadata, object? progressCallback, object? notificationCallback, object? options)
+        public Instance? AutoSetupSerializedAvatarAsync(string serializedInstance, object publishInfo, object telemetryMetadata, object progressCallback, object? notificationCallback = null, object? options = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "AutoSetupSerializedAvatarAsync", serializedInstance, publishInfo, telemetryMetadata, progressCallback, notificationCallback, options);
 
         /// <summary>
         /// <c>StudioAssetService.CancelAutoSetupAvatarAsync</c>
         /// </summary>
-        /// <param name="jobId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CancelAutoSetupAvatarAsync(string? jobId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CancelAutoSetupAvatarAsync", jobId);
+        /// <param name="jobId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CancelAutoSetupAvatarAsync(string jobId)
+            => global::Roblox.Reflection.Invoke<object>(this, "CancelAutoSetupAvatarAsync", jobId)!;
 
         /// <summary>
         /// <c>StudioAssetService.DEPRECATED_SerializeInstances</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? DEPRECATED_SerializeInstances(IReadOnlyList<Instance> instances)
-            => global::Roblox.Reflection.Invoke<string?>(this, "DEPRECATED_SerializeInstances", instances);
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string DEPRECATED_SerializeInstances(IReadOnlyList<Instance> instances)
+            => global::Roblox.Reflection.Invoke<string>(this, "DEPRECATED_SerializeInstances", instances)!;
 
         /// <summary>
         /// <c>StudioAssetService.PromptSaveInstanceToRobloxAsync</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="assetType">A <c>object?</c> value.</param>
-        /// <param name="groupId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptSaveInstanceToRobloxAsync(Instance? instance, object? assetType, object? groupId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptSaveInstanceToRobloxAsync", instance, assetType, groupId);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="assetType">A <c>object</c> value.</param>
+        /// <param name="groupId">A <c>long?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptSaveInstanceToRobloxAsync(Instance instance, object assetType, long? groupId = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptSaveInstanceToRobloxAsync", instance, assetType, groupId)!;
 
         /// <summary>
         /// <c>StudioAssetService.RequestAvatarAutosetupAsync</c>
         /// </summary>
-        /// <param name="meshId">A <c>object?</c> value.</param>
-        /// <param name="textureId">A <c>object?</c> value.</param>
-        /// <param name="progressCallback">A <c>object?</c> value.</param>
+        /// <param name="meshId">A <c>object</c> value.</param>
+        /// <param name="textureId">A <c>object</c> value.</param>
+        /// <param name="progressCallback">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? RequestAvatarAutosetupAsync(object? meshId, object? textureId, object? progressCallback)
+        public Instance? RequestAvatarAutosetupAsync(object meshId, object textureId, object progressCallback)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "RequestAvatarAutosetupAsync", meshId, textureId, progressCallback);
 
         /// <summary>
         /// <c>StudioAssetService.SerializeInstances</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="groupId">A <c>long</c> value.</param>
-        /// <param name="isPackage">A <c>bool</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? SerializeInstances(IReadOnlyList<Instance> instances, long groupId, bool isPackage)
-            => global::Roblox.Reflection.Invoke<string?>(this, "SerializeInstances", instances, groupId, isPackage);
+        /// <param name="groupId">A <c>long?</c> value.</param>
+        /// <param name="isPackage">A <c>bool?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string SerializeInstances(IReadOnlyList<Instance> instances, long? groupId = null, bool? isPackage = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "SerializeInstances", instances, groupId, isPackage)!;
 
         /// <summary>
         /// <c>StudioAssetService.OnConvertToPackageResult</c>
         /// </summary>
         /// <param name="isSuccessful">A <c>bool</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
-        public event Action<bool, string?>? OnConvertToPackageResult
+        /// <param name="errorMessage">A <c>string</c> value.</param>
+        public event Action<bool, string>? OnConvertToPackageResult
         {
             add { if (value is not null) AddEventHandler("OnConvertToPackageResult", value); }
             remove { if (value is not null) RemoveEventHandler("OnConvertToPackageResult", value); }
@@ -164,11 +164,11 @@ namespace Roblox
         /// <summary>
         /// <c>StudioAssetService.OnPromptSaveInstanceToRobloxAsync</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="assetType">A <c>object?</c> value.</param>
-        /// <param name="requestId">A <c>string?</c> value.</param>
-        /// <param name="groupId">A <c>object?</c> value.</param>
-        public event Action<Instance?, object?, string?, object?>? OnPromptSaveInstanceToRobloxAsync
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="assetType">A <c>object</c> value.</param>
+        /// <param name="requestId">A <c>string</c> value.</param>
+        /// <param name="groupId">A <c>long?</c> value.</param>
+        public event Action<Instance, object, string, long?>? OnPromptSaveInstanceToRobloxAsync
         {
             add { if (value is not null) AddEventHandler("OnPromptSaveInstanceToRobloxAsync", value); }
             remove { if (value is not null) RemoveEventHandler("OnPromptSaveInstanceToRobloxAsync", value); }
@@ -177,9 +177,9 @@ namespace Roblox
         /// <summary>
         /// <c>StudioAssetService.OnPublishPackageResult</c>
         /// </summary>
-        /// <param name="result">A <c>object?</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
-        public event Action<object?, string?>? OnPublishPackageResult
+        /// <param name="result">A <c>object</c> value.</param>
+        /// <param name="errorMessage">A <c>string</c> value.</param>
+        public event Action<object, string>? OnPublishPackageResult
         {
             add { if (value is not null) AddEventHandler("OnPublishPackageResult", value); }
             remove { if (value is not null) RemoveEventHandler("OnPublishPackageResult", value); }
@@ -189,9 +189,9 @@ namespace Roblox
         /// <c>StudioAssetService.OnSaveToRoblox</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="assetType">A <c>object?</c> value.</param>
+        /// <param name="assetType">A <c>object</c> value.</param>
         /// <param name="hasSubsequent">A <c>bool</c> value.</param>
-        public event Action<IReadOnlyList<Instance>, object?, bool>? OnSaveToRoblox
+        public event Action<IReadOnlyList<Instance>, object, bool>? OnSaveToRoblox
         {
             add { if (value is not null) AddEventHandler("OnSaveToRoblox", value); }
             remove { if (value is not null) RemoveEventHandler("OnSaveToRoblox", value); }

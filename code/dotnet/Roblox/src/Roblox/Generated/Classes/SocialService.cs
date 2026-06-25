@@ -22,223 +22,223 @@ namespace Roblox
         /// Creates a <see cref="SocialService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SocialService? FromHandle(nuint handle)
+        public static new SocialService? FromHandle(nuint handle)
             => handle == 0 ? null : new SocialService(handle);
 
         /// <summary>
         /// Returns a table of all presently connected Player objects whose Player.PartyId property matches the passed partyId.
         /// </summary>
-        /// <param name="partyId">A <c>string?</c> value.</param>
+        /// <param name="partyId">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GetPlayersByPartyId"/>
-        public IReadOnlyList<Instance> GetPlayersByPartyId(string? partyId)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayersByPartyId", partyId);
+        public IReadOnlyList<Instance> GetPlayersByPartyId(string partyId)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayersByPartyId", partyId)!;
 
         /// <summary>
         /// Hides the calling player's self view.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#HideSelfView"/>
-        public object? HideSelfView()
-            => global::Roblox.Reflection.Invoke<object?>(this, "HideSelfView");
+        public object HideSelfView()
+            => global::Roblox.Reflection.Invoke<object>(this, "HideSelfView")!;
 
         /// <summary>
         /// <c>SocialService.InvokeGameInvitePromptClosed</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="recipientIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InvokeGameInvitePromptClosed(Instance? player, object? recipientIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeGameInvitePromptClosed", player, recipientIds);
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="recipientIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InvokeGameInvitePromptClosed(Instance player, object recipientIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeGameInvitePromptClosed", player, recipientIds)!;
 
         /// <summary>
         /// <c>SocialService.InvokeIrisInvite</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <param name="irisParticipants">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InvokeIrisInvite(Instance? player, string? tag, object? irisParticipants)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeIrisInvite", player, tag, irisParticipants);
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <param name="irisParticipants">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InvokeIrisInvite(Instance player, string tag, object irisParticipants)
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeIrisInvite", player, tag, irisParticipants)!;
 
         /// <summary>
         /// <c>SocialService.InvokeIrisInvitePromptClosed</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InvokeIrisInvitePromptClosed(Instance? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeIrisInvitePromptClosed", player);
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InvokeIrisInvitePromptClosed(Instance player)
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeIrisInvitePromptClosed", player)!;
 
         /// <summary>
         /// <c>SocialService.InvokeShareSheetClosed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InvokeShareSheetClosed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeShareSheetClosed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InvokeShareSheetClosed()
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeShareSheetClosed")!;
 
         /// <summary>
         /// Prompts the given Player with the invite screen.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="experienceInviteOptions">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PromptGameInvite"/>
-        public object? PromptGameInvite(Instance? player, Instance? experienceInviteOptions)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptGameInvite", player, experienceInviteOptions);
+        public object PromptGameInvite(Instance player, Instance? experienceInviteOptions = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptGameInvite", player, experienceInviteOptions)!;
 
         /// <summary>
         /// Prompts the given Player with the phone book.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PromptPhoneBook"/>
-        public object? PromptPhoneBook(Instance? player, string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptPhoneBook", player, tag);
+        public object PromptPhoneBook(Instance player, string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptPhoneBook", player, tag)!;
 
         /// <summary>
         /// <c>SocialService.PromptRsvpToEventCompleted</c>
         /// </summary>
-        /// <param name="eventId">A <c>string?</c> value.</param>
+        /// <param name="eventId">A <c>string</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
         /// <param name="rsvpStatus">A <c>Enum.RsvpStatus</c> value.</param>
-        /// <param name="previousRsvpStatus">A <c>Enum.RsvpStatus</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptRsvpToEventCompleted(string? eventId, bool success, Enum.RsvpStatus rsvpStatus, Enum.RsvpStatus previousRsvpStatus)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptRsvpToEventCompleted", eventId, success, rsvpStatus, previousRsvpStatus);
+        /// <param name="previousRsvpStatus">A <c>Enum.RsvpStatus?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptRsvpToEventCompleted(string eventId, bool success, Enum.RsvpStatus rsvpStatus, Enum.RsvpStatus? previousRsvpStatus = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptRsvpToEventCompleted", eventId, success, rsvpStatus, previousRsvpStatus)!;
 
         /// <summary>
         /// Shows the calling player's self view.
         /// </summary>
-        /// <param name="selfViewPosition">A <c>Enum.SelfViewPosition</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="selfViewPosition">A <c>Enum.SelfViewPosition?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#ShowSelfView"/>
-        public object? ShowSelfView(Enum.SelfViewPosition selfViewPosition)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowSelfView", selfViewPosition);
+        public object ShowSelfView(Enum.SelfViewPosition? selfViewPosition = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowSelfView", selfViewPosition)!;
 
         /// <summary>
         /// <c>SocialService.SignalFeedbackSubmissionCompleted</c>
         /// </summary>
-        /// <param name="feedback">A <c>string?</c> value.</param>
+        /// <param name="feedback">A <c>string</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalFeedbackSubmissionCompleted(string? feedback, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalFeedbackSubmissionCompleted", feedback, options);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalFeedbackSubmissionCompleted(string feedback, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalFeedbackSubmissionCompleted", feedback, options)!;
 
         /// <summary>
         /// <c>SocialService.SignalFeedbackSubmissionPermissionDenied</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalFeedbackSubmissionPermissionDenied()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalFeedbackSubmissionPermissionDenied");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalFeedbackSubmissionPermissionDenied()
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalFeedbackSubmissionPermissionDenied")!;
 
         /// <summary>
         /// <c>SocialService.UpdatePlayerPartyData</c>
         /// </summary>
-        /// <param name="partyId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdatePlayerPartyData(string? partyId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdatePlayerPartyData", partyId);
+        /// <param name="partyId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdatePlayerPartyData(string partyId)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdatePlayerPartyData", partyId)!;
 
         /// <summary>
         /// Indicates whether the given Player can invite other players to a call.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#CanSendCallInviteAsync"/>
-        public bool CanSendCallInviteAsync(Instance? player)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanSendCallInviteAsync", player);
+        public bool CanSendCallInviteAsync(Instance player)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanSendCallInviteAsync", player)!;
 
         /// <summary>
         /// Indicates whether the given Player can invite other players.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="recipientId">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#CanSendGameInviteAsync"/>
-        public bool CanSendGameInviteAsync(Instance? player, object? recipientId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanSendGameInviteAsync", player, recipientId);
+        public bool CanSendGameInviteAsync(Instance player, object? recipientId = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanSendGameInviteAsync", player, recipientId)!;
 
         /// <summary>
         /// Returns the local player's RSVP status for the given event.
         /// </summary>
-        /// <param name="eventId">A <c>string?</c> value.</param>
+        /// <param name="eventId">A <c>string</c> value.</param>
         /// <returns>A <c>Enum.RsvpStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GetEventRsvpStatusAsync"/>
-        public Enum.RsvpStatus GetEventRsvpStatusAsync(string? eventId)
-            => global::Roblox.Reflection.Invoke<Enum.RsvpStatus>(this, "GetEventRsvpStatusAsync", eventId);
+        public Enum.RsvpStatus GetEventRsvpStatusAsync(string eventId)
+            => global::Roblox.Reflection.Invoke<Enum.RsvpStatus>(this, "GetEventRsvpStatusAsync", eventId)!;
 
         /// <summary>
         /// Returns details for the specified experience event or nil if it is unavailable.
         /// </summary>
-        /// <param name="eventId">A <c>string?</c> value.</param>
+        /// <param name="eventId">A <c>string</c> value.</param>
         /// <returns>A <c>object?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GetExperienceEventAsync"/>
-        public object? GetExperienceEventAsync(string? eventId)
+        public object? GetExperienceEventAsync(string eventId)
             => global::Roblox.Reflection.Invoke<object?>(this, "GetExperienceEventAsync", eventId);
 
         /// <summary>
         /// Returns an array of dictionaries containing data for all members of the specified party who are currently in the experience.
         /// </summary>
-        /// <param name="partyId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="partyId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GetPartyAsync"/>
-        public object? GetPartyAsync(string? partyId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPartyAsync", partyId);
+        public object GetPartyAsync(string partyId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPartyAsync", partyId)!;
 
         /// <summary>
         /// Returns active and upcoming experience events for the current experience.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GetUpcomingExperienceEventsAsync"/>
-        public object? GetUpcomingExperienceEventsAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUpcomingExperienceEventsAsync");
+        public object GetUpcomingExperienceEventsAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUpcomingExperienceEventsAsync")!;
 
         /// <summary>
         /// Prompts the player to submit feedback about the current experience.
         /// </summary>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PromptFeedbackSubmissionAsync"/>
-        public object? PromptFeedbackSubmissionAsync(object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptFeedbackSubmissionAsync", options);
+        public object PromptFeedbackSubmissionAsync(object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptFeedbackSubmissionAsync", options)!;
 
         /// <summary>
         /// Deprecated:
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PromptLinkSharing"/>
-        public object? PromptLinkSharing(Player? player, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptLinkSharing", player, options);
+        public object PromptLinkSharing(Player player, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptLinkSharing", player, options)!;
 
         /// <summary>
         /// <c>SocialService.PromptLinkSharingAsync</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PromptLinkSharingAsync"/>
-        public object? PromptLinkSharingAsync(Player? player, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptLinkSharingAsync", player, options);
+        public object PromptLinkSharingAsync(Player player, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptLinkSharingAsync", player, options)!;
 
         /// <summary>
         /// Prompts the local Player with a prompt to change their RSVP status to the given event.
         /// </summary>
-        /// <param name="eventId">A <c>string?</c> value.</param>
+        /// <param name="eventId">A <c>string</c> value.</param>
         /// <returns>A <c>Enum.RsvpStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PromptRsvpToEventAsync"/>
-        public Enum.RsvpStatus PromptRsvpToEventAsync(string? eventId)
-            => global::Roblox.Reflection.Invoke<Enum.RsvpStatus>(this, "PromptRsvpToEventAsync", eventId);
+        public Enum.RsvpStatus PromptRsvpToEventAsync(string eventId)
+            => global::Roblox.Reflection.Invoke<Enum.RsvpStatus>(this, "PromptRsvpToEventAsync", eventId)!;
 
         /// <summary>
         /// Fires when a player's call invite state changes.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="inviteState">A <c>Enum.InviteState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#CallInviteStateChanged"/>
-        public event Action<Instance?, Enum.InviteState>? CallInviteStateChanged
+        public event Action<Instance, Enum.InviteState>? CallInviteStateChanged
         {
             add { if (value is not null) AddEventHandler("CallInviteStateChanged", value); }
             remove { if (value is not null) RemoveEventHandler("CallInviteStateChanged", value); }
@@ -247,10 +247,10 @@ namespace Roblox
         /// <summary>
         /// Fires when a player closes an invite prompt.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="recipientIds">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="recipientIds">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#GameInvitePromptClosed"/>
-        public event Action<Instance?, object?>? GameInvitePromptClosed
+        public event Action<Instance, object>? GameInvitePromptClosed
         {
             add { if (value is not null) AddEventHandler("GameInvitePromptClosed", value); }
             remove { if (value is not null) RemoveEventHandler("GameInvitePromptClosed", value); }
@@ -259,8 +259,8 @@ namespace Roblox
         /// <summary>
         /// <c>SocialService.OpenShareSheetWithLink</c>
         /// </summary>
-        /// <param name="link">A <c>string?</c> value.</param>
-        public event Action<string?>? OpenShareSheetWithLink
+        /// <param name="link">A <c>string</c> value.</param>
+        public event Action<string>? OpenShareSheetWithLink
         {
             add { if (value is not null) AddEventHandler("OpenShareSheetWithLink", value); }
             remove { if (value is not null) RemoveEventHandler("OpenShareSheetWithLink", value); }
@@ -269,9 +269,9 @@ namespace Roblox
         /// <summary>
         /// Fires when a player closes the phone book prompt.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PhoneBookPromptClosed"/>
-        public event Action<Instance?>? PhoneBookPromptClosed
+        public event Action<Instance>? PhoneBookPromptClosed
         {
             add { if (value is not null) AddEventHandler("PhoneBookPromptClosed", value); }
             remove { if (value is not null) RemoveEventHandler("PhoneBookPromptClosed", value); }
@@ -280,8 +280,8 @@ namespace Roblox
         /// <summary>
         /// <c>SocialService.PlayerPartyDataChanged</c>
         /// </summary>
-        /// <param name="partyId">A <c>string?</c> value.</param>
-        public event Action<string?>? PlayerPartyDataChanged
+        /// <param name="partyId">A <c>string</c> value.</param>
+        public event Action<string>? PlayerPartyDataChanged
         {
             add { if (value is not null) AddEventHandler("PlayerPartyDataChanged", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerPartyDataChanged", value); }
@@ -290,9 +290,9 @@ namespace Roblox
         /// <summary>
         /// <c>SocialService.PromptInviteRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="experienceInviteOptions">A <c>Instance?</c> value.</param>
-        public event Action<Instance?, Instance?>? PromptInviteRequested
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="experienceInviteOptions">A <c>Instance</c> value.</param>
+        public event Action<Instance, Instance>? PromptInviteRequested
         {
             add { if (value is not null) AddEventHandler("PromptInviteRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptInviteRequested", value); }
@@ -301,9 +301,9 @@ namespace Roblox
         /// <summary>
         /// <c>SocialService.PromptIrisInviteRequested</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        public event Action<Instance?, string?>? PromptIrisInviteRequested
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
+        public event Action<Instance, string>? PromptIrisInviteRequested
         {
             add { if (value is not null) AddEventHandler("PromptIrisInviteRequested", value); }
             remove { if (value is not null) RemoveEventHandler("PromptIrisInviteRequested", value); }
@@ -328,9 +328,9 @@ namespace Roblox
         /// <summary>
         /// <c>SocialService.ShareSheetClosed</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#ShareSheetClosed"/>
-        public event Action<Player?>? ShareSheetClosed
+        public event Action<Player>? ShareSheetClosed
         {
             add { if (value is not null) AddEventHandler("ShareSheetClosed", value); }
             remove { if (value is not null) RemoveEventHandler("ShareSheetClosed", value); }
@@ -349,9 +349,9 @@ namespace Roblox
         /// <summary>
         /// <c>SocialService.ShowPromptFeedbackUnavailable</c>
         /// </summary>
-        /// <param name="reason">A <c>string?</c> value.</param>
+        /// <param name="reason">A <c>string</c> value.</param>
         /// <param name="feedbackType">A <c>Enum.FeedbackType</c> value.</param>
-        public event Action<string?, Enum.FeedbackType>? ShowPromptFeedbackUnavailable
+        public event Action<string, Enum.FeedbackType>? ShowPromptFeedbackUnavailable
         {
             add { if (value is not null) AddEventHandler("ShowPromptFeedbackUnavailable", value); }
             remove { if (value is not null) RemoveEventHandler("ShowPromptFeedbackUnavailable", value); }
@@ -360,8 +360,8 @@ namespace Roblox
         /// <summary>
         /// <c>SocialService.ShowPromptRsvpToEvent</c>
         /// </summary>
-        /// <param name="eventId">A <c>string?</c> value.</param>
-        public event Action<string?>? ShowPromptRsvpToEvent
+        /// <param name="eventId">A <c>string</c> value.</param>
+        public event Action<string>? ShowPromptRsvpToEvent
         {
             add { if (value is not null) AddEventHandler("ShowPromptRsvpToEvent", value); }
             remove { if (value is not null) RemoveEventHandler("ShowPromptRsvpToEvent", value); }

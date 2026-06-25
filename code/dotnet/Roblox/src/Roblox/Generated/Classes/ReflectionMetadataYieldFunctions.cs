@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ReflectionMetadataYieldFunctions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReflectionMetadataYieldFunctions? FromHandle(nuint handle)
+        public static new ReflectionMetadataYieldFunctions? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionMetadataYieldFunctions(handle);
 
     }

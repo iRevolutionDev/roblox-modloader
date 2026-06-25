@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="StudioUserService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioUserService? FromHandle(nuint handle)
+        public static new StudioUserService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioUserService(handle);
 
         public bool IsLoggedIn
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoggedIn");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoggedIn")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLoggedIn", value);
         }
 

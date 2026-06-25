@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="NetworkPeer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NetworkPeer? FromHandle(nuint handle)
+        public static new NetworkPeer? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkPeer(handle);
 
         /// <summary>
         /// <c>NetworkPeer.InitializeRemoteAllowList</c>
         /// </summary>
-        /// <param name="names">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InitializeRemoteAllowList(object? names)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InitializeRemoteAllowList", names);
+        /// <param name="names">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InitializeRemoteAllowList(object names)
+            => global::Roblox.Reflection.Invoke<object>(this, "InitializeRemoteAllowList", names)!;
 
         /// <summary>
         /// Sets the maximum outgoing bandwidth that Roblox can use.
         /// </summary>
         /// <param name="limit">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkPeer#SetOutgoingKBPSLimit"/>
-        public object? SetOutgoingKBPSLimit(int limit)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetOutgoingKBPSLimit", limit);
+        public object SetOutgoingKBPSLimit(int limit)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetOutgoingKBPSLimit", limit)!;
 
     }
 }

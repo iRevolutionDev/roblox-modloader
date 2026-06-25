@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="ActivityHistoryEventService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ActivityHistoryEventService? FromHandle(nuint handle)
+        public static new ActivityHistoryEventService? FromHandle(nuint handle)
             => handle == 0 ? null : new ActivityHistoryEventService(handle);
 
         /// <summary>
@@ -26,8 +26,8 @@ namespace Roblox
         /// </summary>
         /// <param name="eventType">A <c>int</c> value.</param>
         /// <param name="resourceId">A <c>long</c> value.</param>
-        /// <param name="metadata">A <c>string?</c> value.</param>
-        public event Action<int, long, string?>? WriteActivityHistoryEventFromStudio
+        /// <param name="metadata">A <c>string</c> value.</param>
+        public event Action<int, long, string>? WriteActivityHistoryEventFromStudio
         {
             add { if (value is not null) AddEventHandler("WriteActivityHistoryEventFromStudio", value); }
             remove { if (value is not null) RemoveEventHandler("WriteActivityHistoryEventFromStudio", value); }

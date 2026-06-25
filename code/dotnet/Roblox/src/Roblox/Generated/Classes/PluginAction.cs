@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="PluginAction"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginAction? FromHandle(nuint handle)
+        public static new PluginAction? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginAction(handle);
 
         /// <summary>
         /// A string that uniquely identifies this action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginAction#ActionId"/>
-        public string? ActionId
+        public string ActionId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ActionId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ActionId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ActionId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ActionId", value);
         }
 
         /// <summary>
@@ -41,25 +41,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginAction#AllowBinding"/>
         public bool AllowBinding
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowBinding");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowBinding")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowBinding", value);
         }
 
         public bool Checked
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Checked");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Checked")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Checked", value);
         }
 
-        public string? DefaultShortcut
+        public string DefaultShortcut
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DefaultShortcut");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DefaultShortcut", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DefaultShortcut")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DefaultShortcut", value);
         }
 
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -67,25 +67,25 @@ namespace Roblox
         /// The description of the action when viewing it from the keyboard shortcuts window in Roblox Studio.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginAction#StatusTip"/>
-        public string? StatusTip
+        public string StatusTip
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "StatusTip");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "StatusTip", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "StatusTip")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "StatusTip", value);
         }
 
         /// <summary>
         /// The text that is displayed when viewing this action in Roblox Studio.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginAction#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 

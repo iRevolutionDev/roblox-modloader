@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="ExplorerServiceVisibilityService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExplorerServiceVisibilityService? FromHandle(nuint handle)
+        public static new ExplorerServiceVisibilityService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExplorerServiceVisibilityService(handle);
 
         /// <summary>
         /// <c>ExplorerServiceVisibilityService.GetServiceVisibility</c>
         /// </summary>
-        /// <param name="service">A <c>Instance?</c> value.</param>
+        /// <param name="service">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool GetServiceVisibility(Instance? service)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetServiceVisibility", service);
+        public bool GetServiceVisibility(Instance service)
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetServiceVisibility", service)!;
 
     }
 }

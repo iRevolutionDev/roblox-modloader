@@ -18,23 +18,23 @@ namespace Roblox
         /// Creates a <see cref="DesignFoundationsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DesignFoundationsService? FromHandle(nuint handle)
+        public static new DesignFoundationsService? FromHandle(nuint handle)
             => handle == 0 ? null : new DesignFoundationsService(handle);
 
         /// <summary>
         /// <c>DesignFoundationsService.ClearTokens</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearTokens()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearTokens");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearTokens()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearTokens")!;
 
         /// <summary>
         /// <c>DesignFoundationsService.SetTokens</c>
         /// </summary>
-        /// <param name="payload">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTokens(object? payload)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTokens", payload);
+        /// <param name="payload">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTokens(object payload)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTokens", payload)!;
 
     }
 }

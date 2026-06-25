@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="StatsItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StatsItem? FromHandle(nuint handle)
+        public static new StatsItem? FromHandle(nuint handle)
             => handle == 0 ? null : new StatsItem(handle);
 
         /// <summary>
         /// <c>StatsItem.DisplayName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StatsItem#DisplayName"/>
-        public string? DisplayName
+        public string DisplayName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DisplayName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DisplayName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DisplayName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DisplayName", value);
         }
 
         /// <summary>
@@ -41,15 +41,15 @@ namespace Roblox
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StatsItem#GetValue"/>
         public double GetValue()
-            => global::Roblox.Reflection.Invoke<double>(this, "GetValue");
+            => global::Roblox.Reflection.Invoke<double>(this, "GetValue")!;
 
         /// <summary>
         /// Returns the StatsItem's value as a formatted string.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StatsItem#GetValueString"/>
-        public string? GetValueString()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetValueString");
+        public string GetValueString()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetValueString")!;
 
     }
 }

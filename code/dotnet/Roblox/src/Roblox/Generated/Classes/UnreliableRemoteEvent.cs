@@ -22,43 +22,43 @@ namespace Roblox
         /// Creates a <see cref="UnreliableRemoteEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UnreliableRemoteEvent? FromHandle(nuint handle)
+        public static new UnreliableRemoteEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new UnreliableRemoteEvent(handle);
 
         /// <summary>
         /// Fires the OnClientEvent event for all connected clients. Has a 1000 byte limit to the payload of the event. Events with larger payloads are dropped.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UnreliableRemoteEvent#FireAllClients"/>
-        public object? FireAllClients(object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireAllClients", arguments);
+        public object FireAllClients(object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireAllClients", arguments)!;
 
         /// <summary>
         /// Fires the OnClientEvent event for a specific client. Has a 1000 byte limit to the payload of the event. Events with larger payloads are dropped.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UnreliableRemoteEvent#FireClient"/>
-        public object? FireClient(Player? player, object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireClient", player, arguments);
+        public object FireClient(Player player, object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireClient", player, arguments)!;
 
         /// <summary>
         /// Fires the OnServerEvent event on the server from one connected client. Has a 1000 byte limit to the payload of the event. Events with larger payloads are dropped.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UnreliableRemoteEvent#FireServer"/>
-        public object? FireServer(object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireServer", arguments);
+        public object FireServer(object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireServer", arguments)!;
 
         /// <summary>
         /// Fires from a LocalScript when either FireClient() or FireAllClients() is called on the same UnreliableRemoteEvent instance from a Script, although this firing is not guaranteed even if one of the above methods are called. This can occur due to packet loss or to maintain optimal engine performance.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UnreliableRemoteEvent#OnClientEvent"/>
-        public event Action<object?>? OnClientEvent
+        public event Action<object>? OnClientEvent
         {
             add { if (value is not null) AddEventHandler("OnClientEvent", value); }
             remove { if (value is not null) RemoveEventHandler("OnClientEvent", value); }
@@ -67,10 +67,10 @@ namespace Roblox
         /// <summary>
         /// Fires from a Script when FireServer() is called on the same UnreliableRemoteEvent instance from a LocalScript, although this firing is not guaranteed even if the above methods is called. This can occur due to packet loss or to maintain optimal engine performance.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="arguments">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UnreliableRemoteEvent#OnServerEvent"/>
-        public event Action<Player?, object?>? OnServerEvent
+        public event Action<Player, object>? OnServerEvent
         {
             add { if (value is not null) AddEventHandler("OnServerEvent", value); }
             remove { if (value is not null) RemoveEventHandler("OnServerEvent", value); }

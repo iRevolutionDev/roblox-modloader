@@ -22,262 +22,262 @@ namespace Roblox
         /// Creates a <see cref="ContextActionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ContextActionService? FromHandle(nuint handle)
+        public static new ContextActionService? FromHandle(nuint handle)
             => handle == 0 ? null : new ContextActionService(handle);
 
         /// <summary>
         /// Bind user input to an action given an action handling function.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="functionToBind">A <c>object?</c> value.</param>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="functionToBind">A <c>object</c> value.</param>
         /// <param name="createTouchButton">A <c>bool</c> value.</param>
-        /// <param name="inputTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="inputTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#BindAction"/>
-        public object? BindAction(string? actionName, object? functionToBind, bool createTouchButton, object? inputTypes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindAction", actionName, functionToBind, createTouchButton, inputTypes);
+        public object BindAction(string actionName, object functionToBind, bool createTouchButton, object inputTypes)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindAction", actionName, functionToBind, createTouchButton, inputTypes)!;
 
         /// <summary>
         /// Behaves like BindAction but also allows a priority to be assigned to the bound action for overlapping input types (higher before lower).
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="functionToBind">A <c>object?</c> value.</param>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="functionToBind">A <c>object</c> value.</param>
         /// <param name="createTouchButton">A <c>bool</c> value.</param>
         /// <param name="priorityLevel">A <c>int</c> value.</param>
-        /// <param name="inputTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="inputTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#BindActionAtPriority"/>
-        public object? BindActionAtPriority(string? actionName, object? functionToBind, bool createTouchButton, int priorityLevel, object? inputTypes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindActionAtPriority", actionName, functionToBind, createTouchButton, priorityLevel, inputTypes);
+        public object BindActionAtPriority(string actionName, object functionToBind, bool createTouchButton, int priorityLevel, object inputTypes)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindActionAtPriority", actionName, functionToBind, createTouchButton, priorityLevel, inputTypes)!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by ContextActionService:BindAction() which should be used in all new work.Binds functionToBind to input events such as key presses, mouse movement, or controller input.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="functionToBind">A <c>object?</c> value.</param>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="functionToBind">A <c>object</c> value.</param>
         /// <param name="createTouchButton">A <c>bool</c> value.</param>
-        /// <param name="inputTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="inputTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#BindActionToInputTypes"/>
-        public object? BindActionToInputTypes(string? actionName, object? functionToBind, bool createTouchButton, object? inputTypes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindActionToInputTypes", actionName, functionToBind, createTouchButton, inputTypes);
+        public object BindActionToInputTypes(string actionName, object functionToBind, bool createTouchButton, object inputTypes)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindActionToInputTypes", actionName, functionToBind, createTouchButton, inputTypes)!;
 
         /// <summary>
         /// Bind a KeyCode with a specific UserInputType to trigger Tool.Activation and ClickDetector events.
         /// </summary>
         /// <param name="userInputTypeForActivation">A <c>Enum.UserInputType</c> value.</param>
-        /// <param name="keyCodesForActivation">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="keyCodesForActivation">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#BindActivate"/>
-        public object? BindActivate(Enum.UserInputType userInputTypeForActivation, object? keyCodesForActivation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindActivate", userInputTypeForActivation, keyCodesForActivation);
+        public object BindActivate(Enum.UserInputType userInputTypeForActivation, object keyCodesForActivation)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindActivate", userInputTypeForActivation, keyCodesForActivation)!;
 
         /// <summary>
         /// <c>ContextActionService.BindCoreAction</c>
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="functionToBind">A <c>object?</c> value.</param>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="functionToBind">A <c>object</c> value.</param>
         /// <param name="createTouchButton">A <c>bool</c> value.</param>
-        /// <param name="inputTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? BindCoreAction(string? actionName, object? functionToBind, bool createTouchButton, object? inputTypes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindCoreAction", actionName, functionToBind, createTouchButton, inputTypes);
+        /// <param name="inputTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object BindCoreAction(string actionName, object functionToBind, bool createTouchButton, object inputTypes)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindCoreAction", actionName, functionToBind, createTouchButton, inputTypes)!;
 
         /// <summary>
         /// <c>ContextActionService.BindCoreActionAtPriority</c>
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="functionToBind">A <c>object?</c> value.</param>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="functionToBind">A <c>object</c> value.</param>
         /// <param name="createTouchButton">A <c>bool</c> value.</param>
         /// <param name="priorityLevel">A <c>int</c> value.</param>
-        /// <param name="inputTypes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? BindCoreActionAtPriority(string? actionName, object? functionToBind, bool createTouchButton, int priorityLevel, object? inputTypes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindCoreActionAtPriority", actionName, functionToBind, createTouchButton, priorityLevel, inputTypes);
+        /// <param name="inputTypes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object BindCoreActionAtPriority(string actionName, object functionToBind, bool createTouchButton, int priorityLevel, object inputTypes)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindCoreActionAtPriority", actionName, functionToBind, createTouchButton, priorityLevel, inputTypes)!;
 
         /// <summary>
         /// <c>ContextActionService.BindCoreActivate</c>
         /// </summary>
         /// <param name="userInputTypeForActivation">A <c>Enum.UserInputType</c> value.</param>
-        /// <param name="keyCodesForActivation">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? BindCoreActivate(Enum.UserInputType userInputTypeForActivation, object? keyCodesForActivation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindCoreActivate", userInputTypeForActivation, keyCodesForActivation);
+        /// <param name="keyCodesForActivation">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object BindCoreActivate(Enum.UserInputType userInputTypeForActivation, object keyCodesForActivation)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindCoreActivate", userInputTypeForActivation, keyCodesForActivation)!;
 
         /// <summary>
         /// <c>ContextActionService.CallFunction</c>
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
+        /// <param name="actionName">A <c>string</c> value.</param>
         /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
-        /// <param name="inputObject">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CallFunction(string? actionName, Enum.UserInputState state, Instance? inputObject)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CallFunction", actionName, state, inputObject);
+        /// <param name="inputObject">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CallFunction(string actionName, Enum.UserInputState state, Instance inputObject)
+            => global::Roblox.Reflection.Invoke<object>(this, "CallFunction", actionName, state, inputObject)!;
 
         /// <summary>
         /// <c>ContextActionService.FireActionButtonFoundSignal</c>
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="actionButton">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FireActionButtonFoundSignal(string? actionName, Instance? actionButton)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireActionButtonFoundSignal", actionName, actionButton);
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="actionButton">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FireActionButtonFoundSignal(string actionName, Instance actionButton)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireActionButtonFoundSignal", actionName, actionButton)!;
 
         /// <summary>
         /// Get a table of information about all bound actions (key is the name passed to BindAction, value is a table from GetBoundActionInfo when called with the key).
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#GetAllBoundActionInfo"/>
-        public object? GetAllBoundActionInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAllBoundActionInfo");
+        public object GetAllBoundActionInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAllBoundActionInfo")!;
 
         /// <summary>
         /// <c>ContextActionService.GetAllBoundCoreActionInfo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAllBoundCoreActionInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAllBoundCoreActionInfo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAllBoundCoreActionInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAllBoundCoreActionInfo")!;
 
         /// <summary>
         /// Get a table of information about a bound action given its name originally passed to BindAction.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#GetBoundActionInfo"/>
-        public object? GetBoundActionInfo(string? actionName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBoundActionInfo", actionName);
+        public object GetBoundActionInfo(string actionName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBoundActionInfo", actionName)!;
 
         /// <summary>
         /// <c>ContextActionService.GetBoundCoreActionInfo</c>
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBoundCoreActionInfo(string? actionName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBoundCoreActionInfo", actionName);
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetBoundCoreActionInfo(string actionName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBoundCoreActionInfo", actionName)!;
 
         /// <summary>
         /// Return the BackpackItem.TextureId of a Tool currently equipped by the Player.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#GetCurrentLocalToolIcon"/>
-        public string? GetCurrentLocalToolIcon()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetCurrentLocalToolIcon");
+        public string GetCurrentLocalToolIcon()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetCurrentLocalToolIcon")!;
 
         /// <summary>
         /// <c>ContextActionService.GetInputContexts</c>
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetInputContexts()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputContexts");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputContexts")!;
 
         /// <summary>
         /// <c>ContextActionService.GetInputSchemaKeyCodeTree</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInputSchemaKeyCodeTree()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputSchemaKeyCodeTree");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetInputSchemaKeyCodeTree()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputSchemaKeyCodeTree")!;
 
         /// <summary>
         /// Given the name of a bound action with a touch button, sets the description of the action.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#SetDescription"/>
-        public object? SetDescription(string? actionName, string? description)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDescription", actionName, description);
+        public object SetDescription(string actionName, string description)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDescription", actionName, description)!;
 
         /// <summary>
         /// If actionName key contains a bound action, then image is set as the image of the touch button.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="image">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="image">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#SetImage"/>
-        public object? SetImage(string? actionName, string? image)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetImage", actionName, image);
+        public object SetImage(string actionName, string image)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetImage", actionName, image)!;
 
         /// <summary>
         /// Given the name of a bound action with a touch button, sets the position of the button within the ContextButtonFrame.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="position">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#SetPosition"/>
-        public object? SetPosition(string? actionName, global::Roblox.UDim2? position)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPosition", actionName, position);
+        public object SetPosition(string actionName, global::Roblox.UDim2 position)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPosition", actionName, position)!;
 
         /// <summary>
         /// Given the name of a bound action with a touch button, sets the text shown on the button.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <param name="title">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <param name="title">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#SetTitle"/>
-        public object? SetTitle(string? actionName, string? title)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTitle", actionName, title);
+        public object SetTitle(string actionName, string title)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTitle", actionName, title)!;
 
         /// <summary>
         /// Unbind an action from input given its name.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#UnbindAction"/>
-        public object? UnbindAction(string? actionName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbindAction", actionName);
+        public object UnbindAction(string actionName)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbindAction", actionName)!;
 
         /// <summary>
         /// Unbind a KeyCode with a specific UserInputType from triggering Tool.Activation when bound with ContextActionService:BindActivate().
         /// </summary>
         /// <param name="userInputTypeForActivation">A <c>Enum.UserInputType</c> value.</param>
-        /// <param name="keyCodeForActivation">A <c>Enum.KeyCode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="keyCodeForActivation">A <c>Enum.KeyCode?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#UnbindActivate"/>
-        public object? UnbindActivate(Enum.UserInputType userInputTypeForActivation, Enum.KeyCode keyCodeForActivation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbindActivate", userInputTypeForActivation, keyCodeForActivation);
+        public object UnbindActivate(Enum.UserInputType userInputTypeForActivation, Enum.KeyCode? keyCodeForActivation = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbindActivate", userInputTypeForActivation, keyCodeForActivation)!;
 
         /// <summary>
         /// Removes all functions bound. No actionNames will remain. All touch buttons will be removed.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#UnbindAllActions"/>
-        public object? UnbindAllActions()
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbindAllActions");
+        public object UnbindAllActions()
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbindAllActions")!;
 
         /// <summary>
         /// <c>ContextActionService.UnbindCoreAction</c>
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UnbindCoreAction(string? actionName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbindCoreAction", actionName);
+        /// <param name="actionName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UnbindCoreAction(string actionName)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbindCoreAction", actionName)!;
 
         /// <summary>
         /// <c>ContextActionService.UnbindCoreActivate</c>
         /// </summary>
         /// <param name="userInputTypeForActivation">A <c>Enum.UserInputType</c> value.</param>
-        /// <param name="keyCodeForActivation">A <c>Enum.KeyCode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UnbindCoreActivate(Enum.UserInputType userInputTypeForActivation, Enum.KeyCode keyCodeForActivation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnbindCoreActivate", userInputTypeForActivation, keyCodeForActivation);
+        /// <param name="keyCodeForActivation">A <c>Enum.KeyCode?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UnbindCoreActivate(Enum.UserInputType userInputTypeForActivation, Enum.KeyCode? keyCodeForActivation = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnbindCoreActivate", userInputTypeForActivation, keyCodeForActivation)!;
 
         /// <summary>
         /// Retrieves a ImageButton of a bound action that had a touch input button created.
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
+        /// <param name="actionName">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#GetButton"/>
-        public Instance? GetButton(string? actionName)
+        public Instance? GetButton(string actionName)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetButton", actionName);
 
         /// <summary>
         /// <c>ContextActionService.BoundActionAdded</c>
         /// </summary>
-        /// <param name="actionAdded">A <c>string?</c> value.</param>
+        /// <param name="actionAdded">A <c>string</c> value.</param>
         /// <param name="createTouchButton">A <c>bool</c> value.</param>
-        /// <param name="functionInfoTable">A <c>object?</c> value.</param>
+        /// <param name="functionInfoTable">A <c>object</c> value.</param>
         /// <param name="isCore">A <c>bool</c> value.</param>
-        public event Action<string?, bool, object?, bool>? BoundActionAdded
+        public event Action<string, bool, object, bool>? BoundActionAdded
         {
             add { if (value is not null) AddEventHandler("BoundActionAdded", value); }
             remove { if (value is not null) RemoveEventHandler("BoundActionAdded", value); }
@@ -286,10 +286,10 @@ namespace Roblox
         /// <summary>
         /// <c>ContextActionService.BoundActionChanged</c>
         /// </summary>
-        /// <param name="actionChanged">A <c>string?</c> value.</param>
-        /// <param name="changeName">A <c>string?</c> value.</param>
-        /// <param name="changeTable">A <c>object?</c> value.</param>
-        public event Action<string?, string?, object?>? BoundActionChanged
+        /// <param name="actionChanged">A <c>string</c> value.</param>
+        /// <param name="changeName">A <c>string</c> value.</param>
+        /// <param name="changeTable">A <c>object</c> value.</param>
+        public event Action<string, string, object>? BoundActionChanged
         {
             add { if (value is not null) AddEventHandler("BoundActionChanged", value); }
             remove { if (value is not null) RemoveEventHandler("BoundActionChanged", value); }
@@ -298,10 +298,10 @@ namespace Roblox
         /// <summary>
         /// <c>ContextActionService.BoundActionRemoved</c>
         /// </summary>
-        /// <param name="actionRemoved">A <c>string?</c> value.</param>
-        /// <param name="functionInfoTable">A <c>object?</c> value.</param>
+        /// <param name="actionRemoved">A <c>string</c> value.</param>
+        /// <param name="functionInfoTable">A <c>object</c> value.</param>
         /// <param name="isCore">A <c>bool</c> value.</param>
-        public event Action<string?, object?, bool>? BoundActionRemoved
+        public event Action<string, object, bool>? BoundActionRemoved
         {
             add { if (value is not null) AddEventHandler("BoundActionRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("BoundActionRemoved", value); }
@@ -310,8 +310,8 @@ namespace Roblox
         /// <summary>
         /// <c>ContextActionService.GetActionButtonEvent</c>
         /// </summary>
-        /// <param name="actionName">A <c>string?</c> value.</param>
-        public event Action<string?>? GetActionButtonEvent
+        /// <param name="actionName">A <c>string</c> value.</param>
+        public event Action<string>? GetActionButtonEvent
         {
             add { if (value is not null) AddEventHandler("GetActionButtonEvent", value); }
             remove { if (value is not null) RemoveEventHandler("GetActionButtonEvent", value); }
@@ -326,9 +326,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the current player equips a Tool.
         /// </summary>
-        /// <param name="toolEquipped">A <c>Instance?</c> value.</param>
+        /// <param name="toolEquipped">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#LocalToolEquipped"/>
-        public event Action<Instance?>? LocalToolEquipped
+        public event Action<Instance>? LocalToolEquipped
         {
             add { if (value is not null) AddEventHandler("LocalToolEquipped", value); }
             remove { if (value is not null) RemoveEventHandler("LocalToolEquipped", value); }
@@ -337,9 +337,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the current player unequips a Tool.
         /// </summary>
-        /// <param name="toolUnequipped">A <c>Instance?</c> value.</param>
+        /// <param name="toolUnequipped">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#LocalToolUnequipped"/>
-        public event Action<Instance?>? LocalToolUnequipped
+        public event Action<Instance>? LocalToolUnequipped
         {
             add { if (value is not null) AddEventHandler("LocalToolUnequipped", value); }
             remove { if (value is not null) RemoveEventHandler("LocalToolUnequipped", value); }

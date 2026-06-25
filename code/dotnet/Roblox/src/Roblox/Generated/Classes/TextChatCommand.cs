@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TextChatCommand"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextChatCommand? FromHandle(nuint handle)
+        public static new TextChatCommand? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChatCommand(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#AutocompleteVisible"/>
         public bool AutocompleteVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutocompleteVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutocompleteVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutocompleteVisible", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -49,29 +49,29 @@ namespace Roblox
         /// A primary alias used to trigger the TextChatCommand.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#PrimaryAlias"/>
-        public string? PrimaryAlias
+        public string PrimaryAlias
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PrimaryAlias");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PrimaryAlias", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PrimaryAlias")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PrimaryAlias", value);
         }
 
         /// <summary>
         /// A secondary alias used to trigger the TextChatCommand.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#SecondaryAlias"/>
-        public string? SecondaryAlias
+        public string SecondaryAlias
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SecondaryAlias");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SecondaryAlias", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SecondaryAlias")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SecondaryAlias", value);
         }
 
         /// <summary>
         /// An event that developers can bind to execute commands.
         /// </summary>
-        /// <param name="originTextSource">A <c>TextSource?</c> value.</param>
-        /// <param name="unfilteredText">A <c>string?</c> value.</param>
+        /// <param name="originTextSource">A <c>TextSource</c> value.</param>
+        /// <param name="unfilteredText">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatCommand#Triggered"/>
-        public event Action<TextSource?, string?>? Triggered
+        public event Action<TextSource, string>? Triggered
         {
             add { if (value is not null) AddEventHandler("Triggered", value); }
             remove { if (value is not null) RemoveEventHandler("Triggered", value); }

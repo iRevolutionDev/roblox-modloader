@@ -22,28 +22,28 @@ namespace Roblox
         /// Creates a <see cref="LoginService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LoginService? FromHandle(nuint handle)
+        public static new LoginService? FromHandle(nuint handle)
             => handle == 0 ? null : new LoginService(handle);
 
         /// <summary>
         /// <c>LoginService.Logout</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Logout()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Logout");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Logout()
+            => global::Roblox.Reflection.Invoke<object>(this, "Logout")!;
 
         /// <summary>
         /// <c>LoginService.PromptLogin</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptLogin()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptLogin");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptLogin()
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptLogin")!;
 
         /// <summary>
         /// <c>LoginService.LoginFailed</c>
         /// </summary>
-        /// <param name="loginError">A <c>string?</c> value.</param>
-        public event Action<string?>? LoginFailed
+        /// <param name="loginError">A <c>string</c> value.</param>
+        public event Action<string>? LoginFailed
         {
             add { if (value is not null) AddEventHandler("LoginFailed", value); }
             remove { if (value is not null) RemoveEventHandler("LoginFailed", value); }
@@ -52,8 +52,8 @@ namespace Roblox
         /// <summary>
         /// <c>LoginService.LoginSucceeded</c>
         /// </summary>
-        /// <param name="username">A <c>string?</c> value.</param>
-        public event Action<string?>? LoginSucceeded
+        /// <param name="username">A <c>string</c> value.</param>
+        public event Action<string>? LoginSucceeded
         {
             add { if (value is not null) AddEventHandler("LoginSucceeded", value); }
             remove { if (value is not null) RemoveEventHandler("LoginSucceeded", value); }

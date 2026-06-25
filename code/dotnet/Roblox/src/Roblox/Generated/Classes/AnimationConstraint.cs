@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AnimationConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationConstraint? FromHandle(nuint handle)
+        public static new AnimationConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#AngularDamping"/>
         public float AngularDamping
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularDamping");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularDamping")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularDamping", value);
         }
 
@@ -41,20 +41,20 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#AngularStrength"/>
         public float AngularStrength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularStrength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularStrength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularStrength", value);
         }
 
-        public global::Roblox.CFrame? C0
+        public global::Roblox.CFrame C0
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "C0");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "C0", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "C0")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "C0", value);
         }
 
-        public global::Roblox.CFrame? C1
+        public global::Roblox.CFrame C1
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "C1");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "C1", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "C1")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "C1", value);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#IsKinematic"/>
         public bool IsKinematic
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsKinematic");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsKinematic")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsKinematic", value);
         }
 
@@ -73,7 +73,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#LinearDamping"/>
         public float LinearDamping
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearDamping");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearDamping")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LinearDamping", value);
         }
 
@@ -83,7 +83,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#LinearStrength"/>
         public float LinearStrength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearStrength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearStrength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LinearStrength", value);
         }
 
@@ -93,7 +93,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#MaxForce"/>
         public float MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxForce", value);
         }
 
@@ -103,7 +103,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#MaxTorque"/>
         public float MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxTorque", value);
         }
 
@@ -123,10 +123,10 @@ namespace Roblox
         /// Describes the current animation offset of the constraint joint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationConstraint#Transform"/>
-        public global::Roblox.CFrame? Transform
+        public global::Roblox.CFrame Transform
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Transform");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Transform", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Transform")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Transform", value);
         }
 
     }

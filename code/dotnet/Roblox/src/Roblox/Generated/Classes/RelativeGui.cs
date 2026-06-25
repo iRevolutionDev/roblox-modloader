@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="RelativeGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RelativeGui? FromHandle(nuint handle)
+        public static new RelativeGui? FromHandle(nuint handle)
             => handle == 0 ? null : new RelativeGui(handle);
 
     }

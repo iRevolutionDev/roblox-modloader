@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="OperationGraph"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static OperationGraph? FromHandle(nuint handle)
+        public static new OperationGraph? FromHandle(nuint handle)
             => handle == 0 ? null : new OperationGraph(handle);
 
     }

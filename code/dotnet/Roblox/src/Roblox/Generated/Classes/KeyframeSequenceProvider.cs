@@ -22,16 +22,16 @@ namespace Roblox
         /// Creates a <see cref="KeyframeSequenceProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static KeyframeSequenceProvider? FromHandle(nuint handle)
+        public static new KeyframeSequenceProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new KeyframeSequenceProvider(handle);
 
         /// <summary>
         /// Deprecated: This function is deprecated and can lead to the game freezing until the animation is loaded. Developers are recommended to use KeyframeSequenceProvider:GetKeyframeSequenceAsync() instead.Returns a KeyframeSequence from a given asset URL.
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
+        /// <param name="assetId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#GetKeyframeSequence"/>
-        public Instance? GetKeyframeSequence(object? assetId)
+        public Instance? GetKeyframeSequence(object assetId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetKeyframeSequence", assetId);
 
         /// <summary>
@@ -47,53 +47,53 @@ namespace Roblox
         /// <summary>
         /// <c>KeyframeSequenceProvider.GetMemStats</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMemStats()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMemStats");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMemStats()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMemStats")!;
 
         /// <summary>
         /// Generates a temporary asset ID from a KeyframeSequence that can be used for localized testing of an animation. Generates an active:// URL.
         /// </summary>
-        /// <param name="keyframeSequence">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="keyframeSequence">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#RegisterActiveKeyframeSequence"/>
-        public object? RegisterActiveKeyframeSequence(Instance? keyframeSequence)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterActiveKeyframeSequence", keyframeSequence);
+        public object RegisterActiveKeyframeSequence(Instance keyframeSequence)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterActiveKeyframeSequence", keyframeSequence)!;
 
         /// <summary>
         /// Generates a temporary asset ID from a KeyframeSequence that can be used for localized testing of an animation. Generates a hash.
         /// </summary>
-        /// <param name="keyframeSequence">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="keyframeSequence">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#RegisterKeyframeSequence"/>
-        public object? RegisterKeyframeSequence(Instance? keyframeSequence)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterKeyframeSequence", keyframeSequence);
+        public object RegisterKeyframeSequence(Instance keyframeSequence)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterKeyframeSequence", keyframeSequence)!;
 
         /// <summary>
         /// Deprecated: This function returns an InventoryPages object which can be used to iterate over animations owned by a specific user.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#GetAnimations"/>
-        public Instance? GetAnimations(object? userId)
+        public Instance? GetAnimations(object userId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetAnimations", userId);
 
         /// <summary>
         /// This function returns an InventoryPages object which can be used to iterate over animations owned by a specific user.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#GetAnimationsAsync"/>
-        public Instance? GetAnimationsAsync(object? userId)
+        public Instance? GetAnimationsAsync(object userId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetAnimationsAsync", userId);
 
         /// <summary>
         /// Returns a KeyframeSequence based on the specified assetId asynchronously.
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
+        /// <param name="assetId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#GetKeyframeSequenceAsync"/>
-        public Instance? GetKeyframeSequenceAsync(object? assetId)
+        public Instance? GetKeyframeSequenceAsync(object assetId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetKeyframeSequenceAsync", assetId);
 
     }

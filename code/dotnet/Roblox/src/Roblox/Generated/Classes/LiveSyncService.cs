@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="LiveSyncService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LiveSyncService? FromHandle(nuint handle)
+        public static new LiveSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new LiveSyncService(handle);
 
         /// <summary>
@@ -31,25 +31,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LiveSyncService#HasSyncedInstances"/>
         public bool HasSyncedInstances
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSyncedInstances");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSyncedInstances")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasSyncedInstances", value);
         }
 
         /// <summary>
         /// <c>LiveSyncService.GetSyncState</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LiveSyncService#GetSyncState"/>
-        public object? GetSyncState(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSyncState", instance);
+        public object GetSyncState(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSyncState", instance)!;
 
         /// <summary>
         /// <c>LiveSyncService.SyncStatusChanged</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LiveSyncService#SyncStatusChanged"/>
-        public event Action<Instance?>? SyncStatusChanged
+        public event Action<Instance>? SyncStatusChanged
         {
             add { if (value is not null) AddEventHandler("SyncStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("SyncStatusChanged", value); }

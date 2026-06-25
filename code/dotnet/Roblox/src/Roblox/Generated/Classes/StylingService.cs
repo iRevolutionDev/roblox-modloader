@@ -18,47 +18,47 @@ namespace Roblox
         /// Creates a <see cref="StylingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StylingService? FromHandle(nuint handle)
+        public static new StylingService? FromHandle(nuint handle)
             => handle == 0 ? null : new StylingService(handle);
 
         /// <summary>
         /// <c>StylingService.GetAppliedStyles</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAppliedStyles(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAppliedStyles", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAppliedStyles(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAppliedStyles", instance)!;
 
         /// <summary>
         /// <c>StylingService.GetStyleInfo</c>
         /// </summary>
-        /// <param name="style">A <c>StyleRule?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStyleInfo(StyleRule? style)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStyleInfo", style);
+        /// <param name="style">A <c>StyleRule</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetStyleInfo(StyleRule style)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStyleInfo", style)!;
 
         /// <summary>
         /// <c>StylingService.GetStyleSheetDerivesChain</c>
         /// </summary>
-        /// <param name="styleSheet">A <c>StyleSheet?</c> value.</param>
+        /// <param name="styleSheet">A <c>StyleSheet</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetStyleSheetDerivesChain(StyleSheet? styleSheet)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetStyleSheetDerivesChain", styleSheet);
+        public IReadOnlyList<Instance> GetStyleSheetDerivesChain(StyleSheet styleSheet)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetStyleSheetDerivesChain", styleSheet)!;
 
         /// <summary>
         /// <c>StylingService.GetStyleSheetInfo</c>
         /// </summary>
-        /// <param name="styleSheet">A <c>StyleSheet?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStyleSheetInfo(StyleSheet? styleSheet)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStyleSheetInfo", styleSheet);
+        /// <param name="styleSheet">A <c>StyleSheet</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetStyleSheetInfo(StyleSheet styleSheet)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStyleSheetInfo", styleSheet)!;
 
         /// <summary>
         /// <c>StylingService.UpdateUnitTestOnly</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdateUnitTestOnly()
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateUnitTestOnly");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdateUnitTestOnly()
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateUnitTestOnly")!;
 
     }
 }

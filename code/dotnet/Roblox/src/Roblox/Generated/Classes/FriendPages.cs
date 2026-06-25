@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FriendPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FriendPages? FromHandle(nuint handle)
+        public static new FriendPages? FromHandle(nuint handle)
             => handle == 0 ? null : new FriendPages(handle);
 
     }

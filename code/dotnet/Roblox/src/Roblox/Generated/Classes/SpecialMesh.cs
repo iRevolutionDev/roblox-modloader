@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SpecialMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SpecialMesh? FromHandle(nuint handle)
+        public static new SpecialMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new SpecialMesh(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpecialMesh#MeshType"/>
         public Enum.MeshType MeshType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.MeshType>(this, "MeshType");
+            get => global::Roblox.Reflection.GetProperty<Enum.MeshType>(this, "MeshType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.MeshType>(this, "MeshType", value);
         }
 

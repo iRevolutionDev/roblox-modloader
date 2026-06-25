@@ -22,83 +22,83 @@ namespace Roblox
         /// Creates a <see cref="PublishService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PublishService? FromHandle(nuint handle)
+        public static new PublishService? FromHandle(nuint handle)
             => handle == 0 ? null : new PublishService(handle);
 
         /// <summary>
         /// <c>PublishService.PublishDescendantAssets</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool PublishDescendantAssets(Instance? instance)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PublishDescendantAssets", instance);
+        public bool PublishDescendantAssets(Instance instance)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PublishDescendantAssets", instance)!;
 
         /// <summary>
         /// <c>PublishService.CreateAssetAndWaitForAssetId</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="operationId">A <c>string?</c> value.</param>
+        /// <param name="operationId">A <c>string</c> value.</param>
         /// <param name="creatorType">A <c>Enum.AssetCreatorType</c> value.</param>
         /// <param name="creatorId">A <c>long</c> value.</param>
-        /// <param name="assetType">A <c>string?</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
-        /// <param name="expectedPrice">A <c>int</c> value.</param>
+        /// <param name="assetType">A <c>string</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
+        /// <param name="expectedPrice">A <c>int?</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long CreateAssetAndWaitForAssetId(IReadOnlyList<Instance> instances, string? operationId, Enum.AssetCreatorType creatorType, long creatorId, string? assetType, string? name, string? description, int expectedPrice)
-            => global::Roblox.Reflection.Invoke<long>(this, "CreateAssetAndWaitForAssetId", instances, operationId, creatorType, creatorId, assetType, name, description, expectedPrice);
+        public long CreateAssetAndWaitForAssetId(IReadOnlyList<Instance> instances, string operationId, Enum.AssetCreatorType creatorType, long creatorId, string assetType, string name, string description, int? expectedPrice = null)
+            => global::Roblox.Reflection.Invoke<long>(this, "CreateAssetAndWaitForAssetId", instances, operationId, creatorType, creatorId, assetType, name, description, expectedPrice)!;
 
         /// <summary>
         /// <c>PublishService.CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsync</c>
         /// </summary>
-        /// <param name="serializedInstance">A <c>string?</c> value.</param>
+        /// <param name="serializedInstance">A <c>string</c> value.</param>
         /// <param name="creatorType">A <c>Enum.AssetCreatorType</c> value.</param>
         /// <param name="creatorId">A <c>long</c> value.</param>
-        /// <param name="assetType">A <c>string?</c> value.</param>
+        /// <param name="assetType">A <c>string</c> value.</param>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="description">A <c>string?</c> value.</param>
-        /// <param name="token">A <c>string?</c> value.</param>
-        /// <param name="contentType">A <c>string?</c> value.</param>
-        /// <param name="expectedPrice">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsync(string? serializedInstance, Enum.AssetCreatorType creatorType, long creatorId, string? assetType, long assetId, string? name, string? description, string? token, string? contentType, int expectedPrice)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsync", serializedInstance, creatorType, creatorId, assetType, assetId, name, description, token, contentType, expectedPrice);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="description">A <c>string</c> value.</param>
+        /// <param name="token">A <c>string</c> value.</param>
+        /// <param name="contentType">A <c>string</c> value.</param>
+        /// <param name="expectedPrice">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsync(string serializedInstance, Enum.AssetCreatorType creatorType, long creatorId, string assetType, long assetId, string name, string description, string token, string contentType, int? expectedPrice = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsync", serializedInstance, creatorType, creatorId, assetType, assetId, name, description, token, contentType, expectedPrice)!;
 
         /// <summary>
         /// <c>PublishService.CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParam</c>
         /// </summary>
-        /// <param name="serializedInstance">A <c>string?</c> value.</param>
-        /// <param name="publishInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParam(string? serializedInstance, object? publishInfo)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParam", serializedInstance, publishInfo);
+        /// <param name="serializedInstance">A <c>string</c> value.</param>
+        /// <param name="publishInfo">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParam(string serializedInstance, object publishInfo)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParam", serializedInstance, publishInfo)!;
 
         /// <summary>
         /// <c>PublishService.CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParamErrorJson</c>
         /// </summary>
-        /// <param name="serializedInstance">A <c>string?</c> value.</param>
-        /// <param name="publishInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParamErrorJson(string? serializedInstance, object? publishInfo)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParamErrorJson", serializedInstance, publishInfo);
+        /// <param name="serializedInstance">A <c>string</c> value.</param>
+        /// <param name="publishInfo">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParamErrorJson(string serializedInstance, object publishInfo)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParamErrorJson", serializedInstance, publishInfo)!;
 
         /// <summary>
         /// <c>PublishService.PublishCageMeshAsync</c>
         /// </summary>
-        /// <param name="wrap">A <c>Instance?</c> value.</param>
+        /// <param name="wrap">A <c>Instance</c> value.</param>
         /// <param name="cageType">A <c>Enum.CageType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PublishCageMeshAsync(Instance? wrap, Enum.CageType cageType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishCageMeshAsync", wrap, cageType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PublishCageMeshAsync(Instance wrap, Enum.CageType cageType)
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishCageMeshAsync", wrap, cageType)!;
 
         /// <summary>
         /// <c>PublishService.PublishDescendantAssetsAsync</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool PublishDescendantAssetsAsync(Instance? instance)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PublishDescendantAssetsAsync", instance);
+        public bool PublishDescendantAssetsAsync(Instance instance)
+            => global::Roblox.Reflection.Invoke<bool>(this, "PublishDescendantAssetsAsync", instance)!;
 
     }
 }

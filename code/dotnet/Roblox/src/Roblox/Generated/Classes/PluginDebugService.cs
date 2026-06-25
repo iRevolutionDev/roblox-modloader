@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PluginDebugService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginDebugService? FromHandle(nuint handle)
+        public static new PluginDebugService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginDebugService(handle);
 
     }

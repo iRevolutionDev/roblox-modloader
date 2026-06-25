@@ -22,98 +22,98 @@ namespace Roblox
         /// Creates a <see cref="AdService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AdService? FromHandle(nuint handle)
+        public static new AdService? FromHandle(nuint handle)
             => handle == 0 ? null : new AdService(handle);
 
         /// <summary>
         /// Creates a reward to give users who watch an entire video ad.
         /// </summary>
         /// <param name="devProductId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#CreateAdRewardFromDevProductId"/>
-        public object? CreateAdRewardFromDevProductId(long devProductId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreateAdRewardFromDevProductId", devProductId);
+        public object CreateAdRewardFromDevProductId(long devProductId)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreateAdRewardFromDevProductId", devProductId)!;
 
         /// <summary>
         /// <c>AdService.GetAdTeleportInfo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAdTeleportInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAdTeleportInfo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAdTeleportInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAdTeleportInfo")!;
 
         /// <summary>
         /// <c>AdService.GetReportAdInfo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetReportAdInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetReportAdInfo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetReportAdInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetReportAdInfo")!;
 
         /// <summary>
         /// <c>AdService.GetUniversalAppAdsEligibility</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUniversalAppAdsEligibility()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUniversalAppAdsEligibility");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUniversalAppAdsEligibility()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUniversalAppAdsEligibility")!;
 
         /// <summary>
         /// <c>AdService.HandleWhyThisAdClicked</c>
         /// </summary>
-        /// <param name="advertiserName">A <c>string?</c> value.</param>
-        /// <param name="payerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleWhyThisAdClicked(string? advertiserName, string? payerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleWhyThisAdClicked", advertiserName, payerName);
+        /// <param name="advertiserName">A <c>string</c> value.</param>
+        /// <param name="payerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleWhyThisAdClicked(string advertiserName, string payerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleWhyThisAdClicked", advertiserName, payerName)!;
 
         /// <summary>
         /// <c>AdService.HideEudsaDisclosure</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HideEudsaDisclosure()
-            => global::Roblox.Reflection.Invoke<object?>(this, "HideEudsaDisclosure");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HideEudsaDisclosure()
+            => global::Roblox.Reflection.Invoke<object>(this, "HideEudsaDisclosure")!;
 
         /// <summary>
         /// <c>AdService.OnDemandVideoCompleteFromUI</c>
         /// </summary>
         /// <param name="result">A <c>Enum.ShowAdResult</c> value.</param>
-        /// <param name="encryptedAdTrackingData">A <c>string?</c> value.</param>
-        /// <param name="encryptionMetadata">A <c>string?</c> value.</param>
-        /// <param name="rewardDetails">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnDemandVideoCompleteFromUI(Enum.ShowAdResult result, string? encryptedAdTrackingData, string? encryptionMetadata, string? rewardDetails)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnDemandVideoCompleteFromUI", result, encryptedAdTrackingData, encryptionMetadata, rewardDetails);
+        /// <param name="encryptedAdTrackingData">A <c>string</c> value.</param>
+        /// <param name="encryptionMetadata">A <c>string</c> value.</param>
+        /// <param name="rewardDetails">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnDemandVideoCompleteFromUI(Enum.ShowAdResult result, string encryptedAdTrackingData, string encryptionMetadata, string rewardDetails)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnDemandVideoCompleteFromUI", result, encryptedAdTrackingData, encryptionMetadata, rewardDetails)!;
 
         /// <summary>
         /// <c>AdService.RegisterDisclosureButton</c>
         /// </summary>
-        /// <param name="disclosureButton">A <c>GuiButton?</c> value.</param>
-        /// <param name="adIntegrationPlacementId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="disclosureButton">A <c>GuiButton</c> value.</param>
+        /// <param name="adIntegrationPlacementId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#RegisterDisclosureButton"/>
-        public object? RegisterDisclosureButton(GuiButton? disclosureButton, string? adIntegrationPlacementId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterDisclosureButton", disclosureButton, adIntegrationPlacementId);
+        public object RegisterDisclosureButton(GuiButton disclosureButton, string adIntegrationPlacementId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterDisclosureButton", disclosureButton, adIntegrationPlacementId)!;
 
         /// <summary>
         /// <c>AdService.ReturnToPublisherExperience</c>
         /// </summary>
         /// <param name="adTeleportMethod">A <c>Enum.AdTeleportMethod</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReturnToPublisherExperience(Enum.AdTeleportMethod adTeleportMethod)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReturnToPublisherExperience", adTeleportMethod);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReturnToPublisherExperience(Enum.AdTeleportMethod adTeleportMethod)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReturnToPublisherExperience", adTeleportMethod)!;
 
         /// <summary>
         /// <c>AdService.SetAdGuiInteractivityHandlerInitialized</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAdGuiInteractivityHandlerInitialized()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAdGuiInteractivityHandlerInitialized");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetAdGuiInteractivityHandlerInitialized()
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAdGuiInteractivityHandlerInitialized")!;
 
         /// <summary>
         /// Deprecated: ShowVideoAd has been decommissioned and is no longer operational.Show mobile video advertisements.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#ShowVideoAd"/>
-        public object? ShowVideoAd()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowVideoAd");
+        public object ShowVideoAd()
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowVideoAd")!;
 
         /// <summary>
         /// <c>AdService.SubmitAdNotification</c>
@@ -121,29 +121,29 @@ namespace Roblox
         /// <param name="universeId">A <c>long</c> value.</param>
         /// <param name="isShowAdSuccessful">A <c>bool</c> value.</param>
         /// <param name="earnedReward">A <c>bool</c> value.</param>
-        /// <param name="rewardProductName">A <c>string?</c> value.</param>
+        /// <param name="rewardProductName">A <c>string</c> value.</param>
         /// <param name="rewardProductImageAssetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SubmitAdNotification(long universeId, bool isShowAdSuccessful, bool earnedReward, string? rewardProductName, long rewardProductImageAssetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SubmitAdNotification", universeId, isShowAdSuccessful, earnedReward, rewardProductName, rewardProductImageAssetId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SubmitAdNotification(long universeId, bool isShowAdSuccessful, bool earnedReward, string rewardProductName, long rewardProductImageAssetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SubmitAdNotification", universeId, isShowAdSuccessful, earnedReward, rewardProductName, rewardProductImageAssetId)!;
 
         /// <summary>
         /// <c>AdService.UnregisterAdOpportunity</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#UnregisterAdOpportunity"/>
-        public object? UnregisterAdOpportunity(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnregisterAdOpportunity", instance);
+        public object UnregisterAdOpportunity(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "UnregisterAdOpportunity", instance)!;
 
         /// <summary>
         /// Checks if a video ad is available to be played to the current user inside the experience.
         /// </summary>
         /// <param name="adFormat">A <c>Enum.AdFormat</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#GetAdAvailabilityNowAsync"/>
-        public object? GetAdAvailabilityNowAsync(Enum.AdFormat adFormat)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAdAvailabilityNowAsync", adFormat);
+        public object GetAdAvailabilityNowAsync(Enum.AdFormat adFormat)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAdAvailabilityNowAsync", adFormat)!;
 
         /// <summary>
         /// <c>AdService.GetAdAvailabilityNowForUniverseAsync</c>
@@ -151,40 +151,40 @@ namespace Roblox
         /// <param name="adFormat">A <c>Enum.AdFormat</c> value.</param>
         /// <param name="universeId">A <c>long</c> value.</param>
         /// <param name="isUniversalAppDM">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAdAvailabilityNowForUniverseAsync(Enum.AdFormat adFormat, long universeId, bool isUniversalAppDM)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAdAvailabilityNowForUniverseAsync", adFormat, universeId, isUniversalAppDM);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAdAvailabilityNowForUniverseAsync(Enum.AdFormat adFormat, long universeId, bool isUniversalAppDM)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAdAvailabilityNowForUniverseAsync", adFormat, universeId, isUniversalAppDM)!;
 
         /// <summary>
         /// <c>AdService.GetCampaignEligibilityAsync</c>
         /// </summary>
-        /// <param name="campaignId">A <c>string?</c> value.</param>
+        /// <param name="campaignId">A <c>string</c> value.</param>
         /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#GetCampaignEligibilityAsync"/>
-        public object? GetCampaignEligibilityAsync(string? campaignId, Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCampaignEligibilityAsync", campaignId, player);
+        public object GetCampaignEligibilityAsync(string campaignId, Player? player = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCampaignEligibilityAsync", campaignId, player)!;
 
         /// <summary>
         /// Tracks how many times a user had the chance to watch a video ad and the rate at which they actually watched the ad.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <param name="placementId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <param name="placementId">A <c>long?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#RegisterAdOpportunityAsync"/>
-        public object? RegisterAdOpportunityAsync(Instance? instance, object? placementId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterAdOpportunityAsync", instance, placementId);
+        public object RegisterAdOpportunityAsync(Instance instance, long? placementId = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterAdOpportunityAsync", instance, placementId)!;
 
         /// <summary>
         /// Plays the video ad to the current user inside the experience.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="reward">A <c>object?</c> value.</param>
-        /// <param name="placementId">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="reward">A <c>object</c> value.</param>
+        /// <param name="placementId">A <c>long?</c> value.</param>
         /// <returns>A <c>Enum.ShowAdResult</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#ShowRewardedVideoAdAsync"/>
-        public Enum.ShowAdResult ShowRewardedVideoAdAsync(Player? player, object? reward, object? placementId)
-            => global::Roblox.Reflection.Invoke<Enum.ShowAdResult>(this, "ShowRewardedVideoAdAsync", player, reward, placementId);
+        public Enum.ShowAdResult ShowRewardedVideoAdAsync(Player player, object reward, long? placementId = null)
+            => global::Roblox.Reflection.Invoke<Enum.ShowAdResult>(this, "ShowRewardedVideoAdAsync", player, reward, placementId)!;
 
         /// <summary>
         /// <c>AdService.ShowRewardedVideoAdAtClientAsync</c>
@@ -192,7 +192,7 @@ namespace Roblox
         /// <param name="universeId">A <c>long</c> value.</param>
         /// <returns>A <c>Enum.ShowAdResult</c> value returned by the engine.</returns>
         public Enum.ShowAdResult ShowRewardedVideoAdAtClientAsync(long universeId)
-            => global::Roblox.Reflection.Invoke<Enum.ShowAdResult>(this, "ShowRewardedVideoAdAtClientAsync", universeId);
+            => global::Roblox.Reflection.Invoke<Enum.ShowAdResult>(this, "ShowRewardedVideoAdAtClientAsync", universeId)!;
 
         public event Action? AdTeleportEnded
         {
@@ -221,9 +221,9 @@ namespace Roblox
         /// <summary>
         /// <c>AdService.ShowDynamicEudsaDisclosure</c>
         /// </summary>
-        /// <param name="advertiserName">A <c>string?</c> value.</param>
-        /// <param name="payerName">A <c>string?</c> value.</param>
-        public event Action<string?, string?>? ShowDynamicEudsaDisclosure
+        /// <param name="advertiserName">A <c>string</c> value.</param>
+        /// <param name="payerName">A <c>string</c> value.</param>
+        public event Action<string, string>? ShowDynamicEudsaDisclosure
         {
             add { if (value is not null) AddEventHandler("ShowDynamicEudsaDisclosure", value); }
             remove { if (value is not null) RemoveEventHandler("ShowDynamicEudsaDisclosure", value); }
@@ -232,8 +232,8 @@ namespace Roblox
         /// <summary>
         /// <c>AdService.ShowReportAdPopup</c>
         /// </summary>
-        /// <param name="adInfo">A <c>object?</c> value.</param>
-        public event Action<object?>? ShowReportAdPopup
+        /// <param name="adInfo">A <c>object</c> value.</param>
+        public event Action<object>? ShowReportAdPopup
         {
             add { if (value is not null) AddEventHandler("ShowReportAdPopup", value); }
             remove { if (value is not null) RemoveEventHandler("ShowReportAdPopup", value); }
@@ -253,8 +253,8 @@ namespace Roblox
         /// <summary>
         /// <c>AdService.adGuiRegisterUI</c>
         /// </summary>
-        /// <param name="adGui">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? AdGuiRegisterUI
+        /// <param name="adGui">A <c>Instance</c> value.</param>
+        public event Action<Instance>? AdGuiRegisterUI
         {
             add { if (value is not null) AddEventHandler("adGuiRegisterUI", value); }
             remove { if (value is not null) RemoveEventHandler("adGuiRegisterUI", value); }

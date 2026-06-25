@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DraggerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DraggerService? FromHandle(nuint handle)
+        public static new DraggerService? FromHandle(nuint handle)
             => handle == 0 ? null : new DraggerService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#AlignDraggedObjects"/>
         public bool AlignDraggedObjects
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlignDraggedObjects");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlignDraggedObjects")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AlignDraggedObjects", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#AngleSnapEnabled"/>
         public bool AngleSnapEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AngleSnapEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AngleSnapEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AngleSnapEnabled", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#AngleSnapIncrement"/>
         public float AngleSnapIncrement
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngleSnapIncrement");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngleSnapIncrement")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngleSnapIncrement", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#AnimateHover"/>
         public bool AnimateHover
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AnimateHover");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AnimateHover")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AnimateHover", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#CollisionsEnabled"/>
         public bool CollisionsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CollisionsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CollisionsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CollisionsEnabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#DraggerCoordinateSpace"/>
         public Enum.DraggerCoordinateSpace DraggerCoordinateSpace
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DraggerCoordinateSpace>(this, "DraggerCoordinateSpace");
+            get => global::Roblox.Reflection.GetProperty<Enum.DraggerCoordinateSpace>(this, "DraggerCoordinateSpace")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DraggerCoordinateSpace>(this, "DraggerCoordinateSpace", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#DraggerMovementMode"/>
         public Enum.DraggerMovementMode DraggerMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DraggerMovementMode>(this, "DraggerMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.DraggerMovementMode>(this, "DraggerMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DraggerMovementMode>(this, "DraggerMovementMode", value);
         }
 
@@ -99,10 +99,10 @@ namespace Roblox
         /// <c>DraggerService.GeometrySnapColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#GeometrySnapColor"/>
-        public global::Roblox.Color3? GeometrySnapColor
+        public global::Roblox.Color3 GeometrySnapColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "GeometrySnapColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "GeometrySnapColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "GeometrySnapColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "GeometrySnapColor", value);
         }
 
         /// <summary>
@@ -111,13 +111,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#HoverAnimateFrequency"/>
         public float HoverAnimateFrequency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HoverAnimateFrequency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HoverAnimateFrequency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HoverAnimateFrequency", value);
         }
 
         public int HoverLineThickness
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "HoverLineThickness");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "HoverLineThickness")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "HoverLineThickness", value);
         }
 
@@ -127,7 +127,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#HoverThickness"/>
         public float HoverThickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HoverThickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HoverThickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HoverThickness", value);
         }
 
@@ -137,7 +137,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#JointsEnabled"/>
         public bool JointsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "JointsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "JointsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "JointsEnabled", value);
         }
 
@@ -147,7 +147,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#LinearSnapEnabled"/>
         public bool LinearSnapEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LinearSnapEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LinearSnapEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LinearSnapEnabled", value);
         }
 
@@ -157,7 +157,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#LinearSnapIncrement"/>
         public float LinearSnapIncrement
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearSnapIncrement");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearSnapIncrement")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LinearSnapIncrement", value);
         }
 
@@ -167,7 +167,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#PartSnapEnabled"/>
         public bool PartSnapEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PartSnapEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PartSnapEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PartSnapEnabled", value);
         }
 
@@ -177,7 +177,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#PivotSnapToGeometry"/>
         public bool PivotSnapToGeometry
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PivotSnapToGeometry");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PivotSnapToGeometry")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PivotSnapToGeometry", value);
         }
 
@@ -187,7 +187,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#ShowHover"/>
         public bool ShowHover
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowHover");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowHover")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowHover", value);
         }
 
@@ -197,7 +197,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DraggerService#ShowPivotIndicator"/>
         public bool ShowPivotIndicator
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowPivotIndicator");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowPivotIndicator")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowPivotIndicator", value);
         }
 

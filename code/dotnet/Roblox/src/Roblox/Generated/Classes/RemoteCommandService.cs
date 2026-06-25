@@ -22,59 +22,59 @@ namespace Roblox
         /// Creates a <see cref="RemoteCommandService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RemoteCommandService? FromHandle(nuint handle)
+        public static new RemoteCommandService? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteCommandService(handle);
 
         /// <summary>
         /// <c>RemoteCommandService.ExecuteCommand</c>
         /// </summary>
-        /// <param name="code">A <c>string?</c> value.</param>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>ExecutedRemoteCommand?</c> value returned by the engine.</returns>
-        public ExecutedRemoteCommand? ExecuteCommand(string? code, object? args)
-            => global::Roblox.Reflection.Invoke<ExecutedRemoteCommand?>(this, "ExecuteCommand", code, args);
+        /// <param name="code">A <c>string</c> value.</param>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>ExecutedRemoteCommand</c> value returned by the engine.</returns>
+        public ExecutedRemoteCommand ExecuteCommand(string code, object args)
+            => global::Roblox.Reflection.Invoke<ExecutedRemoteCommand>(this, "ExecuteCommand", code, args)!;
 
         /// <summary>
         /// <c>RemoteCommandService.GetExecutingPlayer</c>
         /// </summary>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteCommandService#GetExecutingPlayer"/>
-        public Player? GetExecutingPlayer()
-            => global::Roblox.Reflection.Invoke<Player?>(this, "GetExecutingPlayer");
+        public Player GetExecutingPlayer()
+            => global::Roblox.Reflection.Invoke<Player>(this, "GetExecutingPlayer")!;
 
         /// <summary>
         /// <c>RemoteCommandService.GetReceivedUpdateSignal</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteCommandService#GetReceivedUpdateSignal"/>
-        public object? GetReceivedUpdateSignal()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetReceivedUpdateSignal");
+        public object GetReceivedUpdateSignal()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetReceivedUpdateSignal")!;
 
         /// <summary>
         /// <c>RemoteCommandService.GetStoppingSignal</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteCommandService#GetStoppingSignal"/>
-        public object? GetStoppingSignal()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStoppingSignal");
+        public object GetStoppingSignal()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStoppingSignal")!;
 
         /// <summary>
         /// <c>RemoteCommandService.SendUpdate</c>
         /// </summary>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteCommandService#SendUpdate"/>
-        public object? SendUpdate(object? args)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendUpdate", args);
+        public object SendUpdate(object args)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendUpdate", args)!;
 
         /// <summary>
         /// <c>RemoteCommandService.ExecuteCommandAsync</c>
         /// </summary>
-        /// <param name="code">A <c>string?</c> value.</param>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ExecuteCommandAsync(string? code, object? args)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteCommandAsync", code, args);
+        /// <param name="code">A <c>string</c> value.</param>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ExecuteCommandAsync(string code, object args)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecuteCommandAsync", code, args)!;
 
     }
 }

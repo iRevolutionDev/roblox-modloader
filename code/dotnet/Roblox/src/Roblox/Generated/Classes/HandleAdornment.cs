@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HandleAdornment? FromHandle(nuint handle)
+        public static new HandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new HandleAdornment(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#AdornCullingMode"/>
         public Enum.AdornCullingMode AdornCullingMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdornCullingMode>(this, "AdornCullingMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdornCullingMode>(this, "AdornCullingMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdornCullingMode>(this, "AdornCullingMode", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#AlwaysOnTop"/>
         public bool AlwaysOnTop
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlwaysOnTop");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AlwaysOnTop")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AlwaysOnTop", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// The position and rotation of the object relative to its PVAdornment.Adornee.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#CFrame"/>
-        public global::Roblox.CFrame? CFrame
+        public global::Roblox.CFrame CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
         public Instance? GizmoReference
@@ -65,10 +65,10 @@ namespace Roblox
         /// The positional offset of the adornment based on the adornee's BasePart.Size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#SizeRelativeOffset"/>
-        public global::Roblox.Vector3? SizeRelativeOffset
+        public global::Roblox.Vector3 SizeRelativeOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SizeRelativeOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SizeRelativeOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SizeRelativeOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SizeRelativeOffset", value);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment#ZIndex"/>
         public int ZIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ZIndex", value);
         }
 

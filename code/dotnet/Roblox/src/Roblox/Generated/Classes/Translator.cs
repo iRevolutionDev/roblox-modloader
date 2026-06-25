@@ -22,47 +22,47 @@ namespace Roblox
         /// Creates a <see cref="Translator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Translator? FromHandle(nuint handle)
+        public static new Translator? FromHandle(nuint handle)
             => handle == 0 ? null : new Translator(handle);
 
         /// <summary>
         /// The locale of translated strings.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Translator#LocaleId"/>
-        public string? LocaleId
+        public string LocaleId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocaleId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocaleId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocaleId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocaleId", value);
         }
 
         /// <summary>
         /// Returns the localized text string in a LocalizationTable based on its Translator locale, by key.
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Translator#FormatByKey"/>
-        public string? FormatByKey(string? key, object? args)
-            => global::Roblox.Reflection.Invoke<string?>(this, "FormatByKey", key, args);
+        public string FormatByKey(string key, object args)
+            => global::Roblox.Reflection.Invoke<string>(this, "FormatByKey", key, args)!;
 
         /// <summary>
         /// <c>Translator.RobloxOnlyTranslate</c>
         /// </summary>
-        /// <param name="context">A <c>Instance?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? RobloxOnlyTranslate(Instance? context, string? text)
-            => global::Roblox.Reflection.Invoke<string?>(this, "RobloxOnlyTranslate", context, text);
+        /// <param name="context">A <c>Instance</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string RobloxOnlyTranslate(Instance context, string text)
+            => global::Roblox.Reflection.Invoke<string>(this, "RobloxOnlyTranslate", context, text)!;
 
         /// <summary>
         /// Returns the localized text string in a LocalizationTable based on its Translator locale, by source lookup.
         /// </summary>
-        /// <param name="context">A <c>Instance?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="context">A <c>Instance</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Translator#Translate"/>
-        public string? Translate(Instance? context, string? text)
-            => global::Roblox.Reflection.Invoke<string?>(this, "Translate", context, text);
+        public string Translate(Instance context, string text)
+            => global::Roblox.Reflection.Invoke<string>(this, "Translate", context, text)!;
 
     }
 }

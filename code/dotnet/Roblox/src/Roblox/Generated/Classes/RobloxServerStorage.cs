@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="RobloxServerStorage"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RobloxServerStorage? FromHandle(nuint handle)
+        public static new RobloxServerStorage? FromHandle(nuint handle)
             => handle == 0 ? null : new RobloxServerStorage(handle);
 
     }

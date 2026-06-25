@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="LocalDebuggerConnection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LocalDebuggerConnection? FromHandle(nuint handle)
+        public static new LocalDebuggerConnection? FromHandle(nuint handle)
             => handle == 0 ? null : new LocalDebuggerConnection(handle);
 
     }

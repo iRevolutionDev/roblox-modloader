@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="StudioWidget"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioWidget? FromHandle(nuint handle)
+        public static new StudioWidget? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioWidget(handle);
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace Roblox
         /// </summary>
         /// <param name="width">A <c>int</c> value.</param>
         /// <param name="height">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetFixedSize(int width, int height)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFixedSize", width, height);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetFixedSize(int width, int height)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFixedSize", width, height)!;
 
     }
 }

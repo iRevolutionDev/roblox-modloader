@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UIScale"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIScale? FromHandle(nuint handle)
+        public static new UIScale? FromHandle(nuint handle)
             => handle == 0 ? null : new UIScale(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIScale#Scale"/>
         public float Scale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Scale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Scale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Scale", value);
         }
 

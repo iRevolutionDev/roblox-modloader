@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SurfaceAppearance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SurfaceAppearance? FromHandle(nuint handle)
+        public static new SurfaceAppearance? FromHandle(nuint handle)
             => handle == 0 ? null : new SurfaceAppearance(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#AlphaMode"/>
         public Enum.AlphaMode AlphaMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AlphaMode>(this, "AlphaMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AlphaMode>(this, "AlphaMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AlphaMode>(this, "AlphaMode", value);
         }
 
@@ -39,40 +39,40 @@ namespace Roblox
         /// Applies a tint to your existing colormap. Set directly with color picker or programmatically with Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
         /// Determines the color and opacity of the surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#ColorMap"/>
-        public object? ColorMap
+        public object ColorMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ColorMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ColorMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "ColorMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "ColorMap", value);
         }
 
         /// <summary>
         /// <c>SurfaceAppearance.ColorMapContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#ColorMapContent"/>
-        public string? ColorMapContent
+        public string ColorMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ColorMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ColorMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ColorMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ColorMapContent", value);
         }
 
         /// <summary>
         /// Determines the emissivity across the surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#EmissiveMaskContent"/>
-        public string? EmissiveMaskContent
+        public string EmissiveMaskContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "EmissiveMaskContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "EmissiveMaskContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "EmissiveMaskContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "EmissiveMaskContent", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#EmissiveStrength"/>
         public float EmissiveStrength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "EmissiveStrength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "EmissiveStrength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "EmissiveStrength", value);
         }
 
@@ -89,50 +89,50 @@ namespace Roblox
         /// Determines the tinting color for emissive contribution.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#EmissiveTint"/>
-        public global::Roblox.Color3? EmissiveTint
+        public global::Roblox.Color3 EmissiveTint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "EmissiveTint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "EmissiveTint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "EmissiveTint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "EmissiveTint", value);
         }
 
         /// <summary>
         /// Determines which parts of the surface are metal or non-metal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#MetalnessMap"/>
-        public object? MetalnessMap
+        public object MetalnessMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MetalnessMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MetalnessMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "MetalnessMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "MetalnessMap", value);
         }
 
         /// <summary>
         /// <c>SurfaceAppearance.MetalnessMapContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#MetalnessMapContent"/>
-        public string? MetalnessMapContent
+        public string MetalnessMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MetalnessMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MetalnessMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MetalnessMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MetalnessMapContent", value);
         }
 
         /// <summary>
         /// Modifies the lighting of the surface by adding bumps, dents, cracks, and curves.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#NormalMap"/>
-        public object? NormalMap
+        public object NormalMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "NormalMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "NormalMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "NormalMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "NormalMap", value);
         }
 
         /// <summary>
         /// <c>SurfaceAppearance.NormalMapContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#NormalMapContent"/>
-        public string? NormalMapContent
+        public string NormalMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "NormalMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "NormalMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "NormalMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "NormalMapContent", value);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#ResampleMode"/>
         public Enum.ResamplerMode ResampleMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ResamplerMode>(this, "ResampleMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ResamplerMode>(this, "ResampleMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ResamplerMode>(this, "ResampleMode", value);
         }
 
@@ -149,30 +149,30 @@ namespace Roblox
         /// Determines the apparent roughness across the surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#RoughnessMap"/>
-        public object? RoughnessMap
+        public object RoughnessMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "RoughnessMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "RoughnessMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "RoughnessMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "RoughnessMap", value);
         }
 
         /// <summary>
         /// <c>SurfaceAppearance.RoughnessMapContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#RoughnessMapContent"/>
-        public string? RoughnessMapContent
+        public string RoughnessMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RoughnessMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RoughnessMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RoughnessMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RoughnessMapContent", value);
         }
 
         /// <summary>
         /// <c>SurfaceAppearance.TexturePack</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceAppearance#TexturePack"/>
-        public object? TexturePack
+        public object TexturePack
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TexturePack");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TexturePack", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "TexturePack")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "TexturePack", value);
         }
 
     }

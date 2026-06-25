@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TaskScheduler"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TaskScheduler? FromHandle(nuint handle)
+        public static new TaskScheduler? FromHandle(nuint handle)
             => handle == 0 ? null : new TaskScheduler(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TaskScheduler#SchedulerDutyCycle"/>
         public double SchedulerDutyCycle
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "SchedulerDutyCycle");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "SchedulerDutyCycle")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "SchedulerDutyCycle", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TaskScheduler#SchedulerRate"/>
         public double SchedulerRate
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "SchedulerRate");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "SchedulerRate")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "SchedulerRate", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TaskScheduler#ThreadPoolConfig"/>
         public Enum.ThreadPoolConfig ThreadPoolConfig
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ThreadPoolConfig>(this, "ThreadPoolConfig");
+            get => global::Roblox.Reflection.GetProperty<Enum.ThreadPoolConfig>(this, "ThreadPoolConfig")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ThreadPoolConfig>(this, "ThreadPoolConfig", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TaskScheduler#ThreadPoolSize"/>
         public int ThreadPoolSize
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ThreadPoolSize");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ThreadPoolSize")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ThreadPoolSize", value);
         }
 

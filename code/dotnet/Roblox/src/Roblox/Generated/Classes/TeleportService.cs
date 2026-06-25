@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TeleportService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TeleportService? FromHandle(nuint handle)
+        public static new TeleportService? FromHandle(nuint handle)
             => handle == 0 ? null : new TeleportService(handle);
 
         /// <summary>
@@ -31,16 +31,16 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#CustomizedTeleportUI"/>
         public bool CustomizedTeleportUI
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomizedTeleportUI");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomizedTeleportUI")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomizedTeleportUI", value);
         }
 
         /// <summary>
         /// <c>TeleportService.Block</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Block()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Block");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Block()
+            => global::Roblox.Reflection.Invoke<object>(this, "Block")!;
 
         /// <summary>
         /// Returns the customLoadingScreen the LocalPlayer arrived into the place with.
@@ -53,189 +53,189 @@ namespace Roblox
         /// <summary>
         /// Returns the teleportData the Players.LocalPlayer arrived into the place with.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#GetLocalPlayerTeleportData"/>
-        public object? GetLocalPlayerTeleportData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLocalPlayerTeleportData");
+        public object GetLocalPlayerTeleportData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLocalPlayerTeleportData")!;
 
         /// <summary>
         /// Retrieves a teleport setting saved using TeleportService:SetTeleportSetting() using the given key.
         /// </summary>
-        /// <param name="setting">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="setting">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#GetTeleportSetting"/>
-        public object? GetTeleportSetting(string? setting)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTeleportSetting", setting);
+        public object GetTeleportSetting(string setting)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTeleportSetting", setting)!;
 
         /// <summary>
         /// <c>TeleportService.GetThirdPartyTeleportInfo</c>
         /// </summary>
         /// <param name="goForth">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetThirdPartyTeleportInfo(bool goForth)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetThirdPartyTeleportInfo", goForth);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetThirdPartyTeleportInfo(bool goForth)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetThirdPartyTeleportInfo", goForth)!;
 
         /// <summary>
         /// <c>TeleportService.PromptExperienceDetailsCompleted</c>
         /// </summary>
         /// <param name="resultEnum">A <c>Enum.PromptExperienceDetailsResult</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptExperienceDetailsCompleted(Enum.PromptExperienceDetailsResult resultEnum, string? errorMessage)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptExperienceDetailsCompleted", resultEnum, errorMessage);
+        /// <param name="errorMessage">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptExperienceDetailsCompleted(Enum.PromptExperienceDetailsResult resultEnum, string errorMessage)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptExperienceDetailsCompleted", resultEnum, errorMessage)!;
 
         /// <summary>
         /// Sets the custom teleport GUI that will be shown to the local user during teleportation, prior to the teleport being invoked.
         /// </summary>
-        /// <param name="gui">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="gui">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#SetTeleportGui"/>
-        public object? SetTeleportGui(Instance? gui)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTeleportGui", gui);
+        public object SetTeleportGui(Instance gui)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTeleportGui", gui)!;
 
         /// <summary>
         /// Stores a value under a given key that persists across all teleportations in the same game.
         /// </summary>
-        /// <param name="setting">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="setting">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#SetTeleportSetting"/>
-        public object? SetTeleportSetting(string? setting, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTeleportSetting", setting, value);
+        public object SetTeleportSetting(string setting, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTeleportSetting", setting, value)!;
 
         /// <summary>
         /// Teleports a Player to the place associated with the given placeId.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="teleportData">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="teleportData">A <c>object</c> value.</param>
         /// <param name="customLoadingScreen">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#Teleport"/>
-        public object? Teleport(long placeId, Instance? player, object? teleportData, Instance? customLoadingScreen)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Teleport", placeId, player, teleportData, customLoadingScreen);
+        public object Teleport(long placeId, Instance player, object teleportData, Instance? customLoadingScreen = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Teleport", placeId, player, teleportData, customLoadingScreen)!;
 
         /// <summary>
         /// <c>TeleportService.TeleportCancel</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TeleportCancel()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportCancel");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TeleportCancel()
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportCancel")!;
 
         /// <summary>
         /// <c>TeleportService.TeleportReconnect</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TeleportReconnect()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportReconnect");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TeleportReconnect()
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportReconnect")!;
 
         /// <summary>
         /// Teleports a Player to the server instance associated with the given placeId and instanceId.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="instanceId">A <c>string?</c> value.</param>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="spawnName">A <c>string?</c> value.</param>
-        /// <param name="teleportData">A <c>object?</c> value.</param>
+        /// <param name="instanceId">A <c>string</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="spawnName">A <c>string</c> value.</param>
+        /// <param name="teleportData">A <c>object</c> value.</param>
         /// <param name="customLoadingScreen">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportToPlaceInstance"/>
-        public object? TeleportToPlaceInstance(long placeId, string? instanceId, Instance? player, string? spawnName, object? teleportData, Instance? customLoadingScreen)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportToPlaceInstance", placeId, instanceId, player, spawnName, teleportData, customLoadingScreen);
+        public object TeleportToPlaceInstance(long placeId, string instanceId, Instance player, string spawnName, object teleportData, Instance? customLoadingScreen = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportToPlaceInstance", placeId, instanceId, player, spawnName, teleportData, customLoadingScreen)!;
 
         /// <summary>
         /// Teleport a group of Players to a reserved server created using TeleportService:ReserveServerAsync().
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="reservedServerAccessCode">A <c>string?</c> value.</param>
+        /// <param name="reservedServerAccessCode">A <c>string</c> value.</param>
         /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="spawnName">A <c>string?</c> value.</param>
-        /// <param name="teleportData">A <c>object?</c> value.</param>
+        /// <param name="spawnName">A <c>string</c> value.</param>
+        /// <param name="teleportData">A <c>object</c> value.</param>
         /// <param name="customLoadingScreen">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportToPrivateServer"/>
-        public object? TeleportToPrivateServer(long placeId, string? reservedServerAccessCode, IReadOnlyList<Instance> players, string? spawnName, object? teleportData, Instance? customLoadingScreen)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportToPrivateServer", placeId, reservedServerAccessCode, players, spawnName, teleportData, customLoadingScreen);
+        public object TeleportToPrivateServer(long placeId, string reservedServerAccessCode, IReadOnlyList<Instance> players, string spawnName, object teleportData, Instance? customLoadingScreen = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportToPrivateServer", placeId, reservedServerAccessCode, players, spawnName, teleportData, customLoadingScreen)!;
 
         /// <summary>
         /// A variant of TeleportService:Teleport() that causes the Player to spawn at a SpawnLocation of the given name at the destination place.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="spawnName">A <c>string?</c> value.</param>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="teleportData">A <c>object?</c> value.</param>
+        /// <param name="spawnName">A <c>string</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="teleportData">A <c>object</c> value.</param>
         /// <param name="customLoadingScreen">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportToSpawnByName"/>
-        public object? TeleportToSpawnByName(long placeId, string? spawnName, Instance? player, object? teleportData, Instance? customLoadingScreen)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportToSpawnByName", placeId, spawnName, player, teleportData, customLoadingScreen);
+        public object TeleportToSpawnByName(long placeId, string spawnName, Instance player, object teleportData, Instance? customLoadingScreen = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportToSpawnByName", placeId, spawnName, player, teleportData, customLoadingScreen)!;
 
         /// <summary>
         /// <c>TeleportService.TeleportTrustedBackForth</c>
         /// </summary>
         /// <param name="goForth">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TeleportTrustedBackForth(bool goForth)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportTrustedBackForth", goForth);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TeleportTrustedBackForth(bool goForth)
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportTrustedBackForth", goForth)!;
 
         /// <summary>
         /// <c>TeleportService.TeleportTrustedBackHistory</c>
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TeleportTrustedBackHistory(long placeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportTrustedBackHistory", placeId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TeleportTrustedBackHistory(long placeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportTrustedBackHistory", placeId)!;
 
         /// <summary>
         /// <c>TeleportService.TeleportedPlacesBackHistory</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TeleportedPlacesBackHistory()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportedPlacesBackHistory");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TeleportedPlacesBackHistory()
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportedPlacesBackHistory")!;
 
         /// <summary>
         /// <c>TeleportService.TeleportedUniversesBackHistory</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TeleportedUniversesBackHistory()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TeleportedUniversesBackHistory");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TeleportedUniversesBackHistory()
+            => global::Roblox.Reflection.Invoke<object>(this, "TeleportedUniversesBackHistory")!;
 
         /// <summary>
         /// Returns the PlaceId and JobId of the server the user with the given UserId is in provided it is in the same game as the current place.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#GetPlayerPlaceInstanceAsync"/>
-        public object? GetPlayerPlaceInstanceAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayerPlaceInstanceAsync", userId);
+        public object GetPlayerPlaceInstanceAsync(object userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPlayerPlaceInstanceAsync", userId)!;
 
         /// <summary>
         /// Prompts a Player with information about the specified experience. The player can choose to teleport to the target experience through the prompt.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <param name="universeId">A <c>long</c> value.</param>
         /// <returns>A <c>Enum.PromptExperienceDetailsResult</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#PromptExperienceDetailsAsync"/>
-        public Enum.PromptExperienceDetailsResult PromptExperienceDetailsAsync(Player? player, long universeId)
-            => global::Roblox.Reflection.Invoke<Enum.PromptExperienceDetailsResult>(this, "PromptExperienceDetailsAsync", player, universeId);
+        public Enum.PromptExperienceDetailsResult PromptExperienceDetailsAsync(Player player, long universeId)
+            => global::Roblox.Reflection.Invoke<Enum.PromptExperienceDetailsResult>(this, "PromptExperienceDetailsAsync", player, universeId)!;
 
         /// <summary>
         /// Deprecated: Returns an access code that can be used to teleport players to a reserved server, along with the DataModel.PrivateServerId for it.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#ReserveServer"/>
-        public object? ReserveServer(long placeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReserveServer", placeId);
+        public object ReserveServer(long placeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReserveServer", placeId)!;
 
         /// <summary>
         /// Returns an access code that can be used to teleport players to a reserved server, along with the DataModel.PrivateServerId for it.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#ReserveServerAsync"/>
-        public object? ReserveServerAsync(long placeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReserveServerAsync", placeId);
+        public object ReserveServerAsync(long placeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReserveServerAsync", placeId)!;
 
         /// <summary>
         /// The all-encompassing method to teleport a player or group of players from one server to another.
@@ -245,7 +245,7 @@ namespace Roblox
         /// <param name="teleportOptions">A <c>Instance?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportAsync"/>
-        public Instance? TeleportAsync(long placeId, IReadOnlyList<Instance> players, Instance? teleportOptions)
+        public Instance? TeleportAsync(long placeId, IReadOnlyList<Instance> players, Instance? teleportOptions = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "TeleportAsync", placeId, players, teleportOptions);
 
         /// <summary>
@@ -253,27 +253,27 @@ namespace Roblox
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="teleportData">A <c>object?</c> value.</param>
+        /// <param name="teleportData">A <c>object</c> value.</param>
         /// <param name="customLoadingScreen">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportPartyAsync"/>
-        public string? TeleportPartyAsync(long placeId, IReadOnlyList<Instance> players, object? teleportData, Instance? customLoadingScreen)
-            => global::Roblox.Reflection.Invoke<string?>(this, "TeleportPartyAsync", placeId, players, teleportData, customLoadingScreen);
+        public string TeleportPartyAsync(long placeId, IReadOnlyList<Instance> players, object teleportData, Instance? customLoadingScreen = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "TeleportPartyAsync", placeId, players, teleportData, customLoadingScreen)!;
 
         /// <summary>
         /// <c>TeleportService.UnblockAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UnblockAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "UnblockAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UnblockAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "UnblockAsync")!;
 
         /// <summary>
         /// Fires when the LocalPlayer enters the place following a teleport.
         /// </summary>
-        /// <param name="loadingGui">A <c>Instance?</c> value.</param>
-        /// <param name="dataTable">A <c>object?</c> value.</param>
+        /// <param name="loadingGui">A <c>Instance</c> value.</param>
+        /// <param name="dataTable">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#LocalPlayerArrivedFromTeleport"/>
-        public event Action<Instance?, object?>? LocalPlayerArrivedFromTeleport
+        public event Action<Instance, object>? LocalPlayerArrivedFromTeleport
         {
             add { if (value is not null) AddEventHandler("LocalPlayerArrivedFromTeleport", value); }
             remove { if (value is not null) RemoveEventHandler("LocalPlayerArrivedFromTeleport", value); }
@@ -298,12 +298,12 @@ namespace Roblox
         /// <summary>
         /// <c>TeleportService.ReconnectTeleportInitFailed</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="teleportResult">A <c>Enum.TeleportResult</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        /// <param name="errorMessage">A <c>string</c> value.</param>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="teleportOptions">A <c>Instance?</c> value.</param>
-        public event Action<Instance?, Enum.TeleportResult, string?, long, Instance?>? ReconnectTeleportInitFailed
+        /// <param name="teleportOptions">A <c>Instance</c> value.</param>
+        public event Action<Instance, Enum.TeleportResult, string, long, Instance>? ReconnectTeleportInitFailed
         {
             add { if (value is not null) AddEventHandler("ReconnectTeleportInitFailed", value); }
             remove { if (value is not null) RemoveEventHandler("ReconnectTeleportInitFailed", value); }
@@ -312,13 +312,13 @@ namespace Roblox
         /// <summary>
         /// Fires when a teleport fails to start, leaving the player in their current server.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="teleportResult">A <c>Enum.TeleportResult</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
+        /// <param name="errorMessage">A <c>string</c> value.</param>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <param name="teleportOptions">A <c>Instance?</c> value.</param>
+        /// <param name="teleportOptions">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#TeleportInitFailed"/>
-        public event Action<Instance?, Enum.TeleportResult, string?, long, Instance?>? TeleportInitFailed
+        public event Action<Instance, Enum.TeleportResult, string, long, Instance>? TeleportInitFailed
         {
             add { if (value is not null) AddEventHandler("TeleportInitFailed", value); }
             remove { if (value is not null) RemoveEventHandler("TeleportInitFailed", value); }

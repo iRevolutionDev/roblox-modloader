@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ValueBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ValueBase? FromHandle(nuint handle)
+        public static new ValueBase? FromHandle(nuint handle)
             => handle == 0 ? null : new ValueBase(handle);
 
     }

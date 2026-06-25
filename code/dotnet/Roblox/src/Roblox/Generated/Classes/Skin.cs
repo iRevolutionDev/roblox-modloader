@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Skin"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Skin? FromHandle(nuint handle)
+        public static new Skin? FromHandle(nuint handle)
             => handle == 0 ? null : new Skin(handle);
 
         /// <summary>
         /// <c>Skin.SkinColor</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Skin#SkinColor"/>
-        public global::Roblox.BrickColor? SkinColor
+        public global::Roblox.BrickColor SkinColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "SkinColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "SkinColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "SkinColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "SkinColor", value);
         }
 
     }

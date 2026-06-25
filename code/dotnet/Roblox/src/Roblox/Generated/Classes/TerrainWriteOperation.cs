@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TerrainWriteOperation")]
-    public class TerrainWriteOperation : Object
+    public class TerrainWriteOperation : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TerrainWriteOperation.</param>
@@ -24,17 +24,17 @@ namespace Roblox
         /// <summary>
         /// <c>TerrainWriteOperation.CommitBlock</c>
         /// </summary>
-        /// <param name="block">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CommitBlock(object? block)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CommitBlock", block);
+        /// <param name="block">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CommitBlock(object block)
+            => global::Roblox.Reflection.Invoke<object>(this, "CommitBlock", block)!;
 
         /// <summary>
         /// <c>TerrainWriteOperation.GetBlock</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBlock()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBlock");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetBlock()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBlock")!;
 
     }
 }

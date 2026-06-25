@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SystemThemeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SystemThemeService? FromHandle(nuint handle)
+        public static new SystemThemeService? FromHandle(nuint handle)
             => handle == 0 ? null : new SystemThemeService(handle);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>Enum.SystemThemeValue</c> value returned by the engine.</returns>
         public Enum.SystemThemeValue GetSystemTheme()
-            => global::Roblox.Reflection.Invoke<Enum.SystemThemeValue>(this, "getSystemTheme");
+            => global::Roblox.Reflection.Invoke<Enum.SystemThemeValue>(this, "getSystemTheme")!;
 
         /// <summary>
         /// <c>SystemThemeService.isSystemThemeAvailable</c>
@@ -38,16 +38,16 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService#isSystemThemeAvailable"/>
         public bool IsSystemThemeAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "isSystemThemeAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "isSystemThemeAvailable")!;
 
         /// <summary>
         /// <c>SystemThemeService.setTheme</c>
         /// </summary>
         /// <param name="theme">A <c>Enum.SystemThemeValue</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService#setTheme"/>
-        public object? SetTheme(Enum.SystemThemeValue theme)
-            => global::Roblox.Reflection.Invoke<object?>(this, "setTheme", theme);
+        public object SetTheme(Enum.SystemThemeValue theme)
+            => global::Roblox.Reflection.Invoke<object>(this, "setTheme", theme)!;
 
         /// <summary>
         /// <c>SystemThemeService.getSystemThemeAsync</c>
@@ -55,7 +55,7 @@ namespace Roblox
         /// <returns>A <c>Enum.SystemThemeValue</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SystemThemeService#getSystemThemeAsync"/>
         public Enum.SystemThemeValue GetSystemThemeAsync()
-            => global::Roblox.Reflection.Invoke<Enum.SystemThemeValue>(this, "getSystemThemeAsync");
+            => global::Roblox.Reflection.Invoke<Enum.SystemThemeValue>(this, "getSystemThemeAsync")!;
 
         /// <summary>
         /// <c>SystemThemeService.OnLuaThemeUpdated</c>

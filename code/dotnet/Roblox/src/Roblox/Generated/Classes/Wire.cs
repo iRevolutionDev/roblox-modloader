@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Wire"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Wire? FromHandle(nuint handle)
+        public static new Wire? FromHandle(nuint handle)
             => handle == 0 ? null : new Wire(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#Connected"/>
         public bool Connected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Connected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Connected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Connected", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// The name of the pin on SourceInstance that is producing a stream.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#SourceName"/>
-        public string? SourceName
+        public string SourceName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SourceName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SourceName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SourceName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SourceName", value);
         }
 
         /// <summary>
@@ -69,18 +69,18 @@ namespace Roblox
         /// The name of the pin on TargetInstance that is receiving a stream.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#TargetName"/>
-        public string? TargetName
+        public string TargetName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TargetName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TargetName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TargetName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TargetName", value);
         }
 
         /// <summary>
         /// <c>Wire.RenameToDefault</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RenameToDefault()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RenameToDefault");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RenameToDefault()
+            => global::Roblox.Reflection.Invoke<object>(this, "RenameToDefault")!;
 
     }
 }

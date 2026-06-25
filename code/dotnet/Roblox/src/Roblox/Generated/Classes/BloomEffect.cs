@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BloomEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BloomEffect? FromHandle(nuint handle)
+        public static new BloomEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new BloomEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BloomEffect#Intensity"/>
         public float Intensity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Intensity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Intensity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Intensity", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BloomEffect#Size"/>
         public float Size
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Size");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Size")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Size", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BloomEffect#Threshold"/>
         public float Threshold
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Threshold");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Threshold")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Threshold", value);
         }
 

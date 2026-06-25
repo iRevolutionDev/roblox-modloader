@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="NegateOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NegateOperation? FromHandle(nuint handle)
+        public static new NegateOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new NegateOperation(handle);
 
     }

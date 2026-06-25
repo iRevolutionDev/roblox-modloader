@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="ScriptDebugger"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptDebugger? FromHandle(nuint handle)
+        public static new ScriptDebugger? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptDebugger(handle);
 
         public int CurrentLine
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "CurrentLine");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "CurrentLine")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "CurrentLine", value);
         }
 
         public bool IsDebugging
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDebugging");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsDebugging")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsDebugging", value);
         }
 
         public bool IsPaused
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPaused");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPaused")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPaused", value);
         }
 
@@ -48,9 +48,9 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptDebugger.AddWatch</c>
         /// </summary>
-        /// <param name="expression">A <c>string?</c> value.</param>
+        /// <param name="expression">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? AddWatch(string? expression)
+        public Instance? AddWatch(string expression)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "AddWatch", expression);
 
         /// <summary>
@@ -58,53 +58,53 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetBreakpoints()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetBreakpoints");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetBreakpoints")!;
 
         /// <summary>
         /// <c>ScriptDebugger.GetGlobals</c>
         /// </summary>
-        /// <param name="stackFrame">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetGlobals(int stackFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetGlobals", stackFrame);
+        /// <param name="stackFrame">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetGlobals(int? stackFrame = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetGlobals", stackFrame)!;
 
         /// <summary>
         /// <c>ScriptDebugger.GetLocals</c>
         /// </summary>
-        /// <param name="stackFrame">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLocals(int stackFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLocals", stackFrame);
+        /// <param name="stackFrame">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetLocals(int? stackFrame = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLocals", stackFrame)!;
 
         /// <summary>
         /// <c>ScriptDebugger.GetStack</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStack()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStack");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetStack()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStack")!;
 
         /// <summary>
         /// <c>ScriptDebugger.GetUpvalues</c>
         /// </summary>
-        /// <param name="stackFrame">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUpvalues(int stackFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUpvalues", stackFrame);
+        /// <param name="stackFrame">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUpvalues(int? stackFrame = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUpvalues", stackFrame)!;
 
         /// <summary>
         /// <c>ScriptDebugger.GetWatchValue</c>
         /// </summary>
-        /// <param name="watch">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetWatchValue(Instance? watch)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetWatchValue", watch);
+        /// <param name="watch">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetWatchValue(Instance watch)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetWatchValue", watch)!;
 
         /// <summary>
         /// <c>ScriptDebugger.GetWatches</c>
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetWatches()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetWatches");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetWatches")!;
 
         /// <summary>
         /// <c>ScriptDebugger.SetBreakpoint</c>
@@ -118,38 +118,38 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptDebugger.SetGlobal</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
         /// <param name="stackFrame">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetGlobal(string? name, object? value, int stackFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetGlobal", name, value, stackFrame);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetGlobal(string name, object value, int stackFrame)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetGlobal", name, value, stackFrame)!;
 
         /// <summary>
         /// <c>ScriptDebugger.SetLocal</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <param name="stackFrame">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetLocal(string? name, object? value, int stackFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetLocal", name, value, stackFrame);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <param name="stackFrame">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetLocal(string name, object value, int? stackFrame = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetLocal", name, value, stackFrame)!;
 
         /// <summary>
         /// <c>ScriptDebugger.SetUpvalue</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <param name="stackFrame">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetUpvalue(string? name, object? value, int stackFrame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUpvalue", name, value, stackFrame);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <param name="stackFrame">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetUpvalue(string name, object value, int? stackFrame = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUpvalue", name, value, stackFrame)!;
 
         /// <summary>
         /// <c>ScriptDebugger.BreakpointAdded</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? BreakpointAdded
+        /// <param name="breakpoint">A <c>Instance</c> value.</param>
+        public event Action<Instance>? BreakpointAdded
         {
             add { if (value is not null) AddEventHandler("BreakpointAdded", value); }
             remove { if (value is not null) RemoveEventHandler("BreakpointAdded", value); }
@@ -158,8 +158,8 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptDebugger.BreakpointRemoved</c>
         /// </summary>
-        /// <param name="breakpoint">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? BreakpointRemoved
+        /// <param name="breakpoint">A <c>Instance</c> value.</param>
+        public event Action<Instance>? BreakpointRemoved
         {
             add { if (value is not null) AddEventHandler("BreakpointRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("BreakpointRemoved", value); }
@@ -185,8 +185,8 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptDebugger.WatchAdded</c>
         /// </summary>
-        /// <param name="watch">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? WatchAdded
+        /// <param name="watch">A <c>Instance</c> value.</param>
+        public event Action<Instance>? WatchAdded
         {
             add { if (value is not null) AddEventHandler("WatchAdded", value); }
             remove { if (value is not null) RemoveEventHandler("WatchAdded", value); }
@@ -195,8 +195,8 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptDebugger.WatchRemoved</c>
         /// </summary>
-        /// <param name="watch">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? WatchRemoved
+        /// <param name="watch">A <c>Instance</c> value.</param>
+        public event Action<Instance>? WatchRemoved
         {
             add { if (value is not null) AddEventHandler("WatchRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("WatchRemoved", value); }

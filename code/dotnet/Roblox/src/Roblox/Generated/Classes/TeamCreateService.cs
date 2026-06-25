@@ -22,15 +22,15 @@ namespace Roblox
         /// Creates a <see cref="TeamCreateService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TeamCreateService? FromHandle(nuint handle)
+        public static new TeamCreateService? FromHandle(nuint handle)
             => handle == 0 ? null : new TeamCreateService(handle);
 
         /// <summary>
         /// <c>TeamCreateService.CloseGameIfUserDoesntHavePerms</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CloseGameIfUserDoesntHavePerms()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CloseGameIfUserDoesntHavePerms");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CloseGameIfUserDoesntHavePerms()
+            => global::Roblox.Reflection.Invoke<object>(this, "CloseGameIfUserDoesntHavePerms")!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TextBox"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextBox? FromHandle(nuint handle)
+        public static new TextBox? FromHandle(nuint handle)
             => handle == 0 ? null : new TextBox(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ClearTextOnFocus"/>
         public bool ClearTextOnFocus
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClearTextOnFocus");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClearTextOnFocus")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClearTextOnFocus", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// <c>TextBox.ContentText</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ContentText"/>
-        public string? ContentText
+        public string ContentText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ContentText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ContentText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ContentText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ContentText", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#CursorPosition"/>
         public int CursorPosition
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "CursorPosition");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "CursorPosition")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "CursorPosition", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#Font"/>
         public Enum.Font Font
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "Font");
+            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "Font")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Font>(this, "Font", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// Determines the font face used to render text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#FontFace"/>
-        public object? FontFace
+        public object FontFace
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FontFace");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FontFace", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FontFace")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FontFace", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#FontSize"/>
         public Enum.FontSize FontSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FontSize>(this, "FontSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.FontSize>(this, "FontSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FontSize>(this, "FontSize", value);
         }
 
@@ -91,25 +91,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#LineHeight"/>
         public float LineHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LineHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LineHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LineHeight", value);
         }
 
-        public string? LocalizationMatchIdentifier
+        public string LocalizationMatchIdentifier
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalizationMatchIdentifier");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalizationMatchIdentifier", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocalizationMatchIdentifier")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocalizationMatchIdentifier", value);
         }
 
-        public string? LocalizationMatchedSourceText
+        public string LocalizationMatchedSourceText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LocalizationMatchedSourceText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LocalizationMatchedSourceText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LocalizationMatchedSourceText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LocalizationMatchedSourceText", value);
         }
 
         public bool ManualFocusRelease
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ManualFocusRelease");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ManualFocusRelease")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ManualFocusRelease", value);
         }
 
@@ -119,7 +119,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#MaxVisibleGraphemes"/>
         public int MaxVisibleGraphemes
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxVisibleGraphemes");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxVisibleGraphemes")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxVisibleGraphemes", value);
         }
 
@@ -129,7 +129,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#MultiLine"/>
         public bool MultiLine
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MultiLine");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MultiLine")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MultiLine", value);
         }
 
@@ -137,25 +137,25 @@ namespace Roblox
         /// <c>TextBox.OpenTypeFeatures</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#OpenTypeFeatures"/>
-        public string? OpenTypeFeatures
+        public string OpenTypeFeatures
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OpenTypeFeatures");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OpenTypeFeatures", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OpenTypeFeatures")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OpenTypeFeatures", value);
         }
 
         /// <summary>
         /// <c>TextBox.OpenTypeFeaturesError</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#OpenTypeFeaturesError"/>
-        public string? OpenTypeFeaturesError
+        public string OpenTypeFeaturesError
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OpenTypeFeaturesError");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OpenTypeFeaturesError", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OpenTypeFeaturesError")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OpenTypeFeaturesError", value);
         }
 
         public bool OverlayNativeInput
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "OverlayNativeInput");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "OverlayNativeInput")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "OverlayNativeInput", value);
         }
 
@@ -163,25 +163,25 @@ namespace Roblox
         /// Sets the text color that gets used when no text has been entered into the TextBox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#PlaceholderColor3"/>
-        public global::Roblox.Color3? PlaceholderColor3
+        public global::Roblox.Color3 PlaceholderColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "PlaceholderColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "PlaceholderColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "PlaceholderColor3", value);
         }
 
         /// <summary>
         /// Sets the text that gets displayed when no text has been entered into the TextBox.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#PlaceholderText"/>
-        public string? PlaceholderText
+        public string PlaceholderText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PlaceholderText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PlaceholderText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PlaceholderText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PlaceholderText", value);
         }
 
         public Enum.ReturnKeyType ReturnKeyType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ReturnKeyType>(this, "ReturnKeyType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ReturnKeyType>(this, "ReturnKeyType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ReturnKeyType>(this, "ReturnKeyType", value);
         }
 
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#RichText"/>
         public bool RichText
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RichText");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RichText")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RichText", value);
         }
 
@@ -201,25 +201,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#SelectionStart"/>
         public int SelectionStart
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectionStart");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectionStart")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "SelectionStart", value);
         }
 
         public bool ShouldEmitReturnEvents
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitReturnEvents");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitReturnEvents")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldEmitReturnEvents", value);
         }
 
         public bool ShouldEmitTabEvents
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitTabEvents");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitTabEvents")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldEmitTabEvents", value);
         }
 
         public bool ShouldEmitUpAndDownArrowEvents
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitUpAndDownArrowEvents");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShouldEmitUpAndDownArrowEvents")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShouldEmitUpAndDownArrowEvents", value);
         }
 
@@ -229,7 +229,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ShowNativeInput"/>
         public bool ShowNativeInput
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowNativeInput");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowNativeInput")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowNativeInput", value);
         }
 
@@ -237,40 +237,40 @@ namespace Roblox
         /// Determines the string rendered by the TextBox element.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         /// <summary>
         /// The size of a TextBox element's text in offsets.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextBounds"/>
-        public global::Roblox.Vector2? TextBounds
+        public global::Roblox.Vector2 TextBounds
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "TextBounds");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "TextBounds", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "TextBounds")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "TextBounds", value);
         }
 
         /// <summary>
         /// Deprecated: This item has been superseded by TextBox.TextColor3 which should be used in all new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextColor"/>
-        public global::Roblox.BrickColor? TextColor
+        public global::Roblox.BrickColor TextColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TextColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TextColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TextColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TextColor", value);
         }
 
         /// <summary>
         /// Determines the color of non-placeholder rendered text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextColor3"/>
-        public global::Roblox.Color3? TextColor3
+        public global::Roblox.Color3 TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextDirection"/>
         public Enum.TextDirection TextDirection
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextDirection>(this, "TextDirection");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextDirection>(this, "TextDirection")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextDirection>(this, "TextDirection", value);
         }
 
@@ -289,7 +289,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextEditable"/>
         public bool TextEditable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextEditable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextEditable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextEditable", value);
         }
 
@@ -299,13 +299,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextFits"/>
         public bool TextFits
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextFits");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextFits")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextFits", value);
         }
 
         public Enum.TextInputType TextInputType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextInputType>(this, "TextInputType");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextInputType>(this, "TextInputType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextInputType>(this, "TextInputType", value);
         }
 
@@ -315,7 +315,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextScaled"/>
         public bool TextScaled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextScaled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextScaled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextScaled", value);
         }
 
@@ -325,7 +325,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextSize"/>
         public float TextSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextSize", value);
         }
 
@@ -333,10 +333,10 @@ namespace Roblox
         /// Determines the color of the text stroke (outline).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextStrokeColor3"/>
-        public global::Roblox.Color3? TextStrokeColor3
+        public global::Roblox.Color3 TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextStrokeColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextStrokeTransparency"/>
         public float TextStrokeTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextStrokeTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextStrokeTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextStrokeTransparency", value);
         }
 
@@ -355,7 +355,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextTransparency"/>
         public float TextTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextTransparency", value);
         }
 
@@ -365,7 +365,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextTruncate"/>
         public Enum.TextTruncate TextTruncate
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextTruncate>(this, "TextTruncate");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextTruncate>(this, "TextTruncate")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextTruncate>(this, "TextTruncate", value);
         }
 
@@ -375,7 +375,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextWrap"/>
         public bool TextWrap
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrap");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrap")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextWrap", value);
         }
 
@@ -385,7 +385,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextWrapped"/>
         public bool TextWrapped
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrapped");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrapped")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TextWrapped", value);
         }
 
@@ -395,7 +395,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextXAlignment"/>
         public Enum.TextXAlignment TextXAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextXAlignment>(this, "TextXAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextXAlignment>(this, "TextXAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextXAlignment>(this, "TextXAlignment", value);
         }
 
@@ -405,17 +405,17 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextYAlignment"/>
         public Enum.TextYAlignment TextYAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextYAlignment>(this, "TextYAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextYAlignment>(this, "TextYAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextYAlignment>(this, "TextYAlignment", value);
         }
 
         /// <summary>
         /// Forces the client to focus on the TextBox.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#CaptureFocus"/>
-        public object? CaptureFocus()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CaptureFocus");
+        public object CaptureFocus()
+            => global::Roblox.Reflection.Invoke<object>(this, "CaptureFocus")!;
 
         /// <summary>
         /// Returns true if the TextBox is focused or false if it is not.
@@ -423,39 +423,39 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#IsFocused"/>
         public bool IsFocused()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsFocused");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsFocused")!;
 
         /// <summary>
         /// Forces the client to unfocus the TextBox.
         /// </summary>
-        /// <param name="submitted">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="submitted">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#ReleaseFocus"/>
-        public object? ReleaseFocus(bool submitted)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReleaseFocus", submitted);
+        public object ReleaseFocus(bool? submitted = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReleaseFocus", submitted)!;
 
         /// <summary>
         /// <c>TextBox.ResetKeyboardMode</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResetKeyboardMode()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetKeyboardMode");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResetKeyboardMode()
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetKeyboardMode")!;
 
         /// <summary>
         /// <c>TextBox.SetTextFromInput</c>
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTextFromInput(string? text)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTextFromInput", text);
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTextFromInput(string text)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTextFromInput", text)!;
 
         /// <summary>
         /// Fires when the TextBox loses its focus.
         /// </summary>
         /// <param name="enterPressed">A <c>bool</c> value.</param>
-        /// <param name="inputThatCausedFocusLoss">A <c>InputObject?</c> value.</param>
+        /// <param name="inputThatCausedFocusLoss">A <c>InputObject</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#FocusLost"/>
-        public event Action<bool, InputObject?>? FocusLost
+        public event Action<bool, InputObject>? FocusLost
         {
             add { if (value is not null) AddEventHandler("FocusLost", value); }
             remove { if (value is not null) RemoveEventHandler("FocusLost", value); }

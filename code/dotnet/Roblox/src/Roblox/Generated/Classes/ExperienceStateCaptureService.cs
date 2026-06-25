@@ -18,30 +18,30 @@ namespace Roblox
         /// Creates a <see cref="ExperienceStateCaptureService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExperienceStateCaptureService? FromHandle(nuint handle)
+        public static new ExperienceStateCaptureService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceStateCaptureService(handle);
 
         public bool HiddenSelectionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HiddenSelectionEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HiddenSelectionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HiddenSelectionEnabled", value);
         }
 
         public bool IsInBackground
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInBackground");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInBackground")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsInBackground", value);
         }
 
         public bool IsInCaptureMode
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInCaptureMode");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInCaptureMode")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsInCaptureMode", value);
         }
 
         public Enum.ExperienceStateCaptureSelectionMode SelectionMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ExperienceStateCaptureSelectionMode>(this, "SelectionMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ExperienceStateCaptureSelectionMode>(this, "SelectionMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ExperienceStateCaptureSelectionMode>(this, "SelectionMode", value);
         }
 
@@ -50,27 +50,27 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool CanEnterCaptureMode()
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanEnterCaptureMode");
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanEnterCaptureMode")!;
 
         /// <summary>
         /// <c>ExperienceStateCaptureService.ResetHighlight</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResetHighlight()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetHighlight");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResetHighlight()
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetHighlight")!;
 
         /// <summary>
         /// <c>ExperienceStateCaptureService.ToggleCaptureMode</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleCaptureMode()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleCaptureMode");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleCaptureMode()
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleCaptureMode")!;
 
         /// <summary>
         /// <c>ExperienceStateCaptureService.ItemSelectedInCaptureMode</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? ItemSelectedInCaptureMode
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        public event Action<Instance>? ItemSelectedInCaptureMode
         {
             add { if (value is not null) AddEventHandler("ItemSelectedInCaptureMode", value); }
             remove { if (value is not null) RemoveEventHandler("ItemSelectedInCaptureMode", value); }

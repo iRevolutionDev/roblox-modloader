@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="UIShadow"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIShadow? FromHandle(nuint handle)
+        public static new UIShadow? FromHandle(nuint handle)
             => handle == 0 ? null : new UIShadow(handle);
 
         /// <summary>
         /// Determines the shadow's blurriness.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#BlurRadius"/>
-        public global::Roblox.UDim? BlurRadius
+        public global::Roblox.UDim BlurRadius
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "BlurRadius");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "BlurRadius", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "BlurRadius")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "BlurRadius", value);
         }
 
         /// <summary>
         /// Determines the shadow's color.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -59,20 +59,20 @@ namespace Roblox
         /// Moves the shadow relative to the parent's position.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Offset"/>
-        public global::Roblox.UDim2? Offset
+        public global::Roblox.UDim2 Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "Offset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "Offset", value);
         }
 
         /// <summary>
         /// Expands or shrinks the shadow relative to the parent's size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Spread"/>
-        public global::Roblox.UDim2? Spread
+        public global::Roblox.UDim2 Spread
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Spread");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Spread", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "Spread")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "Spread", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#Transparency"/>
         public float Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Transparency", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow#ZIndex"/>
         public int ZIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ZIndex", value);
         }
 

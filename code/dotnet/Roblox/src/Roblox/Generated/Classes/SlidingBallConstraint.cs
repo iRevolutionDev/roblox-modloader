@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SlidingBallConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SlidingBallConstraint? FromHandle(nuint handle)
+        public static new SlidingBallConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new SlidingBallConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#ActuatorType"/>
         public Enum.ActuatorType ActuatorType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorType>(this, "ActuatorType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorType>(this, "ActuatorType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorType>(this, "ActuatorType", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#CurrentPosition"/>
         public float CurrentPosition
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentPosition");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentPosition")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentPosition", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitsEnabled", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#LinearResponsiveness"/>
         public float LinearResponsiveness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearResponsiveness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LinearResponsiveness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LinearResponsiveness", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#LowerLimit"/>
         public float LowerLimit
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerLimit");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerLimit")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowerLimit", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#MotorMaxAcceleration"/>
         public float MotorMaxAcceleration
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxAcceleration");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxAcceleration")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MotorMaxAcceleration", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#MotorMaxForce"/>
         public float MotorMaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MotorMaxForce", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#Restitution"/>
         public float Restitution
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Restitution", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#ServoMaxForce"/>
         public float ServoMaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ServoMaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ServoMaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ServoMaxForce", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#Size"/>
         public float Size
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Size");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Size")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Size", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#SoftlockServoUponReachingTarget"/>
         public bool SoftlockServoUponReachingTarget
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "SoftlockServoUponReachingTarget");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "SoftlockServoUponReachingTarget")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "SoftlockServoUponReachingTarget", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#Speed"/>
         public float Speed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Speed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Speed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Speed", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#TargetPosition"/>
         public float TargetPosition
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetPosition");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetPosition")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TargetPosition", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#UpperLimit"/>
         public float UpperLimit
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperLimit");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperLimit")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "UpperLimit", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#Velocity"/>
         public float Velocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Velocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Velocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Velocity", value);
         }
 

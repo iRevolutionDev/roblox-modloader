@@ -22,42 +22,42 @@ namespace Roblox
         /// Creates a <see cref="StudioDeviceSimulatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioDeviceSimulatorService? FromHandle(nuint handle)
+        public static new StudioDeviceSimulatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioDeviceSimulatorService(handle);
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.CreateDeviceAsync</c>
         /// </summary>
-        /// <param name="config">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="config">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#CreateDeviceAsync"/>
-        public string? CreateDeviceAsync(object? config)
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateDeviceAsync", config);
+        public string CreateDeviceAsync(object config)
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateDeviceAsync", config)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetDeviceAsync</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetDeviceAsync"/>
-        public string? GetDeviceAsync()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetDeviceAsync");
+        public string GetDeviceAsync()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetDeviceAsync")!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetDeviceInfoAsync</c>
         /// </summary>
-        /// <param name="deviceId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="deviceId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetDeviceInfoAsync"/>
-        public object? GetDeviceInfoAsync(string? deviceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDeviceInfoAsync", deviceId);
+        public object GetDeviceInfoAsync(string deviceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDeviceInfoAsync", deviceId)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetDeviceListAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetDeviceListAsync"/>
-        public object? GetDeviceListAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDeviceListAsync");
+        public object GetDeviceListAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDeviceListAsync")!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetOrientationAsync</c>
@@ -65,7 +65,7 @@ namespace Roblox
         /// <returns>A <c>Enum.ScreenOrientation</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetOrientationAsync"/>
         public Enum.ScreenOrientation GetOrientationAsync()
-            => global::Roblox.Reflection.Invoke<Enum.ScreenOrientation>(this, "GetOrientationAsync");
+            => global::Roblox.Reflection.Invoke<Enum.ScreenOrientation>(this, "GetOrientationAsync")!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetPixelDensityAsync</c>
@@ -73,15 +73,15 @@ namespace Roblox
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetPixelDensityAsync"/>
         public float GetPixelDensityAsync()
-            => global::Roblox.Reflection.Invoke<float>(this, "GetPixelDensityAsync");
+            => global::Roblox.Reflection.Invoke<float>(this, "GetPixelDensityAsync")!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetResolutionAsync</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetResolutionAsync"/>
-        public global::Roblox.Vector2? GetResolutionAsync()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetResolutionAsync");
+        public global::Roblox.Vector2 GetResolutionAsync()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetResolutionAsync")!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.GetScalingModeAsync</c>
@@ -89,80 +89,80 @@ namespace Roblox
         /// <returns>A <c>Enum.DeviceSimulatorScalingMode</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#GetScalingModeAsync"/>
         public Enum.DeviceSimulatorScalingMode GetScalingModeAsync()
-            => global::Roblox.Reflection.Invoke<Enum.DeviceSimulatorScalingMode>(this, "GetScalingModeAsync");
+            => global::Roblox.Reflection.Invoke<Enum.DeviceSimulatorScalingMode>(this, "GetScalingModeAsync")!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.RemoveDeviceAsync</c>
         /// </summary>
-        /// <param name="deviceId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="deviceId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#RemoveDeviceAsync"/>
-        public object? RemoveDeviceAsync(string? deviceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveDeviceAsync", deviceId);
+        public object RemoveDeviceAsync(string deviceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveDeviceAsync", deviceId)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.SetDeviceAsync</c>
         /// </summary>
-        /// <param name="deviceId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="deviceId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#SetDeviceAsync"/>
-        public object? SetDeviceAsync(string? deviceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDeviceAsync", deviceId);
+        public object SetDeviceAsync(string deviceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDeviceAsync", deviceId)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.SetOrientationAsync</c>
         /// </summary>
         /// <param name="orientation">A <c>Enum.ScreenOrientation</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#SetOrientationAsync"/>
-        public object? SetOrientationAsync(Enum.ScreenOrientation orientation)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetOrientationAsync", orientation);
+        public object SetOrientationAsync(Enum.ScreenOrientation orientation)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetOrientationAsync", orientation)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.SetPixelDensityAsync</c>
         /// </summary>
         /// <param name="density">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#SetPixelDensityAsync"/>
-        public object? SetPixelDensityAsync(float density)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPixelDensityAsync", density);
+        public object SetPixelDensityAsync(float density)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPixelDensityAsync", density)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.SetResolutionAsync</c>
         /// </summary>
         /// <param name="width">A <c>int</c> value.</param>
         /// <param name="height">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#SetResolutionAsync"/>
-        public object? SetResolutionAsync(int width, int height)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetResolutionAsync", width, height);
+        public object SetResolutionAsync(int width, int height)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetResolutionAsync", width, height)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.SetScalingModeAsync</c>
         /// </summary>
         /// <param name="mode">A <c>Enum.DeviceSimulatorScalingMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#SetScalingModeAsync"/>
-        public object? SetScalingModeAsync(Enum.DeviceSimulatorScalingMode mode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetScalingModeAsync", mode);
+        public object SetScalingModeAsync(Enum.DeviceSimulatorScalingMode mode)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetScalingModeAsync", mode)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.StopSimulationAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#StopSimulationAsync"/>
-        public object? StopSimulationAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopSimulationAsync");
+        public object StopSimulationAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopSimulationAsync")!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.UpdateDeviceAsync</c>
         /// </summary>
-        /// <param name="deviceId">A <c>string?</c> value.</param>
-        /// <param name="config">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="deviceId">A <c>string</c> value.</param>
+        /// <param name="config">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioDeviceSimulatorService#UpdateDeviceAsync"/>
-        public object? UpdateDeviceAsync(string? deviceId, object? config)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateDeviceAsync", deviceId, config);
+        public object UpdateDeviceAsync(string deviceId, object config)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateDeviceAsync", deviceId, config)!;
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.ConfigurationChanged</c>

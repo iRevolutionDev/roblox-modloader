@@ -22,22 +22,22 @@ namespace Roblox
         /// Creates a <see cref="StartupMessageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StartupMessageService? FromHandle(nuint handle)
+        public static new StartupMessageService? FromHandle(nuint handle)
             => handle == 0 ? null : new StartupMessageService(handle);
 
         /// <summary>
         /// <c>StartupMessageService.ExecuteActionButton</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ExecuteActionButton()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteActionButton");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ExecuteActionButton()
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecuteActionButton")!;
 
         /// <summary>
         /// <c>StartupMessageService.GetStartupMessage</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetStartupMessage()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStartupMessage");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetStartupMessage()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStartupMessage")!;
 
     }
 }

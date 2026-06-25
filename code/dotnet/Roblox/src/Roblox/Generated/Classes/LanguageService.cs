@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="LanguageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LanguageService? FromHandle(nuint handle)
+        public static new LanguageService? FromHandle(nuint handle)
             => handle == 0 ? null : new LanguageService(handle);
 
         /// <summary>
         /// <c>LanguageService.GetCapabilitiesUsedInPackageAsync</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LanguageService#GetCapabilitiesUsedInPackageAsync"/>
-        public object? GetCapabilitiesUsedInPackageAsync(IReadOnlyList<Instance> instances)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCapabilitiesUsedInPackageAsync", instances);
+        public object GetCapabilitiesUsedInPackageAsync(IReadOnlyList<Instance> instances)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCapabilitiesUsedInPackageAsync", instances)!;
 
     }
 }

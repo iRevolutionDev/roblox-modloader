@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SelectionHighlightManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SelectionHighlightManager? FromHandle(nuint handle)
+        public static new SelectionHighlightManager? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionHighlightManager(handle);
 
     }

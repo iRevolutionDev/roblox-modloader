@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DataStoreKeyInfo"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreKeyInfo? FromHandle(nuint handle)
+        public static new DataStoreKeyInfo? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreKeyInfo(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreKeyInfo#CreatedTime"/>
         public long CreatedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreatedTime", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreKeyInfo#UpdatedTime"/>
         public long UpdatedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "UpdatedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "UpdatedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "UpdatedTime", value);
         }
 
@@ -49,27 +49,27 @@ namespace Roblox
         /// Uniquely identifies the version of the object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreKeyInfo#Version"/>
-        public string? Version
+        public string Version
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Version");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Version", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Version")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Version", value);
         }
 
         /// <summary>
         /// Returns the metadata associated with the object.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreKeyInfo#GetMetadata"/>
-        public object? GetMetadata()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMetadata");
+        public object GetMetadata()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMetadata")!;
 
         /// <summary>
         /// An array of UserIds tagged with a key.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreKeyInfo#GetUserIds"/>
-        public object? GetUserIds()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserIds");
+        public object GetUserIds()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserIds")!;
 
     }
 }

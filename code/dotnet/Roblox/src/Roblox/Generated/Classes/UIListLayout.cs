@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UIListLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIListLayout? FromHandle(nuint handle)
+        public static new UIListLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UIListLayout(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#HorizontalFlex"/>
         public Enum.UIFlexAlignment HorizontalFlex
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIFlexAlignment>(this, "HorizontalFlex");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIFlexAlignment>(this, "HorizontalFlex")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIFlexAlignment>(this, "HorizontalFlex", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#ItemLineAlignment"/>
         public Enum.ItemLineAlignment ItemLineAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ItemLineAlignment>(this, "ItemLineAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.ItemLineAlignment>(this, "ItemLineAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ItemLineAlignment>(this, "ItemLineAlignment", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Amount of free space between each element.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#Padding"/>
-        public global::Roblox.UDim? Padding
+        public global::Roblox.UDim Padding
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim?>(this, "Padding");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim?>(this, "Padding", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim>(this, "Padding")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim>(this, "Padding", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#VerticalFlex"/>
         public Enum.UIFlexAlignment VerticalFlex
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIFlexAlignment>(this, "VerticalFlex");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIFlexAlignment>(this, "VerticalFlex")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIFlexAlignment>(this, "VerticalFlex", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout#Wraps"/>
         public bool Wraps
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Wraps");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Wraps")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Wraps", value);
         }
 

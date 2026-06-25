@@ -22,16 +22,16 @@ namespace Roblox
         /// Creates a <see cref="NetworkClient"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NetworkClient? FromHandle(nuint handle)
+        public static new NetworkClient? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkClient(handle);
 
         /// <summary>
         /// Fired when the client successfully connects to a server. Returns a string showing the server's IP and port, and the client's ClientReplicator.
         /// </summary>
-        /// <param name="peer">A <c>string?</c> value.</param>
-        /// <param name="replicator">A <c>Instance?</c> value.</param>
+        /// <param name="peer">A <c>string</c> value.</param>
+        /// <param name="replicator">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkClient#ConnectionAccepted"/>
-        public event Action<string?, Instance?>? ConnectionAccepted
+        public event Action<string, Instance>? ConnectionAccepted
         {
             add { if (value is not null) AddEventHandler("ConnectionAccepted", value); }
             remove { if (value is not null) RemoveEventHandler("ConnectionAccepted", value); }
@@ -40,10 +40,10 @@ namespace Roblox
         /// <summary>
         /// Fired if the client fails to connect to the server.
         /// </summary>
-        /// <param name="peer">A <c>string?</c> value.</param>
+        /// <param name="peer">A <c>string</c> value.</param>
         /// <param name="code">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkClient#ConnectionFailed"/>
-        public event Action<string?, int>? ConnectionFailed
+        public event Action<string, int>? ConnectionFailed
         {
             add { if (value is not null) AddEventHandler("ConnectionFailed", value); }
             remove { if (value is not null) RemoveEventHandler("ConnectionFailed", value); }

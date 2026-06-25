@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="InstanceFileSyncService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InstanceFileSyncService? FromHandle(nuint handle)
+        public static new InstanceFileSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new InstanceFileSyncService(handle);
 
         /// <summary>
@@ -31,49 +31,49 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceFileSyncService#GetAllInstances"/>
         public IReadOnlyList<Instance> GetAllInstances()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAllInstances");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetAllInstances")!;
 
         /// <summary>
         /// Returns the synchronization status of a specific instance.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <returns>A <c>Enum.InstanceFileSyncStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceFileSyncService#GetStatus"/>
-        public Enum.InstanceFileSyncStatus GetStatus(Instance? instance)
-            => global::Roblox.Reflection.Invoke<Enum.InstanceFileSyncStatus>(this, "GetStatus", instance);
+        public Enum.InstanceFileSyncStatus GetStatus(Instance instance)
+            => global::Roblox.Reflection.Invoke<Enum.InstanceFileSyncStatus>(this, "GetStatus", instance)!;
 
         /// <summary>
         /// Returns the instance corresponding to a given file path.
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
+        /// <param name="filePath">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceFileSyncService#GetSyncedInstance"/>
-        public Instance? GetSyncedInstance(string? filePath)
+        public Instance? GetSyncedInstance(string filePath)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetSyncedInstance", filePath);
 
         /// <summary>
         /// <c>InstanceFileSyncService.GetSyncingCollaborators</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSyncingCollaborators(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSyncingCollaborators", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetSyncingCollaborators(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSyncingCollaborators", instance)!;
 
         /// <summary>
         /// <c>InstanceFileSyncService.GetTooltip</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetTooltip(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTooltip", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        public string? GetTooltip(Instance instance)
+            => global::Roblox.Reflection.Invoke<string?>(this, "GetTooltip", instance);
 
         /// <summary>
         /// Fires when the synchronization status of an instance changes.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="status">A <c>Enum.InstanceFileSyncStatus</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceFileSyncService#StatusChanged"/>
-        public event Action<Instance?, Enum.InstanceFileSyncStatus>? StatusChanged
+        public event Action<Instance, Enum.InstanceFileSyncStatus>? StatusChanged
         {
             add { if (value is not null) AddEventHandler("StatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("StatusChanged", value); }
@@ -82,8 +82,8 @@ namespace Roblox
         /// <summary>
         /// <c>InstanceFileSyncService.SyncingCollaboratorsChanged</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? SyncingCollaboratorsChanged
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        public event Action<Instance>? SyncingCollaboratorsChanged
         {
             add { if (value is not null) AddEventHandler("SyncingCollaboratorsChanged", value); }
             remove { if (value is not null) RemoveEventHandler("SyncingCollaboratorsChanged", value); }

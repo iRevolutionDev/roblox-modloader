@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Tool"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Tool? FromHandle(nuint handle)
+        public static new Tool? FromHandle(nuint handle)
             => handle == 0 ? null : new Tool(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#CanBeDropped"/>
         public bool CanBeDropped
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanBeDropped");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanBeDropped")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CanBeDropped", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -49,50 +49,50 @@ namespace Roblox
         /// Stores the tool's "grip" properties as one CFrame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Grip"/>
-        public global::Roblox.CFrame? Grip
+        public global::Roblox.CFrame Grip
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Grip");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Grip", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Grip")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Grip", value);
         }
 
         /// <summary>
         /// Represents the R02, R12, and R22 values of the grip CFrame rotation matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripForward"/>
-        public global::Roblox.Vector3? GripForward
+        public global::Roblox.Vector3 GripForward
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripForward");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripForward", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "GripForward")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "GripForward", value);
         }
 
         /// <summary>
         /// The positional offset of the tool's weld matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripPos"/>
-        public global::Roblox.Vector3? GripPos
+        public global::Roblox.Vector3 GripPos
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripPos");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripPos", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "GripPos")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "GripPos", value);
         }
 
         /// <summary>
         /// Represents the R00, R10, and R20 values of the grip CFrame rotation matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripRight"/>
-        public global::Roblox.Vector3? GripRight
+        public global::Roblox.Vector3 GripRight
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripRight");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripRight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "GripRight")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "GripRight", value);
         }
 
         /// <summary>
         /// Represents the R01, R11, and R21 values of the grip CFrame rotation matrix.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#GripUp"/>
-        public global::Roblox.Vector3? GripUp
+        public global::Roblox.Vector3 GripUp
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "GripUp");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "GripUp", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "GripUp")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "GripUp", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#ManualActivationOnly"/>
         public bool ManualActivationOnly
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ManualActivationOnly");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ManualActivationOnly")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ManualActivationOnly", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#RequiresHandle"/>
         public bool RequiresHandle
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresHandle");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresHandle")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RequiresHandle", value);
         }
 
@@ -119,27 +119,27 @@ namespace Roblox
         /// Controls the message displayed when the player's mouse hovers over the tool in their backpack.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#ToolTip"/>
-        public string? ToolTip
+        public string ToolTip
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ToolTip");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ToolTip", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ToolTip")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ToolTip", value);
         }
 
         /// <summary>
         /// Simulates activation of the Tool.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Activate"/>
-        public object? Activate()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Activate");
+        public object Activate()
+            => global::Roblox.Reflection.Invoke<object>(this, "Activate")!;
 
         /// <summary>
         /// Simulates deactivation of the Tool.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Deactivate"/>
-        public object? Deactivate()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Deactivate");
+        public object Deactivate()
+            => global::Roblox.Reflection.Invoke<object>(this, "Deactivate")!;
 
         /// <summary>
         /// Fires when the player clicks while the tool is equipped.
@@ -164,9 +164,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the tool is equipped.
         /// </summary>
-        /// <param name="mouse">A <c>Mouse?</c> value.</param>
+        /// <param name="mouse">A <c>Mouse</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tool#Equipped"/>
-        public event Action<Mouse?>? Equipped
+        public event Action<Mouse>? Equipped
         {
             add { if (value is not null) AddEventHandler("Equipped", value); }
             remove { if (value is not null) RemoveEventHandler("Equipped", value); }

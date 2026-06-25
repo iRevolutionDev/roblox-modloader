@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CaptureService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CaptureService? FromHandle(nuint handle)
+        public static new CaptureService? FromHandle(nuint handle)
             => handle == 0 ? null : new CaptureService(handle);
 
         /// <summary>
@@ -30,297 +30,297 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool CanCaptureVideo()
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanCaptureVideo");
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanCaptureVideo")!;
 
         /// <summary>
         /// Takes a screenshot and provides a temporary contentId to identify it.
         /// </summary>
-        /// <param name="onCaptureReady">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="onCaptureReady">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureScreenshot"/>
-        public object? CaptureScreenshot(object? onCaptureReady)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CaptureScreenshot", onCaptureReady);
+        public object CaptureScreenshot(object onCaptureReady)
+            => global::Roblox.Reflection.Invoke<object>(this, "CaptureScreenshot", onCaptureReady)!;
 
         /// <summary>
         /// <c>CaptureService.DeleteCapture</c>
         /// </summary>
-        /// <param name="capturePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DeleteCapture(string? capturePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeleteCapture", capturePath);
+        /// <param name="capturePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DeleteCapture(string capturePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeleteCapture", capturePath)!;
 
         /// <summary>
         /// <c>CaptureService.DeleteVideoCapture</c>
         /// </summary>
-        /// <param name="videoCapture">A <c>VideoCapture?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DeleteVideoCapture(VideoCapture? videoCapture)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeleteVideoCapture", videoCapture);
+        /// <param name="videoCapture">A <c>VideoCapture</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DeleteVideoCapture(VideoCapture videoCapture)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeleteVideoCapture", videoCapture)!;
 
         /// <summary>
         /// <c>CaptureService.GetDeviceInfo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDeviceInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDeviceInfo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetDeviceInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDeviceInfo")!;
 
         /// <summary>
         /// <c>CaptureService.GetScreenshotCaptureObject</c>
         /// </summary>
-        /// <param name="capturePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>Capture?</c> value returned by the engine.</returns>
-        public Capture? GetScreenshotCaptureObject(string? capturePath)
-            => global::Roblox.Reflection.Invoke<Capture?>(this, "GetScreenshotCaptureObject", capturePath);
+        /// <param name="capturePath">A <c>string</c> value.</param>
+        /// <returns>A <c>Capture</c> value returned by the engine.</returns>
+        public Capture GetScreenshotCaptureObject(string capturePath)
+            => global::Roblox.Reflection.Invoke<Capture>(this, "GetScreenshotCaptureObject", capturePath)!;
 
         /// <summary>
         /// <c>CaptureService.IsCapturingVideo</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsCapturingVideo()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsCapturingVideo");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsCapturingVideo")!;
 
         /// <summary>
         /// <c>CaptureService.OnCaptureBegan</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnCaptureBegan()
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnCaptureBegan");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnCaptureBegan()
+            => global::Roblox.Reflection.Invoke<object>(this, "OnCaptureBegan")!;
 
         /// <summary>
         /// <c>CaptureService.OnCaptureEnded</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnCaptureEnded()
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnCaptureEnded");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnCaptureEnded()
+            => global::Roblox.Reflection.Invoke<object>(this, "OnCaptureEnded")!;
 
         /// <summary>
         /// <c>CaptureService.OnCaptureObjectShared</c>
         /// </summary>
-        /// <param name="capture">A <c>Capture?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnCaptureObjectShared(Capture? capture)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnCaptureObjectShared", capture);
+        /// <param name="capture">A <c>Capture</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnCaptureObjectShared(Capture capture)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnCaptureObjectShared", capture)!;
 
         /// <summary>
         /// <c>CaptureService.OnCapturePermissionsPromptFinished</c>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
         /// <param name="wasAccepted">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnCapturePermissionsPromptFinished(long promptId, bool wasAccepted)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnCapturePermissionsPromptFinished", promptId, wasAccepted);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnCapturePermissionsPromptFinished(long promptId, bool wasAccepted)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnCapturePermissionsPromptFinished", promptId, wasAccepted)!;
 
         /// <summary>
         /// <c>CaptureService.OnCaptureShared</c>
         /// </summary>
-        /// <param name="capturePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnCaptureShared(string? capturePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnCaptureShared", capturePath);
+        /// <param name="capturePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnCaptureShared(string capturePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnCaptureShared", capturePath)!;
 
         /// <summary>
         /// <c>CaptureService.OnSavePromptFinished</c>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
-        /// <param name="results">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnSavePromptFinished(long promptId, object? results)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnSavePromptFinished", promptId, results);
+        /// <param name="results">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnSavePromptFinished(long promptId, object results)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnSavePromptFinished", promptId, results)!;
 
         /// <summary>
         /// <c>CaptureService.OnSharePromptFinished</c>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
         /// <param name="accepted">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnSharePromptFinished(long promptId, bool accepted)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnSharePromptFinished", promptId, accepted);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnSharePromptFinished(long promptId, bool accepted)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnSharePromptFinished", promptId, accepted)!;
 
         /// <summary>
         /// <c>CaptureService.OnVideoCaptureShared</c>
         /// </summary>
-        /// <param name="videoCapture">A <c>VideoCapture?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OnVideoCaptureShared(VideoCapture? videoCapture)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OnVideoCaptureShared", videoCapture);
+        /// <param name="videoCapture">A <c>VideoCapture</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OnVideoCaptureShared(VideoCapture videoCapture)
+            => global::Roblox.Reflection.Invoke<object>(this, "OnVideoCaptureShared", videoCapture)!;
 
         /// <summary>
         /// <c>CaptureService.PreCaptureShared</c>
         /// </summary>
-        /// <param name="capture">A <c>Capture?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PreCaptureShared(Capture? capture)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PreCaptureShared", capture);
+        /// <param name="capture">A <c>Capture</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PreCaptureShared(Capture capture)
+            => global::Roblox.Reflection.Invoke<string>(this, "PreCaptureShared", capture)!;
 
         /// <summary>
         /// <c>CaptureService.PreVideoCaptureShared</c>
         /// </summary>
-        /// <param name="videoCapture">A <c>VideoCapture?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? PreVideoCaptureShared(VideoCapture? videoCapture)
-            => global::Roblox.Reflection.Invoke<string?>(this, "PreVideoCaptureShared", videoCapture);
+        /// <param name="videoCapture">A <c>VideoCapture</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string PreVideoCaptureShared(VideoCapture videoCapture)
+            => global::Roblox.Reflection.Invoke<string>(this, "PreVideoCaptureShared", videoCapture)!;
 
         /// <summary>
         /// Prompts the user to save specified captures to their gallery.
         /// </summary>
-        /// <param name="captures">A <c>object?</c> value.</param>
-        /// <param name="resultCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="captures">A <c>object</c> value.</param>
+        /// <param name="resultCallback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#PromptSaveCapturesToGallery"/>
-        public object? PromptSaveCapturesToGallery(object? captures, object? resultCallback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptSaveCapturesToGallery", captures, resultCallback);
+        public object PromptSaveCapturesToGallery(object captures, object resultCallback)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptSaveCapturesToGallery", captures, resultCallback)!;
 
         /// <summary>
         /// Prompts the user to share a specified capture.
         /// </summary>
-        /// <param name="captureContent">A <c>string?</c> value.</param>
-        /// <param name="launchData">A <c>string?</c> value.</param>
-        /// <param name="onAcceptedCallback">A <c>object?</c> value.</param>
-        /// <param name="onDeniedCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="captureContent">A <c>string</c> value.</param>
+        /// <param name="launchData">A <c>string</c> value.</param>
+        /// <param name="onAcceptedCallback">A <c>object</c> value.</param>
+        /// <param name="onDeniedCallback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#PromptShareCapture"/>
-        public object? PromptShareCapture(string? captureContent, string? launchData, object? onAcceptedCallback, object? onDeniedCallback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptShareCapture", captureContent, launchData, onAcceptedCallback, onDeniedCallback);
+        public object PromptShareCapture(string captureContent, string launchData, object onAcceptedCallback, object onDeniedCallback)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptShareCapture", captureContent, launchData, onAcceptedCallback, onDeniedCallback)!;
 
         /// <summary>
         /// <c>CaptureService.RetrieveCaptures</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RetrieveCaptures()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RetrieveCaptures");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RetrieveCaptures()
+            => global::Roblox.Reflection.Invoke<object>(this, "RetrieveCaptures")!;
 
         /// <summary>
         /// <c>CaptureService.SaveCaptureObjectToExternalStorage</c>
         /// </summary>
-        /// <param name="capture">A <c>Capture?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SaveCaptureObjectToExternalStorage(Capture? capture)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveCaptureObjectToExternalStorage", capture);
+        /// <param name="capture">A <c>Capture</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SaveCaptureObjectToExternalStorage(Capture capture)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveCaptureObjectToExternalStorage", capture)!;
 
         /// <summary>
         /// <c>CaptureService.SaveCaptureToExternalStorage</c>
         /// </summary>
-        /// <param name="capturePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SaveCaptureToExternalStorage(string? capturePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveCaptureToExternalStorage", capturePath);
+        /// <param name="capturePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SaveCaptureToExternalStorage(string capturePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveCaptureToExternalStorage", capturePath)!;
 
         /// <summary>
         /// <c>CaptureService.SaveScreenshotCapture</c>
         /// </summary>
-        /// <param name="additionalInfo">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SaveScreenshotCapture(string? additionalInfo)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveScreenshotCapture", additionalInfo);
+        /// <param name="additionalInfo">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SaveScreenshotCapture(string additionalInfo)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveScreenshotCapture", additionalInfo)!;
 
         /// <summary>
         /// <c>CaptureService.SaveVideoCaptureToExternalStorage</c>
         /// </summary>
-        /// <param name="videoCapture">A <c>VideoCapture?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SaveVideoCaptureToExternalStorage(VideoCapture? videoCapture)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveVideoCaptureToExternalStorage", videoCapture);
+        /// <param name="videoCapture">A <c>VideoCapture</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SaveVideoCaptureToExternalStorage(VideoCapture videoCapture)
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveVideoCaptureToExternalStorage", videoCapture)!;
 
         /// <summary>
         /// Ends a video capture initiated by StartVideoCaptureAsync().
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#StopVideoCapture"/>
-        public object? StopVideoCapture()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopVideoCapture");
+        public object StopVideoCapture()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopVideoCapture")!;
 
         /// <summary>
         /// <c>CaptureService.StopVideoCaptureInternal</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopVideoCaptureInternal()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopVideoCaptureInternal");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopVideoCaptureInternal()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopVideoCaptureInternal")!;
 
         /// <summary>
         /// Initiates a screenshot capture.
         /// </summary>
-        /// <param name="onCaptureReady">A <c>object?</c> value.</param>
+        /// <param name="onCaptureReady">A <c>object</c> value.</param>
         /// <param name="captureParams">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#TakeScreenshotCaptureAsync"/>
-        public object? TakeScreenshotCaptureAsync(object? onCaptureReady, object? captureParams)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TakeScreenshotCaptureAsync", onCaptureReady, captureParams);
+        public object TakeScreenshotCaptureAsync(object onCaptureReady, object? captureParams = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "TakeScreenshotCaptureAsync", onCaptureReady, captureParams)!;
 
         /// <summary>
         /// <c>CaptureService.UploadCaptureAndPostMoment</c>
         /// </summary>
-        /// <param name="capture">A <c>Capture?</c> value.</param>
+        /// <param name="capture">A <c>Capture</c> value.</param>
         /// <param name="momentMetadata">A <c>object?</c> value.</param>
         /// <param name="feedRegistrationInfo">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UploadCaptureAndPostMoment(Capture? capture, object? momentMetadata, object? feedRegistrationInfo)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UploadCaptureAndPostMoment", capture, momentMetadata, feedRegistrationInfo);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UploadCaptureAndPostMoment(Capture capture, object? momentMetadata = null, object? feedRegistrationInfo = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "UploadCaptureAndPostMoment", capture, momentMetadata, feedRegistrationInfo)!;
 
         /// <summary>
         /// <c>CaptureService.CheckUploadCaptureStatusAsync</c>
         /// </summary>
-        /// <param name="token">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="token">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CheckUploadCaptureStatusAsync"/>
-        public object? CheckUploadCaptureStatusAsync(string? token)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CheckUploadCaptureStatusAsync", token);
+        public object CheckUploadCaptureStatusAsync(string token)
+            => global::Roblox.Reflection.Invoke<object>(this, "CheckUploadCaptureStatusAsync", token)!;
 
         /// <summary>
         /// <c>CaptureService.CreatePostAsync</c>
         /// </summary>
-        /// <param name="pathArr">A <c>object?</c> value.</param>
-        /// <param name="caption">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreatePostAsync(object? pathArr, string? caption)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreatePostAsync", pathArr, caption);
+        /// <param name="pathArr">A <c>object</c> value.</param>
+        /// <param name="caption">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreatePostAsync(object pathArr, string caption)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreatePostAsync", pathArr, caption)!;
 
         /// <summary>
         /// <c>CaptureService.DeleteCapturesAsync</c>
         /// </summary>
-        /// <param name="pathArr">A <c>object?</c> value.</param>
+        /// <param name="pathArr">A <c>object</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long DeleteCapturesAsync(object? pathArr)
-            => global::Roblox.Reflection.Invoke<long>(this, "DeleteCapturesAsync", pathArr);
+        public long DeleteCapturesAsync(object pathArr)
+            => global::Roblox.Reflection.Invoke<long>(this, "DeleteCapturesAsync", pathArr)!;
 
         /// <summary>
         /// <c>CaptureService.DeleteVideoCaptureAsync</c>
         /// </summary>
-        /// <param name="videoCapture">A <c>VideoCapture?</c> value.</param>
+        /// <param name="videoCapture">A <c>VideoCapture</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool DeleteVideoCaptureAsync(VideoCapture? videoCapture)
-            => global::Roblox.Reflection.Invoke<bool>(this, "DeleteVideoCaptureAsync", videoCapture);
+        public bool DeleteVideoCaptureAsync(VideoCapture videoCapture)
+            => global::Roblox.Reflection.Invoke<bool>(this, "DeleteVideoCaptureAsync", videoCapture)!;
 
         /// <summary>
         /// <c>CaptureService.GetCaptureFilePathAsync</c>
         /// </summary>
-        /// <param name="captureContent">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetCaptureFilePathAsync(string? captureContent)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetCaptureFilePathAsync", captureContent);
+        /// <param name="captureContent">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetCaptureFilePathAsync(string captureContent)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetCaptureFilePathAsync", captureContent)!;
 
         /// <summary>
         /// <c>CaptureService.GetCaptureSizeAsync</c>
         /// </summary>
-        /// <param name="captureContent">A <c>string?</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector2? GetCaptureSizeAsync(string? captureContent)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetCaptureSizeAsync", captureContent);
+        /// <param name="captureContent">A <c>string</c> value.</param>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
+        public global::Roblox.Vector2 GetCaptureSizeAsync(string captureContent)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetCaptureSizeAsync", captureContent)!;
 
         /// <summary>
         /// <c>CaptureService.GetCaptureStorageSizeAsync</c>
         /// </summary>
-        /// <param name="pathArr">A <c>object?</c> value.</param>
+        /// <param name="pathArr">A <c>object</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long GetCaptureStorageSizeAsync(object? pathArr)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetCaptureStorageSizeAsync", pathArr);
+        public long GetCaptureStorageSizeAsync(object pathArr)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetCaptureStorageSizeAsync", pathArr)!;
 
         /// <summary>
         /// <c>CaptureService.GetCaptureUploadDataAsync</c>
         /// </summary>
-        /// <param name="capturePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCaptureUploadDataAsync(string? capturePath)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCaptureUploadDataAsync", capturePath);
+        /// <param name="capturePath">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetCaptureUploadDataAsync(string capturePath)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCaptureUploadDataAsync", capturePath)!;
 
         /// <summary>
         /// <c>CaptureService.InternalCheckPlayabilityAsync</c>
@@ -328,7 +328,7 @@ namespace Roblox
         /// <param name="universeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool InternalCheckPlayabilityAsync(long universeId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "InternalCheckPlayabilityAsync", universeId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "InternalCheckPlayabilityAsync", universeId)!;
 
         /// <summary>
         /// <c>CaptureService.InternalGetStartPlaceIdAsync</c>
@@ -336,7 +336,7 @@ namespace Roblox
         /// <param name="universeId">A <c>long</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long InternalGetStartPlaceIdAsync(long universeId)
-            => global::Roblox.Reflection.Invoke<long>(this, "InternalGetStartPlaceIdAsync", universeId);
+            => global::Roblox.Reflection.Invoke<long>(this, "InternalGetStartPlaceIdAsync", universeId)!;
 
         /// <summary>
         /// <c>CaptureService.PromptCaptureGalleryPermissionAsync</c>
@@ -345,60 +345,60 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#PromptCaptureGalleryPermissionAsync"/>
         public bool PromptCaptureGalleryPermissionAsync(Enum.CaptureGalleryPermission captureGalleryPermission)
-            => global::Roblox.Reflection.Invoke<bool>(this, "PromptCaptureGalleryPermissionAsync", captureGalleryPermission);
+            => global::Roblox.Reflection.Invoke<bool>(this, "PromptCaptureGalleryPermissionAsync", captureGalleryPermission)!;
 
         /// <summary>
         /// <c>CaptureService.ReadCapturesFromGalleryAsync</c>
         /// </summary>
         /// <param name="captureTypeFilters">A <c>object?</c> value.</param>
-        /// <param name="readFromAllEligibleExperiences">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="readFromAllEligibleExperiences">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#ReadCapturesFromGalleryAsync"/>
-        public object? ReadCapturesFromGalleryAsync(object? captureTypeFilters, bool readFromAllEligibleExperiences)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReadCapturesFromGalleryAsync", captureTypeFilters, readFromAllEligibleExperiences);
+        public object ReadCapturesFromGalleryAsync(object? captureTypeFilters = null, bool? readFromAllEligibleExperiences = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ReadCapturesFromGalleryAsync", captureTypeFilters, readFromAllEligibleExperiences)!;
 
         /// <summary>
         /// <c>CaptureService.SaveCapturesToExternalStorageAsync</c>
         /// </summary>
-        /// <param name="pathArr">A <c>object?</c> value.</param>
+        /// <param name="pathArr">A <c>object</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long SaveCapturesToExternalStorageAsync(object? pathArr)
-            => global::Roblox.Reflection.Invoke<long>(this, "SaveCapturesToExternalStorageAsync", pathArr);
+        public long SaveCapturesToExternalStorageAsync(object pathArr)
+            => global::Roblox.Reflection.Invoke<long>(this, "SaveCapturesToExternalStorageAsync", pathArr)!;
 
         /// <summary>
         /// <c>CaptureService.StartUploadCaptureAsync</c>
         /// </summary>
-        /// <param name="capture">A <c>Capture?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="capture">A <c>Capture</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#StartUploadCaptureAsync"/>
-        public object? StartUploadCaptureAsync(Capture? capture)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartUploadCaptureAsync", capture);
+        public object StartUploadCaptureAsync(Capture capture)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartUploadCaptureAsync", capture)!;
 
         /// <summary>
         /// Initiates a video capture recording.
         /// </summary>
-        /// <param name="onCaptureReady">A <c>object?</c> value.</param>
+        /// <param name="onCaptureReady">A <c>object</c> value.</param>
         /// <param name="captureParams">A <c>object?</c> value.</param>
         /// <returns>A <c>Enum.VideoCaptureStartedResult</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#StartVideoCaptureAsync"/>
-        public Enum.VideoCaptureStartedResult StartVideoCaptureAsync(object? onCaptureReady, object? captureParams)
-            => global::Roblox.Reflection.Invoke<Enum.VideoCaptureStartedResult>(this, "StartVideoCaptureAsync", onCaptureReady, captureParams);
+        public Enum.VideoCaptureStartedResult StartVideoCaptureAsync(object onCaptureReady, object? captureParams = null)
+            => global::Roblox.Reflection.Invoke<Enum.VideoCaptureStartedResult>(this, "StartVideoCaptureAsync", onCaptureReady, captureParams)!;
 
         /// <summary>
         /// <c>CaptureService.StartVideoCaptureInternalAsync</c>
         /// </summary>
         /// <returns>A <c>Enum.VideoCaptureStartedResult</c> value returned by the engine.</returns>
         public Enum.VideoCaptureStartedResult StartVideoCaptureInternalAsync()
-            => global::Roblox.Reflection.Invoke<Enum.VideoCaptureStartedResult>(this, "StartVideoCaptureInternalAsync");
+            => global::Roblox.Reflection.Invoke<Enum.VideoCaptureStartedResult>(this, "StartVideoCaptureInternalAsync")!;
 
         /// <summary>
         /// <c>CaptureService.UploadCaptureAsync</c>
         /// </summary>
-        /// <param name="capture">A <c>Capture?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="capture">A <c>Capture</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#UploadCaptureAsync"/>
-        public object? UploadCaptureAsync(Capture? capture)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UploadCaptureAsync", capture);
+        public object UploadCaptureAsync(Capture capture)
+            => global::Roblox.Reflection.Invoke<object>(this, "UploadCaptureAsync", capture)!;
 
         /// <summary>
         /// Fires immediately before a capture begins.
@@ -425,9 +425,9 @@ namespace Roblox
         /// <summary>
         /// <c>CaptureService.CaptureObjectSavedInternal</c>
         /// </summary>
-        /// <param name="capture">A <c>Capture?</c> value.</param>
-        /// <param name="triggerSource">A <c>string?</c> value.</param>
-        public event Action<Capture?, string?>? CaptureObjectSavedInternal
+        /// <param name="capture">A <c>Capture</c> value.</param>
+        /// <param name="triggerSource">A <c>string</c> value.</param>
+        public event Action<Capture, string>? CaptureObjectSavedInternal
         {
             add { if (value is not null) AddEventHandler("CaptureObjectSavedInternal", value); }
             remove { if (value is not null) RemoveEventHandler("CaptureObjectSavedInternal", value); }
@@ -436,9 +436,9 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This event has been superseded by the UserCaptureSaved event.
         /// </summary>
-        /// <param name="captureInfo">A <c>object?</c> value.</param>
+        /// <param name="captureInfo">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureSaved"/>
-        public event Action<object?>? CaptureSaved
+        public event Action<object>? CaptureSaved
         {
             add { if (value is not null) AddEventHandler("CaptureSaved", value); }
             remove { if (value is not null) RemoveEventHandler("CaptureSaved", value); }
@@ -447,9 +447,9 @@ namespace Roblox
         /// <summary>
         /// <c>CaptureService.CaptureSavedInternal</c>
         /// </summary>
-        /// <param name="captureInfo">A <c>object?</c> value.</param>
-        /// <param name="triggerSource">A <c>string?</c> value.</param>
-        public event Action<object?, string?>? CaptureSavedInternal
+        /// <param name="captureInfo">A <c>object</c> value.</param>
+        /// <param name="triggerSource">A <c>string</c> value.</param>
+        public event Action<object, string>? CaptureSavedInternal
         {
             add { if (value is not null) AddEventHandler("CaptureSavedInternal", value); }
             remove { if (value is not null) RemoveEventHandler("CaptureSavedInternal", value); }
@@ -470,8 +470,8 @@ namespace Roblox
         /// <c>CaptureService.OpenSaveCapturesPrompt</c>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
-        /// <param name="captures">A <c>object?</c> value.</param>
-        public event Action<long, object?>? OpenSaveCapturesPrompt
+        /// <param name="captures">A <c>object</c> value.</param>
+        public event Action<long, object>? OpenSaveCapturesPrompt
         {
             add { if (value is not null) AddEventHandler("OpenSaveCapturesPrompt", value); }
             remove { if (value is not null) RemoveEventHandler("OpenSaveCapturesPrompt", value); }
@@ -481,9 +481,9 @@ namespace Roblox
         /// <c>CaptureService.OpenShareCapturePrompt</c>
         /// </summary>
         /// <param name="promptId">A <c>long</c> value.</param>
-        /// <param name="captureContent">A <c>object?</c> value.</param>
-        /// <param name="launchData">A <c>string?</c> value.</param>
-        public event Action<long, object?, string?>? OpenShareCapturePrompt
+        /// <param name="captureContent">A <c>object</c> value.</param>
+        /// <param name="launchData">A <c>string</c> value.</param>
+        public event Action<long, object, string>? OpenShareCapturePrompt
         {
             add { if (value is not null) AddEventHandler("OpenShareCapturePrompt", value); }
             remove { if (value is not null) RemoveEventHandler("OpenShareCapturePrompt", value); }
@@ -492,9 +492,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the user saves a capture.
         /// </summary>
-        /// <param name="captureContentId">A <c>object?</c> value.</param>
+        /// <param name="captureContentId">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#UserCaptureSaved"/>
-        public event Action<object?>? UserCaptureSaved
+        public event Action<object>? UserCaptureSaved
         {
             add { if (value is not null) AddEventHandler("UserCaptureSaved", value); }
             remove { if (value is not null) RemoveEventHandler("UserCaptureSaved", value); }
@@ -524,8 +524,8 @@ namespace Roblox
         /// <c>CaptureService.VideoCaptureInProgress</c>
         /// </summary>
         /// <param name="isInProgress">A <c>bool</c> value.</param>
-        /// <param name="captureTrigger">A <c>string?</c> value.</param>
-        public event Action<bool, string?>? VideoCaptureInProgress
+        /// <param name="captureTrigger">A <c>string</c> value.</param>
+        public event Action<bool, string>? VideoCaptureInProgress
         {
             add { if (value is not null) AddEventHandler("VideoCaptureInProgress", value); }
             remove { if (value is not null) RemoveEventHandler("VideoCaptureInProgress", value); }

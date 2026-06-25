@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TextChatService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextChatService? FromHandle(nuint handle)
+        public static new TextChatService? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChatService(handle);
 
         /// <summary>
@@ -31,19 +31,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#ChatTranslationEnabled"/>
         public bool ChatTranslationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationEnabled", value);
         }
 
         public bool ChatTranslationFTUXShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationFTUXShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationFTUXShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationFTUXShown", value);
         }
 
         public bool ChatTranslationToggleEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationToggleEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationToggleEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationToggleEnabled", value);
         }
 
@@ -53,7 +53,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#ChatVersion"/>
         public Enum.ChatVersion ChatVersion
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ChatVersion>(this, "ChatVersion");
+            get => global::Roblox.Reflection.GetProperty<Enum.ChatVersion>(this, "ChatVersion")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ChatVersion>(this, "ChatVersion", value);
         }
 
@@ -63,7 +63,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#CreateDefaultCommands"/>
         public bool CreateDefaultCommands
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CreateDefaultCommands");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CreateDefaultCommands")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CreateDefaultCommands", value);
         }
 
@@ -73,92 +73,92 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#CreateDefaultTextChannels"/>
         public bool CreateDefaultTextChannels
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CreateDefaultTextChannels");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CreateDefaultTextChannels")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CreateDefaultTextChannels", value);
         }
 
         public Enum.RolloutState EnableProtectedChat
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "EnableProtectedChat");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "EnableProtectedChat")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "EnableProtectedChat", value);
         }
 
         public bool HasSeenDeprecationDialog
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSeenDeprecationDialog");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasSeenDeprecationDialog")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasSeenDeprecationDialog", value);
         }
 
         public bool IsLegacyChatDisabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLegacyChatDisabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLegacyChatDisabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLegacyChatDisabled", value);
         }
 
         /// <summary>
         /// Displays a chat bubble above the provided part or player character.
         /// </summary>
-        /// <param name="partOrCharacter">A <c>Instance?</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="partOrCharacter">A <c>Instance</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#DisplayBubble"/>
-        public object? DisplayBubble(Instance? partOrCharacter, string? message)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DisplayBubble", partOrCharacter, message);
+        public object DisplayBubble(Instance partOrCharacter, string message)
+            => global::Roblox.Reflection.Invoke<object>(this, "DisplayBubble", partOrCharacter, message)!;
 
         /// <summary>
         /// <c>TextChatService.GetTextChannelWindows</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetTextChannelWindows()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTextChannelWindows");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetTextChannelWindows()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTextChannelWindows")!;
 
         /// <summary>
         /// <c>TextChatService.HasAllocatedUniverseChatContext</c>
         /// </summary>
-        /// <param name="context">A <c>string?</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool HasAllocatedUniverseChatContext(string? context)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasAllocatedUniverseChatContext", context);
+        public bool HasAllocatedUniverseChatContext(string context)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasAllocatedUniverseChatContext", context)!;
 
         /// <summary>
         /// <c>TextChatService.SendEnableChatButtonClicked</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendEnableChatButtonClicked()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendEnableChatButtonClicked");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendEnableChatButtonClicked()
+            => global::Roblox.Reflection.Invoke<object>(this, "SendEnableChatButtonClicked")!;
 
         /// <summary>
         /// <c>TextChatService.SendEnableChatButtonShown</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendEnableChatButtonShown()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendEnableChatButtonShown");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendEnableChatButtonShown()
+            => global::Roblox.Reflection.Invoke<object>(this, "SendEnableChatButtonShown")!;
 
         /// <summary>
         /// <c>TextChatService.SendExpChatLoadSuccess</c>
         /// </summary>
         /// <param name="loadingLatency">A <c>int</c> value.</param>
         /// <param name="extras">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendExpChatLoadSuccess(int loadingLatency, object? extras)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendExpChatLoadSuccess", loadingLatency, extras);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendExpChatLoadSuccess(int loadingLatency, object? extras = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendExpChatLoadSuccess", loadingLatency, extras)!;
 
         /// <summary>
         /// <c>TextChatService.SendExpChatMessageClientRendered</c>
         /// </summary>
-        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
+        /// <param name="textChatMessage">A <c>TextChatMessage</c> value.</param>
         /// <param name="messageRenderedSurface">A <c>string?</c> value.</param>
-        /// <param name="selectedChannelTab">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendExpChatMessageClientRendered(TextChatMessage? textChatMessage, string? messageRenderedSurface, long selectedChannelTab)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendExpChatMessageClientRendered", textChatMessage, messageRenderedSurface, selectedChannelTab);
+        /// <param name="selectedChannelTab">A <c>long?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendExpChatMessageClientRendered(TextChatMessage textChatMessage, string? messageRenderedSurface = null, long? selectedChannelTab = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendExpChatMessageClientRendered", textChatMessage, messageRenderedSurface, selectedChannelTab)!;
 
         /// <summary>
         /// <c>TextChatService.SendExpChatWindowScroll</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendExpChatWindowScroll()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendExpChatWindowScroll");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendExpChatWindowScroll()
+            => global::Roblox.Reflection.Invoke<object>(this, "SendExpChatWindowScroll")!;
 
         /// <summary>
         /// <c>TextChatService.SendExpChatWindowStatusChange</c>
@@ -167,9 +167,9 @@ namespace Roblox
         /// <param name="timeOpen">A <c>int</c> value.</param>
         /// <param name="timeBackgroundIdle">A <c>int</c> value.</param>
         /// <param name="timeTextIdle">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendExpChatWindowStatusChange(int timeClosed, int timeOpen, int timeBackgroundIdle, int timeTextIdle)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendExpChatWindowStatusChange", timeClosed, timeOpen, timeBackgroundIdle, timeTextIdle);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendExpChatWindowStatusChange(int timeClosed, int timeOpen, int timeBackgroundIdle, int timeTextIdle)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendExpChatWindowStatusChange", timeClosed, timeOpen, timeBackgroundIdle, timeTextIdle)!;
 
         /// <summary>
         /// <c>TextChatService.setModerationModeEnabled</c>
@@ -178,112 +178,112 @@ namespace Roblox
         /// <param name="enabled">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SetModerationModeEnabled(long userId, bool enabled)
-            => global::Roblox.Reflection.Invoke<bool>(this, "setModerationModeEnabled", userId, enabled);
+            => global::Roblox.Reflection.Invoke<bool>(this, "setModerationModeEnabled", userId, enabled)!;
 
         /// <summary>
         /// Determines whether a user has permission to chat in experiences.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#CanUserChatAsync"/>
-        public bool CanUserChatAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanUserChatAsync", userId);
+        public bool CanUserChatAsync(object userId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanUserChatAsync", userId)!;
 
         /// <summary>
         /// Determines whether or not two users can receive messages from each other.
         /// </summary>
-        /// <param name="userIdFrom">A <c>object?</c> value.</param>
-        /// <param name="userIdTo">A <c>object?</c> value.</param>
+        /// <param name="userIdFrom">A <c>object</c> value.</param>
+        /// <param name="userIdTo">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#CanUsersChatAsync"/>
-        public bool CanUsersChatAsync(object? userIdFrom, object? userIdTo)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanUsersChatAsync", userIdFrom, userIdTo);
+        public bool CanUsersChatAsync(object userIdFrom, object userIdTo)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanUsersChatAsync", userIdFrom, userIdTo)!;
 
         /// <summary>
         /// Determines whether a user has permission to chat directly with other users in experiences based on factors such as their parental control settings.
         /// </summary>
-        /// <param name="requesterUserId">A <c>object?</c> value.</param>
-        /// <param name="userIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="requesterUserId">A <c>object</c> value.</param>
+        /// <param name="userIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#CanUsersDirectChatAsync"/>
-        public object? CanUsersDirectChatAsync(object? requesterUserId, object? userIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CanUsersDirectChatAsync", requesterUserId, userIds);
+        public object CanUsersDirectChatAsync(object requesterUserId, object userIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "CanUsersDirectChatAsync", requesterUserId, userIds)!;
 
         /// <summary>
         /// <c>TextChatService.CanUsersWhisperAsync</c>
         /// </summary>
-        /// <param name="fromUserId">A <c>object?</c> value.</param>
-        /// <param name="toUserId">A <c>object?</c> value.</param>
+        /// <param name="fromUserId">A <c>object</c> value.</param>
+        /// <param name="toUserId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool CanUsersWhisperAsync(object? fromUserId, object? toUserId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanUsersWhisperAsync", fromUserId, toUserId);
+        public bool CanUsersWhisperAsync(object fromUserId, object toUserId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanUsersWhisperAsync", fromUserId, toUserId)!;
 
         /// <summary>
         /// Returns chat group IDs that indicate which players can synchronously text chat together.
         /// </summary>
         /// <param name="players">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#GetChatGroupsAsync"/>
-        public object? GetChatGroupsAsync(IReadOnlyList<Instance> players)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetChatGroupsAsync", players);
+        public object GetChatGroupsAsync(IReadOnlyList<Instance> players)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetChatGroupsAsync", players)!;
 
         /// <summary>
         /// <c>TextChatService.GetChatableUserCountAsync</c>
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <param name="context">A <c>string?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <param name="context">A <c>string</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetChatableUserCountAsync(object? userId, string? context)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetChatableUserCountAsync", userId, context);
+        public int GetChatableUserCountAsync(object userId, string context)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetChatableUserCountAsync", userId, context)!;
 
         /// <summary>
         /// <c>TextChatService.GetPresetsAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPresetsAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPresetsAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPresetsAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPresetsAsync")!;
 
         /// <summary>
         /// <c>TextChatService.OnUserChatSettingUpdateAsync</c>
         /// </summary>
-        /// <param name="featureName">A <c>string?</c> value.</param>
-        /// <param name="featureValue">A <c>string?</c> value.</param>
+        /// <param name="featureName">A <c>string</c> value.</param>
+        /// <param name="featureValue">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool OnUserChatSettingUpdateAsync(string? featureName, string? featureValue)
-            => global::Roblox.Reflection.Invoke<bool>(this, "OnUserChatSettingUpdateAsync", featureName, featureValue);
+        public bool OnUserChatSettingUpdateAsync(string featureName, string featureValue)
+            => global::Roblox.Reflection.Invoke<bool>(this, "OnUserChatSettingUpdateAsync", featureName, featureValue)!;
 
         /// <summary>
         /// <c>TextChatService.SendDictatedSpeechUniverseChatAsync</c>
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
-        public TextChatMessage? SendDictatedSpeechUniverseChatAsync(string? text)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendDictatedSpeechUniverseChatAsync", text);
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
+        public TextChatMessage SendDictatedSpeechUniverseChatAsync(string text)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "SendDictatedSpeechUniverseChatAsync", text)!;
 
         /// <summary>
         /// <c>TextChatService.SendUniverseChatMessageAsync</c>
         /// </summary>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <param name="metadata">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
-        public TextChatMessage? SendUniverseChatMessageAsync(string? text, string? metadata)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendUniverseChatMessageAsync", text, metadata);
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <param name="metadata">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
+        public TextChatMessage SendUniverseChatMessageAsync(string text, string metadata)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "SendUniverseChatMessageAsync", text, metadata)!;
 
         /// <summary>
         /// <c>TextChatService.SendUniverseChatPresetAsync</c>
         /// </summary>
-        /// <param name="presetId">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextChatMessage?</c> value returned by the engine.</returns>
-        public TextChatMessage? SendUniverseChatPresetAsync(string? presetId)
-            => global::Roblox.Reflection.Invoke<TextChatMessage?>(this, "SendUniverseChatPresetAsync", presetId);
+        /// <param name="presetId">A <c>string</c> value.</param>
+        /// <returns>A <c>TextChatMessage</c> value returned by the engine.</returns>
+        public TextChatMessage SendUniverseChatPresetAsync(string presetId)
+            => global::Roblox.Reflection.Invoke<TextChatMessage>(this, "SendUniverseChatPresetAsync", presetId)!;
 
         /// <summary>
         /// Fires when TextChatService:DisplayBubble() is called.
         /// </summary>
-        /// <param name="partOrCharacter">A <c>Instance?</c> value.</param>
-        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
+        /// <param name="partOrCharacter">A <c>Instance</c> value.</param>
+        /// <param name="textChatMessage">A <c>TextChatMessage</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#BubbleDisplayed"/>
-        public event Action<Instance?, TextChatMessage?>? BubbleDisplayed
+        public event Action<Instance, TextChatMessage>? BubbleDisplayed
         {
             add { if (value is not null) AddEventHandler("BubbleDisplayed", value); }
             remove { if (value is not null) RemoveEventHandler("BubbleDisplayed", value); }
@@ -292,8 +292,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.ChatActionReceived</c>
         /// </summary>
-        /// <param name="chatActionMessage">A <c>TextChatMessage?</c> value.</param>
-        public event Action<TextChatMessage?>? ChatActionReceived
+        /// <param name="chatActionMessage">A <c>TextChatMessage</c> value.</param>
+        public event Action<TextChatMessage>? ChatActionReceived
         {
             add { if (value is not null) AddEventHandler("ChatActionReceived", value); }
             remove { if (value is not null) RemoveEventHandler("ChatActionReceived", value); }
@@ -303,9 +303,9 @@ namespace Roblox
         /// <c>TextChatService.ExpChatFeatureValueChanged</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <param name="featureName">A <c>string?</c> value.</param>
-        /// <param name="featureValue">A <c>string?</c> value.</param>
-        public event Action<long, string?, string?>? ExpChatFeatureValueChanged
+        /// <param name="featureName">A <c>string</c> value.</param>
+        /// <param name="featureValue">A <c>string</c> value.</param>
+        public event Action<long, string, string>? ExpChatFeatureValueChanged
         {
             add { if (value is not null) AddEventHandler("ExpChatFeatureValueChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ExpChatFeatureValueChanged", value); }
@@ -314,9 +314,9 @@ namespace Roblox
         /// <summary>
         /// Fires when TextChannel:DisplaySystemMessage() is invoked on the client, or when the client receives a valid TextChannel:SendAsync() response from the server.
         /// </summary>
-        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
+        /// <param name="textChatMessage">A <c>TextChatMessage</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#MessageReceived"/>
-        public event Action<TextChatMessage?>? MessageReceived
+        public event Action<TextChatMessage>? MessageReceived
         {
             add { if (value is not null) AddEventHandler("MessageReceived", value); }
             remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }
@@ -325,8 +325,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.OnIncomingMessageEvent</c>
         /// </summary>
-        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
-        public event Action<TextChatMessage?>? OnIncomingMessageEvent
+        /// <param name="textChatMessage">A <c>TextChatMessage</c> value.</param>
+        public event Action<TextChatMessage>? OnIncomingMessageEvent
         {
             add { if (value is not null) AddEventHandler("OnIncomingMessageEvent", value); }
             remove { if (value is not null) RemoveEventHandler("OnIncomingMessageEvent", value); }
@@ -335,9 +335,9 @@ namespace Roblox
         /// <summary>
         /// Fires when TextChannel:SendAsync() is called by the sending client.
         /// </summary>
-        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
+        /// <param name="textChatMessage">A <c>TextChatMessage</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatService#SendingMessage"/>
-        public event Action<TextChatMessage?>? SendingMessage
+        public event Action<TextChatMessage>? SendingMessage
         {
             add { if (value is not null) AddEventHandler("SendingMessage", value); }
             remove { if (value is not null) RemoveEventHandler("SendingMessage", value); }
@@ -346,8 +346,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.SendingUniverseChatMessage</c>
         /// </summary>
-        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
-        public event Action<TextChatMessage?>? SendingUniverseChatMessage
+        /// <param name="textChatMessage">A <c>TextChatMessage</c> value.</param>
+        public event Action<TextChatMessage>? SendingUniverseChatMessage
         {
             add { if (value is not null) AddEventHandler("SendingUniverseChatMessage", value); }
             remove { if (value is not null) RemoveEventHandler("SendingUniverseChatMessage", value); }
@@ -356,8 +356,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.TextChannelWindowAdded</c>
         /// </summary>
-        /// <param name="textChannelWindow">A <c>TextChannelWindow?</c> value.</param>
-        public event Action<TextChannelWindow?>? TextChannelWindowAdded
+        /// <param name="textChannelWindow">A <c>TextChannelWindow</c> value.</param>
+        public event Action<TextChannelWindow>? TextChannelWindowAdded
         {
             add { if (value is not null) AddEventHandler("TextChannelWindowAdded", value); }
             remove { if (value is not null) RemoveEventHandler("TextChannelWindowAdded", value); }
@@ -366,8 +366,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.TextChannelWindowRemoved</c>
         /// </summary>
-        /// <param name="textChannelWindow">A <c>TextChannelWindow?</c> value.</param>
-        public event Action<TextChannelWindow?>? TextChannelWindowRemoved
+        /// <param name="textChannelWindow">A <c>TextChannelWindow</c> value.</param>
+        public event Action<TextChannelWindow>? TextChannelWindowRemoved
         {
             add { if (value is not null) AddEventHandler("TextChannelWindowRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("TextChannelWindowRemoved", value); }
@@ -376,8 +376,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.UniverseChatChannelAllocated</c>
         /// </summary>
-        /// <param name="context">A <c>string?</c> value.</param>
-        public event Action<string?>? UniverseChatChannelAllocated
+        /// <param name="context">A <c>string</c> value.</param>
+        public event Action<string>? UniverseChatChannelAllocated
         {
             add { if (value is not null) AddEventHandler("UniverseChatChannelAllocated", value); }
             remove { if (value is not null) RemoveEventHandler("UniverseChatChannelAllocated", value); }
@@ -386,8 +386,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.UniverseChatMessageReceived</c>
         /// </summary>
-        /// <param name="textChatMessage">A <c>TextChatMessage?</c> value.</param>
-        public event Action<TextChatMessage?>? UniverseChatMessageReceived
+        /// <param name="textChatMessage">A <c>TextChatMessage</c> value.</param>
+        public event Action<TextChatMessage>? UniverseChatMessageReceived
         {
             add { if (value is not null) AddEventHandler("UniverseChatMessageReceived", value); }
             remove { if (value is not null) RemoveEventHandler("UniverseChatMessageReceived", value); }
@@ -396,8 +396,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextChatService.UserMessageIntentSent</c>
         /// </summary>
-        /// <param name="userIntentMessage">A <c>TextChatMessage?</c> value.</param>
-        public event Action<TextChatMessage?>? UserMessageIntentSent
+        /// <param name="userIntentMessage">A <c>TextChatMessage</c> value.</param>
+        public event Action<TextChatMessage>? UserMessageIntentSent
         {
             add { if (value is not null) AddEventHandler("UserMessageIntentSent", value); }
             remove { if (value is not null) RemoveEventHandler("UserMessageIntentSent", value); }

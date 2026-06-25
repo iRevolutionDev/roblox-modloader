@@ -18,198 +18,198 @@ namespace Roblox
         /// Creates a <see cref="AvatarBodyRules"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AvatarBodyRules? FromHandle(nuint handle)
+        public static new AvatarBodyRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarBodyRules(handle);
 
         public Enum.AvatarSettingsAppearanceMode AppearanceMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAppearanceMode>(this, "AppearanceMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsAppearanceMode>(this, "AppearanceMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsAppearanceMode>(this, "AppearanceMode", value);
         }
 
         public Enum.AvatarSettingsBuildMode BuildMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsBuildMode>(this, "BuildMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsBuildMode>(this, "BuildMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsBuildMode>(this, "BuildMode", value);
         }
 
         public long CustomBodyBundleId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomBodyBundleId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomBodyBundleId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomBodyBundleId", value);
         }
 
         public Enum.AvatarSettingsCustomBodyType CustomBodyType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCustomBodyType>(this, "CustomBodyType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsCustomBodyType>(this, "CustomBodyType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsCustomBodyType>(this, "CustomBodyType", value);
         }
 
-        public global::Roblox.NumberRange? CustomBodyTypeScale
+        public global::Roblox.NumberRange CustomBodyTypeScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomBodyTypeScale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomBodyTypeScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "CustomBodyTypeScale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "CustomBodyTypeScale", value);
         }
 
         public bool CustomEyebrowEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomEyebrowEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomEyebrowEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomEyebrowEnabled", value);
         }
 
         public long CustomEyebrowId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomEyebrowId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomEyebrowId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomEyebrowId", value);
         }
 
         public bool CustomEyelashEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomEyelashEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomEyelashEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomEyelashEnabled", value);
         }
 
         public long CustomEyelashId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomEyelashId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomEyelashId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomEyelashId", value);
         }
 
         public bool CustomFaceEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomFaceEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomFaceEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomFaceEnabled", value);
         }
 
         public long CustomFaceId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomFaceId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomFaceId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomFaceId", value);
         }
 
         public bool CustomHeadEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomHeadEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomHeadEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomHeadEnabled", value);
         }
 
         public long CustomHeadId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomHeadId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomHeadId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomHeadId", value);
         }
 
-        public global::Roblox.NumberRange? CustomHeadScale
+        public global::Roblox.NumberRange CustomHeadScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomHeadScale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomHeadScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "CustomHeadScale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "CustomHeadScale", value);
         }
 
-        public global::Roblox.NumberRange? CustomHeight
+        public global::Roblox.NumberRange CustomHeight
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomHeight");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomHeight", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "CustomHeight")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "CustomHeight", value);
         }
 
-        public global::Roblox.NumberRange? CustomHeightScale
+        public global::Roblox.NumberRange CustomHeightScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomHeightScale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomHeightScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "CustomHeightScale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "CustomHeightScale", value);
         }
 
         public bool CustomLeftArmEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomLeftArmEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomLeftArmEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomLeftArmEnabled", value);
         }
 
         public long CustomLeftArmId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomLeftArmId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomLeftArmId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomLeftArmId", value);
         }
 
         public bool CustomLeftLegEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomLeftLegEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomLeftLegEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomLeftLegEnabled", value);
         }
 
         public long CustomLeftLegId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomLeftLegId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomLeftLegId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomLeftLegId", value);
         }
 
         public bool CustomMoodEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomMoodEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomMoodEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomMoodEnabled", value);
         }
 
         public long CustomMoodId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomMoodId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomMoodId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomMoodId", value);
         }
 
-        public global::Roblox.NumberRange? CustomProportionsScale
+        public global::Roblox.NumberRange CustomProportionsScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomProportionsScale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomProportionsScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "CustomProportionsScale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "CustomProportionsScale", value);
         }
 
         public bool CustomRightArmEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomRightArmEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomRightArmEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomRightArmEnabled", value);
         }
 
         public long CustomRightArmId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomRightArmId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomRightArmId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomRightArmId", value);
         }
 
         public bool CustomRightLegEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomRightLegEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomRightLegEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomRightLegEnabled", value);
         }
 
         public long CustomRightLegId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomRightLegId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomRightLegId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomRightLegId", value);
         }
 
         public bool CustomTorsoEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomTorsoEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomTorsoEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CustomTorsoEnabled", value);
         }
 
         public long CustomTorsoId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomTorsoId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CustomTorsoId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CustomTorsoId", value);
         }
 
-        public global::Roblox.NumberRange? CustomWidthScale
+        public global::Roblox.NumberRange CustomWidthScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange?>(this, "CustomWidthScale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange?>(this, "CustomWidthScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberRange>(this, "CustomWidthScale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberRange>(this, "CustomWidthScale", value);
         }
 
         public bool KeepPlayerHead
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "KeepPlayerHead");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "KeepPlayerHead")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "KeepPlayerHead", value);
         }
 
         public Enum.AvatarSettingsScaleMode ScaleMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsScaleMode>(this, "ScaleMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.AvatarSettingsScaleMode>(this, "ScaleMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AvatarSettingsScaleMode>(this, "ScaleMode", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PlayerListConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerListConfiguration? FromHandle(nuint handle)
+        public static new PlayerListConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerListConfiguration(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerListConfiguration#Open"/>
         public bool Open
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Open");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Open")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Open", value);
         }
 

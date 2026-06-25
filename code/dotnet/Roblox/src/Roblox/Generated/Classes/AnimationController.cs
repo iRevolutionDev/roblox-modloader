@@ -22,32 +22,32 @@ namespace Roblox
         /// Creates a <see cref="AnimationController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationController? FromHandle(nuint handle)
+        public static new AnimationController? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationController(handle);
 
         /// <summary>
         /// Deprecated: Returns an array of all AnimationTracks that are currently being played by the AnimationController.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#GetPlayingAnimationTracks"/>
-        public object? GetPlayingAnimationTracks()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPlayingAnimationTracks");
+        public object GetPlayingAnimationTracks()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPlayingAnimationTracks")!;
 
         /// <summary>
         /// Deprecated: This function is deprecated in favor of using Animator:LoadAnimation() directly (the Animator may be created while editing or at runtime).Loads an Animation onto an AnimationController, returning an AnimationTrack that can be used for playback.
         /// </summary>
-        /// <param name="animation">A <c>Animation?</c> value.</param>
-        /// <returns>A <c>AnimationTrack?</c> value returned by the engine.</returns>
+        /// <param name="animation">A <c>Animation</c> value.</param>
+        /// <returns>A <c>AnimationTrack</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#LoadAnimation"/>
-        public AnimationTrack? LoadAnimation(Animation? animation)
-            => global::Roblox.Reflection.Invoke<AnimationTrack?>(this, "LoadAnimation", animation);
+        public AnimationTrack LoadAnimation(Animation animation)
+            => global::Roblox.Reflection.Invoke<AnimationTrack>(this, "LoadAnimation", animation)!;
 
         /// <summary>
         /// Deprecated: Fires whenever the AnimationController begins playing an animation. It returns the AnimationTrack playing.
         /// </summary>
-        /// <param name="animationTrack">A <c>AnimationTrack?</c> value.</param>
+        /// <param name="animationTrack">A <c>AnimationTrack</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#AnimationPlayed"/>
-        public event Action<AnimationTrack?>? AnimationPlayed
+        public event Action<AnimationTrack>? AnimationPlayed
         {
             add { if (value is not null) AddEventHandler("AnimationPlayed", value); }
             remove { if (value is not null) RemoveEventHandler("AnimationPlayed", value); }

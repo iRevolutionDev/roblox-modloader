@@ -18,74 +18,74 @@ namespace Roblox
         /// Creates a <see cref="RealtimeMedia"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RealtimeMedia? FromHandle(nuint handle)
+        public static new RealtimeMedia? FromHandle(nuint handle)
             => handle == 0 ? null : new RealtimeMedia(handle);
 
         public bool ForwardInput
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForwardInput");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ForwardInput")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ForwardInput", value);
         }
 
         public bool IsConnected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsConnected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsConnected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsConnected", value);
         }
 
         /// <summary>
         /// <c>RealtimeMedia.Disconnect</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Disconnect()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Disconnect");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Disconnect()
+            => global::Roblox.Reflection.Invoke<object>(this, "Disconnect")!;
 
         /// <summary>
         /// <c>RealtimeMedia.GetConnectedWires</c>
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// <c>RealtimeMedia.GetInputPins</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// <c>RealtimeMedia.GetOutputPins</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// <c>RealtimeMedia.SendMessage</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="binary">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool SendMessage(string? message, bool binary)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SendMessage", message, binary);
+        public bool SendMessage(string message, bool binary)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SendMessage", message, binary)!;
 
         /// <summary>
         /// <c>RealtimeMedia.ConnectAsync</c>
         /// </summary>
-        /// <param name="serverUrl">A <c>string?</c> value.</param>
+        /// <param name="serverUrl">A <c>string</c> value.</param>
         /// <param name="connectParams">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ConnectAsync(string? serverUrl, object? connectParams)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ConnectAsync", serverUrl, connectParams);
+        public bool ConnectAsync(string serverUrl, object? connectParams = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ConnectAsync", serverUrl, connectParams)!;
 
         /// <summary>
         /// <c>RealtimeMedia.OnMessage</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="binary">A <c>bool</c> value.</param>
-        public event Action<string?, bool>? OnMessage
+        public event Action<string, bool>? OnMessage
         {
             add { if (value is not null) AddEventHandler("OnMessage", value); }
             remove { if (value is not null) RemoveEventHandler("OnMessage", value); }
@@ -95,10 +95,10 @@ namespace Roblox
         /// <c>RealtimeMedia.WiringChanged</c>
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

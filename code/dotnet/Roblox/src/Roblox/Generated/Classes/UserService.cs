@@ -22,26 +22,26 @@ namespace Roblox
         /// Creates a <see cref="UserService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UserService? FromHandle(nuint handle)
+        public static new UserService? FromHandle(nuint handle)
             => handle == 0 ? null : new UserService(handle);
 
         /// <summary>
         /// Returns a User for the given global user ID within the current experience.
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserService#GetUserFromGlobalUserIdAsync"/>
-        public object? GetUserFromGlobalUserIdAsync(long userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserFromGlobalUserIdAsync", userId);
+        public object GetUserFromGlobalUserIdAsync(long userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserFromGlobalUserIdAsync", userId)!;
 
         /// <summary>
         /// Returns an array of user information including user name and display name.
         /// </summary>
-        /// <param name="userIds">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userIds">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserService#GetUserInfosByUserIdsAsync"/>
-        public object? GetUserInfosByUserIdsAsync(object? userIds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserInfosByUserIdsAsync", userIds);
+        public object GetUserInfosByUserIdsAsync(object userIds)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserInfosByUserIdsAsync", userIds)!;
 
     }
 }

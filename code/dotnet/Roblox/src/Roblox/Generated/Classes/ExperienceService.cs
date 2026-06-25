@@ -18,115 +18,115 @@ namespace Roblox
         /// Creates a <see cref="ExperienceService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExperienceService? FromHandle(nuint handle)
+        public static new ExperienceService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceService(handle);
 
         /// <summary>
         /// <c>ExperienceService.ExecuteCrossExperienceCall</c>
         /// </summary>
-        /// <param name="callId">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <param name="successCallback">A <c>object?</c> value.</param>
-        /// <param name="errorCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ExecuteCrossExperienceCall(string? callId, object? @params, object? successCallback, object? errorCallback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExecuteCrossExperienceCall", callId, @params, successCallback, errorCallback);
+        /// <param name="callId">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>object</c> value.</param>
+        /// <param name="successCallback">A <c>object</c> value.</param>
+        /// <param name="errorCallback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ExecuteCrossExperienceCall(string callId, object @params, object successCallback, object errorCallback)
+            => global::Roblox.Reflection.Invoke<object>(this, "ExecuteCrossExperienceCall", callId, @params, successCallback, errorCallback)!;
 
         /// <summary>
         /// <c>ExperienceService.GetFollowUserId</c>
         /// </summary>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long GetFollowUserId()
-            => global::Roblox.Reflection.Invoke<long>(this, "GetFollowUserId");
+            => global::Roblox.Reflection.Invoke<long>(this, "GetFollowUserId")!;
 
         /// <summary>
         /// <c>ExperienceService.GetPendingJoinAttempt</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPendingJoinAttempt()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPendingJoinAttempt");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPendingJoinAttempt()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPendingJoinAttempt")!;
 
         /// <summary>
         /// <c>ExperienceService.GetPlaceJoinState</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetPlaceJoinState()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetPlaceJoinState");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetPlaceJoinState()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetPlaceJoinState")!;
 
         /// <summary>
         /// <c>ExperienceService.GetQueuePosition</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetQueuePosition()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetQueuePosition");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetQueuePosition")!;
 
         /// <summary>
         /// <c>ExperienceService.LaunchExperience</c>
         /// </summary>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? LaunchExperience(object? @params)
-            => global::Roblox.Reflection.Invoke<string?>(this, "LaunchExperience", @params);
+        /// <param name="@params">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string LaunchExperience(object @params)
+            => global::Roblox.Reflection.Invoke<string>(this, "LaunchExperience", @params)!;
 
         /// <summary>
         /// <c>ExperienceService.LaunchExperienceFromSource</c>
         /// </summary>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? LaunchExperienceFromSource(object? @params, string? source)
-            => global::Roblox.Reflection.Invoke<string?>(this, "LaunchExperienceFromSource", @params, source);
+        /// <param name="@params">A <c>object</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string LaunchExperienceFromSource(object @params, string source)
+            => global::Roblox.Reflection.Invoke<string>(this, "LaunchExperienceFromSource", @params, source)!;
 
         /// <summary>
         /// <c>ExperienceService.LaunchExperienceFromSourceWithCallback</c>
         /// </summary>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <param name="source">A <c>string?</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LaunchExperienceFromSourceWithCallback(object? @params, string? source, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LaunchExperienceFromSourceWithCallback", @params, source, callback);
+        /// <param name="@params">A <c>object</c> value.</param>
+        /// <param name="source">A <c>string</c> value.</param>
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LaunchExperienceFromSourceWithCallback(object @params, string source, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "LaunchExperienceFromSourceWithCallback", @params, source, callback)!;
 
         /// <summary>
         /// <c>ExperienceService.RegisterForExperienceJoin</c>
         /// </summary>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterForExperienceJoin(object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterForExperienceJoin", callback);
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterForExperienceJoin(object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterForExperienceJoin", callback)!;
 
         /// <summary>
         /// <c>ExperienceService.RegisterForExperienceLeave</c>
         /// </summary>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterForExperienceLeave(object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterForExperienceLeave", callback);
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterForExperienceLeave(object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterForExperienceLeave", callback)!;
 
         /// <summary>
         /// <c>ExperienceService.StartCrossExperience</c>
         /// </summary>
-        /// <param name="type">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartCrossExperience(string? type, object? @params)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartCrossExperience", type, @params);
+        /// <param name="type">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartCrossExperience(string type, object @params)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartCrossExperience", type, @params)!;
 
         /// <summary>
         /// <c>ExperienceService.StopCrossExperience</c>
         /// </summary>
-        /// <param name="type">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopCrossExperience(string? type, object? @params)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopCrossExperience", type, @params);
+        /// <param name="type">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopCrossExperience(string type, object @params)
+            => global::Roblox.Reflection.Invoke<object>(this, "StopCrossExperience", type, @params)!;
 
         /// <summary>
         /// <c>ExperienceService.OnCrossExperienceStarted</c>
         /// </summary>
-        /// <param name="type">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>object?</c> value.</param>
-        public event Action<string?, object?>? OnCrossExperienceStarted
+        /// <param name="type">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>object</c> value.</param>
+        public event Action<string, object>? OnCrossExperienceStarted
         {
             add { if (value is not null) AddEventHandler("OnCrossExperienceStarted", value); }
             remove { if (value is not null) RemoveEventHandler("OnCrossExperienceStarted", value); }
@@ -135,9 +135,9 @@ namespace Roblox
         /// <summary>
         /// <c>ExperienceService.OnCrossExperienceStopped</c>
         /// </summary>
-        /// <param name="type">A <c>string?</c> value.</param>
-        /// <param name="params">A <c>object?</c> value.</param>
-        public event Action<string?, object?>? OnCrossExperienceStopped
+        /// <param name="type">A <c>string</c> value.</param>
+        /// <param name="@params">A <c>object</c> value.</param>
+        public event Action<string, object>? OnCrossExperienceStopped
         {
             add { if (value is not null) AddEventHandler("OnCrossExperienceStopped", value); }
             remove { if (value is not null) RemoveEventHandler("OnCrossExperienceStopped", value); }
@@ -146,8 +146,8 @@ namespace Roblox
         /// <summary>
         /// <c>ExperienceService.OnNewJoinAttempt</c>
         /// </summary>
-        /// <param name="params">A <c>object?</c> value.</param>
-        public event Action<object?>? OnNewJoinAttempt
+        /// <param name="@params">A <c>object</c> value.</param>
+        public event Action<object>? OnNewJoinAttempt
         {
             add { if (value is not null) AddEventHandler("OnNewJoinAttempt", value); }
             remove { if (value is not null) RemoveEventHandler("OnNewJoinAttempt", value); }
@@ -156,8 +156,8 @@ namespace Roblox
         /// <summary>
         /// <c>ExperienceService.PlaceJoinStateChanged</c>
         /// </summary>
-        /// <param name="state">A <c>string?</c> value.</param>
-        public event Action<string?>? PlaceJoinStateChanged
+        /// <param name="state">A <c>string</c> value.</param>
+        public event Action<string>? PlaceJoinStateChanged
         {
             add { if (value is not null) AddEventHandler("PlaceJoinStateChanged", value); }
             remove { if (value is not null) RemoveEventHandler("PlaceJoinStateChanged", value); }

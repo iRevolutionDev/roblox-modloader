@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BoolValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BoolValue? FromHandle(nuint handle)
+        public static new BoolValue? FromHandle(nuint handle)
             => handle == 0 ? null : new BoolValue(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BoolValue#Value"/>
         public bool Value
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Value");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Value")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Value", value);
         }
 
@@ -40,7 +40,7 @@ namespace Roblox
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BoolValue#Changed"/>
-        public event Action<bool>? Changed
+        public new event Action<bool>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

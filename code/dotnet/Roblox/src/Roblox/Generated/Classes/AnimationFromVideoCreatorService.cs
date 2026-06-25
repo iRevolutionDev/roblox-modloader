@@ -22,42 +22,42 @@ namespace Roblox
         /// Creates a <see cref="AnimationFromVideoCreatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationFromVideoCreatorService? FromHandle(nuint handle)
+        public static new AnimationFromVideoCreatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationFromVideoCreatorService(handle);
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorService.CreateJob</c>
         /// </summary>
-        /// <param name="filePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? CreateJob(string? filePath)
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateJob", filePath);
+        /// <param name="filePath">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string CreateJob(string filePath)
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateJob", filePath)!;
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorService.DownloadJobResult</c>
         /// </summary>
-        /// <param name="jobId">A <c>string?</c> value.</param>
-        /// <param name="outputFilePath">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? DownloadJobResult(string? jobId, string? outputFilePath)
-            => global::Roblox.Reflection.Invoke<string?>(this, "DownloadJobResult", jobId, outputFilePath);
+        /// <param name="jobId">A <c>string</c> value.</param>
+        /// <param name="outputFilePath">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string DownloadJobResult(string jobId, string outputFilePath)
+            => global::Roblox.Reflection.Invoke<string>(this, "DownloadJobResult", jobId, outputFilePath)!;
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorService.FullProcess</c>
         /// </summary>
-        /// <param name="videoFilePath">A <c>string?</c> value.</param>
-        /// <param name="progressCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? FullProcess(string? videoFilePath, object? progressCallback)
-            => global::Roblox.Reflection.Invoke<string?>(this, "FullProcess", videoFilePath, progressCallback);
+        /// <param name="videoFilePath">A <c>string</c> value.</param>
+        /// <param name="progressCallback">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string FullProcess(string videoFilePath, object progressCallback)
+            => global::Roblox.Reflection.Invoke<string>(this, "FullProcess", videoFilePath, progressCallback)!;
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorService.GetJobStatus</c>
         /// </summary>
-        /// <param name="jobId">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetJobStatus(string? jobId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetJobStatus", jobId);
+        /// <param name="jobId">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetJobStatus(string jobId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetJobStatus", jobId)!;
 
     }
 }

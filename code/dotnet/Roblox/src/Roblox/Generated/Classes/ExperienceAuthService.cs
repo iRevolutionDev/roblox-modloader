@@ -18,27 +18,27 @@ namespace Roblox
         /// Creates a <see cref="ExperienceAuthService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExperienceAuthService? FromHandle(nuint handle)
+        public static new ExperienceAuthService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceAuthService(handle);
 
         /// <summary>
         /// <c>ExperienceAuthService.ScopeCheckUIComplete</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
-        /// <param name="scopes">A <c>object?</c> value.</param>
+        /// <param name="guid">A <c>string</c> value.</param>
+        /// <param name="scopes">A <c>object</c> value.</param>
         /// <param name="result">A <c>Enum.ScopeCheckResult</c> value.</param>
-        /// <param name="metadata">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ScopeCheckUIComplete(string? guid, object? scopes, Enum.ScopeCheckResult result, object? metadata)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ScopeCheckUIComplete", guid, scopes, result, metadata);
+        /// <param name="metadata">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ScopeCheckUIComplete(string guid, object scopes, Enum.ScopeCheckResult result, object metadata)
+            => global::Roblox.Reflection.Invoke<object>(this, "ScopeCheckUIComplete", guid, scopes, result, metadata)!;
 
         /// <summary>
         /// <c>ExperienceAuthService.OpenAuthPrompt</c>
         /// </summary>
-        /// <param name="guid">A <c>string?</c> value.</param>
-        /// <param name="scopes">A <c>object?</c> value.</param>
-        /// <param name="metadata">A <c>object?</c> value.</param>
-        public event Action<string?, object?, object?>? OpenAuthPrompt
+        /// <param name="guid">A <c>string</c> value.</param>
+        /// <param name="scopes">A <c>object</c> value.</param>
+        /// <param name="metadata">A <c>object</c> value.</param>
+        public event Action<string, object, object>? OpenAuthPrompt
         {
             add { if (value is not null) AddEventHandler("OpenAuthPrompt", value); }
             remove { if (value is not null) RemoveEventHandler("OpenAuthPrompt", value); }

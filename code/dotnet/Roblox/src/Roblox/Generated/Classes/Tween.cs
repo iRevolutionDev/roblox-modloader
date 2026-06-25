@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Tween"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Tween? FromHandle(nuint handle)
+        public static new Tween? FromHandle(nuint handle)
             => handle == 0 ? null : new Tween(handle);
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace Roblox
         /// Read-only property that includes information on how the interpolation of the Tween is to be carried out.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tween#TweenInfo"/>
-        public object? TweenInfo
+        public object TweenInfo
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TweenInfo");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TweenInfo", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "TweenInfo")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "TweenInfo", value);
         }
 
     }

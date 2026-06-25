@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DebugSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebugSettings? FromHandle(nuint handle)
+        public static new DebugSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new DebugSettings(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#DataModel"/>
         public int DataModel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DataModel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "DataModel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DataModel", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#InstanceCount"/>
         public int InstanceCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "InstanceCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "InstanceCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "InstanceCount", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#IsScriptStackTracingEnabled"/>
         public bool IsScriptStackTracingEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsScriptStackTracingEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsScriptStackTracingEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsScriptStackTracingEnabled", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#JobCount"/>
         public int JobCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "JobCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "JobCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "JobCount", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#PlayerCount"/>
         public int PlayerCount
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PlayerCount");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PlayerCount")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PlayerCount", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#ReportSoundWarnings"/>
         public bool ReportSoundWarnings
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReportSoundWarnings");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReportSoundWarnings")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReportSoundWarnings", value);
         }
 
@@ -89,10 +89,10 @@ namespace Roblox
         /// The current client version of Roblox. Can also be retrieved by using the version() function.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#RobloxVersion"/>
-        public string? RobloxVersion
+        public string RobloxVersion
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RobloxVersion");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RobloxVersion", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RobloxVersion")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RobloxVersion", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DebugSettings#TickCountPreciseOverride"/>
         public Enum.TickCountSampleMethod TickCountPreciseOverride
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TickCountSampleMethod>(this, "TickCountPreciseOverride");
+            get => global::Roblox.Reflection.GetProperty<Enum.TickCountSampleMethod>(this, "TickCountPreciseOverride")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TickCountSampleMethod>(this, "TickCountPreciseOverride", value);
         }
 

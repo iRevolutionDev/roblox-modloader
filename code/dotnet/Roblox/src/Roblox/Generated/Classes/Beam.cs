@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Beam"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Beam? FromHandle(nuint handle)
+        public static new Beam? FromHandle(nuint handle)
             => handle == 0 ? null : new Beam(handle);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Brightness"/>
         public float Brightness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Brightness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Brightness", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines the color of the beam across its Segments.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Color"/>
-        public global::Roblox.ColorSequence? Color
+        public global::Roblox.ColorSequence Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.ColorSequence>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.ColorSequence>(this, "Color", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#CurveSize0"/>
         public float CurveSize0
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurveSize0");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurveSize0")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurveSize0", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#CurveSize1"/>
         public float CurveSize1
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurveSize1");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurveSize1")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurveSize1", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#FaceCamera"/>
         public bool FaceCamera
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FaceCamera");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FaceCamera")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FaceCamera", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#LightEmission"/>
         public float LightEmission
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightEmission");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightEmission")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightEmission", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#LightInfluence"/>
         public float LightInfluence
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LightInfluence")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LightInfluence", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Segments"/>
         public int Segments
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Segments");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Segments")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Segments", value);
         }
 
@@ -149,16 +149,16 @@ namespace Roblox
         /// The content ID of the texture to be displayed on the beam.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Texture"/>
-        public object? Texture
+        public object Texture
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Texture");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Texture", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Texture")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Texture", value);
         }
 
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#TextureLength"/>
         public float TextureLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextureLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextureLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextureLength", value);
         }
 
@@ -177,7 +177,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#TextureMode"/>
         public Enum.TextureMode TextureMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TextureMode>(this, "TextureMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TextureMode>(this, "TextureMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TextureMode>(this, "TextureMode", value);
         }
 
@@ -187,7 +187,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#TextureSpeed"/>
         public float TextureSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TextureSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TextureSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TextureSpeed", value);
         }
 
@@ -195,10 +195,10 @@ namespace Roblox
         /// Determines the transparency of the beam across its segments.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Transparency"/>
-        public global::Roblox.NumberSequence? Transparency
+        public global::Roblox.NumberSequence Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence?>(this, "Transparency");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence?>(this, "Transparency", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.NumberSequence>(this, "Transparency")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.NumberSequence>(this, "Transparency", value);
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Width0"/>
         public float Width0
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Width0");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Width0")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Width0", value);
         }
 
@@ -217,7 +217,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Width1"/>
         public float Width1
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Width1");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Width1")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Width1", value);
         }
 
@@ -227,18 +227,18 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#ZOffset"/>
         public float ZOffset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ZOffset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ZOffset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ZOffset", value);
         }
 
         /// <summary>
         /// Sets the current offset of the beam's texture cycle.
         /// </summary>
-        /// <param name="offset">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="offset">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#SetTextureOffset"/>
-        public object? SetTextureOffset(float offset)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTextureOffset", offset);
+        public object SetTextureOffset(float? offset = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTextureOffset", offset)!;
 
     }
 }

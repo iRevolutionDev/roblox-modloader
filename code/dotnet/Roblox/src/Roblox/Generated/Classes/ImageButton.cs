@@ -22,83 +22,83 @@ namespace Roblox
         /// Creates a <see cref="ImageButton"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ImageButton? FromHandle(nuint handle)
+        public static new ImageButton? FromHandle(nuint handle)
             => handle == 0 ? null : new ImageButton(handle);
 
-        public global::Roblox.Vector2? ContentImageSize
+        public global::Roblox.Vector2 ContentImageSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ContentImageSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ContentImageSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "ContentImageSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "ContentImageSize", value);
         }
 
         /// <summary>
         /// A texture ID that will be used when the ImageButton is being hovered.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#HoverImage"/>
-        public object? HoverImage
+        public object HoverImage
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "HoverImage");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "HoverImage", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "HoverImage")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "HoverImage", value);
         }
 
         /// <summary>
         /// The image content that will be used when the ImageButton is being hovered. Only supports asset URIs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#HoverImageContent"/>
-        public string? HoverImageContent
+        public string HoverImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "HoverImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "HoverImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "HoverImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "HoverImageContent", value);
         }
 
         /// <summary>
         /// The image content displayed by the ImageButton element. Reads and writes to ImageContent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#Image"/>
-        public object? Image
+        public object Image
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Image");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Image", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Image")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Image", value);
         }
 
         /// <summary>
         /// Determines how a rendered image will be colorized.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#ImageColor3"/>
-        public global::Roblox.Color3? ImageColor3
+        public global::Roblox.Color3 ImageColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "ImageColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "ImageColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "ImageColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "ImageColor3", value);
         }
 
         /// <summary>
         /// The image content displayed by the UI element. Supports asset URIs and EditableImage objects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#ImageContent"/>
-        public string? ImageContent
+        public string ImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ImageContent", value);
         }
 
         /// <summary>
         /// The offset in pixels of the sub-area of an image to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#ImageRectOffset"/>
-        public global::Roblox.Vector2? ImageRectOffset
+        public global::Roblox.Vector2 ImageRectOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ImageRectOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ImageRectOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "ImageRectOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "ImageRectOffset", value);
         }
 
         /// <summary>
         /// Determines the size in pixels of the sub-area of an image to be displayed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#ImageRectSize"/>
-        public global::Roblox.Vector2? ImageRectSize
+        public global::Roblox.Vector2 ImageRectSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ImageRectSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ImageRectSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "ImageRectSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "ImageRectSize", value);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#ImageTransparency"/>
         public float ImageTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ImageTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ImageTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ImageTransparency", value);
         }
 
@@ -117,7 +117,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#IsLoaded"/>
         public bool IsLoaded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsLoaded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsLoaded", value);
         }
 
@@ -125,20 +125,20 @@ namespace Roblox
         /// A texture ID that will be used when an ImageButton is being pressed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#PressedImage"/>
-        public object? PressedImage
+        public object PressedImage
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "PressedImage");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "PressedImage", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "PressedImage")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "PressedImage", value);
         }
 
         /// <summary>
         /// The image content that will be used when an ImageButton is being pressed. Only supports asset URIs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#PressedImageContent"/>
-        public string? PressedImageContent
+        public string PressedImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PressedImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PressedImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PressedImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PressedImageContent", value);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#ResampleMode"/>
         public Enum.ResamplerMode ResampleMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ResamplerMode>(this, "ResampleMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ResamplerMode>(this, "ResampleMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ResamplerMode>(this, "ResampleMode", value);
         }
 
@@ -157,7 +157,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#ScaleType"/>
         public Enum.ScaleType ScaleType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ScaleType>(this, "ScaleType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ScaleType>(this, "ScaleType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ScaleType>(this, "ScaleType", value);
         }
 
@@ -165,10 +165,10 @@ namespace Roblox
         /// Sets the slice boundaries of a 9-sliced image.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#SliceCenter"/>
-        public global::Roblox.Rect? SliceCenter
+        public global::Roblox.Rect SliceCenter
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "SliceCenter");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "SliceCenter", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect>(this, "SliceCenter")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect>(this, "SliceCenter", value);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#SliceScale"/>
         public float SliceScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SliceScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SliceScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SliceScale", value);
         }
 
@@ -185,19 +185,19 @@ namespace Roblox
         /// Sets the tiling scale of the ImageButton.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageButton#TileSize"/>
-        public global::Roblox.UDim2? TileSize
+        public global::Roblox.UDim2 TileSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "TileSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "TileSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "TileSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "TileSize", value);
         }
 
         /// <summary>
         /// <c>ImageButton.SetEnableContentImageSizeChangedEvents</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetEnableContentImageSizeChangedEvents(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetEnableContentImageSizeChangedEvents", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetEnableContentImageSizeChangedEvents(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetEnableContentImageSizeChangedEvents", enabled)!;
 
     }
 }

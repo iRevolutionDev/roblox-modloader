@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SensorBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SensorBase? FromHandle(nuint handle)
+        public static new SensorBase? FromHandle(nuint handle)
             => handle == 0 ? null : new SensorBase(handle);
 
         /// <summary>
@@ -31,17 +31,17 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SensorBase#UpdateType"/>
         public Enum.SensorUpdateType UpdateType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SensorUpdateType>(this, "UpdateType");
+            get => global::Roblox.Reflection.GetProperty<Enum.SensorUpdateType>(this, "UpdateType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SensorUpdateType>(this, "UpdateType", value);
         }
 
         /// <summary>
         /// Deprecated: This method should not be used in new work.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SensorBase#Sense"/>
-        public object? Sense()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Sense");
+        public object Sense()
+            => global::Roblox.Reflection.Invoke<object>(this, "Sense")!;
 
         /// <summary>
         /// <c>SensorBase.OnSensorOutputChanged</c>

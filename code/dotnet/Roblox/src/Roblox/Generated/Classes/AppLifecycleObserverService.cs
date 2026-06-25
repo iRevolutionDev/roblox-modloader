@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AppLifecycleObserverService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AppLifecycleObserverService? FromHandle(nuint handle)
+        public static new AppLifecycleObserverService? FromHandle(nuint handle)
             => handle == 0 ? null : new AppLifecycleObserverService(handle);
 
         /// <summary>
@@ -26,35 +26,35 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>Enum.AppLifecycleManagerState</c> value returned by the engine.</returns>
         public Enum.AppLifecycleManagerState GetCurrentState()
-            => global::Roblox.Reflection.Invoke<Enum.AppLifecycleManagerState>(this, "GetCurrentState");
+            => global::Roblox.Reflection.Invoke<Enum.AppLifecycleManagerState>(this, "GetCurrentState")!;
 
         /// <summary>
         /// <c>AppLifecycleObserverService.IsDidDetachSupported</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsDidDetachSupported()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsDidDetachSupported");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsDidDetachSupported")!;
 
         /// <summary>
         /// <c>AppLifecycleObserverService.TriggerOnLandingPageMount</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TriggerOnLandingPageMount()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TriggerOnLandingPageMount");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TriggerOnLandingPageMount()
+            => global::Roblox.Reflection.Invoke<object>(this, "TriggerOnLandingPageMount")!;
 
         /// <summary>
         /// <c>AppLifecycleObserverService.TriggerOnLuaAppInteractive</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TriggerOnLuaAppInteractive()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TriggerOnLuaAppInteractive");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TriggerOnLuaAppInteractive()
+            => global::Roblox.Reflection.Invoke<object>(this, "TriggerOnLuaAppInteractive")!;
 
         /// <summary>
         /// <c>AppLifecycleObserverService.TriggerOnLuaAppReadyToRender</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? TriggerOnLuaAppReadyToRender()
-            => global::Roblox.Reflection.Invoke<object?>(this, "TriggerOnLuaAppReadyToRender");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object TriggerOnLuaAppReadyToRender()
+            => global::Roblox.Reflection.Invoke<object>(this, "TriggerOnLuaAppReadyToRender")!;
 
         public event Action? OnBecomeActive
         {

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Keyframe"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Keyframe? FromHandle(nuint handle)
+        public static new Keyframe? FromHandle(nuint handle)
             => handle == 0 ? null : new Keyframe(handle);
 
         /// <summary>
@@ -31,27 +31,27 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#Time"/>
         public float Time
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Time");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Time")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Time", value);
         }
 
         /// <summary>
         /// Adds a KeyframeMarker to the Keyframe by parenting it to the keyframe.
         /// </summary>
-        /// <param name="marker">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="marker">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#AddMarker"/>
-        public object? AddMarker(Instance? marker)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddMarker", marker);
+        public object AddMarker(Instance marker)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddMarker", marker)!;
 
         /// <summary>
         /// Adds a Pose to the Keyframe by parenting it to the keyframe.
         /// </summary>
-        /// <param name="pose">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="pose">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#AddPose"/>
-        public object? AddPose(Instance? pose)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddPose", pose);
+        public object AddPose(Instance pose)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddPose", pose)!;
 
         /// <summary>
         /// Returns an array containing all KeyframeMarkers that have been added to the Keyframe.
@@ -59,7 +59,7 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#GetMarkers"/>
         public IReadOnlyList<Instance> GetMarkers()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetMarkers");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetMarkers")!;
 
         /// <summary>
         /// Returns an array containing all Poses that have been added to a Keyframe.
@@ -67,25 +67,25 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#GetPoses"/>
         public IReadOnlyList<Instance> GetPoses()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPoses");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPoses")!;
 
         /// <summary>
         /// Removes a KeyframeMarker from the Keyframe by settings its Instance.Parent to nil.
         /// </summary>
-        /// <param name="marker">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="marker">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#RemoveMarker"/>
-        public object? RemoveMarker(Instance? marker)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveMarker", marker);
+        public object RemoveMarker(Instance marker)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveMarker", marker)!;
 
         /// <summary>
         /// Removes a Pose from the Keyframe by setting its Instance.Parent to nil.
         /// </summary>
-        /// <param name="pose">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="pose">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Keyframe#RemovePose"/>
-        public object? RemovePose(Instance? pose)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemovePose", pose);
+        public object RemovePose(Instance pose)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemovePose", pose)!;
 
     }
 }

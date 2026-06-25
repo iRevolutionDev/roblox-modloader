@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ExecutedRemoteCommand")]
-    public class ExecutedRemoteCommand : Object
+    public class ExecutedRemoteCommand : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ExecutedRemoteCommand.</param>
@@ -24,32 +24,32 @@ namespace Roblox
         /// <summary>
         /// <c>ExecutedRemoteCommand.RunMoreCode</c>
         /// </summary>
-        /// <param name="code">A <c>string?</c> value.</param>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RunMoreCode(string? code, object? args)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RunMoreCode", code, args);
+        /// <param name="code">A <c>string</c> value.</param>
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RunMoreCode(string code, object args)
+            => global::Roblox.Reflection.Invoke<object>(this, "RunMoreCode", code, args)!;
 
         /// <summary>
         /// <c>ExecutedRemoteCommand.SendUpdate</c>
         /// </summary>
-        /// <param name="args">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendUpdate(object? args)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendUpdate", args);
+        /// <param name="args">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendUpdate(object args)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendUpdate", args)!;
 
         /// <summary>
         /// <c>ExecutedRemoteCommand.Stop</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Stop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Stop()
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop")!;
 
         /// <summary>
         /// <c>ExecutedRemoteCommand.ReceivedUpdate</c>
         /// </summary>
-        /// <param name="args">A <c>object?</c> value.</param>
-        public event Action<object?>? ReceivedUpdate
+        /// <param name="args">A <c>object</c> value.</param>
+        public event Action<object>? ReceivedUpdate
         {
             add { if (value is not null) AddEventHandler("ReceivedUpdate", value); }
             remove { if (value is not null) RemoveEventHandler("ReceivedUpdate", value); }

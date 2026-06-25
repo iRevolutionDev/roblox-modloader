@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="RemoteFunction"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RemoteFunction? FromHandle(nuint handle)
+        public static new RemoteFunction? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteFunction(handle);
 
         /// <summary>
         /// Invokes the RemoteFunction which in turn calls the OnClientInvoke callback.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteFunction#InvokeClient"/>
-        public object? InvokeClient(Player? player, object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeClient", player, arguments);
+        public object InvokeClient(Player player, object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeClient", player, arguments)!;
 
         /// <summary>
         /// Invokes the RemoteFunction which in turn calls the OnServerInvoke callback.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteFunction#InvokeServer"/>
-        public object? InvokeServer(object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeServer", arguments);
+        public object InvokeServer(object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeServer", arguments)!;
 
         /// <summary>
         /// Callback for when the RemoteFunction is invoked with InvokeClient().

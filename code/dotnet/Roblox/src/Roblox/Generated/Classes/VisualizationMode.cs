@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VisualizationMode"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VisualizationMode? FromHandle(nuint handle)
+        public static new VisualizationMode? FromHandle(nuint handle)
             => handle == 0 ? null : new VisualizationMode(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VisualizationMode#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -39,20 +39,20 @@ namespace Roblox
         /// <c>VisualizationMode.Title</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VisualizationMode#Title"/>
-        public string? Title
+        public string Title
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Title");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Title", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Title")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Title", value);
         }
 
         /// <summary>
         /// <c>VisualizationMode.ToolTip</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VisualizationMode#ToolTip"/>
-        public string? ToolTip
+        public string ToolTip
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ToolTip");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ToolTip", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ToolTip")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ToolTip", value);
         }
 
     }

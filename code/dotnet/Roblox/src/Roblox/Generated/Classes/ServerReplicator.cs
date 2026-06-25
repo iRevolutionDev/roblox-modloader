@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ServerReplicator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ServerReplicator? FromHandle(nuint handle)
+        public static new ServerReplicator? FromHandle(nuint handle)
             => handle == 0 ? null : new ServerReplicator(handle);
 
     }

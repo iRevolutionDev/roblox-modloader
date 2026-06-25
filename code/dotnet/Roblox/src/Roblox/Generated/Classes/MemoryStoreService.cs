@@ -22,36 +22,36 @@ namespace Roblox
         /// Creates a <see cref="MemoryStoreService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MemoryStoreService? FromHandle(nuint handle)
+        public static new MemoryStoreService? FromHandle(nuint handle)
             => handle == 0 ? null : new MemoryStoreService(handle);
 
         /// <summary>
         /// Returns a MemoryStoreHashMap instance for the provided name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>MemoryStoreHashMap?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>MemoryStoreHashMap</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreService#GetHashMap"/>
-        public MemoryStoreHashMap? GetHashMap(string? name)
-            => global::Roblox.Reflection.Invoke<MemoryStoreHashMap?>(this, "GetHashMap", name);
+        public MemoryStoreHashMap GetHashMap(string name)
+            => global::Roblox.Reflection.Invoke<MemoryStoreHashMap>(this, "GetHashMap", name)!;
 
         /// <summary>
         /// Returns a MemoryStoreQueue instance for the provided name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="invisibilityTimeout">A <c>int</c> value.</param>
-        /// <returns>A <c>MemoryStoreQueue?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="invisibilityTimeout">A <c>int?</c> value.</param>
+        /// <returns>A <c>MemoryStoreQueue</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreService#GetQueue"/>
-        public MemoryStoreQueue? GetQueue(string? name, int invisibilityTimeout)
-            => global::Roblox.Reflection.Invoke<MemoryStoreQueue?>(this, "GetQueue", name, invisibilityTimeout);
+        public MemoryStoreQueue GetQueue(string name, int? invisibilityTimeout = null)
+            => global::Roblox.Reflection.Invoke<MemoryStoreQueue>(this, "GetQueue", name, invisibilityTimeout)!;
 
         /// <summary>
         /// Returns a MemoryStoreSortedMap instance for the provided name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>MemoryStoreSortedMap?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>MemoryStoreSortedMap</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreService#GetSortedMap"/>
-        public MemoryStoreSortedMap? GetSortedMap(string? name)
-            => global::Roblox.Reflection.Invoke<MemoryStoreSortedMap?>(this, "GetSortedMap", name);
+        public MemoryStoreSortedMap GetSortedMap(string name)
+            => global::Roblox.Reflection.Invoke<MemoryStoreSortedMap>(this, "GetSortedMap", name)!;
 
     }
 }

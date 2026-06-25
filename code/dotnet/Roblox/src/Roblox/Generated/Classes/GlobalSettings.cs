@@ -22,48 +22,48 @@ namespace Roblox
         /// Creates a <see cref="GlobalSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GlobalSettings? FromHandle(nuint handle)
+        public static new GlobalSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new GlobalSettings(handle);
 
         /// <summary>
         /// Returns the value of an FFlag if it exists.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalSettings#GetFFlag"/>
-        public bool GetFFlag(string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetFFlag", name);
+        public bool GetFFlag(string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetFFlag", name)!;
 
         /// <summary>
         /// <c>GlobalSettings.GetFFlagOverrides</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetFFlagOverrides()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetFFlagOverrides");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetFFlagOverrides()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetFFlagOverrides")!;
 
         /// <summary>
         /// <c>GlobalSettings.GetFFlags</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetFFlags()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetFFlags");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetFFlags()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetFFlags")!;
 
         /// <summary>
         /// Returns the value of an FVariable, if it exists.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalSettings#GetFVariable"/>
-        public string? GetFVariable(string? name)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetFVariable", name);
+        public string GetFVariable(string name)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetFVariable", name)!;
 
         /// <summary>
         /// <c>GlobalSettings.SetFFlagOverrides</c>
         /// </summary>
-        /// <param name="overrides">A <c>string?</c> value.</param>
+        /// <param name="overrides">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool SetFFlagOverrides(string? overrides)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SetFFlagOverrides", overrides);
+        public bool SetFFlagOverrides(string overrides)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SetFFlagOverrides", overrides)!;
 
     }
 }

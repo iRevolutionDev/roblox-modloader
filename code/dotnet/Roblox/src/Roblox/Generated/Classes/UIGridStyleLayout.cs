@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="UIGridStyleLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIGridStyleLayout? FromHandle(nuint handle)
+        public static new UIGridStyleLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UIGridStyleLayout(handle);
 
         /// <summary>
         /// The absolute size of space being taken up by the grid layout.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#AbsoluteContentSize"/>
-        public global::Roblox.Vector2? AbsoluteContentSize
+        public global::Roblox.Vector2 AbsoluteContentSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteContentSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteContentSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteContentSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteContentSize", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#FillDirection"/>
         public Enum.FillDirection FillDirection
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FillDirection>(this, "FillDirection");
+            get => global::Roblox.Reflection.GetProperty<Enum.FillDirection>(this, "FillDirection")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FillDirection>(this, "FillDirection", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#HorizontalAlignment"/>
         public Enum.HorizontalAlignment HorizontalAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HorizontalAlignment>(this, "HorizontalAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.HorizontalAlignment>(this, "HorizontalAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HorizontalAlignment>(this, "HorizontalAlignment", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#SortOrder"/>
         public Enum.SortOrder SortOrder
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SortOrder>(this, "SortOrder");
+            get => global::Roblox.Reflection.GetProperty<Enum.SortOrder>(this, "SortOrder")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SortOrder>(this, "SortOrder", value);
         }
 
@@ -71,26 +71,26 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#VerticalAlignment"/>
         public Enum.VerticalAlignment VerticalAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VerticalAlignment>(this, "VerticalAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.VerticalAlignment>(this, "VerticalAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VerticalAlignment>(this, "VerticalAlignment", value);
         }
 
         /// <summary>
         /// Deprecated: Force re-layout of sibling UI elements.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#ApplyLayout"/>
-        public object? ApplyLayout()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyLayout");
+        public object ApplyLayout()
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyLayout")!;
 
         /// <summary>
         /// Deprecated: This method is deprecated in favor of using other SortOrder means, such as by Name or LayoutOrder.Sets the function used to determine the order of elements when SortOrder is set to Custom.
         /// </summary>
         /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#SetCustomSortFunction"/>
-        public object? SetCustomSortFunction(object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCustomSortFunction", function);
+        public object SetCustomSortFunction(object? function = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCustomSortFunction", function)!;
 
     }
 }

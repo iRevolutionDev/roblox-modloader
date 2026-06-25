@@ -22,36 +22,36 @@ namespace Roblox
         /// Creates a <see cref="MatchmakingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MatchmakingService? FromHandle(nuint handle)
+        public static new MatchmakingService? FromHandle(nuint handle)
             => handle == 0 ? null : new MatchmakingService(handle);
 
         /// <summary>
         /// Retrieves the value of a specific server attribute.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MatchmakingService#GetServerAttribute"/>
-        public object? GetServerAttribute(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetServerAttribute", name);
+        public object GetServerAttribute(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetServerAttribute", name)!;
 
         /// <summary>
         /// Initiates the server attribute schema and its values to test in Studio.
         /// </summary>
-        /// <param name="serverAttributes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="serverAttributes">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MatchmakingService#InitializeServerAttributesForStudio"/>
-        public object? InitializeServerAttributesForStudio(object? serverAttributes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InitializeServerAttributesForStudio", serverAttributes);
+        public object InitializeServerAttributesForStudio(object serverAttributes)
+            => global::Roblox.Reflection.Invoke<object>(this, "InitializeServerAttributesForStudio", serverAttributes)!;
 
         /// <summary>
         /// Assigns a value to a specific server attribute.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MatchmakingService#SetServerAttribute"/>
-        public object? SetServerAttribute(string? name, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetServerAttribute", name, value);
+        public object SetServerAttribute(string name, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetServerAttribute", name, value)!;
 
     }
 }

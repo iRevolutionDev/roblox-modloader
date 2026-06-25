@@ -22,33 +22,33 @@ namespace Roblox
         /// Creates a <see cref="UniqueIdLookupService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UniqueIdLookupService? FromHandle(nuint handle)
+        public static new UniqueIdLookupService? FromHandle(nuint handle)
             => handle == 0 ? null : new UniqueIdLookupService(handle);
 
         /// <summary>
         /// <c>UniqueIdLookupService.GetInstanceByRfc4122String</c>
         /// </summary>
-        /// <param name="id">A <c>string?</c> value.</param>
+        /// <param name="id">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? GetInstanceByRfc4122String(string? id)
+        public Instance? GetInstanceByRfc4122String(string id)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetInstanceByRfc4122String", id);
 
         /// <summary>
         /// <c>UniqueIdLookupService.GetOrCreateUniqueId</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetOrCreateUniqueId(Instance? instance)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetOrCreateUniqueId", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetOrCreateUniqueId(Instance instance)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetOrCreateUniqueId", instance)!;
 
         /// <summary>
         /// <c>UniqueIdLookupService.GetOrCreateUniqueIdRemoteCommand</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniqueIdLookupService#GetOrCreateUniqueIdRemoteCommand"/>
-        public string? GetOrCreateUniqueIdRemoteCommand(Instance? instance)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetOrCreateUniqueIdRemoteCommand", instance);
+        public string GetOrCreateUniqueIdRemoteCommand(Instance instance)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetOrCreateUniqueIdRemoteCommand", instance)!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SyncScriptBuilder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SyncScriptBuilder? FromHandle(nuint handle)
+        public static new SyncScriptBuilder? FromHandle(nuint handle)
             => handle == 0 ? null : new SyncScriptBuilder(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#CompileTarget"/>
         public Enum.CompileTarget CompileTarget
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CompileTarget>(this, "CompileTarget");
+            get => global::Roblox.Reflection.GetProperty<Enum.CompileTarget>(this, "CompileTarget")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CompileTarget>(this, "CompileTarget", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#CoverageInfo"/>
         public bool CoverageInfo
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CoverageInfo");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CoverageInfo")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CoverageInfo", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#DebugInfo"/>
         public bool DebugInfo
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DebugInfo");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DebugInfo")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DebugInfo", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#PackAsSource"/>
         public bool PackAsSource
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PackAsSource");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PackAsSource")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PackAsSource", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#RawBytecode"/>
         public bool RawBytecode
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RawBytecode");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RawBytecode")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RawBytecode", value);
         }
 

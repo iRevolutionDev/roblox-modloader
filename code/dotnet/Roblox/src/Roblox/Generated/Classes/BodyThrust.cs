@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="BodyThrust"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyThrust? FromHandle(nuint handle)
+        public static new BodyThrust? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyThrust(handle);
 
         /// <summary>
         /// Determines the amount of force exerted on each axis relative to the assembly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyThrust#Force"/>
-        public global::Roblox.Vector3? Force
+        public global::Roblox.Vector3 Force
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Force");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Force", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Force")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Force", value);
         }
 
         /// <summary>
         /// Determines the relative position where the Force is exerted.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyThrust#Location"/>
-        public global::Roblox.Vector3? Location
+        public global::Roblox.Vector3 Location
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Location");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Location", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Location")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Location", value);
         }
 
     }

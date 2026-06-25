@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AnimationGraphDefinition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationGraphDefinition? FromHandle(nuint handle)
+        public static new AnimationGraphDefinition? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationGraphDefinition(handle);
 
     }

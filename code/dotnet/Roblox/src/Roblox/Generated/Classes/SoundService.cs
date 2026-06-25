@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SoundService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SoundService? FromHandle(nuint handle)
+        public static new SoundService? FromHandle(nuint handle)
             => handle == 0 ? null : new SoundService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#AcousticSimulationEnabled"/>
         public bool AcousticSimulationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AcousticSimulationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AcousticSimulationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AcousticSimulationEnabled", value);
         }
 
@@ -41,13 +41,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#AmbientReverb"/>
         public Enum.ReverbType AmbientReverb
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ReverbType>(this, "AmbientReverb");
+            get => global::Roblox.Reflection.GetProperty<Enum.ReverbType>(this, "AmbientReverb")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ReverbType>(this, "AmbientReverb", value);
         }
 
         public Enum.RolloutState AudioApiByDefault
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "AudioApiByDefault");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "AudioApiByDefault")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "AudioApiByDefault", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#CharacterSoundsUseNewApi"/>
         public Enum.RolloutState CharacterSoundsUseNewApi
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "CharacterSoundsUseNewApi");
+            get => global::Roblox.Reflection.GetProperty<Enum.RolloutState>(this, "CharacterSoundsUseNewApi")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RolloutState>(this, "CharacterSoundsUseNewApi", value);
         }
 
@@ -67,13 +67,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#DefaultListenerLocation"/>
         public Enum.ListenerLocation DefaultListenerLocation
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ListenerLocation>(this, "DefaultListenerLocation");
+            get => global::Roblox.Reflection.GetProperty<Enum.ListenerLocation>(this, "DefaultListenerLocation")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ListenerLocation>(this, "DefaultListenerLocation", value);
         }
 
         public bool DiffractionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DiffractionEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DiffractionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DiffractionEnabled", value);
         }
 
@@ -83,7 +83,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#DistanceFactor"/>
         public float DistanceFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DistanceFactor", value);
         }
 
@@ -93,13 +93,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#DopplerScale"/>
         public float DopplerScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DopplerScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DopplerScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DopplerScale", value);
         }
 
         public bool IsNewExpForAudioApiByDefault
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNewExpForAudioApiByDefault");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNewExpForAudioApiByDefault")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsNewExpForAudioApiByDefault", value);
         }
 
@@ -107,10 +107,10 @@ namespace Roblox
         /// The CFrame that is used as the listener's position if ListenerType is set to ListenerType.CFrame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#ListenerCFrame"/>
-        public global::Roblox.CFrame? ListenerCFrame
+        public global::Roblox.CFrame ListenerCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ListenerCFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ListenerCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "ListenerCFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "ListenerCFrame", value);
         }
 
         /// <summary>
@@ -129,13 +129,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#ListenerType"/>
         public Enum.ListenerType ListenerType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ListenerType>(this, "ListenerType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ListenerType>(this, "ListenerType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ListenerType>(this, "ListenerType", value);
         }
 
         public bool OcclusionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "OcclusionEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "OcclusionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "OcclusionEnabled", value);
         }
 
@@ -145,13 +145,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#RespectFilteringEnabled"/>
         public bool RespectFilteringEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RespectFilteringEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RespectFilteringEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RespectFilteringEnabled", value);
         }
 
         public bool ReverbEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReverbEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReverbEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReverbEnabled", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#RolloffScale"/>
         public float RolloffScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RolloffScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RolloffScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RolloffScale", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#VolumetricAudio"/>
         public Enum.VolumetricAudio VolumetricAudio
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VolumetricAudio>(this, "VolumetricAudio");
+            get => global::Roblox.Reflection.GetProperty<Enum.VolumetricAudio>(this, "VolumetricAudio")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VolumetricAudio>(this, "VolumetricAudio", value);
         }
 
@@ -180,43 +180,43 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool BeginRecording()
-            => global::Roblox.Reflection.Invoke<bool>(this, "BeginRecording");
+            => global::Roblox.Reflection.Invoke<bool>(this, "BeginRecording")!;
 
         /// <summary>
         /// <c>SoundService.GetAudioApiByDefault</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetAudioApiByDefault()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetAudioApiByDefault");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetAudioApiByDefault")!;
 
         /// <summary>
         /// <c>SoundService.GetAudioInstances</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAudioInstances()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAudioInstances");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAudioInstances()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAudioInstances")!;
 
         /// <summary>
         /// <c>SoundService.GetInputDevice</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInputDevice()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputDevice");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetInputDevice()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputDevice")!;
 
         /// <summary>
         /// <c>SoundService.GetInputDevices</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetInputDevices()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputDevices");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetInputDevices()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputDevices")!;
 
         /// <summary>
         /// Returns the current listener type used by Sounds, as well as what that listener is currently set to.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#GetListener"/>
-        public object? GetListener()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetListener");
+        public object GetListener()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetListener")!;
 
         /// <summary>
         /// Returns the number of seconds since the audio engine began mixing.
@@ -224,101 +224,101 @@ namespace Roblox
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#GetMixerTime"/>
         public double GetMixerTime()
-            => global::Roblox.Reflection.Invoke<double>(this, "GetMixerTime");
+            => global::Roblox.Reflection.Invoke<double>(this, "GetMixerTime")!;
 
         /// <summary>
         /// <c>SoundService.GetOutputDevice</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetOutputDevice()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputDevice");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetOutputDevice()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputDevice")!;
 
         /// <summary>
         /// <c>SoundService.GetOutputDevices</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetOutputDevices()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputDevices");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetOutputDevices()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputDevices")!;
 
         /// <summary>
         /// <c>SoundService.GetSoundMemoryData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSoundMemoryData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSoundMemoryData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetSoundMemoryData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSoundMemoryData")!;
 
         /// <summary>
         /// <c>SoundService.InsertAsset</c>
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <param name="assetName">A <c>string?</c> value.</param>
-        /// <param name="useSelection">A <c>bool</c> value.</param>
+        /// <param name="assetId">A <c>object</c> value.</param>
+        /// <param name="assetName">A <c>string</c> value.</param>
+        /// <param name="useSelection">A <c>bool?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> InsertAsset(object? assetId, string? assetName, bool useSelection)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "InsertAsset", assetId, assetName, useSelection);
+        public IReadOnlyList<Instance> InsertAsset(object assetId, string assetName, bool? useSelection = null)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "InsertAsset", assetId, assetName, useSelection)!;
 
         /// <summary>
         /// Opens the attenuation curve editor in Studio for the provided AudioEmitter or AudioListener instances.
         /// </summary>
         /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#OpenAttenuationCurveEditor"/>
-        public object? OpenAttenuationCurveEditor(IReadOnlyList<Instance> selectedCurveObjects)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenAttenuationCurveEditor", selectedCurveObjects);
+        public object OpenAttenuationCurveEditor(IReadOnlyList<Instance> selectedCurveObjects)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenAttenuationCurveEditor", selectedCurveObjects)!;
 
         /// <summary>
         /// Opens the directional curve editor in Studio for the provided AudioEmitter or AudioListener instances.
         /// </summary>
         /// <param name="selectedCurveObjects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#OpenDirectionalCurveEditor"/>
-        public object? OpenDirectionalCurveEditor(IReadOnlyList<Instance> selectedCurveObjects)
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenDirectionalCurveEditor", selectedCurveObjects);
+        public object OpenDirectionalCurveEditor(IReadOnlyList<Instance> selectedCurveObjects)
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenDirectionalCurveEditor", selectedCurveObjects)!;
 
         /// <summary>
         /// Plays a copy of a Sound locally, such that it will only be heard by the client calling this method.
         /// </summary>
-        /// <param name="sound">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="sound">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#PlayLocalSound"/>
-        public object? PlayLocalSound(Instance? sound)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PlayLocalSound", sound);
+        public object PlayLocalSound(Instance sound)
+            => global::Roblox.Reflection.Invoke<object>(this, "PlayLocalSound", sound)!;
 
         /// <summary>
         /// <c>SoundService.SetAudioApiByDefault</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAudioApiByDefault(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAudioApiByDefault", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetAudioApiByDefault(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAudioApiByDefault", enabled)!;
 
         /// <summary>
         /// <c>SoundService.SetInputDevice</c>
         /// </summary>
-        /// <param name="nameOrInstance">A <c>object?</c> value.</param>
-        /// <param name="guidOrPin">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetInputDevice(object? nameOrInstance, string? guidOrPin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetInputDevice", nameOrInstance, guidOrPin);
+        /// <param name="nameOrInstance">A <c>object</c> value.</param>
+        /// <param name="guidOrPin">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetInputDevice(object nameOrInstance, string guidOrPin)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetInputDevice", nameOrInstance, guidOrPin)!;
 
         /// <summary>
         /// Sets the listener used by Sounds.
         /// </summary>
         /// <param name="listenerType">A <c>Enum.ListenerType</c> value.</param>
-        /// <param name="listener">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="listener">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#SetListener"/>
-        public object? SetListener(Enum.ListenerType listenerType, object? listener)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetListener", listenerType, listener);
+        public object SetListener(Enum.ListenerType listenerType, object listener)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetListener", listenerType, listener)!;
 
         /// <summary>
         /// <c>SoundService.SetOutputDevice</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="guid">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetOutputDevice(string? name, string? guid)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetOutputDevice", name, guid);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="guid">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetOutputDevice(string name, string guid)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetOutputDevice", name, guid)!;
 
         /// <summary>
         /// <c>SoundService.SetRecordingDevice</c>
@@ -326,35 +326,35 @@ namespace Roblox
         /// <param name="deviceIndex">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SetRecordingDevice(int deviceIndex)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SetRecordingDevice", deviceIndex);
+            => global::Roblox.Reflection.Invoke<bool>(this, "SetRecordingDevice", deviceIndex)!;
 
         /// <summary>
         /// <c>SoundService.SetSoundEnabled</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetSoundEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetSoundEnabled", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetSoundEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetSoundEnabled", enabled)!;
 
         /// <summary>
         /// <c>SoundService.EndRecording</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? EndRecording()
-            => global::Roblox.Reflection.Invoke<object?>(this, "EndRecording");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object EndRecording()
+            => global::Roblox.Reflection.Invoke<object>(this, "EndRecording")!;
 
         /// <summary>
         /// <c>SoundService.GetRecordingDevices</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRecordingDevices()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRecordingDevices");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRecordingDevices()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRecordingDevices")!;
 
         /// <summary>
         /// <c>SoundService.AudioInstanceAdded</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? AudioInstanceAdded
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        public event Action<Instance>? AudioInstanceAdded
         {
             add { if (value is not null) AddEventHandler("AudioInstanceAdded", value); }
             remove { if (value is not null) RemoveEventHandler("AudioInstanceAdded", value); }
@@ -363,8 +363,8 @@ namespace Roblox
         /// <summary>
         /// <c>SoundService.DeviceListChanged</c>
         /// </summary>
-        /// <param name="newDevices">A <c>object?</c> value.</param>
-        public event Action<object?>? DeviceListChanged
+        /// <param name="newDevices">A <c>object</c> value.</param>
+        public event Action<object>? DeviceListChanged
         {
             add { if (value is not null) AddEventHandler("DeviceListChanged", value); }
             remove { if (value is not null) RemoveEventHandler("DeviceListChanged", value); }

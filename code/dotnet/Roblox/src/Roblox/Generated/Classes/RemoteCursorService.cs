@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="RemoteCursorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RemoteCursorService? FromHandle(nuint handle)
+        public static new RemoteCursorService? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteCursorService(handle);
 
     }

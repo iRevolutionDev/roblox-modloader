@@ -22,19 +22,19 @@ namespace Roblox
         /// Creates a <see cref="DataModelSession"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataModelSession? FromHandle(nuint handle)
+        public static new DataModelSession? FromHandle(nuint handle)
             => handle == 0 ? null : new DataModelSession(handle);
 
         public Enum.StudioDataModelType CurrentDataModelType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.StudioDataModelType>(this, "CurrentDataModelType");
+            get => global::Roblox.Reflection.GetProperty<Enum.StudioDataModelType>(this, "CurrentDataModelType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.StudioDataModelType>(this, "CurrentDataModelType", value);
         }
 
-        public string? SessionId
+        public string SessionId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SessionId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SessionId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SessionId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SessionId", value);
         }
 
         /// <summary>

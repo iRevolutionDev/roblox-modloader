@@ -22,18 +22,18 @@ namespace Roblox
         /// Creates a <see cref="NetworkServer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NetworkServer? FromHandle(nuint handle)
+        public static new NetworkServer? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkServer(handle);
 
         /// <summary>
         /// <c>NetworkServer.EncryptStringForPlayerId</c>
         /// </summary>
-        /// <param name="toEncrypt">A <c>string?</c> value.</param>
+        /// <param name="toEncrypt">A <c>string</c> value.</param>
         /// <param name="playerId">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkServer#EncryptStringForPlayerId"/>
-        public string? EncryptStringForPlayerId(string? toEncrypt, long playerId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "EncryptStringForPlayerId", toEncrypt, playerId);
+        public string EncryptStringForPlayerId(string toEncrypt, long playerId)
+            => global::Roblox.Reflection.Invoke<string>(this, "EncryptStringForPlayerId", toEncrypt, playerId)!;
 
     }
 }

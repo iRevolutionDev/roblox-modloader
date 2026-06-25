@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="SelectionPointLasso"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SelectionPointLasso? FromHandle(nuint handle)
+        public static new SelectionPointLasso? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionPointLasso(handle);
 
         /// <summary>
         /// Sets the Vector3 target of the lasso object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionPointLasso#Point"/>
-        public global::Roblox.Vector3? Point
+        public global::Roblox.Vector3 Point
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Point");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Point", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Point")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Point", value);
         }
 
     }

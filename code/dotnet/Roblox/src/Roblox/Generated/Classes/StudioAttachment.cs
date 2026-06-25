@@ -18,37 +18,37 @@ namespace Roblox
         /// Creates a <see cref="StudioAttachment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioAttachment? FromHandle(nuint handle)
+        public static new StudioAttachment? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioAttachment(handle);
 
         public bool AutoHideParent
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoHideParent");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoHideParent")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoHideParent", value);
         }
 
         public bool IsArrowVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsArrowVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsArrowVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsArrowVisible", value);
         }
 
-        public global::Roblox.Vector2? Offset
+        public global::Roblox.Vector2 Offset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Offset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Offset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Offset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Offset", value);
         }
 
-        public global::Roblox.Vector2? SourceAnchorPoint
+        public global::Roblox.Vector2 SourceAnchorPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "SourceAnchorPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "SourceAnchorPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "SourceAnchorPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "SourceAnchorPoint", value);
         }
 
-        public global::Roblox.Vector2? TargetAnchorPoint
+        public global::Roblox.Vector2 TargetAnchorPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "TargetAnchorPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "TargetAnchorPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "TargetAnchorPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "TargetAnchorPoint", value);
         }
 
     }

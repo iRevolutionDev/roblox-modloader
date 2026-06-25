@@ -18,25 +18,25 @@ namespace Roblox
         /// Creates a <see cref="TracerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TracerService? FromHandle(nuint handle)
+        public static new TracerService? FromHandle(nuint handle)
             => handle == 0 ? null : new TracerService(handle);
 
         /// <summary>
         /// <c>TracerService.FinishSpan</c>
         /// </summary>
-        /// <param name="spanId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FinishSpan(string? spanId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FinishSpan", spanId);
+        /// <param name="spanId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FinishSpan(string spanId)
+            => global::Roblox.Reflection.Invoke<object>(this, "FinishSpan", spanId)!;
 
         /// <summary>
         /// <c>TracerService.StartSpan</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="parentId">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? StartSpan(string? name, string? parentId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "StartSpan", name, parentId);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="parentId">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string StartSpan(string name, string parentId)
+            => global::Roblox.Reflection.Invoke<string>(this, "StartSpan", name, parentId)!;
 
     }
 }

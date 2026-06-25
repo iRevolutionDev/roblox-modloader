@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PluginManagementService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginManagementService? FromHandle(nuint handle)
+        public static new PluginManagementService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginManagementService(handle);
 
         /// <summary>
@@ -30,17 +30,17 @@ namespace Roblox
         /// </summary>
         /// <param name="pluginId">A <c>long</c> value.</param>
         /// <param name="state">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetAutoUpdate(long pluginId, bool state)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAutoUpdate", pluginId, state);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetAutoUpdate(long pluginId, bool state)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAutoUpdate", pluginId, state)!;
 
         /// <summary>
         /// <c>PluginManagementService.GetOTAPluginVersion</c>
         /// </summary>
-        /// <param name="pluginName">A <c>string?</c> value.</param>
+        /// <param name="pluginName">A <c>string</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
-        public long GetOTAPluginVersion(string? pluginName)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetOTAPluginVersion", pluginName);
+        public long GetOTAPluginVersion(string pluginName)
+            => global::Roblox.Reflection.Invoke<long>(this, "GetOTAPluginVersion", pluginName)!;
 
     }
 }

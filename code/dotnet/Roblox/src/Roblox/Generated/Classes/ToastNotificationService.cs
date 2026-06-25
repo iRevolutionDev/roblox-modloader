@@ -18,25 +18,25 @@ namespace Roblox
         /// Creates a <see cref="ToastNotificationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ToastNotificationService? FromHandle(nuint handle)
+        public static new ToastNotificationService? FromHandle(nuint handle)
             => handle == 0 ? null : new ToastNotificationService(handle);
 
         /// <summary>
         /// <c>ToastNotificationService.HideNotification</c>
         /// </summary>
-        /// <param name="notificationId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HideNotification(string? notificationId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HideNotification", notificationId);
+        /// <param name="notificationId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HideNotification(string notificationId)
+            => global::Roblox.Reflection.Invoke<object>(this, "HideNotification", notificationId)!;
 
         /// <summary>
         /// <c>ToastNotificationService.ShowNotification</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="notificationId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowNotification(string? message, string? notificationId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowNotification", message, notificationId);
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="notificationId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowNotification(string message, string notificationId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowNotification", message, notificationId)!;
 
     }
 }

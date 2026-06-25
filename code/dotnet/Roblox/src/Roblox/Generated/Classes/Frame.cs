@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Frame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Frame? FromHandle(nuint handle)
+        public static new Frame? FromHandle(nuint handle)
             => handle == 0 ? null : new Frame(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Frame#Style"/>
         public Enum.FrameStyle Style
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FrameStyle>(this, "Style");
+            get => global::Roblox.Reflection.GetProperty<Enum.FrameStyle>(this, "Style")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FrameStyle>(this, "Style", value);
         }
 

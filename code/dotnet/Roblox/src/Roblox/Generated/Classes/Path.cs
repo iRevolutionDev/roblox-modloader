@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Path"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Path? FromHandle(nuint handle)
+        public static new Path? FromHandle(nuint handle)
             => handle == 0 ? null : new Path(handle);
 
         /// <summary>
@@ -31,25 +31,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#Status"/>
         public Enum.PathStatus Status
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PathStatus>(this, "Status");
+            get => global::Roblox.Reflection.GetProperty<Enum.PathStatus>(this, "Status")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PathStatus>(this, "Status", value);
         }
 
         /// <summary>
         /// Deprecated: This item has been superseded by GetWaypoints() which should be used in all new work instead.Returns a table of Path instances.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#GetPointCoordinates"/>
-        public object? GetPointCoordinates()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPointCoordinates");
+        public object GetPointCoordinates()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPointCoordinates")!;
 
         /// <summary>
         /// Returns an array of points in the path.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#GetWaypoints"/>
-        public object? GetWaypoints()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetWaypoints");
+        public object GetWaypoints()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetWaypoints")!;
 
         /// <summary>
         /// Checks if a path is blocked starting at a specific waypoint.
@@ -58,17 +58,17 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#CheckOcclusionAsync"/>
         public int CheckOcclusionAsync(int start)
-            => global::Roblox.Reflection.Invoke<int>(this, "CheckOcclusionAsync", start);
+            => global::Roblox.Reflection.Invoke<int>(this, "CheckOcclusionAsync", start)!;
 
         /// <summary>
         /// Computes a Path from a start position to an end position.
         /// </summary>
-        /// <param name="start">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="finish">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="start">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="finish">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#ComputeAsync"/>
-        public object? ComputeAsync(global::Roblox.Vector3? start, global::Roblox.Vector3? finish)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ComputeAsync", start, finish);
+        public object ComputeAsync(global::Roblox.Vector3 start, global::Roblox.Vector3 finish)
+            => global::Roblox.Reflection.Invoke<object>(this, "ComputeAsync", start, finish)!;
 
         /// <summary>
         /// Fires when the computed path becomes blocked.

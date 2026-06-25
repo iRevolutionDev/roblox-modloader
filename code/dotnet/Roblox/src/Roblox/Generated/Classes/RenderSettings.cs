@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RenderSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RenderSettings? FromHandle(nuint handle)
+        public static new RenderSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new RenderSettings(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#AutoFRMLevel"/>
         public int AutoFRMLevel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "AutoFRMLevel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "AutoFRMLevel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "AutoFRMLevel", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#EagerBulkExecution"/>
         public bool EagerBulkExecution
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EagerBulkExecution");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EagerBulkExecution")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EagerBulkExecution", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#EditQualityLevel"/>
         public Enum.QualityLevel EditQualityLevel
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.QualityLevel>(this, "EditQualityLevel");
+            get => global::Roblox.Reflection.GetProperty<Enum.QualityLevel>(this, "EditQualityLevel")!;
             set => global::Roblox.Reflection.SetProperty<Enum.QualityLevel>(this, "EditQualityLevel", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#EnableFRM"/>
         public bool EnableFRM
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFRM");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableFRM")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableFRM", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#Enable VR Mode"/>
         public bool EnableVRMode
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable VR Mode");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enable VR Mode")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enable VR Mode", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#ExportMergeByMaterial"/>
         public bool ExportMergeByMaterial
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ExportMergeByMaterial");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ExportMergeByMaterial")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ExportMergeByMaterial", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#FrameRateManager"/>
         public Enum.FramerateManagerMode FrameRateManager
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FramerateManagerMode>(this, "FrameRateManager");
+            get => global::Roblox.Reflection.GetProperty<Enum.FramerateManagerMode>(this, "FrameRateManager")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FramerateManagerMode>(this, "FrameRateManager", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#GraphicsMode"/>
         public Enum.GraphicsMode GraphicsMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GraphicsMode>(this, "GraphicsMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.GraphicsMode>(this, "GraphicsMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GraphicsMode>(this, "GraphicsMode", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#MeshCacheSize"/>
         public int MeshCacheSize
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MeshCacheSize");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MeshCacheSize")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MeshCacheSize", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#MeshPartDetailLevel"/>
         public Enum.MeshPartDetailLevel MeshPartDetailLevel
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.MeshPartDetailLevel>(this, "MeshPartDetailLevel");
+            get => global::Roblox.Reflection.GetProperty<Enum.MeshPartDetailLevel>(this, "MeshPartDetailLevel")!;
             set => global::Roblox.Reflection.SetProperty<Enum.MeshPartDetailLevel>(this, "MeshPartDetailLevel", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#QualityLevel"/>
         public Enum.QualityLevel QualityLevel
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.QualityLevel>(this, "QualityLevel");
+            get => global::Roblox.Reflection.GetProperty<Enum.QualityLevel>(this, "QualityLevel")!;
             set => global::Roblox.Reflection.SetProperty<Enum.QualityLevel>(this, "QualityLevel", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#ReloadAssets"/>
         public bool ReloadAssets
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReloadAssets");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReloadAssets")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReloadAssets", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#RenderCSGTrianglesDebug"/>
         public bool RenderCSGTrianglesDebug
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RenderCSGTrianglesDebug");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RenderCSGTrianglesDebug")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RenderCSGTrianglesDebug", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#ShowBoundingBoxes"/>
         public bool ShowBoundingBoxes
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowBoundingBoxes");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ShowBoundingBoxes")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowBoundingBoxes", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#ViewMode"/>
         public Enum.ViewMode ViewMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ViewMode>(this, "ViewMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ViewMode>(this, "ViewMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ViewMode>(this, "ViewMode", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RenderSettings#GetMaxQualityLevel"/>
         public int GetMaxQualityLevel()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetMaxQualityLevel");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetMaxQualityLevel")!;
 
     }
 }

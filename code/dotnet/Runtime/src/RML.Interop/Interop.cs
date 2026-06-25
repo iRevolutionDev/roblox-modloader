@@ -126,7 +126,7 @@ public static unsafe class Interop
             return (sbyte*)ptr;
         }
 
-        public static InteropVariant Invoke(void* instance, string methodName, params object[]? args)
+        public static InteropVariant Invoke(void* instance, string methodName, params object?[]? args)
         {
             if (!IsInitialized || Table == null || Table->ReflectionInvoke == null)
             {

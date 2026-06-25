@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Explosion"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Explosion? FromHandle(nuint handle)
+        public static new Explosion? FromHandle(nuint handle)
             => handle == 0 ? null : new Explosion(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#BlastPressure"/>
         public float BlastPressure
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BlastPressure");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BlastPressure")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BlastPressure", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#BlastRadius"/>
         public float BlastRadius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BlastRadius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BlastRadius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BlastRadius", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#DestroyJointRadiusPercent"/>
         public float DestroyJointRadiusPercent
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "DestroyJointRadiusPercent");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "DestroyJointRadiusPercent")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "DestroyJointRadiusPercent", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#ExplosionType"/>
         public Enum.ExplosionType ExplosionType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ExplosionType>(this, "ExplosionType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ExplosionType>(this, "ExplosionType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ExplosionType>(this, "ExplosionType", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -79,10 +79,10 @@ namespace Roblox
         /// This property is the position of the center of the Explosion. It is defined in world-space and not influenced by the Explosion parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#TimeScale"/>
         public float TimeScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TimeScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TimeScale", value);
         }
 
@@ -101,17 +101,17 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#Visible"/>
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 
         /// <summary>
         /// Fires when the Explosion hits a BasePart within its Explosion.BlastRadius. Returns the part hit along with the distance of the part from Explosion.Position.
         /// </summary>
-        /// <param name="part">A <c>BasePart?</c> value.</param>
+        /// <param name="part">A <c>BasePart</c> value.</param>
         /// <param name="distance">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Explosion#Hit"/>
-        public event Action<BasePart?, float>? Hit
+        public event Action<BasePart, float>? Hit
         {
             add { if (value is not null) AddEventHandler("Hit", value); }
             remove { if (value is not null) RemoveEventHandler("Hit", value); }

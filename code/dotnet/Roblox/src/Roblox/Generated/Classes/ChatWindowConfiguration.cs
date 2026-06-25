@@ -22,49 +22,49 @@ namespace Roblox
         /// Creates a <see cref="ChatWindowConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ChatWindowConfiguration? FromHandle(nuint handle)
+        public static new ChatWindowConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new ChatWindowConfiguration(handle);
 
         /// <summary>
         /// Actual screen position of the default chat window, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#AbsolutePosition"/>
-        public global::Roblox.Vector2? AbsolutePosition
+        public global::Roblox.Vector2 AbsolutePosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsolutePosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsolutePosition", value);
         }
 
-        public global::Roblox.Vector2? AbsolutePositionWrite
+        public global::Roblox.Vector2 AbsolutePositionWrite
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePositionWrite");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePositionWrite", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsolutePositionWrite")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsolutePositionWrite", value);
         }
 
         /// <summary>
         /// Actual screen size of the default chat window, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#AbsoluteSize"/>
-        public global::Roblox.Vector2? AbsoluteSize
+        public global::Roblox.Vector2 AbsoluteSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteSize", value);
         }
 
-        public global::Roblox.Vector2? AbsoluteSizeWrite
+        public global::Roblox.Vector2 AbsoluteSizeWrite
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSizeWrite");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSizeWrite", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteSizeWrite")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteSizeWrite", value);
         }
 
         /// <summary>
         /// Background color of the default chat window.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#BackgroundColor3"/>
-        public global::Roblox.Color3? BackgroundColor3
+        public global::Roblox.Color3 BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "BackgroundColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#BackgroundTransparency"/>
         public double BackgroundTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "BackgroundTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "BackgroundTransparency", value);
         }
 
@@ -83,7 +83,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -91,10 +91,10 @@ namespace Roblox
         /// Font used to render text in the default chat window.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#FontFace"/>
-        public object? FontFace
+        public object FontFace
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "FontFace");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "FontFace", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "FontFace")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "FontFace", value);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#HeightScale"/>
         public float HeightScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HeightScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HeightScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HeightScale", value);
         }
 
@@ -113,7 +113,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#HorizontalAlignment"/>
         public Enum.HorizontalAlignment HorizontalAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HorizontalAlignment>(this, "HorizontalAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.HorizontalAlignment>(this, "HorizontalAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HorizontalAlignment>(this, "HorizontalAlignment", value);
         }
 
@@ -121,10 +121,10 @@ namespace Roblox
         /// Color of the text in default chat window.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextColor3"/>
-        public global::Roblox.Color3? TextColor3
+        public global::Roblox.Color3 TextColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextColor3", value);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextSize"/>
         public long TextSize
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "TextSize")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "TextSize", value);
         }
 
@@ -141,10 +141,10 @@ namespace Roblox
         /// Color of the text stroke for text in default chat window.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextStrokeColor3"/>
-        public global::Roblox.Color3? TextStrokeColor3
+        public global::Roblox.Color3 TextStrokeColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "TextStrokeColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "TextStrokeColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "TextStrokeColor3", value);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#TextStrokeTransparency"/>
         public double TextStrokeTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "TextStrokeTransparency");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "TextStrokeTransparency")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "TextStrokeTransparency", value);
         }
 
@@ -163,7 +163,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#VerticalAlignment"/>
         public Enum.VerticalAlignment VerticalAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VerticalAlignment>(this, "VerticalAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.VerticalAlignment>(this, "VerticalAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VerticalAlignment>(this, "VerticalAlignment", value);
         }
 
@@ -173,17 +173,17 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#WidthScale"/>
         public float WidthScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WidthScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WidthScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WidthScale", value);
         }
 
         /// <summary>
         /// Creates a new ChatWindowMessageProperties instance that can be used to customize the appearance of messages in the chat window.
         /// </summary>
-        /// <returns>A <c>ChatWindowMessageProperties?</c> value returned by the engine.</returns>
+        /// <returns>A <c>ChatWindowMessageProperties</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowConfiguration#DeriveNewMessageProperties"/>
-        public ChatWindowMessageProperties? DeriveNewMessageProperties()
-            => global::Roblox.Reflection.Invoke<ChatWindowMessageProperties?>(this, "DeriveNewMessageProperties");
+        public ChatWindowMessageProperties DeriveNewMessageProperties()
+            => global::Roblox.Reflection.Invoke<ChatWindowMessageProperties>(this, "DeriveNewMessageProperties")!;
 
     }
 }

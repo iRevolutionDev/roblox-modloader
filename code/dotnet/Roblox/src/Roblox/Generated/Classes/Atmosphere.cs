@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="Atmosphere"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Atmosphere? FromHandle(nuint handle)
+        public static new Atmosphere? FromHandle(nuint handle)
             => handle == 0 ? null : new Atmosphere(handle);
 
         /// <summary>
         /// Changes the Atmosphere hue for subtle environmental moods.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Color"/>
-        public global::Roblox.Color3? Color
+        public global::Roblox.Color3 Color
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color", value);
         }
 
         /// <summary>
         /// When used with increased Atmosphere.Haze and Atmosphere.Glare, defines the hue of the Atmosphere away from the sun, gradually falling off from Atmosphere.Color towards this value.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Decay"/>
-        public global::Roblox.Color3? Decay
+        public global::Roblox.Color3 Decay
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Decay");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Decay", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Decay")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Decay", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Density"/>
         public float Density
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Density");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Density")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Density", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Glare"/>
         public float Glare
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Glare");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Glare")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Glare", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Haze"/>
         public float Haze
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Haze");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Haze")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Haze", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Atmosphere#Offset"/>
         public float Offset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Offset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Offset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Offset", value);
         }
 

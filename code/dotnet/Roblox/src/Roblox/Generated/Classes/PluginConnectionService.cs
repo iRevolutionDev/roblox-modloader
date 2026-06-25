@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PluginConnectionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginConnectionService? FromHandle(nuint handle)
+        public static new PluginConnectionService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginConnectionService(handle);
 
         /// <summary>
@@ -32,23 +32,23 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnectionService#CanHaveConnectionType"/>
         public bool CanHaveConnectionType(Enum.PluginConnectionTargetType type)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanHaveConnectionType", type);
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanHaveConnectionType", type)!;
 
         /// <summary>
         /// Returns a list of currently connected PluginConnection objects with the given connection type.
         /// </summary>
         /// <param name="type">A <c>Enum.PluginConnectionTargetType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnectionService#GetPluginConnectionsOfType"/>
-        public object? GetPluginConnectionsOfType(Enum.PluginConnectionTargetType type)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPluginConnectionsOfType", type);
+        public object GetPluginConnectionsOfType(Enum.PluginConnectionTargetType type)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPluginConnectionsOfType", type)!;
 
         /// <summary>
         /// Fires just after a new PluginConnection successfully connects.
         /// </summary>
-        /// <param name="conn">A <c>PluginConnection?</c> value.</param>
+        /// <param name="conn">A <c>PluginConnection</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginConnectionService#Connected"/>
-        public event Action<PluginConnection?>? Connected
+        public event Action<PluginConnection>? Connected
         {
             add { if (value is not null) AddEventHandler("Connected", value); }
             remove { if (value is not null) RemoveEventHandler("Connected", value); }

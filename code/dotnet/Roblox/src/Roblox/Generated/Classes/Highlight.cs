@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Highlight"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Highlight? FromHandle(nuint handle)
+        public static new Highlight? FromHandle(nuint handle)
             => handle == 0 ? null : new Highlight(handle);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#DepthMode"/>
         public Enum.HighlightDepthMode DepthMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.HighlightDepthMode>(this, "DepthMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.HighlightDepthMode>(this, "DepthMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.HighlightDepthMode>(this, "DepthMode", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Sets the Color3 value of the highlight's interior.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#FillColor"/>
-        public global::Roblox.Color3? FillColor
+        public global::Roblox.Color3 FillColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "FillColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "FillColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "FillColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "FillColor", value);
         }
 
         /// <summary>
@@ -71,13 +71,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#FillTransparency"/>
         public float FillTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FillTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FillTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FillTransparency", value);
         }
 
         public int LineThickness
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "LineThickness");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "LineThickness")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "LineThickness", value);
         }
 
@@ -85,10 +85,10 @@ namespace Roblox
         /// Sets the Color3 value of the highlight's outline.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#OutlineColor"/>
-        public global::Roblox.Color3? OutlineColor
+        public global::Roblox.Color3 OutlineColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "OutlineColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "OutlineColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "OutlineColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "OutlineColor", value);
         }
 
         /// <summary>
@@ -97,13 +97,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#OutlineTransparency"/>
         public float OutlineTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "OutlineTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "OutlineTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "OutlineTransparency", value);
         }
 
         public Enum.ReservedHighlightId ReservedId
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ReservedHighlightId>(this, "ReservedId");
+            get => global::Roblox.Reflection.GetProperty<Enum.ReservedHighlightId>(this, "ReservedId")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ReservedHighlightId>(this, "ReservedId", value);
         }
 

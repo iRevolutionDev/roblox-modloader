@@ -18,27 +18,27 @@ namespace Roblox
         /// Creates a <see cref="ExplorerFilterAutocompleter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExplorerFilterAutocompleter? FromHandle(nuint handle)
+        public static new ExplorerFilterAutocompleter? FromHandle(nuint handle)
             => handle == 0 ? null : new ExplorerFilterAutocompleter(handle);
 
-        public global::Roblox.Vector2? ReplaceRange
+        public global::Roblox.Vector2 ReplaceRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "ReplaceRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "ReplaceRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "ReplaceRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "ReplaceRange", value);
         }
 
         public bool RequiresOutsideContext
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresOutsideContext");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresOutsideContext")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RequiresOutsideContext", value);
         }
 
         /// <summary>
         /// <c>ExplorerFilterAutocompleter.GetSuggestions</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetSuggestions()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetSuggestions");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetSuggestions()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetSuggestions")!;
 
     }
 }

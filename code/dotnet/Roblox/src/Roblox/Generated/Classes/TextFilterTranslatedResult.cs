@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="TextFilterTranslatedResult"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextFilterTranslatedResult? FromHandle(nuint handle)
+        public static new TextFilterTranslatedResult? FromHandle(nuint handle)
             => handle == 0 ? null : new TextFilterTranslatedResult(handle);
 
         /// <summary>
         /// <c>TextFilterTranslatedResult.SourceLanguage</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterTranslatedResult#SourceLanguage"/>
-        public string? SourceLanguage
+        public string SourceLanguage
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SourceLanguage");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SourceLanguage", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SourceLanguage")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SourceLanguage", value);
         }
 
         /// <summary>
@@ -48,19 +48,19 @@ namespace Roblox
         /// <summary>
         /// <c>TextFilterTranslatedResult.GetTranslationForLocale</c>
         /// </summary>
-        /// <param name="locale">A <c>string?</c> value.</param>
-        /// <returns>A <c>TextFilterResult?</c> value returned by the engine.</returns>
+        /// <param name="locale">A <c>string</c> value.</param>
+        /// <returns>A <c>TextFilterResult</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterTranslatedResult#GetTranslationForLocale"/>
-        public TextFilterResult? GetTranslationForLocale(string? locale)
-            => global::Roblox.Reflection.Invoke<TextFilterResult?>(this, "GetTranslationForLocale", locale);
+        public TextFilterResult GetTranslationForLocale(string locale)
+            => global::Roblox.Reflection.Invoke<TextFilterResult>(this, "GetTranslationForLocale", locale)!;
 
         /// <summary>
         /// <c>TextFilterTranslatedResult.GetTranslations</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterTranslatedResult#GetTranslations"/>
-        public object? GetTranslations()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTranslations");
+        public object GetTranslations()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTranslations")!;
 
     }
 }

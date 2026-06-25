@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PluginGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginGui? FromHandle(nuint handle)
+        public static new PluginGui? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginGui(handle);
 
         public Plugin? Plugin
@@ -35,43 +35,43 @@ namespace Roblox
         /// The title that is displayed above the contents of the PluginGui.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#Title"/>
-        public string? Title
+        public string Title
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Title");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Title", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Title")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Title", value);
         }
 
         /// <summary>
         /// Binds a function to the PluginGui close button, overriding the default behavior.
         /// </summary>
         /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#BindToClose"/>
-        public object? BindToClose(object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindToClose", function);
+        public object BindToClose(object? function = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindToClose", function)!;
 
         /// <summary>
         /// Returns the position of the mouse relative to the PluginGui.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector2?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector2</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#GetRelativeMousePosition"/>
-        public global::Roblox.Vector2? GetRelativeMousePosition()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2?>(this, "GetRelativeMousePosition");
+        public global::Roblox.Vector2 GetRelativeMousePosition()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetRelativeMousePosition")!;
 
         /// <summary>
         /// <c>PluginGui.OverrideStudioAction</c>
         /// </summary>
         /// <param name="studioAction">A <c>Enum.StudioAction</c> value.</param>
-        /// <returns>A <c>StudioActionOverride?</c> value returned by the engine.</returns>
-        public StudioActionOverride? OverrideStudioAction(Enum.StudioAction studioAction)
-            => global::Roblox.Reflection.Invoke<StudioActionOverride?>(this, "OverrideStudioAction", studioAction);
+        /// <returns>A <c>StudioActionOverride</c> value returned by the engine.</returns>
+        public StudioActionOverride OverrideStudioAction(Enum.StudioAction studioAction)
+            => global::Roblox.Reflection.Invoke<StudioActionOverride>(this, "OverrideStudioAction", studioAction)!;
 
         /// <summary>
         /// <c>PluginGui.InputBegan</c>
         /// </summary>
-        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="input">A <c>InputObject</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
-        public event Action<InputObject?, bool>? InputBegan
+        public event Action<InputObject, bool>? InputBegan
         {
             add { if (value is not null) AddEventHandler("InputBegan", value); }
             remove { if (value is not null) RemoveEventHandler("InputBegan", value); }
@@ -80,9 +80,9 @@ namespace Roblox
         /// <summary>
         /// <c>PluginGui.InputChanged</c>
         /// </summary>
-        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="input">A <c>InputObject</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
-        public event Action<InputObject?, bool>? InputChanged
+        public event Action<InputObject, bool>? InputChanged
         {
             add { if (value is not null) AddEventHandler("InputChanged", value); }
             remove { if (value is not null) RemoveEventHandler("InputChanged", value); }
@@ -91,9 +91,9 @@ namespace Roblox
         /// <summary>
         /// <c>PluginGui.InputEnded</c>
         /// </summary>
-        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="input">A <c>InputObject</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
-        public event Action<InputObject?, bool>? InputEnded
+        public event Action<InputObject, bool>? InputEnded
         {
             add { if (value is not null) AddEventHandler("InputEnded", value); }
             remove { if (value is not null) RemoveEventHandler("InputEnded", value); }
@@ -114,9 +114,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the user releases their mouse when hovering over a PluginGui during a drag operation started by Plugin:StartDrag().
         /// </summary>
-        /// <param name="dragData">A <c>object?</c> value.</param>
+        /// <param name="dragData">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragDropped"/>
-        public event Action<object?>? PluginDragDropped
+        public event Action<object>? PluginDragDropped
         {
             add { if (value is not null) AddEventHandler("PluginDragDropped", value); }
             remove { if (value is not null) RemoveEventHandler("PluginDragDropped", value); }
@@ -125,9 +125,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the user's mouse enters a PluginGui during a drag operation started by Plugin:StartDrag().
         /// </summary>
-        /// <param name="dragData">A <c>object?</c> value.</param>
+        /// <param name="dragData">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragEntered"/>
-        public event Action<object?>? PluginDragEntered
+        public event Action<object>? PluginDragEntered
         {
             add { if (value is not null) AddEventHandler("PluginDragEntered", value); }
             remove { if (value is not null) RemoveEventHandler("PluginDragEntered", value); }
@@ -136,9 +136,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the user's mouse leaves a PluginGui during a drag operation started by Plugin:StartDrag().
         /// </summary>
-        /// <param name="dragData">A <c>object?</c> value.</param>
+        /// <param name="dragData">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragLeft"/>
-        public event Action<object?>? PluginDragLeft
+        public event Action<object>? PluginDragLeft
         {
             add { if (value is not null) AddEventHandler("PluginDragLeft", value); }
             remove { if (value is not null) RemoveEventHandler("PluginDragLeft", value); }
@@ -147,9 +147,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the user's mouse moves within a PluginGui during a drag operation started by Plugin:StartDrag().
         /// </summary>
-        /// <param name="dragData">A <c>object?</c> value.</param>
+        /// <param name="dragData">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui#PluginDragMoved"/>
-        public event Action<object?>? PluginDragMoved
+        public event Action<object>? PluginDragMoved
         {
             add { if (value is not null) AddEventHandler("PluginDragMoved", value); }
             remove { if (value is not null) RemoveEventHandler("PluginDragMoved", value); }
@@ -159,10 +159,10 @@ namespace Roblox
         /// <c>PluginGui.PointerAction</c>
         /// </summary>
         /// <param name="wheel">A <c>float</c> value.</param>
-        /// <param name="pan">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="pan">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="pinch">A <c>float</c> value.</param>
         /// <param name="gameProcessedEvent">A <c>bool</c> value.</param>
-        public event Action<float, global::Roblox.Vector2?, float, bool>? PointerAction
+        public event Action<float, global::Roblox.Vector2, float, bool>? PointerAction
         {
             add { if (value is not null) AddEventHandler("PointerAction", value); }
             remove { if (value is not null) RemoveEventHandler("PointerAction", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StyleBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StyleBase? FromHandle(nuint handle)
+        public static new StyleBase? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleBase(handle);
 
         /// <summary>
@@ -31,26 +31,26 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleBase#GetStyleRules"/>
         public IReadOnlyList<Instance> GetStyleRules()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetStyleRules");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetStyleRules")!;
 
         /// <summary>
         /// Inserts a new StyleRule into the array of rules.
         /// </summary>
-        /// <param name="rule">A <c>StyleRule?</c> value.</param>
-        /// <param name="priority">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="rule">A <c>StyleRule</c> value.</param>
+        /// <param name="priority">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleBase#InsertStyleRule"/>
-        public object? InsertStyleRule(StyleRule? rule, object? priority)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InsertStyleRule", rule, priority);
+        public object InsertStyleRule(StyleRule rule, int? priority = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "InsertStyleRule", rule, priority)!;
 
         /// <summary>
         /// Similar to InsertStyleRule() but lets you declare and set multiple StyleRules at once.
         /// </summary>
         /// <param name="rules">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleBase#SetStyleRules"/>
-        public object? SetStyleRules(IReadOnlyList<Instance> rules)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetStyleRules", rules);
+        public object SetStyleRules(IReadOnlyList<Instance> rules)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetStyleRules", rules)!;
 
         /// <summary>
         /// Fires when one or more StyleRules is explicitly changed on the connected StyleSheet or StyleRule.

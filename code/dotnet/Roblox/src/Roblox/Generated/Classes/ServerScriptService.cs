@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ServerScriptService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ServerScriptService? FromHandle(nuint handle)
+        public static new ServerScriptService? FromHandle(nuint handle)
             => handle == 0 ? null : new ServerScriptService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServerScriptService#LoadStringEnabled"/>
         public bool LoadStringEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadStringEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadStringEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadStringEnabled", value);
         }
 

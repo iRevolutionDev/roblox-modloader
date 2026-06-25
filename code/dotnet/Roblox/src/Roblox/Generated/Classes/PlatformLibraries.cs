@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="PlatformLibraries"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlatformLibraries? FromHandle(nuint handle)
+        public static new PlatformLibraries? FromHandle(nuint handle)
             => handle == 0 ? null : new PlatformLibraries(handle);
 
     }

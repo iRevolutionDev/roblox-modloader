@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="MLService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MLService? FromHandle(nuint handle)
+        public static new MLService? FromHandle(nuint handle)
             => handle == 0 ? null : new MLService(handle);
 
         /// <summary>
@@ -30,51 +30,51 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsPostProcessReady()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPostProcessReady");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPostProcessReady")!;
 
         /// <summary>
         /// <c>MLService.SetPostProcessEnabled</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPostProcessEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPostProcessEnabled", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPostProcessEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPostProcessEnabled", enabled)!;
 
         /// <summary>
         /// <c>MLService.CreateSessionAsync</c>
         /// </summary>
-        /// <param name="assetId">A <c>string?</c> value.</param>
-        /// <returns>A <c>MLSession?</c> value returned by the engine.</returns>
+        /// <param name="assetId">A <c>string</c> value.</param>
+        /// <returns>A <c>MLSession</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MLService#CreateSessionAsync"/>
-        public MLSession? CreateSessionAsync(string? assetId)
-            => global::Roblox.Reflection.Invoke<MLSession?>(this, "CreateSessionAsync", assetId);
+        public MLSession CreateSessionAsync(string assetId)
+            => global::Roblox.Reflection.Invoke<MLSession>(this, "CreateSessionAsync", assetId)!;
 
         /// <summary>
         /// <c>MLService.GetNPCInferenceSpecAsync</c>
         /// </summary>
-        /// <param name="server">A <c>string?</c> value.</param>
+        /// <param name="server">A <c>string</c> value.</param>
         /// <param name="port">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetNPCInferenceSpecAsync(string? server, int port)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetNPCInferenceSpecAsync", server, port);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetNPCInferenceSpecAsync(string server, int port)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetNPCInferenceSpecAsync", server, port)!;
 
         /// <summary>
         /// <c>MLService.LoadPostProcessModelAsync</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadPostProcessModelAsync(long assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadPostProcessModelAsync", assetId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadPostProcessModelAsync(long assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadPostProcessModelAsync", assetId)!;
 
         /// <summary>
         /// <c>MLService.RunNPCInferenceAsync</c>
         /// </summary>
-        /// <param name="server">A <c>string?</c> value.</param>
+        /// <param name="server">A <c>string</c> value.</param>
         /// <param name="port">A <c>int</c> value.</param>
-        /// <param name="features">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RunNPCInferenceAsync(string? server, int port, object? features)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RunNPCInferenceAsync", server, port, features);
+        /// <param name="features">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RunNPCInferenceAsync(string server, int port, object features)
+            => global::Roblox.Reflection.Invoke<object>(this, "RunNPCInferenceAsync", server, port, features)!;
 
     }
 }

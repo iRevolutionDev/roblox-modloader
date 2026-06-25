@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BodyPosition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyPosition? FromHandle(nuint handle)
+        public static new BodyPosition? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyPosition(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#D"/>
         public float D
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "D");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "D")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "D", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Determines the limit on how much force that may be applied to each axis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#MaxForce"/>
-        public global::Roblox.Vector3? MaxForce
+        public global::Roblox.Vector3 MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxForce");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxForce", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxForce")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxForce", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#P"/>
         public float P
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "P");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "P")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "P", value);
         }
 
@@ -59,27 +59,27 @@ namespace Roblox
         /// Determines the goal position towards which force will be applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#Position"/>
-        public global::Roblox.Vector3? Position
+        public global::Roblox.Vector3 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Position", value);
         }
 
         /// <summary>
         /// Returns the last force in the object.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#GetLastForce"/>
-        public global::Roblox.Vector3? GetLastForce()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetLastForce");
+        public global::Roblox.Vector3 GetLastForce()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetLastForce")!;
 
         /// <summary>
         /// Deprecated: This property has been superseded by BodyPosition:GetLastForce() which should be used in new work instead,Returns the last force in the object.
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#lastForce"/>
-        public global::Roblox.Vector3? LastForce()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "lastForce");
+        public global::Roblox.Vector3 LastForce()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "lastForce")!;
 
         /// <summary>
         /// Fired when the Parent of the BodyPosition reaches the desired BodyPosition.Position (within .1 studs). Once this event fires it will not fire again until BodyPosition.Position is updated.

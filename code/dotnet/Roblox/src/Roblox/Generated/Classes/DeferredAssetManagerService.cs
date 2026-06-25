@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="DeferredAssetManagerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DeferredAssetManagerService? FromHandle(nuint handle)
+        public static new DeferredAssetManagerService? FromHandle(nuint handle)
             => handle == 0 ? null : new DeferredAssetManagerService(handle);
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>Enum.PrefetchDownloadStatus</c> value returned by the engine.</returns>
         public Enum.PrefetchDownloadStatus GetPrefetchDownloadStatus()
-            => global::Roblox.Reflection.Invoke<Enum.PrefetchDownloadStatus>(this, "GetPrefetchDownloadStatus");
+            => global::Roblox.Reflection.Invoke<Enum.PrefetchDownloadStatus>(this, "GetPrefetchDownloadStatus")!;
 
         /// <summary>
         /// <c>DeferredAssetManagerService.PrefetchDownloadStatusChanged</c>

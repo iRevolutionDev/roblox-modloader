@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="WebSocketClient"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static WebSocketClient? FromHandle(nuint handle)
+        public static new WebSocketClient? FromHandle(nuint handle)
             => handle == 0 ? null : new WebSocketClient(handle);
 
         /// <summary>
@@ -31,26 +31,26 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#ConnectionState"/>
         public Enum.WebSocketState ConnectionState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.WebSocketState>(this, "ConnectionState");
+            get => global::Roblox.Reflection.GetProperty<Enum.WebSocketState>(this, "ConnectionState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.WebSocketState>(this, "ConnectionState", value);
         }
 
         /// <summary>
         /// <c>WebSocketClient.Close</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#Close"/>
-        public object? Close()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Close");
+        public object Close()
+            => global::Roblox.Reflection.Invoke<object>(this, "Close")!;
 
         /// <summary>
         /// <c>WebSocketClient.Send</c>
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="data">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#Send"/>
-        public object? Send(string? data)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Send", data);
+        public object Send(string data)
+            => global::Roblox.Reflection.Invoke<object>(this, "Send", data)!;
 
         /// <summary>
         /// <c>WebSocketClient.Closed</c>
@@ -65,9 +65,9 @@ namespace Roblox
         /// <summary>
         /// <c>WebSocketClient.MessageReceived</c>
         /// </summary>
-        /// <param name="data">A <c>string?</c> value.</param>
+        /// <param name="data">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WebSocketClient#MessageReceived"/>
-        public event Action<string?>? MessageReceived
+        public event Action<string>? MessageReceived
         {
             add { if (value is not null) AddEventHandler("MessageReceived", value); }
             remove { if (value is not null) RemoveEventHandler("MessageReceived", value); }

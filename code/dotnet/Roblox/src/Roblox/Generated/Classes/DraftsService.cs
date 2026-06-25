@@ -22,95 +22,95 @@ namespace Roblox
         /// Creates a <see cref="DraftsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DraftsService? FromHandle(nuint handle)
+        public static new DraftsService? FromHandle(nuint handle)
             => handle == 0 ? null : new DraftsService(handle);
 
         /// <summary>
         /// <c>DraftsService.DiscardEdits</c>
         /// </summary>
         /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DiscardEdits(IReadOnlyList<Instance> scripts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DiscardEdits", scripts);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DiscardEdits(IReadOnlyList<Instance> scripts)
+            => global::Roblox.Reflection.Invoke<object>(this, "DiscardEdits", scripts)!;
 
         /// <summary>
         /// <c>DraftsService.GetDraftStatus</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <returns>A <c>Enum.DraftStatusCode</c> value returned by the engine.</returns>
-        public Enum.DraftStatusCode GetDraftStatus(Instance? script)
-            => global::Roblox.Reflection.Invoke<Enum.DraftStatusCode>(this, "GetDraftStatus", script);
+        public Enum.DraftStatusCode GetDraftStatus(Instance script)
+            => global::Roblox.Reflection.Invoke<Enum.DraftStatusCode>(this, "GetDraftStatus", script)!;
 
         /// <summary>
         /// <c>DraftsService.GetEditors</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetEditors(Instance? script)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetEditors", script);
+        public IReadOnlyList<Instance> GetEditors(Instance script)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetEditors", script)!;
 
         /// <summary>
         /// <c>DraftsService.RestoreScripts</c>
         /// </summary>
         /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RestoreScripts(IReadOnlyList<Instance> scripts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RestoreScripts", scripts);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RestoreScripts(IReadOnlyList<Instance> scripts)
+            => global::Roblox.Reflection.Invoke<object>(this, "RestoreScripts", scripts)!;
 
         /// <summary>
         /// <c>DraftsService.ShowDiffsAgainstBase</c>
         /// </summary>
         /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowDiffsAgainstBase(IReadOnlyList<Instance> scripts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowDiffsAgainstBase", scripts);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowDiffsAgainstBase(IReadOnlyList<Instance> scripts)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowDiffsAgainstBase", scripts)!;
 
         /// <summary>
         /// <c>DraftsService.ShowDiffsAgainstServer</c>
         /// </summary>
         /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowDiffsAgainstServer(IReadOnlyList<Instance> scripts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowDiffsAgainstServer", scripts);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowDiffsAgainstServer(IReadOnlyList<Instance> scripts)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowDiffsAgainstServer", scripts)!;
 
         /// <summary>
         /// <c>DraftsService.ShowSourceDiffsAgainstCurrent</c>
         /// </summary>
-        /// <param name="sources">A <c>object?</c> value.</param>
+        /// <param name="sources">A <c>object</c> value.</param>
         /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowSourceDiffsAgainstCurrent(object? sources, IReadOnlyList<Instance> scripts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowSourceDiffsAgainstCurrent", sources, scripts);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowSourceDiffsAgainstCurrent(object sources, IReadOnlyList<Instance> scripts)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowSourceDiffsAgainstCurrent", sources, scripts)!;
 
         /// <summary>
         /// <c>DraftsService.CommitEdits</c>
         /// </summary>
         /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CommitEdits(IReadOnlyList<Instance> scripts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CommitEdits", scripts);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CommitEdits(IReadOnlyList<Instance> scripts)
+            => global::Roblox.Reflection.Invoke<object>(this, "CommitEdits", scripts)!;
 
         /// <summary>
         /// <c>DraftsService.GetDrafts</c>
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetDrafts()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDrafts");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDrafts")!;
 
         /// <summary>
         /// <c>DraftsService.UpdateToLatestVersion</c>
         /// </summary>
         /// <param name="scripts">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? UpdateToLatestVersion(IReadOnlyList<Instance> scripts)
-            => global::Roblox.Reflection.Invoke<object?>(this, "UpdateToLatestVersion", scripts);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object UpdateToLatestVersion(IReadOnlyList<Instance> scripts)
+            => global::Roblox.Reflection.Invoke<object>(this, "UpdateToLatestVersion", scripts)!;
 
         /// <summary>
         /// <c>DraftsService.CommitStatusChanged</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <param name="status">A <c>Enum.DraftStatusCode</c> value.</param>
-        public event Action<Instance?, Enum.DraftStatusCode>? CommitStatusChanged
+        public event Action<Instance, Enum.DraftStatusCode>? CommitStatusChanged
         {
             add { if (value is not null) AddEventHandler("CommitStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("CommitStatusChanged", value); }
@@ -119,8 +119,8 @@ namespace Roblox
         /// <summary>
         /// <c>DraftsService.DraftAdded</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? DraftAdded
+        /// <param name="script">A <c>Instance</c> value.</param>
+        public event Action<Instance>? DraftAdded
         {
             add { if (value is not null) AddEventHandler("DraftAdded", value); }
             remove { if (value is not null) RemoveEventHandler("DraftAdded", value); }
@@ -129,8 +129,8 @@ namespace Roblox
         /// <summary>
         /// <c>DraftsService.DraftRemoved</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? DraftRemoved
+        /// <param name="script">A <c>Instance</c> value.</param>
+        public event Action<Instance>? DraftRemoved
         {
             add { if (value is not null) AddEventHandler("DraftRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("DraftRemoved", value); }
@@ -139,8 +139,8 @@ namespace Roblox
         /// <summary>
         /// <c>DraftsService.DraftStatusChanged</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? DraftStatusChanged
+        /// <param name="script">A <c>Instance</c> value.</param>
+        public event Action<Instance>? DraftStatusChanged
         {
             add { if (value is not null) AddEventHandler("DraftStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("DraftStatusChanged", value); }
@@ -149,8 +149,8 @@ namespace Roblox
         /// <summary>
         /// <c>DraftsService.EditorsListChanged</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
-        public event Action<Instance?>? EditorsListChanged
+        /// <param name="script">A <c>Instance</c> value.</param>
+        public event Action<Instance>? EditorsListChanged
         {
             add { if (value is not null) AddEventHandler("EditorsListChanged", value); }
             remove { if (value is not null) RemoveEventHandler("EditorsListChanged", value); }
@@ -159,9 +159,9 @@ namespace Roblox
         /// <summary>
         /// <c>DraftsService.UpdateStatusChanged</c>
         /// </summary>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <param name="status">A <c>Enum.DraftStatusCode</c> value.</param>
-        public event Action<Instance?, Enum.DraftStatusCode>? UpdateStatusChanged
+        public event Action<Instance, Enum.DraftStatusCode>? UpdateStatusChanged
         {
             add { if (value is not null) AddEventHandler("UpdateStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("UpdateStatusChanged", value); }

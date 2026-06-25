@@ -18,72 +18,72 @@ namespace Roblox
         /// Creates a <see cref="Breakpoint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Breakpoint? FromHandle(nuint handle)
+        public static new Breakpoint? FromHandle(nuint handle)
             => handle == 0 ? null : new Breakpoint(handle);
 
-        public string? Condition
+        public string Condition
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Condition");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Condition", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Condition")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Condition", value);
         }
 
         public bool ContinueExecution
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ContinueExecution")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ContinueExecution", value);
         }
 
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
         public int Id
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Id");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Id")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Id", value);
         }
 
         public int Line
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Line");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Line")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Line", value);
         }
 
-        public string? LogMessage
+        public string LogMessage
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LogMessage");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LogMessage", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LogMessage")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LogMessage", value);
         }
 
         public int MetaBreakpointId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MetaBreakpointId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MetaBreakpointId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MetaBreakpointId", value);
         }
 
         public bool RemoveOnHit
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RemoveOnHit");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RemoveOnHit")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RemoveOnHit", value);
         }
 
-        public string? Script
+        public string Script
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Script");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Script", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Script")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Script", value);
         }
 
         public bool Valid
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Valid");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Valid")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Valid", value);
         }
 
         public bool Verified
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Verified");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Verified")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Verified", value);
         }
 

@@ -22,37 +22,37 @@ namespace Roblox
         /// Creates a <see cref="Decal"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Decal? FromHandle(nuint handle)
+        public static new Decal? FromHandle(nuint handle)
             => handle == 0 ? null : new Decal(handle);
 
         /// <summary>
         /// The Color3 tint of the Decal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Color3"/>
-        public global::Roblox.Color3? Color3
+        public global::Roblox.Color3 Color3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Color3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Color3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Color3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Color3", value);
         }
 
         /// <summary>
         /// Content ID that determines the color and opacity of the surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#ColorMap"/>
-        public object? ColorMap
+        public object ColorMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "ColorMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "ColorMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "ColorMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "ColorMap", value);
         }
 
         /// <summary>
         /// Content object that determines the color and opacity of the surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#ColorMapContent"/>
-        public string? ColorMapContent
+        public string ColorMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ColorMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ColorMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ColorMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ColorMapContent", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#LocalTransparencyModifier"/>
         public float LocalTransparencyModifier
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LocalTransparencyModifier")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LocalTransparencyModifier", value);
         }
 
@@ -69,40 +69,40 @@ namespace Roblox
         /// <c>Decal.MetalnessMap</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#MetalnessMap"/>
-        public object? MetalnessMap
+        public object MetalnessMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "MetalnessMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "MetalnessMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "MetalnessMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "MetalnessMap", value);
         }
 
         /// <summary>
         /// <c>Decal.MetalnessMapContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#MetalnessMapContent"/>
-        public string? MetalnessMapContent
+        public string MetalnessMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MetalnessMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MetalnessMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MetalnessMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MetalnessMapContent", value);
         }
 
         /// <summary>
         /// <c>Decal.NormalMap</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#NormalMap"/>
-        public object? NormalMap
+        public object NormalMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "NormalMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "NormalMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "NormalMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "NormalMap", value);
         }
 
         /// <summary>
         /// <c>Decal.NormalMapContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#NormalMapContent"/>
-        public string? NormalMapContent
+        public string NormalMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "NormalMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "NormalMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "NormalMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "NormalMapContent", value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Rotation"/>
         public float Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Rotation");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Rotation")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Rotation", value);
         }
 
@@ -119,20 +119,20 @@ namespace Roblox
         /// <c>Decal.RoughnessMap</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#RoughnessMap"/>
-        public object? RoughnessMap
+        public object RoughnessMap
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "RoughnessMap");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "RoughnessMap", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "RoughnessMap")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "RoughnessMap", value);
         }
 
         /// <summary>
         /// <c>Decal.RoughnessMapContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#RoughnessMapContent"/>
-        public string? RoughnessMapContent
+        public string RoughnessMapContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RoughnessMapContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RoughnessMapContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RoughnessMapContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RoughnessMapContent", value);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Shiny"/>
         public float Shiny
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Shiny");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Shiny")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Shiny", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Specular"/>
         public float Specular
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Specular");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Specular")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Specular", value);
         }
 
@@ -159,30 +159,30 @@ namespace Roblox
         /// The content ID of the image to be applied by the Decal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Texture"/>
-        public object? Texture
+        public object Texture
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Texture");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Texture", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Texture")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Texture", value);
         }
 
         /// <summary>
         /// The texture content displayed by the Decal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#TextureContent"/>
-        public string? TextureContent
+        public string TextureContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TextureContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TextureContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TextureContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TextureContent", value);
         }
 
         /// <summary>
         /// <c>Decal.TexturePack</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#TexturePack"/>
-        public object? TexturePack
+        public object TexturePack
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "TexturePack");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "TexturePack", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "TexturePack")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "TexturePack", value);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Transparency"/>
         public float Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Transparency", value);
         }
 
@@ -199,20 +199,20 @@ namespace Roblox
         /// Shifts the UV coordinates by adding an offset before texture mapping.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#UVOffset"/>
-        public global::Roblox.Vector2? UVOffset
+        public global::Roblox.Vector2 UVOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "UVOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "UVOffset", value);
         }
 
         /// <summary>
         /// Stretches or compresses the UV coordinates by multiplying a scale factor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#UVScale"/>
-        public global::Roblox.Vector2? UVScale
+        public global::Roblox.Vector2 UVScale
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UVScale");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UVScale", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "UVScale")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "UVScale", value);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#ZIndex"/>
         public int ZIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ZIndex", value);
         }
 

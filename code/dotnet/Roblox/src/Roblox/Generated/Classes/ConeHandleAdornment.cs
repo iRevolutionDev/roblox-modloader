@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ConeHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ConeHandleAdornment? FromHandle(nuint handle)
+        public static new ConeHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new ConeHandleAdornment(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Height"/>
         public float Height
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Height");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Height")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Height", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Hollow"/>
         public bool Hollow
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Hollow");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Hollow")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Hollow", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ConeHandleAdornment#Shading"/>
         public Enum.AdornShading Shading
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdornShading>(this, "Shading", value);
         }
 

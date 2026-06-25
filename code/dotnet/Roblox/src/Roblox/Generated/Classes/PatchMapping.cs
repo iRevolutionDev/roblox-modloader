@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PatchMapping"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PatchMapping? FromHandle(nuint handle)
+        public static new PatchMapping? FromHandle(nuint handle)
             => handle == 0 ? null : new PatchMapping(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PatchMapping#FlattenTree"/>
         public bool FlattenTree
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlattenTree");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlattenTree")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FlattenTree", value);
         }
 
@@ -39,20 +39,20 @@ namespace Roblox
         /// <c>PatchMapping.PatchId</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PatchMapping#PatchId"/>
-        public string? PatchId
+        public string PatchId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PatchId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PatchId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PatchId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PatchId", value);
         }
 
         /// <summary>
         /// <c>PatchMapping.TargetPath</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PatchMapping#TargetPath"/>
-        public string? TargetPath
+        public string TargetPath
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "TargetPath");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "TargetPath", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "TargetPath")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "TargetPath", value);
         }
 
     }

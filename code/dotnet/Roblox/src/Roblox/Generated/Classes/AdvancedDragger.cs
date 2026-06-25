@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AdvancedDragger"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AdvancedDragger? FromHandle(nuint handle)
+        public static new AdvancedDragger? FromHandle(nuint handle)
             => handle == 0 ? null : new AdvancedDragger(handle);
 
     }

@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="CFrameValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CFrameValue? FromHandle(nuint handle)
+        public static new CFrameValue? FromHandle(nuint handle)
             => handle == 0 ? null : new CFrameValue(handle);
 
         /// <summary>
         /// Used to hold a CFrame value.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CFrameValue#Value"/>
-        public global::Roblox.CFrame? Value
+        public global::Roblox.CFrame Value
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired whenever the CFrameValue.Value of the CFrameValue is changed.
         /// </summary>
-        /// <param name="value">A <c>global::Roblox.CFrame?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.CFrame</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CFrameValue#Changed"/>
-        public event Action<global::Roblox.CFrame?>? Changed
+        public new event Action<global::Roblox.CFrame>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

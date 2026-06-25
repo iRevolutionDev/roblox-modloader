@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="PluginMenu"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PluginMenu? FromHandle(nuint handle)
+        public static new PluginMenu? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginMenu(handle);
 
         /// <summary>
         /// The icon to be displayed when used as a submenu.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#Icon"/>
-        public string? Icon
+        public string Icon
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Icon");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Icon", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Icon")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Icon", value);
         }
 
         /// <summary>
         /// The text to be displayed when used as a submenu.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#Title"/>
-        public string? Title
+        public string Title
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Title");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Title", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Title")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Title", value);
         }
 
         /// <summary>
@@ -51,54 +51,54 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#Visible"/>
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 
         /// <summary>
         /// Adds the given action to the menu.
         /// </summary>
-        /// <param name="action">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="action">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#AddAction"/>
-        public object? AddAction(Instance? action)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddAction", action);
+        public object AddAction(Instance action)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddAction", action)!;
 
         /// <summary>
         /// Adds the given menu as a separator.
         /// </summary>
-        /// <param name="menu">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="menu">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#AddMenu"/>
-        public object? AddMenu(Instance? menu)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddMenu", menu);
+        public object AddMenu(Instance menu)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddMenu", menu)!;
 
         /// <summary>
         /// Creates a temporary action that is hidden from Studio's customize shortcuts window.
         /// </summary>
-        /// <param name="actionId">A <c>string?</c> value.</param>
-        /// <param name="text">A <c>string?</c> value.</param>
-        /// <param name="icon">A <c>string?</c> value.</param>
+        /// <param name="actionId">A <c>string</c> value.</param>
+        /// <param name="text">A <c>string</c> value.</param>
+        /// <param name="icon">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#AddNewAction"/>
-        public Instance? AddNewAction(string? actionId, string? text, string? icon)
+        public Instance? AddNewAction(string actionId, string text, string icon)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "AddNewAction", actionId, text, icon);
 
         /// <summary>
         /// Adds a separator between items in the menu.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#AddSeparator"/>
-        public object? AddSeparator()
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddSeparator");
+        public object AddSeparator()
+            => global::Roblox.Reflection.Invoke<object>(this, "AddSeparator")!;
 
         /// <summary>
         /// Clears the menu.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginMenu#Clear"/>
-        public object? Clear()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
+        public object Clear()
+            => global::Roblox.Reflection.Invoke<object>(this, "Clear")!;
 
         /// <summary>
         /// Shows the menu at the mouse cursor. Yields until either an item is selected or the menu is closed.

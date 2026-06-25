@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="BoxHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BoxHandleAdornment? FromHandle(nuint handle)
+        public static new BoxHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new BoxHandleAdornment(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BoxHandleAdornment#Shading"/>
         public Enum.AdornShading Shading
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdornShading>(this, "Shading", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Size of the adornment.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BoxHandleAdornment#Size"/>
-        public global::Roblox.Vector3? Size
+        public global::Roblox.Vector3 Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Size")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Size", value);
         }
 
     }

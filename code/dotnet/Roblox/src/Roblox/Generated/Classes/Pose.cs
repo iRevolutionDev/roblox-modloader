@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="Pose"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Pose? FromHandle(nuint handle)
+        public static new Pose? FromHandle(nuint handle)
             => handle == 0 ? null : new Pose(handle);
 
         /// <summary>
         /// This CFrame applies to the Motor6D corresponding with the Pose when the Motor6D.Transform is changed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#CFrame"/>
-        public global::Roblox.CFrame? CFrame
+        public global::Roblox.CFrame CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -41,18 +41,18 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#MaskWeight"/>
         public float MaskWeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaskWeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaskWeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaskWeight", value);
         }
 
         /// <summary>
         /// Adds a sub Pose to the Pose by parenting it.
         /// </summary>
-        /// <param name="pose">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="pose">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#AddSubPose"/>
-        public object? AddSubPose(Instance? pose)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddSubPose", pose);
+        public object AddSubPose(Instance pose)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddSubPose", pose)!;
 
         /// <summary>
         /// Returns an array containing all sub Poses that have been added to a Pose.
@@ -60,16 +60,16 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#GetSubPoses"/>
         public IReadOnlyList<Instance> GetSubPoses()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetSubPoses");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetSubPoses")!;
 
         /// <summary>
         /// Removes a sub Pose from the Pose by parenting it to nil.
         /// </summary>
-        /// <param name="pose">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="pose">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#RemoveSubPose"/>
-        public object? RemoveSubPose(Instance? pose)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveSubPose", pose);
+        public object RemoveSubPose(Instance pose)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveSubPose", pose)!;
 
     }
 }

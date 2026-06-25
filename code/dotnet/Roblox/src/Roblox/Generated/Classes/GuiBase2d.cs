@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="GuiBase2d"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GuiBase2d? FromHandle(nuint handle)
+        public static new GuiBase2d? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiBase2d(handle);
 
         /// <summary>
         /// Describes the actual screen position of a GuiBase2d element, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#AbsolutePosition"/>
-        public global::Roblox.Vector2? AbsolutePosition
+        public global::Roblox.Vector2 AbsolutePosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsolutePosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsolutePosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsolutePosition", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#AbsoluteRotation"/>
         public float AbsoluteRotation
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AbsoluteRotation");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AbsoluteRotation")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AbsoluteRotation", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Describes the actual screen size of a GuiBase2d element, in pixels.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#AbsoluteSize"/>
-        public global::Roblox.Vector2? AbsoluteSize
+        public global::Roblox.Vector2 AbsoluteSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AbsoluteSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AbsoluteSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AbsoluteSize", value);
         }
 
         /// <summary>
@@ -61,19 +61,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#AutoLocalize"/>
         public bool AutoLocalize
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLocalize");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLocalize")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoLocalize", value);
         }
 
-        public global::Roblox.Rect? ClippedRect
+        public global::Roblox.Rect ClippedRect
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "ClippedRect");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "ClippedRect", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect>(this, "ClippedRect")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect>(this, "ClippedRect", value);
         }
 
         public bool IsNotOccluded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNotOccluded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsNotOccluded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsNotOccluded", value);
         }
 
@@ -83,14 +83,14 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#Localize"/>
         public bool Localize
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Localize");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Localize")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Localize", value);
         }
 
-        public global::Roblox.Rect? RawRect2D
+        public global::Roblox.Rect RawRect2D
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "RawRect2D");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "RawRect2D", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect>(this, "RawRect2D")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect>(this, "RawRect2D", value);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#SelectionBehaviorDown"/>
         public Enum.SelectionBehavior SelectionBehaviorDown
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorDown");
+            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorDown")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorDown", value);
         }
 
@@ -119,7 +119,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#SelectionBehaviorLeft"/>
         public Enum.SelectionBehavior SelectionBehaviorLeft
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorLeft");
+            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorLeft")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorLeft", value);
         }
 
@@ -129,7 +129,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#SelectionBehaviorRight"/>
         public Enum.SelectionBehavior SelectionBehaviorRight
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorRight");
+            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorRight")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorRight", value);
         }
 
@@ -139,7 +139,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#SelectionBehaviorUp"/>
         public Enum.SelectionBehavior SelectionBehaviorUp
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorUp");
+            get => global::Roblox.Reflection.GetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorUp")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SelectionBehavior>(this, "SelectionBehaviorUp", value);
         }
 
@@ -149,13 +149,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#SelectionGroup"/>
         public bool SelectionGroup
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "SelectionGroup");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "SelectionGroup")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "SelectionGroup", value);
         }
 
         public float TotalGroupScale
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TotalGroupScale");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TotalGroupScale")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TotalGroupScale", value);
         }
 
@@ -163,10 +163,10 @@ namespace Roblox
         /// Fires when the gamepad selection moves to, leaves, or changes within the connected GuiBase2d or any descendant GuiObjects.
         /// </summary>
         /// <param name="amISelected">A <c>bool</c> value.</param>
-        /// <param name="previousSelection">A <c>GuiObject?</c> value.</param>
-        /// <param name="newSelection">A <c>GuiObject?</c> value.</param>
+        /// <param name="previousSelection">A <c>GuiObject</c> value.</param>
+        /// <param name="newSelection">A <c>GuiObject</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#SelectionChanged"/>
-        public event Action<bool, GuiObject?, GuiObject?>? SelectionChanged
+        public event Action<bool, GuiObject, GuiObject>? SelectionChanged
         {
             add { if (value is not null) AddEventHandler("SelectionChanged", value); }
             remove { if (value is not null) RemoveEventHandler("SelectionChanged", value); }

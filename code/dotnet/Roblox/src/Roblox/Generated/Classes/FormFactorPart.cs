@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FormFactorPart"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FormFactorPart? FromHandle(nuint handle)
+        public static new FormFactorPart? FromHandle(nuint handle)
             => handle == 0 ? null : new FormFactorPart(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FormFactorPart#FormFactor"/>
         public Enum.FormFactor FormFactor
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.FormFactor>(this, "FormFactor");
+            get => global::Roblox.Reflection.GetProperty<Enum.FormFactor>(this, "FormFactor")!;
             set => global::Roblox.Reflection.SetProperty<Enum.FormFactor>(this, "FormFactor", value);
         }
 

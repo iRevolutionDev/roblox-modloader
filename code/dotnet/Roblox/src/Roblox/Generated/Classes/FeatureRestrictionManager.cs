@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="FeatureRestrictionManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FeatureRestrictionManager? FromHandle(nuint handle)
+        public static new FeatureRestrictionManager? FromHandle(nuint handle)
             => handle == 0 ? null : new FeatureRestrictionManager(handle);
 
         /// <summary>

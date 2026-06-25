@@ -18,169 +18,169 @@ namespace Roblox
         /// Creates a <see cref="IXPService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static IXPService? FromHandle(nuint handle)
+        public static new IXPService? FromHandle(nuint handle)
             => handle == 0 ? null : new IXPService(handle);
 
         /// <summary>
         /// <c>IXPService.ClearCreatorLayers</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearCreatorLayers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearCreatorLayers");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearCreatorLayers()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearCreatorLayers")!;
 
         /// <summary>
         /// <c>IXPService.ClearUserLayers</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearUserLayers()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearUserLayers");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearUserLayers()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearUserLayers")!;
 
         /// <summary>
         /// <c>IXPService.GetBrowserTrackerLayerLoadingStatus</c>
         /// </summary>
         /// <returns>A <c>Enum.IXPLoadingStatus</c> value returned by the engine.</returns>
         public Enum.IXPLoadingStatus GetBrowserTrackerLayerLoadingStatus()
-            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetBrowserTrackerLayerLoadingStatus");
+            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetBrowserTrackerLayerLoadingStatus")!;
 
         /// <summary>
         /// <c>IXPService.GetBrowserTrackerLayerVariables</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetBrowserTrackerLayerVariables(string? layerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBrowserTrackerLayerVariables", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetBrowserTrackerLayerVariables(string layerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBrowserTrackerLayerVariables", layerName)!;
 
         /// <summary>
         /// <c>IXPService.GetBrowserTrackerStatusForLayer</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>Enum.IXPLoadingStatus</c> value returned by the engine.</returns>
-        public Enum.IXPLoadingStatus GetBrowserTrackerStatusForLayer(string? layerName)
-            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetBrowserTrackerStatusForLayer", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>Enum.IXPLoadingStatus?</c> value returned by the engine.</returns>
+        public Enum.IXPLoadingStatus? GetBrowserTrackerStatusForLayer(string layerName)
+            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus?>(this, "GetBrowserTrackerStatusForLayer", layerName);
 
         /// <summary>
         /// <c>IXPService.GetCreatorLayerLoadingStatus</c>
         /// </summary>
         /// <returns>A <c>Enum.IXPLoadingStatus</c> value returned by the engine.</returns>
         public Enum.IXPLoadingStatus GetCreatorLayerLoadingStatus()
-            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetCreatorLayerLoadingStatus");
+            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetCreatorLayerLoadingStatus")!;
 
         /// <summary>
         /// <c>IXPService.GetCreatorLayerVariables</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCreatorLayerVariables(string? layerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCreatorLayerVariables", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetCreatorLayerVariables(string layerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCreatorLayerVariables", layerName)!;
 
         /// <summary>
         /// <c>IXPService.GetCreatorStatusForLayer</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>Enum.IXPLoadingStatus</c> value returned by the engine.</returns>
-        public Enum.IXPLoadingStatus GetCreatorStatusForLayer(string? layerName)
-            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetCreatorStatusForLayer", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>Enum.IXPLoadingStatus?</c> value returned by the engine.</returns>
+        public Enum.IXPLoadingStatus? GetCreatorStatusForLayer(string layerName)
+            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus?>(this, "GetCreatorStatusForLayer", layerName);
 
         /// <summary>
         /// <c>IXPService.GetRegisteredCreatorLayersToStatus</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegisteredCreatorLayersToStatus()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegisteredCreatorLayersToStatus");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegisteredCreatorLayersToStatus()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegisteredCreatorLayersToStatus")!;
 
         /// <summary>
         /// <c>IXPService.GetRegisteredUserLayersToStatus</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegisteredUserLayersToStatus()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegisteredUserLayersToStatus");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegisteredUserLayersToStatus()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegisteredUserLayersToStatus")!;
 
         /// <summary>
         /// <c>IXPService.GetUserLayerLoadingStatus</c>
         /// </summary>
         /// <returns>A <c>Enum.IXPLoadingStatus</c> value returned by the engine.</returns>
         public Enum.IXPLoadingStatus GetUserLayerLoadingStatus()
-            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetUserLayerLoadingStatus");
+            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetUserLayerLoadingStatus")!;
 
         /// <summary>
         /// <c>IXPService.GetUserLayerVariables</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUserLayerVariables(string? layerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserLayerVariables", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUserLayerVariables(string layerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserLayerVariables", layerName)!;
 
         /// <summary>
         /// <c>IXPService.GetUserStatusForLayer</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>Enum.IXPLoadingStatus</c> value returned by the engine.</returns>
-        public Enum.IXPLoadingStatus GetUserStatusForLayer(string? layerName)
-            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus>(this, "GetUserStatusForLayer", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>Enum.IXPLoadingStatus?</c> value returned by the engine.</returns>
+        public Enum.IXPLoadingStatus? GetUserStatusForLayer(string layerName)
+            => global::Roblox.Reflection.Invoke<Enum.IXPLoadingStatus?>(this, "GetUserStatusForLayer", layerName);
 
         /// <summary>
         /// <c>IXPService.InitializeCreatorLayers</c>
         /// </summary>
         /// <param name="creatorId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InitializeCreatorLayers(long creatorId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InitializeCreatorLayers", creatorId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InitializeCreatorLayers(long creatorId)
+            => global::Roblox.Reflection.Invoke<object>(this, "InitializeCreatorLayers", creatorId)!;
 
         /// <summary>
         /// <c>IXPService.InitializeUserLayers</c>
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? InitializeUserLayers(long userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InitializeUserLayers", userId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object InitializeUserLayers(long userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "InitializeUserLayers", userId)!;
 
         /// <summary>
         /// <c>IXPService.LogBrowserTrackerLayerExposure</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogBrowserTrackerLayerExposure(string? layerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogBrowserTrackerLayerExposure", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogBrowserTrackerLayerExposure(string layerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogBrowserTrackerLayerExposure", layerName)!;
 
         /// <summary>
         /// <c>IXPService.LogCreatorLayerExposure</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogCreatorLayerExposure(string? layerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogCreatorLayerExposure", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogCreatorLayerExposure(string layerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogCreatorLayerExposure", layerName)!;
 
         /// <summary>
         /// <c>IXPService.LogFlagLinkedUserLayerExposure</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogFlagLinkedUserLayerExposure(string? layerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogFlagLinkedUserLayerExposure", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogFlagLinkedUserLayerExposure(string layerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogFlagLinkedUserLayerExposure", layerName)!;
 
         /// <summary>
         /// <c>IXPService.LogUserLayerExposure</c>
         /// </summary>
-        /// <param name="layerName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LogUserLayerExposure(string? layerName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LogUserLayerExposure", layerName);
+        /// <param name="layerName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LogUserLayerExposure(string layerName)
+            => global::Roblox.Reflection.Invoke<object>(this, "LogUserLayerExposure", layerName)!;
 
         /// <summary>
         /// <c>IXPService.RegisterCreatorLayers</c>
         /// </summary>
-        /// <param name="creatorLayers">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterCreatorLayers(object? creatorLayers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterCreatorLayers", creatorLayers);
+        /// <param name="creatorLayers">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterCreatorLayers(object creatorLayers)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterCreatorLayers", creatorLayers)!;
 
         /// <summary>
         /// <c>IXPService.RegisterUserLayers</c>
         /// </summary>
-        /// <param name="userLayers">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterUserLayers(object? userLayers)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterUserLayers", userLayers);
+        /// <param name="userLayers">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterUserLayers(object userLayers)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterUserLayers", userLayers)!;
 
         /// <summary>
         /// <c>IXPService.OnBrowserTrackerLayerLoadingStatusChanged</c>

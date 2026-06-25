@@ -18,29 +18,29 @@ namespace Roblox
         /// Creates a <see cref="StudioPublishService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioPublishService? FromHandle(nuint handle)
+        public static new StudioPublishService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioPublishService(handle);
 
         public bool PublishLocked
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PublishLocked");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PublishLocked")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PublishLocked", value);
         }
 
         /// <summary>
         /// <c>StudioPublishService.ClearUploadNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ClearUploadNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearUploadNames");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ClearUploadNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearUploadNames")!;
 
         /// <summary>
         /// <c>StudioPublishService.CloseAfterPublish</c>
         /// </summary>
         /// <param name="closeMode">A <c>Enum.StudioCloseMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CloseAfterPublish(Enum.StudioCloseMode closeMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CloseAfterPublish", closeMode);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CloseAfterPublish(Enum.StudioCloseMode closeMode)
+            => global::Roblox.Reflection.Invoke<object>(this, "CloseAfterPublish", closeMode)!;
 
         /// <summary>
         /// <c>StudioPublishService.PublishAs</c>
@@ -49,68 +49,68 @@ namespace Roblox
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <param name="isPublish">A <c>bool</c> value.</param>
-        /// <param name="publishParameters">A <c>object?</c> value.</param>
-        /// <param name="willRetryOnConflict">A <c>bool</c> value.</param>
-        /// <param name="allowOpeningNewPlace">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PublishAs(long universeId, long placeId, long groupId, bool isPublish, object? publishParameters, bool willRetryOnConflict, bool allowOpeningNewPlace)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishAs", universeId, placeId, groupId, isPublish, publishParameters, willRetryOnConflict, allowOpeningNewPlace);
+        /// <param name="publishParameters">A <c>object</c> value.</param>
+        /// <param name="willRetryOnConflict">A <c>bool?</c> value.</param>
+        /// <param name="allowOpeningNewPlace">A <c>bool?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PublishAs(long universeId, long placeId, long groupId, bool isPublish, object publishParameters, bool? willRetryOnConflict = null, bool? allowOpeningNewPlace = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishAs", universeId, placeId, groupId, isPublish, publishParameters, willRetryOnConflict, allowOpeningNewPlace)!;
 
         /// <summary>
         /// <c>StudioPublishService.PublishThenTurnOnTeamCreate</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PublishThenTurnOnTeamCreate()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishThenTurnOnTeamCreate");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PublishThenTurnOnTeamCreate()
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishThenTurnOnTeamCreate")!;
 
         /// <summary>
         /// <c>StudioPublishService.RefreshDocumentDisplayName</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RefreshDocumentDisplayName()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RefreshDocumentDisplayName");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RefreshDocumentDisplayName()
+            => global::Roblox.Reflection.Invoke<object>(this, "RefreshDocumentDisplayName")!;
 
         /// <summary>
         /// <c>StudioPublishService.RegisterPublishHold</c>
         /// </summary>
         /// <param name="priority">A <c>int</c> value.</param>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterPublishHold(int priority, object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterPublishHold", priority, callback);
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterPublishHold(int priority, object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterPublishHold", priority, callback)!;
 
         /// <summary>
         /// <c>StudioPublishService.SaveOrPublishPlaceToRobloxIsCanceled</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SaveOrPublishPlaceToRobloxIsCanceled()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SaveOrPublishPlaceToRobloxIsCanceled");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SaveOrPublishPlaceToRobloxIsCanceled()
+            => global::Roblox.Reflection.Invoke<object>(this, "SaveOrPublishPlaceToRobloxIsCanceled")!;
 
         /// <summary>
         /// <c>StudioPublishService.SetTeamCreateOnPublishInfo</c>
         /// </summary>
         /// <param name="shouldTurnOnTcOnPublish">A <c>bool</c> value.</param>
-        /// <param name="newPlaceName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTeamCreateOnPublishInfo(bool shouldTurnOnTcOnPublish, string? newPlaceName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTeamCreateOnPublishInfo", shouldTurnOnTcOnPublish, newPlaceName);
+        /// <param name="newPlaceName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTeamCreateOnPublishInfo(bool shouldTurnOnTcOnPublish, string newPlaceName)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTeamCreateOnPublishInfo", shouldTurnOnTcOnPublish, newPlaceName)!;
 
         /// <summary>
         /// <c>StudioPublishService.SetUniverseDisplayName</c>
         /// </summary>
-        /// <param name="newName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetUniverseDisplayName(string? newName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUniverseDisplayName", newName);
+        /// <param name="newName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetUniverseDisplayName(string newName)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUniverseDisplayName", newName)!;
 
         /// <summary>
         /// <c>StudioPublishService.SetUploadNames</c>
         /// </summary>
-        /// <param name="placeName">A <c>string?</c> value.</param>
-        /// <param name="universeName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetUploadNames(string? placeName, string? universeName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUploadNames", placeName, universeName);
+        /// <param name="placeName">A <c>string</c> value.</param>
+        /// <param name="universeName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetUploadNames(string placeName, string universeName)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUploadNames", placeName, universeName)!;
 
         /// <summary>
         /// <c>StudioPublishService.ShowSaveOrPublishPlaceToRoblox</c>
@@ -118,15 +118,15 @@ namespace Roblox
         /// <param name="showGameSelect">A <c>bool</c> value.</param>
         /// <param name="isPublish">A <c>bool</c> value.</param>
         /// <param name="closeMode">A <c>Enum.StudioCloseMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowSaveOrPublishPlaceToRoblox(bool showGameSelect, bool isPublish, Enum.StudioCloseMode closeMode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowSaveOrPublishPlaceToRoblox", showGameSelect, isPublish, closeMode);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowSaveOrPublishPlaceToRoblox(bool showGameSelect, bool isPublish, Enum.StudioCloseMode closeMode)
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowSaveOrPublishPlaceToRoblox", showGameSelect, isPublish, closeMode)!;
 
         /// <summary>
         /// <c>StudioPublishService.GameNameUpdated</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        public event Action<string?>? GameNameUpdated
+        /// <param name="name">A <c>string</c> value.</param>
+        public event Action<string>? GameNameUpdated
         {
             add { if (value is not null) AddEventHandler("GameNameUpdated", value); }
             remove { if (value is not null) RemoveEventHandler("GameNameUpdated", value); }
@@ -143,9 +143,9 @@ namespace Roblox
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
         /// <param name="gameId">A <c>long</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="reason">A <c>Enum.StudioPlaceUpdateFailureReason</c> value.</param>
-        public event Action<bool, long, string?, Enum.StudioPlaceUpdateFailureReason>? GamePublishFinished
+        public event Action<bool, long, string, Enum.StudioPlaceUpdateFailureReason>? GamePublishFinished
         {
             add { if (value is not null) AddEventHandler("GamePublishFinished", value); }
             remove { if (value is not null) RemoveEventHandler("GamePublishFinished", value); }

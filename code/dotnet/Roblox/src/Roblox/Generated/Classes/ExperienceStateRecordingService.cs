@@ -18,71 +18,71 @@ namespace Roblox
         /// Creates a <see cref="ExperienceStateRecordingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExperienceStateRecordingService? FromHandle(nuint handle)
+        public static new ExperienceStateRecordingService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceStateRecordingService(handle);
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.ExitPlayback</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ExitPlayback()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ExitPlayback");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ExitPlayback()
+            => global::Roblox.Reflection.Invoke<object>(this, "ExitPlayback")!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.GetCurrentPlaybackRestartFrames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetCurrentPlaybackRestartFrames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCurrentPlaybackRestartFrames");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetCurrentPlaybackRestartFrames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCurrentPlaybackRestartFrames")!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.GetPlaybackCurrentFrame</c>
         /// </summary>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         public long GetPlaybackCurrentFrame()
-            => global::Roblox.Reflection.Invoke<long>(this, "GetPlaybackCurrentFrame");
+            => global::Roblox.Reflection.Invoke<long>(this, "GetPlaybackCurrentFrame")!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.GetPlaybackMode</c>
         /// </summary>
         /// <returns>A <c>Enum.ExperienceStateRecordingPlaybackMode</c> value returned by the engine.</returns>
         public Enum.ExperienceStateRecordingPlaybackMode GetPlaybackMode()
-            => global::Roblox.Reflection.Invoke<Enum.ExperienceStateRecordingPlaybackMode>(this, "GetPlaybackMode");
+            => global::Roblox.Reflection.Invoke<Enum.ExperienceStateRecordingPlaybackMode>(this, "GetPlaybackMode")!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.SetPlaybackFrame</c>
         /// </summary>
         /// <param name="frame">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPlaybackFrame(long frame)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPlaybackFrame", frame);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPlaybackFrame(long frame)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPlaybackFrame", frame)!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.SetPlaybackMode</c>
         /// </summary>
         /// <param name="mode">A <c>Enum.ExperienceStateRecordingPlaybackMode</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPlaybackMode(Enum.ExperienceStateRecordingPlaybackMode mode)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPlaybackMode", mode);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPlaybackMode(Enum.ExperienceStateRecordingPlaybackMode mode)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPlaybackMode", mode)!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.SetPlaybackPercentage</c>
         /// </summary>
         /// <param name="percentage">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPlaybackPercentage(float percentage)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPlaybackPercentage", percentage);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPlaybackPercentage(float percentage)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPlaybackPercentage", percentage)!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.LoadPlaybackAsync</c>
         /// </summary>
-        /// <param name="uri">A <c>string?</c> value.</param>
-        /// <param name="placeFileUri">A <c>object?</c> value.</param>
+        /// <param name="uri">A <c>string</c> value.</param>
+        /// <param name="placeFileUri">A <c>string?</c> value.</param>
         /// <param name="mode">A <c>Enum.ExperienceStateRecordingLoadMode</c> value.</param>
         /// <param name="sourceType">A <c>Enum.ExperienceStateRecordingLoadSourceType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LoadPlaybackAsync(string? uri, object? placeFileUri, Enum.ExperienceStateRecordingLoadMode mode, Enum.ExperienceStateRecordingLoadSourceType sourceType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LoadPlaybackAsync", uri, placeFileUri, mode, sourceType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LoadPlaybackAsync(string uri, string? placeFileUri, Enum.ExperienceStateRecordingLoadMode mode, Enum.ExperienceStateRecordingLoadSourceType sourceType)
+            => global::Roblox.Reflection.Invoke<object>(this, "LoadPlaybackAsync", uri, placeFileUri, mode, sourceType)!;
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.PlaybackStatusUpdated</c>

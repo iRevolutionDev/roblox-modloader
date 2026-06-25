@@ -18,45 +18,45 @@ namespace Roblox
         /// Creates a <see cref="DebuggerLuaResponse"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerLuaResponse? FromHandle(nuint handle)
+        public static new DebuggerLuaResponse? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerLuaResponse(handle);
 
         public bool IsError
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsError");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsError")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsError", value);
         }
 
         public bool IsSuccess
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSuccess");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSuccess")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsSuccess", value);
         }
 
-        public string? Message
+        public string Message
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Message");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Message", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Message")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Message", value);
         }
 
         public int RequestId
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "RequestId");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "RequestId")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "RequestId", value);
         }
 
         public Enum.DebuggerStatus Status
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DebuggerStatus>(this, "Status");
+            get => global::Roblox.Reflection.GetProperty<Enum.DebuggerStatus>(this, "Status")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DebuggerStatus>(this, "Status", value);
         }
 
         /// <summary>
         /// <c>DebuggerLuaResponse.GetArg</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetArg()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetArg");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetArg()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetArg")!;
 
     }
 }

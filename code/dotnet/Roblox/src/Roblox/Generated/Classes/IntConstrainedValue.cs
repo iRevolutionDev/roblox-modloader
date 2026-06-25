@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="IntConstrainedValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static IntConstrainedValue? FromHandle(nuint handle)
+        public static new IntConstrainedValue? FromHandle(nuint handle)
             => handle == 0 ? null : new IntConstrainedValue(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#ConstrainedValue"/>
         public long ConstrainedValue
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "ConstrainedValue");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "ConstrainedValue")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "ConstrainedValue", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#MaxValue"/>
         public long MaxValue
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "MaxValue");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "MaxValue")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "MaxValue", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#MinValue"/>
         public long MinValue
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "MinValue");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "MinValue")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "MinValue", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#Value"/>
         public long Value
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "Value");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "Value")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "Value", value);
         }
 
@@ -70,7 +70,7 @@ namespace Roblox
         /// </summary>
         /// <param name="value">A <c>long</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IntConstrainedValue#Changed"/>
-        public event Action<long>? Changed
+        public new event Action<long>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Snap"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Snap? FromHandle(nuint handle)
+        public static new Snap? FromHandle(nuint handle)
             => handle == 0 ? null : new Snap(handle);
 
     }

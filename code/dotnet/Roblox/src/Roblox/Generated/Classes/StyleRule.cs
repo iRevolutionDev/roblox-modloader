@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StyleRule"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StyleRule? FromHandle(nuint handle)
+        public static new StyleRule? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleRule(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#Priority"/>
         public int Priority
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Priority", value);
         }
 
@@ -39,122 +39,122 @@ namespace Roblox
         /// A string specifying which instances the StyleRule should affect.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#Selector"/>
-        public string? Selector
+        public string Selector
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Selector");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Selector", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Selector")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Selector", value);
         }
 
         /// <summary>
         /// A read-only string that displays errors from the Selector property.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#SelectorError"/>
-        public string? SelectorError
+        public string SelectorError
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SelectorError");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SelectorError", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SelectorError")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SelectorError", value);
         }
 
         /// <summary>
         /// Returns the default transition applied to all properties of the StyleRule that don't have an explicit transition set.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#GetDefaultPropertyTransition"/>
-        public object? GetDefaultPropertyTransition()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDefaultPropertyTransition");
+        public object GetDefaultPropertyTransition()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDefaultPropertyTransition")!;
 
         /// <summary>
         /// Returns a dictionary of key-value pairs describing the properties of the StyleRule.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#GetProperties"/>
-        public object? GetProperties()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetProperties");
+        public object GetProperties()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetProperties")!;
 
         /// <summary>
         /// <c>StyleRule.GetPropertiesResolved</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPropertiesResolved()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPropertiesResolved");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPropertiesResolved()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPropertiesResolved")!;
 
         /// <summary>
         /// Returns the value of a specific property in the StyleRule.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#GetProperty"/>
-        public object? GetProperty(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetProperty", name);
+        public object GetProperty(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetProperty", name)!;
 
         /// <summary>
         /// <c>StyleRule.GetPropertyResolved</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPropertyResolved(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPropertyResolved", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPropertyResolved(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPropertyResolved", name)!;
 
         /// <summary>
         /// Returns a dictionary of all property transitions set on the StyleRule.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#GetPropertyTransitions"/>
-        public object? GetPropertyTransitions()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPropertyTransitions");
+        public object GetPropertyTransitions()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPropertyTransitions")!;
 
         /// <summary>
         /// Sets or clears a default transition that applies to all properties of the StyleRule that don't have an explicit transition set.
         /// </summary>
-        /// <param name="transitionParams">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="transitionParams">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#SetDefaultPropertyTransition"/>
-        public object? SetDefaultPropertyTransition(object? transitionParams)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDefaultPropertyTransition", transitionParams);
+        public object SetDefaultPropertyTransition(object transitionParams)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDefaultPropertyTransition", transitionParams)!;
 
         /// <summary>
         /// Lets you declare and set multiple properties of the StyleRule at once.
         /// </summary>
-        /// <param name="styleProperties">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="styleProperties">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#SetProperties"/>
-        public object? SetProperties(object? styleProperties)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetProperties", styleProperties);
+        public object SetProperties(object styleProperties)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetProperties", styleProperties)!;
 
         /// <summary>
         /// <c>StyleRule.SetProperty</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#SetProperty"/>
-        public object? SetProperty(string? name, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetProperty", name, value);
+        public object SetProperty(string name, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetProperty", name, value)!;
 
         /// <summary>
         /// Sets or clears the transition for a single property on the StyleRule.
         /// </summary>
-        /// <param name="property">A <c>string?</c> value.</param>
-        /// <param name="transitionParams">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="property">A <c>string</c> value.</param>
+        /// <param name="transitionParams">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#SetPropertyTransition"/>
-        public object? SetPropertyTransition(string? property, object? transitionParams)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPropertyTransition", property, transitionParams);
+        public object SetPropertyTransition(string property, object transitionParams)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPropertyTransition", property, transitionParams)!;
 
         /// <summary>
         /// Lets you declare and set transitions for multiple properties of the StyleRule at once.
         /// </summary>
-        /// <param name="properties">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="properties">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule#SetPropertyTransitions"/>
-        public object? SetPropertyTransitions(object? properties)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPropertyTransitions", properties);
+        public object SetPropertyTransitions(object properties)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPropertyTransitions", properties)!;
 
         /// <summary>
         /// <c>StyleRule.StyleRulePropertyChanged</c>
         /// </summary>
-        /// <param name="styleProperty">A <c>string?</c> value.</param>
-        public event Action<string?>? StyleRulePropertyChanged
+        /// <param name="styleProperty">A <c>string</c> value.</param>
+        public event Action<string>? StyleRulePropertyChanged
         {
             add { if (value is not null) AddEventHandler("StyleRulePropertyChanged", value); }
             remove { if (value is not null) RemoveEventHandler("StyleRulePropertyChanged", value); }

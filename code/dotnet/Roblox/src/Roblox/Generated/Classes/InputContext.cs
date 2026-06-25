@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="InputContext"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InputContext? FromHandle(nuint handle)
+        public static new InputContext? FromHandle(nuint handle)
             => handle == 0 ? null : new InputContext(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputContext#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputContext#Priority"/>
         public int Priority
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Priority", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputContext#Sink"/>
         public bool Sink
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Sink");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Sink")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Sink", value);
         }
 
@@ -60,7 +60,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetInputActions()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputActions");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInputActions")!;
 
         public event Action? InputActionsChanged
         {

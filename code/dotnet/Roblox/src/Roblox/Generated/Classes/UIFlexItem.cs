@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UIFlexItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UIFlexItem? FromHandle(nuint handle)
+        public static new UIFlexItem? FromHandle(nuint handle)
             => handle == 0 ? null : new UIFlexItem(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#FlexMode"/>
         public Enum.UIFlexMode FlexMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.UIFlexMode>(this, "FlexMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.UIFlexMode>(this, "FlexMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.UIFlexMode>(this, "FlexMode", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#GrowRatio"/>
         public float GrowRatio
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "GrowRatio");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "GrowRatio")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "GrowRatio", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#ItemLineAlignment"/>
         public Enum.ItemLineAlignment ItemLineAlignment
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ItemLineAlignment>(this, "ItemLineAlignment");
+            get => global::Roblox.Reflection.GetProperty<Enum.ItemLineAlignment>(this, "ItemLineAlignment")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ItemLineAlignment>(this, "ItemLineAlignment", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIFlexItem#ShrinkRatio"/>
         public float ShrinkRatio
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ShrinkRatio");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ShrinkRatio")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ShrinkRatio", value);
         }
 

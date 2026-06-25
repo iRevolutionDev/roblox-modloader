@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioListener"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioListener? FromHandle(nuint handle)
+        public static new AudioListener? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioListener(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#AcousticSimulationEnabled"/>
         public bool AcousticSimulationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AcousticSimulationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AcousticSimulationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AcousticSimulationEnabled", value);
         }
 
@@ -39,25 +39,25 @@ namespace Roblox
         /// Represents how the perceived volume of the emitted sound changes based on the angle between a AudioEmitter and the LookVector associated with the AudioListener.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#AngleAttenuation"/>
-        public byte[]? AngleAttenuation
+        public byte[] AngleAttenuation
         {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "AngleAttenuation");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "AngleAttenuation", value);
+            get => global::Roblox.Reflection.GetProperty<byte[]>(this, "AngleAttenuation")!;
+            set => global::Roblox.Reflection.SetProperty<byte[]>(this, "AngleAttenuation", value);
         }
 
         /// <summary>
         /// Controls which AudioEmitters are audible to this AudioListener.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#AudioInteractionGroup"/>
-        public string? AudioInteractionGroup
+        public string AudioInteractionGroup
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AudioInteractionGroup");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AudioInteractionGroup", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AudioInteractionGroup")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AudioInteractionGroup", value);
         }
 
         public Enum.SimulationMode DiffractionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "DiffractionEnabled");
+            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "DiffractionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SimulationMode>(this, "DiffractionEnabled", value);
         }
 
@@ -65,15 +65,15 @@ namespace Roblox
         /// Represents how the perceived volume of emitted sounds change as the distance between AudioEmitters and the AudioListener increases.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#DistanceAttenuation"/>
-        public byte[]? DistanceAttenuation
+        public byte[] DistanceAttenuation
         {
-            get => global::Roblox.Reflection.GetProperty<byte[]?>(this, "DistanceAttenuation");
-            set => global::Roblox.Reflection.SetProperty<byte[]?>(this, "DistanceAttenuation", value);
+            get => global::Roblox.Reflection.GetProperty<byte[]>(this, "DistanceAttenuation")!;
+            set => global::Roblox.Reflection.SetProperty<byte[]>(this, "DistanceAttenuation", value);
         }
 
         public Enum.SimulationMode OcclusionEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "OcclusionEnabled");
+            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "OcclusionEnabled")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SimulationMode>(this, "OcclusionEnabled", value);
         }
 
@@ -93,13 +93,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#PositionType"/>
         public Enum.ListenerPositionType PositionType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ListenerPositionType>(this, "PositionType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ListenerPositionType>(this, "PositionType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ListenerPositionType>(this, "PositionType", value);
         }
 
         public Enum.SimulationMode ReverbEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "ReverbEnabled");
+            get => global::Roblox.Reflection.GetProperty<Enum.SimulationMode>(this, "ReverbEnabled")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SimulationMode>(this, "ReverbEnabled", value);
         }
 
@@ -109,51 +109,51 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#SimulationFidelity"/>
         public Enum.AudioSimulationFidelity SimulationFidelity
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AudioSimulationFidelity>(this, "SimulationFidelity");
+            get => global::Roblox.Reflection.GetProperty<Enum.AudioSimulationFidelity>(this, "SimulationFidelity")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AudioSimulationFidelity>(this, "SimulationFidelity", value);
         }
 
         /// <summary>
         /// Gets the angle attenuation curve that the AudioListener is using, or an empty table if it's using the default curve.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetAngleAttenuation"/>
-        public object? GetAngleAttenuation()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAngleAttenuation");
+        public object GetAngleAttenuation()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAngleAttenuation")!;
 
         /// <summary>
         /// Calculates how audible an AudioEmitter is for this listener
         /// </summary>
-        /// <param name="emitter">A <c>AudioEmitter?</c> value.</param>
+        /// <param name="emitter">A <c>AudioEmitter</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetAudibilityFor"/>
-        public float GetAudibilityFor(AudioEmitter? emitter)
-            => global::Roblox.Reflection.Invoke<float>(this, "GetAudibilityFor", emitter);
+        public float GetAudibilityFor(AudioEmitter emitter)
+            => global::Roblox.Reflection.Invoke<float>(this, "GetAudibilityFor", emitter)!;
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the distance attenuation curve that the AudioListener is using, or an empty table if it's using the default curve.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetDistanceAttenuation"/>
-        public object? GetDistanceAttenuation()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDistanceAttenuation");
+        public object GetDistanceAttenuation()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDistanceAttenuation")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Lists all AudioEmitters that this listener is capable of hearing.
@@ -161,50 +161,50 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetInteractingEmitters"/>
         public IReadOnlyList<Instance> GetInteractingEmitters()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInteractingEmitters");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetInteractingEmitters")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// <c>AudioListener.Reset</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Reset()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Reset");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Reset()
+            => global::Roblox.Reflection.Invoke<object>(this, "Reset")!;
 
         /// <summary>
         /// Sets the angle attenuation curve that the AudioListener should use, or uses a constant curve of volume 1 if none is provided.
         /// </summary>
-        /// <param name="curve">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="curve">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#SetAngleAttenuation"/>
-        public object? SetAngleAttenuation(object? curve)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAngleAttenuation", curve);
+        public object SetAngleAttenuation(object curve)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAngleAttenuation", curve)!;
 
         /// <summary>
         /// Sets the distance attenuation curve that the AudioListener should use, or uses an inverse rolloff curve if none is provided.
         /// </summary>
-        /// <param name="curve">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="curve">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#SetDistanceAttenuation"/>
-        public object? SetDistanceAttenuation(object? curve)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetDistanceAttenuation", curve);
+        public object SetDistanceAttenuation(object curve)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetDistanceAttenuation", curve)!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioListener via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

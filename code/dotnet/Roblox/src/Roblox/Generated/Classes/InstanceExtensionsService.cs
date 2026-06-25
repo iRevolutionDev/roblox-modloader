@@ -18,16 +18,16 @@ namespace Roblox
         /// Creates a <see cref="InstanceExtensionsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InstanceExtensionsService? FromHandle(nuint handle)
+        public static new InstanceExtensionsService? FromHandle(nuint handle)
             => handle == 0 ? null : new InstanceExtensionsService(handle);
 
         /// <summary>
         /// <c>InstanceExtensionsService.CountChildren</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int CountChildren(Instance? instance)
-            => global::Roblox.Reflection.Invoke<int>(this, "CountChildren", instance);
+        public int CountChildren(Instance instance)
+            => global::Roblox.Reflection.Invoke<int>(this, "CountChildren", instance)!;
 
     }
 }

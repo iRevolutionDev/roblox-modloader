@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="IntersectOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static IntersectOperation? FromHandle(nuint handle)
+        public static new IntersectOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new IntersectOperation(handle);
 
     }

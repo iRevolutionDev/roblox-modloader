@@ -22,37 +22,37 @@ namespace Roblox
         /// Creates a <see cref="Bone"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Bone? FromHandle(nuint handle)
+        public static new Bone? FromHandle(nuint handle)
             => handle == 0 ? null : new Bone(handle);
 
         /// <summary>
         /// Determines the current animated offset of the bone in its local space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#Transform"/>
-        public global::Roblox.CFrame? Transform
+        public global::Roblox.CFrame Transform
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Transform");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Transform", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Transform")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Transform", value);
         }
 
         /// <summary>
         /// Describes the combined CFrame offset of the bone and the current animation offset in the bone local space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#TransformedCFrame"/>
-        public global::Roblox.CFrame? TransformedCFrame
+        public global::Roblox.CFrame TransformedCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "TransformedCFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "TransformedCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "TransformedCFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "TransformedCFrame", value);
         }
 
         /// <summary>
         /// Describes the combined CFrame offset of the bone and the current animation offset in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Bone#TransformedWorldCFrame"/>
-        public global::Roblox.CFrame? TransformedWorldCFrame
+        public global::Roblox.CFrame TransformedWorldCFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "TransformedWorldCFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "TransformedWorldCFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "TransformedWorldCFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "TransformedWorldCFrame", value);
         }
 
     }

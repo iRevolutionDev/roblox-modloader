@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Dialog"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Dialog? FromHandle(nuint handle)
+        public static new Dialog? FromHandle(nuint handle)
             => handle == 0 ? null : new Dialog(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#BehaviorType"/>
         public Enum.DialogBehaviorType BehaviorType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DialogBehaviorType>(this, "BehaviorType");
+            get => global::Roblox.Reflection.GetProperty<Enum.DialogBehaviorType>(this, "BehaviorType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DialogBehaviorType>(this, "BehaviorType", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#ConversationDistance"/>
         public float ConversationDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ConversationDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ConversationDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ConversationDistance", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#GoodbyeChoiceActive"/>
         public bool GoodbyeChoiceActive
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "GoodbyeChoiceActive");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "GoodbyeChoiceActive")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "GoodbyeChoiceActive", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Sets the sentence that the dialog will show to the player when the chat ends.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#GoodbyeDialog"/>
-        public string? GoodbyeDialog
+        public string GoodbyeDialog
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GoodbyeDialog");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GoodbyeDialog", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "GoodbyeDialog")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "GoodbyeDialog", value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#InUse"/>
         public bool InUse
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "InUse");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "InUse")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "InUse", value);
         }
 
@@ -79,10 +79,10 @@ namespace Roblox
         /// Sets the first sentence that the dialog will show to the player, once a chat is commenced.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#InitialPrompt"/>
-        public string? InitialPrompt
+        public string InitialPrompt
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "InitialPrompt");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "InitialPrompt", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "InitialPrompt")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "InitialPrompt", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#Purpose"/>
         public Enum.DialogPurpose Purpose
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DialogPurpose>(this, "Purpose");
+            get => global::Roblox.Reflection.GetProperty<Enum.DialogPurpose>(this, "Purpose")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DialogPurpose>(this, "Purpose", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#Tone"/>
         public Enum.DialogTone Tone
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DialogTone>(this, "Tone");
+            get => global::Roblox.Reflection.GetProperty<Enum.DialogTone>(this, "Tone")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DialogTone>(this, "Tone", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#TriggerDistance"/>
         public float TriggerDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TriggerDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TriggerDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TriggerDistance", value);
         }
 
@@ -119,10 +119,10 @@ namespace Roblox
         /// Sets the offset of the dialog relative to the dialog's parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#TriggerOffset"/>
-        public global::Roblox.Vector3? TriggerOffset
+        public global::Roblox.Vector3 TriggerOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "TriggerOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "TriggerOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "TriggerOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "TriggerOffset", value);
         }
 
         /// <summary>
@@ -131,41 +131,41 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#GetCurrentPlayers"/>
         public IReadOnlyList<Instance> GetCurrentPlayers()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCurrentPlayers");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCurrentPlayers")!;
 
         /// <summary>
         /// <c>Dialog.SetGuiObject</c>
         /// </summary>
-        /// <param name="gui">A <c>BillboardGui?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetGuiObject(BillboardGui? gui)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetGuiObject", gui);
+        /// <param name="gui">A <c>BillboardGui</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetGuiObject(BillboardGui gui)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetGuiObject", gui)!;
 
         /// <summary>
         /// <c>Dialog.SetPlayerIsUsing</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <param name="isUsing">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetPlayerIsUsing(Instance? player, bool isUsing)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPlayerIsUsing", player, isUsing);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetPlayerIsUsing(Instance player, bool isUsing)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPlayerIsUsing", player, isUsing)!;
 
         /// <summary>
         /// <c>Dialog.SignalDialogChoiceSelected</c>
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="dialogChoice">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SignalDialogChoiceSelected(Instance? player, Instance? dialogChoice)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SignalDialogChoiceSelected", player, dialogChoice);
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="dialogChoice">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SignalDialogChoiceSelected(Instance player, Instance dialogChoice)
+            => global::Roblox.Reflection.Invoke<object>(this, "SignalDialogChoiceSelected", player, dialogChoice)!;
 
         /// <summary>
         /// Fired when a player chooses something to say, through a Dialog instance.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
-        /// <param name="dialogChoice">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
+        /// <param name="dialogChoice">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Dialog#DialogChoiceSelected"/>
-        public event Action<Instance?, Instance?>? DialogChoiceSelected
+        public event Action<Instance, Instance>? DialogChoiceSelected
         {
             add { if (value is not null) AddEventHandler("DialogChoiceSelected", value); }
             remove { if (value is not null) RemoveEventHandler("DialogChoiceSelected", value); }

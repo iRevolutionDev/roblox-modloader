@@ -22,103 +22,103 @@ namespace Roblox
         /// Creates a <see cref="AnimationClipProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationClipProvider? FromHandle(nuint handle)
+        public static new AnimationClipProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationClipProvider(handle);
 
         /// <summary>
         /// Deprecated: This function is deprecated and can lead to the game freezing until the animation is loaded. Developers are recommended to use GetAnimationClipAsync instead.Returns a AnimationClip from a given asset URL.
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <returns>A <c>AnimationClip?</c> value returned by the engine.</returns>
+        /// <param name="assetId">A <c>object</c> value.</param>
+        /// <returns>A <c>AnimationClip</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimationClip"/>
-        public AnimationClip? GetAnimationClip(object? assetId)
-            => global::Roblox.Reflection.Invoke<AnimationClip?>(this, "GetAnimationClip", assetId);
+        public AnimationClip GetAnimationClip(object assetId)
+            => global::Roblox.Reflection.Invoke<AnimationClip>(this, "GetAnimationClip", assetId)!;
 
         /// <summary>
         /// Deprecated: This function is deprecated and can lead to the game freezing until the animation is loaded. Developers are recommended to use GetAnimationClipAsync instead.Returns a AnimationClip from the supplied assetId.
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <param name="useCache">A <c>bool</c> value.</param>
-        /// <returns>A <c>AnimationClip?</c> value returned by the engine.</returns>
+        /// <returns>A <c>AnimationClip</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimationClipById"/>
-        public AnimationClip? GetAnimationClipById(long assetId, bool useCache)
-            => global::Roblox.Reflection.Invoke<AnimationClip?>(this, "GetAnimationClipById", assetId, useCache);
+        public AnimationClip GetAnimationClipById(long assetId, bool useCache)
+            => global::Roblox.Reflection.Invoke<AnimationClip>(this, "GetAnimationClipById", assetId, useCache)!;
 
         /// <summary>
         /// <c>AnimationClipProvider.GetAnimationNodeDefinition</c>
         /// </summary>
         /// <param name="type">A <c>Enum.AnimationNodeType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAnimationNodeDefinition(Enum.AnimationNodeType type)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAnimationNodeDefinition", type);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAnimationNodeDefinition(Enum.AnimationNodeType type)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAnimationNodeDefinition", type)!;
 
         /// <summary>
         /// <c>AnimationClipProvider.GetAnimationNodeTypes</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAnimationNodeTypes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAnimationNodeTypes");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAnimationNodeTypes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAnimationNodeTypes")!;
 
         /// <summary>
         /// <c>AnimationClipProvider.GetMemStats</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMemStats()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMemStats");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMemStats()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMemStats")!;
 
         /// <summary>
         /// Generates a temporary asset ID from a AnimationClip that can be used for localized testing of an animation.
         /// </summary>
-        /// <param name="animationClip">A <c>AnimationClip?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="animationClip">A <c>AnimationClip</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#RegisterActiveAnimationClip"/>
-        public object? RegisterActiveAnimationClip(AnimationClip? animationClip)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterActiveAnimationClip", animationClip);
+        public object RegisterActiveAnimationClip(AnimationClip animationClip)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterActiveAnimationClip", animationClip)!;
 
         /// <summary>
         /// Generates a temporary asset ID from a AnimationClip that can be used for localized testing of an animation. Generates a hash.
         /// </summary>
-        /// <param name="animationClip">A <c>AnimationClip?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="animationClip">A <c>AnimationClip</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#RegisterAnimationClip"/>
-        public object? RegisterAnimationClip(AnimationClip? animationClip)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterAnimationClip", animationClip);
+        public object RegisterAnimationClip(AnimationClip animationClip)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterAnimationClip", animationClip)!;
 
         /// <summary>
         /// Returns a AnimationClip based on the specified assetId asynchronously.
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <returns>A <c>AnimationClip?</c> value returned by the engine.</returns>
+        /// <param name="assetId">A <c>object</c> value.</param>
+        /// <returns>A <c>AnimationClip</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimationClipAsync"/>
-        public AnimationClip? GetAnimationClipAsync(object? assetId)
-            => global::Roblox.Reflection.Invoke<AnimationClip?>(this, "GetAnimationClipAsync", assetId);
+        public AnimationClip GetAnimationClipAsync(object assetId)
+            => global::Roblox.Reflection.Invoke<AnimationClip>(this, "GetAnimationClipAsync", assetId)!;
 
         /// <summary>
         /// Deprecated: This function returns an InventoryPages object which can be used to iterate over animations owned by a specific user.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimations"/>
-        public Instance? GetAnimations(object? userId)
+        public Instance? GetAnimations(object userId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetAnimations", userId);
 
         /// <summary>
         /// This function returns an InventoryPages object which can be used to iterate over animations owned by a specific user.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimationsAsync"/>
-        public Instance? GetAnimationsAsync(object? userId)
+        public Instance? GetAnimationsAsync(object userId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetAnimationsAsync", userId);
 
         /// <summary>
         /// <c>AnimationClipProvider.GetClipEvaluatorAsync</c>
         /// </summary>
-        /// <param name="assetId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="assetId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetClipEvaluatorAsync"/>
-        public object? GetClipEvaluatorAsync(object? assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetClipEvaluatorAsync", assetId);
+        public object GetClipEvaluatorAsync(object assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetClipEvaluatorAsync", assetId)!;
 
     }
 }

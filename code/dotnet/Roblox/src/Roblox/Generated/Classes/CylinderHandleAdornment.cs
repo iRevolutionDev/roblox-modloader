@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CylinderHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CylinderHandleAdornment? FromHandle(nuint handle)
+        public static new CylinderHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new CylinderHandleAdornment(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Angle"/>
         public float Angle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Angle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Angle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Angle", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Height"/>
         public float Height
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Height");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Height")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Height", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#InnerRadius"/>
         public float InnerRadius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "InnerRadius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "InnerRadius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "InnerRadius", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CylinderHandleAdornment#Shading"/>
         public Enum.AdornShading Shading
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdornShading>(this, "Shading")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdornShading>(this, "Shading", value);
         }
 

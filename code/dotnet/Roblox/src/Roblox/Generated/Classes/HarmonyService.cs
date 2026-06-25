@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="HarmonyService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HarmonyService? FromHandle(nuint handle)
+        public static new HarmonyService? FromHandle(nuint handle)
             => handle == 0 ? null : new HarmonyService(handle);
 
     }

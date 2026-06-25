@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PlayerMouse"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerMouse? FromHandle(nuint handle)
+        public static new PlayerMouse? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerMouse(handle);
 
     }

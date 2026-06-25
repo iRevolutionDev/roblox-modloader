@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Texture"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Texture? FromHandle(nuint handle)
+        public static new Texture? FromHandle(nuint handle)
             => handle == 0 ? null : new Texture(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#OffsetStudsU"/>
         public float OffsetStudsU
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "OffsetStudsU");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "OffsetStudsU")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "OffsetStudsU", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#OffsetStudsV"/>
         public float OffsetStudsV
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "OffsetStudsV");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "OffsetStudsV")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "OffsetStudsV", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#StudsPerTileU"/>
         public float StudsPerTileU
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "StudsPerTileU");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "StudsPerTileU")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "StudsPerTileU", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Texture#StudsPerTileV"/>
         public float StudsPerTileV
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "StudsPerTileV");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "StudsPerTileV")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "StudsPerTileV", value);
         }
 

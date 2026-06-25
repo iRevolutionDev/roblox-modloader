@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RotateP"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RotateP? FromHandle(nuint handle)
+        public static new RotateP? FromHandle(nuint handle)
             => handle == 0 ? null : new RotateP(handle);
 
     }

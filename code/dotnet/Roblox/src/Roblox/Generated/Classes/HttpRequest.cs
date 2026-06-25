@@ -18,23 +18,23 @@ namespace Roblox
         /// Creates a <see cref="HttpRequest"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HttpRequest? FromHandle(nuint handle)
+        public static new HttpRequest? FromHandle(nuint handle)
             => handle == 0 ? null : new HttpRequest(handle);
 
         /// <summary>
         /// <c>HttpRequest.Cancel</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Cancel()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Cancel");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Cancel()
+            => global::Roblox.Reflection.Invoke<object>(this, "Cancel")!;
 
         /// <summary>
         /// <c>HttpRequest.Start</c>
         /// </summary>
-        /// <param name="callback">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Start(object? callback)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Start", callback);
+        /// <param name="callback">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Start(object callback)
+            => global::Roblox.Reflection.Invoke<object>(this, "Start", callback)!;
 
     }
 }

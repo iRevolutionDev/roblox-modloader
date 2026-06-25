@@ -22,87 +22,87 @@ namespace Roblox
         /// Creates a <see cref="ScriptProfilerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptProfilerService? FromHandle(nuint handle)
+        public static new ScriptProfilerService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptProfilerService(handle);
 
         /// <summary>
         /// <c>ScriptProfilerService.ClientRequestData</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#ClientRequestData"/>
-        public object? ClientRequestData(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClientRequestData", player);
+        public object ClientRequestData(Player player)
+            => global::Roblox.Reflection.Invoke<object>(this, "ClientRequestData", player)!;
 
         /// <summary>
         /// <c>ScriptProfilerService.ClientStart</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="frequency">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="frequency">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#ClientStart"/>
-        public object? ClientStart(Player? player, object? frequency)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClientStart", player, frequency);
+        public object ClientStart(Player player, int? frequency = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ClientStart", player, frequency)!;
 
         /// <summary>
         /// <c>ScriptProfilerService.ClientStop</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#ClientStop"/>
-        public object? ClientStop(Player? player)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClientStop", player);
+        public object ClientStop(Player player)
+            => global::Roblox.Reflection.Invoke<object>(this, "ClientStop", player)!;
 
         /// <summary>
         /// <c>ScriptProfilerService.DeserializeJSON</c>
         /// </summary>
-        /// <param name="jsonString">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="jsonString">A <c>string?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#DeserializeJSON"/>
-        public object? DeserializeJSON(object? jsonString)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DeserializeJSON", jsonString);
+        public object DeserializeJSON(string? jsonString = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "DeserializeJSON", jsonString)!;
 
         /// <summary>
         /// <c>ScriptProfilerService.SaveScriptProfilingData</c>
         /// </summary>
-        /// <param name="jsonString">A <c>string?</c> value.</param>
-        /// <param name="filename">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? SaveScriptProfilingData(string? jsonString, string? filename)
-            => global::Roblox.Reflection.Invoke<string?>(this, "SaveScriptProfilingData", jsonString, filename);
+        /// <param name="jsonString">A <c>string</c> value.</param>
+        /// <param name="filename">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string SaveScriptProfilingData(string jsonString, string filename)
+            => global::Roblox.Reflection.Invoke<string>(this, "SaveScriptProfilingData", jsonString, filename)!;
 
         /// <summary>
         /// <c>ScriptProfilerService.ServerRequestData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#ServerRequestData"/>
-        public object? ServerRequestData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ServerRequestData");
+        public object ServerRequestData()
+            => global::Roblox.Reflection.Invoke<object>(this, "ServerRequestData")!;
 
         /// <summary>
         /// <c>ScriptProfilerService.ServerStart</c>
         /// </summary>
-        /// <param name="frequency">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="frequency">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#ServerStart"/>
-        public object? ServerStart(object? frequency)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ServerStart", frequency);
+        public object ServerStart(int? frequency = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ServerStart", frequency)!;
 
         /// <summary>
         /// <c>ScriptProfilerService.ServerStop</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#ServerStop"/>
-        public object? ServerStop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ServerStop");
+        public object ServerStop()
+            => global::Roblox.Reflection.Invoke<object>(this, "ServerStop")!;
 
         /// <summary>
         /// <c>ScriptProfilerService.OnNewData</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="jsonString">A <c>string?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="jsonString">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptProfilerService#OnNewData"/>
-        public event Action<Player?, string?>? OnNewData
+        public event Action<Player, string>? OnNewData
         {
             add { if (value is not null) AddEventHandler("OnNewData", value); }
             remove { if (value is not null) RemoveEventHandler("OnNewData", value); }

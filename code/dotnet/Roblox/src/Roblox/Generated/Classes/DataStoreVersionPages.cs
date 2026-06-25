@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DataStoreVersionPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreVersionPages? FromHandle(nuint handle)
+        public static new DataStoreVersionPages? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreVersionPages(handle);
 
     }

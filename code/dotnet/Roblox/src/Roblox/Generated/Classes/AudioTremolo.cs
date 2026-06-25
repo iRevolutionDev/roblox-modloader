@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AudioTremolo"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioTremolo? FromHandle(nuint handle)
+        public static new AudioTremolo? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioTremolo(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Bypass"/>
         public bool Bypass
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Bypass")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Bypass", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Depth"/>
         public float Depth
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Depth");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Depth")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Depth", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Duty"/>
         public float Duty
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Duty");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Duty")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Duty", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Frequency"/>
         public float Frequency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Frequency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Frequency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Frequency", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Shape"/>
         public float Shape
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Shape");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Shape")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Shape", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Skew"/>
         public float Skew
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Skew");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Skew")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Skew", value);
         }
 
@@ -91,44 +91,44 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#Square"/>
         public float Square
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Square");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Square")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Square", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.TargetName to connect to this instance via its Wire.TargetInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#GetInputPins"/>
-        public object? GetInputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetInputPins");
+        public object GetInputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetInputPins")!;
 
         /// <summary>
         /// Gets the list of pins that Wire can use in Wire.SourceName to connect to this instance via its Wire.SourceInstance property.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#GetOutputPins"/>
-        public object? GetOutputPins()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOutputPins");
+        public object GetOutputPins()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOutputPins")!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioTremolo via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioTremolo#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

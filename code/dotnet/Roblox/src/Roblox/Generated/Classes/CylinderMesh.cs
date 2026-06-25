@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CylinderMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CylinderMesh? FromHandle(nuint handle)
+        public static new CylinderMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new CylinderMesh(handle);
 
     }

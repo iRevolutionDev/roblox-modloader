@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ProximityPromptService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ProximityPromptService? FromHandle(nuint handle)
+        public static new ProximityPromptService? FromHandle(nuint handle)
             => handle == 0 ? null : new ProximityPromptService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#MaxIndicatorsVisible"/>
         public int MaxIndicatorsVisible
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxIndicatorsVisible");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxIndicatorsVisible")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxIndicatorsVisible", value);
         }
 
@@ -51,16 +51,16 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#MaxPromptsVisible"/>
         public int MaxPromptsVisible
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxPromptsVisible");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MaxPromptsVisible")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MaxPromptsVisible", value);
         }
 
         /// <summary>
         /// <c>ProximityPromptService.IndicatorHidden</c>
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#IndicatorHidden"/>
-        public event Action<ProximityPrompt?>? IndicatorHidden
+        public event Action<ProximityPrompt>? IndicatorHidden
         {
             add { if (value is not null) AddEventHandler("IndicatorHidden", value); }
             remove { if (value is not null) RemoveEventHandler("IndicatorHidden", value); }
@@ -69,9 +69,9 @@ namespace Roblox
         /// <summary>
         /// <c>ProximityPromptService.IndicatorShown</c>
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#IndicatorShown"/>
-        public event Action<ProximityPrompt?>? IndicatorShown
+        public event Action<ProximityPrompt>? IndicatorShown
         {
             add { if (value is not null) AddEventHandler("IndicatorShown", value); }
             remove { if (value is not null) RemoveEventHandler("IndicatorShown", value); }
@@ -80,10 +80,10 @@ namespace Roblox
         /// <summary>
         /// Triggers when the player begins holding down the KeyboardKeyCode key/button on a prompt with a non-zero HoldDuration.
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#PromptButtonHoldBegan"/>
-        public event Action<ProximityPrompt?, Player?>? PromptButtonHoldBegan
+        public event Action<ProximityPrompt, Player>? PromptButtonHoldBegan
         {
             add { if (value is not null) AddEventHandler("PromptButtonHoldBegan", value); }
             remove { if (value is not null) RemoveEventHandler("PromptButtonHoldBegan", value); }
@@ -92,10 +92,10 @@ namespace Roblox
         /// <summary>
         /// Triggers when the player stops holding down the KeyboardKeyCode key/button on a prompt with a non-zero HoldDuration.
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#PromptButtonHoldEnded"/>
-        public event Action<ProximityPrompt?, Player?>? PromptButtonHoldEnded
+        public event Action<ProximityPrompt, Player>? PromptButtonHoldEnded
         {
             add { if (value is not null) AddEventHandler("PromptButtonHoldEnded", value); }
             remove { if (value is not null) RemoveEventHandler("PromptButtonHoldEnded", value); }
@@ -104,9 +104,9 @@ namespace Roblox
         /// <summary>
         /// Triggers client-side when a prompt becomes hidden.
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#PromptHidden"/>
-        public event Action<ProximityPrompt?>? PromptHidden
+        public event Action<ProximityPrompt>? PromptHidden
         {
             add { if (value is not null) AddEventHandler("PromptHidden", value); }
             remove { if (value is not null) RemoveEventHandler("PromptHidden", value); }
@@ -115,10 +115,10 @@ namespace Roblox
         /// <summary>
         /// Triggers client-side when a prompt becomes visible.
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
         /// <param name="inputType">A <c>Enum.ProximityPromptInputType</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#PromptShown"/>
-        public event Action<ProximityPrompt?, Enum.ProximityPromptInputType>? PromptShown
+        public event Action<ProximityPrompt, Enum.ProximityPromptInputType>? PromptShown
         {
             add { if (value is not null) AddEventHandler("PromptShown", value); }
             remove { if (value is not null) RemoveEventHandler("PromptShown", value); }
@@ -127,10 +127,10 @@ namespace Roblox
         /// <summary>
         /// Triggers when the player stops holding down the KeyboardKeyCode key/button while triggering a prompt.
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#PromptTriggerEnded"/>
-        public event Action<ProximityPrompt?, Player?>? PromptTriggerEnded
+        public event Action<ProximityPrompt, Player>? PromptTriggerEnded
         {
             add { if (value is not null) AddEventHandler("PromptTriggerEnded", value); }
             remove { if (value is not null) RemoveEventHandler("PromptTriggerEnded", value); }
@@ -139,10 +139,10 @@ namespace Roblox
         /// <summary>
         /// Triggers when the user interacts with this prompt.
         /// </summary>
-        /// <param name="prompt">A <c>ProximityPrompt?</c> value.</param>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="prompt">A <c>ProximityPrompt</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPromptService#PromptTriggered"/>
-        public event Action<ProximityPrompt?, Player?>? PromptTriggered
+        public event Action<ProximityPrompt, Player>? PromptTriggered
         {
             add { if (value is not null) AddEventHandler("PromptTriggered", value); }
             remove { if (value is not null) RemoveEventHandler("PromptTriggered", value); }

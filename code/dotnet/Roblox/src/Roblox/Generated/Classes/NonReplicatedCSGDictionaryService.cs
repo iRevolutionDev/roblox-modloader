@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="NonReplicatedCSGDictionaryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static NonReplicatedCSGDictionaryService? FromHandle(nuint handle)
+        public static new NonReplicatedCSGDictionaryService? FromHandle(nuint handle)
             => handle == 0 ? null : new NonReplicatedCSGDictionaryService(handle);
 
     }

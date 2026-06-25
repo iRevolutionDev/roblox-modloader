@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AlignOrientation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AlignOrientation? FromHandle(nuint handle)
+        public static new AlignOrientation? FromHandle(nuint handle)
             => handle == 0 ? null : new AlignOrientation(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#AlignType"/>
         public Enum.AlignType AlignType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AlignType>(this, "AlignType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AlignType>(this, "AlignType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AlignType>(this, "AlignType", value);
         }
 
@@ -39,20 +39,20 @@ namespace Roblox
         /// The CFrame orientation with which the constraint will attempt to match the orientation of Attachment0.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#CFrame"/>
-        public global::Roblox.CFrame? CFrame
+        public global::Roblox.CFrame CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
         /// <summary>
         /// A Vector3 world space location toward which the primary axis will attempt to align.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#LookAtPosition"/>
-        public global::Roblox.Vector3? LookAtPosition
+        public global::Roblox.Vector3 LookAtPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "LookAtPosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "LookAtPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "LookAtPosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "LookAtPosition", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#MaxAngularVelocity"/>
         public float MaxAngularVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxAngularVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxAngularVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxAngularVelocity", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#MaxTorque"/>
         public float MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxTorque", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#Mode"/>
         public Enum.OrientationAlignmentMode Mode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.OrientationAlignmentMode>(this, "Mode");
+            get => global::Roblox.Reflection.GetProperty<Enum.OrientationAlignmentMode>(this, "Mode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.OrientationAlignmentMode>(this, "Mode", value);
         }
 
@@ -89,10 +89,10 @@ namespace Roblox
         /// The direction of the goal's X axis, represented as a unit Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#PrimaryAxis"/>
-        public global::Roblox.Vector3? PrimaryAxis
+        public global::Roblox.Vector3 PrimaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "PrimaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "PrimaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "PrimaryAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "PrimaryAxis", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#PrimaryAxisOnly"/>
         public bool PrimaryAxisOnly
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrimaryAxisOnly");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PrimaryAxisOnly")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PrimaryAxisOnly", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#ReactionTorqueEnabled"/>
         public bool ReactionTorqueEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionTorqueEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReactionTorqueEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReactionTorqueEnabled", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#Responsiveness"/>
         public float Responsiveness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Responsiveness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Responsiveness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Responsiveness", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#RigidityEnabled"/>
         public bool RigidityEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RigidityEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RigidityEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RigidityEnabled", value);
         }
 
@@ -139,10 +139,10 @@ namespace Roblox
         /// The direction of the goal's Y axis, represented as a unit Vector3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AlignOrientation#SecondaryAxis"/>
-        public global::Roblox.Vector3? SecondaryAxis
+        public global::Roblox.Vector3 SecondaryAxis
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SecondaryAxis", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SecondaryAxis")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SecondaryAxis", value);
         }
 
     }

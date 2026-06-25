@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VehicleController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VehicleController? FromHandle(nuint handle)
+        public static new VehicleController? FromHandle(nuint handle)
             => handle == 0 ? null : new VehicleController(handle);
 
     }

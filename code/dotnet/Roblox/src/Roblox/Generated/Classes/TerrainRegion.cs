@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TerrainRegion"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TerrainRegion? FromHandle(nuint handle)
+        public static new TerrainRegion? FromHandle(nuint handle)
             => handle == 0 ? null : new TerrainRegion(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#IsSmooth"/>
         public bool IsSmooth
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSmooth");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSmooth")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsSmooth", value);
         }
 
@@ -39,45 +39,45 @@ namespace Roblox
         /// The size of this TerrainRegion in cells.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#SizeInCells"/>
-        public global::Roblox.Vector3? SizeInCells
+        public global::Roblox.Vector3 SizeInCells
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "SizeInCells");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "SizeInCells", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "SizeInCells")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "SizeInCells", value);
         }
 
         /// <summary>
         /// <c>TerrainRegion.ApplyTransform</c>
         /// </summary>
-        /// <param name="rotation">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyTransform(global::Roblox.CFrame? rotation, global::Roblox.Vector3? size)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyTransform", rotation, size);
+        /// <param name="rotation">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplyTransform(global::Roblox.CFrame rotation, global::Roblox.Vector3 size)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyTransform", rotation, size)!;
 
         /// <summary>
         /// <c>TerrainRegion.ApplyTransformSubregion</c>
         /// </summary>
-        /// <param name="rotation">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <param name="size">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <param name="region">A <c>object?</c> value.</param>
-        /// <returns>A <c>TerrainRegion?</c> value returned by the engine.</returns>
-        public TerrainRegion? ApplyTransformSubregion(global::Roblox.CFrame? rotation, global::Roblox.Vector3? size, object? region)
-            => global::Roblox.Reflection.Invoke<TerrainRegion?>(this, "ApplyTransformSubregion", rotation, size, region);
+        /// <param name="rotation">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <param name="size">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <param name="region">A <c>object</c> value.</param>
+        /// <returns>A <c>TerrainRegion</c> value returned by the engine.</returns>
+        public TerrainRegion ApplyTransformSubregion(global::Roblox.CFrame rotation, global::Roblox.Vector3 size, object region)
+            => global::Roblox.Reflection.Invoke<TerrainRegion>(this, "ApplyTransformSubregion", rotation, size, region)!;
 
         /// <summary>
         /// Deprecated: This item is a deprecated function of a legacy Terrain engine that has been removed. Do not use it for new work.Transforms the TerrainRegion so it can be used with smooth terrain.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#ConvertToSmooth"/>
-        public object? ConvertToSmooth()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ConvertToSmooth");
+        public object ConvertToSmooth()
+            => global::Roblox.Reflection.Invoke<object>(this, "ConvertToSmooth")!;
 
         /// <summary>
         /// <c>TerrainRegion.GetRegionWireframe</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetRegionWireframe()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRegionWireframe");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetRegionWireframe()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRegionWireframe")!;
 
     }
 }

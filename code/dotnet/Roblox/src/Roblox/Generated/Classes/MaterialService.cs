@@ -22,387 +22,387 @@ namespace Roblox
         /// Creates a <see cref="MaterialService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MaterialService? FromHandle(nuint handle)
+        public static new MaterialService? FromHandle(nuint handle)
             => handle == 0 ? null : new MaterialService(handle);
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Asphalt.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#AsphaltName"/>
-        public string? AsphaltName
+        public string AsphaltName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AsphaltName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AsphaltName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AsphaltName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AsphaltName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Basalt.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#BasaltName"/>
-        public string? BasaltName
+        public string BasaltName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "BasaltName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "BasaltName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "BasaltName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "BasaltName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Brick.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#BrickName"/>
-        public string? BrickName
+        public string BrickName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "BrickName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "BrickName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "BrickName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "BrickName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.CardboardName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CardboardName"/>
-        public string? CardboardName
+        public string CardboardName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CardboardName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CardboardName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CardboardName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CardboardName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.CarpetName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CarpetName"/>
-        public string? CarpetName
+        public string CarpetName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CarpetName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CarpetName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CarpetName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CarpetName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.CeramicTilesName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CeramicTilesName"/>
-        public string? CeramicTilesName
+        public string CeramicTilesName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CeramicTilesName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CeramicTilesName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CeramicTilesName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CeramicTilesName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.ClayRoofTilesName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#ClayRoofTilesName"/>
-        public string? ClayRoofTilesName
+        public string ClayRoofTilesName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ClayRoofTilesName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ClayRoofTilesName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ClayRoofTilesName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ClayRoofTilesName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Cobblestone.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CobblestoneName"/>
-        public string? CobblestoneName
+        public string CobblestoneName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CobblestoneName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CobblestoneName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CobblestoneName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CobblestoneName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Concrete.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#ConcreteName"/>
-        public string? ConcreteName
+        public string ConcreteName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ConcreteName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ConcreteName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ConcreteName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ConcreteName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in CorrodedMetal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CorrodedMetalName"/>
-        public string? CorrodedMetalName
+        public string CorrodedMetalName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CorrodedMetalName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CorrodedMetalName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CorrodedMetalName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CorrodedMetalName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in CrackedLava.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#CrackedLavaName"/>
-        public string? CrackedLavaName
+        public string CrackedLavaName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CrackedLavaName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CrackedLavaName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CrackedLavaName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CrackedLavaName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in DiamondPlate.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#DiamondPlateName"/>
-        public string? DiamondPlateName
+        public string DiamondPlateName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DiamondPlateName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DiamondPlateName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DiamondPlateName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DiamondPlateName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Fabric.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#FabricName"/>
-        public string? FabricName
+        public string FabricName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FabricName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FabricName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FabricName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FabricName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Foil.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#FoilName"/>
-        public string? FoilName
+        public string FoilName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "FoilName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "FoilName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "FoilName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "FoilName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Glacier.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GlacierName"/>
-        public string? GlacierName
+        public string GlacierName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GlacierName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GlacierName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "GlacierName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "GlacierName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Granite.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GraniteName"/>
-        public string? GraniteName
+        public string GraniteName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GraniteName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GraniteName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "GraniteName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "GraniteName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Grass.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GrassName"/>
-        public string? GrassName
+        public string GrassName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GrassName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GrassName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "GrassName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "GrassName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Ground.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GroundName"/>
-        public string? GroundName
+        public string GroundName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "GroundName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "GroundName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "GroundName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "GroundName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Ice.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#IceName"/>
-        public string? IceName
+        public string IceName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "IceName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "IceName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "IceName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "IceName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in LeafyGrass.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#LeafyGrassName"/>
-        public string? LeafyGrassName
+        public string LeafyGrassName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LeafyGrassName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LeafyGrassName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LeafyGrassName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LeafyGrassName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.LeatherName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#LeatherName"/>
-        public string? LeatherName
+        public string LeatherName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LeatherName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LeatherName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LeatherName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LeatherName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Limestone.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#LimestoneName"/>
-        public string? LimestoneName
+        public string LimestoneName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LimestoneName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LimestoneName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LimestoneName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LimestoneName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Marble.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#MarbleName"/>
-        public string? MarbleName
+        public string MarbleName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MarbleName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MarbleName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MarbleName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MarbleName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Metal.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#MetalName"/>
-        public string? MetalName
+        public string MetalName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MetalName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MetalName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MetalName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MetalName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Mud.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#MudName"/>
-        public string? MudName
+        public string MudName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MudName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MudName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MudName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MudName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Pavement.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PavementName"/>
-        public string? PavementName
+        public string PavementName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PavementName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PavementName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PavementName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PavementName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Pebble.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PebbleName"/>
-        public string? PebbleName
+        public string PebbleName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PebbleName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PebbleName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PebbleName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PebbleName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.PlasterName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PlasterName"/>
-        public string? PlasterName
+        public string PlasterName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PlasterName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PlasterName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PlasterName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PlasterName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Plastic.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#PlasticName"/>
-        public string? PlasticName
+        public string PlasticName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PlasticName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PlasticName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PlasticName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PlasticName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Rock.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#RockName"/>
-        public string? RockName
+        public string RockName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RockName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RockName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RockName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RockName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.RoofShinglesName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#RoofShinglesName"/>
-        public string? RoofShinglesName
+        public string RoofShinglesName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RoofShinglesName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RoofShinglesName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RoofShinglesName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RoofShinglesName", value);
         }
 
         /// <summary>
         /// <c>MaterialService.RubberName</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#RubberName"/>
-        public string? RubberName
+        public string RubberName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RubberName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RubberName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RubberName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RubberName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Salt.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SaltName"/>
-        public string? SaltName
+        public string SaltName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SaltName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SaltName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SaltName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SaltName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Sand.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SandName"/>
-        public string? SandName
+        public string SandName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SandName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SandName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SandName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SandName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Sandstone.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SandstoneName"/>
-        public string? SandstoneName
+        public string SandstoneName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SandstoneName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SandstoneName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SandstoneName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SandstoneName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Slate.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SlateName"/>
-        public string? SlateName
+        public string SlateName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SlateName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SlateName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SlateName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SlateName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in SmoothPlastic.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SmoothPlasticName"/>
-        public string? SmoothPlasticName
+        public string SmoothPlasticName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SmoothPlasticName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SmoothPlasticName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SmoothPlasticName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SmoothPlasticName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in Snow.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SnowName"/>
-        public string? SnowName
+        public string SnowName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "SnowName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "SnowName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "SnowName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "SnowName", value);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#Use2022Materials"/>
         public bool Use2022Materials
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Use2022Materials");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Use2022Materials")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Use2022Materials", value);
         }
 
@@ -419,55 +419,55 @@ namespace Roblox
         /// Specify MaterialVariant name to override built-in Wood.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#WoodName"/>
-        public string? WoodName
+        public string WoodName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "WoodName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "WoodName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "WoodName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "WoodName", value);
         }
 
         /// <summary>
         /// Specify MaterialVariant name to override built-in WoodPlanks.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#WoodPlanksName"/>
-        public string? WoodPlanksName
+        public string WoodPlanksName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "WoodPlanksName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "WoodPlanksName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "WoodPlanksName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "WoodPlanksName", value);
         }
 
         /// <summary>
         /// Get the override MaterialVariant name of specified Material type.
         /// </summary>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GetBaseMaterialOverride"/>
-        public string? GetBaseMaterialOverride(Enum.Material material)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetBaseMaterialOverride", material);
+        public string GetBaseMaterialOverride(Enum.Material material)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetBaseMaterialOverride", material)!;
 
         /// <summary>
         /// <c>MaterialService.GetIsMaterialActionAsToolEnabled</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetIsMaterialActionAsToolEnabled()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsMaterialActionAsToolEnabled");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetIsMaterialActionAsToolEnabled")!;
 
         /// <summary>
         /// <c>MaterialService.GetMaterialOverrideChanged</c>
         /// </summary>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetMaterialOverrideChanged(Enum.Material material)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMaterialOverrideChanged", material);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetMaterialOverrideChanged(Enum.Material material)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMaterialOverrideChanged", material)!;
 
         /// <summary>
         /// Get the effective MaterialVariant reference given a name and Material.
         /// </summary>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>MaterialVariant?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>MaterialVariant</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#GetMaterialVariant"/>
-        public MaterialVariant? GetMaterialVariant(Enum.Material material, string? name)
-            => global::Roblox.Reflection.Invoke<MaterialVariant?>(this, "GetMaterialVariant", material, name);
+        public MaterialVariant GetMaterialVariant(Enum.Material material, string name)
+            => global::Roblox.Reflection.Invoke<MaterialVariant>(this, "GetMaterialVariant", material, name)!;
 
         /// <summary>
         /// <c>MaterialService.GetOverrideStatus</c>
@@ -475,33 +475,33 @@ namespace Roblox
         /// <param name="material">A <c>Enum.Material</c> value.</param>
         /// <returns>A <c>Enum.PropertyStatus</c> value returned by the engine.</returns>
         public Enum.PropertyStatus GetOverrideStatus(Enum.Material material)
-            => global::Roblox.Reflection.Invoke<Enum.PropertyStatus>(this, "GetOverrideStatus", material);
+            => global::Roblox.Reflection.Invoke<Enum.PropertyStatus>(this, "GetOverrideStatus", material)!;
 
         /// <summary>
         /// Set a MaterialVariant name that overrides a built-in material.
         /// </summary>
         /// <param name="material">A <c>Enum.Material</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialService#SetBaseMaterialOverride"/>
-        public object? SetBaseMaterialOverride(Enum.Material material, string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBaseMaterialOverride", material, name);
+        public object SetBaseMaterialOverride(Enum.Material material, string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBaseMaterialOverride", material, name)!;
 
         /// <summary>
         /// <c>MaterialService.SetCurrentMaterial</c>
         /// </summary>
         /// <param name="baseMaterial">A <c>Enum.Material</c> value.</param>
-        /// <param name="materialVariant">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetCurrentMaterial(Enum.Material baseMaterial, string? materialVariant)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCurrentMaterial", baseMaterial, materialVariant);
+        /// <param name="materialVariant">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetCurrentMaterial(Enum.Material baseMaterial, string materialVariant)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCurrentMaterial", baseMaterial, materialVariant)!;
 
         /// <summary>
         /// <c>MaterialService.ToggleMaterialFillToolEnabled</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ToggleMaterialFillToolEnabled()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ToggleMaterialFillToolEnabled");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ToggleMaterialFillToolEnabled()
+            => global::Roblox.Reflection.Invoke<object>(this, "ToggleMaterialFillToolEnabled")!;
 
         /// <summary>
         /// <c>MaterialService.MaterialFillToolEnabledChanged</c>

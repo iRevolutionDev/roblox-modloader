@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="StudioData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StudioData? FromHandle(nuint handle)
+        public static new StudioData? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioData(handle);
 
         public bool EnableScriptCollabByDefaultOnLoad
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableScriptCollabByDefaultOnLoad");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "EnableScriptCollabByDefaultOnLoad")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "EnableScriptCollabByDefaultOnLoad", value);
         }
 

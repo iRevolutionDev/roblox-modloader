@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="LineHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LineHandleAdornment? FromHandle(nuint handle)
+        public static new LineHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new LineHandleAdornment(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineHandleAdornment#Length"/>
         public float Length
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Length", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LineHandleAdornment#Thickness"/>
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 

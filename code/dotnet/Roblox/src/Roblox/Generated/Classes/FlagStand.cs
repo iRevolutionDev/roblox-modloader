@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="FlagStand"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FlagStand? FromHandle(nuint handle)
+        public static new FlagStand? FromHandle(nuint handle)
             => handle == 0 ? null : new FlagStand(handle);
 
         /// <summary>
         /// The Team that owns the FlagStand. Corresponds with the TeamColors in the Teams service.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlagStand#TeamColor"/>
-        public global::Roblox.BrickColor? TeamColor
+        public global::Roblox.BrickColor TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TeamColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TeamColor", value);
         }
 
         /// <summary>
         /// Fires when a player bearing an opposing flag, and having the same Player.TeamColor as the stand, touches the FlagStand.
         /// </summary>
-        /// <param name="player">A <c>Instance?</c> value.</param>
+        /// <param name="player">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlagStand#FlagCaptured"/>
-        public event Action<Instance?>? FlagCaptured
+        public event Action<Instance>? FlagCaptured
         {
             add { if (value is not null) AddEventHandler("FlagCaptured", value); }
             remove { if (value is not null) RemoveEventHandler("FlagCaptured", value); }

@@ -22,43 +22,43 @@ namespace Roblox
         /// Creates a <see cref="RemoteEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RemoteEvent? FromHandle(nuint handle)
+        public static new RemoteEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteEvent(handle);
 
         /// <summary>
         /// Fires the OnClientEvent event for each connected client.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#FireAllClients"/>
-        public object? FireAllClients(object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireAllClients", arguments);
+        public object FireAllClients(object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireAllClients", arguments)!;
 
         /// <summary>
         /// Fires the OnClientEvent event for a specific client.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#FireClient"/>
-        public object? FireClient(Player? player, object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireClient", player, arguments);
+        public object FireClient(Player player, object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireClient", player, arguments)!;
 
         /// <summary>
         /// Fires the OnServerEvent event on the server from one connected client.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="arguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#FireServer"/>
-        public object? FireServer(object? arguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FireServer", arguments);
+        public object FireServer(object arguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "FireServer", arguments)!;
 
         /// <summary>
         /// Fires from a LocalScript when either FireClient() or FireAllClients() is called on the same RemoteEvent instance from a Script.
         /// </summary>
-        /// <param name="arguments">A <c>object?</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#OnClientEvent"/>
-        public event Action<object?>? OnClientEvent
+        public event Action<object>? OnClientEvent
         {
             add { if (value is not null) AddEventHandler("OnClientEvent", value); }
             remove { if (value is not null) RemoveEventHandler("OnClientEvent", value); }
@@ -67,10 +67,10 @@ namespace Roblox
         /// <summary>
         /// Fires from a Script when FireServer() is called on the same RemoteEvent instance from a LocalScript.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        /// <param name="arguments">A <c>object?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
+        /// <param name="arguments">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RemoteEvent#OnServerEvent"/>
-        public event Action<Player?, object?>? OnServerEvent
+        public event Action<Player, object>? OnServerEvent
         {
             add { if (value is not null) AddEventHandler("OnServerEvent", value); }
             remove { if (value is not null) RemoveEventHandler("OnServerEvent", value); }

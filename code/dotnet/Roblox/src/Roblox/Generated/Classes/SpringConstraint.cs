@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SpringConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SpringConstraint? FromHandle(nuint handle)
+        public static new SpringConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new SpringConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Coils"/>
         public float Coils
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Coils");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Coils")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Coils", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#CurrentLength"/>
         public float CurrentLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentLength", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Damping"/>
         public float Damping
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Damping");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Damping")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Damping", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#FreeLength"/>
         public float FreeLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "FreeLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "FreeLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "FreeLength", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitsEnabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#MaxForce"/>
         public float MaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxForce", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#MaxLength"/>
         public float MaxLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxLength", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#MinLength"/>
         public float MinLength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MinLength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MinLength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MinLength", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Stiffness"/>
         public float Stiffness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Stiffness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Stiffness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Stiffness", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpringConstraint#Thickness"/>
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 

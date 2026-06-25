@@ -18,13 +18,13 @@ namespace Roblox
         /// Creates a <see cref="PausedStateException"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PausedStateException? FromHandle(nuint handle)
+        public static new PausedStateException? FromHandle(nuint handle)
             => handle == 0 ? null : new PausedStateException(handle);
 
-        public string? ExceptionText
+        public string ExceptionText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ExceptionText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ExceptionText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ExceptionText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ExceptionText", value);
         }
 
     }

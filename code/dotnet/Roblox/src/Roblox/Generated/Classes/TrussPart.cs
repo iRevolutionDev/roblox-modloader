@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TrussPart"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TrussPart? FromHandle(nuint handle)
+        public static new TrussPart? FromHandle(nuint handle)
             => handle == 0 ? null : new TrussPart(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TrussPart#Style"/>
         public Enum.Style Style
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Style>(this, "Style");
+            get => global::Roblox.Reflection.GetProperty<Enum.Style>(this, "Style")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Style>(this, "Style", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ClimbController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ClimbController? FromHandle(nuint handle)
+        public static new ClimbController? FromHandle(nuint handle)
             => handle == 0 ? null : new ClimbController(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#AccelerationTime"/>
         public float AccelerationTime
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationTime");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AccelerationTime")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AccelerationTime", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#BalanceMaxTorque"/>
         public float BalanceMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceMaxTorque", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#BalanceSpeed"/>
         public float BalanceSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BalanceSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BalanceSpeed", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClimbController#MoveMaxForce"/>
         public float MoveMaxForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MoveMaxForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MoveMaxForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MoveMaxForce", value);
         }
 

@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="ScriptRuntime"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptRuntime? FromHandle(nuint handle)
+        public static new ScriptRuntime? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptRuntime(handle);
 
     }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="EulerRotationCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static EulerRotationCurve? FromHandle(nuint handle)
+        public static new EulerRotationCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new EulerRotationCurve(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#RotationOrder"/>
         public Enum.RotationOrder RotationOrder
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RotationOrder>(this, "RotationOrder");
+            get => global::Roblox.Reflection.GetProperty<Enum.RotationOrder>(this, "RotationOrder")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RotationOrder>(this, "RotationOrder", value);
         }
 
@@ -39,43 +39,43 @@ namespace Roblox
         /// Samples the three FloatCurves (X, Y, Z) at the passed time argument and returns the result as three Euler angles.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#GetAnglesAtTime"/>
-        public object? GetAnglesAtTime(float time)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAnglesAtTime", time);
+        public object GetAnglesAtTime(float time)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAnglesAtTime", time)!;
 
         /// <summary>
         /// Samples the EulerRotationCurve at a given time and returns the corresponding rotation.
         /// </summary>
         /// <param name="time">A <c>float</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#GetRotationAtTime"/>
-        public global::Roblox.CFrame? GetRotationAtTime(float time)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetRotationAtTime", time);
+        public global::Roblox.CFrame GetRotationAtTime(float time)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetRotationAtTime", time)!;
 
         /// <summary>
         /// Returns the FloatCurve controlling the X Euler angle channel.
         /// </summary>
-        /// <returns>A <c>FloatCurve?</c> value returned by the engine.</returns>
+        /// <returns>A <c>FloatCurve</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#X"/>
-        public FloatCurve? X()
-            => global::Roblox.Reflection.Invoke<FloatCurve?>(this, "X");
+        public FloatCurve X()
+            => global::Roblox.Reflection.Invoke<FloatCurve>(this, "X")!;
 
         /// <summary>
         /// Returns the FloatCurve controlling the Y Euler angle channel.
         /// </summary>
-        /// <returns>A <c>FloatCurve?</c> value returned by the engine.</returns>
+        /// <returns>A <c>FloatCurve</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#Y"/>
-        public FloatCurve? Y()
-            => global::Roblox.Reflection.Invoke<FloatCurve?>(this, "Y");
+        public FloatCurve Y()
+            => global::Roblox.Reflection.Invoke<FloatCurve>(this, "Y")!;
 
         /// <summary>
         /// Returns the FloatCurve controlling the Z Euler angle channel.
         /// </summary>
-        /// <returns>A <c>FloatCurve?</c> value returned by the engine.</returns>
+        /// <returns>A <c>FloatCurve</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EulerRotationCurve#Z"/>
-        public FloatCurve? Z()
-            => global::Roblox.Reflection.Invoke<FloatCurve?>(this, "Z");
+        public FloatCurve Z()
+            => global::Roblox.Reflection.Invoke<FloatCurve>(this, "Z")!;
 
     }
 }

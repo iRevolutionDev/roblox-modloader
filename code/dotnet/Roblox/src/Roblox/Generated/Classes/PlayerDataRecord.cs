@@ -18,135 +18,135 @@ namespace Roblox
         /// Creates a <see cref="PlayerDataRecord"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlayerDataRecord? FromHandle(nuint handle)
+        public static new PlayerDataRecord? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerDataRecord(handle);
 
         public long CreatedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreatedTime", value);
         }
 
         public bool DefaultRecordName
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DefaultRecordName");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DefaultRecordName")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DefaultRecordName", value);
         }
 
         public bool Dirty
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Dirty");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Dirty")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Dirty", value);
         }
 
         public Enum.PlayerDataErrorState Error
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PlayerDataErrorState>(this, "Error");
+            get => global::Roblox.Reflection.GetProperty<Enum.PlayerDataErrorState>(this, "Error")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PlayerDataErrorState>(this, "Error", value);
         }
 
         public long FlushedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "FlushedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "FlushedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "FlushedTime", value);
         }
 
         public long LoadedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "LoadedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "LoadedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "LoadedTime", value);
         }
 
         public long ModifiedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "ModifiedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "ModifiedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "ModifiedTime", value);
         }
 
         public bool NewRecord
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "NewRecord");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "NewRecord")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "NewRecord", value);
         }
 
         public bool Readable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Readable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Readable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Readable", value);
         }
 
-        public string? RecordName
+        public string RecordName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "RecordName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "RecordName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "RecordName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "RecordName", value);
         }
 
         public bool Writable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Writable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Writable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Writable", value);
         }
 
         /// <summary>
         /// <c>PlayerDataRecord.GetPlayer</c>
         /// </summary>
-        /// <returns>A <c>Player?</c> value returned by the engine.</returns>
-        public Player? GetPlayer()
-            => global::Roblox.Reflection.Invoke<Player?>(this, "GetPlayer");
+        /// <returns>A <c>Player</c> value returned by the engine.</returns>
+        public Player GetPlayer()
+            => global::Roblox.Reflection.Invoke<Player>(this, "GetPlayer")!;
 
         /// <summary>
         /// <c>PlayerDataRecord.GetValue</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetValue(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValue", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetValue(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetValue", key)!;
 
         /// <summary>
         /// <c>PlayerDataRecord.GetValueChangedSignal</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetValueChangedSignal(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetValueChangedSignal", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetValueChangedSignal(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetValueChangedSignal", key)!;
 
         /// <summary>
         /// <c>PlayerDataRecord.RemoveValue</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveValue(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveValue", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveValue(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveValue", key)!;
 
         /// <summary>
         /// <c>PlayerDataRecord.SetValue</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetValue(string? key, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetValue", key, value);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetValue(string key, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetValue", key, value)!;
 
         /// <summary>
         /// <c>PlayerDataRecord.ReleaseAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReleaseAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReleaseAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReleaseAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReleaseAsync")!;
 
         /// <summary>
         /// <c>PlayerDataRecord.RequestFlushAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestFlushAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestFlushAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestFlushAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestFlushAsync")!;
 
         /// <summary>
         /// <c>PlayerDataRecord.Changed</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        public event Action<string?, object?>? Changed
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        public new event Action<string, object>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }
@@ -156,8 +156,8 @@ namespace Roblox
         /// <c>PlayerDataRecord.Flushed</c>
         /// </summary>
         /// <param name="flushState">A <c>bool</c> value.</param>
-        /// <param name="error">A <c>object?</c> value.</param>
-        public event Action<bool, object?>? Flushed
+        /// <param name="error">A <c>string?</c> value.</param>
+        public event Action<bool, string?>? Flushed
         {
             add { if (value is not null) AddEventHandler("Flushed", value); }
             remove { if (value is not null) RemoveEventHandler("Flushed", value); }
@@ -167,8 +167,8 @@ namespace Roblox
         /// <c>PlayerDataRecord.Loaded</c>
         /// </summary>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <param name="error">A <c>object?</c> value.</param>
-        public event Action<bool, object?>? Loaded
+        /// <param name="error">A <c>string?</c> value.</param>
+        public event Action<bool, string?>? Loaded
         {
             add { if (value is not null) AddEventHandler("Loaded", value); }
             remove { if (value is not null) RemoveEventHandler("Loaded", value); }

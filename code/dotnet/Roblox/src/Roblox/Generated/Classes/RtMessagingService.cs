@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="RtMessagingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RtMessagingService? FromHandle(nuint handle)
+        public static new RtMessagingService? FromHandle(nuint handle)
             => handle == 0 ? null : new RtMessagingService(handle);
 
     }

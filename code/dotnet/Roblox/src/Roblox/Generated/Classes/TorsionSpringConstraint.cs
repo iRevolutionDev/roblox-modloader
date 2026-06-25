@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TorsionSpringConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TorsionSpringConstraint? FromHandle(nuint handle)
+        public static new TorsionSpringConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new TorsionSpringConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Coils"/>
         public float Coils
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Coils");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Coils")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Coils", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#CurrentAngle"/>
         public float CurrentAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentAngle", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Damping"/>
         public float Damping
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Damping");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Damping")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Damping", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#LimitEnabled"/>
         public bool LimitEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitEnabled", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitsEnabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#MaxAngle"/>
         public float MaxAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxAngle", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#MaxTorque"/>
         public float MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxTorque", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Restitution"/>
         public float Restitution
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Restitution", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#Stiffness"/>
         public float Stiffness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Stiffness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Stiffness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Stiffness", value);
         }
 

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GuiMain"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GuiMain? FromHandle(nuint handle)
+        public static new GuiMain? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiMain(handle);
 
     }

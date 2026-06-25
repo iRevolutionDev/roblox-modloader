@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="CatalogPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static CatalogPages? FromHandle(nuint handle)
+        public static new CatalogPages? FromHandle(nuint handle)
             => handle == 0 ? null : new CatalogPages(handle);
 
     }

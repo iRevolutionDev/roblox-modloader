@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="AssetDeliveryProxy"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetDeliveryProxy? FromHandle(nuint handle)
+        public static new AssetDeliveryProxy? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetDeliveryProxy(handle);
 
         /// <summary>
         /// <c>AssetDeliveryProxy.Interface</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetDeliveryProxy#Interface"/>
-        public string? Interface
+        public string Interface
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Interface");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Interface", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Interface")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Interface", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetDeliveryProxy#Port"/>
         public int Port
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Port");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Port")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Port", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetDeliveryProxy#StartServer"/>
         public bool StartServer
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "StartServer");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "StartServer")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "StartServer", value);
         }
 

@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="ExperienceInviteOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ExperienceInviteOptions? FromHandle(nuint handle)
+        public static new ExperienceInviteOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceInviteOptions(handle);
 
         /// <summary>
         /// Asset ID that maps to a Notification asset type.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceInviteOptions#InviteMessageId"/>
-        public string? InviteMessageId
+        public string InviteMessageId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "InviteMessageId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "InviteMessageId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "InviteMessageId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "InviteMessageId", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceInviteOptions#InviteUser"/>
         public long InviteUser
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "InviteUser");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "InviteUser")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "InviteUser", value);
         }
 
@@ -49,20 +49,20 @@ namespace Roblox
         /// Used to set a parameter in Player:GetJoinData() when a friend joins from the invite notification.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceInviteOptions#LaunchData"/>
-        public string? LaunchData
+        public string LaunchData
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "LaunchData");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "LaunchData", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "LaunchData")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "LaunchData", value);
         }
 
         /// <summary>
         /// Custom text shown on the invite prompt for the sending player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ExperienceInviteOptions#PromptMessage"/>
-        public string? PromptMessage
+        public string PromptMessage
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PromptMessage");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PromptMessage", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PromptMessage")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PromptMessage", value);
         }
 
     }

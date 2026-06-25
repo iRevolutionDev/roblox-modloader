@@ -18,15 +18,15 @@ namespace Roblox
         /// Creates a <see cref="ChangeHistoryStreamingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ChangeHistoryStreamingService? FromHandle(nuint handle)
+        public static new ChangeHistoryStreamingService? FromHandle(nuint handle)
             => handle == 0 ? null : new ChangeHistoryStreamingService(handle);
 
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendCreateInstanceFromStudio</c>
         /// </summary>
-        /// <param name="parentInstance">A <c>Instance?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        public event Action<Instance?, Instance?>? SendCreateInstanceFromStudio
+        /// <param name="parentInstance">A <c>Instance</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        public event Action<Instance, Instance>? SendCreateInstanceFromStudio
         {
             add { if (value is not null) AddEventHandler("SendCreateInstanceFromStudio", value); }
             remove { if (value is not null) RemoveEventHandler("SendCreateInstanceFromStudio", value); }
@@ -35,9 +35,9 @@ namespace Roblox
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendDeleteInstanceFromStudio</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="setParentToNull">A <c>bool</c> value.</param>
-        public event Action<Instance?, bool>? SendDeleteInstanceFromStudio
+        public event Action<Instance, bool>? SendDeleteInstanceFromStudio
         {
             add { if (value is not null) AddEventHandler("SendDeleteInstanceFromStudio", value); }
             remove { if (value is not null) RemoveEventHandler("SendDeleteInstanceFromStudio", value); }
@@ -46,9 +46,9 @@ namespace Roblox
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendReparentInstanceFromStudio</c>
         /// </summary>
-        /// <param name="parentInstance">A <c>Instance?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        public event Action<Instance?, Instance?>? SendReparentInstanceFromStudio
+        /// <param name="parentInstance">A <c>Instance</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        public event Action<Instance, Instance>? SendReparentInstanceFromStudio
         {
             add { if (value is not null) AddEventHandler("SendReparentInstanceFromStudio", value); }
             remove { if (value is not null) RemoveEventHandler("SendReparentInstanceFromStudio", value); }
@@ -57,12 +57,12 @@ namespace Roblox
         /// <summary>
         /// <c>ChangeHistoryStreamingService.SendTerrainChangeFromStudio</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <param name="chunkX">A <c>int</c> value.</param>
         /// <param name="chunkY">A <c>int</c> value.</param>
         /// <param name="chunkZ">A <c>int</c> value.</param>
-        /// <param name="cells">A <c>string?</c> value.</param>
-        public event Action<Instance?, int, int, int, string?>? SendTerrainChangeFromStudio
+        /// <param name="cells">A <c>string</c> value.</param>
+        public event Action<Instance, int, int, int, string>? SendTerrainChangeFromStudio
         {
             add { if (value is not null) AddEventHandler("SendTerrainChangeFromStudio", value); }
             remove { if (value is not null) RemoveEventHandler("SendTerrainChangeFromStudio", value); }

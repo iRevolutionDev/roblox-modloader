@@ -18,41 +18,41 @@ namespace Roblox
         /// Creates a <see cref="ClientStorageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ClientStorageService? FromHandle(nuint handle)
+        public static new ClientStorageService? FromHandle(nuint handle)
             => handle == 0 ? null : new ClientStorageService(handle);
 
         /// <summary>
         /// <c>ClientStorageService.Clear</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Clear()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Clear");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Clear()
+            => global::Roblox.Reflection.Invoke<object>(this, "Clear")!;
 
         /// <summary>
         /// <c>ClientStorageService.GetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetItem(string? key)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetItem", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetItem(string key)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetItem", key)!;
 
         /// <summary>
         /// <c>ClientStorageService.RemoveItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveItem(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveItem", key);
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveItem(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveItem", key)!;
 
         /// <summary>
         /// <c>ClientStorageService.SetItem</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>string?</c> value.</param>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
         /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetItem(string? key, string? value, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetItem", key, value, options);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetItem(string key, string value, object? options = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetItem", key, value, options)!;
 
     }
 }

@@ -22,21 +22,21 @@ namespace Roblox
         /// Creates a <see cref="VirtualInputManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VirtualInputManager? FromHandle(nuint handle)
+        public static new VirtualInputManager? FromHandle(nuint handle)
             => handle == 0 ? null : new VirtualInputManager(handle);
 
-        public string? AdditionalLuaState
+        public string AdditionalLuaState
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "AdditionalLuaState");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "AdditionalLuaState", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "AdditionalLuaState")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "AdditionalLuaState", value);
         }
 
         /// <summary>
         /// <c>VirtualInputManager.Dump</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Dump()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Dump");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Dump()
+            => global::Roblox.Reflection.Invoke<object>(this, "Dump")!;
 
         /// <summary>
         /// <c>VirtualInputManager.HandleGamepadAxisInput</c>
@@ -46,9 +46,9 @@ namespace Roblox
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
         /// <param name="z">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleGamepadAxisInput(int objectId, Enum.KeyCode keyCode, float x, float y, float z)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleGamepadAxisInput", objectId, keyCode, x, y, z);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleGamepadAxisInput(int objectId, Enum.KeyCode keyCode, float x, float y, float z)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleGamepadAxisInput", objectId, keyCode, x, y, z)!;
 
         /// <summary>
         /// <c>VirtualInputManager.HandleGamepadButtonInput</c>
@@ -56,25 +56,25 @@ namespace Roblox
         /// <param name="deviceId">A <c>int</c> value.</param>
         /// <param name="keyCode">A <c>Enum.KeyCode</c> value.</param>
         /// <param name="buttonState">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleGamepadButtonInput(int deviceId, Enum.KeyCode keyCode, int buttonState)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleGamepadButtonInput", deviceId, keyCode, buttonState);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleGamepadButtonInput(int deviceId, Enum.KeyCode keyCode, int buttonState)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleGamepadButtonInput", deviceId, keyCode, buttonState)!;
 
         /// <summary>
         /// <c>VirtualInputManager.HandleGamepadConnect</c>
         /// </summary>
         /// <param name="deviceId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleGamepadConnect(int deviceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleGamepadConnect", deviceId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleGamepadConnect(int deviceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleGamepadConnect", deviceId)!;
 
         /// <summary>
         /// <c>VirtualInputManager.HandleGamepadDisconnect</c>
         /// </summary>
         /// <param name="deviceId">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? HandleGamepadDisconnect(int deviceId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "HandleGamepadDisconnect", deviceId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object HandleGamepadDisconnect(int deviceId)
+            => global::Roblox.Reflection.Invoke<object>(this, "HandleGamepadDisconnect", deviceId)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendAccelerometerEvent</c>
@@ -82,9 +82,9 @@ namespace Roblox
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
         /// <param name="z">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendAccelerometerEvent(float x, float y, float z)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendAccelerometerEvent", x, y, z);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendAccelerometerEvent(float x, float y, float z)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendAccelerometerEvent", x, y, z)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendGravityEvent</c>
@@ -92,9 +92,9 @@ namespace Roblox
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
         /// <param name="z">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendGravityEvent(float x, float y, float z)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendGravityEvent", x, y, z);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendGravityEvent(float x, float y, float z)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendGravityEvent", x, y, z)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendGyroscopeEvent</c>
@@ -103,9 +103,9 @@ namespace Roblox
         /// <param name="quatY">A <c>float</c> value.</param>
         /// <param name="quatZ">A <c>float</c> value.</param>
         /// <param name="quatW">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendGyroscopeEvent(float quatX, float quatY, float quatZ, float quatW)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendGyroscopeEvent", quatX, quatY, quatZ, quatW);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendGyroscopeEvent(float quatX, float quatY, float quatZ, float quatW)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendGyroscopeEvent", quatX, quatY, quatZ, quatW)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendKeyEvent</c>
@@ -113,10 +113,10 @@ namespace Roblox
         /// <param name="isPressed">A <c>bool</c> value.</param>
         /// <param name="keyCode">A <c>Enum.KeyCode</c> value.</param>
         /// <param name="isRepeatedKey">A <c>bool</c> value.</param>
-        /// <param name="layerCollector">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendKeyEvent(bool isPressed, Enum.KeyCode keyCode, bool isRepeatedKey, Instance? layerCollector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendKeyEvent", isPressed, keyCode, isRepeatedKey, layerCollector);
+        /// <param name="layerCollector">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendKeyEvent(bool isPressed, Enum.KeyCode keyCode, bool isRepeatedKey, Instance layerCollector)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendKeyEvent", isPressed, keyCode, isRepeatedKey, layerCollector)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendMouseButtonEvent</c>
@@ -125,31 +125,31 @@ namespace Roblox
         /// <param name="y">A <c>int</c> value.</param>
         /// <param name="mouseButton">A <c>int</c> value.</param>
         /// <param name="isDown">A <c>bool</c> value.</param>
-        /// <param name="layerCollector">A <c>Instance?</c> value.</param>
+        /// <param name="layerCollector">A <c>Instance</c> value.</param>
         /// <param name="repeatCount">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendMouseButtonEvent(int x, int y, int mouseButton, bool isDown, Instance? layerCollector, int repeatCount)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendMouseButtonEvent", x, y, mouseButton, isDown, layerCollector, repeatCount);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendMouseButtonEvent(int x, int y, int mouseButton, bool isDown, Instance layerCollector, int repeatCount)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendMouseButtonEvent", x, y, mouseButton, isDown, layerCollector, repeatCount)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendMouseMoveDeltaEvent</c>
         /// </summary>
         /// <param name="deltaX">A <c>float</c> value.</param>
         /// <param name="deltaY">A <c>float</c> value.</param>
-        /// <param name="layerCollector">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendMouseMoveDeltaEvent(float deltaX, float deltaY, Instance? layerCollector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendMouseMoveDeltaEvent", deltaX, deltaY, layerCollector);
+        /// <param name="layerCollector">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendMouseMoveDeltaEvent(float deltaX, float deltaY, Instance layerCollector)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendMouseMoveDeltaEvent", deltaX, deltaY, layerCollector)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendMouseMoveEvent</c>
         /// </summary>
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
-        /// <param name="layerCollector">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendMouseMoveEvent(float x, float y, Instance? layerCollector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendMouseMoveEvent", x, y, layerCollector);
+        /// <param name="layerCollector">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendMouseMoveEvent(float x, float y, Instance layerCollector)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendMouseMoveEvent", x, y, layerCollector)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendMouseWheelEvent</c>
@@ -157,10 +157,10 @@ namespace Roblox
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
         /// <param name="isForwardScroll">A <c>bool</c> value.</param>
-        /// <param name="layerCollector">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendMouseWheelEvent(float x, float y, bool isForwardScroll, Instance? layerCollector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendMouseWheelEvent", x, y, isForwardScroll, layerCollector);
+        /// <param name="layerCollector">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendMouseWheelEvent(float x, float y, bool isForwardScroll, Instance layerCollector)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendMouseWheelEvent", x, y, isForwardScroll, layerCollector)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendScroll</c>
@@ -169,20 +169,20 @@ namespace Roblox
         /// <param name="y">A <c>float</c> value.</param>
         /// <param name="deltaX">A <c>float</c> value.</param>
         /// <param name="deltaY">A <c>float</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
-        /// <param name="layerCollector">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendScroll(float x, float y, float deltaX, float deltaY, object? options, Instance? layerCollector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendScroll", x, y, deltaX, deltaY, options, layerCollector);
+        /// <param name="options">A <c>object</c> value.</param>
+        /// <param name="layerCollector">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendScroll(float x, float y, float deltaX, float deltaY, object options, Instance layerCollector)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendScroll", x, y, deltaX, deltaY, options, layerCollector)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendTextInputCharacterEvent</c>
         /// </summary>
-        /// <param name="str">A <c>string?</c> value.</param>
-        /// <param name="layerCollector">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendTextInputCharacterEvent(string? str, Instance? layerCollector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendTextInputCharacterEvent", str, layerCollector);
+        /// <param name="str">A <c>string</c> value.</param>
+        /// <param name="layerCollector">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendTextInputCharacterEvent(string str, Instance layerCollector)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendTextInputCharacterEvent", str, layerCollector)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SendTouchEvent</c>
@@ -191,85 +191,85 @@ namespace Roblox
         /// <param name="state">A <c>int</c> value.</param>
         /// <param name="x">A <c>float</c> value.</param>
         /// <param name="y">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendTouchEvent(long touchId, int state, float x, float y)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SendTouchEvent", touchId, state, x, y);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendTouchEvent(long touchId, int state, float x, float y)
+            => global::Roblox.Reflection.Invoke<object>(this, "SendTouchEvent", touchId, state, x, y)!;
 
         /// <summary>
         /// <c>VirtualInputManager.SetInputTypesToIgnore</c>
         /// </summary>
-        /// <param name="inputTypesToIgnore">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetInputTypesToIgnore(object? inputTypesToIgnore)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetInputTypesToIgnore", inputTypesToIgnore);
+        /// <param name="inputTypesToIgnore">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetInputTypesToIgnore(object inputTypesToIgnore)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetInputTypesToIgnore", inputTypesToIgnore)!;
 
         /// <summary>
         /// <c>VirtualInputManager.StartPlaying</c>
         /// </summary>
-        /// <param name="fileName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartPlaying(string? fileName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartPlaying", fileName);
+        /// <param name="fileName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartPlaying(string fileName)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartPlaying", fileName)!;
 
         /// <summary>
         /// <c>VirtualInputManager.StartPlayingJSON</c>
         /// </summary>
-        /// <param name="string">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartPlayingJSON(string? @string)
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartPlayingJSON", @string);
+        /// <param name="@string">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartPlayingJSON(string @string)
+            => global::Roblox.Reflection.Invoke<object>(this, "StartPlayingJSON", @string)!;
 
         /// <summary>
         /// <c>VirtualInputManager.StartRecording</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartRecording()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartRecording");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartRecording()
+            => global::Roblox.Reflection.Invoke<object>(this, "StartRecording")!;
 
         /// <summary>
         /// <c>VirtualInputManager.StopPlaying</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopPlaying()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopPlaying");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopPlaying()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopPlaying")!;
 
         /// <summary>
         /// <c>VirtualInputManager.StopRecording</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopRecording()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopRecording");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopRecording()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopRecording")!;
 
         /// <summary>
         /// <c>VirtualInputManager.sendRobloxEvent</c>
         /// </summary>
-        /// <param name="namespace">A <c>string?</c> value.</param>
-        /// <param name="detail">A <c>string?</c> value.</param>
-        /// <param name="detailType">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendRobloxEvent(string? @namespace, string? detail, string? detailType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "sendRobloxEvent", @namespace, detail, detailType);
+        /// <param name="@namespace">A <c>string</c> value.</param>
+        /// <param name="detail">A <c>string</c> value.</param>
+        /// <param name="detailType">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendRobloxEvent(string @namespace, string detail, string detailType)
+            => global::Roblox.Reflection.Invoke<object>(this, "sendRobloxEvent", @namespace, detail, detailType)!;
 
         /// <summary>
         /// <c>VirtualInputManager.sendThemeChangeEvent</c>
         /// </summary>
-        /// <param name="themeName">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SendThemeChangeEvent(string? themeName)
-            => global::Roblox.Reflection.Invoke<object?>(this, "sendThemeChangeEvent", themeName);
+        /// <param name="themeName">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SendThemeChangeEvent(string themeName)
+            => global::Roblox.Reflection.Invoke<object>(this, "sendThemeChangeEvent", themeName)!;
 
         /// <summary>
         /// <c>VirtualInputManager.WaitForInputEventsProcessed</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? WaitForInputEventsProcessed()
-            => global::Roblox.Reflection.Invoke<object?>(this, "WaitForInputEventsProcessed");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object WaitForInputEventsProcessed()
+            => global::Roblox.Reflection.Invoke<object>(this, "WaitForInputEventsProcessed")!;
 
         /// <summary>
         /// <c>VirtualInputManager.PlaybackCompleted</c>
         /// </summary>
-        /// <param name="additionalLuaState">A <c>string?</c> value.</param>
-        public event Action<string?>? PlaybackCompleted
+        /// <param name="additionalLuaState">A <c>string</c> value.</param>
+        public event Action<string>? PlaybackCompleted
         {
             add { if (value is not null) AddEventHandler("PlaybackCompleted", value); }
             remove { if (value is not null) RemoveEventHandler("PlaybackCompleted", value); }
@@ -278,8 +278,8 @@ namespace Roblox
         /// <summary>
         /// <c>VirtualInputManager.RecordingCompleted</c>
         /// </summary>
-        /// <param name="result">A <c>string?</c> value.</param>
-        public event Action<string?>? RecordingCompleted
+        /// <param name="result">A <c>string</c> value.</param>
+        public event Action<string>? RecordingCompleted
         {
             add { if (value is not null) AddEventHandler("RecordingCompleted", value); }
             remove { if (value is not null) RemoveEventHandler("RecordingCompleted", value); }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GroupService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GroupService? FromHandle(nuint handle)
+        public static new GroupService? FromHandle(nuint handle)
             => handle == 0 ? null : new GroupService(handle);
 
         /// <summary>
@@ -31,56 +31,56 @@ namespace Roblox
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
         /// <param name="groupMembershipStatus">A <c>Enum.GroupMembershipStatus</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptJoinCompleted(long groupId, bool success, Enum.GroupMembershipStatus groupMembershipStatus, string? errorMessage)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptJoinCompleted", groupId, success, groupMembershipStatus, errorMessage);
+        /// <param name="errorMessage">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptJoinCompleted(long groupId, bool success, Enum.GroupMembershipStatus groupMembershipStatus, string errorMessage)
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptJoinCompleted", groupId, success, groupMembershipStatus, errorMessage)!;
 
         /// <summary>
         /// Returns a StandardPages object including information on all of the specified group's allies.
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
-        /// <returns>A <c>StandardPages?</c> value returned by the engine.</returns>
+        /// <returns>A <c>StandardPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroupService#GetAlliesAsync"/>
-        public StandardPages? GetAlliesAsync(long groupId)
-            => global::Roblox.Reflection.Invoke<StandardPages?>(this, "GetAlliesAsync", groupId);
+        public StandardPages GetAlliesAsync(long groupId)
+            => global::Roblox.Reflection.Invoke<StandardPages>(this, "GetAlliesAsync", groupId)!;
 
         /// <summary>
         /// Returns a StandardPages object including information on all of the specified group's enemies.
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
-        /// <returns>A <c>StandardPages?</c> value returned by the engine.</returns>
+        /// <returns>A <c>StandardPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroupService#GetEnemiesAsync"/>
-        public StandardPages? GetEnemiesAsync(long groupId)
-            => global::Roblox.Reflection.Invoke<StandardPages?>(this, "GetEnemiesAsync", groupId);
+        public StandardPages GetEnemiesAsync(long groupId)
+            => global::Roblox.Reflection.Invoke<StandardPages>(this, "GetEnemiesAsync", groupId)!;
 
         /// <summary>
         /// Returns a table containing information about the given group.
         /// </summary>
         /// <param name="groupId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroupService#GetGroupInfoAsync"/>
-        public object? GetGroupInfoAsync(long groupId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetGroupInfoAsync", groupId);
+        public object GetGroupInfoAsync(long groupId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetGroupInfoAsync", groupId)!;
 
         /// <summary>
         /// Returns a list of tables containing information on all of the groups a given player is a member of.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroupService#GetGroupsAsync"/>
-        public object? GetGroupsAsync(object? userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetGroupsAsync", userId);
+        public object GetGroupsAsync(object userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetGroupsAsync", userId)!;
 
         /// <summary>
         /// Returns all roles held by the specified user in the specified group, supporting multi-role group membership.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
+        /// <param name="userId">A <c>object</c> value.</param>
         /// <param name="groupId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroupService#GetRolesInGroupAsync"/>
-        public object? GetRolesInGroupAsync(object? userId, long groupId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetRolesInGroupAsync", userId, groupId);
+        public object GetRolesInGroupAsync(object userId, long groupId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetRolesInGroupAsync", userId, groupId)!;
 
         /// <summary>
         /// Prompts the local Player to join a specified Roblox group via a native modal.
@@ -89,7 +89,7 @@ namespace Roblox
         /// <returns>A <c>Enum.GroupMembershipStatus</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GroupService#PromptJoinAsync"/>
         public Enum.GroupMembershipStatus PromptJoinAsync(long groupId)
-            => global::Roblox.Reflection.Invoke<Enum.GroupMembershipStatus>(this, "PromptJoinAsync", groupId);
+            => global::Roblox.Reflection.Invoke<Enum.GroupMembershipStatus>(this, "PromptJoinAsync", groupId)!;
 
         /// <summary>
         /// <c>GroupService.ShowJoinPrompt</c>

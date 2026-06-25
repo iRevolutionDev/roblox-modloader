@@ -18,31 +18,31 @@ namespace Roblox
         /// Creates a <see cref="BulkImportService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BulkImportService? FromHandle(nuint handle)
+        public static new BulkImportService? FromHandle(nuint handle)
             => handle == 0 ? null : new BulkImportService(handle);
 
         /// <summary>
         /// <c>BulkImportService.LaunchBulkImport</c>
         /// </summary>
         /// <param name="assetTypeToImport">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? LaunchBulkImport(int assetTypeToImport)
-            => global::Roblox.Reflection.Invoke<object?>(this, "LaunchBulkImport", assetTypeToImport);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object LaunchBulkImport(int assetTypeToImport)
+            => global::Roblox.Reflection.Invoke<object>(this, "LaunchBulkImport", assetTypeToImport)!;
 
         /// <summary>
         /// <c>BulkImportService.ShowBulkImportView</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ShowBulkImportView()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ShowBulkImportView");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ShowBulkImportView()
+            => global::Roblox.Reflection.Invoke<object>(this, "ShowBulkImportView")!;
 
         /// <summary>
         /// <c>BulkImportService.AssetImported</c>
         /// </summary>
         /// <param name="assetType">A <c>Enum.AssetType</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="id">A <c>long</c> value.</param>
-        public event Action<Enum.AssetType, string?, long>? AssetImported
+        public event Action<Enum.AssetType, string, long>? AssetImported
         {
             add { if (value is not null) AddEventHandler("AssetImported", value); }
             remove { if (value is not null) RemoveEventHandler("AssetImported", value); }

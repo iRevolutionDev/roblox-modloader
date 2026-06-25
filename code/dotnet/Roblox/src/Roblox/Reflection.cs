@@ -7,14 +7,14 @@ namespace Roblox;
 
 public static unsafe class Reflection
 {
-    public static T? Invoke<T>(Object @object, string methodName, params object[] args)
+    public static T? Invoke<T>(Object @object, string methodName, params object?[] args)
     {
         ArgumentNullException.ThrowIfNull(@object);
 
         return Invoke<T>(@object.Handle, methodName, args);
     }
 
-    public static T? Invoke<T>(nuint handle, string methodName, params object[] args)
+    public static T? Invoke<T>(nuint handle, string methodName, params object?[] args)
     {
         ArgumentNullException.ThrowIfNull(methodName);
 
@@ -398,8 +398,6 @@ public static unsafe class Reflection
             {
                 throw new InvalidCastException($"Cannot convert native result to {t}", ex);
             }
-
-            break;
         }
     }
 }

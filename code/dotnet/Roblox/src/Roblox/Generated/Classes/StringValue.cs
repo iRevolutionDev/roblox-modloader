@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="StringValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StringValue? FromHandle(nuint handle)
+        public static new StringValue? FromHandle(nuint handle)
             => handle == 0 ? null : new StringValue(handle);
 
         /// <summary>
         /// The stored string.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StringValue#Value"/>
-        public string? Value
+        public string Value
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Value", value);
         }
 
         /// <summary>
         /// Fires whenever StringValue.Value is changed.
         /// </summary>
-        /// <param name="value">A <c>string?</c> value.</param>
+        /// <param name="value">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StringValue#Changed"/>
-        public event Action<string?>? Changed
+        public new event Action<string>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

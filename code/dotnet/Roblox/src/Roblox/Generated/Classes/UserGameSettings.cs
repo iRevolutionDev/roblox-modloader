@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UserGameSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UserGameSettings? FromHandle(nuint handle)
+        public static new UserGameSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new UserGameSettings(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#AllTutorialsDisabled"/>
         public bool AllTutorialsDisabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllTutorialsDisabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllTutorialsDisabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllTutorialsDisabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#BadgeVisible"/>
         public bool BadgeVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BadgeVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BadgeVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BadgeVisible", value);
         }
 
@@ -51,37 +51,37 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#CameraMode"/>
         public Enum.CustomCameraMode CameraMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CustomCameraMode>(this, "CameraMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.CustomCameraMode>(this, "CameraMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CustomCameraMode>(this, "CameraMode", value);
         }
 
         public bool CameraYInverted
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraYInverted");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CameraYInverted")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CameraYInverted", value);
         }
 
         public bool ChatTranslationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationEnabled", value);
         }
 
         public bool ChatTranslationFTUXShown
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationFTUXShown");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationFTUXShown")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationFTUXShown", value);
         }
 
-        public string? ChatTranslationLocale
+        public string ChatTranslationLocale
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ChatTranslationLocale");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ChatTranslationLocale", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ChatTranslationLocale")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ChatTranslationLocale", value);
         }
 
         public bool ChatTranslationToggleEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationToggleEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatTranslationToggleEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatTranslationToggleEnabled", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#ChatVisible"/>
         public bool ChatVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ChatVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ChatVisible", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#ComputerCameraMovementMode"/>
         public Enum.ComputerCameraMovementMode ComputerCameraMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ComputerCameraMovementMode>(this, "ComputerCameraMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ComputerCameraMovementMode>(this, "ComputerCameraMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ComputerCameraMovementMode>(this, "ComputerCameraMovementMode", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#ComputerMovementMode"/>
         public Enum.ComputerMovementMode ComputerMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ComputerMovementMode>(this, "ComputerMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ComputerMovementMode>(this, "ComputerMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ComputerMovementMode>(this, "ComputerMovementMode", value);
         }
 
@@ -121,19 +121,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#ControlMode"/>
         public Enum.ControlMode ControlMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ControlMode>(this, "ControlMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.ControlMode>(this, "ControlMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ControlMode>(this, "ControlMode", value);
         }
 
-        public string? DefaultCameraID
+        public string DefaultCameraID
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DefaultCameraID");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DefaultCameraID", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DefaultCameraID")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DefaultCameraID", value);
         }
 
         public int FramerateCap
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "FramerateCap");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "FramerateCap")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "FramerateCap", value);
         }
 
@@ -143,7 +143,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#Fullscreen"/>
         public bool Fullscreen
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Fullscreen");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Fullscreen")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Fullscreen", value);
         }
 
@@ -153,7 +153,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#GamepadCameraSensitivity"/>
         public float GamepadCameraSensitivity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "GamepadCameraSensitivity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "GamepadCameraSensitivity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "GamepadCameraSensitivity", value);
         }
 
@@ -163,7 +163,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#GraphicsOptimizationMode"/>
         public Enum.GraphicsOptimizationMode GraphicsOptimizationMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GraphicsOptimizationMode>(this, "GraphicsOptimizationMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.GraphicsOptimizationMode>(this, "GraphicsOptimizationMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GraphicsOptimizationMode>(this, "GraphicsOptimizationMode", value);
         }
 
@@ -173,13 +173,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#GraphicsQualityLevel"/>
         public int GraphicsQualityLevel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "GraphicsQualityLevel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "GraphicsQualityLevel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "GraphicsQualityLevel", value);
         }
 
         public float HapticStrength
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HapticStrength");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HapticStrength")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HapticStrength", value);
         }
 
@@ -189,19 +189,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#HasEverUsedVR"/>
         public bool HasEverUsedVR
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasEverUsedVR");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HasEverUsedVR")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HasEverUsedVR", value);
         }
 
         public bool IsUsingCameraYInverted
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsUsingCameraYInverted");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsUsingCameraYInverted")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsUsingCameraYInverted", value);
         }
 
         public bool IsUsingGamepadCameraSensitivity
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsUsingGamepadCameraSensitivity");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsUsingGamepadCameraSensitivity")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsUsingGamepadCameraSensitivity", value);
         }
 
@@ -211,7 +211,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#MasterVolume"/>
         public float MasterVolume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MasterVolume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MasterVolume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MasterVolume", value);
         }
 
@@ -221,7 +221,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#MasterVolumeStudio"/>
         public float MasterVolumeStudio
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MasterVolumeStudio");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MasterVolumeStudio")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MasterVolumeStudio", value);
         }
 
@@ -231,25 +231,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#MaxQualityEnabled"/>
         public bool MaxQualityEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MaxQualityEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MaxQualityEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MaxQualityEnabled", value);
         }
 
         public bool MicroProfilerWebServerEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "MicroProfilerWebServerEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "MicroProfilerWebServerEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "MicroProfilerWebServerEnabled", value);
         }
 
-        public string? MicroProfilerWebServerIP
+        public string MicroProfilerWebServerIP
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "MicroProfilerWebServerIP");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "MicroProfilerWebServerIP", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "MicroProfilerWebServerIP")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "MicroProfilerWebServerIP", value);
         }
 
         public int MicroProfilerWebServerPort
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "MicroProfilerWebServerPort");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "MicroProfilerWebServerPort")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "MicroProfilerWebServerPort", value);
         }
 
@@ -259,25 +259,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#MouseSensitivity"/>
         public float MouseSensitivity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MouseSensitivity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MouseSensitivity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MouseSensitivity", value);
         }
 
-        public global::Roblox.Vector2? MouseSensitivityFirstPerson
+        public global::Roblox.Vector2 MouseSensitivityFirstPerson
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityFirstPerson");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityFirstPerson", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MouseSensitivityFirstPerson")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MouseSensitivityFirstPerson", value);
         }
 
-        public global::Roblox.Vector2? MouseSensitivityThirdPerson
+        public global::Roblox.Vector2 MouseSensitivityThirdPerson
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityThirdPerson");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "MouseSensitivityThirdPerson", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "MouseSensitivityThirdPerson")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "MouseSensitivityThirdPerson", value);
         }
 
         public bool OnScreenProfilerEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "OnScreenProfilerEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "OnScreenProfilerEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "OnScreenProfilerEnabled", value);
         }
 
@@ -285,10 +285,10 @@ namespace Roblox
         /// A comma-separated list of onboarding IDs that the user has completed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#OnboardingsCompleted"/>
-        public string? OnboardingsCompleted
+        public string OnboardingsCompleted
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "OnboardingsCompleted");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "OnboardingsCompleted", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "OnboardingsCompleted")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "OnboardingsCompleted", value);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PartyVoiceVolume"/>
         public float PartyVoiceVolume
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PartyVoiceVolume");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PartyVoiceVolume")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PartyVoiceVolume", value);
         }
 
@@ -307,19 +307,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PeoplePageLayout"/>
         public Enum.PeoplePageLayout PeoplePageLayout
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PeoplePageLayout>(this, "PeoplePageLayout");
+            get => global::Roblox.Reflection.GetProperty<Enum.PeoplePageLayout>(this, "PeoplePageLayout")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PeoplePageLayout>(this, "PeoplePageLayout", value);
         }
 
         public bool PerformanceStatsVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PerformanceStatsVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PerformanceStatsVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PerformanceStatsVisible", value);
         }
 
         public float PlayerHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PlayerHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PlayerHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PlayerHeight", value);
         }
 
@@ -329,7 +329,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PlayerListVisible"/>
         public bool PlayerListVisible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayerListVisible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayerListVisible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayerListVisible", value);
         }
 
@@ -339,25 +339,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PlayerNamesEnabled"/>
         public bool PlayerNamesEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayerNamesEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "PlayerNamesEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "PlayerNamesEnabled", value);
         }
 
         public Enum.PreferredTextSize PreferredTextSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredTextSize>(this, "PreferredTextSize", value);
         }
 
         public float PreferredTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PreferredTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PreferredTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PreferredTransparency", value);
         }
 
         public int QualityResetLevel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "QualityResetLevel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "QualityResetLevel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "QualityResetLevel", value);
         }
 
@@ -367,7 +367,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#RCCProfilerRecordFrameRate"/>
         public int RCCProfilerRecordFrameRate
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "RCCProfilerRecordFrameRate");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "RCCProfilerRecordFrameRate")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "RCCProfilerRecordFrameRate", value);
         }
 
@@ -377,19 +377,19 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#RCCProfilerRecordTimeFrame"/>
         public int RCCProfilerRecordTimeFrame
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "RCCProfilerRecordTimeFrame");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "RCCProfilerRecordTimeFrame")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "RCCProfilerRecordTimeFrame", value);
         }
 
         public bool ReadAloud
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReadAloud");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReadAloud")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReadAloud", value);
         }
 
         public bool ReducedMotion
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotion");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ReducedMotion")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReducedMotion", value);
         }
 
@@ -399,7 +399,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#RotationType"/>
         public Enum.RotationType RotationType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.RotationType>(this, "RotationType");
+            get => global::Roblox.Reflection.GetProperty<Enum.RotationType>(this, "RotationType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.RotationType>(this, "RotationType", value);
         }
 
@@ -409,7 +409,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#SavedQualityLevel"/>
         public Enum.SavedQualitySetting SavedQualityLevel
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SavedQualitySetting>(this, "SavedQualityLevel");
+            get => global::Roblox.Reflection.GetProperty<Enum.SavedQualitySetting>(this, "SavedQualityLevel")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SavedQualitySetting>(this, "SavedQualityLevel", value);
         }
 
@@ -419,7 +419,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartMaximized"/>
         public bool StartMaximized
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "StartMaximized");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "StartMaximized")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "StartMaximized", value);
         }
 
@@ -427,25 +427,25 @@ namespace Roblox
         /// The screen position of the client's window when the application launches.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartScreenPosition"/>
-        public global::Roblox.Vector2? StartScreenPosition
+        public global::Roblox.Vector2 StartScreenPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "StartScreenPosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "StartScreenPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "StartScreenPosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "StartScreenPosition", value);
         }
 
         /// <summary>
         /// The size of the client's window when the application launches.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartScreenSize"/>
-        public global::Roblox.Vector2? StartScreenSize
+        public global::Roblox.Vector2 StartScreenSize
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "StartScreenSize");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "StartScreenSize", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "StartScreenSize")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "StartScreenSize", value);
         }
 
         public Enum.PreferredTextSize StudioPreferredTextSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "StudioPreferredTextSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.PreferredTextSize>(this, "StudioPreferredTextSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PreferredTextSize>(this, "StudioPreferredTextSize", value);
         }
 
@@ -455,7 +455,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#TouchCameraMovementMode"/>
         public Enum.TouchCameraMovementMode TouchCameraMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TouchCameraMovementMode>(this, "TouchCameraMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TouchCameraMovementMode>(this, "TouchCameraMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TouchCameraMovementMode>(this, "TouchCameraMovementMode", value);
         }
 
@@ -465,13 +465,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#TouchMovementMode"/>
         public Enum.TouchMovementMode TouchMovementMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TouchMovementMode>(this, "TouchMovementMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.TouchMovementMode>(this, "TouchMovementMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TouchMovementMode>(this, "TouchMovementMode", value);
         }
 
         public bool UiNavigationKeyBindEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UiNavigationKeyBindEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UiNavigationKeyBindEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UiNavigationKeyBindEnabled", value);
         }
 
@@ -481,7 +481,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#UsedCoreGuiIsVisibleToggle"/>
         public bool UsedCoreGuiIsVisibleToggle
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsedCoreGuiIsVisibleToggle");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsedCoreGuiIsVisibleToggle")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UsedCoreGuiIsVisibleToggle", value);
         }
 
@@ -491,7 +491,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#UsedCustomGuiIsVisibleToggle"/>
         public bool UsedCustomGuiIsVisibleToggle
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsedCustomGuiIsVisibleToggle");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsedCustomGuiIsVisibleToggle")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UsedCustomGuiIsVisibleToggle", value);
         }
 
@@ -501,13 +501,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#UsedHideHudShortcut"/>
         public bool UsedHideHudShortcut
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsedHideHudShortcut");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsedHideHudShortcut")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UsedHideHudShortcut", value);
         }
 
         public Enum.VRComfortSetting VRComfortSetting
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VRComfortSetting>(this, "VRComfortSetting");
+            get => global::Roblox.Reflection.GetProperty<Enum.VRComfortSetting>(this, "VRComfortSetting")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VRComfortSetting>(this, "VRComfortSetting", value);
         }
 
@@ -517,7 +517,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VREnabled"/>
         public bool VREnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VREnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VREnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VREnabled", value);
         }
 
@@ -527,13 +527,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VRRotationIntensity"/>
         public int VRRotationIntensity
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "VRRotationIntensity");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "VRRotationIntensity")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "VRRotationIntensity", value);
         }
 
         public Enum.VRSafetyBubbleMode VRSafetyBubbleMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.VRSafetyBubbleMode>(this, "VRSafetyBubbleMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.VRSafetyBubbleMode>(this, "VRSafetyBubbleMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.VRSafetyBubbleMode>(this, "VRSafetyBubbleMode", value);
         }
 
@@ -543,25 +543,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VRSmoothRotationEnabled"/>
         public bool VRSmoothRotationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRSmoothRotationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRSmoothRotationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VRSmoothRotationEnabled", value);
         }
 
         public bool VRSmoothRotationEnabledCustomOption
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRSmoothRotationEnabledCustomOption");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRSmoothRotationEnabledCustomOption")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VRSmoothRotationEnabledCustomOption", value);
         }
 
         public bool VRThirdPersonFollowCamEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRThirdPersonFollowCamEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRThirdPersonFollowCamEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VRThirdPersonFollowCamEnabled", value);
         }
 
         public bool VRThirdPersonFollowCamEnabledCustomOption
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRThirdPersonFollowCamEnabledCustomOption");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VRThirdPersonFollowCamEnabledCustomOption")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VRThirdPersonFollowCamEnabledCustomOption", value);
         }
 
@@ -571,13 +571,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VignetteEnabled"/>
         public bool VignetteEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VignetteEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VignetteEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VignetteEnabled", value);
         }
 
         public bool VignetteEnabledCustomOption
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VignetteEnabledCustomOption");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VignetteEnabledCustomOption")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VignetteEnabledCustomOption", value);
         }
 
@@ -587,31 +587,31 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#GetCameraYInvertValue"/>
         public int GetCameraYInvertValue()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetCameraYInvertValue");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetCameraYInvertValue")!;
 
         /// <summary>
         /// <c>UserGameSettings.GetDefaultFramerateCap</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         public int GetDefaultFramerateCap()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetDefaultFramerateCap");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetDefaultFramerateCap")!;
 
         /// <summary>
         /// Checks if onboarding has been completed.
         /// </summary>
-        /// <param name="onboardingId">A <c>string?</c> value.</param>
+        /// <param name="onboardingId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#GetOnboardingCompleted"/>
-        public bool GetOnboardingCompleted(string? onboardingId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetOnboardingCompleted", onboardingId);
+        public bool GetOnboardingCompleted(string onboardingId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetOnboardingCompleted", onboardingId)!;
 
         /// <summary>
         /// <c>UserGameSettings.GetTutorialState</c>
         /// </summary>
-        /// <param name="tutorialId">A <c>string?</c> value.</param>
+        /// <param name="tutorialId">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool GetTutorialState(string? tutorialId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetTutorialState", tutorialId);
+        public bool GetTutorialState(string tutorialId)
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetTutorialState", tutorialId)!;
 
         /// <summary>
         /// Returns true if the user's Roblox window is in full screen mode.
@@ -619,7 +619,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#InFullScreen"/>
         public bool InFullScreen()
-            => global::Roblox.Reflection.Invoke<bool>(this, "InFullScreen");
+            => global::Roblox.Reflection.Invoke<bool>(this, "InFullScreen")!;
 
         /// <summary>
         /// Returns true if the client's game session is in Roblox Studio.
@@ -627,49 +627,49 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#InStudioMode"/>
         public bool InStudioMode()
-            => global::Roblox.Reflection.Invoke<bool>(this, "InStudioMode");
+            => global::Roblox.Reflection.Invoke<bool>(this, "InStudioMode")!;
 
         /// <summary>
         /// <c>UserGameSettings.ResetOnboardingCompleted</c>
         /// </summary>
-        /// <param name="onboardingId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ResetOnboardingCompleted(string? onboardingId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetOnboardingCompleted", onboardingId);
+        /// <param name="onboardingId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ResetOnboardingCompleted(string onboardingId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetOnboardingCompleted", onboardingId)!;
 
         /// <summary>
         /// If called, Roblox toggles the menu option to invert the user's camera y axis.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#SetCameraYInvertVisible"/>
-        public object? SetCameraYInvertVisible()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetCameraYInvertVisible");
+        public object SetCameraYInvertVisible()
+            => global::Roblox.Reflection.Invoke<object>(this, "SetCameraYInvertVisible")!;
 
         /// <summary>
         /// If called, Roblox toggles the menu option to control the camera sensitivity with gamepads.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#SetGamepadCameraSensitivityVisible"/>
-        public object? SetGamepadCameraSensitivityVisible()
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetGamepadCameraSensitivityVisible");
+        public object SetGamepadCameraSensitivityVisible()
+            => global::Roblox.Reflection.Invoke<object>(this, "SetGamepadCameraSensitivityVisible")!;
 
         /// <summary>
         /// Sets onboarding as completed.
         /// </summary>
-        /// <param name="onboardingId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="onboardingId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#SetOnboardingCompleted"/>
-        public object? SetOnboardingCompleted(string? onboardingId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetOnboardingCompleted", onboardingId);
+        public object SetOnboardingCompleted(string onboardingId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetOnboardingCompleted", onboardingId)!;
 
         /// <summary>
         /// <c>UserGameSettings.SetTutorialState</c>
         /// </summary>
-        /// <param name="tutorialId">A <c>string?</c> value.</param>
+        /// <param name="tutorialId">A <c>string</c> value.</param>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTutorialState(string? tutorialId, bool value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTutorialState", tutorialId, value);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTutorialState(string tutorialId, bool value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTutorialState", tutorialId, value)!;
 
         /// <summary>
         /// Fires if the user's full screen mode is changed.

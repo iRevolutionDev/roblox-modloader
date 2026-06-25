@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="ProximityPrompt"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ProximityPrompt? FromHandle(nuint handle)
+        public static new ProximityPrompt? FromHandle(nuint handle)
             => handle == 0 ? null : new ProximityPrompt(handle);
 
         /// <summary>
         /// The action text shown to the user.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#ActionText"/>
-        public string? ActionText
+        public string ActionText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ActionText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ActionText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ActionText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ActionText", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#AutoLocalize"/>
         public bool AutoLocalize
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLocalize");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoLocalize")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoLocalize", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#ClickablePrompt"/>
         public bool ClickablePrompt
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClickablePrompt");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClickablePrompt")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClickablePrompt", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Exclusivity"/>
         public Enum.ProximityPromptExclusivity Exclusivity
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ProximityPromptExclusivity>(this, "Exclusivity");
+            get => global::Roblox.Reflection.GetProperty<Enum.ProximityPromptExclusivity>(this, "Exclusivity")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ProximityPromptExclusivity>(this, "Exclusivity", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#GamepadKeyCode"/>
         public Enum.KeyCode GamepadKeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "GamepadKeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "GamepadKeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "GamepadKeyCode", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#HoldDuration"/>
         public float HoldDuration
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "HoldDuration");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "HoldDuration")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "HoldDuration", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#KeyboardKeyCode"/>
         public Enum.KeyCode KeyboardKeyCode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyboardKeyCode");
+            get => global::Roblox.Reflection.GetProperty<Enum.KeyCode>(this, "KeyboardKeyCode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.KeyCode>(this, "KeyboardKeyCode", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#MaxActivationDistance"/>
         public float MaxActivationDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxActivationDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxActivationDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxActivationDistance", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#MaxIndicatorDistance"/>
         public float MaxIndicatorDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxIndicatorDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxIndicatorDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxIndicatorDistance", value);
         }
 
@@ -129,10 +129,10 @@ namespace Roblox
         /// An optional property that determines the object name text shown to the user.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#ObjectText"/>
-        public string? ObjectText
+        public string ObjectText
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ObjectText");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ObjectText", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ObjectText")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ObjectText", value);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#RequiresLineOfSight"/>
         public bool RequiresLineOfSight
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresLineOfSight");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RequiresLineOfSight")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RequiresLineOfSight", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Style"/>
         public Enum.ProximityPromptStyle Style
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ProximityPromptStyle>(this, "Style");
+            get => global::Roblox.Reflection.GetProperty<Enum.ProximityPromptStyle>(this, "Style")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ProximityPromptStyle>(this, "Style", value);
         }
 
@@ -169,27 +169,27 @@ namespace Roblox
         /// The pixel offset applied to the prompt's UI.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#UIOffset"/>
-        public global::Roblox.Vector2? UIOffset
+        public global::Roblox.Vector2 UIOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "UIOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "UIOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "UIOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "UIOffset", value);
         }
 
         /// <summary>
         /// Fires a signal indicating that the user began pressing the prompt GUI button.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#InputHoldBegin"/>
-        public object? InputHoldBegin()
-            => global::Roblox.Reflection.Invoke<object?>(this, "InputHoldBegin");
+        public object InputHoldBegin()
+            => global::Roblox.Reflection.Invoke<object>(this, "InputHoldBegin")!;
 
         /// <summary>
         /// Fires a signal indicating that the user ended pressing the prompt GUI button.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#InputHoldEnd"/>
-        public object? InputHoldEnd()
-            => global::Roblox.Reflection.Invoke<object?>(this, "InputHoldEnd");
+        public object InputHoldEnd()
+            => global::Roblox.Reflection.Invoke<object>(this, "InputHoldEnd")!;
 
         /// <summary>
         /// <c>ProximityPrompt.IndicatorHidden</c>
@@ -214,9 +214,9 @@ namespace Roblox
         /// <summary>
         /// Triggered when a player begins holding down the key/button connected to a prompt with a non-zero ProximityPrompt.HoldDuration.
         /// </summary>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptButtonHoldBegan"/>
-        public event Action<Player?>? PromptButtonHoldBegan
+        public event Action<Player>? PromptButtonHoldBegan
         {
             add { if (value is not null) AddEventHandler("PromptButtonHoldBegan", value); }
             remove { if (value is not null) RemoveEventHandler("PromptButtonHoldBegan", value); }
@@ -225,9 +225,9 @@ namespace Roblox
         /// <summary>
         /// Triggers when the player ends holding down the button on a prompt with a non-zero ProximityPrompt.HoldDuration.
         /// </summary>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#PromptButtonHoldEnded"/>
-        public event Action<Player?>? PromptButtonHoldEnded
+        public event Action<Player>? PromptButtonHoldEnded
         {
             add { if (value is not null) AddEventHandler("PromptButtonHoldEnded", value); }
             remove { if (value is not null) RemoveEventHandler("PromptButtonHoldEnded", value); }
@@ -257,9 +257,9 @@ namespace Roblox
         /// <summary>
         /// Triggers when key/button is released, for longer events where the user is required to hold down the button.
         /// </summary>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#TriggerEnded"/>
-        public event Action<Player?>? TriggerEnded
+        public event Action<Player>? TriggerEnded
         {
             add { if (value is not null) AddEventHandler("TriggerEnded", value); }
             remove { if (value is not null) RemoveEventHandler("TriggerEnded", value); }
@@ -268,9 +268,9 @@ namespace Roblox
         /// <summary>
         /// Triggered when the prompt key/button is pressed, or after a specified amount of time holding the button, if ProximityPrompt.HoldDuration is used.
         /// </summary>
-        /// <param name="playerWhoTriggered">A <c>Player?</c> value.</param>
+        /// <param name="playerWhoTriggered">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#Triggered"/>
-        public event Action<Player?>? Triggered
+        public event Action<Player>? Triggered
         {
             add { if (value is not null) AddEventHandler("Triggered", value); }
             remove { if (value is not null) RemoveEventHandler("Triggered", value); }

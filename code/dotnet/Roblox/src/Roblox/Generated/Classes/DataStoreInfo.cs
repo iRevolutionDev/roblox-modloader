@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DataStoreInfo"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataStoreInfo? FromHandle(nuint handle)
+        public static new DataStoreInfo? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreInfo(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreInfo#CreatedTime"/>
         public long CreatedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreatedTime", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// The name of the data store.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreInfo#DataStoreName"/>
-        public string? DataStoreName
+        public string DataStoreName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DataStoreName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DataStoreName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DataStoreName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DataStoreName", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreInfo#UpdatedTime"/>
         public long UpdatedTime
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "UpdatedTime");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "UpdatedTime")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "UpdatedTime", value);
         }
 

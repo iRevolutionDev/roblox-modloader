@@ -22,22 +22,22 @@ namespace Roblox
         /// Creates a <see cref="PlacesService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PlacesService? FromHandle(nuint handle)
+        public static new PlacesService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlacesService(handle);
 
         /// <summary>
         /// <c>PlacesService.StartPlaySolo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StartPlaySolo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartPlaySolo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StartPlaySolo()
+            => global::Roblox.Reflection.Invoke<object>(this, "StartPlaySolo")!;
 
         /// <summary>
         /// <c>PlacesService.StopPlaySolo</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopPlaySolo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopPlaySolo");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopPlaySolo()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopPlaySolo")!;
 
     }
 }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Torque"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Torque? FromHandle(nuint handle)
+        public static new Torque? FromHandle(nuint handle)
             => handle == 0 ? null : new Torque(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Torque#RelativeTo"/>
         public Enum.ActuatorRelativeTo RelativeTo
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorRelativeTo>(this, "RelativeTo", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// The strength and direction of the torque.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Torque#Torque"/>
-        public global::Roblox.Vector3? TorqueValue
+        public global::Roblox.Vector3 TorqueValue
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "Torque");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "Torque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Torque")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "Torque", value);
         }
 
     }

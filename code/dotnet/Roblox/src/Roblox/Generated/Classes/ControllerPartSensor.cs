@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="ControllerPartSensor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ControllerPartSensor? FromHandle(nuint handle)
+        public static new ControllerPartSensor? FromHandle(nuint handle)
             => handle == 0 ? null : new ControllerPartSensor(handle);
 
         /// <summary>
         /// The position in world space where the sensor hit the ControllerPartSensor.SensedPart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#HitFrame"/>
-        public global::Roblox.CFrame? HitFrame
+        public global::Roblox.CFrame HitFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "HitFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "HitFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "HitFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "HitFrame", value);
         }
 
         /// <summary>
         /// The surface normal at the position where the sensor hit the ControllerPartSensor.SensedPart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#HitNormal"/>
-        public global::Roblox.Vector3? HitNormal
+        public global::Roblox.Vector3 HitNormal
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "HitNormal");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "HitNormal", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "HitNormal")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "HitNormal", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#LadderSearchHeight"/>
         public float LadderSearchHeight
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LadderSearchHeight");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LadderSearchHeight")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LadderSearchHeight", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#LadderSearchOffset"/>
         public float LadderSearchOffset
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LadderSearchOffset");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LadderSearchOffset")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LadderSearchOffset", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#SearchDistance"/>
         public float SearchDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SearchDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SearchDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SearchDistance", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#SensedMaterial"/>
         public Enum.Material SensedMaterial
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Material>(this, "SensedMaterial");
+            get => global::Roblox.Reflection.GetProperty<Enum.Material>(this, "SensedMaterial")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Material>(this, "SensedMaterial", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#SensorMode"/>
         public Enum.SensorMode SensorMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SensorMode>(this, "SensorMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.SensorMode>(this, "SensorMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SensorMode>(this, "SensorMode", value);
         }
 

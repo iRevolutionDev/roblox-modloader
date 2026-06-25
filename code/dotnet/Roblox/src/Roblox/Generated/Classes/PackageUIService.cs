@@ -18,77 +18,77 @@ namespace Roblox
         /// Creates a <see cref="PackageUIService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PackageUIService? FromHandle(nuint handle)
+        public static new PackageUIService? FromHandle(nuint handle)
             => handle == 0 ? null : new PackageUIService(handle);
 
         /// <summary>
         /// <c>PackageUIService.ConvertToMockPackage</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ConvertToMockPackage(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ConvertToMockPackage", instance);
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ConvertToMockPackage(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "ConvertToMockPackage", instance)!;
 
         /// <summary>
         /// <c>PackageUIService.ConvertToPackageClosedCallback</c>
         /// </summary>
-        /// <param name="sourceRoot">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ConvertToPackageClosedCallback(Instance? sourceRoot)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ConvertToPackageClosedCallback", sourceRoot);
+        /// <param name="sourceRoot">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ConvertToPackageClosedCallback(Instance sourceRoot)
+            => global::Roblox.Reflection.Invoke<object>(this, "ConvertToPackageClosedCallback", sourceRoot)!;
 
         /// <summary>
         /// <c>PackageUIService.ConvertToPackageUpload</c>
         /// </summary>
-        /// <param name="uploadUrl">A <c>string?</c> value.</param>
+        /// <param name="uploadUrl">A <c>string</c> value.</param>
         /// <param name="cloneInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <param name="originalInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ConvertToPackageUpload(string? uploadUrl, IReadOnlyList<Instance> cloneInstances, IReadOnlyList<Instance> originalInstances)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ConvertToPackageUpload", uploadUrl, cloneInstances, originalInstances);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ConvertToPackageUpload(string uploadUrl, IReadOnlyList<Instance> cloneInstances, IReadOnlyList<Instance> originalInstances)
+            => global::Roblox.Reflection.Invoke<object>(this, "ConvertToPackageUpload", uploadUrl, cloneInstances, originalInstances)!;
 
         /// <summary>
         /// <c>PackageUIService.ConvertToPackageAsync</c>
         /// </summary>
-        /// <param name="sourceRoot">A <c>Instance?</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="cloneRoot">A <c>Instance?</c> value.</param>
+        /// <param name="sourceRoot">A <c>Instance</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="cloneRoot">A <c>Instance</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? ConvertToPackageAsync(Instance? sourceRoot, string? name, Instance? cloneRoot)
+        public Instance? ConvertToPackageAsync(Instance sourceRoot, string name, Instance cloneRoot)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ConvertToPackageAsync", sourceRoot, name, cloneRoot);
 
         /// <summary>
         /// <c>PackageUIService.GetPackageInfo</c>
         /// </summary>
         /// <param name="packageAssetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetPackageInfo(long packageAssetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetPackageInfo", packageAssetId);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetPackageInfo(long packageAssetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetPackageInfo", packageAssetId)!;
 
         /// <summary>
         /// <c>PackageUIService.PublishPackage</c>
         /// </summary>
-        /// <param name="packageInstance">A <c>Instance?</c> value.</param>
+        /// <param name="packageInstance">A <c>Instance</c> value.</param>
         /// <param name="addUndoWayPoint">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PublishPackage(Instance? packageInstance, bool addUndoWayPoint)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PublishPackage", packageInstance, addUndoWayPoint);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PublishPackage(Instance packageInstance, bool addUndoWayPoint)
+            => global::Roblox.Reflection.Invoke<object>(this, "PublishPackage", packageInstance, addUndoWayPoint)!;
 
         /// <summary>
         /// <c>PackageUIService.SetPackageVersion</c>
         /// </summary>
-        /// <param name="packageInstance">A <c>Instance?</c> value.</param>
+        /// <param name="packageInstance">A <c>Instance</c> value.</param>
         /// <param name="versionNumber">A <c>long</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? SetPackageVersion(Instance? packageInstance, long versionNumber)
+        public Instance? SetPackageVersion(Instance packageInstance, long versionNumber)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "SetPackageVersion", packageInstance, versionNumber);
 
         /// <summary>
         /// <c>PackageUIService.OnConvertToPackageResult</c>
         /// </summary>
         /// <param name="isSuccessful">A <c>bool</c> value.</param>
-        /// <param name="errorMessage">A <c>string?</c> value.</param>
-        public event Action<bool, string?>? OnConvertToPackageResult
+        /// <param name="errorMessage">A <c>string</c> value.</param>
+        public event Action<bool, string>? OnConvertToPackageResult
         {
             add { if (value is not null) AddEventHandler("OnConvertToPackageResult", value); }
             remove { if (value is not null) RemoveEventHandler("OnConvertToPackageResult", value); }
@@ -98,9 +98,9 @@ namespace Roblox
         /// <c>PackageUIService.OnOpenConvertToPackagePlugin</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="cloneInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        public event Action<IReadOnlyList<Instance>, string?, IReadOnlyList<Instance>>? OnOpenConvertToPackagePlugin
+        public event Action<IReadOnlyList<Instance>, string, IReadOnlyList<Instance>>? OnOpenConvertToPackagePlugin
         {
             add { if (value is not null) AddEventHandler("OnOpenConvertToPackagePlugin", value); }
             remove { if (value is not null) RemoveEventHandler("OnOpenConvertToPackagePlugin", value); }

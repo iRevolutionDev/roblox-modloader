@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Chat"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Chat? FromHandle(nuint handle)
+        public static new Chat? FromHandle(nuint handle)
             => handle == 0 ? null : new Chat(handle);
 
         /// <summary>
@@ -31,13 +31,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#BubbleChatEnabled"/>
         public bool BubbleChatEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "BubbleChatEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "BubbleChatEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "BubbleChatEnabled", value);
         }
 
         public bool IsAutoMigrated
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsAutoMigrated");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsAutoMigrated")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsAutoMigrated", value);
         }
 
@@ -47,87 +47,87 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#LoadDefaultChat"/>
         public bool LoadDefaultChat
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadDefaultChat");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LoadDefaultChat")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LoadDefaultChat", value);
         }
 
-        public string? ModerationMode
+        public string ModerationMode
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ModerationMode");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ModerationMode", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ModerationMode")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ModerationMode", value);
         }
 
         /// <summary>
         /// Fires the Chat.Chatted event with the parameters specified in this method.
         /// </summary>
-        /// <param name="partOrCharacter">A <c>Instance?</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="color">A <c>Enum.ChatColor</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="partOrCharacter">A <c>Instance</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="color">A <c>Enum.ChatColor?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#Chat"/>
-        public object? ChatFunc(Instance? partOrCharacter, string? message, Enum.ChatColor color)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Chat", partOrCharacter, message, color);
+        public object ChatFunc(Instance partOrCharacter, string message, Enum.ChatColor? color = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Chat", partOrCharacter, message, color)!;
 
         /// <summary>
         /// <c>Chat.ChatLocal</c>
         /// </summary>
-        /// <param name="partOrCharacter">A <c>Instance?</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="color">A <c>Enum.ChatColor</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ChatLocal(Instance? partOrCharacter, string? message, Enum.ChatColor color)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ChatLocal", partOrCharacter, message, color);
+        /// <param name="partOrCharacter">A <c>Instance</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="color">A <c>Enum.ChatColor?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ChatLocal(Instance partOrCharacter, string message, Enum.ChatColor? color = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ChatLocal", partOrCharacter, message, color)!;
 
         /// <summary>
         /// <c>Chat.GetShouldUseLuaChat</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool GetShouldUseLuaChat()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetShouldUseLuaChat");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetShouldUseLuaChat")!;
 
         /// <summary>
         /// Invoke a chat callback function registered by RegisterChatCallback. Used by the Luau Chat System.
         /// </summary>
         /// <param name="callbackType">A <c>Enum.ChatCallbackType</c> value.</param>
-        /// <param name="callbackArguments">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="callbackArguments">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#InvokeChatCallback"/>
-        public object? InvokeChatCallback(Enum.ChatCallbackType callbackType, object? callbackArguments)
-            => global::Roblox.Reflection.Invoke<object?>(this, "InvokeChatCallback", callbackType, callbackArguments);
+        public object InvokeChatCallback(Enum.ChatCallbackType callbackType, object callbackArguments)
+            => global::Roblox.Reflection.Invoke<object>(this, "InvokeChatCallback", callbackType, callbackArguments)!;
 
         /// <summary>
         /// <c>Chat.ReconcileCommunicationAccess</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReconcileCommunicationAccess()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReconcileCommunicationAccess");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReconcileCommunicationAccess()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReconcileCommunicationAccess")!;
 
         /// <summary>
         /// Register a function to be called upon the invocation of some chat system event (InvokeChatCallback).
         /// </summary>
         /// <param name="callbackType">A <c>Enum.ChatCallbackType</c> value.</param>
-        /// <param name="callbackFunction">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="callbackFunction">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#RegisterChatCallback"/>
-        public object? RegisterChatCallback(Enum.ChatCallbackType callbackType, object? callbackFunction)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterChatCallback", callbackType, callbackFunction);
+        public object RegisterChatCallback(Enum.ChatCallbackType callbackType, object callbackFunction)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterChatCallback", callbackType, callbackFunction)!;
 
         /// <summary>
         /// <c>Chat.RequestModerationModeEnabled</c>
         /// </summary>
         /// <param name="enabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RequestModerationModeEnabled(bool enabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RequestModerationModeEnabled", enabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RequestModerationModeEnabled(bool enabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "RequestModerationModeEnabled", enabled)!;
 
         /// <summary>
         /// Customizes various settings of the in-game bubble chat.
         /// </summary>
-        /// <param name="settings">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="settings">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#SetBubbleChatSettings"/>
-        public object? SetBubbleChatSettings(object? settings)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetBubbleChatSettings", settings);
+        public object SetBubbleChatSettings(object settings)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetBubbleChatSettings", settings)!;
 
         /// <summary>
         /// Will return false if the player with the specified Player.UserId is not allowed to chat because of their account settings.
@@ -136,7 +136,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#CanUserChatAsync"/>
         public bool CanUserChatAsync(long userId)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanUserChatAsync", userId);
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanUserChatAsync", userId)!;
 
         /// <summary>
         /// Will return false if the two users cannot communicate because their account settings do not allow it.
@@ -146,44 +146,44 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#CanUsersChatAsync"/>
         public bool CanUsersChatAsync(long userIdFrom, long userIdTo)
-            => global::Roblox.Reflection.Invoke<bool>(this, "CanUsersChatAsync", userIdFrom, userIdTo);
+            => global::Roblox.Reflection.Invoke<bool>(this, "CanUsersChatAsync", userIdFrom, userIdTo)!;
 
         /// <summary>
         /// Filters a string sent from a player to another player using filtering that is appropriate to the players' account settings.
         /// </summary>
-        /// <param name="stringToFilter">A <c>string?</c> value.</param>
-        /// <param name="playerFrom">A <c>Player?</c> value.</param>
-        /// <param name="playerTo">A <c>Player?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="stringToFilter">A <c>string</c> value.</param>
+        /// <param name="playerFrom">A <c>Player</c> value.</param>
+        /// <param name="playerTo">A <c>Player</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#FilterStringAsync"/>
-        public string? FilterStringAsync(string? stringToFilter, Player? playerFrom, Player? playerTo)
-            => global::Roblox.Reflection.Invoke<string?>(this, "FilterStringAsync", stringToFilter, playerFrom, playerTo);
+        public string FilterStringAsync(string stringToFilter, Player playerFrom, Player playerTo)
+            => global::Roblox.Reflection.Invoke<string>(this, "FilterStringAsync", stringToFilter, playerFrom, playerTo)!;
 
         /// <summary>
         /// Filters a string sent from a player meant for broadcast to no particular target. More restrictive than Chat:FilterStringAsync().
         /// </summary>
-        /// <param name="stringToFilter">A <c>string?</c> value.</param>
-        /// <param name="playerFrom">A <c>Player?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="stringToFilter">A <c>string</c> value.</param>
+        /// <param name="playerFrom">A <c>Player</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#FilterStringForBroadcast"/>
-        public string? FilterStringForBroadcast(string? stringToFilter, Player? playerFrom)
-            => global::Roblox.Reflection.Invoke<string?>(this, "FilterStringForBroadcast", stringToFilter, playerFrom);
+        public string FilterStringForBroadcast(string stringToFilter, Player playerFrom)
+            => global::Roblox.Reflection.Invoke<string>(this, "FilterStringForBroadcast", stringToFilter, playerFrom)!;
 
         /// <summary>
         /// Deprecated: This item has been superseded by Chat:FilterStringAsync() and Chat:FilterStringForBroadcast() which should be used in all new workFilters a string appropriate to the given player's age settings, so they see what is appropriate to them.
         /// </summary>
-        /// <param name="stringToFilter">A <c>string?</c> value.</param>
-        /// <param name="playerToFilterFor">A <c>Player?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="stringToFilter">A <c>string</c> value.</param>
+        /// <param name="playerToFilterFor">A <c>Player</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#FilterStringForPlayerAsync"/>
-        public string? FilterStringForPlayerAsync(string? stringToFilter, Player? playerToFilterFor)
-            => global::Roblox.Reflection.Invoke<string?>(this, "FilterStringForPlayerAsync", stringToFilter, playerToFilterFor);
+        public string FilterStringForPlayerAsync(string stringToFilter, Player playerToFilterFor)
+            => global::Roblox.Reflection.Invoke<string>(this, "FilterStringForPlayerAsync", stringToFilter, playerToFilterFor)!;
 
         /// <summary>
         /// <c>Chat.BubbleChatSettingsChanged</c>
         /// </summary>
-        /// <param name="settings">A <c>object?</c> value.</param>
-        public event Action<object?>? BubbleChatSettingsChanged
+        /// <param name="settings">A <c>object</c> value.</param>
+        public event Action<object>? BubbleChatSettingsChanged
         {
             add { if (value is not null) AddEventHandler("BubbleChatSettingsChanged", value); }
             remove { if (value is not null) RemoveEventHandler("BubbleChatSettingsChanged", value); }
@@ -192,11 +192,11 @@ namespace Roblox
         /// <summary>
         /// Fires when Chat:Chat() is called.
         /// </summary>
-        /// <param name="part">A <c>Instance?</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
+        /// <param name="part">A <c>Instance</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
         /// <param name="color">A <c>Enum.ChatColor</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#Chatted"/>
-        public event Action<Instance?, string?, Enum.ChatColor>? Chatted
+        public event Action<Instance, string, Enum.ChatColor>? Chatted
         {
             add { if (value is not null) AddEventHandler("Chatted", value); }
             remove { if (value is not null) RemoveEventHandler("Chatted", value); }
@@ -205,8 +205,8 @@ namespace Roblox
         /// <summary>
         /// <c>Chat.PlayerChatAvailabilityStatusChanged</c>
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
-        public event Action<Player?>? PlayerChatAvailabilityStatusChanged
+        /// <param name="player">A <c>Player</c> value.</param>
+        public event Action<Player>? PlayerChatAvailabilityStatusChanged
         {
             add { if (value is not null) AddEventHandler("PlayerChatAvailabilityStatusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerChatAvailabilityStatusChanged", value); }
@@ -215,8 +215,8 @@ namespace Roblox
         /// <summary>
         /// <c>Chat.ReconcileCommunicationAccessCompleted</c>
         /// </summary>
-        /// <param name="chatAvailabilityStatus">A <c>string?</c> value.</param>
-        public event Action<string?>? ReconcileCommunicationAccessCompleted
+        /// <param name="chatAvailabilityStatus">A <c>string</c> value.</param>
+        public event Action<string>? ReconcileCommunicationAccessCompleted
         {
             add { if (value is not null) AddEventHandler("ReconcileCommunicationAccessCompleted", value); }
             remove { if (value is not null) RemoveEventHandler("ReconcileCommunicationAccessCompleted", value); }

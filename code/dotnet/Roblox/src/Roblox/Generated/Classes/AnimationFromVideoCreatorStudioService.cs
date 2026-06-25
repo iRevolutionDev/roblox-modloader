@@ -18,7 +18,7 @@ namespace Roblox
         /// Creates a <see cref="AnimationFromVideoCreatorStudioService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationFromVideoCreatorStudioService? FromHandle(nuint handle)
+        public static new AnimationFromVideoCreatorStudioService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationFromVideoCreatorStudioService(handle);
 
         /// <summary>
@@ -26,22 +26,22 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAgeRestricted()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAgeRestricted");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAgeRestricted")!;
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorStudioService.CreateAnimationByUploadingVideo</c>
         /// </summary>
-        /// <param name="progressCallback">A <c>object?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? CreateAnimationByUploadingVideo(object? progressCallback)
-            => global::Roblox.Reflection.Invoke<string?>(this, "CreateAnimationByUploadingVideo", progressCallback);
+        /// <param name="progressCallback">A <c>object</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string CreateAnimationByUploadingVideo(object progressCallback)
+            => global::Roblox.Reflection.Invoke<string>(this, "CreateAnimationByUploadingVideo", progressCallback)!;
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorStudioService.ImportVideoWithPrompt</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? ImportVideoWithPrompt()
-            => global::Roblox.Reflection.Invoke<string?>(this, "ImportVideoWithPrompt");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string ImportVideoWithPrompt()
+            => global::Roblox.Reflection.Invoke<string>(this, "ImportVideoWithPrompt")!;
 
     }
 }

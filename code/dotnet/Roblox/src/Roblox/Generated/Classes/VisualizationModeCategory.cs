@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="VisualizationModeCategory"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VisualizationModeCategory? FromHandle(nuint handle)
+        public static new VisualizationModeCategory? FromHandle(nuint handle)
             => handle == 0 ? null : new VisualizationModeCategory(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VisualizationModeCategory#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// <c>VisualizationModeCategory.Title</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VisualizationModeCategory#Title"/>
-        public string? Title
+        public string Title
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Title");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Title", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Title")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Title", value);
         }
 
     }

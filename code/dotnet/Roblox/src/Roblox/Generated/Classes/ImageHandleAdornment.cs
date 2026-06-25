@@ -22,33 +22,33 @@ namespace Roblox
         /// Creates a <see cref="ImageHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ImageHandleAdornment? FromHandle(nuint handle)
+        public static new ImageHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new ImageHandleAdornment(handle);
 
         /// <summary>
         /// Image to draw for the adornment.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageHandleAdornment#Image"/>
-        public object? Image
+        public object Image
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Image");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Image", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Image")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Image", value);
         }
 
-        public string? ImageContent
+        public string ImageContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "ImageContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "ImageContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "ImageContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "ImageContent", value);
         }
 
         /// <summary>
         /// Size of the image in studs.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageHandleAdornment#Size"/>
-        public global::Roblox.Vector2? Size
+        public global::Roblox.Vector2 Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "Size")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "Size", value);
         }
 
     }

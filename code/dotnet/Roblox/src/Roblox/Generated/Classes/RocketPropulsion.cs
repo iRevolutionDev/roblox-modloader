@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RocketPropulsion"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RocketPropulsion? FromHandle(nuint handle)
+        public static new RocketPropulsion? FromHandle(nuint handle)
             => handle == 0 ? null : new RocketPropulsion(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#CartoonFactor"/>
         public float CartoonFactor
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CartoonFactor");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CartoonFactor")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CartoonFactor", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#MaxSpeed"/>
         public float MaxSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxSpeed", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#MaxThrust"/>
         public float MaxThrust
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxThrust");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MaxThrust")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxThrust", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines the maximum amount of torque that may be exerted to rotate the assembly towards the Target.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#MaxTorque"/>
-        public global::Roblox.Vector3? MaxTorque
+        public global::Roblox.Vector3 MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxTorque");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxTorque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxTorque")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxTorque", value);
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace Roblox
         /// Determines the world offset from the Target toward which the force/torque is exerted.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TargetOffset"/>
-        public global::Roblox.Vector3? TargetOffset
+        public global::Roblox.Vector3 TargetOffset
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "TargetOffset");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "TargetOffset", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "TargetOffset")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "TargetOffset", value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TargetRadius"/>
         public float TargetRadius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetRadius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetRadius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TargetRadius", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#ThrustD"/>
         public float ThrustD
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ThrustD");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ThrustD")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ThrustD", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#ThrustP"/>
         public float ThrustP
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ThrustP");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ThrustP")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ThrustP", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TurnD"/>
         public float TurnD
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnD");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnD")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TurnD", value);
         }
 
@@ -131,25 +131,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#TurnP"/>
         public float TurnP
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnP");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TurnP")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TurnP", value);
         }
 
         /// <summary>
         /// Causes the assembly to stop moving toward its Target.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#Abort"/>
-        public object? Abort()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Abort");
+        public object Abort()
+            => global::Roblox.Reflection.Invoke<object>(this, "Abort")!;
 
         /// <summary>
         /// Causes the assembly to start moving toward its Target.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#Fire"/>
-        public object? Fire()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Fire");
+        public object Fire()
+            => global::Roblox.Reflection.Invoke<object>(this, "Fire")!;
 
         /// <summary>
         /// Fires when the assembly comes within TargetRadius of the Target.

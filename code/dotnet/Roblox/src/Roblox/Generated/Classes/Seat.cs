@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Seat"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Seat? FromHandle(nuint handle)
+        public static new Seat? FromHandle(nuint handle)
             => handle == 0 ? null : new Seat(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Seat#Disabled"/>
         public bool Disabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Disabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Disabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Disabled", value);
         }
 
@@ -48,11 +48,11 @@ namespace Roblox
         /// <summary>
         /// Forces the character with the specified Humanoid to sit in the Seat.
         /// </summary>
-        /// <param name="humanoid">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="humanoid">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Seat#Sit"/>
-        public object? Sit(Instance? humanoid)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Sit", humanoid);
+        public object Sit(Instance humanoid)
+            => global::Roblox.Reflection.Invoke<object>(this, "Sit", humanoid)!;
 
     }
 }

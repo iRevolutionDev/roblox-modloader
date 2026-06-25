@@ -22,22 +22,22 @@ namespace Roblox
         /// Creates a <see cref="AdPortal"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AdPortal? FromHandle(nuint handle)
+        public static new AdPortal? FromHandle(nuint handle)
             => handle == 0 ? null : new AdPortal(handle);
 
         /// <summary>
         /// <c>AdPortal.PortalInvalidReason</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdPortal#PortalInvalidReason"/>
-        public string? PortalInvalidReason
+        public string PortalInvalidReason
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PortalInvalidReason");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PortalInvalidReason", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PortalInvalidReason")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PortalInvalidReason", value);
         }
 
         public long PortalVersion
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "PortalVersion");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "PortalVersion")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "PortalVersion", value);
         }
 
@@ -47,7 +47,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdPortal#Status"/>
         public Enum.AdUnitStatus Status
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AdUnitStatus>(this, "Status");
+            get => global::Roblox.Reflection.GetProperty<Enum.AdUnitStatus>(this, "Status")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AdUnitStatus>(this, "Status", value);
         }
 

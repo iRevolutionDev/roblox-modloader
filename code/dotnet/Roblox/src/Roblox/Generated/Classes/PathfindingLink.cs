@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PathfindingLink"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PathfindingLink? FromHandle(nuint handle)
+        public static new PathfindingLink? FromHandle(nuint handle)
             => handle == 0 ? null : new PathfindingLink(handle);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingLink#IsBidirectional"/>
         public bool IsBidirectional
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsBidirectional");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsBidirectional")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsBidirectional", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// A classifying string to add additional information about the link.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingLink#Label"/>
-        public string? Label
+        public string Label
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Label");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Label", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Label")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Label", value);
         }
 
     }

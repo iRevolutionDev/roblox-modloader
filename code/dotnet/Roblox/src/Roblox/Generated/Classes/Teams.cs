@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Teams"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Teams? FromHandle(nuint handle)
+        public static new Teams? FromHandle(nuint handle)
             => handle == 0 ? null : new Teams(handle);
 
         /// <summary>
@@ -31,15 +31,15 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Teams#GetTeams"/>
         public IReadOnlyList<Instance> GetTeams()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTeams");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetTeams")!;
 
         /// <summary>
         /// Deprecated: This function has been deprecated and no longer functions correctly. It should not be used. Developers should instead implement their own team sorting systems.Evens the number of people on each team. This function does not work correctly and should not be used.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Teams#RebalanceTeams"/>
-        public object? RebalanceTeams()
-            => global::Roblox.Reflection.Invoke<object?>(this, "RebalanceTeams");
+        public object RebalanceTeams()
+            => global::Roblox.Reflection.Invoke<object>(this, "RebalanceTeams")!;
 
     }
 }

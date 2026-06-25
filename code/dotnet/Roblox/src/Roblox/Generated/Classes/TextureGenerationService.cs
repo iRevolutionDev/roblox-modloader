@@ -18,55 +18,55 @@ namespace Roblox
         /// Creates a <see cref="TextureGenerationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextureGenerationService? FromHandle(nuint handle)
+        public static new TextureGenerationService? FromHandle(nuint handle)
             => handle == 0 ? null : new TextureGenerationService(handle);
 
         /// <summary>
         /// <c>TextureGenerationService.CancelGenerationRequest</c>
         /// </summary>
-        /// <param name="jobUuid">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CancelGenerationRequest(string? jobUuid)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CancelGenerationRequest", jobUuid);
+        /// <param name="jobUuid">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CancelGenerationRequest(string jobUuid)
+            => global::Roblox.Reflection.Invoke<object>(this, "CancelGenerationRequest", jobUuid)!;
 
         /// <summary>
         /// <c>TextureGenerationService.CreatePartGroup</c>
         /// </summary>
         /// <param name="instances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>TextureGenerationPartGroup?</c> value returned by the engine.</returns>
-        public TextureGenerationPartGroup? CreatePartGroup(IReadOnlyList<Instance> instances)
-            => global::Roblox.Reflection.Invoke<TextureGenerationPartGroup?>(this, "CreatePartGroup", instances);
+        /// <returns>A <c>TextureGenerationPartGroup</c> value returned by the engine.</returns>
+        public TextureGenerationPartGroup CreatePartGroup(IReadOnlyList<Instance> instances)
+            => global::Roblox.Reflection.Invoke<TextureGenerationPartGroup>(this, "CreatePartGroup", instances)!;
 
         /// <summary>
         /// <c>TextureGenerationService.GenerateTexture</c>
         /// </summary>
-        /// <param name="previewJobId">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GenerateTexture(string? previewJobId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GenerateTexture", previewJobId);
+        /// <param name="previewJobId">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GenerateTexture(string previewJobId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GenerateTexture", previewJobId)!;
 
         /// <summary>
         /// <c>TextureGenerationService.PreviewTexture</c>
         /// </summary>
-        /// <param name="partGroup">A <c>TextureGenerationPartGroup?</c> value.</param>
-        /// <param name="prompt">A <c>string?</c> value.</param>
-        /// <param name="options">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PreviewTexture(TextureGenerationPartGroup? partGroup, string? prompt, object? options)
-            => global::Roblox.Reflection.Invoke<object?>(this, "PreviewTexture", partGroup, prompt, options);
+        /// <param name="partGroup">A <c>TextureGenerationPartGroup</c> value.</param>
+        /// <param name="prompt">A <c>string</c> value.</param>
+        /// <param name="options">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PreviewTexture(TextureGenerationPartGroup partGroup, string prompt, object options)
+            => global::Roblox.Reflection.Invoke<object>(this, "PreviewTexture", partGroup, prompt, options)!;
 
         /// <summary>
         /// <c>TextureGenerationService.GetQuotasAsync</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetQuotasAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetQuotasAsync");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetQuotasAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetQuotasAsync")!;
 
         /// <summary>
         /// <c>TextureGenerationService.GenerationNotificationSignal</c>
         /// </summary>
-        /// <param name="notificationData">A <c>object?</c> value.</param>
-        public event Action<object?>? GenerationNotificationSignal
+        /// <param name="notificationData">A <c>object</c> value.</param>
+        public event Action<object>? GenerationNotificationSignal
         {
             add { if (value is not null) AddEventHandler("GenerationNotificationSignal", value); }
             remove { if (value is not null) RemoveEventHandler("GenerationNotificationSignal", value); }
@@ -75,8 +75,8 @@ namespace Roblox
         /// <summary>
         /// <c>TextureGenerationService.PreviewNotificationSignal</c>
         /// </summary>
-        /// <param name="notificationData">A <c>object?</c> value.</param>
-        public event Action<object?>? PreviewNotificationSignal
+        /// <param name="notificationData">A <c>object</c> value.</param>
+        public event Action<object>? PreviewNotificationSignal
         {
             add { if (value is not null) AddEventHandler("PreviewNotificationSignal", value); }
             remove { if (value is not null) RemoveEventHandler("PreviewNotificationSignal", value); }

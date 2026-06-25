@@ -22,88 +22,88 @@ namespace Roblox
         /// Creates a <see cref="ScriptContext"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScriptContext? FromHandle(nuint handle)
+        public static new ScriptContext? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptContext(handle);
 
         public bool ScriptsDisabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptsDisabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ScriptsDisabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ScriptsDisabled", value);
         }
 
         /// <summary>
         /// <c>ScriptContext.AddCoreScriptLocal</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="parent">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddCoreScriptLocal(string? name, Instance? parent)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddCoreScriptLocal", name, parent);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="parent">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddCoreScriptLocal(string name, Instance parent)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddCoreScriptLocal", name, parent)!;
 
         /// <summary>
         /// <c>ScriptContext.CompressLuaApp</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CompressLuaApp()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CompressLuaApp");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CompressLuaApp()
+            => global::Roblox.Reflection.Invoke<object>(this, "CompressLuaApp")!;
 
         /// <summary>
         /// <c>ScriptContext.EnableCoverage</c>
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptContext#EnableCoverage"/>
-        public object? EnableCoverage(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "EnableCoverage", instance);
+        public object EnableCoverage(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "EnableCoverage", instance)!;
 
         /// <summary>
         /// <c>ScriptContext.GetCoverageStats</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptContext#GetCoverageStats"/>
-        public object? GetCoverageStats()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCoverageStats");
+        public object GetCoverageStats()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCoverageStats")!;
 
         /// <summary>
         /// <c>ScriptContext.GetLuauHeapInstanceReferenceReport</c>
         /// </summary>
-        /// <param name="target">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLuauHeapInstanceReferenceReport(string? target)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLuauHeapInstanceReferenceReport", target);
+        /// <param name="target">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetLuauHeapInstanceReferenceReport(string target)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLuauHeapInstanceReferenceReport", target)!;
 
         /// <summary>
         /// <c>ScriptContext.GetLuauHeapMemoryReport</c>
         /// </summary>
-        /// <param name="target">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLuauHeapMemoryReport(string? target)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLuauHeapMemoryReport", target);
+        /// <param name="target">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetLuauHeapMemoryReport(string target)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLuauHeapMemoryReport", target)!;
 
         /// <summary>
         /// <c>ScriptContext.ReportLuaRequireCount</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ReportLuaRequireCount()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ReportLuaRequireCount");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ReportLuaRequireCount()
+            => global::Roblox.Reflection.Invoke<object>(this, "ReportLuaRequireCount")!;
 
         /// <summary>
         /// Limits how long a script is allowed to run without yielding.
         /// </summary>
         /// <param name="seconds">A <c>double</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptContext#SetTimeout"/>
-        public object? SetTimeout(double seconds)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTimeout", seconds);
+        public object SetTimeout(double seconds)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTimeout", seconds)!;
 
         /// <summary>
         /// Fired when an error occurs.
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="stackTrace">A <c>string?</c> value.</param>
-        /// <param name="script">A <c>Instance?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="stackTrace">A <c>string</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScriptContext#Error"/>
-        public event Action<string?, string?, Instance?>? Error
+        public event Action<string, string, Instance>? Error
         {
             add { if (value is not null) AddEventHandler("Error", value); }
             remove { if (value is not null) RemoveEventHandler("Error", value); }
@@ -112,13 +112,13 @@ namespace Roblox
         /// <summary>
         /// <c>ScriptContext.ErrorDetailed</c>
         /// </summary>
-        /// <param name="message">A <c>string?</c> value.</param>
-        /// <param name="stackTrace">A <c>string?</c> value.</param>
-        /// <param name="script">A <c>Instance?</c> value.</param>
-        /// <param name="details">A <c>string?</c> value.</param>
+        /// <param name="message">A <c>string</c> value.</param>
+        /// <param name="stackTrace">A <c>string</c> value.</param>
+        /// <param name="script">A <c>Instance</c> value.</param>
+        /// <param name="details">A <c>string</c> value.</param>
         /// <param name="securityLevel">A <c>int</c> value.</param>
-        /// <param name="messageId">A <c>string?</c> value.</param>
-        public event Action<string?, string?, Instance?, string?, int, string?>? ErrorDetailed
+        /// <param name="messageId">A <c>string</c> value.</param>
+        public event Action<string, string, Instance, string, int, string>? ErrorDetailed
         {
             add { if (value is not null) AddEventHandler("ErrorDetailed", value); }
             remove { if (value is not null) RemoveEventHandler("ErrorDetailed", value); }

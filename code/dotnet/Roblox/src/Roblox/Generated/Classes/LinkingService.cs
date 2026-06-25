@@ -18,46 +18,46 @@ namespace Roblox
         /// Creates a <see cref="LinkingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LinkingService? FromHandle(nuint handle)
+        public static new LinkingService? FromHandle(nuint handle)
             => handle == 0 ? null : new LinkingService(handle);
 
         /// <summary>
         /// <c>LinkingService.DetectUrl</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? DetectUrl(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DetectUrl", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object DetectUrl(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "DetectUrl", url)!;
 
         /// <summary>
         /// <c>LinkingService.GetAndClearLastPendingUrl</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetAndClearLastPendingUrl()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAndClearLastPendingUrl");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetAndClearLastPendingUrl()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAndClearLastPendingUrl")!;
 
         /// <summary>
         /// <c>LinkingService.GetLastLuaUrl</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetLastLuaUrl()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLastLuaUrl");
+        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        public string? GetLastLuaUrl()
+            => global::Roblox.Reflection.Invoke<string?>(this, "GetLastLuaUrl");
 
         /// <summary>
         /// <c>LinkingService.IsUrlRegistered</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
+        /// <param name="url">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool IsUrlRegistered(string? url)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsUrlRegistered", url);
+        public bool IsUrlRegistered(string url)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsUrlRegistered", url)!;
 
         /// <summary>
         /// <c>LinkingService.RegisterLuaUrl</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RegisterLuaUrl(string? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RegisterLuaUrl", url);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RegisterLuaUrl(string url)
+            => global::Roblox.Reflection.Invoke<object>(this, "RegisterLuaUrl", url)!;
 
         /// <summary>
         /// <c>LinkingService.StartLuaUrlDelivery</c>
@@ -69,40 +69,40 @@ namespace Roblox
         /// <summary>
         /// <c>LinkingService.StopLuaUrlDelivery</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? StopLuaUrlDelivery()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StopLuaUrlDelivery");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object StopLuaUrlDelivery()
+            => global::Roblox.Reflection.Invoke<object>(this, "StopLuaUrlDelivery")!;
 
         /// <summary>
         /// <c>LinkingService.OpenUrl</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
+        /// <param name="url">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool OpenUrl(string? url)
-            => global::Roblox.Reflection.Invoke<bool>(this, "OpenUrl", url);
+        public bool OpenUrl(string url)
+            => global::Roblox.Reflection.Invoke<bool>(this, "OpenUrl", url)!;
 
         /// <summary>
         /// <c>LinkingService.SupportsSwitchToSettingsApp</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool SupportsSwitchToSettingsApp()
-            => global::Roblox.Reflection.Invoke<bool>(this, "SupportsSwitchToSettingsApp");
+            => global::Roblox.Reflection.Invoke<bool>(this, "SupportsSwitchToSettingsApp")!;
 
         /// <summary>
         /// <c>LinkingService.SwitchToSettingsApp</c>
         /// </summary>
-        /// <param name="route">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SwitchToSettingsApp(object? route)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SwitchToSettingsApp", route);
+        /// <param name="route">A <c>string?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SwitchToSettingsApp(string? route = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SwitchToSettingsApp", route)!;
 
         /// <summary>
         /// <c>LinkingService.OnLuaUrl</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <param name="matchedUrl">A <c>string?</c> value.</param>
-        /// <param name="attributionUrl">A <c>object?</c> value.</param>
-        public event Action<string?, string?, object?>? OnLuaUrl
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <param name="matchedUrl">A <c>string</c> value.</param>
+        /// <param name="attributionUrl">A <c>string?</c> value.</param>
+        public event Action<string, string, string?>? OnLuaUrl
         {
             add { if (value is not null) AddEventHandler("OnLuaUrl", value); }
             remove { if (value is not null) RemoveEventHandler("OnLuaUrl", value); }

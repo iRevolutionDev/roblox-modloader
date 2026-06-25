@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="MouseService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static MouseService? FromHandle(nuint handle)
+        public static new MouseService? FromHandle(nuint handle)
             => handle == 0 ? null : new MouseService(handle);
 
         public event Action? MouseEnterStudioViewport

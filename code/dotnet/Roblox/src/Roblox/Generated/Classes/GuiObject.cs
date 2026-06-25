@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="GuiObject"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static GuiObject? FromHandle(nuint handle)
+        public static new GuiObject? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiObject(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Active"/>
         public bool Active
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Active")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Active", value);
         }
 
@@ -39,10 +39,10 @@ namespace Roblox
         /// Determines the origin point of a GuiObject, relative to its absolute size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#AnchorPoint"/>
-        public global::Roblox.Vector2? AnchorPoint
+        public global::Roblox.Vector2 AnchorPoint
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2?>(this, "AnchorPoint");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2?>(this, "AnchorPoint", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector2>(this, "AnchorPoint")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector2>(this, "AnchorPoint", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#AutomaticSize"/>
         public Enum.AutomaticSize AutomaticSize
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AutomaticSize>(this, "AutomaticSize");
+            get => global::Roblox.Reflection.GetProperty<Enum.AutomaticSize>(this, "AutomaticSize")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AutomaticSize>(this, "AutomaticSize", value);
         }
 
@@ -59,20 +59,20 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of the Color3 property GuiObject.BackgroundColor3, which should be used in new work instead.Determines the color of the GuiObject background.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundColor"/>
-        public global::Roblox.BrickColor? BackgroundColor
+        public global::Roblox.BrickColor BackgroundColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "BackgroundColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "BackgroundColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "BackgroundColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "BackgroundColor", value);
         }
 
         /// <summary>
         /// Determines the GuiObject background color.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundColor3"/>
-        public global::Roblox.Color3? BackgroundColor3
+        public global::Roblox.Color3 BackgroundColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BackgroundColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BackgroundColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "BackgroundColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "BackgroundColor3", value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundTransparency"/>
         public float BackgroundTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "BackgroundTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "BackgroundTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "BackgroundTransparency", value);
         }
 
@@ -89,20 +89,20 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of the Color3 property BorderColor3, which should be used in new work instead.Determines the color of the GuiObject border.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BorderColor"/>
-        public global::Roblox.BrickColor? BorderColor
+        public global::Roblox.BrickColor BorderColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "BorderColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "BorderColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "BorderColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "BorderColor", value);
         }
 
         /// <summary>
         /// Determines the color of the GuiObject border.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BorderColor3"/>
-        public global::Roblox.Color3? BorderColor3
+        public global::Roblox.Color3 BorderColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "BorderColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "BorderColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "BorderColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "BorderColor3", value);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BorderMode"/>
         public Enum.BorderMode BorderMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.BorderMode>(this, "BorderMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.BorderMode>(this, "BorderMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.BorderMode>(this, "BorderMode", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BorderSizePixel"/>
         public int BorderSizePixel
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "BorderSizePixel");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "BorderSizePixel")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "BorderSizePixel", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#ClipsDescendants"/>
         public bool ClipsDescendants
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipsDescendants");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ClipsDescendants")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ClipsDescendants", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Draggable"/>
         public bool Draggable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Draggable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Draggable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Draggable", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#GuiState"/>
         public Enum.GuiState GuiState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GuiState>(this, "GuiState");
+            get => global::Roblox.Reflection.GetProperty<Enum.GuiState>(this, "GuiState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GuiState>(this, "GuiState", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#InputSink"/>
         public Enum.InputSink InputSink
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InputSink>(this, "InputSink");
+            get => global::Roblox.Reflection.GetProperty<Enum.InputSink>(this, "InputSink")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InputSink>(this, "InputSink", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Interactable"/>
         public bool Interactable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Interactable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Interactable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Interactable", value);
         }
 
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#LayoutOrder"/>
         public int LayoutOrder
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "LayoutOrder");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "LayoutOrder")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "LayoutOrder", value);
         }
 
@@ -229,10 +229,10 @@ namespace Roblox
         /// Determines the pixel and scalar position of the GuiObject.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Position"/>
-        public global::Roblox.UDim2? Position
+        public global::Roblox.UDim2 Position
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Position");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Position", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "Position")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "Position", value);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Rotation"/>
         public float Rotation
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Rotation");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Rotation")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Rotation", value);
         }
 
@@ -251,7 +251,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Selectable"/>
         public bool Selectable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Selectable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Selectable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Selectable", value);
         }
 
@@ -271,24 +271,24 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#SelectionOrder"/>
         public int SelectionOrder
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectionOrder");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "SelectionOrder")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "SelectionOrder", value);
         }
 
-        public global::Roblox.Rect? SelectionRect2D
+        public global::Roblox.Rect SelectionRect2D
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect?>(this, "SelectionRect2D");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect?>(this, "SelectionRect2D", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Rect>(this, "SelectionRect2D")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Rect>(this, "SelectionRect2D", value);
         }
 
         /// <summary>
         /// Determines the pixel and scalar size of the GuiObject.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Size"/>
-        public global::Roblox.UDim2? Size
+        public global::Roblox.UDim2 Size
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Size");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Size", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "Size")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "Size", value);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#SizeConstraint"/>
         public Enum.SizeConstraint SizeConstraint
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.SizeConstraint>(this, "SizeConstraint");
+            get => global::Roblox.Reflection.GetProperty<Enum.SizeConstraint>(this, "SizeConstraint")!;
             set => global::Roblox.Reflection.SetProperty<Enum.SizeConstraint>(this, "SizeConstraint", value);
         }
 
@@ -307,7 +307,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Transparency"/>
         public float Transparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Transparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Transparency", value);
         }
 
@@ -317,7 +317,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Visible"/>
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 
@@ -327,99 +327,99 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#ZIndex"/>
         public int ZIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ZIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ZIndex", value);
         }
 
         /// <summary>
         /// Smoothly moves a GUI to a new UDim2.
         /// </summary>
-        /// <param name="endPosition">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="easingDirection">A <c>Enum.EasingDirection</c> value.</param>
-        /// <param name="easingStyle">A <c>Enum.EasingStyle</c> value.</param>
-        /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="override">A <c>bool</c> value.</param>
+        /// <param name="endPosition">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="easingDirection">A <c>Enum.EasingDirection?</c> value.</param>
+        /// <param name="easingStyle">A <c>Enum.EasingStyle?</c> value.</param>
+        /// <param name="time">A <c>float?</c> value.</param>
+        /// <param name="@override">A <c>bool?</c> value.</param>
         /// <param name="callback">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TweenPosition"/>
-        public bool TweenPosition(global::Roblox.UDim2? endPosition, Enum.EasingDirection easingDirection, Enum.EasingStyle easingStyle, float time, bool @override, object? callback)
-            => global::Roblox.Reflection.Invoke<bool>(this, "TweenPosition", endPosition, easingDirection, easingStyle, time, @override, callback);
+        public bool TweenPosition(global::Roblox.UDim2 endPosition, Enum.EasingDirection? easingDirection = null, Enum.EasingStyle? easingStyle = null, float? time = null, bool? @override = null, object? callback = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "TweenPosition", endPosition, easingDirection, easingStyle, time, @override, callback)!;
 
         /// <summary>
         /// <c>GuiObject.TweenPositionInternal</c>
         /// </summary>
-        /// <param name="endPosition">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="easingDirection">A <c>Enum.EasingDirection</c> value.</param>
-        /// <param name="easingStyle">A <c>Enum.EasingStyle</c> value.</param>
-        /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="override">A <c>bool</c> value.</param>
+        /// <param name="endPosition">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="easingDirection">A <c>Enum.EasingDirection?</c> value.</param>
+        /// <param name="easingStyle">A <c>Enum.EasingStyle?</c> value.</param>
+        /// <param name="time">A <c>float?</c> value.</param>
+        /// <param name="@override">A <c>bool?</c> value.</param>
         /// <param name="callback">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool TweenPositionInternal(global::Roblox.UDim2? endPosition, Enum.EasingDirection easingDirection, Enum.EasingStyle easingStyle, float time, bool @override, object? callback)
-            => global::Roblox.Reflection.Invoke<bool>(this, "TweenPositionInternal", endPosition, easingDirection, easingStyle, time, @override, callback);
+        public bool TweenPositionInternal(global::Roblox.UDim2 endPosition, Enum.EasingDirection? easingDirection = null, Enum.EasingStyle? easingStyle = null, float? time = null, bool? @override = null, object? callback = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "TweenPositionInternal", endPosition, easingDirection, easingStyle, time, @override, callback)!;
 
         /// <summary>
         /// Smoothly resizes a GuiObject to a new UDim2.
         /// </summary>
-        /// <param name="endSize">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="easingDirection">A <c>Enum.EasingDirection</c> value.</param>
-        /// <param name="easingStyle">A <c>Enum.EasingStyle</c> value.</param>
-        /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="override">A <c>bool</c> value.</param>
+        /// <param name="endSize">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="easingDirection">A <c>Enum.EasingDirection?</c> value.</param>
+        /// <param name="easingStyle">A <c>Enum.EasingStyle?</c> value.</param>
+        /// <param name="time">A <c>float?</c> value.</param>
+        /// <param name="@override">A <c>bool?</c> value.</param>
         /// <param name="callback">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TweenSize"/>
-        public bool TweenSize(global::Roblox.UDim2? endSize, Enum.EasingDirection easingDirection, Enum.EasingStyle easingStyle, float time, bool @override, object? callback)
-            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSize", endSize, easingDirection, easingStyle, time, @override, callback);
+        public bool TweenSize(global::Roblox.UDim2 endSize, Enum.EasingDirection? easingDirection = null, Enum.EasingStyle? easingStyle = null, float? time = null, bool? @override = null, object? callback = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSize", endSize, easingDirection, easingStyle, time, @override, callback)!;
 
         /// <summary>
         /// Smoothly moves a GUI to a new size and position.
         /// </summary>
-        /// <param name="endSize">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="endPosition">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="easingDirection">A <c>Enum.EasingDirection</c> value.</param>
-        /// <param name="easingStyle">A <c>Enum.EasingStyle</c> value.</param>
-        /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="override">A <c>bool</c> value.</param>
+        /// <param name="endSize">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="endPosition">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="easingDirection">A <c>Enum.EasingDirection?</c> value.</param>
+        /// <param name="easingStyle">A <c>Enum.EasingStyle?</c> value.</param>
+        /// <param name="time">A <c>float?</c> value.</param>
+        /// <param name="@override">A <c>bool?</c> value.</param>
         /// <param name="callback">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TweenSizeAndPosition"/>
-        public bool TweenSizeAndPosition(global::Roblox.UDim2? endSize, global::Roblox.UDim2? endPosition, Enum.EasingDirection easingDirection, Enum.EasingStyle easingStyle, float time, bool @override, object? callback)
-            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSizeAndPosition", endSize, endPosition, easingDirection, easingStyle, time, @override, callback);
+        public bool TweenSizeAndPosition(global::Roblox.UDim2 endSize, global::Roblox.UDim2 endPosition, Enum.EasingDirection? easingDirection = null, Enum.EasingStyle? easingStyle = null, float? time = null, bool? @override = null, object? callback = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSizeAndPosition", endSize, endPosition, easingDirection, easingStyle, time, @override, callback)!;
 
         /// <summary>
         /// <c>GuiObject.TweenSizeAndPositionInternal</c>
         /// </summary>
-        /// <param name="endSize">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="endPosition">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="easingDirection">A <c>Enum.EasingDirection</c> value.</param>
-        /// <param name="easingStyle">A <c>Enum.EasingStyle</c> value.</param>
-        /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="override">A <c>bool</c> value.</param>
+        /// <param name="endSize">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="endPosition">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="easingDirection">A <c>Enum.EasingDirection?</c> value.</param>
+        /// <param name="easingStyle">A <c>Enum.EasingStyle?</c> value.</param>
+        /// <param name="time">A <c>float?</c> value.</param>
+        /// <param name="@override">A <c>bool?</c> value.</param>
         /// <param name="callback">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool TweenSizeAndPositionInternal(global::Roblox.UDim2? endSize, global::Roblox.UDim2? endPosition, Enum.EasingDirection easingDirection, Enum.EasingStyle easingStyle, float time, bool @override, object? callback)
-            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSizeAndPositionInternal", endSize, endPosition, easingDirection, easingStyle, time, @override, callback);
+        public bool TweenSizeAndPositionInternal(global::Roblox.UDim2 endSize, global::Roblox.UDim2 endPosition, Enum.EasingDirection? easingDirection = null, Enum.EasingStyle? easingStyle = null, float? time = null, bool? @override = null, object? callback = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSizeAndPositionInternal", endSize, endPosition, easingDirection, easingStyle, time, @override, callback)!;
 
         /// <summary>
         /// <c>GuiObject.TweenSizeInternal</c>
         /// </summary>
-        /// <param name="endSize">A <c>global::Roblox.UDim2?</c> value.</param>
-        /// <param name="easingDirection">A <c>Enum.EasingDirection</c> value.</param>
-        /// <param name="easingStyle">A <c>Enum.EasingStyle</c> value.</param>
-        /// <param name="time">A <c>float</c> value.</param>
-        /// <param name="override">A <c>bool</c> value.</param>
+        /// <param name="endSize">A <c>global::Roblox.UDim2</c> value.</param>
+        /// <param name="easingDirection">A <c>Enum.EasingDirection?</c> value.</param>
+        /// <param name="easingStyle">A <c>Enum.EasingStyle?</c> value.</param>
+        /// <param name="time">A <c>float?</c> value.</param>
+        /// <param name="@override">A <c>bool?</c> value.</param>
         /// <param name="callback">A <c>object?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool TweenSizeInternal(global::Roblox.UDim2? endSize, Enum.EasingDirection easingDirection, Enum.EasingStyle easingStyle, float time, bool @override, object? callback)
-            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSizeInternal", endSize, easingDirection, easingStyle, time, @override, callback);
+        public bool TweenSizeInternal(global::Roblox.UDim2 endSize, Enum.EasingDirection? easingDirection = null, Enum.EasingStyle? easingStyle = null, float? time = null, bool? @override = null, object? callback = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "TweenSizeInternal", endSize, easingDirection, easingStyle, time, @override, callback)!;
 
         /// <summary>
         /// Deprecated: This property is deprecated. Use UIDragDetector instead, as it supports more input types and can be better customized.Fired when a player begins dragging the object.
         /// </summary>
-        /// <param name="initialPosition">A <c>global::Roblox.UDim2?</c> value.</param>
+        /// <param name="initialPosition">A <c>global::Roblox.UDim2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#DragBegin"/>
-        public event Action<global::Roblox.UDim2?>? DragBegin
+        public event Action<global::Roblox.UDim2>? DragBegin
         {
             add { if (value is not null) AddEventHandler("DragBegin", value); }
             remove { if (value is not null) RemoveEventHandler("DragBegin", value); }
@@ -440,9 +440,9 @@ namespace Roblox
         /// <summary>
         /// Fired when a user begins interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc).
         /// </summary>
-        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="input">A <c>InputObject</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#InputBegan"/>
-        public event Action<InputObject?>? InputBegan
+        public event Action<InputObject>? InputBegan
         {
             add { if (value is not null) AddEventHandler("InputBegan", value); }
             remove { if (value is not null) RemoveEventHandler("InputBegan", value); }
@@ -451,9 +451,9 @@ namespace Roblox
         /// <summary>
         /// Fired when a user changes how they're interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc).
         /// </summary>
-        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="input">A <c>InputObject</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#InputChanged"/>
-        public event Action<InputObject?>? InputChanged
+        public event Action<InputObject>? InputChanged
         {
             add { if (value is not null) AddEventHandler("InputChanged", value); }
             remove { if (value is not null) RemoveEventHandler("InputChanged", value); }
@@ -462,9 +462,9 @@ namespace Roblox
         /// <summary>
         /// Fired when a user stops interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc).
         /// </summary>
-        /// <param name="input">A <c>InputObject?</c> value.</param>
+        /// <param name="input">A <c>InputObject</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#InputEnded"/>
-        public event Action<InputObject?>? InputEnded
+        public event Action<InputObject>? InputEnded
         {
             add { if (value is not null) AddEventHandler("InputEnded", value); }
             remove { if (value is not null) RemoveEventHandler("InputEnded", value); }
@@ -553,10 +553,10 @@ namespace Roblox
         /// <summary>
         /// Fires when the player starts, continues and stops long-pressing the UI element.
         /// </summary>
-        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="touchPositions">A <c>object</c> value.</param>
         /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchLongPress"/>
-        public event Action<object?, Enum.UserInputState>? TouchLongPress
+        public event Action<object, Enum.UserInputState>? TouchLongPress
         {
             add { if (value is not null) AddEventHandler("TouchLongPress", value); }
             remove { if (value is not null) RemoveEventHandler("TouchLongPress", value); }
@@ -565,12 +565,12 @@ namespace Roblox
         /// <summary>
         /// Fires when the player moves their finger on the UI element.
         /// </summary>
-        /// <param name="touchPositions">A <c>object?</c> value.</param>
-        /// <param name="totalTranslation">A <c>global::Roblox.Vector2?</c> value.</param>
-        /// <param name="velocity">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="touchPositions">A <c>object</c> value.</param>
+        /// <param name="totalTranslation">A <c>global::Roblox.Vector2</c> value.</param>
+        /// <param name="velocity">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchPan"/>
-        public event Action<object?, global::Roblox.Vector2?, global::Roblox.Vector2?, Enum.UserInputState>? TouchPan
+        public event Action<object, global::Roblox.Vector2, global::Roblox.Vector2, Enum.UserInputState>? TouchPan
         {
             add { if (value is not null) AddEventHandler("TouchPan", value); }
             remove { if (value is not null) RemoveEventHandler("TouchPan", value); }
@@ -579,12 +579,12 @@ namespace Roblox
         /// <summary>
         /// Fires when the player performs a pinch or pull gesture using two fingers on the UI element.
         /// </summary>
-        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="touchPositions">A <c>object</c> value.</param>
         /// <param name="scale">A <c>float</c> value.</param>
         /// <param name="velocity">A <c>float</c> value.</param>
         /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchPinch"/>
-        public event Action<object?, float, float, Enum.UserInputState>? TouchPinch
+        public event Action<object, float, float, Enum.UserInputState>? TouchPinch
         {
             add { if (value is not null) AddEventHandler("TouchPinch", value); }
             remove { if (value is not null) RemoveEventHandler("TouchPinch", value); }
@@ -593,12 +593,12 @@ namespace Roblox
         /// <summary>
         /// Fires when the player performs a rotation gesture using two fingers on the UI element.
         /// </summary>
-        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="touchPositions">A <c>object</c> value.</param>
         /// <param name="rotation">A <c>float</c> value.</param>
         /// <param name="velocity">A <c>float</c> value.</param>
         /// <param name="state">A <c>Enum.UserInputState</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchRotate"/>
-        public event Action<object?, float, float, Enum.UserInputState>? TouchRotate
+        public event Action<object, float, float, Enum.UserInputState>? TouchRotate
         {
             add { if (value is not null) AddEventHandler("TouchRotate", value); }
             remove { if (value is not null) RemoveEventHandler("TouchRotate", value); }
@@ -619,9 +619,9 @@ namespace Roblox
         /// <summary>
         /// Fires when the player performs a tap gesture on the UI element.
         /// </summary>
-        /// <param name="touchPositions">A <c>object?</c> value.</param>
+        /// <param name="touchPositions">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#TouchTap"/>
-        public event Action<object?>? TouchTap
+        public event Action<object>? TouchTap
         {
             add { if (value is not null) AddEventHandler("TouchTap", value); }
             remove { if (value is not null) RemoveEventHandler("TouchTap", value); }

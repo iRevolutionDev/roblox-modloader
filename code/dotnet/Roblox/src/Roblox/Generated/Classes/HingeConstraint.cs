@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="HingeConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static HingeConstraint? FromHandle(nuint handle)
+        public static new HingeConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new HingeConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#ActuatorType"/>
         public Enum.ActuatorType ActuatorType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorType>(this, "ActuatorType");
+            get => global::Roblox.Reflection.GetProperty<Enum.ActuatorType>(this, "ActuatorType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ActuatorType>(this, "ActuatorType", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#AngularResponsiveness"/>
         public float AngularResponsiveness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularResponsiveness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularResponsiveness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularResponsiveness", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#AngularSpeed"/>
         public float AngularSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularSpeed", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#AngularVelocity"/>
         public float AngularVelocity
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularVelocity");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "AngularVelocity")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularVelocity", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#CurrentAngle"/>
         public float CurrentAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentAngle", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#LimitsEnabled"/>
         public bool LimitsEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitsEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "LimitsEnabled", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#LowerAngle"/>
         public float LowerAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "LowerAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "LowerAngle", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#MotorMaxAcceleration"/>
         public float MotorMaxAcceleration
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxAcceleration");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxAcceleration")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MotorMaxAcceleration", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#MotorMaxTorque"/>
         public float MotorMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MotorMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MotorMaxTorque", value);
         }
 
@@ -121,7 +121,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#Radius"/>
         public float Radius
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Radius")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Radius", value);
         }
 
@@ -131,7 +131,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#Restitution"/>
         public float Restitution
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Restitution", value);
         }
 
@@ -141,7 +141,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#ServoMaxTorque"/>
         public float ServoMaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ServoMaxTorque");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ServoMaxTorque")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ServoMaxTorque", value);
         }
 
@@ -151,7 +151,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#SoftlockServoUponReachingTarget"/>
         public bool SoftlockServoUponReachingTarget
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "SoftlockServoUponReachingTarget");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "SoftlockServoUponReachingTarget")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "SoftlockServoUponReachingTarget", value);
         }
 
@@ -161,7 +161,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#TargetAngle"/>
         public float TargetAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TargetAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TargetAngle", value);
         }
 
@@ -171,7 +171,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint#UpperAngle"/>
         public float UpperAngle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperAngle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "UpperAngle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "UpperAngle", value);
         }
 

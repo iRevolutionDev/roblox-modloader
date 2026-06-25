@@ -22,77 +22,77 @@ namespace Roblox
         /// Creates a <see cref="EncodingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static EncodingService? FromHandle(nuint handle)
+        public static new EncodingService? FromHandle(nuint handle)
             => handle == 0 ? null : new EncodingService(handle);
 
         /// <summary>
         /// <c>EncodingService.Base64Decode</c>
         /// </summary>
-        /// <param name="input">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="input">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EncodingService#Base64Decode"/>
-        public object? Base64Decode(object? input)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Base64Decode", input);
+        public object Base64Decode(object input)
+            => global::Roblox.Reflection.Invoke<object>(this, "Base64Decode", input)!;
 
         /// <summary>
         /// <c>EncodingService.Base64Encode</c>
         /// </summary>
-        /// <param name="input">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="input">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EncodingService#Base64Encode"/>
-        public object? Base64Encode(object? input)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Base64Encode", input);
+        public object Base64Encode(object input)
+            => global::Roblox.Reflection.Invoke<object>(this, "Base64Encode", input)!;
 
         /// <summary>
         /// <c>EncodingService.CompressBuffer</c>
         /// </summary>
-        /// <param name="input">A <c>object?</c> value.</param>
+        /// <param name="input">A <c>object</c> value.</param>
         /// <param name="algorithm">A <c>Enum.CompressionAlgorithm</c> value.</param>
-        /// <param name="compressionLevel">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="compressionLevel">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EncodingService#CompressBuffer"/>
-        public object? CompressBuffer(object? input, Enum.CompressionAlgorithm algorithm, int compressionLevel)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CompressBuffer", input, algorithm, compressionLevel);
+        public object CompressBuffer(object input, Enum.CompressionAlgorithm algorithm, int? compressionLevel = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "CompressBuffer", input, algorithm, compressionLevel)!;
 
         /// <summary>
         /// <c>EncodingService.ComputeBufferHash</c>
         /// </summary>
-        /// <param name="input">A <c>object?</c> value.</param>
+        /// <param name="input">A <c>object</c> value.</param>
         /// <param name="algorithm">A <c>Enum.HashAlgorithm</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EncodingService#ComputeBufferHash"/>
-        public object? ComputeBufferHash(object? input, Enum.HashAlgorithm algorithm)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ComputeBufferHash", input, algorithm);
+        public object ComputeBufferHash(object input, Enum.HashAlgorithm algorithm)
+            => global::Roblox.Reflection.Invoke<object>(this, "ComputeBufferHash", input, algorithm)!;
 
         /// <summary>
         /// <c>EncodingService.ComputeStringHash</c>
         /// </summary>
-        /// <param name="input">A <c>string?</c> value.</param>
+        /// <param name="input">A <c>string</c> value.</param>
         /// <param name="algorithm">A <c>Enum.HashAlgorithm</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EncodingService#ComputeStringHash"/>
-        public string? ComputeStringHash(string? input, Enum.HashAlgorithm algorithm)
-            => global::Roblox.Reflection.Invoke<string?>(this, "ComputeStringHash", input, algorithm);
+        public string ComputeStringHash(string input, Enum.HashAlgorithm algorithm)
+            => global::Roblox.Reflection.Invoke<string>(this, "ComputeStringHash", input, algorithm)!;
 
         /// <summary>
         /// <c>EncodingService.DecompressBuffer</c>
         /// </summary>
-        /// <param name="input">A <c>object?</c> value.</param>
+        /// <param name="input">A <c>object</c> value.</param>
         /// <param name="algorithm">A <c>Enum.CompressionAlgorithm</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EncodingService#DecompressBuffer"/>
-        public object? DecompressBuffer(object? input, Enum.CompressionAlgorithm algorithm)
-            => global::Roblox.Reflection.Invoke<object?>(this, "DecompressBuffer", input, algorithm);
+        public object DecompressBuffer(object input, Enum.CompressionAlgorithm algorithm)
+            => global::Roblox.Reflection.Invoke<object>(this, "DecompressBuffer", input, algorithm)!;
 
         /// <summary>
         /// <c>EncodingService.GetDecompressedBufferSize</c>
         /// </summary>
-        /// <param name="input">A <c>object?</c> value.</param>
+        /// <param name="input">A <c>object</c> value.</param>
         /// <param name="algorithm">A <c>Enum.CompressionAlgorithm</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>int?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EncodingService#GetDecompressedBufferSize"/>
-        public object? GetDecompressedBufferSize(object? input, Enum.CompressionAlgorithm algorithm)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDecompressedBufferSize", input, algorithm);
+        public int? GetDecompressedBufferSize(object input, Enum.CompressionAlgorithm algorithm)
+            => global::Roblox.Reflection.Invoke<int?>(this, "GetDecompressedBufferSize", input, algorithm);
 
     }
 }

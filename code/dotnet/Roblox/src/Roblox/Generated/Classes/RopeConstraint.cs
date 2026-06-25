@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="RopeConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static RopeConstraint? FromHandle(nuint handle)
+        public static new RopeConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new RopeConstraint(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#CurrentDistance"/>
         public float CurrentDistance
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentDistance");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "CurrentDistance")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "CurrentDistance", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#Length"/>
         public float Length
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Length", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#Restitution"/>
         public float Restitution
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Restitution")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Restitution", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#Thickness"/>
         public float Thickness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Thickness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Thickness", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchEnabled"/>
         public bool WinchEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "WinchEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "WinchEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "WinchEnabled", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchForce"/>
         public float WinchForce
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchForce");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchForce")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WinchForce", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchResponsiveness"/>
         public float WinchResponsiveness
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchResponsiveness");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchResponsiveness")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WinchResponsiveness", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchSpeed"/>
         public float WinchSpeed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchSpeed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchSpeed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WinchSpeed", value);
         }
 
@@ -111,7 +111,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint#WinchTarget"/>
         public float WinchTarget
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchTarget");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WinchTarget")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WinchTarget", value);
         }
 

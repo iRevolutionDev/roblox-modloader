@@ -22,129 +22,129 @@ namespace Roblox
         /// Creates a <see cref="VirtualUser"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static VirtualUser? FromHandle(nuint handle)
+        public static new VirtualUser? FromHandle(nuint handle)
             => handle == 0 ? null : new VirtualUser(handle);
 
         /// <summary>
         /// <c>VirtualUser.Button1Down</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="camera">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#Button1Down"/>
-        public object? Button1Down(global::Roblox.Vector2? position, global::Roblox.CFrame? camera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Button1Down", position, camera);
+        public object Button1Down(global::Roblox.Vector2 position, global::Roblox.CFrame? camera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Button1Down", position, camera)!;
 
         /// <summary>
         /// <c>VirtualUser.Button1Up</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="camera">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#Button1Up"/>
-        public object? Button1Up(global::Roblox.Vector2? position, global::Roblox.CFrame? camera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Button1Up", position, camera);
+        public object Button1Up(global::Roblox.Vector2 position, global::Roblox.CFrame? camera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Button1Up", position, camera)!;
 
         /// <summary>
         /// <c>VirtualUser.Button2Down</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="camera">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#Button2Down"/>
-        public object? Button2Down(global::Roblox.Vector2? position, global::Roblox.CFrame? camera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Button2Down", position, camera);
+        public object Button2Down(global::Roblox.Vector2 position, global::Roblox.CFrame? camera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Button2Down", position, camera)!;
 
         /// <summary>
         /// <c>VirtualUser.Button2Up</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="camera">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#Button2Up"/>
-        public object? Button2Up(global::Roblox.Vector2? position, global::Roblox.CFrame? camera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Button2Up", position, camera);
+        public object Button2Up(global::Roblox.Vector2 position, global::Roblox.CFrame? camera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Button2Up", position, camera)!;
 
         /// <summary>
         /// <c>VirtualUser.CaptureController</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#CaptureController"/>
-        public object? CaptureController()
-            => global::Roblox.Reflection.Invoke<object?>(this, "CaptureController");
+        public object CaptureController()
+            => global::Roblox.Reflection.Invoke<object>(this, "CaptureController")!;
 
         /// <summary>
         /// <c>VirtualUser.ClickButton1</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="camera">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#ClickButton1"/>
-        public object? ClickButton1(global::Roblox.Vector2? position, global::Roblox.CFrame? camera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClickButton1", position, camera);
+        public object ClickButton1(global::Roblox.Vector2 position, global::Roblox.CFrame? camera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ClickButton1", position, camera)!;
 
         /// <summary>
         /// <c>VirtualUser.ClickButton2</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="camera">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#ClickButton2"/>
-        public object? ClickButton2(global::Roblox.Vector2? position, global::Roblox.CFrame? camera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClickButton2", position, camera);
+        public object ClickButton2(global::Roblox.Vector2 position, global::Roblox.CFrame? camera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "ClickButton2", position, camera)!;
 
         /// <summary>
         /// <c>VirtualUser.MoveMouse</c>
         /// </summary>
-        /// <param name="position">A <c>global::Roblox.Vector2?</c> value.</param>
+        /// <param name="position">A <c>global::Roblox.Vector2</c> value.</param>
         /// <param name="camera">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#MoveMouse"/>
-        public object? MoveMouse(global::Roblox.Vector2? position, global::Roblox.CFrame? camera)
-            => global::Roblox.Reflection.Invoke<object?>(this, "MoveMouse", position, camera);
+        public object MoveMouse(global::Roblox.Vector2 position, global::Roblox.CFrame? camera = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "MoveMouse", position, camera)!;
 
         /// <summary>
         /// <c>VirtualUser.SetKeyDown</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#SetKeyDown"/>
-        public object? SetKeyDown(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetKeyDown", key);
+        public object SetKeyDown(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetKeyDown", key)!;
 
         /// <summary>
         /// <c>VirtualUser.SetKeyUp</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#SetKeyUp"/>
-        public object? SetKeyUp(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetKeyUp", key);
+        public object SetKeyUp(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetKeyUp", key)!;
 
         /// <summary>
         /// <c>VirtualUser.StartRecording</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#StartRecording"/>
-        public object? StartRecording()
-            => global::Roblox.Reflection.Invoke<object?>(this, "StartRecording");
+        public object StartRecording()
+            => global::Roblox.Reflection.Invoke<object>(this, "StartRecording")!;
 
         /// <summary>
         /// <c>VirtualUser.StopRecording</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#StopRecording"/>
-        public string? StopRecording()
-            => global::Roblox.Reflection.Invoke<string?>(this, "StopRecording");
+        public string StopRecording()
+            => global::Roblox.Reflection.Invoke<string>(this, "StopRecording")!;
 
         /// <summary>
         /// <c>VirtualUser.TypeKey</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VirtualUser#TypeKey"/>
-        public object? TypeKey(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "TypeKey", key);
+        public object TypeKey(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "TypeKey", key)!;
 
     }
 }

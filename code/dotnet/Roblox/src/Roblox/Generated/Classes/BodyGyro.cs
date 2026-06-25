@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="BodyGyro"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BodyGyro? FromHandle(nuint handle)
+        public static new BodyGyro? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyGyro(handle);
 
         /// <summary>
         /// Determines the target orientation (translational component ignored).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#CFrame"/>
-        public global::Roblox.CFrame? CFrame
+        public global::Roblox.CFrame CFrame
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CFrame");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CFrame", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CFrame")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#D"/>
         public float D
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "D");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "D")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "D", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// Determines the limit on how much torque that may be applied to each axis.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#MaxTorque"/>
-        public global::Roblox.Vector3? MaxTorque
+        public global::Roblox.Vector3 MaxTorque
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MaxTorque");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MaxTorque", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MaxTorque")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MaxTorque", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#P"/>
         public float P
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "P");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "P")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "P", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// Deprecated: This property is a deprecated variant of BodyGyro.CFrame which should be used instead.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#cframe"/>
-        public global::Roblox.CFrame? Cframe
+        public global::Roblox.CFrame Cframe
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "cframe");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "cframe", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "cframe")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "cframe", value);
         }
 
     }

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="UITableLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static UITableLayout? FromHandle(nuint handle)
+        public static new UITableLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UITableLayout(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#FillEmptySpaceColumns"/>
         public bool FillEmptySpaceColumns
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FillEmptySpaceColumns");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FillEmptySpaceColumns")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FillEmptySpaceColumns", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#FillEmptySpaceRows"/>
         public bool FillEmptySpaceRows
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FillEmptySpaceRows");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FillEmptySpaceRows")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FillEmptySpaceRows", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#MajorAxis"/>
         public Enum.TableMajorAxis MajorAxis
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TableMajorAxis>(this, "MajorAxis");
+            get => global::Roblox.Reflection.GetProperty<Enum.TableMajorAxis>(this, "MajorAxis")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TableMajorAxis>(this, "MajorAxis", value);
         }
 
@@ -59,10 +59,10 @@ namespace Roblox
         /// Determines the empty space between cells.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITableLayout#Padding"/>
-        public global::Roblox.UDim2? Padding
+        public global::Roblox.UDim2 Padding
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "Padding");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "Padding", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "Padding")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "Padding", value);
         }
 
     }

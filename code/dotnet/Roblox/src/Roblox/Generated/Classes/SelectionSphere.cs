@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="SelectionSphere"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SelectionSphere? FromHandle(nuint handle)
+        public static new SelectionSphere? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionSphere(handle);
 
         /// <summary>
         /// Deprecated: This property is deprecated in favor of SurfaceColor3 which uses the more precise Color3 data type instead of a BrickColor used by this property.A BrickColor version of SurfaceColor3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionSphere#SurfaceColor"/>
-        public global::Roblox.BrickColor? SurfaceColor
+        public global::Roblox.BrickColor SurfaceColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "SurfaceColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "SurfaceColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "SurfaceColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "SurfaceColor", value);
         }
 
         /// <summary>
         /// Determines the color of the sphere's surface.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionSphere#SurfaceColor3"/>
-        public global::Roblox.Color3? SurfaceColor3
+        public global::Roblox.Color3 SurfaceColor3
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "SurfaceColor3");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "SurfaceColor3", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "SurfaceColor3")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "SurfaceColor3", value);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionSphere#SurfaceTransparency"/>
         public float SurfaceTransparency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "SurfaceTransparency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "SurfaceTransparency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "SurfaceTransparency", value);
         }
 

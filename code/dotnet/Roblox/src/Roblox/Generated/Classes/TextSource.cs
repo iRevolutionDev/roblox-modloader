@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TextSource"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextSource? FromHandle(nuint handle)
+        public static new TextSource? FromHandle(nuint handle)
             => handle == 0 ? null : new TextSource(handle);
 
         /// <summary>
@@ -31,14 +31,14 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextSource#CanSend"/>
         public bool CanSend
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanSend");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CanSend")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CanSend", value);
         }
 
-        public string? DisplayName
+        public string DisplayName
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "DisplayName");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "DisplayName", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "DisplayName")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "DisplayName", value);
         }
 
         /// <summary>
@@ -47,14 +47,14 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextSource#UserId"/>
         public long UserId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "UserId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "UserId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "UserId", value);
         }
 
-        public string? Username
+        public string Username
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Username");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Username", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Username")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Username", value);
         }
 
     }

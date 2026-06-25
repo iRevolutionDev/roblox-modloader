@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DataModel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DataModel? FromHandle(nuint handle)
+        public static new DataModel? FromHandle(nuint handle)
             => handle == 0 ? null : new DataModel(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#CreatorId"/>
         public long CreatorId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatorId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "CreatorId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "CreatorId", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#CreatorType"/>
         public Enum.CreatorType CreatorType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.CreatorType>(this, "CreatorType");
+            get => global::Roblox.Reflection.GetProperty<Enum.CreatorType>(this, "CreatorType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.CreatorType>(this, "CreatorType", value);
         }
 
@@ -49,10 +49,10 @@ namespace Roblox
         /// <c>DataModel.Environment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#Environment"/>
-        public string? Environment
+        public string Environment
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Environment");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Environment", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Environment")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Environment", value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GameId"/>
         public long GameId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "GameId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "GameId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "GameId", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GearGenreSetting"/>
         public Enum.GearGenreSetting GearGenreSetting
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.GearGenreSetting>(this, "GearGenreSetting");
+            get => global::Roblox.Reflection.GetProperty<Enum.GearGenreSetting>(this, "GearGenreSetting")!;
             set => global::Roblox.Reflection.SetProperty<Enum.GearGenreSetting>(this, "GearGenreSetting", value);
         }
 
@@ -81,13 +81,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#Genre"/>
         public Enum.Genre Genre
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Genre>(this, "Genre");
+            get => global::Roblox.Reflection.GetProperty<Enum.Genre>(this, "Genre")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Genre>(this, "Genre", value);
         }
 
         public bool IsSFFlagsLoaded
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSFFlagsLoaded");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSFFlagsLoaded")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsSFFlagsLoaded", value);
         }
 
@@ -95,10 +95,10 @@ namespace Roblox
         /// A unique identifier for the running game server instance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#JobId"/>
-        public string? JobId
+        public string JobId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "JobId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "JobId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "JobId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "JobId", value);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#MatchmakingType"/>
         public Enum.MatchmakingType MatchmakingType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.MatchmakingType>(this, "MatchmakingType");
+            get => global::Roblox.Reflection.GetProperty<Enum.MatchmakingType>(this, "MatchmakingType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.MatchmakingType>(this, "MatchmakingType", value);
         }
 
@@ -117,7 +117,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#PlaceId"/>
         public long PlaceId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "PlaceId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "PlaceId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "PlaceId", value);
         }
 
@@ -127,7 +127,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#PlaceVersion"/>
         public int PlaceVersion
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "PlaceVersion");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "PlaceVersion")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "PlaceVersion", value);
         }
 
@@ -135,10 +135,10 @@ namespace Roblox
         /// Describes the private server ID of the server, if the server is a private server or a reserved server.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#PrivateServerId"/>
-        public string? PrivateServerId
+        public string PrivateServerId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PrivateServerId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PrivateServerId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PrivateServerId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PrivateServerId", value);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#PrivateServerOwnerId"/>
         public long PrivateServerOwnerId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "PrivateServerOwnerId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "PrivateServerOwnerId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "PrivateServerOwnerId", value);
         }
 
@@ -165,10 +165,10 @@ namespace Roblox
         /// Deprecated: This property has been deprecated. Use DataModel.PrivateServerId instead.A string that could identify the current server as a private server.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#VIPServerId"/>
-        public string? VIPServerId
+        public string VIPServerId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "VIPServerId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "VIPServerId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "VIPServerId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "VIPServerId", value);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#VIPServerOwnerId"/>
         public long VIPServerOwnerId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "VIPServerOwnerId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "VIPServerOwnerId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "VIPServerOwnerId", value);
         }
 
@@ -204,93 +204,93 @@ namespace Roblox
         /// <summary>
         /// Binds a function to be called before the server shuts down.
         /// </summary>
-        /// <param name="function">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="function">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#BindToClose"/>
-        public object? BindToClose(object? function)
-            => global::Roblox.Reflection.Invoke<object?>(this, "BindToClose", function);
+        public object BindToClose(object function)
+            => global::Roblox.Reflection.Invoke<object>(this, "BindToClose", function)!;
 
         /// <summary>
         /// <c>DataModel.DefineFastFlag</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="defaultValue">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool DefineFastFlag(string? name, bool defaultValue)
-            => global::Roblox.Reflection.Invoke<bool>(this, "DefineFastFlag", name, defaultValue);
+        public bool DefineFastFlag(string name, bool defaultValue)
+            => global::Roblox.Reflection.Invoke<bool>(this, "DefineFastFlag", name, defaultValue)!;
 
         /// <summary>
         /// <c>DataModel.DefineFastInt</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="defaultValue">A <c>int</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int DefineFastInt(string? name, int defaultValue)
-            => global::Roblox.Reflection.Invoke<int>(this, "DefineFastInt", name, defaultValue);
+        public int DefineFastInt(string name, int defaultValue)
+            => global::Roblox.Reflection.Invoke<int>(this, "DefineFastInt", name, defaultValue)!;
 
         /// <summary>
         /// <c>DataModel.DefineFastString</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="defaultValue">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? DefineFastString(string? name, string? defaultValue)
-            => global::Roblox.Reflection.Invoke<string?>(this, "DefineFastString", name, defaultValue);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="defaultValue">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string DefineFastString(string name, string defaultValue)
+            => global::Roblox.Reflection.Invoke<string>(this, "DefineFastString", name, defaultValue)!;
 
         /// <summary>
         /// <c>DataModel.GetEngineFeature</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool GetEngineFeature(string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetEngineFeature", name);
+        public bool GetEngineFeature(string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetEngineFeature", name)!;
 
         /// <summary>
         /// <c>DataModel.GetFastFlag</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool GetFastFlag(string? name)
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetFastFlag", name);
+        public bool GetFastFlag(string name)
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetFastFlag", name)!;
 
         /// <summary>
         /// <c>DataModel.GetFastInt</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int GetFastInt(string? name)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetFastInt", name);
+        public int GetFastInt(string name)
+            => global::Roblox.Reflection.Invoke<int>(this, "GetFastInt", name)!;
 
         /// <summary>
         /// <c>DataModel.GetFastString</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetFastString(string? name)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetFastString", name);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetFastString(string name)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetFastString", name)!;
 
         /// <summary>
         /// Returns a table containing basic information about the jobs performed by the task scheduler.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GetJobsInfo"/>
-        public object? GetJobsInfo()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetJobsInfo");
+        public object GetJobsInfo()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetJobsInfo")!;
 
         /// <summary>
         /// Deprecated: This item is deprecated since the system was phased out a very long time ago, and recently the APIs for setting this message were removed.<c>[OBSOLETE]:</c> This function will always return a blank string.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GetMessage"/>
-        public string? GetMessage()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetMessage");
+        public string GetMessage()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetMessage")!;
 
         /// <summary>
         /// <c>DataModel.GetPlaySessionId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetPlaySessionId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetPlaySessionId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetPlaySessionId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetPlaySessionId")!;
 
         /// <summary>
         /// Deprecated: This item is deprecated. Use RunService:IsServer() to see if your code is running on the server.This method is no longer useful and will always return false.
@@ -298,14 +298,14 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GetRemoteBuildMode"/>
         public bool GetRemoteBuildMode()
-            => global::Roblox.Reflection.Invoke<bool>(this, "GetRemoteBuildMode");
+            => global::Roblox.Reflection.Invoke<bool>(this, "GetRemoteBuildMode")!;
 
         /// <summary>
         /// <c>DataModel.IsContentLoaded</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsContentLoaded()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsContentLoaded");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsContentLoaded")!;
 
         /// <summary>
         /// Deprecated: This property is deprecated and is no longer functional. It should not be used.Returns whether gear of the given GearType is permitted to be added to Players' StarterGears.
@@ -314,7 +314,7 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#IsGearTypeAllowed"/>
         public bool IsGearTypeAllowed(Enum.GearType gearType)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsGearTypeAllowed", gearType);
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsGearTypeAllowed", gearType)!;
 
         /// <summary>
         /// Returns true if the client has finished loading the game for the first time.
@@ -322,190 +322,190 @@ namespace Roblox
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#IsLoaded"/>
         public bool IsLoaded()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsLoaded");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsLoaded")!;
 
         /// <summary>
         /// <c>DataModel.IsUniverseMetadataLoaded</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsUniverseMetadataLoaded()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsUniverseMetadataLoaded");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsUniverseMetadataLoaded")!;
 
         /// <summary>
         /// <c>DataModel.Load</c>
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Load(object? url)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Load", url);
+        /// <param name="url">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Load(object url)
+            => global::Roblox.Reflection.Invoke<object>(this, "Load", url)!;
 
         /// <summary>
         /// <c>DataModel.OpenLogsFolder</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenLogsFolder()
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenLogsFolder");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenLogsFolder()
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenLogsFolder")!;
 
         /// <summary>
         /// <c>DataModel.OpenScreenshotsFolder</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenScreenshotsFolder()
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenScreenshotsFolder");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenScreenshotsFolder()
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenScreenshotsFolder")!;
 
         /// <summary>
         /// <c>DataModel.OpenVideosFolder</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? OpenVideosFolder()
-            => global::Roblox.Reflection.Invoke<object?>(this, "OpenVideosFolder");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object OpenVideosFolder()
+            => global::Roblox.Reflection.Invoke<object>(this, "OpenVideosFolder")!;
 
         /// <summary>
         /// <c>DataModel.SetFlagVersion</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="version">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetFlagVersion(string? name, int version)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFlagVersion", name, version);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetFlagVersion(string name, int version)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFlagVersion", name, version)!;
 
         /// <summary>
         /// <c>DataModel.SetIsLoaded</c>
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
-        /// <param name="placeSizeInBytes">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetIsLoaded(bool value, object? placeSizeInBytes)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetIsLoaded", value, placeSizeInBytes);
+        /// <param name="placeSizeInBytes">A <c>int?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetIsLoaded(bool value, int? placeSizeInBytes = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetIsLoaded", value, placeSizeInBytes)!;
 
         /// <summary>
         /// <c>DataModel.Shutdown</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Shutdown()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Shutdown");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Shutdown()
+            => global::Roblox.Reflection.Invoke<object>(this, "Shutdown")!;
 
         /// <summary>
         /// <c>DataModel.getGameTime</c>
         /// </summary>
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         public double GetGameTime()
-            => global::Roblox.Reflection.Invoke<double>(this, "getGameTime");
+            => global::Roblox.Reflection.Invoke<double>(this, "getGameTime")!;
 
         /// <summary>
         /// Returns an array of Instances associated with the given content URL.
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GetObjects"/>
-        public IReadOnlyList<Instance> GetObjects(object? url)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjects", url);
+        public IReadOnlyList<Instance> GetObjects(object url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjects", url)!;
 
         /// <summary>
         /// <c>DataModel.GetObjectsAllOrNone</c>
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetObjectsAllOrNone(object? url)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjectsAllOrNone", url);
+        public IReadOnlyList<Instance> GetObjectsAllOrNone(object url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjectsAllOrNone", url)!;
 
         /// <summary>
         /// <c>DataModel.GetObjectsList</c>
         /// </summary>
-        /// <param name="urls">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetObjectsList(object? urls)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetObjectsList", urls);
+        /// <param name="urls">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetObjectsList(object urls)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetObjectsList", urls)!;
 
         /// <summary>
         /// Sets the DataModel.PlaceId of the current game instance.
         /// </summary>
         /// <param name="placeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#SetPlaceId"/>
-        public object? SetPlaceId(long placeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetPlaceId", placeId);
+        public object SetPlaceId(long placeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetPlaceId", placeId)!;
 
         /// <summary>
         /// Sets the DataModel.GameId of the current game instance to the given universeId.
         /// </summary>
         /// <param name="universeId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#SetUniverseId"/>
-        public object? SetUniverseId(long universeId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetUniverseId", universeId);
+        public object SetUniverseId(long universeId)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetUniverseId", universeId)!;
 
         /// <summary>
         /// <c>DataModel.SetFastFlagForTesting</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="newValue">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool SetFastFlagForTesting(string? name, bool newValue)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SetFastFlagForTesting", name, newValue);
+        public bool SetFastFlagForTesting(string name, bool newValue)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SetFastFlagForTesting", name, newValue)!;
 
         /// <summary>
         /// <c>DataModel.SetFastIntForTesting</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <param name="newValue">A <c>int</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int SetFastIntForTesting(string? name, int newValue)
-            => global::Roblox.Reflection.Invoke<int>(this, "SetFastIntForTesting", name, newValue);
+        public int SetFastIntForTesting(string name, int newValue)
+            => global::Roblox.Reflection.Invoke<int>(this, "SetFastIntForTesting", name, newValue)!;
 
         /// <summary>
         /// <c>DataModel.SetFastStringForTesting</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="newValue">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? SetFastStringForTesting(string? name, string? newValue)
-            => global::Roblox.Reflection.Invoke<string?>(this, "SetFastStringForTesting", name, newValue);
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="newValue">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string SetFastStringForTesting(string name, string newValue)
+            => global::Roblox.Reflection.Invoke<string>(this, "SetFastStringForTesting", name, newValue)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated. Do not use it for new work.Saves the current place.
         /// </summary>
-        /// <param name="saveFilter">A <c>Enum.SaveFilter</c> value.</param>
+        /// <param name="saveFilter">A <c>Enum.SaveFilter?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#SavePlace"/>
-        public bool SavePlace(Enum.SaveFilter saveFilter)
-            => global::Roblox.Reflection.Invoke<bool>(this, "SavePlace", saveFilter);
+        public bool SavePlace(Enum.SaveFilter? saveFilter = null)
+            => global::Roblox.Reflection.Invoke<bool>(this, "SavePlace", saveFilter)!;
 
         /// <summary>
         /// <c>DataModel.GetObjectsAsync</c>
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetObjectsAsync(object? url)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjectsAsync", url);
+        public IReadOnlyList<Instance> GetObjectsAsync(object url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetObjectsAsync", url)!;
 
         /// <summary>
         /// <c>DataModel.InsertObjectsAndJoinIfLegacyAsync</c>
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> InsertObjectsAndJoinIfLegacyAsync(object? url)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "InsertObjectsAndJoinIfLegacyAsync", url);
+        public IReadOnlyList<Instance> InsertObjectsAndJoinIfLegacyAsync(object url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "InsertObjectsAndJoinIfLegacyAsync", url)!;
 
         /// <summary>
         /// <c>DataModel.HttpGetAsync</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? HttpGetAsync(string? url, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "HttpGetAsync", url, httpRequestType);
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string HttpGetAsync(string url, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "HttpGetAsync", url, httpRequestType)!;
 
         /// <summary>
         /// <c>DataModel.HttpPostAsync</c>
         /// </summary>
-        /// <param name="url">A <c>string?</c> value.</param>
-        /// <param name="data">A <c>string?</c> value.</param>
+        /// <param name="url">A <c>string</c> value.</param>
+        /// <param name="data">A <c>string</c> value.</param>
         /// <param name="contentType">A <c>string?</c> value.</param>
-        /// <param name="httpRequestType">A <c>Enum.HttpRequestType</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? HttpPostAsync(string? url, string? data, string? contentType, Enum.HttpRequestType httpRequestType)
-            => global::Roblox.Reflection.Invoke<string?>(this, "HttpPostAsync", url, data, contentType, httpRequestType);
+        /// <param name="httpRequestType">A <c>Enum.HttpRequestType?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string HttpPostAsync(string url, string data, string? contentType = null, Enum.HttpRequestType? httpRequestType = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "HttpPostAsync", url, data, contentType, httpRequestType)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated . Do not use it for new work.Fires when SetGearSettings is called with a different value for allowedGenres.
@@ -531,10 +531,10 @@ namespace Roblox
         /// <summary>
         /// Deprecated: This function has been superseded by Object.Changed, which should be used in new work instead.Fires when a property of any object in the DataModel is changed.
         /// </summary>
-        /// <param name="object">A <c>Instance?</c> value.</param>
-        /// <param name="descriptor">A <c>string?</c> value.</param>
+        /// <param name="@object">A <c>Instance</c> value.</param>
+        /// <param name="descriptor">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#ItemChanged"/>
-        public event Action<Instance?, string?>? ItemChanged
+        public event Action<Instance, string>? ItemChanged
         {
             add { if (value is not null) AddEventHandler("ItemChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ItemChanged", value); }
@@ -553,8 +553,8 @@ namespace Roblox
         /// <summary>
         /// <c>DataModel.ScreenshotReady</c>
         /// </summary>
-        /// <param name="path">A <c>string?</c> value.</param>
-        public event Action<string?>? ScreenshotReady
+        /// <param name="path">A <c>string</c> value.</param>
+        public event Action<string>? ScreenshotReady
         {
             add { if (value is not null) AddEventHandler("ScreenshotReady", value); }
             remove { if (value is not null) RemoveEventHandler("ScreenshotReady", value); }
@@ -563,10 +563,10 @@ namespace Roblox
         /// <summary>
         /// <c>DataModel.ScreenshotSavedToAlbum</c>
         /// </summary>
-        /// <param name="filename">A <c>string?</c> value.</param>
+        /// <param name="filename">A <c>string</c> value.</param>
         /// <param name="success">A <c>bool</c> value.</param>
-        /// <param name="message">A <c>string?</c> value.</param>
-        public event Action<string?, bool, string?>? ScreenshotSavedToAlbum
+        /// <param name="message">A <c>string</c> value.</param>
+        public event Action<string, bool, string>? ScreenshotSavedToAlbum
         {
             add { if (value is not null) AddEventHandler("ScreenshotSavedToAlbum", value); }
             remove { if (value is not null) RemoveEventHandler("ScreenshotSavedToAlbum", value); }
@@ -575,8 +575,8 @@ namespace Roblox
         /// <summary>
         /// <c>DataModel.ServerLifecycleChanged</c>
         /// </summary>
-        /// <param name="serverLifecycleChangedEvent">A <c>object?</c> value.</param>
-        public event Action<object?>? ServerLifecycleChanged
+        /// <param name="serverLifecycleChangedEvent">A <c>object</c> value.</param>
+        public event Action<object>? ServerLifecycleChanged
         {
             add { if (value is not null) AddEventHandler("ServerLifecycleChanged", value); }
             remove { if (value is not null) RemoveEventHandler("ServerLifecycleChanged", value); }
@@ -585,11 +585,11 @@ namespace Roblox
         /// <summary>
         /// Fires on the server when the server has been scheduled to restart. Provides the scheduled restart time, source, and custom attributes.
         /// </summary>
-        /// <param name="restartTime">A <c>object?</c> value.</param>
+        /// <param name="restartTime">A <c>object</c> value.</param>
         /// <param name="source">A <c>Enum.CloseReason</c> value.</param>
-        /// <param name="attributes">A <c>object?</c> value.</param>
+        /// <param name="attributes">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#ServerRestartScheduled"/>
-        public event Action<object?, Enum.CloseReason, object?>? ServerRestartScheduled
+        public event Action<object, Enum.CloseReason, object>? ServerRestartScheduled
         {
             add { if (value is not null) AddEventHandler("ServerRestartScheduled", value); }
             remove { if (value is not null) RemoveEventHandler("ServerRestartScheduled", value); }

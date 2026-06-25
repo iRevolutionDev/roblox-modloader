@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance"/>
     [RobloxClass("Instance")]
-    public class Instance : Object
+    public class Instance : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Instance.</param>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Archivable"/>
         public bool Archivable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Archivable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Archivable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Archivable", value);
         }
 
@@ -39,21 +39,21 @@ namespace Roblox
         /// The set of capabilities allowed to be used for scripts inside this container.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Capabilities"/>
-        public object? Capabilities
+        public object Capabilities
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "Capabilities");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "Capabilities", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "Capabilities")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "Capabilities", value);
         }
 
         public int DataCost
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "DataCost");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "DataCost")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DataCost", value);
         }
 
         public bool IsInSandbox
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInSandbox");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsInSandbox")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsInSandbox", value);
         }
 
@@ -61,10 +61,10 @@ namespace Roblox
         /// A non-unique identifier of the Instance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Name"/>
-        public string? Name
+        public string Name
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Name");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Name", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Name")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Name", value);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#PredictionMode"/>
         public Enum.PredictionMode PredictionMode
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PredictionMode>(this, "PredictionMode");
+            get => global::Roblox.Reflection.GetProperty<Enum.PredictionMode>(this, "PredictionMode")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PredictionMode>(this, "PredictionMode", value);
         }
 
@@ -93,7 +93,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#RobloxLocked"/>
         public bool RobloxLocked
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "RobloxLocked");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "RobloxLocked")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "RobloxLocked", value);
         }
 
@@ -103,13 +103,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Sandboxed"/>
         public bool Sandboxed
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Sandboxed");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Sandboxed")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Sandboxed", value);
         }
 
         public long SourceAssetId
         {
-            get => global::Roblox.Reflection.GetProperty<long>(this, "SourceAssetId");
+            get => global::Roblox.Reflection.GetProperty<long>(this, "SourceAssetId")!;
             set => global::Roblox.Reflection.SetProperty<long>(this, "SourceAssetId", value);
         }
 
@@ -117,28 +117,28 @@ namespace Roblox
         /// A unique identifier for the instance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#UniqueId"/>
-        public object? UniqueId
+        public object UniqueId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "UniqueId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "UniqueId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "UniqueId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "UniqueId", value);
         }
 
         /// <summary>
         /// Applies a tag to the instance.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#AddTag"/>
-        public object? AddTag(string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddTag", tag);
+        public object AddTag(string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddTag", tag)!;
 
         /// <summary>
         /// This method destroys all of an instance's children.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ClearAllChildren"/>
-        public object? ClearAllChildren()
-            => global::Roblox.Reflection.Invoke<object?>(this, "ClearAllChildren");
+        public object ClearAllChildren()
+            => global::Roblox.Reflection.Invoke<object>(this, "ClearAllChildren")!;
 
         /// <summary>
         /// Create a copy of an instance and all its descendants, ignoring instances that are not Archivable.
@@ -151,109 +151,109 @@ namespace Roblox
         /// <summary>
         /// Sets the Instance.Parent property to nil, locks the Instance.Parent property, disconnects all connections, and calls Destroy() on all children.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Destroy"/>
-        public object? Destroy()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Destroy");
+        public object Destroy()
+            => global::Roblox.Reflection.Invoke<object>(this, "Destroy")!;
 
         /// <summary>
         /// Returns the first ancestor of the Instance whose Instance.Name is equal to the given name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#FindFirstAncestor"/>
-        public Instance? FindFirstAncestor(string? name)
+        public Instance? FindFirstAncestor(string name)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindFirstAncestor", name);
 
         /// <summary>
         /// Returns the first ancestor of the Instance whose Object.ClassName is equal to the given className.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#FindFirstAncestorOfClass"/>
-        public Instance? FindFirstAncestorOfClass(string? className)
+        public Instance? FindFirstAncestorOfClass(string className)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindFirstAncestorOfClass", className);
 
         /// <summary>
         /// Returns the first ancestor of the Instance for whom Object:IsA() returns true for the given className.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#FindFirstAncestorWhichIsA"/>
-        public Instance? FindFirstAncestorWhichIsA(string? className)
+        public Instance? FindFirstAncestorWhichIsA(string className)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindFirstAncestorWhichIsA", className);
 
         /// <summary>
         /// Returns the first child of the Instance found with the given name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="recursive">A <c>bool</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="recursive">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#FindFirstChild"/>
-        public Instance? FindFirstChild(string? name, bool recursive)
+        public Instance? FindFirstChild(string name, bool? recursive = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindFirstChild", name, recursive);
 
         /// <summary>
         /// Returns the first child of the Instance whose ClassName is equal to the given class name.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#FindFirstChildOfClass"/>
-        public Instance? FindFirstChildOfClass(string? className)
+        public Instance? FindFirstChildOfClass(string className)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindFirstChildOfClass", className);
 
         /// <summary>
         /// Returns the first child of the Instance for whom Object:IsA() returns true for the given className.
         /// </summary>
-        /// <param name="className">A <c>string?</c> value.</param>
-        /// <param name="recursive">A <c>bool</c> value.</param>
+        /// <param name="className">A <c>string</c> value.</param>
+        /// <param name="recursive">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#FindFirstChildWhichIsA"/>
-        public Instance? FindFirstChildWhichIsA(string? className, bool recursive)
+        public Instance? FindFirstChildWhichIsA(string className, bool? recursive = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindFirstChildWhichIsA", className, recursive);
 
         /// <summary>
         /// Returns the first descendant found with the given Instance.Name.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#FindFirstDescendant"/>
-        public Instance? FindFirstDescendant(string? name)
+        public Instance? FindFirstDescendant(string name)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "FindFirstDescendant", name);
 
         /// <summary>
         /// Returns the Actor associated with the Instance, if any.
         /// </summary>
-        /// <returns>A <c>Actor?</c> value returned by the engine.</returns>
+        /// <returns>A <c>Actor</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetActor"/>
-        public Actor? GetActor()
-            => global::Roblox.Reflection.Invoke<Actor?>(this, "GetActor");
+        public Actor GetActor()
+            => global::Roblox.Reflection.Invoke<Actor>(this, "GetActor")!;
 
         /// <summary>
         /// Returns the value which has been assigned to the given attribute name.
         /// </summary>
-        /// <param name="attribute">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="attribute">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetAttribute"/>
-        public object? GetAttribute(string? attribute)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAttribute", attribute);
+        public object GetAttribute(string attribute)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAttribute", attribute)!;
 
         /// <summary>
         /// Returns an event that fires when the given attribute changes.
         /// </summary>
-        /// <param name="attribute">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="attribute">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetAttributeChangedSignal"/>
-        public object? GetAttributeChangedSignal(string? attribute)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAttributeChangedSignal", attribute);
+        public object GetAttributeChangedSignal(string attribute)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAttributeChangedSignal", attribute)!;
 
         /// <summary>
         /// Returns a dictionary of the instance's attributes.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetAttributes"/>
-        public object? GetAttributes()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetAttributes");
+        public object GetAttributes()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetAttributes")!;
 
         /// <summary>
         /// Returns an array containing all of the instance's children.
@@ -261,16 +261,16 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetChildren"/>
         public IReadOnlyList<Instance> GetChildren()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetChildren");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetChildren")!;
 
         /// <summary>
         /// Returns a coded string of the debug ID used internally by Roblox.
         /// </summary>
-        /// <param name="scopeLength">A <c>int</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <param name="scopeLength">A <c>int?</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetDebugId"/>
-        public string? GetDebugId(int scopeLength)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetDebugId", scopeLength);
+        public string GetDebugId(int? scopeLength = null)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetDebugId", scopeLength)!;
 
         /// <summary>
         /// Returns an array containing all of the descendants of the instance.
@@ -278,132 +278,132 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetDescendants"/>
         public IReadOnlyList<Instance> GetDescendants()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDescendants");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetDescendants")!;
 
         /// <summary>
         /// Returns a string describing the instance's ancestry.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetFullName"/>
-        public string? GetFullName()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetFullName");
+        public string GetFullName()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetFullName")!;
 
         /// <summary>
         /// Returns the styled or explicitly modified value of the specified property, or else the default property value if it hasn't been styled/modified.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="selector">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="selector">A <c>string?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetStyled"/>
-        public object? GetStyled(string? name, object? selector)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStyled", name, selector);
+        public object GetStyled(string name, string? selector = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStyled", name, selector)!;
 
         /// <summary>
         /// <c>Instance.GetStyledPropertyChangedSignal</c>
         /// </summary>
-        /// <param name="property">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="property">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetStyledPropertyChangedSignal"/>
-        public object? GetStyledPropertyChangedSignal(string? property)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetStyledPropertyChangedSignal", property);
+        public object GetStyledPropertyChangedSignal(string property)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetStyledPropertyChangedSignal", property)!;
 
         /// <summary>
         /// Gets an array of all tags applied to the instance.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#GetTags"/>
-        public object? GetTags()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTags");
+        public object GetTags()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTags")!;
 
         /// <summary>
         /// Check whether the instance has a given tag.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
+        /// <param name="tag">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#HasTag"/>
-        public bool HasTag(string? tag)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasTag", tag);
+        public bool HasTag(string tag)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasTag", tag)!;
 
         /// <summary>
         /// Returns true if an Instance is an ancestor of the given descendant.
         /// </summary>
-        /// <param name="descendant">A <c>Instance?</c> value.</param>
+        /// <param name="descendant">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#IsAncestorOf"/>
-        public bool IsAncestorOf(Instance? descendant)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAncestorOf", descendant);
+        public bool IsAncestorOf(Instance descendant)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAncestorOf", descendant)!;
 
         /// <summary>
         /// Returns true if an Instance is a descendant of the given ancestor.
         /// </summary>
-        /// <param name="ancestor">A <c>Instance?</c> value.</param>
+        /// <param name="ancestor">A <c>Instance</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#IsDescendantOf"/>
-        public bool IsDescendantOf(Instance? ancestor)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsDescendantOf", ancestor);
+        public bool IsDescendantOf(Instance ancestor)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsDescendantOf", ancestor)!;
 
         /// <summary>
         /// Returns true if the value stored in the specified property is not equal to the code-instantiated default.
         /// </summary>
-        /// <param name="property">A <c>string?</c> value.</param>
+        /// <param name="property">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#IsPropertyModified"/>
-        public bool IsPropertyModified(string? property)
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsPropertyModified", property);
+        public bool IsPropertyModified(string property)
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsPropertyModified", property)!;
 
         /// <summary>
         /// Returns an array containing all descendants of the instance that match the selector string.
         /// </summary>
-        /// <param name="selector">A <c>string?</c> value.</param>
+        /// <param name="selector">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#QueryDescendants"/>
-        public IReadOnlyList<Instance> QueryDescendants(string? selector)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "QueryDescendants", selector);
+        public IReadOnlyList<Instance> QueryDescendants(string selector)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "QueryDescendants", selector)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated in favor of Instance:Destroy() and Instance:ClearAllChildren(). If you must remove an object from the game, and wish to use the object later, set its Parent property to nil instead of using this method.Sets the object's Parent to nil, and does the same for all its descendants.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Remove"/>
-        public object? Remove()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Remove");
+        public object Remove()
+            => global::Roblox.Reflection.Invoke<object>(this, "Remove")!;
 
         /// <summary>
         /// Removes a tag from the instance.
         /// </summary>
-        /// <param name="tag">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="tag">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#RemoveTag"/>
-        public object? RemoveTag(string? tag)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveTag", tag);
+        public object RemoveTag(string tag)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveTag", tag)!;
 
         /// <summary>
         /// Resets a property to its default value.
         /// </summary>
-        /// <param name="property">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="property">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ResetPropertyToDefault"/>
-        public object? ResetPropertyToDefault(string? property)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ResetPropertyToDefault", property);
+        public object ResetPropertyToDefault(string property)
+            => global::Roblox.Reflection.Invoke<object>(this, "ResetPropertyToDefault", property)!;
 
         /// <summary>
         /// Sets the attribute with the given name to the given value.
         /// </summary>
-        /// <param name="attribute">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="attribute">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#SetAttribute"/>
-        public object? SetAttribute(string? attribute, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetAttribute", attribute, value);
+        public object SetAttribute(string attribute, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetAttribute", attribute, value)!;
 
         /// <summary>
         /// Returns the child of the Instance with the given name. If the child does not exist, it will yield the current thread until it does.
         /// </summary>
-        /// <param name="childName">A <c>string?</c> value.</param>
+        /// <param name="childName">A <c>string</c> value.</param>
         /// <param name="timeOut">A <c>double</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#WaitForChild"/>
-        public Instance? WaitForChild(string? childName, double timeOut)
+        public Instance? WaitForChild(string childName, double timeOut)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "WaitForChild", childName, timeOut);
 
         /// <summary>
@@ -412,15 +412,15 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#children"/>
         public IReadOnlyList<Instance> Children()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "children");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "children")!;
 
         /// <summary>
         /// Fires when the Instance.Parent property of this object or one of its ancestors is changed.
         /// </summary>
-        /// <param name="child">A <c>Instance?</c> value.</param>
-        /// <param name="parent">A <c>Instance?</c> value.</param>
+        /// <param name="child">A <c>Instance</c> value.</param>
+        /// <param name="parent">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#AncestryChanged"/>
-        public event Action<Instance?, Instance?>? AncestryChanged
+        public event Action<Instance, Instance>? AncestryChanged
         {
             add { if (value is not null) AddEventHandler("AncestryChanged", value); }
             remove { if (value is not null) RemoveEventHandler("AncestryChanged", value); }
@@ -429,9 +429,9 @@ namespace Roblox
         /// <summary>
         /// Fires whenever an attribute is changed on the Instance.
         /// </summary>
-        /// <param name="attribute">A <c>string?</c> value.</param>
+        /// <param name="attribute">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#AttributeChanged"/>
-        public event Action<string?>? AttributeChanged
+        public event Action<string>? AttributeChanged
         {
             add { if (value is not null) AddEventHandler("AttributeChanged", value); }
             remove { if (value is not null) RemoveEventHandler("AttributeChanged", value); }
@@ -440,9 +440,9 @@ namespace Roblox
         /// <summary>
         /// Fires after an object is parented to this Instance.
         /// </summary>
-        /// <param name="child">A <c>Instance?</c> value.</param>
+        /// <param name="child">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ChildAdded"/>
-        public event Action<Instance?>? ChildAdded
+        public event Action<Instance>? ChildAdded
         {
             add { if (value is not null) AddEventHandler("ChildAdded", value); }
             remove { if (value is not null) RemoveEventHandler("ChildAdded", value); }
@@ -451,9 +451,9 @@ namespace Roblox
         /// <summary>
         /// Fires after a child is removed from this Instance.
         /// </summary>
-        /// <param name="child">A <c>Instance?</c> value.</param>
+        /// <param name="child">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#ChildRemoved"/>
-        public event Action<Instance?>? ChildRemoved
+        public event Action<Instance>? ChildRemoved
         {
             add { if (value is not null) AddEventHandler("ChildRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("ChildRemoved", value); }
@@ -462,9 +462,9 @@ namespace Roblox
         /// <summary>
         /// Fires after a descendant is added to the Instance.
         /// </summary>
-        /// <param name="descendant">A <c>Instance?</c> value.</param>
+        /// <param name="descendant">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#DescendantAdded"/>
-        public event Action<Instance?>? DescendantAdded
+        public event Action<Instance>? DescendantAdded
         {
             add { if (value is not null) AddEventHandler("DescendantAdded", value); }
             remove { if (value is not null) RemoveEventHandler("DescendantAdded", value); }
@@ -473,9 +473,9 @@ namespace Roblox
         /// <summary>
         /// Fires immediately before a descendant of the Instance is removed.
         /// </summary>
-        /// <param name="descendant">A <c>Instance?</c> value.</param>
+        /// <param name="descendant">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#DescendantRemoving"/>
-        public event Action<Instance?>? DescendantRemoving
+        public event Action<Instance>? DescendantRemoving
         {
             add { if (value is not null) AddEventHandler("DescendantRemoving", value); }
             remove { if (value is not null) RemoveEventHandler("DescendantRemoving", value); }

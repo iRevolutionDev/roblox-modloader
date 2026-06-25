@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="KeyframeMarker"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static KeyframeMarker? FromHandle(nuint handle)
+        public static new KeyframeMarker? FromHandle(nuint handle)
             => handle == 0 ? null : new KeyframeMarker(handle);
 
         /// <summary>
         /// A value that is specified for a KeyframeMarker.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeMarker#Value"/>
-        public string? Value
+        public string Value
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Value", value);
         }
 
     }

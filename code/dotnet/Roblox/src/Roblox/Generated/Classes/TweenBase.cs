@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TweenBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TweenBase? FromHandle(nuint handle)
+        public static new TweenBase? FromHandle(nuint handle)
             => handle == 0 ? null : new TweenBase(handle);
 
         /// <summary>
@@ -31,33 +31,33 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenBase#PlaybackState"/>
         public Enum.PlaybackState PlaybackState
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.PlaybackState>(this, "PlaybackState");
+            get => global::Roblox.Reflection.GetProperty<Enum.PlaybackState>(this, "PlaybackState")!;
             set => global::Roblox.Reflection.SetProperty<Enum.PlaybackState>(this, "PlaybackState", value);
         }
 
         /// <summary>
         /// Halts playback and resets the tween variables. If you then call TweenBase:Play(), the properties of the tween resume interpolating towards their destination, but take the full length of the animation to do so.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenBase#Cancel"/>
-        public object? Cancel()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Cancel");
+        public object Cancel()
+            => global::Roblox.Reflection.Invoke<object>(this, "Cancel")!;
 
         /// <summary>
         /// Halts playback of the tween. Doesn't reset its progress variables, meaning that if you call TweenBase:Play(), the tween resumes playback from the moment it was paused.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenBase#Pause"/>
-        public object? Pause()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Pause");
+        public object Pause()
+            => global::Roblox.Reflection.Invoke<object>(this, "Pause")!;
 
         /// <summary>
         /// Starts playback of a tween. Note that if playback has already started, calling Play() has no effect unless the tween has finished or is stopped (either by TweenBase:Cancel() or TweenBase:Pause()).
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TweenBase#Play"/>
-        public object? Play()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play");
+        public object Play()
+            => global::Roblox.Reflection.Invoke<object>(this, "Play")!;
 
         /// <summary>
         /// Fires when the tween finishes playing or when stopped with TweenBase:Cancel().

@@ -22,25 +22,25 @@ namespace Roblox
         /// Creates a <see cref="Color3Value"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Color3Value? FromHandle(nuint handle)
+        public static new Color3Value? FromHandle(nuint handle)
             => handle == 0 ? null : new Color3Value(handle);
 
         /// <summary>
         /// The stored Color3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Color3Value#Value"/>
-        public global::Roblox.Color3? Value
+        public global::Roblox.Color3 Value
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Color3>(this, "Value", value);
         }
 
         /// <summary>
         /// Fired whenever the Color3Value.Value is changed.
         /// </summary>
-        /// <param name="value">A <c>global::Roblox.Color3?</c> value.</param>
+        /// <param name="value">A <c>global::Roblox.Color3</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Color3Value#Changed"/>
-        public event Action<global::Roblox.Color3?>? Changed
+        public new event Action<global::Roblox.Color3>? Changed
         {
             add { if (value is not null) AddEventHandler("Changed", value); }
             remove { if (value is not null) RemoveEventHandler("Changed", value); }

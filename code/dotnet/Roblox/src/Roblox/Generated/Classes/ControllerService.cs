@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ControllerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ControllerService? FromHandle(nuint handle)
+        public static new ControllerService? FromHandle(nuint handle)
             => handle == 0 ? null : new ControllerService(handle);
 
     }

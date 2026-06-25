@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="AnimationTrack"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationTrack? FromHandle(nuint handle)
+        public static new AnimationTrack? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationTrack(handle);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#IsPlaying"/>
         public bool IsPlaying
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsPlaying")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPlaying", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Length"/>
         public float Length
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Length");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Length")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Length", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Looped"/>
         public bool Looped
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Looped")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Looped", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Priority"/>
         public Enum.AnimationPriority Priority
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnimationPriority>(this, "Priority");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnimationPriority>(this, "Priority")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnimationPriority>(this, "Priority", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Speed"/>
         public float Speed
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Speed");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Speed")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Speed", value);
         }
 
@@ -91,7 +91,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#TimePosition"/>
         public float TimePosition
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "TimePosition");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "TimePosition")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "TimePosition", value);
         }
 
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#WeightCurrent"/>
         public float WeightCurrent
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightCurrent");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightCurrent")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WeightCurrent", value);
         }
 
@@ -111,138 +111,138 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#WeightTarget"/>
         public float WeightTarget
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightTarget");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "WeightTarget")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "WeightTarget", value);
         }
 
         /// <summary>
         /// Changes the AnimationTrack.Speed of an animation. A positive value for speed plays the animation forward, a negative one plays it backwards, and 0 pauses it.
         /// </summary>
-        /// <param name="speed">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="speed">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#AdjustSpeed"/>
-        public object? AdjustSpeed(float speed)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AdjustSpeed", speed);
+        public object AdjustSpeed(float? speed = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "AdjustSpeed", speed)!;
 
         /// <summary>
         /// Changes the weight of an animation, with the optional fadeTime parameter determining how long it takes for AnimationTrack.WeightCurrent to reach AnimationTrack.WeightTarget.
         /// </summary>
-        /// <param name="weight">A <c>float</c> value.</param>
-        /// <param name="fadeTime">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="weight">A <c>float?</c> value.</param>
+        /// <param name="fadeTime">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#AdjustWeight"/>
-        public object? AdjustWeight(float weight, float fadeTime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AdjustWeight", weight, fadeTime);
+        public object AdjustWeight(float? weight = null, float? fadeTime = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "AdjustWeight", weight, fadeTime)!;
 
         /// <summary>
         /// <c>AnimationTrack.GetDebugData</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetDebugData()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetDebugData");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetDebugData()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetDebugData")!;
 
         /// <summary>
         /// Returns an RBXScriptSignal (event) that fires when a specified KeyframeMarker has been hit in an animation.
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#GetMarkerReachedSignal"/>
-        public object? GetMarkerReachedSignal(string? name)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetMarkerReachedSignal", name);
+        public object GetMarkerReachedSignal(string name)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetMarkerReachedSignal", name)!;
 
         /// <summary>
         /// <c>AnimationTrack.GetParameter</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#GetParameter"/>
-        public object? GetParameter(string? key)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetParameter", key);
+        public object GetParameter(string key)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetParameter", key)!;
 
         /// <summary>
         /// <c>AnimationTrack.GetParameterDefaults</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#GetParameterDefaults"/>
-        public object? GetParameterDefaults()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetParameterDefaults");
+        public object GetParameterDefaults()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetParameterDefaults")!;
 
         /// <summary>
         /// <c>AnimationTrack.GetTargetInstance</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
+        /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#GetTargetInstance"/>
-        public Instance? GetTargetInstance(string? name)
+        public Instance? GetTargetInstance(string name)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetTargetInstance", name);
 
         /// <summary>
         /// <c>AnimationTrack.GetTargetNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#GetTargetNames"/>
-        public object? GetTargetNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetTargetNames");
+        public object GetTargetNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetTargetNames")!;
 
         /// <summary>
         /// Returns the time position of the first Keyframe of the given name in an AnimationTrack.
         /// </summary>
-        /// <param name="keyframeName">A <c>string?</c> value.</param>
+        /// <param name="keyframeName">A <c>string</c> value.</param>
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#GetTimeOfKeyframe"/>
-        public double GetTimeOfKeyframe(string? keyframeName)
-            => global::Roblox.Reflection.Invoke<double>(this, "GetTimeOfKeyframe", keyframeName);
+        public double GetTimeOfKeyframe(string keyframeName)
+            => global::Roblox.Reflection.Invoke<double>(this, "GetTimeOfKeyframe", keyframeName)!;
 
         /// <summary>
         /// Plays the AnimationTrack. Once called an AnimationTrack will play with the specified fadeTime, weight and speed.
         /// </summary>
-        /// <param name="fadeTime">A <c>float</c> value.</param>
-        /// <param name="weight">A <c>float</c> value.</param>
-        /// <param name="speed">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="fadeTime">A <c>float?</c> value.</param>
+        /// <param name="weight">A <c>float?</c> value.</param>
+        /// <param name="speed">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Play"/>
-        public object? Play(float fadeTime, float weight, float speed)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Play", fadeTime, weight, speed);
+        public object Play(float? fadeTime = null, float? weight = null, float? speed = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Play", fadeTime, weight, speed)!;
 
         /// <summary>
         /// <c>AnimationTrack.SetParameter</c>
         /// </summary>
-        /// <param name="key">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="key">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#SetParameter"/>
-        public object? SetParameter(string? key, object? value)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetParameter", key, value);
+        public object SetParameter(string key, object value)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetParameter", key, value)!;
 
         /// <summary>
         /// <c>AnimationTrack.SetTargetInstance</c>
         /// </summary>
-        /// <param name="name">A <c>string?</c> value.</param>
-        /// <param name="target">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="name">A <c>string</c> value.</param>
+        /// <param name="target">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#SetTargetInstance"/>
-        public object? SetTargetInstance(string? name, Instance? target)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTargetInstance", name, target);
+        public object SetTargetInstance(string name, Instance target)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTargetInstance", name, target)!;
 
         /// <summary>
         /// Stops the AnimationTrack.
         /// </summary>
-        /// <param name="fadeTime">A <c>float</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="fadeTime">A <c>float?</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Stop"/>
-        public object? Stop(float fadeTime)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop", fadeTime);
+        public object Stop(float? fadeTime = null)
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop", fadeTime)!;
 
         /// <summary>
         /// <c>AnimationTrack.UpdateGraphNodeProperty</c>
         /// </summary>
-        /// <param name="nodeId">A <c>string?</c> value.</param>
-        /// <param name="propertyName">A <c>string?</c> value.</param>
-        /// <param name="value">A <c>object?</c> value.</param>
-        /// <param name="inputPinName">A <c>string?</c> value.</param>
+        /// <param name="nodeId">A <c>string</c> value.</param>
+        /// <param name="propertyName">A <c>string</c> value.</param>
+        /// <param name="value">A <c>object</c> value.</param>
+        /// <param name="inputPinName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool UpdateGraphNodeProperty(string? nodeId, string? propertyName, object? value, string? inputPinName)
-            => global::Roblox.Reflection.Invoke<bool>(this, "UpdateGraphNodeProperty", nodeId, propertyName, value, inputPinName);
+        public bool UpdateGraphNodeProperty(string nodeId, string propertyName, object value, string inputPinName)
+            => global::Roblox.Reflection.Invoke<bool>(this, "UpdateGraphNodeProperty", nodeId, propertyName, value, inputPinName)!;
 
         /// <summary>
         /// Fires when an AnimationTrack loops on the next update following the end of the previous animation loop.
@@ -267,9 +267,9 @@ namespace Roblox
         /// <summary>
         /// Fires every time playback of an AnimationTrack reaches a Keyframe that does not have the default name of Keyframe.
         /// </summary>
-        /// <param name="keyframeName">A <c>string?</c> value.</param>
+        /// <param name="keyframeName">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#KeyframeReached"/>
-        public event Action<string?>? KeyframeReached
+        public event Action<string>? KeyframeReached
         {
             add { if (value is not null) AddEventHandler("KeyframeReached", value); }
             remove { if (value is not null) RemoveEventHandler("KeyframeReached", value); }

@@ -18,76 +18,76 @@ namespace Roblox
         /// Creates a <see cref="FaceAnimatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static FaceAnimatorService? FromHandle(nuint handle)
+        public static new FaceAnimatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new FaceAnimatorService(handle);
 
         public bool AudioAnimationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AudioAnimationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AudioAnimationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AudioAnimationEnabled", value);
         }
 
         public Enum.TrackerFaceTrackingStatus FaceTrackingStatusEnum
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TrackerFaceTrackingStatus>(this, "FaceTrackingStatusEnum");
+            get => global::Roblox.Reflection.GetProperty<Enum.TrackerFaceTrackingStatus>(this, "FaceTrackingStatusEnum")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TrackerFaceTrackingStatus>(this, "FaceTrackingStatusEnum", value);
         }
 
         public bool FlipHeadOrientation
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlipHeadOrientation");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "FlipHeadOrientation")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "FlipHeadOrientation", value);
         }
 
         public bool VideoAnimationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VideoAnimationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VideoAnimationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VideoAnimationEnabled", value);
         }
 
         /// <summary>
         /// <c>FaceAnimatorService.GetTrackerLodController</c>
         /// </summary>
-        /// <returns>A <c>TrackerLodController?</c> value returned by the engine.</returns>
-        public TrackerLodController? GetTrackerLodController()
-            => global::Roblox.Reflection.Invoke<TrackerLodController?>(this, "GetTrackerLodController");
+        /// <returns>A <c>TrackerLodController</c> value returned by the engine.</returns>
+        public TrackerLodController GetTrackerLodController()
+            => global::Roblox.Reflection.Invoke<TrackerLodController>(this, "GetTrackerLodController")!;
 
         /// <summary>
         /// <c>FaceAnimatorService.Init</c>
         /// </summary>
         /// <param name="videoEnabled">A <c>bool</c> value.</param>
         /// <param name="audioEnabled">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Init(bool videoEnabled, bool audioEnabled)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Init", videoEnabled, audioEnabled);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Init(bool videoEnabled, bool audioEnabled)
+            => global::Roblox.Reflection.Invoke<object>(this, "Init", videoEnabled, audioEnabled)!;
 
         /// <summary>
         /// <c>FaceAnimatorService.IsStarted</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsStarted()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsStarted");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsStarted")!;
 
         /// <summary>
         /// <c>FaceAnimatorService.Start</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Start()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Start");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Start()
+            => global::Roblox.Reflection.Invoke<object>(this, "Start")!;
 
         /// <summary>
         /// <c>FaceAnimatorService.Step</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Step()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Step");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Step()
+            => global::Roblox.Reflection.Invoke<object>(this, "Step")!;
 
         /// <summary>
         /// <c>FaceAnimatorService.Stop</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Stop()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Stop");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Stop()
+            => global::Roblox.Reflection.Invoke<object>(this, "Stop")!;
 
         /// <summary>
         /// <c>FaceAnimatorService.TrackerError</c>

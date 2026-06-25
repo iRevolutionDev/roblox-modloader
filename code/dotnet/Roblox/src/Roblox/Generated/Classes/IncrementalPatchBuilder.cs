@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="IncrementalPatchBuilder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static IncrementalPatchBuilder? FromHandle(nuint handle)
+        public static new IncrementalPatchBuilder? FromHandle(nuint handle)
             => handle == 0 ? null : new IncrementalPatchBuilder(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#AddPathsToBundle"/>
         public bool AddPathsToBundle
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AddPathsToBundle");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AddPathsToBundle")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AddPathsToBundle", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#BuildDebouncePeriod"/>
         public double BuildDebouncePeriod
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "BuildDebouncePeriod");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "BuildDebouncePeriod")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "BuildDebouncePeriod", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#HighCompression"/>
         public bool HighCompression
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HighCompression");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HighCompression")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HighCompression", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#SerializePatch"/>
         public bool SerializePatch
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "SerializePatch");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "SerializePatch")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "SerializePatch", value);
         }
 
@@ -71,7 +71,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#UseFileLevelCompressionInsteadOfChunk"/>
         public bool UseFileLevelCompressionInsteadOfChunk
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseFileLevelCompressionInsteadOfChunk");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UseFileLevelCompressionInsteadOfChunk")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UseFileLevelCompressionInsteadOfChunk", value);
         }
 
@@ -81,7 +81,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IncrementalPatchBuilder#ZstdCompression"/>
         public bool ZstdCompression
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ZstdCompression");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ZstdCompression")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ZstdCompression", value);
         }
 

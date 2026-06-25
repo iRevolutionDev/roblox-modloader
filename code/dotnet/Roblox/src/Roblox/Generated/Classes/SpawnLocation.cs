@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SpawnLocation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SpawnLocation? FromHandle(nuint handle)
+        public static new SpawnLocation? FromHandle(nuint handle)
             => handle == 0 ? null : new SpawnLocation(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#AllowTeamChangeOnTouch"/>
         public bool AllowTeamChangeOnTouch
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowTeamChangeOnTouch");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowTeamChangeOnTouch")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowTeamChangeOnTouch", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#Duration"/>
         public int Duration
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Duration");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Duration")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Duration", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#Neutral"/>
         public bool Neutral
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Neutral");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Neutral")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Neutral", value);
         }
 
@@ -69,10 +69,10 @@ namespace Roblox
         /// Sets what team the SpawnLocation is affiliated to. If SpawnLocation.Neutral property is false, only Players with the same Player.TeamColor as the spawn's TeamColor will be able to spawn there.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpawnLocation#TeamColor"/>
-        public global::Roblox.BrickColor? TeamColor
+        public global::Roblox.BrickColor TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TeamColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TeamColor", value);
         }
 
     }

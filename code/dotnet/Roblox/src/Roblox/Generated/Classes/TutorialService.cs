@@ -18,60 +18,60 @@ namespace Roblox
         /// Creates a <see cref="TutorialService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TutorialService? FromHandle(nuint handle)
+        public static new TutorialService? FromHandle(nuint handle)
             => handle == 0 ? null : new TutorialService(handle);
 
         /// <summary>
         /// <c>TutorialService.GetMainViewSessionId</c>
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetMainViewSessionId()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetMainViewSessionId");
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetMainViewSessionId()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetMainViewSessionId")!;
 
         /// <summary>
         /// <c>TutorialService.HasUserCompletedTutorial</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool HasUserCompletedTutorial()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasUserCompletedTutorial");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasUserCompletedTutorial")!;
 
         /// <summary>
         /// <c>TutorialService.HideWidgets</c>
         /// </summary>
-        /// <param name="commaSeparatedNames">A <c>string?</c> value.</param>
+        /// <param name="commaSeparatedNames">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool HideWidgets(string? commaSeparatedNames)
-            => global::Roblox.Reflection.Invoke<bool>(this, "HideWidgets", commaSeparatedNames);
+        public bool HideWidgets(string commaSeparatedNames)
+            => global::Roblox.Reflection.Invoke<bool>(this, "HideWidgets", commaSeparatedNames)!;
 
         /// <summary>
         /// <c>TutorialService.PromptClosePlace</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? PromptClosePlace()
-            => global::Roblox.Reflection.Invoke<object?>(this, "PromptClosePlace");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object PromptClosePlace()
+            => global::Roblox.Reflection.Invoke<object>(this, "PromptClosePlace")!;
 
         /// <summary>
         /// <c>TutorialService.SetTutorialCompletionStatus</c>
         /// </summary>
         /// <param name="completed">A <c>bool</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTutorialCompletionStatus(bool completed)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTutorialCompletionStatus", completed);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTutorialCompletionStatus(bool completed)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTutorialCompletionStatus", completed)!;
 
         /// <summary>
         /// <c>TutorialService.ShouldLaunchTutorial</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool ShouldLaunchTutorial()
-            => global::Roblox.Reflection.Invoke<bool>(this, "ShouldLaunchTutorial");
+            => global::Roblox.Reflection.Invoke<bool>(this, "ShouldLaunchTutorial")!;
 
         /// <summary>
         /// <c>TutorialService.ShowWidgets</c>
         /// </summary>
-        /// <param name="commaSeparatedNames">A <c>string?</c> value.</param>
+        /// <param name="commaSeparatedNames">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
-        public bool ShowWidgets(string? commaSeparatedNames)
-            => global::Roblox.Reflection.Invoke<bool>(this, "ShowWidgets", commaSeparatedNames);
+        public bool ShowWidgets(string commaSeparatedNames)
+            => global::Roblox.Reflection.Invoke<bool>(this, "ShowWidgets", commaSeparatedNames)!;
 
     }
 }

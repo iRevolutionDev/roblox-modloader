@@ -22,17 +22,17 @@ namespace Roblox
         /// Creates a <see cref="AnimationNodeDefinition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AnimationNodeDefinition? FromHandle(nuint handle)
+        public static new AnimationNodeDefinition? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationNodeDefinition(handle);
 
         /// <summary>
         /// <c>AnimationNodeDefinition.NodeId</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationNodeDefinition#NodeId"/>
-        public string? NodeId
+        public string NodeId
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "NodeId");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "NodeId", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "NodeId")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "NodeId", value);
         }
 
         /// <summary>
@@ -41,40 +41,40 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationNodeDefinition#NodeType"/>
         public Enum.AnimationNodeType NodeType
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.AnimationNodeType>(this, "NodeType");
+            get => global::Roblox.Reflection.GetProperty<Enum.AnimationNodeType>(this, "NodeType")!;
             set => global::Roblox.Reflection.SetProperty<Enum.AnimationNodeType>(this, "NodeType", value);
         }
 
         /// <summary>
         /// <c>AnimationNodeDefinition.AddInputPin</c>
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? AddInputPin(string? pin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AddInputPin", pin);
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object AddInputPin(string pin)
+            => global::Roblox.Reflection.Invoke<object>(this, "AddInputPin", pin)!;
 
         /// <summary>
         /// <c>AnimationNodeDefinition.GetOrderedInputPinNames</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetOrderedInputPinNames()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetOrderedInputPinNames");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetOrderedInputPinNames()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetOrderedInputPinNames")!;
 
         /// <summary>
         /// <c>AnimationNodeDefinition.RemoveInputPin</c>
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? RemoveInputPin(string? pin)
-            => global::Roblox.Reflection.Invoke<object?>(this, "RemoveInputPin", pin);
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object RemoveInputPin(string pin)
+            => global::Roblox.Reflection.Invoke<object>(this, "RemoveInputPin", pin)!;
 
         /// <summary>
         /// <c>AnimationNodeDefinition.SetOrderedInputPinNames</c>
         /// </summary>
-        /// <param name="pins">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetOrderedInputPinNames(object? pins)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetOrderedInputPinNames", pins);
+        /// <param name="pins">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetOrderedInputPinNames(object pins)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetOrderedInputPinNames", pins)!;
 
         public event Action? InputPinsChanged
         {

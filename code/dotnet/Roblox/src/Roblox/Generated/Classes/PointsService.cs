@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="PointsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static PointsService? FromHandle(nuint handle)
+        public static new PointsService? FromHandle(nuint handle)
             => handle == 0 ? null : new PointsService(handle);
 
         /// <summary>
@@ -31,17 +31,17 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#GetAwardablePoints"/>
         public int GetAwardablePoints()
-            => global::Roblox.Reflection.Invoke<int>(this, "GetAwardablePoints");
+            => global::Roblox.Reflection.Invoke<int>(this, "GetAwardablePoints")!;
 
         /// <summary>
         /// Deprecated: This function was once part of the PointService class used to control an ancient achievement system since removed and deprecated. It should not be used in new work.Attempts to award the user with the specified Player.UserId the specified number of points.
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="amount">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#AwardPoints"/>
-        public object? AwardPoints(long userId, int amount)
-            => global::Roblox.Reflection.Invoke<object?>(this, "AwardPoints", userId, amount);
+        public object AwardPoints(long userId, int amount)
+            => global::Roblox.Reflection.Invoke<object>(this, "AwardPoints", userId, amount)!;
 
         /// <summary>
         /// Deprecated: This function was once part of the PointService class used to control an ancient achievement system since removed and deprecated. It should not be used in new work.Returns the total number of points a player has in the current game.
@@ -50,7 +50,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#GetGamePointBalance"/>
         public int GetGamePointBalance(long userId)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetGamePointBalance", userId);
+            => global::Roblox.Reflection.Invoke<int>(this, "GetGamePointBalance", userId)!;
 
         /// <summary>
         /// Deprecated: This function was once part of the PointService class used to control an ancient achievement system since removed and deprecated. It should not be used in new work.Returns the total number of points the given player has across all games.
@@ -59,7 +59,7 @@ namespace Roblox
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#GetPointBalance"/>
         public int GetPointBalance(long userId)
-            => global::Roblox.Reflection.Invoke<int>(this, "GetPointBalance", userId);
+            => global::Roblox.Reflection.Invoke<int>(this, "GetPointBalance", userId)!;
 
         /// <summary>
         /// Fires when points have been successfully awarded to a player, while also passing along the updated balance of points the player has in the current game and all games.

@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="DigitsRigDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DigitsRigDescription? FromHandle(nuint handle)
+        public static new DigitsRigDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new DigitsRigDescription(handle);
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Index1TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index1TposeAdjustment"/>
-        public global::Roblox.CFrame? Index1TposeAdjustment
+        public global::Roblox.CFrame Index1TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Index1TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Index1TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Index1TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Index1TposeAdjustment", value);
         }
 
         /// <summary>
@@ -59,10 +59,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Index2TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index2TposeAdjustment"/>
-        public global::Roblox.CFrame? Index2TposeAdjustment
+        public global::Roblox.CFrame Index2TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Index2TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Index2TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Index2TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Index2TposeAdjustment", value);
         }
 
         /// <summary>
@@ -79,20 +79,20 @@ namespace Roblox
         /// <c>DigitsRigDescription.Index3TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index3TposeAdjustment"/>
-        public global::Roblox.CFrame? Index3TposeAdjustment
+        public global::Roblox.CFrame Index3TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Index3TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Index3TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Index3TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Index3TposeAdjustment", value);
         }
 
         /// <summary>
         /// <c>DigitsRigDescription.IndexRange</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#IndexRange"/>
-        public global::Roblox.Vector3? IndexRange
+        public global::Roblox.Vector3 IndexRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "IndexRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "IndexRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "IndexRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "IndexRange", value);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#IndexSize"/>
         public float IndexSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "IndexSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "IndexSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "IndexSize", value);
         }
 
@@ -119,10 +119,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Middle1TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle1TposeAdjustment"/>
-        public global::Roblox.CFrame? Middle1TposeAdjustment
+        public global::Roblox.CFrame Middle1TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Middle1TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Middle1TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Middle1TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Middle1TposeAdjustment", value);
         }
 
         /// <summary>
@@ -139,10 +139,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Middle2TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle2TposeAdjustment"/>
-        public global::Roblox.CFrame? Middle2TposeAdjustment
+        public global::Roblox.CFrame Middle2TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Middle2TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Middle2TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Middle2TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Middle2TposeAdjustment", value);
         }
 
         /// <summary>
@@ -159,20 +159,20 @@ namespace Roblox
         /// <c>DigitsRigDescription.Middle3TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle3TposeAdjustment"/>
-        public global::Roblox.CFrame? Middle3TposeAdjustment
+        public global::Roblox.CFrame Middle3TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Middle3TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Middle3TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Middle3TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Middle3TposeAdjustment", value);
         }
 
         /// <summary>
         /// <c>DigitsRigDescription.MiddleRange</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#MiddleRange"/>
-        public global::Roblox.Vector3? MiddleRange
+        public global::Roblox.Vector3 MiddleRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "MiddleRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "MiddleRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "MiddleRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "MiddleRange", value);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#MiddleSize"/>
         public float MiddleSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "MiddleSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "MiddleSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "MiddleSize", value);
         }
 
@@ -199,10 +199,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Pinky1TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky1TposeAdjustment"/>
-        public global::Roblox.CFrame? Pinky1TposeAdjustment
+        public global::Roblox.CFrame Pinky1TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Pinky1TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Pinky1TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Pinky1TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Pinky1TposeAdjustment", value);
         }
 
         /// <summary>
@@ -219,10 +219,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Pinky2TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky2TposeAdjustment"/>
-        public global::Roblox.CFrame? Pinky2TposeAdjustment
+        public global::Roblox.CFrame Pinky2TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Pinky2TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Pinky2TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Pinky2TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Pinky2TposeAdjustment", value);
         }
 
         /// <summary>
@@ -239,20 +239,20 @@ namespace Roblox
         /// <c>DigitsRigDescription.Pinky3TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky3TposeAdjustment"/>
-        public global::Roblox.CFrame? Pinky3TposeAdjustment
+        public global::Roblox.CFrame Pinky3TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Pinky3TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Pinky3TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Pinky3TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Pinky3TposeAdjustment", value);
         }
 
         /// <summary>
         /// <c>DigitsRigDescription.PinkyRange</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#PinkyRange"/>
-        public global::Roblox.Vector3? PinkyRange
+        public global::Roblox.Vector3 PinkyRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "PinkyRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "PinkyRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "PinkyRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "PinkyRange", value);
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#PinkySize"/>
         public float PinkySize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "PinkySize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "PinkySize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "PinkySize", value);
         }
 
@@ -279,10 +279,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Ring1TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring1TposeAdjustment"/>
-        public global::Roblox.CFrame? Ring1TposeAdjustment
+        public global::Roblox.CFrame Ring1TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Ring1TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Ring1TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Ring1TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Ring1TposeAdjustment", value);
         }
 
         /// <summary>
@@ -299,10 +299,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Ring2TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring2TposeAdjustment"/>
-        public global::Roblox.CFrame? Ring2TposeAdjustment
+        public global::Roblox.CFrame Ring2TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Ring2TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Ring2TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Ring2TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Ring2TposeAdjustment", value);
         }
 
         /// <summary>
@@ -319,20 +319,20 @@ namespace Roblox
         /// <c>DigitsRigDescription.Ring3TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring3TposeAdjustment"/>
-        public global::Roblox.CFrame? Ring3TposeAdjustment
+        public global::Roblox.CFrame Ring3TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Ring3TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Ring3TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Ring3TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Ring3TposeAdjustment", value);
         }
 
         /// <summary>
         /// <c>DigitsRigDescription.RingRange</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#RingRange"/>
-        public global::Roblox.Vector3? RingRange
+        public global::Roblox.Vector3 RingRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "RingRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "RingRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RingRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "RingRange", value);
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#RingSize"/>
         public float RingSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "RingSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "RingSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "RingSize", value);
         }
 
@@ -351,7 +351,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Side"/>
         public Enum.DigitsRigDescriptionSide Side
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.DigitsRigDescriptionSide>(this, "Side");
+            get => global::Roblox.Reflection.GetProperty<Enum.DigitsRigDescriptionSide>(this, "Side")!;
             set => global::Roblox.Reflection.SetProperty<Enum.DigitsRigDescriptionSide>(this, "Side", value);
         }
 
@@ -369,10 +369,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Thumb1TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb1TposeAdjustment"/>
-        public global::Roblox.CFrame? Thumb1TposeAdjustment
+        public global::Roblox.CFrame Thumb1TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Thumb1TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Thumb1TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Thumb1TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Thumb1TposeAdjustment", value);
         }
 
         /// <summary>
@@ -389,10 +389,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Thumb2TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb2TposeAdjustment"/>
-        public global::Roblox.CFrame? Thumb2TposeAdjustment
+        public global::Roblox.CFrame Thumb2TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Thumb2TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Thumb2TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Thumb2TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Thumb2TposeAdjustment", value);
         }
 
         /// <summary>
@@ -409,20 +409,20 @@ namespace Roblox
         /// <c>DigitsRigDescription.Thumb3TposeAdjustment</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb3TposeAdjustment"/>
-        public global::Roblox.CFrame? Thumb3TposeAdjustment
+        public global::Roblox.CFrame Thumb3TposeAdjustment
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "Thumb3TposeAdjustment");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "Thumb3TposeAdjustment", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "Thumb3TposeAdjustment")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "Thumb3TposeAdjustment", value);
         }
 
         /// <summary>
         /// <c>DigitsRigDescription.ThumbRange</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#ThumbRange"/>
-        public global::Roblox.Vector3? ThumbRange
+        public global::Roblox.Vector3 ThumbRange
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3?>(this, "ThumbRange");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3?>(this, "ThumbRange", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "ThumbRange")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.Vector3>(this, "ThumbRange", value);
         }
 
         /// <summary>
@@ -431,7 +431,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#ThumbSize"/>
         public float ThumbSize
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "ThumbSize");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "ThumbSize")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "ThumbSize", value);
         }
 
@@ -439,19 +439,19 @@ namespace Roblox
         /// <c>DigitsRigDescription.GetFingerControl</c>
         /// </summary>
         /// <param name="fingerIndex">A <c>int</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#GetFingerControl"/>
-        public global::Roblox.Vector3? GetFingerControl(int fingerIndex)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetFingerControl", fingerIndex);
+        public global::Roblox.Vector3 GetFingerControl(int fingerIndex)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetFingerControl", fingerIndex)!;
 
         /// <summary>
         /// <c>DigitsRigDescription.GetFingerTip</c>
         /// </summary>
         /// <param name="fingerIndex">A <c>int</c> value.</param>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#GetFingerTip"/>
-        public global::Roblox.Vector3? GetFingerTip(int fingerIndex)
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetFingerTip", fingerIndex);
+        public global::Roblox.Vector3 GetFingerTip(int fingerIndex)
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetFingerTip", fingerIndex)!;
 
         /// <summary>
         /// <c>DigitsRigDescription.GetJoint</c>
@@ -464,55 +464,55 @@ namespace Roblox
         /// <summary>
         /// <c>DigitsRigDescription.GetJointLabels</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetJointLabels()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetJointLabels");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetJointLabels()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetJointLabels")!;
 
         /// <summary>
         /// <c>DigitsRigDescription.GetTposeAdjustment</c>
         /// </summary>
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
-        /// <returns>A <c>global::Roblox.CFrame?</c> value returned by the engine.</returns>
-        public global::Roblox.CFrame? GetTposeAdjustment(Enum.RigLabel label)
-            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame?>(this, "GetTposeAdjustment", label);
+        /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
+        public global::Roblox.CFrame GetTposeAdjustment(Enum.RigLabel label)
+            => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetTposeAdjustment", label)!;
 
         /// <summary>
         /// <c>DigitsRigDescription.SetFingerControl</c>
         /// </summary>
         /// <param name="fingerIndex">A <c>int</c> value.</param>
-        /// <param name="control">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="control">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#SetFingerControl"/>
-        public object? SetFingerControl(int fingerIndex, global::Roblox.Vector3? control)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFingerControl", fingerIndex, control);
+        public object SetFingerControl(int fingerIndex, global::Roblox.Vector3 control)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFingerControl", fingerIndex, control)!;
 
         /// <summary>
         /// <c>DigitsRigDescription.SetFingerTip</c>
         /// </summary>
         /// <param name="fingerIndex">A <c>int</c> value.</param>
-        /// <param name="point">A <c>global::Roblox.Vector3?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="point">A <c>global::Roblox.Vector3</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#SetFingerTip"/>
-        public object? SetFingerTip(int fingerIndex, global::Roblox.Vector3? point)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetFingerTip", fingerIndex, point);
+        public object SetFingerTip(int fingerIndex, global::Roblox.Vector3 point)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetFingerTip", fingerIndex, point)!;
 
         /// <summary>
         /// <c>DigitsRigDescription.SetJoint</c>
         /// </summary>
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
-        /// <param name="joint">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetJoint(Enum.RigLabel label, Instance? joint)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetJoint", label, joint);
+        /// <param name="joint">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetJoint(Enum.RigLabel label, Instance joint)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetJoint", label, joint)!;
 
         /// <summary>
         /// <c>DigitsRigDescription.SetTposeAdjustment</c>
         /// </summary>
         /// <param name="label">A <c>Enum.RigLabel</c> value.</param>
-        /// <param name="transform">A <c>global::Roblox.CFrame?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? SetTposeAdjustment(Enum.RigLabel label, global::Roblox.CFrame? transform)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SetTposeAdjustment", label, transform);
+        /// <param name="transform">A <c>global::Roblox.CFrame</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object SetTposeAdjustment(Enum.RigLabel label, global::Roblox.CFrame transform)
+            => global::Roblox.Reflection.Invoke<object>(this, "SetTposeAdjustment", label, transform)!;
 
     }
 }

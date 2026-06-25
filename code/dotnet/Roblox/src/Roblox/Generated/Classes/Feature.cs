@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Feature"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Feature? FromHandle(nuint handle)
+        public static new Feature? FromHandle(nuint handle)
             => handle == 0 ? null : new Feature(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Feature#FaceId"/>
         public Enum.NormalId FaceId
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "FaceId");
+            get => global::Roblox.Reflection.GetProperty<Enum.NormalId>(this, "FaceId")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NormalId>(this, "FaceId", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Feature#InOut"/>
         public Enum.InOut InOut
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.InOut>(this, "InOut");
+            get => global::Roblox.Reflection.GetProperty<Enum.InOut>(this, "InOut")!;
             set => global::Roblox.Reflection.SetProperty<Enum.InOut>(this, "InOut", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Feature#LeftRight"/>
         public Enum.LeftRight LeftRight
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.LeftRight>(this, "LeftRight");
+            get => global::Roblox.Reflection.GetProperty<Enum.LeftRight>(this, "LeftRight")!;
             set => global::Roblox.Reflection.SetProperty<Enum.LeftRight>(this, "LeftRight", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Feature#TopBottom"/>
         public Enum.TopBottom TopBottom
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.TopBottom>(this, "TopBottom");
+            get => global::Roblox.Reflection.GetProperty<Enum.TopBottom>(this, "TopBottom")!;
             set => global::Roblox.Reflection.SetProperty<Enum.TopBottom>(this, "TopBottom", value);
         }
 

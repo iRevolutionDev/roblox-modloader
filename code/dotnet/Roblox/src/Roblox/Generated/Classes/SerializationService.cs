@@ -22,26 +22,26 @@ namespace Roblox
         /// Creates a <see cref="SerializationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SerializationService? FromHandle(nuint handle)
+        public static new SerializationService? FromHandle(nuint handle)
             => handle == 0 ? null : new SerializationService(handle);
 
         /// <summary>
         /// Deserializes a buffer containing .rbxm content, returning a list of instances.
         /// </summary>
-        /// <param name="buffer">A <c>object?</c> value.</param>
+        /// <param name="buffer">A <c>object</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SerializationService#DeserializeInstancesAsync"/>
-        public IReadOnlyList<Instance> DeserializeInstancesAsync(object? buffer)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "DeserializeInstancesAsync", buffer);
+        public IReadOnlyList<Instance> DeserializeInstancesAsync(object buffer)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "DeserializeInstancesAsync", buffer)!;
 
         /// <summary>
         /// Serializes a list of instances to the .rbxm format, returning a buffer or .rbxm content.
         /// </summary>
         /// <param name="inputInstances">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SerializationService#SerializeInstancesAsync"/>
-        public object? SerializeInstancesAsync(IReadOnlyList<Instance> inputInstances)
-            => global::Roblox.Reflection.Invoke<object?>(this, "SerializeInstancesAsync", inputInstances);
+        public object SerializeInstancesAsync(IReadOnlyList<Instance> inputInstances)
+            => global::Roblox.Reflection.Invoke<object>(this, "SerializeInstancesAsync", inputInstances)!;
 
     }
 }

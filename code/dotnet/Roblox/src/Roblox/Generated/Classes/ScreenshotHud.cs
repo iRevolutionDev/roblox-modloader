@@ -22,43 +22,43 @@ namespace Roblox
         /// Creates a <see cref="ScreenshotHud"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ScreenshotHud? FromHandle(nuint handle)
+        public static new ScreenshotHud? FromHandle(nuint handle)
             => handle == 0 ? null : new ScreenshotHud(handle);
 
         /// <summary>
         /// Asset ID of the icon used for the camera button.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#CameraButtonIcon"/>
-        public object? CameraButtonIcon
+        public object CameraButtonIcon
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CameraButtonIcon");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CameraButtonIcon", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "CameraButtonIcon")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "CameraButtonIcon", value);
         }
 
-        public string? CameraButtonIconContent
+        public string CameraButtonIconContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CameraButtonIconContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CameraButtonIconContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CameraButtonIconContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CameraButtonIconContent", value);
         }
 
         /// <summary>
         /// Screen location of the camera button.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#CameraButtonPosition"/>
-        public global::Roblox.UDim2? CameraButtonPosition
+        public global::Roblox.UDim2 CameraButtonPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CameraButtonPosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CameraButtonPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "CameraButtonPosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "CameraButtonPosition", value);
         }
 
         /// <summary>
         /// Screen location of the close button.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#CloseButtonPosition"/>
-        public global::Roblox.UDim2? CloseButtonPosition
+        public global::Roblox.UDim2 CloseButtonPosition
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2?>(this, "CloseButtonPosition");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2?>(this, "CloseButtonPosition", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.UDim2>(this, "CloseButtonPosition")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.UDim2>(this, "CloseButtonPosition", value);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#CloseWhenScreenshotTaken"/>
         public bool CloseWhenScreenshotTaken
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "CloseWhenScreenshotTaken");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "CloseWhenScreenshotTaken")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "CloseWhenScreenshotTaken", value);
         }
 
@@ -77,7 +77,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#ExperienceNameOverlayEnabled"/>
         public bool ExperienceNameOverlayEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ExperienceNameOverlayEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ExperienceNameOverlayEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ExperienceNameOverlayEnabled", value);
         }
 
@@ -87,7 +87,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#HideCoreGuiForCaptures"/>
         public bool HideCoreGuiForCaptures
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HideCoreGuiForCaptures");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HideCoreGuiForCaptures")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HideCoreGuiForCaptures", value);
         }
 
@@ -97,7 +97,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#HidePlayerGuiForCaptures"/>
         public bool HidePlayerGuiForCaptures
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "HidePlayerGuiForCaptures");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "HidePlayerGuiForCaptures")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "HidePlayerGuiForCaptures", value);
         }
 
@@ -107,7 +107,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#OverlayFont"/>
         public Enum.Font OverlayFont
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "OverlayFont");
+            get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "OverlayFont")!;
             set => global::Roblox.Reflection.SetProperty<Enum.Font>(this, "OverlayFont", value);
         }
 
@@ -117,7 +117,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#UsernameOverlayEnabled"/>
         public bool UsernameOverlayEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsernameOverlayEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "UsernameOverlayEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "UsernameOverlayEnabled", value);
         }
 
@@ -127,7 +127,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#Visible"/>
         public bool Visible
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Visible")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Visible", value);
         }
 

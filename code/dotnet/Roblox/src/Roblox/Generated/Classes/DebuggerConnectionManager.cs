@@ -18,52 +18,52 @@ namespace Roblox
         /// Creates a <see cref="DebuggerConnectionManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static DebuggerConnectionManager? FromHandle(nuint handle)
+        public static new DebuggerConnectionManager? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerConnectionManager(handle);
 
         public double Timeout
         {
-            get => global::Roblox.Reflection.GetProperty<double>(this, "Timeout");
+            get => global::Roblox.Reflection.GetProperty<double>(this, "Timeout")!;
             set => global::Roblox.Reflection.SetProperty<double>(this, "Timeout", value);
         }
 
         /// <summary>
         /// <c>DebuggerConnectionManager.ConnectLocal</c>
         /// </summary>
-        /// <param name="dataModel">A <c>DataModel?</c> value.</param>
+        /// <param name="dataModel">A <c>DataModel</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
-        public int ConnectLocal(DataModel? dataModel)
-            => global::Roblox.Reflection.Invoke<int>(this, "ConnectLocal", dataModel);
+        public int ConnectLocal(DataModel dataModel)
+            => global::Roblox.Reflection.Invoke<int>(this, "ConnectLocal", dataModel)!;
 
         /// <summary>
         /// <c>DebuggerConnectionManager.FocusConnection</c>
         /// </summary>
-        /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? FocusConnection(DebuggerConnection? connection)
-            => global::Roblox.Reflection.Invoke<object?>(this, "FocusConnection", connection);
+        /// <param name="connection">A <c>DebuggerConnection</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object FocusConnection(DebuggerConnection connection)
+            => global::Roblox.Reflection.Invoke<object>(this, "FocusConnection", connection)!;
 
         /// <summary>
         /// <c>DebuggerConnectionManager.GetAvailableConnection</c>
         /// </summary>
-        /// <returns>A <c>DebuggerConnection?</c> value returned by the engine.</returns>
-        public DebuggerConnection? GetAvailableConnection()
-            => global::Roblox.Reflection.Invoke<DebuggerConnection?>(this, "GetAvailableConnection");
+        /// <returns>A <c>DebuggerConnection</c> value returned by the engine.</returns>
+        public DebuggerConnection GetAvailableConnection()
+            => global::Roblox.Reflection.Invoke<DebuggerConnection>(this, "GetAvailableConnection")!;
 
         /// <summary>
         /// <c>DebuggerConnectionManager.GetConnectionById</c>
         /// </summary>
         /// <param name="id">A <c>int</c> value.</param>
-        /// <returns>A <c>DebuggerConnection?</c> value returned by the engine.</returns>
-        public DebuggerConnection? GetConnectionById(int id)
-            => global::Roblox.Reflection.Invoke<DebuggerConnection?>(this, "GetConnectionById", id);
+        /// <returns>A <c>DebuggerConnection</c> value returned by the engine.</returns>
+        public DebuggerConnection GetConnectionById(int id)
+            => global::Roblox.Reflection.Invoke<DebuggerConnection>(this, "GetConnectionById", id)!;
 
         /// <summary>
         /// <c>DebuggerConnectionManager.ConnectionEnded</c>
         /// </summary>
-        /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
+        /// <param name="connection">A <c>DebuggerConnection</c> value.</param>
         /// <param name="reason">A <c>Enum.DebuggerEndReason</c> value.</param>
-        public event Action<DebuggerConnection?, Enum.DebuggerEndReason>? ConnectionEnded
+        public event Action<DebuggerConnection, Enum.DebuggerEndReason>? ConnectionEnded
         {
             add { if (value is not null) AddEventHandler("ConnectionEnded", value); }
             remove { if (value is not null) RemoveEventHandler("ConnectionEnded", value); }
@@ -72,8 +72,8 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerConnectionManager.ConnectionStarted</c>
         /// </summary>
-        /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
-        public event Action<DebuggerConnection?>? ConnectionStarted
+        /// <param name="connection">A <c>DebuggerConnection</c> value.</param>
+        public event Action<DebuggerConnection>? ConnectionStarted
         {
             add { if (value is not null) AddEventHandler("ConnectionStarted", value); }
             remove { if (value is not null) RemoveEventHandler("ConnectionStarted", value); }
@@ -82,8 +82,8 @@ namespace Roblox
         /// <summary>
         /// <c>DebuggerConnectionManager.FocusChanged</c>
         /// </summary>
-        /// <param name="connection">A <c>DebuggerConnection?</c> value.</param>
-        public event Action<DebuggerConnection?>? FocusChanged
+        /// <param name="connection">A <c>DebuggerConnection</c> value.</param>
+        public event Action<DebuggerConnection>? FocusChanged
         {
             add { if (value is not null) AddEventHandler("FocusChanged", value); }
             remove { if (value is not null) RemoveEventHandler("FocusChanged", value); }

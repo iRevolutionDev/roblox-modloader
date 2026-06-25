@@ -22,12 +22,12 @@ namespace Roblox
         /// Creates a <see cref="AudioSpeechToText"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AudioSpeechToText? FromHandle(nuint handle)
+        public static new AudioSpeechToText? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioSpeechToText(handle);
 
         public bool DictationEnabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "DictationEnabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "DictationEnabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "DictationEnabled", value);
         }
 
@@ -37,7 +37,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSpeechToText#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -45,10 +45,10 @@ namespace Roblox
         /// The text resulting from the conversion of speech audio.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSpeechToText#Text"/>
-        public string? Text
+        public string Text
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Text");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Text", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Text")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Text", value);
         }
 
         /// <summary>
@@ -57,28 +57,28 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSpeechToText#VoiceDetected"/>
         public bool VoiceDetected
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceDetected");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "VoiceDetected")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "VoiceDetected", value);
         }
 
         /// <summary>
         /// Returns an array of Wires that are connected to the specified pin.
         /// </summary>
-        /// <param name="pin">A <c>string?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSpeechToText#GetConnectedWires"/>
-        public IReadOnlyList<Instance> GetConnectedWires(string? pin)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin);
+        public IReadOnlyList<Instance> GetConnectedWires(string pin)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetConnectedWires", pin)!;
 
         /// <summary>
         /// Fires when another instance is connected to or disconnected from the AudioSpeechToText via a Wire.
         /// </summary>
         /// <param name="connected">A <c>bool</c> value.</param>
-        /// <param name="pin">A <c>string?</c> value.</param>
-        /// <param name="wire">A <c>Wire?</c> value.</param>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
+        /// <param name="pin">A <c>string</c> value.</param>
+        /// <param name="wire">A <c>Wire</c> value.</param>
+        /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSpeechToText#WiringChanged"/>
-        public event Action<bool, string?, Wire?, Instance?>? WiringChanged
+        public event Action<bool, string, Wire, Instance>? WiringChanged
         {
             add { if (value is not null) AddEventHandler("WiringChanged", value); }
             remove { if (value is not null) RemoveEventHandler("WiringChanged", value); }

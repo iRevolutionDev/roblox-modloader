@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="ReflectionMetadataClass"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ReflectionMetadataClass? FromHandle(nuint handle)
+        public static new ReflectionMetadataClass? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionMetadataClass(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass#ExplorerImageIndex"/>
         public int ExplorerImageIndex
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ExplorerImageIndex");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ExplorerImageIndex")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ExplorerImageIndex", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass#ExplorerOrder"/>
         public int ExplorerOrder
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ExplorerOrder");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ExplorerOrder")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ExplorerOrder", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass#Insertable"/>
         public bool Insertable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Insertable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Insertable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Insertable", value);
         }
 
@@ -59,15 +59,15 @@ namespace Roblox
         /// Sets the class that this class would prefer parenting to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass#PreferredParent"/>
-        public string? PreferredParent
+        public string PreferredParent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "PreferredParent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "PreferredParent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "PreferredParent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "PreferredParent", value);
         }
 
         public Enum.ServiceVisibility ServiceVisibility
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ServiceVisibility>(this, "ServiceVisibility");
+            get => global::Roblox.Reflection.GetProperty<Enum.ServiceVisibility>(this, "ServiceVisibility")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ServiceVisibility>(this, "ServiceVisibility", value);
         }
 

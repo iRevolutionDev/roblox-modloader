@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="SkateboardController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static SkateboardController? FromHandle(nuint handle)
+        public static new SkateboardController? FromHandle(nuint handle)
             => handle == 0 ? null : new SkateboardController(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardController#Steer"/>
         public float Steer
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Steer");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Steer")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Steer", value);
         }
 
@@ -41,16 +41,16 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardController#Throttle"/>
         public float Throttle
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Throttle");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Throttle")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Throttle", value);
         }
 
         /// <summary>
         /// Fired when any input state of the skateboard controller is updated.
         /// </summary>
-        /// <param name="axis">A <c>string?</c> value.</param>
+        /// <param name="axis">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardController#AxisChanged"/>
-        public event Action<string?>? AxisChanged
+        public event Action<string>? AxisChanged
         {
             add { if (value is not null) AddEventHandler("AxisChanged", value); }
             remove { if (value is not null) RemoveEventHandler("AxisChanged", value); }

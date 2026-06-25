@@ -22,131 +22,131 @@ namespace Roblox
         /// Creates a <see cref="BaseWrap"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static BaseWrap? FromHandle(nuint handle)
+        public static new BaseWrap? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseWrap(handle);
 
         /// <summary>
         /// <c>BaseWrap.CageMeshContent</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#CageMeshContent"/>
-        public string? CageMeshContent
+        public string CageMeshContent
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "CageMeshContent");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "CageMeshContent", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "CageMeshContent")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "CageMeshContent", value);
         }
 
         /// <summary>
         /// Asset ID for cage mesh.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#CageMeshId"/>
-        public object? CageMeshId
+        public object CageMeshId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "CageMeshId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "CageMeshId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "CageMeshId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "CageMeshId", value);
         }
 
         /// <summary>
         /// Cage mesh offset relative to parent MeshPart.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#CageOrigin"/>
-        public global::Roblox.CFrame? CageOrigin
+        public global::Roblox.CFrame CageOrigin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CageOrigin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CageOrigin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CageOrigin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CageOrigin", value);
         }
 
         /// <summary>
         /// Cage mesh offset in world space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#CageOriginWorld"/>
-        public global::Roblox.CFrame? CageOriginWorld
+        public global::Roblox.CFrame CageOriginWorld
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "CageOriginWorld");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "CageOriginWorld", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CageOriginWorld")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CageOriginWorld", value);
         }
 
         /// <summary>
         /// <c>BaseWrap.HSRAssetId</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#HSRAssetId"/>
-        public object? HSRAssetId
+        public object HSRAssetId
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "HSRAssetId");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "HSRAssetId", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "HSRAssetId")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "HSRAssetId", value);
         }
 
         /// <summary>
         /// Describes where a global zero was while authoring the cage mesh in an asset creation tool.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#ImportOrigin"/>
-        public global::Roblox.CFrame? ImportOrigin
+        public global::Roblox.CFrame ImportOrigin
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ImportOrigin");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ImportOrigin", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "ImportOrigin")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "ImportOrigin", value);
         }
 
         /// <summary>
         /// Describes where the origin (in world space) was while authoring the cage mesh in an asset creation tool.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseWrap#ImportOriginWorld"/>
-        public global::Roblox.CFrame? ImportOriginWorld
+        public global::Roblox.CFrame ImportOriginWorld
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame?>(this, "ImportOriginWorld");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame?>(this, "ImportOriginWorld", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "ImportOriginWorld")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "ImportOriginWorld", value);
         }
 
         /// <summary>
         /// <c>BaseWrap.GetCageOffset</c>
         /// </summary>
-        /// <returns>A <c>global::Roblox.Vector3?</c> value returned by the engine.</returns>
-        public global::Roblox.Vector3? GetCageOffset()
-            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3?>(this, "GetCageOffset");
+        /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
+        public global::Roblox.Vector3 GetCageOffset()
+            => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetCageOffset")!;
 
         /// <summary>
         /// <c>BaseWrap.GetFaces</c>
         /// </summary>
         /// <param name="cageType">A <c>Enum.CageType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetFaces(Enum.CageType cageType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFaces", cageType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetFaces(Enum.CageType cageType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFaces", cageType)!;
 
         /// <summary>
         /// <c>BaseWrap.GetUVs</c>
         /// </summary>
         /// <param name="cageType">A <c>Enum.CageType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUVs(Enum.CageType cageType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUVs", cageType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUVs(Enum.CageType cageType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUVs", cageType)!;
 
         /// <summary>
         /// <c>BaseWrap.GetVertices</c>
         /// </summary>
         /// <param name="cageType">A <c>Enum.CageType</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetVertices(Enum.CageType cageType)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetVertices", cageType);
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetVertices(Enum.CageType cageType)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetVertices", cageType)!;
 
         /// <summary>
         /// <c>BaseWrap.IsHSRReady</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsHSRReady()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsHSRReady");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsHSRReady")!;
 
         /// <summary>
         /// <c>BaseWrap.ModifyVertices</c>
         /// </summary>
         /// <param name="cageType">A <c>Enum.CageType</c> value.</param>
-        /// <param name="vertices">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ModifyVertices(Enum.CageType cageType, object? vertices)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ModifyVertices", cageType, vertices);
+        /// <param name="vertices">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ModifyVertices(Enum.CageType cageType, object vertices)
+            => global::Roblox.Reflection.Invoke<object>(this, "ModifyVertices", cageType, vertices)!;
 
         /// <summary>
         /// <c>BaseWrap.VerticesModified</c>
         /// </summary>
-        /// <param name="vertices">A <c>object?</c> value.</param>
-        public event Action<object?>? VerticesModified
+        /// <param name="vertices">A <c>object</c> value.</param>
+        public event Action<object>? VerticesModified
         {
             add { if (value is not null) AddEventHandler("VerticesModified", value); }
             remove { if (value is not null) RemoveEventHandler("VerticesModified", value); }

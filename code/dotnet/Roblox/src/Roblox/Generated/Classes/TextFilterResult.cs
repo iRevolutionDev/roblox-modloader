@@ -22,34 +22,34 @@ namespace Roblox
         /// Creates a <see cref="TextFilterResult"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TextFilterResult? FromHandle(nuint handle)
+        public static new TextFilterResult? FromHandle(nuint handle)
             => handle == 0 ? null : new TextFilterResult(handle);
 
         /// <summary>
         /// Deprecated: This method is deprecated and returns an empty string. Text filtering pertaining to chat should be done through TextChatService, and experiences that do not properly filter player-generated chat text may be subject to moderation.Returns the text in a properly filtered manner for the specified Player.UserId.
         /// </summary>
         /// <param name="toUserId">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterResult#GetChatForUserAsync"/>
-        public string? GetChatForUserAsync(long toUserId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetChatForUserAsync", toUserId);
+        public string GetChatForUserAsync(long toUserId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetChatForUserAsync", toUserId)!;
 
         /// <summary>
         /// Returns the text in a properly filtered manner for all users.
         /// </summary>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterResult#GetNonChatStringForBroadcastAsync"/>
-        public string? GetNonChatStringForBroadcastAsync()
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetNonChatStringForBroadcastAsync");
+        public string GetNonChatStringForBroadcastAsync()
+            => global::Roblox.Reflection.Invoke<string>(this, "GetNonChatStringForBroadcastAsync")!;
 
         /// <summary>
         /// Returns the text in a properly filtered manner for the specified Player.UserId based on age and other details.
         /// </summary>
         /// <param name="toUserId">A <c>long</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterResult#GetNonChatStringForUserAsync"/>
-        public string? GetNonChatStringForUserAsync(long toUserId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetNonChatStringForUserAsync", toUserId);
+        public string GetNonChatStringForUserAsync(long toUserId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetNonChatStringForUserAsync", toUserId)!;
 
     }
 }

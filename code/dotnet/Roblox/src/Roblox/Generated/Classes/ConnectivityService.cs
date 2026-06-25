@@ -18,12 +18,12 @@ namespace Roblox
         /// Creates a <see cref="ConnectivityService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ConnectivityService? FromHandle(nuint handle)
+        public static new ConnectivityService? FromHandle(nuint handle)
             => handle == 0 ? null : new ConnectivityService(handle);
 
         public Enum.NetworkStatus NetworkStatus
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.NetworkStatus>(this, "NetworkStatus");
+            get => global::Roblox.Reflection.GetProperty<Enum.NetworkStatus>(this, "NetworkStatus")!;
             set => global::Roblox.Reflection.SetProperty<Enum.NetworkStatus>(this, "NetworkStatus", value);
         }
 
@@ -32,7 +32,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsNetworkStateAvailable()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsNetworkStateAvailable");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsNetworkStateAvailable")!;
 
     }
 }

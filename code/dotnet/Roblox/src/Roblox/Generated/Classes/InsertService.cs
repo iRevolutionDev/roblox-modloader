@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="InsertService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static InsertService? FromHandle(nuint handle)
+        public static new InsertService? FromHandle(nuint handle)
             => handle == 0 ? null : new InsertService(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#AllowInsertFreeModels"/>
         public bool AllowInsertFreeModels
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowInsertFreeModels");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowInsertFreeModels")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AllowInsertFreeModels", value);
         }
 
@@ -39,120 +39,120 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#ApproveAssetId"/>
-        public object? ApproveAssetId(long assetId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApproveAssetId", assetId);
+        public object ApproveAssetId(long assetId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApproveAssetId", assetId)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated. Do not use it for new work.
         /// </summary>
         /// <param name="assetVersionId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#ApproveAssetVersionId"/>
-        public object? ApproveAssetVersionId(long assetVersionId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApproveAssetVersionId", assetVersionId);
+        public object ApproveAssetVersionId(long assetVersionId)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApproveAssetVersionId", assetVersionId)!;
 
         /// <summary>
         /// <c>InsertService.GetLocalFileContents</c>
         /// </summary>
-        /// <param name="contentId">A <c>string?</c> value.</param>
-        /// <returns>A <c>string?</c> value returned by the engine.</returns>
-        public string? GetLocalFileContents(string? contentId)
-            => global::Roblox.Reflection.Invoke<string?>(this, "GetLocalFileContents", contentId);
+        /// <param name="contentId">A <c>string</c> value.</param>
+        /// <returns>A <c>string</c> value returned by the engine.</returns>
+        public string GetLocalFileContents(string contentId)
+            => global::Roblox.Reflection.Invoke<string>(this, "GetLocalFileContents", contentId)!;
 
         /// <summary>
         /// Deprecated: This function has been superseded by InsertService:LoadAsset() which should be used in all new work.Inserts Instance into Workspace.
         /// </summary>
-        /// <param name="instance">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="instance">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#Insert"/>
-        public object? Insert(Instance? instance)
-            => global::Roblox.Reflection.Invoke<object?>(this, "Insert", instance);
+        public object Insert(Instance instance)
+            => global::Roblox.Reflection.Invoke<object>(this, "Insert", instance)!;
 
         /// <summary>
         /// <c>InsertService.LoadLocalAsset</c>
         /// </summary>
-        /// <param name="assetPath">A <c>string?</c> value.</param>
+        /// <param name="assetPath">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? LoadLocalAsset(string? assetPath)
+        public Instance? LoadLocalAsset(string assetPath)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "LoadLocalAsset", assetPath);
 
         /// <summary>
         /// Creates a new MeshPart with specified fidelity values.
         /// </summary>
-        /// <param name="meshId">A <c>object?</c> value.</param>
+        /// <param name="meshId">A <c>object</c> value.</param>
         /// <param name="collisionFidelity">A <c>Enum.CollisionFidelity</c> value.</param>
         /// <param name="renderFidelity">A <c>Enum.RenderFidelity</c> value.</param>
-        /// <returns>A <c>MeshPart?</c> value returned by the engine.</returns>
+        /// <returns>A <c>MeshPart</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#CreateMeshPartAsync"/>
-        public MeshPart? CreateMeshPartAsync(object? meshId, Enum.CollisionFidelity collisionFidelity, Enum.RenderFidelity renderFidelity)
-            => global::Roblox.Reflection.Invoke<MeshPart?>(this, "CreateMeshPartAsync", meshId, collisionFidelity, renderFidelity);
+        public MeshPart CreateMeshPartAsync(object meshId, Enum.CollisionFidelity collisionFidelity, Enum.RenderFidelity renderFidelity)
+            => global::Roblox.Reflection.Invoke<MeshPart>(this, "CreateMeshPartAsync", meshId, collisionFidelity, renderFidelity)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated. Do not use it for new work.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetBaseCategories"/>
-        public object? GetBaseCategories()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBaseCategories");
+        public object GetBaseCategories()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBaseCategories")!;
 
         /// <summary>
         /// Deprecated: Sets have been removed from Roblox.Returns an array of dictionaries, containing information about various Roblox approved sets.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetBaseSets"/>
-        public object? GetBaseSets()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetBaseSets");
+        public object GetBaseSets()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetBaseSets")!;
 
         /// <summary>
         /// Deprecated: Sets have been removed from Roblox.Returns the most recently uploaded models in the specified category.
         /// </summary>
         /// <param name="categoryId">A <c>long</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetCollection"/>
-        public object? GetCollection(long categoryId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCollection", categoryId);
+        public object GetCollection(long categoryId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCollection", categoryId)!;
 
         /// <summary>
         /// Deprecated: Retrieves a list of free Decals from the Catalog.
         /// </summary>
-        /// <param name="searchText">A <c>string?</c> value.</param>
+        /// <param name="searchText">A <c>string</c> value.</param>
         /// <param name="pageNum">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetFreeDecals"/>
-        public object? GetFreeDecals(string? searchText, int pageNum)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFreeDecals", searchText, pageNum);
+        public object GetFreeDecals(string searchText, int pageNum)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFreeDecals", searchText, pageNum)!;
 
         /// <summary>
         /// Retrieves a list of free Decals from the Catalog.
         /// </summary>
-        /// <param name="searchText">A <c>string?</c> value.</param>
+        /// <param name="searchText">A <c>string</c> value.</param>
         /// <param name="pageNum">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetFreeDecalsAsync"/>
-        public object? GetFreeDecalsAsync(string? searchText, int pageNum)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFreeDecalsAsync", searchText, pageNum);
+        public object GetFreeDecalsAsync(string searchText, int pageNum)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFreeDecalsAsync", searchText, pageNum)!;
 
         /// <summary>
         /// Deprecated: Retrieves a list of Free Models from the Catalog.
         /// </summary>
-        /// <param name="searchText">A <c>string?</c> value.</param>
+        /// <param name="searchText">A <c>string</c> value.</param>
         /// <param name="pageNum">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetFreeModels"/>
-        public object? GetFreeModels(string? searchText, int pageNum)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFreeModels", searchText, pageNum);
+        public object GetFreeModels(string searchText, int pageNum)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFreeModels", searchText, pageNum)!;
 
         /// <summary>
         /// Retrieves a list of Free Models from the Catalog.
         /// </summary>
-        /// <param name="searchText">A <c>string?</c> value.</param>
+        /// <param name="searchText">A <c>string</c> value.</param>
         /// <param name="pageNum">A <c>int</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetFreeModelsAsync"/>
-        public object? GetFreeModelsAsync(string? searchText, int pageNum)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetFreeModelsAsync", searchText, pageNum);
+        public object GetFreeModelsAsync(string searchText, int pageNum)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetFreeModelsAsync", searchText, pageNum)!;
 
         /// <summary>
         /// Returns the latest AssetVersionId of an asset for assets created by the place creator. Can be used in combination with InsertService:LoadAssetVersion() to load the latest version of a model, even if it gets updated while the game is running.
@@ -161,25 +161,25 @@ namespace Roblox
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetLatestAssetVersionAsync"/>
         public long GetLatestAssetVersionAsync(long assetId)
-            => global::Roblox.Reflection.Invoke<long>(this, "GetLatestAssetVersionAsync", assetId);
+            => global::Roblox.Reflection.Invoke<long>(this, "GetLatestAssetVersionAsync", assetId)!;
 
         /// <summary>
         /// Deprecated: This item is deprecated. Do not use it for new work.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetUserCategories"/>
-        public object? GetUserCategories(object? userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserCategories", userId);
+        public object GetUserCategories(object userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserCategories", userId)!;
 
         /// <summary>
         /// Deprecated: Sets have been removed from Roblox.Returns an array of dictionaries, containing information about sets owned by the user.
         /// </summary>
-        /// <param name="userId">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <param name="userId">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetUserSets"/>
-        public object? GetUserSets(object? userId)
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUserSets", userId);
+        public object GetUserSets(object userId)
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUserSets", userId)!;
 
         /// <summary>
         /// Returns a Model containing the asset.
@@ -212,18 +212,18 @@ namespace Roblox
         /// <c>InsertService.LoadAssetWithFormat</c>
         /// </summary>
         /// <param name="assetId">A <c>long</c> value.</param>
-        /// <param name="format">A <c>string?</c> value.</param>
+        /// <param name="format">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> LoadAssetWithFormat(long assetId, string? format)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "LoadAssetWithFormat", assetId, format);
+        public IReadOnlyList<Instance> LoadAssetWithFormat(long assetId, string format)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "LoadAssetWithFormat", assetId, format)!;
 
         /// <summary>
         /// <c>InsertService.LoadPackageAssetAsync</c>
         /// </summary>
-        /// <param name="url">A <c>object?</c> value.</param>
+        /// <param name="url">A <c>object</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> LoadPackageAssetAsync(object? url)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "LoadPackageAssetAsync", url);
+        public IReadOnlyList<Instance> LoadPackageAssetAsync(object url)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "LoadPackageAssetAsync", url)!;
 
     }
 }

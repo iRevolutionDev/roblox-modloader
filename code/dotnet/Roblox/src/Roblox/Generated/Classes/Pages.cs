@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Pages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Pages? FromHandle(nuint handle)
+        public static new Pages? FromHandle(nuint handle)
             => handle == 0 ? null : new Pages(handle);
 
         /// <summary>
@@ -31,25 +31,25 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pages#IsFinished"/>
         public bool IsFinished
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsFinished");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "IsFinished")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsFinished", value);
         }
 
         /// <summary>
         /// Returns the items on the current page. The keys in the item are determined by the source of this object.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pages#GetCurrentPage"/>
-        public object? GetCurrentPage()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetCurrentPage");
+        public object GetCurrentPage()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetCurrentPage")!;
 
         /// <summary>
         /// Iterates to the next page in the pages object, if possible.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pages#AdvanceToNextPageAsync"/>
-        public object? AdvanceToNextPageAsync()
-            => global::Roblox.Reflection.Invoke<object?>(this, "AdvanceToNextPageAsync");
+        public object AdvanceToNextPageAsync()
+            => global::Roblox.Reflection.Invoke<object>(this, "AdvanceToNextPageAsync")!;
 
     }
 }

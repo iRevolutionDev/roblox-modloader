@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="Team"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static Team? FromHandle(nuint handle)
+        public static new Team? FromHandle(nuint handle)
             => handle == 0 ? null : new Team(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#AutoAssignable"/>
         public bool AutoAssignable
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoAssignable");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoAssignable")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoAssignable", value);
         }
 
@@ -41,13 +41,13 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#AutoColorCharacters"/>
         public bool AutoColorCharacters
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoColorCharacters");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoColorCharacters")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoColorCharacters", value);
         }
 
         public int ChildOrder
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "ChildOrder");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "ChildOrder")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "ChildOrder", value);
         }
 
@@ -57,7 +57,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#Score"/>
         public int Score
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Score");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Score")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Score", value);
         }
 
@@ -65,10 +65,10 @@ namespace Roblox
         /// This property sets the color of the Team. Determines the Player.TeamColor property of players who are a member of the team. Also determines the color displayed on the player list and above player's heads.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#TeamColor"/>
-        public global::Roblox.BrickColor? TeamColor
+        public global::Roblox.BrickColor TeamColor
         {
-            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor?>(this, "TeamColor");
-            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor?>(this, "TeamColor", value);
+            get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TeamColor")!;
+            set => global::Roblox.Reflection.SetProperty<global::Roblox.BrickColor>(this, "TeamColor", value);
         }
 
         /// <summary>
@@ -77,14 +77,14 @@ namespace Roblox
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#GetPlayers"/>
         public IReadOnlyList<Instance> GetPlayers()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayers");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetPlayers")!;
 
         /// <summary>
         /// Fires whenever a Player is assigned to the Team. A player is considered assigned if their Player.Team property is equal to the Team and Player.Neutral is false.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#PlayerAdded"/>
-        public event Action<Player?>? PlayerAdded
+        public event Action<Player>? PlayerAdded
         {
             add { if (value is not null) AddEventHandler("PlayerAdded", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerAdded", value); }
@@ -93,9 +93,9 @@ namespace Roblox
         /// <summary>
         /// Fires whenever a Player is removed from a Team. This can be due to the Player leaving the game, Player.Neutral being set to true or the Player joining a different team.
         /// </summary>
-        /// <param name="player">A <c>Player?</c> value.</param>
+        /// <param name="player">A <c>Player</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#PlayerRemoved"/>
-        public event Action<Player?>? PlayerRemoved
+        public event Action<Player>? PlayerRemoved
         {
             add { if (value is not null) AddEventHandler("PlayerRemoved", value); }
             remove { if (value is not null) RemoveEventHandler("PlayerRemoved", value); }

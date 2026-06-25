@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="LayerCollector"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static LayerCollector? FromHandle(nuint handle)
+        public static new LayerCollector? FromHandle(nuint handle)
             => handle == 0 ? null : new LayerCollector(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LayerCollector#Enabled"/>
         public bool Enabled
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "Enabled")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "Enabled", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LayerCollector#ResetOnSpawn"/>
         public bool ResetOnSpawn
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetOnSpawn");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetOnSpawn")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ResetOnSpawn", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LayerCollector#TabKeyboardNavigation"/>
         public bool TabKeyboardNavigation
         {
-            get => global::Roblox.Reflection.GetProperty<bool>(this, "TabKeyboardNavigation");
+            get => global::Roblox.Reflection.GetProperty<bool>(this, "TabKeyboardNavigation")!;
             set => global::Roblox.Reflection.SetProperty<bool>(this, "TabKeyboardNavigation", value);
         }
 
@@ -61,7 +61,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LayerCollector#ZIndexBehavior"/>
         public Enum.ZIndexBehavior ZIndexBehavior
         {
-            get => global::Roblox.Reflection.GetProperty<Enum.ZIndexBehavior>(this, "ZIndexBehavior");
+            get => global::Roblox.Reflection.GetProperty<Enum.ZIndexBehavior>(this, "ZIndexBehavior")!;
             set => global::Roblox.Reflection.SetProperty<Enum.ZIndexBehavior>(this, "ZIndexBehavior", value);
         }
 
@@ -72,15 +72,15 @@ namespace Roblox
         /// <param name="y">A <c>int</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetGuiObjectsAtPosition(int x, int y)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsAtPosition", x, y);
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetGuiObjectsAtPosition", x, y)!;
 
         /// <summary>
         /// Deprecated: This method should not be used for new work.
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LayerCollector#GetLayoutNodeTree"/>
-        public object? GetLayoutNodeTree()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetLayoutNodeTree");
+        public object GetLayoutNodeTree()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetLayoutNodeTree")!;
 
     }
 }

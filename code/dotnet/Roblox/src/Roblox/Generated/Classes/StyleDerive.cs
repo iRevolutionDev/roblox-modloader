@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="StyleDerive"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static StyleDerive? FromHandle(nuint handle)
+        public static new StyleDerive? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleDerive(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleDerive#Priority"/>
         public int Priority
         {
-            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority");
+            get => global::Roblox.Reflection.GetProperty<int>(this, "Priority")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "Priority", value);
         }
 

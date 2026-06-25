@@ -18,24 +18,24 @@ namespace Roblox
         /// Creates a <see cref="AssetImportSession"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static AssetImportSession? FromHandle(nuint handle)
+        public static new AssetImportSession? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetImportSession(handle);
 
         /// <summary>
         /// <c>AssetImportSession.ApplyPreset</c>
         /// </summary>
-        /// <param name="preset">A <c>object?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? ApplyPreset(object? preset)
-            => global::Roblox.Reflection.Invoke<object?>(this, "ApplyPreset", preset);
+        /// <param name="preset">A <c>object</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object ApplyPreset(object preset)
+            => global::Roblox.Reflection.Invoke<object>(this, "ApplyPreset", preset)!;
 
         /// <summary>
         /// <c>AssetImportSession.CreatePresetFromData</c>
         /// </summary>
-        /// <param name="importData">A <c>Instance?</c> value.</param>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? CreatePresetFromData(Instance? importData)
-            => global::Roblox.Reflection.Invoke<object?>(this, "CreatePresetFromData", importData);
+        /// <param name="importData">A <c>Instance</c> value.</param>
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object CreatePresetFromData(Instance importData)
+            => global::Roblox.Reflection.Invoke<object>(this, "CreatePresetFromData", importData)!;
 
         /// <summary>
         /// <c>AssetImportSession.GetImportTree</c>
@@ -49,83 +49,83 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         public IReadOnlyList<Instance> GetKeyframeSequences()
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequences");
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequences")!;
 
         /// <summary>
         /// <c>AssetImportSession.GetKeyframeSequencesForSelectedRestPose</c>
         /// </summary>
-        /// <param name="modelInstance">A <c>Instance?</c> value.</param>
+        /// <param name="modelInstance">A <c>Instance</c> value.</param>
         /// <param name="restPoseSource">A <c>Enum.RestPoseModel</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetKeyframeSequencesForSelectedRestPose(Instance? modelInstance, Enum.RestPoseModel restPoseSource)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequencesForSelectedRestPose", modelInstance, restPoseSource);
+        public IReadOnlyList<Instance> GetKeyframeSequencesForSelectedRestPose(Instance modelInstance, Enum.RestPoseModel restPoseSource)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequencesForSelectedRestPose", modelInstance, restPoseSource)!;
 
         /// <summary>
         /// <c>AssetImportSession.GetKeyframeSequencesForSelectedRestPoseWithClip</c>
         /// </summary>
-        /// <param name="modelInstance">A <c>Instance?</c> value.</param>
+        /// <param name="modelInstance">A <c>Instance</c> value.</param>
         /// <param name="restPoseSource">A <c>Enum.RestPoseModel</c> value.</param>
         /// <param name="animationIndex">A <c>int</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
-        public IReadOnlyList<Instance> GetKeyframeSequencesForSelectedRestPoseWithClip(Instance? modelInstance, Enum.RestPoseModel restPoseSource, int animationIndex)
-            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequencesForSelectedRestPoseWithClip", modelInstance, restPoseSource, animationIndex);
+        public IReadOnlyList<Instance> GetKeyframeSequencesForSelectedRestPoseWithClip(Instance modelInstance, Enum.RestPoseModel restPoseSource, int animationIndex)
+            => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetKeyframeSequencesForSelectedRestPoseWithClip", modelInstance, restPoseSource, animationIndex)!;
 
         /// <summary>
         /// <c>AssetImportSession.GetRigVisualization</c>
         /// </summary>
-        /// <param name="importDataInstance">A <c>Instance?</c> value.</param>
+        /// <param name="importDataInstance">A <c>Instance</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
-        public Instance? GetRigVisualization(Instance? importDataInstance)
+        public Instance? GetRigVisualization(Instance importDataInstance)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetRigVisualization", importDataInstance);
 
         /// <summary>
         /// <c>AssetImportSession.GetUploadStatus</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? GetUploadStatus()
-            => global::Roblox.Reflection.Invoke<object?>(this, "GetUploadStatus");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object GetUploadStatus()
+            => global::Roblox.Reflection.Invoke<object>(this, "GetUploadStatus")!;
 
         /// <summary>
         /// <c>AssetImportSession.HasAnimation</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool HasAnimation()
-            => global::Roblox.Reflection.Invoke<bool>(this, "HasAnimation");
+            => global::Roblox.Reflection.Invoke<bool>(this, "HasAnimation")!;
 
         /// <summary>
         /// <c>AssetImportSession.IsAvatar</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsAvatar()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvatar");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsAvatar")!;
 
         /// <summary>
         /// <c>AssetImportSession.IsGltf</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsGltf()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsGltf");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsGltf")!;
 
         /// <summary>
         /// <c>AssetImportSession.IsR15</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool IsR15()
-            => global::Roblox.Reflection.Invoke<bool>(this, "IsR15");
+            => global::Roblox.Reflection.Invoke<bool>(this, "IsR15")!;
 
         /// <summary>
         /// <c>AssetImportSession.Reset</c>
         /// </summary>
-        /// <returns>A <c>object?</c> value returned by the engine.</returns>
-        public object? Reset()
-            => global::Roblox.Reflection.Invoke<object?>(this, "Reset");
+        /// <returns>A <c>object</c> value returned by the engine.</returns>
+        public object Reset()
+            => global::Roblox.Reflection.Invoke<object>(this, "Reset")!;
 
         /// <summary>
         /// <c>AssetImportSession.usesCustomRestPoseLua</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         public bool UsesCustomRestPoseLua()
-            => global::Roblox.Reflection.Invoke<bool>(this, "usesCustomRestPoseLua");
+            => global::Roblox.Reflection.Invoke<bool>(this, "usesCustomRestPoseLua")!;
 
     }
 }

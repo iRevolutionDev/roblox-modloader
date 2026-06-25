@@ -22,27 +22,27 @@ namespace Roblox
         /// Creates a <see cref="ModuleScript"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static ModuleScript? FromHandle(nuint handle)
+        public static new ModuleScript? FromHandle(nuint handle)
             => handle == 0 ? null : new ModuleScript(handle);
 
         /// <summary>
         /// Deprecated: This property is now replaced by packages which has greater functionality.Used to store a URL that points to an online script source. Binds the online code to the script's Script.Source.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModuleScript#LinkedSource"/>
-        public object? LinkedSource
+        public object LinkedSource
         {
-            get => global::Roblox.Reflection.GetProperty<object?>(this, "LinkedSource");
-            set => global::Roblox.Reflection.SetProperty<object?>(this, "LinkedSource", value);
+            get => global::Roblox.Reflection.GetProperty<object>(this, "LinkedSource")!;
+            set => global::Roblox.Reflection.SetProperty<object>(this, "LinkedSource", value);
         }
 
         /// <summary>
         /// The code to be executed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModuleScript#Source"/>
-        public string? Source
+        public string Source
         {
-            get => global::Roblox.Reflection.GetProperty<string?>(this, "Source");
-            set => global::Roblox.Reflection.SetProperty<string?>(this, "Source", value);
+            get => global::Roblox.Reflection.GetProperty<string>(this, "Source")!;
+            set => global::Roblox.Reflection.SetProperty<string>(this, "Source", value);
         }
 
     }

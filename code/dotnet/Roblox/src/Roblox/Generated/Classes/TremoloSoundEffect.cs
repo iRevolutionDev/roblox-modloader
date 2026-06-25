@@ -22,7 +22,7 @@ namespace Roblox
         /// Creates a <see cref="TremoloSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
-        public static TremoloSoundEffect? FromHandle(nuint handle)
+        public static new TremoloSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new TremoloSoundEffect(handle);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TremoloSoundEffect#Depth"/>
         public float Depth
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Depth");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Depth")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Depth", value);
         }
 
@@ -41,7 +41,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TremoloSoundEffect#Duty"/>
         public float Duty
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Duty");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Duty")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Duty", value);
         }
 
@@ -51,7 +51,7 @@ namespace Roblox
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TremoloSoundEffect#Frequency"/>
         public float Frequency
         {
-            get => global::Roblox.Reflection.GetProperty<float>(this, "Frequency");
+            get => global::Roblox.Reflection.GetProperty<float>(this, "Frequency")!;
             set => global::Roblox.Reflection.SetProperty<float>(this, "Frequency", value);
         }
 
