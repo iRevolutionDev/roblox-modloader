@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AvatarClothingRules")]
-    public class AvatarClothingRules : Instance
+    public partial class AvatarClothingRules : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AvatarClothingRules.</param>

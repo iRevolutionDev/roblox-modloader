@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor"/>
     [RobloxClass("VelocityMotor")]
-    public class VelocityMotor : JointInstance
+    public partial class VelocityMotor : JointInstance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VelocityMotor.</param>
@@ -49,10 +49,10 @@ namespace Roblox
         /// The Hole linked to this VelocityMotor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VelocityMotor#Hole"/>
-        public Hole? Hole
+        public Hole Hole
         {
-            get => global::Roblox.Reflection.GetProperty<Hole?>(this, "Hole");
-            set => global::Roblox.Reflection.SetProperty<Hole?>(this, "Hole", value);
+            get => global::Roblox.Reflection.GetProperty<Hole>(this, "Hole")!;
+            set => global::Roblox.Reflection.SetProperty<Hole>(this, "Hole", value);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TemporaryScriptService")]
-    public class TemporaryScriptService : Instance
+    public partial class TemporaryScriptService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TemporaryScriptService.</param>

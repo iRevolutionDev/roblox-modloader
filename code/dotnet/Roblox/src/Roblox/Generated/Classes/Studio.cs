@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio"/>
     [RobloxClass("Studio")]
-    public class Studio : Instance
+    public partial class Studio : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Studio.</param>
@@ -1821,10 +1821,10 @@ namespace Roblox
         /// Used to get/set current theme used by Studio.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#Theme"/>
-        public Instance? Theme
+        public Instance Theme
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Theme");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Theme", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Theme")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Theme", value);
         }
 
         /// <summary>

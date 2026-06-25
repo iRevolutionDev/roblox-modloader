@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AssetManagerService")]
-    public class AssetManagerService : Instance
+    public partial class AssetManagerService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AssetManagerService.</param>

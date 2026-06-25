@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIConstraint"/>
     [RobloxClass("UIConstraint")]
-    public class UIConstraint : UIComponent
+    public partial class UIConstraint : UIComponent
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UIConstraint.</param>

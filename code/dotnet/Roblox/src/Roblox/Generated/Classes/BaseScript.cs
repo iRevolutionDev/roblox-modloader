@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseScript"/>
     [RobloxClass("BaseScript")]
-    public class BaseScript : LuaSourceContainer
+    public partial class BaseScript : LuaSourceContainer
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BaseScript.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("StudioData")]
-    public class StudioData : Instance
+    public partial class StudioData : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StudioData.</param>

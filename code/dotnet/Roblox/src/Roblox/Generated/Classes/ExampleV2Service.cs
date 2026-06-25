@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ExampleV2Service")]
-    public class ExampleV2Service : Instance
+    public partial class ExampleV2Service : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ExampleV2Service.</param>

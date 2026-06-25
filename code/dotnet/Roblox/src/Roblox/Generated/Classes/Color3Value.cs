@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Color3Value"/>
     [RobloxClass("Color3Value")]
-    public class Color3Value : ValueBase
+    public partial class Color3Value : ValueBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Color3Value.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleRule"/>
     [RobloxClass("StyleRule")]
-    public class StyleRule : StyleBase
+    public partial class StyleRule : StyleBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StyleRule.</param>

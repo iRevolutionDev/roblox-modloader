@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel"/>
     [RobloxClass("ProceduralModel")]
-    public class ProceduralModel : Model
+    public partial class ProceduralModel : Model
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ProceduralModel.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// A reference to a ModuleScript that contains code which defines how the ProceduralModel generates its contents in response to parameter changes.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProceduralModel#Generator"/>
-        public ModuleScript? Generator
+        public ModuleScript Generator
         {
-            get => global::Roblox.Reflection.GetProperty<ModuleScript?>(this, "Generator");
-            set => global::Roblox.Reflection.SetProperty<ModuleScript?>(this, "Generator", value);
+            get => global::Roblox.Reflection.GetProperty<ModuleScript>(this, "Generator")!;
+            set => global::Roblox.Reflection.SetProperty<ModuleScript>(this, "Generator", value);
         }
 
         /// <summary>

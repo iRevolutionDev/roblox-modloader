@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path2D"/>
     [RobloxClass("Path2D")]
-    public class Path2D : GuiBase
+    public partial class Path2D : GuiBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Path2D.</param>

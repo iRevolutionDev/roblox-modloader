@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("SlimDebugSettings")]
-    public class SlimDebugSettings : Instance
+    public partial class SlimDebugSettings : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SlimDebugSettings.</param>

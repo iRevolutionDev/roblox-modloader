@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ImageLabel"/>
     [RobloxClass("ImageLabel")]
-    public class ImageLabel : GuiLabel
+    public partial class ImageLabel : GuiLabel
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ImageLabel.</param>

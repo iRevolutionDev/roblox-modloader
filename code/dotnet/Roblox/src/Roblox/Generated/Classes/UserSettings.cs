@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserSettings"/>
     [RobloxClass("UserSettings")]
-    public class UserSettings : GenericSettings
+    public partial class UserSettings : GenericSettings
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UserSettings.</param>

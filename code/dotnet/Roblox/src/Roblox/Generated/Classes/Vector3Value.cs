@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Value"/>
     [RobloxClass("Vector3Value")]
-    public class Vector3Value : ValueBase
+    public partial class Vector3Value : ValueBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Vector3Value.</param>

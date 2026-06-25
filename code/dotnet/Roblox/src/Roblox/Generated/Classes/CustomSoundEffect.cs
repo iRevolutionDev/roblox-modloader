@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("CustomSoundEffect")]
-    public class CustomSoundEffect : SoundEffect
+    public partial class CustomSoundEffect : SoundEffect
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CustomSoundEffect.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect"/>
     [RobloxClass("CompressorSoundEffect")]
-    public class CompressorSoundEffect : SoundEffect
+    public partial class CompressorSoundEffect : SoundEffect
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CompressorSoundEffect.</param>
@@ -69,10 +69,10 @@ namespace Roblox
         /// Applies a ducking effect to the compressor sound effect. The behavior of the sidechain depends on the Sound or SoundGroup linked to it.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CompressorSoundEffect#SideChain"/>
-        public Instance? SideChain
+        public Instance SideChain
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "SideChain");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "SideChain", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "SideChain")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "SideChain", value);
         }
 
         /// <summary>

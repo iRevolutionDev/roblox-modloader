@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage"/>
     [RobloxClass("TextChatMessage")]
-    public class TextChatMessage : Instance
+    public partial class TextChatMessage : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TextChatMessage.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// <c>TextChatMessage.BubbleChatMessageProperties</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#BubbleChatMessageProperties"/>
-        public BubbleChatMessageProperties? BubbleChatMessageProperties
+        public BubbleChatMessageProperties BubbleChatMessageProperties
         {
-            get => global::Roblox.Reflection.GetProperty<BubbleChatMessageProperties?>(this, "BubbleChatMessageProperties");
-            set => global::Roblox.Reflection.SetProperty<BubbleChatMessageProperties?>(this, "BubbleChatMessageProperties", value);
+            get => global::Roblox.Reflection.GetProperty<BubbleChatMessageProperties>(this, "BubbleChatMessageProperties")!;
+            set => global::Roblox.Reflection.SetProperty<BubbleChatMessageProperties>(this, "BubbleChatMessageProperties", value);
         }
 
         public string ChatActionType
@@ -45,10 +45,10 @@ namespace Roblox
         /// <c>TextChatMessage.ChatWindowMessageProperties</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#ChatWindowMessageProperties"/>
-        public ChatWindowMessageProperties? ChatWindowMessageProperties
+        public ChatWindowMessageProperties ChatWindowMessageProperties
         {
-            get => global::Roblox.Reflection.GetProperty<ChatWindowMessageProperties?>(this, "ChatWindowMessageProperties");
-            set => global::Roblox.Reflection.SetProperty<ChatWindowMessageProperties?>(this, "ChatWindowMessageProperties", value);
+            get => global::Roblox.Reflection.GetProperty<ChatWindowMessageProperties>(this, "ChatWindowMessageProperties")!;
+            set => global::Roblox.Reflection.SetProperty<ChatWindowMessageProperties>(this, "ChatWindowMessageProperties", value);
         }
 
         public bool ForModeration
@@ -153,10 +153,10 @@ namespace Roblox
         /// A reference to the origin TextChannel.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#TextChannel"/>
-        public TextChannel? TextChannel
+        public TextChannel TextChannel
         {
-            get => global::Roblox.Reflection.GetProperty<TextChannel?>(this, "TextChannel");
-            set => global::Roblox.Reflection.SetProperty<TextChannel?>(this, "TextChannel", value);
+            get => global::Roblox.Reflection.GetProperty<TextChannel>(this, "TextChannel")!;
+            set => global::Roblox.Reflection.SetProperty<TextChannel>(this, "TextChannel", value);
         }
 
         public string TextInternal
@@ -169,10 +169,10 @@ namespace Roblox
         /// A reference to the origin TextSource.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChatMessage#TextSource"/>
-        public TextSource? TextSource
+        public TextSource TextSource
         {
-            get => global::Roblox.Reflection.GetProperty<TextSource?>(this, "TextSource");
-            set => global::Roblox.Reflection.SetProperty<TextSource?>(this, "TextSource", value);
+            get => global::Roblox.Reflection.GetProperty<TextSource>(this, "TextSource")!;
+            set => global::Roblox.Reflection.SetProperty<TextSource>(this, "TextSource", value);
         }
 
         /// <summary>

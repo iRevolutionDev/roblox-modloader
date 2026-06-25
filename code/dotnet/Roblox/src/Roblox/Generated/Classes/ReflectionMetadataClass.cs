@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReflectionMetadataClass"/>
     [RobloxClass("ReflectionMetadataClass")]
-    public class ReflectionMetadataClass : ReflectionMetadataItem
+    public partial class ReflectionMetadataClass : ReflectionMetadataItem
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ReflectionMetadataClass.</param>

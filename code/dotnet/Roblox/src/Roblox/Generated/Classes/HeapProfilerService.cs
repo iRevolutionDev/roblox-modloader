@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HeapProfilerService"/>
     [RobloxClass("HeapProfilerService")]
-    public class HeapProfilerService : Instance
+    public partial class HeapProfilerService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox HeapProfilerService.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LuaSourceContainer"/>
     [RobloxClass("LuaSourceContainer")]
-    public class LuaSourceContainer : Instance
+    public partial class LuaSourceContainer : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox LuaSourceContainer.</param>

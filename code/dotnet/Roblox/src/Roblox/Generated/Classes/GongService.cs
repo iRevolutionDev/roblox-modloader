@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("GongService")]
-    public class GongService : Instance
+    public partial class GongService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox GongService.</param>

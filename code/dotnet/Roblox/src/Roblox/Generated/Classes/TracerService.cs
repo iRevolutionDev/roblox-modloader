@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TracerService")]
-    public class TracerService : Instance
+    public partial class TracerService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TracerService.</param>

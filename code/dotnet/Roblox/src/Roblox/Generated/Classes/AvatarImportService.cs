@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AvatarImportService")]
-    public class AvatarImportService : Instance
+    public partial class AvatarImportService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AvatarImportService.</param>

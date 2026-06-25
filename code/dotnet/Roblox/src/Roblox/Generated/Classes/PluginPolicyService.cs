@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PluginPolicyService")]
-    public class PluginPolicyService : Instance
+    public partial class PluginPolicyService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PluginPolicyService.</param>

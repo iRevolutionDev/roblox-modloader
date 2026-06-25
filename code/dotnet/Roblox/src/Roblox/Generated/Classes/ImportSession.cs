@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ImportSession")]
-    public class ImportSession : Instance
+    public partial class ImportSession : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ImportSession.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ThirdPartyUserService")]
-    public class ThirdPartyUserService : Instance
+    public partial class ThirdPartyUserService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ThirdPartyUserService.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionPartLasso"/>
     [RobloxClass("SelectionPartLasso")]
-    public class SelectionPartLasso : SelectionLasso
+    public partial class SelectionPartLasso : SelectionLasso
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SelectionPartLasso.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// Sets the target of the lasso object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionPartLasso#Part"/>
-        public BasePart? Part
+        public BasePart Part
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part", value);
         }
 
     }

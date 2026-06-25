@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider"/>
     [RobloxClass("KeyframeSequenceProvider")]
-    public class KeyframeSequenceProvider : Instance
+    public partial class KeyframeSequenceProvider : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox KeyframeSequenceProvider.</param>

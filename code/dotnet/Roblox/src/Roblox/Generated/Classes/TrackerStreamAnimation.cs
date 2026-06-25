@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TrackerStreamAnimation")]
-    public class TrackerStreamAnimation : Instance
+    public partial class TrackerStreamAnimation : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TrackerStreamAnimation.</param>

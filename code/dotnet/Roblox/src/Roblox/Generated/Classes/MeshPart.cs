@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart"/>
     [RobloxClass("MeshPart")]
-    public class MeshPart : TriangleMeshPart
+    public partial class MeshPart : TriangleMeshPart
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MeshPart.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService"/>
     [RobloxClass("SoundService")]
-    public class SoundService : Instance
+    public partial class SoundService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SoundService.</param>
@@ -117,10 +117,10 @@ namespace Roblox
         /// The Instance whose translation or coordinate frame is used as the listener's position if ListenerType is set to ListenerType.ObjectPosition or ListenerType.ObjectCFrame.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SoundService#ListenerObject"/>
-        public Instance? ListenerObject
+        public Instance ListenerObject
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ListenerObject");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ListenerObject", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "ListenerObject")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "ListenerObject", value);
         }
 
         /// <summary>

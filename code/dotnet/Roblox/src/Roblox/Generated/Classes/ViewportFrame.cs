@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame"/>
     [RobloxClass("ViewportFrame")]
-    public class ViewportFrame : GuiObject
+    public partial class ViewportFrame : GuiObject
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ViewportFrame.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// Camera that is used to render children objects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ViewportFrame#CurrentCamera"/>
-        public Camera? CurrentCamera
+        public Camera CurrentCamera
         {
-            get => global::Roblox.Reflection.GetProperty<Camera?>(this, "CurrentCamera");
-            set => global::Roblox.Reflection.SetProperty<Camera?>(this, "CurrentCamera", value);
+            get => global::Roblox.Reflection.GetProperty<Camera>(this, "CurrentCamera")!;
+            set => global::Roblox.Reflection.SetProperty<Camera>(this, "CurrentCamera", value);
         }
 
         /// <summary>

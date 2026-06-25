@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StringValue"/>
     [RobloxClass("StringValue")]
-    public class StringValue : ValueBase
+    public partial class StringValue : ValueBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StringValue.</param>

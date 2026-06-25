@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AnimationFromVideoCreatorStudioService")]
-    public class AnimationFromVideoCreatorStudioService : Instance
+    public partial class AnimationFromVideoCreatorStudioService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AnimationFromVideoCreatorStudioService.</param>

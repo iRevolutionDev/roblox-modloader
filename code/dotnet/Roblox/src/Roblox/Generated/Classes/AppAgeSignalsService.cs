@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AppAgeSignalsService")]
-    public class AppAgeSignalsService : Instance
+    public partial class AppAgeSignalsService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AppAgeSignalsService.</param>

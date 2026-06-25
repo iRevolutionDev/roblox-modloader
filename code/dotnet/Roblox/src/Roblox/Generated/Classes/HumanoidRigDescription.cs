@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription"/>
     [RobloxClass("HumanoidRigDescription")]
-    public class HumanoidRigDescription : Instance
+    public partial class HumanoidRigDescription : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox HumanoidRigDescription.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.Chest</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#Chest"/>
-        public Instance? Chest
+        public Instance Chest
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Chest");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Chest", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Chest")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Chest", value);
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.HeadBase</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#HeadBase"/>
-        public Instance? HeadBase
+        public Instance HeadBase
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "HeadBase");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "HeadBase", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "HeadBase")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "HeadBase", value);
         }
 
         /// <summary>
@@ -129,10 +129,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftAnkle</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftAnkle"/>
-        public Instance? LeftAnkle
+        public Instance LeftAnkle
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftAnkle");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftAnkle", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftAnkle")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftAnkle", value);
         }
 
         /// <summary>
@@ -179,10 +179,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftClavicle</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftClavicle"/>
-        public Instance? LeftClavicle
+        public Instance LeftClavicle
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftClavicle");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftClavicle", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftClavicle")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftClavicle", value);
         }
 
         /// <summary>
@@ -229,10 +229,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftElbow</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftElbow"/>
-        public Instance? LeftElbow
+        public Instance LeftElbow
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftElbow");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftElbow", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftElbow")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftElbow", value);
         }
 
         /// <summary>
@@ -279,10 +279,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftHip</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftHip"/>
-        public Instance? LeftHip
+        public Instance LeftHip
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftHip");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftHip", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftHip")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftHip", value);
         }
 
         /// <summary>
@@ -329,10 +329,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftKnee</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftKnee"/>
-        public Instance? LeftKnee
+        public Instance LeftKnee
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftKnee");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftKnee", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftKnee")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftKnee", value);
         }
 
         /// <summary>
@@ -379,10 +379,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftShoulder</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftShoulder"/>
-        public Instance? LeftShoulder
+        public Instance LeftShoulder
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftShoulder");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftShoulder", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftShoulder")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftShoulder", value);
         }
 
         /// <summary>
@@ -429,10 +429,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftToeBase</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftToeBase"/>
-        public Instance? LeftToeBase
+        public Instance LeftToeBase
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftToeBase");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftToeBase", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftToeBase")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftToeBase", value);
         }
 
         /// <summary>
@@ -479,10 +479,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.LeftWrist</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#LeftWrist"/>
-        public Instance? LeftWrist
+        public Instance LeftWrist
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "LeftWrist");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "LeftWrist", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "LeftWrist")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "LeftWrist", value);
         }
 
         /// <summary>
@@ -529,10 +529,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.Neck</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#Neck"/>
-        public Instance? Neck
+        public Instance Neck
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Neck");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Neck", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Neck")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Neck", value);
         }
 
         /// <summary>
@@ -589,10 +589,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightAnkle</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightAnkle"/>
-        public Instance? RightAnkle
+        public Instance RightAnkle
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightAnkle");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightAnkle", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightAnkle")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightAnkle", value);
         }
 
         /// <summary>
@@ -639,10 +639,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightClavicle</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightClavicle"/>
-        public Instance? RightClavicle
+        public Instance RightClavicle
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightClavicle");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightClavicle", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightClavicle")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightClavicle", value);
         }
 
         /// <summary>
@@ -689,10 +689,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightElbow</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightElbow"/>
-        public Instance? RightElbow
+        public Instance RightElbow
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightElbow");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightElbow", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightElbow")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightElbow", value);
         }
 
         /// <summary>
@@ -739,10 +739,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightHip</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightHip"/>
-        public Instance? RightHip
+        public Instance RightHip
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightHip");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightHip", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightHip")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightHip", value);
         }
 
         /// <summary>
@@ -789,10 +789,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightKnee</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightKnee"/>
-        public Instance? RightKnee
+        public Instance RightKnee
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightKnee");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightKnee", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightKnee")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightKnee", value);
         }
 
         /// <summary>
@@ -839,10 +839,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightShoulder</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightShoulder"/>
-        public Instance? RightShoulder
+        public Instance RightShoulder
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightShoulder");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightShoulder", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightShoulder")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightShoulder", value);
         }
 
         /// <summary>
@@ -889,10 +889,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightToeBase</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightToeBase"/>
-        public Instance? RightToeBase
+        public Instance RightToeBase
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightToeBase");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightToeBase", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightToeBase")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightToeBase", value);
         }
 
         /// <summary>
@@ -939,10 +939,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.RightWrist</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#RightWrist"/>
-        public Instance? RightWrist
+        public Instance RightWrist
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "RightWrist");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "RightWrist", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "RightWrist")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "RightWrist", value);
         }
 
         /// <summary>
@@ -989,10 +989,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.Root</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#Root"/>
-        public Instance? Root
+        public Instance Root
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Root");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Root", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Root")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Root", value);
         }
 
         /// <summary>
@@ -1039,10 +1039,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.Spine</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#Spine"/>
-        public Instance? Spine
+        public Instance Spine
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Spine");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Spine", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Spine")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Spine", value);
         }
 
         /// <summary>
@@ -1089,10 +1089,10 @@ namespace Roblox
         /// <c>HumanoidRigDescription.Waist</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HumanoidRigDescription#Waist"/>
-        public Instance? Waist
+        public Instance Waist
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Waist");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Waist", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Waist")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Waist", value);
         }
 
         /// <summary>

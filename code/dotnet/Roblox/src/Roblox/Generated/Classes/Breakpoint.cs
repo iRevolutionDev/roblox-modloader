@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("Breakpoint")]
-    public class Breakpoint : Instance
+    public partial class Breakpoint : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Breakpoint.</param>

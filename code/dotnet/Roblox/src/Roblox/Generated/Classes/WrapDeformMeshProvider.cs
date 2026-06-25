@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("WrapDeformMeshProvider")]
-    public class WrapDeformMeshProvider : Instance
+    public partial class WrapDeformMeshProvider : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox WrapDeformMeshProvider.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties"/>
     [RobloxClass("ChatWindowMessageProperties")]
-    public class ChatWindowMessageProperties : TextChatMessageProperties
+    public partial class ChatWindowMessageProperties : TextChatMessageProperties
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ChatWindowMessageProperties.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// Determines the properties of the PrefixText preceding the chat message.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatWindowMessageProperties#PrefixTextProperties"/>
-        public ChatWindowMessageProperties? PrefixTextProperties
+        public ChatWindowMessageProperties PrefixTextProperties
         {
-            get => global::Roblox.Reflection.GetProperty<ChatWindowMessageProperties?>(this, "PrefixTextProperties");
-            set => global::Roblox.Reflection.SetProperty<ChatWindowMessageProperties?>(this, "PrefixTextProperties", value);
+            get => global::Roblox.Reflection.GetProperty<ChatWindowMessageProperties>(this, "PrefixTextProperties")!;
+            set => global::Roblox.Reflection.SetProperty<ChatWindowMessageProperties>(this, "PrefixTextProperties", value);
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription"/>
     [RobloxClass("BodyPartDescription")]
-    public class BodyPartDescription : Instance
+    public partial class BodyPartDescription : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BodyPartDescription.</param>
@@ -69,10 +69,10 @@ namespace Roblox
         /// A reference to the Instance that should be applied when applying this BodyPartDescription.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPartDescription#Instance"/>
-        public Instance? Instance
+        public Instance Instance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Instance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Instance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Instance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Instance", value);
         }
 
     }

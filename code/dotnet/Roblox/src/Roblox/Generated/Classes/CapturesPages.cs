@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CapturesPages"/>
     [RobloxClass("CapturesPages")]
-    public class CapturesPages : Pages
+    public partial class CapturesPages : Pages
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CapturesPages.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService"/>
     [RobloxClass("StudioService")]
-    public class StudioService : Instance
+    public partial class StudioService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StudioService.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// Reflects the LuaSourceContainer currently being edited (if any).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#ActiveScript"/>
-        public Instance? ActiveScript
+        public Instance ActiveScript
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ActiveScript");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ActiveScript", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "ActiveScript")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "ActiveScript", value);
         }
 
         public bool AlignDraggedObjects
@@ -71,10 +71,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "GridSize", value);
         }
 
-        public Instance? HoverInstance
+        public Instance HoverInstance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "HoverInstance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "HoverInstance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "HoverInstance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "HoverInstance", value);
         }
 
         public string InstalledPluginData

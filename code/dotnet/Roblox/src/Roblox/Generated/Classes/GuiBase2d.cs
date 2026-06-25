@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d"/>
     [RobloxClass("GuiBase2d")]
-    public class GuiBase2d : GuiBase
+    public partial class GuiBase2d : GuiBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox GuiBase2d.</param>
@@ -97,10 +97,10 @@ namespace Roblox
         /// A reference to a LocalizationTable to be used to apply automated localization to this GuiBase2d and its descendants.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#RootLocalizationTable"/>
-        public LocalizationTable? RootLocalizationTable
+        public LocalizationTable RootLocalizationTable
         {
-            get => global::Roblox.Reflection.GetProperty<LocalizationTable?>(this, "RootLocalizationTable");
-            set => global::Roblox.Reflection.SetProperty<LocalizationTable?>(this, "RootLocalizationTable", value);
+            get => global::Roblox.Reflection.GetProperty<LocalizationTable>(this, "RootLocalizationTable")!;
+            set => global::Roblox.Reflection.SetProperty<LocalizationTable>(this, "RootLocalizationTable", value);
         }
 
         /// <summary>

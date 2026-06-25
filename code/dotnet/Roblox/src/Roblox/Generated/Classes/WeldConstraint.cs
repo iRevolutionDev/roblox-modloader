@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WeldConstraint"/>
     [RobloxClass("WeldConstraint")]
-    public class WeldConstraint : Instance
+    public partial class WeldConstraint : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox WeldConstraint.</param>
@@ -49,20 +49,20 @@ namespace Roblox
         /// The first part connected by the constraint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WeldConstraint#Part0"/>
-        public BasePart? Part0
+        public BasePart Part0
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part0");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part0", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part0")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part0", value);
         }
 
         /// <summary>
         /// The second part connected by the constraint.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WeldConstraint#Part1"/>
-        public BasePart? Part1
+        public BasePart Part1
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part1");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part1", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part1")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part1", value);
         }
 
     }

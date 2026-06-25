@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MultipleDocumentInterfaceInstance"/>
     [RobloxClass("MultipleDocumentInterfaceInstance")]
-    public class MultipleDocumentInterfaceInstance : Instance
+    public partial class MultipleDocumentInterfaceInstance : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MultipleDocumentInterfaceInstance.</param>
@@ -25,10 +25,10 @@ namespace Roblox
         public static new MultipleDocumentInterfaceInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new MultipleDocumentInterfaceInstance(handle);
 
-        public DataModelSession? FocusedDataModelSession
+        public DataModelSession FocusedDataModelSession
         {
-            get => global::Roblox.Reflection.GetProperty<DataModelSession?>(this, "FocusedDataModelSession");
-            set => global::Roblox.Reflection.SetProperty<DataModelSession?>(this, "FocusedDataModelSession", value);
+            get => global::Roblox.Reflection.GetProperty<DataModelSession>(this, "FocusedDataModelSession")!;
+            set => global::Roblox.Reflection.SetProperty<DataModelSession>(this, "FocusedDataModelSession", value);
         }
 
         /// <summary>

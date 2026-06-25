@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("VoxelBuffer")]
-    public class VoxelBuffer : global::Roblox.Object
+    public partial class VoxelBuffer : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VoxelBuffer.</param>

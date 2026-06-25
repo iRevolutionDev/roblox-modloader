@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ClientStorageService")]
-    public class ClientStorageService : Instance
+    public partial class ClientStorageService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ClientStorageService.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail"/>
     [RobloxClass("Trail")]
-    public class Trail : Instance
+    public partial class Trail : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Trail.</param>
@@ -29,20 +29,20 @@ namespace Roblox
         /// Along with Attachment1, determines where the trail will start drawing its segments.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Attachment0"/>
-        public Attachment? Attachment0
+        public Attachment Attachment0
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment0");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment0", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment0")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment0", value);
         }
 
         /// <summary>
         /// Along with Attachment0, determines where the trail will start drawing its segments.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Trail#Attachment1"/>
-        public Attachment? Attachment1
+        public Attachment Attachment1
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment1");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment1", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment1")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment1", value);
         }
 
         /// <summary>

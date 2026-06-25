@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton"/>
     [RobloxClass("GuiButton")]
-    public class GuiButton : GuiObject
+    public partial class GuiButton : GuiObject
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox GuiButton.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// A HapticEffect instance that will play when the GuiButton is being hovered.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#HoverHapticEffect"/>
-        public HapticEffect? HoverHapticEffect
+        public HapticEffect HoverHapticEffect
         {
-            get => global::Roblox.Reflection.GetProperty<HapticEffect?>(this, "HoverHapticEffect");
-            set => global::Roblox.Reflection.SetProperty<HapticEffect?>(this, "HoverHapticEffect", value);
+            get => global::Roblox.Reflection.GetProperty<HapticEffect>(this, "HoverHapticEffect")!;
+            set => global::Roblox.Reflection.SetProperty<HapticEffect>(this, "HoverHapticEffect", value);
         }
 
         /// <summary>
@@ -59,10 +59,10 @@ namespace Roblox
         /// A HapticEffect instance that will play when the GuiButton is being pressed.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiButton#PressHapticEffect"/>
-        public HapticEffect? PressHapticEffect
+        public HapticEffect PressHapticEffect
         {
-            get => global::Roblox.Reflection.GetProperty<HapticEffect?>(this, "PressHapticEffect");
-            set => global::Roblox.Reflection.SetProperty<HapticEffect?>(this, "PressHapticEffect", value);
+            get => global::Roblox.Reflection.GetProperty<HapticEffect>(this, "PressHapticEffect")!;
+            set => global::Roblox.Reflection.SetProperty<HapticEffect>(this, "PressHapticEffect", value);
         }
 
         /// <summary>

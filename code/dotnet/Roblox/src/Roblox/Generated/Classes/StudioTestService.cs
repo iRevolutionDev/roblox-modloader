@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioTestService"/>
     [RobloxClass("StudioTestService")]
-    public class StudioTestService : Instance
+    public partial class StudioTestService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StudioTestService.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UITextSizeConstraint"/>
     [RobloxClass("UITextSizeConstraint")]
-    public class UITextSizeConstraint : UIConstraint
+    public partial class UITextSizeConstraint : UIConstraint
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UITextSizeConstraint.</param>

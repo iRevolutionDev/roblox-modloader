@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoDisplay"/>
     [RobloxClass("VideoDisplay")]
-    public class VideoDisplay : GuiObject
+    public partial class VideoDisplay : GuiObject
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VideoDisplay.</param>

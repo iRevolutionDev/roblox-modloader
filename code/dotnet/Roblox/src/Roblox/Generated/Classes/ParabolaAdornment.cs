@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ParabolaAdornment")]
-    public class ParabolaAdornment : PVAdornment
+    public partial class ParabolaAdornment : PVAdornment
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ParabolaAdornment.</param>

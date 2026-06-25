@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalSettings"/>
     [RobloxClass("GlobalSettings")]
-    public class GlobalSettings : GenericSettings
+    public partial class GlobalSettings : GenericSettings
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox GlobalSettings.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("StudioWidget")]
-    public class StudioWidget : StudioObjectBase
+    public partial class StudioWidget : StudioObjectBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StudioWidget.</param>

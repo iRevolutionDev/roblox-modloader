@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TerrainWriteOperation")]
-    public class TerrainWriteOperation : global::Roblox.Object
+    public partial class TerrainWriteOperation : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TerrainWriteOperation.</param>

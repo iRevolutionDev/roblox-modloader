@@ -34,6 +34,18 @@ internal static class RobloxTypeRegistry
         => _factoriesByType.TryGetValue(type, out var factory)
             ? factory(handle)
             : ReflectionFactory(type)(handle);
+            
+    public static T CreateAs<T>(nuint handle) where T : Object => (T)CreateAs(typeof(T), handle);
+
+    public static T? CreateAsOrNull<T>(Instance? instance) where T : Instance
+        => instance is null ? null : CreateAs<T>(instance.Handle);
+
+    public static string ClassNameOf<T>() where T : Object => ClassNameOf(typeof(T));
+
+    public static string ClassNameOf(Type type)
+        => type.GetCustomAttribute<RobloxClassAttribute>()?.ClassName
+           ?? throw new InvalidOperationException(
+               $"Type '{type}' is not a generated Roblox class (missing [RobloxClass]).");
 
     private static string? TryGetClassName(nuint handle)
     {

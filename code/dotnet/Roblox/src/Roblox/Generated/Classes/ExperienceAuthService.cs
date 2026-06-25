@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ExperienceAuthService")]
-    public class ExperienceAuthService : Instance
+    public partial class ExperienceAuthService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ExperienceAuthService.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("SafetyService")]
-    public class SafetyService : Instance
+    public partial class SafetyService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SafetyService.</param>

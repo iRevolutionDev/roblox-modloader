@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyVelocity"/>
     [RobloxClass("BodyVelocity")]
-    public class BodyVelocity : BodyMover
+    public partial class BodyVelocity : BodyMover
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BodyVelocity.</param>

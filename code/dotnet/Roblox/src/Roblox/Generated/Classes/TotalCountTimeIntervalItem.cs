@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TotalCountTimeIntervalItem"/>
     [RobloxClass("TotalCountTimeIntervalItem")]
-    public class TotalCountTimeIntervalItem : StatsItem
+    public partial class TotalCountTimeIntervalItem : StatsItem
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TotalCountTimeIntervalItem.</param>

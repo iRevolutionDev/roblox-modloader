@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HiddenSurfaceRemovalAsset"/>
     [RobloxClass("HiddenSurfaceRemovalAsset")]
-    public class HiddenSurfaceRemovalAsset : Instance
+    public partial class HiddenSurfaceRemovalAsset : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox HiddenSurfaceRemovalAsset.</param>

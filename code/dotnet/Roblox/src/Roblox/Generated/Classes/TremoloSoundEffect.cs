@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TremoloSoundEffect"/>
     [RobloxClass("TremoloSoundEffect")]
-    public class TremoloSoundEffect : SoundEffect
+    public partial class TremoloSoundEffect : SoundEffect
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TremoloSoundEffect.</param>

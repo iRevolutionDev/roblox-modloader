@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UniversalConstraint"/>
     [RobloxClass("UniversalConstraint")]
-    public class UniversalConstraint : Constraint
+    public partial class UniversalConstraint : Constraint
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UniversalConstraint.</param>

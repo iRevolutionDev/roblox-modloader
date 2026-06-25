@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AvatarAnimationRules")]
-    public class AvatarAnimationRules : Instance
+    public partial class AvatarAnimationRules : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AvatarAnimationRules.</param>

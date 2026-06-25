@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AchievementService")]
-    public class AchievementService : Instance
+    public partial class AchievementService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AchievementService.</param>

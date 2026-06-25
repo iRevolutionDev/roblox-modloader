@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players"/>
     [RobloxClass("Players")]
-    public class Players : Instance
+    public partial class Players : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Players.</param>
@@ -69,10 +69,10 @@ namespace Roblox
         /// The Player that the LocalScript is running for.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#LocalPlayer"/>
-        public Player? LocalPlayer
+        public Player LocalPlayer
         {
-            get => global::Roblox.Reflection.GetProperty<Player?>(this, "LocalPlayer");
-            set => global::Roblox.Reflection.SetProperty<Player?>(this, "LocalPlayer", value);
+            get => global::Roblox.Reflection.GetProperty<Player>(this, "LocalPlayer")!;
+            set => global::Roblox.Reflection.SetProperty<Player>(this, "LocalPlayer", value);
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloatCurve"/>
     [RobloxClass("FloatCurve")]
-    public class FloatCurve : Instance
+    public partial class FloatCurve : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox FloatCurve.</param>

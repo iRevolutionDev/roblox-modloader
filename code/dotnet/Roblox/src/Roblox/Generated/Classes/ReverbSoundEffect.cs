@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ReverbSoundEffect"/>
     [RobloxClass("ReverbSoundEffect")]
-    public class ReverbSoundEffect : SoundEffect
+    public partial class ReverbSoundEffect : SoundEffect
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ReverbSoundEffect.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGuiBase"/>
     [RobloxClass("SurfaceGuiBase")]
-    public class SurfaceGuiBase : LayerCollector
+    public partial class SurfaceGuiBase : LayerCollector
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SurfaceGuiBase.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// BasePart on which to apply the SurfaceGui, overriding the default parent association.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGuiBase#Adornee"/>
-        public Instance? Adornee
+        public Instance Adornee
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Adornee");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Adornee", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Adornee")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Adornee", value);
         }
 
         /// <summary>

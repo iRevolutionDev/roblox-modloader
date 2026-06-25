@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableImage"/>
     [RobloxClass("EditableImage")]
-    public class EditableImage : global::Roblox.Object
+    public partial class EditableImage : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox EditableImage.</param>

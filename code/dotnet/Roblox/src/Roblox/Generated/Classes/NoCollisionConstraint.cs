@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NoCollisionConstraint"/>
     [RobloxClass("NoCollisionConstraint")]
-    public class NoCollisionConstraint : Instance
+    public partial class NoCollisionConstraint : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox NoCollisionConstraint.</param>
@@ -39,20 +39,20 @@ namespace Roblox
         /// The second BasePart that the constraint connects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NoCollisionConstraint#Part0"/>
-        public BasePart? Part0
+        public BasePart Part0
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part0");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part0", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part0")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part0", value);
         }
 
         /// <summary>
         /// The first BasePart that the constraint connects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NoCollisionConstraint#Part1"/>
-        public BasePart? Part1
+        public BasePart Part1
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part1");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part1", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part1")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part1", value);
         }
 
     }

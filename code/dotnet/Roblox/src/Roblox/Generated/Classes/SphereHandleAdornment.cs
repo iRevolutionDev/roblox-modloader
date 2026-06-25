@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SphereHandleAdornment"/>
     [RobloxClass("SphereHandleAdornment")]
-    public class SphereHandleAdornment : HandleAdornment
+    public partial class SphereHandleAdornment : HandleAdornment
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SphereHandleAdornment.</param>

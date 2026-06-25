@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ScriptDebugger")]
-    public class ScriptDebugger : Instance
+    public partial class ScriptDebugger : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ScriptDebugger.</param>
@@ -39,10 +39,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsPaused", value);
         }
 
-        public Instance? Script
+        public Instance Script
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Script");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Script", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Script")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Script", value);
         }
 
         /// <summary>

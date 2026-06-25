@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain"/>
     [RobloxClass("Terrain")]
-    public class Terrain : BasePart
+    public partial class Terrain : BasePart
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Terrain.</param>

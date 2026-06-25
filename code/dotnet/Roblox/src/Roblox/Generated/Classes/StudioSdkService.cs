@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("StudioSdkService")]
-    public class StudioSdkService : Instance
+    public partial class StudioSdkService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StudioSdkService.</param>

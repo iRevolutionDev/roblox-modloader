@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEvent"/>
     [RobloxClass("CustomEvent")]
-    public class CustomEvent : Instance
+    public partial class CustomEvent : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CustomEvent.</param>

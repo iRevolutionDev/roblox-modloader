@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ManualWeld"/>
     [RobloxClass("ManualWeld")]
-    public class ManualWeld : ManualSurfaceJointInstance
+    public partial class ManualWeld : ManualSurfaceJointInstance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ManualWeld.</param>

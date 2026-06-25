@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoPlayer"/>
     [RobloxClass("VideoPlayer")]
-    public class VideoPlayer : Instance
+    public partial class VideoPlayer : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VideoPlayer.</param>

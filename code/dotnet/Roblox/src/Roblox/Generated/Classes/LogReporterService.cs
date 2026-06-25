@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("LogReporterService")]
-    public class LogReporterService : Instance
+    public partial class LogReporterService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox LogReporterService.</param>

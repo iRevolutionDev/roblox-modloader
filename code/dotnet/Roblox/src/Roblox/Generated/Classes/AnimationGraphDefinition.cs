@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AnimationGraphDefinition")]
-    public class AnimationGraphDefinition : AnimationClip
+    public partial class AnimationGraphDefinition : AnimationClip
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AnimationGraphDefinition.</param>

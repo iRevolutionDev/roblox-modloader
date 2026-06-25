@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIListLayout"/>
     [RobloxClass("UIListLayout")]
-    public class UIListLayout : UIGridStyleLayout
+    public partial class UIListLayout : UIGridStyleLayout
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UIListLayout.</param>

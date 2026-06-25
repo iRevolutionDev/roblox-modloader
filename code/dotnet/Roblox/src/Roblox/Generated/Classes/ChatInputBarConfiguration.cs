@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration"/>
     [RobloxClass("ChatInputBarConfiguration")]
-    public class ChatInputBarConfiguration : TextChatConfigurations
+    public partial class ChatInputBarConfiguration : TextChatConfigurations
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ChatInputBarConfiguration.</param>
@@ -147,20 +147,20 @@ namespace Roblox
         /// A reference to the target TextChannel.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TargetTextChannel"/>
-        public TextChannel? TargetTextChannel
+        public TextChannel TargetTextChannel
         {
-            get => global::Roblox.Reflection.GetProperty<TextChannel?>(this, "TargetTextChannel");
-            set => global::Roblox.Reflection.SetProperty<TextChannel?>(this, "TargetTextChannel", value);
+            get => global::Roblox.Reflection.GetProperty<TextChannel>(this, "TargetTextChannel")!;
+            set => global::Roblox.Reflection.SetProperty<TextChannel>(this, "TargetTextChannel", value);
         }
 
         /// <summary>
         /// Reference to a designated TextBox instance that sends messages on behalf of the user.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ChatInputBarConfiguration#TextBox"/>
-        public TextBox? TextBox
+        public TextBox TextBox
         {
-            get => global::Roblox.Reflection.GetProperty<TextBox?>(this, "TextBox");
-            set => global::Roblox.Reflection.SetProperty<TextBox?>(this, "TextBox", value);
+            get => global::Roblox.Reflection.GetProperty<TextBox>(this, "TextBox")!;
+            set => global::Roblox.Reflection.SetProperty<TextBox>(this, "TextBox", value);
         }
 
         /// <summary>

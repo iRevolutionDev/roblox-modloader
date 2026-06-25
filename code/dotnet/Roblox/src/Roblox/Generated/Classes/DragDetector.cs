@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector"/>
     [RobloxClass("DragDetector")]
-    public class DragDetector : ClickDetector
+    public partial class DragDetector : ClickDetector
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DragDetector.</param>
@@ -199,10 +199,10 @@ namespace Roblox
         /// An instance whose CFrame is the reference frame for the drag detector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DragDetector#ReferenceInstance"/>
-        public Instance? ReferenceInstance
+        public Instance ReferenceInstance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ReferenceInstance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ReferenceInstance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "ReferenceInstance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "ReferenceInstance", value);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ExplorerFilterAutocompleter")]
-    public class ExplorerFilterAutocompleter : Instance
+    public partial class ExplorerFilterAutocompleter : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ExplorerFilterAutocompleter.</param>

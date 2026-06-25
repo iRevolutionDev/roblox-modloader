@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionLasso"/>
     [RobloxClass("SelectionLasso")]
-    public class SelectionLasso : GuiBase3d
+    public partial class SelectionLasso : GuiBase3d
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SelectionLasso.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The Humanoid that the Lasso belongs to, and will come from.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionLasso#Humanoid"/>
-        public Humanoid? Humanoid
+        public Humanoid Humanoid
         {
-            get => global::Roblox.Reflection.GetProperty<Humanoid?>(this, "Humanoid");
-            set => global::Roblox.Reflection.SetProperty<Humanoid?>(this, "Humanoid", value);
+            get => global::Roblox.Reflection.GetProperty<Humanoid>(this, "Humanoid")!;
+            set => global::Roblox.Reflection.SetProperty<Humanoid>(this, "Humanoid", value);
         }
 
     }

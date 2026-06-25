@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("StudioScriptDebugEventListener")]
-    public class StudioScriptDebugEventListener : Instance
+    public partial class StudioScriptDebugEventListener : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StudioScriptDebugEventListener.</param>

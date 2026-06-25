@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandlesBase"/>
     [RobloxClass("HandlesBase")]
-    public class HandlesBase : PartAdornment
+    public partial class HandlesBase : PartAdornment
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox HandlesBase.</param>

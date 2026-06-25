@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionSphere"/>
     [RobloxClass("SelectionSphere")]
-    public class SelectionSphere : PVAdornment
+    public partial class SelectionSphere : PVAdornment
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SelectionSphere.</param>

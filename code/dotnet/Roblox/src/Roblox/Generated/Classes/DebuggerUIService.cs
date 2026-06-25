@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("DebuggerUIService")]
-    public class DebuggerUIService : Instance
+    public partial class DebuggerUIService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DebuggerUIService.</param>

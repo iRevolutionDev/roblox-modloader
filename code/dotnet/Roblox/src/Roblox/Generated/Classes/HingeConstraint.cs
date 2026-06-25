@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HingeConstraint"/>
     [RobloxClass("HingeConstraint")]
-    public class HingeConstraint : Constraint
+    public partial class HingeConstraint : Constraint
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox HingeConstraint.</param>

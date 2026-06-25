@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("EventIngestService")]
-    public class EventIngestService : Instance
+    public partial class EventIngestService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox EventIngestService.</param>

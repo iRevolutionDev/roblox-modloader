@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("UnvalidatedAssetService")]
-    public class UnvalidatedAssetService : Instance
+    public partial class UnvalidatedAssetService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UnvalidatedAssetService.</param>

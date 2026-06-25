@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerMouse"/>
     [RobloxClass("PlayerMouse")]
-    public class PlayerMouse : Mouse
+    public partial class PlayerMouse : Mouse
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PlayerMouse.</param>

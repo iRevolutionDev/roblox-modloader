@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse"/>
     [RobloxClass("Mouse")]
-    public class Mouse : Instance
+    public partial class Mouse : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Mouse.</param>
@@ -69,20 +69,20 @@ namespace Roblox
         /// The object in 3D space the mouse is pointing to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#Target"/>
-        public BasePart? Target
+        public BasePart Target
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Target");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Target", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Target")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Target", value);
         }
 
         /// <summary>
         /// Determines an object (and its descendants) to be ignored when determining Mouse.Hit and Mouse.Target.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#TargetFilter"/>
-        public Instance? TargetFilter
+        public Instance TargetFilter
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "TargetFilter");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "TargetFilter", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "TargetFilter")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "TargetFilter", value);
         }
 
         /// <summary>

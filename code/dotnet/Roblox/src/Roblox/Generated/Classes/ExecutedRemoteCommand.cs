@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ExecutedRemoteCommand")]
-    public class ExecutedRemoteCommand : global::Roblox.Object
+    public partial class ExecutedRemoteCommand : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ExecutedRemoteCommand.</param>

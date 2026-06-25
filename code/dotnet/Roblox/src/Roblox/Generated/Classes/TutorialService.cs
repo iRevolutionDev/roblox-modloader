@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TutorialService")]
-    public class TutorialService : Instance
+    public partial class TutorialService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TutorialService.</param>

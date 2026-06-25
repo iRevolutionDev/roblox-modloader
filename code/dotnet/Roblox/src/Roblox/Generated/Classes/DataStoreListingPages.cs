@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreListingPages"/>
     [RobloxClass("DataStoreListingPages")]
-    public class DataStoreListingPages : Pages
+    public partial class DataStoreListingPages : Pages
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DataStoreListingPages.</param>

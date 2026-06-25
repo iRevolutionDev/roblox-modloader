@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AnnotationsService")]
-    public class AnnotationsService : Instance
+    public partial class AnnotationsService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AnnotationsService.</param>
@@ -33,10 +33,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AnnotationsVisible", value);
         }
 
-        public Annotation? Hovered
+        public Annotation Hovered
         {
-            get => global::Roblox.Reflection.GetProperty<Annotation?>(this, "Hovered");
-            set => global::Roblox.Reflection.SetProperty<Annotation?>(this, "Hovered", value);
+            get => global::Roblox.Reflection.GetProperty<Annotation>(this, "Hovered")!;
+            set => global::Roblox.Reflection.SetProperty<Annotation>(this, "Hovered", value);
         }
 
         public Enum.AnnotationEditingMode Mode
@@ -51,10 +51,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.AnnotationRequestStatus>(this, "ResolvedLoadingStatus", value);
         }
 
-        public Annotation? Selected
+        public Annotation Selected
         {
-            get => global::Roblox.Reflection.GetProperty<Annotation?>(this, "Selected");
-            set => global::Roblox.Reflection.SetProperty<Annotation?>(this, "Selected", value);
+            get => global::Roblox.Reflection.GetProperty<Annotation>(this, "Selected")!;
+            set => global::Roblox.Reflection.SetProperty<Annotation>(this, "Selected", value);
         }
 
         /// <summary>

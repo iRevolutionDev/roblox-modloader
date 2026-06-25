@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("DebuggerManager")]
-    public class DebuggerManager : Instance
+    public partial class DebuggerManager : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DebuggerManager.</param>

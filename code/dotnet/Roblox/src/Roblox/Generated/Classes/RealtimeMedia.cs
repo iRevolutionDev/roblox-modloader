@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RealtimeMedia")]
-    public class RealtimeMedia : Instance
+    public partial class RealtimeMedia : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RealtimeMedia.</param>

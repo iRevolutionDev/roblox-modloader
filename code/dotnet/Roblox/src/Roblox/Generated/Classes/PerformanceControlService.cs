@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PerformanceControlService")]
-    public class PerformanceControlService : Instance
+    public partial class PerformanceControlService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PerformanceControlService.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel"/>
     [RobloxClass("DataModel")]
-    public class DataModel : ServiceProvider
+    public partial class DataModel : ServiceProvider
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DataModel.</param>
@@ -155,10 +155,10 @@ namespace Roblox
         /// <c>DataModel.RunService</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#RunService"/>
-        public RunService? RunService
+        public RunService RunService
         {
-            get => global::Roblox.Reflection.GetProperty<RunService?>(this, "RunService");
-            set => global::Roblox.Reflection.SetProperty<RunService?>(this, "RunService", value);
+            get => global::Roblox.Reflection.GetProperty<RunService>(this, "RunService")!;
+            set => global::Roblox.Reflection.SetProperty<RunService>(this, "RunService", value);
         }
 
         /// <summary>
@@ -185,20 +185,20 @@ namespace Roblox
         /// A reference to the Workspace service.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#Workspace"/>
-        public Workspace? Workspace
+        public Workspace Workspace
         {
-            get => global::Roblox.Reflection.GetProperty<Workspace?>(this, "Workspace");
-            set => global::Roblox.Reflection.SetProperty<Workspace?>(this, "Workspace", value);
+            get => global::Roblox.Reflection.GetProperty<Workspace>(this, "Workspace")!;
+            set => global::Roblox.Reflection.SetProperty<Workspace>(this, "Workspace", value);
         }
 
         /// <summary>
         /// Deprecated: This item has been superseded by game:GetService("Lighting"), which should be used instead.Refers to the game's Lighting service.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#lighting"/>
-        public Instance? Lighting
+        public Instance Lighting
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "lighting");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "lighting", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "lighting")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "lighting", value);
         }
 
         /// <summary>

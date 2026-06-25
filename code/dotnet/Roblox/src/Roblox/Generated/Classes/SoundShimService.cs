@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("SoundShimService")]
-    public class SoundShimService : Instance
+    public partial class SoundShimService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SoundShimService.</param>

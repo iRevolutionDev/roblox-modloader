@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel"/>
     [RobloxClass("TextChannel")]
-    public class TextChannel : Instance
+    public partial class TextChannel : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TextChannel.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The TextChannel will only deliver messages to users that can send direct messages to the DirectChatRequester.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextChannel#DirectChatRequester"/>
-        public Player? DirectChatRequester
+        public Player DirectChatRequester
         {
-            get => global::Roblox.Reflection.GetProperty<Player?>(this, "DirectChatRequester");
-            set => global::Roblox.Reflection.SetProperty<Player?>(this, "DirectChatRequester", value);
+            get => global::Roblox.Reflection.GetProperty<Player>(this, "DirectChatRequester")!;
+            set => global::Roblox.Reflection.SetProperty<Player>(this, "DirectChatRequester", value);
         }
 
         /// <summary>

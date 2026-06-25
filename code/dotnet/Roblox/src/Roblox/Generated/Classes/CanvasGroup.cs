@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CanvasGroup"/>
     [RobloxClass("CanvasGroup")]
-    public class CanvasGroup : GuiObject
+    public partial class CanvasGroup : GuiObject
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CanvasGroup.</param>

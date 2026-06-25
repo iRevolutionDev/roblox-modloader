@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StandardPages"/>
     [RobloxClass("StandardPages")]
-    public class StandardPages : Pages
+    public partial class StandardPages : Pages
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StandardPages.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleLink"/>
     [RobloxClass("StyleLink")]
-    public class StyleLink : Instance
+    public partial class StyleLink : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StyleLink.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The StyleSheet to link to the parent such that the parent's descendants are styled accordingly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleLink#StyleSheet"/>
-        public StyleSheet? StyleSheet
+        public StyleSheet StyleSheet
         {
-            get => global::Roblox.Reflection.GetProperty<StyleSheet?>(this, "StyleSheet");
-            set => global::Roblox.Reflection.SetProperty<StyleSheet?>(this, "StyleSheet", value);
+            get => global::Roblox.Reflection.GetProperty<StyleSheet>(this, "StyleSheet")!;
+            set => global::Roblox.Reflection.SetProperty<StyleSheet>(this, "StyleSheet", value);
         }
 
     }

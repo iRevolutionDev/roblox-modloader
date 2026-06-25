@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationFromVideoCreatorService"/>
     [RobloxClass("AnimationFromVideoCreatorService")]
-    public class AnimationFromVideoCreatorService : Instance
+    public partial class AnimationFromVideoCreatorService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AnimationFromVideoCreatorService.</param>

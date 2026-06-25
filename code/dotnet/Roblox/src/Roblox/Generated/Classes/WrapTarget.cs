@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget"/>
     [RobloxClass("WrapTarget")]
-    public class WrapTarget : BaseWrap
+    public partial class WrapTarget : BaseWrap
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox WrapTarget.</param>

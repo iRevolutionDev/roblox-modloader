@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace"/>
     [RobloxClass("Workspace")]
-    public class Workspace : WorldRoot
+    public partial class Workspace : WorldRoot
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Workspace.</param>
@@ -89,10 +89,10 @@ namespace Roblox
         /// The Camera object being used by the local player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#CurrentCamera"/>
-        public Camera? CurrentCamera
+        public Camera CurrentCamera
         {
-            get => global::Roblox.Reflection.GetProperty<Camera?>(this, "CurrentCamera");
-            set => global::Roblox.Reflection.SetProperty<Camera?>(this, "CurrentCamera", value);
+            get => global::Roblox.Reflection.GetProperty<Camera>(this, "CurrentCamera")!;
+            set => global::Roblox.Reflection.SetProperty<Camera>(this, "CurrentCamera", value);
         }
 
         /// <summary>
@@ -491,10 +491,10 @@ namespace Roblox
         /// A reference to the Terrain object parented to the Workspace.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#Terrain"/>
-        public Terrain? Terrain
+        public Terrain Terrain
         {
-            get => global::Roblox.Reflection.GetProperty<Terrain?>(this, "Terrain");
-            set => global::Roblox.Reflection.SetProperty<Terrain?>(this, "Terrain", value);
+            get => global::Roblox.Reflection.GetProperty<Terrain>(this, "Terrain")!;
+            set => global::Roblox.Reflection.SetProperty<Terrain>(this, "Terrain", value);
         }
 
         public Enum.RolloutState TouchEventsUseCollisionGroups

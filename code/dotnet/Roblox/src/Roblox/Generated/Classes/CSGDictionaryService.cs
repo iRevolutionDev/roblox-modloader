@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("CSGDictionaryService")]
-    public class CSGDictionaryService : FlyweightService
+    public partial class CSGDictionaryService : FlyweightService
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CSGDictionaryService.</param>

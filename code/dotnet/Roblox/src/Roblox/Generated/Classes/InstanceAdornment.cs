@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceAdornment"/>
     [RobloxClass("InstanceAdornment")]
-    public class InstanceAdornment : GuiBase3d
+    public partial class InstanceAdornment : GuiBase3d
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox InstanceAdornment.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// Which Instance to adorn.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InstanceAdornment#Adornee"/>
-        public Instance? Adornee
+        public Instance Adornee
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Adornee");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Adornee", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Adornee")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Adornee", value);
         }
 
     }

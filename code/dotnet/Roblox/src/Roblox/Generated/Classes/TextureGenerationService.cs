@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TextureGenerationService")]
-    public class TextureGenerationService : Instance
+    public partial class TextureGenerationService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TextureGenerationService.</param>

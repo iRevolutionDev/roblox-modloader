@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt"/>
     [RobloxClass("ProximityPrompt")]
-    public class ProximityPrompt : Instance
+    public partial class ProximityPrompt : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ProximityPrompt.</param>
@@ -149,10 +149,10 @@ namespace Roblox
         /// A reference to a LocalizationTable to be used to apply automated localization to this prompt's ProximityPrompt.ActionText and ProximityPrompt.ObjectText.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ProximityPrompt#RootLocalizationTable"/>
-        public LocalizationTable? RootLocalizationTable
+        public LocalizationTable RootLocalizationTable
         {
-            get => global::Roblox.Reflection.GetProperty<LocalizationTable?>(this, "RootLocalizationTable");
-            set => global::Roblox.Reflection.SetProperty<LocalizationTable?>(this, "RootLocalizationTable", value);
+            get => global::Roblox.Reflection.GetProperty<LocalizationTable>(this, "RootLocalizationTable")!;
+            set => global::Roblox.Reflection.SetProperty<LocalizationTable>(this, "RootLocalizationTable", value);
         }
 
         /// <summary>

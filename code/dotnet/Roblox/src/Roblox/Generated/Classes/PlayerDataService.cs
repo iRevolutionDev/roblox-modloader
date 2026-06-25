@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PlayerDataService")]
-    public class PlayerDataService : Instance
+    public partial class PlayerDataService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PlayerDataService.</param>

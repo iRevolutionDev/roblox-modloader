@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ExperienceStateRecordingService")]
-    public class ExperienceStateRecordingService : Instance
+    public partial class ExperienceStateRecordingService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ExperienceStateRecordingService.</param>

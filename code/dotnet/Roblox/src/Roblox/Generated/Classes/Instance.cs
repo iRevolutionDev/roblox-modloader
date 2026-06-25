@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance"/>
     [RobloxClass("Instance")]
-    public class Instance : global::Roblox.Object
+    public partial class Instance : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Instance.</param>
@@ -71,10 +71,10 @@ namespace Roblox
         /// Determines the hierarchical parent of the Instance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Parent"/>
-        public Instance? Parent
+        public Instance Parent
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Parent");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Parent", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Parent")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Parent", value);
         }
 
         /// <summary>

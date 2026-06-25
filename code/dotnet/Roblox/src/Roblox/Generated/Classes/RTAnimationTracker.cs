@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RTAnimationTracker")]
-    public class RTAnimationTracker : Instance
+    public partial class RTAnimationTracker : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RTAnimationTracker.</param>

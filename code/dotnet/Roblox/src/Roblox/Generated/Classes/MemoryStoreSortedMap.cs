@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MemoryStoreSortedMap"/>
     [RobloxClass("MemoryStoreSortedMap")]
-    public class MemoryStoreSortedMap : Instance
+    public partial class MemoryStoreSortedMap : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MemoryStoreSortedMap.</param>

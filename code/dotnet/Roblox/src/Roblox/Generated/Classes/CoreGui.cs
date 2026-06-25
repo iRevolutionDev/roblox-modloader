@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreGui"/>
     [RobloxClass("CoreGui")]
-    public class CoreGui : BasePlayerGui
+    public partial class CoreGui : BasePlayerGui
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CoreGui.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// <c>CoreGui.SelectionImageObject</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreGui#SelectionImageObject"/>
-        public GuiObject? SelectionImageObject
+        public GuiObject SelectionImageObject
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "SelectionImageObject");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "SelectionImageObject", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "SelectionImageObject")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "SelectionImageObject", value);
         }
 
         /// <summary>

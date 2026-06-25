@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("BaseImportData")]
-    public class BaseImportData : Instance
+    public partial class BaseImportData : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BaseImportData.</param>

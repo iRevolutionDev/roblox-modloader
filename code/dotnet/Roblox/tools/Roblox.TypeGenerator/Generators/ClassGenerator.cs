@@ -146,8 +146,8 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         
         bool hasSubclasses = c.Subclasses is { Count: > 0 };
         string modifier    = "public";
-
-        sw.WriteLine($"    {modifier} class {className} : {superclass}");
+        
+        sw.WriteLine($"    {modifier} partial class {className} : {superclass}");
         sw.WriteLine("    {");
 
         var baseHasFromHandle = EffectiveBaseName(c, byName) is { } pn && pn != "Object";
@@ -308,11 +308,6 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         var readOnly = IsReadOnly(prop);
         var writeOnly = IsWriteOnly(prop);
         var csType = TypeMapper.ToCSharp(prop.ValueType);
-
-        if (prop.ValueType?.Category == "Class")
-        {
-            csType = TypeMapper.MakeNullable(csType);
-        }
         var newKw = hides ? "new " : string.Empty;
 
 
@@ -359,7 +354,7 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         ApiDoc? memberDoc  = apiDocs.GetMember(c.Name, fn.Name ?? string.Empty);
         var descFallback = metadata.ReadMemberDesc(c.Name, fn.Name ?? string.Empty);
         var returnType = TypeMapper.ReturnType(fn.ReturnType);
-        var resolved   = ResolveParameters(fn.Parameters);
+        var resolved = ResolveParameters(fn.Parameters);
         var @params    = BuildParameterList(fn.Parameters);
         var args       = BuildArgumentList(fn.Parameters);
         var isVoid     = TypeMapper.IsVoid(returnType);

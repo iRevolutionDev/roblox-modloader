@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginGui"/>
     [RobloxClass("PluginGui")]
-    public class PluginGui : LayerCollector
+    public partial class PluginGui : LayerCollector
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PluginGui.</param>
@@ -25,10 +25,10 @@ namespace Roblox
         public static new PluginGui? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginGui(handle);
 
-        public Plugin? Plugin
+        public Plugin Plugin
         {
-            get => global::Roblox.Reflection.GetProperty<Plugin?>(this, "Plugin");
-            set => global::Roblox.Reflection.SetProperty<Plugin?>(this, "Plugin", value);
+            get => global::Roblox.Reflection.GetProperty<Plugin>(this, "Plugin")!;
+            set => global::Roblox.Reflection.SetProperty<Plugin>(this, "Plugin", value);
         }
 
         /// <summary>

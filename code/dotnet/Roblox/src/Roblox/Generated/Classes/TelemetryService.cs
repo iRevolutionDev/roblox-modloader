@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TelemetryService")]
-    public class TelemetryService : Instance
+    public partial class TelemetryService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TelemetryService.</param>

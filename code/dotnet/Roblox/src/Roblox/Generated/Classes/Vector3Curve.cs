@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Vector3Curve"/>
     [RobloxClass("Vector3Curve")]
-    public class Vector3Curve : Instance
+    public partial class Vector3Curve : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Vector3Curve.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/NetworkMarker"/>
     [RobloxClass("NetworkMarker")]
-    public class NetworkMarker : Instance
+    public partial class NetworkMarker : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox NetworkMarker.</param>

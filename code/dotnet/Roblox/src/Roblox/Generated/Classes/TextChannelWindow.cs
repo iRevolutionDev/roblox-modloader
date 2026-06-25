@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TextChannelWindow")]
-    public class TextChannelWindow : GuiObject
+    public partial class TextChannelWindow : GuiObject
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TextChannelWindow.</param>
@@ -21,10 +21,10 @@ namespace Roblox
         public static new TextChannelWindow? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChannelWindow(handle);
 
-        public TextChannel? Target
+        public TextChannel Target
         {
-            get => global::Roblox.Reflection.GetProperty<TextChannel?>(this, "Target");
-            set => global::Roblox.Reflection.SetProperty<TextChannel?>(this, "Target", value);
+            get => global::Roblox.Reflection.GetProperty<TextChannel>(this, "Target")!;
+            set => global::Roblox.Reflection.SetProperty<TextChannel>(this, "Target", value);
         }
 
     }

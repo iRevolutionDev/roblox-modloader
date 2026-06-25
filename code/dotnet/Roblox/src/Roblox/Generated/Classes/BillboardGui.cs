@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui"/>
     [RobloxClass("BillboardGui")]
-    public class BillboardGui : LayerCollector
+    public partial class BillboardGui : LayerCollector
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BillboardGui.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// Sets the target part or attachment that the BillboardGui is positioned relative to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#Adornee"/>
-        public Instance? Adornee
+        public Instance Adornee
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Adornee");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Adornee", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Adornee")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Adornee", value);
         }
 
         /// <summary>
@@ -159,10 +159,10 @@ namespace Roblox
         /// Used by scripts to hide the BillboardGui from a specific player.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#PlayerToHideFrom"/>
-        public Instance? PlayerToHideFrom
+        public Instance PlayerToHideFrom
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "PlayerToHideFrom");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "PlayerToHideFrom", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "PlayerToHideFrom")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "PlayerToHideFrom", value);
         }
 
         /// <summary>

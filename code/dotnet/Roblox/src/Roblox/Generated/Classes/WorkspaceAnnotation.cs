@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorkspaceAnnotation"/>
     [RobloxClass("WorkspaceAnnotation")]
-    public class WorkspaceAnnotation : Annotation
+    public partial class WorkspaceAnnotation : Annotation
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox WorkspaceAnnotation.</param>
@@ -25,10 +25,10 @@ namespace Roblox
         public static new WorkspaceAnnotation? FromHandle(nuint handle)
             => handle == 0 ? null : new WorkspaceAnnotation(handle);
 
-        public PVInstance? Adornee
+        public PVInstance Adornee
         {
-            get => global::Roblox.Reflection.GetProperty<PVInstance?>(this, "Adornee");
-            set => global::Roblox.Reflection.SetProperty<PVInstance?>(this, "Adornee", value);
+            get => global::Roblox.Reflection.GetProperty<PVInstance>(this, "Adornee")!;
+            set => global::Roblox.Reflection.SetProperty<PVInstance>(this, "Adornee", value);
         }
 
         public global::Roblox.Vector3 AdorneeOffset

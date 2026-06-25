@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("FileSyncReplicationService")]
-    public class FileSyncReplicationService : Instance
+    public partial class FileSyncReplicationService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox FileSyncReplicationService.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("InstanceExtensionsService")]
-    public class InstanceExtensionsService : Instance
+    public partial class InstanceExtensionsService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox InstanceExtensionsService.</param>

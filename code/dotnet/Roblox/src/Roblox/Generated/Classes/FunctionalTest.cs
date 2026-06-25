@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FunctionalTest"/>
     [RobloxClass("FunctionalTest")]
-    public class FunctionalTest : Instance
+    public partial class FunctionalTest : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox FunctionalTest.</param>

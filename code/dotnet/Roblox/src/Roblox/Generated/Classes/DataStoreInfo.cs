@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStoreInfo"/>
     [RobloxClass("DataStoreInfo")]
-    public class DataStoreInfo : Instance
+    public partial class DataStoreInfo : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DataStoreInfo.</param>

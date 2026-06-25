@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/HandleAdornment"/>
     [RobloxClass("HandleAdornment")]
-    public class HandleAdornment : PVAdornment
+    public partial class HandleAdornment : PVAdornment
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox HandleAdornment.</param>
@@ -55,10 +55,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
-        public Instance? GizmoReference
+        public Instance GizmoReference
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "GizmoReference");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "GizmoReference", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "GizmoReference")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "GizmoReference", value);
         }
 
         /// <summary>

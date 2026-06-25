@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AppUpdateService")]
-    public class AppUpdateService : Instance
+    public partial class AppUpdateService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AppUpdateService.</param>

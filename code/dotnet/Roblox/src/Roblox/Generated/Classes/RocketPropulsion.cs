@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion"/>
     [RobloxClass("RocketPropulsion")]
-    public class RocketPropulsion : BodyMover
+    public partial class RocketPropulsion : BodyMover
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RocketPropulsion.</param>
@@ -69,10 +69,10 @@ namespace Roblox
         /// Determines the object towards which the assembly should follow/face.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RocketPropulsion#Target"/>
-        public BasePart? Target
+        public BasePart Target
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Target");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Target", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Target")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Target", value);
         }
 
         /// <summary>

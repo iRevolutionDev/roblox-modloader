@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight"/>
     [RobloxClass("Highlight")]
-    public class Highlight : Instance
+    public partial class Highlight : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Highlight.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The Instance that the Highlight is applied to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Highlight#Adornee"/>
-        public Instance? Adornee
+        public Instance Adornee
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Adornee");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Adornee", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Adornee")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Adornee", value);
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CatalogPages"/>
     [RobloxClass("CatalogPages")]
-    public class CatalogPages : Pages
+    public partial class CatalogPages : Pages
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CatalogPages.</param>

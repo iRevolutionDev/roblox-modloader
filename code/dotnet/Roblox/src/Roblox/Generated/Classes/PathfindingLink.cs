@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingLink"/>
     [RobloxClass("PathfindingLink")]
-    public class PathfindingLink : Instance
+    public partial class PathfindingLink : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PathfindingLink.</param>
@@ -29,20 +29,20 @@ namespace Roblox
         /// The originating attachment of the link.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingLink#Attachment0"/>
-        public Attachment? Attachment0
+        public Attachment Attachment0
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment0");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment0", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment0")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment0", value);
         }
 
         /// <summary>
         /// The landing attachment of the link.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingLink#Attachment1"/>
-        public Attachment? Attachment1
+        public Attachment Attachment1
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment1");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment1", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment1")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment1", value);
         }
 
         /// <summary>

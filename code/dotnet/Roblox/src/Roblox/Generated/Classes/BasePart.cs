@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart"/>
     [RobloxClass("BasePart")]
-    public class BasePart : PVInstance
+    public partial class BasePart : PVInstance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BasePart.</param>
@@ -79,10 +79,10 @@ namespace Roblox
         /// A reference to the root part of the assembly.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#AssemblyRootPart"/>
-        public BasePart? AssemblyRootPart
+        public BasePart AssemblyRootPart
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "AssemblyRootPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "AssemblyRootPart", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "AssemblyRootPart")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "AssemblyRootPart", value);
         }
 
         /// <summary>

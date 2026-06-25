@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ProceduralBehaviorSchedulerService")]
-    public class ProceduralBehaviorSchedulerService : Instance
+    public partial class ProceduralBehaviorSchedulerService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ProceduralBehaviorSchedulerService.</param>

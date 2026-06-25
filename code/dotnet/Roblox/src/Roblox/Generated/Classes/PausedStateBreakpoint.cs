@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PausedStateBreakpoint")]
-    public class PausedStateBreakpoint : PausedState
+    public partial class PausedStateBreakpoint : PausedState
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PausedStateBreakpoint.</param>
@@ -21,10 +21,10 @@ namespace Roblox
         public static new PausedStateBreakpoint? FromHandle(nuint handle)
             => handle == 0 ? null : new PausedStateBreakpoint(handle);
 
-        public Breakpoint? Breakpoint
+        public Breakpoint Breakpoint
         {
-            get => global::Roblox.Reflection.GetProperty<Breakpoint?>(this, "Breakpoint");
-            set => global::Roblox.Reflection.SetProperty<Breakpoint?>(this, "Breakpoint", value);
+            get => global::Roblox.Reflection.GetProperty<Breakpoint>(this, "Breakpoint")!;
+            set => global::Roblox.Reflection.SetProperty<Breakpoint>(this, "Breakpoint", value);
         }
 
     }

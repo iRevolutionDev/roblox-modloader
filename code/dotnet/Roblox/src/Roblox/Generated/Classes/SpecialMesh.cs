@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpecialMesh"/>
     [RobloxClass("SpecialMesh")]
-    public class SpecialMesh : FileMesh
+    public partial class SpecialMesh : FileMesh
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SpecialMesh.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor"/>
     [RobloxClass("ControllerPartSensor")]
-    public class ControllerPartSensor : ControllerSensor
+    public partial class ControllerPartSensor : ControllerSensor
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ControllerPartSensor.</param>
@@ -89,10 +89,10 @@ namespace Roblox
         /// A reference to the BasePart hit by the sensor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerPartSensor#SensedPart"/>
-        public BasePart? SensedPart
+        public BasePart SensedPart
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "SensedPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "SensedPart", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "SensedPart")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "SensedPart", value);
         }
 
         /// <summary>

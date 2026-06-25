@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService"/>
     [RobloxClass("AvatarEditorService")]
-    public class AvatarEditorService : Instance
+    public partial class AvatarEditorService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AvatarEditorService.</param>

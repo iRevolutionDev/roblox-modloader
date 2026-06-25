@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tween"/>
     [RobloxClass("Tween")]
-    public class Tween : TweenBase
+    public partial class Tween : TweenBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Tween.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// Read-only property that points to the Instance whose properties are being interpolated by the tween.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Tween#Instance"/>
-        public Instance? Instance
+        public Instance Instance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Instance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Instance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Instance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Instance", value);
         }
 
         /// <summary>

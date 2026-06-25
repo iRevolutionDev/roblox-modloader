@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ManualSurfaceJointInstance"/>
     [RobloxClass("ManualSurfaceJointInstance")]
-    public class ManualSurfaceJointInstance : JointInstance
+    public partial class ManualSurfaceJointInstance : JointInstance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ManualSurfaceJointInstance.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService"/>
     [RobloxClass("PathfindingService")]
-    public class PathfindingService : Instance
+    public partial class PathfindingService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PathfindingService.</param>

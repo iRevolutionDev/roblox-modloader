@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform"/>
     [RobloxClass("SkateboardPlatform")]
-    public class SkateboardPlatform : Part
+    public partial class SkateboardPlatform : Part
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SkateboardPlatform.</param>
@@ -29,20 +29,20 @@ namespace Roblox
         /// The SkateboardPlatform's active SkateboardController.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#Controller"/>
-        public SkateboardController? Controller
+        public SkateboardController Controller
         {
-            get => global::Roblox.Reflection.GetProperty<SkateboardController?>(this, "Controller");
-            set => global::Roblox.Reflection.SetProperty<SkateboardController?>(this, "Controller", value);
+            get => global::Roblox.Reflection.GetProperty<SkateboardController>(this, "Controller")!;
+            set => global::Roblox.Reflection.SetProperty<SkateboardController>(this, "Controller", value);
         }
 
         /// <summary>
         /// The Humanoid that is controlling the SkateboardPlatform.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SkateboardPlatform#ControllingHumanoid"/>
-        public Humanoid? ControllingHumanoid
+        public Humanoid ControllingHumanoid
         {
-            get => global::Roblox.Reflection.GetProperty<Humanoid?>(this, "ControllingHumanoid");
-            set => global::Roblox.Reflection.SetProperty<Humanoid?>(this, "ControllingHumanoid", value);
+            get => global::Roblox.Reflection.GetProperty<Humanoid>(this, "ControllingHumanoid")!;
+            set => global::Roblox.Reflection.SetProperty<Humanoid>(this, "ControllingHumanoid", value);
         }
 
         /// <summary>

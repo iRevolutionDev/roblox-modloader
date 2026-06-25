@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RobloxReplicatedStorage")]
-    public class RobloxReplicatedStorage : Instance
+    public partial class RobloxReplicatedStorage : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RobloxReplicatedStorage.</param>

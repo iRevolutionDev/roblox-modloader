@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("CreationDBService")]
-    public class CreationDBService : Instance
+    public partial class CreationDBService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CreationDBService.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterTranslatedResult"/>
     [RobloxClass("TextFilterTranslatedResult")]
-    public class TextFilterTranslatedResult : Instance
+    public partial class TextFilterTranslatedResult : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TextFilterTranslatedResult.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// <c>TextFilterTranslatedResult.SourceText</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterTranslatedResult#SourceText"/>
-        public TextFilterResult? SourceText
+        public TextFilterResult SourceText
         {
-            get => global::Roblox.Reflection.GetProperty<TextFilterResult?>(this, "SourceText");
-            set => global::Roblox.Reflection.SetProperty<TextFilterResult?>(this, "SourceText", value);
+            get => global::Roblox.Reflection.GetProperty<TextFilterResult>(this, "SourceText")!;
+            set => global::Roblox.Reflection.SetProperty<TextFilterResult>(this, "SourceText", value);
         }
 
         /// <summary>

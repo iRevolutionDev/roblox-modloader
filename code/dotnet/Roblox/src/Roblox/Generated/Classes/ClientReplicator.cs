@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ClientReplicator"/>
     [RobloxClass("ClientReplicator")]
-    public class ClientReplicator : NetworkReplicator
+    public partial class ClientReplicator : NetworkReplicator
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ClientReplicator.</param>

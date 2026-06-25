@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout"/>
     [RobloxClass("UIPageLayout")]
-    public class UIPageLayout : UIGridStyleLayout
+    public partial class UIPageLayout : UIGridStyleLayout
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UIPageLayout.</param>
@@ -49,10 +49,10 @@ namespace Roblox
         /// The page that is either currently being displayed or is the target of the current animation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIPageLayout#CurrentPage"/>
-        public GuiObject? CurrentPage
+        public GuiObject CurrentPage
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "CurrentPage");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "CurrentPage", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "CurrentPage")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "CurrentPage", value);
         }
 
         /// <summary>

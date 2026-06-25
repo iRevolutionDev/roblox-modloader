@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("CollaboratorsService")]
-    public class CollaboratorsService : Instance
+    public partial class CollaboratorsService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CollaboratorsService.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("VersionControlService")]
-    public class VersionControlService : Instance
+    public partial class VersionControlService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VersionControlService.</param>

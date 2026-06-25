@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription"/>
     [RobloxClass("AccessoryDescription")]
-    public class AccessoryDescription : Instance
+    public partial class AccessoryDescription : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AccessoryDescription.</param>
@@ -49,10 +49,10 @@ namespace Roblox
         /// A reference to the Instance that should be applied when applying this AccessoryDescription.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Instance"/>
-        public Instance? Instance
+        public Instance Instance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Instance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Instance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Instance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Instance", value);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("CalloutService")]
-    public class CalloutService : Instance
+    public partial class CalloutService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CalloutService.</param>

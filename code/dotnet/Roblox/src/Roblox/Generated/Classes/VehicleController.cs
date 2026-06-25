@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VehicleController"/>
     [RobloxClass("VehicleController")]
-    public class VehicleController : Controller
+    public partial class VehicleController : Controller
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VehicleController.</param>

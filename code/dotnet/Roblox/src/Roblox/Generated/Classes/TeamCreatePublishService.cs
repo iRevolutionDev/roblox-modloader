@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TeamCreatePublishService")]
-    public class TeamCreatePublishService : Instance
+    public partial class TeamCreatePublishService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TeamCreatePublishService.</param>

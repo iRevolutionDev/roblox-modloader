@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver"/>
     [RobloxClass("CustomEventReceiver")]
-    public class CustomEventReceiver : Instance
+    public partial class CustomEventReceiver : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CustomEventReceiver.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// Attaches the CustomEventReceiver object to a CustomEvent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CustomEventReceiver#Source"/>
-        public Instance? Source
+        public Instance Source
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Source");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Source", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Source")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Source", value);
         }
 
         /// <summary>

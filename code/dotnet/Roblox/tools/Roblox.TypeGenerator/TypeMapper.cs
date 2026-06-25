@@ -52,6 +52,7 @@ internal static class TypeMapper
         }
 
         var t = ToCSharp(returnType);
+        
         if (returnType.Category == "Class" && returnType.Name == "Instance")
         {
             t = MakeNullable(t);

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginDragEvent"/>
     [RobloxClass("PluginDragEvent")]
-    public class PluginDragEvent : Instance
+    public partial class PluginDragEvent : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PluginDragEvent.</param>

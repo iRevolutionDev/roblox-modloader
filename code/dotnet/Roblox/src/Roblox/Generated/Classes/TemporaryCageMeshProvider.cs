@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TemporaryCageMeshProvider")]
-    public class TemporaryCageMeshProvider : Instance
+    public partial class TemporaryCageMeshProvider : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TemporaryCageMeshProvider.</param>

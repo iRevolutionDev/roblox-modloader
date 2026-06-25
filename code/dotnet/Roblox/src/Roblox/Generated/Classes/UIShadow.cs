@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIShadow"/>
     [RobloxClass("UIShadow")]
-    public class UIShadow : UIComponent
+    public partial class UIShadow : UIComponent
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UIShadow.</param>

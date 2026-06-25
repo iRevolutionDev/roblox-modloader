@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PausedStateException")]
-    public class PausedStateException : PausedState
+    public partial class PausedStateException : PausedState
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PausedStateException.</param>

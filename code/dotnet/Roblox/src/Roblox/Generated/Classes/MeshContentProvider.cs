@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshContentProvider"/>
     [RobloxClass("MeshContentProvider")]
-    public class MeshContentProvider : CacheableContentProvider
+    public partial class MeshContentProvider : CacheableContentProvider
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MeshContentProvider.</param>

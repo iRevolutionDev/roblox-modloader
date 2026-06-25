@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription"/>
     [RobloxClass("MakeupDescription")]
-    public class MakeupDescription : Instance
+    public partial class MakeupDescription : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MakeupDescription.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// A reference to the Instance that should be used when applying this MakeupDescription.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MakeupDescription#Instance"/>
-        public Instance? Instance
+        public Instance Instance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Instance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Instance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Instance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Instance", value);
         }
 
         /// <summary>

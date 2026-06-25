@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ExplorerFilter")]
-    public class ExplorerFilter : Instance
+    public partial class ExplorerFilter : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ExplorerFilter.</param>

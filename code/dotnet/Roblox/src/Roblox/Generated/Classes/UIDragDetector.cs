@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector"/>
     [RobloxClass("UIDragDetector")]
-    public class UIDragDetector : UIComponent
+    public partial class UIDragDetector : UIComponent
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UIDragDetector.</param>
@@ -59,10 +59,10 @@ namespace Roblox
         /// Instance whose bounding area defines the drag boundaries for the parent GuiObject.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#BoundingUI"/>
-        public GuiBase2d? BoundingUI
+        public GuiBase2d BoundingUI
         {
-            get => global::Roblox.Reflection.GetProperty<GuiBase2d?>(this, "BoundingUI");
-            set => global::Roblox.Reflection.SetProperty<GuiBase2d?>(this, "BoundingUI", value);
+            get => global::Roblox.Reflection.GetProperty<GuiBase2d>(this, "BoundingUI")!;
+            set => global::Roblox.Reflection.SetProperty<GuiBase2d>(this, "BoundingUI", value);
         }
 
         /// <summary>
@@ -199,10 +199,10 @@ namespace Roblox
         /// A GuiObject instance whose local space and absolute center position is the reference space and origin for the detector.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIDragDetector#ReferenceUIInstance"/>
-        public GuiObject? ReferenceUIInstance
+        public GuiObject ReferenceUIInstance
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "ReferenceUIInstance");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "ReferenceUIInstance", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "ReferenceUIInstance")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "ReferenceUIInstance", value);
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MaterialVariant"/>
     [RobloxClass("MaterialVariant")]
-    public class MaterialVariant : Instance
+    public partial class MaterialVariant : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MaterialVariant.</param>

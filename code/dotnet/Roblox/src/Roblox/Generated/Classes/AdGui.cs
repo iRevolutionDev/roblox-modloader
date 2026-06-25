@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdGui"/>
     [RobloxClass("AdGui")]
-    public class AdGui : SurfaceGuiBase
+    public partial class AdGui : SurfaceGuiBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AdGui.</param>

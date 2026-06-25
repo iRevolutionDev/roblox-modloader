@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RodConstraint"/>
     [RobloxClass("RodConstraint")]
-    public class RodConstraint : Constraint
+    public partial class RodConstraint : Constraint
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RodConstraint.</param>

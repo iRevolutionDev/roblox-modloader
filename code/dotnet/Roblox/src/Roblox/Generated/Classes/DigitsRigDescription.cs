@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription"/>
     [RobloxClass("DigitsRigDescription")]
-    public class DigitsRigDescription : Instance
+    public partial class DigitsRigDescription : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DigitsRigDescription.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Index1</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index1"/>
-        public Instance? Index1
+        public Instance Index1
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Index1");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Index1", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Index1")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Index1", value);
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Index2</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index2"/>
-        public Instance? Index2
+        public Instance Index2
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Index2");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Index2", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Index2")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Index2", value);
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Index3</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Index3"/>
-        public Instance? Index3
+        public Instance Index3
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Index3");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Index3", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Index3")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Index3", value);
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Middle1</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle1"/>
-        public Instance? Middle1
+        public Instance Middle1
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Middle1");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Middle1", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Middle1")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Middle1", value);
         }
 
         /// <summary>
@@ -129,10 +129,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Middle2</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle2"/>
-        public Instance? Middle2
+        public Instance Middle2
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Middle2");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Middle2", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Middle2")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Middle2", value);
         }
 
         /// <summary>
@@ -149,10 +149,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Middle3</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Middle3"/>
-        public Instance? Middle3
+        public Instance Middle3
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Middle3");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Middle3", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Middle3")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Middle3", value);
         }
 
         /// <summary>
@@ -189,10 +189,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Pinky1</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky1"/>
-        public Instance? Pinky1
+        public Instance Pinky1
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Pinky1");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Pinky1", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Pinky1")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Pinky1", value);
         }
 
         /// <summary>
@@ -209,10 +209,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Pinky2</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky2"/>
-        public Instance? Pinky2
+        public Instance Pinky2
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Pinky2");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Pinky2", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Pinky2")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Pinky2", value);
         }
 
         /// <summary>
@@ -229,10 +229,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Pinky3</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Pinky3"/>
-        public Instance? Pinky3
+        public Instance Pinky3
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Pinky3");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Pinky3", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Pinky3")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Pinky3", value);
         }
 
         /// <summary>
@@ -269,10 +269,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Ring1</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring1"/>
-        public Instance? Ring1
+        public Instance Ring1
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Ring1");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Ring1", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Ring1")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Ring1", value);
         }
 
         /// <summary>
@@ -289,10 +289,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Ring2</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring2"/>
-        public Instance? Ring2
+        public Instance Ring2
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Ring2");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Ring2", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Ring2")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Ring2", value);
         }
 
         /// <summary>
@@ -309,10 +309,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Ring3</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Ring3"/>
-        public Instance? Ring3
+        public Instance Ring3
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Ring3");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Ring3", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Ring3")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Ring3", value);
         }
 
         /// <summary>
@@ -359,10 +359,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Thumb1</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb1"/>
-        public Instance? Thumb1
+        public Instance Thumb1
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Thumb1");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Thumb1", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Thumb1")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Thumb1", value);
         }
 
         /// <summary>
@@ -379,10 +379,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Thumb2</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb2"/>
-        public Instance? Thumb2
+        public Instance Thumb2
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Thumb2");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Thumb2", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Thumb2")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Thumb2", value);
         }
 
         /// <summary>
@@ -399,10 +399,10 @@ namespace Roblox
         /// <c>DigitsRigDescription.Thumb3</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DigitsRigDescription#Thumb3"/>
-        public Instance? Thumb3
+        public Instance Thumb3
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Thumb3");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Thumb3", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Thumb3")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Thumb3", value);
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound"/>
     [RobloxClass("Sound")]
-    public class Sound : Instance
+    public partial class Sound : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Sound.</param>
@@ -257,10 +257,10 @@ namespace Roblox
         /// The SoundGroup that is linked to this Sound.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#SoundGroup"/>
-        public SoundGroup? SoundGroup
+        public SoundGroup SoundGroup
         {
-            get => global::Roblox.Reflection.GetProperty<SoundGroup?>(this, "SoundGroup");
-            set => global::Roblox.Reflection.SetProperty<SoundGroup?>(this, "SoundGroup", value);
+            get => global::Roblox.Reflection.GetProperty<SoundGroup>(this, "SoundGroup")!;
+            set => global::Roblox.Reflection.SetProperty<SoundGroup>(this, "SoundGroup", value);
         }
 
         /// <summary>

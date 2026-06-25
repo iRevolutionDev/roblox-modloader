@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoCapture"/>
     [RobloxClass("VideoCapture")]
-    public class VideoCapture : Capture
+    public partial class VideoCapture : Capture
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VideoCapture.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot"/>
     [RobloxClass("WorldRoot")]
-    public class WorldRoot : Model
+    public partial class WorldRoot : Model
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox WorldRoot.</param>

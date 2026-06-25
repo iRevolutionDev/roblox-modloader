@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("MetaBreakpointContext")]
-    public class MetaBreakpointContext : Instance
+    public partial class MetaBreakpointContext : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MetaBreakpointContext.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleDerive"/>
     [RobloxClass("StyleDerive")]
-    public class StyleDerive : Instance
+    public partial class StyleDerive : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StyleDerive.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// The StyleSheet from which the parent StyleSheet inherits StyleRules and token definitions.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StyleDerive#StyleSheet"/>
-        public StyleSheet? StyleSheet
+        public StyleSheet StyleSheet
         {
-            get => global::Roblox.Reflection.GetProperty<StyleSheet?>(this, "StyleSheet");
-            set => global::Roblox.Reflection.SetProperty<StyleSheet?>(this, "StyleSheet", value);
+            get => global::Roblox.Reflection.GetProperty<StyleSheet>(this, "StyleSheet")!;
+            set => global::Roblox.Reflection.SetProperty<StyleSheet>(this, "StyleSheet", value);
         }
 
     }

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("DebuggerLuaResponse")]
-    public class DebuggerLuaResponse : Instance
+    public partial class DebuggerLuaResponse : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DebuggerLuaResponse.</param>

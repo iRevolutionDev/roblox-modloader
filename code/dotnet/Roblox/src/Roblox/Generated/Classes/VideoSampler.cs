@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/VideoSampler"/>
     [RobloxClass("VideoSampler")]
-    public class VideoSampler : global::Roblox.Object
+    public partial class VideoSampler : global::Roblox.Object
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox VideoSampler.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MotorFeature"/>
     [RobloxClass("MotorFeature")]
-    public class MotorFeature : Feature
+    public partial class MotorFeature : Feature
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox MotorFeature.</param>

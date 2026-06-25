@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("Noise")]
-    public class Noise : Instance
+    public partial class Noise : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Noise.</param>

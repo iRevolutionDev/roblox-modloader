@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("WebViewService")]
-    public class WebViewService : Instance
+    public partial class WebViewService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox WebViewService.</param>

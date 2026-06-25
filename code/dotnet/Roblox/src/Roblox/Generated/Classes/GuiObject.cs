@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject"/>
     [RobloxClass("GuiObject")]
-    public class GuiObject : GuiBase2d
+    public partial class GuiObject : GuiBase2d
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox GuiObject.</param>
@@ -189,40 +189,40 @@ namespace Roblox
         /// Sets the GuiObject which will be selected when the gamepad selector is moved downward.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#NextSelectionDown"/>
-        public GuiObject? NextSelectionDown
+        public GuiObject NextSelectionDown
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "NextSelectionDown");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "NextSelectionDown", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "NextSelectionDown")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "NextSelectionDown", value);
         }
 
         /// <summary>
         /// Sets the GuiObject which will be selected when the gamepad selector is moved to the left.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#NextSelectionLeft"/>
-        public GuiObject? NextSelectionLeft
+        public GuiObject NextSelectionLeft
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "NextSelectionLeft");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "NextSelectionLeft", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "NextSelectionLeft")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "NextSelectionLeft", value);
         }
 
         /// <summary>
         /// Sets the GuiObject which will be selected when the gamepad selector is moved to the right.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#NextSelectionRight"/>
-        public GuiObject? NextSelectionRight
+        public GuiObject NextSelectionRight
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "NextSelectionRight");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "NextSelectionRight", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "NextSelectionRight")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "NextSelectionRight", value);
         }
 
         /// <summary>
         /// Sets the GuiObject which will be selected when the gamepad selector is moved upward.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#NextSelectionUp"/>
-        public GuiObject? NextSelectionUp
+        public GuiObject NextSelectionUp
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "NextSelectionUp");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "NextSelectionUp", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "NextSelectionUp")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "NextSelectionUp", value);
         }
 
         /// <summary>
@@ -259,10 +259,10 @@ namespace Roblox
         /// Overrides the default selection adornment used for gamepads.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#SelectionImageObject"/>
-        public GuiObject? SelectionImageObject
+        public GuiObject SelectionImageObject
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "SelectionImageObject");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "SelectionImageObject", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "SelectionImageObject")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "SelectionImageObject", value);
         }
 
         /// <summary>

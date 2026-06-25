@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RemoteCursorService")]
-    public class RemoteCursorService : Instance
+    public partial class RemoteCursorService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RemoteCursorService.</param>

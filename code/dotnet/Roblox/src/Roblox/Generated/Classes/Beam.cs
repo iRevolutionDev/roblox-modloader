@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam"/>
     [RobloxClass("Beam")]
-    public class Beam : Instance
+    public partial class Beam : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Beam.</param>
@@ -29,20 +29,20 @@ namespace Roblox
         /// The Attachment the beam originates from.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Attachment0"/>
-        public Attachment? Attachment0
+        public Attachment Attachment0
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment0");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment0", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment0")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment0", value);
         }
 
         /// <summary>
         /// The Attachment the beam ends at.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Beam#Attachment1"/>
-        public Attachment? Attachment1
+        public Attachment Attachment1
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment1");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment1", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment1")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment1", value);
         }
 
         /// <summary>

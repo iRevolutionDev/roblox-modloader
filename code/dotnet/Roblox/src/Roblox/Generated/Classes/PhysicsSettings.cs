@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsSettings"/>
     [RobloxClass("PhysicsSettings")]
-    public class PhysicsSettings : Instance
+    public partial class PhysicsSettings : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PhysicsSettings.</param>

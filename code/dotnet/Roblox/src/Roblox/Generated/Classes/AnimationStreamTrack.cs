@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AnimationStreamTrack")]
-    public class AnimationStreamTrack : Instance
+    public partial class AnimationStreamTrack : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AnimationStreamTrack.</param>
@@ -21,10 +21,10 @@ namespace Roblox
         public static new AnimationStreamTrack? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationStreamTrack(handle);
 
-        public TrackerStreamAnimation? Animation
+        public TrackerStreamAnimation Animation
         {
-            get => global::Roblox.Reflection.GetProperty<TrackerStreamAnimation?>(this, "Animation");
-            set => global::Roblox.Reflection.SetProperty<TrackerStreamAnimation?>(this, "Animation", value);
+            get => global::Roblox.Reflection.GetProperty<TrackerStreamAnimation>(this, "Animation")!;
+            set => global::Roblox.Reflection.SetProperty<TrackerStreamAnimation>(this, "Animation", value);
         }
 
         public Enum.FACSDataLod FACSDataLod

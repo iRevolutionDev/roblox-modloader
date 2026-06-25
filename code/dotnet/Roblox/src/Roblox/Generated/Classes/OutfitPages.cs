@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OutfitPages"/>
     [RobloxClass("OutfitPages")]
-    public class OutfitPages : Pages
+    public partial class OutfitPages : Pages
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox OutfitPages.</param>

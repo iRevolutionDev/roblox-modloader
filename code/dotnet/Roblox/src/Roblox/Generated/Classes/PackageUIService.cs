@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PackageUIService")]
-    public class PackageUIService : Instance
+    public partial class PackageUIService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PackageUIService.</param>

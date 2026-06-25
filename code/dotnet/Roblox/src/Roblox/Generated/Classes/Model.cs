@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model"/>
     [RobloxClass("Model")]
-    public class Model : PVInstance
+    public partial class Model : PVInstance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Model.</param>
@@ -49,10 +49,10 @@ namespace Roblox
         /// The primary part of the Model, or nil if not explicitly set.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#PrimaryPart"/>
-        public BasePart? PrimaryPart
+        public BasePart PrimaryPart
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "PrimaryPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "PrimaryPart", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "PrimaryPart")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "PrimaryPart", value);
         }
 
         /// <summary>

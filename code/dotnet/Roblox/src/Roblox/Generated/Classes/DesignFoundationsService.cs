@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("DesignFoundationsService")]
-    public class DesignFoundationsService : Instance
+    public partial class DesignFoundationsService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DesignFoundationsService.</param>

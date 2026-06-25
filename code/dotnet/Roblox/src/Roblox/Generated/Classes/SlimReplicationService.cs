@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("SlimReplicationService")]
-    public class SlimReplicationService : Instance
+    public partial class SlimReplicationService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SlimReplicationService.</param>

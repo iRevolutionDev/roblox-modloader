@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FluidForceSensor"/>
     [RobloxClass("FluidForceSensor")]
-    public class FluidForceSensor : SensorBase
+    public partial class FluidForceSensor : SensorBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox FluidForceSensor.</param>

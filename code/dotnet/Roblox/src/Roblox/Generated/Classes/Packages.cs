@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("Packages")]
-    public class Packages : Instance
+    public partial class Packages : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Packages.</param>

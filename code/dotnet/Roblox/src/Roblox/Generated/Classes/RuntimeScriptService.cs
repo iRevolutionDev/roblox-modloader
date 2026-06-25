@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RuntimeScriptService")]
-    public class RuntimeScriptService : Instance
+    public partial class RuntimeScriptService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RuntimeScriptService.</param>

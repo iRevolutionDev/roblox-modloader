@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AppRatingPromptService")]
-    public class AppRatingPromptService : Instance
+    public partial class AppRatingPromptService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AppRatingPromptService.</param>

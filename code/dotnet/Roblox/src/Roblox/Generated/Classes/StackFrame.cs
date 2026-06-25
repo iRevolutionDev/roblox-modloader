@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("StackFrame")]
-    public class StackFrame : Instance
+    public partial class StackFrame : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StackFrame.</param>
@@ -39,10 +39,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.DebuggerFrameType>(this, "FrameType", value);
         }
 
-        public DebuggerVariable? Globals
+        public DebuggerVariable Globals
         {
-            get => global::Roblox.Reflection.GetProperty<DebuggerVariable?>(this, "Globals");
-            set => global::Roblox.Reflection.SetProperty<DebuggerVariable?>(this, "Globals", value);
+            get => global::Roblox.Reflection.GetProperty<DebuggerVariable>(this, "Globals")!;
+            set => global::Roblox.Reflection.SetProperty<DebuggerVariable>(this, "Globals", value);
         }
 
         public int Line
@@ -51,10 +51,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<int>(this, "Line", value);
         }
 
-        public DebuggerVariable? Locals
+        public DebuggerVariable Locals
         {
-            get => global::Roblox.Reflection.GetProperty<DebuggerVariable?>(this, "Locals");
-            set => global::Roblox.Reflection.SetProperty<DebuggerVariable?>(this, "Locals", value);
+            get => global::Roblox.Reflection.GetProperty<DebuggerVariable>(this, "Locals")!;
+            set => global::Roblox.Reflection.SetProperty<DebuggerVariable>(this, "Locals", value);
         }
 
         public bool Populated
@@ -69,10 +69,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<string>(this, "Script", value);
         }
 
-        public DebuggerVariable? Upvalues
+        public DebuggerVariable Upvalues
         {
-            get => global::Roblox.Reflection.GetProperty<DebuggerVariable?>(this, "Upvalues");
-            set => global::Roblox.Reflection.SetProperty<DebuggerVariable?>(this, "Upvalues", value);
+            get => global::Roblox.Reflection.GetProperty<DebuggerVariable>(this, "Upvalues")!;
+            set => global::Roblox.Reflection.SetProperty<DebuggerVariable>(this, "Upvalues", value);
         }
 
     }

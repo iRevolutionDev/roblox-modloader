@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RbxAnalyticsService")]
-    public class RbxAnalyticsService : Instance
+    public partial class RbxAnalyticsService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RbxAnalyticsService.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ChannelSelectorSoundEffect")]
-    public class ChannelSelectorSoundEffect : CustomSoundEffect
+    public partial class ChannelSelectorSoundEffect : CustomSoundEffect
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ChannelSelectorSoundEffect.</param>

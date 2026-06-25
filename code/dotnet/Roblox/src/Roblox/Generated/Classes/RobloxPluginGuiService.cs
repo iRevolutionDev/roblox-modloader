@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RobloxPluginGuiService")]
-    public class RobloxPluginGuiService : Instance
+    public partial class RobloxPluginGuiService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RobloxPluginGuiService.</param>

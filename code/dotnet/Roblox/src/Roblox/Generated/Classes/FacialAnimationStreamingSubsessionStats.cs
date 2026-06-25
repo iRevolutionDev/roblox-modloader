@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("FacialAnimationStreamingSubsessionStats")]
-    public class FacialAnimationStreamingSubsessionStats : Instance
+    public partial class FacialAnimationStreamingSubsessionStats : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox FacialAnimationStreamingSubsessionStats.</param>

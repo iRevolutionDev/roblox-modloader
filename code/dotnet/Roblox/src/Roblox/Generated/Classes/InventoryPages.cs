@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InventoryPages"/>
     [RobloxClass("InventoryPages")]
-    public class InventoryPages : Pages
+    public partial class InventoryPages : Pages
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox InventoryPages.</param>

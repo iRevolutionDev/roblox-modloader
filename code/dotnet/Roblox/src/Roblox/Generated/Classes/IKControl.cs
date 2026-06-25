@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl"/>
     [RobloxClass("IKControl")]
-    public class IKControl : Instance
+    public partial class IKControl : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox IKControl.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The last part that you are interested in moving your character. For example, the upper arm. Must be an ancestor of EndEffector and be a BasePart or a Bone in your character.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#ChainRoot"/>
-        public Instance? ChainRoot
+        public Instance ChainRoot
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ChainRoot");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ChainRoot", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "ChainRoot")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "ChainRoot", value);
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Roblox
         /// The part that you are interested in moving to reach the Target. For example, the hand of your character. Must be a descendant of ChainRoot and be a BasePart or a Bone in your character.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#EndEffector"/>
-        public Instance? EndEffector
+        public Instance EndEffector
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "EndEffector");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "EndEffector", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "EndEffector")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "EndEffector", value);
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace Roblox
         /// An optional instance that determines which way the chain bends. You can use this to specify which way an elbow or knee bends.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Pole"/>
-        public Instance? Pole
+        public Instance Pole
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Pole");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Pole", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Pole")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Pole", value);
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace Roblox
         /// The object that the EndEffector reaches for or points at. It can be anything that has a position in the world, such as BasePart, Attachment, Bone, or Motor6D.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/IKControl#Target"/>
-        public Instance? Target
+        public Instance Target
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Target");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Target", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Target")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Target", value);
         }
 
         /// <summary>

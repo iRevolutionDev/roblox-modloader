@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("LodDataService")]
-    public class LodDataService : Instance
+    public partial class LodDataService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox LodDataService.</param>

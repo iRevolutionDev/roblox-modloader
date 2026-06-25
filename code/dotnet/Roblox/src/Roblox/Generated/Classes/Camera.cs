@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera"/>
     [RobloxClass("Camera")]
-    public class Camera : PVInstance
+    public partial class Camera : PVInstance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Camera.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// The Humanoid or BasePart that is the Camera subject.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#CameraSubject"/>
-        public Instance? CameraSubject
+        public Instance CameraSubject
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "CameraSubject");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "CameraSubject", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "CameraSubject")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "CameraSubject", value);
         }
 
         /// <summary>

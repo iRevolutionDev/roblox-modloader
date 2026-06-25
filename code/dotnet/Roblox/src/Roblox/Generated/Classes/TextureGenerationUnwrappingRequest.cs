@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TextureGenerationUnwrappingRequest")]
-    public class TextureGenerationUnwrappingRequest : Instance
+    public partial class TextureGenerationUnwrappingRequest : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TextureGenerationUnwrappingRequest.</param>

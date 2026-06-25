@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BackpackItem"/>
     [RobloxClass("BackpackItem")]
-    public class BackpackItem : Model
+    public partial class BackpackItem : Model
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BackpackItem.</param>

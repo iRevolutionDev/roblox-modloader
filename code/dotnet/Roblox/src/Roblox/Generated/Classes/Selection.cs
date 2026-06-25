@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Selection"/>
     [RobloxClass("Selection")]
-    public class Selection : Instance
+    public partial class Selection : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Selection.</param>
@@ -25,10 +25,10 @@ namespace Roblox
         public static new Selection? FromHandle(nuint handle)
             => handle == 0 ? null : new Selection(handle);
 
-        public Instance? ActiveInstance
+        public Instance ActiveInstance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ActiveInstance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ActiveInstance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "ActiveInstance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "ActiveInstance", value);
         }
 
         public Enum.SelectionRenderMode RenderMode

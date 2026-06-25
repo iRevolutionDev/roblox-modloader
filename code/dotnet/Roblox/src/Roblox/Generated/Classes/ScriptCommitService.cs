@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("ScriptCommitService")]
-    public class ScriptCommitService : Instance
+    public partial class ScriptCommitService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ScriptCommitService.</param>

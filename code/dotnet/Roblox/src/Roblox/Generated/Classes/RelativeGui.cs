@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("RelativeGui")]
-    public class RelativeGui : GuiObject
+    public partial class RelativeGui : GuiObject
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RelativeGui.</param>

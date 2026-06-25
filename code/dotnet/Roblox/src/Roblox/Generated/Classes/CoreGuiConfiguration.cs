@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreGuiConfiguration"/>
     [RobloxClass("CoreGuiConfiguration")]
-    public class CoreGuiConfiguration : Instance
+    public partial class CoreGuiConfiguration : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CoreGuiConfiguration.</param>
@@ -29,30 +29,30 @@ namespace Roblox
         /// <c>CoreGuiConfiguration.CapturesViewConfiguration</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreGuiConfiguration#CapturesViewConfiguration"/>
-        public CapturesViewConfiguration? CapturesViewConfiguration
+        public CapturesViewConfiguration CapturesViewConfiguration
         {
-            get => global::Roblox.Reflection.GetProperty<CapturesViewConfiguration?>(this, "CapturesViewConfiguration");
-            set => global::Roblox.Reflection.SetProperty<CapturesViewConfiguration?>(this, "CapturesViewConfiguration", value);
+            get => global::Roblox.Reflection.GetProperty<CapturesViewConfiguration>(this, "CapturesViewConfiguration")!;
+            set => global::Roblox.Reflection.SetProperty<CapturesViewConfiguration>(this, "CapturesViewConfiguration", value);
         }
 
         /// <summary>
         /// <c>CoreGuiConfiguration.PlayerListConfiguration</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreGuiConfiguration#PlayerListConfiguration"/>
-        public PlayerListConfiguration? PlayerListConfiguration
+        public PlayerListConfiguration PlayerListConfiguration
         {
-            get => global::Roblox.Reflection.GetProperty<PlayerListConfiguration?>(this, "PlayerListConfiguration");
-            set => global::Roblox.Reflection.SetProperty<PlayerListConfiguration?>(this, "PlayerListConfiguration", value);
+            get => global::Roblox.Reflection.GetProperty<PlayerListConfiguration>(this, "PlayerListConfiguration")!;
+            set => global::Roblox.Reflection.SetProperty<PlayerListConfiguration>(this, "PlayerListConfiguration", value);
         }
 
         /// <summary>
         /// <c>CoreGuiConfiguration.SelfViewConfiguration</c>
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreGuiConfiguration#SelfViewConfiguration"/>
-        public SelfViewConfiguration? SelfViewConfiguration
+        public SelfViewConfiguration SelfViewConfiguration
         {
-            get => global::Roblox.Reflection.GetProperty<SelfViewConfiguration?>(this, "SelfViewConfiguration");
-            set => global::Roblox.Reflection.SetProperty<SelfViewConfiguration?>(this, "SelfViewConfiguration", value);
+            get => global::Roblox.Reflection.GetProperty<SelfViewConfiguration>(this, "SelfViewConfiguration")!;
+            set => global::Roblox.Reflection.SetProperty<SelfViewConfiguration>(this, "SelfViewConfiguration", value);
         }
 
     }

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire"/>
     [RobloxClass("FloorWire")]
-    public class FloorWire : GuiBase3d
+    public partial class FloorWire : GuiBase3d
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox FloorWire.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// The object that the FloorWire travels from.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#From"/>
-        public BasePart? From
+        public BasePart From
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "From");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "From", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "From")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "From", value);
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace Roblox
         /// The object that the FloorWire travels to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FloorWire#To"/>
-        public BasePart? To
+        public BasePart To
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "To");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "To", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "To")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "To", value);
         }
 
         /// <summary>

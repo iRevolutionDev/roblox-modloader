@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("CloudLocalizationTable")]
-    public class CloudLocalizationTable : LocalizationTable
+    public partial class CloudLocalizationTable : LocalizationTable
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CloudLocalizationTable.</param>

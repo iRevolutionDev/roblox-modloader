@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceOutput"/>
     [RobloxClass("AudioDeviceOutput")]
-    public class AudioDeviceOutput : Instance
+    public partial class AudioDeviceOutput : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AudioDeviceOutput.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// A Player who is intended to hear the connected audio streams.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioDeviceOutput#Player"/>
-        public Player? Player
+        public Player Player
         {
-            get => global::Roblox.Reflection.GetProperty<Player?>(this, "Player");
-            set => global::Roblox.Reflection.SetProperty<Player?>(this, "Player", value);
+            get => global::Roblox.Reflection.GetProperty<Player>(this, "Player")!;
+            set => global::Roblox.Reflection.SetProperty<Player>(this, "Player", value);
         }
 
         /// <summary>

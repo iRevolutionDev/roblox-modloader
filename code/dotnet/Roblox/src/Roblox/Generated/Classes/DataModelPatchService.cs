@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("DataModelPatchService")]
-    public class DataModelPatchService : Instance
+    public partial class DataModelPatchService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DataModelPatchService.</param>

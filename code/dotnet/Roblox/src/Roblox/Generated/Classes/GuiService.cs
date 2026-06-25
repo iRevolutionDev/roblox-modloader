@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService"/>
     [RobloxClass("GuiService")]
-    public class GuiService : Instance
+    public partial class GuiService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox GuiService.</param>
@@ -35,16 +35,16 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutoSelectGuiEnabled", value);
         }
 
-        public Folder? CoreEffectFolder
+        public Folder CoreEffectFolder
         {
-            get => global::Roblox.Reflection.GetProperty<Folder?>(this, "CoreEffectFolder");
-            set => global::Roblox.Reflection.SetProperty<Folder?>(this, "CoreEffectFolder", value);
+            get => global::Roblox.Reflection.GetProperty<Folder>(this, "CoreEffectFolder")!;
+            set => global::Roblox.Reflection.SetProperty<Folder>(this, "CoreEffectFolder", value);
         }
 
-        public Folder? CoreGuiFolder
+        public Folder CoreGuiFolder
         {
-            get => global::Roblox.Reflection.GetProperty<Folder?>(this, "CoreGuiFolder");
-            set => global::Roblox.Reflection.SetProperty<Folder?>(this, "CoreGuiFolder", value);
+            get => global::Roblox.Reflection.GetProperty<Folder>(this, "CoreGuiFolder")!;
+            set => global::Roblox.Reflection.SetProperty<Folder>(this, "CoreGuiFolder", value);
         }
 
         /// <summary>
@@ -133,20 +133,20 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ReducedMotionEnabled", value);
         }
 
-        public GuiObject? SelectedCoreObject
+        public GuiObject SelectedCoreObject
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "SelectedCoreObject");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "SelectedCoreObject", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "SelectedCoreObject")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "SelectedCoreObject", value);
         }
 
         /// <summary>
         /// Sets the GuiObject currently being focused on by the GUI navigator.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#SelectedObject"/>
-        public GuiObject? SelectedObject
+        public GuiObject SelectedObject
         {
-            get => global::Roblox.Reflection.GetProperty<GuiObject?>(this, "SelectedObject");
-            set => global::Roblox.Reflection.SetProperty<GuiObject?>(this, "SelectedObject", value);
+            get => global::Roblox.Reflection.GetProperty<GuiObject>(this, "SelectedObject")!;
+            set => global::Roblox.Reflection.SetProperty<GuiObject>(this, "SelectedObject", value);
         }
 
         /// <summary>

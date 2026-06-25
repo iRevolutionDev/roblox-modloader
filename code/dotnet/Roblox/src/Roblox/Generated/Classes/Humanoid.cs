@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid"/>
     [RobloxClass("Humanoid")]
-    public class Humanoid : Instance
+    public partial class Humanoid : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Humanoid.</param>
@@ -205,10 +205,10 @@ namespace Roblox
         /// Deprecated: This instance only works with the old R6 rig. It will not work with the R15 rig and should not be used in new work not using the R6 rig.A reference to the humanoid's Left Leg part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#LeftLeg"/>
-        public BasePart? LeftLeg
+        public BasePart LeftLeg
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "LeftLeg");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "LeftLeg", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "LeftLeg")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "LeftLeg", value);
         }
 
         /// <summary>
@@ -295,30 +295,30 @@ namespace Roblox
         /// Deprecated: This instance only works with the old R6 rig. It will not work with the R15 rig and should not be used in new work not using the R6 rig.A reference to the humanoid's Right Leg part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RightLeg"/>
-        public BasePart? RightLeg
+        public BasePart RightLeg
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "RightLeg");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "RightLeg", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "RightLeg")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "RightLeg", value);
         }
 
         /// <summary>
         /// A reference to the humanoid's HumanoidRootPart object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RootPart"/>
-        public BasePart? RootPart
+        public BasePart RootPart
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "RootPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "RootPart", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "RootPart")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "RootPart", value);
         }
 
         /// <summary>
         /// A reference to the seat that a Humanoid is currently sitting in, if any.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#SeatPart"/>
-        public BasePart? SeatPart
+        public BasePart SeatPart
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "SeatPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "SeatPart", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "SeatPart")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "SeatPart", value);
         }
 
         /// <summary>
@@ -345,10 +345,10 @@ namespace Roblox
         /// Deprecated: This instance only works with the old R6 rig. It will not work with the R15 rig and should not be used in new work not using the R6 rig.A reference to a humanoid's root driving part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Torso"/>
-        public BasePart? Torso
+        public BasePart Torso
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Torso");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Torso", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Torso")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Torso", value);
         }
 
         /// <summary>
@@ -375,10 +375,10 @@ namespace Roblox
         /// A reference to a part whose position is trying to be reached by a humanoid.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#WalkToPart"/>
-        public BasePart? WalkToPart
+        public BasePart WalkToPart
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "WalkToPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "WalkToPart", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "WalkToPart")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "WalkToPart", value);
         }
 
         /// <summary>

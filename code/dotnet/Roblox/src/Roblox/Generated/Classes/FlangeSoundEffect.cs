@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FlangeSoundEffect"/>
     [RobloxClass("FlangeSoundEffect")]
-    public class FlangeSoundEffect : SoundEffect
+    public partial class FlangeSoundEffect : SoundEffect
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox FlangeSoundEffect.</param>

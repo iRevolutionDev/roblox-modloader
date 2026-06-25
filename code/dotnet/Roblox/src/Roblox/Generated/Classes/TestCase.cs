@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TestCase")]
-    public class TestCase : Instance
+    public partial class TestCase : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TestCase.</param>

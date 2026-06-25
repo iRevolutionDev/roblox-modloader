@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSpeechToText"/>
     [RobloxClass("AudioSpeechToText")]
-    public class AudioSpeechToText : Instance
+    public partial class AudioSpeechToText : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AudioSpeechToText.</param>

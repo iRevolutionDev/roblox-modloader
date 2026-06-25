@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AuroraScriptObject")]
-    public class AuroraScriptObject : Instance
+    public partial class AuroraScriptObject : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AuroraScriptObject.</param>
@@ -21,16 +21,16 @@ namespace Roblox
         public static new AuroraScriptObject? FromHandle(nuint handle)
             => handle == 0 ? null : new AuroraScriptObject(handle);
 
-        public Instance? BehaviorWeak
+        public Instance BehaviorWeak
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "BehaviorWeak");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "BehaviorWeak", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "BehaviorWeak")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "BehaviorWeak", value);
         }
 
-        public Instance? BoundInstanceWeak
+        public Instance BoundInstanceWeak
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "BoundInstanceWeak");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "BoundInstanceWeak", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "BoundInstanceWeak")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "BoundInstanceWeak", value);
         }
 
         public int FrameId

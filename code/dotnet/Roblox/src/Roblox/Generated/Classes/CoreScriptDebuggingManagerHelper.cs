@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CoreScriptDebuggingManagerHelper"/>
     [RobloxClass("CoreScriptDebuggingManagerHelper")]
-    public class CoreScriptDebuggingManagerHelper : Instance
+    public partial class CoreScriptDebuggingManagerHelper : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox CoreScriptDebuggingManagerHelper.</param>

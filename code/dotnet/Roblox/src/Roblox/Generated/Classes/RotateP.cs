@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RotateP"/>
     [RobloxClass("RotateP")]
-    public class RotateP : DynamicRotate
+    public partial class RotateP : DynamicRotate
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RotateP.</param>

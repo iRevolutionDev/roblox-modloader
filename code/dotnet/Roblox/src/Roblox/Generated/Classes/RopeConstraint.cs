@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RopeConstraint"/>
     [RobloxClass("RopeConstraint")]
-    public class RopeConstraint : Constraint
+    public partial class RopeConstraint : Constraint
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RopeConstraint.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding"/>
     [RobloxClass("InputBinding")]
-    public class InputBinding : Instance
+    public partial class InputBinding : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox InputBinding.</param>
@@ -175,20 +175,20 @@ namespace Roblox
         /// Connects a GuiButton to a boolean action.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#UIButton"/>
-        public GuiButton? UIButton
+        public GuiButton UIButton
         {
-            get => global::Roblox.Reflection.GetProperty<GuiButton?>(this, "UIButton");
-            set => global::Roblox.Reflection.SetProperty<GuiButton?>(this, "UIButton", value);
+            get => global::Roblox.Reflection.GetProperty<GuiButton>(this, "UIButton")!;
+            set => global::Roblox.Reflection.SetProperty<GuiButton>(this, "UIButton", value);
         }
 
         /// <summary>
         /// Specifies a GuiButton that must be active for the binding to activate.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputBinding#UIModifier"/>
-        public GuiButton? UIModifier
+        public GuiButton UIModifier
         {
-            get => global::Roblox.Reflection.GetProperty<GuiButton?>(this, "UIModifier");
-            set => global::Roblox.Reflection.SetProperty<GuiButton?>(this, "UIModifier", value);
+            get => global::Roblox.Reflection.GetProperty<GuiButton>(this, "UIModifier")!;
+            set => global::Roblox.Reflection.SetProperty<GuiButton>(this, "UIModifier", value);
         }
 
         /// <summary>

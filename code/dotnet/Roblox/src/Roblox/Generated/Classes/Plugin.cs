@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin"/>
     [RobloxClass("Plugin")]
-    public class Plugin : Instance
+    public partial class Plugin : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Plugin.</param>
@@ -77,10 +77,10 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "IsDebuggable", value);
         }
 
-        public MultipleDocumentInterfaceInstance? MultipleDocumentInterfaceInstance
+        public MultipleDocumentInterfaceInstance MultipleDocumentInterfaceInstance
         {
-            get => global::Roblox.Reflection.GetProperty<MultipleDocumentInterfaceInstance?>(this, "MultipleDocumentInterfaceInstance");
-            set => global::Roblox.Reflection.SetProperty<MultipleDocumentInterfaceInstance?>(this, "MultipleDocumentInterfaceInstance", value);
+            get => global::Roblox.Reflection.GetProperty<MultipleDocumentInterfaceInstance>(this, "MultipleDocumentInterfaceInstance")!;
+            set => global::Roblox.Reflection.SetProperty<MultipleDocumentInterfaceInstance>(this, "MultipleDocumentInterfaceInstance", value);
         }
 
         public bool UsesAssetInsertionDrag

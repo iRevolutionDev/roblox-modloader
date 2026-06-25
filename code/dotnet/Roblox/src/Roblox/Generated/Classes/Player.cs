@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player"/>
     [RobloxClass("Player")]
-    public class Player : Instance
+    public partial class Player : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Player.</param>
@@ -101,10 +101,10 @@ namespace Roblox
         /// A Model controlled by the player that contains a Humanoid, body parts, scripts, and other objects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Character"/>
-        public Model? Character
+        public Model Character
         {
-            get => global::Roblox.Reflection.GetProperty<Model?>(this, "Character");
-            set => global::Roblox.Reflection.SetProperty<Model?>(this, "Character", value);
+            get => global::Roblox.Reflection.GetProperty<Model>(this, "Character")!;
+            set => global::Roblox.Reflection.SetProperty<Model>(this, "Character", value);
         }
 
         /// <summary>
@@ -377,20 +377,20 @@ namespace Roblox
         /// Sets the part to focus replication around.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#ReplicationFocus"/>
-        public Instance? ReplicationFocus
+        public Instance ReplicationFocus
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "ReplicationFocus");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "ReplicationFocus", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "ReplicationFocus")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "ReplicationFocus", value);
         }
 
         /// <summary>
         /// If set, the player will respawn at the given SpawnLocation.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#RespawnLocation"/>
-        public SpawnLocation? RespawnLocation
+        public SpawnLocation RespawnLocation
         {
-            get => global::Roblox.Reflection.GetProperty<SpawnLocation?>(this, "RespawnLocation");
-            set => global::Roblox.Reflection.SetProperty<SpawnLocation?>(this, "RespawnLocation", value);
+            get => global::Roblox.Reflection.GetProperty<SpawnLocation>(this, "RespawnLocation")!;
+            set => global::Roblox.Reflection.SetProperty<SpawnLocation>(this, "RespawnLocation", value);
         }
 
         /// <summary>
@@ -417,10 +417,10 @@ namespace Roblox
         /// Determines the Team with which the player is associated.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#Team"/>
-        public Team? Team
+        public Team Team
         {
-            get => global::Roblox.Reflection.GetProperty<Team?>(this, "Team");
-            set => global::Roblox.Reflection.SetProperty<Team?>(this, "Team", value);
+            get => global::Roblox.Reflection.GetProperty<Team>(this, "Team")!;
+            set => global::Roblox.Reflection.SetProperty<Team>(this, "Team", value);
         }
 
         /// <summary>

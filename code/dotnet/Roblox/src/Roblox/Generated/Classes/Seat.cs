@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Seat"/>
     [RobloxClass("Seat")]
-    public class Seat : Part
+    public partial class Seat : Part
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Seat.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// The humanoid that is sitting in the seat.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Seat#Occupant"/>
-        public Humanoid? Occupant
+        public Humanoid Occupant
         {
-            get => global::Roblox.Reflection.GetProperty<Humanoid?>(this, "Occupant");
-            set => global::Roblox.Reflection.SetProperty<Humanoid?>(this, "Occupant", value);
+            get => global::Roblox.Reflection.GetProperty<Humanoid>(this, "Occupant")!;
+            set => global::Roblox.Reflection.SetProperty<Humanoid>(this, "Occupant", value);
         }
 
         /// <summary>

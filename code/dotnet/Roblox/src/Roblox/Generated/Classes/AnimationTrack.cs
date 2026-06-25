@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack"/>
     [RobloxClass("AnimationTrack")]
-    public class AnimationTrack : Instance
+    public partial class AnimationTrack : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AnimationTrack.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The Animation object that was used to create this AnimationTrack.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationTrack#Animation"/>
-        public Animation? Animation
+        public Animation Animation
         {
-            get => global::Roblox.Reflection.GetProperty<Animation?>(this, "Animation");
-            set => global::Roblox.Reflection.SetProperty<Animation?>(this, "Animation", value);
+            get => global::Roblox.Reflection.GetProperty<Animation>(this, "Animation")!;
+            set => global::Roblox.Reflection.SetProperty<Animation>(this, "Animation", value);
         }
 
         /// <summary>

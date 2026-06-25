@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("UIDragDetectorService")]
-    public class UIDragDetectorService : Instance
+    public partial class UIDragDetectorService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UIDragDetectorService.</param>

@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener"/>
     [RobloxClass("AudioListener")]
-    public class AudioListener : Instance
+    public partial class AudioListener : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AudioListener.</param>
@@ -81,10 +81,10 @@ namespace Roblox
         /// The Instance whose position and orientation is used as the listener's position if PositionType is set to ListenerPositionType.Instance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#PositionInstance"/>
-        public Instance? PositionInstance
+        public Instance PositionInstance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "PositionInstance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "PositionInstance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "PositionInstance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "PositionInstance", value);
         }
 
         /// <summary>

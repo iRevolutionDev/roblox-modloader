@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("UGCAvatarService")]
-    public class UGCAvatarService : Instance
+    public partial class UGCAvatarService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox UGCAvatarService.</param>

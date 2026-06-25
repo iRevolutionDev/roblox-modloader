@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PlatformFriendsService")]
-    public class PlatformFriendsService : Instance
+    public partial class PlatformFriendsService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PlatformFriendsService.</param>

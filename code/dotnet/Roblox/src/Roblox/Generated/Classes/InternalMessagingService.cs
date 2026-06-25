@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("InternalMessagingService")]
-    public class InternalMessagingService : Instance
+    public partial class InternalMessagingService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox InternalMessagingService.</param>

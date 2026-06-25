@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("TrackerLodController")]
-    public class TrackerLodController : Instance
+    public partial class TrackerLodController : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox TrackerLodController.</param>

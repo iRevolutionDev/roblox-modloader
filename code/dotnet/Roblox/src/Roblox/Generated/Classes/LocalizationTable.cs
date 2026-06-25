@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable"/>
     [RobloxClass("LocalizationTable")]
-    public class LocalizationTable : Instance
+    public partial class LocalizationTable : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox LocalizationTable.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.The object that is being targeted for localization by this table. Localization is applied to it and all of it's descendants.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#Root"/>
-        public Instance? Root
+        public Instance Root
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Root");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Root", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Root")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Root", value);
         }
 
         /// <summary>

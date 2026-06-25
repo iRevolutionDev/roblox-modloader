@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager"/>
     [RobloxClass("ControllerManager")]
-    public class ControllerManager : Instance
+    public partial class ControllerManager : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ControllerManager.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The ControllerBase that is set to be activated on the character.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#ActiveController"/>
-        public ControllerBase? ActiveController
+        public ControllerBase ActiveController
         {
-            get => global::Roblox.Reflection.GetProperty<ControllerBase?>(this, "ActiveController");
-            set => global::Roblox.Reflection.SetProperty<ControllerBase?>(this, "ActiveController", value);
+            get => global::Roblox.Reflection.GetProperty<ControllerBase>(this, "ActiveController")!;
+            set => global::Roblox.Reflection.SetProperty<ControllerBase>(this, "ActiveController", value);
         }
 
         /// <summary>
@@ -59,10 +59,10 @@ namespace Roblox
         /// A reference to the sensor data used while a ClimbController is active.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#ClimbSensor"/>
-        public ControllerSensor? ClimbSensor
+        public ControllerSensor ClimbSensor
         {
-            get => global::Roblox.Reflection.GetProperty<ControllerSensor?>(this, "ClimbSensor");
-            set => global::Roblox.Reflection.SetProperty<ControllerSensor?>(this, "ClimbSensor", value);
+            get => global::Roblox.Reflection.GetProperty<ControllerSensor>(this, "ClimbSensor")!;
+            set => global::Roblox.Reflection.SetProperty<ControllerSensor>(this, "ClimbSensor", value);
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace Roblox
         /// A reference to the sensor data used while a GroundController is active.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#GroundSensor"/>
-        public ControllerSensor? GroundSensor
+        public ControllerSensor GroundSensor
         {
-            get => global::Roblox.Reflection.GetProperty<ControllerSensor?>(this, "GroundSensor");
-            set => global::Roblox.Reflection.SetProperty<ControllerSensor?>(this, "GroundSensor", value);
+            get => global::Roblox.Reflection.GetProperty<ControllerSensor>(this, "GroundSensor")!;
+            set => global::Roblox.Reflection.SetProperty<ControllerSensor>(this, "GroundSensor", value);
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace Roblox
         /// The BasePart where the controller's forces and torques are applied.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ControllerManager#RootPart"/>
-        public BasePart? RootPart
+        public BasePart RootPart
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "RootPart");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "RootPart", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "RootPart")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "RootPart", value);
         }
 
         /// <summary>

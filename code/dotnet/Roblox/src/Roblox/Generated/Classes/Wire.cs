@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire"/>
     [RobloxClass("Wire")]
-    public class Wire : Instance
+    public partial class Wire : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Wire.</param>
@@ -39,10 +39,10 @@ namespace Roblox
         /// The Instance producing a stream to be carried over the wire.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#SourceInstance"/>
-        public Instance? SourceInstance
+        public Instance SourceInstance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "SourceInstance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "SourceInstance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "SourceInstance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "SourceInstance", value);
         }
 
         /// <summary>
@@ -59,10 +59,10 @@ namespace Roblox
         /// The Instance to receive a stream from SourceInstance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Wire#TargetInstance"/>
-        public Instance? TargetInstance
+        public Instance TargetInstance
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "TargetInstance");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "TargetInstance", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "TargetInstance")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "TargetInstance", value);
         }
 
         /// <summary>

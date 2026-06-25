@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ObjectValue"/>
     [RobloxClass("ObjectValue")]
-    public class ObjectValue : ValueBase
+    public partial class ObjectValue : ValueBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox ObjectValue.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// Holds a reference to an instance.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ObjectValue#Value"/>
-        public Instance? Value
+        public Instance Value
         {
-            get => global::Roblox.Reflection.GetProperty<Instance?>(this, "Value");
-            set => global::Roblox.Reflection.SetProperty<Instance?>(this, "Value", value);
+            get => global::Roblox.Reflection.GetProperty<Instance>(this, "Value")!;
+            set => global::Roblox.Reflection.SetProperty<Instance>(this, "Value", value);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("PlayerHydrationService")]
-    public class PlayerHydrationService : Instance
+    public partial class PlayerHydrationService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PlayerHydrationService.</param>

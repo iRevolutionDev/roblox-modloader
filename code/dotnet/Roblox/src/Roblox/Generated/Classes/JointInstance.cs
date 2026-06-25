@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointInstance"/>
     [RobloxClass("JointInstance")]
-    public class JointInstance : Instance
+    public partial class JointInstance : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox JointInstance.</param>
@@ -69,20 +69,20 @@ namespace Roblox
         /// The first BasePart that the joint connects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointInstance#Part0"/>
-        public BasePart? Part0
+        public BasePart Part0
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part0");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part0", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part0")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part0", value);
         }
 
         /// <summary>
         /// The second BasePart that the joint connects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/JointInstance#Part1"/>
-        public BasePart? Part1
+        public BasePart Part1
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Part1");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Part1", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part1")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part1", value);
         }
 
     }

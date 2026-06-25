@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartAdornment"/>
     [RobloxClass("PartAdornment")]
-    public class PartAdornment : GuiBase3d
+    public partial class PartAdornment : GuiBase3d
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PartAdornment.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// Sets the object to adorn to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PartAdornment#Adornee"/>
-        public BasePart? Adornee
+        public BasePart Adornee
         {
-            get => global::Roblox.Reflection.GetProperty<BasePart?>(this, "Adornee");
-            set => global::Roblox.Reflection.SetProperty<BasePart?>(this, "Adornee", value);
+            get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Adornee")!;
+            set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Adornee", value);
         }
 
     }

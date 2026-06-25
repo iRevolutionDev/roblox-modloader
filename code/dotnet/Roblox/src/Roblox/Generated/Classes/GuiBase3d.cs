@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase3d"/>
     [RobloxClass("GuiBase3d")]
-    public class GuiBase3d : GuiBase
+    public partial class GuiBase3d : GuiBase
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox GuiBase3d.</param>

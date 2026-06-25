@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui"/>
     [RobloxClass("StarterGui")]
-    public class StarterGui : BasePlayerGui
+    public partial class StarterGui : BasePlayerGui
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox StarterGui.</param>
@@ -81,16 +81,16 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "ShowDevelopmentGui", value);
         }
 
-        public StyleSheet? StudioDefaultStyleSheet
+        public StyleSheet StudioDefaultStyleSheet
         {
-            get => global::Roblox.Reflection.GetProperty<StyleSheet?>(this, "StudioDefaultStyleSheet");
-            set => global::Roblox.Reflection.SetProperty<StyleSheet?>(this, "StudioDefaultStyleSheet", value);
+            get => global::Roblox.Reflection.GetProperty<StyleSheet>(this, "StudioDefaultStyleSheet")!;
+            set => global::Roblox.Reflection.SetProperty<StyleSheet>(this, "StudioDefaultStyleSheet", value);
         }
 
-        public StyleSheet? StudioInsertWidgetLayerCollectorAutoLinkStyleSheet
+        public StyleSheet StudioInsertWidgetLayerCollectorAutoLinkStyleSheet
         {
-            get => global::Roblox.Reflection.GetProperty<StyleSheet?>(this, "StudioInsertWidgetLayerCollectorAutoLinkStyleSheet");
-            set => global::Roblox.Reflection.SetProperty<StyleSheet?>(this, "StudioInsertWidgetLayerCollectorAutoLinkStyleSheet", value);
+            get => global::Roblox.Reflection.GetProperty<StyleSheet>(this, "StudioInsertWidgetLayerCollectorAutoLinkStyleSheet")!;
+            set => global::Roblox.Reflection.SetProperty<StyleSheet>(this, "StudioInsertWidgetLayerCollectorAutoLinkStyleSheet", value);
         }
 
         /// <summary>

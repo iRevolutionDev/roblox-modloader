@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("DebuggerConnectionManager")]
-    public class DebuggerConnectionManager : Instance
+    public partial class DebuggerConnectionManager : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox DebuggerConnectionManager.</param>

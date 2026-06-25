@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PrismaticConstraint"/>
     [RobloxClass("PrismaticConstraint")]
-    public class PrismaticConstraint : SlidingBallConstraint
+    public partial class PrismaticConstraint : SlidingBallConstraint
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PrismaticConstraint.</param>

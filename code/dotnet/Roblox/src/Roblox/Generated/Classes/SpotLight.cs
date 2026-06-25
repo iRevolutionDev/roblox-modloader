@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SpotLight"/>
     [RobloxClass("SpotLight")]
-    public class SpotLight : Light
+    public partial class SpotLight : Light
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox SpotLight.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("HarmonyService")]
-    public class HarmonyService : Instance
+    public partial class HarmonyService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox HarmonyService.</param>

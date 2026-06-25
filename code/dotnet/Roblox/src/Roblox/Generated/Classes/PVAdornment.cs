@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PVAdornment"/>
     [RobloxClass("PVAdornment")]
-    public class PVAdornment : GuiBase3d
+    public partial class PVAdornment : GuiBase3d
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox PVAdornment.</param>
@@ -29,10 +29,10 @@ namespace Roblox
         /// The PVInstance which this PVAdornment is attached to.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PVAdornment#Adornee"/>
-        public PVInstance? Adornee
+        public PVInstance Adornee
         {
-            get => global::Roblox.Reflection.GetProperty<PVInstance?>(this, "Adornee");
-            set => global::Roblox.Reflection.SetProperty<PVInstance?>(this, "Adornee", value);
+            get => global::Roblox.Reflection.GetProperty<PVInstance>(this, "Adornee")!;
+            set => global::Roblox.Reflection.SetProperty<PVInstance>(this, "Adornee", value);
         }
 
     }

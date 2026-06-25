@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/RunningAverageItemDouble"/>
     [RobloxClass("RunningAverageItemDouble")]
-    public class RunningAverageItemDouble : StatsItem
+    public partial class RunningAverageItemDouble : StatsItem
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox RunningAverageItemDouble.</param>

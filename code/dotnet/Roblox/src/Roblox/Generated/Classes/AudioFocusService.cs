@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AudioFocusService")]
-    public class AudioFocusService : Instance
+    public partial class AudioFocusService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AudioFocusService.</param>

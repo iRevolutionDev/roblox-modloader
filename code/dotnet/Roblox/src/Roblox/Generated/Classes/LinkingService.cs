@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("LinkingService")]
-    public class LinkingService : Instance
+    public partial class LinkingService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox LinkingService.</param>

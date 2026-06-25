@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BubbleChatConfiguration"/>
     [RobloxClass("BubbleChatConfiguration")]
-    public class BubbleChatConfiguration : TextChatConfigurations
+    public partial class BubbleChatConfiguration : TextChatConfigurations
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox BubbleChatConfiguration.</param>

@@ -7,7 +7,7 @@ using System;
 namespace Roblox
 {
     [RobloxClass("AssetImportService")]
-    public class AssetImportService : Instance
+    public partial class AssetImportService : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox AssetImportService.</param>

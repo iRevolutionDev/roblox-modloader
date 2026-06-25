@@ -11,7 +11,7 @@ namespace Roblox
     /// </summary>
     /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint"/>
     [RobloxClass("Constraint")]
-    public class Constraint : Instance
+    public partial class Constraint : Instance
     {
         /// <summary>Wraps an existing native Roblox instance identified by <paramref name="handle"/>.</summary>
         /// <param name="handle">Native pointer to the underlying Roblox Constraint.</param>
@@ -39,20 +39,20 @@ namespace Roblox
         /// The Attachment that is connected to Constraint.Attachment1.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#Attachment0"/>
-        public Attachment? Attachment0
+        public Attachment Attachment0
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment0");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment0", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment0")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment0", value);
         }
 
         /// <summary>
         /// The Attachment that is connected to Constraint.Attachment0.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Constraint#Attachment1"/>
-        public Attachment? Attachment1
+        public Attachment Attachment1
         {
-            get => global::Roblox.Reflection.GetProperty<Attachment?>(this, "Attachment1");
-            set => global::Roblox.Reflection.SetProperty<Attachment?>(this, "Attachment1", value);
+            get => global::Roblox.Reflection.GetProperty<Attachment>(this, "Attachment1")!;
+            set => global::Roblox.Reflection.SetProperty<Attachment>(this, "Attachment1", value);
         }
 
         /// <summary>
