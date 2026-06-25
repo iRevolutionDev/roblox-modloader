@@ -279,7 +279,7 @@ int main(int argc, char *argv[]) {
     cpp_file << "    wchar_t module_path[1024]{L'\\0'};" << endl;
     cpp_file << "    GetModuleFileNameW(proxy_module, module_path, sizeof(module_path) / sizeof(wchar_t));" << endl;
     cpp_file << "    const auto current_path = fs::path(module_path).parent_path();" << endl;
-    cpp_file << "    const fs::path rml_path = current_path / \"roblox_modloader\" / \"roblox_modloader.dll\";" << endl;
+    cpp_file << "    const fs::path rml_path = current_path / \"RobloxModLoader\" / \"roblox_modloader.dll\";" << endl;
     cpp_file << endl;
     cpp_file << "    const fs::path override_file_path = current_path / \"override.txt\";" << endl;
     cpp_file << "    if (fs::exists(override_file_path)) {" << endl;
