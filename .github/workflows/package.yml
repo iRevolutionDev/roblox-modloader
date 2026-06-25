@@ -121,7 +121,7 @@ jobs:
 
           $required = @(
             (Join-Path $stage "dwmapi.dll"),
-            (Join-Path $rml "roblox_modloader.dll"),
+            (Join-Path $stage "roblox_modloader.dll"),
             (Join-Path $rml "config.toml"),
             (Join-Path $runtime "nethost.dll"),
             (Join-Path $runtime "RML.NativeHost.dll"),
