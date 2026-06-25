@@ -59,6 +59,7 @@ namespace Roblox
         /// Deprecated: This deprecated property is a variant of BodyAngularVelocity.AngularVelocity which should be used instead.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyAngularVelocity#angularvelocity"/>
+        [global::System.Obsolete("'BodyAngularVelocity.angularvelocity' is deprecated.")]
         public global::Roblox.Vector3 Angularvelocity
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "angularvelocity")!;

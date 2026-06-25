@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: PlayFab API key. Must be set in order to use FireEvent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#ApiKey"/>
+        [global::System.Obsolete("'AnalyticsService.ApiKey' is deprecated.")]
         public string ApiKey
         {
             get => global::Roblox.Reflection.GetProperty<string>(this, "ApiKey")!;
@@ -43,6 +44,7 @@ namespace Roblox
         /// <param name="customData">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireCustomEvent"/>
+        [global::System.Obsolete("'AnalyticsService.FireCustomEvent' is deprecated.")]
         public object FireCustomEvent(Instance player, string eventCategory, object customData)
             => global::Roblox.Reflection.Invoke<object>(this, "FireCustomEvent", player, eventCategory, customData)!;
 
@@ -53,6 +55,7 @@ namespace Roblox
         /// <param name="value">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireEvent"/>
+        [global::System.Obsolete("'AnalyticsService.FireEvent' is deprecated.")]
         public object FireEvent(string category, object value)
             => global::Roblox.Reflection.Invoke<object>(this, "FireEvent", category, value)!;
 
@@ -69,6 +72,7 @@ namespace Roblox
         /// <param name="customData">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireInGameEconomyEvent"/>
+        [global::System.Obsolete("'AnalyticsService.FireInGameEconomyEvent' is deprecated.")]
         public object FireInGameEconomyEvent(Instance player, string itemName, Enum.AnalyticsEconomyAction economyAction, string itemCategory, int amount, string currency, object location, object customData)
             => global::Roblox.Reflection.Invoke<object>(this, "FireInGameEconomyEvent", player, itemName, economyAction, itemCategory, amount, currency, location, customData)!;
 
@@ -82,6 +86,7 @@ namespace Roblox
         /// <param name="customData">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FireLogEvent"/>
+        [global::System.Obsolete("'AnalyticsService.FireLogEvent' is deprecated.")]
         public object FireLogEvent(Instance player, Enum.AnalyticsLogLevel logLevel, string message, object debugInfo, object customData)
             => global::Roblox.Reflection.Invoke<object>(this, "FireLogEvent", player, logLevel, message, debugInfo, customData)!;
 
@@ -96,6 +101,7 @@ namespace Roblox
         /// <param name="customData">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnalyticsService#FirePlayerProgressionEvent"/>
+        [global::System.Obsolete("'AnalyticsService.FirePlayerProgressionEvent' is deprecated.")]
         public object FirePlayerProgressionEvent(Instance player, string category, Enum.AnalyticsProgressionStatus progressionStatus, object location, object statistics, object customData)
             => global::Roblox.Reflection.Invoke<object>(this, "FirePlayerProgressionEvent", player, category, progressionStatus, location, statistics, customData)!;
 

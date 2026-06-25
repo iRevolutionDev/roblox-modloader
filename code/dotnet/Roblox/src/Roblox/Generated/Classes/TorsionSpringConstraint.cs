@@ -59,6 +59,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use LimitsEnabled instead.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TorsionSpringConstraint#LimitEnabled"/>
+        [global::System.Obsolete("'TorsionSpringConstraint.LimitEnabled' is deprecated.")]
         public bool LimitEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "LimitEnabled")!;

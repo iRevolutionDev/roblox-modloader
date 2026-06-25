@@ -1841,6 +1841,7 @@ namespace Roblox
         /// Deprecated: Specifies the color scheme of Roblox Studio.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Studio#UI Theme"/>
+        [global::System.Obsolete("'Studio.UI Theme' is deprecated.")]
         public Enum.UITheme UITheme
         {
             get => global::Roblox.Reflection.GetProperty<Enum.UITheme>(this, "UI Theme")!;

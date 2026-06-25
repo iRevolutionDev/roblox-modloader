@@ -32,6 +32,7 @@ namespace Roblox
         /// <param name="gamePassId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GamePassService#PlayerHasPass"/>
+        [global::System.Obsolete("'GamePassService.PlayerHasPass' is deprecated.")]
         public bool PlayerHasPass(Player player, long gamePassId)
             => global::Roblox.Reflection.Invoke<bool>(this, "PlayerHasPass", player, gamePassId)!;
 

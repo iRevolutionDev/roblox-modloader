@@ -139,6 +139,7 @@ namespace Roblox
         /// Deprecated: Determines whether changes made from the client will replicate to the server or not.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#FilteringEnabled"/>
+        [global::System.Obsolete("'Workspace.FilteringEnabled' is deprecated.")]
         public bool FilteringEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "FilteringEnabled")!;
@@ -211,6 +212,7 @@ namespace Roblox
         /// Deprecated: This property should not be used for new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#InterpolationThrottling"/>
+        [global::System.Obsolete("'Workspace.InterpolationThrottling' is deprecated.")]
         public Enum.InterpolationThrottlingMode InterpolationThrottling
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InterpolationThrottlingMode>(this, "InterpolationThrottling")!;
@@ -566,6 +568,7 @@ namespace Roblox
         /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#BreakJoints"/>
+        [global::System.Obsolete("'Workspace.BreakJoints' is deprecated.")]
         public object BreakJoints(IReadOnlyList<Instance> objects)
             => global::Roblox.Reflection.Invoke<object>(this, "BreakJoints", objects)!;
 
@@ -653,6 +656,7 @@ namespace Roblox
         /// <param name="objects">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Workspace#MakeJoints"/>
+        [global::System.Obsolete("'Workspace.MakeJoints' is deprecated.")]
         public object MakeJoints(IReadOnlyList<Instance> objects)
             => global::Roblox.Reflection.Invoke<object>(this, "MakeJoints", objects)!;
 

@@ -31,6 +31,7 @@ namespace Roblox
         /// <param name="assetId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#GetKeyframeSequence"/>
+        [global::System.Obsolete("'KeyframeSequenceProvider.GetKeyframeSequence' is deprecated.")]
         public Instance? GetKeyframeSequence(object assetId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetKeyframeSequence", assetId);
 
@@ -41,6 +42,7 @@ namespace Roblox
         /// <param name="useCache">A <c>bool</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#GetKeyframeSequenceById"/>
+        [global::System.Obsolete("'KeyframeSequenceProvider.GetKeyframeSequenceById' is deprecated.")]
         public Instance? GetKeyframeSequenceById(long assetId, bool useCache)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetKeyframeSequenceById", assetId, useCache);
 
@@ -75,6 +77,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/KeyframeSequenceProvider#GetAnimations"/>
+        [global::System.Obsolete("'KeyframeSequenceProvider.GetAnimations' is deprecated.")]
         public Instance? GetAnimations(object userId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetAnimations", userId);
 

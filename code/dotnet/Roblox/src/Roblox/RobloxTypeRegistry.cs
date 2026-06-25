@@ -29,6 +29,12 @@ internal static class RobloxTypeRegistry
 
         return new Instance(handle);
     }
+    
+    public static Type? ActualType(nuint handle)
+    {
+        var className = TryGetClassName(handle);
+        return className is not null ? Resolve(className) : null;
+    }
 
     public static object CreateAs(Type type, nuint handle)
         => _factoriesByType.TryGetValue(type, out var factory)

@@ -60,6 +60,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#GetTopbarTransparency"/>
+        [global::System.Obsolete("'PlayerGui.GetTopbarTransparency' is deprecated.")]
         public float GetTopbarTransparency()
             => global::Roblox.Reflection.Invoke<float>(this, "GetTopbarTransparency")!;
 
@@ -69,6 +70,7 @@ namespace Roblox
         /// <param name="transparency">A <c>float</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#SetTopbarTransparency"/>
+        [global::System.Obsolete("'PlayerGui.SetTopbarTransparency' is deprecated.")]
         public object SetTopbarTransparency(float transparency)
             => global::Roblox.Reflection.Invoke<object>(this, "SetTopbarTransparency", transparency)!;
 
@@ -77,6 +79,7 @@ namespace Roblox
         /// </summary>
         /// <param name="transparency">A <c>float</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PlayerGui#TopbarTransparencyChangedSignal"/>
+        [global::System.Obsolete("'PlayerGui.TopbarTransparencyChangedSignal' is deprecated.")]
         public event Action<float>? TopbarTransparencyChangedSignal
         {
             add { if (value is not null) AddEventHandler("TopbarTransparencyChangedSignal", value); }

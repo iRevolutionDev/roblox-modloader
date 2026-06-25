@@ -45,6 +45,7 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<object>(this, "Capabilities", value);
         }
 
+        [global::System.Obsolete("'Instance.DataCost' is deprecated.")]
         public int DataCost
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "DataCost")!;
@@ -365,6 +366,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#Remove"/>
+        [global::System.Obsolete("'Instance.Remove' is deprecated.")]
         public object Remove()
             => global::Roblox.Reflection.Invoke<object>(this, "Remove")!;
 
@@ -411,6 +413,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Instance#children"/>
+        [global::System.Obsolete("'Instance.children' is deprecated.")]
         public IReadOnlyList<Instance> Children()
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "children")!;
 

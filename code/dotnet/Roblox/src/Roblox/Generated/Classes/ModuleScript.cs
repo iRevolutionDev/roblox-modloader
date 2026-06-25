@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This property is now replaced by packages which has greater functionality.Used to store a URL that points to an online script source. Binds the online code to the script's Script.Source.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ModuleScript#LinkedSource"/>
+        [global::System.Obsolete("'ModuleScript.LinkedSource' is deprecated.")]
         public object LinkedSource
         {
             get => global::Roblox.Reflection.GetProperty<object>(this, "LinkedSource")!;

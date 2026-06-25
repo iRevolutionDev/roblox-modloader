@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated:
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GameSettings#VideoCaptureEnabled"/>
+        [global::System.Obsolete("'GameSettings.VideoCaptureEnabled' is deprecated.")]
         public bool VideoCaptureEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "VideoCaptureEnabled")!;

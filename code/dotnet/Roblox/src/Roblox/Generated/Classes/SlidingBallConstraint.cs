@@ -129,6 +129,7 @@ namespace Roblox
         /// Deprecated: This property should not be used in new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SlidingBallConstraint#SoftlockServoUponReachingTarget"/>
+        [global::System.Obsolete("'SlidingBallConstraint.SoftlockServoUponReachingTarget' is deprecated.")]
         public bool SoftlockServoUponReachingTarget
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "SoftlockServoUponReachingTarget")!;

@@ -341,6 +341,7 @@ namespace Roblox
         /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#CheckApplyDefaultClothing"/>
+        [global::System.Obsolete("'AvatarEditorService.CheckApplyDefaultClothing' is deprecated.")]
         public HumanoidDescription CheckApplyDefaultClothing(HumanoidDescription humanoidDescription)
             => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "CheckApplyDefaultClothing", humanoidDescription)!;
 
@@ -359,6 +360,7 @@ namespace Roblox
         /// <param name="humanoidDescription">A <c>HumanoidDescription</c> value.</param>
         /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#ConformToAvatarRules"/>
+        [global::System.Obsolete("'AvatarEditorService.ConformToAvatarRules' is deprecated.")]
         public HumanoidDescription ConformToAvatarRules(HumanoidDescription humanoidDescription)
             => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "ConformToAvatarRules", humanoidDescription)!;
 
@@ -376,6 +378,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetAvatarRules"/>
+        [global::System.Obsolete("'AvatarEditorService.GetAvatarRules' is deprecated.")]
         public object GetAvatarRules()
             => global::Roblox.Reflection.Invoke<object>(this, "GetAvatarRules")!;
 
@@ -394,6 +397,7 @@ namespace Roblox
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetBatchItemDetails"/>
+        [global::System.Obsolete("'AvatarEditorService.GetBatchItemDetails' is deprecated.")]
         public object GetBatchItemDetails(object itemIds, Enum.AvatarItemType itemType)
             => global::Roblox.Reflection.Invoke<object>(this, "GetBatchItemDetails", itemIds, itemType)!;
 
@@ -423,6 +427,7 @@ namespace Roblox
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetFavorite"/>
+        [global::System.Obsolete("'AvatarEditorService.GetFavorite' is deprecated.")]
         public bool GetFavorite(long itemId, Enum.AvatarItemType itemType)
             => global::Roblox.Reflection.Invoke<bool>(this, "GetFavorite", itemId, itemType)!;
 
@@ -450,6 +455,7 @@ namespace Roblox
         /// <param name="assetTypes">A <c>object</c> value.</param>
         /// <returns>A <c>InventoryPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetInventory"/>
+        [global::System.Obsolete("'AvatarEditorService.GetInventory' is deprecated.")]
         public InventoryPages GetInventory(object assetTypes)
             => global::Roblox.Reflection.Invoke<InventoryPages>(this, "GetInventory", assetTypes)!;
 
@@ -469,6 +475,7 @@ namespace Roblox
         /// <param name="itemType">A <c>Enum.AvatarItemType</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetItemDetails"/>
+        [global::System.Obsolete("'AvatarEditorService.GetItemDetails' is deprecated.")]
         public object GetItemDetails(long itemId, Enum.AvatarItemType itemType)
             => global::Roblox.Reflection.Invoke<object>(this, "GetItemDetails", itemId, itemType)!;
 
@@ -488,6 +495,7 @@ namespace Roblox
         /// <param name="outfitId">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetOutfitDetails"/>
+        [global::System.Obsolete("'AvatarEditorService.GetOutfitDetails' is deprecated.")]
         public object GetOutfitDetails(long outfitId)
             => global::Roblox.Reflection.Invoke<object>(this, "GetOutfitDetails", outfitId)!;
 
@@ -507,6 +515,7 @@ namespace Roblox
         /// <param name="outfitType">A <c>Enum.OutfitType?</c> value.</param>
         /// <returns>A <c>OutfitPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetOutfits"/>
+        [global::System.Obsolete("'AvatarEditorService.GetOutfits' is deprecated.")]
         public OutfitPages GetOutfits(Enum.OutfitSource? outfitSource = null, Enum.OutfitType? outfitType = null)
             => global::Roblox.Reflection.Invoke<OutfitPages>(this, "GetOutfits", outfitSource, outfitType)!;
 
@@ -527,6 +536,7 @@ namespace Roblox
         /// <param name="contextAssetId">A <c>long?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetRecommendedAssets"/>
+        [global::System.Obsolete("'AvatarEditorService.GetRecommendedAssets' is deprecated.")]
         public object GetRecommendedAssets(Enum.AvatarAssetType assetType, long? contextAssetId = null)
             => global::Roblox.Reflection.Invoke<object>(this, "GetRecommendedAssets", assetType, contextAssetId)!;
 
@@ -546,6 +556,7 @@ namespace Roblox
         /// <param name="bundleId">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#GetRecommendedBundles"/>
+        [global::System.Obsolete("'AvatarEditorService.GetRecommendedBundles' is deprecated.")]
         public object GetRecommendedBundles(long bundleId)
             => global::Roblox.Reflection.Invoke<object>(this, "GetRecommendedBundles", bundleId)!;
 
@@ -564,6 +575,7 @@ namespace Roblox
         /// <param name="searchParameters">A <c>object</c> value.</param>
         /// <returns>A <c>CatalogPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AvatarEditorService#SearchCatalog"/>
+        [global::System.Obsolete("'AvatarEditorService.SearchCatalog' is deprecated.")]
         public CatalogPages SearchCatalog(object searchParameters)
             => global::Roblox.Reflection.Invoke<CatalogPages>(this, "SearchCatalog", searchParameters)!;
 

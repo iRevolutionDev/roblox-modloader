@@ -196,6 +196,7 @@ namespace Roblox
         /// <param name="packageAssetId">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#GetAssetIdsForPackage"/>
+        [global::System.Obsolete("'AssetService.GetAssetIdsForPackage' is deprecated.")]
         public object GetAssetIdsForPackage(long packageAssetId)
             => global::Roblox.Reflection.Invoke<object>(this, "GetAssetIdsForPackage", packageAssetId)!;
 
@@ -232,6 +233,7 @@ namespace Roblox
         /// <param name="creationID">A <c>long</c> value.</param>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#GetCreatorAssetID"/>
+        [global::System.Obsolete("'AssetService.GetCreatorAssetID' is deprecated.")]
         public long GetCreatorAssetID(long creationID)
             => global::Roblox.Reflection.Invoke<long>(this, "GetCreatorAssetID", creationID)!;
 
@@ -288,6 +290,7 @@ namespace Roblox
         /// <param name="searchParameters">A <c>AudioSearchParams</c> value.</param>
         /// <returns>A <c>AudioPages</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AssetService#SearchAudio"/>
+        [global::System.Obsolete("'AssetService.SearchAudio' is deprecated.")]
         public AudioPages SearchAudio(AudioSearchParams searchParameters)
             => global::Roblox.Reflection.Invoke<AudioPages>(this, "SearchAudio", searchParameters)!;
 

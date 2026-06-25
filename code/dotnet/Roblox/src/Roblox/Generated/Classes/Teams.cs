@@ -38,6 +38,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Teams#RebalanceTeams"/>
+        [global::System.Obsolete("'Teams.RebalanceTeams' is deprecated.")]
         public object RebalanceTeams()
             => global::Roblox.Reflection.Invoke<object>(this, "RebalanceTeams")!;
 

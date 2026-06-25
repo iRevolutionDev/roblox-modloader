@@ -45,12 +45,14 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "AngularStrength", value);
         }
 
+        [global::System.Obsolete("'AnimationConstraint.C0' is deprecated.")]
         public global::Roblox.CFrame C0
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "C0")!;
             set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "C0", value);
         }
 
+        [global::System.Obsolete("'AnimationConstraint.C1' is deprecated.")]
         public global::Roblox.CFrame C1
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "C1")!;
@@ -107,12 +109,14 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<float>(this, "MaxTorque", value);
         }
 
+        [global::System.Obsolete("'AnimationConstraint.Part0' is deprecated.")]
         public BasePart Part0
         {
             get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part0")!;
             set => global::Roblox.Reflection.SetProperty<BasePart>(this, "Part0", value);
         }
 
+        [global::System.Obsolete("'AnimationConstraint.Part1' is deprecated.")]
         public BasePart Part1
         {
             get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Part1")!;

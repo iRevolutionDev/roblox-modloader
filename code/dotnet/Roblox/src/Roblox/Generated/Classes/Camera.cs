@@ -59,6 +59,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by Camera.CFrame which should be used in all new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#CoordinateFrame"/>
+        [global::System.Obsolete("'Camera.CoordinateFrame' is deprecated.")]
         public global::Roblox.CFrame CoordinateFrame
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "CoordinateFrame")!;
@@ -171,6 +172,7 @@ namespace Roblox
         /// <param name="ignoreList">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#GetLargestCutoffDistance"/>
+        [global::System.Obsolete("'Camera.GetLargestCutoffDistance' is deprecated.")]
         public float GetLargestCutoffDistance(IReadOnlyList<Instance> ignoreList)
             => global::Roblox.Reflection.Invoke<float>(this, "GetLargestCutoffDistance", ignoreList)!;
 
@@ -179,6 +181,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#GetPanSpeed"/>
+        [global::System.Obsolete("'Camera.GetPanSpeed' is deprecated.")]
         public float GetPanSpeed()
             => global::Roblox.Reflection.Invoke<float>(this, "GetPanSpeed")!;
 
@@ -213,6 +216,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>float</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#GetTiltSpeed"/>
+        [global::System.Obsolete("'Camera.GetTiltSpeed' is deprecated.")]
         public float GetTiltSpeed()
             => global::Roblox.Reflection.Invoke<float>(this, "GetTiltSpeed")!;
 
@@ -224,6 +228,7 @@ namespace Roblox
         /// <param name="duration">A <c>float</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#Interpolate"/>
+        [global::System.Obsolete("'Camera.Interpolate' is deprecated.")]
         public object Interpolate(global::Roblox.CFrame endPos, global::Roblox.CFrame endFocus, float duration)
             => global::Roblox.Reflection.Invoke<object>(this, "Interpolate", endPos, endFocus, duration)!;
 
@@ -233,6 +238,7 @@ namespace Roblox
         /// <param name="units">A <c>int</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#PanUnits"/>
+        [global::System.Obsolete("'Camera.PanUnits' is deprecated.")]
         public object PanUnits(int units)
             => global::Roblox.Reflection.Invoke<object>(this, "PanUnits", units)!;
 
@@ -253,6 +259,7 @@ namespace Roblox
         /// <param name="mode">A <c>Enum.CameraPanMode?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#SetCameraPanMode"/>
+        [global::System.Obsolete("'Camera.SetCameraPanMode' is deprecated.")]
         public object SetCameraPanMode(Enum.CameraPanMode? mode = null)
             => global::Roblox.Reflection.Invoke<object>(this, "SetCameraPanMode", mode)!;
 
@@ -279,6 +286,7 @@ namespace Roblox
         /// <param name="units">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Camera#TiltUnits"/>
+        [global::System.Obsolete("'Camera.TiltUnits' is deprecated.")]
         public bool TiltUnits(int units)
             => global::Roblox.Reflection.Invoke<bool>(this, "TiltUnits", units)!;
 

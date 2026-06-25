@@ -32,12 +32,18 @@ public partial class Object
 
     protected internal void RemoveEventHandler(string eventName, Delegate handler)
         => EventManager.Remove(Handle, eventName, handler);
+        
+    public bool IsA<T>() where T : Object
+        => this is T || (RobloxTypeRegistry.ActualType(Handle) is { } actual && typeof(T).IsAssignableFrom(actual));
 
-    public bool IsA<T>() where T : Object => this is T;
-
-    public T? As<T>() where T : Object => this as T;
+    public T? As<T>() where T : Object
+        => this is T cast
+            ? cast
+            : RobloxTypeRegistry.ActualType(Handle) is { } actual && typeof(T).IsAssignableFrom(actual)
+                ? RobloxTypeRegistry.CreateAs<T>(Handle)
+                : null;
 
     public T Cast<T>() where T : Object
-        => this as T ?? throw new InvalidCastException(
+        => As<T>() ?? throw new InvalidCastException(
             $"Instance of type '{GetType().Name}' is not a '{typeof(T).Name}'.");
 }

@@ -21,6 +21,7 @@ namespace Roblox
         public static new VoiceChatInternal? FromHandle(nuint handle)
             => handle == 0 ? null : new VoiceChatInternal(handle);
 
+        [global::System.Obsolete("'VoiceChatInternal.VoiceChatState' is deprecated.")]
         public Enum.VoiceChatState VoiceChatState
         {
             get => global::Roblox.Reflection.GetProperty<Enum.VoiceChatState>(this, "VoiceChatState")!;
@@ -31,6 +32,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.GetAndClearCallFailureMessage</c>
         /// </summary>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.GetAndClearCallFailureMessage' is deprecated.")]
         public string GetAndClearCallFailureMessage()
             => global::Roblox.Reflection.Invoke<string>(this, "GetAndClearCallFailureMessage")!;
 
@@ -38,6 +40,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.GetAudioProcessingSettings</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.GetAudioProcessingSettings' is deprecated.")]
         public object GetAudioProcessingSettings()
             => global::Roblox.Reflection.Invoke<object>(this, "GetAudioProcessingSettings")!;
 
@@ -59,6 +62,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.GetMicDevices</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.GetMicDevices' is deprecated.")]
         public object GetMicDevices()
             => global::Roblox.Reflection.Invoke<object>(this, "GetMicDevices")!;
 
@@ -66,6 +70,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.GetParticipants</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.GetParticipants' is deprecated.")]
         public object GetParticipants()
             => global::Roblox.Reflection.Invoke<object>(this, "GetParticipants")!;
 
@@ -80,6 +85,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.GetVoiceChatApiVersion</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.GetVoiceChatApiVersion' is deprecated.")]
         public int GetVoiceChatApiVersion()
             => global::Roblox.Reflection.Invoke<int>(this, "GetVoiceChatApiVersion")!;
 
@@ -87,6 +93,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.GetVoiceChatAvailable</c>
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.GetVoiceChatAvailable' is deprecated.")]
         public int GetVoiceChatAvailable()
             => global::Roblox.Reflection.Invoke<int>(this, "GetVoiceChatAvailable")!;
 
@@ -108,6 +115,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.IsPublishPaused</c>
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.IsPublishPaused' is deprecated.")]
         public bool IsPublishPaused()
             => global::Roblox.Reflection.Invoke<bool>(this, "IsPublishPaused")!;
 
@@ -116,6 +124,7 @@ namespace Roblox
         /// </summary>
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.IsSubscribePaused' is deprecated.")]
         public bool IsSubscribePaused(long userId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsSubscribePaused", userId)!;
 
@@ -125,6 +134,7 @@ namespace Roblox
         /// <param name="groupId">A <c>string</c> value.</param>
         /// <param name="isMicMuted">A <c>bool?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.JoinByGroupId' is deprecated.")]
         public bool JoinByGroupId(string groupId, bool? isMicMuted = null)
             => global::Roblox.Reflection.Invoke<bool>(this, "JoinByGroupId", groupId, isMicMuted)!;
 
@@ -135,6 +145,7 @@ namespace Roblox
         /// <param name="isMicMuted">A <c>bool</c> value.</param>
         /// <param name="isRetry">A <c>bool?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.JoinByGroupIdToken' is deprecated.")]
         public bool JoinByGroupIdToken(string groupId, bool isMicMuted, bool? isRetry = null)
             => global::Roblox.Reflection.Invoke<bool>(this, "JoinByGroupIdToken", groupId, isMicMuted, isRetry)!;
 
@@ -142,6 +153,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.Leave</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.Leave' is deprecated.")]
         public object Leave()
             => global::Roblox.Reflection.Invoke<object>(this, "Leave")!;
 
@@ -164,6 +176,7 @@ namespace Roblox
         /// </summary>
         /// <param name="paused">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.PublishPause' is deprecated.")]
         public bool PublishPause(bool paused)
             => global::Roblox.Reflection.Invoke<bool>(this, "PublishPause", paused)!;
 
@@ -173,6 +186,7 @@ namespace Roblox
         /// <param name="micDeviceName">A <c>string</c> value.</param>
         /// <param name="micDeviceGuid">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.SetMicDevice' is deprecated.")]
         public object SetMicDevice(string micDeviceName, string micDeviceGuid)
             => global::Roblox.Reflection.Invoke<object>(this, "SetMicDevice", micDeviceName, micDeviceGuid)!;
 
@@ -190,6 +204,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <param name="paused">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.SubscribePause' is deprecated.")]
         public bool SubscribePause(long userId, bool paused)
             => global::Roblox.Reflection.Invoke<bool>(this, "SubscribePause", userId, paused)!;
 
@@ -198,6 +213,7 @@ namespace Roblox
         /// </summary>
         /// <param name="paused">A <c>bool</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'VoiceChatInternal.SubscribePauseAll' is deprecated.")]
         public bool SubscribePauseAll(bool paused)
             => global::Roblox.Reflection.Invoke<bool>(this, "SubscribePauseAll", paused)!;
 
@@ -237,6 +253,7 @@ namespace Roblox
         /// <param name="participantsLeft">A <c>object</c> value.</param>
         /// <param name="participantsJoined">A <c>object</c> value.</param>
         /// <param name="updatedStates">A <c>object</c> value.</param>
+        [global::System.Obsolete("'VoiceChatInternal.ParticipantsStateChanged' is deprecated.")]
         public event Action<object, object, object>? ParticipantsStateChanged
         {
             add { if (value is not null) AddEventHandler("ParticipantsStateChanged", value); }
@@ -247,6 +264,7 @@ namespace Roblox
         /// <c>VoiceChatInternal.PlayerMicActivitySignalChange</c>
         /// </summary>
         /// <param name="activityInfo">A <c>object</c> value.</param>
+        [global::System.Obsolete("'VoiceChatInternal.PlayerMicActivitySignalChange' is deprecated.")]
         public event Action<object>? PlayerMicActivitySignalChange
         {
             add { if (value is not null) AddEventHandler("PlayerMicActivitySignalChange", value); }
@@ -258,6 +276,7 @@ namespace Roblox
         /// </summary>
         /// <param name="old">A <c>Enum.VoiceChatState</c> value.</param>
         /// <param name="@new">A <c>Enum.VoiceChatState</c> value.</param>
+        [global::System.Obsolete("'VoiceChatInternal.StateChanged' is deprecated.")]
         public event Action<Enum.VoiceChatState, Enum.VoiceChatState>? StateChanged
         {
             add { if (value is not null) AddEventHandler("StateChanged", value); }

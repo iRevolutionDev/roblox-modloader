@@ -385,6 +385,7 @@ namespace Roblox
         /// Deprecated: This property has been superseded by ParticleEmitter.SpreadAngle which should be used in all new work.Determines how offset a particle can be fired from the local emitter direction of its parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter#VelocitySpread"/>
+        [global::System.Obsolete("'ParticleEmitter.VelocitySpread' is deprecated.")]
         public float VelocitySpread
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "VelocitySpread")!;

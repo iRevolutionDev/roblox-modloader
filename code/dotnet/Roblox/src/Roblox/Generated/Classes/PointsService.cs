@@ -30,6 +30,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#GetAwardablePoints"/>
+        [global::System.Obsolete("'PointsService.GetAwardablePoints' is deprecated.")]
         public int GetAwardablePoints()
             => global::Roblox.Reflection.Invoke<int>(this, "GetAwardablePoints")!;
 
@@ -40,6 +41,7 @@ namespace Roblox
         /// <param name="amount">A <c>int</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#AwardPoints"/>
+        [global::System.Obsolete("'PointsService.AwardPoints' is deprecated.")]
         public object AwardPoints(long userId, int amount)
             => global::Roblox.Reflection.Invoke<object>(this, "AwardPoints", userId, amount)!;
 
@@ -49,6 +51,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#GetGamePointBalance"/>
+        [global::System.Obsolete("'PointsService.GetGamePointBalance' is deprecated.")]
         public int GetGamePointBalance(long userId)
             => global::Roblox.Reflection.Invoke<int>(this, "GetGamePointBalance", userId)!;
 
@@ -58,6 +61,7 @@ namespace Roblox
         /// <param name="userId">A <c>long</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PointsService#GetPointBalance"/>
+        [global::System.Obsolete("'PointsService.GetPointBalance' is deprecated.")]
         public int GetPointBalance(long userId)
             => global::Roblox.Reflection.Invoke<int>(this, "GetPointBalance", userId)!;
 

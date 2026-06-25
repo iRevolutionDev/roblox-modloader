@@ -69,6 +69,7 @@ namespace Roblox
         /// Deprecated: This property is a deprecated variant of BodyGyro.CFrame which should be used instead.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro#cframe"/>
+        [global::System.Obsolete("'BodyGyro.cframe' is deprecated.")]
         public global::Roblox.CFrame Cframe
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "cframe")!;

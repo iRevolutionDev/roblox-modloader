@@ -175,6 +175,7 @@ namespace Roblox
         /// <param name="player">A <c>Instance</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PromptPremiumPurchase"/>
+        [global::System.Obsolete("'MarketplaceService.PromptPremiumPurchase' is deprecated.")]
         public object PromptPremiumPurchase(Instance player)
             => global::Roblox.Reflection.Invoke<object>(this, "PromptPremiumPurchase", player)!;
 
@@ -417,6 +418,7 @@ namespace Roblox
         /// <param name="infoType">A <c>Enum.InfoType?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetProductInfo"/>
+        [global::System.Obsolete("'MarketplaceService.GetProductInfo' is deprecated.")]
         public object GetProductInfo(long assetId, Enum.InfoType? infoType = null)
             => global::Roblox.Reflection.Invoke<object>(this, "GetProductInfo", assetId, infoType)!;
 
@@ -603,6 +605,7 @@ namespace Roblox
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PlayerOwnsAsset"/>
+        [global::System.Obsolete("'MarketplaceService.PlayerOwnsAsset' is deprecated.")]
         public bool PlayerOwnsAsset(Instance player, long assetId)
             => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsAsset", player, assetId)!;
 
@@ -623,6 +626,7 @@ namespace Roblox
         /// <param name="bundleId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#PlayerOwnsBundle"/>
+        [global::System.Obsolete("'MarketplaceService.PlayerOwnsBundle' is deprecated.")]
         public bool PlayerOwnsBundle(Player player, long bundleId)
             => global::Roblox.Reflection.Invoke<bool>(this, "PlayerOwnsBundle", player, bundleId)!;
 

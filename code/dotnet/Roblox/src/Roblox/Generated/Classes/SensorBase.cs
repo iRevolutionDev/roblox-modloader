@@ -40,6 +40,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SensorBase#Sense"/>
+        [global::System.Obsolete("'SensorBase.Sense' is deprecated.")]
         public object Sense()
             => global::Roblox.Reflection.Invoke<object>(this, "Sense")!;
 

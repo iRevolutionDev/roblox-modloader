@@ -59,6 +59,7 @@ namespace Roblox
         /// <param name="inputTypes">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContextActionService#BindActionToInputTypes"/>
+        [global::System.Obsolete("'ContextActionService.BindActionToInputTypes' is deprecated.")]
         public object BindActionToInputTypes(string actionName, object functionToBind, bool createTouchButton, object inputTypes)
             => global::Roblox.Reflection.Invoke<object>(this, "BindActionToInputTypes", actionName, functionToBind, createTouchButton, inputTypes)!;
 

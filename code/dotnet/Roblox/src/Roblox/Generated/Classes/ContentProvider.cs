@@ -99,6 +99,7 @@ namespace Roblox
         /// <param name="contentId">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ContentProvider#Preload"/>
+        [global::System.Obsolete("'ContentProvider.Preload' is deprecated.")]
         public object Preload(object contentId)
             => global::Roblox.Reflection.Invoke<object>(this, "Preload", contentId)!;
 

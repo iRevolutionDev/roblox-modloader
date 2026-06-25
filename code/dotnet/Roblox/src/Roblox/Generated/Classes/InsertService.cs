@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This item was never released. Do not use it in new work.Indicates whether ''Free Models'' can be inserted into the game.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#AllowInsertFreeModels"/>
+        [global::System.Obsolete("'InsertService.AllowInsertFreeModels' is deprecated.")]
         public bool AllowInsertFreeModels
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AllowInsertFreeModels")!;
@@ -41,6 +42,7 @@ namespace Roblox
         /// <param name="assetId">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#ApproveAssetId"/>
+        [global::System.Obsolete("'InsertService.ApproveAssetId' is deprecated.")]
         public object ApproveAssetId(long assetId)
             => global::Roblox.Reflection.Invoke<object>(this, "ApproveAssetId", assetId)!;
 
@@ -50,6 +52,7 @@ namespace Roblox
         /// <param name="assetVersionId">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#ApproveAssetVersionId"/>
+        [global::System.Obsolete("'InsertService.ApproveAssetVersionId' is deprecated.")]
         public object ApproveAssetVersionId(long assetVersionId)
             => global::Roblox.Reflection.Invoke<object>(this, "ApproveAssetVersionId", assetVersionId)!;
 
@@ -67,6 +70,7 @@ namespace Roblox
         /// <param name="instance">A <c>Instance</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#Insert"/>
+        [global::System.Obsolete("'InsertService.Insert' is deprecated.")]
         public object Insert(Instance instance)
             => global::Roblox.Reflection.Invoke<object>(this, "Insert", instance)!;
 
@@ -94,6 +98,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetBaseCategories"/>
+        [global::System.Obsolete("'InsertService.GetBaseCategories' is deprecated.")]
         public object GetBaseCategories()
             => global::Roblox.Reflection.Invoke<object>(this, "GetBaseCategories")!;
 
@@ -102,6 +107,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetBaseSets"/>
+        [global::System.Obsolete("'InsertService.GetBaseSets' is deprecated.")]
         public object GetBaseSets()
             => global::Roblox.Reflection.Invoke<object>(this, "GetBaseSets")!;
 
@@ -111,6 +117,7 @@ namespace Roblox
         /// <param name="categoryId">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetCollection"/>
+        [global::System.Obsolete("'InsertService.GetCollection' is deprecated.")]
         public object GetCollection(long categoryId)
             => global::Roblox.Reflection.Invoke<object>(this, "GetCollection", categoryId)!;
 
@@ -121,6 +128,7 @@ namespace Roblox
         /// <param name="pageNum">A <c>int</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetFreeDecals"/>
+        [global::System.Obsolete("'InsertService.GetFreeDecals' is deprecated.")]
         public object GetFreeDecals(string searchText, int pageNum)
             => global::Roblox.Reflection.Invoke<object>(this, "GetFreeDecals", searchText, pageNum)!;
 
@@ -141,6 +149,7 @@ namespace Roblox
         /// <param name="pageNum">A <c>int</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetFreeModels"/>
+        [global::System.Obsolete("'InsertService.GetFreeModels' is deprecated.")]
         public object GetFreeModels(string searchText, int pageNum)
             => global::Roblox.Reflection.Invoke<object>(this, "GetFreeModels", searchText, pageNum)!;
 
@@ -169,6 +178,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetUserCategories"/>
+        [global::System.Obsolete("'InsertService.GetUserCategories' is deprecated.")]
         public object GetUserCategories(object userId)
             => global::Roblox.Reflection.Invoke<object>(this, "GetUserCategories", userId)!;
 
@@ -178,6 +188,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InsertService#GetUserSets"/>
+        [global::System.Obsolete("'InsertService.GetUserSets' is deprecated.")]
         public object GetUserSets(object userId)
             => global::Roblox.Reflection.Invoke<object>(this, "GetUserSets", userId)!;
 

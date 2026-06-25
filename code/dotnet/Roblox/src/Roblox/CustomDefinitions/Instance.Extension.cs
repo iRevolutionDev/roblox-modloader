@@ -19,4 +19,7 @@ public partial class Instance
         
     public T? WaitForChild<T>(string childName, double timeOut) where T : Instance
         => RobloxTypeRegistry.CreateAsOrNull<T>(WaitForChild(childName, timeOut));
+
+    public T? Clone<T>() where T : Instance
+        => RobloxTypeRegistry.CreateAsOrNull<T>(Clone());
 }

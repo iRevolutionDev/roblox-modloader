@@ -27,6 +27,7 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<global::Roblox.CFrame>(this, "CFrame", value);
         }
 
+        [global::System.Obsolete("'Collaborator.CollaboratorColor' is deprecated.")]
         public int CollaboratorColor
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "CollaboratorColor")!;

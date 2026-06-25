@@ -45,6 +45,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use LayerCollector.ResetOnSpawn to control the resetting behavior for individual LayerCollector objects.Determines whether each child parented to the StarterGui will be cloned into a player's PlayerGui when that player's character is respawned.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StarterGui#ResetPlayerGuiOnSpawn"/>
+        [global::System.Obsolete("'StarterGui.ResetPlayerGuiOnSpawn' is deprecated.")]
         public bool ResetPlayerGuiOnSpawn
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ResetPlayerGuiOnSpawn")!;

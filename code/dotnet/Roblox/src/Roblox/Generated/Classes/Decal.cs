@@ -139,6 +139,7 @@ namespace Roblox
         /// Deprecated: This non-functional property is deprecated and should not be used in new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Shiny"/>
+        [global::System.Obsolete("'Decal.Shiny' is deprecated.")]
         public float Shiny
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Shiny")!;
@@ -149,6 +150,7 @@ namespace Roblox
         /// Deprecated: This property no longer functions correctly and is deprecated. It should not be used in new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Decal#Specular"/>
+        [global::System.Obsolete("'Decal.Specular' is deprecated.")]
         public float Specular
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Specular")!;

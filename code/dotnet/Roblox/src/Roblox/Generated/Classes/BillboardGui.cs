@@ -89,6 +89,7 @@ namespace Roblox
         /// Deprecated: Determines the distance in studs at which the BillboardGui will stop scaling larger in size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceLowerLimit"/>
+        [global::System.Obsolete("'BillboardGui.DistanceLowerLimit' is deprecated.")]
         public float DistanceLowerLimit
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceLowerLimit")!;
@@ -109,6 +110,7 @@ namespace Roblox
         /// Deprecated: Determines the distance in studs at which the BillboardGui will stop scaling smaller in size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui#DistanceUpperLimit"/>
+        [global::System.Obsolete("'BillboardGui.DistanceUpperLimit' is deprecated.")]
         public float DistanceUpperLimit
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "DistanceUpperLimit")!;

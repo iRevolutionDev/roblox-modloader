@@ -59,6 +59,7 @@ namespace Roblox
         /// Deprecated: The subtype of the audio asset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioSearchParams#AudioSubtype"/>
+        [global::System.Obsolete("'AudioSearchParams.AudioSubtype' is deprecated.")]
         public Enum.AudioSubType AudioSubtype
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AudioSubType>(this, "AudioSubtype")!;

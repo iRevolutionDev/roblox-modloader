@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated since the default message it controls has been removed. Do not use it for new work.No longer functional.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#CustomizedTeleportUI"/>
+        [global::System.Obsolete("'TeleportService.CustomizedTeleportUI' is deprecated.")]
         public bool CustomizedTeleportUI
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "CustomizedTeleportUI")!;
@@ -225,6 +226,7 @@ namespace Roblox
         /// <param name="placeId">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TeleportService#ReserveServer"/>
+        [global::System.Obsolete("'TeleportService.ReserveServer' is deprecated.")]
         public object ReserveServer(long placeId)
             => global::Roblox.Reflection.Invoke<object>(this, "ReserveServer", placeId)!;
 

@@ -77,6 +77,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.Indicates whether a modal dialog is visible.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#IsModalDialog"/>
+        [global::System.Obsolete("'GuiService.IsModalDialog' is deprecated.")]
         public bool IsModalDialog
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsModalDialog")!;
@@ -87,6 +88,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.Indicates whether the user is playing on a computer running Windows.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#IsWindows"/>
+        [global::System.Obsolete("'GuiService.IsWindows' is deprecated.")]
         public bool IsWindows
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsWindows")!;
@@ -211,6 +213,7 @@ namespace Roblox
         /// <param name="selectionParent">A <c>Instance</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#AddSelectionParent"/>
+        [global::System.Obsolete("'GuiService.AddSelectionParent' is deprecated.")]
         public object AddSelectionParent(string selectionName, Instance selectionParent)
             => global::Roblox.Reflection.Invoke<object>(this, "AddSelectionParent", selectionName, selectionParent)!;
 
@@ -221,6 +224,7 @@ namespace Roblox
         /// <param name="selections">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#AddSelectionTuple"/>
+        [global::System.Obsolete("'GuiService.AddSelectionTuple' is deprecated.")]
         public object AddSelectionTuple(string selectionName, object selections)
             => global::Roblox.Reflection.Invoke<object>(this, "AddSelectionTuple", selectionName, selections)!;
 
@@ -330,6 +334,7 @@ namespace Roblox
         /// <c>GuiService.GetErrorMessage</c>
         /// </summary>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'GuiService.GetErrorMessage' is deprecated.")]
         public string GetErrorMessage()
             => global::Roblox.Reflection.Invoke<string>(this, "GetErrorMessage")!;
 
@@ -488,6 +493,7 @@ namespace Roblox
         /// </summary>
         /// <param name="url">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'GuiService.OpenBrowserWindow' is deprecated.")]
         public object OpenBrowserWindow(string url)
             => global::Roblox.Reflection.Invoke<object>(this, "OpenBrowserWindow", url)!;
 
@@ -497,6 +503,7 @@ namespace Roblox
         /// <param name="title">A <c>string</c> value.</param>
         /// <param name="url">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'GuiService.OpenNativeOverlay' is deprecated.")]
         public object OpenNativeOverlay(string title, string url)
             => global::Roblox.Reflection.Invoke<object>(this, "OpenNativeOverlay", title, url)!;
 
@@ -522,6 +529,7 @@ namespace Roblox
         /// <param name="selectionName">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiService#RemoveSelectionGroup"/>
+        [global::System.Obsolete("'GuiService.RemoveSelectionGroup' is deprecated.")]
         public object RemoveSelectionGroup(string selectionName)
             => global::Roblox.Reflection.Invoke<object>(this, "RemoveSelectionGroup", selectionName)!;
 
@@ -693,6 +701,7 @@ namespace Roblox
         public global::Roblox.Vector2 GetScreenResolution()
             => global::Roblox.Reflection.Invoke<global::Roblox.Vector2>(this, "GetScreenResolution")!;
 
+        [global::System.Obsolete("'GuiService.BrowserWindowClosed' is deprecated.")]
         public event Action? BrowserWindowClosed
         {
             add { if (value is not null) AddEventHandler("BrowserWindowClosed", value); }
@@ -725,6 +734,7 @@ namespace Roblox
         /// <c>GuiService.ErrorMessageChanged</c>
         /// </summary>
         /// <param name="newErrorMessage">A <c>string</c> value.</param>
+        [global::System.Obsolete("'GuiService.ErrorMessageChanged' is deprecated.")]
         public event Action<string>? ErrorMessageChanged
         {
             add { if (value is not null) AddEventHandler("ErrorMessageChanged", value); }

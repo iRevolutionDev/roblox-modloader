@@ -37,4 +37,8 @@ public class CustomDefinitionsTests
     private static BasePart? UseFindFirstChild(Instance i) => i.FindFirstChild<BasePart>("Handle");
     private static Humanoid? UseFindFirstChildOfClass(Instance i) => i.FindFirstChildOfClass<Humanoid>();
     private static BasePart? UseFindFirstChildWhichIsA(Instance i) => i.FindFirstChildWhichIsA<BasePart>(recursive: true);
+    private static BasePart? UseClone(BasePart p) => p.Clone<BasePart>();
+    private static bool UseIsA(Instance i) => i.IsA<BasePart>();
+    private static BasePart? UseAs(Instance i) => i.As<BasePart>();
+    private static BasePart UseCast(Instance i) => i.Cast<BasePart>();
 }

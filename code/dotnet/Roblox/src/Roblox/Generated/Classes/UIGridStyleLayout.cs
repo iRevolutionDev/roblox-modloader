@@ -80,6 +80,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#ApplyLayout"/>
+        [global::System.Obsolete("'UIGridStyleLayout.ApplyLayout' is deprecated.")]
         public object ApplyLayout()
             => global::Roblox.Reflection.Invoke<object>(this, "ApplyLayout")!;
 
@@ -89,6 +90,7 @@ namespace Roblox
         /// <param name="function">A <c>object?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UIGridStyleLayout#SetCustomSortFunction"/>
+        [global::System.Obsolete("'UIGridStyleLayout.SetCustomSortFunction' is deprecated.")]
         public object SetCustomSortFunction(object? function = null)
             => global::Roblox.Reflection.Invoke<object>(this, "SetCustomSortFunction", function)!;
 

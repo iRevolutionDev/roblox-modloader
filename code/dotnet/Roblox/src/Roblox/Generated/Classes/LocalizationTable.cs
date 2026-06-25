@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by LocalizationTable.SourceLocaleId which should be used in all new work.The default IETF tag to use if the ''languageKey'' parameter is excluded from the LocalizationTable:GetString() method.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#DevelopmentLanguage"/>
+        [global::System.Obsolete("'LocalizationTable.DevelopmentLanguage' is deprecated.")]
         public string DevelopmentLanguage
         {
             get => global::Roblox.Reflection.GetProperty<string>(this, "DevelopmentLanguage")!;
@@ -39,6 +40,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.The object that is being targeted for localization by this table. Localization is applied to it and all of it's descendants.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#Root"/>
+        [global::System.Obsolete("'LocalizationTable.Root' is deprecated.")]
         public Instance Root
         {
             get => global::Roblox.Reflection.GetProperty<Instance>(this, "Root")!;
@@ -60,6 +62,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#GetContents"/>
+        [global::System.Obsolete("'LocalizationTable.GetContents' is deprecated.")]
         public string GetContents()
             => global::Roblox.Reflection.Invoke<string>(this, "GetContents")!;
 
@@ -78,6 +81,7 @@ namespace Roblox
         /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#GetString"/>
+        [global::System.Obsolete("'LocalizationTable.GetString' is deprecated.")]
         public string GetString(string targetLocaleId, string key)
             => global::Roblox.Reflection.Invoke<string>(this, "GetString", targetLocaleId, key)!;
 
@@ -119,6 +123,7 @@ namespace Roblox
         /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#RemoveKey"/>
+        [global::System.Obsolete("'LocalizationTable.RemoveKey' is deprecated.")]
         public object RemoveKey(string key)
             => global::Roblox.Reflection.Invoke<object>(this, "RemoveKey", key)!;
 
@@ -137,6 +142,7 @@ namespace Roblox
         /// <param name="contents">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetContents"/>
+        [global::System.Obsolete("'LocalizationTable.SetContents' is deprecated.")]
         public object SetContents(string contents)
             => global::Roblox.Reflection.Invoke<object>(this, "SetContents", contents)!;
 
@@ -157,6 +163,7 @@ namespace Roblox
         /// <param name="text">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/LocalizationTable#SetEntry"/>
+        [global::System.Obsolete("'LocalizationTable.SetEntry' is deprecated.")]
         public object SetEntry(string key, string targetLocaleId, string text)
             => global::Roblox.Reflection.Invoke<object>(this, "SetEntry", key, targetLocaleId, text)!;
 

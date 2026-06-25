@@ -79,6 +79,7 @@ namespace Roblox
         /// Deprecated: Selects the HumanoidCollisionType for R15 and Rthro non-player characters.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CollisionType"/>
+        [global::System.Obsolete("'Humanoid.CollisionType' is deprecated.")]
         public Enum.HumanoidCollisionType CollisionType
         {
             get => global::Roblox.Reflection.GetProperty<Enum.HumanoidCollisionType>(this, "CollisionType")!;
@@ -205,6 +206,7 @@ namespace Roblox
         /// Deprecated: This instance only works with the old R6 rig. It will not work with the R15 rig and should not be used in new work not using the R6 rig.A reference to the humanoid's Left Leg part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#LeftLeg"/>
+        [global::System.Obsolete("'Humanoid.LeftLeg' is deprecated.")]
         public BasePart LeftLeg
         {
             get => global::Roblox.Reflection.GetProperty<BasePart>(this, "LeftLeg")!;
@@ -295,6 +297,7 @@ namespace Roblox
         /// Deprecated: This instance only works with the old R6 rig. It will not work with the R15 rig and should not be used in new work not using the R6 rig.A reference to the humanoid's Right Leg part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RightLeg"/>
+        [global::System.Obsolete("'Humanoid.RightLeg' is deprecated.")]
         public BasePart RightLeg
         {
             get => global::Roblox.Reflection.GetProperty<BasePart>(this, "RightLeg")!;
@@ -345,6 +348,7 @@ namespace Roblox
         /// Deprecated: This instance only works with the old R6 rig. It will not work with the R15 rig and should not be used in new work not using the R6 rig.A reference to a humanoid's root driving part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#Torso"/>
+        [global::System.Obsolete("'Humanoid.Torso' is deprecated.")]
         public BasePart Torso
         {
             get => global::Roblox.Reflection.GetProperty<BasePart>(this, "Torso")!;
@@ -406,6 +410,7 @@ namespace Roblox
         /// <param name="status">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AddCustomStatus"/>
+        [global::System.Obsolete("'Humanoid.AddCustomStatus' is deprecated.")]
         public bool AddCustomStatus(string status)
             => global::Roblox.Reflection.Invoke<bool>(this, "AddCustomStatus", status)!;
 
@@ -415,6 +420,7 @@ namespace Roblox
         /// <param name="status">A <c>Enum.Status?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AddStatus"/>
+        [global::System.Obsolete("'Humanoid.AddStatus' is deprecated.")]
         public bool AddStatus(Enum.Status? status = null)
             => global::Roblox.Reflection.Invoke<bool>(this, "AddStatus", status)!;
 
@@ -515,6 +521,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetPlayingAnimationTracks"/>
+        [global::System.Obsolete("'Humanoid.GetPlayingAnimationTracks' is deprecated.")]
         public object GetPlayingAnimationTracks()
             => global::Roblox.Reflection.Invoke<object>(this, "GetPlayingAnimationTracks")!;
 
@@ -548,6 +555,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#GetStatuses"/>
+        [global::System.Obsolete("'Humanoid.GetStatuses' is deprecated.")]
         public object GetStatuses()
             => global::Roblox.Reflection.Invoke<object>(this, "GetStatuses")!;
 
@@ -557,6 +565,7 @@ namespace Roblox
         /// <param name="status">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HasCustomStatus"/>
+        [global::System.Obsolete("'Humanoid.HasCustomStatus' is deprecated.")]
         public bool HasCustomStatus(string status)
             => global::Roblox.Reflection.Invoke<bool>(this, "HasCustomStatus", status)!;
 
@@ -566,6 +575,7 @@ namespace Roblox
         /// <param name="status">A <c>Enum.Status?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#HasStatus"/>
+        [global::System.Obsolete("'Humanoid.HasStatus' is deprecated.")]
         public bool HasStatus(Enum.Status? status = null)
             => global::Roblox.Reflection.Invoke<bool>(this, "HasStatus", status)!;
 
@@ -575,6 +585,7 @@ namespace Roblox
         /// <param name="animation">A <c>Animation</c> value.</param>
         /// <returns>A <c>AnimationTrack</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#LoadAnimation"/>
+        [global::System.Obsolete("'Humanoid.LoadAnimation' is deprecated.")]
         public AnimationTrack LoadAnimation(Animation animation)
             => global::Roblox.Reflection.Invoke<AnimationTrack>(this, "LoadAnimation", animation)!;
 
@@ -612,6 +623,7 @@ namespace Roblox
         /// <param name="status">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RemoveCustomStatus"/>
+        [global::System.Obsolete("'Humanoid.RemoveCustomStatus' is deprecated.")]
         public bool RemoveCustomStatus(string status)
             => global::Roblox.Reflection.Invoke<bool>(this, "RemoveCustomStatus", status)!;
 
@@ -621,6 +633,7 @@ namespace Roblox
         /// <param name="status">A <c>Enum.Status?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#RemoveStatus"/>
+        [global::System.Obsolete("'Humanoid.RemoveStatus' is deprecated.")]
         public bool RemoveStatus(Enum.Status? status = null)
             => global::Roblox.Reflection.Invoke<bool>(this, "RemoveStatus", status)!;
 
@@ -691,6 +704,7 @@ namespace Roblox
         /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescription"/>
+        [global::System.Obsolete("'Humanoid.ApplyDescription' is deprecated.")]
         public object ApplyDescription(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
             => global::Roblox.Reflection.Invoke<object>(this, "ApplyDescription", humanoidDescription, assetTypeVerification)!;
 
@@ -711,6 +725,7 @@ namespace Roblox
         /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#ApplyDescriptionReset"/>
+        [global::System.Obsolete("'Humanoid.ApplyDescriptionReset' is deprecated.")]
         public object ApplyDescriptionReset(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
             => global::Roblox.Reflection.Invoke<object>(this, "ApplyDescriptionReset", humanoidDescription, assetTypeVerification)!;
 
@@ -730,6 +745,7 @@ namespace Roblox
         /// <param name="emoteName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#PlayEmote"/>
+        [global::System.Obsolete("'Humanoid.PlayEmote' is deprecated.")]
         public bool PlayEmote(string emoteName)
             => global::Roblox.Reflection.Invoke<bool>(this, "PlayEmote", emoteName)!;
 
@@ -755,6 +771,7 @@ namespace Roblox
         /// </summary>
         /// <param name="animationTrack">A <c>AnimationTrack</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#AnimationPlayed"/>
+        [global::System.Obsolete("'Humanoid.AnimationPlayed' is deprecated.")]
         public event Action<AnimationTrack>? AnimationPlayed
         {
             add { if (value is not null) AddEventHandler("AnimationPlayed", value); }
@@ -794,6 +811,7 @@ namespace Roblox
         /// </summary>
         /// <param name="status">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusAdded"/>
+        [global::System.Obsolete("'Humanoid.CustomStatusAdded' is deprecated.")]
         public event Action<string>? CustomStatusAdded
         {
             add { if (value is not null) AddEventHandler("CustomStatusAdded", value); }
@@ -805,6 +823,7 @@ namespace Roblox
         /// </summary>
         /// <param name="status">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#CustomStatusRemoved"/>
+        [global::System.Obsolete("'Humanoid.CustomStatusRemoved' is deprecated.")]
         public event Action<string>? CustomStatusRemoved
         {
             add { if (value is not null) AddEventHandler("CustomStatusRemoved", value); }
@@ -972,6 +991,7 @@ namespace Roblox
         /// </summary>
         /// <param name="status">A <c>Enum.Status</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StatusAdded"/>
+        [global::System.Obsolete("'Humanoid.StatusAdded' is deprecated.")]
         public event Action<Enum.Status>? StatusAdded
         {
             add { if (value is not null) AddEventHandler("StatusAdded", value); }
@@ -983,6 +1003,7 @@ namespace Roblox
         /// </summary>
         /// <param name="status">A <c>Enum.Status</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Humanoid#StatusRemoved"/>
+        [global::System.Obsolete("'Humanoid.StatusRemoved' is deprecated.")]
         public event Action<Enum.Status>? StatusRemoved
         {
             add { if (value is not null) AddEventHandler("StatusRemoved", value); }

@@ -49,6 +49,7 @@ namespace Roblox
         /// Deprecated: This property is now replaced by packages which has greater functionality.The content ID of an uploaded script. When set binds the uploaded code to the script's Script.Source.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BaseScript#LinkedSource"/>
+        [global::System.Obsolete("'BaseScript.LinkedSource' is deprecated.")]
         public object LinkedSource
         {
             get => global::Roblox.Reflection.GetProperty<object>(this, "LinkedSource")!;

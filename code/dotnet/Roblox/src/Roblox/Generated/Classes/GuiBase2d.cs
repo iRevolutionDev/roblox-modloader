@@ -81,6 +81,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.Automatically set to true when a localization table's LocalizationTable.Root targets this object, or an ancestor of this object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiBase2d#Localize"/>
+        [global::System.Obsolete("'GuiBase2d.Localize' is deprecated.")]
         public bool Localize
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Localize")!;

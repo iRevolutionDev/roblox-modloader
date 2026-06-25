@@ -55,6 +55,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated; constraints can no longer be drawn "on top" of other objects.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#DrawConstraintsOnTop"/>
+        [global::System.Obsolete("'StudioService.DrawConstraintsOnTop' is deprecated.")]
         public bool DrawConstraintsOnTop
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "DrawConstraintsOnTop")!;
@@ -312,6 +313,7 @@ namespace Roblox
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFile"/>
+        [global::System.Obsolete("'StudioService.PromptImportFile' is deprecated.")]
         public Instance? PromptImportFile(object? fileTypeFilter = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "PromptImportFile", fileTypeFilter);
 
@@ -330,6 +332,7 @@ namespace Roblox
         /// <param name="fileTypeFilter">A <c>object?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/StudioService#PromptImportFiles"/>
+        [global::System.Obsolete("'StudioService.PromptImportFiles' is deprecated.")]
         public IReadOnlyList<Instance> PromptImportFiles(object? fileTypeFilter = null)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "PromptImportFiles", fileTypeFilter)!;
 

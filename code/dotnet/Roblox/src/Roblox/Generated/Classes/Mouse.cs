@@ -200,6 +200,7 @@ namespace Roblox
         /// </summary>
         /// <param name="key">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyDown"/>
+        [global::System.Obsolete("'Mouse.KeyDown' is deprecated.")]
         public event Action<string>? KeyDown
         {
             add { if (value is not null) AddEventHandler("KeyDown", value); }
@@ -211,6 +212,7 @@ namespace Roblox
         /// </summary>
         /// <param name="key">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Mouse#KeyUp"/>
+        [global::System.Obsolete("'Mouse.KeyUp' is deprecated.")]
         public event Action<string>? KeyUp
         {
             add { if (value is not null) AddEventHandler("KeyUp", value); }

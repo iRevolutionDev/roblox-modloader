@@ -71,6 +71,7 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "KeyboardEnabled", value);
         }
 
+        [global::System.Obsolete("'UserInputService.LegacyInputEventsEnabled' is deprecated.")]
         public bool LegacyInputEventsEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "LegacyInputEventsEnabled")!;
@@ -81,6 +82,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by GuiService.TouchControlsEnabled which should be used in all new work.Toggles whether Roblox's mobile controls are hidden on mobile devices.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#ModalEnabled"/>
+        [global::System.Obsolete("'UserInputService.ModalEnabled' is deprecated.")]
         public bool ModalEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ModalEnabled")!;
@@ -241,6 +243,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by UserInputService:GetUserCFrame() which should be used in all new work.Describes the orientation and position of a user's head, if they are actively using a virtual reality headset.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#UserHeadCFrame"/>
+        [global::System.Obsolete("'UserInputService.UserHeadCFrame' is deprecated.")]
         public global::Roblox.CFrame UserHeadCFrame
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.CFrame>(this, "UserHeadCFrame")!;
@@ -443,6 +446,7 @@ namespace Roblox
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
         /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#GetUserCFrame"/>
+        [global::System.Obsolete("'UserInputService.GetUserCFrame' is deprecated.")]
         public global::Roblox.CFrame GetUserCFrame(Enum.UserCFrame type)
             => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetUserCFrame", type)!;
 
@@ -821,6 +825,7 @@ namespace Roblox
         /// <param name="type">A <c>Enum.UserCFrame</c> value.</param>
         /// <param name="value">A <c>global::Roblox.CFrame</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/UserInputService#UserCFrameChanged"/>
+        [global::System.Obsolete("'UserInputService.UserCFrameChanged' is deprecated.")]
         public event Action<Enum.UserCFrame, global::Roblox.CFrame>? UserCFrameChanged
         {
             add { if (value is not null) AddEventHandler("UserCFrameChanged", value); }

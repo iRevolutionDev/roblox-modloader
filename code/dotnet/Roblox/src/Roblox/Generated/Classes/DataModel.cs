@@ -69,6 +69,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated and is no longer functional. It should not be used.Not functional. Historically described the gear permissions of the place as set on the Roblox website.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GearGenreSetting"/>
+        [global::System.Obsolete("'DataModel.GearGenreSetting' is deprecated.")]
         public Enum.GearGenreSetting GearGenreSetting
         {
             get => global::Roblox.Reflection.GetProperty<Enum.GearGenreSetting>(this, "GearGenreSetting")!;
@@ -165,6 +166,7 @@ namespace Roblox
         /// Deprecated: This property has been deprecated. Use DataModel.PrivateServerId instead.A string that could identify the current server as a private server.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#VIPServerId"/>
+        [global::System.Obsolete("'DataModel.VIPServerId' is deprecated.")]
         public string VIPServerId
         {
             get => global::Roblox.Reflection.GetProperty<string>(this, "VIPServerId")!;
@@ -175,6 +177,7 @@ namespace Roblox
         /// Deprecated: This property has been deprecated. Use DataModel.PrivateServerOwnerId instead.The UserId of the account who owns the private server.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#VIPServerOwnerId"/>
+        [global::System.Obsolete("'DataModel.VIPServerOwnerId' is deprecated.")]
         public long VIPServerOwnerId
         {
             get => global::Roblox.Reflection.GetProperty<long>(this, "VIPServerOwnerId")!;
@@ -195,6 +198,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by game:GetService("Lighting"), which should be used instead.Refers to the game's Lighting service.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#lighting"/>
+        [global::System.Obsolete("'DataModel.lighting' is deprecated.")]
         public Instance Lighting
         {
             get => global::Roblox.Reflection.GetProperty<Instance>(this, "lighting")!;
@@ -282,6 +286,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GetMessage"/>
+        [global::System.Obsolete("'DataModel.GetMessage' is deprecated.")]
         public string GetMessage()
             => global::Roblox.Reflection.Invoke<string>(this, "GetMessage")!;
 
@@ -297,6 +302,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#GetRemoteBuildMode"/>
+        [global::System.Obsolete("'DataModel.GetRemoteBuildMode' is deprecated.")]
         public bool GetRemoteBuildMode()
             => global::Roblox.Reflection.Invoke<bool>(this, "GetRemoteBuildMode")!;
 
@@ -313,6 +319,7 @@ namespace Roblox
         /// <param name="gearType">A <c>Enum.GearType</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#IsGearTypeAllowed"/>
+        [global::System.Obsolete("'DataModel.IsGearTypeAllowed' is deprecated.")]
         public bool IsGearTypeAllowed(Enum.GearType gearType)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsGearTypeAllowed", gearType)!;
 
@@ -468,6 +475,7 @@ namespace Roblox
         /// <param name="saveFilter">A <c>Enum.SaveFilter?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#SavePlace"/>
+        [global::System.Obsolete("'DataModel.SavePlace' is deprecated.")]
         public bool SavePlace(Enum.SaveFilter? saveFilter = null)
             => global::Roblox.Reflection.Invoke<bool>(this, "SavePlace", saveFilter)!;
 
@@ -511,6 +519,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated . Do not use it for new work.Fires when SetGearSettings is called with a different value for allowedGenres.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#AllowedGearTypeChanged"/>
+        [global::System.Obsolete("'DataModel.AllowedGearTypeChanged' is deprecated.")]
         public event Action? AllowedGearTypeChanged
         {
             add { if (value is not null) AddEventHandler("AllowedGearTypeChanged", value); }
@@ -534,6 +543,7 @@ namespace Roblox
         /// <param name="@object">A <c>Instance</c> value.</param>
         /// <param name="descriptor">A <c>string</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataModel#ItemChanged"/>
+        [global::System.Obsolete("'DataModel.ItemChanged' is deprecated.")]
         public event Action<Instance, string>? ItemChanged
         {
             add { if (value is not null) AddEventHandler("ItemChanged", value); }

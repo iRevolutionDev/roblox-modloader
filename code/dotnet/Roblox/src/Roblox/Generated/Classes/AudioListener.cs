@@ -107,6 +107,7 @@ namespace Roblox
         /// Deprecated: Controls how detailed the audio simulation should be for this AudioListener.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioListener#SimulationFidelity"/>
+        [global::System.Obsolete("'AudioListener.SimulationFidelity' is deprecated.")]
         public Enum.AudioSimulationFidelity SimulationFidelity
         {
             get => global::Roblox.Reflection.GetProperty<Enum.AudioSimulationFidelity>(this, "SimulationFidelity")!;

@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This item is a deprecated function of a legacy Terrain engine that has been removed. Do not use it for new work.The state of this property shows whether or not this TerrainRegion contains smooth terrain.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#IsSmooth"/>
+        [global::System.Obsolete("'TerrainRegion.IsSmooth' is deprecated.")]
         public bool IsSmooth
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSmooth")!;
@@ -69,6 +70,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TerrainRegion#ConvertToSmooth"/>
+        [global::System.Obsolete("'TerrainRegion.ConvertToSmooth' is deprecated.")]
         public object ConvertToSmooth()
             => global::Roblox.Reflection.Invoke<object>(this, "ConvertToSmooth")!;
 

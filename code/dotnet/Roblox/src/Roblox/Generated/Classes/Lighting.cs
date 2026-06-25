@@ -189,6 +189,7 @@ namespace Roblox
         /// Deprecated: This item is no longer supported as the outlines feature was removed from the Roblox platform.Determines whether outlines are enabled or disabled in a place.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#Outlines"/>
+        [global::System.Obsolete("'Lighting.Outlines' is deprecated.")]
         public bool Outlines
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Outlines")!;
@@ -209,6 +210,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated and has no current functionality. Do not use it for new work.This is supposed to change the color of player shadows, but currently doesn't do anything.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Lighting#ShadowColor"/>
+        [global::System.Obsolete("'Lighting.ShadowColor' is deprecated.")]
         public global::Roblox.Color3 ShadowColor
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.Color3>(this, "ShadowColor")!;

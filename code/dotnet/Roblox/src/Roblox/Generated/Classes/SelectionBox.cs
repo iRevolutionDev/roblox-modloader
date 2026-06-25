@@ -45,6 +45,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of SurfaceColor3 which uses the more precise Color3 data type instead of a BrickColor used by this property.A BrickColor version of SurfaceColor3.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SelectionBox#SurfaceColor"/>
+        [global::System.Obsolete("'SelectionBox.SurfaceColor' is deprecated.")]
         public global::Roblox.BrickColor SurfaceColor
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "SurfaceColor")!;

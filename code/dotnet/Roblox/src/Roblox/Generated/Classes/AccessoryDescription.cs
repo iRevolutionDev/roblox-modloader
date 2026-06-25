@@ -89,6 +89,7 @@ namespace Roblox
         /// The layered clothing puffiness, if the Accessory is layered.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AccessoryDescription#Puffiness"/>
+        [global::System.Obsolete("'AccessoryDescription.Puffiness' is deprecated.")]
         public float Puffiness
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Puffiness")!;

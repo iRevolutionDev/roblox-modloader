@@ -77,6 +77,7 @@ namespace Roblox
         /// <param name="version">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/DataStore#RemoveVersionAsync"/>
+        [global::System.Obsolete("'DataStore.RemoveVersionAsync' is deprecated.")]
         public object RemoveVersionAsync(string key, string version)
             => global::Roblox.Reflection.Invoke<object>(this, "RemoveVersionAsync", key, version)!;
 

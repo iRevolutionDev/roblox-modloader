@@ -79,6 +79,7 @@ namespace Roblox
         /// Deprecated: A measurement of the total amount of time it takes long it takes for Roblox to update all of its task scheduler jobs, in milliseconds.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#HeartbeatTimeMs"/>
+        [global::System.Obsolete("'Stats.HeartbeatTimeMs' is deprecated.")]
         public float HeartbeatTimeMs
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "HeartbeatTimeMs")!;
@@ -149,6 +150,7 @@ namespace Roblox
         /// Deprecated: A measurement of how long it takes for the physics engine to update its current state, in milliseconds. If this value is high, then it means the game instance is under stress from the physics simulations taking place.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Stats#PhysicsStepTimeMs"/>
+        [global::System.Obsolete("'Stats.PhysicsStepTimeMs' is deprecated.")]
         public float PhysicsStepTimeMs
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "PhysicsStepTimeMs")!;

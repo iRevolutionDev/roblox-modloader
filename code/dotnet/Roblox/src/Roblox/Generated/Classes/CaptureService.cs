@@ -438,6 +438,7 @@ namespace Roblox
         /// </summary>
         /// <param name="captureInfo">A <c>object</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CaptureService#CaptureSaved"/>
+        [global::System.Obsolete("'CaptureService.CaptureSaved' is deprecated.")]
         public event Action<object>? CaptureSaved
         {
             add { if (value is not null) AddEventHandler("CaptureSaved", value); }

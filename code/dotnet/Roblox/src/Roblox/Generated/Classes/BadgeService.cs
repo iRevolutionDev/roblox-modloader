@@ -32,6 +32,7 @@ namespace Roblox
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#AwardBadge"/>
+        [global::System.Obsolete("'BadgeService.AwardBadge' is deprecated.")]
         public bool AwardBadge(object userId, long badgeId)
             => global::Roblox.Reflection.Invoke<bool>(this, "AwardBadge", userId, badgeId)!;
 
@@ -70,6 +71,7 @@ namespace Roblox
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#IsDisabled"/>
+        [global::System.Obsolete("'BadgeService.IsDisabled' is deprecated.")]
         public bool IsDisabled(long badgeId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsDisabled", badgeId)!;
 
@@ -79,6 +81,7 @@ namespace Roblox
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#IsLegal"/>
+        [global::System.Obsolete("'BadgeService.IsLegal' is deprecated.")]
         public bool IsLegal(long badgeId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsLegal", badgeId)!;
 
@@ -89,6 +92,7 @@ namespace Roblox
         /// <param name="badgeId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BadgeService#UserHasBadge"/>
+        [global::System.Obsolete("'BadgeService.UserHasBadge' is deprecated.")]
         public bool UserHasBadge(object userId, long badgeId)
             => global::Roblox.Reflection.Invoke<bool>(this, "UserHasBadge", userId, badgeId)!;
 

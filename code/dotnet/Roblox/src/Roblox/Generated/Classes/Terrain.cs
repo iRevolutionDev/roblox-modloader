@@ -49,6 +49,7 @@ namespace Roblox
         /// Deprecated: The legacy terrain engine has been removed, so this property will always be true.Returns true if the game is using the smooth terrain system.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#IsSmooth"/>
+        [global::System.Obsolete("'Terrain.IsSmooth' is deprecated.")]
         public bool IsSmooth
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "IsSmooth")!;
@@ -145,6 +146,7 @@ namespace Roblox
         /// <param name="z">A <c>int</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#AutowedgeCell"/>
+        [global::System.Obsolete("'Terrain.AutowedgeCell' is deprecated.")]
         public bool AutowedgeCell(int x, int y, int z)
             => global::Roblox.Reflection.Invoke<bool>(this, "AutowedgeCell", x, y, z)!;
 
@@ -154,6 +156,7 @@ namespace Roblox
         /// <param name="region">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#AutowedgeCells"/>
+        [global::System.Obsolete("'Terrain.AutowedgeCells' is deprecated.")]
         public object AutowedgeCells(object region)
             => global::Roblox.Reflection.Invoke<object>(this, "AutowedgeCells", region)!;
 
@@ -208,6 +211,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#ConvertToSmooth"/>
+        [global::System.Obsolete("'Terrain.ConvertToSmooth' is deprecated.")]
         public object ConvertToSmooth()
             => global::Roblox.Reflection.Invoke<object>(this, "ConvertToSmooth")!;
 
@@ -299,6 +303,7 @@ namespace Roblox
         /// <param name="z">A <c>int</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#GetCell"/>
+        [global::System.Obsolete("'Terrain.GetCell' is deprecated.")]
         public object GetCell(int x, int y, int z)
             => global::Roblox.Reflection.Invoke<object>(this, "GetCell", x, y, z)!;
 
@@ -336,6 +341,7 @@ namespace Roblox
         /// <param name="z">A <c>int</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#GetWaterCell"/>
+        [global::System.Obsolete("'Terrain.GetWaterCell' is deprecated.")]
         public object GetWaterCell(int x, int y, int z)
             => global::Roblox.Reflection.Invoke<object>(this, "GetWaterCell", x, y, z)!;
 
@@ -455,6 +461,7 @@ namespace Roblox
         /// <param name="orientation">A <c>Enum.CellOrientation</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#SetCell"/>
+        [global::System.Obsolete("'Terrain.SetCell' is deprecated.")]
         public object SetCell(int x, int y, int z, Enum.CellMaterial material, Enum.CellBlock block, Enum.CellOrientation orientation)
             => global::Roblox.Reflection.Invoke<object>(this, "SetCell", x, y, z, material, block, orientation)!;
 
@@ -467,6 +474,7 @@ namespace Roblox
         /// <param name="orientation">A <c>Enum.CellOrientation</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#SetCells"/>
+        [global::System.Obsolete("'Terrain.SetCells' is deprecated.")]
         public object SetCells(object region, Enum.CellMaterial material, Enum.CellBlock block, Enum.CellOrientation orientation)
             => global::Roblox.Reflection.Invoke<object>(this, "SetCells", region, material, block, orientation)!;
 
@@ -522,6 +530,7 @@ namespace Roblox
         /// <param name="direction">A <c>Enum.WaterDirection</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Terrain#SetWaterCell"/>
+        [global::System.Obsolete("'Terrain.SetWaterCell' is deprecated.")]
         public object SetWaterCell(int x, int y, int z, Enum.WaterForce force, Enum.WaterDirection direction)
             => global::Roblox.Reflection.Invoke<object>(this, "SetWaterCell", x, y, z, force, direction)!;
 

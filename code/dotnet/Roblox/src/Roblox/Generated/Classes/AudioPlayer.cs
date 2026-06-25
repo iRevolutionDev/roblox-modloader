@@ -39,6 +39,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated; use Asset instead.The asset to be loaded into the AudioPlayer.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AudioPlayer#AssetId"/>
+        [global::System.Obsolete("'AudioPlayer.AssetId' is deprecated.")]
         public string AssetId
         {
             get => global::Roblox.Reflection.GetProperty<string>(this, "AssetId")!;

@@ -30,6 +30,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>OpenCloudApiV1</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OpenCloudService#GetApiV1"/>
+        [global::System.Obsolete("'OpenCloudService.GetApiV1' is deprecated.")]
         public OpenCloudApiV1 GetApiV1()
             => global::Roblox.Reflection.Invoke<OpenCloudApiV1>(this, "GetApiV1")!;
 
@@ -67,6 +68,7 @@ namespace Roblox
         /// <param name="headers">A <c>object?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/OpenCloudService#InvokeAsync"/>
+        [global::System.Obsolete("'OpenCloudService.InvokeAsync' is deprecated.")]
         public object InvokeAsync(string version, string methodName, object arguments, object? headers = null)
             => global::Roblox.Reflection.Invoke<object>(this, "InvokeAsync", version, methodName, arguments, headers)!;
 

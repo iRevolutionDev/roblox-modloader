@@ -31,6 +31,7 @@ namespace Roblox
         /// <param name="assetId">A <c>object</c> value.</param>
         /// <returns>A <c>AnimationClip</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimationClip"/>
+        [global::System.Obsolete("'AnimationClipProvider.GetAnimationClip' is deprecated.")]
         public AnimationClip GetAnimationClip(object assetId)
             => global::Roblox.Reflection.Invoke<AnimationClip>(this, "GetAnimationClip", assetId)!;
 
@@ -41,6 +42,7 @@ namespace Roblox
         /// <param name="useCache">A <c>bool</c> value.</param>
         /// <returns>A <c>AnimationClip</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimationClipById"/>
+        [global::System.Obsolete("'AnimationClipProvider.GetAnimationClipById' is deprecated.")]
         public AnimationClip GetAnimationClipById(long assetId, bool useCache)
             => global::Roblox.Reflection.Invoke<AnimationClip>(this, "GetAnimationClipById", assetId, useCache)!;
 
@@ -99,6 +101,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationClipProvider#GetAnimations"/>
+        [global::System.Obsolete("'AnimationClipProvider.GetAnimations' is deprecated.")]
         public Instance? GetAnimations(object userId)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetAnimations", userId);
 

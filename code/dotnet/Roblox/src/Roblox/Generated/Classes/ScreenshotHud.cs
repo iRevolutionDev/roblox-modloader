@@ -75,6 +75,7 @@ namespace Roblox
         /// Deprecated: Whether the experience name in the overlay is enabled.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#ExperienceNameOverlayEnabled"/>
+        [global::System.Obsolete("'ScreenshotHud.ExperienceNameOverlayEnabled' is deprecated.")]
         public bool ExperienceNameOverlayEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "ExperienceNameOverlayEnabled")!;
@@ -105,6 +106,7 @@ namespace Roblox
         /// Deprecated: Font used for the experience name in the overlay.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#OverlayFont"/>
+        [global::System.Obsolete("'ScreenshotHud.OverlayFont' is deprecated.")]
         public Enum.Font OverlayFont
         {
             get => global::Roblox.Reflection.GetProperty<Enum.Font>(this, "OverlayFont")!;
@@ -115,6 +117,7 @@ namespace Roblox
         /// Deprecated: Currently disabled with no effect.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ScreenshotHud#UsernameOverlayEnabled"/>
+        [global::System.Obsolete("'ScreenshotHud.UsernameOverlayEnabled' is deprecated.")]
         public bool UsernameOverlayEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "UsernameOverlayEnabled")!;

@@ -49,6 +49,7 @@ namespace Roblox
         /// Defines how much the body mesh can be compressed by clothing.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapTarget#Stiffness"/>
+        [global::System.Obsolete("'WrapTarget.Stiffness' is deprecated.")]
         public float Stiffness
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Stiffness")!;

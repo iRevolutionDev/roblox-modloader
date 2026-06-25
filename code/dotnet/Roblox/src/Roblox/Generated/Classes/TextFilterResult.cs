@@ -31,6 +31,7 @@ namespace Roblox
         /// <param name="toUserId">A <c>long</c> value.</param>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextFilterResult#GetChatForUserAsync"/>
+        [global::System.Obsolete("'TextFilterResult.GetChatForUserAsync' is deprecated.")]
         public string GetChatForUserAsync(long toUserId)
             => global::Roblox.Reflection.Invoke<string>(this, "GetChatForUserAsync", toUserId)!;
 

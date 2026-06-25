@@ -101,6 +101,7 @@ namespace Roblox
         /// <param name="state">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/InputAction#Fire"/>
+        [global::System.Obsolete("'InputAction.Fire' is deprecated.")]
         public object Fire(object state)
             => global::Roblox.Reflection.Invoke<object>(this, "Fire", state)!;
 

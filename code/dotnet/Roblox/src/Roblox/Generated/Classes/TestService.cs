@@ -69,6 +69,7 @@ namespace Roblox
         /// Deprecated: This has been deprecated and directly renamed to ThrottlePhysicsToRealtime to better reflect its practical use.Sets whether or not the physics engine should be throttled to 30 FPS while the test is being ran.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Is30FpsThrottleEnabled"/>
+        [global::System.Obsolete("'TestService.Is30FpsThrottleEnabled' is deprecated.")]
         public bool Is30FpsThrottleEnabled
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Is30FpsThrottleEnabled")!;
@@ -366,6 +367,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TestService#Run"/>
+        [global::System.Obsolete("'TestService.Run' is deprecated.")]
         public object Run()
             => global::Roblox.Reflection.Invoke<object>(this, "Run")!;
 

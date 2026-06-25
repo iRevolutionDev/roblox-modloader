@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated and should not be used in new work.The maximum number of items that can be assigned to the Debris service at one time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Debris#MaxItems"/>
+        [global::System.Obsolete("'Debris.MaxItems' is deprecated.")]
         public int MaxItems
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "MaxItems")!;

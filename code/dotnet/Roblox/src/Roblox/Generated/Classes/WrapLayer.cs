@@ -101,6 +101,7 @@ namespace Roblox
         /// Controls how much underlying clothing items inflate the current clothing item.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#Puffiness"/>
+        [global::System.Obsolete("'WrapLayer.Puffiness' is deprecated.")]
         public float Puffiness
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Puffiness")!;
@@ -151,6 +152,7 @@ namespace Roblox
         /// Allows slight shrinking/expanding of the resulting render mesh, without affecting any other layers.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WrapLayer#ShrinkFactor"/>
+        [global::System.Obsolete("'WrapLayer.ShrinkFactor' is deprecated.")]
         public float ShrinkFactor
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "ShrinkFactor")!;

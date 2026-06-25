@@ -41,6 +41,7 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<Enum.AgeCheckStatus>(this, "AgeChecked", value);
         }
 
+        [global::System.Obsolete("'Player.AppearanceDidLoad' is deprecated.")]
         public bool AppearanceDidLoad
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AppearanceDidLoad")!;
@@ -111,6 +112,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Do not use it for new work.The URL of the asset containing the character's appearance, clothing, and gear.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#CharacterAppearance"/>
+        [global::System.Obsolete("'Player.CharacterAppearance' is deprecated.")]
         public string CharacterAppearance
         {
             get => global::Roblox.Reflection.GetProperty<string>(this, "CharacterAppearance")!;
@@ -143,12 +145,14 @@ namespace Roblox
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.The total amount of data currently being stored in the player's cache on the current place.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DataComplexity"/>
+        [global::System.Obsolete("'Player.DataComplexity' is deprecated.")]
         public int DataComplexity
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "DataComplexity")!;
             set => global::Roblox.Reflection.SetProperty<int>(this, "DataComplexity", value);
         }
 
+        [global::System.Obsolete("'Player.DataComplexityLimit' is deprecated.")]
         public int DataComplexityLimit
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "DataComplexityLimit")!;
@@ -159,6 +163,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated, as it may have been used for a now obsolete data persistence method. Please save and load player data using DataStoreService for new work.Indicates when the player's data is available to load.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#DataReady"/>
+        [global::System.Obsolete("'Player.DataReady' is deprecated.")]
         public bool DataReady
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "DataReady")!;
@@ -664,6 +669,7 @@ namespace Roblox
         /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadBoolean"/>
+        [global::System.Obsolete("'Player.LoadBoolean' is deprecated.")]
         public bool LoadBoolean(string key)
             => global::Roblox.Reflection.Invoke<bool>(this, "LoadBoolean", key)!;
 
@@ -673,6 +679,7 @@ namespace Roblox
         /// <param name="assetInstance">A <c>Instance</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacterAppearance"/>
+        [global::System.Obsolete("'Player.LoadCharacterAppearance' is deprecated.")]
         public object LoadCharacterAppearance(Instance assetInstance)
             => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterAppearance", assetInstance)!;
 
@@ -680,6 +687,7 @@ namespace Roblox
         /// <c>Player.LoadData</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'Player.LoadData' is deprecated.")]
         public object LoadData()
             => global::Roblox.Reflection.Invoke<object>(this, "LoadData")!;
 
@@ -689,6 +697,7 @@ namespace Roblox
         /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadInstance"/>
+        [global::System.Obsolete("'Player.LoadInstance' is deprecated.")]
         public Instance? LoadInstance(string key)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "LoadInstance", key);
 
@@ -698,6 +707,7 @@ namespace Roblox
         /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>double</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadNumber"/>
+        [global::System.Obsolete("'Player.LoadNumber' is deprecated.")]
         public double LoadNumber(string key)
             => global::Roblox.Reflection.Invoke<double>(this, "LoadNumber", key)!;
 
@@ -707,6 +717,7 @@ namespace Roblox
         /// <param name="key">A <c>string</c> value.</param>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadString"/>
+        [global::System.Obsolete("'Player.LoadString' is deprecated.")]
         public string LoadString(string key)
             => global::Roblox.Reflection.Invoke<string>(this, "LoadString", key)!;
 
@@ -818,6 +829,7 @@ namespace Roblox
         /// <param name="value">A <c>bool</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveBoolean"/>
+        [global::System.Obsolete("'Player.SaveBoolean' is deprecated.")]
         public object SaveBoolean(string key, bool value)
             => global::Roblox.Reflection.Invoke<object>(this, "SaveBoolean", key, value)!;
 
@@ -825,6 +837,7 @@ namespace Roblox
         /// <c>Player.SaveData</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'Player.SaveData' is deprecated.")]
         public object SaveData()
             => global::Roblox.Reflection.Invoke<object>(this, "SaveData")!;
 
@@ -835,6 +848,7 @@ namespace Roblox
         /// <param name="value">A <c>Instance</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveInstance"/>
+        [global::System.Obsolete("'Player.SaveInstance' is deprecated.")]
         public object SaveInstance(string key, Instance value)
             => global::Roblox.Reflection.Invoke<object>(this, "SaveInstance", key, value)!;
 
@@ -845,6 +859,7 @@ namespace Roblox
         /// <param name="value">A <c>double</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveNumber"/>
+        [global::System.Obsolete("'Player.SaveNumber' is deprecated.")]
         public object SaveNumber(string key, double value)
             => global::Roblox.Reflection.Invoke<object>(this, "SaveNumber", key, value)!;
 
@@ -855,6 +870,7 @@ namespace Roblox
         /// <param name="value">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#SaveString"/>
+        [global::System.Obsolete("'Player.SaveString' is deprecated.")]
         public object SaveString(string key, string value)
             => global::Roblox.Reflection.Invoke<object>(this, "SaveString", key, value)!;
 
@@ -936,6 +952,7 @@ namespace Roblox
         /// </summary>
         /// <param name="value">A <c>bool</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'Player.SetUnder13' is deprecated.")]
         public object SetUnder13(bool value)
             => global::Roblox.Reflection.Invoke<object>(this, "SetUnder13", value)!;
 
@@ -970,6 +987,7 @@ namespace Roblox
         /// <param name="maxFriends">A <c>int?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetFriendsOnline"/>
+        [global::System.Obsolete("'Player.GetFriendsOnline' is deprecated.")]
         public object GetFriendsOnline(int? maxFriends = null)
             => global::Roblox.Reflection.Invoke<object>(this, "GetFriendsOnline", maxFriends)!;
 
@@ -996,6 +1014,7 @@ namespace Roblox
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRankInGroup"/>
+        [global::System.Obsolete("'Player.GetRankInGroup' is deprecated.")]
         public int GetRankInGroup(long groupId)
             => global::Roblox.Reflection.Invoke<int>(this, "GetRankInGroup", groupId)!;
 
@@ -1005,6 +1024,7 @@ namespace Roblox
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRankInGroupAsync"/>
+        [global::System.Obsolete("'Player.GetRankInGroupAsync' is deprecated.")]
         public int GetRankInGroupAsync(long groupId)
             => global::Roblox.Reflection.Invoke<int>(this, "GetRankInGroupAsync", groupId)!;
 
@@ -1014,6 +1034,7 @@ namespace Roblox
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRoleInGroup"/>
+        [global::System.Obsolete("'Player.GetRoleInGroup' is deprecated.")]
         public string GetRoleInGroup(long groupId)
             => global::Roblox.Reflection.Invoke<string>(this, "GetRoleInGroup", groupId)!;
 
@@ -1023,6 +1044,7 @@ namespace Roblox
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#GetRoleInGroupAsync"/>
+        [global::System.Obsolete("'Player.GetRoleInGroupAsync' is deprecated.")]
         public string GetRoleInGroupAsync(long groupId)
             => global::Roblox.Reflection.Invoke<string>(this, "GetRoleInGroupAsync", groupId)!;
 
@@ -1032,6 +1054,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsBestFriendsWith"/>
+        [global::System.Obsolete("'Player.IsBestFriendsWith' is deprecated.")]
         public bool IsBestFriendsWith(object userId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsBestFriendsWith", userId)!;
 
@@ -1041,6 +1064,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsFriendsWith"/>
+        [global::System.Obsolete("'Player.IsFriendsWith' is deprecated.")]
         public bool IsFriendsWith(object userId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsFriendsWith", userId)!;
 
@@ -1059,6 +1083,7 @@ namespace Roblox
         /// <param name="groupId">A <c>long</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#IsInGroup"/>
+        [global::System.Obsolete("'Player.IsInGroup' is deprecated.")]
         public bool IsInGroup(long groupId)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsInGroup", groupId)!;
 
@@ -1076,6 +1101,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacter"/>
+        [global::System.Obsolete("'Player.LoadCharacter' is deprecated.")]
         public object LoadCharacter()
             => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacter")!;
 
@@ -1109,6 +1135,7 @@ namespace Roblox
         /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#LoadCharacterWithHumanoidDescription"/>
+        [global::System.Obsolete("'Player.LoadCharacterWithHumanoidDescription' is deprecated.")]
         public object LoadCharacterWithHumanoidDescription(HumanoidDescription humanoidDescription, Enum.AssetTypeVerification? assetTypeVerification = null)
             => global::Roblox.Reflection.Invoke<object>(this, "LoadCharacterWithHumanoidDescription", humanoidDescription, assetTypeVerification)!;
 
@@ -1144,6 +1171,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Player#WaitForDataReady"/>
+        [global::System.Obsolete("'Player.WaitForDataReady' is deprecated.")]
         public bool WaitForDataReady()
             => global::Roblox.Reflection.Invoke<bool>(this, "WaitForDataReady")!;
 

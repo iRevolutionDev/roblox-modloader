@@ -30,6 +30,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#GetPlayingAnimationTracks"/>
+        [global::System.Obsolete("'AnimationController.GetPlayingAnimationTracks' is deprecated.")]
         public object GetPlayingAnimationTracks()
             => global::Roblox.Reflection.Invoke<object>(this, "GetPlayingAnimationTracks")!;
 
@@ -39,6 +40,7 @@ namespace Roblox
         /// <param name="animation">A <c>Animation</c> value.</param>
         /// <returns>A <c>AnimationTrack</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#LoadAnimation"/>
+        [global::System.Obsolete("'AnimationController.LoadAnimation' is deprecated.")]
         public AnimationTrack LoadAnimation(Animation animation)
             => global::Roblox.Reflection.Invoke<AnimationTrack>(this, "LoadAnimation", animation)!;
 
@@ -47,6 +49,7 @@ namespace Roblox
         /// </summary>
         /// <param name="animationTrack">A <c>AnimationTrack</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AnimationController#AnimationPlayed"/>
+        [global::System.Obsolete("'AnimationController.AnimationPlayed' is deprecated.")]
         public event Action<AnimationTrack>? AnimationPlayed
         {
             add { if (value is not null) AddEventHandler("AnimationPlayed", value); }

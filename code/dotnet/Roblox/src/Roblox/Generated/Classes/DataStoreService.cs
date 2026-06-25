@@ -31,6 +31,7 @@ namespace Roblox
             set => global::Roblox.Reflection.SetProperty<bool>(this, "AutomaticRetry", value);
         }
 
+        [global::System.Obsolete("'DataStoreService.LegacyNamingScheme' is deprecated.")]
         public bool LegacyNamingScheme
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "LegacyNamingScheme")!;

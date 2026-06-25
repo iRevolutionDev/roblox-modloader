@@ -99,6 +99,7 @@ namespace Roblox
         /// Deprecated: Determines the first parameter for the SurfaceType on the Back face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BackParamA"/>
+        [global::System.Obsolete("'BasePart.BackParamA' is deprecated.")]
         public float BackParamA
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "BackParamA")!;
@@ -109,6 +110,7 @@ namespace Roblox
         /// Deprecated: Determines the second parameter for the SurfaceType on the Back face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BackParamB"/>
+        [global::System.Obsolete("'BasePart.BackParamB' is deprecated.")]
         public float BackParamB
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "BackParamB")!;
@@ -129,6 +131,7 @@ namespace Roblox
         /// Deprecated: Determines the kind of input for the Back face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BackSurfaceInput"/>
+        [global::System.Obsolete("'BasePart.BackSurfaceInput' is deprecated.")]
         public Enum.InputType BackSurfaceInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "BackSurfaceInput")!;
@@ -139,6 +142,7 @@ namespace Roblox
         /// Deprecated: Determines the first parameter for the SurfaceType on the Bottom face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BottomParamA"/>
+        [global::System.Obsolete("'BasePart.BottomParamA' is deprecated.")]
         public float BottomParamA
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "BottomParamA")!;
@@ -149,6 +153,7 @@ namespace Roblox
         /// Deprecated: Determines the second parameter for the SurfaceType on the Bottom face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BottomParamB"/>
+        [global::System.Obsolete("'BasePart.BottomParamB' is deprecated.")]
         public float BottomParamB
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "BottomParamB")!;
@@ -169,6 +174,7 @@ namespace Roblox
         /// Deprecated: Determines the kind of input for the Bottom face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BottomSurfaceInput"/>
+        [global::System.Obsolete("'BasePart.BottomSurfaceInput' is deprecated.")]
         public Enum.InputType BottomSurfaceInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "BottomSurfaceInput")!;
@@ -259,6 +265,7 @@ namespace Roblox
         /// Deprecated: Describes the automatically set ID number of a part's collision group.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#CollisionGroupId"/>
+        [global::System.Obsolete("'BasePart.CollisionGroupId' is deprecated.")]
         public int CollisionGroupId
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "CollisionGroupId")!;
@@ -299,6 +306,7 @@ namespace Roblox
         /// Deprecated: This is only one of multiple physics-related properties. It has been deprecated in favor of BasePart.CustomPhysicalProperties, which combines these properties into one.Used to control the Elasticity of the part, but it no longer does anything.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Elasticity"/>
+        [global::System.Obsolete("'BasePart.Elasticity' is deprecated.")]
         public float Elasticity
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Elasticity")!;
@@ -339,6 +347,7 @@ namespace Roblox
         /// Deprecated: This is only one of multiple physics-related properties. It has been deprecated in favor of BasePart.CustomPhysicalProperties, which combines these properties into one.Used to control the Friction of the part, but now it no longer does anything.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Friction"/>
+        [global::System.Obsolete("'BasePart.Friction' is deprecated.")]
         public float Friction
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Friction")!;
@@ -349,6 +358,7 @@ namespace Roblox
         /// Deprecated: Determines the first parameter for the SurfaceType on the Front face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#FrontParamA"/>
+        [global::System.Obsolete("'BasePart.FrontParamA' is deprecated.")]
         public float FrontParamA
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "FrontParamA")!;
@@ -359,6 +369,7 @@ namespace Roblox
         /// Deprecated: Determines the second parameter for the SurfaceType on the Front face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#FrontParamB"/>
+        [global::System.Obsolete("'BasePart.FrontParamB' is deprecated.")]
         public float FrontParamB
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "FrontParamB")!;
@@ -379,6 +390,7 @@ namespace Roblox
         /// Deprecated: Determines the kind of input for the Front face of a part (-Z direction).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#FrontSurfaceInput"/>
+        [global::System.Obsolete("'BasePart.FrontSurfaceInput' is deprecated.")]
         public Enum.InputType FrontSurfaceInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "FrontSurfaceInput")!;
@@ -389,6 +401,7 @@ namespace Roblox
         /// Deprecated: Determines the first parameter for the SurfaceType on the Left face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LeftParamA"/>
+        [global::System.Obsolete("'BasePart.LeftParamA' is deprecated.")]
         public float LeftParamA
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "LeftParamA")!;
@@ -399,6 +412,7 @@ namespace Roblox
         /// Deprecated: Determines the second parameter for the SurfaceType on the Left face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LeftParamB"/>
+        [global::System.Obsolete("'BasePart.LeftParamB' is deprecated.")]
         public float LeftParamB
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "LeftParamB")!;
@@ -419,6 +433,7 @@ namespace Roblox
         /// Deprecated: Determines the kind of input for the Left face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LeftSurfaceInput"/>
+        [global::System.Obsolete("'BasePart.LeftSurfaceInput' is deprecated.")]
         public Enum.InputType LeftSurfaceInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "LeftSurfaceInput")!;
@@ -559,6 +574,7 @@ namespace Roblox
         /// Deprecated: Determines the first parameter for the SurfaceType on the Right face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RightParamA"/>
+        [global::System.Obsolete("'BasePart.RightParamA' is deprecated.")]
         public float RightParamA
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "RightParamA")!;
@@ -569,6 +585,7 @@ namespace Roblox
         /// Deprecated: Determines the second parameter for the SurfaceType on the Right face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RightParamB"/>
+        [global::System.Obsolete("'BasePart.RightParamB' is deprecated.")]
         public float RightParamB
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "RightParamB")!;
@@ -589,6 +606,7 @@ namespace Roblox
         /// Deprecated: Determines the kind of input for the Right face of a part (-X direction).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RightSurfaceInput"/>
+        [global::System.Obsolete("'BasePart.RightSurfaceInput' is deprecated.")]
         public Enum.InputType RightSurfaceInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "RightSurfaceInput")!;
@@ -609,6 +627,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use AssemblyAngularVelocity instead.Determines a part's change in orientation over time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#RotVelocity"/>
+        [global::System.Obsolete("'BasePart.RotVelocity' is deprecated.")]
         public global::Roblox.Vector3 RotVelocity
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "RotVelocity")!;
@@ -639,6 +658,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated. See BasePart.CustomPhysicalProperties to see how to configure the physical properties of BaseParts. Do not use it for new work.The ratio of the part's density to the density of water determined by the BasePart.Material.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#SpecificGravity"/>
+        [global::System.Obsolete("'BasePart.SpecificGravity' is deprecated.")]
         public float SpecificGravity
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "SpecificGravity")!;
@@ -649,6 +669,7 @@ namespace Roblox
         /// Deprecated: Determines the first parameter for the SurfaceType on the Top face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TopParamA"/>
+        [global::System.Obsolete("'BasePart.TopParamA' is deprecated.")]
         public float TopParamA
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "TopParamA")!;
@@ -659,6 +680,7 @@ namespace Roblox
         /// Deprecated: Determines the second parameter for the SurfaceType on the Top face of a part.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TopParamB"/>
+        [global::System.Obsolete("'BasePart.TopParamB' is deprecated.")]
         public float TopParamB
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "TopParamB")!;
@@ -679,6 +701,7 @@ namespace Roblox
         /// Deprecated: Determines the kind of input for the Top face of a part (+Y direction).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#TopSurfaceInput"/>
+        [global::System.Obsolete("'BasePart.TopSurfaceInput' is deprecated.")]
         public Enum.InputType TopSurfaceInput
         {
             get => global::Roblox.Reflection.GetProperty<Enum.InputType>(this, "TopSurfaceInput")!;
@@ -699,6 +722,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use AssemblyLinearVelocity instead.Determines a part's change in position over time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#Velocity"/>
+        [global::System.Obsolete("'BasePart.Velocity' is deprecated.")]
         public global::Roblox.Vector3 Velocity
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Velocity")!;
@@ -748,6 +772,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#BreakJoints"/>
+        [global::System.Obsolete("'BasePart.BreakJoints' is deprecated.")]
         public object BreakJoints()
             => global::Roblox.Reflection.Invoke<object>(this, "BreakJoints")!;
 
@@ -838,6 +863,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetRenderCFrame"/>
+        [global::System.Obsolete("'BasePart.GetRenderCFrame' is deprecated.")]
         public global::Roblox.CFrame GetRenderCFrame()
             => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetRenderCFrame")!;
 
@@ -846,6 +872,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#GetRootPart"/>
+        [global::System.Obsolete("'BasePart.GetRootPart' is deprecated.")]
         public Instance? GetRootPart()
             => global::Roblox.Reflection.Invoke<Instance?>(this, "GetRootPart");
 
@@ -879,6 +906,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#MakeJoints"/>
+        [global::System.Obsolete("'BasePart.MakeJoints' is deprecated.")]
         public object MakeJoints()
             => global::Roblox.Reflection.Invoke<object>(this, "MakeJoints")!;
 
@@ -957,6 +985,7 @@ namespace Roblox
         /// </summary>
         /// <param name="part">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#LocalSimulationTouched"/>
+        [global::System.Obsolete("'BasePart.LocalSimulationTouched' is deprecated.")]
         public event Action<BasePart>? LocalSimulationTouched
         {
             add { if (value is not null) AddEventHandler("LocalSimulationTouched", value); }
@@ -967,6 +996,7 @@ namespace Roblox
         /// Deprecated: This event is deprecated. Do not use it for new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#OutfitChanged"/>
+        [global::System.Obsolete("'BasePart.OutfitChanged' is deprecated.")]
         public event Action? OutfitChanged
         {
             add { if (value is not null) AddEventHandler("OutfitChanged", value); }
@@ -978,6 +1008,7 @@ namespace Roblox
         /// </summary>
         /// <param name="otherPart">A <c>BasePart</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BasePart#StoppedTouching"/>
+        [global::System.Obsolete("'BasePart.StoppedTouching' is deprecated.")]
         public event Action<BasePart>? StoppedTouching
         {
             add { if (value is not null) AddEventHandler("StoppedTouching", value); }

@@ -91,6 +91,7 @@ namespace Roblox
         /// <param name="ignoreWater">A <c>bool?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartOnRay"/>
+        [global::System.Obsolete("'WorldRoot.FindPartOnRay' is deprecated.")]
         public object FindPartOnRay(global::Roblox.Ray ray, Instance? ignoreDescendantsInstance = null, bool? terrainCellsAreCubes = null, bool? ignoreWater = null)
             => global::Roblox.Reflection.Invoke<object>(this, "FindPartOnRay", ray, ignoreDescendantsInstance, terrainCellsAreCubes, ignoreWater)!;
 
@@ -103,6 +104,7 @@ namespace Roblox
         /// <param name="ignoreWater">A <c>bool?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartOnRayWithIgnoreList"/>
+        [global::System.Obsolete("'WorldRoot.FindPartOnRayWithIgnoreList' is deprecated.")]
         public object FindPartOnRayWithIgnoreList(global::Roblox.Ray ray, IReadOnlyList<Instance> ignoreDescendantsTable, bool? terrainCellsAreCubes = null, bool? ignoreWater = null)
             => global::Roblox.Reflection.Invoke<object>(this, "FindPartOnRayWithIgnoreList", ray, ignoreDescendantsTable, terrainCellsAreCubes, ignoreWater)!;
 
@@ -114,6 +116,7 @@ namespace Roblox
         /// <param name="ignoreWater">A <c>bool?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartOnRayWithWhitelist"/>
+        [global::System.Obsolete("'WorldRoot.FindPartOnRayWithWhitelist' is deprecated.")]
         public object FindPartOnRayWithWhitelist(global::Roblox.Ray ray, IReadOnlyList<Instance> whitelistDescendantsTable, bool? ignoreWater = null)
             => global::Roblox.Reflection.Invoke<object>(this, "FindPartOnRayWithWhitelist", ray, whitelistDescendantsTable, ignoreWater)!;
 
@@ -125,6 +128,7 @@ namespace Roblox
         /// <param name="maxParts">A <c>int?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartsInRegion3"/>
+        [global::System.Obsolete("'WorldRoot.FindPartsInRegion3' is deprecated.")]
         public IReadOnlyList<Instance> FindPartsInRegion3(global::Roblox.Region3 region, Instance? ignoreDescendantsInstance = null, int? maxParts = null)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FindPartsInRegion3", region, ignoreDescendantsInstance, maxParts)!;
 
@@ -136,6 +140,7 @@ namespace Roblox
         /// <param name="maxParts">A <c>int?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartsInRegion3WithIgnoreList"/>
+        [global::System.Obsolete("'WorldRoot.FindPartsInRegion3WithIgnoreList' is deprecated.")]
         public IReadOnlyList<Instance> FindPartsInRegion3WithIgnoreList(global::Roblox.Region3 region, IReadOnlyList<Instance> ignoreDescendantsTable, int? maxParts = null)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FindPartsInRegion3WithIgnoreList", region, ignoreDescendantsTable, maxParts)!;
 
@@ -147,6 +152,7 @@ namespace Roblox
         /// <param name="maxParts">A <c>int?</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#FindPartsInRegion3WithWhiteList"/>
+        [global::System.Obsolete("'WorldRoot.FindPartsInRegion3WithWhiteList' is deprecated.")]
         public IReadOnlyList<Instance> FindPartsInRegion3WithWhiteList(global::Roblox.Region3 region, IReadOnlyList<Instance> whitelistDescendantsTable, int? maxParts = null)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "FindPartsInRegion3WithWhiteList", region, whitelistDescendantsTable, maxParts)!;
 
@@ -230,6 +236,7 @@ namespace Roblox
         /// <param name="ignoreDescendentsInstance">A <c>Instance?</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#IsRegion3Empty"/>
+        [global::System.Obsolete("'WorldRoot.IsRegion3Empty' is deprecated.")]
         public bool IsRegion3Empty(global::Roblox.Region3 region, Instance? ignoreDescendentsInstance = null)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsRegion3Empty", region, ignoreDescendentsInstance)!;
 
@@ -240,6 +247,7 @@ namespace Roblox
         /// <param name="ignoreDescendentsTable">A <c>IReadOnlyList&lt;Instance&gt;</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/WorldRoot#IsRegion3EmptyWithIgnoreList"/>
+        [global::System.Obsolete("'WorldRoot.IsRegion3EmptyWithIgnoreList' is deprecated.")]
         public bool IsRegion3EmptyWithIgnoreList(global::Roblox.Region3 region, IReadOnlyList<Instance> ignoreDescendentsTable)
             => global::Roblox.Reflection.Invoke<bool>(this, "IsRegion3EmptyWithIgnoreList", region, ignoreDescendentsTable)!;
 

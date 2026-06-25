@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This property has been deprecated and should not be used in new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/FormFactorPart#FormFactor"/>
+        [global::System.Obsolete("'FormFactorPart.FormFactor' is deprecated.")]
         public Enum.FormFactor FormFactor
         {
             get => global::Roblox.Reflection.GetProperty<Enum.FormFactor>(this, "FormFactor")!;

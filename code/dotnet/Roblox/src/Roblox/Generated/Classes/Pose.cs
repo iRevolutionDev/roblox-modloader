@@ -39,6 +39,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use the AnimationTrack:AdjustWeight() function when blending multiple animations.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Pose#MaskWeight"/>
+        [global::System.Obsolete("'Pose.MaskWeight' is deprecated.")]
         public float MaskWeight
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "MaskWeight")!;

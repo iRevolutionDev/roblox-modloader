@@ -32,6 +32,7 @@ namespace Roblox
         /// <param name="part">A <c>BasePart</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsService#CollisionGroupContainsPart"/>
+        [global::System.Obsolete("'PhysicsService.CollisionGroupContainsPart' is deprecated.")]
         public bool CollisionGroupContainsPart(string name, BasePart part)
             => global::Roblox.Reflection.Invoke<bool>(this, "CollisionGroupContainsPart", name, part)!;
 
@@ -62,6 +63,7 @@ namespace Roblox
         /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsService#CreateCollisionGroup"/>
+        [global::System.Obsolete("'PhysicsService.CreateCollisionGroup' is deprecated.")]
         public int CreateCollisionGroup(string name)
             => global::Roblox.Reflection.Invoke<int>(this, "CreateCollisionGroup", name)!;
 
@@ -71,6 +73,7 @@ namespace Roblox
         /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>int</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsService#GetCollisionGroupId"/>
+        [global::System.Obsolete("'PhysicsService.GetCollisionGroupId' is deprecated.")]
         public int GetCollisionGroupId(string name)
             => global::Roblox.Reflection.Invoke<int>(this, "GetCollisionGroupId", name)!;
 
@@ -80,6 +83,7 @@ namespace Roblox
         /// <param name="name">A <c>int</c> value.</param>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsService#GetCollisionGroupName"/>
+        [global::System.Obsolete("'PhysicsService.GetCollisionGroupName' is deprecated.")]
         public string GetCollisionGroupName(int name)
             => global::Roblox.Reflection.Invoke<string>(this, "GetCollisionGroupName", name)!;
 
@@ -88,6 +92,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsService#GetCollisionGroups"/>
+        [global::System.Obsolete("'PhysicsService.GetCollisionGroups' is deprecated.")]
         public object GetCollisionGroups()
             => global::Roblox.Reflection.Invoke<object>(this, "GetCollisionGroups")!;
 
@@ -153,6 +158,7 @@ namespace Roblox
         /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsService#RemoveCollisionGroup"/>
+        [global::System.Obsolete("'PhysicsService.RemoveCollisionGroup' is deprecated.")]
         public object RemoveCollisionGroup(string name)
             => global::Roblox.Reflection.Invoke<object>(this, "RemoveCollisionGroup", name)!;
 
@@ -173,6 +179,7 @@ namespace Roblox
         /// <param name="name">A <c>string</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PhysicsService#SetPartCollisionGroup"/>
+        [global::System.Obsolete("'PhysicsService.SetPartCollisionGroup' is deprecated.")]
         public object SetPartCollisionGroup(BasePart part, string name)
             => global::Roblox.Reflection.Invoke<object>(this, "SetPartCollisionGroup", part, name)!;
 

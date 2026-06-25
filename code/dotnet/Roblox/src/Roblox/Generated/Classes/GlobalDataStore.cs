@@ -32,6 +32,7 @@ namespace Roblox
         /// <param name="callback">A <c>object</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#OnUpdate"/>
+        [global::System.Obsolete("'GlobalDataStore.OnUpdate' is deprecated.")]
         public object OnUpdate(string key, object callback)
             => global::Roblox.Reflection.Invoke<object>(this, "OnUpdate", key, callback)!;
 

@@ -78,6 +78,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/BodyPosition#lastForce"/>
+        [global::System.Obsolete("'BodyPosition.lastForce' is deprecated.")]
         public global::Roblox.Vector3 LastForce()
             => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "lastForce")!;
 

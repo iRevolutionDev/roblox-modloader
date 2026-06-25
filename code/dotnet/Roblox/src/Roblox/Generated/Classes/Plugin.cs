@@ -201,6 +201,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>long</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#GetStudioUserId"/>
+        [global::System.Obsolete("'Plugin.GetStudioUserId' is deprecated.")]
         public long GetStudioUserId()
             => global::Roblox.Reflection.Invoke<long>(this, "GetStudioUserId")!;
 
@@ -295,6 +296,7 @@ namespace Roblox
         /// <param name="lineNumber">A <c>int?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#OpenScript"/>
+        [global::System.Obsolete("'Plugin.OpenScript' is deprecated.")]
         public object OpenScript(LuaSourceContainer script, int? lineNumber = null)
             => global::Roblox.Reflection.Invoke<object>(this, "OpenScript", script, lineNumber)!;
 
@@ -425,6 +427,7 @@ namespace Roblox
         /// <param name="dockWidgetPluginGuiInfo">A <c>object</c> value.</param>
         /// <returns>A <c>DockWidgetPluginGui</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#CreateDockWidgetPluginGui"/>
+        [global::System.Obsolete("'Plugin.CreateDockWidgetPluginGui' is deprecated.")]
         public DockWidgetPluginGui CreateDockWidgetPluginGui(string pluginGuiId, object dockWidgetPluginGuiInfo)
             => global::Roblox.Reflection.Invoke<DockWidgetPluginGui>(this, "CreateDockWidgetPluginGui", pluginGuiId, dockWidgetPluginGuiInfo)!;
 
@@ -454,6 +457,7 @@ namespace Roblox
         /// <param name="isR15">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#ImportFbxAnimation"/>
+        [global::System.Obsolete("'Plugin.ImportFbxAnimation' is deprecated.")]
         public Instance? ImportFbxAnimation(Instance rigModel, bool? isR15 = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFbxAnimation", rigModel, isR15);
 
@@ -473,6 +477,7 @@ namespace Roblox
         /// <param name="isR15">A <c>bool?</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#ImportFbxRig"/>
+        [global::System.Obsolete("'Plugin.ImportFbxRig' is deprecated.")]
         public Instance? ImportFbxRig(bool? isR15 = null)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "ImportFbxRig", isR15);
 
@@ -509,6 +514,7 @@ namespace Roblox
         /// <param name="suggestedFileName">A <c>string</c> value.</param>
         /// <returns>A <c>bool</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Plugin#PromptSaveSelection"/>
+        [global::System.Obsolete("'Plugin.PromptSaveSelection' is deprecated.")]
         public bool PromptSaveSelection(string suggestedFileName)
             => global::Roblox.Reflection.Invoke<bool>(this, "PromptSaveSelection", suggestedFileName)!;
 

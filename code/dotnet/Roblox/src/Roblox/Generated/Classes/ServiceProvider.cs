@@ -49,6 +49,7 @@ namespace Roblox
         /// <param name="className">A <c>string</c> value.</param>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/ServiceProvider#service"/>
+        [global::System.Obsolete("'ServiceProvider.service' is deprecated.")]
         public Instance? Service(string className)
             => global::Roblox.Reflection.Invoke<Instance?>(this, "service", className);
 

@@ -65,6 +65,7 @@ namespace Roblox
         /// Deprecated: This property has deprecated in favor of Sound.RollOffMinDistance and Sound.RollOffMaxDistance which should be used instead in new work.The minimum distance, in studs, at which a 3D Sound (direct child of a BasePart or Attachment) will begin to attenuate (decrease in volume).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#EmitterSize"/>
+        [global::System.Obsolete("'Sound.EmitterSize' is deprecated.")]
         public float EmitterSize
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "EmitterSize")!;
@@ -131,6 +132,7 @@ namespace Roblox
         /// Deprecated: This property has deprecated in favor of Sound.RollOffMinDistance and Sound.RollOffMaxDistance which should be used instead in new work.The maximum distance, in studs, a client's listener can be from the Sound\s origin and still hear it. Only applies to Sounds parented to a Part or Attachment (3D sounds).
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#MaxDistance"/>
+        [global::System.Obsolete("'Sound.MaxDistance' is deprecated.")]
         public float MaxDistance
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "MaxDistance")!;
@@ -141,6 +143,7 @@ namespace Roblox
         /// Deprecated: MinDistance has been superseded by Sound.EmitterSize, whose name better describes this properties behavior.The minimum distance at which a 3D Sound (direct child of a BasePart or Attachment) will begin to attenuate. Effectively, the emitter size.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#MinDistance"/>
+        [global::System.Obsolete("'Sound.MinDistance' is deprecated.")]
         public float MinDistance
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "MinDistance")!;
@@ -151,6 +154,7 @@ namespace Roblox
         /// Deprecated: This property has been deprecated in favor of Sound.PlaybackSpeed whose name suits the behavior better.Sets how high pitched and fast a Sound is when it is played. The greater the integer, the higher and faster the Sound is.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Sound#Pitch"/>
+        [global::System.Obsolete("'Sound.Pitch' is deprecated.")]
         public float Pitch
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "Pitch")!;

@@ -49,6 +49,7 @@ namespace Roblox
         /// <param name="@class">A <c>string</c> value.</param>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#GetCollection"/>
+        [global::System.Obsolete("'CollectionService.GetCollection' is deprecated.")]
         public IReadOnlyList<Instance> GetCollection(string @class)
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "GetCollection", @class)!;
 
@@ -113,6 +114,7 @@ namespace Roblox
         /// </summary>
         /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemAdded"/>
+        [global::System.Obsolete("'CollectionService.ItemAdded' is deprecated.")]
         public event Action<Instance>? ItemAdded
         {
             add { if (value is not null) AddEventHandler("ItemAdded", value); }
@@ -124,6 +126,7 @@ namespace Roblox
         /// </summary>
         /// <param name="instance">A <c>Instance</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/CollectionService#ItemRemoved"/>
+        [global::System.Obsolete("'CollectionService.ItemRemoved' is deprecated.")]
         public event Action<Instance>? ItemRemoved
         {
             add { if (value is not null) AddEventHandler("ItemRemoved", value); }

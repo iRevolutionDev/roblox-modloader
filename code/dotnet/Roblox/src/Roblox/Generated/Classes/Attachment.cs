@@ -69,6 +69,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated and should not be used in new work. See Orientation instead.Rotation of the attachment relative to the rotation of its parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#Rotation"/>
+        [global::System.Obsolete("'Attachment.Rotation' is deprecated.")]
         public global::Roblox.Vector3 Rotation
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "Rotation")!;
@@ -139,6 +140,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by WorldOrientation which should be used in new work.Rotation of the attachment relative to the world rather than its own parent.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#WorldRotation"/>
+        [global::System.Obsolete("'Attachment.WorldRotation' is deprecated.")]
         public global::Roblox.Vector3 WorldRotation
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "WorldRotation")!;
@@ -160,6 +162,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#GetAxis"/>
+        [global::System.Obsolete("'Attachment.GetAxis' is deprecated.")]
         public global::Roblox.Vector3 GetAxis()
             => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetAxis")!;
 
@@ -176,6 +179,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#GetSecondaryAxis"/>
+        [global::System.Obsolete("'Attachment.GetSecondaryAxis' is deprecated.")]
         public global::Roblox.Vector3 GetSecondaryAxis()
             => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetSecondaryAxis")!;
 
@@ -185,6 +189,7 @@ namespace Roblox
         /// <param name="axis">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#SetAxis"/>
+        [global::System.Obsolete("'Attachment.SetAxis' is deprecated.")]
         public object SetAxis(global::Roblox.Vector3 axis)
             => global::Roblox.Reflection.Invoke<object>(this, "SetAxis", axis)!;
 
@@ -194,6 +199,7 @@ namespace Roblox
         /// <param name="axis">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Attachment#SetSecondaryAxis"/>
+        [global::System.Obsolete("'Attachment.SetSecondaryAxis' is deprecated.")]
         public object SetSecondaryAxis(global::Roblox.Vector3 axis)
             => global::Roblox.Reflection.Invoke<object>(this, "SetSecondaryAxis", axis)!;
 

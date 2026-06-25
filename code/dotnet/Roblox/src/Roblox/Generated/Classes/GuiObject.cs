@@ -59,6 +59,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of the Color3 property GuiObject.BackgroundColor3, which should be used in new work instead.Determines the color of the GuiObject background.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundColor"/>
+        [global::System.Obsolete("'GuiObject.BackgroundColor' is deprecated.")]
         public global::Roblox.BrickColor BackgroundColor
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "BackgroundColor")!;
@@ -89,6 +90,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of the Color3 property BorderColor3, which should be used in new work instead.Determines the color of the GuiObject border.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#BorderColor"/>
+        [global::System.Obsolete("'GuiObject.BorderColor' is deprecated.")]
         public global::Roblox.BrickColor BorderColor
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "BorderColor")!;
@@ -139,6 +141,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated. Use UIDragDetector instead, as it supports more input types and can be better customized.Determines whether a GuiObject (and its descendants) can be dragged around the screen.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#Draggable"/>
+        [global::System.Obsolete("'GuiObject.Draggable' is deprecated.")]
         public bool Draggable
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "Draggable")!;
@@ -419,6 +422,7 @@ namespace Roblox
         /// </summary>
         /// <param name="initialPosition">A <c>global::Roblox.UDim2</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#DragBegin"/>
+        [global::System.Obsolete("'GuiObject.DragBegin' is deprecated.")]
         public event Action<global::Roblox.UDim2>? DragBegin
         {
             add { if (value is not null) AddEventHandler("DragBegin", value); }
@@ -431,6 +435,7 @@ namespace Roblox
         /// <param name="x">A <c>int</c> value.</param>
         /// <param name="y">A <c>int</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/GuiObject#DragStopped"/>
+        [global::System.Obsolete("'GuiObject.DragStopped' is deprecated.")]
         public event Action<int, int>? DragStopped
         {
             add { if (value is not null) AddEventHandler("DragStopped", value); }

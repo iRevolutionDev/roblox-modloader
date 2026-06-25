@@ -210,6 +210,7 @@ namespace Roblox
         /// <param name="options">A <c>object?</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SocialService#PromptLinkSharing"/>
+        [global::System.Obsolete("'SocialService.PromptLinkSharing' is deprecated.")]
         public object PromptLinkSharing(Player player, object? options = null)
             => global::Roblox.Reflection.Invoke<object>(this, "PromptLinkSharing", player, options)!;
 

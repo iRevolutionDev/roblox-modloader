@@ -40,6 +40,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Path#GetPointCoordinates"/>
+        [global::System.Obsolete("'Path.GetPointCoordinates' is deprecated.")]
         public object GetPointCoordinates()
             => global::Roblox.Reflection.Invoke<object>(this, "GetPointCoordinates")!;
 

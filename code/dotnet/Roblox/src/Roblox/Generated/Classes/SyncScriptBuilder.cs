@@ -69,6 +69,7 @@ namespace Roblox
         /// Deprecated: This property should not be used for new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/SyncScriptBuilder#RawBytecode"/>
+        [global::System.Obsolete("'SyncScriptBuilder.RawBytecode' is deprecated.")]
         public bool RawBytecode
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "RawBytecode")!;

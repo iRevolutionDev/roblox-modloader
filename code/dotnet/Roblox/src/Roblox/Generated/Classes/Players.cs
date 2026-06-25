@@ -95,6 +95,7 @@ namespace Roblox
         /// Deprecated: This item is deprecated. Instead, of using this item, you should count the number of players returned by Players:GetPlayers().Returns the number of people in the server at the current time.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#NumPlayers"/>
+        [global::System.Obsolete("'Players.NumPlayers' is deprecated.")]
         public int NumPlayers
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "NumPlayers")!;
@@ -278,6 +279,7 @@ namespace Roblox
         /// <param name="character">A <c>Model</c> value.</param>
         /// <returns>A <c>Player</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#playerFromCharacter"/>
+        [global::System.Obsolete("'Players.playerFromCharacter' is deprecated.")]
         public Player PlayerFromCharacter(Model character)
             => global::Roblox.Reflection.Invoke<Player>(this, "playerFromCharacter", character)!;
 
@@ -286,6 +288,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>IReadOnlyList&lt;Instance&gt;</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#players"/>
+        [global::System.Obsolete("'Players.players' is deprecated.")]
         public IReadOnlyList<Instance> PlayersFunc()
             => global::Roblox.Reflection.Invoke<IReadOnlyList<Instance>>(this, "players")!;
 
@@ -306,6 +309,7 @@ namespace Roblox
         /// <param name="assetTypeVerification">A <c>Enum.AssetTypeVerification?</c> value.</param>
         /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#CreateHumanoidModelFromDescription"/>
+        [global::System.Obsolete("'Players.CreateHumanoidModelFromDescription' is deprecated.")]
         public Model CreateHumanoidModelFromDescription(HumanoidDescription description, Enum.HumanoidRigType rigType, Enum.AssetTypeVerification? assetTypeVerification = null)
             => global::Roblox.Reflection.Invoke<Model>(this, "CreateHumanoidModelFromDescription", description, rigType, assetTypeVerification)!;
 
@@ -326,6 +330,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#CreateHumanoidModelFromUserId"/>
+        [global::System.Obsolete("'Players.CreateHumanoidModelFromUserId' is deprecated.")]
         public Model CreateHumanoidModelFromUserId(object userId)
             => global::Roblox.Reflection.Invoke<Model>(this, "CreateHumanoidModelFromUserId", userId)!;
 
@@ -353,6 +358,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>Model</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetCharacterAppearanceAsync"/>
+        [global::System.Obsolete("'Players.GetCharacterAppearanceAsync' is deprecated.")]
         public Model GetCharacterAppearanceAsync(object userId)
             => global::Roblox.Reflection.Invoke<Model>(this, "GetCharacterAppearanceAsync", userId)!;
 
@@ -380,6 +386,7 @@ namespace Roblox
         /// <param name="outfitId">A <c>long</c> value.</param>
         /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetHumanoidDescriptionFromOutfitId"/>
+        [global::System.Obsolete("'Players.GetHumanoidDescriptionFromOutfitId' is deprecated.")]
         public HumanoidDescription GetHumanoidDescriptionFromOutfitId(long outfitId)
             => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "GetHumanoidDescriptionFromOutfitId", outfitId)!;
 
@@ -398,6 +405,7 @@ namespace Roblox
         /// <param name="userId">A <c>object</c> value.</param>
         /// <returns>A <c>HumanoidDescription</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Players#GetHumanoidDescriptionFromUserId"/>
+        [global::System.Obsolete("'Players.GetHumanoidDescriptionFromUserId' is deprecated.")]
         public HumanoidDescription GetHumanoidDescriptionFromUserId(object userId)
             => global::Roblox.Reflection.Invoke<HumanoidDescription>(this, "GetHumanoidDescriptionFromUserId", userId)!;
 

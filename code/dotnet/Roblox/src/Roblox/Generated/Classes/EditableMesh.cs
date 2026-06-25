@@ -298,6 +298,7 @@ namespace Roblox
         /// <param name="id">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetFacesWithAttribute"/>
+        [global::System.Obsolete("'EditableMesh.GetFacesWithAttribute' is deprecated.")]
         public object GetFacesWithAttribute(long id)
             => global::Roblox.Reflection.Invoke<object>(this, "GetFacesWithAttribute", id)!;
 
@@ -511,6 +512,7 @@ namespace Roblox
         /// <param name="id">A <c>long</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/EditableMesh#GetVerticesWithAttribute"/>
+        [global::System.Obsolete("'EditableMesh.GetVerticesWithAttribute' is deprecated.")]
         public object GetVerticesWithAttribute(long id)
             => global::Roblox.Reflection.Invoke<object>(this, "GetVerticesWithAttribute", id)!;
 

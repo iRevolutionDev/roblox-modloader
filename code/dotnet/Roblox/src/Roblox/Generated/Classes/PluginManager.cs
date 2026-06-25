@@ -30,6 +30,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>Instance?</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PluginManager#CreatePlugin"/>
+        [global::System.Obsolete("'PluginManager.CreatePlugin' is deprecated.")]
         public Instance? CreatePlugin()
             => global::Roblox.Reflection.Invoke<Instance?>(this, "CreatePlugin");
 

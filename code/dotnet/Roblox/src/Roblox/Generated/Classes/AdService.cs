@@ -112,6 +112,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#ShowVideoAd"/>
+        [global::System.Obsolete("'AdService.ShowVideoAd' is deprecated.")]
         public object ShowVideoAd()
             => global::Roblox.Reflection.Invoke<object>(this, "ShowVideoAd")!;
 
@@ -244,6 +245,7 @@ namespace Roblox
         /// </summary>
         /// <param name="adShown">A <c>bool</c> value.</param>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/AdService#VideoAdClosed"/>
+        [global::System.Obsolete("'AdService.VideoAdClosed' is deprecated.")]
         public event Action<bool>? VideoAdClosed
         {
             add { if (value is not null) AddEventHandler("VideoAdClosed", value); }

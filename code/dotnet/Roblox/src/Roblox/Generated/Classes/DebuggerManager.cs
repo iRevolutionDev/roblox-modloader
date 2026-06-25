@@ -60,6 +60,7 @@ namespace Roblox
         /// <c>DebuggerManager.StepIn</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'DebuggerManager.StepIn' is deprecated.")]
         public object StepIn()
             => global::Roblox.Reflection.Invoke<object>(this, "StepIn")!;
 
@@ -67,6 +68,7 @@ namespace Roblox
         /// <c>DebuggerManager.StepOut</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'DebuggerManager.StepOut' is deprecated.")]
         public object StepOut()
             => global::Roblox.Reflection.Invoke<object>(this, "StepOut")!;
 
@@ -74,6 +76,7 @@ namespace Roblox
         /// <c>DebuggerManager.StepOver</c>
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'DebuggerManager.StepOver' is deprecated.")]
         public object StepOver()
             => global::Roblox.Reflection.Invoke<object>(this, "StepOver")!;
 

@@ -39,6 +39,7 @@ namespace Roblox
         /// Deprecated:
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#HasJointOffset"/>
+        [global::System.Obsolete("'MeshPart.HasJointOffset' is deprecated.")]
         public bool HasJointOffset
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "HasJointOffset")!;
@@ -59,6 +60,7 @@ namespace Roblox
         /// Deprecated:
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/MeshPart#JointOffset"/>
+        [global::System.Obsolete("'MeshPart.JointOffset' is deprecated.")]
         public global::Roblox.Vector3 JointOffset
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.Vector3>(this, "JointOffset")!;

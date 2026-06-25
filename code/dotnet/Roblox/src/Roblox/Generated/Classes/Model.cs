@@ -89,6 +89,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#BreakJoints"/>
+        [global::System.Obsolete("'Model.BreakJoints' is deprecated.")]
         public object BreakJoints()
             => global::Roblox.Reflection.Invoke<object>(this, "BreakJoints")!;
 
@@ -113,6 +114,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetModelCFrame"/>
+        [global::System.Obsolete("'Model.GetModelCFrame' is deprecated.")]
         public global::Roblox.CFrame GetModelCFrame()
             => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetModelCFrame")!;
 
@@ -121,6 +123,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>global::Roblox.Vector3</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetModelSize"/>
+        [global::System.Obsolete("'Model.GetModelSize' is deprecated.")]
         public global::Roblox.Vector3 GetModelSize()
             => global::Roblox.Reflection.Invoke<global::Roblox.Vector3>(this, "GetModelSize")!;
 
@@ -137,6 +140,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>global::Roblox.CFrame</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#GetPrimaryPartCFrame"/>
+        [global::System.Obsolete("'Model.GetPrimaryPartCFrame' is deprecated.")]
         public global::Roblox.CFrame GetPrimaryPartCFrame()
             => global::Roblox.Reflection.Invoke<global::Roblox.CFrame>(this, "GetPrimaryPartCFrame")!;
 
@@ -153,6 +157,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#MakeJoints"/>
+        [global::System.Obsolete("'Model.MakeJoints' is deprecated.")]
         public object MakeJoints()
             => global::Roblox.Reflection.Invoke<object>(this, "MakeJoints")!;
 
@@ -179,6 +184,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#ResetOrientationToIdentity"/>
+        [global::System.Obsolete("'Model.ResetOrientationToIdentity' is deprecated.")]
         public object ResetOrientationToIdentity()
             => global::Roblox.Reflection.Invoke<object>(this, "ResetOrientationToIdentity")!;
 
@@ -196,6 +202,7 @@ namespace Roblox
         /// </summary>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#SetIdentityOrientation"/>
+        [global::System.Obsolete("'Model.SetIdentityOrientation' is deprecated.")]
         public object SetIdentityOrientation()
             => global::Roblox.Reflection.Invoke<object>(this, "SetIdentityOrientation")!;
 
@@ -205,6 +212,7 @@ namespace Roblox
         /// <param name="cframe">A <c>global::Roblox.CFrame</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#SetPrimaryPartCFrame"/>
+        [global::System.Obsolete("'Model.SetPrimaryPartCFrame' is deprecated.")]
         public object SetPrimaryPartCFrame(global::Roblox.CFrame cframe)
             => global::Roblox.Reflection.Invoke<object>(this, "SetPrimaryPartCFrame", cframe)!;
 
@@ -223,6 +231,7 @@ namespace Roblox
         /// <param name="location">A <c>global::Roblox.Vector3</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Model#move"/>
+        [global::System.Obsolete("'Model.move' is deprecated.")]
         public object Move(global::Roblox.Vector3 location)
             => global::Roblox.Reflection.Invoke<object>(this, "move", location)!;
 

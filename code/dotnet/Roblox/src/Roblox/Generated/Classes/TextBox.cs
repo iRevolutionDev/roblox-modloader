@@ -79,6 +79,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by TextBox.TextSize which should be used in all new work.Determines the font size of a TextBox object.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#FontSize"/>
+        [global::System.Obsolete("'TextBox.FontSize' is deprecated.")]
         public Enum.FontSize FontSize
         {
             get => global::Roblox.Reflection.GetProperty<Enum.FontSize>(this, "FontSize")!;
@@ -257,6 +258,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by TextBox.TextColor3 which should be used in all new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextColor"/>
+        [global::System.Obsolete("'TextBox.TextColor' is deprecated.")]
         public global::Roblox.BrickColor TextColor
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TextColor")!;
@@ -373,6 +375,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by TextBox.TextWrapped which should be used in all new work.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextBox#TextWrap"/>
+        [global::System.Obsolete("'TextBox.TextWrap' is deprecated.")]
         public bool TextWrap
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrap")!;

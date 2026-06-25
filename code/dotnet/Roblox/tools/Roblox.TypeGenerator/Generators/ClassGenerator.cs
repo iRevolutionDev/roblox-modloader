@@ -301,6 +301,17 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         return inherited;
     }
     
+    private static void WriteObsolete(StreamWriter sw, Class c, MemberBase member)
+    {
+        if (!member.IsDeprecated)
+        {
+            return;
+        }
+
+        var name = member.Name?.Replace("\"", "\\\"");
+        sw.WriteLine($"        [global::System.Obsolete(\"'{c.Name}.{name}' is deprecated.\")]");
+    }
+
     private void WriteProperty(StreamWriter sw, Class c, Property prop, string memberName, bool hides)
     {
         var memberDoc = apiDocs.GetMember(c.Name, prop.Name ?? string.Empty);
@@ -317,6 +328,7 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         WriteXmlMemberDoc(sw, c.Name, prop.Name ?? string.Empty, memberDoc, descFallback,
             parameters: null, returnCsType: null,
             defaultValue: IsUsableDefault(prop.Default) ? prop.Default : null, indent: 8);
+        WriteObsolete(sw, c, prop);
 
         if (readOnly)
         {
@@ -363,6 +375,8 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
             parameters: fn.Parameters, returnCsType: isVoid ? null : returnType, defaultValue: null, indent: 8,
             resolvedParams: resolved.Select(p => (p.Name, p.CsType)).ToList());
 
+        WriteObsolete(sw, c, fn);
+
         var bang = isVoid || returnType.EndsWith('?') ? string.Empty : "!";
         var callExpr = isVoid
             ? $"global::Roblox.Reflection.Invoke<object?>(this, \"{fn.Name}\"{args})"
@@ -397,6 +411,7 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
             : $"Action<{string.Join(", ", resolved.Select(p => p.CsType))}>";
         var newKw = hides ? "new " : string.Empty;
 
+        WriteObsolete(sw, c, evt);
         sw.WriteLine($"        public {newKw}event {delegateType}? {memberName}");
         sw.WriteLine("        {");
         sw.WriteLine($"            add {{ if (value is not null) AddEventHandler(\"{evt.Name}\", value); }}");

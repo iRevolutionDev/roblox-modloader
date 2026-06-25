@@ -176,6 +176,7 @@ namespace Roblox
         /// <param name="playerToFilterFor">A <c>Player</c> value.</param>
         /// <returns>A <c>string</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Chat#FilterStringForPlayerAsync"/>
+        [global::System.Obsolete("'Chat.FilterStringForPlayerAsync' is deprecated.")]
         public string FilterStringForPlayerAsync(string stringToFilter, Player playerToFilterFor)
             => global::Roblox.Reflection.Invoke<string>(this, "FilterStringForPlayerAsync", stringToFilter, playerToFilterFor)!;
 

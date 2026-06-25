@@ -59,6 +59,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated in favor of TextSize which is an integer and not an enum and thus offers far more options for sizes.Determines the font size to be used.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#FontSize"/>
+        [global::System.Obsolete("'TextButton.FontSize' is deprecated.")]
         public Enum.FontSize FontSize
         {
             get => global::Roblox.Reflection.GetProperty<Enum.FontSize>(this, "FontSize")!;
@@ -161,6 +162,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by TextButton.TextColor3 which should be used in all new work.Determines the color of text.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextColor"/>
+        [global::System.Obsolete("'TextButton.TextColor' is deprecated.")]
         public global::Roblox.BrickColor TextColor
         {
             get => global::Roblox.Reflection.GetProperty<global::Roblox.BrickColor>(this, "TextColor")!;
@@ -261,6 +263,7 @@ namespace Roblox
         /// Deprecated: This item has been superseded by TextButton.TextWrapped which should be used in all new work.Determines whether or not text should wrap at the edges of the TextButton element's space.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/TextButton#TextWrap"/>
+        [global::System.Obsolete("'TextButton.TextWrap' is deprecated.")]
         public bool TextWrap
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "TextWrap")!;

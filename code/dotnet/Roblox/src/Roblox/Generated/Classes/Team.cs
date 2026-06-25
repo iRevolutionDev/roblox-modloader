@@ -39,6 +39,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated and no longer functions, it should not be used for new work.Deprecated and no longer functional. Historically set whether or not Player character models on a team would be colored to Team.TeamColor.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#AutoColorCharacters"/>
+        [global::System.Obsolete("'Team.AutoColorCharacters' is deprecated.")]
         public bool AutoColorCharacters
         {
             get => global::Roblox.Reflection.GetProperty<bool>(this, "AutoColorCharacters")!;
@@ -55,6 +56,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated and should not be used in new work. For more information on how to handle leaderboards and scoring please see this tutorial.This property can be used to store an integer value associated with the team. This property offers no additional functionality and is not used by any game services.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/Team#Score"/>
+        [global::System.Obsolete("'Team.Score' is deprecated.")]
         public int Score
         {
             get => global::Roblox.Reflection.GetProperty<int>(this, "Score")!;

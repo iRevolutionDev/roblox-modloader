@@ -132,6 +132,7 @@ namespace Roblox
         /// </summary>
         /// <param name="count">A <c>int</c> value.</param>
         /// <returns>A <c>object</c> value returned by the engine.</returns>
+        [global::System.Obsolete("'AnnotationsService.LoadResolvedAnnotations' is deprecated.")]
         public object LoadResolvedAnnotations(int count)
             => global::Roblox.Reflection.Invoke<object>(this, "LoadResolvedAnnotations", count)!;
 

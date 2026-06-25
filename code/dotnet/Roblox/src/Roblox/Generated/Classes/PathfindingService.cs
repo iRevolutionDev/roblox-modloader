@@ -29,6 +29,7 @@ namespace Roblox
         /// Deprecated: This property is deprecated, since the legacy pathfinding system using it has since been removed. Do not use it for new work.Sets the percent of a voxel has to be occupied to be considered empty. Defaults to 0.16.
         /// </summary>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService#EmptyCutoff"/>
+        [global::System.Obsolete("'PathfindingService.EmptyCutoff' is deprecated.")]
         public float EmptyCutoff
         {
             get => global::Roblox.Reflection.GetProperty<float>(this, "EmptyCutoff")!;
@@ -52,6 +53,7 @@ namespace Roblox
         /// <param name="maxDistance">A <c>float</c> value.</param>
         /// <returns>A <c>Path</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService#ComputeRawPathAsync"/>
+        [global::System.Obsolete("'PathfindingService.ComputeRawPathAsync' is deprecated.")]
         public Path ComputeRawPathAsync(global::Roblox.Vector3 start, global::Roblox.Vector3 finish, float maxDistance)
             => global::Roblox.Reflection.Invoke<Path>(this, "ComputeRawPathAsync", start, finish, maxDistance)!;
 
@@ -63,6 +65,7 @@ namespace Roblox
         /// <param name="maxDistance">A <c>float</c> value.</param>
         /// <returns>A <c>Path</c> value returned by the engine.</returns>
         /// <seealso href="https://create.roblox.com/docs/reference/engine/classes/PathfindingService#ComputeSmoothPathAsync"/>
+        [global::System.Obsolete("'PathfindingService.ComputeSmoothPathAsync' is deprecated.")]
         public Path ComputeSmoothPathAsync(global::Roblox.Vector3 start, global::Roblox.Vector3 finish, float maxDistance)
             => global::Roblox.Reflection.Invoke<Path>(this, "ComputeSmoothPathAsync", start, finish, maxDistance)!;
 
