@@ -25,8 +25,8 @@
 ## Cross-Platform Support
 
 - [x] Windows
+- [x] Linux Vinegar
 - [ ] macOS (planned)
-- [ ] Linux Vinegar (not tested)
 
 ## Quick Start
 
