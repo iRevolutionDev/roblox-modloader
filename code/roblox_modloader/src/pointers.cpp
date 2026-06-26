@@ -178,6 +178,13 @@ constexpr auto pointers::get_roblox_batch()
 			[](const memory::handle ptr) {
 				g_pointers->m_roblox_pointers.get_string_atom = ptr.as<functions::get_string_atom>();
 			}
+		},
+		{
+			"MENU_BUILD_FROM_DOM",
+			"48 89 5C 24 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 ? 48 81 EC 50 01 00 00 49 8B D8",
+			[](const memory::handle ptr) {
+				g_pointers->m_roblox_pointers.build_menu_bar_from_dom = ptr.as<functions::build_menu_bar_from_dom>();
+			}
 		}
     >();
 

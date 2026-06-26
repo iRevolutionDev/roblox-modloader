@@ -30,4 +30,5 @@ namespace functions
 	using creator_create_by_name = uintptr_t (*)(uintptr_t* out, const std::string& name, uint32_t creator_role);
 	using instance_bridge_push = void(__fastcall*)(lua_State* L, uintptr_t instance);
 	using task_defer = int(__fastcall*)(lua_State* L);
+	using build_menu_bar_from_dom = void*(__fastcall*)(void* out_menu_bar, void* dom, void* context);
 }

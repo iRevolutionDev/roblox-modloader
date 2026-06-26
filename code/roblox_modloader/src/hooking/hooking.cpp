@@ -38,6 +38,7 @@ hooking::hooking()
 	// detour_hook_helper::add<hooks::render_perform>("RENDER_PERFORM", g_pointers->m_roblox_pointers.m_render_perform);
 	// detour_hook_helper::add<hooks::render_view>("RENDER_VIEW", g_pointers->m_roblox_pointers.m_render_view);
 	detour_hook_helper::add<hooks::luau_load>("LUAU_LOAD", g_pointers->m_roblox_pointers.luau_load);
+	detour_hook_helper::add<hooks::build_menu_bar_from_dom>("MENU_BUILD_FROM_DOM", g_pointers->m_roblox_pointers.build_menu_bar_from_dom);
 
 	g_hooking = this;
 }

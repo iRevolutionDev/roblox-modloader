@@ -18,7 +18,37 @@ file(GLOB_RECURSE MODLOADER_VENDOR_SOURCES CONFIGURE_DEPENDS
 )
 list(APPEND MODLOADER_SOURCES ${MODLOADER_VENDOR_SOURCES})
 
+set(RML_VERSION_SCRIPT "${PROJECT_SOURCE_DIR}/cmake/generate-version.cmake")
+set(RML_VERSION_INPUT "${ROBLOX_MODLOADER_SOURCE_DIR}/version.cpp.in")
+set(RML_VERSION_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/version.cpp")
+
+find_package(Git QUIET)
+
+execute_process(COMMAND ${CMAKE_COMMAND}
+        "-DGIT_EXECUTABLE=${GIT_EXECUTABLE}"
+        "-DVERSION_REPO_DIR=${CMAKE_SOURCE_DIR}"
+        "-DVERSION_INPUT=${RML_VERSION_INPUT}"
+        "-DVERSION_OUTPUT=${RML_VERSION_OUTPUT}"
+        -P "${RML_VERSION_SCRIPT}"
+)
+set_source_files_properties("${RML_VERSION_OUTPUT}" PROPERTIES GENERATED TRUE)
+list(APPEND MODLOADER_SOURCES "${RML_VERSION_OUTPUT}")
+
+add_custom_target(roblox_modloader_version
+        COMMAND ${CMAKE_COMMAND}
+        "-DGIT_EXECUTABLE=${GIT_EXECUTABLE}"
+        "-DVERSION_REPO_DIR=${CMAKE_SOURCE_DIR}"
+        "-DVERSION_INPUT=${RML_VERSION_INPUT}"
+        "-DVERSION_OUTPUT=${RML_VERSION_OUTPUT}"
+        -P "${RML_VERSION_SCRIPT}"
+        BYPRODUCTS "${RML_VERSION_OUTPUT}"
+        COMMENT "Updating version information from git"
+        VERBATIM
+)
+
 add_library(roblox_modloader SHARED ${MODLOADER_SOURCES})
+
+add_dependencies(roblox_modloader roblox_modloader_version)
 
 setup_compiler_flags(roblox_modloader)
 setup_compile_definitions(roblox_modloader PRIVATE)

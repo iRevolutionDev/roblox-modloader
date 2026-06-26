@@ -1,0 +1,39 @@
+#include "RobloxModLoader/version.hpp"
+
+namespace rml::version
+{
+	const char* commit()
+	{
+		return "@GIT_SHORT_SHA1@";
+	}
+
+	const char* commit_full()
+	{
+		return "@GIT_SHA1@";
+	}
+
+	const char* branch()
+	{
+		return "@GIT_BRANCH@";
+	}
+
+	const char* date()
+	{
+		return "@GIT_DATE@";
+	}
+
+	const char* subject()
+	{
+		return "@GIT_COMMIT_SUBJECT@";
+	}
+
+	bool dirty()
+	{
+		return @GIT_DIRTY_BOOL@;
+	}
+
+	const char* string()
+	{
+		return "@RML_VERSION_STRING@";
+	}
+}

@@ -4,8 +4,10 @@
 #include "RobloxModLoader/luau/script_manager.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include "RobloxModLoader/mod/events.hpp"
+#include "RobloxModLoader/qt/qt_integration.hpp"
 #include "RobloxModLoader/roblox/job_manager.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
+#include "RobloxModLoader/version.hpp"
 #include "mod/mod_manager.hpp"
 #include "pointers.hpp"
 #include "utils/directory.hpp"
@@ -36,7 +38,7 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 
 				    logger::init();
 
-				    LOG_INFO("Initializing Roblox Mod Loader...");
+				    LOG_INFO("Initializing Roblox Mod Loader {}...", rml::version::string());
 
 				    auto crash_dumper_instance = std::make_shared<exception_filter::CrashDumper>();
 				    crash_dumper_instance->enable();
@@ -63,6 +65,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 				    const auto hooking_instance = std::make_shared<hooking>();
 				    LOG_INFO("Hooking initialized.");
 
+				    const auto qt_integration = std::make_unique<rml::qt::QtIntegration>();
+				    LOG_INFO("Qt integration initialized.");
+
 				    // const auto script_manager = std::make_shared<rml::luau::ScriptManager>();
 				    // LOG_INFO("Script Manager initialized.");
 
@@ -74,9 +79,17 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 				    g_hooking->enable();
 				    LOG_INFO("Hooking enabled.");
 
+				    if (qt_integration->ensure_action_hook())
+					    LOG_INFO("Qt action hook installed.");
+				    else
+					    LOG_WARN("Qt action hook not installed yet (Qt not resolvable); will retry on demand.");
+
 				    g_running = true;
 				    while (g_running)
 				    {
+					    if (!qt_integration->is_action_hook_ready())
+						    qt_integration->ensure_action_hook();
+
 					    std::this_thread::sleep_for(1s);
 				    }
 

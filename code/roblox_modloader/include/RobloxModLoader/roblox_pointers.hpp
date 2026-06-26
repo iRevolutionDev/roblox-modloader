@@ -62,6 +62,7 @@ struct roblox_pointers
 
 	functions::creator_create_by_name creator_create_by_name;
 	functions::instance_bridge_push instance_bridge_push;
+	functions::build_menu_bar_from_dom build_menu_bar_from_dom;
 };
 #pragma pack(pop)
 static_assert(sizeof(roblox_pointers) % 8 == 0, "Pointers are not properly aligned");
