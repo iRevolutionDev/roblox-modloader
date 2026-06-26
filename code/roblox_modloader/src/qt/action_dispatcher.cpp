@@ -46,7 +46,7 @@ namespace rml::qt
 		m_callbacks.erase(action);
 	}
 
-	void ActionDispatcher::dispatch(const void* action) const
+	void ActionDispatcher::dispatch(void* action) const
 	{
 		std::vector<std::function<void()>> handlers;
 		{

@@ -16,7 +16,7 @@ namespace rml::qt
 
 		void connect(void* action, std::function<void()> callback);
 		void disconnect(void* action);
-		void dispatch(const void* action) const;
+		void dispatch(void* action) const;
 
 	private:
 		mutable std::mutex m_callbacks_mutex;
