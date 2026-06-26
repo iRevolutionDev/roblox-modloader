@@ -4,7 +4,7 @@
 
 [core.logging]
 level = "info"
-enable_console = true
+enable_console = false
 enable_file_logging = true
 enable_async_logging = true
 
