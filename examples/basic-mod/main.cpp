@@ -1,6 +1,6 @@
-#include <RobloxModLoader/mod/mod_base.hpp>
-#include <RobloxModLoader/logger/logger.hpp>
 #include <RobloxModLoader/hooking/hooking.hpp>
+#include <RobloxModLoader/logger/logger.hpp>
+#include <RobloxModLoader/mod/mod_base.hpp>
 #include <spdlog/spdlog.h>
 
 // Define your hook functions in a namespace
@@ -17,7 +17,7 @@ namespace mod::hooks {
     }
 }
 
-class basic_mod final : public mod_base {
+class basic_mod final : public ModBase {
     std::shared_ptr<spdlog::logger> mod_logger;
 
 public:
@@ -48,11 +48,11 @@ public:
 #define BASIC_MOD_API __declspec(dllexport)
 
 extern "C" {
-BASIC_MOD_API mod_base *start_mod() {
+BASIC_MOD_API ModBase *start_mod() {
     return new basic_mod();
 }
 
-BASIC_MOD_API void uninstall_mod(const mod_base *mod) {
+BASIC_MOD_API void uninstall_mod(const ModBase *mod) {
     delete mod;
 }
 }

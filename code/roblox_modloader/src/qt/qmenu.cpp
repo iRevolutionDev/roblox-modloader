@@ -5,15 +5,15 @@
 
 namespace rml::qt
 {
-	QAction QMenu::addAction(const QString& text) const
+	QAction* QMenu::addAction(const QString& text)
 	{
 		static const auto fn = detail::widgets<void* (*)(void*, const void*)>("?addAction@QMenu@@QEAAPEAVQAction@@AEBVQString@@@Z");
-		return (fn && m_this) ? QAction{fn(m_this, text.data())} : QAction{};
+		return fn ? static_cast<QAction*>(fn(this, text.data())) : nullptr;
 	}
 
-	QAction QMenu::addSeparator() const
+	QAction* QMenu::addSeparator()
 	{
 		static const auto fn = detail::widgets<void* (*)(void*)>("?addSeparator@QMenu@@QEAAPEAVQAction@@XZ");
-		return (fn && m_this) ? QAction{fn(m_this)} : QAction{};
+		return fn ? static_cast<QAction*>(fn(this)) : nullptr;
 	}
 }

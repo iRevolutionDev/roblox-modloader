@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/rml_export.hpp"
+
 #include <functional>
 #include <mutex>
 #include <string>
@@ -9,7 +11,7 @@ namespace rml::qt
 {
 	class ActionDispatcher;
 
-	class ModsMenu
+	class RML_EXPORT ModsMenu
 	{
 	public:
 		explicit ModsMenu(ActionDispatcher& dispatcher);

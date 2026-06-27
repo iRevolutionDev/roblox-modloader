@@ -14,4 +14,9 @@ namespace rml::qt::detail
 	{
 		return memory::resolve_export_exact(memory::loaded_module({"Qt5Widgets.dll", "Qt5Widgetsd.dll", "QtWidgets"}), mangled);
 	}
+
+	void* gui_export(const char* mangled)
+	{
+		return memory::resolve_export_exact(memory::loaded_module({"Qt5Gui.dll", "Qt5Guid.dll", "QtGui"}), mangled);
+	}
 }

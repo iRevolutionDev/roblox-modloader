@@ -6,17 +6,10 @@
 namespace rml::qt
 {
 	class QString;
-
+	
 	class QMenuBar : public QWidget
 	{
 	public:
-		QMenuBar() = default;
-
-		explicit QMenuBar(void* instance) :
-		    QWidget(instance)
-		{
-		}
-
-		[[nodiscard]] QMenu addMenu(const QString& title) const;
+		[[nodiscard]] QMenu* addMenu(const QString& title);
 	};
 }

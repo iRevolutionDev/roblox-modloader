@@ -1,17 +1,15 @@
 #pragma once
 
-#include "RobloxModLoader/qt/qwidget.hpp"
+#include "RobloxModLoader/qt/qabstractbutton.hpp"
+
+#include <string_view>
 
 namespace rml::qt
 {
-	class QPushButton : public QWidget
+	class RML_EXPORT QPushButton : public QAbstractButton
 	{
 	public:
-		QPushButton() = default;
-		
-		explicit QPushButton(void* instance) :
-		    QWidget(instance)
-		{
-		}
+		[[nodiscard]] static QPushButton* create(std::string_view text, QWidget* parent = nullptr);
+		static void destroy(QPushButton* button);
 	};
 }

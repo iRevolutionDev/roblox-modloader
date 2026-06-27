@@ -1,0 +1,7 @@
+name = "Script Editor Background"
+version = "1.0.0"
+author = "Revolution"
+description = ""
+
+[datamodel.context]
+edit = []

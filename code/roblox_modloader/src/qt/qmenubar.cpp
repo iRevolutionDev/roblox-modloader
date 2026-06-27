@@ -5,9 +5,9 @@
 
 namespace rml::qt
 {
-	QMenu QMenuBar::addMenu(const QString& title) const
+	QMenu* QMenuBar::addMenu(const QString& title)
 	{
 		static const auto fn = detail::widgets<void* (*)(void*, const void*)>("?addMenu@QMenuBar@@QEAAPEAVQMenu@@AEBVQString@@@Z");
-		return (fn && m_this) ? QMenu{fn(m_this, title.data())} : QMenu{};
+		return fn ? static_cast<QMenu*>(fn(this, title.data())) : nullptr;
 	}
 }

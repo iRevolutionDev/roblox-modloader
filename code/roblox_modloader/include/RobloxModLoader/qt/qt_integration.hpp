@@ -2,10 +2,11 @@
 
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
 #include "RobloxModLoader/qt/mods_menu.hpp"
+#include "RobloxModLoader/rml_export.hpp"
 
 namespace rml::qt
 {
-	class QtIntegration
+	class RML_EXPORT QtIntegration
 	{
 	public:
 		QtIntegration();
@@ -39,6 +40,6 @@ namespace rml::qt
 		ActionDispatcher m_dispatcher;
 		ModsMenu m_menu;
 
-		static inline QtIntegration* s_instance = nullptr;
+		static QtIntegration* s_instance;
 	};
 }

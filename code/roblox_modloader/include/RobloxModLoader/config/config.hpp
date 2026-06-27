@@ -4,6 +4,7 @@
 #include "config_manager.hpp"
 #include "config_serialization.hpp"
 #include "config_helpers.hpp"
+#include "mod_settings.hpp"
 
 namespace rml::config {
     inline ConfigResult<void> initialize(const std::filesystem::path &config_path,

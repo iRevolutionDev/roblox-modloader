@@ -15,7 +15,7 @@ namespace rml::qt
 		MarkdownText = 3,
 	};
 
-	class QMessageBox : public QDialog
+	class RML_EXPORT QMessageBox : public QDialog
 	{
 	public:
 		enum Icon
@@ -32,23 +32,12 @@ namespace rml::qt
 			Ok = 0x00000400,
 		};
 
-		explicit QMessageBox(const QWidget& parent = QWidget{});
+		[[nodiscard]] static QMessageBox* create(QWidget* parent = nullptr);
+		static void destroy(QMessageBox* box);
 
-		~QMessageBox();
-
-		QMessageBox(const QMessageBox&) = delete;
-
-		QMessageBox& operator=(const QMessageBox&) = delete;
-
-		void setText(const QString& text) const;
-
-		void setIcon(Icon icon) const;
-
-		void setTextFormat(TextFormat format) const;
-
-		QPushButton addButton(StandardButton button) const;
-
-	private:
-		bool m_owned = false;
+		void setText(const QString& text);
+		void setIcon(Icon icon);
+		void setTextFormat(TextFormat format);
+		QPushButton* addButton(StandardButton button);
 	};
 }

@@ -2,6 +2,8 @@
 
 namespace rml::qt
 {
+	QtIntegration* QtIntegration::s_instance = nullptr;
+
 	QtIntegration::QtIntegration() :
 	    m_menu(m_dispatcher)
 	{

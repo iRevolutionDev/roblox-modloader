@@ -1,30 +1,39 @@
 #pragma once
 
+#include "RobloxModLoader/rml_export.hpp"
+
 namespace rml::qt
 {
-	class QObject
+	class QMetaObject;
+
+	class RML_EXPORT QObject
 	{
 	public:
-		[[nodiscard]] void* handle() const
-		{
-			return m_this;
-		}
+		virtual const QMetaObject* metaObject() const = 0;
+		virtual void* qt_metacast(const char* class_name) = 0;
+		virtual int qt_metacall(int call, int id, void** args) = 0;
+		virtual ~QObject() = default;
+		virtual bool event(void* e) = 0;
+		virtual bool eventFilter(void* watched, void* e) = 0;
+		virtual void timerEvent(void* e) = 0;
+		virtual void childEvent(void* e) = 0;
+		virtual void customEvent(void* e) = 0;
+		virtual void connectNotify(const void* signal) = 0;
+		virtual void disconnectNotify(const void* signal) = 0;
 
-		[[nodiscard]] bool valid() const
+		[[nodiscard]] const char* class_name() const;
+		[[nodiscard]] bool inherits(const char* class_name) const;
+
+		[[nodiscard]] void* handle()
 		{
-			return m_this != nullptr;
+			return this;
+		}
+		[[nodiscard]] const void* handle() const
+		{
+			return this;
 		}
 
 	protected:
-		QObject() = default;
-
-		explicit QObject(void* instance) :
-		    m_this(instance)
-		{
-		}
-
-		~QObject() = default;
-		
-		void* m_this = nullptr;
+		void* d_ptr;
 	};
 }

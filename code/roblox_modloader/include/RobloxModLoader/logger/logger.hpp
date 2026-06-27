@@ -2,6 +2,11 @@
 
 #include "RobloxModLoader/rml_export.hpp"
 
+#include <memory>
+#include <string>
+
+#include <spdlog/spdlog.h>
+
 #define LOGGER_NAME "RML"
 
 #define LOG_INFO(...) SPDLOG_LOGGER_INFO(global_logger(), __VA_ARGS__)

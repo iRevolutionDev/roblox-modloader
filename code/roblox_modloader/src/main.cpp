@@ -47,6 +47,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 				    const auto event_manager_instance = std::make_shared<events::EventManager>();
 				    LOG_INFO("Event Manager initialized.");
 
+				    const auto qt_integration = std::make_unique<rml::qt::QtIntegration>();
+				    LOG_INFO("Qt integration initialized.");
+
 				    const auto mod_manager = std::make_unique<rml::ModManager>();
 				    LOG_INFO("Mod Manager created.");
 
@@ -64,9 +67,6 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 
 				    const auto hooking_instance = std::make_shared<hooking>();
 				    LOG_INFO("Hooking initialized.");
-
-				    const auto qt_integration = std::make_unique<rml::qt::QtIntegration>();
-				    LOG_INFO("Qt integration initialized.");
 
 				    // const auto script_manager = std::make_shared<rml::luau::ScriptManager>();
 				    // LOG_INFO("Script Manager initialized.");

@@ -6,19 +6,11 @@
 namespace rml::qt
 {
 	class QString;
-
+	
 	class QMenu : public QWidget
 	{
 	public:
-		QMenu() = default;
-
-		explicit QMenu(void* instance) :
-		    QWidget(instance)
-		{
-		}
-
-		[[nodiscard]] QAction addAction(const QString& text) const;
-
-		QAction addSeparator() const;
+		[[nodiscard]] QAction* addAction(const QString& text);
+		QAction* addSeparator();
 	};
 }

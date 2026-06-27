@@ -1,0 +1,60 @@
+#include "RobloxModLoader/qt/qpainter.hpp"
+
+#include "RobloxModLoader/qt/qpixmap.hpp"
+#include "RobloxModLoader/qt/qrect.hpp"
+#include "RobloxModLoader/qt/qt_module.hpp"
+#include "RobloxModLoader/qt/qwidget.hpp"
+
+namespace rml::qt
+{
+	QPainter::QPainter(const QPixmap& target)
+	{
+		static const auto ctor = detail::gui<void (*)(void*, void*)>("??0QPainter@@QEAA@PEAVQPaintDevice@@@Z");
+		if (!ctor)
+			return;
+		ctor(m_storage, target.data());
+		m_active = true;
+	}
+
+	QPainter::QPainter(const QWidget& target)
+	{
+		static const auto ctor = detail::gui<void (*)(void*, void*)>("??0QPainter@@QEAA@PEAVQPaintDevice@@@Z");
+		if (!ctor)
+			return;
+
+		void* paint_device = reinterpret_cast<char*>(const_cast<QWidget*>(&target)) + 16;
+		ctor(m_storage, paint_device);
+		m_active = true;
+	}
+
+	QPainter::~QPainter()
+	{
+		if (!m_active)
+			return;
+
+		static const auto dtor = detail::gui<void (*)(void*)>("??1QPainter@@QEAA@XZ");
+		if (dtor)
+			dtor(m_storage);
+	}
+
+	void QPainter::set_opacity(const double opacity)
+	{
+		static const auto fn = detail::gui<void (*)(void*, double)>("?setOpacity@QPainter@@QEAAXN@Z");
+		if (fn && m_active)
+			fn(m_storage, opacity);
+	}
+
+	void QPainter::draw_pixmap(const int x, const int y, const QPixmap& pixmap)
+	{
+		static const auto fn = detail::gui<void (*)(void*, int, int, const void*)>("?drawPixmap@QPainter@@QEAAXHHAEBVQPixmap@@@Z");
+		if (fn && m_active)
+			fn(m_storage, x, y, pixmap.data());
+	}
+
+	void QPainter::draw_pixmap(const QRect& target, const QPixmap& pixmap)
+	{
+		static const auto fn = detail::gui<void (*)(void*, const void*, const void*)>("?drawPixmap@QPainter@@QEAAXAEBVQRect@@AEBVQPixmap@@@Z");
+		if (fn && m_active)
+			fn(m_storage, target.data(), pixmap.data());
+	}
+}

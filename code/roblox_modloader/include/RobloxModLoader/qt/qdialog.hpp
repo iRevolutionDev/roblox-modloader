@@ -4,16 +4,14 @@
 
 namespace rml::qt
 {
-	class QDialog : public QWidget
+	class RML_EXPORT QDialog : public QWidget
 	{
 	public:
-		QDialog() = default;
+		[[nodiscard]] static QDialog* create(QWidget* parent = nullptr);
+		static void destroy(QDialog* dialog);
 
-		explicit QDialog(void* instance) :
-		    QWidget(instance)
-		{
-		}
-
-		int exec() const;
+		void setModal(bool modal);
+		
+		int exec();
 	};
 }

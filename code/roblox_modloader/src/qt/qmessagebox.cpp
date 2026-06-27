@@ -9,53 +9,52 @@ namespace rml::qt
 {
 	constexpr std::size_t INSTANCE_SIZE = 48;
 
-	QMessageBox::QMessageBox(const QWidget& parent)
+	QMessageBox* QMessageBox::create(QWidget* parent)
 	{
 		static const auto construct = detail::widgets<void* (*)(void*, void*)>("??0QMessageBox@@QEAA@PEAVQWidget@@@Z");
 		if (!construct)
-			return;
+			return nullptr;
 
-		m_this = operator new(INSTANCE_SIZE);
-		construct(m_this, parent.handle());
-		m_owned = true;
+		void* memory = operator new(INSTANCE_SIZE);
+		construct(memory, parent);
+		return static_cast<QMessageBox*>(memory);
 	}
 
-	QMessageBox::~QMessageBox()
+	void QMessageBox::destroy(QMessageBox* box)
 	{
-		if (!m_owned || !m_this)
+		if (!box)
 			return;
 
-		static const auto destroy = detail::widgets<void (*)(void*)>("??1QMessageBox@@UEAA@XZ");
-		if (destroy)
-			destroy(m_this);
-
-		::operator delete(m_this);
+		static const auto dtor = detail::widgets<void (*)(void*)>("??1QMessageBox@@UEAA@XZ");
+		if (dtor)
+			dtor(box);
+		::operator delete(box);
 	}
 
-	void QMessageBox::setText(const QString& text) const
+	void QMessageBox::setText(const QString& text)
 	{
 		static const auto fn = detail::widgets<void (*)(void*, const void*)>("?setText@QMessageBox@@QEAAXAEBVQString@@@Z");
-		if (fn && m_this)
-			fn(m_this, text.data());
+		if (fn)
+			fn(this, text.data());
 	}
 
-	void QMessageBox::setIcon(const Icon icon) const
+	void QMessageBox::setIcon(const Icon icon)
 	{
 		static const auto fn = detail::widgets<void (*)(void*, int)>("?setIcon@QMessageBox@@QEAAXW4Icon@1@@Z");
-		if (fn && m_this)
-			fn(m_this, icon);
+		if (fn)
+			fn(this, icon);
 	}
 
-	void QMessageBox::setTextFormat(const TextFormat format) const
+	void QMessageBox::setTextFormat(const TextFormat format)
 	{
 		static const auto fn = detail::widgets<void (*)(void*, int)>("?setTextFormat@QMessageBox@@QEAAXW4TextFormat@Qt@@@Z");
-		if (fn && m_this)
-			fn(m_this, static_cast<int>(format));
+		if (fn)
+			fn(this, static_cast<int>(format));
 	}
 
-	QPushButton QMessageBox::addButton(const StandardButton button) const
+	QPushButton* QMessageBox::addButton(const StandardButton button)
 	{
 		static const auto fn = detail::widgets<void* (*)(void*, int)>("?addButton@QMessageBox@@QEAAPEAVQPushButton@@W4StandardButton@1@@Z");
-		return (fn && m_this) ? QPushButton{fn(m_this, button)} : QPushButton{};
+		return fn ? static_cast<QPushButton*>(fn(this, button)) : nullptr;
 	}
 }

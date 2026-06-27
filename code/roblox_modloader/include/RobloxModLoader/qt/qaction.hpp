@@ -12,13 +12,6 @@ namespace rml::qt
 			Trigger = 0,
 			Hover = 1,
 		};
-		
-		QAction() = default;
-
-		explicit QAction(void* instance) :
-		    QObject(instance)
-		{
-		}
 
 		[[nodiscard]] static void* activate_address();
 	};

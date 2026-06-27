@@ -1,10 +1,9 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
-
-#include <spdlog/spdlog.h>
-#include <MinHook.h>
-
 #include "pointers_internal.hpp"
+
+#include <MinHook.h>
+#include <spdlog/spdlog.h>
 
 typedef bool (*original_is_internal_t)();
 
@@ -27,7 +26,7 @@ namespace mod::hooks {
     }
 }
 
-class internal_developer_mod final : public mod_base {
+class internal_developer_mod final : public ModBase {
     std::shared_ptr<spdlog::logger> logger;
     std::shared_ptr<pointers_internal> pointers_instance;
 
@@ -98,11 +97,11 @@ public:
 #define INTERNAL_DEVELOPER_MOD_API __declspec(dllexport)
 
 extern "C" {
-INTERNAL_DEVELOPER_MOD_API mod_base *start_mod() {
+INTERNAL_DEVELOPER_MOD_API ModBase *start_mod() {
     return new internal_developer_mod();
 }
 
-INTERNAL_DEVELOPER_MOD_API void uninstall_mod(const mod_base *mod) {
+INTERNAL_DEVELOPER_MOD_API void uninstall_mod(const ModBase *mod) {
     delete mod;
 }
 }

@@ -1,16 +1,16 @@
-#include <RobloxModLoader/common.hpp>
-#include <RobloxModLoader/mod/mod_base.hpp>
-#include <RobloxModLoader/logger/logger.hpp>
-#include <RobloxModLoader/luau/environment/bridge_provider.hpp>
 #include "discord_sdk.hpp"
 
-#include <spdlog/spdlog.h>
+#include <RobloxModLoader/common.hpp>
+#include <RobloxModLoader/logger/logger.hpp>
+#include <RobloxModLoader/luau/environment/bridge_provider.hpp>
+#include <RobloxModLoader/mod/mod_base.hpp>
 #include <chrono>
 #include <memory>
+#include <spdlog/spdlog.h>
 
 using namespace rml::luau::environment;
 
-class discord_rpc final : public mod_base {
+class discord_rpc final : public ModBase {
     std::shared_ptr<spdlog::logger> logger;
     std::unique_ptr<discord_integration::DiscordGameSDK> discord_sdk;
 
@@ -166,11 +166,11 @@ private:
 #define DISCORD_RPC_MOD_API __declspec(dllexport)
 
 extern "C" {
-DISCORD_RPC_MOD_API mod_base *start_mod() {
+DISCORD_RPC_MOD_API ModBase *start_mod() {
     return new discord_rpc();
 }
 
-DISCORD_RPC_MOD_API void uninstall_mod(const mod_base *mod) {
+DISCORD_RPC_MOD_API void uninstall_mod(const ModBase *mod) {
     delete mod;
 }
 }

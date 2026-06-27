@@ -3,8 +3,8 @@
 #include "mod/imod_loader.hpp"
 
 #include <RobloxModLoader/common.hpp>
-#include <RobloxModLoader/mod/mod_base.hpp>
 #include <RobloxModLoader/memory/module.hpp>
+#include <RobloxModLoader/mod/mod_base.hpp>
 #include <filesystem>
 #include <string>
 #include <unordered_map>
@@ -30,8 +30,8 @@ namespace rml::native
 		struct LoadedMod
 		{
 			std::unique_ptr<memory::module> module;
-			mod_base* instance = nullptr;
-			using uninstall_t = void (*)(const mod_base*);
+			ModBase* instance = nullptr;
+			using uninstall_t = void (*)(const ModBase*);
 			uninstall_t uninstall = nullptr;
 		};
 

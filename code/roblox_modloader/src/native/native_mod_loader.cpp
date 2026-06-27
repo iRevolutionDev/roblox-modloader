@@ -5,6 +5,16 @@
 
 namespace rml::native
 {
+	std::filesystem::path mod_root_for(const std::filesystem::path& dll_path)
+	{
+		std::filesystem::path folder = dll_path.parent_path();
+		if (const auto leaf = folder.filename(); leaf == "native" || leaf == "dotnet" || leaf == "scripts")
+		{
+			return folder.parent_path();
+		}
+		return folder;
+	}
+
 	NativeModLoader::~NativeModLoader()
 	{
 		unload_all();
@@ -15,8 +25,8 @@ namespace rml::native
 		if (m_loaded_mods.contains(path))
 			return {};
 
-		using start_fn_t = mod_base::start_type;
-		using uninstall_fn_t = void (*)(const mod_base*);
+		using start_fn_t = ModBase::start_type;
+		using uninstall_fn_t = void (*)(const ModBase*);
 
 		auto module_ptr = std::make_unique<memory::module>(path);
 		if (auto r = module_ptr->attach(); !r)
@@ -42,7 +52,7 @@ namespace rml::native
 		auto* start = start_h.as<start_fn_t>();
 		auto* uninstall = uninstall_h.as<uninstall_fn_t>();
 
-		mod_base* instance = nullptr;
+		ModBase* instance = nullptr;
 		try
 		{
 			instance = start();
@@ -58,6 +68,8 @@ namespace rml::native
 			module_ptr->detach();
 			return std::unexpected("start_mod returned null for: " + path.string());
 		}
+
+		instance->set_paths(rml::mod::ModPaths(mod_root_for(path)));
 
 		try
 		{
