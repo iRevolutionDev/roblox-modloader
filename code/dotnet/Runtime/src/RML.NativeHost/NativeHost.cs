@@ -3,12 +3,16 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 
+using RML.Logging;
+
 namespace RML.NativeHost;
 
 internal static class NativeHost
 {
     private static Assembly? _coreAssembly;
     private static AssemblyLoadContext? _coreAssemblyLoadContext;
+
+    private static ILogger Logger { get; } = Log.CreateLogger("RML.NativeHost");
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
     public static int Initialize(IntPtr modsRootPtr, IntPtr interopTablePtr)
@@ -36,7 +40,7 @@ internal static class NativeHost
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"[RML.NativeHost] Initialization failed: {ex}");
+            Logger.Error($"Initialization failed: {ex}");
             return -1;
         }
     }
@@ -48,7 +52,7 @@ internal static class NativeHost
         {
             if (_coreAssembly is null)
             {
-                Console.Error.WriteLine("[RML.NativeHost] Shutdown called without successful initialization");
+                Logger.Error("Shutdown called without successful initialization");
                 return;
             }
 
@@ -63,7 +67,7 @@ internal static class NativeHost
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"[RML.NativeHost] Shutdown failed: {ex}");
+            Logger.Error($"Shutdown failed: {ex}");
         }
         finally
         {
@@ -78,7 +82,7 @@ internal static class NativeHost
         {
             if (_coreAssembly is null)
             {
-                Console.Error.WriteLine("[RML.NativeHost] LoadMod called without successful initialization");
+                Logger.Error("LoadMod called without successful initialization");
                 return -1;
             }
 
@@ -98,7 +102,7 @@ internal static class NativeHost
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"[RML.NativeHost] LoadMod failed: {ex}");
+            Logger.Error($"LoadMod failed: {ex}");
             return -1;
         }
     }
@@ -110,7 +114,7 @@ internal static class NativeHost
         {
             if (_coreAssembly is null)
             {
-                Console.Error.WriteLine("[RML.NativeHost] UnloadMod called without successful initialization");
+                Logger.Error("UnloadMod called without successful initialization");
                 return -1;
             }
 
@@ -130,17 +134,43 @@ internal static class NativeHost
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"[RML.NativeHost] UnloadMod failed: {ex}");
+            Logger.Error($"UnloadMod failed: {ex}");
             return -1;
         }
     }
 
-    private sealed class CoreLoadContext : AssemblyLoadContext
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    public static int NotifyDataModelChanged(ulong oldDataModelPtr, ulong newDataModelPtr, int dataModelType)
     {
-        private readonly AssemblyDependencyResolver _resolver;
+        try
+        {
+            if (_coreAssembly is null)
+            {
+                Logger.Error("NotifyDataModelChanged called without successful initialization");
+                return -1;
+            }
 
-        public CoreLoadContext(string mainAssemblyPath) : base("RML.Core", false) =>
-            _resolver = new AssemblyDependencyResolver(mainAssemblyPath);
+            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
+                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
+
+            var notifyMethod =
+                entryType.GetMethod("NotifyDataModelChanged", BindingFlags.Public | BindingFlags.Static) ??
+                throw new InvalidOperationException(
+                    "Failed to find RML.Core.EntryPoint.NotifyDataModelChanged method");
+
+            notifyMethod.Invoke(null, [oldDataModelPtr, newDataModelPtr, dataModelType]);
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"NotifyDataModelChanged failed: {ex}");
+            return -1;
+        }
+    }
+
+    private sealed class CoreLoadContext(string mainAssemblyPath) : AssemblyLoadContext("RML.Core")
+    {
+        private readonly AssemblyDependencyResolver _resolver = new(mainAssemblyPath);
 
         protected override Assembly? Load(AssemblyName assemblyName)
         {
@@ -160,32 +190,4 @@ internal static class NativeHost
     private delegate int LoadModDelegate(IntPtr assemblyPathPtr);
 
     private delegate int UnloadModDelegate(IntPtr assemblyPathPtr);
-
-    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-    public static int NotifyDataModelChanged(ulong oldDataModelPtr, ulong newDataModelPtr, int dataModelType)
-    {
-        try
-        {
-            if (_coreAssembly is null)
-            {
-                Console.Error.WriteLine("[RML.NativeHost] NotifyDataModelChanged called without successful initialization");
-                return -1;
-            }
-
-            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
-                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
-
-            var notifyMethod = entryType.GetMethod("NotifyDataModelChanged", BindingFlags.Public | BindingFlags.Static) ??
-                               throw new InvalidOperationException(
-                                   "Failed to find RML.Core.EntryPoint.NotifyDataModelChanged method");
-
-            notifyMethod.Invoke(null, [oldDataModelPtr, newDataModelPtr, dataModelType]);
-            return 0;
-        }
-        catch (Exception ex)
-        {
-            Console.Error.WriteLine($"[RML.NativeHost] NotifyDataModelChanged failed: {ex}");
-            return -1;
-        }
-    }
 }
