@@ -245,16 +245,7 @@ namespace exception_filter
 	LONG WINAPI CrashDumper::vectored_exception_handler(PEXCEPTION_POINTERS exception_pointers)
 	{
 		const DWORD code = exception_pointers->ExceptionRecord->ExceptionCode;
-		constexpr DWORD NON_FATAL_CODES[] = {
-		    0xE06D7363,
-		    0xE0434352,
-		    0x04242420,
-		    EXCEPTION_BREAKPOINT,
-		    EXCEPTION_SINGLE_STEP,
-		    DBG_PRINTEXCEPTION_C,
-		    DBG_PRINTEXCEPTION_WIDE_C,
-		    0x406D1388,
-		};
+		constexpr DWORD NON_FATAL_CODES[] = {0xE06D7363, 0xE0434352, 0x04242420, EXCEPTION_BREAKPOINT, EXCEPTION_SINGLE_STEP, DBG_PRINTEXCEPTION_C, DBG_PRINTEXCEPTION_WIDE_C, 0x406D1388, 0x000006BA};
 		for (const DWORD non_fatal : NON_FATAL_CODES)
 		{
 			if (code == non_fatal)
