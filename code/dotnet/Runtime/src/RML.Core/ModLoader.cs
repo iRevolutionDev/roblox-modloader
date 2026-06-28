@@ -82,7 +82,7 @@ internal static class ModLoader
             RuntimeLog.Warn($"No mod loaded from path {path}.");
             return;
         }
-        
+
         var weakContext = UnloadModCore(path);
 
         for (var i = 0; weakContext.IsAlive && i < 10; i++)
@@ -151,7 +151,6 @@ internal static class ModLoader
                 {
                     try
                     {
-                        modInfo.Instance.Game = newModel;
                         modInfo.Instance.OnLoad();
                     }
                     catch (Exception e)
@@ -160,11 +159,6 @@ internal static class ModLoader
                     }
 
                     modInfo.Initialized = true;
-                }
-                else
-                {
-                    // update reference
-                    modInfo.Instance.Game = newModel;
                 }
 
                 if (modInfo.Instance is IDataModelAware aware)
@@ -204,7 +198,6 @@ internal static class ModLoader
                         RuntimeLog.Error($"Error while calling OnUnload for mod: {e}");
                     }
 
-                    modInfo.Instance.Game = null;
                     modInfo.Initialized = false;
                 }
             }

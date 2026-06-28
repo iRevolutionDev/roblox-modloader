@@ -12,8 +12,8 @@ internal sealed class DiscordPresenceService : IDisposable
     public DiscordPresenceService()
     {
         _client = new DiscordRpcClient(ApplicationId);
-        _client.OnReady += (_, e) => Console.WriteLine($"[discord_rpc] Connected to Discord as {e.User.Username}");
-        _client.OnError += (_, e) => Console.Error.WriteLine($"[discord_rpc] Discord error: {e.Message}");
+        _client.OnReady += (_, e) => DiscordRpc.Logger.Info($"Connected to Discord as {e.User.Username}");
+        _client.OnError += (_, e) => DiscordRpc.Logger.Error($"Discord error: {e.Message}");
         _client.Initialize();
     }
 
@@ -28,7 +28,7 @@ internal sealed class DiscordPresenceService : IDisposable
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"[discord_rpc] Error during shutdown: {ex.Message}");
+            DiscordRpc.Logger.Error($"Error during shutdown: {ex.Message}");
         }
     }
 

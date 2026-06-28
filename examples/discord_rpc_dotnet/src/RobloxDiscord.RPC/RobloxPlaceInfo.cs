@@ -30,7 +30,7 @@ internal static class RobloxPlaceInfo
         }
         catch (Exception ex)
         {
-            await Console.Error.WriteLineAsync($"[discord_rpc] Failed to resolve place {placeId}: {ex.Message}");
+            DiscordRpc.Logger.Error($"Failed to resolve place {placeId}: {ex.Message}");
             return null;
         }
     }

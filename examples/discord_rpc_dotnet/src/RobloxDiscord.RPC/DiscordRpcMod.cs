@@ -1,5 +1,6 @@
 using RML.Core.Api;
 using RML.Core.Modding;
+using RML.Logging;
 using Roblox;
 
 namespace DiscordRpc;
@@ -9,9 +10,11 @@ namespace DiscordRpc;
     "1.0.0",
     Author = "Revolution",
     Description = "Discord Rich Presence for Roblox Studio")]
-public sealed class DiscordRpcMod : IMod, IDataModelAware
+public sealed class DiscordRpc : ModBase, IDataModelAware
 {
     private DiscordPresenceService? _presence;
+
+    public static ILogger Logger { get; } = Log.CreateLogger("DiscordRPC");
 
     public void OnDataModelLoaded(DataModel game, DataModelType dataModelType)
     {
@@ -24,9 +27,6 @@ public sealed class DiscordRpcMod : IMod, IDataModelAware
             var playTesting = dataModelType is DataModelType.Client or DataModelType.Server;
             var placeId = game.PlaceId;
 
-
-            var documentService = game.GetService("ScriptEditorService") as ScriptEditorService;
-
             await UpdatePresenceAsync(placeId, playTesting);
         });
     }
@@ -36,16 +36,14 @@ public sealed class DiscordRpcMod : IMod, IDataModelAware
         _presence?.SetIdle();
     }
 
-    public DataModel? Game { get; set; }
-
-    public int OnLoad()
+    public override int OnLoad()
     {
         _presence = new DiscordPresenceService();
         _presence.SetIdle();
         return 0;
     }
 
-    public void OnUnload()
+    public override void OnUnload()
     {
         _presence?.Dispose();
         _presence = null;
@@ -68,7 +66,7 @@ public sealed class DiscordRpcMod : IMod, IDataModelAware
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"[discord_rpc] Failed to update presence: {ex.Message}");
+            Logger.Error($"[discord_rpc] Failed to update presence: {ex.Message}");
         }
     }
 }
