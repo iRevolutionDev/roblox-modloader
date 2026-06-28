@@ -40,19 +40,37 @@ namespace rml
 			auto native_result = load_directory(mod_dir.path() / "native");
 			if (!native_result.has_value())
 			{
-				RML_ERROR("Failed to load native mods: {}", native_result.error());
+				auto error_message = native_result.error().message;
+
+				switch (native_result.error().type)
+				{
+				case ModManagerError::Type::DirectoryNotFound: break;
+				default: RML_ERROR("Failed to load native mods: {}", error_message); break;
+				}
 			}
 
 			auto dotnet_result = load_directory(mod_dir.path() / "dotnet");
 			if (!dotnet_result.has_value())
 			{
-				RML_ERROR("Failed to load .NET mods: {}", dotnet_result.error());
+				auto error_message = dotnet_result.error().message;
+
+				switch (dotnet_result.error().type)
+				{
+				case ModManagerError::Type::DirectoryNotFound: break;
+				default: RML_ERROR("Failed to load dotnet mods: {}", error_message); break;
+				}
 			}
 
 			auto scripts_result = load_directory(mod_dir.path() / "scripts");
 			if (!scripts_result.has_value())
 			{
-				RML_ERROR("Failed to load script mods: {}", scripts_result.error());
+				auto error_message = scripts_result.error().message;
+
+				switch (scripts_result.error().type)
+				{
+				case ModManagerError::Type::DirectoryNotFound: break;
+				default: RML_ERROR("Failed to load scripts mods: {}", error_message); break;
+				}
 			}
 		}
 	}
@@ -71,23 +89,26 @@ namespace rml
 		}
 	}
 
-	std::expected<void, std::string> ModManager::load_directory(const std::filesystem::path& directory) const
+	std::expected<void, ModManagerError> ModManager::load_directory(const std::filesystem::path& directory) const
 	{
 		if (!std::filesystem::exists(directory))
 		{
-			return std::unexpected("Directory does not exist: " + directory.string());
+			return std::unexpected(
+			    ModManagerError(ModManagerError::Type::DirectoryNotFound, "Directory does not exist: " + directory.string()));
 		}
 
 		if (!std::filesystem::is_directory(directory))
 		{
-			return std::unexpected("Path is not a directory: " + directory.string());
+			return std::unexpected(
+			    ModManagerError(ModManagerError::Type::PathNotDirectory, "Path is not a directory: " + directory.string()));
 		}
 
 		const auto loader = find_loader_for_path(directory);
 
 		if (!loader.has_value())
 		{
-			return std::unexpected("No loader found for directory: " + directory.string());
+			return std::unexpected(
+			    ModManagerError(ModManagerError::Type::NoLoaderFound, "No loader found for directory: " + directory.string()));
 		}
 
 		std::vector<std::string> errors;
@@ -121,7 +142,7 @@ namespace rml
 			{
 				error_message += " - " + error + "\n";
 			}
-			return std::unexpected(std::move(error_message));
+			return std::unexpected(ModManagerError(ModManagerError::Type::LoadFailed, std::move(error_message)));
 		}
 
 		return {};
