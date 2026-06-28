@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using RML.Core.Api;
 using RML.Core.Modding;
+using RML.Logging;
 using Roblox;
 
 namespace ExampleMod;
@@ -11,8 +12,10 @@ namespace ExampleMod;
     Author = "Revolution",
     Description = "Example managed mod for RobloxModLoader"
 )]
-public sealed class ExampleMod : Mod, IDataModelAware
+public sealed class ExampleMod : ModBase, IDataModelAware
 {
+    public static ILogger Logger { get; } = Log.CreateLogger("ExampleMod");
+
     public void OnDataModelLoaded(DataModel dataModel, DataModelType dataModelType)
     {
         Logger.Info($"[DOTNET]: DataModel loaded: {dataModelType}");
@@ -35,7 +38,7 @@ public sealed class ExampleMod : Mod, IDataModelAware
             Logger.Info($"[DOTNET]: PlaceId: {placeId}");
         });
 
-        var workspace = dataModel.GetService("Workspace")?.As<Workspace>();
+        var workspace = dataModel.GetService<Workspace>().Cast<Workspace>();
         Logger.Info($"[DOTNET]: Workspace name: {workspace?.Name ?? "null"}");
 
         if (dataModelType == DataModelType.Edit)
