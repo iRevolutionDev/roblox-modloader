@@ -66,7 +66,7 @@ public sealed class DiscordRpc : ModBase, IDataModelAware
         }
         catch (Exception ex)
         {
-            Logger.Error($"[discord_rpc] Failed to update presence: {ex.Message}");
+            Logger.Error($"Failed to update presence: {ex.Message}");
         }
     }
 }
