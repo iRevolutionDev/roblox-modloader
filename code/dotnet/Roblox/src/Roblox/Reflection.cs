@@ -132,22 +132,26 @@ public static unsafe class Reflection
         Interop.Reflection.SetProperty((void*)handle, propertyName, variantValue);
     }
 
-    public static T CreateInstance<T>() where T : Instance
+    public static T CreateInstance<T>(CreatorRole role) where T : Instance
     {
         var className = RobloxTypeRegistry.ClassNameOf<T>();
-        var handle = Interop.Reflection.CreateInstanceByName(className, 3);
+        var handle = Interop.Reflection.CreateInstanceByName(className, (int)role);
         return handle == 0
             ? throw new InvalidOperationException($"Failed to create instance of type '{className}'")
             : RobloxTypeRegistry.CreateAs<T>(handle);
     }
 
-    public static nuint CreateInstance(string className)
+    public static T CreateInstance<T>() where T : Instance => CreateInstance<T>(CreatorRole.Engine);
+
+    public static nuint CreateInstance(string className, CreatorRole role)
     {
-        var handle = Interop.Reflection.CreateInstanceByName(className, 3);
+        var handle = Interop.Reflection.CreateInstanceByName(className, (int)role);
         return handle == 0
             ? throw new InvalidOperationException($"Failed to create instance of type '{className}'")
             : handle;
     }
+
+    public static nuint CreateInstance(string className) => CreateInstance(className, CreatorRole.Engine);
 
     private static long ToInt64OrThrow(object value, string propertyName)
     {

@@ -4,9 +4,11 @@ public partial class Instance
 {
     public Instance? this[string childName] => FindFirstChild(childName);
 
-    public static T New<T>(Action<T>? initializer = null, Instance? parent = null) where T : Instance
+    public static T New<T>(Action<T>? initializer = null, Instance? parent = null,
+        CreatorRole creatorRole = CreatorRole.Engine)
+        where T : Instance
     {
-        T instance = Reflection.CreateInstance<T>();
+        T instance = Reflection.CreateInstance<T>(creatorRole);
         initializer?.Invoke(instance);
         if (parent is not null)
         {
