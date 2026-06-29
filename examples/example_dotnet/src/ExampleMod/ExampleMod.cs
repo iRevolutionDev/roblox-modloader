@@ -42,35 +42,26 @@ public sealed class ExampleMod : ModBase, IDataModelAware
         var workspace = dataModel.GetService<Workspace>().Cast<Workspace>();
         Logger.Info($"[DOTNET]: Workspace name: {workspace.Name}");
 
-        var part = Instance.Create<Part>();
-        part.Parent = workspace;
-        part.Name = "Example Part";
-        part.Position = new Vector3(10, 10, 0);
-        part.Size = new Vector3(10, 10, 10);
-
-        var part2 = Instance.Create<Part>();
-        part2.Parent = workspace;
-        part2.Name = "Example Part2";
-        part2.Position = new Vector3(0, 10, 0);
-        part2.Size = new Vector3(10, 10, 10);
-
-        Instance.New<Part>(p =>
+        var part = new Part
         {
-            p.Name = "Example Part3";
-            p.Position = new Vector3(-10, 10, 0);
+            Parent = workspace,
+            Name = "Example Part",
+            Position = new Vector3(10, 10, 0),
+            Size = new Vector3(10, 10, 10)
+        };
+
+        var part2 = Instance.New<Part>(p =>
+        {
+            p.Parent = workspace;
+            p.Name = "Example Part2";
+            p.Position = new Vector3(0, 10, 0);
             p.Size = new Vector3(10, 10, 10);
         });
 
-        Instance.New<RunService>(rs =>
-        {
-            rs.Name = "Teste";
-            rs.Parent = workspace;
-        }, workspace);
-
         runService.PreRender += deltaTime =>
         {
-            part.CFrame *= CFrame.Angles((float)deltaTime * 5, (float)deltaTime * 5, (float)deltaTime * 5);
-            part2.CFrame *= CFrame.Angles((float)deltaTime * 5, (float)deltaTime * 5, (float)deltaTime * 5);
+            //part.CFrame *= CFrame.Angles((float)deltaTime * 5, (float)deltaTime * 5, (float)deltaTime * 5);
+            //part2.CFrame *= CFrame.Angles((float)deltaTime * 5, (float)deltaTime * 5, (float)deltaTime * 5);
 
             part.Color = Color3.FromHSV((float)(DateTime.Now.TimeOfDay.TotalSeconds % 1), 1, 1);
             part2.Color = Color3.FromHSV((float)((DateTime.Now.TimeOfDay.TotalSeconds + 0.5) % 1), 1, 1);
