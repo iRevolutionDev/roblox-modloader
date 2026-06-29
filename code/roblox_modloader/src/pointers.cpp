@@ -151,13 +151,13 @@ constexpr auto pointers::get_roblox_batch()
                 g_pointers->m_roblox_pointers.m_profile_log = ptr.as<PVOID>();
             },
         },
-        // {
-        //     "CREATOR_CREATE_BY_NAME",
-        //     "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 41 8B F8 48 8B F1",
-        //     [](const memory::handle ptr) {
-        //         g_pointers->m_roblox_pointers.creator_create_by_name = ptr.as<functions::creator_create_by_name>();
-        //     },
-        // },
+        {
+            "OBJECT_CREATE_BY_NAME",
+            "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 41 8B F9 48 8B EA",
+            [](const memory::handle ptr) {
+                g_pointers->m_roblox_pointers.object_create_by_name = ptr.as<functions::object_create_by_name>();
+            },
+        },
         {
             "INSTANCE_BRIDGE_PUSH",
             "48 89 5C 24 ? 57 48 83 EC ? 48 8B FA 48 8B D9 E8 ? ? ? ? 48 8B CB 84 C0 74 ? 48 8B D7",

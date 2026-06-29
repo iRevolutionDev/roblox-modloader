@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace RML.Interop;
@@ -59,11 +58,15 @@ internal static unsafe class NativeInterop
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, uint, InteropVariant*, void> ReflectionInvoke;
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, void> ReflectionGetProperty;
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, void> ReflectionSetProperty;
-        
-        public delegate* unmanaged[Cdecl]<void*, sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>, void*, nuint> ReflectionEventConnect;
+
+        public delegate* unmanaged[Cdecl]<void*, sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
+            void*, nuint> ReflectionEventConnect;
+
         public delegate* unmanaged[Cdecl]<nuint, void> ReflectionEventDisconnect;
 
         public delegate* unmanaged[Cdecl]<void*, nuint> InstanceGetClassDescriptor;
+
+        public delegate* unmanaged[Cdecl]<sbyte*, int, nuint> CreateInstanceByName;
 
         public delegate* unmanaged[Cdecl]<int, sbyte*, int, void> Log;
         public delegate* unmanaged[Cdecl]<sbyte*, void> FreeString;

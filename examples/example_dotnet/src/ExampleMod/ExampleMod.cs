@@ -3,6 +3,7 @@ using RML.Core.Api;
 using RML.Core.Modding;
 using RML.Logging;
 using Roblox;
+using Enum = Roblox.Enum;
 
 namespace ExampleMod;
 
@@ -20,8 +21,9 @@ public sealed class ExampleMod : ModBase, IDataModelAware
     {
         Logger.Info($"[DOTNET]: DataModel loaded: {dataModelType}");
         var runService = dataModel.RunService;
-        Logger.Info($"[DOTNET]: RunService name: {runService?.Name}");
-        Logger.Info($"[DOTNET]: RunService instance: {runService?.FindFirstChild("Teste", true)}");
+
+        Logger.Info($"[DOTNET]: RunService name: {runService.Name}");
+        Logger.Info($"[DOTNET]: RunService instance: {runService.FindFirstChild("Teste", true)}");
 
         var dmChildren = dataModel.GetChildren();
         Logger.Info($"[DOTNET]: DataModel name: {dataModel.Name}");
@@ -39,7 +41,32 @@ public sealed class ExampleMod : ModBase, IDataModelAware
         });
 
         var workspace = dataModel.GetService<Workspace>().Cast<Workspace>();
-        Logger.Info($"[DOTNET]: Workspace name: {workspace?.Name ?? "null"}");
+        Logger.Info($"[DOTNET]: Workspace name: {workspace.Name}");
+
+        var part = Instance.Create<Part>();
+        part.Parent = workspace;
+        part.Name = "Example Part";
+        part.Position = new Vector3(10, 10, 0);
+        part.Size = new Vector3(10, 10, 10);
+
+        var part2 = Instance.Create<Part>();
+        part2.Parent = workspace;
+        part2.Name = "Example Part2";
+        part2.Position = new Vector3(0, 10, 0);
+        part2.Size = new Vector3(10, 10, 10);
+
+        runService.PreRender += deltaTime =>
+        {
+            part.CFrame *= CFrame.Angles((float)deltaTime * 5, (float)deltaTime * 5, (float)deltaTime * 5);
+            part2.CFrame *= CFrame.Angles((float)deltaTime * 5, (float)deltaTime * 5, (float)deltaTime * 5);
+
+            part.Color = Color3.FromHSV((float)(DateTime.Now.TimeOfDay.TotalSeconds % 1), 1, 1);
+            part2.Color = Color3.FromHSV((float)((DateTime.Now.TimeOfDay.TotalSeconds + 0.5) % 1), 1, 1);
+
+            part2.Position = new Vector3((float)Math.Sin(DateTime.Now.TimeOfDay.TotalSeconds) * 15, 10, 0);
+            part.Position = new Vector3((float)Math.Cos(DateTime.Now.TimeOfDay.TotalSeconds) * 15, (float)(Math.Cos(
+                DateTime.Now.TimeOfDay.TotalSeconds) * 15) + 10, 0);
+        };
 
         if (dataModelType == DataModelType.Edit)
         {

@@ -60,7 +60,7 @@ struct roblox_pointers
 	functions::task_defer task_defer;
 	functions::get_global_state get_global_state;
 
-	functions::creator_create_by_name creator_create_by_name;
+	functions::object_create_by_name object_create_by_name;
 	functions::instance_bridge_push instance_bridge_push;
 	functions::build_menu_bar_from_dom build_menu_bar_from_dom;
 };

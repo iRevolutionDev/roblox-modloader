@@ -1,7 +1,9 @@
 
 #include "roblox_interop_provider.hpp"
 
+#include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
+#include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/util/memory.hpp"
 #include "dotnet_arguments.hpp"
 #include "dotnet_event_descriptor.hpp"
@@ -223,6 +225,37 @@ namespace rml::dotnet
 			}
 
 			delete holder;
+		};
+
+		table.object_create_by_name = [](const char* class_name, const int creator_role) -> uintptr_t {
+			if (!class_name)
+				return 0;
+
+			try
+			{
+				const auto atom = g_pointers->m_roblox_pointers.get_string_atom(class_name);
+
+				uintptr_t out{};
+				g_pointers->m_roblox_pointers.object_create_by_name(&out, 0, atom, creator_role);
+
+				if (!out)
+				{
+					RML_ERROR("creator_create_by_name('{}') failed: null instance", class_name);
+					return 0;
+				}
+
+				return out;
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("create_by_name('{}') failed: {}", class_name, e.what());
+				return 0;
+			}
+			catch (...)
+			{
+				RML_ERROR("create_by_name('{}') failed: unknown exception", class_name);
+				return 0;
+			}
 		};
 
 		table.free_string = [](const char* str) {

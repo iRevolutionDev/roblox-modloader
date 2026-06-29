@@ -67,7 +67,7 @@ public static unsafe class Reflection
             Interop.Reflection.SetProperty((void*)handle, propertyName, default);
             return;
         }
-        
+
         if (value is string s)
         {
             var b = Encoding.UTF8.GetBytes(s);
@@ -76,7 +76,8 @@ public static unsafe class Reflection
             {
                 Marshal.Copy(b, 0, strPtr, b.Length);
                 Marshal.WriteByte(strPtr + b.Length, 0);
-                Interop.Reflection.SetProperty((void*)handle, propertyName, InteropVariant.FromString((nuint)(ulong)strPtr));
+                Interop.Reflection.SetProperty((void*)handle, propertyName,
+                    InteropVariant.FromString((nuint)(ulong)strPtr));
             }
             finally
             {
@@ -131,6 +132,15 @@ public static unsafe class Reflection
         Interop.Reflection.SetProperty((void*)handle, propertyName, variantValue);
     }
 
+    public static T CreateInstance<T>() where T : Instance
+    {
+        var className = RobloxTypeRegistry.ClassNameOf<T>();
+        var handle = Interop.Reflection.CreateInstanceByName(className, 3);
+        return handle == 0
+            ? throw new InvalidOperationException($"Failed to create instance of type '{className}'")
+            : RobloxTypeRegistry.CreateAs<T>(handle);
+    }
+
     private static long ToInt64OrThrow(object value, string propertyName)
     {
         try
@@ -154,13 +164,13 @@ public static unsafe class Reflection
     // keypoint a fixed blittable struct. Mirrors the native std::vector<Keypoint> packing.
     private static NumberSequence ReadNumberSequence(nint ptr)
     {
-        var keys = ReadKeypoints<NumberSequenceKeypoint>(ptr);
+        NumberSequenceKeypoint[] keys = ReadKeypoints<NumberSequenceKeypoint>(ptr);
         return NumberSequence.FromEngine(keys);
     }
 
     private static ColorSequence ReadColorSequence(nint ptr)
     {
-        var keys = ReadKeypoints<ColorSequenceKeypoint>(ptr);
+        ColorSequenceKeypoint[] keys = ReadKeypoints<ColorSequenceKeypoint>(ptr);
         return ColorSequence.FromEngine(keys);
     }
 
@@ -177,7 +187,7 @@ public static unsafe class Reflection
         var keys = new T[count];
         for (var i = 0; i < count; i++)
         {
-            keys[i] = Marshal.PtrToStructure<T>(elems + (i * stride));
+            keys[i] = Marshal.PtrToStructure<T>(elems + i * stride);
         }
 
         return keys;
@@ -187,7 +197,7 @@ public static unsafe class Reflection
         where T : struct
     {
         var stride = Marshal.SizeOf<T>();
-        var size = sizeof(int) + (keypoints.Count * stride);
+        var size = sizeof(int) + keypoints.Count * stride;
         var buffer = Marshal.AllocHGlobal(size);
         try
         {
@@ -195,7 +205,7 @@ public static unsafe class Reflection
             var elems = buffer + sizeof(int);
             for (var i = 0; i < keypoints.Count; i++)
             {
-                Marshal.StructureToPtr(keypoints[i], elems + (i * stride), false);
+                Marshal.StructureToPtr(keypoints[i], elems + i * stride, false);
             }
 
             Interop.Reflection.SetProperty((void*)handle, propertyName,
@@ -227,7 +237,7 @@ public static unsafe class Reflection
                 }
 
                 var blittablePtr = (nint)variant.AsPointer;
-                var underlying = Nullable.GetUnderlyingType(t) ?? t;
+                Type underlying = Nullable.GetUnderlyingType(t) ?? t;
 
                 // Variable-length datatypes arrive as [int32 count][keypoint...]; fixed blittable
                 // value types are a straight struct copy.

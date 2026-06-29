@@ -41,7 +41,7 @@ namespace rml::dotnet
 	static_assert(alignof(InteropVariant) == 8, "InteropVariant must be 8-byte aligned.");
 	static_assert(offsetof(InteropVariant, tag) == 0, "InteropVariant.tag must be at offset 0.");
 	static_assert(offsetof(InteropVariant, as_uint64) == 8, "InteropVariant union must start at offset 8.");
-	
+
 	using ManagedEventCallback = void(RML_INTEROP_CALL*)(void* state, const InteropVariant* args, uint32_t arg_count);
 
 	struct alignas(8) InteropTable
@@ -52,21 +52,19 @@ namespace rml::dotnet
 		void*(RML_INTEROP_CALL* get_proc_address)(const char* name);
 
 		void(RML_INTEROP_CALL* reflection_invoke)(uintptr_t instance, const char* function_name, const InteropVariant* args, uint32_t arg_count, InteropVariant* out_result);
-
 		void(RML_INTEROP_CALL* reflection_get_property)(uintptr_t instance, const char* property_name, InteropVariant* out_value);
-
 		void(RML_INTEROP_CALL* reflection_set_property)(uintptr_t instance, const char* property_name, const InteropVariant* value);
 
 		uintptr_t(RML_INTEROP_CALL* reflection_event_connect)(uintptr_t instance, const char* event_name, ManagedEventCallback callback, void* state);
-
 		void(RML_INTEROP_CALL* reflection_event_disconnect)(uintptr_t connection_handle);
 
 		uintptr_t(RML_INTEROP_CALL* instance_get_class_descriptor)(uintptr_t instance);
 
+		uintptr_t(RML_INTEROP_CALL* object_create_by_name)(const char* class_name, int creator_role);
+
 		void(RML_INTEROP_CALL* managed_log)(int32_t level, const char* utf8, int32_t len);
 
 		void(RML_INTEROP_CALL* free_string)(const char* str);
-
 		void(RML_INTEROP_CALL* free_native_ptr)(const void* ptr);
 	};
 

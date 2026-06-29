@@ -2,6 +2,9 @@ namespace Roblox;
 
 public partial class Instance
 {
+    public static T Create<T>() where T : Instance
+        => Reflection.CreateInstance<T>();
+
     public T? FindFirstChild<T>(string name, bool? recursive = null) where T : Instance
         => RobloxTypeRegistry.CreateAsOrNull<T>(FindFirstChild(name, recursive));
 
@@ -16,7 +19,7 @@ public partial class Instance
 
     public T? FindFirstAncestorWhichIsA<T>() where T : Instance
         => RobloxTypeRegistry.CreateAsOrNull<T>(FindFirstAncestorWhichIsA(RobloxTypeRegistry.ClassNameOf<T>()));
-        
+
     public T? WaitForChild<T>(string childName, double timeOut) where T : Instance
         => RobloxTypeRegistry.CreateAsOrNull<T>(WaitForChild(childName, timeOut));
 

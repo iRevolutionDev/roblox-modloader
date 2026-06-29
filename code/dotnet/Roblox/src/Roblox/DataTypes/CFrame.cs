@@ -19,10 +19,18 @@ public readonly struct CFrame : IEquatable<CFrame>, IRobloxDataType
         float r10, float r11, float r12,
         float r20, float r21, float r22)
     {
-        _r00 = r00; _r01 = r01; _r02 = r02;
-        _r10 = r10; _r11 = r11; _r12 = r12;
-        _r20 = r20; _r21 = r21; _r22 = r22;
-        _tx = position.X; _ty = position.Y; _tz = position.Z;
+        _r00 = r00;
+        _r01 = r01;
+        _r02 = r02;
+        _r10 = r10;
+        _r11 = r11;
+        _r12 = r12;
+        _r20 = r20;
+        _r21 = r21;
+        _r22 = r22;
+        _tx = position.X;
+        _ty = position.Y;
+        _tz = position.Z;
     }
 
     public CFrame(float x, float y, float z,
@@ -41,17 +49,25 @@ public readonly struct CFrame : IEquatable<CFrame>, IRobloxDataType
     {
     }
 
-    /// <summary>A CFrame positioned at <paramref name="position"/> oriented to look at <paramref name="lookAt"/>.</summary>
+    /// <summary>A CFrame positioned at <paramref name="position" /> oriented to look at <paramref name="lookAt" />.</summary>
     public CFrame(Vector3 position, Vector3 lookAt) : this(LookAt(position, lookAt))
     {
     }
 
     private CFrame(in CFrame other)
     {
-        _r00 = other._r00; _r01 = other._r01; _r02 = other._r02;
-        _r10 = other._r10; _r11 = other._r11; _r12 = other._r12;
-        _r20 = other._r20; _r21 = other._r21; _r22 = other._r22;
-        _tx = other._tx; _ty = other._ty; _tz = other._tz;
+        _r00 = other._r00;
+        _r01 = other._r01;
+        _r02 = other._r02;
+        _r10 = other._r10;
+        _r11 = other._r11;
+        _r12 = other._r12;
+        _r20 = other._r20;
+        _r21 = other._r21;
+        _r22 = other._r22;
+        _tx = other._tx;
+        _ty = other._ty;
+        _tz = other._tz;
     }
 
     public static readonly CFrame Identity = new(Vector3.Zero, 1, 0, 0, 0, 1, 0, 0, 0, 1);
@@ -109,17 +125,17 @@ public readonly struct CFrame : IEquatable<CFrame>, IRobloxDataType
 
     public CFrame Lerp(CFrame goal, float alpha)
     {
-        var pos = Position + (goal.Position - Position) * alpha;
+        Vector3 pos = Position + (goal.Position - Position) * alpha;
         var (qx, qy, qz, qw) = Slerp(ToQuaternion(this), ToQuaternion(goal), alpha);
         return FromQuaternion(pos, qx, qy, qz, qw);
     }
 
     public static CFrame LookAt(Vector3 eye, Vector3 target, Vector3? up = null)
     {
-        var upVec = up ?? Vector3.YAxis;
-        var zaxis = (eye - target).Unit;        // engine look is -Z, so +Z points back toward the eye
-        var xaxis = upVec.Cross(zaxis).Unit;     // right
-        var yaxis = zaxis.Cross(xaxis);          // orthonormal up
+        Vector3 upVec = up ?? Vector3.YAxis;
+        Vector3 zaxis = (eye - target).Unit; // engine look is -Z, so +Z points back toward the eye
+        Vector3 xaxis = upVec.Cross(zaxis).Unit; // right
+        Vector3 yaxis = zaxis.Cross(xaxis); // orthonormal up
 
         return new CFrame(eye,
             xaxis.X, yaxis.X, zaxis.X,
@@ -130,7 +146,7 @@ public readonly struct CFrame : IEquatable<CFrame>, IRobloxDataType
     public static CFrame operator *(CFrame a, CFrame b)
     {
         // position = a.position + a.R * b.position ; rotation = a.R * b.R
-        var pos = a.Position + a.VectorToWorldSpace(b.Position);
+        Vector3 pos = a.Position + a.VectorToWorldSpace(b.Position);
 
         return new CFrame(pos,
             a._r00 * b._r00 + a._r01 * b._r10 + a._r02 * b._r20,
@@ -230,14 +246,35 @@ public readonly struct CFrame : IEquatable<CFrame>, IRobloxDataType
 
     private static CFrame FromQuaternion(Vector3 pos, float x, float y, float z, float w)
     {
-        var xx = x * x; var yy = y * y; var zz = z * z;
-        var xy = x * y; var xz = x * z; var yz = y * z;
-        var wx = w * x; var wy = w * y; var wz = w * z;
+        var xx = x * x;
+        var yy = y * y;
+        var zz = z * z;
+        var xy = x * y;
+        var xz = x * z;
+        var yz = y * z;
+        var wx = w * x;
+        var wy = w * y;
+        var wz = w * z;
 
         return new CFrame(pos,
             1f - 2f * (yy + zz), 2f * (xy - wz), 2f * (xz + wy),
             2f * (xy + wz), 1f - 2f * (xx + zz), 2f * (yz - wx),
             2f * (xz - wy), 2f * (yz + wx), 1f - 2f * (xx + yy));
+    }
+
+    public static CFrame Angles(float x, float y, float z)
+    {
+        var cx = MathF.Cos(x);
+        var sx = MathF.Sin(x);
+        var cy = MathF.Cos(y);
+        var sy = MathF.Sin(y);
+        var cz = MathF.Cos(z);
+        var sz = MathF.Sin(z);
+
+        return new CFrame(Vector3.Zero,
+            cy * cz, -cy * sz, sy,
+            sx * sy * cz + cx * sz, -sx * sy * sz + cx * cz, -sx * cy,
+            -cx * sy * cz + sx * sz, cx * sy * sz + sx * cz, cx * cy);
     }
 
     public bool Equals(CFrame other) =>
@@ -254,5 +291,6 @@ public readonly struct CFrame : IEquatable<CFrame>, IRobloxDataType
     public static bool operator !=(CFrame a, CFrame b) => !a.Equals(b);
 
     public override string ToString()
-        => $"{Position.X}, {Position.Y}, {Position.Z}, {_r00}, {_r01}, {_r02}, {_r10}, {_r11}, {_r12}, {_r20}, {_r21}, {_r22}";
+        =>
+            $"{Position.X}, {Position.Y}, {Position.Z}, {_r00}, {_r01}, {_r02}, {_r10}, {_r11}, {_r12}, {_r20}, {_r21}, {_r22}";
 }

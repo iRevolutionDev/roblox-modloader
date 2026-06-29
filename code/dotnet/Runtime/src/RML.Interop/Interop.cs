@@ -68,7 +68,7 @@ public static unsafe class Interop
 
         Table = table;
     }
-    
+
     public static void Uninitialize()
     {
         Reflection.ClearCaches();
@@ -228,6 +228,23 @@ public static unsafe class Interop
             }
 
             Table->ReflectionEventDisconnect(connectionHandle);
+        }
+
+        public static nuint CreateInstanceByName(string className, int creatorRole)
+        {
+            if (!IsInitialized || Table == null || Table->CreateInstanceByName == null)
+            {
+                throw new InvalidOperationException(
+                    "Interop table is not initialized or CreateInstanceByName is unavailable.");
+            }
+
+            ArgumentNullException.ThrowIfNull(className);
+
+            var bytes = Encoding.UTF8.GetBytes(className);
+            fixed (byte* p = bytes)
+            {
+                return Table->CreateInstanceByName((sbyte*)p, creatorRole);
+            }
         }
 
         private static InteropVariant BuildVariant(object? arg, nint* tempPtrs, ref int tempPtrCount)

@@ -3,8 +3,6 @@
 #include "RobloxModLoader/roblox/util/standard_out.hpp"
 #include "lua.h"
 
-#include <string>
-
 namespace RBX::Security
 {
 	enum class Identity : std::uint64_t;
@@ -27,7 +25,7 @@ namespace functions
 	using lua_newthread = lua_State*(__fastcall*)(lua_State * L);
 	using luaD_throw = void(__fastcall*)(lua_State* L, int errcode);
 	using get_global_state = lua_State*(__fastcall*)(void* script_context, const RBX::Security::Identity* identity, const uint64_t* script);
-	using creator_create_by_name = uintptr_t (*)(uintptr_t* out, const std::string& name, uint32_t creator_role);
+	using object_create_by_name = uintptr_t (*)(uintptr_t* out, uintptr_t engine_context, uintptr_t name, uint32_t creator_role);
 	using instance_bridge_push = void(__fastcall*)(lua_State* L, uintptr_t instance);
 	using task_defer = int(__fastcall*)(lua_State* L);
 	using build_menu_bar_from_dom = void*(__fastcall*)(void* out_menu_bar, void* dom, void* context);
