@@ -152,7 +152,7 @@ namespace
 	{
 		const auto root = rml::utils::directory::get_module_directory();
 
-		std::filesystem::create_directories(root / "logs");
+		std::filesystem::create_directories(root / "RobloxModLoader" / "logs");
 	}
 
 	void init_sinks()
@@ -162,7 +162,7 @@ namespace
 			const auto root = rml::utils::directory::get_module_directory();
 
 			global_logger_holder::console_sink = std::make_shared<spdlog::sinks::stdout_sink_mt>();
-			global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(root.generic_string() + "/logs/roblox_modloader.log", 0, 0);
+			global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(root.generic_string() + "RobloxModLoader/logs/roblox_modloader.log", 0, 0);
 			global_logger_holder::msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
 
 			global_logger_holder::console_sink->set_formatter(std::make_unique<rml_console_formatter>());
@@ -296,7 +296,7 @@ std::shared_ptr<spdlog::logger> logger::get_logger(const std::string& name)
 
 	new_logger->set_level(spdlog::level::debug);
 	new_logger->flush_on(spdlog::level::debug);
-	
+
 	spdlog::register_logger(new_logger);
 
 	return new_logger;
