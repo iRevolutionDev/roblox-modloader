@@ -2,6 +2,18 @@ namespace Roblox;
 
 public partial class Instance
 {
+    public static T New<T>(Action<T>? initializer = null, Instance? parent = null) where T : Instance
+    {
+        T instance = Create<T>();
+        initializer?.Invoke(instance);
+        if (parent is not null)
+        {
+            instance.Parent = parent;
+        }
+
+        return instance;
+    }
+
     public static T Create<T>() where T : Instance
         => Reflection.CreateInstance<T>();
 

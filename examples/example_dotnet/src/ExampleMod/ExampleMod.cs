@@ -3,7 +3,6 @@ using RML.Core.Api;
 using RML.Core.Modding;
 using RML.Logging;
 using Roblox;
-using Enum = Roblox.Enum;
 
 namespace ExampleMod;
 
@@ -54,6 +53,19 @@ public sealed class ExampleMod : ModBase, IDataModelAware
         part2.Name = "Example Part2";
         part2.Position = new Vector3(0, 10, 0);
         part2.Size = new Vector3(10, 10, 10);
+
+        Instance.New<Part>(p =>
+        {
+            p.Name = "Example Part3";
+            p.Position = new Vector3(-10, 10, 0);
+            p.Size = new Vector3(10, 10, 10);
+        });
+
+        Instance.New<RunService>(rs =>
+        {
+            rs.Name = "Teste";
+            rs.Parent = workspace;
+        }, workspace);
 
         runService.PreRender += deltaTime =>
         {
