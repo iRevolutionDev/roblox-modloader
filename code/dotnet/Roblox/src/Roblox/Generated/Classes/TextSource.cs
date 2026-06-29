@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextSource(nuint handle) : base(handle) { }
 
+        internal TextSource(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextSource"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextSource? FromHandle(nuint handle)
             => handle == 0 ? null : new TextSource(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextSource"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextSource() : base(RobloxTypeRegistry.ClassNameOf<TextSource>()) { }
+
 
         /// <summary>
         /// Determines whether the user can send messages to the TextChannel.

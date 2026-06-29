@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TerrainReadOperation(nuint handle) : base(handle) { }
 
+        internal TerrainReadOperation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TerrainReadOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static TerrainReadOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new TerrainReadOperation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TerrainReadOperation"/> instance with the default Roblox class name.
+        /// </summary>
+        public TerrainReadOperation() : base(RobloxTypeRegistry.ClassNameOf<TerrainReadOperation>()) { }
+
 
         /// <summary>
         /// <c>TerrainReadOperation.Ready</c>

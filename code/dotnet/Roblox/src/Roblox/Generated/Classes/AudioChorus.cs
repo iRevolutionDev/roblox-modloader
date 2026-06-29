@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioChorus(nuint handle) : base(handle) { }
 
+        internal AudioChorus(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioChorus"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioChorus? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioChorus(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioChorus"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioChorus() : base(RobloxTypeRegistry.ClassNameOf<AudioChorus>()) { }
+
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.

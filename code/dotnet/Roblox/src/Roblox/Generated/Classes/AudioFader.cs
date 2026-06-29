@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioFader(nuint handle) : base(handle) { }
 
+        internal AudioFader(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioFader"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioFader? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioFader(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioFader"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioFader() : base(RobloxTypeRegistry.ClassNameOf<AudioFader>()) { }
+
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.

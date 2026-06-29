@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RolloutValidation(nuint handle) : base(handle) { }
 
+        internal RolloutValidation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RolloutValidation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RolloutValidation? FromHandle(nuint handle)
             => handle == 0 ? null : new RolloutValidation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RolloutValidation"/> instance with the default Roblox class name.
+        /// </summary>
+        public RolloutValidation() : base(RobloxTypeRegistry.ClassNameOf<RolloutValidation>()) { }
+
 
     }
 }

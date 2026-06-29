@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextureGenerationService(nuint handle) : base(handle) { }
 
+        internal TextureGenerationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextureGenerationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextureGenerationService? FromHandle(nuint handle)
             => handle == 0 ? null : new TextureGenerationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextureGenerationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextureGenerationService() : base(RobloxTypeRegistry.ClassNameOf<TextureGenerationService>()) { }
+
 
         /// <summary>
         /// <c>TextureGenerationService.CancelGenerationRequest</c>

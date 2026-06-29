@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StarterPlayer(nuint handle) : base(handle) { }
 
+        internal StarterPlayer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StarterPlayer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StarterPlayer? FromHandle(nuint handle)
             => handle == 0 ? null : new StarterPlayer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StarterPlayer"/> instance with the default Roblox class name.
+        /// </summary>
+        public StarterPlayer() : base(RobloxTypeRegistry.ClassNameOf<StarterPlayer>()) { }
+
 
         /// <summary>
         /// Describes the current game's permission levels regarding custom avatar animations from the website.

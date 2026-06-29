@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScriptCloneWatcher(nuint handle) : base(handle) { }
 
+        internal ScriptCloneWatcher(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScriptCloneWatcher"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScriptCloneWatcher? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptCloneWatcher(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScriptCloneWatcher"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScriptCloneWatcher() : base(RobloxTypeRegistry.ClassNameOf<ScriptCloneWatcher>()) { }
+
 
     }
 }

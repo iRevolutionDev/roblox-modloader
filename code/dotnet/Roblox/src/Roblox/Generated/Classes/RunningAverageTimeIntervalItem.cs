@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RunningAverageTimeIntervalItem(nuint handle) : base(handle) { }
 
+        internal RunningAverageTimeIntervalItem(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RunningAverageTimeIntervalItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RunningAverageTimeIntervalItem? FromHandle(nuint handle)
             => handle == 0 ? null : new RunningAverageTimeIntervalItem(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RunningAverageTimeIntervalItem"/> instance with the default Roblox class name.
+        /// </summary>
+        public RunningAverageTimeIntervalItem() : base(RobloxTypeRegistry.ClassNameOf<RunningAverageTimeIntervalItem>()) { }
+
 
     }
 }

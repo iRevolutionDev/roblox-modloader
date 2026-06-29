@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal IKControl(nuint handle) : base(handle) { }
 
+        internal IKControl(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="IKControl"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new IKControl? FromHandle(nuint handle)
             => handle == 0 ? null : new IKControl(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="IKControl"/> instance with the default Roblox class name.
+        /// </summary>
+        public IKControl() : base(RobloxTypeRegistry.ClassNameOf<IKControl>()) { }
+
 
         /// <summary>
         /// The last part that you are interested in moving your character. For example, the upper arm. Must be an ancestor of EndEffector and be a BasePart or a Bone in your character.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HiddenSurfaceRemovalAsset(nuint handle) : base(handle) { }
 
+        internal HiddenSurfaceRemovalAsset(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HiddenSurfaceRemovalAsset"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HiddenSurfaceRemovalAsset? FromHandle(nuint handle)
             => handle == 0 ? null : new HiddenSurfaceRemovalAsset(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HiddenSurfaceRemovalAsset"/> instance with the default Roblox class name.
+        /// </summary>
+        public HiddenSurfaceRemovalAsset() : base(RobloxTypeRegistry.ClassNameOf<HiddenSurfaceRemovalAsset>()) { }
+
 
     }
 }

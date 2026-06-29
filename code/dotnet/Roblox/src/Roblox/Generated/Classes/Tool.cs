@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Tool(nuint handle) : base(handle) { }
 
+        internal Tool(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Tool"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Tool? FromHandle(nuint handle)
             => handle == 0 ? null : new Tool(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Tool"/> instance with the default Roblox class name.
+        /// </summary>
+        public Tool() : base(RobloxTypeRegistry.ClassNameOf<Tool>()) { }
+
 
         /// <summary>
         /// Controls whether the player can drop the tool.

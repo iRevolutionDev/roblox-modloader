@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Path(nuint handle) : base(handle) { }
 
+        internal Path(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Path"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Path? FromHandle(nuint handle)
             => handle == 0 ? null : new Path(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Path"/> instance with the default Roblox class name.
+        /// </summary>
+        public Path() : base(RobloxTypeRegistry.ClassNameOf<Path>()) { }
+
 
         /// <summary>
         /// The PathStatus of the generated Path.

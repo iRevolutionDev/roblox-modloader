@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LodDataEntity(nuint handle) : base(handle) { }
 
+        internal LodDataEntity(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LodDataEntity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LodDataEntity? FromHandle(nuint handle)
             => handle == 0 ? null : new LodDataEntity(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LodDataEntity"/> instance with the default Roblox class name.
+        /// </summary>
+        public LodDataEntity() : base(RobloxTypeRegistry.ClassNameOf<LodDataEntity>()) { }
+
 
         public bool EntityLodEnabled
         {

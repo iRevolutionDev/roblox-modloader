@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PausedState(nuint handle) : base(handle) { }
 
+        internal PausedState(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PausedState"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PausedState? FromHandle(nuint handle)
             => handle == 0 ? null : new PausedState(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PausedState"/> instance with the default Roblox class name.
+        /// </summary>
+        public PausedState() : base(RobloxTypeRegistry.ClassNameOf<PausedState>()) { }
+
 
         public bool AllThreadsPaused
         {

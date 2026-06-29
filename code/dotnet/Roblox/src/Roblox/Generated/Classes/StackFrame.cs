@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StackFrame(nuint handle) : base(handle) { }
 
+        internal StackFrame(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StackFrame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StackFrame? FromHandle(nuint handle)
             => handle == 0 ? null : new StackFrame(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StackFrame"/> instance with the default Roblox class name.
+        /// </summary>
+        public StackFrame() : base(RobloxTypeRegistry.ClassNameOf<StackFrame>()) { }
+
 
         public int FrameId
         {

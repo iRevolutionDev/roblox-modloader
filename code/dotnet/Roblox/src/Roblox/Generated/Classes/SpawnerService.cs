@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SpawnerService(nuint handle) : base(handle) { }
 
+        internal SpawnerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SpawnerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SpawnerService? FromHandle(nuint handle)
             => handle == 0 ? null : new SpawnerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SpawnerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SpawnerService() : base(RobloxTypeRegistry.ClassNameOf<SpawnerService>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlayerGui(nuint handle) : base(handle) { }
 
+        internal PlayerGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlayerGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlayerGui? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlayerGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlayerGui() : base(RobloxTypeRegistry.ClassNameOf<PlayerGui>()) { }
+
 
         /// <summary>
         /// Describes the player's current screen orientation.

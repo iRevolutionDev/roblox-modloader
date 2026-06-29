@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AlignPosition(nuint handle) : base(handle) { }
 
+        internal AlignPosition(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AlignPosition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AlignPosition? FromHandle(nuint handle)
             => handle == 0 ? null : new AlignPosition(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AlignPosition"/> instance with the default Roblox class name.
+        /// </summary>
+        public AlignPosition() : base(RobloxTypeRegistry.ClassNameOf<AlignPosition>()) { }
+
 
         /// <summary>
         /// Whether force is applied to the parent of Attachment0 at that attachment's location, or at the parents' center of mass.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DataStore(nuint handle) : base(handle) { }
 
+        internal DataStore(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DataStore"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DataStore? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStore(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DataStore"/> instance with the default Roblox class name.
+        /// </summary>
+        public DataStore() : base(RobloxTypeRegistry.ClassNameOf<DataStore>()) { }
+
 
         /// <summary>
         /// Retrieves the specified key version.

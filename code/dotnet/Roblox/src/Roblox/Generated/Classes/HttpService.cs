@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HttpService(nuint handle) : base(handle) { }
 
+        internal HttpService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HttpService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HttpService? FromHandle(nuint handle)
             => handle == 0 ? null : new HttpService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HttpService"/> instance with the default Roblox class name.
+        /// </summary>
+        public HttpService() : base(RobloxTypeRegistry.ClassNameOf<HttpService>()) { }
+
 
         /// <summary>
         /// Indicates whether HTTP requests can be sent to external websites.

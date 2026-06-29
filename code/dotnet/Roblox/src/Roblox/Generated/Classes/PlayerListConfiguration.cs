@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlayerListConfiguration(nuint handle) : base(handle) { }
 
+        internal PlayerListConfiguration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlayerListConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlayerListConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerListConfiguration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlayerListConfiguration"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlayerListConfiguration() : base(RobloxTypeRegistry.ClassNameOf<PlayerListConfiguration>()) { }
+
 
         /// <summary>
         /// <c>PlayerListConfiguration.Open</c>

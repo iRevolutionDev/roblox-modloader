@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioCompressor(nuint handle) : base(handle) { }
 
+        internal AudioCompressor(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioCompressor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioCompressor? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioCompressor(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioCompressor"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioCompressor() : base(RobloxTypeRegistry.ClassNameOf<AudioCompressor>()) { }
+
 
         /// <summary>
         /// Controls how quickly the compressor will clamp down on volume after it surpasses Threshold.

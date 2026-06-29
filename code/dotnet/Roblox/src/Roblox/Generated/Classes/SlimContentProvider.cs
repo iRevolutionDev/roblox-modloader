@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SlimContentProvider(nuint handle) : base(handle) { }
 
+        internal SlimContentProvider(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SlimContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SlimContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimContentProvider(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SlimContentProvider"/> instance with the default Roblox class name.
+        /// </summary>
+        public SlimContentProvider() : base(RobloxTypeRegistry.ClassNameOf<SlimContentProvider>()) { }
+
 
         /// <summary>
         /// <c>SlimContentProvider.GetContentMemoryData</c>

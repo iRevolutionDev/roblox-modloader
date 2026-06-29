@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CapturesViewConfiguration(nuint handle) : base(handle) { }
 
+        internal CapturesViewConfiguration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CapturesViewConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CapturesViewConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new CapturesViewConfiguration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CapturesViewConfiguration"/> instance with the default Roblox class name.
+        /// </summary>
+        public CapturesViewConfiguration() : base(RobloxTypeRegistry.ClassNameOf<CapturesViewConfiguration>()) { }
+
 
         /// <summary>
         /// <c>CapturesViewConfiguration.Open</c>

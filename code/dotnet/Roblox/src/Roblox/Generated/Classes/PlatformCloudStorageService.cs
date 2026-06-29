@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlatformCloudStorageService(nuint handle) : base(handle) { }
 
+        internal PlatformCloudStorageService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlatformCloudStorageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlatformCloudStorageService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlatformCloudStorageService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlatformCloudStorageService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlatformCloudStorageService() : base(RobloxTypeRegistry.ClassNameOf<PlatformCloudStorageService>()) { }
+
 
         /// <summary>
         /// <c>PlatformCloudStorageService.IsUserDataAvailable</c>

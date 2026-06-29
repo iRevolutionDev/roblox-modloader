@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LiveSyncService(nuint handle) : base(handle) { }
 
+        internal LiveSyncService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LiveSyncService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LiveSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new LiveSyncService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LiveSyncService"/> instance with the default Roblox class name.
+        /// </summary>
+        public LiveSyncService() : base(RobloxTypeRegistry.ClassNameOf<LiveSyncService>()) { }
+
 
         /// <summary>
         /// <c>LiveSyncService.HasSyncedInstances</c>

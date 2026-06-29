@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GetTextBoundsParams(nuint handle) : base(handle) { }
 
+        internal GetTextBoundsParams(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GetTextBoundsParams"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GetTextBoundsParams? FromHandle(nuint handle)
             => handle == 0 ? null : new GetTextBoundsParams(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GetTextBoundsParams"/> instance with the default Roblox class name.
+        /// </summary>
+        public GetTextBoundsParams() : base(RobloxTypeRegistry.ClassNameOf<GetTextBoundsParams>()) { }
+
 
         /// <summary>
         /// The Font of the text being measured.

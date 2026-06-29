@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Light(nuint handle) : base(handle) { }
 
+        internal Light(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Light"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Light? FromHandle(nuint handle)
             => handle == 0 ? null : new Light(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Light"/> instance with the default Roblox class name.
+        /// </summary>
+        public Light() : base(RobloxTypeRegistry.ClassNameOf<Light>()) { }
+
 
         /// <summary>
         /// Sets how bright the emitted light is, defaults to 1.

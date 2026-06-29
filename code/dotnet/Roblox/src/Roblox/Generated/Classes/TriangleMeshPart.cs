@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TriangleMeshPart(nuint handle) : base(handle) { }
 
+        internal TriangleMeshPart(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TriangleMeshPart"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TriangleMeshPart? FromHandle(nuint handle)
             => handle == 0 ? null : new TriangleMeshPart(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TriangleMeshPart"/> instance with the default Roblox class name.
+        /// </summary>
+        public TriangleMeshPart() : base(RobloxTypeRegistry.ClassNameOf<TriangleMeshPart>()) { }
+
 
         /// <summary>
         /// Determines the level of detail the part's physics will adhere to its mesh.

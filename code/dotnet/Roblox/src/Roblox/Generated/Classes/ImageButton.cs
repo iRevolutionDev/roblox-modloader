@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ImageButton(nuint handle) : base(handle) { }
 
+        internal ImageButton(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ImageButton"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ImageButton? FromHandle(nuint handle)
             => handle == 0 ? null : new ImageButton(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ImageButton"/> instance with the default Roblox class name.
+        /// </summary>
+        public ImageButton() : base(RobloxTypeRegistry.ClassNameOf<ImageButton>()) { }
+
 
         public global::Roblox.Vector2 ContentImageSize
         {

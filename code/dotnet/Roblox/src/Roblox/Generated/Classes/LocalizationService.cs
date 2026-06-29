@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LocalizationService(nuint handle) : base(handle) { }
 
+        internal LocalizationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LocalizationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LocalizationService? FromHandle(nuint handle)
             => handle == 0 ? null : new LocalizationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LocalizationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public LocalizationService() : base(RobloxTypeRegistry.ClassNameOf<LocalizationService>()) { }
+
 
         public string ForcePlayModeGameLocaleId
         {

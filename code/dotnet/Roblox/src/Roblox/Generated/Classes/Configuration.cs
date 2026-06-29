@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Configuration(nuint handle) : base(handle) { }
 
+        internal Configuration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Configuration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Configuration? FromHandle(nuint handle)
             => handle == 0 ? null : new Configuration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Configuration"/> instance with the default Roblox class name.
+        /// </summary>
+        public Configuration() : base(RobloxTypeRegistry.ClassNameOf<Configuration>()) { }
+
 
     }
 }

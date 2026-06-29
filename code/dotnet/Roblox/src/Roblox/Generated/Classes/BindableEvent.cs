@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BindableEvent(nuint handle) : base(handle) { }
 
+        internal BindableEvent(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BindableEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BindableEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new BindableEvent(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BindableEvent"/> instance with the default Roblox class name.
+        /// </summary>
+        public BindableEvent() : base(RobloxTypeRegistry.ClassNameOf<BindableEvent>()) { }
+
 
         /// <summary>
         /// Fires the BindableEvent which in turn fires the Event event.

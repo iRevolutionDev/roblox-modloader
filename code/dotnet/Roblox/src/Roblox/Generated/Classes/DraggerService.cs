@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DraggerService(nuint handle) : base(handle) { }
 
+        internal DraggerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DraggerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DraggerService? FromHandle(nuint handle)
             => handle == 0 ? null : new DraggerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DraggerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public DraggerService() : base(RobloxTypeRegistry.ClassNameOf<DraggerService>()) { }
+
 
         /// <summary>
         /// <c>DraggerService.AlignDraggedObjects</c>

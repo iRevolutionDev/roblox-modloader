@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginMenu(nuint handle) : base(handle) { }
 
+        internal PluginMenu(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginMenu"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginMenu? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginMenu(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginMenu"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginMenu() : base(RobloxTypeRegistry.ClassNameOf<PluginMenu>()) { }
+
 
         /// <summary>
         /// The icon to be displayed when used as a submenu.

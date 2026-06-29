@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RibbonNotificationService(nuint handle) : base(handle) { }
 
+        internal RibbonNotificationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RibbonNotificationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RibbonNotificationService? FromHandle(nuint handle)
             => handle == 0 ? null : new RibbonNotificationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RibbonNotificationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public RibbonNotificationService() : base(RobloxTypeRegistry.ClassNameOf<RibbonNotificationService>()) { }
+
 
         /// <summary>
         /// <c>RibbonNotificationService.OnNotificationUpdateFromPlugin</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Shirt(nuint handle) : base(handle) { }
 
+        internal Shirt(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Shirt"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Shirt? FromHandle(nuint handle)
             => handle == 0 ? null : new Shirt(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Shirt"/> instance with the default Roblox class name.
+        /// </summary>
+        public Shirt() : base(RobloxTypeRegistry.ClassNameOf<Shirt>()) { }
+
 
         /// <summary>
         /// Determines the texture of the Shirt.

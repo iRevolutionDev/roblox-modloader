@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MouseService(nuint handle) : base(handle) { }
 
+        internal MouseService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MouseService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MouseService? FromHandle(nuint handle)
             => handle == 0 ? null : new MouseService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MouseService"/> instance with the default Roblox class name.
+        /// </summary>
+        public MouseService() : base(RobloxTypeRegistry.ClassNameOf<MouseService>()) { }
+
 
         public event Action? MouseEnterStudioViewport
         {

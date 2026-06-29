@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CFrameValue(nuint handle) : base(handle) { }
 
+        internal CFrameValue(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CFrameValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CFrameValue? FromHandle(nuint handle)
             => handle == 0 ? null : new CFrameValue(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CFrameValue"/> instance with the default Roblox class name.
+        /// </summary>
+        public CFrameValue() : base(RobloxTypeRegistry.ClassNameOf<CFrameValue>()) { }
+
 
         /// <summary>
         /// Used to hold a CFrame value.

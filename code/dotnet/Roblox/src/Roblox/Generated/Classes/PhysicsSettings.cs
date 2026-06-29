@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PhysicsSettings(nuint handle) : base(handle) { }
 
+        internal PhysicsSettings(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PhysicsSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PhysicsSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new PhysicsSettings(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PhysicsSettings"/> instance with the default Roblox class name.
+        /// </summary>
+        public PhysicsSettings() : base(RobloxTypeRegistry.ClassNameOf<PhysicsSettings>()) { }
+
 
         /// <summary>
         /// When set to true, physically simulated objects will stop being simulated if they have little to no motion for a set period of time.

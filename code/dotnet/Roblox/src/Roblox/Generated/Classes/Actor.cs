@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Actor(nuint handle) : base(handle) { }
 
+        internal Actor(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Actor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Actor? FromHandle(nuint handle)
             => handle == 0 ? null : new Actor(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Actor"/> instance with the default Roblox class name.
+        /// </summary>
+        public Actor() : base(RobloxTypeRegistry.ClassNameOf<Actor>()) { }
+
 
         /// <summary>
         /// Binds a Luau callback to a message with the specified topic.

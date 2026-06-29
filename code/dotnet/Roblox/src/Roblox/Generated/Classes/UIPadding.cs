@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIPadding(nuint handle) : base(handle) { }
 
+        internal UIPadding(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIPadding"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIPadding? FromHandle(nuint handle)
             => handle == 0 ? null : new UIPadding(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIPadding"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIPadding() : base(RobloxTypeRegistry.ClassNameOf<UIPadding>()) { }
+
 
         /// <summary>
         /// Padding to apply on the bottom side, relative to the parent's normal size.

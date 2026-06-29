@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PolicyService(nuint handle) : base(handle) { }
 
+        internal PolicyService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PolicyService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PolicyService? FromHandle(nuint handle)
             => handle == 0 ? null : new PolicyService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PolicyService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PolicyService() : base(RobloxTypeRegistry.ClassNameOf<PolicyService>()) { }
+
 
         public Enum.TriStateBoolean IsLuobuServer
         {

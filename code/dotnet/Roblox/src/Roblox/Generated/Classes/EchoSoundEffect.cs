@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal EchoSoundEffect(nuint handle) : base(handle) { }
 
+        internal EchoSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="EchoSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new EchoSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new EchoSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="EchoSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public EchoSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<EchoSoundEffect>()) { }
+
 
         /// <summary>
         /// The amount of time between echoes.

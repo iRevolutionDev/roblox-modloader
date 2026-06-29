@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CompressorSoundEffect(nuint handle) : base(handle) { }
 
+        internal CompressorSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CompressorSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CompressorSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new CompressorSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CompressorSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public CompressorSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<CompressorSoundEffect>()) { }
+
 
         /// <summary>
         /// The time the effect takes to become active after its Threshold has been reached.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StarterPack(nuint handle) : base(handle) { }
 
+        internal StarterPack(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StarterPack"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StarterPack? FromHandle(nuint handle)
             => handle == 0 ? null : new StarterPack(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StarterPack"/> instance with the default Roblox class name.
+        /// </summary>
+        public StarterPack() : base(RobloxTypeRegistry.ClassNameOf<StarterPack>()) { }
+
 
     }
 }

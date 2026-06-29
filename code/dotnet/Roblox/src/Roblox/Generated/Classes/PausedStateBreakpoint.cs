@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PausedStateBreakpoint(nuint handle) : base(handle) { }
 
+        internal PausedStateBreakpoint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PausedStateBreakpoint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PausedStateBreakpoint? FromHandle(nuint handle)
             => handle == 0 ? null : new PausedStateBreakpoint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PausedStateBreakpoint"/> instance with the default Roblox class name.
+        /// </summary>
+        public PausedStateBreakpoint() : base(RobloxTypeRegistry.ClassNameOf<PausedStateBreakpoint>()) { }
+
 
         public Breakpoint Breakpoint
         {

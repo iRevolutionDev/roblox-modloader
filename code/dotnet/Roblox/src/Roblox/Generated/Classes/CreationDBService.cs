@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CreationDBService(nuint handle) : base(handle) { }
 
+        internal CreationDBService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CreationDBService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CreationDBService? FromHandle(nuint handle)
             => handle == 0 ? null : new CreationDBService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CreationDBService"/> instance with the default Roblox class name.
+        /// </summary>
+        public CreationDBService() : base(RobloxTypeRegistry.ClassNameOf<CreationDBService>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal InventoryPages(nuint handle) : base(handle) { }
 
+        internal InventoryPages(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="InventoryPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new InventoryPages? FromHandle(nuint handle)
             => handle == 0 ? null : new InventoryPages(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="InventoryPages"/> instance with the default Roblox class name.
+        /// </summary>
+        public InventoryPages() : base(RobloxTypeRegistry.ClassNameOf<InventoryPages>()) { }
+
 
     }
 }

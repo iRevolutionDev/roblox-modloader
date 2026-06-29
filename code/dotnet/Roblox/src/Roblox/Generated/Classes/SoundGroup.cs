@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SoundGroup(nuint handle) : base(handle) { }
 
+        internal SoundGroup(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SoundGroup"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SoundGroup? FromHandle(nuint handle)
             => handle == 0 ? null : new SoundGroup(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SoundGroup"/> instance with the default Roblox class name.
+        /// </summary>
+        public SoundGroup() : base(RobloxTypeRegistry.ClassNameOf<SoundGroup>()) { }
+
 
         /// <summary>
         /// The volume multiplier applied to Sounds that are in the SoundGroup.

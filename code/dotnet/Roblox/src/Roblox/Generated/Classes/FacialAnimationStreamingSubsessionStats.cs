@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FacialAnimationStreamingSubsessionStats(nuint handle) : base(handle) { }
 
+        internal FacialAnimationStreamingSubsessionStats(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FacialAnimationStreamingSubsessionStats"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FacialAnimationStreamingSubsessionStats? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAnimationStreamingSubsessionStats(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FacialAnimationStreamingSubsessionStats"/> instance with the default Roblox class name.
+        /// </summary>
+        public FacialAnimationStreamingSubsessionStats() : base(RobloxTypeRegistry.ClassNameOf<FacialAnimationStreamingSubsessionStats>()) { }
+
 
     }
 }

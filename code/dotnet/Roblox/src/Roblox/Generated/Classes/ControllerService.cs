@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ControllerService(nuint handle) : base(handle) { }
 
+        internal ControllerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ControllerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ControllerService? FromHandle(nuint handle)
             => handle == 0 ? null : new ControllerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ControllerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ControllerService() : base(RobloxTypeRegistry.ClassNameOf<ControllerService>()) { }
+
 
     }
 }

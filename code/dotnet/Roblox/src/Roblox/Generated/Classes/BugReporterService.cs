@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BugReporterService(nuint handle) : base(handle) { }
 
+        internal BugReporterService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BugReporterService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BugReporterService? FromHandle(nuint handle)
             => handle == 0 ? null : new BugReporterService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BugReporterService"/> instance with the default Roblox class name.
+        /// </summary>
+        public BugReporterService() : base(RobloxTypeRegistry.ClassNameOf<BugReporterService>()) { }
+
 
         /// <summary>
         /// <c>BugReporterService.IsAvailable</c>

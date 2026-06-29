@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Plane(nuint handle) : base(handle) { }
 
+        internal Plane(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Plane"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Plane? FromHandle(nuint handle)
             => handle == 0 ? null : new Plane(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Plane"/> instance with the default Roblox class name.
+        /// </summary>
+        public Plane() : base(RobloxTypeRegistry.ClassNameOf<Plane>()) { }
+
 
     }
 }

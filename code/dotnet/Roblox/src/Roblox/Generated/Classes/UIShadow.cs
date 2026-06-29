@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIShadow(nuint handle) : base(handle) { }
 
+        internal UIShadow(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIShadow"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIShadow? FromHandle(nuint handle)
             => handle == 0 ? null : new UIShadow(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIShadow"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIShadow() : base(RobloxTypeRegistry.ClassNameOf<UIShadow>()) { }
+
 
         /// <summary>
         /// Determines the shadow's blurriness.

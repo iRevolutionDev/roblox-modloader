@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GamePassService(nuint handle) : base(handle) { }
 
+        internal GamePassService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GamePassService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GamePassService? FromHandle(nuint handle)
             => handle == 0 ? null : new GamePassService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GamePassService"/> instance with the default Roblox class name.
+        /// </summary>
+        public GamePassService() : base(RobloxTypeRegistry.ClassNameOf<GamePassService>()) { }
+
 
         /// <summary>
         /// Deprecated: Returns true if the Player has the specified legacy game pass. Does not work with new game passes.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BodyGyro(nuint handle) : base(handle) { }
 
+        internal BodyGyro(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BodyGyro"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BodyGyro? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyGyro(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BodyGyro"/> instance with the default Roblox class name.
+        /// </summary>
+        public BodyGyro() : base(RobloxTypeRegistry.ClassNameOf<BodyGyro>()) { }
+
 
         /// <summary>
         /// Determines the target orientation (translational component ignored).

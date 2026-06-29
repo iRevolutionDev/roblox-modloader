@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScriptChangeService(nuint handle) : base(handle) { }
 
+        internal ScriptChangeService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScriptChangeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScriptChangeService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptChangeService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScriptChangeService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScriptChangeService() : base(RobloxTypeRegistry.ClassNameOf<ScriptChangeService>()) { }
+
 
         /// <summary>
         /// <c>ScriptChangeService.ScriptAdded</c>

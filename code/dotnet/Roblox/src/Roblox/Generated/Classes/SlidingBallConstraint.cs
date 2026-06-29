@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SlidingBallConstraint(nuint handle) : base(handle) { }
 
+        internal SlidingBallConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SlidingBallConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SlidingBallConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new SlidingBallConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SlidingBallConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public SlidingBallConstraint() : base(RobloxTypeRegistry.ClassNameOf<SlidingBallConstraint>()) { }
+
 
         /// <summary>
         /// Sets whether the translation of the SlidingBallConstraint is actuated and, if so, what kind of actuation.

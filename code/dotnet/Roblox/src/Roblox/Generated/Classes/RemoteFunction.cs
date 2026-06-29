@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RemoteFunction(nuint handle) : base(handle) { }
 
+        internal RemoteFunction(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RemoteFunction"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RemoteFunction? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteFunction(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RemoteFunction"/> instance with the default Roblox class name.
+        /// </summary>
+        public RemoteFunction() : base(RobloxTypeRegistry.ClassNameOf<RemoteFunction>()) { }
+
 
         /// <summary>
         /// Invokes the RemoteFunction which in turn calls the OnClientInvoke callback.

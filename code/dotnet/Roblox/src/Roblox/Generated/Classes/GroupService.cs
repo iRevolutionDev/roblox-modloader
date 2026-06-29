@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GroupService(nuint handle) : base(handle) { }
 
+        internal GroupService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GroupService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GroupService? FromHandle(nuint handle)
             => handle == 0 ? null : new GroupService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GroupService"/> instance with the default Roblox class name.
+        /// </summary>
+        public GroupService() : base(RobloxTypeRegistry.ClassNameOf<GroupService>()) { }
+
 
         /// <summary>
         /// <c>GroupService.PromptJoinCompleted</c>

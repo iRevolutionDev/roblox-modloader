@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DataModel(nuint handle) : base(handle) { }
 
+        internal DataModel(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DataModel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DataModel? FromHandle(nuint handle)
             => handle == 0 ? null : new DataModel(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DataModel"/> instance with the default Roblox class name.
+        /// </summary>
+        public DataModel() : base(RobloxTypeRegistry.ClassNameOf<DataModel>()) { }
+
 
         /// <summary>
         /// Describes the ID of the user or group that owns the place.

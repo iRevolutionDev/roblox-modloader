@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BackpackItem(nuint handle) : base(handle) { }
 
+        internal BackpackItem(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BackpackItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BackpackItem? FromHandle(nuint handle)
             => handle == 0 ? null : new BackpackItem(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BackpackItem"/> instance with the default Roblox class name.
+        /// </summary>
+        public BackpackItem() : base(RobloxTypeRegistry.ClassNameOf<BackpackItem>()) { }
+
 
         /// <summary>
         /// The texture icon that is displayed for a tool in the player's backpack. Only supports asset URIs.

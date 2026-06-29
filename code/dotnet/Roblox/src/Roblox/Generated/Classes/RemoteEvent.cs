@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RemoteEvent(nuint handle) : base(handle) { }
 
+        internal RemoteEvent(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RemoteEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RemoteEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteEvent(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RemoteEvent"/> instance with the default Roblox class name.
+        /// </summary>
+        public RemoteEvent() : base(RobloxTypeRegistry.ClassNameOf<RemoteEvent>()) { }
+
 
         /// <summary>
         /// Fires the OnClientEvent event for each connected client.

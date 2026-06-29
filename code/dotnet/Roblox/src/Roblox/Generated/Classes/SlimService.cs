@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SlimService(nuint handle) : base(handle) { }
 
+        internal SlimService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SlimService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SlimService? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SlimService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SlimService() : base(RobloxTypeRegistry.ClassNameOf<SlimService>()) { }
+
 
     }
 }

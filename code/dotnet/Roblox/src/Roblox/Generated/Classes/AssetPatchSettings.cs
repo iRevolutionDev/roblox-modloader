@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AssetPatchSettings(nuint handle) : base(handle) { }
 
+        internal AssetPatchSettings(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AssetPatchSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AssetPatchSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetPatchSettings(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AssetPatchSettings"/> instance with the default Roblox class name.
+        /// </summary>
+        public AssetPatchSettings() : base(RobloxTypeRegistry.ClassNameOf<AssetPatchSettings>()) { }
+
 
         /// <summary>
         /// <c>AssetPatchSettings.ContentId</c>

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ProceduralBehaviorSchedulerService(nuint handle) : base(handle) { }
 
+        internal ProceduralBehaviorSchedulerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ProceduralBehaviorSchedulerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ProceduralBehaviorSchedulerService? FromHandle(nuint handle)
             => handle == 0 ? null : new ProceduralBehaviorSchedulerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ProceduralBehaviorSchedulerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ProceduralBehaviorSchedulerService() : base(RobloxTypeRegistry.ClassNameOf<ProceduralBehaviorSchedulerService>()) { }
+
 
     }
 }

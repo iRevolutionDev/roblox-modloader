@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UserGameSettings(nuint handle) : base(handle) { }
 
+        internal UserGameSettings(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UserGameSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UserGameSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new UserGameSettings(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UserGameSettings"/> instance with the default Roblox class name.
+        /// </summary>
+        public UserGameSettings() : base(RobloxTypeRegistry.ClassNameOf<UserGameSettings>()) { }
+
 
         /// <summary>
         /// Indicates whether all in-experience tutorials have been disabled by the user.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Feature(nuint handle) : base(handle) { }
 
+        internal Feature(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Feature"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Feature? FromHandle(nuint handle)
             => handle == 0 ? null : new Feature(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Feature"/> instance with the default Roblox class name.
+        /// </summary>
+        public Feature() : base(RobloxTypeRegistry.ClassNameOf<Feature>()) { }
+
 
         /// <summary>
         /// Sets what side of the Parent the object is on.

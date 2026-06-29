@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CurveAnimation(nuint handle) : base(handle) { }
 
+        internal CurveAnimation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CurveAnimation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CurveAnimation? FromHandle(nuint handle)
             => handle == 0 ? null : new CurveAnimation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CurveAnimation"/> instance with the default Roblox class name.
+        /// </summary>
+        public CurveAnimation() : base(RobloxTypeRegistry.ClassNameOf<CurveAnimation>()) { }
+
 
     }
 }

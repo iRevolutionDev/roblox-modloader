@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginManagerInterface(nuint handle) : base(handle) { }
 
+        internal PluginManagerInterface(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginManagerInterface"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginManagerInterface? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginManagerInterface(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginManagerInterface"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginManagerInterface() : base(RobloxTypeRegistry.ClassNameOf<PluginManagerInterface>()) { }
+
 
         /// <summary>
         /// Deprecated: The steps to create a plugin have changed. To learn more, see Plugin.

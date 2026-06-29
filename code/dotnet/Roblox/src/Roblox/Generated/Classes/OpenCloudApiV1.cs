@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal OpenCloudApiV1(nuint handle) : base(handle) { }
 
+        internal OpenCloudApiV1(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="OpenCloudApiV1"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new OpenCloudApiV1? FromHandle(nuint handle)
             => handle == 0 ? null : new OpenCloudApiV1(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="OpenCloudApiV1"/> instance with the default Roblox class name.
+        /// </summary>
+        public OpenCloudApiV1() : base(RobloxTypeRegistry.ClassNameOf<OpenCloudApiV1>()) { }
+
 
         /// <summary>
         /// Deprecated:

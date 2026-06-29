@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DataModelMesh(nuint handle) : base(handle) { }
 
+        internal DataModelMesh(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DataModelMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DataModelMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new DataModelMesh(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DataModelMesh"/> instance with the default Roblox class name.
+        /// </summary>
+        public DataModelMesh() : base(RobloxTypeRegistry.ClassNameOf<DataModelMesh>()) { }
+
 
         /// <summary>
         /// The Offset of a mesh determines the relative position from the BasePart.Position of a BasePart that the mesh will be displayed at.

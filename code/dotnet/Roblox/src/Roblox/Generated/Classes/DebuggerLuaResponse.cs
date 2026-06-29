@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DebuggerLuaResponse(nuint handle) : base(handle) { }
 
+        internal DebuggerLuaResponse(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DebuggerLuaResponse"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DebuggerLuaResponse? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerLuaResponse(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DebuggerLuaResponse"/> instance with the default Roblox class name.
+        /// </summary>
+        public DebuggerLuaResponse() : base(RobloxTypeRegistry.ClassNameOf<DebuggerLuaResponse>()) { }
+
 
         public bool IsError
         {

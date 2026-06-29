@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TelemetryService(nuint handle) : base(handle) { }
 
+        internal TelemetryService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TelemetryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TelemetryService? FromHandle(nuint handle)
             => handle == 0 ? null : new TelemetryService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TelemetryService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TelemetryService() : base(RobloxTypeRegistry.ClassNameOf<TelemetryService>()) { }
+
 
         /// <summary>
         /// <c>TelemetryService.LogCounter</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GenericChallengeService(nuint handle) : base(handle) { }
 
+        internal GenericChallengeService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GenericChallengeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GenericChallengeService? FromHandle(nuint handle)
             => handle == 0 ? null : new GenericChallengeService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GenericChallengeService"/> instance with the default Roblox class name.
+        /// </summary>
+        public GenericChallengeService() : base(RobloxTypeRegistry.ClassNameOf<GenericChallengeService>()) { }
+
 
         /// <summary>
         /// <c>GenericChallengeService.SignalChallengeAbandoned</c>

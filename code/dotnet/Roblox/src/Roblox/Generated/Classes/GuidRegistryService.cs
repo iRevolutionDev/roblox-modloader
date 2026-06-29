@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GuidRegistryService(nuint handle) : base(handle) { }
 
+        internal GuidRegistryService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GuidRegistryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GuidRegistryService? FromHandle(nuint handle)
             => handle == 0 ? null : new GuidRegistryService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GuidRegistryService"/> instance with the default Roblox class name.
+        /// </summary>
+        public GuidRegistryService() : base(RobloxTypeRegistry.ClassNameOf<GuidRegistryService>()) { }
+
 
     }
 }

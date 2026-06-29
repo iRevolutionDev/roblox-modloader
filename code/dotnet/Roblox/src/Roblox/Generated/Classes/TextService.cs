@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextService(nuint handle) : base(handle) { }
 
+        internal TextService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextService? FromHandle(nuint handle)
             => handle == 0 ? null : new TextService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextService() : base(RobloxTypeRegistry.ClassNameOf<TextService>()) { }
+
 
         /// <summary>
         /// <c>TextService.GetFontMemoryData</c>

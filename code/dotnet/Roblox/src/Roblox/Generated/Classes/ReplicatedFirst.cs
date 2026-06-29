@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ReplicatedFirst(nuint handle) : base(handle) { }
 
+        internal ReplicatedFirst(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ReplicatedFirst"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ReplicatedFirst? FromHandle(nuint handle)
             => handle == 0 ? null : new ReplicatedFirst(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ReplicatedFirst"/> instance with the default Roblox class name.
+        /// </summary>
+        public ReplicatedFirst() : base(RobloxTypeRegistry.ClassNameOf<ReplicatedFirst>()) { }
+
 
         /// <summary>
         /// <c>ReplicatedFirst.IsDefaultLoadingGuiRemoved</c>

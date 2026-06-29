@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ShirtGraphic(nuint handle) : base(handle) { }
 
+        internal ShirtGraphic(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ShirtGraphic"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ShirtGraphic? FromHandle(nuint handle)
             => handle == 0 ? null : new ShirtGraphic(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ShirtGraphic"/> instance with the default Roblox class name.
+        /// </summary>
+        public ShirtGraphic() : base(RobloxTypeRegistry.ClassNameOf<ShirtGraphic>()) { }
+
 
         /// <summary>
         /// Determines the colorization to be applied to the ShirtGraphic texture.

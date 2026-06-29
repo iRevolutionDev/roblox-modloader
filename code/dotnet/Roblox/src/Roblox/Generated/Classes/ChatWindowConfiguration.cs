@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ChatWindowConfiguration(nuint handle) : base(handle) { }
 
+        internal ChatWindowConfiguration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ChatWindowConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ChatWindowConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new ChatWindowConfiguration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ChatWindowConfiguration"/> instance with the default Roblox class name.
+        /// </summary>
+        public ChatWindowConfiguration() : base(RobloxTypeRegistry.ClassNameOf<ChatWindowConfiguration>()) { }
+
 
         /// <summary>
         /// Actual screen position of the default chat window, in pixels.

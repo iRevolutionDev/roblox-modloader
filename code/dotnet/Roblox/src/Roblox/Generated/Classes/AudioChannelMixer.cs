@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioChannelMixer(nuint handle) : base(handle) { }
 
+        internal AudioChannelMixer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioChannelMixer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioChannelMixer? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioChannelMixer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioChannelMixer"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioChannelMixer() : base(RobloxTypeRegistry.ClassNameOf<AudioChannelMixer>()) { }
+
 
         /// <summary>
         /// Controls the output channel layout to be mixed to.

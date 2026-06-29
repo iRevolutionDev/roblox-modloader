@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PitchShiftSoundEffect(nuint handle) : base(handle) { }
 
+        internal PitchShiftSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PitchShiftSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PitchShiftSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new PitchShiftSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PitchShiftSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public PitchShiftSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<PitchShiftSoundEffect>()) { }
+
 
         /// <summary>
         /// The percentage to shift the original pitch.

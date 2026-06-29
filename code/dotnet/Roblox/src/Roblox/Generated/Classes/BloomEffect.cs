@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BloomEffect(nuint handle) : base(handle) { }
 
+        internal BloomEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BloomEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BloomEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new BloomEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BloomEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public BloomEffect() : base(RobloxTypeRegistry.ClassNameOf<BloomEffect>()) { }
+
 
         /// <summary>
         /// Determines the additive blending intensity.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LoginService(nuint handle) : base(handle) { }
 
+        internal LoginService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LoginService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LoginService? FromHandle(nuint handle)
             => handle == 0 ? null : new LoginService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LoginService"/> instance with the default Roblox class name.
+        /// </summary>
+        public LoginService() : base(RobloxTypeRegistry.ClassNameOf<LoginService>()) { }
+
 
         /// <summary>
         /// <c>LoginService.Logout</c>

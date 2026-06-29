@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Seat(nuint handle) : base(handle) { }
 
+        internal Seat(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Seat"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Seat? FromHandle(nuint handle)
             => handle == 0 ? null : new Seat(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Seat"/> instance with the default Roblox class name.
+        /// </summary>
+        public Seat() : base(RobloxTypeRegistry.ClassNameOf<Seat>()) { }
+
 
         /// <summary>
         /// Whether or not the seat is usable. If set to true, the seat will act as a normal part.

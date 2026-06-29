@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AngularVelocity(nuint handle) : base(handle) { }
 
+        internal AngularVelocity(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AngularVelocity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AngularVelocity? FromHandle(nuint handle)
             => handle == 0 ? null : new AngularVelocity(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AngularVelocity"/> instance with the default Roblox class name.
+        /// </summary>
+        public AngularVelocity() : base(RobloxTypeRegistry.ClassNameOf<AngularVelocity>()) { }
+
 
         /// <summary>
         /// A Vector3 that gives the desired or target angular velocity.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioTheme(nuint handle) : base(handle) { }
 
+        internal StudioTheme(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioTheme"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioTheme? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioTheme(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioTheme"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioTheme() : base(RobloxTypeRegistry.ClassNameOf<StudioTheme>()) { }
+
 
         /// <summary>
         /// Returns the color corresponding to the arguments provided.

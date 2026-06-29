@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BaseImportData(nuint handle) : base(handle) { }
 
+        internal BaseImportData(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BaseImportData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BaseImportData? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseImportData(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BaseImportData"/> instance with the default Roblox class name.
+        /// </summary>
+        public BaseImportData() : base(RobloxTypeRegistry.ClassNameOf<BaseImportData>()) { }
+
 
         public string Id
         {

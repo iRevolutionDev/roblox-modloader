@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIGridStyleLayout(nuint handle) : base(handle) { }
 
+        internal UIGridStyleLayout(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIGridStyleLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIGridStyleLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UIGridStyleLayout(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIGridStyleLayout"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIGridStyleLayout() : base(RobloxTypeRegistry.ClassNameOf<UIGridStyleLayout>()) { }
+
 
         /// <summary>
         /// The absolute size of space being taken up by the grid layout.

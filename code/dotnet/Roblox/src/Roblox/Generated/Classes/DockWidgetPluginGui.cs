@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DockWidgetPluginGui(nuint handle) : base(handle) { }
 
+        internal DockWidgetPluginGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DockWidgetPluginGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DockWidgetPluginGui? FromHandle(nuint handle)
             => handle == 0 ? null : new DockWidgetPluginGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DockWidgetPluginGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public DockWidgetPluginGui() : base(RobloxTypeRegistry.ClassNameOf<DockWidgetPluginGui>()) { }
+
 
         /// <summary>
         /// Describes whether the previous state of this DockWidgetPluginGui was restored when it was created.

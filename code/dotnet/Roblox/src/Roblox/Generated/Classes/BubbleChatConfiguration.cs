@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BubbleChatConfiguration(nuint handle) : base(handle) { }
 
+        internal BubbleChatConfiguration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BubbleChatConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BubbleChatConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new BubbleChatConfiguration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BubbleChatConfiguration"/> instance with the default Roblox class name.
+        /// </summary>
+        public BubbleChatConfiguration() : base(RobloxTypeRegistry.ClassNameOf<BubbleChatConfiguration>()) { }
+
 
         /// <summary>
         /// Body part or Attachment that bubbles will attach to.

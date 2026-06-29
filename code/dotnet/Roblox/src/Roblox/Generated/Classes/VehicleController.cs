@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VehicleController(nuint handle) : base(handle) { }
 
+        internal VehicleController(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VehicleController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VehicleController? FromHandle(nuint handle)
             => handle == 0 ? null : new VehicleController(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VehicleController"/> instance with the default Roblox class name.
+        /// </summary>
+        public VehicleController() : base(RobloxTypeRegistry.ClassNameOf<VehicleController>()) { }
+
 
     }
 }

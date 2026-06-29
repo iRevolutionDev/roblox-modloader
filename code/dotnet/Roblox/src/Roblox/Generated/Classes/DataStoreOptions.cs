@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DataStoreOptions(nuint handle) : base(handle) { }
 
+        internal DataStoreOptions(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DataStoreOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DataStoreOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreOptions(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DataStoreOptions"/> instance with the default Roblox class name.
+        /// </summary>
+        public DataStoreOptions() : base(RobloxTypeRegistry.ClassNameOf<DataStoreOptions>()) { }
+
 
         /// <summary>
         /// Whether the GlobalDataStore should work with all scopes.

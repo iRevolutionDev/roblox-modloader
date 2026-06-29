@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ChannelSelectorSoundEffect(nuint handle) : base(handle) { }
 
+        internal ChannelSelectorSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ChannelSelectorSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ChannelSelectorSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ChannelSelectorSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ChannelSelectorSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public ChannelSelectorSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<ChannelSelectorSoundEffect>()) { }
+
 
         public int Channel
         {

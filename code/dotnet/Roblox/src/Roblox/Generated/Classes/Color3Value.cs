@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Color3Value(nuint handle) : base(handle) { }
 
+        internal Color3Value(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Color3Value"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Color3Value? FromHandle(nuint handle)
             => handle == 0 ? null : new Color3Value(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Color3Value"/> instance with the default Roblox class name.
+        /// </summary>
+        public Color3Value() : base(RobloxTypeRegistry.ClassNameOf<Color3Value>()) { }
+
 
         /// <summary>
         /// The stored Color3.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MatchmakingService(nuint handle) : base(handle) { }
 
+        internal MatchmakingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MatchmakingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MatchmakingService? FromHandle(nuint handle)
             => handle == 0 ? null : new MatchmakingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MatchmakingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public MatchmakingService() : base(RobloxTypeRegistry.ClassNameOf<MatchmakingService>()) { }
+
 
         /// <summary>
         /// Retrieves the value of a specific server attribute.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal NetworkReplicator(nuint handle) : base(handle) { }
 
+        internal NetworkReplicator(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="NetworkReplicator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new NetworkReplicator? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkReplicator(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="NetworkReplicator"/> instance with the default Roblox class name.
+        /// </summary>
+        public NetworkReplicator() : base(RobloxTypeRegistry.ClassNameOf<NetworkReplicator>()) { }
+
 
         /// <summary>
         /// Returns the player that is connected to the NetworkReplicator.

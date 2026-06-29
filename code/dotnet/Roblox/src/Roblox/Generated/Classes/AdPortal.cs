@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AdPortal(nuint handle) : base(handle) { }
 
+        internal AdPortal(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AdPortal"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AdPortal? FromHandle(nuint handle)
             => handle == 0 ? null : new AdPortal(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AdPortal"/> instance with the default Roblox class name.
+        /// </summary>
+        public AdPortal() : base(RobloxTypeRegistry.ClassNameOf<AdPortal>()) { }
+
 
         /// <summary>
         /// <c>AdPortal.PortalInvalidReason</c>

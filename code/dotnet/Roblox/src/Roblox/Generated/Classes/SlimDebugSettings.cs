@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SlimDebugSettings(nuint handle) : base(handle) { }
 
+        internal SlimDebugSettings(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SlimDebugSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SlimDebugSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimDebugSettings(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SlimDebugSettings"/> instance with the default Roblox class name.
+        /// </summary>
+        public SlimDebugSettings() : base(RobloxTypeRegistry.ClassNameOf<SlimDebugSettings>()) { }
+
 
         /// <summary>
         /// <c>SlimDebugSettings.GetTintMode</c>

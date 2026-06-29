@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WebViewService(nuint handle) : base(handle) { }
 
+        internal WebViewService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WebViewService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WebViewService? FromHandle(nuint handle)
             => handle == 0 ? null : new WebViewService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WebViewService"/> instance with the default Roblox class name.
+        /// </summary>
+        public WebViewService() : base(RobloxTypeRegistry.ClassNameOf<WebViewService>()) { }
+
 
         /// <summary>
         /// <c>WebViewService.CloseWindow</c>

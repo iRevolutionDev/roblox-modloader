@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlayerDataService(nuint handle) : base(handle) { }
 
+        internal PlayerDataService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlayerDataService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlayerDataService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerDataService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlayerDataService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlayerDataService() : base(RobloxTypeRegistry.ClassNameOf<PlayerDataService>()) { }
+
 
         public Enum.PlayerDataLoadFailureBehavior LoadFailureBehavior
         {

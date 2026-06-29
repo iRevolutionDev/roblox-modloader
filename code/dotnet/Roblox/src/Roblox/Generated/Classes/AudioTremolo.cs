@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioTremolo(nuint handle) : base(handle) { }
 
+        internal AudioTremolo(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioTremolo"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioTremolo? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioTremolo(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioTremolo"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioTremolo() : base(RobloxTypeRegistry.ClassNameOf<AudioTremolo>()) { }
+
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.

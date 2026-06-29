@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DataStoreVersionPages(nuint handle) : base(handle) { }
 
+        internal DataStoreVersionPages(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DataStoreVersionPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DataStoreVersionPages? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreVersionPages(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DataStoreVersionPages"/> instance with the default Roblox class name.
+        /// </summary>
+        public DataStoreVersionPages() : base(RobloxTypeRegistry.ClassNameOf<DataStoreVersionPages>()) { }
+
 
     }
 }

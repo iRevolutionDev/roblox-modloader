@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WrapTextureTransfer(nuint handle) : base(handle) { }
 
+        internal WrapTextureTransfer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WrapTextureTransfer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WrapTextureTransfer? FromHandle(nuint handle)
             => handle == 0 ? null : new WrapTextureTransfer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WrapTextureTransfer"/> instance with the default Roblox class name.
+        /// </summary>
+        public WrapTextureTransfer() : base(RobloxTypeRegistry.ClassNameOf<WrapTextureTransfer>()) { }
+
 
         /// <summary>
         /// An optional reference mesh used for pruning and validating the target cage.

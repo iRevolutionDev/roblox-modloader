@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TemporaryCageMeshProvider(nuint handle) : base(handle) { }
 
+        internal TemporaryCageMeshProvider(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TemporaryCageMeshProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TemporaryCageMeshProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new TemporaryCageMeshProvider(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TemporaryCageMeshProvider"/> instance with the default Roblox class name.
+        /// </summary>
+        public TemporaryCageMeshProvider() : base(RobloxTypeRegistry.ClassNameOf<TemporaryCageMeshProvider>()) { }
+
 
     }
 }

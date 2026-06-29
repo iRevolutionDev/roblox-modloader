@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginPolicyService(nuint handle) : base(handle) { }
 
+        internal PluginPolicyService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginPolicyService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginPolicyService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginPolicyService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginPolicyService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginPolicyService() : base(RobloxTypeRegistry.ClassNameOf<PluginPolicyService>()) { }
+
 
         /// <summary>
         /// <c>PluginPolicyService.GetPluginPolicy</c>

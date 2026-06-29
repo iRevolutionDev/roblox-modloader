@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StyleDerive(nuint handle) : base(handle) { }
 
+        internal StyleDerive(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StyleDerive"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StyleDerive? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleDerive(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StyleDerive"/> instance with the default Roblox class name.
+        /// </summary>
+        public StyleDerive() : base(RobloxTypeRegistry.ClassNameOf<StyleDerive>()) { }
+
 
         /// <summary>
         /// A number that determines how style properties inherited through this StyleDerive apply relative to the same properties inherited through other StyleDerives.

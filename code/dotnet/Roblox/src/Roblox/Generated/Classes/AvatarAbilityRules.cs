@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AvatarAbilityRules(nuint handle) : base(handle) { }
 
+        internal AvatarAbilityRules(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AvatarAbilityRules"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AvatarAbilityRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarAbilityRules(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AvatarAbilityRules"/> instance with the default Roblox class name.
+        /// </summary>
+        public AvatarAbilityRules() : base(RobloxTypeRegistry.ClassNameOf<AvatarAbilityRules>()) { }
+
 
         public Enum.AvatarSettingsCharacterControllerMode CharacterControllerMode
         {

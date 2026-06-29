@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LinearVelocity(nuint handle) : base(handle) { }
 
+        internal LinearVelocity(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LinearVelocity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LinearVelocity? FromHandle(nuint handle)
             => handle == 0 ? null : new LinearVelocity(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LinearVelocity"/> instance with the default Roblox class name.
+        /// </summary>
+        public LinearVelocity() : base(RobloxTypeRegistry.ClassNameOf<LinearVelocity>()) { }
+
 
         /// <summary>
         /// Determines how the constraint force will be limited.

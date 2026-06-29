@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TrackerLodController(nuint handle) : base(handle) { }
 
+        internal TrackerLodController(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TrackerLodController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TrackerLodController? FromHandle(nuint handle)
             => handle == 0 ? null : new TrackerLodController(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TrackerLodController"/> instance with the default Roblox class name.
+        /// </summary>
+        public TrackerLodController() : base(RobloxTypeRegistry.ClassNameOf<TrackerLodController>()) { }
+
 
         public Enum.TrackerLodFlagMode AudioMode
         {

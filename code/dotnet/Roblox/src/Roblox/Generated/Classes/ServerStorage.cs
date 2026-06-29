@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ServerStorage(nuint handle) : base(handle) { }
 
+        internal ServerStorage(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ServerStorage"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ServerStorage? FromHandle(nuint handle)
             => handle == 0 ? null : new ServerStorage(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ServerStorage"/> instance with the default Roblox class name.
+        /// </summary>
+        public ServerStorage() : base(RobloxTypeRegistry.ClassNameOf<ServerStorage>()) { }
+
 
     }
 }

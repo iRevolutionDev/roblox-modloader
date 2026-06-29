@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UniversalConstraint(nuint handle) : base(handle) { }
 
+        internal UniversalConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UniversalConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UniversalConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new UniversalConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UniversalConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public UniversalConstraint() : base(RobloxTypeRegistry.ClassNameOf<UniversalConstraint>()) { }
+
 
         /// <summary>
         /// Determines whether the angular motion of attachments' primary axes is limited.

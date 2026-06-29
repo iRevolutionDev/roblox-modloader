@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AdvancedDragger(nuint handle) : base(handle) { }
 
+        internal AdvancedDragger(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AdvancedDragger"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AdvancedDragger? FromHandle(nuint handle)
             => handle == 0 ? null : new AdvancedDragger(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AdvancedDragger"/> instance with the default Roblox class name.
+        /// </summary>
+        public AdvancedDragger() : base(RobloxTypeRegistry.ClassNameOf<AdvancedDragger>()) { }
+
 
     }
 }

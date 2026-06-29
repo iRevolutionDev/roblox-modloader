@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ModerationService(nuint handle) : base(handle) { }
 
+        internal ModerationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ModerationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ModerationService? FromHandle(nuint handle)
             => handle == 0 ? null : new ModerationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ModerationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ModerationService() : base(RobloxTypeRegistry.ClassNameOf<ModerationService>()) { }
+
 
         /// <summary>
         /// <c>ModerationService.BindReviewableContentEventProcessor</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlayerScripts(nuint handle) : base(handle) { }
 
+        internal PlayerScripts(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlayerScripts"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlayerScripts? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerScripts(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlayerScripts"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlayerScripts() : base(RobloxTypeRegistry.ClassNameOf<PlayerScripts>()) { }
+
 
         /// <summary>
         /// Unregisters all ComputerCameraMovementMode enums from the game's settings menu.

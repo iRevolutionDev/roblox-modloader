@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ReflectionMetadataEnums(nuint handle) : base(handle) { }
 
+        internal ReflectionMetadataEnums(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ReflectionMetadataEnums"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ReflectionMetadataEnums? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionMetadataEnums(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ReflectionMetadataEnums"/> instance with the default Roblox class name.
+        /// </summary>
+        public ReflectionMetadataEnums() : base(RobloxTypeRegistry.ClassNameOf<ReflectionMetadataEnums>()) { }
+
 
     }
 }

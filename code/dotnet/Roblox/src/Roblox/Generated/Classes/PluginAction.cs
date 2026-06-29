@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginAction(nuint handle) : base(handle) { }
 
+        internal PluginAction(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginAction"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginAction? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginAction(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginAction"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginAction() : base(RobloxTypeRegistry.ClassNameOf<PluginAction>()) { }
+
 
         /// <summary>
         /// A string that uniquely identifies this action.

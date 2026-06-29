@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Translator(nuint handle) : base(handle) { }
 
+        internal Translator(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Translator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Translator? FromHandle(nuint handle)
             => handle == 0 ? null : new Translator(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Translator"/> instance with the default Roblox class name.
+        /// </summary>
+        public Translator() : base(RobloxTypeRegistry.ClassNameOf<Translator>()) { }
+
 
         /// <summary>
         /// The locale of translated strings.

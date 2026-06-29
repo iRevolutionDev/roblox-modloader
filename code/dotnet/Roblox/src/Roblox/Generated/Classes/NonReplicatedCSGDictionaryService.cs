@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal NonReplicatedCSGDictionaryService(nuint handle) : base(handle) { }
 
+        internal NonReplicatedCSGDictionaryService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="NonReplicatedCSGDictionaryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new NonReplicatedCSGDictionaryService? FromHandle(nuint handle)
             => handle == 0 ? null : new NonReplicatedCSGDictionaryService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="NonReplicatedCSGDictionaryService"/> instance with the default Roblox class name.
+        /// </summary>
+        public NonReplicatedCSGDictionaryService() : base(RobloxTypeRegistry.ClassNameOf<NonReplicatedCSGDictionaryService>()) { }
+
 
     }
 }

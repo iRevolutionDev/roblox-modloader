@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal InstanceExtensionsService(nuint handle) : base(handle) { }
 
+        internal InstanceExtensionsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="InstanceExtensionsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new InstanceExtensionsService? FromHandle(nuint handle)
             => handle == 0 ? null : new InstanceExtensionsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="InstanceExtensionsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public InstanceExtensionsService() : base(RobloxTypeRegistry.ClassNameOf<InstanceExtensionsService>()) { }
+
 
         /// <summary>
         /// <c>InstanceExtensionsService.CountChildren</c>

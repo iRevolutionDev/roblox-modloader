@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Teams(nuint handle) : base(handle) { }
 
+        internal Teams(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Teams"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Teams? FromHandle(nuint handle)
             => handle == 0 ? null : new Teams(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Teams"/> instance with the default Roblox class name.
+        /// </summary>
+        public Teams() : base(RobloxTypeRegistry.ClassNameOf<Teams>()) { }
+
 
         /// <summary>
         /// Returns a table containing the game's Team objects. Will only return Team objects that are parented to the Teams service.

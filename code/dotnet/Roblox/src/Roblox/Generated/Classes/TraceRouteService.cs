@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TraceRouteService(nuint handle) : base(handle) { }
 
+        internal TraceRouteService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TraceRouteService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TraceRouteService? FromHandle(nuint handle)
             => handle == 0 ? null : new TraceRouteService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TraceRouteService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TraceRouteService() : base(RobloxTypeRegistry.ClassNameOf<TraceRouteService>()) { }
+
 
     }
 }

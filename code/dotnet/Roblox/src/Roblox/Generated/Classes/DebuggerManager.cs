@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DebuggerManager(nuint handle) : base(handle) { }
 
+        internal DebuggerManager(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DebuggerManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DebuggerManager? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerManager(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DebuggerManager"/> instance with the default Roblox class name.
+        /// </summary>
+        public DebuggerManager() : base(RobloxTypeRegistry.ClassNameOf<DebuggerManager>()) { }
+
 
         public bool DebuggingEnabled
         {

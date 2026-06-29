@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Explosion(nuint handle) : base(handle) { }
 
+        internal Explosion(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Explosion"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Explosion? FromHandle(nuint handle)
             => handle == 0 ? null : new Explosion(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Explosion"/> instance with the default Roblox class name.
+        /// </summary>
+        public Explosion() : base(RobloxTypeRegistry.ClassNameOf<Explosion>()) { }
+
 
         /// <summary>
         /// Used to determine the amount of force applied to BaseParts caught in the Explosion.BlastRadius.

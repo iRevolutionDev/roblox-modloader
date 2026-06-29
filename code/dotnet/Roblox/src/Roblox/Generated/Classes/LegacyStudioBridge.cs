@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LegacyStudioBridge(nuint handle) : base(handle) { }
 
+        internal LegacyStudioBridge(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LegacyStudioBridge"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LegacyStudioBridge? FromHandle(nuint handle)
             => handle == 0 ? null : new LegacyStudioBridge(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LegacyStudioBridge"/> instance with the default Roblox class name.
+        /// </summary>
+        public LegacyStudioBridge() : base(RobloxTypeRegistry.ClassNameOf<LegacyStudioBridge>()) { }
+
 
     }
 }

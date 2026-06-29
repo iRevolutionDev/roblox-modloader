@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MeshContentProvider(nuint handle) : base(handle) { }
 
+        internal MeshContentProvider(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MeshContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MeshContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new MeshContentProvider(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MeshContentProvider"/> instance with the default Roblox class name.
+        /// </summary>
+        public MeshContentProvider() : base(RobloxTypeRegistry.ClassNameOf<MeshContentProvider>()) { }
+
 
         /// <summary>
         /// <c>MeshContentProvider.GetContentMemoryData</c>

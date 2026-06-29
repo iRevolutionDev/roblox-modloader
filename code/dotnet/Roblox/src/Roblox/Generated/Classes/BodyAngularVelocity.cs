@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BodyAngularVelocity(nuint handle) : base(handle) { }
 
+        internal BodyAngularVelocity(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BodyAngularVelocity"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BodyAngularVelocity? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyAngularVelocity(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BodyAngularVelocity"/> instance with the default Roblox class name.
+        /// </summary>
+        public BodyAngularVelocity() : base(RobloxTypeRegistry.ClassNameOf<BodyAngularVelocity>()) { }
+
 
         /// <summary>
         /// Determines the axis of rotation (direction) and the rotational velocity (magnitude) in radians/s.

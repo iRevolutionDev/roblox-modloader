@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AssetImportService(nuint handle) : base(handle) { }
 
+        internal AssetImportService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AssetImportService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AssetImportService? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetImportService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AssetImportService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AssetImportService() : base(RobloxTypeRegistry.ClassNameOf<AssetImportService>()) { }
+
 
         /// <summary>
         /// <c>AssetImportService.GetAllPresets</c>

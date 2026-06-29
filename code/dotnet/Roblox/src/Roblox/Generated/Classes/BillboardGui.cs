@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BillboardGui(nuint handle) : base(handle) { }
 
+        internal BillboardGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BillboardGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BillboardGui? FromHandle(nuint handle)
             => handle == 0 ? null : new BillboardGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BillboardGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public BillboardGui() : base(RobloxTypeRegistry.ClassNameOf<BillboardGui>()) { }
+
 
         /// <summary>
         /// Controls whether the descendants will receive input events.

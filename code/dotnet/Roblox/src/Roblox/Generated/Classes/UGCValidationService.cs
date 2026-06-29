@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UGCValidationService(nuint handle) : base(handle) { }
 
+        internal UGCValidationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UGCValidationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UGCValidationService? FromHandle(nuint handle)
             => handle == 0 ? null : new UGCValidationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UGCValidationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public UGCValidationService() : base(RobloxTypeRegistry.ClassNameOf<UGCValidationService>()) { }
+
 
         /// <summary>
         /// <c>UGCValidationService.CalculateAverageEditableCageMeshDistance</c>

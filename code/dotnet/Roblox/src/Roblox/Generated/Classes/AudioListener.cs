@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioListener(nuint handle) : base(handle) { }
 
+        internal AudioListener(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioListener"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioListener? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioListener(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioListener"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioListener() : base(RobloxTypeRegistry.ClassNameOf<AudioListener>()) { }
+
 
         /// <summary>
         /// Determines whether acoustic simulation should be used for this AudioListener.

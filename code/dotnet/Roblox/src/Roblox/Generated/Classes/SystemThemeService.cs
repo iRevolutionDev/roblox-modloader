@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SystemThemeService(nuint handle) : base(handle) { }
 
+        internal SystemThemeService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SystemThemeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SystemThemeService? FromHandle(nuint handle)
             => handle == 0 ? null : new SystemThemeService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SystemThemeService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SystemThemeService() : base(RobloxTypeRegistry.ClassNameOf<SystemThemeService>()) { }
+
 
         /// <summary>
         /// <c>SystemThemeService.getSystemTheme</c>

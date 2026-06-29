@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AppRatingPromptService(nuint handle) : base(handle) { }
 
+        internal AppRatingPromptService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AppRatingPromptService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AppRatingPromptService? FromHandle(nuint handle)
             => handle == 0 ? null : new AppRatingPromptService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AppRatingPromptService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AppRatingPromptService() : base(RobloxTypeRegistry.ClassNameOf<AppRatingPromptService>()) { }
+
 
         /// <summary>
         /// <c>AppRatingPromptService.isAppRatingPromptAvailable</c>

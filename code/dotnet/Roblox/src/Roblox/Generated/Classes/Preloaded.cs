@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Preloaded(nuint handle) : base(handle) { }
 
+        internal Preloaded(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Preloaded"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Preloaded? FromHandle(nuint handle)
             => handle == 0 ? null : new Preloaded(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Preloaded"/> instance with the default Roblox class name.
+        /// </summary>
+        public Preloaded() : base(RobloxTypeRegistry.ClassNameOf<Preloaded>()) { }
+
 
     }
 }

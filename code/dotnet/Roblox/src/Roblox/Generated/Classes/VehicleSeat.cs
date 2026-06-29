@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VehicleSeat(nuint handle) : base(handle) { }
 
+        internal VehicleSeat(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VehicleSeat"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VehicleSeat? FromHandle(nuint handle)
             => handle == 0 ? null : new VehicleSeat(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VehicleSeat"/> instance with the default Roblox class name.
+        /// </summary>
+        public VehicleSeat() : base(RobloxTypeRegistry.ClassNameOf<VehicleSeat>()) { }
+
 
         /// <summary>
         /// Displays how many hinges are detected by the VehicleSeat. Useful for debugging vehicle designs.

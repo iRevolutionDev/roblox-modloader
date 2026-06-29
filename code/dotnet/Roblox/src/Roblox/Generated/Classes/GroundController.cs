@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GroundController(nuint handle) : base(handle) { }
 
+        internal GroundController(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GroundController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GroundController? FromHandle(nuint handle)
             => handle == 0 ? null : new GroundController(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GroundController"/> instance with the default Roblox class name.
+        /// </summary>
+        public GroundController() : base(RobloxTypeRegistry.ClassNameOf<GroundController>()) { }
+
 
         public float AccelerationLean
         {

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SelfViewConfiguration(nuint handle) : base(handle) { }
 
+        internal SelfViewConfiguration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SelfViewConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SelfViewConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new SelfViewConfiguration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SelfViewConfiguration"/> instance with the default Roblox class name.
+        /// </summary>
+        public SelfViewConfiguration() : base(RobloxTypeRegistry.ClassNameOf<SelfViewConfiguration>()) { }
+
 
         /// <summary>
         /// <c>SelfViewConfiguration.Open</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HingeConstraint(nuint handle) : base(handle) { }
 
+        internal HingeConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HingeConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HingeConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new HingeConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HingeConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public HingeConstraint() : base(RobloxTypeRegistry.ClassNameOf<HingeConstraint>()) { }
+
 
         /// <summary>
         /// Sets whether the rotation of the HingeConstraint is actuated and, if so, what kind of actuation it uses.

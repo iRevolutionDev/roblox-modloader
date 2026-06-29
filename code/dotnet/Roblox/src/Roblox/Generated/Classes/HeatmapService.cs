@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HeatmapService(nuint handle) : base(handle) { }
 
+        internal HeatmapService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HeatmapService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HeatmapService? FromHandle(nuint handle)
             => handle == 0 ? null : new HeatmapService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HeatmapService"/> instance with the default Roblox class name.
+        /// </summary>
+        public HeatmapService() : base(RobloxTypeRegistry.ClassNameOf<HeatmapService>()) { }
+
 
     }
 }

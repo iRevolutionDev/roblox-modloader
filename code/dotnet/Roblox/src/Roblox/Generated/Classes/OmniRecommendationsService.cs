@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal OmniRecommendationsService(nuint handle) : base(handle) { }
 
+        internal OmniRecommendationsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="OmniRecommendationsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new OmniRecommendationsService? FromHandle(nuint handle)
             => handle == 0 ? null : new OmniRecommendationsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="OmniRecommendationsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public OmniRecommendationsService() : base(RobloxTypeRegistry.ClassNameOf<OmniRecommendationsService>()) { }
+
 
         /// <summary>
         /// <c>OmniRecommendationsService.ClearSessionId</c>

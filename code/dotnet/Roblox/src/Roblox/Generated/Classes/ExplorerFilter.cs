@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ExplorerFilter(nuint handle) : base(handle) { }
 
+        internal ExplorerFilter(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ExplorerFilter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ExplorerFilter? FromHandle(nuint handle)
             => handle == 0 ? null : new ExplorerFilter(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ExplorerFilter"/> instance with the default Roblox class name.
+        /// </summary>
+        public ExplorerFilter() : base(RobloxTypeRegistry.ClassNameOf<ExplorerFilter>()) { }
+
 
         /// <summary>
         /// <c>ExplorerFilter.BeginSearch</c>

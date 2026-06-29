@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PackageLink(nuint handle) : base(handle) { }
 
+        internal PackageLink(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PackageLink"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PackageLink? FromHandle(nuint handle)
             => handle == 0 ? null : new PackageLink(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PackageLink"/> instance with the default Roblox class name.
+        /// </summary>
+        public PackageLink() : base(RobloxTypeRegistry.ClassNameOf<PackageLink>()) { }
+
 
         /// <summary>
         /// When this property is set to true, the package associated with the given PackageLink automatically updates to the latest version.

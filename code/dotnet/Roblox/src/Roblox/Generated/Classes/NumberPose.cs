@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal NumberPose(nuint handle) : base(handle) { }
 
+        internal NumberPose(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="NumberPose"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new NumberPose? FromHandle(nuint handle)
             => handle == 0 ? null : new NumberPose(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="NumberPose"/> instance with the default Roblox class name.
+        /// </summary>
+        public NumberPose() : base(RobloxTypeRegistry.ClassNameOf<NumberPose>()) { }
+
 
         /// <summary>
         /// The value that will be applied to the FACS control corresponding to the NumberPose.

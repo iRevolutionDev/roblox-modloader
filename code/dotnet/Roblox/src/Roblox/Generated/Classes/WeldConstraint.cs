@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WeldConstraint(nuint handle) : base(handle) { }
 
+        internal WeldConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WeldConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WeldConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new WeldConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WeldConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public WeldConstraint() : base(RobloxTypeRegistry.ClassNameOf<WeldConstraint>()) { }
+
 
         /// <summary>
         /// Indicates if the WeldConstraint is currently active in the world.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SkateboardController(nuint handle) : base(handle) { }
 
+        internal SkateboardController(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SkateboardController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SkateboardController? FromHandle(nuint handle)
             => handle == 0 ? null : new SkateboardController(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SkateboardController"/> instance with the default Roblox class name.
+        /// </summary>
+        public SkateboardController() : base(RobloxTypeRegistry.ClassNameOf<SkateboardController>()) { }
+
 
         /// <summary>
         /// The direction of movement, tied to the keys A and D. Must be 1 (right), 0 (straight), or -1 (left). Will refresh back to 0 unless constantly set.

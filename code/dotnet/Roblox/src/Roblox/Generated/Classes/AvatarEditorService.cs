@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AvatarEditorService(nuint handle) : base(handle) { }
 
+        internal AvatarEditorService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AvatarEditorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AvatarEditorService? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarEditorService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AvatarEditorService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AvatarEditorService() : base(RobloxTypeRegistry.ClassNameOf<AvatarEditorService>()) { }
+
 
         /// <summary>
         /// <c>AvatarEditorService.BustAvatarFetchCache</c>

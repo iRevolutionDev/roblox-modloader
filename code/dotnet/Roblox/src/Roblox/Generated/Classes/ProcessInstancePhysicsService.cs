@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ProcessInstancePhysicsService(nuint handle) : base(handle) { }
 
+        internal ProcessInstancePhysicsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ProcessInstancePhysicsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ProcessInstancePhysicsService? FromHandle(nuint handle)
             => handle == 0 ? null : new ProcessInstancePhysicsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ProcessInstancePhysicsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ProcessInstancePhysicsService() : base(RobloxTypeRegistry.ClassNameOf<ProcessInstancePhysicsService>()) { }
+
 
     }
 }

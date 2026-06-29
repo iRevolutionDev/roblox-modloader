@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StyleBase(nuint handle) : base(handle) { }
 
+        internal StyleBase(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StyleBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StyleBase? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleBase(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StyleBase"/> instance with the default Roblox class name.
+        /// </summary>
+        public StyleBase() : base(RobloxTypeRegistry.ClassNameOf<StyleBase>()) { }
+
 
         /// <summary>
         /// Returns an array of associated StyleRules.

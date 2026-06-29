@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Sound(nuint handle) : base(handle) { }
 
+        internal Sound(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Sound"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Sound? FromHandle(nuint handle)
             => handle == 0 ? null : new Sound(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Sound"/> instance with the default Roblox class name.
+        /// </summary>
+        public Sound() : base(RobloxTypeRegistry.ClassNameOf<Sound>()) { }
+
 
         /// <summary>
         /// <c>Sound.AcousticSimulationEnabled</c>

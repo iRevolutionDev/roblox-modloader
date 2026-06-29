@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal EncodingService(nuint handle) : base(handle) { }
 
+        internal EncodingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="EncodingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new EncodingService? FromHandle(nuint handle)
             => handle == 0 ? null : new EncodingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="EncodingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public EncodingService() : base(RobloxTypeRegistry.ClassNameOf<EncodingService>()) { }
+
 
         /// <summary>
         /// <c>EncodingService.Base64Decode</c>

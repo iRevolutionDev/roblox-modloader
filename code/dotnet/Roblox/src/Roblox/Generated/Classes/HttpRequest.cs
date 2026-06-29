@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HttpRequest(nuint handle) : base(handle) { }
 
+        internal HttpRequest(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HttpRequest"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HttpRequest? FromHandle(nuint handle)
             => handle == 0 ? null : new HttpRequest(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HttpRequest"/> instance with the default Roblox class name.
+        /// </summary>
+        public HttpRequest() : base(RobloxTypeRegistry.ClassNameOf<HttpRequest>()) { }
+
 
         /// <summary>
         /// <c>HttpRequest.Cancel</c>

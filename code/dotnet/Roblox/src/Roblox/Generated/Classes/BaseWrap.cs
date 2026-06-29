@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BaseWrap(nuint handle) : base(handle) { }
 
+        internal BaseWrap(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BaseWrap"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BaseWrap? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseWrap(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BaseWrap"/> instance with the default Roblox class name.
+        /// </summary>
+        public BaseWrap() : base(RobloxTypeRegistry.ClassNameOf<BaseWrap>()) { }
+
 
         /// <summary>
         /// <c>BaseWrap.CageMeshContent</c>

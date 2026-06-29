@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Path2D(nuint handle) : base(handle) { }
 
+        internal Path2D(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Path2D"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Path2D? FromHandle(nuint handle)
             => handle == 0 ? null : new Path2D(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Path2D"/> instance with the default Roblox class name.
+        /// </summary>
+        public Path2D() : base(RobloxTypeRegistry.ClassNameOf<Path2D>()) { }
+
 
         /// <summary>
         /// Connects the first and last control points when enabled.

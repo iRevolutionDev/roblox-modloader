@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Team(nuint handle) : base(handle) { }
 
+        internal Team(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Team"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Team? FromHandle(nuint handle)
             => handle == 0 ? null : new Team(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Team"/> instance with the default Roblox class name.
+        /// </summary>
+        public Team() : base(RobloxTypeRegistry.ClassNameOf<Team>()) { }
+
 
         /// <summary>
         /// This property determines whether Players will be automatically placed onto the Team when joining. If multiple teams have this property set to true, Roblox will attempt to even the teams out when Players are added.

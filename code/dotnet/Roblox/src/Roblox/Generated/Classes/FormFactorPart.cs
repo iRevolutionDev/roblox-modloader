@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FormFactorPart(nuint handle) : base(handle) { }
 
+        internal FormFactorPart(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FormFactorPart"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FormFactorPart? FromHandle(nuint handle)
             => handle == 0 ? null : new FormFactorPart(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FormFactorPart"/> instance with the default Roblox class name.
+        /// </summary>
+        public FormFactorPart() : base(RobloxTypeRegistry.ClassNameOf<FormFactorPart>()) { }
+
 
         /// <summary>
         /// Deprecated: This property has been deprecated and should not be used in new work.

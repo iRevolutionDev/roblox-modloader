@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioDeviceEmulatorService(nuint handle) : base(handle) { }
 
+        internal StudioDeviceEmulatorService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioDeviceEmulatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioDeviceEmulatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioDeviceEmulatorService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioDeviceEmulatorService"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioDeviceEmulatorService() : base(RobloxTypeRegistry.ClassNameOf<StudioDeviceEmulatorService>()) { }
+
 
         public bool HasMultiTouchStarted
         {

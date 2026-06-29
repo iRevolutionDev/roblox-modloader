@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Texture(nuint handle) : base(handle) { }
 
+        internal Texture(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Texture"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Texture? FromHandle(nuint handle)
             => handle == 0 ? null : new Texture(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Texture"/> instance with the default Roblox class name.
+        /// </summary>
+        public Texture() : base(RobloxTypeRegistry.ClassNameOf<Texture>()) { }
+
 
         /// <summary>
         /// Determines the offset in studs of the rendered texture's horizontal coordinate.

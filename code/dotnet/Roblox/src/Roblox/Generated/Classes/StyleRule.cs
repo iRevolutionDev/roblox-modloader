@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StyleRule(nuint handle) : base(handle) { }
 
+        internal StyleRule(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StyleRule"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StyleRule? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleRule(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StyleRule"/> instance with the default Roblox class name.
+        /// </summary>
+        public StyleRule() : base(RobloxTypeRegistry.ClassNameOf<StyleRule>()) { }
+
 
         /// <summary>
         /// A number that determines how properties of the StyleRule apply relative to the same properties in other StyleRules. Higher priority values take precedence over lower.

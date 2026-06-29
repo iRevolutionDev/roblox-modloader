@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TotalCountTimeIntervalItem(nuint handle) : base(handle) { }
 
+        internal TotalCountTimeIntervalItem(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TotalCountTimeIntervalItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TotalCountTimeIntervalItem? FromHandle(nuint handle)
             => handle == 0 ? null : new TotalCountTimeIntervalItem(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TotalCountTimeIntervalItem"/> instance with the default Roblox class name.
+        /// </summary>
+        public TotalCountTimeIntervalItem() : base(RobloxTypeRegistry.ClassNameOf<TotalCountTimeIntervalItem>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LayerCollector(nuint handle) : base(handle) { }
 
+        internal LayerCollector(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LayerCollector"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LayerCollector? FromHandle(nuint handle)
             => handle == 0 ? null : new LayerCollector(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LayerCollector"/> instance with the default Roblox class name.
+        /// </summary>
+        public LayerCollector() : base(RobloxTypeRegistry.ClassNameOf<LayerCollector>()) { }
+
 
         /// <summary>
         /// Toggles the visibility of this LayerCollector.

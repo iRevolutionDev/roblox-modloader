@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginToolbar(nuint handle) : base(handle) { }
 
+        internal PluginToolbar(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginToolbar"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginToolbar? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginToolbar(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginToolbar"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginToolbar() : base(RobloxTypeRegistry.ClassNameOf<PluginToolbar>()) { }
+
 
         /// <summary>
         /// Creates a PluginToolbarButton that allows the user to initiate a single, one-off action in Studio.

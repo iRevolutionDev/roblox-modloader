@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AppAgeSignalsService(nuint handle) : base(handle) { }
 
+        internal AppAgeSignalsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AppAgeSignalsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AppAgeSignalsService? FromHandle(nuint handle)
             => handle == 0 ? null : new AppAgeSignalsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AppAgeSignalsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AppAgeSignalsService() : base(RobloxTypeRegistry.ClassNameOf<AppAgeSignalsService>()) { }
+
 
         /// <summary>
         /// <c>AppAgeSignalsService.IsAvailable</c>

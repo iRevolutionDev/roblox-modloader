@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Message(nuint handle) : base(handle) { }
 
+        internal Message(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Message"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Message? FromHandle(nuint handle)
             => handle == 0 ? null : new Message(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Message"/> instance with the default Roblox class name.
+        /// </summary>
+        public Message() : base(RobloxTypeRegistry.ClassNameOf<Message>()) { }
+
 
         /// <summary>
         /// Sets the text of a Message or Hint.

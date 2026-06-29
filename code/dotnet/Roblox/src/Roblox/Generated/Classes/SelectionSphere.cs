@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SelectionSphere(nuint handle) : base(handle) { }
 
+        internal SelectionSphere(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SelectionSphere"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SelectionSphere? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionSphere(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SelectionSphere"/> instance with the default Roblox class name.
+        /// </summary>
+        public SelectionSphere() : base(RobloxTypeRegistry.ClassNameOf<SelectionSphere>()) { }
+
 
         /// <summary>
         /// Deprecated: This property is deprecated in favor of SurfaceColor3 which uses the more precise Color3 data type instead of a BrickColor used by this property.A BrickColor version of SurfaceColor3.

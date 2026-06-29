@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RemoteCursorService(nuint handle) : base(handle) { }
 
+        internal RemoteCursorService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RemoteCursorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RemoteCursorService? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteCursorService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RemoteCursorService"/> instance with the default Roblox class name.
+        /// </summary>
+        public RemoteCursorService() : base(RobloxTypeRegistry.ClassNameOf<RemoteCursorService>()) { }
+
 
     }
 }

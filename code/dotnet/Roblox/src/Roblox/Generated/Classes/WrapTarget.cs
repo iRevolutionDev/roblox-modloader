@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WrapTarget(nuint handle) : base(handle) { }
 
+        internal WrapTarget(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WrapTarget"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WrapTarget? FromHandle(nuint handle)
             => handle == 0 ? null : new WrapTarget(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WrapTarget"/> instance with the default Roblox class name.
+        /// </summary>
+        public WrapTarget() : base(RobloxTypeRegistry.ClassNameOf<WrapTarget>()) { }
+
 
         /// <summary>
         /// Sets color used for the debug rendering. See WrapTarget.DebugMode.

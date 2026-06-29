@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PointsService(nuint handle) : base(handle) { }
 
+        internal PointsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PointsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PointsService? FromHandle(nuint handle)
             => handle == 0 ? null : new PointsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PointsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PointsService() : base(RobloxTypeRegistry.ClassNameOf<PointsService>()) { }
+
 
         /// <summary>
         /// Deprecated: This function was once part of the PointService class used to control an ancient achievement system since removed and deprecated. It should not be used in new work.Returns the number of points the current game has available to award to players.

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioAttachment(nuint handle) : base(handle) { }
 
+        internal StudioAttachment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioAttachment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioAttachment? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioAttachment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioAttachment"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioAttachment() : base(RobloxTypeRegistry.ClassNameOf<StudioAttachment>()) { }
+
 
         public bool AutoHideParent
         {

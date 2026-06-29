@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BodyColors(nuint handle) : base(handle) { }
 
+        internal BodyColors(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BodyColors"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BodyColors? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyColors(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BodyColors"/> instance with the default Roblox class name.
+        /// </summary>
+        public BodyColors() : base(RobloxTypeRegistry.ClassNameOf<BodyColors>()) { }
+
 
         /// <summary>
         /// Sets the color of the head, as a BrickColor.

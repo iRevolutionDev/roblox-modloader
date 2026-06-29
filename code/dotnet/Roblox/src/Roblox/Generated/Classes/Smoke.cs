@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Smoke(nuint handle) : base(handle) { }
 
+        internal Smoke(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Smoke"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Smoke? FromHandle(nuint handle)
             => handle == 0 ? null : new Smoke(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Smoke"/> instance with the default Roblox class name.
+        /// </summary>
+        public Smoke() : base(RobloxTypeRegistry.ClassNameOf<Smoke>()) { }
+
 
         /// <summary>
         /// Determines the color of the smoke particles.

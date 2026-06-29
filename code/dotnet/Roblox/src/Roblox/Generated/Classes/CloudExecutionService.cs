@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CloudExecutionService(nuint handle) : base(handle) { }
 
+        internal CloudExecutionService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CloudExecutionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CloudExecutionService? FromHandle(nuint handle)
             => handle == 0 ? null : new CloudExecutionService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CloudExecutionService"/> instance with the default Roblox class name.
+        /// </summary>
+        public CloudExecutionService() : base(RobloxTypeRegistry.ClassNameOf<CloudExecutionService>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ColorCorrectionEffect(nuint handle) : base(handle) { }
 
+        internal ColorCorrectionEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ColorCorrectionEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ColorCorrectionEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ColorCorrectionEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ColorCorrectionEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public ColorCorrectionEffect() : base(RobloxTypeRegistry.ClassNameOf<ColorCorrectionEffect>()) { }
+
 
         /// <summary>
         /// Determines by how much the brightness of pixel colors will be shifted.

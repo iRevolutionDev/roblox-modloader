@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MessageBusConnection(nuint handle) : base(handle) { }
 
+        internal MessageBusConnection(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MessageBusConnection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MessageBusConnection? FromHandle(nuint handle)
             => handle == 0 ? null : new MessageBusConnection(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MessageBusConnection"/> instance with the default Roblox class name.
+        /// </summary>
+        public MessageBusConnection() : base(RobloxTypeRegistry.ClassNameOf<MessageBusConnection>()) { }
+
 
         /// <summary>
         /// <c>MessageBusConnection.Disconnect</c>

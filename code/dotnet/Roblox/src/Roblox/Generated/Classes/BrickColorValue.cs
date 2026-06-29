@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BrickColorValue(nuint handle) : base(handle) { }
 
+        internal BrickColorValue(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BrickColorValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BrickColorValue? FromHandle(nuint handle)
             => handle == 0 ? null : new BrickColorValue(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BrickColorValue"/> instance with the default Roblox class name.
+        /// </summary>
+        public BrickColorValue() : base(RobloxTypeRegistry.ClassNameOf<BrickColorValue>()) { }
+
 
         /// <summary>
         /// Used to hold a BrickColor value.

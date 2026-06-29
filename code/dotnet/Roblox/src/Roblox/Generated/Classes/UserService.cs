@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UserService(nuint handle) : base(handle) { }
 
+        internal UserService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UserService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UserService? FromHandle(nuint handle)
             => handle == 0 ? null : new UserService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UserService"/> instance with the default Roblox class name.
+        /// </summary>
+        public UserService() : base(RobloxTypeRegistry.ClassNameOf<UserService>()) { }
+
 
         /// <summary>
         /// Returns a User for the given global user ID within the current experience.

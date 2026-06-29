@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LocalizationTable(nuint handle) : base(handle) { }
 
+        internal LocalizationTable(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LocalizationTable"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LocalizationTable? FromHandle(nuint handle)
             => handle == 0 ? null : new LocalizationTable(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LocalizationTable"/> instance with the default Roblox class name.
+        /// </summary>
+        public LocalizationTable() : base(RobloxTypeRegistry.ClassNameOf<LocalizationTable>()) { }
+
 
         /// <summary>
         /// Deprecated: This item has been superseded by LocalizationTable.SourceLocaleId which should be used in all new work.The default IETF tag to use if the ''languageKey'' parameter is excluded from the LocalizationTable:GetString() method.

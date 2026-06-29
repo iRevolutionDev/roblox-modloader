@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Flag(nuint handle) : base(handle) { }
 
+        internal Flag(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Flag"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Flag? FromHandle(nuint handle)
             => handle == 0 ? null : new Flag(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Flag"/> instance with the default Roblox class name.
+        /// </summary>
+        public Flag() : base(RobloxTypeRegistry.ClassNameOf<Flag>()) { }
+
 
         /// <summary>
         /// The Team this flag is for. Corresponds with the TeamColors in the Teams service.

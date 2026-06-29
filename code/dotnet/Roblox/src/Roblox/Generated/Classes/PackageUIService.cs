@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PackageUIService(nuint handle) : base(handle) { }
 
+        internal PackageUIService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PackageUIService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PackageUIService? FromHandle(nuint handle)
             => handle == 0 ? null : new PackageUIService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PackageUIService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PackageUIService() : base(RobloxTypeRegistry.ClassNameOf<PackageUIService>()) { }
+
 
         /// <summary>
         /// <c>PackageUIService.ConvertToMockPackage</c>

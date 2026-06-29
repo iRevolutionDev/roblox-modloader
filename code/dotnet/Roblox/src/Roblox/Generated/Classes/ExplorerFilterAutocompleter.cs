@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ExplorerFilterAutocompleter(nuint handle) : base(handle) { }
 
+        internal ExplorerFilterAutocompleter(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ExplorerFilterAutocompleter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ExplorerFilterAutocompleter? FromHandle(nuint handle)
             => handle == 0 ? null : new ExplorerFilterAutocompleter(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ExplorerFilterAutocompleter"/> instance with the default Roblox class name.
+        /// </summary>
+        public ExplorerFilterAutocompleter() : base(RobloxTypeRegistry.ClassNameOf<ExplorerFilterAutocompleter>()) { }
+
 
         public global::Roblox.Vector2 ReplaceRange
         {

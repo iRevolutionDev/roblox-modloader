@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PostEffect(nuint handle) : base(handle) { }
 
+        internal PostEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PostEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PostEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new PostEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PostEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public PostEffect() : base(RobloxTypeRegistry.ClassNameOf<PostEffect>()) { }
+
 
         /// <summary>
         /// Toggles whether or not the PostEffect is enabled.

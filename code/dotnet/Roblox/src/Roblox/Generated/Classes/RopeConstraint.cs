@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RopeConstraint(nuint handle) : base(handle) { }
 
+        internal RopeConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RopeConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RopeConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new RopeConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RopeConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public RopeConstraint() : base(RobloxTypeRegistry.ClassNameOf<RopeConstraint>()) { }
+
 
         /// <summary>
         /// The current distance between the constraint's Attachments.

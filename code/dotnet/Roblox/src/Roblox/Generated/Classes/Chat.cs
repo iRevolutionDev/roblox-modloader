@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Chat(nuint handle) : base(handle) { }
 
+        internal Chat(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Chat"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Chat? FromHandle(nuint handle)
             => handle == 0 ? null : new Chat(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Chat"/> instance with the default Roblox class name.
+        /// </summary>
+        public Chat() : base(RobloxTypeRegistry.ClassNameOf<Chat>()) { }
+
 
         /// <summary>
         /// Determines whether player's chat messages will appear above their in-game avatar.

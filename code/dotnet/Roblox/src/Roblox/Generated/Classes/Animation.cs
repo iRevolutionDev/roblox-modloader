@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Animation(nuint handle) : base(handle) { }
 
+        internal Animation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Animation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Animation? FromHandle(nuint handle)
             => handle == 0 ? null : new Animation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Animation"/> instance with the default Roblox class name.
+        /// </summary>
+        public Animation() : base(RobloxTypeRegistry.ClassNameOf<Animation>()) { }
+
 
         public string AnimationContent
         {

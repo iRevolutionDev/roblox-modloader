@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DialogChoice(nuint handle) : base(handle) { }
 
+        internal DialogChoice(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DialogChoice"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DialogChoice? FromHandle(nuint handle)
             => handle == 0 ? null : new DialogChoice(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DialogChoice"/> instance with the default Roblox class name.
+        /// </summary>
+        public DialogChoice() : base(RobloxTypeRegistry.ClassNameOf<DialogChoice>()) { }
+
 
         /// <summary>
         /// Toggles whether the goodbye option will be displayed.

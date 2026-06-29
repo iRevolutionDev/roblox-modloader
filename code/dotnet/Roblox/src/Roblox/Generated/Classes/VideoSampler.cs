@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VideoSampler(nuint handle) : base(handle) { }
 
+        internal VideoSampler(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VideoSampler"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static VideoSampler? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoSampler(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VideoSampler"/> instance with the default Roblox class name.
+        /// </summary>
+        public VideoSampler() : base(RobloxTypeRegistry.ClassNameOf<VideoSampler>()) { }
+
 
         /// <summary>
         /// The length of the VideoContent in seconds.

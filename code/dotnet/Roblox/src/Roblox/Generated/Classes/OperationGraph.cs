@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal OperationGraph(nuint handle) : base(handle) { }
 
+        internal OperationGraph(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="OperationGraph"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new OperationGraph? FromHandle(nuint handle)
             => handle == 0 ? null : new OperationGraph(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="OperationGraph"/> instance with the default Roblox class name.
+        /// </summary>
+        public OperationGraph() : base(RobloxTypeRegistry.ClassNameOf<OperationGraph>()) { }
+
 
     }
 }

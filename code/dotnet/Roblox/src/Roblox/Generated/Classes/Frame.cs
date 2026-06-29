@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Frame(nuint handle) : base(handle) { }
 
+        internal Frame(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Frame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Frame? FromHandle(nuint handle)
             => handle == 0 ? null : new Frame(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Frame"/> instance with the default Roblox class name.
+        /// </summary>
+        public Frame() : base(RobloxTypeRegistry.ClassNameOf<Frame>()) { }
+
 
         /// <summary>
         /// Sets what the frame looks like from a selection of pre-determined styles.

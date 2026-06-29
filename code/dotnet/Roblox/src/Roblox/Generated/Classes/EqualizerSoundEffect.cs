@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal EqualizerSoundEffect(nuint handle) : base(handle) { }
 
+        internal EqualizerSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="EqualizerSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new EqualizerSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new EqualizerSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="EqualizerSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public EqualizerSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<EqualizerSoundEffect>()) { }
+
 
         /// <summary>
         /// The output volume of frequencies greater than 4000 Hz.

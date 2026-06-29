@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VoiceChatService(nuint handle) : base(handle) { }
 
+        internal VoiceChatService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VoiceChatService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VoiceChatService? FromHandle(nuint handle)
             => handle == 0 ? null : new VoiceChatService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VoiceChatService"/> instance with the default Roblox class name.
+        /// </summary>
+        public VoiceChatService() : base(RobloxTypeRegistry.ClassNameOf<VoiceChatService>()) { }
+
 
         /// <summary>
         /// Determines which distance attenuation curve the default voice chat setup uses when AudioDeviceInput and AudioEmitter objects are generated.

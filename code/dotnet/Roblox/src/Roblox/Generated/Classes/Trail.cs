@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Trail(nuint handle) : base(handle) { }
 
+        internal Trail(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Trail"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Trail? FromHandle(nuint handle)
             => handle == 0 ? null : new Trail(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Trail"/> instance with the default Roblox class name.
+        /// </summary>
+        public Trail() : base(RobloxTypeRegistry.ClassNameOf<Trail>()) { }
+
 
         /// <summary>
         /// Along with Attachment1, determines where the trail will start drawing its segments.

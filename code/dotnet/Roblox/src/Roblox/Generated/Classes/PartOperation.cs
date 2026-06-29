@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PartOperation(nuint handle) : base(handle) { }
 
+        internal PartOperation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PartOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PartOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new PartOperation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PartOperation"/> instance with the default Roblox class name.
+        /// </summary>
+        public PartOperation() : base(RobloxTypeRegistry.ClassNameOf<PartOperation>()) { }
+
 
         /// <summary>
         /// The level of detail used to render the solid modeled part.

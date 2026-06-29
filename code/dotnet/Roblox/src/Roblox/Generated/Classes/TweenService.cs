@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TweenService(nuint handle) : base(handle) { }
 
+        internal TweenService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TweenService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TweenService? FromHandle(nuint handle)
             => handle == 0 ? null : new TweenService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TweenService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TweenService() : base(RobloxTypeRegistry.ClassNameOf<TweenService>()) { }
+
 
         /// <summary>
         /// Creates a new Tween given the object whose properties are to be tweened, a TweenInfo, and a dictionary of goal property values.

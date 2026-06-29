@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GlobalSettings(nuint handle) : base(handle) { }
 
+        internal GlobalSettings(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GlobalSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GlobalSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new GlobalSettings(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GlobalSettings"/> instance with the default Roblox class name.
+        /// </summary>
+        public GlobalSettings() : base(RobloxTypeRegistry.ClassNameOf<GlobalSettings>()) { }
+
 
         /// <summary>
         /// Returns the value of an FFlag if it exists.

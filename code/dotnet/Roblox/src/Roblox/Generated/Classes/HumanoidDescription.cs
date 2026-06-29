@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HumanoidDescription(nuint handle) : base(handle) { }
 
+        internal HumanoidDescription(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HumanoidDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HumanoidDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new HumanoidDescription(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HumanoidDescription"/> instance with the default Roblox class name.
+        /// </summary>
+        public HumanoidDescription() : base(RobloxTypeRegistry.ClassNameOf<HumanoidDescription>()) { }
+
 
         /// <summary>
         /// A JSON formatted array of Layered clothing where each table in the entry in the array describes an accessory's AssetId, AccessoryType, Order, and (optionally) Puffiness as key-value pairs.

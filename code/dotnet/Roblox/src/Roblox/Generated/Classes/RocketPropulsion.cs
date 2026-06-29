@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RocketPropulsion(nuint handle) : base(handle) { }
 
+        internal RocketPropulsion(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RocketPropulsion"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RocketPropulsion? FromHandle(nuint handle)
             => handle == 0 ? null : new RocketPropulsion(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RocketPropulsion"/> instance with the default Roblox class name.
+        /// </summary>
+        public RocketPropulsion() : base(RobloxTypeRegistry.ClassNameOf<RocketPropulsion>()) { }
+
 
         /// <summary>
         /// Determines the tendency of the assembly to face the Target.

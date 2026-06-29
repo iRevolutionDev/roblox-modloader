@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TweenBase(nuint handle) : base(handle) { }
 
+        internal TweenBase(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TweenBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TweenBase? FromHandle(nuint handle)
             => handle == 0 ? null : new TweenBase(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TweenBase"/> instance with the default Roblox class name.
+        /// </summary>
+        public TweenBase() : base(RobloxTypeRegistry.ClassNameOf<TweenBase>()) { }
+
 
         /// <summary>
         /// Read-only property that shows the current state for the Tween animation.

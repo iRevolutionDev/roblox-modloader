@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal EditableImage(nuint handle) : base(handle) { }
 
+        internal EditableImage(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="EditableImage"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static EditableImage? FromHandle(nuint handle)
             => handle == 0 ? null : new EditableImage(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="EditableImage"/> instance with the default Roblox class name.
+        /// </summary>
+        public EditableImage() : base(RobloxTypeRegistry.ClassNameOf<EditableImage>()) { }
+
 
         /// <summary>
         /// Size of the EditableImage in pixels.

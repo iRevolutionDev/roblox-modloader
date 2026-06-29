@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CharacterMesh(nuint handle) : base(handle) { }
 
+        internal CharacterMesh(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CharacterMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CharacterMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new CharacterMesh(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CharacterMesh"/> instance with the default Roblox class name.
+        /// </summary>
+        public CharacterMesh() : base(RobloxTypeRegistry.ClassNameOf<CharacterMesh>()) { }
+
 
         /// <summary>
         /// <c>CharacterMesh.BaseTextureContent</c>

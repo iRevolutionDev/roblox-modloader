@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ServiceProvider(nuint handle) : base(handle) { }
 
+        internal ServiceProvider(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ServiceProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ServiceProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new ServiceProvider(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ServiceProvider"/> instance with the default Roblox class name.
+        /// </summary>
+        public ServiceProvider() : base(RobloxTypeRegistry.ClassNameOf<ServiceProvider>()) { }
+
 
         /// <summary>
         /// Returns the service specified by the given className if it's already created, errors for an invalid name.

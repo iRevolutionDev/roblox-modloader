@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MessagingService(nuint handle) : base(handle) { }
 
+        internal MessagingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MessagingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MessagingService? FromHandle(nuint handle)
             => handle == 0 ? null : new MessagingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MessagingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public MessagingService() : base(RobloxTypeRegistry.ClassNameOf<MessagingService>()) { }
+
 
         /// <summary>
         /// Invokes the supplied callback whenever a message is pushed to the topic.

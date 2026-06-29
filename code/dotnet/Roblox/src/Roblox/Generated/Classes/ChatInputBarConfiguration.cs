@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ChatInputBarConfiguration(nuint handle) : base(handle) { }
 
+        internal ChatInputBarConfiguration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ChatInputBarConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ChatInputBarConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new ChatInputBarConfiguration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ChatInputBarConfiguration"/> instance with the default Roblox class name.
+        /// </summary>
+        public ChatInputBarConfiguration() : base(RobloxTypeRegistry.ClassNameOf<ChatInputBarConfiguration>()) { }
+
 
         /// <summary>
         /// Actual screen position of the default chat input bar in pixels.

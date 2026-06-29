@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LocalStorageService(nuint handle) : base(handle) { }
 
+        internal LocalStorageService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LocalStorageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LocalStorageService? FromHandle(nuint handle)
             => handle == 0 ? null : new LocalStorageService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LocalStorageService"/> instance with the default Roblox class name.
+        /// </summary>
+        public LocalStorageService() : base(RobloxTypeRegistry.ClassNameOf<LocalStorageService>()) { }
+
 
         /// <summary>
         /// <c>LocalStorageService.Flush</c>

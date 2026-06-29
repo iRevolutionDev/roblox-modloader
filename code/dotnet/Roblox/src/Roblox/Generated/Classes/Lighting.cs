@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Lighting(nuint handle) : base(handle) { }
 
+        internal Lighting(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Lighting"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Lighting? FromHandle(nuint handle)
             => handle == 0 ? null : new Lighting(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Lighting"/> instance with the default Roblox class name.
+        /// </summary>
+        public Lighting() : base(RobloxTypeRegistry.ClassNameOf<Lighting>()) { }
+
 
         /// <summary>
         /// The lighting hue applied to areas that are occluded from the sky, such as indoor areas.

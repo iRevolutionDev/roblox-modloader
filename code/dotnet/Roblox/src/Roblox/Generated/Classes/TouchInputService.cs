@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TouchInputService(nuint handle) : base(handle) { }
 
+        internal TouchInputService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TouchInputService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TouchInputService? FromHandle(nuint handle)
             => handle == 0 ? null : new TouchInputService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TouchInputService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TouchInputService() : base(RobloxTypeRegistry.ClassNameOf<TouchInputService>()) { }
+
 
     }
 }

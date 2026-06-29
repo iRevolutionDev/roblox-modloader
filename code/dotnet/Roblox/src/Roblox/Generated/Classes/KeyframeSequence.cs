@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal KeyframeSequence(nuint handle) : base(handle) { }
 
+        internal KeyframeSequence(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="KeyframeSequence"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new KeyframeSequence? FromHandle(nuint handle)
             => handle == 0 ? null : new KeyframeSequence(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="KeyframeSequence"/> instance with the default Roblox class name.
+        /// </summary>
+        public KeyframeSequence() : base(RobloxTypeRegistry.ClassNameOf<KeyframeSequence>()) { }
+
 
         /// <summary>
         /// Contains the hip height of the Humanoid of the model that was used to author this KeyframeSequence.

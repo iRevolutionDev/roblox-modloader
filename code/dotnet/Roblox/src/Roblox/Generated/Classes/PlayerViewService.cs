@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlayerViewService(nuint handle) : base(handle) { }
 
+        internal PlayerViewService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlayerViewService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlayerViewService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerViewService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlayerViewService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlayerViewService() : base(RobloxTypeRegistry.ClassNameOf<PlayerViewService>()) { }
+
 
         /// <summary>
         /// Returns a world space CFrame looking at the player's character.

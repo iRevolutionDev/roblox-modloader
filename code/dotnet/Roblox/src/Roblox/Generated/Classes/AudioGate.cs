@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioGate(nuint handle) : base(handle) { }
 
+        internal AudioGate(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioGate"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioGate? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioGate(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioGate"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioGate() : base(RobloxTypeRegistry.ClassNameOf<AudioGate>()) { }
+
 
         /// <summary>
         /// Controls how long it takes for the gate to open when the signal level rises above the Threshold.

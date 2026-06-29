@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MarketplaceService(nuint handle) : base(handle) { }
 
+        internal MarketplaceService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MarketplaceService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MarketplaceService? FromHandle(nuint handle)
             => handle == 0 ? null : new MarketplaceService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MarketplaceService"/> instance with the default Roblox class name.
+        /// </summary>
+        public MarketplaceService() : base(RobloxTypeRegistry.ClassNameOf<MarketplaceService>()) { }
+
 
         /// <summary>
         /// Registers a callback to process receipts of a specific type.

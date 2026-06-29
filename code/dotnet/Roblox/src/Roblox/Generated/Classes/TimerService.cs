@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TimerService(nuint handle) : base(handle) { }
 
+        internal TimerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TimerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TimerService? FromHandle(nuint handle)
             => handle == 0 ? null : new TimerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TimerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TimerService() : base(RobloxTypeRegistry.ClassNameOf<TimerService>()) { }
+
 
     }
 }

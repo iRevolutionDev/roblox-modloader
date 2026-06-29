@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ParticleEmitter(nuint handle) : base(handle) { }
 
+        internal ParticleEmitter(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ParticleEmitter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ParticleEmitter? FromHandle(nuint handle)
             => handle == 0 ? null : new ParticleEmitter(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ParticleEmitter"/> instance with the default Roblox class name.
+        /// </summary>
+        public ParticleEmitter() : base(RobloxTypeRegistry.ClassNameOf<ParticleEmitter>()) { }
+
 
         /// <summary>
         /// Determines the global-axis acceleration of all active particles, measured in studs per second squared.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WebSocketClient(nuint handle) : base(handle) { }
 
+        internal WebSocketClient(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WebSocketClient"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WebSocketClient? FromHandle(nuint handle)
             => handle == 0 ? null : new WebSocketClient(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WebSocketClient"/> instance with the default Roblox class name.
+        /// </summary>
+        public WebSocketClient() : base(RobloxTypeRegistry.ClassNameOf<WebSocketClient>()) { }
+
 
         /// <summary>
         /// <c>WebSocketClient.ConnectionState</c>

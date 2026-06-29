@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Model(nuint handle) : base(handle) { }
 
+        internal Model(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Model"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Model? FromHandle(nuint handle)
             => handle == 0 ? null : new Model(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Model"/> instance with the default Roblox class name.
+        /// </summary>
+        public Model() : base(RobloxTypeRegistry.ClassNameOf<Model>()) { }
+
 
         /// <summary>
         /// Sets the level of detail on the model for experiences with instance streaming enabled.

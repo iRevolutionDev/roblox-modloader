@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal InputObject(nuint handle) : base(handle) { }
 
+        internal InputObject(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="InputObject"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new InputObject? FromHandle(nuint handle)
             => handle == 0 ? null : new InputObject(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="InputObject"/> instance with the default Roblox class name.
+        /// </summary>
+        public InputObject() : base(RobloxTypeRegistry.ClassNameOf<InputObject>()) { }
+
 
         /// <summary>
         /// A Vector3 describing the delta between input movements.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SphereHandleAdornment(nuint handle) : base(handle) { }
 
+        internal SphereHandleAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SphereHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SphereHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new SphereHandleAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SphereHandleAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public SphereHandleAdornment() : base(RobloxTypeRegistry.ClassNameOf<SphereHandleAdornment>()) { }
+
 
         /// <summary>
         /// Radius of the sphere adornment.

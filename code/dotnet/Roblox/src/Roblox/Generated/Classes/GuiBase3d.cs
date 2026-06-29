@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GuiBase3d(nuint handle) : base(handle) { }
 
+        internal GuiBase3d(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GuiBase3d"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GuiBase3d? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiBase3d(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GuiBase3d"/> instance with the default Roblox class name.
+        /// </summary>
+        public GuiBase3d() : base(RobloxTypeRegistry.ClassNameOf<GuiBase3d>()) { }
+
 
         /// <summary>
         /// Deprecated: This property has been deprecated in favor of GuiBase3d.Color3, which allows for greater color customization and should be used in new work instead.Sets the color of a GUI object.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioRecorder(nuint handle) : base(handle) { }
 
+        internal AudioRecorder(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioRecorder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioRecorder? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioRecorder(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioRecorder"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioRecorder() : base(RobloxTypeRegistry.ClassNameOf<AudioRecorder>()) { }
+
 
         /// <summary>
         /// Whether the AudioRecorder is currently recording.

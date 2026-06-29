@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnnotationsService(nuint handle) : base(handle) { }
 
+        internal AnnotationsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnnotationsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnnotationsService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnnotationsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnnotationsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnnotationsService() : base(RobloxTypeRegistry.ClassNameOf<AnnotationsService>()) { }
+
 
         public Enum.AnnotationRequestStatus AnnotationsLoadingStatus
         {

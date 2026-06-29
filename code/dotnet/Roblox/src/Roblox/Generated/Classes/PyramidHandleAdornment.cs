@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PyramidHandleAdornment(nuint handle) : base(handle) { }
 
+        internal PyramidHandleAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PyramidHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PyramidHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new PyramidHandleAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PyramidHandleAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public PyramidHandleAdornment() : base(RobloxTypeRegistry.ClassNameOf<PyramidHandleAdornment>()) { }
+
 
         /// <summary>
         /// Height of the pyramid adornment.

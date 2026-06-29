@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioAnalyzer(nuint handle) : base(handle) { }
 
+        internal AudioAnalyzer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioAnalyzer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioAnalyzer? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioAnalyzer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioAnalyzer"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioAnalyzer() : base(RobloxTypeRegistry.ClassNameOf<AudioAnalyzer>()) { }
+
 
         /// <summary>
         /// The loudest volume observed during the last audio buffer.

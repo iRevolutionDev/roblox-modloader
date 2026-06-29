@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ControllerSensor(nuint handle) : base(handle) { }
 
+        internal ControllerSensor(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ControllerSensor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ControllerSensor? FromHandle(nuint handle)
             => handle == 0 ? null : new ControllerSensor(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ControllerSensor"/> instance with the default Roblox class name.
+        /// </summary>
+        public ControllerSensor() : base(RobloxTypeRegistry.ClassNameOf<ControllerSensor>()) { }
+
 
     }
 }

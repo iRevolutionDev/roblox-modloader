@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StandalonePluginScripts(nuint handle) : base(handle) { }
 
+        internal StandalonePluginScripts(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StandalonePluginScripts"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StandalonePluginScripts? FromHandle(nuint handle)
             => handle == 0 ? null : new StandalonePluginScripts(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StandalonePluginScripts"/> instance with the default Roblox class name.
+        /// </summary>
+        public StandalonePluginScripts() : base(RobloxTypeRegistry.ClassNameOf<StandalonePluginScripts>()) { }
+
 
     }
 }

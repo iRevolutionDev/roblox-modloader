@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VoiceChatInternal(nuint handle) : base(handle) { }
 
+        internal VoiceChatInternal(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VoiceChatInternal"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VoiceChatInternal? FromHandle(nuint handle)
             => handle == 0 ? null : new VoiceChatInternal(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VoiceChatInternal"/> instance with the default Roblox class name.
+        /// </summary>
+        public VoiceChatInternal() : base(RobloxTypeRegistry.ClassNameOf<VoiceChatInternal>()) { }
+
 
         [global::System.Obsolete("'VoiceChatInternal.VoiceChatState' is deprecated.")]
         public Enum.VoiceChatState VoiceChatState

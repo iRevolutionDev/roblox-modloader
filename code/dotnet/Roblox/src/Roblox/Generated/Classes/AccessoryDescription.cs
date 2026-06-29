@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AccessoryDescription(nuint handle) : base(handle) { }
 
+        internal AccessoryDescription(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AccessoryDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AccessoryDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new AccessoryDescription(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AccessoryDescription"/> instance with the default Roblox class name.
+        /// </summary>
+        public AccessoryDescription() : base(RobloxTypeRegistry.ClassNameOf<AccessoryDescription>()) { }
+
 
         /// <summary>
         /// The AccessoryType of the Accessory referred to by this description.

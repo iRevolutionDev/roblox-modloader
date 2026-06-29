@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CustomEvent(nuint handle) : base(handle) { }
 
+        internal CustomEvent(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CustomEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CustomEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new CustomEvent(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CustomEvent"/> instance with the default Roblox class name.
+        /// </summary>
+        public CustomEvent() : base(RobloxTypeRegistry.ClassNameOf<CustomEvent>()) { }
+
 
         /// <summary>
         /// Returns the CustomEventReceivers that are connected to the CustomEvent.

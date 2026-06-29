@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AchievementService(nuint handle) : base(handle) { }
 
+        internal AchievementService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AchievementService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AchievementService? FromHandle(nuint handle)
             => handle == 0 ? null : new AchievementService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AchievementService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AchievementService() : base(RobloxTypeRegistry.ClassNameOf<AchievementService>()) { }
+
 
         /// <summary>
         /// <c>AchievementService.IsAvailable</c>

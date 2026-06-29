@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioCaptureService(nuint handle) : base(handle) { }
 
+        internal StudioCaptureService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioCaptureService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioCaptureService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioCaptureService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioCaptureService"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioCaptureService() : base(RobloxTypeRegistry.ClassNameOf<StudioCaptureService>()) { }
+
 
         /// <summary>
         /// <c>StudioCaptureService.CanCaptureScreenshot</c>

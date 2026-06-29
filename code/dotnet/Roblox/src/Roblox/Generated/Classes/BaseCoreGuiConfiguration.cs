@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BaseCoreGuiConfiguration(nuint handle) : base(handle) { }
 
+        internal BaseCoreGuiConfiguration(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BaseCoreGuiConfiguration"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BaseCoreGuiConfiguration? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseCoreGuiConfiguration(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BaseCoreGuiConfiguration"/> instance with the default Roblox class name.
+        /// </summary>
+        public BaseCoreGuiConfiguration() : base(RobloxTypeRegistry.ClassNameOf<BaseCoreGuiConfiguration>()) { }
+
 
         /// <summary>
         /// <c>BaseCoreGuiConfiguration.Enabled</c>

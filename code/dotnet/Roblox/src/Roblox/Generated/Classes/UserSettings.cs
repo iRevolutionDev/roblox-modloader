@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UserSettings(nuint handle) : base(handle) { }
 
+        internal UserSettings(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UserSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UserSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new UserSettings(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UserSettings"/> instance with the default Roblox class name.
+        /// </summary>
+        public UserSettings() : base(RobloxTypeRegistry.ClassNameOf<UserSettings>()) { }
+
 
         /// <summary>
         /// Returns true if the specified user feature is enabled. This will throw an error if the user feature does not exist.

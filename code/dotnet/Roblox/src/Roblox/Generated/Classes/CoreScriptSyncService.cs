@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CoreScriptSyncService(nuint handle) : base(handle) { }
 
+        internal CoreScriptSyncService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CoreScriptSyncService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CoreScriptSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new CoreScriptSyncService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CoreScriptSyncService"/> instance with the default Roblox class name.
+        /// </summary>
+        public CoreScriptSyncService() : base(RobloxTypeRegistry.ClassNameOf<CoreScriptSyncService>()) { }
+
 
         /// <summary>
         /// <c>CoreScriptSyncService.GetScriptFilePath</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PVAdornment(nuint handle) : base(handle) { }
 
+        internal PVAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PVAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PVAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new PVAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PVAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public PVAdornment() : base(RobloxTypeRegistry.ClassNameOf<PVAdornment>()) { }
+
 
         /// <summary>
         /// The PVInstance which this PVAdornment is attached to.

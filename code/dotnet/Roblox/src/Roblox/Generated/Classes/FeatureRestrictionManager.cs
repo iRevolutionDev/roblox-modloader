@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FeatureRestrictionManager(nuint handle) : base(handle) { }
 
+        internal FeatureRestrictionManager(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FeatureRestrictionManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FeatureRestrictionManager? FromHandle(nuint handle)
             => handle == 0 ? null : new FeatureRestrictionManager(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FeatureRestrictionManager"/> instance with the default Roblox class name.
+        /// </summary>
+        public FeatureRestrictionManager() : base(RobloxTypeRegistry.ClassNameOf<FeatureRestrictionManager>()) { }
+
 
         /// <summary>
         /// <c>FeatureRestrictionManager.FeatureTimeoutAttempt</c>

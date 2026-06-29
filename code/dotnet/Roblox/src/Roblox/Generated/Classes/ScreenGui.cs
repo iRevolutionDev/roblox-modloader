@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScreenGui(nuint handle) : base(handle) { }
 
+        internal ScreenGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScreenGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScreenGui? FromHandle(nuint handle)
             => handle == 0 ? null : new ScreenGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScreenGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScreenGui() : base(RobloxTypeRegistry.ClassNameOf<ScreenGui>()) { }
+
 
         /// <summary>
         /// Whether to clip the contents of this ScreenGui to the device's safe area.

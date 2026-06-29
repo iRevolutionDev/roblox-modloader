@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RayValue(nuint handle) : base(handle) { }
 
+        internal RayValue(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RayValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RayValue? FromHandle(nuint handle)
             => handle == 0 ? null : new RayValue(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RayValue"/> instance with the default Roblox class name.
+        /// </summary>
+        public RayValue() : base(RobloxTypeRegistry.ClassNameOf<RayValue>()) { }
+
 
         /// <summary>
         /// The stored Ray.

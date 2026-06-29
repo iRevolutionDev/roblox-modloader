@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal IntConstrainedValue(nuint handle) : base(handle) { }
 
+        internal IntConstrainedValue(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="IntConstrainedValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new IntConstrainedValue? FromHandle(nuint handle)
             => handle == 0 ? null : new IntConstrainedValue(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="IntConstrainedValue"/> instance with the default Roblox class name.
+        /// </summary>
+        public IntConstrainedValue() : base(RobloxTypeRegistry.ClassNameOf<IntConstrainedValue>()) { }
+
 
         /// <summary>
         /// Hold an Integer value between IntConstrainedValue.MinValue and IntConstrainedValue.MaxValue. Replaced by IntConstrainedValue.Value, but still functional.

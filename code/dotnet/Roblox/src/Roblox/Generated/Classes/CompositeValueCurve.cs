@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CompositeValueCurve(nuint handle) : base(handle) { }
 
+        internal CompositeValueCurve(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CompositeValueCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CompositeValueCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new CompositeValueCurve(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CompositeValueCurve"/> instance with the default Roblox class name.
+        /// </summary>
+        public CompositeValueCurve() : base(RobloxTypeRegistry.ClassNameOf<CompositeValueCurve>()) { }
+
 
         /// <summary>
         /// The type of value animated by this CompositeValueCurve.

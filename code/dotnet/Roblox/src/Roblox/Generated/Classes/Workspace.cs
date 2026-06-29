@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Workspace(nuint handle) : base(handle) { }
 
+        internal Workspace(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Workspace"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Workspace? FromHandle(nuint handle)
             => handle == 0 ? null : new Workspace(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Workspace"/> instance with the default Roblox class name.
+        /// </summary>
+        public Workspace() : base(RobloxTypeRegistry.ClassNameOf<Workspace>()) { }
+
 
         /// <summary>
         /// The air density at ground level, used in the aerodynamic force model.

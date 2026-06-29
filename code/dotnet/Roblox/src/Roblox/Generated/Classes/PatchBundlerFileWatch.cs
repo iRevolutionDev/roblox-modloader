@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PatchBundlerFileWatch(nuint handle) : base(handle) { }
 
+        internal PatchBundlerFileWatch(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PatchBundlerFileWatch"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PatchBundlerFileWatch? FromHandle(nuint handle)
             => handle == 0 ? null : new PatchBundlerFileWatch(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PatchBundlerFileWatch"/> instance with the default Roblox class name.
+        /// </summary>
+        public PatchBundlerFileWatch() : base(RobloxTypeRegistry.ClassNameOf<PatchBundlerFileWatch>()) { }
+
 
     }
 }

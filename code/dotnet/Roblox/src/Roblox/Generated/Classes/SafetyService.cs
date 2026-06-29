@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SafetyService(nuint handle) : base(handle) { }
 
+        internal SafetyService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SafetyService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SafetyService? FromHandle(nuint handle)
             => handle == 0 ? null : new SafetyService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SafetyService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SafetyService() : base(RobloxTypeRegistry.ClassNameOf<SafetyService>()) { }
+
 
         public bool IsCaptureModeForReport
         {

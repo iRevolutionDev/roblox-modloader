@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DeviceIdService(nuint handle) : base(handle) { }
 
+        internal DeviceIdService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DeviceIdService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DeviceIdService? FromHandle(nuint handle)
             => handle == 0 ? null : new DeviceIdService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DeviceIdService"/> instance with the default Roblox class name.
+        /// </summary>
+        public DeviceIdService() : base(RobloxTypeRegistry.ClassNameOf<DeviceIdService>()) { }
+
 
         /// <summary>
         /// <c>DeviceIdService.GetDeviceId</c>

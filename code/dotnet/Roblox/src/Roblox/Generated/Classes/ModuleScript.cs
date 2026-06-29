@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ModuleScript(nuint handle) : base(handle) { }
 
+        internal ModuleScript(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ModuleScript"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ModuleScript? FromHandle(nuint handle)
             => handle == 0 ? null : new ModuleScript(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ModuleScript"/> instance with the default Roblox class name.
+        /// </summary>
+        public ModuleScript() : base(RobloxTypeRegistry.ClassNameOf<ModuleScript>()) { }
+
 
         /// <summary>
         /// Deprecated: This property is now replaced by packages which has greater functionality.Used to store a URL that points to an online script source. Binds the online code to the script's Script.Source.

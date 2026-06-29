@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GlobalDataStore(nuint handle) : base(handle) { }
 
+        internal GlobalDataStore(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GlobalDataStore"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GlobalDataStore? FromHandle(nuint handle)
             => handle == 0 ? null : new GlobalDataStore(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GlobalDataStore"/> instance with the default Roblox class name.
+        /// </summary>
+        public GlobalDataStore() : base(RobloxTypeRegistry.ClassNameOf<GlobalDataStore>()) { }
+
 
         /// <summary>
         /// Deprecated: This function has been deprecated and should not be used in new work. You can use the Cross Server Messaging Service to publish and subscribe to topics to receive near real-time updates, completely replacing the need for this function.Sets a callback function to be executed any time the value associated with a key is changed.

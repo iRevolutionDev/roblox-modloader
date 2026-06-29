@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WrapDeformer(nuint handle) : base(handle) { }
 
+        internal WrapDeformer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WrapDeformer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WrapDeformer? FromHandle(nuint handle)
             => handle == 0 ? null : new WrapDeformer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WrapDeformer"/> instance with the default Roblox class name.
+        /// </summary>
+        public WrapDeformer() : base(RobloxTypeRegistry.ClassNameOf<WrapDeformer>()) { }
+
 
         /// <summary>
         /// Sets the cage mesh used to deform against a sibling WrapTarget cage mesh.

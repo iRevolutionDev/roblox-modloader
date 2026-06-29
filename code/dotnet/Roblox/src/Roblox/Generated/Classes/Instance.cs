@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Instance(nuint handle) : base(handle) { }
 
+        internal Instance(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Instance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static Instance? FromHandle(nuint handle)
             => handle == 0 ? null : new Instance(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Instance"/> instance with the default Roblox class name.
+        /// </summary>
+        public Instance() : base(RobloxTypeRegistry.ClassNameOf<Instance>()) { }
+
 
         /// <summary>
         /// Determines if an Instance and its descendants can be cloned using Instance:Clone(), and can be saved/published.

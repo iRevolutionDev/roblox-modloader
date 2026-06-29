@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnimationNodeDefinition(nuint handle) : base(handle) { }
 
+        internal AnimationNodeDefinition(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnimationNodeDefinition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnimationNodeDefinition? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationNodeDefinition(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnimationNodeDefinition"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnimationNodeDefinition() : base(RobloxTypeRegistry.ClassNameOf<AnimationNodeDefinition>()) { }
+
 
         /// <summary>
         /// <c>AnimationNodeDefinition.NodeId</c>

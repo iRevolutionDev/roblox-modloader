@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AdGui(nuint handle) : base(handle) { }
 
+        internal AdGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AdGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AdGui? FromHandle(nuint handle)
             => handle == 0 ? null : new AdGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AdGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public AdGui() : base(RobloxTypeRegistry.ClassNameOf<AdGui>()) { }
+
 
         /// <summary>
         /// <c>AdGui.AdShape</c>

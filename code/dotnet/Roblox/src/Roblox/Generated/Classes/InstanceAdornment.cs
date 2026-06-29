@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal InstanceAdornment(nuint handle) : base(handle) { }
 
+        internal InstanceAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="InstanceAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new InstanceAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new InstanceAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="InstanceAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public InstanceAdornment() : base(RobloxTypeRegistry.ClassNameOf<InstanceAdornment>()) { }
+
 
         /// <summary>
         /// Which Instance to adorn.

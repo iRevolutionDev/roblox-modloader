@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AssetQualityService(nuint handle) : base(handle) { }
 
+        internal AssetQualityService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AssetQualityService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AssetQualityService? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetQualityService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AssetQualityService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AssetQualityService() : base(RobloxTypeRegistry.ClassNameOf<AssetQualityService>()) { }
+
 
         /// <summary>
         /// <c>AssetQualityService.FetchAssetQualitySummaryFromGltfAsync</c>

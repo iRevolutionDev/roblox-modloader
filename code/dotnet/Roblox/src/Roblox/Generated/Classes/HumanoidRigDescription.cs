@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HumanoidRigDescription(nuint handle) : base(handle) { }
 
+        internal HumanoidRigDescription(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HumanoidRigDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HumanoidRigDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new HumanoidRigDescription(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HumanoidRigDescription"/> instance with the default Roblox class name.
+        /// </summary>
+        public HumanoidRigDescription() : base(RobloxTypeRegistry.ClassNameOf<HumanoidRigDescription>()) { }
+
 
         /// <summary>
         /// <c>HumanoidRigDescription.Chest</c>

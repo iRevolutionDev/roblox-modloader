@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Constraint(nuint handle) : base(handle) { }
 
+        internal Constraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Constraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Constraint? FromHandle(nuint handle)
             => handle == 0 ? null : new Constraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Constraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public Constraint() : base(RobloxTypeRegistry.ClassNameOf<Constraint>()) { }
+
 
         /// <summary>
         /// Indicates if the constraint is currently active in the world.

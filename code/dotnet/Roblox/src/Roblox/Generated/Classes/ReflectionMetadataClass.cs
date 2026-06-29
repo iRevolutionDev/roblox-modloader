@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ReflectionMetadataClass(nuint handle) : base(handle) { }
 
+        internal ReflectionMetadataClass(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ReflectionMetadataClass"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ReflectionMetadataClass? FromHandle(nuint handle)
             => handle == 0 ? null : new ReflectionMetadataClass(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ReflectionMetadataClass"/> instance with the default Roblox class name.
+        /// </summary>
+        public ReflectionMetadataClass() : base(RobloxTypeRegistry.ClassNameOf<ReflectionMetadataClass>()) { }
+
 
         /// <summary>
         /// A number index, which refers to a specific class icon.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Player(nuint handle) : base(handle) { }
 
+        internal Player(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Player"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Player? FromHandle(nuint handle)
             => handle == 0 ? null : new Player(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Player"/> instance with the default Roblox class name.
+        /// </summary>
+        public Player() : base(RobloxTypeRegistry.ClassNameOf<Player>()) { }
+
 
         /// <summary>
         /// Describes the player's account age in days.

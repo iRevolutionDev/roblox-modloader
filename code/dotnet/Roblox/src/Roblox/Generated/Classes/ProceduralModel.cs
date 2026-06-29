@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ProceduralModel(nuint handle) : base(handle) { }
 
+        internal ProceduralModel(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ProceduralModel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ProceduralModel? FromHandle(nuint handle)
             => handle == 0 ? null : new ProceduralModel(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ProceduralModel"/> instance with the default Roblox class name.
+        /// </summary>
+        public ProceduralModel() : base(RobloxTypeRegistry.ClassNameOf<ProceduralModel>()) { }
+
 
         /// <summary>
         /// Stores errors that the generator module might encounter during generation.

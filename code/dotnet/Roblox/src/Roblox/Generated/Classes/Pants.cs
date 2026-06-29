@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Pants(nuint handle) : base(handle) { }
 
+        internal Pants(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Pants"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Pants? FromHandle(nuint handle)
             => handle == 0 ? null : new Pants(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Pants"/> instance with the default Roblox class name.
+        /// </summary>
+        public Pants() : base(RobloxTypeRegistry.ClassNameOf<Pants>()) { }
+
 
         /// <summary>
         /// Determines the texture of the Pants.

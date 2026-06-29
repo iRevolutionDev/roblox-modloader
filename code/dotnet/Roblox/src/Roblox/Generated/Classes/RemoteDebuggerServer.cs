@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RemoteDebuggerServer(nuint handle) : base(handle) { }
 
+        internal RemoteDebuggerServer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RemoteDebuggerServer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RemoteDebuggerServer? FromHandle(nuint handle)
             => handle == 0 ? null : new RemoteDebuggerServer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RemoteDebuggerServer"/> instance with the default Roblox class name.
+        /// </summary>
+        public RemoteDebuggerServer() : base(RobloxTypeRegistry.ClassNameOf<RemoteDebuggerServer>()) { }
+
 
     }
 }

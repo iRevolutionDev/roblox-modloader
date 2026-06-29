@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TestService(nuint handle) : base(handle) { }
 
+        internal TestService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TestService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TestService? FromHandle(nuint handle)
             => handle == 0 ? null : new TestService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TestService"/> instance with the default Roblox class name.
+        /// </summary>
+        public TestService() : base(RobloxTypeRegistry.ClassNameOf<TestService>()) { }
+
 
         /// <summary>
         /// If set to true, the game will start running when the service's TestService:RunAsync() method is called.

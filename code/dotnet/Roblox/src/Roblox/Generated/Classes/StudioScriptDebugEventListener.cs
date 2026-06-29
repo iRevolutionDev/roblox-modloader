@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioScriptDebugEventListener(nuint handle) : base(handle) { }
 
+        internal StudioScriptDebugEventListener(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioScriptDebugEventListener"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioScriptDebugEventListener? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioScriptDebugEventListener(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioScriptDebugEventListener"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioScriptDebugEventListener() : base(RobloxTypeRegistry.ClassNameOf<StudioScriptDebugEventListener>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VisualizationModeService(nuint handle) : base(handle) { }
 
+        internal VisualizationModeService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VisualizationModeService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VisualizationModeService? FromHandle(nuint handle)
             => handle == 0 ? null : new VisualizationModeService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VisualizationModeService"/> instance with the default Roblox class name.
+        /// </summary>
+        public VisualizationModeService() : base(RobloxTypeRegistry.ClassNameOf<VisualizationModeService>()) { }
+
 
     }
 }

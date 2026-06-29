@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HeapProfilerService(nuint handle) : base(handle) { }
 
+        internal HeapProfilerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HeapProfilerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HeapProfilerService? FromHandle(nuint handle)
             => handle == 0 ? null : new HeapProfilerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HeapProfilerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public HeapProfilerService() : base(RobloxTypeRegistry.ClassNameOf<HeapProfilerService>()) { }
+
 
         /// <summary>
         /// <c>HeapProfilerService.ClientRequestDataAsync</c>

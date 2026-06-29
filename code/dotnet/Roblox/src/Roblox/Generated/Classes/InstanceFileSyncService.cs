@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal InstanceFileSyncService(nuint handle) : base(handle) { }
 
+        internal InstanceFileSyncService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="InstanceFileSyncService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new InstanceFileSyncService? FromHandle(nuint handle)
             => handle == 0 ? null : new InstanceFileSyncService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="InstanceFileSyncService"/> instance with the default Roblox class name.
+        /// </summary>
+        public InstanceFileSyncService() : base(RobloxTypeRegistry.ClassNameOf<InstanceFileSyncService>()) { }
+
 
         /// <summary>
         /// Returns an array of all instances currently involved in file synchronization.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TremoloSoundEffect(nuint handle) : base(handle) { }
 
+        internal TremoloSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TremoloSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TremoloSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new TremoloSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TremoloSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public TremoloSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<TremoloSoundEffect>()) { }
+
 
         /// <summary>
         /// Controls how much the volume will raise and lower.

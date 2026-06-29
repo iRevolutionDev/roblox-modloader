@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BodyForce(nuint handle) : base(handle) { }
 
+        internal BodyForce(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BodyForce"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BodyForce? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyForce(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BodyForce"/> instance with the default Roblox class name.
+        /// </summary>
+        public BodyForce() : base(RobloxTypeRegistry.ClassNameOf<BodyForce>()) { }
+
 
         /// <summary>
         /// Determines the force exerted on each axis.

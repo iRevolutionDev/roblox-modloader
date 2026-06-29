@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Pose(nuint handle) : base(handle) { }
 
+        internal Pose(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Pose"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Pose? FromHandle(nuint handle)
             => handle == 0 ? null : new Pose(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Pose"/> instance with the default Roblox class name.
+        /// </summary>
+        public Pose() : base(RobloxTypeRegistry.ClassNameOf<Pose>()) { }
+
 
         /// <summary>
         /// This CFrame applies to the Motor6D corresponding with the Pose when the Motor6D.Transform is changed.

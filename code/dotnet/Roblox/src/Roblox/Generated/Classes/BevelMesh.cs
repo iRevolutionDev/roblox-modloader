@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BevelMesh(nuint handle) : base(handle) { }
 
+        internal BevelMesh(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BevelMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BevelMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new BevelMesh(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BevelMesh"/> instance with the default Roblox class name.
+        /// </summary>
+        public BevelMesh() : base(RobloxTypeRegistry.ClassNameOf<BevelMesh>()) { }
+
 
     }
 }

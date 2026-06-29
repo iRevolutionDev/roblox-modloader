@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LiveScriptingService(nuint handle) : base(handle) { }
 
+        internal LiveScriptingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LiveScriptingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LiveScriptingService? FromHandle(nuint handle)
             => handle == 0 ? null : new LiveScriptingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LiveScriptingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public LiveScriptingService() : base(RobloxTypeRegistry.ClassNameOf<LiveScriptingService>()) { }
+
 
     }
 }

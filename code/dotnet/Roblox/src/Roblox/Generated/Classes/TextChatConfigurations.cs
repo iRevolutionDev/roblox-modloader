@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextChatConfigurations(nuint handle) : base(handle) { }
 
+        internal TextChatConfigurations(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextChatConfigurations"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextChatConfigurations? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChatConfigurations(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextChatConfigurations"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextChatConfigurations() : base(RobloxTypeRegistry.ClassNameOf<TextChatConfigurations>()) { }
+
 
     }
 }

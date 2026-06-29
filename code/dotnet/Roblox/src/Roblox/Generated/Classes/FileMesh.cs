@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FileMesh(nuint handle) : base(handle) { }
 
+        internal FileMesh(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FileMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FileMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new FileMesh(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FileMesh"/> instance with the default Roblox class name.
+        /// </summary>
+        public FileMesh() : base(RobloxTypeRegistry.ClassNameOf<FileMesh>()) { }
+
 
         public string MeshContent
         {

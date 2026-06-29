@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextButton(nuint handle) : base(handle) { }
 
+        internal TextButton(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextButton"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextButton? FromHandle(nuint handle)
             => handle == 0 ? null : new TextButton(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextButton"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextButton() : base(RobloxTypeRegistry.ClassNameOf<TextButton>()) { }
+
 
         /// <summary>
         /// A copy of TextButton.Text that contains exactly what is being rendered by the TextButton.

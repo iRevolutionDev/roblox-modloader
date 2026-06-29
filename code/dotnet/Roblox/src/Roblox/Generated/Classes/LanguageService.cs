@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LanguageService(nuint handle) : base(handle) { }
 
+        internal LanguageService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LanguageService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LanguageService? FromHandle(nuint handle)
             => handle == 0 ? null : new LanguageService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LanguageService"/> instance with the default Roblox class name.
+        /// </summary>
+        public LanguageService() : base(RobloxTypeRegistry.ClassNameOf<LanguageService>()) { }
+
 
         /// <summary>
         /// <c>LanguageService.GetCapabilitiesUsedInPackageAsync</c>

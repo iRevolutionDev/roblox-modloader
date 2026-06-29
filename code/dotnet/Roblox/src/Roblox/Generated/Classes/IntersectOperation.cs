@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal IntersectOperation(nuint handle) : base(handle) { }
 
+        internal IntersectOperation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="IntersectOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new IntersectOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new IntersectOperation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="IntersectOperation"/> instance with the default Roblox class name.
+        /// </summary>
+        public IntersectOperation() : base(RobloxTypeRegistry.ClassNameOf<IntersectOperation>()) { }
+
 
     }
 }

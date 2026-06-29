@@ -2,9 +2,11 @@ namespace Roblox;
 
 public partial class Instance
 {
+    public Instance? this[string childName] => FindFirstChild(childName);
+
     public static T New<T>(Action<T>? initializer = null, Instance? parent = null) where T : Instance
     {
-        T instance = Create<T>();
+        T instance = Reflection.CreateInstance<T>();
         initializer?.Invoke(instance);
         if (parent is not null)
         {
@@ -13,9 +15,6 @@ public partial class Instance
 
         return instance;
     }
-
-    public static T Create<T>() where T : Instance
-        => Reflection.CreateInstance<T>();
 
     public T? FindFirstChild<T>(string name, bool? recursive = null) where T : Instance
         => RobloxTypeRegistry.CreateAsOrNull<T>(FindFirstChild(name, recursive));

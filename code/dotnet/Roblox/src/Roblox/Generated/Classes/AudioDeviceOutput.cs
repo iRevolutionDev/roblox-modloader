@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioDeviceOutput(nuint handle) : base(handle) { }
 
+        internal AudioDeviceOutput(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioDeviceOutput"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioDeviceOutput? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioDeviceOutput(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioDeviceOutput"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioDeviceOutput() : base(RobloxTypeRegistry.ClassNameOf<AudioDeviceOutput>()) { }
+
 
         /// <summary>
         /// A Player who is intended to hear the connected audio streams.

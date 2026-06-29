@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DragDetector(nuint handle) : base(handle) { }
 
+        internal DragDetector(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DragDetector"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DragDetector? FromHandle(nuint handle)
             => handle == 0 ? null : new DragDetector(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DragDetector"/> instance with the default Roblox class name.
+        /// </summary>
+        public DragDetector() : base(RobloxTypeRegistry.ClassNameOf<DragDetector>()) { }
+
 
         /// <summary>
         /// Sets the cursor icon to display when the mouse is activated over the parent of this DragDetector.

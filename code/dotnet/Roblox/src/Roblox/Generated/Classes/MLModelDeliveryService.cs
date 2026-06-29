@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MLModelDeliveryService(nuint handle) : base(handle) { }
 
+        internal MLModelDeliveryService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MLModelDeliveryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MLModelDeliveryService? FromHandle(nuint handle)
             => handle == 0 ? null : new MLModelDeliveryService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MLModelDeliveryService"/> instance with the default Roblox class name.
+        /// </summary>
+        public MLModelDeliveryService() : base(RobloxTypeRegistry.ClassNameOf<MLModelDeliveryService>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginGui(nuint handle) : base(handle) { }
 
+        internal PluginGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginGui? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginGui() : base(RobloxTypeRegistry.ClassNameOf<PluginGui>()) { }
+
 
         public Plugin Plugin
         {

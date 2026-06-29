@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WorldRoot(nuint handle) : base(handle) { }
 
+        internal WorldRoot(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WorldRoot"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WorldRoot? FromHandle(nuint handle)
             => handle == 0 ? null : new WorldRoot(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WorldRoot"/> instance with the default Roblox class name.
+        /// </summary>
+        public WorldRoot() : base(RobloxTypeRegistry.ClassNameOf<WorldRoot>()) { }
+
 
         public float PhysicsStepTime
         {

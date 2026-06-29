@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Stats(nuint handle) : base(handle) { }
 
+        internal Stats(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Stats"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Stats? FromHandle(nuint handle)
             => handle == 0 ? null : new Stats(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Stats"/> instance with the default Roblox class name.
+        /// </summary>
+        public Stats() : base(RobloxTypeRegistry.ClassNameOf<Stats>()) { }
+
 
         /// <summary>
         /// A measurement of how many parts are currently in contact with one another.

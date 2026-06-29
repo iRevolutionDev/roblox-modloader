@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Selection(nuint handle) : base(handle) { }
 
+        internal Selection(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Selection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Selection? FromHandle(nuint handle)
             => handle == 0 ? null : new Selection(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Selection"/> instance with the default Roblox class name.
+        /// </summary>
+        public Selection() : base(RobloxTypeRegistry.ClassNameOf<Selection>()) { }
+
 
         public Instance ActiveInstance
         {

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioCallout(nuint handle) : base(handle) { }
 
+        internal StudioCallout(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioCallout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioCallout? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioCallout(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioCallout"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioCallout() : base(RobloxTypeRegistry.ClassNameOf<StudioCallout>()) { }
+
 
         public global::Roblox.Vector2 AnchorPoint
         {

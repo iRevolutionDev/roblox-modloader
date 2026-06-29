@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RotationCurve(nuint handle) : base(handle) { }
 
+        internal RotationCurve(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RotationCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RotationCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new RotationCurve(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RotationCurve"/> instance with the default Roblox class name.
+        /// </summary>
+        public RotationCurve() : base(RobloxTypeRegistry.ClassNameOf<RotationCurve>()) { }
+
 
         /// <summary>
         /// Number of rotation keys in this curve.

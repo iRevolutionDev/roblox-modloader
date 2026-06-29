@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Studio(nuint handle) : base(handle) { }
 
+        internal Studio(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Studio"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Studio? FromHandle(nuint handle)
             => handle == 0 ? null : new Studio(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Studio"/> instance with the default Roblox class name.
+        /// </summary>
+        public Studio() : base(RobloxTypeRegistry.ClassNameOf<Studio>()) { }
+
 
         /// <summary>
         /// <c>Studio.ActionOnAutoResumeSync</c>

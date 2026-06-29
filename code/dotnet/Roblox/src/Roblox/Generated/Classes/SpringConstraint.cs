@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SpringConstraint(nuint handle) : base(handle) { }
 
+        internal SpringConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SpringConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SpringConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new SpringConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SpringConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public SpringConstraint() : base(RobloxTypeRegistry.ClassNameOf<SpringConstraint>()) { }
+
 
         /// <summary>
         /// The number of coils visualized on the SpringConstraint.

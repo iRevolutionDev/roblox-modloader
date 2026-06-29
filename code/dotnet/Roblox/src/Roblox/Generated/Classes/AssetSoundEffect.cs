@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AssetSoundEffect(nuint handle) : base(handle) { }
 
+        internal AssetSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AssetSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AssetSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AssetSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public AssetSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<AssetSoundEffect>()) { }
+
 
     }
 }

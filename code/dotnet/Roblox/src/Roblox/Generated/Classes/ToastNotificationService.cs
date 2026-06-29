@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ToastNotificationService(nuint handle) : base(handle) { }
 
+        internal ToastNotificationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ToastNotificationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ToastNotificationService? FromHandle(nuint handle)
             => handle == 0 ? null : new ToastNotificationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ToastNotificationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ToastNotificationService() : base(RobloxTypeRegistry.ClassNameOf<ToastNotificationService>()) { }
+
 
         /// <summary>
         /// <c>ToastNotificationService.HideNotification</c>

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIDragDetectorService(nuint handle) : base(handle) { }
 
+        internal UIDragDetectorService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIDragDetectorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIDragDetectorService? FromHandle(nuint handle)
             => handle == 0 ? null : new UIDragDetectorService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIDragDetectorService"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIDragDetectorService() : base(RobloxTypeRegistry.ClassNameOf<UIDragDetectorService>()) { }
+
 
     }
 }

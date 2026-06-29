@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PatchMapping(nuint handle) : base(handle) { }
 
+        internal PatchMapping(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PatchMapping"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PatchMapping? FromHandle(nuint handle)
             => handle == 0 ? null : new PatchMapping(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PatchMapping"/> instance with the default Roblox class name.
+        /// </summary>
+        public PatchMapping() : base(RobloxTypeRegistry.ClassNameOf<PatchMapping>()) { }
+
 
         /// <summary>
         /// <c>PatchMapping.FlattenTree</c>

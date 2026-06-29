@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal QWidgetPluginGui(nuint handle) : base(handle) { }
 
+        internal QWidgetPluginGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="QWidgetPluginGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new QWidgetPluginGui? FromHandle(nuint handle)
             => handle == 0 ? null : new QWidgetPluginGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="QWidgetPluginGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public QWidgetPluginGui() : base(RobloxTypeRegistry.ClassNameOf<QWidgetPluginGui>()) { }
+
 
     }
 }

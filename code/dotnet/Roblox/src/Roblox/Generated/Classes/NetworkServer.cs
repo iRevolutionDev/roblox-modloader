@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal NetworkServer(nuint handle) : base(handle) { }
 
+        internal NetworkServer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="NetworkServer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new NetworkServer? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkServer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="NetworkServer"/> instance with the default Roblox class name.
+        /// </summary>
+        public NetworkServer() : base(RobloxTypeRegistry.ClassNameOf<NetworkServer>()) { }
+
 
         /// <summary>
         /// <c>NetworkServer.EncryptStringForPlayerId</c>

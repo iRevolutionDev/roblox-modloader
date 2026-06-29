@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TerrainWriteOperation(nuint handle) : base(handle) { }
 
+        internal TerrainWriteOperation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TerrainWriteOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static TerrainWriteOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new TerrainWriteOperation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TerrainWriteOperation"/> instance with the default Roblox class name.
+        /// </summary>
+        public TerrainWriteOperation() : base(RobloxTypeRegistry.ClassNameOf<TerrainWriteOperation>()) { }
+
 
         /// <summary>
         /// <c>TerrainWriteOperation.CommitBlock</c>

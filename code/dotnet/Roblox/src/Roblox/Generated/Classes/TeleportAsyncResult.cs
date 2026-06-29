@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TeleportAsyncResult(nuint handle) : base(handle) { }
 
+        internal TeleportAsyncResult(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TeleportAsyncResult"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TeleportAsyncResult? FromHandle(nuint handle)
             => handle == 0 ? null : new TeleportAsyncResult(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TeleportAsyncResult"/> instance with the default Roblox class name.
+        /// </summary>
+        public TeleportAsyncResult() : base(RobloxTypeRegistry.ClassNameOf<TeleportAsyncResult>()) { }
+
 
         /// <summary>
         /// The private server ID of the reserved server that the players are being teleported to.

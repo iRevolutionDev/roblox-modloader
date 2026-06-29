@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VideoFrame(nuint handle) : base(handle) { }
 
+        internal VideoFrame(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VideoFrame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VideoFrame? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoFrame(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VideoFrame"/> instance with the default Roblox class name.
+        /// </summary>
+        public VideoFrame() : base(RobloxTypeRegistry.ClassNameOf<VideoFrame>()) { }
+
 
         public Enum.InternalVideoUsage InternalVideoUsage
         {

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TeamCreateData(nuint handle) : base(handle) { }
 
+        internal TeamCreateData(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TeamCreateData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TeamCreateData? FromHandle(nuint handle)
             => handle == 0 ? null : new TeamCreateData(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TeamCreateData"/> instance with the default Roblox class name.
+        /// </summary>
+        public TeamCreateData() : base(RobloxTypeRegistry.ClassNameOf<TeamCreateData>()) { }
+
 
     }
 }

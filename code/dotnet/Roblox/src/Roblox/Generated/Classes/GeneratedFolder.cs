@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GeneratedFolder(nuint handle) : base(handle) { }
 
+        internal GeneratedFolder(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GeneratedFolder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GeneratedFolder? FromHandle(nuint handle)
             => handle == 0 ? null : new GeneratedFolder(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GeneratedFolder"/> instance with the default Roblox class name.
+        /// </summary>
+        public GeneratedFolder() : base(RobloxTypeRegistry.ClassNameOf<GeneratedFolder>()) { }
+
 
         /// <summary>
         /// Specifies which part within the GeneratedFolder should be set as the PrimaryPart of the ProceduralModel.

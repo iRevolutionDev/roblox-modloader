@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Dragger(nuint handle) : base(handle) { }
 
+        internal Dragger(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Dragger"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Dragger? FromHandle(nuint handle)
             => handle == 0 ? null : new Dragger(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Dragger"/> instance with the default Roblox class name.
+        /// </summary>
+        public Dragger() : base(RobloxTypeRegistry.ClassNameOf<Dragger>()) { }
+
 
         /// <summary>
         /// Rotates the currently dragged part(s) by 90 degrees on the given axis.

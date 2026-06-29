@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DebuggerUIService(nuint handle) : base(handle) { }
 
+        internal DebuggerUIService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DebuggerUIService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DebuggerUIService? FromHandle(nuint handle)
             => handle == 0 ? null : new DebuggerUIService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DebuggerUIService"/> instance with the default Roblox class name.
+        /// </summary>
+        public DebuggerUIService() : base(RobloxTypeRegistry.ClassNameOf<DebuggerUIService>()) { }
+
 
         /// <summary>
         /// <c>DebuggerUIService.EditBreakpoint</c>

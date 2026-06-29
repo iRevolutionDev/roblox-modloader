@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal JointsService(nuint handle) : base(handle) { }
 
+        internal JointsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="JointsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new JointsService? FromHandle(nuint handle)
             => handle == 0 ? null : new JointsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="JointsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public JointsService() : base(RobloxTypeRegistry.ClassNameOf<JointsService>()) { }
+
 
         /// <summary>
         /// Will remove any 'create joints' that were made visible via the JointsService:ShowPermissibleJoints() method.

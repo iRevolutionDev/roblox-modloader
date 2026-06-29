@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal IXPService(nuint handle) : base(handle) { }
 
+        internal IXPService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="IXPService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new IXPService? FromHandle(nuint handle)
             => handle == 0 ? null : new IXPService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="IXPService"/> instance with the default Roblox class name.
+        /// </summary>
+        public IXPService() : base(RobloxTypeRegistry.ClassNameOf<IXPService>()) { }
+
 
         /// <summary>
         /// <c>IXPService.ClearCreatorLayers</c>

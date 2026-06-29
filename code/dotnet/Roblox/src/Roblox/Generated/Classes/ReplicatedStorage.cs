@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ReplicatedStorage(nuint handle) : base(handle) { }
 
+        internal ReplicatedStorage(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ReplicatedStorage"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ReplicatedStorage? FromHandle(nuint handle)
             => handle == 0 ? null : new ReplicatedStorage(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ReplicatedStorage"/> instance with the default Roblox class name.
+        /// </summary>
+        public ReplicatedStorage() : base(RobloxTypeRegistry.ClassNameOf<ReplicatedStorage>()) { }
+
 
     }
 }

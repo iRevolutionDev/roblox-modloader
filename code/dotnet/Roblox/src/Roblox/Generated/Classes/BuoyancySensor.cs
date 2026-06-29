@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BuoyancySensor(nuint handle) : base(handle) { }
 
+        internal BuoyancySensor(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BuoyancySensor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BuoyancySensor? FromHandle(nuint handle)
             => handle == 0 ? null : new BuoyancySensor(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BuoyancySensor"/> instance with the default Roblox class name.
+        /// </summary>
+        public BuoyancySensor() : base(RobloxTypeRegistry.ClassNameOf<BuoyancySensor>()) { }
+
 
         /// <summary>
         /// True when the entirety of the BasePart is submerged in Terrain water with at least one voxel of water above it.

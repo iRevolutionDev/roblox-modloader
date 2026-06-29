@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ImageLabel(nuint handle) : base(handle) { }
 
+        internal ImageLabel(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ImageLabel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ImageLabel? FromHandle(nuint handle)
             => handle == 0 ? null : new ImageLabel(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ImageLabel"/> instance with the default Roblox class name.
+        /// </summary>
+        public ImageLabel() : base(RobloxTypeRegistry.ClassNameOf<ImageLabel>()) { }
+
 
         public global::Roblox.Vector2 ContentImageSize
         {

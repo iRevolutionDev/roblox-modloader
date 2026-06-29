@@ -141,6 +141,14 @@ public static unsafe class Reflection
             : RobloxTypeRegistry.CreateAs<T>(handle);
     }
 
+    public static nuint CreateInstance(string className)
+    {
+        var handle = Interop.Reflection.CreateInstanceByName(className, 3);
+        return handle == 0
+            ? throw new InvalidOperationException($"Failed to create instance of type '{className}'")
+            : handle;
+    }
+
     private static long ToInt64OrThrow(object value, string propertyName)
     {
         try

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FlangeSoundEffect(nuint handle) : base(handle) { }
 
+        internal FlangeSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FlangeSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FlangeSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new FlangeSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FlangeSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public FlangeSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<FlangeSoundEffect>()) { }
+
 
         /// <summary>
         /// The intensity of the effect.

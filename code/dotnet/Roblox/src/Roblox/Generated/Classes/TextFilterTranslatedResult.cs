@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextFilterTranslatedResult(nuint handle) : base(handle) { }
 
+        internal TextFilterTranslatedResult(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextFilterTranslatedResult"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextFilterTranslatedResult? FromHandle(nuint handle)
             => handle == 0 ? null : new TextFilterTranslatedResult(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextFilterTranslatedResult"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextFilterTranslatedResult() : base(RobloxTypeRegistry.ClassNameOf<TextFilterTranslatedResult>()) { }
+
 
         /// <summary>
         /// <c>TextFilterTranslatedResult.SourceLanguage</c>

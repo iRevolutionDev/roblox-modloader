@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal File(nuint handle) : base(handle) { }
 
+        internal File(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="File"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new File? FromHandle(nuint handle)
             => handle == 0 ? null : new File(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="File"/> instance with the default Roblox class name.
+        /// </summary>
+        public File() : base(RobloxTypeRegistry.ClassNameOf<File>()) { }
+
 
         /// <summary>
         /// The size of the file on disk, in bytes.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UnionOperation(nuint handle) : base(handle) { }
 
+        internal UnionOperation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UnionOperation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UnionOperation? FromHandle(nuint handle)
             => handle == 0 ? null : new UnionOperation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UnionOperation"/> instance with the default Roblox class name.
+        /// </summary>
+        public UnionOperation() : base(RobloxTypeRegistry.ClassNameOf<UnionOperation>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GuiObject(nuint handle) : base(handle) { }
 
+        internal GuiObject(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GuiObject"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GuiObject? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiObject(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GuiObject"/> instance with the default Roblox class name.
+        /// </summary>
+        public GuiObject() : base(RobloxTypeRegistry.ClassNameOf<GuiObject>()) { }
+
 
         /// <summary>
         /// Determines whether this UI element sinks input.

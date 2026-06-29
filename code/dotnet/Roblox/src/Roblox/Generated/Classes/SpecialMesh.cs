@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SpecialMesh(nuint handle) : base(handle) { }
 
+        internal SpecialMesh(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SpecialMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SpecialMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new SpecialMesh(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SpecialMesh"/> instance with the default Roblox class name.
+        /// </summary>
+        public SpecialMesh() : base(RobloxTypeRegistry.ClassNameOf<SpecialMesh>()) { }
+
 
         /// <summary>
         /// Determines the type of mesh that will be applied to the BasePart the SpecialMesh is parented to.

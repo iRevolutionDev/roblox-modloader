@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GuiLabel(nuint handle) : base(handle) { }
 
+        internal GuiLabel(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GuiLabel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GuiLabel? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiLabel(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GuiLabel"/> instance with the default Roblox class name.
+        /// </summary>
+        public GuiLabel() : base(RobloxTypeRegistry.ClassNameOf<GuiLabel>()) { }
+
 
     }
 }

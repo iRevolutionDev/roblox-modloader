@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal EditableService(nuint handle) : base(handle) { }
 
+        internal EditableService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="EditableService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new EditableService? FromHandle(nuint handle)
             => handle == 0 ? null : new EditableService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="EditableService"/> instance with the default Roblox class name.
+        /// </summary>
+        public EditableService() : base(RobloxTypeRegistry.ClassNameOf<EditableService>()) { }
+
 
     }
 }

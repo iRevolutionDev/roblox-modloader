@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BubbleChatMessageProperties(nuint handle) : base(handle) { }
 
+        internal BubbleChatMessageProperties(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BubbleChatMessageProperties"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BubbleChatMessageProperties? FromHandle(nuint handle)
             => handle == 0 ? null : new BubbleChatMessageProperties(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BubbleChatMessageProperties"/> instance with the default Roblox class name.
+        /// </summary>
+        public BubbleChatMessageProperties() : base(RobloxTypeRegistry.ClassNameOf<BubbleChatMessageProperties>()) { }
+
 
         /// <summary>
         /// Background color of bubbles.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Highlight(nuint handle) : base(handle) { }
 
+        internal Highlight(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Highlight"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Highlight? FromHandle(nuint handle)
             => handle == 0 ? null : new Highlight(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Highlight"/> instance with the default Roblox class name.
+        /// </summary>
+        public Highlight() : base(RobloxTypeRegistry.ClassNameOf<Highlight>()) { }
+
 
         /// <summary>
         /// The Instance that the Highlight is applied to.

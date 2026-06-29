@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SelectionLasso(nuint handle) : base(handle) { }
 
+        internal SelectionLasso(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SelectionLasso"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SelectionLasso? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionLasso(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SelectionLasso"/> instance with the default Roblox class name.
+        /// </summary>
+        public SelectionLasso() : base(RobloxTypeRegistry.ClassNameOf<SelectionLasso>()) { }
+
 
         /// <summary>
         /// The Humanoid that the Lasso belongs to, and will come from.

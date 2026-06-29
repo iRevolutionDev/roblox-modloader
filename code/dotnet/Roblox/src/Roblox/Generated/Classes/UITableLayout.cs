@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UITableLayout(nuint handle) : base(handle) { }
 
+        internal UITableLayout(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UITableLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UITableLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UITableLayout(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UITableLayout"/> instance with the default Roblox class name.
+        /// </summary>
+        public UITableLayout() : base(RobloxTypeRegistry.ClassNameOf<UITableLayout>()) { }
+
 
         /// <summary>
         /// Determines whether cells are sized such that they occupy the horizontal space of the parent UI element.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIScale(nuint handle) : base(handle) { }
 
+        internal UIScale(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIScale"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIScale? FromHandle(nuint handle)
             => handle == 0 ? null : new UIScale(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIScale"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIScale() : base(RobloxTypeRegistry.ClassNameOf<UIScale>()) { }
+
 
         /// <summary>
         /// Determines the multiplier to apply to the parent UI element's size.

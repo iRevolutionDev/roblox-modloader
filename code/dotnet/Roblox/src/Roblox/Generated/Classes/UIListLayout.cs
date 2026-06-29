@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIListLayout(nuint handle) : base(handle) { }
 
+        internal UIListLayout(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIListLayout"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIListLayout? FromHandle(nuint handle)
             => handle == 0 ? null : new UIListLayout(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIListLayout"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIListLayout() : base(RobloxTypeRegistry.ClassNameOf<UIListLayout>()) { }
+
 
         /// <summary>
         /// Controls how to distribute extra horizontal space.

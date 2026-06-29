@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Bone(nuint handle) : base(handle) { }
 
+        internal Bone(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Bone"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Bone? FromHandle(nuint handle)
             => handle == 0 ? null : new Bone(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Bone"/> instance with the default Roblox class name.
+        /// </summary>
+        public Bone() : base(RobloxTypeRegistry.ClassNameOf<Bone>()) { }
+
 
         /// <summary>
         /// Determines the current animated offset of the bone in its local space.

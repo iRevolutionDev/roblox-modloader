@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RomarkService(nuint handle) : base(handle) { }
 
+        internal RomarkService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RomarkService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RomarkService? FromHandle(nuint handle)
             => handle == 0 ? null : new RomarkService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RomarkService"/> instance with the default Roblox class name.
+        /// </summary>
+        public RomarkService() : base(RobloxTypeRegistry.ClassNameOf<RomarkService>()) { }
+
 
         /// <summary>
         /// <c>RomarkService.EndRemoteRomarkTest</c>

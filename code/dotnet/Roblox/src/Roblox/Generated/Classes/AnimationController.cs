@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnimationController(nuint handle) : base(handle) { }
 
+        internal AnimationController(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnimationController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnimationController? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationController(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnimationController"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnimationController() : base(RobloxTypeRegistry.ClassNameOf<AnimationController>()) { }
+
 
         /// <summary>
         /// Deprecated: Returns an array of all AnimationTracks that are currently being played by the AnimationController.

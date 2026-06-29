@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal KeyframeSequenceProvider(nuint handle) : base(handle) { }
 
+        internal KeyframeSequenceProvider(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="KeyframeSequenceProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new KeyframeSequenceProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new KeyframeSequenceProvider(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="KeyframeSequenceProvider"/> instance with the default Roblox class name.
+        /// </summary>
+        public KeyframeSequenceProvider() : base(RobloxTypeRegistry.ClassNameOf<KeyframeSequenceProvider>()) { }
+
 
         /// <summary>
         /// Deprecated: This function is deprecated and can lead to the game freezing until the animation is loaded. Developers are recommended to use KeyframeSequenceProvider:GetKeyframeSequenceAsync() instead.Returns a KeyframeSequence from a given asset URL.

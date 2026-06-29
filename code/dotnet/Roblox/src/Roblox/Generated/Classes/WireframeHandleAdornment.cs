@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal WireframeHandleAdornment(nuint handle) : base(handle) { }
 
+        internal WireframeHandleAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="WireframeHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new WireframeHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new WireframeHandleAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="WireframeHandleAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public WireframeHandleAdornment() : base(RobloxTypeRegistry.ClassNameOf<WireframeHandleAdornment>()) { }
+
 
         /// <summary>
         /// The XYZ scale of the wireframe adornment.

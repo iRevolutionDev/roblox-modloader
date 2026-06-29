@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextChannel(nuint handle) : base(handle) { }
 
+        internal TextChannel(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextChannel"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextChannel? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChannel(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextChannel"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextChannel() : base(RobloxTypeRegistry.ClassNameOf<TextChannel>()) { }
+
 
         /// <summary>
         /// The TextChannel will only deliver messages to users that can send direct messages to the DirectChatRequester.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BodyMover(nuint handle) : base(handle) { }
 
+        internal BodyMover(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BodyMover"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BodyMover? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyMover(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BodyMover"/> instance with the default Roblox class name.
+        /// </summary>
+        public BodyMover() : base(RobloxTypeRegistry.ClassNameOf<BodyMover>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CollectionService(nuint handle) : base(handle) { }
 
+        internal CollectionService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CollectionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CollectionService? FromHandle(nuint handle)
             => handle == 0 ? null : new CollectionService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CollectionService"/> instance with the default Roblox class name.
+        /// </summary>
+        public CollectionService() : base(RobloxTypeRegistry.ClassNameOf<CollectionService>()) { }
+
 
         /// <summary>
         /// Applies a tag to an Instance.

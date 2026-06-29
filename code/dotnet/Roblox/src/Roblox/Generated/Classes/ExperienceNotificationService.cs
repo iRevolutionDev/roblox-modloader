@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ExperienceNotificationService(nuint handle) : base(handle) { }
 
+        internal ExperienceNotificationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ExperienceNotificationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ExperienceNotificationService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceNotificationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ExperienceNotificationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ExperienceNotificationService() : base(RobloxTypeRegistry.ClassNameOf<ExperienceNotificationService>()) { }
+
 
         /// <summary>
         /// <c>ExperienceNotificationService.InvokeOptInPromptClosed</c>

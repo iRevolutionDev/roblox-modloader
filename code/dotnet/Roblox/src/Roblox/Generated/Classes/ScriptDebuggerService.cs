@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScriptDebuggerService(nuint handle) : base(handle) { }
 
+        internal ScriptDebuggerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScriptDebuggerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScriptDebuggerService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptDebuggerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScriptDebuggerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScriptDebuggerService() : base(RobloxTypeRegistry.ClassNameOf<ScriptDebuggerService>()) { }
+
 
         /// <summary>
         /// Adds a breakpoint to a script. If a breakpoint already exists on the same script and line, its data is replaced.

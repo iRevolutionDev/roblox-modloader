@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TerrainDetail(nuint handle) : base(handle) { }
 
+        internal TerrainDetail(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TerrainDetail"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TerrainDetail? FromHandle(nuint handle)
             => handle == 0 ? null : new TerrainDetail(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TerrainDetail"/> instance with the default Roblox class name.
+        /// </summary>
+        public TerrainDetail() : base(RobloxTypeRegistry.ClassNameOf<TerrainDetail>()) { }
+
 
         /// <summary>
         /// Determines the color of the surface.

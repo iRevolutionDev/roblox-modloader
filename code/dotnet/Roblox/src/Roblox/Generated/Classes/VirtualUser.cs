@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VirtualUser(nuint handle) : base(handle) { }
 
+        internal VirtualUser(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VirtualUser"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VirtualUser? FromHandle(nuint handle)
             => handle == 0 ? null : new VirtualUser(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VirtualUser"/> instance with the default Roblox class name.
+        /// </summary>
+        public VirtualUser() : base(RobloxTypeRegistry.ClassNameOf<VirtualUser>()) { }
+
 
         /// <summary>
         /// <c>VirtualUser.Button1Down</c>

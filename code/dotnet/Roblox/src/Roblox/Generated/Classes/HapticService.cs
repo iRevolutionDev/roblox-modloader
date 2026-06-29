@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HapticService(nuint handle) : base(handle) { }
 
+        internal HapticService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HapticService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HapticService? FromHandle(nuint handle)
             => handle == 0 ? null : new HapticService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HapticService"/> instance with the default Roblox class name.
+        /// </summary>
+        public HapticService() : base(RobloxTypeRegistry.ClassNameOf<HapticService>()) { }
+
 
         /// <summary>
         /// Returns the current vibration value set to the specified UserInputType and VibrationMotor.

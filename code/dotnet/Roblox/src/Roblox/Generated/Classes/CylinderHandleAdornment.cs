@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CylinderHandleAdornment(nuint handle) : base(handle) { }
 
+        internal CylinderHandleAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CylinderHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CylinderHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new CylinderHandleAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CylinderHandleAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public CylinderHandleAdornment() : base(RobloxTypeRegistry.ClassNameOf<CylinderHandleAdornment>()) { }
+
 
         /// <summary>
         /// Angle of the cylinder handle as in a "pie slice" sector.

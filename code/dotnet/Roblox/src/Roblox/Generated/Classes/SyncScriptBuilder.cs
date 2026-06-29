@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SyncScriptBuilder(nuint handle) : base(handle) { }
 
+        internal SyncScriptBuilder(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SyncScriptBuilder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SyncScriptBuilder? FromHandle(nuint handle)
             => handle == 0 ? null : new SyncScriptBuilder(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SyncScriptBuilder"/> instance with the default Roblox class name.
+        /// </summary>
+        public SyncScriptBuilder() : base(RobloxTypeRegistry.ClassNameOf<SyncScriptBuilder>()) { }
+
 
         /// <summary>
         /// <c>SyncScriptBuilder.CompileTarget</c>

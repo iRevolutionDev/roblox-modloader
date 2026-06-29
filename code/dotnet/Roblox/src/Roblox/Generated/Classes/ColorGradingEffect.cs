@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ColorGradingEffect(nuint handle) : base(handle) { }
 
+        internal ColorGradingEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ColorGradingEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ColorGradingEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ColorGradingEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ColorGradingEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public ColorGradingEffect() : base(RobloxTypeRegistry.ClassNameOf<ColorGradingEffect>()) { }
+
 
         /// <summary>
         /// Specifies which tone mapper preset to use.

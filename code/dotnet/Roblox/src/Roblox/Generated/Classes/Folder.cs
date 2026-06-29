@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Folder(nuint handle) : base(handle) { }
 
+        internal Folder(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Folder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Folder? FromHandle(nuint handle)
             => handle == 0 ? null : new Folder(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Folder"/> instance with the default Roblox class name.
+        /// </summary>
+        public Folder() : base(RobloxTypeRegistry.ClassNameOf<Folder>()) { }
+
 
     }
 }

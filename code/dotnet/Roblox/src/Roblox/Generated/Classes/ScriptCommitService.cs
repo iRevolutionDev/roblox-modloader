@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScriptCommitService(nuint handle) : base(handle) { }
 
+        internal ScriptCommitService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScriptCommitService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScriptCommitService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptCommitService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScriptCommitService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScriptCommitService() : base(RobloxTypeRegistry.ClassNameOf<ScriptCommitService>()) { }
+
 
     }
 }

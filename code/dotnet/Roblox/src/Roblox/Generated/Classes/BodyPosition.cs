@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BodyPosition(nuint handle) : base(handle) { }
 
+        internal BodyPosition(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BodyPosition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BodyPosition? FromHandle(nuint handle)
             => handle == 0 ? null : new BodyPosition(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BodyPosition"/> instance with the default Roblox class name.
+        /// </summary>
+        public BodyPosition() : base(RobloxTypeRegistry.ClassNameOf<BodyPosition>()) { }
+
 
         /// <summary>
         /// Determines the amount of dampening to use in reaching the goal Position.

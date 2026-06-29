@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ClimbController(nuint handle) : base(handle) { }
 
+        internal ClimbController(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ClimbController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ClimbController? FromHandle(nuint handle)
             => handle == 0 ? null : new ClimbController(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ClimbController"/> instance with the default Roblox class name.
+        /// </summary>
+        public ClimbController() : base(RobloxTypeRegistry.ClassNameOf<ClimbController>()) { }
+
 
         /// <summary>
         /// The amount of time taken to reach the desired climb velocity from 0.

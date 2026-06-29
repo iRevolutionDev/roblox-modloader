@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StatsItem(nuint handle) : base(handle) { }
 
+        internal StatsItem(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StatsItem"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StatsItem? FromHandle(nuint handle)
             => handle == 0 ? null : new StatsItem(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StatsItem"/> instance with the default Roblox class name.
+        /// </summary>
+        public StatsItem() : base(RobloxTypeRegistry.ClassNameOf<StatsItem>()) { }
+
 
         /// <summary>
         /// <c>StatsItem.DisplayName</c>

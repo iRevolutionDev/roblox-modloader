@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioPublishService(nuint handle) : base(handle) { }
 
+        internal StudioPublishService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioPublishService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioPublishService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioPublishService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioPublishService"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioPublishService() : base(RobloxTypeRegistry.ClassNameOf<StudioPublishService>()) { }
+
 
         public bool PublishLocked
         {

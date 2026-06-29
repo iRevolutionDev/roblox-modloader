@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScriptProfilerService(nuint handle) : base(handle) { }
 
+        internal ScriptProfilerService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScriptProfilerService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScriptProfilerService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptProfilerService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScriptProfilerService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScriptProfilerService() : base(RobloxTypeRegistry.ClassNameOf<ScriptProfilerService>()) { }
+
 
         /// <summary>
         /// <c>ScriptProfilerService.ClientRequestData</c>

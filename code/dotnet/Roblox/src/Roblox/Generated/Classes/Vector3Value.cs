@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Vector3Value(nuint handle) : base(handle) { }
 
+        internal Vector3Value(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Vector3Value"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Vector3Value? FromHandle(nuint handle)
             => handle == 0 ? null : new Vector3Value(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Vector3Value"/> instance with the default Roblox class name.
+        /// </summary>
+        public Vector3Value() : base(RobloxTypeRegistry.ClassNameOf<Vector3Value>()) { }
+
 
         /// <summary>
         /// The stored Vector3.

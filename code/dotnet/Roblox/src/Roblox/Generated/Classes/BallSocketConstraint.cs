@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BallSocketConstraint(nuint handle) : base(handle) { }
 
+        internal BallSocketConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BallSocketConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BallSocketConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new BallSocketConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BallSocketConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public BallSocketConstraint() : base(RobloxTypeRegistry.ClassNameOf<BallSocketConstraint>()) { }
+
 
         /// <summary>
         /// Sets whether the BallSocketConstraint sets a limit on rotation based on UpperAngle.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Capture(nuint handle) : base(handle) { }
 
+        internal Capture(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Capture"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static Capture? FromHandle(nuint handle)
             => handle == 0 ? null : new Capture(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Capture"/> instance with the default Roblox class name.
+        /// </summary>
+        public Capture() : base(RobloxTypeRegistry.ClassNameOf<Capture>()) { }
+
 
         /// <summary>
         /// <c>Capture.CaptureTime</c>

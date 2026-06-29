@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StyleLink(nuint handle) : base(handle) { }
 
+        internal StyleLink(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StyleLink"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StyleLink? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleLink(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StyleLink"/> instance with the default Roblox class name.
+        /// </summary>
+        public StyleLink() : base(RobloxTypeRegistry.ClassNameOf<StyleLink>()) { }
+
 
         /// <summary>
         /// The StyleSheet to link to the parent such that the parent's descendants are styled accordingly.

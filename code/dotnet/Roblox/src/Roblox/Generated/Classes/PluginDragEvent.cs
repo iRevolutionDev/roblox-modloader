@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginDragEvent(nuint handle) : base(handle) { }
 
+        internal PluginDragEvent(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginDragEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginDragEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginDragEvent(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginDragEvent"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginDragEvent() : base(RobloxTypeRegistry.ClassNameOf<PluginDragEvent>()) { }
+
 
         /// <summary>
         /// <c>PluginDragEvent.Data</c>

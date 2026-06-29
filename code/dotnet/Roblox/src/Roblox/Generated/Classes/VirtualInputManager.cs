@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VirtualInputManager(nuint handle) : base(handle) { }
 
+        internal VirtualInputManager(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VirtualInputManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VirtualInputManager? FromHandle(nuint handle)
             => handle == 0 ? null : new VirtualInputManager(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VirtualInputManager"/> instance with the default Roblox class name.
+        /// </summary>
+        public VirtualInputManager() : base(RobloxTypeRegistry.ClassNameOf<VirtualInputManager>()) { }
+
 
         public string AdditionalLuaState
         {

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioEmitter(nuint handle) : base(handle) { }
 
+        internal AudioEmitter(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioEmitter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioEmitter? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioEmitter(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioEmitter"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioEmitter() : base(RobloxTypeRegistry.ClassNameOf<AudioEmitter>()) { }
+
 
         /// <summary>
         /// Determines whether acoustic simulation should be used for this AudioEmitter.

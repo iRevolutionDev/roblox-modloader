@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioPitchShifter(nuint handle) : base(handle) { }
 
+        internal AudioPitchShifter(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioPitchShifter"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioPitchShifter? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioPitchShifter(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioPitchShifter"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioPitchShifter() : base(RobloxTypeRegistry.ClassNameOf<AudioPitchShifter>()) { }
+
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.

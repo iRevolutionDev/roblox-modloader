@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ManualSurfaceJointInstance(nuint handle) : base(handle) { }
 
+        internal ManualSurfaceJointInstance(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ManualSurfaceJointInstance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ManualSurfaceJointInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new ManualSurfaceJointInstance(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ManualSurfaceJointInstance"/> instance with the default Roblox class name.
+        /// </summary>
+        public ManualSurfaceJointInstance() : base(RobloxTypeRegistry.ClassNameOf<ManualSurfaceJointInstance>()) { }
+
 
     }
 }

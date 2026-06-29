@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MetaBreakpointManager(nuint handle) : base(handle) { }
 
+        internal MetaBreakpointManager(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MetaBreakpointManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MetaBreakpointManager? FromHandle(nuint handle)
             => handle == 0 ? null : new MetaBreakpointManager(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MetaBreakpointManager"/> instance with the default Roblox class name.
+        /// </summary>
+        public MetaBreakpointManager() : base(RobloxTypeRegistry.ClassNameOf<MetaBreakpointManager>()) { }
+
 
         /// <summary>
         /// <c>MetaBreakpointManager.AddBreakpoint</c>

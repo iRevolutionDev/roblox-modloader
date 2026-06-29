@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal KeyframeMarker(nuint handle) : base(handle) { }
 
+        internal KeyframeMarker(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="KeyframeMarker"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new KeyframeMarker? FromHandle(nuint handle)
             => handle == 0 ? null : new KeyframeMarker(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="KeyframeMarker"/> instance with the default Roblox class name.
+        /// </summary>
+        public KeyframeMarker() : base(RobloxTypeRegistry.ClassNameOf<KeyframeMarker>()) { }
+
 
         /// <summary>
         /// A value that is specified for a KeyframeMarker.

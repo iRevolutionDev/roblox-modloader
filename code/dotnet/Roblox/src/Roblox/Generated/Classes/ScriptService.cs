@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScriptService(nuint handle) : base(handle) { }
 
+        internal ScriptService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScriptService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScriptService? FromHandle(nuint handle)
             => handle == 0 ? null : new ScriptService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScriptService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScriptService() : base(RobloxTypeRegistry.ClassNameOf<ScriptService>()) { }
+
 
     }
 }

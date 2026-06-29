@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MakeupDescription(nuint handle) : base(handle) { }
 
+        internal MakeupDescription(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MakeupDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MakeupDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new MakeupDescription(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MakeupDescription"/> instance with the default Roblox class name.
+        /// </summary>
+        public MakeupDescription() : base(RobloxTypeRegistry.ClassNameOf<MakeupDescription>()) { }
+
 
         /// <summary>
         /// The asset ID that should be applied when applying this MakeupDescription.

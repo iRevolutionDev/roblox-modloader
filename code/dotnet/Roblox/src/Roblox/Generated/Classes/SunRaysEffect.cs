@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SunRaysEffect(nuint handle) : base(handle) { }
 
+        internal SunRaysEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SunRaysEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SunRaysEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new SunRaysEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SunRaysEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public SunRaysEffect() : base(RobloxTypeRegistry.ClassNameOf<SunRaysEffect>()) { }
+
 
         /// <summary>
         /// Determines the opacity of the sun rays.

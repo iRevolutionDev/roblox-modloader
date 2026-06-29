@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextChatMessageProperties(nuint handle) : base(handle) { }
 
+        internal TextChatMessageProperties(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextChatMessageProperties"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextChatMessageProperties? FromHandle(nuint handle)
             => handle == 0 ? null : new TextChatMessageProperties(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextChatMessageProperties"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextChatMessageProperties() : base(RobloxTypeRegistry.ClassNameOf<TextChatMessageProperties>()) { }
+
 
         /// <summary>
         /// The TextChatMessage.PrefixText to override.

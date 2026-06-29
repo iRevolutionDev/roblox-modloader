@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StyleQuery(nuint handle) : base(handle) { }
 
+        internal StyleQuery(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StyleQuery"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StyleQuery? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleQuery(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StyleQuery"/> instance with the default Roblox class name.
+        /// </summary>
+        public StyleQuery() : base(RobloxTypeRegistry.ClassNameOf<StyleQuery>()) { }
+
 
         public global::Roblox.NumberRange AspectRatioRange
         {

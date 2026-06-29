@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ExecutedRemoteCommand(nuint handle) : base(handle) { }
 
+        internal ExecutedRemoteCommand(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ExecutedRemoteCommand"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static ExecutedRemoteCommand? FromHandle(nuint handle)
             => handle == 0 ? null : new ExecutedRemoteCommand(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ExecutedRemoteCommand"/> instance with the default Roblox class name.
+        /// </summary>
+        public ExecutedRemoteCommand() : base(RobloxTypeRegistry.ClassNameOf<ExecutedRemoteCommand>()) { }
+
 
         /// <summary>
         /// <c>ExecutedRemoteCommand.RunMoreCode</c>

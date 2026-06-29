@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VideoPlayer(nuint handle) : base(handle) { }
 
+        internal VideoPlayer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VideoPlayer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VideoPlayer? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoPlayer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VideoPlayer"/> instance with the default Roblox class name.
+        /// </summary>
+        public VideoPlayer() : base(RobloxTypeRegistry.ClassNameOf<VideoPlayer>()) { }
+
 
         /// <summary>
         /// Loads the VideoContent while in Studio Edit mode.

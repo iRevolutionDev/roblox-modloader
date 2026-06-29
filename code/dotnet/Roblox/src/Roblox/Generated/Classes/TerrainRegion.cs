@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TerrainRegion(nuint handle) : base(handle) { }
 
+        internal TerrainRegion(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TerrainRegion"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TerrainRegion? FromHandle(nuint handle)
             => handle == 0 ? null : new TerrainRegion(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TerrainRegion"/> instance with the default Roblox class name.
+        /// </summary>
+        public TerrainRegion() : base(RobloxTypeRegistry.ClassNameOf<TerrainRegion>()) { }
+
 
         /// <summary>
         /// Deprecated: This item is a deprecated function of a legacy Terrain engine that has been removed. Do not use it for new work.The state of this property shows whether or not this TerrainRegion contains smooth terrain.

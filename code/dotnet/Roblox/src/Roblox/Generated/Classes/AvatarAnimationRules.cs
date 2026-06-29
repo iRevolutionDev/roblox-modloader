@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AvatarAnimationRules(nuint handle) : base(handle) { }
 
+        internal AvatarAnimationRules(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AvatarAnimationRules"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AvatarAnimationRules? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarAnimationRules(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AvatarAnimationRules"/> instance with the default Roblox class name.
+        /// </summary>
+        public AvatarAnimationRules() : base(RobloxTypeRegistry.ClassNameOf<AvatarAnimationRules>()) { }
+
 
         public Enum.AvatarSettingsAnimationClipsMode AnimationClipsMode
         {

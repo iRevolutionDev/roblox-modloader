@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginConnectionService(nuint handle) : base(handle) { }
 
+        internal PluginConnectionService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginConnectionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginConnectionService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginConnectionService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginConnectionService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginConnectionService() : base(RobloxTypeRegistry.ClassNameOf<PluginConnectionService>()) { }
+
 
         /// <summary>
         /// Checks if the current data model context can ever have connections of a given type.

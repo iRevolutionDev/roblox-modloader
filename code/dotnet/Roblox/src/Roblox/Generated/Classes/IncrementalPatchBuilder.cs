@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal IncrementalPatchBuilder(nuint handle) : base(handle) { }
 
+        internal IncrementalPatchBuilder(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="IncrementalPatchBuilder"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new IncrementalPatchBuilder? FromHandle(nuint handle)
             => handle == 0 ? null : new IncrementalPatchBuilder(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="IncrementalPatchBuilder"/> instance with the default Roblox class name.
+        /// </summary>
+        public IncrementalPatchBuilder() : base(RobloxTypeRegistry.ClassNameOf<IncrementalPatchBuilder>()) { }
+
 
         /// <summary>
         /// <c>IncrementalPatchBuilder.AddPathsToBundle</c>

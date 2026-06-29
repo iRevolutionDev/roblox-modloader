@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HopperBin(nuint handle) : base(handle) { }
 
+        internal HopperBin(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HopperBin"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HopperBin? FromHandle(nuint handle)
             => handle == 0 ? null : new HopperBin(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HopperBin"/> instance with the default Roblox class name.
+        /// </summary>
+        public HopperBin() : base(RobloxTypeRegistry.ClassNameOf<HopperBin>()) { }
+
 
         /// <summary>
         /// <c>HopperBin.Active</c>

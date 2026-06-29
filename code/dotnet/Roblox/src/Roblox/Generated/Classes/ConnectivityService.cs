@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ConnectivityService(nuint handle) : base(handle) { }
 
+        internal ConnectivityService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ConnectivityService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ConnectivityService? FromHandle(nuint handle)
             => handle == 0 ? null : new ConnectivityService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ConnectivityService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ConnectivityService() : base(RobloxTypeRegistry.ClassNameOf<ConnectivityService>()) { }
+
 
         public Enum.NetworkStatus NetworkStatus
         {

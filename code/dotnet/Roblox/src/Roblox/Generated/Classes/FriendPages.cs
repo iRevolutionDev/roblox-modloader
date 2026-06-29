@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FriendPages(nuint handle) : base(handle) { }
 
+        internal FriendPages(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FriendPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FriendPages? FromHandle(nuint handle)
             => handle == 0 ? null : new FriendPages(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FriendPages"/> instance with the default Roblox class name.
+        /// </summary>
+        public FriendPages() : base(RobloxTypeRegistry.ClassNameOf<FriendPages>()) { }
+
 
     }
 }

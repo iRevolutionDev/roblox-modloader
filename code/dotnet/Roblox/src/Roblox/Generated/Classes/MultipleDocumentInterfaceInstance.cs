@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MultipleDocumentInterfaceInstance(nuint handle) : base(handle) { }
 
+        internal MultipleDocumentInterfaceInstance(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MultipleDocumentInterfaceInstance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MultipleDocumentInterfaceInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new MultipleDocumentInterfaceInstance(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MultipleDocumentInterfaceInstance"/> instance with the default Roblox class name.
+        /// </summary>
+        public MultipleDocumentInterfaceInstance() : base(RobloxTypeRegistry.ClassNameOf<MultipleDocumentInterfaceInstance>()) { }
+
 
         public DataModelSession FocusedDataModelSession
         {

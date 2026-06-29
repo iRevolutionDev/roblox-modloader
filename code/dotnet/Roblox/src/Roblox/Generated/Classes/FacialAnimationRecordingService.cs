@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FacialAnimationRecordingService(nuint handle) : base(handle) { }
 
+        internal FacialAnimationRecordingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FacialAnimationRecordingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FacialAnimationRecordingService? FromHandle(nuint handle)
             => handle == 0 ? null : new FacialAnimationRecordingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FacialAnimationRecordingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public FacialAnimationRecordingService() : base(RobloxTypeRegistry.ClassNameOf<FacialAnimationRecordingService>()) { }
+
 
         public bool BiometricDataConsent
         {

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ExperienceService(nuint handle) : base(handle) { }
 
+        internal ExperienceService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ExperienceService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ExperienceService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ExperienceService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ExperienceService() : base(RobloxTypeRegistry.ClassNameOf<ExperienceService>()) { }
+
 
         /// <summary>
         /// <c>ExperienceService.ExecuteCrossExperienceCall</c>

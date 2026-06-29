@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RotateV(nuint handle) : base(handle) { }
 
+        internal RotateV(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RotateV"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RotateV? FromHandle(nuint handle)
             => handle == 0 ? null : new RotateV(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RotateV"/> instance with the default Roblox class name.
+        /// </summary>
+        public RotateV() : base(RobloxTypeRegistry.ClassNameOf<RotateV>()) { }
+
 
     }
 }

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SlimAnimationReplicationService(nuint handle) : base(handle) { }
 
+        internal SlimAnimationReplicationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SlimAnimationReplicationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SlimAnimationReplicationService? FromHandle(nuint handle)
             => handle == 0 ? null : new SlimAnimationReplicationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SlimAnimationReplicationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SlimAnimationReplicationService() : base(RobloxTypeRegistry.ClassNameOf<SlimAnimationReplicationService>()) { }
+
 
     }
 }

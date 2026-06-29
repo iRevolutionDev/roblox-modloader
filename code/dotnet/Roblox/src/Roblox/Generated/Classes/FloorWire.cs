@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FloorWire(nuint handle) : base(handle) { }
 
+        internal FloorWire(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FloorWire"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FloorWire? FromHandle(nuint handle)
             => handle == 0 ? null : new FloorWire(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FloorWire"/> instance with the default Roblox class name.
+        /// </summary>
+        public FloorWire() : base(RobloxTypeRegistry.ClassNameOf<FloorWire>()) { }
+
 
         /// <summary>
         /// A decimal number between 0 and 1, through which you can control how far all of the decals are along the wire.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIGradient(nuint handle) : base(handle) { }
 
+        internal UIGradient(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIGradient"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIGradient? FromHandle(nuint handle)
             => handle == 0 ? null : new UIGradient(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIGradient"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIGradient() : base(RobloxTypeRegistry.ClassNameOf<UIGradient>()) { }
+
 
         /// <summary>
         /// Determines the color blended with the parent GuiObject along the length of the gradient.

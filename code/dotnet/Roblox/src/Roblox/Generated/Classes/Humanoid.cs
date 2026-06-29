@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Humanoid(nuint handle) : base(handle) { }
 
+        internal Humanoid(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Humanoid"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Humanoid? FromHandle(nuint handle)
             => handle == 0 ? null : new Humanoid(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Humanoid"/> instance with the default Roblox class name.
+        /// </summary>
+        public Humanoid() : base(RobloxTypeRegistry.ClassNameOf<Humanoid>()) { }
+
 
         /// <summary>
         /// Sets whether the character will automatically jump when they hit an obstacle as a player on a mobile device.

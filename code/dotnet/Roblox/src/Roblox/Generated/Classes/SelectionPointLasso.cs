@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SelectionPointLasso(nuint handle) : base(handle) { }
 
+        internal SelectionPointLasso(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SelectionPointLasso"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SelectionPointLasso? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionPointLasso(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SelectionPointLasso"/> instance with the default Roblox class name.
+        /// </summary>
+        public SelectionPointLasso() : base(RobloxTypeRegistry.ClassNameOf<SelectionPointLasso>()) { }
+
 
         /// <summary>
         /// Sets the Vector3 target of the lasso object.

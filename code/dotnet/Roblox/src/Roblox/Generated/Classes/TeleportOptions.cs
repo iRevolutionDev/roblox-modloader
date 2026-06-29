@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TeleportOptions(nuint handle) : base(handle) { }
 
+        internal TeleportOptions(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TeleportOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TeleportOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new TeleportOptions(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TeleportOptions"/> instance with the default Roblox class name.
+        /// </summary>
+        public TeleportOptions() : base(RobloxTypeRegistry.ClassNameOf<TeleportOptions>()) { }
+
 
         /// <summary>
         /// The reserved server access code that indicates the reserved server that the teleport should be to.

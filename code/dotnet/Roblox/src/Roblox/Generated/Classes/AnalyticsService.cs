@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnalyticsService(nuint handle) : base(handle) { }
 
+        internal AnalyticsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnalyticsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnalyticsService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnalyticsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnalyticsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnalyticsService() : base(RobloxTypeRegistry.ClassNameOf<AnalyticsService>()) { }
+
 
         /// <summary>
         /// Deprecated: PlayFab API key. Must be set in order to use FireEvent.

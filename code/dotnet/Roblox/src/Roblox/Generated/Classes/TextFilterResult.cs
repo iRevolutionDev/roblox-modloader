@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextFilterResult(nuint handle) : base(handle) { }
 
+        internal TextFilterResult(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextFilterResult"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextFilterResult? FromHandle(nuint handle)
             => handle == 0 ? null : new TextFilterResult(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextFilterResult"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextFilterResult() : base(RobloxTypeRegistry.ClassNameOf<TextFilterResult>()) { }
+
 
         /// <summary>
         /// Deprecated: This method is deprecated and returns an empty string. Text filtering pertaining to chat should be done through TextChatService, and experiences that do not properly filter player-generated chat text may be subject to moderation.Returns the text in a properly filtered manner for the specified Player.UserId.

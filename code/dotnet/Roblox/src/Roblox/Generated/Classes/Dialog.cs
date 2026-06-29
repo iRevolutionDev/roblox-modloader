@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Dialog(nuint handle) : base(handle) { }
 
+        internal Dialog(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Dialog"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Dialog? FromHandle(nuint handle)
             => handle == 0 ? null : new Dialog(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Dialog"/> instance with the default Roblox class name.
+        /// </summary>
+        public Dialog() : base(RobloxTypeRegistry.ClassNameOf<Dialog>()) { }
+
 
         /// <summary>
         /// Sets whether the Dialog can be used by multiple players at once.

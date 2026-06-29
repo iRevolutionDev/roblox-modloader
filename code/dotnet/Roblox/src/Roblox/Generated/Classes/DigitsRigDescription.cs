@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DigitsRigDescription(nuint handle) : base(handle) { }
 
+        internal DigitsRigDescription(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DigitsRigDescription"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DigitsRigDescription? FromHandle(nuint handle)
             => handle == 0 ? null : new DigitsRigDescription(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DigitsRigDescription"/> instance with the default Roblox class name.
+        /// </summary>
+        public DigitsRigDescription() : base(RobloxTypeRegistry.ClassNameOf<DigitsRigDescription>()) { }
+
 
         /// <summary>
         /// <c>DigitsRigDescription.Index1</c>

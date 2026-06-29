@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AssetDeliveryProxy(nuint handle) : base(handle) { }
 
+        internal AssetDeliveryProxy(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AssetDeliveryProxy"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AssetDeliveryProxy? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetDeliveryProxy(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AssetDeliveryProxy"/> instance with the default Roblox class name.
+        /// </summary>
+        public AssetDeliveryProxy() : base(RobloxTypeRegistry.ClassNameOf<AssetDeliveryProxy>()) { }
+
 
         /// <summary>
         /// <c>AssetDeliveryProxy.Interface</c>

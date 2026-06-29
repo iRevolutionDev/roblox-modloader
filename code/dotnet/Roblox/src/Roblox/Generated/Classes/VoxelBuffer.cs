@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VoxelBuffer(nuint handle) : base(handle) { }
 
+        internal VoxelBuffer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VoxelBuffer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static VoxelBuffer? FromHandle(nuint handle)
             => handle == 0 ? null : new VoxelBuffer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VoxelBuffer"/> instance with the default Roblox class name.
+        /// </summary>
+        public VoxelBuffer() : base(RobloxTypeRegistry.ClassNameOf<VoxelBuffer>()) { }
+
 
         /// <summary>
         /// <c>VoxelBuffer.GetSizeInVoxels</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal HumanoidController(nuint handle) : base(handle) { }
 
+        internal HumanoidController(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="HumanoidController"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new HumanoidController? FromHandle(nuint handle)
             => handle == 0 ? null : new HumanoidController(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="HumanoidController"/> instance with the default Roblox class name.
+        /// </summary>
+        public HumanoidController() : base(RobloxTypeRegistry.ClassNameOf<HumanoidController>()) { }
+
 
     }
 }

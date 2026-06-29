@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlaneConstraint(nuint handle) : base(handle) { }
 
+        internal PlaneConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlaneConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlaneConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new PlaneConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlaneConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlaneConstraint() : base(RobloxTypeRegistry.ClassNameOf<PlaneConstraint>()) { }
+
 
     }
 }

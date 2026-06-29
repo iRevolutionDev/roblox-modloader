@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VectorForce(nuint handle) : base(handle) { }
 
+        internal VectorForce(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VectorForce"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VectorForce? FromHandle(nuint handle)
             => handle == 0 ? null : new VectorForce(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VectorForce"/> instance with the default Roblox class name.
+        /// </summary>
+        public VectorForce() : base(RobloxTypeRegistry.ClassNameOf<VectorForce>()) { }
+
 
         /// <summary>
         /// Whether force is applied at the center of mass of the parent assembly.

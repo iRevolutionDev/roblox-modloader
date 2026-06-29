@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MarkerCurve(nuint handle) : base(handle) { }
 
+        internal MarkerCurve(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MarkerCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MarkerCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new MarkerCurve(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MarkerCurve"/> instance with the default Roblox class name.
+        /// </summary>
+        public MarkerCurve() : base(RobloxTypeRegistry.ClassNameOf<MarkerCurve>()) { }
+
 
         /// <summary>
         /// Returns the number of markers in the MarkerCurve.

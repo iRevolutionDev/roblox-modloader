@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SpawnLocation(nuint handle) : base(handle) { }
 
+        internal SpawnLocation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SpawnLocation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SpawnLocation? FromHandle(nuint handle)
             => handle == 0 ? null : new SpawnLocation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SpawnLocation"/> instance with the default Roblox class name.
+        /// </summary>
+        public SpawnLocation() : base(RobloxTypeRegistry.ClassNameOf<SpawnLocation>()) { }
+
 
         /// <summary>
         /// Allows a Player to join the team by touching the SpawnLocation. When set to true, if a Player character comes into contact with the SpawnLocation, the player's Player.TeamColor will be set to SpawnLocation.TeamColor.

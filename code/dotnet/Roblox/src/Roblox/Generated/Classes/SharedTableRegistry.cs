@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SharedTableRegistry(nuint handle) : base(handle) { }
 
+        internal SharedTableRegistry(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SharedTableRegistry"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SharedTableRegistry? FromHandle(nuint handle)
             => handle == 0 ? null : new SharedTableRegistry(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SharedTableRegistry"/> instance with the default Roblox class name.
+        /// </summary>
+        public SharedTableRegistry() : base(RobloxTypeRegistry.ClassNameOf<SharedTableRegistry>()) { }
+
 
         /// <summary>
         /// Gets the registered SharedTable with the specified name.

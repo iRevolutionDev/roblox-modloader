@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginManagementService(nuint handle) : base(handle) { }
 
+        internal PluginManagementService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginManagementService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginManagementService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginManagementService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginManagementService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginManagementService() : base(RobloxTypeRegistry.ClassNameOf<PluginManagementService>()) { }
+
 
         /// <summary>
         /// <c>PluginManagementService.SetAutoUpdate</c>

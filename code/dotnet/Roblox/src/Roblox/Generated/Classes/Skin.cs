@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Skin(nuint handle) : base(handle) { }
 
+        internal Skin(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Skin"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Skin? FromHandle(nuint handle)
             => handle == 0 ? null : new Skin(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Skin"/> instance with the default Roblox class name.
+        /// </summary>
+        public Skin() : base(RobloxTypeRegistry.ClassNameOf<Skin>()) { }
+
 
         /// <summary>
         /// <c>Skin.SkinColor</c>

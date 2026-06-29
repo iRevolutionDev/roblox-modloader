@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BoolValue(nuint handle) : base(handle) { }
 
+        internal BoolValue(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BoolValue"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BoolValue? FromHandle(nuint handle)
             => handle == 0 ? null : new BoolValue(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BoolValue"/> instance with the default Roblox class name.
+        /// </summary>
+        public BoolValue() : base(RobloxTypeRegistry.ClassNameOf<BoolValue>()) { }
+
 
         /// <summary>
         /// Used to hold a boolean value.

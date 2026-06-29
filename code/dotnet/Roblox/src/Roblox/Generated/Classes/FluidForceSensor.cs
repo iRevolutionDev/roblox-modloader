@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FluidForceSensor(nuint handle) : base(handle) { }
 
+        internal FluidForceSensor(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FluidForceSensor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FluidForceSensor? FromHandle(nuint handle)
             => handle == 0 ? null : new FluidForceSensor(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FluidForceSensor"/> instance with the default Roblox class name.
+        /// </summary>
+        public FluidForceSensor() : base(RobloxTypeRegistry.ClassNameOf<FluidForceSensor>()) { }
+
 
         /// <summary>
         /// Assembly center of pressure offset from its center of mass in world coordinates.

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CorePackages(nuint handle) : base(handle) { }
 
+        internal CorePackages(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CorePackages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CorePackages? FromHandle(nuint handle)
             => handle == 0 ? null : new CorePackages(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CorePackages"/> instance with the default Roblox class name.
+        /// </summary>
+        public CorePackages() : base(RobloxTypeRegistry.ClassNameOf<CorePackages>()) { }
+
 
     }
 }

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginDebugService(nuint handle) : base(handle) { }
 
+        internal PluginDebugService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginDebugService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginDebugService? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginDebugService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginDebugService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginDebugService() : base(RobloxTypeRegistry.ClassNameOf<PluginDebugService>()) { }
+
 
     }
 }

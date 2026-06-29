@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal InsertService(nuint handle) : base(handle) { }
 
+        internal InsertService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="InsertService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new InsertService? FromHandle(nuint handle)
             => handle == 0 ? null : new InsertService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="InsertService"/> instance with the default Roblox class name.
+        /// </summary>
+        public InsertService() : base(RobloxTypeRegistry.ClassNameOf<InsertService>()) { }
+
 
         /// <summary>
         /// Deprecated: This item was never released. Do not use it in new work.Indicates whether ''Free Models'' can be inserted into the game.

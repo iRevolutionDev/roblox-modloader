@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RunningAverageItemDouble(nuint handle) : base(handle) { }
 
+        internal RunningAverageItemDouble(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RunningAverageItemDouble"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RunningAverageItemDouble? FromHandle(nuint handle)
             => handle == 0 ? null : new RunningAverageItemDouble(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RunningAverageItemDouble"/> instance with the default Roblox class name.
+        /// </summary>
+        public RunningAverageItemDouble() : base(RobloxTypeRegistry.ClassNameOf<RunningAverageItemDouble>()) { }
+
 
     }
 }

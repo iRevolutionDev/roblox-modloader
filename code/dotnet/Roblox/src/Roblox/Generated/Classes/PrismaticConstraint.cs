@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PrismaticConstraint(nuint handle) : base(handle) { }
 
+        internal PrismaticConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PrismaticConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PrismaticConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new PrismaticConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PrismaticConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public PrismaticConstraint() : base(RobloxTypeRegistry.ClassNameOf<PrismaticConstraint>()) { }
+
 
     }
 }

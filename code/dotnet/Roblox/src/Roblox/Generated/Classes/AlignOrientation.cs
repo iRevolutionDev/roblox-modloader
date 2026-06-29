@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AlignOrientation(nuint handle) : base(handle) { }
 
+        internal AlignOrientation(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AlignOrientation"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AlignOrientation? FromHandle(nuint handle)
             => handle == 0 ? null : new AlignOrientation(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AlignOrientation"/> instance with the default Roblox class name.
+        /// </summary>
+        public AlignOrientation() : base(RobloxTypeRegistry.ClassNameOf<AlignOrientation>()) { }
+
 
         /// <summary>
         /// The constraint's axis alignment type.

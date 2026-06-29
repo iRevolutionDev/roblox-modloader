@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CommerceService(nuint handle) : base(handle) { }
 
+        internal CommerceService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CommerceService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CommerceService? FromHandle(nuint handle)
             => handle == 0 ? null : new CommerceService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CommerceService"/> instance with the default Roblox class name.
+        /// </summary>
+        public CommerceService() : base(RobloxTypeRegistry.ClassNameOf<CommerceService>()) { }
+
 
         /// <summary>
         /// Prompts a user to purchase a commerce product using the provided commerceProductId. Opens a webview that guides the user through the purchasing flow.

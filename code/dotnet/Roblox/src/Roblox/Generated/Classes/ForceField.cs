@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ForceField(nuint handle) : base(handle) { }
 
+        internal ForceField(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ForceField"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ForceField? FromHandle(nuint handle)
             => handle == 0 ? null : new ForceField(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ForceField"/> instance with the default Roblox class name.
+        /// </summary>
+        public ForceField() : base(RobloxTypeRegistry.ClassNameOf<ForceField>()) { }
+
 
         /// <summary>
         /// Determines whether or not the ForceField particle effect is visible.

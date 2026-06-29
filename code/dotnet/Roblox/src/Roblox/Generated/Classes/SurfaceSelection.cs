@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SurfaceSelection(nuint handle) : base(handle) { }
 
+        internal SurfaceSelection(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SurfaceSelection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SurfaceSelection? FromHandle(nuint handle)
             => handle == 0 ? null : new SurfaceSelection(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SurfaceSelection"/> instance with the default Roblox class name.
+        /// </summary>
+        public SurfaceSelection() : base(RobloxTypeRegistry.ClassNameOf<SurfaceSelection>()) { }
+
 
         /// <summary>
         /// Sets which side the SurfaceSelection will appear on, on the adorned BasePart.

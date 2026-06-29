@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SmoothVoxelsUpgraderService(nuint handle) : base(handle) { }
 
+        internal SmoothVoxelsUpgraderService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SmoothVoxelsUpgraderService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SmoothVoxelsUpgraderService? FromHandle(nuint handle)
             => handle == 0 ? null : new SmoothVoxelsUpgraderService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SmoothVoxelsUpgraderService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SmoothVoxelsUpgraderService() : base(RobloxTypeRegistry.ClassNameOf<SmoothVoxelsUpgraderService>()) { }
+
 
         /// <summary>
         /// <c>SmoothVoxelsUpgraderService.Cancel</c>

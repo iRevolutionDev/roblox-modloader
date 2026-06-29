@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SocialService(nuint handle) : base(handle) { }
 
+        internal SocialService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SocialService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SocialService? FromHandle(nuint handle)
             => handle == 0 ? null : new SocialService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SocialService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SocialService() : base(RobloxTypeRegistry.ClassNameOf<SocialService>()) { }
+
 
         /// <summary>
         /// Returns a table of all presently connected Player objects whose Player.PartyId property matches the passed partyId.

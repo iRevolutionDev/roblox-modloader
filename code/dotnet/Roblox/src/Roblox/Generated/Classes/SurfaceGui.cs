@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SurfaceGui(nuint handle) : base(handle) { }
 
+        internal SurfaceGui(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SurfaceGui"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SurfaceGui? FromHandle(nuint handle)
             => handle == 0 ? null : new SurfaceGui(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SurfaceGui"/> instance with the default Roblox class name.
+        /// </summary>
+        public SurfaceGui() : base(RobloxTypeRegistry.ClassNameOf<SurfaceGui>()) { }
+
 
         /// <summary>
         /// Determines whether the SurfaceGui will always be rendered on top of other 3D objects.

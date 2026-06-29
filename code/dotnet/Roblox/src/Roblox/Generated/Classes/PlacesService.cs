@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlacesService(nuint handle) : base(handle) { }
 
+        internal PlacesService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlacesService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlacesService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlacesService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlacesService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlacesService() : base(RobloxTypeRegistry.ClassNameOf<PlacesService>()) { }
+
 
         /// <summary>
         /// <c>PlacesService.StartPlaySolo</c>

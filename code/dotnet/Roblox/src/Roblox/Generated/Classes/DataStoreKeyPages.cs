@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DataStoreKeyPages(nuint handle) : base(handle) { }
 
+        internal DataStoreKeyPages(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DataStoreKeyPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DataStoreKeyPages? FromHandle(nuint handle)
             => handle == 0 ? null : new DataStoreKeyPages(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DataStoreKeyPages"/> instance with the default Roblox class name.
+        /// </summary>
+        public DataStoreKeyPages() : base(RobloxTypeRegistry.ClassNameOf<DataStoreKeyPages>()) { }
+
 
         /// <summary>
         /// <c>DataStoreKeyPages.Cursor</c>

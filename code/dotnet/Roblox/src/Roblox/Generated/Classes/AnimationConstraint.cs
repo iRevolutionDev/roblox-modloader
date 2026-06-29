@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnimationConstraint(nuint handle) : base(handle) { }
 
+        internal AnimationConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnimationConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnimationConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnimationConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnimationConstraint() : base(RobloxTypeRegistry.ClassNameOf<AnimationConstraint>()) { }
+
 
         /// <summary>
         /// Damping ratio for the rotational part of the constraint. Higher values reduce oscillation around the target orientation.

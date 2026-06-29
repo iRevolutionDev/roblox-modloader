@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Debris(nuint handle) : base(handle) { }
 
+        internal Debris(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Debris"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Debris? FromHandle(nuint handle)
             => handle == 0 ? null : new Debris(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Debris"/> instance with the default Roblox class name.
+        /// </summary>
+        public Debris() : base(RobloxTypeRegistry.ClassNameOf<Debris>()) { }
+
 
         /// <summary>
         /// Deprecated: This property is deprecated and should not be used in new work.The maximum number of items that can be assigned to the Debris service at one time.

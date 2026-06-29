@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ContentProvider(nuint handle) : base(handle) { }
 
+        internal ContentProvider(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ContentProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ContentProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new ContentProvider(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ContentProvider"/> instance with the default Roblox class name.
+        /// </summary>
+        public ContentProvider() : base(RobloxTypeRegistry.ClassNameOf<ContentProvider>()) { }
+
 
         /// <summary>
         /// Used by the ContentProvider to download assets from the Roblox website.

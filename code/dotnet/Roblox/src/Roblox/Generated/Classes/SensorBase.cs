@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SensorBase(nuint handle) : base(handle) { }
 
+        internal SensorBase(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SensorBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SensorBase? FromHandle(nuint handle)
             => handle == 0 ? null : new SensorBase(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SensorBase"/> instance with the default Roblox class name.
+        /// </summary>
+        public SensorBase() : base(RobloxTypeRegistry.ClassNameOf<SensorBase>()) { }
+
 
         /// <summary>
         /// Determines how the sensor will update its output data.

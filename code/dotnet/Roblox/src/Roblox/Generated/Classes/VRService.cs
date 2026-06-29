@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VRService(nuint handle) : base(handle) { }
 
+        internal VRService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VRService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VRService? FromHandle(nuint handle)
             => handle == 0 ? null : new VRService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VRService"/> instance with the default Roblox class name.
+        /// </summary>
+        public VRService() : base(RobloxTypeRegistry.ClassNameOf<VRService>()) { }
+
 
         /// <summary>
         /// Automatically adjusts scaling in VR to align the player with their avatar.

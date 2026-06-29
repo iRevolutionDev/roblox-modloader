@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlayerHydrationService(nuint handle) : base(handle) { }
 
+        internal PlayerHydrationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlayerHydrationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlayerHydrationService? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerHydrationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlayerHydrationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlayerHydrationService() : base(RobloxTypeRegistry.ClassNameOf<PlayerHydrationService>()) { }
+
 
     }
 }

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioAssetService(nuint handle) : base(handle) { }
 
+        internal StudioAssetService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioAssetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioAssetService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioAssetService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioAssetService"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioAssetService() : base(RobloxTypeRegistry.ClassNameOf<StudioAssetService>()) { }
+
 
         /// <summary>
         /// <c>StudioAssetService.ConvertToPackageUpload</c>

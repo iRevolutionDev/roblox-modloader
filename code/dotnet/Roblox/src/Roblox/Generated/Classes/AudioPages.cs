@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioPages(nuint handle) : base(handle) { }
 
+        internal AudioPages(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioPages"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioPages? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioPages(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioPages"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioPages() : base(RobloxTypeRegistry.ClassNameOf<AudioPages>()) { }
+
 
     }
 }

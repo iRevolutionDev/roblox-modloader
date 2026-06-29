@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SceneAnalysisService(nuint handle) : base(handle) { }
 
+        internal SceneAnalysisService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SceneAnalysisService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SceneAnalysisService? FromHandle(nuint handle)
             => handle == 0 ? null : new SceneAnalysisService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SceneAnalysisService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SceneAnalysisService() : base(RobloxTypeRegistry.ClassNameOf<SceneAnalysisService>()) { }
+
 
         /// <summary>
         /// <c>SceneAnalysisService.GetAnimationMemoryAsync</c>

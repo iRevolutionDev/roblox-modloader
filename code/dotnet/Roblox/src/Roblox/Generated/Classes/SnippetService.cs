@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SnippetService(nuint handle) : base(handle) { }
 
+        internal SnippetService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SnippetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SnippetService? FromHandle(nuint handle)
             => handle == 0 ? null : new SnippetService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SnippetService"/> instance with the default Roblox class name.
+        /// </summary>
+        public SnippetService() : base(RobloxTypeRegistry.ClassNameOf<SnippetService>()) { }
+
 
     }
 }

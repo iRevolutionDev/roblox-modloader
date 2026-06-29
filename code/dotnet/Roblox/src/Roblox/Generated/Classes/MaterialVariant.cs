@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MaterialVariant(nuint handle) : base(handle) { }
 
+        internal MaterialVariant(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MaterialVariant"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MaterialVariant? FromHandle(nuint handle)
             => handle == 0 ? null : new MaterialVariant(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MaterialVariant"/> instance with the default Roblox class name.
+        /// </summary>
+        public MaterialVariant() : base(RobloxTypeRegistry.ClassNameOf<MaterialVariant>()) { }
+
 
         /// <summary>
         /// Determines how the alpha channel of the MaterialVariant.ColorMap is used.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnimationClipProvider(nuint handle) : base(handle) { }
 
+        internal AnimationClipProvider(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnimationClipProvider"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnimationClipProvider? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationClipProvider(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnimationClipProvider"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnimationClipProvider() : base(RobloxTypeRegistry.ClassNameOf<AnimationClipProvider>()) { }
+
 
         /// <summary>
         /// Deprecated: This function is deprecated and can lead to the game freezing until the animation is loaded. Developers are recommended to use GetAnimationClipAsync instead.Returns a AnimationClip from a given asset URL.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ExperienceInviteOptions(nuint handle) : base(handle) { }
 
+        internal ExperienceInviteOptions(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ExperienceInviteOptions"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ExperienceInviteOptions? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceInviteOptions(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ExperienceInviteOptions"/> instance with the default Roblox class name.
+        /// </summary>
+        public ExperienceInviteOptions() : base(RobloxTypeRegistry.ClassNameOf<ExperienceInviteOptions>()) { }
+
 
         /// <summary>
         /// Asset ID that maps to a Notification asset type.

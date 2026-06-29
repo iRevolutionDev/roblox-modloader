@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnimationGraphDefinition(nuint handle) : base(handle) { }
 
+        internal AnimationGraphDefinition(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnimationGraphDefinition"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnimationGraphDefinition? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationGraphDefinition(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnimationGraphDefinition"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnimationGraphDefinition() : base(RobloxTypeRegistry.ClassNameOf<AnimationGraphDefinition>()) { }
+
 
     }
 }

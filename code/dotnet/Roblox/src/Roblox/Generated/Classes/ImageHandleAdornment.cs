@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ImageHandleAdornment(nuint handle) : base(handle) { }
 
+        internal ImageHandleAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ImageHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ImageHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new ImageHandleAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ImageHandleAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public ImageHandleAdornment() : base(RobloxTypeRegistry.ClassNameOf<ImageHandleAdornment>()) { }
+
 
         /// <summary>
         /// Image to draw for the adornment.

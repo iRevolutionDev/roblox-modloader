@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UnvalidatedAssetService(nuint handle) : base(handle) { }
 
+        internal UnvalidatedAssetService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UnvalidatedAssetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UnvalidatedAssetService? FromHandle(nuint handle)
             => handle == 0 ? null : new UnvalidatedAssetService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UnvalidatedAssetService"/> instance with the default Roblox class name.
+        /// </summary>
+        public UnvalidatedAssetService() : base(RobloxTypeRegistry.ClassNameOf<UnvalidatedAssetService>()) { }
+
 
         /// <summary>
         /// <c>UnvalidatedAssetService.AppendTempAssetId</c>

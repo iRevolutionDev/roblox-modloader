@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VideoService(nuint handle) : base(handle) { }
 
+        internal VideoService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VideoService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VideoService? FromHandle(nuint handle)
             => handle == 0 ? null : new VideoService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VideoService"/> instance with the default Roblox class name.
+        /// </summary>
+        public VideoService() : base(RobloxTypeRegistry.ClassNameOf<VideoService>()) { }
+
 
         /// <summary>
         /// <c>VideoService.GameStreamingEnabled</c>

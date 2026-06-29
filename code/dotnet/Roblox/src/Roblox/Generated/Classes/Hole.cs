@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Hole(nuint handle) : base(handle) { }
 
+        internal Hole(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Hole"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Hole? FromHandle(nuint handle)
             => handle == 0 ? null : new Hole(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Hole"/> instance with the default Roblox class name.
+        /// </summary>
+        public Hole() : base(RobloxTypeRegistry.ClassNameOf<Hole>()) { }
+
 
     }
 }

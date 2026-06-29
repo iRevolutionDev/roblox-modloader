@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextBox(nuint handle) : base(handle) { }
 
+        internal TextBox(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextBox"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextBox? FromHandle(nuint handle)
             => handle == 0 ? null : new TextBox(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextBox"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextBox() : base(RobloxTypeRegistry.ClassNameOf<TextBox>()) { }
+
 
         /// <summary>
         /// Determines whether clicking on the TextBox will clear its TextBox.Text property.

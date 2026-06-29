@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MemoryStoreService(nuint handle) : base(handle) { }
 
+        internal MemoryStoreService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MemoryStoreService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MemoryStoreService? FromHandle(nuint handle)
             => handle == 0 ? null : new MemoryStoreService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MemoryStoreService"/> instance with the default Roblox class name.
+        /// </summary>
+        public MemoryStoreService() : base(RobloxTypeRegistry.ClassNameOf<MemoryStoreService>()) { }
+
 
         /// <summary>
         /// Returns a MemoryStoreHashMap instance for the provided name.

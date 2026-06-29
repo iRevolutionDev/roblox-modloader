@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PhysicsService(nuint handle) : base(handle) { }
 
+        internal PhysicsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PhysicsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PhysicsService? FromHandle(nuint handle)
             => handle == 0 ? null : new PhysicsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PhysicsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PhysicsService() : base(RobloxTypeRegistry.ClassNameOf<PhysicsService>()) { }
+
 
         /// <summary>
         /// Deprecated: This method has been deprecated. It's recommended that you query a part's collision group through its CollisionGroup property.Returns whether the part is in the collision group.

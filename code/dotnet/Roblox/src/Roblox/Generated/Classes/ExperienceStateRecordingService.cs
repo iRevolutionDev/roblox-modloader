@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ExperienceStateRecordingService(nuint handle) : base(handle) { }
 
+        internal ExperienceStateRecordingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ExperienceStateRecordingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ExperienceStateRecordingService? FromHandle(nuint handle)
             => handle == 0 ? null : new ExperienceStateRecordingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ExperienceStateRecordingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ExperienceStateRecordingService() : base(RobloxTypeRegistry.ClassNameOf<ExperienceStateRecordingService>()) { }
+
 
         /// <summary>
         /// <c>ExperienceStateRecordingService.ExitPlayback</c>

@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UGCAvatarService(nuint handle) : base(handle) { }
 
+        internal UGCAvatarService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UGCAvatarService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UGCAvatarService? FromHandle(nuint handle)
             => handle == 0 ? null : new UGCAvatarService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UGCAvatarService"/> instance with the default Roblox class name.
+        /// </summary>
+        public UGCAvatarService() : base(RobloxTypeRegistry.ClassNameOf<UGCAvatarService>()) { }
+
 
     }
 }

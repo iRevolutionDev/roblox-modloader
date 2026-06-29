@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DataModelSession(nuint handle) : base(handle) { }
 
+        internal DataModelSession(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DataModelSession"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DataModelSession? FromHandle(nuint handle)
             => handle == 0 ? null : new DataModelSession(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DataModelSession"/> instance with the default Roblox class name.
+        /// </summary>
+        public DataModelSession() : base(RobloxTypeRegistry.ClassNameOf<DataModelSession>()) { }
+
 
         public Enum.StudioDataModelType CurrentDataModelType
         {

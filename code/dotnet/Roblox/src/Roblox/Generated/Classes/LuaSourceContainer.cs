@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LuaSourceContainer(nuint handle) : base(handle) { }
 
+        internal LuaSourceContainer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LuaSourceContainer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LuaSourceContainer? FromHandle(nuint handle)
             => handle == 0 ? null : new LuaSourceContainer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LuaSourceContainer"/> instance with the default Roblox class name.
+        /// </summary>
+        public LuaSourceContainer() : base(RobloxTypeRegistry.ClassNameOf<LuaSourceContainer>()) { }
+
 
     }
 }

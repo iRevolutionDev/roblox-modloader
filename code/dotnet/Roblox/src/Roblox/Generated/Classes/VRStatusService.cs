@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal VRStatusService(nuint handle) : base(handle) { }
 
+        internal VRStatusService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="VRStatusService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new VRStatusService? FromHandle(nuint handle)
             => handle == 0 ? null : new VRStatusService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="VRStatusService"/> instance with the default Roblox class name.
+        /// </summary>
+        public VRStatusService() : base(RobloxTypeRegistry.ClassNameOf<VRStatusService>()) { }
+
 
     }
 }

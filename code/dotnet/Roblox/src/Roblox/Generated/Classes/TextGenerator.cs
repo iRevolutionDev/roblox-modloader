@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TextGenerator(nuint handle) : base(handle) { }
 
+        internal TextGenerator(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TextGenerator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TextGenerator? FromHandle(nuint handle)
             => handle == 0 ? null : new TextGenerator(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TextGenerator"/> instance with the default Roblox class name.
+        /// </summary>
+        public TextGenerator() : base(RobloxTypeRegistry.ClassNameOf<TextGenerator>()) { }
+
 
         /// <summary>
         /// Sets a fixed seed for the random number generator, allowing reproducible responses in cases where the same input parameters are used across multiple requests.

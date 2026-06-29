@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal BaseScript(nuint handle) : base(handle) { }
 
+        internal BaseScript(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="BaseScript"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new BaseScript? FromHandle(nuint handle)
             => handle == 0 ? null : new BaseScript(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="BaseScript"/> instance with the default Roblox class name.
+        /// </summary>
+        public BaseScript() : base(RobloxTypeRegistry.ClassNameOf<BaseScript>()) { }
+
 
         /// <summary>
         /// Determines whether a BaseScript will run or not.

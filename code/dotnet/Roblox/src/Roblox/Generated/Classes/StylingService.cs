@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StylingService(nuint handle) : base(handle) { }
 
+        internal StylingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StylingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StylingService? FromHandle(nuint handle)
             => handle == 0 ? null : new StylingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StylingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public StylingService() : base(RobloxTypeRegistry.ClassNameOf<StylingService>()) { }
+
 
         /// <summary>
         /// <c>StylingService.GetAppliedStyles</c>

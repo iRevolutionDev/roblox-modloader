@@ -22,6 +22,9 @@ public partial class Object
         Handle = handle;
     }
 
+    protected Object(string className)
+        => Handle = Reflection.CreateInstance(className);
+
     public override bool Equals(object? obj)
         => obj is Object other && other.Handle == Handle;
 
@@ -32,7 +35,7 @@ public partial class Object
 
     protected internal void RemoveEventHandler(string eventName, Delegate handler)
         => EventManager.Remove(Handle, eventName, handler);
-        
+
     public bool IsA<T>() where T : Object
         => this is T || (RobloxTypeRegistry.ActualType(Handle) is { } actual && typeof(T).IsAssignableFrom(actual));
 

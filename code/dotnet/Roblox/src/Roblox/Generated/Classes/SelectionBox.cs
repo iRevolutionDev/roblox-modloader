@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SelectionBox(nuint handle) : base(handle) { }
 
+        internal SelectionBox(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SelectionBox"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SelectionBox? FromHandle(nuint handle)
             => handle == 0 ? null : new SelectionBox(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SelectionBox"/> instance with the default Roblox class name.
+        /// </summary>
+        public SelectionBox() : base(RobloxTypeRegistry.ClassNameOf<SelectionBox>()) { }
+
 
         /// <summary>
         /// Determines the thickness of the boxes outlines, in studs.

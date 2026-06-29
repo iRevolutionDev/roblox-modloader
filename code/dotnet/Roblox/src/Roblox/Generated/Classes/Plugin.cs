@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Plugin(nuint handle) : base(handle) { }
 
+        internal Plugin(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Plugin"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Plugin? FromHandle(nuint handle)
             => handle == 0 ? null : new Plugin(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Plugin"/> instance with the default Roblox class name.
+        /// </summary>
+        public Plugin() : base(RobloxTypeRegistry.ClassNameOf<Plugin>()) { }
+
 
         /// <summary>
         /// Returns whether the user has enabled Collisions in Studio's toolbar.

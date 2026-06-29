@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PVInstance(nuint handle) : base(handle) { }
 
+        internal PVInstance(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PVInstance"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PVInstance? FromHandle(nuint handle)
             => handle == 0 ? null : new PVInstance(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PVInstance"/> instance with the default Roblox class name.
+        /// </summary>
+        public PVInstance() : base(RobloxTypeRegistry.ClassNameOf<PVInstance>()) { }
+
 
         /// <summary>
         /// <c>PVInstance.Origin</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal NetworkClient(nuint handle) : base(handle) { }
 
+        internal NetworkClient(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="NetworkClient"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new NetworkClient? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkClient(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="NetworkClient"/> instance with the default Roblox class name.
+        /// </summary>
+        public NetworkClient() : base(RobloxTypeRegistry.ClassNameOf<NetworkClient>()) { }
+
 
         /// <summary>
         /// Fired when the client successfully connects to a server. Returns a string showing the server's IP and port, and the client's ClientReplicator.

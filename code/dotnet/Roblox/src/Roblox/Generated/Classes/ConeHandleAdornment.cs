@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ConeHandleAdornment(nuint handle) : base(handle) { }
 
+        internal ConeHandleAdornment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ConeHandleAdornment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ConeHandleAdornment? FromHandle(nuint handle)
             => handle == 0 ? null : new ConeHandleAdornment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ConeHandleAdornment"/> instance with the default Roblox class name.
+        /// </summary>
+        public ConeHandleAdornment() : base(RobloxTypeRegistry.ClassNameOf<ConeHandleAdornment>()) { }
+
 
         /// <summary>
         /// Height of the cone adornment.

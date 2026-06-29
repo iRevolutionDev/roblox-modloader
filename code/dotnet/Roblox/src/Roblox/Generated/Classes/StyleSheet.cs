@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StyleSheet(nuint handle) : base(handle) { }
 
+        internal StyleSheet(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StyleSheet"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StyleSheet? FromHandle(nuint handle)
             => handle == 0 ? null : new StyleSheet(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StyleSheet"/> instance with the default Roblox class name.
+        /// </summary>
+        public StyleSheet() : base(RobloxTypeRegistry.ClassNameOf<StyleSheet>()) { }
+
 
         /// <summary>
         /// Returns an array of other StyleSheets from which the StyleSheet is deriving StyleRules and token definitions.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ControllerManager(nuint handle) : base(handle) { }
 
+        internal ControllerManager(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ControllerManager"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ControllerManager? FromHandle(nuint handle)
             => handle == 0 ? null : new ControllerManager(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ControllerManager"/> instance with the default Roblox class name.
+        /// </summary>
+        public ControllerManager() : base(RobloxTypeRegistry.ClassNameOf<ControllerManager>()) { }
+
 
         /// <summary>
         /// The ControllerBase that is set to be activated on the character.

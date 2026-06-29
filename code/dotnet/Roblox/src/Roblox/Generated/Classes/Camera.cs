@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Camera(nuint handle) : base(handle) { }
 
+        internal Camera(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Camera"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Camera? FromHandle(nuint handle)
             => handle == 0 ? null : new Camera(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Camera"/> instance with the default Roblox class name.
+        /// </summary>
+        public Camera() : base(RobloxTypeRegistry.ClassNameOf<Camera>()) { }
+
 
         /// <summary>
         /// The CFrame of the Camera, defining its position and orientation in the 3D world.

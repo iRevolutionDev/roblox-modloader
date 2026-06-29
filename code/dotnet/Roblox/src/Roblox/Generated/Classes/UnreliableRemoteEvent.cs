@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UnreliableRemoteEvent(nuint handle) : base(handle) { }
 
+        internal UnreliableRemoteEvent(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UnreliableRemoteEvent"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UnreliableRemoteEvent? FromHandle(nuint handle)
             => handle == 0 ? null : new UnreliableRemoteEvent(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UnreliableRemoteEvent"/> instance with the default Roblox class name.
+        /// </summary>
+        public UnreliableRemoteEvent() : base(RobloxTypeRegistry.ClassNameOf<UnreliableRemoteEvent>()) { }
+
 
         /// <summary>
         /// Fires the OnClientEvent event for all connected clients. Has a 1000 byte limit to the payload of the event. Events with larger payloads are dropped.

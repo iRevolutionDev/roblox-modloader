@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal LineForce(nuint handle) : base(handle) { }
 
+        internal LineForce(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="LineForce"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new LineForce? FromHandle(nuint handle)
             => handle == 0 ? null : new LineForce(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="LineForce"/> instance with the default Roblox class name.
+        /// </summary>
+        public LineForce() : base(RobloxTypeRegistry.ClassNameOf<LineForce>()) { }
+
 
         /// <summary>
         /// Whether force is applied at the center of mass of the parent assembly.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ChorusSoundEffect(nuint handle) : base(handle) { }
 
+        internal ChorusSoundEffect(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ChorusSoundEffect"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ChorusSoundEffect? FromHandle(nuint handle)
             => handle == 0 ? null : new ChorusSoundEffect(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ChorusSoundEffect"/> instance with the default Roblox class name.
+        /// </summary>
+        public ChorusSoundEffect() : base(RobloxTypeRegistry.ClassNameOf<ChorusSoundEffect>()) { }
+
 
         /// <summary>
         /// Controls how intense the effect is.

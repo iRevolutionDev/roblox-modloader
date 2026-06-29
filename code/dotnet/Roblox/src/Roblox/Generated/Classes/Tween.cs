@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Tween(nuint handle) : base(handle) { }
 
+        internal Tween(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Tween"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Tween? FromHandle(nuint handle)
             => handle == 0 ? null : new Tween(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Tween"/> instance with the default Roblox class name.
+        /// </summary>
+        public Tween() : base(RobloxTypeRegistry.ClassNameOf<Tween>()) { }
+
 
         /// <summary>
         /// Read-only property that points to the Instance whose properties are being interpolated by the tween.

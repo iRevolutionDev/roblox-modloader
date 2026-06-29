@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FlagStandService(nuint handle) : base(handle) { }
 
+        internal FlagStandService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FlagStandService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FlagStandService? FromHandle(nuint handle)
             => handle == 0 ? null : new FlagStandService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FlagStandService"/> instance with the default Roblox class name.
+        /// </summary>
+        public FlagStandService() : base(RobloxTypeRegistry.ClassNameOf<FlagStandService>()) { }
+
 
     }
 }

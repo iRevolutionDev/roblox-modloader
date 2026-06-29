@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MemoryStoreHashMap(nuint handle) : base(handle) { }
 
+        internal MemoryStoreHashMap(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MemoryStoreHashMap"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MemoryStoreHashMap? FromHandle(nuint handle)
             => handle == 0 ? null : new MemoryStoreHashMap(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MemoryStoreHashMap"/> instance with the default Roblox class name.
+        /// </summary>
+        public MemoryStoreHashMap() : base(RobloxTypeRegistry.ClassNameOf<MemoryStoreHashMap>()) { }
+
 
         /// <summary>
         /// Retrieves the value of a key in the hash map.

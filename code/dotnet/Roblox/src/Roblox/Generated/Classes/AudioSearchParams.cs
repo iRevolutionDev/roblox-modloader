@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioSearchParams(nuint handle) : base(handle) { }
 
+        internal AudioSearchParams(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioSearchParams"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioSearchParams? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioSearchParams(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioSearchParams"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioSearchParams() : base(RobloxTypeRegistry.ClassNameOf<AudioSearchParams>()) { }
+
 
         /// <summary>
         /// The album the audio asset belongs to.

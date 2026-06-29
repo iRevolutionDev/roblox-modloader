@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioTestService(nuint handle) : base(handle) { }
 
+        internal StudioTestService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioTestService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioTestService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioTestService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioTestService"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioTestService() : base(RobloxTypeRegistry.ClassNameOf<StudioTestService>()) { }
+
 
         /// <summary>
         /// <c>StudioTestService.EditModeActive</c>

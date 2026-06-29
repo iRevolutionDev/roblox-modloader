@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AdService(nuint handle) : base(handle) { }
 
+        internal AdService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AdService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AdService? FromHandle(nuint handle)
             => handle == 0 ? null : new AdService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AdService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AdService() : base(RobloxTypeRegistry.ClassNameOf<AdService>()) { }
+
 
         /// <summary>
         /// Creates a reward to give users who watch an entire video ad.

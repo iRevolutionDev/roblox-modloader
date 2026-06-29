@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginToolbarButton(nuint handle) : base(handle) { }
 
+        internal PluginToolbarButton(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginToolbarButton"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginToolbarButton? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginToolbarButton(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginToolbarButton"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginToolbarButton() : base(RobloxTypeRegistry.ClassNameOf<PluginToolbarButton>()) { }
+
 
         /// <summary>
         /// Determines whether the button can be clicked when the 3D viewport is hidden, such as when a Script is being edited in another tab.

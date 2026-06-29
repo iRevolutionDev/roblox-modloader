@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ArcHandles(nuint handle) : base(handle) { }
 
+        internal ArcHandles(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ArcHandles"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ArcHandles? FromHandle(nuint handle)
             => handle == 0 ? null : new ArcHandles(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ArcHandles"/> instance with the default Roblox class name.
+        /// </summary>
+        public ArcHandles() : base(RobloxTypeRegistry.ClassNameOf<ArcHandles>()) { }
+
 
         /// <summary>
         /// Sets the current Axes ArcHandles will show.

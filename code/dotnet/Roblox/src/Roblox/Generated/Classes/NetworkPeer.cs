@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal NetworkPeer(nuint handle) : base(handle) { }
 
+        internal NetworkPeer(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="NetworkPeer"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new NetworkPeer? FromHandle(nuint handle)
             => handle == 0 ? null : new NetworkPeer(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="NetworkPeer"/> instance with the default Roblox class name.
+        /// </summary>
+        public NetworkPeer() : base(RobloxTypeRegistry.ClassNameOf<NetworkPeer>()) { }
+
 
         /// <summary>
         /// <c>NetworkPeer.InitializeRemoteAllowList</c>

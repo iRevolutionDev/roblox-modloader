@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ChangeHistoryService(nuint handle) : base(handle) { }
 
+        internal ChangeHistoryService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ChangeHistoryService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ChangeHistoryService? FromHandle(nuint handle)
             => handle == 0 ? null : new ChangeHistoryService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ChangeHistoryService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ChangeHistoryService() : base(RobloxTypeRegistry.ClassNameOf<ChangeHistoryService>()) { }
+
 
         /// <summary>
         /// Communicates to Studio that the identified recording is finished and to take the final operation to complete the recording.

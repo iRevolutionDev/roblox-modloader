@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RealtimeMedia(nuint handle) : base(handle) { }
 
+        internal RealtimeMedia(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RealtimeMedia"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RealtimeMedia? FromHandle(nuint handle)
             => handle == 0 ? null : new RealtimeMedia(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RealtimeMedia"/> instance with the default Roblox class name.
+        /// </summary>
+        public RealtimeMedia() : base(RobloxTypeRegistry.ClassNameOf<RealtimeMedia>()) { }
+
 
         public bool ForwardInput
         {

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UIStroke(nuint handle) : base(handle) { }
 
+        internal UIStroke(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UIStroke"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UIStroke? FromHandle(nuint handle)
             => handle == 0 ? null : new UIStroke(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UIStroke"/> instance with the default Roblox class name.
+        /// </summary>
+        public UIStroke() : base(RobloxTypeRegistry.ClassNameOf<UIStroke>()) { }
+
 
         /// <summary>
         /// Determines whether to apply the stroke to the object's border instead of the text itself.

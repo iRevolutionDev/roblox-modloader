@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal InputAction(nuint handle) : base(handle) { }
 
+        internal InputAction(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="InputAction"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new InputAction? FromHandle(nuint handle)
             => handle == 0 ? null : new InputAction(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="InputAction"/> instance with the default Roblox class name.
+        /// </summary>
+        public InputAction() : base(RobloxTypeRegistry.ClassNameOf<InputAction>()) { }
+
 
         /// <summary>
         /// Non-scriptable read-only property useful for debugging Bool input actions.

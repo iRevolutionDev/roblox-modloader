@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Sky(nuint handle) : base(handle) { }
 
+        internal Sky(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Sky"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Sky? FromHandle(nuint handle)
             => handle == 0 ? null : new Sky(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Sky"/> instance with the default Roblox class name.
+        /// </summary>
+        public Sky() : base(RobloxTypeRegistry.ClassNameOf<Sky>()) { }
+
 
         /// <summary>
         /// Sets whether the sun, moon, and stars will show.

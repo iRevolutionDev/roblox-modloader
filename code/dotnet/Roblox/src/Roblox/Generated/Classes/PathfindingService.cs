@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PathfindingService(nuint handle) : base(handle) { }
 
+        internal PathfindingService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PathfindingService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PathfindingService? FromHandle(nuint handle)
             => handle == 0 ? null : new PathfindingService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PathfindingService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PathfindingService() : base(RobloxTypeRegistry.ClassNameOf<PathfindingService>()) { }
+
 
         /// <summary>
         /// Deprecated: This property is deprecated, since the legacy pathfinding system using it has since been removed. Do not use it for new work.Sets the percent of a voxel has to be occupied to be considered empty. Defaults to 0.16.

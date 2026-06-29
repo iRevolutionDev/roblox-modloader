@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MaterialGenerationService(nuint handle) : base(handle) { }
 
+        internal MaterialGenerationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MaterialGenerationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MaterialGenerationService? FromHandle(nuint handle)
             => handle == 0 ? null : new MaterialGenerationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MaterialGenerationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public MaterialGenerationService() : base(RobloxTypeRegistry.ClassNameOf<MaterialGenerationService>()) { }
+
 
         /// <summary>
         /// <c>MaterialGenerationService.GenerateMaterialVariantsAsync</c>

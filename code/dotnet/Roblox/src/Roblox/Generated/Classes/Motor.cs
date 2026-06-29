@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Motor(nuint handle) : base(handle) { }
 
+        internal Motor(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Motor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Motor? FromHandle(nuint handle)
             => handle == 0 ? null : new Motor(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Motor"/> instance with the default Roblox class name.
+        /// </summary>
+        public Motor() : base(RobloxTypeRegistry.ClassNameOf<Motor>()) { }
+
 
         /// <summary>
         /// Displays the current rotation of the motor in radians.

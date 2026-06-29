@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AvatarCreationService(nuint handle) : base(handle) { }
 
+        internal AvatarCreationService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AvatarCreationService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AvatarCreationService? FromHandle(nuint handle)
             => handle == 0 ? null : new AvatarCreationService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AvatarCreationService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AvatarCreationService() : base(RobloxTypeRegistry.ClassNameOf<AvatarCreationService>()) { }
+
 
         /// <summary>
         /// <c>AvatarCreationService.DeserializeAvatarModel</c>

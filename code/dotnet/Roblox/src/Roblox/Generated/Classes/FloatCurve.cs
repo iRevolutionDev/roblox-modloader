@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FloatCurve(nuint handle) : base(handle) { }
 
+        internal FloatCurve(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FloatCurve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FloatCurve? FromHandle(nuint handle)
             => handle == 0 ? null : new FloatCurve(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FloatCurve"/> instance with the default Roblox class name.
+        /// </summary>
+        public FloatCurve() : base(RobloxTypeRegistry.ClassNameOf<FloatCurve>()) { }
+
 
         /// <summary>
         /// Number of keys in the float curve.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal EditableMesh(nuint handle) : base(handle) { }
 
+        internal EditableMesh(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="EditableMesh"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static EditableMesh? FromHandle(nuint handle)
             => handle == 0 ? null : new EditableMesh(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="EditableMesh"/> instance with the default Roblox class name.
+        /// </summary>
+        public EditableMesh() : base(RobloxTypeRegistry.ClassNameOf<EditableMesh>()) { }
+
 
         /// <summary>
         /// Returns true if a mesh is fixed-size.

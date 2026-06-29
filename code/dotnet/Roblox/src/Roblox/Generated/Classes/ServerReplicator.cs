@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ServerReplicator(nuint handle) : base(handle) { }
 
+        internal ServerReplicator(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ServerReplicator"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ServerReplicator? FromHandle(nuint handle)
             => handle == 0 ? null : new ServerReplicator(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ServerReplicator"/> instance with the default Roblox class name.
+        /// </summary>
+        public ServerReplicator() : base(RobloxTypeRegistry.ClassNameOf<ServerReplicator>()) { }
+
 
     }
 }

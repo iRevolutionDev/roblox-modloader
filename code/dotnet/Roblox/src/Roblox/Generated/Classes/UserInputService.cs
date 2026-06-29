@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal UserInputService(nuint handle) : base(handle) { }
 
+        internal UserInputService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="UserInputService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new UserInputService? FromHandle(nuint handle)
             => handle == 0 ? null : new UserInputService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="UserInputService"/> instance with the default Roblox class name.
+        /// </summary>
+        public UserInputService() : base(RobloxTypeRegistry.ClassNameOf<UserInputService>()) { }
+
 
         /// <summary>
         /// Describes whether the user's device has an accelerometer.

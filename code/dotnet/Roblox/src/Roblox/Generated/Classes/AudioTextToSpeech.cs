@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioTextToSpeech(nuint handle) : base(handle) { }
 
+        internal AudioTextToSpeech(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioTextToSpeech"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioTextToSpeech? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioTextToSpeech(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioTextToSpeech"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioTextToSpeech() : base(RobloxTypeRegistry.ClassNameOf<AudioTextToSpeech>()) { }
+
 
         /// <summary>
         /// Denotes whether the AudioTextToSpeech object is loaded, buffered, and ready to play.

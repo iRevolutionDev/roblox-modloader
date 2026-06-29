@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PermissionsService(nuint handle) : base(handle) { }
 
+        internal PermissionsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PermissionsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PermissionsService? FromHandle(nuint handle)
             => handle == 0 ? null : new PermissionsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PermissionsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public PermissionsService() : base(RobloxTypeRegistry.ClassNameOf<PermissionsService>()) { }
+
 
         /// <summary>
         /// <c>PermissionsService.GetIsThirdPartyAssetAllowed</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ViewportFrame(nuint handle) : base(handle) { }
 
+        internal ViewportFrame(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ViewportFrame"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ViewportFrame? FromHandle(nuint handle)
             => handle == 0 ? null : new ViewportFrame(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ViewportFrame"/> instance with the default Roblox class name.
+        /// </summary>
+        public ViewportFrame() : base(RobloxTypeRegistry.ClassNameOf<ViewportFrame>()) { }
+
 
         /// <summary>
         /// The lighting hue applied to the area within the ViewportFrame.

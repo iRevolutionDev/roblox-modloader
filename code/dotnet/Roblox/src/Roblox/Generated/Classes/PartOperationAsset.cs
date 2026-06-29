@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PartOperationAsset(nuint handle) : base(handle) { }
 
+        internal PartOperationAsset(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PartOperationAsset"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PartOperationAsset? FromHandle(nuint handle)
             => handle == 0 ? null : new PartOperationAsset(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PartOperationAsset"/> instance with the default Roblox class name.
+        /// </summary>
+        public PartOperationAsset() : base(RobloxTypeRegistry.ClassNameOf<PartOperationAsset>()) { }
+
 
     }
 }

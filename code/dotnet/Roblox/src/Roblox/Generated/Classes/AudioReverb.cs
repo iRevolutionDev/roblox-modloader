@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioReverb(nuint handle) : base(handle) { }
 
+        internal AudioReverb(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioReverb"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioReverb? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioReverb(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioReverb"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioReverb() : base(RobloxTypeRegistry.ClassNameOf<AudioReverb>()) { }
+
 
         /// <summary>
         /// Whether audio streams are passed-through unaffected by this effect.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ProximityPromptService(nuint handle) : base(handle) { }
 
+        internal ProximityPromptService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ProximityPromptService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ProximityPromptService? FromHandle(nuint handle)
             => handle == 0 ? null : new ProximityPromptService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ProximityPromptService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ProximityPromptService() : base(RobloxTypeRegistry.ClassNameOf<ProximityPromptService>()) { }
+
 
         /// <summary>
         /// Whether ProximityPrompts are enabled, and therefore shown, in-experience.

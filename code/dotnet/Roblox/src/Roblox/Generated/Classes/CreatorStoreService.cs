@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal CreatorStoreService(nuint handle) : base(handle) { }
 
+        internal CreatorStoreService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="CreatorStoreService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new CreatorStoreService? FromHandle(nuint handle)
             => handle == 0 ? null : new CreatorStoreService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="CreatorStoreService"/> instance with the default Roblox class name.
+        /// </summary>
+        public CreatorStoreService() : base(RobloxTypeRegistry.ClassNameOf<CreatorStoreService>()) { }
+
 
         /// <summary>
         /// <c>CreatorStoreService.GetAssetInfoAsync</c>

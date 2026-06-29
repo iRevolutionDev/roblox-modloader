@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PathfindingModifier(nuint handle) : base(handle) { }
 
+        internal PathfindingModifier(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PathfindingModifier"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PathfindingModifier? FromHandle(nuint handle)
             => handle == 0 ? null : new PathfindingModifier(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PathfindingModifier"/> instance with the default Roblox class name.
+        /// </summary>
+        public PathfindingModifier() : base(RobloxTypeRegistry.ClassNameOf<PathfindingModifier>()) { }
+
 
         /// <summary>
         /// The name of the navigation area inside or on top of the parts enclosed by the modifier.

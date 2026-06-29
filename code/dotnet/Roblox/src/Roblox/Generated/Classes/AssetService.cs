@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AssetService(nuint handle) : base(handle) { }
 
+        internal AssetService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AssetService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AssetService? FromHandle(nuint handle)
             => handle == 0 ? null : new AssetService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AssetService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AssetService() : base(RobloxTypeRegistry.ClassNameOf<AssetService>()) { }
+
 
         /// <summary>
         /// Controls whether AssetService:LoadAssetAsync() can load assets that are not owned by the experience creator.

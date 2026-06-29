@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal FlagStand(nuint handle) : base(handle) { }
 
+        internal FlagStand(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="FlagStand"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new FlagStand? FromHandle(nuint handle)
             => handle == 0 ? null : new FlagStand(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="FlagStand"/> instance with the default Roblox class name.
+        /// </summary>
+        public FlagStand() : base(RobloxTypeRegistry.ClassNameOf<FlagStand>()) { }
+
 
         /// <summary>
         /// The Team that owns the FlagStand. Corresponds with the TeamColors in the Teams service.

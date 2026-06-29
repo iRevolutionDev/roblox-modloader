@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AtmosphereSensor(nuint handle) : base(handle) { }
 
+        internal AtmosphereSensor(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AtmosphereSensor"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AtmosphereSensor? FromHandle(nuint handle)
             => handle == 0 ? null : new AtmosphereSensor(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AtmosphereSensor"/> instance with the default Roblox class name.
+        /// </summary>
+        public AtmosphereSensor() : base(RobloxTypeRegistry.ClassNameOf<AtmosphereSensor>()) { }
+
 
         /// <summary>
         /// Measures the density of the air where the sensor is positioned.

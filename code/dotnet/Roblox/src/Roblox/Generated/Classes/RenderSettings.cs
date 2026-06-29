@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal RenderSettings(nuint handle) : base(handle) { }
 
+        internal RenderSettings(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="RenderSettings"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new RenderSettings? FromHandle(nuint handle)
             => handle == 0 ? null : new RenderSettings(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="RenderSettings"/> instance with the default Roblox class name.
+        /// </summary>
+        public RenderSettings() : base(RobloxTypeRegistry.ClassNameOf<RenderSettings>()) { }
+
 
         /// <summary>
         /// Sets the starting quality level of the framerate manager.

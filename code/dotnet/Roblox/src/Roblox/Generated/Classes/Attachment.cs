@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Attachment(nuint handle) : base(handle) { }
 
+        internal Attachment(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Attachment"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Attachment? FromHandle(nuint handle)
             => handle == 0 ? null : new Attachment(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Attachment"/> instance with the default Roblox class name.
+        /// </summary>
+        public Attachment() : base(RobloxTypeRegistry.ClassNameOf<Attachment>()) { }
+
 
         /// <summary>
         /// Direction of the X axis of the attachment, represented as a unit Vector3.

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ScreenshotHud(nuint handle) : base(handle) { }
 
+        internal ScreenshotHud(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ScreenshotHud"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ScreenshotHud? FromHandle(nuint handle)
             => handle == 0 ? null : new ScreenshotHud(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ScreenshotHud"/> instance with the default Roblox class name.
+        /// </summary>
+        public ScreenshotHud() : base(RobloxTypeRegistry.ClassNameOf<ScreenshotHud>()) { }
+
 
         /// <summary>
         /// Asset ID of the icon used for the camera button.

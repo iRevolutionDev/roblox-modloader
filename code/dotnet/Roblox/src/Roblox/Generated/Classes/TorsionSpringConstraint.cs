@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TorsionSpringConstraint(nuint handle) : base(handle) { }
 
+        internal TorsionSpringConstraint(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TorsionSpringConstraint"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TorsionSpringConstraint? FromHandle(nuint handle)
             => handle == 0 ? null : new TorsionSpringConstraint(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TorsionSpringConstraint"/> instance with the default Roblox class name.
+        /// </summary>
+        public TorsionSpringConstraint() : base(RobloxTypeRegistry.ClassNameOf<TorsionSpringConstraint>()) { }
+
 
         /// <summary>
         /// The number of coils visualized for the constraint.

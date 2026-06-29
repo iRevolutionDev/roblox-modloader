@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Vector3Curve(nuint handle) : base(handle) { }
 
+        internal Vector3Curve(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Vector3Curve"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Vector3Curve? FromHandle(nuint handle)
             => handle == 0 ? null : new Vector3Curve(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Vector3Curve"/> instance with the default Roblox class name.
+        /// </summary>
+        public Vector3Curve() : base(RobloxTypeRegistry.ClassNameOf<Vector3Curve>()) { }
+
 
         /// <summary>
         /// Returns the three FloatCurves (X, Y, Z) at the passed time argument.

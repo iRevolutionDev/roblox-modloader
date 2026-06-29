@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnimationFromVideoCreatorService(nuint handle) : base(handle) { }
 
+        internal AnimationFromVideoCreatorService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnimationFromVideoCreatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnimationFromVideoCreatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationFromVideoCreatorService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnimationFromVideoCreatorService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnimationFromVideoCreatorService() : base(RobloxTypeRegistry.ClassNameOf<AnimationFromVideoCreatorService>()) { }
+
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorService.CreateJob</c>

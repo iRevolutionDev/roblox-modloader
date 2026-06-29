@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal GuiService(nuint handle) : base(handle) { }
 
+        internal GuiService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="GuiService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new GuiService? FromHandle(nuint handle)
             => handle == 0 ? null : new GuiService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="GuiService"/> instance with the default Roblox class name.
+        /// </summary>
+        public GuiService() : base(RobloxTypeRegistry.ClassNameOf<GuiService>()) { }
+
 
         /// <summary>
         /// If activated, the Select button on a gamepad or Backslash will automatically set a GUI as the selected object.

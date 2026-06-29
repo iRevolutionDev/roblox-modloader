@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal MemStorageConnection(nuint handle) : base(handle) { }
 
+        internal MemStorageConnection(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="MemStorageConnection"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new MemStorageConnection? FromHandle(nuint handle)
             => handle == 0 ? null : new MemStorageConnection(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="MemStorageConnection"/> instance with the default Roblox class name.
+        /// </summary>
+        public MemStorageConnection() : base(RobloxTypeRegistry.ClassNameOf<MemStorageConnection>()) { }
+
 
         /// <summary>
         /// <c>MemStorageConnection.Disconnect</c>

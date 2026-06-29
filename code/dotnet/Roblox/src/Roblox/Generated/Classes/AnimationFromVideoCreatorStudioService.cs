@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AnimationFromVideoCreatorStudioService(nuint handle) : base(handle) { }
 
+        internal AnimationFromVideoCreatorStudioService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AnimationFromVideoCreatorStudioService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AnimationFromVideoCreatorStudioService? FromHandle(nuint handle)
             => handle == 0 ? null : new AnimationFromVideoCreatorStudioService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AnimationFromVideoCreatorStudioService"/> instance with the default Roblox class name.
+        /// </summary>
+        public AnimationFromVideoCreatorStudioService() : base(RobloxTypeRegistry.ClassNameOf<AnimationFromVideoCreatorStudioService>()) { }
+
 
         /// <summary>
         /// <c>AnimationFromVideoCreatorStudioService.IsAgeRestricted</c>

@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PluginMouse(nuint handle) : base(handle) { }
 
+        internal PluginMouse(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PluginMouse"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PluginMouse? FromHandle(nuint handle)
             => handle == 0 ? null : new PluginMouse(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PluginMouse"/> instance with the default Roblox class name.
+        /// </summary>
+        public PluginMouse() : base(RobloxTypeRegistry.ClassNameOf<PluginMouse>()) { }
+
 
         /// <summary>
         /// Fired when Instances are being selected while the mouse is dragging.

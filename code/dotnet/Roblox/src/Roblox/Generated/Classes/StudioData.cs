@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioData(nuint handle) : base(handle) { }
 
+        internal StudioData(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioData"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioData? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioData(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioData"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioData() : base(RobloxTypeRegistry.ClassNameOf<StudioData>()) { }
+
 
         public bool EnableScriptCollabByDefaultOnLoad
         {

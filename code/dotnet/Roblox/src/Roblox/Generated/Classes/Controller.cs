@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Controller(nuint handle) : base(handle) { }
 
+        internal Controller(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Controller"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Controller? FromHandle(nuint handle)
             => handle == 0 ? null : new Controller(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Controller"/> instance with the default Roblox class name.
+        /// </summary>
+        public Controller() : base(RobloxTypeRegistry.ClassNameOf<Controller>()) { }
+
 
         /// <summary>
         /// Activates an overriding bind on the specified button.

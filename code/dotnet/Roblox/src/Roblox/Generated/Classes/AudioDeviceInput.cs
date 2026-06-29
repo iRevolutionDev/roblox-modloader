@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal AudioDeviceInput(nuint handle) : base(handle) { }
 
+        internal AudioDeviceInput(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="AudioDeviceInput"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new AudioDeviceInput? FromHandle(nuint handle)
             => handle == 0 ? null : new AudioDeviceInput(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="AudioDeviceInput"/> instance with the default Roblox class name.
+        /// </summary>
+        public AudioDeviceInput() : base(RobloxTypeRegistry.ClassNameOf<AudioDeviceInput>()) { }
+
 
         /// <summary>
         /// Determines whether the list of user IDs provided to SetUserIdAccessList is treated as an allow-list or deny-list.

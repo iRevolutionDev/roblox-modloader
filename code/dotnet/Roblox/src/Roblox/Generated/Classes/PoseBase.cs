@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PoseBase(nuint handle) : base(handle) { }
 
+        internal PoseBase(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PoseBase"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PoseBase? FromHandle(nuint handle)
             => handle == 0 ? null : new PoseBase(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PoseBase"/> instance with the default Roblox class name.
+        /// </summary>
+        public PoseBase() : base(RobloxTypeRegistry.ClassNameOf<PoseBase>()) { }
+
 
         /// <summary>
         /// The easing direction to use to reach the next Pose's value.

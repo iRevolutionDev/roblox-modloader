@@ -14,12 +14,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioActionOverride(nuint handle) : base(handle) { }
 
+        internal StudioActionOverride(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioActionOverride"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static StudioActionOverride? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioActionOverride(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioActionOverride"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioActionOverride() : base(RobloxTypeRegistry.ClassNameOf<StudioActionOverride>()) { }
+
 
         public bool Enabled
         {

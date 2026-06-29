@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal PlayerMouse(nuint handle) : base(handle) { }
 
+        internal PlayerMouse(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="PlayerMouse"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new PlayerMouse? FromHandle(nuint handle)
             => handle == 0 ? null : new PlayerMouse(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="PlayerMouse"/> instance with the default Roblox class name.
+        /// </summary>
+        public PlayerMouse() : base(RobloxTypeRegistry.ClassNameOf<PlayerMouse>()) { }
+
 
     }
 }

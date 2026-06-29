@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal TaskScheduler(nuint handle) : base(handle) { }
 
+        internal TaskScheduler(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="TaskScheduler"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new TaskScheduler? FromHandle(nuint handle)
             => handle == 0 ? null : new TaskScheduler(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="TaskScheduler"/> instance with the default Roblox class name.
+        /// </summary>
+        public TaskScheduler() : base(RobloxTypeRegistry.ClassNameOf<TaskScheduler>()) { }
+
 
         /// <summary>
         /// The average time divided by the average interval of the duty cycle.

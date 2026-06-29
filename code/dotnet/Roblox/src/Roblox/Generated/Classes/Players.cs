@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal Players(nuint handle) : base(handle) { }
 
+        internal Players(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="Players"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new Players? FromHandle(nuint handle)
             => handle == 0 ? null : new Players(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="Players"/> instance with the default Roblox class name.
+        /// </summary>
+        public Players() : base(RobloxTypeRegistry.ClassNameOf<Players>()) { }
+
 
         /// <summary>
         /// Enables or disables the three Players methods (BanAsync(), UnbanAsync(), and GetBanHistoryAsync()) that constitute the ban API. This property is not scriptable and can only be modified in Studio.

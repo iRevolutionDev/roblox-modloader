@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ServerScriptService(nuint handle) : base(handle) { }
 
+        internal ServerScriptService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ServerScriptService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ServerScriptService? FromHandle(nuint handle)
             => handle == 0 ? null : new ServerScriptService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ServerScriptService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ServerScriptService() : base(RobloxTypeRegistry.ClassNameOf<ServerScriptService>()) { }
+
 
         /// <summary>
         /// Toggles whether or not the loadstring function can be used by server scripts. Defaults to false.

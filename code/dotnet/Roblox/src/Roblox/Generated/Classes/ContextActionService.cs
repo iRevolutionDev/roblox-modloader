@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal ContextActionService(nuint handle) : base(handle) { }
 
+        internal ContextActionService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="ContextActionService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new ContextActionService? FromHandle(nuint handle)
             => handle == 0 ? null : new ContextActionService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="ContextActionService"/> instance with the default Roblox class name.
+        /// </summary>
+        public ContextActionService() : base(RobloxTypeRegistry.ClassNameOf<ContextActionService>()) { }
+
 
         /// <summary>
         /// Bind user input to an action given an action handling function.

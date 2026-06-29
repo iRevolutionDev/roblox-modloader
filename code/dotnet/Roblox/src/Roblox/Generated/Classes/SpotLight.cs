@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal SpotLight(nuint handle) : base(handle) { }
 
+        internal SpotLight(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="SpotLight"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new SpotLight? FromHandle(nuint handle)
             => handle == 0 ? null : new SpotLight(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="SpotLight"/> instance with the default Roblox class name.
+        /// </summary>
+        public SpotLight() : base(RobloxTypeRegistry.ClassNameOf<SpotLight>()) { }
+
 
         /// <summary>
         /// The angle of which the light is shone from the SpotLight.

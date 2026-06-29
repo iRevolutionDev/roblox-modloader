@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal DraftsService(nuint handle) : base(handle) { }
 
+        internal DraftsService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="DraftsService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new DraftsService? FromHandle(nuint handle)
             => handle == 0 ? null : new DraftsService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="DraftsService"/> instance with the default Roblox class name.
+        /// </summary>
+        public DraftsService() : base(RobloxTypeRegistry.ClassNameOf<DraftsService>()) { }
+
 
         /// <summary>
         /// <c>DraftsService.DiscardEdits</c>

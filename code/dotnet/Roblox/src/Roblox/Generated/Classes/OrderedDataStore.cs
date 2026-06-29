@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal OrderedDataStore(nuint handle) : base(handle) { }
 
+        internal OrderedDataStore(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="OrderedDataStore"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new OrderedDataStore? FromHandle(nuint handle)
             => handle == 0 ? null : new OrderedDataStore(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="OrderedDataStore"/> instance with the default Roblox class name.
+        /// </summary>
+        public OrderedDataStore() : base(RobloxTypeRegistry.ClassNameOf<OrderedDataStore>()) { }
+
 
         /// <summary>
         /// Returns a DataStorePages object.

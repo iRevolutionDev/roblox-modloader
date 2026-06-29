@@ -18,12 +18,20 @@ namespace Roblox
         /// <exception cref="ArgumentException">Thrown when <paramref name="handle"/> is zero.</exception>
         internal StudioDeviceSimulatorService(nuint handle) : base(handle) { }
 
+        internal StudioDeviceSimulatorService(string className) : base(className) { }
+
         /// <summary>
         /// Creates a <see cref="StudioDeviceSimulatorService"/> wrapper from a native handle, or returns
         /// <see langword="null"/> when <paramref name="handle"/> is zero.
         /// </summary>
         public static new StudioDeviceSimulatorService? FromHandle(nuint handle)
             => handle == 0 ? null : new StudioDeviceSimulatorService(handle);
+
+        /// <summary>
+        /// Creates a new <see cref="StudioDeviceSimulatorService"/> instance with the default Roblox class name.
+        /// </summary>
+        public StudioDeviceSimulatorService() : base(RobloxTypeRegistry.ClassNameOf<StudioDeviceSimulatorService>()) { }
+
 
         /// <summary>
         /// <c>StudioDeviceSimulatorService.CreateDeviceAsync</c>
