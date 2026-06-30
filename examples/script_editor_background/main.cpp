@@ -54,7 +54,7 @@ public:
 		m_log = logger::get_logger("ScriptEditorBg");
 	}
 
-	void on_load() override
+	[[noreturn]] void on_load() override
 	{
 		m_store = std::make_unique<rml::config::ModSettings>(paths().config_file("config.toml"));
 		m_store->write_default_if_missing(default_config_template());
@@ -86,7 +86,16 @@ public:
 			    to_string(m_settings.alignment));
 		});
 
-		m_log->info("loaded — mod folder '{}'", mod_folder().string());
+		std::thread([this] {
+			// This is a hacky, i'll fix it later don't worry ;(
+			while (true)
+			{
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				m_overlay->hook_open_editors();
+			}
+		}).detach();
+
+		m_log->info("loaded - mod folder '{}'", mod_folder().string());
 	}
 
 	void on_unload() override
