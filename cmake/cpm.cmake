@@ -1,3 +1,7 @@
+if (NOT DEFINED CPM_SOURCE_CACHE AND NOT DEFINED ENV{CPM_SOURCE_CACHE})
+    set(CPM_SOURCE_CACHE "${CMAKE_BINARY_DIR}/_cpm_cache" CACHE PATH "Directory CPM caches fetched package sources in")
+endif ()
+
 set(CPM_DOWNLOAD_VERSION 0.40.2)
 
 if (CPM_SOURCE_CACHE)
