@@ -26,6 +26,7 @@ if (ROBLOX_MODLOADER_INSTALL)
     install(FILES
             "${CMAKE_CURRENT_BINARY_DIR}/RobloxModLoaderConfig.cmake"
             "${CMAKE_CURRENT_BINARY_DIR}/RobloxModLoaderConfigVersion.cmake"
+            "${ROBLOX_MODLOADER_ROOT_DIR}/cmake/roblox_add_mod.cmake"
             DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/RobloxModLoader
     )
 

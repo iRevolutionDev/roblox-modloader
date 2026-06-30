@@ -32,9 +32,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+set(ROBLOX_MODLOADER_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(ROBLOX_MODLOADER_SOURCE_DIR "code/roblox_modloader/src")
 set(ROBLOX_MODLOADER_INCLUDE_DIR "code/roblox_modloader/include")
-set(LUAU_SOURCE_DIR "${CMAKE_SOURCE_DIR}/libs/third_party/luau")
+set(LUAU_SOURCE_DIR "${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/luau")
 
 include(cmake/spdlog.cmake)
 include(cmake/minhook.cmake)
@@ -49,10 +50,15 @@ include(cmake/dotnet_hosting.cmake)
 
 include(cmake/dependencies.cmake)
 
+include(cmake/roblox_add_mod.cmake)
+
 add_subdirectory(libs/third_party)
 
 add_subdirectory(code/roblox_modloader)
-add_subdirectory(code/dotnet)
+
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    add_subdirectory(code/dotnet)
+endif ()
 
 include(cmake/subdirs.cmake)
 

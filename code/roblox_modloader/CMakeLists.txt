@@ -26,7 +26,7 @@ find_package(Git QUIET)
 
 execute_process(COMMAND ${CMAKE_COMMAND}
         "-DGIT_EXECUTABLE=${GIT_EXECUTABLE}"
-        "-DVERSION_REPO_DIR=${CMAKE_SOURCE_DIR}"
+        "-DVERSION_REPO_DIR=${ROBLOX_MODLOADER_ROOT_DIR}"
         "-DVERSION_INPUT=${RML_VERSION_INPUT}"
         "-DVERSION_OUTPUT=${RML_VERSION_OUTPUT}"
         -P "${RML_VERSION_SCRIPT}"
@@ -37,7 +37,7 @@ list(APPEND MODLOADER_SOURCES "${RML_VERSION_OUTPUT}")
 add_custom_target(roblox_modloader_version
         COMMAND ${CMAKE_COMMAND}
         "-DGIT_EXECUTABLE=${GIT_EXECUTABLE}"
-        "-DVERSION_REPO_DIR=${CMAKE_SOURCE_DIR}"
+        "-DVERSION_REPO_DIR=${ROBLOX_MODLOADER_ROOT_DIR}"
         "-DVERSION_INPUT=${RML_VERSION_INPUT}"
         "-DVERSION_OUTPUT=${RML_VERSION_OUTPUT}"
         -P "${RML_VERSION_SCRIPT}"
@@ -96,9 +96,9 @@ add_library(RobloxModLoader::RobloxModLoader ALIAS RobloxModLoader)
 target_include_directories(RobloxModLoader INTERFACE
         "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_INCLUDE_DIR}>"
         "$<INSTALL_INTERFACE:include>"
-        "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libs/third_party/g3d/include>"
-        "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libs/third_party/bullet/include>"
-        "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libs/third_party/rbxg3d/include>"
+        "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/g3d/include>"
+        "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/bullet/include>"
+        "$<BUILD_INTERFACE:${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/rbxg3d/include>"
         "$<BUILD_INTERFACE:${spdlog_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${tomlplusplus_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
