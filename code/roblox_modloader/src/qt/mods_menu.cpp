@@ -73,7 +73,47 @@ namespace rml::qt
 			return;
 
 		std::scoped_lock lock(m_mutex);
-		m_entries.push_back({std::move(text), std::move(on_click)});
+		m_entries.push_back({m_next_id++, std::move(text), std::move(on_click)});
+	}
+
+	uint64_t ModsMenu::register_action(std::string text, std::function<void()> on_click)
+	{
+		if (text.empty() || !on_click)
+			return 0;
+
+		void* menu_bar = nullptr;
+		uint64_t id = 0;
+		{
+			std::scoped_lock lock(m_mutex);
+			id = m_next_id++;
+			m_entries.push_back({id, std::move(text), std::move(on_click)});
+			menu_bar = m_menu_bar_handle;
+		}
+
+		if (menu_bar)
+			rebuild(menu_bar);
+
+		return id;
+	}
+
+	void ModsMenu::remove_action(uint64_t id)
+	{
+		if (id == 0)
+			return;
+
+		void* live_action = nullptr;
+		{
+			std::scoped_lock lock(m_mutex);
+			std::erase_if(m_entries, [id](const Entry& entry) { return entry.id == id; });
+			if (const auto it = m_entry_actions.find(id); it != m_entry_actions.end())
+			{
+				live_action = it->second;
+				m_entry_actions.erase(it);
+			}
+		}
+		
+		if (live_action)
+			m_dispatcher.disconnect(live_action);
 	}
 
 	void ModsMenu::rebuild(void* menu_bar_handle)
@@ -85,6 +125,7 @@ namespace rml::qt
 		std::vector<void*> previous;
 		{
 			std::scoped_lock lock(m_mutex);
+			m_menu_bar_handle = menu_bar_handle;
 			entries = m_entries;
 			previous = std::move(m_live_actions);
 			m_live_actions.clear();
@@ -102,14 +143,17 @@ namespace rml::qt
 		}
 
 		std::vector<void*> live;
+		std::unordered_map<uint64_t, void*> entry_actions;
 
-		const auto emit = [&](const std::string_view text, std::function<void()> on_click) {
+		const auto emit = [&](const std::string_view text, std::function<void()> on_click, const uint64_t id = 0) {
 			QAction* const action = menu->addAction(text);
 			if (!action)
 				return;
 
 			m_dispatcher.connect(action->handle(), std::move(on_click));
 			live.push_back(action->handle());
+			if (id != 0)
+				entry_actions[id] = action->handle();
 		};
 
 		emit("Open Mods Folder", [] {
@@ -125,8 +169,8 @@ namespace rml::qt
 		if (!entries.empty())
 		{
 			menu->addSeparator();
-			for (auto& [text, on_click] : entries)
-				emit(text, on_click);
+			for (auto& [id, text, on_click] : entries)
+				emit(text, on_click, id);
 		}
 
 		menu->addSeparator();
@@ -137,6 +181,7 @@ namespace rml::qt
 		{
 			std::scoped_lock lock(m_mutex);
 			m_live_actions = std::move(live);
+			m_entry_actions = std::move(entry_actions);
 		}
 
 		LOG_INFO("[qt] Mods menu rebuilt ({} mod entr(ies) + built-ins)", entries.size());

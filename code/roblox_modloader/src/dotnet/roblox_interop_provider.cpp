@@ -13,6 +13,9 @@
 #include <RobloxModLoader/roblox/reflection/object.hpp>
 #include <RobloxModLoader/roblox/reflection/property_descriptor.hpp>
 
+#include <RobloxModLoader/qt/mods_menu.hpp>
+#include <RobloxModLoader/qt/qt_integration.hpp>
+
 RML_LOG_SCOPE("Interop");
 
 namespace rml::dotnet
@@ -264,6 +267,22 @@ namespace rml::dotnet
 
 		table.free_native_ptr = [](const void* ptr) {
 			free(const_cast<void*>(ptr));
+		};
+
+		table.mods_menu_add_action = [](const char* text, const ManagedEventCallback callback, void* state) -> uintptr_t {
+			if (!text || !callback)
+				return 0;
+
+			auto* const integration = rml::qt::QtIntegration::instance();
+			if (!integration)
+				return 0;
+
+			return integration->menu().register_action(text, [callback, state] { callback(state, nullptr, 0); });
+		};
+
+		table.mods_menu_remove_action = [](const uintptr_t action_id) {
+			if (auto* const integration = rml::qt::QtIntegration::instance())
+				integration->menu().remove_action(action_id);
 		};
 	}
 } // namespace rml::dotnet

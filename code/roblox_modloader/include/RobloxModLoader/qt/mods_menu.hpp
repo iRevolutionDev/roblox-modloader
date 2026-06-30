@@ -2,9 +2,11 @@
 
 #include "RobloxModLoader/rml_export.hpp"
 
+#include <cstdint>
 #include <functional>
 #include <mutex>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace rml::qt
@@ -17,11 +19,16 @@ namespace rml::qt
 		explicit ModsMenu(ActionDispatcher& dispatcher);
 
 		void add_action(std::string text, std::function<void()> on_click);
+		
+		uint64_t register_action(std::string text, std::function<void()> on_click);
+		void remove_action(uint64_t id);
+
 		void rebuild(void* menu_bar);
 
 	private:
 		struct Entry
 		{
+			uint64_t id;
 			std::string text;
 			std::function<void()> on_click;
 		};
@@ -33,5 +40,8 @@ namespace rml::qt
 		std::mutex m_mutex;
 		std::vector<Entry> m_entries;
 		std::vector<void*> m_live_actions;
+		std::unordered_map<uint64_t, void*> m_entry_actions;
+		void* m_menu_bar_handle{};
+		uint64_t m_next_id{1};
 	};
 }

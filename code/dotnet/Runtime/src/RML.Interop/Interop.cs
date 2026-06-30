@@ -95,6 +95,34 @@ public static unsafe class Interop
         Table->FreeNativePtr((void*)ptr);
     }
 
+    public static nuint ModsMenuAddAction(string text, nint callback, nint state)
+    {
+        if (!IsInitialized || Table == null || Table->ModsMenuAddAction == null || callback == nint.Zero)
+        {
+            return 0;
+        }
+
+        ArgumentNullException.ThrowIfNull(text);
+
+        var byteCount = Encoding.UTF8.GetByteCount(text);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(text, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>)callback;
+        return Table->ModsMenuAddAction((sbyte*)buffer, cb, (void*)state);
+    }
+    
+    public static void ModsMenuRemoveAction(nuint actionId)
+    {
+        if (actionId == 0 || !IsInitialized || Table == null || Table->ModsMenuRemoveAction == null)
+        {
+            return;
+        }
+
+        Table->ModsMenuRemoveAction(actionId);
+    }
+
     public class Reflection
     {
         private static readonly ConcurrentDictionary<string, nint> CachedMemberNames = new(StringComparer.Ordinal);

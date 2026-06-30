@@ -66,9 +66,12 @@ namespace rml::dotnet
 
 		void(RML_INTEROP_CALL* free_string)(const char* str);
 		void(RML_INTEROP_CALL* free_native_ptr)(const void* ptr);
+		
+		uintptr_t(RML_INTEROP_CALL* mods_menu_add_action)(const char* text, ManagedEventCallback callback, void* state);
+		void(RML_INTEROP_CALL* mods_menu_remove_action)(uintptr_t action_id);
 	};
 
-	inline constexpr uint32_t RML_INTEROP_VERSION = 3;
+	inline constexpr uint32_t RML_INTEROP_VERSION = 4;
 
 	class InteropRegistry
 	{
