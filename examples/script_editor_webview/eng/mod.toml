@@ -1,0 +1,7 @@
+name = "Script Editor Webview"
+version = "0.2.0"
+author = "RobloxModLoader"
+description = "Monaco Editor for Roblox Studio"
+
+[datamodel.context]
+edit = []

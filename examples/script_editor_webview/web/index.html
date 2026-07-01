@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RML Monaco</title>
+  <style>
+    html, body, #editor { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+  </style>
+</head>
+<body>
+  <div id="editor"></div>
+
+  <script>
+    (function () {
+      const base = new URL('./monaco/', window.location.href).toString();
+      window.MonacoEnvironment = {
+        getWorkerUrl: function (_moduleId, _label) {
+          const source = `self.MonacoEnvironment={baseUrl:${JSON.stringify(base)}};importScripts(${JSON.stringify(base + 'vs/base/worker/workerMain.js')});`;
+          return URL.createObjectURL(new Blob([source], { type: 'text/javascript' }));
+        }
+      };
+    })();
+
+    const RMLHost = (function () {
+      const canSend = !!(window.chrome && window.chrome.webview);
+      const handlers = [];
+      if (canSend) {
+        window.chrome.webview.addEventListener('message', function (e) {
+          let msg;
+          try { msg = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (_) { return; }
+          handlers.forEach(function (h) { try { h(msg); } catch (err) { console.error(err); } });
+        });
+      }
+      return {
+        send: function (obj) { if (canSend) window.chrome.webview.postMessage(JSON.stringify(obj)); },
+        onMessage: function (h) { handlers.push(h); }
+      };
+    })();
+  </script>
+
+  <script src="./lsp-client.js?v=1"></script>
+  <script src="./monaco/vs/loader.js"></script>
+  <script>
+    require.config({ paths: { vs: './monaco/vs' } });
+    require(['vs/editor/editor.main'], function () {
+      const editor = monaco.editor.create(document.getElementById('editor'), {
+        value: '',
+        language: 'luau',
+        theme: 'vs-dark',
+        automaticLayout: true,
+        minimap: { enabled: true }
+      });
+
+      const model = editor.getModel();
+
+      let applyingRemoteText = false;
+
+      function applyRemoteText(text, uri) {
+        if (typeof text !== 'string') return;
+        if (model.getValue() === text) return;
+        applyingRemoteText = true;
+        try {
+          model.setValue(text);
+        } finally {
+          applyingRemoteText = false;
+        }
+      }
+
+      model.onDidChangeContent(function () {
+        if (applyingRemoteText) return;
+        RMLHost.send({ type: 'editor.changed', text: model.getValue() });
+      });
+
+      const lsp = window.RMLLsp.start(monaco, editor, {
+        sendToServer: function (jsonrpc) { RMLHost.send({ type: 'lsp.message', data: jsonrpc }); }
+      });
+
+      RMLHost.onMessage(function (msg) {
+        if (!msg || !msg.type) return;
+        if (msg.type === 'editor.setText') {
+          applyRemoteText(msg.text, msg.uri);
+        } else if (msg.type === 'lsp.message') {
+          lsp.onServerMessage(msg.data);
+        }
+      });
+
+      RMLHost.send({ type: 'editor.ready' });
+    });
+  </script>
+</body>
+</html>

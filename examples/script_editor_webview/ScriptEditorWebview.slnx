@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/eng/">
+    <File Path="eng/mod.toml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="../../code/dotnet/Roblox/src/Roblox/Roblox.csproj" />
+    <Project Path="../../code/dotnet/Runtime/src/RML.Core/RML.Core.csproj" />
+    <Project Path="../../code/dotnet/Runtime/src/RML.Interop/RML.Interop.csproj" />
+    <Project Path="../../code/dotnet/Runtime/src/RML.Logging/RML.Logging.csproj" />
+    <Project Path="src/ScriptEditorWebview/ScriptEditorWebview.csproj">
+      <Platform Solution="Debug|*" Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tools/" />
+</Solution>
