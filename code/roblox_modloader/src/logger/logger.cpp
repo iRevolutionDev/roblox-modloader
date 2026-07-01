@@ -160,9 +160,11 @@ namespace
 		if (!global_logger_holder::console_sink)
 		{
 			const auto root = rml::utils::directory::get_module_directory();
+			
+			const auto log_file = root / "RobloxModLoader" / "logs" / "roblox_modloader.log";
 
 			global_logger_holder::console_sink = std::make_shared<spdlog::sinks::stdout_sink_mt>();
-			global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(root.generic_string() + "RobloxModLoader/logs/roblox_modloader.log", 0, 0);
+			global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(log_file.string(), 0, 0);
 			global_logger_holder::msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
 
 			global_logger_holder::console_sink->set_formatter(std::make_unique<rml_console_formatter>());
