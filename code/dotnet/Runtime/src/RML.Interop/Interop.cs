@@ -199,6 +199,55 @@ public static unsafe class Interop
                 }
             }
         }
+        
+        public static void InvokeAsync(
+            void* instance,
+            string methodName,
+            delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void> callback,
+            void* state,
+            params object?[]? args)
+        {
+            if (!IsInitialized || Table == null || Table->ReflectionInvokeAsync == null)
+            {
+                throw new InvalidOperationException(
+                    "Interop table is not initialized or ReflectionInvokeAsync is unavailable.");
+            }
+
+            ArgumentNullException.ThrowIfNull(methodName);
+
+            var nameS = GetCachedMemberName(methodName);
+            var argCount = args?.Length ?? 0;
+
+            if (argCount == 0)
+            {
+                Table->ReflectionInvokeAsync(instance, nameS, null, 0, callback, state);
+                return;
+            }
+
+            var tempPtrs = stackalloc nint[argCount];
+            var tempPtrCount = 0;
+            var argVariants = stackalloc InteropVariant[argCount];
+
+            try
+            {
+                for (var i = 0; i < argCount; i++)
+                {
+                    argVariants[i] = BuildVariant(args![i], tempPtrs, ref tempPtrCount);
+                }
+
+                Table->ReflectionInvokeAsync(instance, nameS, argVariants, (uint)argCount, callback, state);
+            }
+            finally
+            {
+                for (var i = 0; i < tempPtrCount; i++)
+                {
+                    if (tempPtrs[i] != 0)
+                    {
+                        Marshal.FreeHGlobal(tempPtrs[i]);
+                    }
+                }
+            }
+        }
 
         public static InteropVariant GetProperty(void* instance, string propertyName)
         {

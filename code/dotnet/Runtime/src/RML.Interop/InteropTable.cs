@@ -31,6 +31,7 @@ public readonly struct InteropVariant
         public const byte Instance = 6;
         public const byte InstanceArray = 7;
         public const byte Blittable = 8;
+        public const byte Tuple = 9;
     }
 
     public static InteropVariant Null => new(Tags.Null, 0);
@@ -45,7 +46,7 @@ public readonly struct InteropVariant
 
 internal static unsafe class NativeInterop
 {
-    public const int InteropTableVersion = 4;
+    public const int InteropTableVersion = 5;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct InteropTable
@@ -75,5 +76,8 @@ internal static unsafe class NativeInterop
         public delegate* unmanaged[Cdecl]<sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
             void*, nuint> ModsMenuAddAction;
         public delegate* unmanaged[Cdecl]<nuint, void> ModsMenuRemoveAction;
+        
+        public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, uint,
+            delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> ReflectionInvokeAsync;
     }
 }

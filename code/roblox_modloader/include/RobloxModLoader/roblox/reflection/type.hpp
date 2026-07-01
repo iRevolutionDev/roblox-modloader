@@ -96,6 +96,22 @@ namespace RBX::Reflection
 		{
 			return reinterpret_cast<const T*>(m_storage.data);
 		}
+
+		[[nodiscard]] const void* value_ops() const noexcept
+		{
+			return m_value_ops;
+		}
+
+		[[nodiscard]] void* storage() noexcept
+		{
+			return m_storage.data;
+		}
+
+		void set_type_and_ops(const Type* type, const void* value_ops) noexcept
+		{
+			m_type = type;
+			m_value_ops = value_ops;
+		}
 	};
 
 	using EventArguments = std::vector<Variant>;
@@ -131,6 +147,8 @@ namespace RBX::Reflection
 
 			const Name* name;
 			const Type* type;
+			const void* _reserved0;
+			const void* _reserved1;
 			const Variant default_handle;
 
 			[[nodiscard]] bool has_default_value() const noexcept
@@ -138,7 +156,7 @@ namespace RBX::Reflection
 				return !default_handle.is_void();
 			}
 		};
-
+		
 		struct ResultItem
 		{
 			const Type* type;

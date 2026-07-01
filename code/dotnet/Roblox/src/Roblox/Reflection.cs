@@ -1,5 +1,7 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using RML.Interop;
 
@@ -7,6 +9,84 @@ namespace Roblox;
 
 public static unsafe class Reflection
 {
+    private sealed class AsyncCall
+    {
+        public required Action<InteropVariant, string?> Complete;
+    }
+
+    public static Task<T?> InvokeAsync<T>(Object @object, string methodName, params object?[] args)
+    {
+        ArgumentNullException.ThrowIfNull(@object);
+        return InvokeAsync<T>(@object.Handle, methodName, args);
+    }
+
+    public static Task<T?> InvokeAsync<T>(nuint handle, string methodName, params object?[] args)
+    {
+        ArgumentNullException.ThrowIfNull(methodName);
+
+        if (handle == 0)
+        {
+            throw new ArgumentException("Instance handle is null", nameof(handle));
+        }
+
+        var tcs = new TaskCompletionSource<T?>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        var call = new AsyncCall
+        {
+            Complete = (variant, error) =>
+            {
+                if (error is not null)
+                {
+                    tcs.TrySetException(new InvalidOperationException(error));
+                    return;
+                }
+
+                try
+                {
+                    tcs.TrySetResult((T?)ConvertResult(variant, typeof(T), true));
+                }
+                catch (Exception ex)
+                {
+                    tcs.TrySetException(ex);
+                }
+            }
+        };
+
+        var gcHandle = GCHandle.Alloc(call);
+        try
+        {
+            var callback = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>)&AsyncComplete;
+            Interop.Reflection.InvokeAsync((void*)handle, methodName, callback, (void*)GCHandle.ToIntPtr(gcHandle), args);
+        }
+        catch
+        {
+            gcHandle.Free();
+            throw;
+        }
+
+        return tcs.Task;
+    }
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    private static void AsyncComplete(void* state, InteropVariant* result, sbyte* error)
+    {
+        var handle = GCHandle.FromIntPtr((nint)state);
+        try
+        {
+            var call = (AsyncCall)handle.Target!;
+            var err = error == null ? null : Marshal.PtrToStringUTF8((nint)error);
+            var variant = result == null ? InteropVariant.Null : *result;
+            call.Complete(variant, err);
+        }
+        catch
+        {
+        }
+        finally
+        {
+            handle.Free();
+        }
+    }
+
     public static T? Invoke<T>(Object @object, string methodName, params object?[] args)
     {
         ArgumentNullException.ThrowIfNull(@object);
@@ -236,6 +316,11 @@ public static unsafe class Reflection
     {
         while (true)
         {
+            if (t == typeof(object[]) || t == typeof(object?[]))
+            {
+                return BuildTupleValues(variant, freeNativeResources);
+            }
+
             if (variant.Tag == InteropVariant.Tags.Null)
             {
                 return null;
@@ -338,6 +423,31 @@ public static unsafe class Reflection
                 return null;
             }
 
+            if (variant.Tag == InteropVariant.Tags.Tuple)
+            {
+                if (variant.AsPointer == 0)
+                {
+                    return null;
+                }
+
+                var buf = (byte*)variant.AsPointer;
+                var count = *(ulong*)buf;
+                var elements = (InteropVariant*)(buf + sizeof(ulong));
+
+                var values = new object?[count];
+                for (var i = 0ul; i < count; i++)
+                {
+                    values[i] = ConvertTupleElement(elements[i], freeNativeResources);
+                }
+
+                if (freeNativeResources)
+                {
+                    Interop.FreeNativeArray((nint)variant.AsPointer);
+                }
+
+                return count == 1 ? values[0] : values;
+            }
+
             if (typeof(Object).IsAssignableFrom(t))
             {
                 if (variant.Tag != InteropVariant.Tags.Instance)
@@ -420,6 +530,79 @@ public static unsafe class Reflection
             {
                 throw new InvalidCastException($"Cannot convert native result to {t}", ex);
             }
+        }
+    }
+
+    private static object?[] BuildTupleValues(InteropVariant variant, bool freeNativeResources)
+    {
+        if (variant.Tag == InteropVariant.Tags.Tuple)
+        {
+            if (variant.AsPointer == 0)
+            {
+                return [];
+            }
+
+            var buf = (byte*)variant.AsPointer;
+            var count = *(ulong*)buf;
+            var elements = (InteropVariant*)(buf + sizeof(ulong));
+
+            var values = new object?[count];
+            for (var i = 0ul; i < count; i++)
+            {
+                values[i] = ConvertTupleElement(elements[i], freeNativeResources);
+            }
+
+            if (freeNativeResources)
+            {
+                Interop.FreeNativeArray((nint)variant.AsPointer);
+            }
+
+            return values;
+        }
+
+        return variant.Tag == InteropVariant.Tags.Null
+            ? []
+            : [ConvertTupleElement(variant, freeNativeResources)];
+    }
+
+    private static object? ConvertTupleElement(InteropVariant variant, bool freeNativeResources)
+    {
+        switch (variant.Tag)
+        {
+            case InteropVariant.Tags.Null:
+                return null;
+            case InteropVariant.Tags.Bool:
+                return variant.AsBool;
+            case InteropVariant.Tags.Int64:
+                return variant.AsInt64;
+            case InteropVariant.Tags.Double:
+                return variant.AsDouble;
+            case InteropVariant.Tags.Float:
+                return variant.AsFloat;
+            case InteropVariant.Tags.String:
+            {
+                var ptr = new IntPtr((long)variant.AsPointer);
+                if (ptr == IntPtr.Zero)
+                {
+                    return null;
+                }
+
+                var s = Marshal.PtrToStringUTF8(ptr);
+                if (freeNativeResources)
+                {
+                    Interop.FreeNativeString(ptr);
+                }
+
+                return s;
+            }
+            case InteropVariant.Tags.Instance:
+                return variant.AsPointer == 0 ? null : RobloxTypeRegistry.Create(variant.AsPointer);
+            case InteropVariant.Tags.InstanceArray:
+                return ConvertResult(variant, typeof(List<Instance>), freeNativeResources);
+            case InteropVariant.Tags.Tuple:
+                return ConvertResult(variant, typeof(object[]), freeNativeResources);
+            default:
+                return variant.AsUInt64;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace rml::dotnet
 		Instance = 6,
 		InstanceArray = 7,
 		Blittable = 8,
+		Tuple = 9,
 	};
 
 	struct alignas(8) InteropVariant
@@ -43,6 +44,7 @@ namespace rml::dotnet
 	static_assert(offsetof(InteropVariant, as_uint64) == 8, "InteropVariant union must start at offset 8.");
 
 	using ManagedEventCallback = void(RML_INTEROP_CALL*)(void* state, const InteropVariant* args, uint32_t arg_count);
+	using ManagedYieldCallback = void(RML_INTEROP_CALL*)(void* state, const InteropVariant* result, const char* error_message);
 
 	struct alignas(8) InteropTable
 	{
@@ -69,9 +71,11 @@ namespace rml::dotnet
 		
 		uintptr_t(RML_INTEROP_CALL* mods_menu_add_action)(const char* text, ManagedEventCallback callback, void* state);
 		void(RML_INTEROP_CALL* mods_menu_remove_action)(uintptr_t action_id);
+		
+		void(RML_INTEROP_CALL* reflection_invoke_async)(uintptr_t instance, const char* function_name, const InteropVariant* args, uint32_t arg_count, ManagedYieldCallback callback, void* state);
 	};
 
-	inline constexpr uint32_t RML_INTEROP_VERSION = 4;
+	inline constexpr uint32_t RML_INTEROP_VERSION = 5;
 
 	class InteropRegistry
 	{

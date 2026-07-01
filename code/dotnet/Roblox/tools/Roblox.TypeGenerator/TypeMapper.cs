@@ -50,9 +50,14 @@ internal static class TypeMapper
         {
             return "void";
         }
+        
+        if (IsTuple(returnType))
+        {
+            return "object?[]";
+        }
 
         var t = ToCSharp(returnType);
-        
+
         if (returnType.Category == "Class" && returnType.Name == "Instance")
         {
             t = MakeNullable(t);
@@ -60,6 +65,9 @@ internal static class TypeMapper
 
         return t;
     }
+
+    public static bool IsTuple(ApiValueType? vt)
+        => vt is { Category: "Group", Name: "Tuple" };
 
     public static bool IsVoid(string csharpType) => csharpType == "void";
     

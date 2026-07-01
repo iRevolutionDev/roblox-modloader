@@ -8,13 +8,13 @@
 #include "dotnet_arguments.hpp"
 #include "dotnet_event_descriptor.hpp"
 #include "dotnet_variant.hpp"
-
-#include <RobloxModLoader/roblox/instance.hpp>
-#include <RobloxModLoader/roblox/reflection/object.hpp>
-#include <RobloxModLoader/roblox/reflection/property_descriptor.hpp>
+#include "dotnet_yield.hpp"
 
 #include <RobloxModLoader/qt/mods_menu.hpp>
 #include <RobloxModLoader/qt/qt_integration.hpp>
+#include <RobloxModLoader/roblox/instance.hpp>
+#include <RobloxModLoader/roblox/reflection/object.hpp>
+#include <RobloxModLoader/roblox/reflection/property_descriptor.hpp>
 
 RML_LOG_SCOPE("Interop");
 
@@ -69,6 +69,56 @@ namespace rml::dotnet
 			catch (...)
 			{
 				RML_ERROR("invoke('{}') failed: unknown exception", function_name ? function_name : "?");
+			}
+		};
+
+		table.reflection_invoke_async = [](const uintptr_t instance_ptr, const char* function_name, const InteropVariant* args, const uint32_t arg_count, ManagedYieldCallback callback, void* state) {
+			if (!callback)
+				return;
+
+			try
+			{
+				auto* instance = as_instance(instance_ptr);
+				if (!instance || !function_name)
+				{
+					callback(state, nullptr, "invalid instance or function name");
+					return;
+				}
+
+				auto& class_descriptor = instance->get_descriptor();
+
+				if (const auto* yield_descriptor = class_descriptor.find_yield_function_descriptor(function_name))
+				{
+					DotNetArguments arguments{args, arg_count, &yield_descriptor->get_signature()};
+					YieldInvocation::dispatch(*yield_descriptor, *instance, arguments, callback, state);
+					return;
+				}
+
+				const auto* descriptor = class_descriptor.find_function(function_name);
+				if (!descriptor)
+				{
+					callback(state, nullptr, "function not found");
+					return;
+				}
+
+				DotNetArguments arguments{args, arg_count};
+				const auto function = RBX::Function(*descriptor, instance);
+				const auto ret = function.invoke(arguments);
+				const auto type = descriptor->get_signature().first_result_type();
+
+				InteropVariant result{};
+				write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), result);
+				callback(state, &result, nullptr);
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("invoke_async('{}') failed: {}", function_name ? function_name : "?", e.what());
+				callback(state, nullptr, e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("invoke_async('{}') failed: unknown exception", function_name ? function_name : "?");
+				callback(state, nullptr, "unknown exception");
 			}
 		};
 
@@ -277,7 +327,9 @@ namespace rml::dotnet
 			if (!integration)
 				return 0;
 
-			return integration->menu().register_action(text, [callback, state] { callback(state, nullptr, 0); });
+			return integration->menu().register_action(text, [callback, state] {
+				callback(state, nullptr, 0);
+			});
 		};
 
 		table.mods_menu_remove_action = [](const uintptr_t action_id) {

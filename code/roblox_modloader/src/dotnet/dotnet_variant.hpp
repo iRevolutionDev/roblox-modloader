@@ -83,6 +83,27 @@ namespace rml::dotnet
 		return out;
 	}
 
+	[[nodiscard]] inline InteropVariant tuple_value(const std::vector<InteropVariant>& values)
+	{
+		if (values.empty())
+			return null_value();
+
+		const size_t count = values.size();
+		const size_t buf_size = sizeof(uint64_t) + count * sizeof(InteropVariant);
+
+		auto* buf = static_cast<std::byte*>(std::malloc(buf_size));
+		if (!buf)
+			return null_value();
+
+		*reinterpret_cast<uint64_t*>(buf) = count;
+		std::memcpy(buf + sizeof(uint64_t), values.data(), count * sizeof(InteropVariant));
+
+		InteropVariant out{};
+		out.tag = InteropValueTag::Tuple;
+		out.as_instance = reinterpret_cast<uintptr_t>(buf);
+		return out;
+	}
+
 	template<size_t N>
 	struct blittable_blob
 	{
@@ -186,7 +207,7 @@ namespace rml::dotnet
 			return 20;
 		return 0;
 	}
-	
+
 	[[nodiscard]] inline InteropVariant pack_sequence(const void* vec_storage, const size_t stride)
 	{
 		InteropVariant out{};
@@ -208,8 +229,7 @@ namespace rml::dotnet
 		return out;
 	}
 
-	[[nodiscard]] inline std::optional<InteropVariant> try_sequence_property(
-	    const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
+	[[nodiscard]] inline std::optional<InteropVariant> try_sequence_property(const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
 	{
 		const auto stride = sequence_stride(descriptor->type.name);
 		if (stride == 0)
@@ -223,9 +243,7 @@ namespace rml::dotnet
 		return pack_sequence(variant.try_cast<std::byte>(), stride);
 	}
 
-	[[nodiscard]] inline bool try_set_sequence_property(
-	    const RBX::Reflection::PropertyDescriptor* descriptor, RBX::Reflection::DescribedBase* instance,
-	    const InteropVariant& value)
+	[[nodiscard]] inline bool try_set_sequence_property(const RBX::Reflection::PropertyDescriptor* descriptor, RBX::Reflection::DescribedBase* instance, const InteropVariant& value)
 	{
 		if (value.tag != InteropValueTag::Blittable || value.as_instance == 0)
 			return false;
@@ -292,11 +310,33 @@ namespace rml::dotnet
 		return null_value();
 	}
 
+	[[nodiscard]] inline InteropVariant marshal_tuple(const RBX::Reflection::Tuple* tuple)
+	{
+		if (!tuple || !utils::memory::is_valid_pointer(reinterpret_cast<uintptr_t>(tuple)) || tuple->values.empty())
+			return null_value();
+
+		InteropStringPool strings;
+		std::vector<InteropVariant> values;
+		values.reserve(tuple->values.size());
+		for (const auto& value : tuple->values)
+			values.push_back(engine_variant_to_interop(value, strings));
+
+		return tuple_value(values);
+	}
+
 	inline void write_return_value(const RBX::Reflection::Type* type, const uint64_t ret, [[maybe_unused]] const uint64_t ret_slot, const uintptr_t ret_slot_addr, InteropVariant& out) noexcept
 	{
 		if (!type)
 		{
 			out = null_value();
+			return;
+		}
+
+		if (type->name == "Tuple")
+		{
+			auto* slot = reinterpret_cast<std::shared_ptr<const RBX::Reflection::Tuple>*>(ret_slot_addr);
+			out = marshal_tuple(slot ? slot->get() : nullptr);
+			std::destroy_at(slot);
 			return;
 		}
 
@@ -404,12 +444,12 @@ namespace rml::dotnet
 	{
 		return v.tag == InteropValueTag::Instance ? reinterpret_cast<T*>(v.as_instance) : nullptr;
 	}
-	
+
 	template<typename T>
 	[[nodiscard]] const T* read_struct_ptr(const InteropVariant& v) noexcept
 	{
-		return (v.tag == InteropValueTag::Blittable || v.tag == InteropValueTag::Instance)
-		    ? reinterpret_cast<const T*>(v.as_instance)
-		    : nullptr;
+		return (v.tag == InteropValueTag::Blittable || v.tag == InteropValueTag::Instance) ?
+		    reinterpret_cast<const T*>(v.as_instance) :
+		    nullptr;
 	}
 } // namespace rml::dotnet
