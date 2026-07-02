@@ -14,6 +14,7 @@ internal sealed class ScriptEditorSession : IDisposable
     private readonly GuiDispatcher _gui;
     private readonly LuauLspBridge _lsp;
     private readonly ModPaths _paths;
+    private readonly Func<string?> _sourcemapProvider;
 
     private readonly WebViewHost _webView;
     private readonly Timer _writebackTimer;
@@ -22,14 +23,17 @@ internal sealed class ScriptEditorSession : IDisposable
     private bool _editorReady;
 
     private string _lastSyncedText = string.Empty;
+    private volatile bool _lspReady;
     private string? _pendingWriteText;
 
-    public ScriptEditorSession(GuiDispatcher gui, ScriptDocument document, IntPtr editorHwnd, ModPaths paths)
+    public ScriptEditorSession(GuiDispatcher gui, ScriptDocument document, IntPtr editorHwnd, ModPaths paths,
+        Func<string?> sourcemapProvider)
     {
         _gui = gui;
         Document = document;
         EditorHwnd = editorHwnd;
         _paths = paths;
+        _sourcemapProvider = sourcemapProvider;
 
         _webView = new WebViewHost(gui);
         _lsp = new LuauLspBridge(paths.LspExePath, paths.RobloxTypesPath);
@@ -49,6 +53,7 @@ internal sealed class ScriptEditorSession : IDisposable
         _webView.MessageReceived -= OnWebMessage;
         _webView.Ready -= OnWebViewReady;
         _lsp.ServerMessage -= OnLspServerMessage;
+        _lsp.Initialized -= OnLspInitialized;
 
         _writebackTimer.Dispose();
         _lsp.Dispose();
@@ -61,6 +66,7 @@ internal sealed class ScriptEditorSession : IDisposable
         _webView.Ready += OnWebViewReady;
 
         _lsp.ServerMessage += OnLspServerMessage;
+        _lsp.Initialized += OnLspInitialized;
         _lsp.Start();
 
         Win32.EnsureClipChildren(EditorHwnd);
@@ -71,6 +77,27 @@ internal sealed class ScriptEditorSession : IDisposable
     public void SyncBounds()
     {
         _webView.SyncBounds();
+    }
+
+    private void OnLspInitialized()
+    {
+        _lspReady = true;
+        PushSourcemap();
+    }
+
+    public void PushSourcemap()
+    {
+        if (_disposed || !_lspReady) return;
+
+        try
+        {
+            if (_sourcemapProvider() is { Length: > 0 } tree)
+                _lsp.SendNotification("$/plugin/full", tree);
+        }
+        catch (Exception ex)
+        {
+            ScriptEditorWebviewMod.Logger.Debug($"pushing sourcemap failed: {ex.Message}");
+        }
     }
 
     private void OnWebViewReady()

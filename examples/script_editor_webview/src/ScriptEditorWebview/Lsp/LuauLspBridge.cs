@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace ScriptEditorWebview.Lsp;
@@ -43,6 +44,8 @@ internal sealed class LuauLspBridge(string lspExePath, string robloxTypesPath) :
     }
 
     public event Action<string>? ServerMessage;
+
+    public event Action? Initialized;
 
     public void Start()
     {
@@ -110,14 +113,29 @@ internal sealed class LuauLspBridge(string lspExePath, string robloxTypesPath) :
     {
         if (_disposed || _process is null || _process.HasExited) return;
 
-        var prepared = InjectRobloxSettings(jsonRpc);
-        var payload = Encoding.UTF8.GetBytes(prepared);
+        WriteFrame(InjectRobloxSettings(jsonRpc));
+
+        if (IsMethod(jsonRpc, "initialized")) Initialized?.Invoke();
+    }
+
+    public void SendNotification(string method, string paramsJson)
+    {
+        if (_disposed || _process is null || _process.HasExited) return;
+
+        WriteFrame($"{{\"jsonrpc\":\"2.0\",\"method\":{JsonSerializer.Serialize(method)},\"params\":{paramsJson}}}");
+    }
+
+    private void WriteFrame(string message)
+    {
+        var payload = Encoding.UTF8.GetBytes(message);
         var header = Encoding.ASCII.GetBytes($"Content-Length: {payload.Length}\r\n\r\n");
 
         try
         {
             lock (_writeLock)
             {
+                if (_process is null || _process.HasExited) return;
+
                 var stdin = _process.StandardInput.BaseStream;
                 stdin.Write(header, 0, header.Length);
                 stdin.Write(payload, 0, payload.Length);
@@ -127,6 +145,18 @@ internal sealed class LuauLspBridge(string lspExePath, string robloxTypesPath) :
         catch (Exception ex)
         {
             ScriptEditorWebviewMod.Logger.Error($"Writing to luau-lsp failed: {ex}");
+        }
+    }
+
+    private static bool IsMethod(string jsonRpc, string method)
+    {
+        try
+        {
+            return JsonNode.Parse(jsonRpc) is JsonObject root && root["method"]?.GetValue<string>() == method;
+        }
+        catch
+        {
+            return false;
         }
     }
 
@@ -172,8 +202,8 @@ internal sealed class LuauLspBridge(string lspExePath, string robloxTypesPath) :
         settings["platform"] = platform;
 
         var sourcemap = settings["sourcemap"] as JsonObject ?? new JsonObject();
-        sourcemap["enabled"] ??= false;
-        sourcemap["autogenerate"] ??= false;
+        sourcemap["enabled"] = true;
+        sourcemap["autogenerate"] = false;
         settings["sourcemap"] = sourcemap;
 
         var types = settings["types"] as JsonObject ?? new JsonObject();
@@ -185,7 +215,7 @@ internal sealed class LuauLspBridge(string lspExePath, string robloxTypesPath) :
         settings["types"] = types;
 
         settings["luau-lsp.platform.type"] = "roblox";
-        settings["luau-lsp.sourcemap.enabled"] = false;
+        settings["luau-lsp.sourcemap.enabled"] = true;
         settings["luau-lsp.sourcemap.autogenerate"] = false;
         settings["luau-lsp.types.roblox"] = true;
 

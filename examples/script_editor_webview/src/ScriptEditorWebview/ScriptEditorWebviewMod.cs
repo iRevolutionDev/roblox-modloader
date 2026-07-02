@@ -7,6 +7,7 @@ using RML.Core.Modding;
 using RML.Logging;
 using Roblox;
 using ScriptEditorWebview.Editor;
+using ScriptEditorWebview.Lsp;
 using ScriptEditorWebview.Native;
 using ScriptEditorWebview.Qt;
 using ScriptEditorWebview.Threading;
@@ -19,23 +20,28 @@ namespace ScriptEditorWebview;
 [Mod("script-editor-webview", "0.1.0", Author = "Revolution", Description = "Monaco Editor on Roblox")]
 public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
 {
+    private const int SourcemapDebounceMs = 1000;
+    private const int SourcemapStepBudgetMs = 60;
     public static readonly ILogger Logger = Log.CreateLogger("ScriptEditorWebview");
 
     private static readonly string[] ScriptEditorClassNames =
-    {
+    [
         "StudioScriptEditor",
         "RBX::ScriptEditor::ScriptEditor",
         "ScriptTextEditorWidget"
-    };
+    ];
 
     private readonly List<ScriptDocument> _pendingDocuments = [];
     private readonly Lock _pendingGate = new();
 
     private readonly ConcurrentDictionary<ScriptDocument, ScriptEditorSession> _sessions = new();
+    private DataModel? _game;
 
     private GuiDispatcher? _gui;
     private string _modDirectory = string.Empty;
     private IModsMenuAction? _modsAction;
+    private Action<Instance>? _onDescendantAdded;
+    private Action<Instance>? _onDescendantRemoving;
     private Action<ScriptDocument, object>? _onDocChange;
     private Action<ScriptDocument>? _onDocClose;
     private Action<ScriptDocument>? _onDocOpen;
@@ -43,10 +49,16 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
     private Timer? _reconcileTimer;
 
     private ScriptEditorService? _scriptEditorService;
+    private RobloxDataModelSourcemap? _sourcemap;
+    private Timer? _sourcemapDebounce;
+    private volatile string? _sourcemapJson;
+    private bool _sourcemapWalkActive;
     private DllImportResolver? _webView2Resolver;
 
     public void OnDataModelLoaded(DataModel game, DataModelType dataModelType)
     {
+        if (dataModelType != DataModelType.Edit) return;
+
         var service = game.GetService<ScriptEditorService>();
 
         _scriptEditorService = service;
@@ -70,17 +82,98 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
             Logger.Debug($"enumerating open documents failed: {ex.Message}");
         }
 
+        SetupSourcemap(game);
+
         Logger.Info($"attached to ScriptEditorService for data model {dataModelType}");
     }
 
     public void OnDataModelUnloaded(DataModel game, DataModelType dataModelType)
     {
         UnsubscribeService();
+        TeardownSourcemap();
         DisposeAllSessions();
         lock (_pendingGate)
         {
             _pendingDocuments.Clear();
         }
+    }
+
+    private void SetupSourcemap(DataModel game)
+    {
+        _game = game;
+        _sourcemap = new RobloxDataModelSourcemap(game);
+        _sourcemapDebounce = new Timer(_ => _gui?.Post(BeginSourcemapWalk), null, Timeout.Infinite, Timeout.Infinite);
+
+        _onDescendantAdded = _ => ScheduleSourcemapRebuild();
+        _onDescendantRemoving = _ => ScheduleSourcemapRebuild();
+        try
+        {
+            game.DescendantAdded += _onDescendantAdded;
+            game.DescendantRemoving += _onDescendantRemoving;
+        }
+        catch (Exception ex)
+        {
+            Logger.Debug($"hooking DataModel change events failed: {ex.Message}");
+        }
+
+        ScheduleSourcemapRebuild();
+    }
+
+    private void TeardownSourcemap()
+    {
+        if (_game is not null)
+            try
+            {
+                if (_onDescendantAdded is not null) _game.DescendantAdded -= _onDescendantAdded;
+                if (_onDescendantRemoving is not null) _game.DescendantRemoving -= _onDescendantRemoving;
+            }
+            catch
+            {
+                // ignored
+            }
+
+        _sourcemapDebounce?.Dispose();
+        _sourcemapDebounce = null;
+        _onDescendantAdded = null;
+        _onDescendantRemoving = null;
+        _sourcemap = null;
+        _sourcemapJson = null;
+        _game = null;
+    }
+
+    private void ScheduleSourcemapRebuild()
+    {
+        _sourcemapDebounce?.Change(SourcemapDebounceMs, Timeout.Infinite);
+    }
+
+    private void BeginSourcemapWalk()
+    {
+        if (_sourcemap is null || _sessions.IsEmpty) return;
+
+        _sourcemap.Restart();
+        _sourcemapWalkActive = true;
+    }
+
+    private void StepSourcemap()
+    {
+        if (!_sourcemapWalkActive || _sourcemap is null) return;
+
+        if (_sessions.IsEmpty)
+        {
+            _sourcemapWalkActive = false;
+            return;
+        }
+
+        if (!_sourcemap.Step(SourcemapStepBudgetMs)) return;
+
+        _sourcemapWalkActive = false;
+
+        var json = _sourcemap.Serialize();
+        if (json is null) return;
+
+        _sourcemapJson = json;
+        Logger.Info($"sourcemap ready: {_sourcemap.NodeCount} nodes");
+        foreach (var session in _sessions.Values) session.PushSourcemap();
     }
 
     public override int OnLoad()
@@ -122,6 +215,7 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
         _modsAction?.Dispose();
         _modsAction = null;
 
+        TeardownSourcemap();
         DisposeAllSessions();
 
         _gui?.Dispose();
@@ -198,6 +292,8 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
         AttachPendingDocuments();
 
         foreach (var session in _sessions.Values) session.SyncBounds();
+
+        StepSourcemap();
     }
 
     private void AttachPendingDocuments()
@@ -220,11 +316,12 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
             var editorHwnd = editorWidget.WinId();
             if (editorHwnd == IntPtr.Zero) continue;
 
-            var session = new ScriptEditorSession(_gui!, document, editorHwnd, _paths!);
+            var session = new ScriptEditorSession(_gui!, document, editorHwnd, _paths!, () => _sourcemapJson);
             if (_sessions.TryAdd(document, session))
             {
                 attachedHwnds.Add(editorHwnd);
                 session.Start();
+                ScheduleSourcemapRebuild();
                 Logger.Info("attached editor overlay to a script editor widget");
 
                 lock (_pendingGate)
