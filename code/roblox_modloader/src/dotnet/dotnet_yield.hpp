@@ -124,7 +124,7 @@ namespace rml::dotnet
 					}
 					else
 					{
-						InteropVariant value = m_result.to_interop();
+						const InteropVariant value = m_result.to_interop();
 						m_on_complete(m_state, &value, nullptr);
 					}
 				}

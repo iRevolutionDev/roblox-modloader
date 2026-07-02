@@ -1,7 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 using RML.Interop;
 
@@ -9,11 +8,6 @@ namespace Roblox;
 
 public static unsafe class Reflection
 {
-    private sealed class AsyncCall
-    {
-        public required Action<InteropVariant, string?> Complete;
-    }
-
     public static Task<T?> InvokeAsync<T>(Object @object, string methodName, params object?[] args)
     {
         ArgumentNullException.ThrowIfNull(@object);
@@ -56,7 +50,8 @@ public static unsafe class Reflection
         try
         {
             var callback = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>)&AsyncComplete;
-            Interop.Reflection.InvokeAsync((void*)handle, methodName, callback, (void*)GCHandle.ToIntPtr(gcHandle), args);
+            Interop.Reflection.InvokeAsync((void*)handle, methodName, callback, (void*)GCHandle.ToIntPtr(gcHandle),
+                args);
         }
         catch
         {
@@ -75,7 +70,7 @@ public static unsafe class Reflection
         {
             var call = (AsyncCall)handle.Target!;
             var err = error == null ? null : Marshal.PtrToStringUTF8((nint)error);
-            var variant = result == null ? InteropVariant.Null : *result;
+            InteropVariant variant = result == null ? InteropVariant.Null : *result;
             call.Complete(variant, err);
         }
         catch
@@ -384,30 +379,30 @@ public static unsafe class Reflection
 
             if (variant.Tag == InteropVariant.Tags.InstanceArray)
             {
-                if (variant.AsPointer == 0)
-                {
-                    return null;
-                }
+                var list = new List<Instance>();
 
-                var buf = (byte*)variant.AsPointer;
-                var count = *(uint*)buf;
-                var handles = (nuint*)(buf + sizeof(ulong));
-
-                var list = new List<Instance>((int)count);
-                for (var i = 0u; i < count; i++)
+                if (variant.AsPointer != 0)
                 {
-                    var handle = handles[i];
-                    if (handle == 0)
+                    var buf = (byte*)variant.AsPointer;
+                    var count = *(uint*)buf;
+                    var handles = (nuint*)(buf + sizeof(ulong));
+
+                    list.Capacity = (int)count;
+                    for (var i = 0u; i < count; i++)
                     {
-                        continue;
+                        var handle = handles[i];
+                        if (handle == 0)
+                        {
+                            continue;
+                        }
+
+                        list.Add((Instance)RobloxTypeRegistry.Create(handle));
                     }
 
-                    list.Add((Instance)RobloxTypeRegistry.Create(handle));
-                }
-
-                if (freeNativeResources)
-                {
-                    Interop.FreeNativeArray((nint)variant.AsPointer);
+                    if (freeNativeResources)
+                    {
+                        Interop.FreeNativeArray((nint)variant.AsPointer);
+                    }
                 }
 
                 if (t == typeof(Instance[]) || (t.IsArray && t.GetElementType() == typeof(Instance)))
@@ -415,12 +410,7 @@ public static unsafe class Reflection
                     return list.ToArray();
                 }
 
-                if (t.IsAssignableFrom(typeof(List<Instance>)))
-                {
-                    return list;
-                }
-
-                return null;
+                return list;
             }
 
             if (variant.Tag == InteropVariant.Tags.Tuple)
@@ -604,5 +594,10 @@ public static unsafe class Reflection
             default:
                 return variant.AsUInt64;
         }
+    }
+
+    private sealed class AsyncCall
+    {
+        public required Action<InteropVariant, string?> Complete;
     }
 }
