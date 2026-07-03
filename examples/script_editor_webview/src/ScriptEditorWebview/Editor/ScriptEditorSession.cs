@@ -1,4 +1,5 @@
 using System.Text.Json.Nodes;
+using RML.Core.Api;
 using Roblox;
 using ScriptEditorWebview.Lsp;
 using ScriptEditorWebview.Native;
@@ -13,7 +14,7 @@ internal sealed class ScriptEditorSession : IDisposable
 
     private readonly GuiDispatcher _gui;
     private readonly LuauLspBridge _lsp;
-    private readonly ModPaths _paths;
+    private readonly string _webRoot;
     private readonly Func<string?> _sourcemapProvider;
 
     private readonly WebViewHost _webView;
@@ -26,17 +27,19 @@ internal sealed class ScriptEditorSession : IDisposable
     private volatile bool _lspReady;
     private string? _pendingWriteText;
 
-    public ScriptEditorSession(GuiDispatcher gui, ScriptDocument document, IntPtr editorHwnd, ModPaths paths,
+    public ScriptEditorSession(GuiDispatcher gui, ScriptDocument document, IntPtr editorHwnd, ModContext context,
         Func<string?> sourcemapProvider)
     {
         _gui = gui;
         Document = document;
         EditorHwnd = editorHwnd;
-        _paths = paths;
+        _webRoot = context.GetPath("web");
         _sourcemapProvider = sourcemapProvider;
 
         _webView = new WebViewHost(gui);
-        _lsp = new LuauLspBridge(paths.LspExePath, paths.RobloxTypesPath);
+        _lsp = new LuauLspBridge(
+            context.GetPath("tools", "bin", "luau-lsp.exe"),
+            context.GetPath("tools", "cache", "globalTypes.PluginSecurity.d.luau"));
         _writebackTimer = new Timer(_ => FlushWriteback(), null, Timeout.Infinite, Timeout.Infinite);
     }
 
@@ -71,7 +74,7 @@ internal sealed class ScriptEditorSession : IDisposable
 
         Win32.EnsureClipChildren(EditorHwnd);
 
-        _webView.Initialize(EditorHwnd, _paths.WebRootPath);
+        _webView.Initialize(EditorHwnd, _webRoot);
     }
 
     public void SyncBounds()
@@ -238,5 +241,3 @@ internal sealed class ScriptEditorSession : IDisposable
         document.EditTextAsync(newText, 1, 1, lineCount, lastLine.Length + 1);
     }
 }
-
-internal sealed record ModPaths(string WebRootPath, string LspExePath, string RobloxTypesPath);

@@ -11,9 +11,6 @@ using ScriptEditorWebview.Lsp;
 using ScriptEditorWebview.Native;
 using ScriptEditorWebview.Qt;
 using ScriptEditorWebview.Threading;
-using Path = System.IO.Path;
-using File = System.IO.File;
-using Directory = System.IO.Directory;
 
 namespace ScriptEditorWebview;
 
@@ -22,7 +19,7 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
 {
     private const int SourcemapDebounceMs = 1000;
     private const int SourcemapStepBudgetMs = 60;
-    public static new readonly ILogger Logger = Log.CreateLogger("ScriptEditorWebview");
+    public new static readonly ILogger Logger = Log.CreateLogger("ScriptEditorWebview");
 
     private static readonly string[] ScriptEditorClassNames =
     [
@@ -38,14 +35,12 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
     private DataModel? _game;
 
     private GuiDispatcher? _gui;
-    private string _modDirectory = string.Empty;
     private IModsMenuAction? _modsAction;
     private Action<Instance>? _onDescendantAdded;
     private Action<Instance>? _onDescendantRemoving;
     private Action<ScriptDocument, object>? _onDocChange;
     private Action<ScriptDocument>? _onDocClose;
     private Action<ScriptDocument>? _onDocOpen;
-    private ModPaths? _paths;
     private Timer? _reconcileTimer;
 
     private ScriptEditorService? _scriptEditorService;
@@ -178,17 +173,6 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
 
     public override int OnLoad()
     {
-        // Native WebView2Loader.dll sits next to this assembly; bundled assets (web/, tools/) live at the mod
-        // root, which Context.GetPath resolves for us — no manual assembly-location juggling.
-        _modDirectory = Context.AssemblyDirectory;
-
-        _paths = new ModPaths(
-            Context.GetPath("web"),
-            Context.GetPath("tools", "bin", "luau-lsp.exe"),
-            Context.GetPath("tools", "cache", "globalTypes.PluginSecurity.d.luau"));
-
-        InstallWebView2NativeResolver();
-
         try
         {
             _modsAction = ModsMenu.AddAction("Script Editor Webview: Reattach", RequestReattach);
@@ -202,7 +186,7 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
         _reconcileTimer = new Timer(_ => OnReconcileTick(), null, TimeSpan.FromMilliseconds(250),
             TimeSpan.FromMilliseconds(200));
 
-        Logger.Info($"loaded from '{_modDirectory}'");
+        Logger.Info($"loaded from '{Context.Directory}'");
         return 0;
     }
 
@@ -286,7 +270,7 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
 
     private void Reconcile()
     {
-        if (_paths is null || _gui is null) return;
+        if (_gui is null) return;
 
         AttachPendingDocuments();
 
@@ -315,7 +299,7 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
             var editorHwnd = editorWidget.WinId();
             if (editorHwnd == IntPtr.Zero) continue;
 
-            var session = new ScriptEditorSession(_gui!, document, editorHwnd, _paths!, () => _sourcemapJson);
+            var session = new ScriptEditorSession(_gui!, document, editorHwnd, Context, () => _sourcemapJson);
             if (_sessions.TryAdd(document, session))
             {
                 attachedHwnds.Add(editorHwnd);
@@ -425,28 +409,6 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
         foreach (var document in _sessions.Keys.ToArray())
             if (_sessions.TryRemove(document, out var session))
                 session.Dispose();
-    }
-
-    private void InstallWebView2NativeResolver()
-    {
-        _webView2Resolver = (libraryName, _, _) =>
-        {
-            if (!libraryName.StartsWith("WebView2Loader", StringComparison.OrdinalIgnoreCase)) return IntPtr.Zero;
-
-            string[] candidates =
-            [
-                Path.Combine(_modDirectory, "WebView2Loader.dll"),
-                Path.Combine(_modDirectory, "runtimes", "win-x64", "native", "WebView2Loader.dll")
-            ];
-
-            foreach (var candidate in candidates)
-                if (File.Exists(candidate) && NativeLibrary.TryLoad(candidate, out var handle))
-                    return handle;
-
-            return IntPtr.Zero;
-        };
-
-        NativeLibrary.SetDllImportResolver(typeof(CoreWebView2Environment).Assembly, _webView2Resolver);
     }
 
     private static IntPtr NullResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
