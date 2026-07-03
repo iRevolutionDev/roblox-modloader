@@ -22,7 +22,7 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
 {
     private const int SourcemapDebounceMs = 1000;
     private const int SourcemapStepBudgetMs = 60;
-    public static readonly ILogger Logger = Log.CreateLogger("ScriptEditorWebview");
+    public static new readonly ILogger Logger = Log.CreateLogger("ScriptEditorWebview");
 
     private static readonly string[] ScriptEditorClassNames =
     [
@@ -178,15 +178,14 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
 
     public override int OnLoad()
     {
-        _modDirectory = Path.GetDirectoryName(typeof(ScriptEditorWebviewMod).Assembly.Location)
-                        ?? Environment.CurrentDirectory;
-
-        var assetRoot = ResolveAssetRoot(_modDirectory);
+        // Native WebView2Loader.dll sits next to this assembly; bundled assets (web/, tools/) live at the mod
+        // root, which Context.GetPath resolves for us — no manual assembly-location juggling.
+        _modDirectory = Context.AssemblyDirectory;
 
         _paths = new ModPaths(
-            Path.Combine(assetRoot, "web"),
-            Path.Combine(assetRoot, "tools", "bin", "luau-lsp.exe"),
-            Path.Combine(assetRoot, "tools", "cache", "globalTypes.PluginSecurity.d.luau"));
+            Context.GetPath("web"),
+            Context.GetPath("tools", "bin", "luau-lsp.exe"),
+            Context.GetPath("tools", "cache", "globalTypes.PluginSecurity.d.luau"));
 
         InstallWebView2NativeResolver();
 
@@ -426,15 +425,6 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
         foreach (var document in _sessions.Keys.ToArray())
             if (_sessions.TryRemove(document, out var session))
                 session.Dispose();
-    }
-
-    private static string ResolveAssetRoot(string assemblyDirectory)
-    {
-        foreach (var candidate in new[] { assemblyDirectory, Path.Combine(assemblyDirectory, "..") })
-            if (Directory.Exists(Path.Combine(candidate, "web")))
-                return Path.GetFullPath(candidate);
-
-        return assemblyDirectory;
     }
 
     private void InstallWebView2NativeResolver()

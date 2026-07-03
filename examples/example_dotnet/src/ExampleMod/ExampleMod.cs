@@ -14,7 +14,7 @@ namespace ExampleMod;
 )]
 public sealed class ExampleMod : ModBase, IDataModelAware
 {
-    public static ILogger Logger { get; } = Log.CreateLogger("ExampleMod");
+    public new static ILogger Logger { get; } = Log.CreateLogger("ExampleMod");
 
     public void OnDataModelLoaded(DataModel dataModel, DataModelType dataModelType)
     {

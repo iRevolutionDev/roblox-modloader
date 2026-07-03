@@ -15,7 +15,6 @@ internal static class ModLoader
     private static readonly Dictionary<string, ModInfo> _mods = new();
     private static string _modsRoot = string.Empty;
 
-
     internal static void Initialize(string modsRoot) => _modsRoot = modsRoot;
 
     internal static void LoadMod(string path)
@@ -49,10 +48,19 @@ internal static class ModLoader
 
             var mod = (IMod)Activator.CreateInstance(modType)!;
 
-            var attr = modType.GetCustomAttribute<ModAttribute>();
-            var loadIn = attr?.LoadInDataModels;
+            var attr = modType.GetCustomAttribute<ModAttribute>()!;
+            var loadIn = attr.LoadInDataModels;
 
-            var info = new ModInfo(context, mod, loadIn);
+            var modContext = new ModContext(
+                new ModDescriptor(attr.Id, attr.Version, attr.Author, attr.Description), path, assembly);
+
+            ModContext.Register(modContext);
+            if (mod is ModBase modBase)
+            {
+                modBase.Context = modContext;
+            }
+
+            var info = new ModInfo(context, mod, loadIn, assembly);
             _mods[path] = info;
 
             if (loadIn == null || loadIn.Length == 0)
@@ -116,7 +124,9 @@ internal static class ModLoader
             RuntimeLog.Error($"Error while unloading mod from {path}: {e}");
         }
 
-        var weak = new WeakReference(modInfo!.Context);
+        ModContext.Unregister(modInfo!.ModAssembly);
+
+        var weak = new WeakReference(modInfo.Context);
         modInfo.Context.Unload();
         return weak;
     }
@@ -211,19 +221,12 @@ internal static class ModLoader
         return currentAlc?.Assemblies ?? [];
     }
 
-    private class ModInfo
+    private class ModInfo(AssemblyLoadContext context, IMod instance, DataModelType[]? loadIn, Assembly modAssembly)
     {
-        public ModInfo(AssemblyLoadContext context, IMod instance, DataModelType[]? loadIn)
-        {
-            Context = context;
-            Instance = instance;
-            LoadInDataModels = loadIn;
-            Initialized = false;
-        }
-
-        public AssemblyLoadContext Context { get; }
-        public IMod Instance { get; }
-        public DataModelType[]? LoadInDataModels { get; }
+        public AssemblyLoadContext Context { get; } = context;
+        public IMod Instance { get; } = instance;
+        public DataModelType[]? LoadInDataModels { get; } = loadIn;
+        public Assembly ModAssembly { get; } = modAssembly;
         public bool Initialized { get; set; }
     }
 }
