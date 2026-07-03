@@ -1,7 +1,4 @@
 using System.Collections.Concurrent;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using Microsoft.Web.WebView2.Core;
 using RML.Core.Api;
 using RML.Core.Modding;
 using RML.Logging;
@@ -48,7 +45,6 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
     private Timer? _sourcemapDebounce;
     private volatile string? _sourcemapJson;
     private bool _sourcemapWalkActive;
-    private DllImportResolver? _webView2Resolver;
 
     public void OnDataModelLoaded(DataModel game, DataModelType dataModelType)
     {
@@ -203,20 +199,6 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
 
         _gui?.Dispose();
         _gui = null;
-
-        if (_webView2Resolver is not null)
-        {
-            try
-            {
-                NativeLibrary.SetDllImportResolver(typeof(CoreWebView2Environment).Assembly, NullResolver);
-            }
-            catch
-            {
-                // ignored
-            }
-
-            _webView2Resolver = null;
-        }
 
         Logger.Info("unloaded");
     }
@@ -409,10 +391,5 @@ public sealed class ScriptEditorWebviewMod : ModBase, IDataModelAware
         foreach (var document in _sessions.Keys.ToArray())
             if (_sessions.TryRemove(document, out var session))
                 session.Dispose();
-    }
-
-    private static IntPtr NullResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
-    {
-        return IntPtr.Zero;
     }
 }
