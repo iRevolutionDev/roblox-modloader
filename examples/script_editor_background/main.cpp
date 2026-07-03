@@ -142,7 +142,7 @@ private:
 
 		dialog->setWindowTitle("Script Editor Background");
 		dialog->setModal(true);
-		dialog->resize(380, 312);
+		dialog->resize(380, 378);
 		dialog->setStyleSheet("QDialog { background-color:#1e1f22; }"
 		                      "QLabel { color:#e6e6e6; font-family:Segoe UI; font-size:13px; }"
 		                      "QCheckBox { color:#e6e6e6; font-family:Segoe UI; font-size:13px; }"
@@ -198,10 +198,37 @@ private:
 			});
 		}
 
+		if (rml::qt::QLabel* const blur_caption = rml::qt::QLabel::create("Blur", dialog))
+			blur_caption->setGeometry(20, 150, 120, 22);
+
+		rml::qt::QLabel* const blur_value = rml::qt::QLabel::create(std::to_string(to_percent(snap.blur)) + "%", dialog);
+		if (blur_value)
+		{
+			blur_value->setAlignment(rml::qt::QLabel::AlignRight | rml::qt::QLabel::AlignVCenter);
+			blur_value->setGeometry(260, 150, 100, 22);
+		}
+
+		rml::qt::QSlider* const blur_slider = rml::qt::QSlider::create(rml::qt::QSlider::Horizontal, dialog);
+		if (blur_slider)
+		{
+			blur_slider->setRange(0, 100);
+			blur_slider->setValue(to_percent(snap.blur));
+			blur_slider->setSingleStep(1);
+			blur_slider->setPageStep(10);
+			blur_slider->setGeometry(20, 178, 340, 24);
+			blur_slider->on_value_changed([this, blur_value](const int percent) {
+				if (blur_value)
+					blur_value->setText(std::to_string(percent) + "%");
+				edit_settings([percent](BackgroundSettings& s) {
+					s.blur = clamp_blur(percent / 100.0);
+				});
+			});
+		}
+
 		rml::qt::QPushButton* const scale_button = rml::qt::QPushButton::create(scale_label(snap.scale_mode), dialog);
 		if (scale_button)
 		{
-			scale_button->setGeometry(20, 150, 165, 30);
+			scale_button->setGeometry(20, 216, 165, 30);
 			scale_button->on_clicked([this, scale_button] {
 				ScaleMode mode{};
 				edit_settings([&mode](BackgroundSettings& s) {
@@ -215,7 +242,7 @@ private:
 		rml::qt::QPushButton* const align_button = rml::qt::QPushButton::create(align_label(snap.alignment), dialog);
 		if (align_button)
 		{
-			align_button->setGeometry(195, 150, 165, 30);
+			align_button->setGeometry(195, 216, 165, 30);
 			align_button->on_clicked([this, align_button] {
 				Alignment alignment{};
 				edit_settings([&alignment](BackgroundSettings& s) {
@@ -228,10 +255,10 @@ private:
 
 		if (rml::qt::QPushButton* const choose_button = rml::qt::QPushButton::create("Choose image...", dialog))
 		{
-			choose_button->setGeometry(20, 188, 340, 30);
+			choose_button->setGeometry(20, 254, 340, 30);
 			choose_button->on_clicked([this] {
 				const std::string picked =
-				    rml::qt::QFileDialog::get_open_file_name(nullptr, "Choose background image", mod_folder().string(), "Images (*.png *.jpg *.jpeg *.bmp *.gif *.webp);;All files (*)");
+				    rml::qt::QFileDialog::get_open_file_name(nullptr, "Choose background image", mod_folder().string(), "Images (*.png *.jpg *.jpeg *.bmp *.gif *.webp *.apng *.mng *.tif *.tiff *.ico);;Animated (*.gif *.webp *.apng *.mng);;All files (*)");
 				if (picked.empty())
 					return;
 				edit_settings([&picked](BackgroundSettings& s) {
@@ -243,7 +270,7 @@ private:
 
 		if (rml::qt::QPushButton* const open_button = rml::qt::QPushButton::create("Open config file", dialog))
 		{
-			open_button->setGeometry(20, 226, 165, 30);
+			open_button->setGeometry(20, 292, 165, 30);
 			open_button->on_clicked([this] {
 				ShellExecuteW(nullptr, L"open", m_store->path().wstring().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 			});
@@ -251,8 +278,8 @@ private:
 
 		if (rml::qt::QPushButton* const reset_button = rml::qt::QPushButton::create("Reset to defaults", dialog))
 		{
-			reset_button->setGeometry(195, 226, 165, 30);
-			reset_button->on_clicked([this, enabled, slider, opacity_value, scale_button, align_button] {
+			reset_button->setGeometry(195, 292, 165, 30);
+			reset_button->on_clicked([this, enabled, slider, opacity_value, blur_slider, blur_value, scale_button, align_button] {
 				const BackgroundSettings defaults{};
 				edit_settings([&defaults](BackgroundSettings& s) {
 					s = defaults;
@@ -264,6 +291,10 @@ private:
 					slider->setValue(to_percent(defaults.opacity));
 				if (opacity_value)
 					opacity_value->setText(std::to_string(to_percent(defaults.opacity)) + "%");
+				if (blur_slider)
+					blur_slider->setValue(to_percent(defaults.blur));
+				if (blur_value)
+					blur_value->setText(std::to_string(to_percent(defaults.blur)) + "%");
 				if (scale_button)
 					scale_button->setText(scale_label(defaults.scale_mode));
 				if (align_button)
@@ -274,7 +305,7 @@ private:
 
 		if (rml::qt::QPushButton* const close_button = rml::qt::QPushButton::create("Close", dialog))
 		{
-			close_button->setGeometry(20, 264, 340, 32);
+			close_button->setGeometry(20, 330, 340, 32);
 			close_button->on_clicked([dialog] {
 				dialog->close();
 			});

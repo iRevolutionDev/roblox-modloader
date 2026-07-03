@@ -34,6 +34,7 @@ namespace script_editor_bg
 	{
 		bool enabled{false};
 		double opacity{0.22};
+		double blur{0.0};
 		std::string image{""};
 		ScaleMode scale_mode{ScaleMode::Fill};
 		Alignment alignment{Alignment::Center};
@@ -43,6 +44,7 @@ namespace script_editor_bg
 	{
 		inline constexpr std::string_view enabled = "enabled";
 		inline constexpr std::string_view opacity = "opacity";
+		inline constexpr std::string_view blur = "blur";
 		inline constexpr std::string_view image = "image";
 		inline constexpr std::string_view scale_mode = "scale_mode";
 		inline constexpr std::string_view alignment = "alignment";
@@ -52,9 +54,17 @@ namespace script_editor_bg
 	inline constexpr double max_opacity = 1.0;
 	inline constexpr double opacity_step = 0.05;
 
+	inline constexpr double min_blur = 0.0;
+	inline constexpr double max_blur = 1.0;
+
 	[[nodiscard]] inline double clamp_opacity(const double value)
 	{
 		return std::clamp(value, min_opacity, max_opacity);
+	}
+
+	[[nodiscard]] inline double clamp_blur(const double value)
+	{
+		return std::clamp(value, min_blur, max_blur);
 	}
 
 	[[nodiscard]] inline std::string_view to_string(const ScaleMode mode)
@@ -147,6 +157,7 @@ namespace script_editor_bg
 		out += defaults.enabled ? "true" : "false";
 		out += "\n";
 		out += "opacity = 0.22\n";
+		out += "blur = 0.0\n";
 		out += "image = \"\"\n";
 		out += "scale_mode = \"fill\"\n";
 		out += "alignment = \"center\"\n";
@@ -158,6 +169,7 @@ namespace script_editor_bg
 		BackgroundSettings settings;
 		settings.enabled = store.get_bool(keys::enabled, settings.enabled);
 		settings.opacity = clamp_opacity(store.get_double(keys::opacity, settings.opacity));
+		settings.blur = clamp_blur(store.get_double(keys::blur, settings.blur));
 		settings.image = store.get_string(keys::image, settings.image);
 		settings.scale_mode = scale_mode_from_string(store.get_string(keys::scale_mode, to_string(settings.scale_mode)));
 		settings.alignment = alignment_from_string(store.get_string(keys::alignment, to_string(settings.alignment)));
@@ -168,6 +180,7 @@ namespace script_editor_bg
 	{
 		store.set_bool(keys::enabled, settings.enabled);
 		store.set_double(keys::opacity, clamp_opacity(settings.opacity));
+		store.set_double(keys::blur, clamp_blur(settings.blur));
 		store.set_string(keys::image, settings.image);
 		store.set_string(keys::scale_mode, to_string(settings.scale_mode));
 		store.set_string(keys::alignment, to_string(settings.alignment));

@@ -5,8 +5,10 @@
 #include <RobloxModLoader/qt/qobject.hpp>
 #include <RobloxModLoader/qt/qpainter.hpp>
 #include <RobloxModLoader/qt/qrect.hpp>
+#include <RobloxModLoader/qt/qstring.hpp>
 #include <RobloxModLoader/qt/qwidget.hpp>
 #include <algorithm>
+#include <cmath>
 #include <string_view>
 #include <utility>
 #include <windows.h>
@@ -69,6 +71,7 @@ namespace script_editor_bg
 	EditorOverlay::~EditorOverlay()
 	{
 		unhook_all();
+		teardown_source();
 		if (g_active == this)
 			g_active = nullptr;
 	}
@@ -152,23 +155,132 @@ namespace script_editor_bg
 			original(self, event);
 	}
 
+	bool EditorOverlay::is_animated_extension(const std::filesystem::path& path)
+	{
+		if (!path.has_extension())
+			return false;
+
+		std::string ext = path.extension().string();
+		std::ranges::transform(ext, ext.begin(), [](const unsigned char c) { return static_cast<char>(std::tolower(c)); });
+		return ext == ".gif" || ext == ".webp" || ext == ".apng" || ext == ".mng";
+	}
+
+	void EditorOverlay::teardown_source() const
+	{
+		if (m_movie)
+		{
+			m_movie->stop();
+			rml::qt::QMovie::destroy(m_movie);
+			m_movie = nullptr;
+		}
+		m_animated = false;
+	}
+
+	void EditorOverlay::on_movie_frame() const
+	{
+		if (!m_movie)
+			return;
+
+		m_frame = m_movie->currentPixmap();
+		m_frame_dirty = true;
+		repaint_editors();
+	}
+
+	void EditorOverlay::ensure_source(const BackgroundSettings& settings) const
+	{
+		std::filesystem::path image_path(settings.image);
+		if (image_path.is_relative() && !settings.image.empty())
+			image_path = m_mod_directory / image_path;
+
+		const std::string key = image_path.generic_string();
+		if (key == m_source_key)
+			return;
+
+		teardown_source();
+		m_source_key = key;
+		m_frame = rml::qt::QPixmap();
+		m_display = rml::qt::QPixmap();
+		m_display_blur = -1.0;
+		m_frame_dirty = true;
+
+		if (key.empty())
+			return;
+
+		if (is_animated_extension(image_path))
+		{
+			const rml::qt::QString qpath(key);
+			if (rml::qt::QMovie* const movie = rml::qt::QMovie::create(qpath))
+			{
+				if (movie->isValid() && movie->frameCount() != 1)
+				{
+					movie->setCacheMode(rml::qt::QMovie::CacheMode::All);
+					movie->on_frame_changed([this] { on_movie_frame(); });
+					movie->start();
+
+					m_movie = movie;
+					m_animated = true;
+					m_frame = movie->currentPixmap();
+					return;
+				}
+
+				rml::qt::QMovie::destroy(movie);
+			}
+		}
+
+		m_animated = false;
+		m_frame = rml::qt::QPixmap(key);
+	}
+
+	rml::qt::QPixmap EditorOverlay::blur_pixmap(const rml::qt::QPixmap& source, const double blur)
+	{
+		const int w = source.width();
+		const int h = source.height();
+		if (w <= 0 || h <= 0)
+			return {};
+
+		const double radius = clamp_blur(blur) * std::min(w, h) * 0.12;
+		if (radius <= 0.0)
+			return {};
+
+		return source.blurred(radius);
+	}
+
+	void EditorOverlay::rebuild_display(const BackgroundSettings& settings) const
+	{
+		if (!m_frame.loaded())
+		{
+			m_display = rml::qt::QPixmap();
+			return;
+		}
+
+		const double blur = clamp_blur(settings.blur);
+		if (!m_frame_dirty && blur == m_display_blur && m_display.loaded())
+			return;
+
+		if (blur <= 0.0)
+		{
+			m_display = m_frame;
+		}
+		else
+		{
+			rml::qt::QPixmap blurred = blur_pixmap(m_frame, blur);
+			m_display = blurred.loaded() ? std::move(blurred) : m_frame;
+		}
+
+		m_display_blur = blur;
+		m_frame_dirty = false;
+	}
+
 	void EditorOverlay::render(void* editor) const
 	{
 		const std::shared_ptr<const BackgroundSettings> settings = m_settings.load(std::memory_order_acquire);
 		if (!settings || !settings->enabled)
 			return;
 
-		std::filesystem::path image_path(settings->image);
-		if (image_path.is_relative())
-			image_path = m_mod_directory / image_path;
+		ensure_source(*settings);
+		rebuild_display(*settings);
 
-		if (const std::string key = image_path.generic_string(); key != m_pixmap_key)
-		{
-			m_pixmap = rml::qt::QPixmap(image_path.generic_string());
-			m_pixmap_key = key;
-		}
-
-		if (!m_pixmap.loaded())
+		if (!m_display.loaded())
 			return;
 
 		const auto* const widget = static_cast<rml::qt::QWidget*>(editor);
@@ -178,32 +290,33 @@ namespace script_editor_bg
 
 		const int vw = viewport->width();
 		const int vh = viewport->height();
-		const int pw = m_pixmap.width();
-		const int ph = m_pixmap.height();
+		const int pw = m_display.width();
+		const int ph = m_display.height();
 		if (vw <= 0 || vh <= 0 || pw <= 0 || ph <= 0)
 			return;
 
 		rml::qt::QPainter painter(*viewport);
+		painter.set_render_hint(rml::qt::QPainter::SmoothPixmapTransform, true);
 		painter.set_opacity(settings->opacity);
 
 		switch (settings->scale_mode)
 		{
 		case ScaleMode::Stretch:
 		{
-			painter.draw_pixmap(rml::qt::QRect(0, 0, vw, vh), m_pixmap);
+			painter.draw_pixmap(rml::qt::QRect(0, 0, vw, vh), m_display);
 			break;
 		}
 		case ScaleMode::Tile:
 		{
 			for (int y = 0; y < vh; y += ph)
 				for (int x = 0; x < vw; x += pw)
-					painter.draw_pixmap(x, y, m_pixmap);
+					painter.draw_pixmap(x, y, m_display);
 			break;
 		}
 		case ScaleMode::Center:
 		{
 			const auto [x, y] = anchor(settings->alignment, pw, ph, vw, vh);
-			painter.draw_pixmap(x, y, m_pixmap);
+			painter.draw_pixmap(x, y, m_display);
 			break;
 		}
 		case ScaleMode::Fit:
@@ -215,7 +328,7 @@ namespace script_editor_bg
 			const int tw = std::max(1, static_cast<int>(std::lround(pw * scale)));
 			const int th = std::max(1, static_cast<int>(std::lround(ph * scale)));
 			const auto [x, y] = anchor(settings->alignment, tw, th, vw, vh);
-			painter.draw_pixmap(rml::qt::QRect(x, y, tw, th), m_pixmap);
+			painter.draw_pixmap(rml::qt::QRect(x, y, tw, th), m_display);
 			break;
 		}
 		}

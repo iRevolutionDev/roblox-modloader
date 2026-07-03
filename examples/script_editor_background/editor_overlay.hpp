@@ -2,6 +2,7 @@
 
 #include "settings.hpp"
 
+#include <RobloxModLoader/qt/qmovie.hpp>
 #include <RobloxModLoader/qt/qpixmap.hpp>
 #include <atomic>
 #include <filesystem>
@@ -33,6 +34,14 @@ namespace script_editor_bg
 		static void paint_detour(void* self, void* event);
 		void render(void* editor) const;
 
+		void ensure_source(const BackgroundSettings& settings) const;
+		void rebuild_display(const BackgroundSettings& settings) const;
+		void teardown_source() const;
+		void on_movie_frame() const;
+
+		[[nodiscard]] static bool is_animated_extension(const std::filesystem::path& path);
+		[[nodiscard]] static rml::qt::QPixmap blur_pixmap(const rml::qt::QPixmap& source, double blur);
+
 		[[nodiscard]] static std::size_t paint_slot();
 		void hook_editor_class(void* editor_handle);
 
@@ -41,7 +50,12 @@ namespace script_editor_bg
 
 		std::unordered_map<void**, paint_fn> m_originals;
 
-		mutable std::string m_pixmap_key;
-		mutable rml::qt::QPixmap m_pixmap;
+		mutable std::string m_source_key;
+		mutable bool m_animated{false};
+		mutable rml::qt::QMovie* m_movie{nullptr};
+		mutable rml::qt::QPixmap m_frame;
+		mutable rml::qt::QPixmap m_display;
+		mutable double m_display_blur{-1.0};
+		mutable bool m_frame_dirty{true};
 	};
 }

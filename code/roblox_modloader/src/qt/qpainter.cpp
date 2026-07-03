@@ -37,6 +37,13 @@ namespace rml::qt
 			dtor(m_storage);
 	}
 
+	void QPainter::set_render_hint(const RenderHint hint, const bool on)
+	{
+		static const auto fn = detail::gui<void (*)(void*, int, bool)>("?setRenderHint@QPainter@@QEAAXW4RenderHint@1@_N@Z");
+		if (fn && m_active)
+			fn(m_storage, static_cast<int>(hint), on);
+	}
+
 	void QPainter::set_opacity(const double opacity)
 	{
 		static const auto fn = detail::gui<void (*)(void*, double)>("?setOpacity@QPainter@@QEAAXN@Z");
