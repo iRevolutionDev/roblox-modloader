@@ -9,15 +9,7 @@ public static class RmlPaths
     public static string RootDirectory { get; } =
         Directory.GetParent(RuntimeDirectory)?.FullName ?? RuntimeDirectory;
 
-    public static string ModsDirectory => Path.Combine(RootDirectory, "mods");
-
-    public static string LogsDirectory => Path.Combine(RootDirectory, "logs");
-
     public static string DataDirectory => Path.Combine(RootDirectory, "data");
-
-    public static string CrashesDirectory => Path.Combine(RootDirectory, "crashes");
-
-    public static string ConfigFilePath => Path.Combine(RootDirectory, "config.toml");
 
     private static string ResolveRuntimeDirectory()
     {

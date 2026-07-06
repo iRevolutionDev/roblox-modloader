@@ -184,10 +184,4 @@ internal static class NativeHost
             return path is not null ? LoadUnmanagedDllFromPath(path) : IntPtr.Zero;
         }
     }
-
-    private delegate int InitializeDelegate(IntPtr modsRootPtr, IntPtr interopTablePtr, int interopTableSize);
-
-    private delegate int LoadModDelegate(IntPtr assemblyPathPtr);
-
-    private delegate int UnloadModDelegate(IntPtr assemblyPathPtr);
 }
