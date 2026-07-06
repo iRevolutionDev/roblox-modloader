@@ -6,25 +6,15 @@
 #include <string>
 #include <utility>
 
-struct metadata
-{
-	const std::string name{};
-	const std::string version{};
-	const std::string author{};
-	const std::string description{};
-};
-
 class RML_EXPORT ModBase
 {
 public:
 	using start_type = ModBase* (*)();
-	using uninstall_type = void (*)();
 
 	std::string name{};
 	std::string version{};
 	std::string author{};
 	std::string description{};
-	uninstall_type uninstall_mod_func{};
 
 	ModBase();
 

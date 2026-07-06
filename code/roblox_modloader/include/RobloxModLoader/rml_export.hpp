@@ -21,6 +21,7 @@
 #  endif
 #endif
 
+// reserved for API evolution
 #ifndef RML_DEPRECATED
 #  define RML_DEPRECATED __declspec(deprecated)
 #endif
