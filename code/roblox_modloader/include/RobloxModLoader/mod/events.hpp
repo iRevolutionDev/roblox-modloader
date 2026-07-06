@@ -4,6 +4,8 @@
 #include <vector>
 #include <memory>
 #include <unordered_map>
+#include <shared_mutex>
+#include <typeindex>
 
 namespace events {
     struct EventBase {
@@ -41,30 +43,37 @@ namespace events {
 
         template<typename T>
         void registerHandler(EventHandler<T> handler) {
-            auto wrappedHandler = [handler](std::shared_ptr<EventBase> e) {
-                if (auto event = std::dynamic_pointer_cast<T>(e)) {
-                    handler(*event);
-                }
+            auto wrappedHandler = [handler](EventBase &e) {
+                handler(static_cast<T &>(e));
             };
-            handlers[typeid(T).hash_code()].push_back(wrappedHandler);
+            std::unique_lock lock(mutex_);
+            handlers[std::type_index(typeid(T))].push_back(std::move(wrappedHandler));
         }
 
         template<typename T>
         void emit(T &event) {
-            auto baseEvent = std::make_shared<T>(event);
-            const auto typeHash = typeid(T).hash_code();
-            if (const auto it = handlers.find(typeHash); it != handlers.end()) {
-                for (const auto &handler: it->second) {
-                    if (!event.cancelled) {
-                        handler(baseEvent);
-                    }
+            std::vector<HandlerFunc> snapshot;
+            {
+                std::shared_lock lock(mutex_);
+                const auto it = handlers.find(std::type_index(typeid(T)));
+                if (it == handlers.end()) {
+                    return;
                 }
+                snapshot = it->second;
+            }
+
+            for (const auto &handler: snapshot) {
+                if (event.cancelled) {
+                    break;
+                }
+                handler(event);
             }
         }
 
     private:
-        using HandlerFunc = std::function<void(std::shared_ptr<EventBase>)>;
-        std::unordered_map<size_t, std::vector<HandlerFunc> > handlers;
+        using HandlerFunc = std::function<void(EventBase &)>;
+        std::unordered_map<std::type_index, std::vector<HandlerFunc> > handlers;
+        std::shared_mutex mutex_;
     };
 
     inline EventManager *g_event_manager{};
