@@ -12,11 +12,14 @@
 #include <RobloxModLoader/qt/qslider.hpp>
 #include <RobloxModLoader/qt/qstring.hpp>
 #include <RobloxModLoader/qt/qt_integration.hpp>
+#include <atomic>
+#include <chrono>
 #include <memory>
 #include <mutex>
 #include <shellapi.h>
 #include <spdlog/spdlog.h>
 #include <string>
+#include <thread>
 #include <utility>
 #include <windows.h>
 
@@ -54,7 +57,7 @@ public:
 		m_log = logger::get_logger("ScriptEditorBg");
 	}
 
-	[[noreturn]] void on_load() override
+	void on_load() override
 	{
 		m_store = std::make_unique<rml::config::ModSettings>(paths().config_file("config.toml"));
 		m_store->write_default_if_missing(default_config_template());
@@ -86,20 +89,29 @@ public:
 			    to_string(m_settings.alignment));
 		});
 
-		std::thread([this] {
-			// This is a hacky, i'll fix it later don't worry ;(
-			while (true)
+		s_active.store(this, std::memory_order_release);
+		m_running.store(true, std::memory_order_release);
+		m_scanner = std::thread([this] {
+			while (m_running.load(std::memory_order_acquire))
 			{
+				arm_scan();
 				std::this_thread::sleep_for(std::chrono::seconds(1));
-				m_overlay->hook_open_editors();
 			}
-		}).detach();
+		});
 
 		m_log->info("loaded - mod folder '{}'", mod_folder().string());
 	}
 
 	void on_unload() override
 	{
+		m_running.store(false, std::memory_order_release);
+		if (m_scanner.joinable())
+			m_scanner.join();
+
+		s_active.store(nullptr, std::memory_order_release);
+		if (const HHOOK hook = s_scan_hook.exchange(nullptr, std::memory_order_acq_rel))
+			UnhookWindowsHookEx(hook);
+
 		if (m_store)
 			m_store->stop_watching();
 		if (m_overlay)
@@ -125,6 +137,73 @@ private:
 	{
 		std::scoped_lock lock(m_mutex);
 		return m_settings;
+	}
+
+	void run_scan_on_gui()
+	{
+		if (m_overlay)
+			m_overlay->hook_open_editors();
+	}
+	
+	static void arm_scan()
+	{
+		if (s_scan_hook.load(std::memory_order_acquire))
+			return;
+
+		const HWND window = find_studio_window();
+		if (!window)
+			return;
+
+		const DWORD gui_thread = GetWindowThreadProcessId(window, nullptr);
+		if (gui_thread == 0)
+			return;
+
+		const HHOOK hook = SetWindowsHookExW(WH_GETMESSAGE, &scan_hook_proc, nullptr, gui_thread);
+		if (!hook)
+			return;
+
+		HHOOK expected = nullptr;
+		if (!s_scan_hook.compare_exchange_strong(expected, hook, std::memory_order_acq_rel))
+		{
+			UnhookWindowsHookEx(hook);
+			return;
+		}
+
+		PostThreadMessageW(gui_thread, WM_NULL, 0, 0);
+	}
+
+	static LRESULT CALLBACK scan_hook_proc(const int code, const WPARAM wparam, const LPARAM lparam)
+	{
+		if (code != HC_ACTION)
+			return CallNextHookEx(s_scan_hook.load(std::memory_order_acquire), code, wparam, lparam);
+
+		const HHOOK hook = s_scan_hook.exchange(nullptr, std::memory_order_acq_rel);
+		if (hook)
+			UnhookWindowsHookEx(hook);
+
+		if (ScriptEditorBackground* const self = s_active.load(std::memory_order_acquire))
+			self->run_scan_on_gui();
+
+		return CallNextHookEx(hook, code, wparam, lparam);
+	}
+
+	static BOOL CALLBACK enum_windows_proc(const HWND hwnd, const LPARAM lparam)
+	{
+		DWORD pid = 0;
+		GetWindowThreadProcessId(hwnd, &pid);
+		if (pid != GetCurrentProcessId() || !IsWindowVisible(hwnd) || GetWindow(hwnd, GW_OWNER) != nullptr ||
+		    GetWindowTextLengthW(hwnd) == 0)
+			return TRUE;
+
+		*reinterpret_cast<HWND*>(lparam) = hwnd;
+		return FALSE;
+	}
+
+	[[nodiscard]] static HWND find_studio_window()
+	{
+		HWND found = nullptr;
+		EnumWindows(&enum_windows_proc, reinterpret_cast<LPARAM>(&found));
+		return found;
 	}
 
 	void open_panel()
@@ -321,6 +400,12 @@ private:
 	mutable std::mutex m_mutex;
 	BackgroundSettings m_settings;
 	std::unique_ptr<EditorOverlay> m_overlay;
+
+	std::thread m_scanner;
+	std::atomic<bool> m_running{false};
+
+	static inline std::atomic<ScriptEditorBackground*> s_active{nullptr};
+	static inline std::atomic<HHOOK> s_scan_hook{nullptr};
 };
 
 #define SCRIPT_EDITOR_BACKGROUND_MOD_API __declspec(dllexport)
