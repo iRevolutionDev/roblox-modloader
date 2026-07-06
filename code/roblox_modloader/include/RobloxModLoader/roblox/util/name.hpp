@@ -134,4 +134,4 @@ namespace RBX
 		virtual ~INamed()                    = default;
 		virtual const Name& get_name() const = 0;
 	};
-} // namespace RBX::Reflection
+} // namespace RBX

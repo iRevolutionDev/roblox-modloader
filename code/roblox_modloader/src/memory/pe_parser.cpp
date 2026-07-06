@@ -1,8 +1,6 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/memory/pe_parser.hpp"
 
-#include "RobloxModLoader/memory/rtti_utils.hpp"
-
 namespace memory::pe {
     bool parser::parse(std::shared_ptr<process_info> info) {
         try {

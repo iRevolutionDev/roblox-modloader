@@ -3,8 +3,6 @@
 #include "RobloxModLoader/common.hpp"
 #include "pe_parser.hpp"
 
-#include <immintrin.h>
-
 namespace memory::rtti {
     class scanner;
     class rtti_info;
@@ -142,7 +140,7 @@ namespace memory::rtti {
     };
 
     /**
-     * @brief RTTI Scanner using SIMD pattern matching
+     * @brief RTTI scanner using a pointer walk over the module's .rdata section
      */
     class scanner {
     public:
@@ -194,7 +192,7 @@ namespace memory::rtti {
         [[nodiscard]] bool setup_section_data();
 
         /**
-         * @brief Scan for RTTI patterns using SIMD
+         * @brief Scan for RTTI patterns via pointer walk
          * @param base_address Process base address
          * @return Number of RTTI entries found
          */
@@ -216,12 +214,7 @@ namespace memory::rtti {
         std::unique_ptr<pe::parser> m_pe_parser;
         std::unique_ptr<section_data> m_section_data;
 
-        static const __m128i RTTI_PATTERN;
-        static const __m128i RTTI_MASK;
-
-        static inline std::unique_ptr<pe::parser> s_pe_parser{};
         static inline std::unordered_map<std::string, std::unique_ptr<rtti_info> > s_class_rtti_map{};
-        static inline std::unique_ptr<section_data> s_section_data{};
     };
 
     class rtti_manager {

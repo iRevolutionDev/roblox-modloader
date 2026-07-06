@@ -1,23 +1,15 @@
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 
 #include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/memory/rtti_utils.hpp"
 #include "RobloxModLoader/memory/symbol_resolver.hpp"
 
 #include <algorithm>
 #include <dbghelp.h>
-#include <immintrin.h>
 
 #pragma comment(lib, "dbghelp.lib")
 
 namespace memory::rtti
 {
-	const __m128i scanner::RTTI_PATTERN = _mm_setr_epi8(0x48, 0x8D, 0x05, 0x00, 0x00, 0x00, 0x00, // lea rax,[rip+offset]
-	    0x48, 0x89, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-
-	const __m128i scanner::RTTI_MASK = _mm_setr_epi8(0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, // Mask for LEA
-	    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-
 	std::string rtti_info::get_name() const
 	{
 		if (!m_type_descriptor || !m_type_descriptor->name)
@@ -102,10 +94,6 @@ namespace memory::rtti
 	scanner::scanner()
 	{
 		m_pe_parser = std::make_unique<pe::parser>();
-		if (!s_pe_parser)
-		{
-			s_pe_parser = std::make_unique<pe::parser>();
-		}
 
 		LOG_DEBUG("RTTI scanner created");
 	}
@@ -168,8 +156,6 @@ namespace memory::rtti
 	void scanner::clear_cache() noexcept
 	{
 		s_class_rtti_map.clear();
-		s_section_data.reset();
-		s_pe_parser.reset();
 		LOG_DEBUG("RTTI cache cleared");
 	}
 
@@ -186,7 +172,6 @@ namespace memory::rtti
 		}
 
 		m_section_data = std::make_unique<section_data>(text_sections, data_sections, rdata_sections);
-		s_section_data = std::make_unique<section_data>(text_sections, data_sections, rdata_sections);
 
 		LOG_DEBUG("Section data setup complete");
 		return true;
