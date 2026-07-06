@@ -5,9 +5,7 @@
 #include "RobloxModLoader/roblox/job.hpp"
 #include "RobloxModLoader/roblox/render_view.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
-#include "call_hook.hpp"
 #include "detour_hook.hpp"
-#include "vmt_hook.hpp"
 #include "vtable_hook.hpp"
 
 #include <MinHook.h>
