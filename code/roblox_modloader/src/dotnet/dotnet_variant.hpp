@@ -324,7 +324,7 @@ namespace rml::dotnet
 		return tuple_value(values);
 	}
 
-	inline void write_return_value(const RBX::Reflection::Type* type, const uint64_t ret, [[maybe_unused]] const uint64_t ret_slot, const uintptr_t ret_slot_addr, InteropVariant& out) noexcept
+	inline void write_return_value(const RBX::Reflection::Type* type, const uint64_t ret, const uintptr_t ret_slot_addr, InteropVariant& out) noexcept
 	{
 		if (!type)
 		{

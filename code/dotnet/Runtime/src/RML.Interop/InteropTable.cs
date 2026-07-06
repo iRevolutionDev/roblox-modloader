@@ -46,15 +46,13 @@ public readonly struct InteropVariant
 
 internal static unsafe class NativeInterop
 {
-    public const int InteropTableVersion = 5;
+    public const int InteropTableVersion = 6;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct InteropTable
     {
         public uint Version;
         public uint Size;
-
-        public delegate* unmanaged[Cdecl]<sbyte*, void*> GetProcAddress;
 
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, uint, InteropVariant*, void> ReflectionInvoke;
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, void> ReflectionGetProperty;
@@ -64,8 +62,6 @@ internal static unsafe class NativeInterop
             void*, nuint> ReflectionEventConnect;
 
         public delegate* unmanaged[Cdecl]<nuint, void> ReflectionEventDisconnect;
-
-        public delegate* unmanaged[Cdecl]<void*, nuint> InstanceGetClassDescriptor;
 
         public delegate* unmanaged[Cdecl]<sbyte*, int, nuint> CreateInstanceByName;
 

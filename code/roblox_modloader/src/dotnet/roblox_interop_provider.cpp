@@ -29,13 +29,6 @@ namespace rml::dotnet
 
 	void RobloxInteropProvider::populate(InteropTable& table)
 	{
-		table.version = RML_INTEROP_VERSION;
-		table.size = sizeof(InteropTable);
-
-		table.get_proc_address = [](const char*) -> void* {
-			return nullptr;
-		};
-
 		table.reflection_invoke = [](const uintptr_t instance_ptr, const char* function_name, const InteropVariant* args, const uint32_t arg_count, InteropVariant* out_result) {
 			if (out_result)
 			{
@@ -60,7 +53,7 @@ namespace rml::dotnet
 				const auto type = descriptor->get_signature().first_result_type();
 
 				if (out_result)
-					write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), *out_result);
+					write_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), *out_result);
 			}
 			catch (const std::exception& e)
 			{
@@ -107,7 +100,7 @@ namespace rml::dotnet
 				const auto type = descriptor->get_signature().first_result_type();
 
 				InteropVariant result{};
-				write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), result);
+				write_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), result);
 				callback(state, &result, nullptr);
 			}
 			catch (const std::exception& e)
