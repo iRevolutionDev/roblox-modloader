@@ -22,8 +22,8 @@ hooking::hooking()
 			continue;
 		}
 
-		auto job_hook = std::make_unique<vtable_hook>(*vtable, 7);
-		job_hook->hook(6, &hooks::on_job_step);
+		auto job_hook = std::make_unique<vtable_hook>(*vtable, rml::JobVtable::kSlotCount);
+		job_hook->hook(rml::JobVtable::kStepIndex, &hooks::on_job_step);
 		m_jobs_hook[kind] = std::move(job_hook);
 		RML_DEBUG("Hooked job kind {} with vtable 0x{:X}", std::to_underlying(kind), reinterpret_cast<std::uintptr_t>(*vtable));
 	}
@@ -55,9 +55,19 @@ hooking::~hooking()
 
 void hooking::enable()
 {
+	for (auto& job_hook : m_jobs_hook | std::views::values)
+	{
+		if (!job_hook)
+			continue;
+
+		if (const auto result = job_hook->enable(); !result)
+			RML_ERROR("Failed to enable job vtable hook: {}", result.error().describe());
+	}
+
 	for (auto& detour_hook_helper : m_detour_hook_helpers)
 	{
-		detour_hook_helper.m_detour_hook->enable();
+		if (const auto result = detour_hook_helper.m_detour_hook->enable(); !result)
+			RML_ERROR("Failed to enable detour hook: {}", result.error().describe());
 	}
 
 	MH_ApplyQueued();
@@ -73,13 +83,15 @@ void hooking::disable()
 	{
 		if (job_hook)
 		{
-			job_hook->disable();
+			if (const auto result = job_hook->disable(); !result)
+				RML_WARN("Failed to disable job vtable hook: {}", result.error().describe());
 		}
 	}
 
 	for (auto& detour_hook_helper : m_detour_hook_helpers)
 	{
-		detour_hook_helper.m_detour_hook->disable();
+		if (const auto result = detour_hook_helper.m_detour_hook->disable(); !result)
+			RML_WARN("Failed to disable detour hook: {}", result.error().describe());
 	}
 
 	MH_ApplyQueued();
@@ -100,7 +112,9 @@ void hooking::detour_hook_helper::enable_hook_if_hooking_is_already_running() co
 			m_detour_hook->set_target_and_create_hook(m_on_hooking_available());
 		}
 
-		m_detour_hook->enable();
+		if (const auto result = m_detour_hook->enable(); !result)
+			RML_ERROR("Failed to enable late-registered detour hook: {}", result.error().describe());
+
 		MH_ApplyQueued();
 	}
 }

@@ -3,6 +3,8 @@
 #include "RobloxModLoader/memory/handle.hpp"
 #include <MinHook.h>
 
+RML_LOG_SCOPE("DetourHook");
+
 detour_hook::detour_hook() {
 }
 
@@ -37,8 +39,8 @@ void detour_hook::create_hook() {
 		return;
 
 	fix_hook_address();
-	if (auto status = MH_CreateHook(m_target, m_detour, &m_original); status != MH_OK)
-		LOG_ERROR("Failed to create hook '{}' at 0x{:X} (error: {})", m_name, uintptr_t(m_target),
+	if (const auto status = MH_CreateHook(m_target, m_detour, &m_original); status != MH_OK)
+		RML_ERROR("Failed to create hook '{}' at 0x{:X} (error: {})", m_name, uintptr_t(m_target),
 	          MH_StatusToString(status));
 }
 
@@ -46,25 +48,47 @@ detour_hook::~detour_hook() noexcept {
 	if (!m_target)
 		return;
 
-	if (auto status = MH_RemoveHook(m_target); status != MH_OK)
-		LOG_ERROR("Failed to remove hook '{}' at 0x{:X} (error: {})", m_name, uintptr_t(m_target),
+	if (const auto status = MH_RemoveHook(m_target); status != MH_OK)
+		RML_ERROR("Failed to remove hook '{}' at 0x{:X} (error: {})", m_name, uintptr_t(m_target),
 	          MH_StatusToString(status));
 }
 
-void detour_hook::enable() {
-	if (!m_target)
-		return;
+std::expected<void, rml::HookError> detour_hook::enable() {
+	if (!m_target) {
+		const auto error = rml::HookError::from_minhook(m_name, 0, MH_ERROR_NOT_CREATED);
+		RML_ERROR("Failed to enable hook '{}': {}", m_name, error.describe());
+		return std::unexpected(error);
+	}
 
-	if (auto status = MH_QueueEnableHook(m_target); status != MH_OK)
-		LOG_ERROR("Failed to enable hook 0x{:X} ({})", uintptr_t(m_target), MH_StatusToString(status));
+	if (const auto status = MH_QueueEnableHook(m_target); status != MH_OK) {
+		const auto error = rml::HookError::from_minhook(m_name, uintptr_t(m_target), status);
+		RML_ERROR("Failed to enable hook '{}': {}", m_name, error.describe());
+		return std::unexpected(error);
+	}
+
+	m_enabled = true;
+	return {};
 }
 
-void detour_hook::disable() {
-	if (!m_target)
-		return;
+std::expected<void, rml::HookError> detour_hook::disable() {
+	if (!m_target) {
+		const auto error = rml::HookError::from_minhook(m_name, 0, MH_ERROR_NOT_CREATED);
+		RML_WARN("Failed to disable hook '{}': {}", m_name, error.describe());
+		return std::unexpected(error);
+	}
 
-	if (auto status = MH_QueueDisableHook(m_target); status != MH_OK)
-		LOG_WARN("Failed to disable hook '{}' at 0x{:X} ({})", m_name, uintptr_t(m_target), MH_StatusToString(status));
+	if (const auto status = MH_QueueDisableHook(m_target); status != MH_OK) {
+		const auto error = rml::HookError::from_minhook(m_name, uintptr_t(m_target), status);
+		RML_WARN("Failed to disable hook '{}': {}", m_name, error.describe());
+		return std::unexpected(error);
+	}
+
+	m_enabled = false;
+	return {};
+}
+
+bool detour_hook::is_enabled() const {
+	return m_enabled;
 }
 
 DWORD exp_handler(PEXCEPTION_POINTERS exp, std::string const &name) {

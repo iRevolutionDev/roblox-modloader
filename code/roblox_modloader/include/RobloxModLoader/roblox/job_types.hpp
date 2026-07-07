@@ -1,4 +1,5 @@
 #pragma once
+#include <cstddef>
 #include <cstdint>
 #include <string_view>
 #include <concepts>
@@ -9,6 +10,11 @@ namespace RBX {
 }
 
 namespace rml {
+    struct JobVtable {
+        static constexpr std::size_t kStepIndex = 6;
+        static constexpr std::size_t kSlotCount = 7;
+    };
+
     enum class JobKind : std::uint8_t {
         None = 0,
         Heartbeat = 1 << 0,

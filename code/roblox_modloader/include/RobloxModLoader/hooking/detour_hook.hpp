@@ -1,8 +1,11 @@
 #pragma once
 
+#include <expected>
 #include <string>
 
-class RML_EXPORT detour_hook {
+#include "RobloxModLoader/hooking/i_hook.hpp"
+
+class RML_EXPORT detour_hook : public rml::IHook {
 public:
     explicit detour_hook();
 
@@ -10,7 +13,7 @@ public:
 
     explicit detour_hook(const std::string &name, void *target, void *detour);
 
-    ~detour_hook() noexcept;
+    ~detour_hook() noexcept override;
 
     detour_hook(detour_hook &&that) = delete;
 
@@ -26,9 +29,11 @@ public:
 
     void set_target_and_create_hook(void *target);
 
-    void enable();
+    [[nodiscard]] std::expected<void, rml::HookError> enable() override;
 
-    void disable();
+    [[nodiscard]] std::expected<void, rml::HookError> disable() override;
+
+    [[nodiscard]] bool is_enabled() const override;
 
     template<typename T>
     T get_original() {
@@ -48,4 +53,5 @@ private:
     void *m_original{};
     void *m_target{};
     void *m_detour{};
+    bool m_enabled{};
 };

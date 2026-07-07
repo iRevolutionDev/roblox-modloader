@@ -13,12 +13,6 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 		return RBX::TaskScheduler::StepResult::Stepped; // No job to step, return early.
 	}
 
-	if (!g_hooking)
-	{
-		LOG_ERROR("[hooks::on_job_step] g_hooking is not initialized!");
-		return RBX::TaskScheduler::StepResult::Stepped;
-	}
-
 	const auto vtable        = static_cast<void**>(*this_ptr);
 	const auto detected_kind = [&]() -> rml::JobKind {
 		if (!g_task_scheduler)
@@ -60,7 +54,7 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 
 	if (const auto it = g_hooking->m_jobs_hook.find(detected_kind); it != g_hooking->m_jobs_hook.end() && it->second)
 	{
-		return it->second->get_original<decltype(&on_job_step)>(6)(this_ptr, time_metrics);
+		return it->second->get_original<decltype(&on_job_step)>(rml::JobVtable::kStepIndex)(this_ptr, time_metrics);
 	}
 
 	LOG_WARN("[hooks::on_job_step] No hook found for job kind {}, returning Stepped", std::to_underlying(detected_kind));
