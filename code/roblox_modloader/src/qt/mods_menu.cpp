@@ -1,6 +1,6 @@
 #include "RobloxModLoader/qt/mods_menu.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
 #include "RobloxModLoader/qt/qmenu.hpp"
 #include "RobloxModLoader/qt/qmenubar.hpp"
@@ -79,7 +79,7 @@ namespace rml::qt
 		if (text.empty() || !on_click)
 			return 0;
 
-		void* menu_bar = nullptr;
+		QMenuBar* menu_bar = nullptr;
 		uint64_t id = 0;
 		{
 			std::scoped_lock lock(m_mutex);
@@ -99,7 +99,7 @@ namespace rml::qt
 		if (id == 0)
 			return;
 
-		void* live_action = nullptr;
+		QAction* live_action = nullptr;
 		{
 			std::scoped_lock lock(m_mutex);
 			std::erase_if(m_entries, [id](const Entry& entry) { return entry.id == id; });
@@ -114,13 +114,13 @@ namespace rml::qt
 			m_dispatcher.disconnect(live_action);
 	}
 
-	void ModsMenu::rebuild(void* menu_bar_handle)
+	void ModsMenu::rebuild(QMenuBar* menu_bar_handle)
 	{
 		if (!menu_bar_handle)
 			return;
 
 		std::vector<Entry> entries;
-		std::vector<void*> previous;
+		std::vector<QAction*> previous;
 		QMenu* menu = nullptr;
 		{
 			std::scoped_lock lock(m_mutex);
@@ -131,7 +131,7 @@ namespace rml::qt
 				menu = m_menu;
 		}
 
-		for (void* stale : previous)
+		for (QAction* stale : previous)
 			m_dispatcher.disconnect(stale);
 
 		if (menu)
@@ -140,8 +140,7 @@ namespace rml::qt
 		}
 		else
 		{
-			auto* const menu_bar = static_cast<QMenuBar*>(menu_bar_handle);
-			menu = menu_bar->addMenu("Mods");
+			menu = menu_bar_handle->addMenu("Mods");
 			if (!menu)
 			{
 				LOG_ERROR("[qt] QMenuBar::addMenu returned null; Mods menu not added");
@@ -149,18 +148,18 @@ namespace rml::qt
 			}
 		}
 
-		std::vector<void*> live;
-		std::unordered_map<uint64_t, void*> entry_actions;
+		std::vector<QAction*> live;
+		std::unordered_map<uint64_t, QAction*> entry_actions;
 
 		const auto emit = [&](const std::string_view text, std::function<void()> on_click, const uint64_t id = 0) {
 			QAction* const action = menu->addAction(text);
 			if (!action)
 				return;
 
-			m_dispatcher.connect(action->handle(), std::move(on_click));
-			live.push_back(action->handle());
+			m_dispatcher.connect(action, std::move(on_click));
+			live.push_back(action);
 			if (id != 0)
-				entry_actions[id] = action->handle();
+				entry_actions[id] = action;
 		};
 
 		emit("Open Mods Folder", [] {

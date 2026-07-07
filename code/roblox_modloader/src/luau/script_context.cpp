@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "lstate.h"
 #include "lobject.h"
 #include "RobloxModLoader/luau/script_context.hpp"

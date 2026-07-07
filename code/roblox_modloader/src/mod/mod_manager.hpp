@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
 #include "imod_loader.hpp"

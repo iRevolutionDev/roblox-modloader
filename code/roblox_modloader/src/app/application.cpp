@@ -1,6 +1,6 @@
 #include "application.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/qt/qt_integration.hpp"
 #include "subsystems/config_subsystem.hpp"
 #include "subsystems/logger_subsystem.hpp"
@@ -19,6 +19,8 @@ RML_LOG_SCOPE("Application");
 
 namespace rml
 {
+	using namespace std::chrono_literals;
+
 	Application::Application() = default;
 
 	Application::~Application()

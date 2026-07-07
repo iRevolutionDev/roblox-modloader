@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../isubsystem.hpp"
-#include "RobloxModLoader/memory/rtti_scanner.hpp"
+#include "RobloxModLoader/internal/memory/rtti_scanner.hpp"
 
 namespace rml
 {

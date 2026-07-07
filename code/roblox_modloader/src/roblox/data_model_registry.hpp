@@ -1,5 +1,5 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 #include <shared_mutex>
 #include <unordered_map>

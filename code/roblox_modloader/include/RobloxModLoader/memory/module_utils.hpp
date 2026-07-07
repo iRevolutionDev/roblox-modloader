@@ -1,5 +1,6 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+#include <cstdint>
+#include <string>
 
 namespace memory::module_utils {
     /**

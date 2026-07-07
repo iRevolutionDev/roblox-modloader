@@ -1,6 +1,6 @@
 #include "RobloxModLoader/memory/range.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/memory/pattern.hpp"
 
 namespace memory {

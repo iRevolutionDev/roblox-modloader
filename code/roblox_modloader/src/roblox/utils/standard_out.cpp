@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/roblox/util/standard_out.hpp"
 #include "pointers.hpp"
 

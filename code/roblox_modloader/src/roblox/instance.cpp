@@ -1,6 +1,6 @@
 #include "RobloxModLoader/roblox/instance.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 namespace RBX
 {

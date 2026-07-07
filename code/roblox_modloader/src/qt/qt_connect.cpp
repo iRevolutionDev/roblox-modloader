@@ -1,6 +1,6 @@
 #include "qt_connect.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
 
 #include <cstdint>

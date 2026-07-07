@@ -1,6 +1,6 @@
 #include "managed_bridge.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 RML_LOG_SCOPE("ManagedBridge");
 

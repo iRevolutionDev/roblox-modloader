@@ -1,9 +1,29 @@
 #pragma once
+
+#ifndef NOMINMAX
+	#define NOMINMAX
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+#endif
+
+#if defined(_WIN32)
+	#include <Windows.h>
+#endif
+
 #include "pattern.hpp"
 #include "range.hpp"
 #include "signature.hpp"
+#include "RobloxModLoader/logger/logger.hpp"
 
+#include <array>
+#include <cstddef>
+#include <cstdint>
+#include <functional>
 #include <future>
+#include <mutex>
+#include <vector>
 
 namespace memory
 {

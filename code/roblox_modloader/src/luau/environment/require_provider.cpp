@@ -1,6 +1,6 @@
 #include "RobloxModLoader/luau/environment/require_provider.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/logger/logger.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "lobject.h"

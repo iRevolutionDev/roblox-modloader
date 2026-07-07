@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "luau_waiting_script_job.hpp"
 
 #include "pointers.hpp"

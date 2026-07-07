@@ -1,6 +1,6 @@
 #include "RobloxModLoader/config/mod_settings.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 #include "utils/file_watcher.hpp"
 

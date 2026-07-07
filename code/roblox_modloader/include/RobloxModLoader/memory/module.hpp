@@ -1,6 +1,24 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+
+#if defined(_WIN32)
+	#define RML_WINDOWS
+#elif defined(__linux__)
+	#define RML_LINUX
+#elif defined(__APPLE__)
+	#define RML_MACOS
+#endif
+
+#include "RobloxModLoader/rml_export.hpp"
 #include "range.hpp"
+
+#include <chrono>
+#include <cstdint>
+#include <expected>
+#include <filesystem>
+#include <mutex>
+#include <optional>
+#include <string>
+#include <string_view>
 
 namespace memory
 {

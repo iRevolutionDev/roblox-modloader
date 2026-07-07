@@ -12,7 +12,9 @@
 namespace rml::qt
 {
 	class ActionDispatcher;
+	class QAction;
 	class QMenu;
+	class QMenuBar;
 
 	class RML_EXPORT ModsMenu
 	{
@@ -20,11 +22,11 @@ namespace rml::qt
 		explicit ModsMenu(ActionDispatcher& dispatcher);
 
 		void add_action(std::string text, std::function<void()> on_click);
-		
+
 		uint64_t register_action(std::string text, std::function<void()> on_click);
 		void remove_action(uint64_t id);
 
-		void rebuild(void* menu_bar);
+		void rebuild(QMenuBar* menu_bar);
 
 	private:
 		struct Entry
@@ -40,9 +42,9 @@ namespace rml::qt
 
 		std::mutex m_mutex;
 		std::vector<Entry> m_entries;
-		std::vector<void*> m_live_actions;
-		std::unordered_map<uint64_t, void*> m_entry_actions;
-		void* m_menu_bar_handle{};
+		std::vector<QAction*> m_live_actions;
+		std::unordered_map<uint64_t, QAction*> m_entry_actions;
+		QMenuBar* m_menu_bar_handle{};
 		QMenu* m_menu{};
 		uint64_t m_next_id{1};
 	};

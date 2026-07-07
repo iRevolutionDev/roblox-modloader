@@ -1,7 +1,7 @@
 #include "data_model_watcher_job.hpp"
 
 #include "../../mod/mod_manager.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/luau/script_manager.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"

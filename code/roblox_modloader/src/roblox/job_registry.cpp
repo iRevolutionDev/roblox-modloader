@@ -1,7 +1,7 @@
 #include "job_registry.hpp"
 
-#include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/memory/rtti_scanner.hpp"
+#include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/internal/memory/rtti_scanner.hpp"
 
 #include <array>
 

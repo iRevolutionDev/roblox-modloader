@@ -1,7 +1,7 @@
 #include "RobloxModLoader/luau/script_manager.hpp"
 
 #include "../mod/mod_manager.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/config/config_serialization.hpp"
 #include "RobloxModLoader/luau/environment/environment.hpp"
 #include "config/config.hpp"

@@ -12,7 +12,7 @@
 	#include <windows.h>
 #endif
 
-#include "rml_export.hpp"
+#include "RobloxModLoader/rml_export.hpp"
 
 template<typename T>
 class HashTable;

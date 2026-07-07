@@ -1,7 +1,8 @@
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
+#include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
 #include "RobloxModLoader/qt/qaction.hpp"
 
 namespace rml::qt
@@ -28,7 +29,7 @@ namespace rml::qt
 		return m_hook_installed;
 	}
 
-	void ActionDispatcher::connect(void* action, std::function<void()> callback)
+	void ActionDispatcher::connect(QAction* action, std::function<void()> callback)
 	{
 		if (!action || !callback)
 			return;
@@ -37,7 +38,7 @@ namespace rml::qt
 		m_callbacks[action].push_back(std::move(callback));
 	}
 
-	void ActionDispatcher::disconnect(void* action)
+	void ActionDispatcher::disconnect(QAction* action)
 	{
 		if (!action)
 			return;
@@ -46,7 +47,7 @@ namespace rml::qt
 		m_callbacks.erase(action);
 	}
 
-	void ActionDispatcher::dispatch(void* action) const
+	void ActionDispatcher::dispatch(QAction* action) const
 	{
 		std::vector<std::function<void()>> handlers;
 		{

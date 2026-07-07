@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/luau/environment/globals_registry.hpp"
 
 namespace rml::luau::environment {

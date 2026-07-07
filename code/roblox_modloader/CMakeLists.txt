@@ -87,7 +87,7 @@ set_target_properties(roblox_modloader PROPERTIES
 )
 
 target_precompile_headers(roblox_modloader PRIVATE
-        "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/common.hpp"
+        "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/internal/common.hpp"
 )
 
 include(GenerateExportHeader)

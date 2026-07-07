@@ -1,6 +1,6 @@
 #include "RobloxModLoader/roblox/data_model.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/roblox/data_model_job.hpp"
 
 namespace RBX

@@ -4,7 +4,7 @@
 
 #include "lua.h"
 #include "lcommon.h"
-#include "RobloxModLoader/roblox_pointers.hpp"
+#include "RobloxModLoader/internal/roblox_pointers.hpp"
 
 /*
 ** Union of all collectible objects

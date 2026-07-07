@@ -121,22 +121,10 @@
 #include <luau/Compiler.h>
 #include <luau/CodeGen.h>
 
-#include "rml_export.hpp"
+#include "RobloxModLoader/rml_export.hpp"
 
 // clang-format on
 
-using namespace std::chrono_literals;
-
-// Cross-platform placeholders for instance/handle on non-Windows
-#if defined(_WIN32)
-inline HINSTANCE g_hinstance{};
-inline HANDLE g_main_thread{};
-#else
-using HINSTANCE = void*;
-using HANDLE = void*;
-inline HINSTANCE g_hinstance{nullptr};
-inline HANDLE g_main_thread{nullptr};
-#endif
-inline std::atomic_bool g_running{false};
+#include "RobloxModLoader/internal/loader_state.hpp"
 
 #endif

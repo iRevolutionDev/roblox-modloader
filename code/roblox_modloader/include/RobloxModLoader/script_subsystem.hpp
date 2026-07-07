@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include <memory>
 
 #if RML_ENABLE_LUAU
 #include "RobloxModLoader/luau/script_manager.hpp"

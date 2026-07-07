@@ -1,6 +1,6 @@
 #include "pointers.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/memory/all.hpp"
 
 constexpr auto pointers::get_roblox_batch()

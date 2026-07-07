@@ -1,7 +1,5 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
-
 #include <initializer_list>
 #include <string>
 #include <string_view>

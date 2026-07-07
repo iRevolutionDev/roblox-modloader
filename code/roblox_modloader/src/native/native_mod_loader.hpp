@@ -3,7 +3,7 @@
 #include "mod/imod_loader.hpp"
 #include "mod_registry.hpp"
 
-#include <RobloxModLoader/common.hpp>
+#include <RobloxModLoader/internal/common.hpp>
 #include <RobloxModLoader/memory/module.hpp>
 #include <RobloxModLoader/mod/events.hpp>
 #include <RobloxModLoader/mod/mod_base.hpp>

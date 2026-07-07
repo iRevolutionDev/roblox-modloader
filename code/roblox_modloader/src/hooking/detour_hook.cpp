@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/hooking/detour_hook.hpp"
 #include "RobloxModLoader/memory/handle.hpp"
 #include <MinHook.h>

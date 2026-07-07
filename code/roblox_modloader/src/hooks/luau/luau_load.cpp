@@ -1,7 +1,8 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "lstate.h"
-#include "RobloxModLoader/function_types.hpp"
+#include "RobloxModLoader/internal/function_types.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
+#include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
 #include "RobloxModLoader/roblox/luau/roblox_extra_space.hpp"
 
 static_assert(std::is_same_v<decltype(&hooks::luau_load), functions::luau_load>);

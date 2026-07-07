@@ -1,8 +1,20 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
-#include <memory>
+#ifndef NOMINMAX
+	#define NOMINMAX
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+#endif
+
+#include <Windows.h>
+#include <dbghelp.h>
+
 #include <bit>
+#include <cstdint>
+#include <memory>
+#include <string>
 
 namespace PLH {
     class IatHook;

@@ -1,5 +1,5 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/luau/script_engine.hpp"
 
 #include <atomic>

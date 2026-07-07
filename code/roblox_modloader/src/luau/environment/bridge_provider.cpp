@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/luau/environment/bridge_provider.hpp"
 #include <spdlog/spdlog.h>
 #include <format>

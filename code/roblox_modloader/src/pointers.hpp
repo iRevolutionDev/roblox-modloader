@@ -2,7 +2,7 @@
 #include "RobloxModLoader/memory/batch.hpp"
 #include "RobloxModLoader/memory/module.hpp"
 #include "RobloxModLoader/util/compile_time_helpers.hpp"
-#include "RobloxModLoader/roblox_pointers.hpp"
+#include "RobloxModLoader/internal/roblox_pointers.hpp"
 
 class pointers {
 private:

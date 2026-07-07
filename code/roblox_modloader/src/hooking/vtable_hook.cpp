@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/hooking/vtable_hook.hpp"
 
 #include "utils/memory_protection_guard.hpp"

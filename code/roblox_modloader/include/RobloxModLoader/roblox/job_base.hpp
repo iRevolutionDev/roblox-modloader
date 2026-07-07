@@ -1,7 +1,12 @@
 #pragma once
 #include "data_model_job.hpp"
 #include "RobloxModLoader/roblox/job.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/logger/logger.hpp"
+
+#include <atomic>
+#include <exception>
+#include <string>
+#include <string_view>
 
 namespace rml::jobs {
     class JobBase : public IJob {

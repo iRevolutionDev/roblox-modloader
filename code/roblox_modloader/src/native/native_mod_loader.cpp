@@ -1,6 +1,6 @@
 #include "native_mod_loader.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/memory/module.hpp"
 #include "mod/mod_kind.hpp"
 
@@ -39,6 +39,7 @@ namespace rml::native
 
 		auto start_h = module_ptr->get_export("start_mod");
 		auto uninstall_h = module_ptr->get_export("uninstall_mod");
+		auto abi_version_h = module_ptr->get_export("rml_abi_version");
 
 		if (!start_h)
 		{
@@ -50,6 +51,22 @@ namespace rml::native
 		{
 			module_ptr->detach();
 			return std::unexpected("Failed to find 'uninstall_mod' export in native mod: " + path.string());
+		}
+
+		if (!abi_version_h)
+		{
+			module_ptr->detach();
+			return std::unexpected(std::format(
+			    "Native mod '{}' does not export 'rml_abi_version' (expected RML_ABI_VERSION={}); rebuild it against the current RobloxModLoader SDK",
+			    path.string(), RML_ABI_VERSION));
+		}
+
+		if (const int mod_abi_version = abi_version_h.as<rml_abi_version_type>()(); mod_abi_version != RML_ABI_VERSION)
+		{
+			module_ptr->detach();
+			return std::unexpected(std::format(
+			    "Native mod '{}' was built against RML_ABI_VERSION={} but the loader is RML_ABI_VERSION={}; rebuild the mod",
+			    path.string(), mod_abi_version, RML_ABI_VERSION));
 		}
 
 		auto* start = start_h.as<start_fn_t>();

@@ -2,7 +2,19 @@
 #include "RobloxModLoader/roblox/i_task_scheduler.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/job_base.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/logger/logger.hpp"
+#include "RobloxModLoader/rml_export.hpp"
+
+#include <chrono>
+#include <cstddef>
+#include <expected>
+#include <format>
+#include <functional>
+#include <memory>
+#include <optional>
+#include <string>
+#include <string_view>
+#include <vector>
 
 namespace rml::jobs {
     class JobManager final {

@@ -1,6 +1,6 @@
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "data_model_registry.hpp"
 #include "job_registry.hpp"
 

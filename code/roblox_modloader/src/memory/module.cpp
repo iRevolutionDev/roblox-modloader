@@ -1,6 +1,6 @@
 #include "RobloxModLoader/memory/module.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 namespace memory
 {
 

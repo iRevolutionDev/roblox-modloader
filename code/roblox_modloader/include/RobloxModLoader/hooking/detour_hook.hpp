@@ -4,6 +4,7 @@
 #include <string>
 
 #include "RobloxModLoader/hooking/i_hook.hpp"
+#include "RobloxModLoader/rml_export.hpp"
 
 class RML_EXPORT detour_hook : public rml::IHook {
 public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "bridge_provider.hpp"
 #include "debug_provider.hpp"
 #include "globals_registry.hpp"

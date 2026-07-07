@@ -7,7 +7,7 @@
  @edited  2006-08-14
 */
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 #include "g3d/format.h"
 #include "g3d/platform.h"

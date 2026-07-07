@@ -6,5 +6,5 @@
 #include "pattern.hpp"
 #include "range.hpp"
 #include "signature.hpp"
-#include "pe_parser.hpp"
-#include "rtti_scanner.hpp"
+#include "RobloxModLoader/internal/memory/pe_parser.hpp"
+#include "RobloxModLoader/internal/memory/rtti_scanner.hpp"

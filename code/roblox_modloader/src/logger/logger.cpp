@@ -1,6 +1,6 @@
 #include "RobloxModLoader/logger/logger.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "config/config_manager.hpp"
 #include "spdlog/async.h"
 #include "spdlog/details/fmt_helper.h"

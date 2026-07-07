@@ -1,6 +1,6 @@
 #include "RobloxModLoader/luau/environment/debug_provider.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/luau/extensions/luau_extensions.hpp"
 #include "lapi.h"
 #include "ldebug.h"

@@ -1,5 +1,5 @@
-#include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/memory/pe_parser.hpp"
+#include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/internal/memory/pe_parser.hpp"
 
 namespace memory::pe {
     bool parser::parse(std::shared_ptr<process_info> info) {

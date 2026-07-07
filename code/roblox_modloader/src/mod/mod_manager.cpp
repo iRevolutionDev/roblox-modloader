@@ -1,6 +1,6 @@
 #include "mod_manager.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "dotnet/dotnet_mod_loader.hpp"
 #include "native/native_mod_loader.hpp"
 #include "utils/directory.hpp"

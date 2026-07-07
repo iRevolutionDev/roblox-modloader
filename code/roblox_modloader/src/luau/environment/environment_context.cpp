@@ -1,7 +1,7 @@
 #include "RobloxModLoader/luau/environment/environment_context.hpp"
 #include "RobloxModLoader/luau/script_engine.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 namespace rml::luau::environment {
     EnvironmentContext::EnvironmentContext(std::shared_ptr<ScriptEngine> parentEngine)

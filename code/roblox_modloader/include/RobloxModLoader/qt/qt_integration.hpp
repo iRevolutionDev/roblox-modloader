@@ -25,11 +25,11 @@ namespace rml::qt
 		{
 			return m_menu;
 		}
-		void on_menu_bar_built(void* menu_bar)
+		void on_menu_bar_built(QMenuBar* menu_bar)
 		{
 			m_menu.rebuild(menu_bar);
 		}
-		void on_action_triggered(void* action) const
+		void on_action_triggered(QAction* action) const
 		{
 			m_dispatcher.dispatch(action);
 		}

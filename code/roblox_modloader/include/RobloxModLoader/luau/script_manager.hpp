@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/config/config_types.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 

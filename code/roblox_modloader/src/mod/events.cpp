@@ -1,5 +1,5 @@
 #include "RobloxModLoader/mod/events.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 namespace rml::events {
     static EventManager *s_active_event_manager{};

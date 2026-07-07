@@ -1,5 +1,7 @@
 #pragma once
 
+#define RML_ABI_VERSION 1
+
 namespace rml::version
 {
 	[[nodiscard]] const char* commit();

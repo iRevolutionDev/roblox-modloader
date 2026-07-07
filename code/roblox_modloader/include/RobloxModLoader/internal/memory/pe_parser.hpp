@@ -1,7 +1,7 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
-#include "handle.hpp"
+#include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/memory/handle.hpp"
 
 namespace memory::pe {
     /**

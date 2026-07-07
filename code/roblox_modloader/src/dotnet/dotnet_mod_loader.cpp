@@ -1,6 +1,6 @@
 #include "dotnet_mod_loader.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "roblox_interop_provider.hpp"

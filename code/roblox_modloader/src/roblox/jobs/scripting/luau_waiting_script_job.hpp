@@ -1,6 +1,6 @@
 #pragma once
 #include "RobloxModLoader/roblox/job_base.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 namespace RBX {
     class ScriptContext;

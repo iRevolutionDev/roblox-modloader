@@ -1,5 +1,7 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/rml_export.hpp"
+
+#include <cstdint>
 #include <functional>
 #include <vector>
 #include <memory>

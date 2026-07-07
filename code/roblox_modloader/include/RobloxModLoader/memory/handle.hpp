@@ -1,5 +1,5 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/rml_export.hpp"
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>
