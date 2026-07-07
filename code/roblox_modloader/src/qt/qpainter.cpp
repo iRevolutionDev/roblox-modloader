@@ -1,5 +1,6 @@
 #include "RobloxModLoader/qt/qpainter.hpp"
 
+#include "RobloxModLoader/qt/qpaintdevice.hpp"
 #include "RobloxModLoader/qt/qpixmap.hpp"
 #include "RobloxModLoader/qt/qrect.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
@@ -22,7 +23,7 @@ namespace rml::qt
 		if (!ctor)
 			return;
 
-		void* paint_device = reinterpret_cast<char*>(const_cast<QWidget*>(&target)) + 16;
+		auto* paint_device = static_cast<QPaintDevice*>(const_cast<QWidget*>(&target));
 		ctor(m_storage, paint_device);
 		set_owned(true);
 	}

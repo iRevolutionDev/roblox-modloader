@@ -1,5 +1,6 @@
 #include "RobloxModLoader/qt/qapplication.hpp"
 
+#include "RobloxModLoader/qt/qlist.hpp"
 #include "RobloxModLoader/qt/qstring.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
 #include "RobloxModLoader/qt/qwidget.hpp"
@@ -55,22 +56,12 @@ namespace rml::qt
 		if (!fn)
 			return widgets;
 
-		void* list_d = nullptr;
-		fn(&list_d);
-		if (!list_d)
-			return widgets;
+		QList<QWidget*> list;
+		fn(list.raw_storage());
 
-		const auto* base = static_cast<unsigned char*>(list_d);
-		const int begin = *reinterpret_cast<const int*>(base + 8);
-		const int end = *reinterpret_cast<const int*>(base + 12);
-		auto* const* array = reinterpret_cast<void* const*>(base + 16);
-
-		if (end > begin)
-		{
-			widgets.reserve(static_cast<std::size_t>(end - begin));
-			for (int i = begin; i < end; ++i)
-				widgets.push_back(static_cast<QWidget*>(array[i]));
-		}
+		widgets.reserve(static_cast<std::size_t>(list.size()));
+		for (QWidget* widget : list)
+			widgets.push_back(widget);
 
 		return widgets;
 	}

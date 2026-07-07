@@ -1,13 +1,14 @@
 #pragma once
 
 #include "RobloxModLoader/qt/qobject.hpp"
+#include "RobloxModLoader/qt/qpaintdevice.hpp"
 #include "RobloxModLoader/qt/qpalette.hpp"
 
 namespace rml::qt
 {
 	class QString;
-	
-	class RML_EXPORT QWidget : public QObject
+
+	class RML_EXPORT QWidget : public QObject, public QPaintDevice
 	{
 	public:
 		virtual void setVisible(bool visible) = 0;
@@ -52,5 +53,10 @@ namespace rml::qt
 		void set_auto_fill_background(bool enabled);
 
 		void update();
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_OFFSET(QWidget, m_layout_probe, sizeof(void*) * 2);
+		RML_LAYOUT_GUARD_END()
 	};
 }
