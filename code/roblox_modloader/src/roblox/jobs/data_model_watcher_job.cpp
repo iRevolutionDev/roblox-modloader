@@ -117,6 +117,7 @@ namespace rml::jobs
 		// }
 
 		// Execute Luau scripts that registered for this DataModel context
+#if RML_ENABLE_LUAU
 		try
 		{
 			if (luau::g_script_manager)
@@ -129,6 +130,7 @@ namespace rml::jobs
 		{
 			LOG_ERROR("Failed to execute mod scripts for DataModel type {}: {}", static_cast<int>(data_model_type), e.what());
 		}
+#endif
 	}
 
 	void DataModelWatcherJob::check_and_cleanup_stale_data_models()

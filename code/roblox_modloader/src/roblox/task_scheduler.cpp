@@ -2,13 +2,10 @@
 
 #include "../mod/mod_manager.hpp"
 #include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/luau/environment/closures_provider.hpp"
-#include "RobloxModLoader/luau/environment/debug_provider.hpp"
 #include "RobloxModLoader/luau/script_engine.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/job.hpp"
-#include "RobloxModLoader/roblox/script_context.hpp"
 #include "lstate.h"
 
 #include <array>
@@ -300,11 +297,6 @@ namespace RBX
 				m_data_models.erase(type);
 			}
 		}
-
-		// if (data_model)
-		// {
-		// 	create_or_get_script_engine(type, script_context);
-		// }
 	}
 
 	const DataModel* TaskScheduler::get_data_model_by_type(const DataModelType type) noexcept
@@ -332,6 +324,7 @@ namespace RBX
 
 	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(lua_State* L)
 	{
+#if RML_ENABLE_LUAU
 		std::shared_lock lock(m_script_engines_mutex);
 
 		for (const auto& engine : m_script_engines | std::views::values)
@@ -341,6 +334,7 @@ namespace RBX
 				return engine;
 			}
 		}
+#endif
 
 		return nullptr;
 	}
@@ -354,55 +348,13 @@ namespace RBX
 		RML_INFO("TaskScheduler initialized successfully.");
 	}
 
-	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::create_or_get_script_engine(DataModelType data_model_type, ScriptContext* script_context)
-	{
-		std::unique_lock lock(m_script_engines_mutex);
-
-		if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end())
-		{
-			return it->second;
-		}
-
-		RML_INFO("Creating ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
-
-		if (!script_context)
-		{
-			return nullptr;
-		}
-
-		// TODO: Get the right identity based on the DataModel type
-		const auto global_state = script_context->get_global_state(Security::Identity::RobloxEngine);
-		const auto L            = lua_newthread(global_state);
-
-		rml::luau::ScriptContext::Context options{
-		    .L = L,
-		};
-
-		rml::luau::environment::ClosuresProvider::register_roblox_globals(L);
-		rml::luau::environment::DebugProvider::register_debug_table(L);
-		luaL_sandboxthread(L);
-
-		auto script_engine = std::make_shared<rml::luau::ScriptEngine>(options);
-
-		if (!script_engine->initialize())
-		{
-			RML_ERROR("Failed to initialize ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
-			return nullptr;
-		}
-
-		m_script_engines[data_model_type] = script_engine;
-
-		RML_INFO("ScriptEngine created successfully for DataModel type: {}", static_cast<int>(data_model_type));
-
-		return script_engine;
-	}
-
 	void TaskScheduler::shutdown_script_engines() noexcept
 	{
 		std::unique_lock lock(m_script_engines_mutex);
 
 		RML_INFO("Shutting down all ScriptEngines...");
 
+#if RML_ENABLE_LUAU
 		for (auto& [data_model_type, engine] : m_script_engines)
 		{
 			if (engine)
@@ -411,6 +363,7 @@ namespace RBX
 				engine->shutdown();
 			}
 		}
+#endif
 
 		m_script_engines.clear();
 
@@ -535,6 +488,7 @@ namespace RBX
 		if (!engine_to_cleanup)
 			return;
 
+#if RML_ENABLE_LUAU
 		std::thread([engine = std::move(engine_to_cleanup), data_model_type]() {
 			try
 			{
@@ -547,6 +501,7 @@ namespace RBX
 				RML_ERROR("Error shutting down ScriptEngine for DataModel type {}: {}", static_cast<int>(data_model_type), e.what());
 			}
 		}).detach();
+#endif
 	}
 
 	void TaskScheduler::cleanup_orphaned_script_engines()

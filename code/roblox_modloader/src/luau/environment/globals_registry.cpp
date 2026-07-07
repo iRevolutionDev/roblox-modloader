@@ -8,17 +8,6 @@ namespace rml::luau::environment {
         lua_setglobal(L, name.data());
     }
 
-    template<lua_CFunction Func>
-    int LuaFunctionRegistry::safe_call_wrapper(lua_State *L) noexcept {
-        try {
-            return Func(L);
-        } catch (const std::exception &e) {
-            return handle_lua_error(L, "unknown", e);
-        } catch (...) {
-            return handle_lua_unknown_error(L, "unknown");
-        }
-    }
-
     int LuaFunctionRegistry::handle_lua_error(lua_State *L, std::string_view function_name,
                                               const std::exception &e) noexcept {
         const auto error_msg = std::format("Error in function '{}': {}", function_name, e.what());
@@ -30,49 +19,6 @@ namespace rml::luau::environment {
         const auto error_msg = std::format("Unknown error in function '{}'", function_name);
         lua_pushstring(L, error_msg.c_str());
         lua_error(L);
-    }
-
-    template<typename Derived>
-    void GlobalProvider<Derived>::register_table(lua_State *L, const std::string_view name) noexcept {
-        lua_newtable(L);
-        lua_setglobal(L, name.data());
-    }
-
-    template<typename Derived>
-    void GlobalProvider<
-        Derived>::register_string(lua_State *L, const std::string_view name, const std::string_view value) noexcept {
-        lua_pushstring(L, value.data());
-        lua_setglobal(L, name.data());
-    }
-
-    template<typename Derived>
-    void GlobalProvider<Derived>::register_number(lua_State *L, const std::string_view name,
-                                                  const lua_Number value) noexcept {
-        lua_pushnumber(L, value);
-        lua_setglobal(L, name.data());
-    }
-
-    template<typename Derived>
-    void GlobalProvider<
-        Derived>::register_boolean(lua_State *L, const std::string_view name, const bool value) noexcept {
-        lua_pushboolean(L, value);
-        lua_setglobal(L, name.data());
-    }
-
-    template<typename Derived>
-    void GlobalProvider<Derived>::register_table_function(lua_State *L, const std::string_view name,
-                                                          const lua_CFunction func) noexcept {
-        lua_pushcfunction(L, func, name.data());
-        lua_setfield(L, -2, name.data());
-    }
-
-    template<typename Derived>
-    void GlobalProvider<Derived>::begin_table_registration(lua_State *L, std::string_view table_name) noexcept {
-        lua_newtable(L);
-    }
-
-    template<typename Derived>
-    void GlobalProvider<Derived>::end_table_registration(lua_State *L) noexcept {
     }
 
     class GlobalsRegistry::Impl {

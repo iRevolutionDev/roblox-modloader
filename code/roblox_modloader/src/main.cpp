@@ -1,12 +1,12 @@
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/exception/crash_dumper.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
-#include "RobloxModLoader/luau/script_manager.hpp"
 #include "RobloxModLoader/memory/rtti_scanner.hpp"
 #include "RobloxModLoader/mod/events.hpp"
 #include "RobloxModLoader/qt/qt_integration.hpp"
 #include "RobloxModLoader/roblox/job_manager.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
+#include "RobloxModLoader/script_subsystem.hpp"
 #include "RobloxModLoader/version.hpp"
 #include "mod/mod_manager.hpp"
 #include "pointers.hpp"
@@ -68,13 +68,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 				    const auto hooking_instance = std::make_shared<hooking>();
 				    LOG_INFO("Hooking initialized.");
 
-				    // const auto script_manager = std::make_shared<rml::luau::ScriptManager>();
-				    // LOG_INFO("Script Manager initialized.");
-
-				    // const auto module_dir = directory_utils::get_module_directory();
-				    // const auto mods_directory = module_dir / "RobloxModLoader" / "mods";
-				    // script_manager->load_mod_scripts(mods_directory);
-				    // LOG_INFO("Mod scripts loaded.");
+				    const auto script_subsystem = std::make_shared<rml::ScriptSubsystem>();
+				    script_subsystem->initialize();
+				    LOG_INFO("Script Subsystem initialized.");
 
 				    g_hooking->enable();
 				    LOG_INFO("Hooking enabled.");
@@ -92,6 +88,9 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 
 					    std::this_thread::sleep_for(1s);
 				    }
+
+				    script_subsystem->shutdown();
+				    LOG_INFO("Script Subsystem shutdown.");
 
 				    // Shutdown configuration system
 				    rml::config::shutdown();

@@ -30,7 +30,7 @@ struct hooks
 	static void resume_waiting_scripts(uintptr_t* script_context, int expiration_time);
 	static void light_grid_update_perform(void* this_ptr, uintptr_t unk, void* unk2, uintptr_t unk3);
 	static uintptr_t profile_log(uintptr_t token, uint64_t tick, uint64_t begin, uintptr_t* log);
-	static lua_Status* luau_load(lua_State* L, const char* chunkname, const char* data, size_t size, int env);
+	static lua_Status luau_load(lua_State* L, const char* chunkname, const char* data, size_t size, int env);
 	static void* build_menu_bar_from_dom(void* out_menu_bar, void* dom, void* context);
 	static void qt_action_activate(void* self, int event);
 };

@@ -77,9 +77,6 @@ namespace RBX {
 
         std::shared_ptr<rml::luau::ScriptEngine> get_script_engine(lua_State *L);
 
-        std::shared_ptr<rml::luau::ScriptEngine> create_or_get_script_engine(
-            DataModelType data_model_type, ScriptContext *script_context);
-
         void cleanup_data_model(DataModelType data_model_type);
 
         void cleanup_script_engine(DataModelType data_model_type);
@@ -123,9 +120,6 @@ namespace RBX {
         JobId generate_job_id() noexcept;
 
         static void execute_job_with_stats(JobEntry &entry, const rml::JobExecutionContext &context) noexcept;
-
-        void setup_script_engine_environment(std::shared_ptr<rml::luau::ScriptEngine> engine,
-                                             DataModelType data_model_type);
 
         void shutdown_script_engines() noexcept;
     };
