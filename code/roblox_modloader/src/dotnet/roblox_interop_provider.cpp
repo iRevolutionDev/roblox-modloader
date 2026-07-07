@@ -40,7 +40,11 @@ namespace rml::dotnet
 			{reinterpret_cast<const void*>(table.free_string), "free_string"},
 			{reinterpret_cast<const void*>(table.free_native_ptr), "free_native_ptr"},
 			{reinterpret_cast<const void*>(table.mods_menu_add_action), "mods_menu_add_action"},
-			{reinterpret_cast<const void*>(table.mods_menu_remove_action), "mods_menu_remove_action"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_submenu), "mods_menu_add_submenu"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_separator), "mods_menu_add_separator"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_checkable), "mods_menu_add_checkable"},
+			{reinterpret_cast<const void*>(table.mods_menu_set_item_icon), "mods_menu_set_item_icon"},
+			{reinterpret_cast<const void*>(table.mods_menu_remove), "mods_menu_remove"},
 		};
 
 		for (const auto& [pointer, name] : members)
@@ -312,7 +316,7 @@ namespace rml::dotnet
 			free(const_cast<void*>(ptr));
 		};
 
-		table.mods_menu_add_action = [](const char* text, const ManagedEventCallback callback, void* state) -> uintptr_t {
+		table.mods_menu_add_action = [](const uintptr_t parent_id, const char* text, const ManagedEventCallback callback, void* state) -> uintptr_t {
 			if (!text || !callback)
 				return 0;
 
@@ -320,14 +324,55 @@ namespace rml::dotnet
 			if (!integration)
 				return 0;
 
-			return integration->menu().register_action(text, [callback, state] {
+			return integration->menu().add_action(parent_id, text, [callback, state] {
 				callback(state, nullptr, 0);
 			});
 		};
 
-		table.mods_menu_remove_action = [](const uintptr_t action_id) {
+		table.mods_menu_add_submenu = [](const uintptr_t parent_id, const char* text) -> uintptr_t {
+			if (!text)
+				return 0;
+
+			auto* const integration = rml::qt::QtIntegration::instance();
+			if (!integration)
+				return 0;
+
+			return integration->menu().add_submenu(parent_id, text);
+		};
+
+		table.mods_menu_add_separator = [](const uintptr_t parent_id) -> uintptr_t {
+			auto* const integration = rml::qt::QtIntegration::instance();
+			if (!integration)
+				return 0;
+
+			return integration->menu().add_separator(parent_id);
+		};
+
+		table.mods_menu_add_checkable = [](const uintptr_t parent_id, const char* text, const int initial, const ManagedEventCallback callback, void* state) -> uintptr_t {
+			if (!text || !callback)
+				return 0;
+
+			auto* const integration = rml::qt::QtIntegration::instance();
+			if (!integration)
+				return 0;
+
+			return integration->menu().add_checkable(parent_id, text, initial != 0, [callback, state](const bool value) {
+				const InteropVariant arg = bool_value(value);
+				callback(state, &arg, 1);
+			});
+		};
+
+		table.mods_menu_set_item_icon = [](const uintptr_t id, const char* utf8_path) {
+			if (!utf8_path)
+				return;
+
 			if (auto* const integration = rml::qt::QtIntegration::instance())
-				integration->menu().remove_action(action_id);
+				integration->menu().set_item_icon(id, utf8_path);
+		};
+
+		table.mods_menu_remove = [](const uintptr_t id) {
+			if (auto* const integration = rml::qt::QtIntegration::instance())
+				integration->menu().remove(id);
 		};
 
 		verify_populated(table);
