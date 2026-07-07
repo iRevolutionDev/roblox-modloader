@@ -38,8 +38,9 @@ public static unsafe class ModsMenu
                 action();
             }
         }
-        catch
+        catch (Exception ex)
         {
+            Console.Error.WriteLine($"[RML/Error] Mods menu action callback threw: {ex}");
         }
     }
 
