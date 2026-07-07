@@ -10,15 +10,12 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 {
 	if (!this_ptr || !*this_ptr)
 	{
-		// Intentional no-op: no job object to step, nothing failed.
-		return RBX::TaskScheduler::StepResult::Stepped;
+		return RBX::TaskScheduler::StepResult::Stepped; // No job to step, return early.
 	}
 
 	if (!g_hooking)
 	{
 		LOG_ERROR("[hooks::on_job_step] g_hooking is not initialized!");
-		// Can't reach the original step function without g_hooking. Report Stepped rather
-		// than Done so the engine keeps rescheduling the job instead of tearing it down.
 		return RBX::TaskScheduler::StepResult::Stepped;
 	}
 
@@ -66,9 +63,7 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 		return it->second->get_original<decltype(&on_job_step)>(6)(this_ptr, time_metrics);
 	}
 
-	// No hook registered for this kind, so the real step could not be invoked this tick.
-	// Report Stepped (not Done) so the engine retries instead of destroying the job.
-	LOG_WARN("[hooks::on_job_step] No hook found for job kind {}, real step not invoked; reporting Stepped", std::to_underlying(detected_kind));
+	LOG_WARN("[hooks::on_job_step] No hook found for job kind {}, returning Stepped", std::to_underlying(detected_kind));
 	return RBX::TaskScheduler::StepResult::Stepped;
 }
 
