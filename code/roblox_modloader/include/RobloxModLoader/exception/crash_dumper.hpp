@@ -53,7 +53,7 @@ namespace exception_filter {
         static LPTOP_LEVEL_EXCEPTION_FILTER WINAPI hooked_set_unhandled_exception_filter(
             LPTOP_LEVEL_EXCEPTION_FILTER filter);
 
-        static bool create_minidump(PEXCEPTION_POINTERS exception_pointers, const std::wstring &dump_path);
+        bool create_minidump(PEXCEPTION_POINTERS exception_pointers, const std::wstring &dump_path) const;
 
         static std::wstring generate_dump_filename();
 
@@ -64,3 +64,5 @@ namespace exception_filter {
         static void log_stack_trace();
     };
 }
+
+inline exception_filter::CrashDumper *g_crash_dumper{};

@@ -19,11 +19,15 @@ RML_LOG_SCOPE("CrashDumper");
 
 namespace exception_filter
 {
-	CrashDumper::CrashDumper() = default;
+	CrashDumper::CrashDumper()
+	{
+		g_crash_dumper = this;
+	}
 
 	CrashDumper::~CrashDumper()
 	{
 		disable();
+		g_crash_dumper = nullptr;
 	}
 
 	void CrashDumper::enable()
@@ -199,7 +203,7 @@ namespace exception_filter
 		}
 	}
 
-	bool CrashDumper::create_minidump(PEXCEPTION_POINTERS exception_pointers, const std::wstring& dump_path)
+	bool CrashDumper::create_minidump(PEXCEPTION_POINTERS exception_pointers, const std::wstring& dump_path) const
 	{
 		try
 		{
@@ -217,9 +221,8 @@ namespace exception_filter
 			exception_info.ExceptionPointers = exception_pointers;
 			exception_info.ClientPointers = FALSE;
 
-			constexpr bool full_memory = false;
-			constexpr int additional_flags = full_memory ? MiniDumpWithFullMemory | MiniDumpIgnoreInaccessibleMemory : 0;
-			constexpr auto dump_type = static_cast<MINIDUMP_TYPE>(DEFAULT_DUMP_TYPE | additional_flags);
+			const int additional_flags = m_full_memory_dump ? MiniDumpWithFullMemory | MiniDumpIgnoreInaccessibleMemory : 0;
+			const auto dump_type = static_cast<MINIDUMP_TYPE>(DEFAULT_DUMP_TYPE | additional_flags);
 
 			const BOOL result = MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), file, dump_type, &exception_info, nullptr, nullptr);
 
@@ -268,7 +271,10 @@ namespace exception_filter
 			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
-			create_minidump(exception_pointers, dump_path);
+			if (g_crash_dumper)
+			{
+				g_crash_dumper->create_minidump(exception_pointers, dump_path);
+			}
 			log_exception_info(exception_pointers);
 			log_register_state(exception_pointers->ContextRecord);
 			log_stack_trace();
@@ -316,7 +322,7 @@ namespace exception_filter
 			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
-			const bool dump_created = create_minidump(exception_pointers, dump_path);
+			const bool dump_created = g_crash_dumper && g_crash_dumper->create_minidump(exception_pointers, dump_path);
 
 			log_exception_info(exception_pointers);
 			log_register_state(exception_pointers->ContextRecord);

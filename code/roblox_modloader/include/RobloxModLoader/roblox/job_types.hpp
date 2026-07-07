@@ -83,7 +83,7 @@ namespace rml {
     struct JobExecutionContext {
         JobKind kind;
         void *job;
-        RBX::Stats *stats;
+        const RBX::Stats *stats;
         double delta_time;
 
         template<typename T>
