@@ -156,17 +156,28 @@ namespace
 	protected:
 		void sink_it_(const spdlog::details::log_msg& msg) override
 		{
-			if (m_handle == INVALID_HANDLE_VALUE)
-				acquire_handle();
-
-			if (m_handle == INVALID_HANDLE_VALUE)
-				return;
-
 			spdlog::memory_buf_t formatted;
 			formatter_->format(msg, formatted);
 
-			DWORD written = 0;
-			WriteFile(m_handle, formatted.data(), static_cast<DWORD>(formatted.size()), &written, nullptr);
+			if (m_handle == INVALID_HANDLE_VALUE)
+			{
+				acquire_handle();
+
+				if (m_handle == INVALID_HANDLE_VALUE)
+				{
+					if (m_pending.size() < k_max_pending)
+						m_pending.emplace_back(formatted.data(), formatted.size());
+					return;
+				}
+
+				for (const auto& entry : m_pending)
+					write(entry.data(), entry.size());
+
+				m_pending.clear();
+				m_pending.shrink_to_fit();
+			}
+
+			write(formatted.data(), formatted.size());
 		}
 
 		void flush_() override
@@ -174,6 +185,14 @@ namespace
 		}
 
 	private:
+		static constexpr std::size_t k_max_pending = 4096;
+
+		void write(const char* data, const std::size_t size) const
+		{
+			DWORD written = 0;
+			WriteFile(m_handle, data, static_cast<DWORD>(size), &written, nullptr);
+		}
+
 		void acquire_handle()
 		{
 			m_handle = CreateFileW(L"CONOUT$", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, 0, nullptr);
@@ -186,6 +205,7 @@ namespace
 		}
 
 		HANDLE m_handle{INVALID_HANDLE_VALUE};
+		std::vector<std::string> m_pending;
 	};
 
 	void ensure_log_directory()
