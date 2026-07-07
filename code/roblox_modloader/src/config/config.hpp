@@ -1,10 +1,7 @@
 #pragma once
 
-#include "config_types.hpp"
+#include "RobloxModLoader/config/config_types.hpp"
 #include "config_manager.hpp"
-#include "config_serialization.hpp"
-#include "config_helpers.hpp"
-#include "mod_settings.hpp"
 
 namespace rml::config {
     inline ConfigResult<void> initialize(const std::filesystem::path &config_path,
@@ -29,10 +26,6 @@ namespace rml::config {
         return get_config_manager().get_core_config();
     }
 
-    inline std::optional<ModConfig> mod(const std::string &mod_name) {
-        return get_config_manager().get_mod_config(mod_name);
-    }
-
     inline bool is_console_logging_enabled() {
         return core().logging.enable_console;
     }
@@ -43,12 +36,5 @@ namespace rml::config {
 
     inline bool is_debug_mode() {
         return core().developer.debug_mode;
-    }
-
-    inline bool is_mod_enabled(const std::string &mod_name) {
-        if (const auto mod_config = mod(mod_name)) {
-            return mod_config->runtime.enabled;
-        }
-        return false;
     }
 }

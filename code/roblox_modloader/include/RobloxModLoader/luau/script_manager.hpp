@@ -90,6 +90,9 @@ namespace rml::luau {
 
         [[nodiscard]] static std::string load_script_content(const std::filesystem::path &script_path);
 
+        [[nodiscard]] static std::optional<config::ModConfig> load_mod_config(
+            const std::filesystem::path &config_path);
+
         [[nodiscard]] static bool matches_pattern(const std::filesystem::path &file_path,
                                                   const std::string &pattern);
 

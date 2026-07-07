@@ -114,7 +114,6 @@
 #include <toml++/toml.hpp>
 
 #include "RobloxModLoader/logger/logger.hpp"
-#include "RobloxModLoader/config/config.hpp"
 
 // Luau
 #include <lua.h>
