@@ -2,13 +2,16 @@
 
 #include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/memory/module.hpp"
+#include "mod/mod_kind.hpp"
+
+RML_LOG_SCOPE("NativeModLoader");
 
 namespace rml::native
 {
 	std::filesystem::path mod_root_for(const std::filesystem::path& dll_path)
 	{
 		std::filesystem::path folder = dll_path.parent_path();
-		if (const auto leaf = folder.filename(); leaf == "native" || leaf == "dotnet" || leaf == "scripts")
+		if (mod_kind_from_folder(folder.filename().string()).has_value())
 		{
 			return folder.parent_path();
 		}
@@ -22,7 +25,7 @@ namespace rml::native
 
 	std::expected<void, std::string> NativeModLoader::load(const std::filesystem::path& path)
 	{
-		if (m_loaded_mods.contains(path))
+		if (m_registry.contains(path))
 			return {};
 
 		using start_fn_t = ModBase::start_type;
@@ -89,22 +92,22 @@ namespace rml::native
 			return std::unexpected(std::format("Unknown exception while calling 'on_load' for {}", path.string()));
 		}
 
-		LoadedMod lm{};
-		lm.module = std::move(module_ptr);
-		lm.instance = instance;
-		lm.uninstall = uninstall;
+		ModRegistry::Entry entry{};
+		entry.module = std::move(module_ptr);
+		entry.instance = instance;
+		entry.uninstall = uninstall;
 
-		m_loaded_mods[path] = std::move(lm);
+		m_registry.insert(path, std::move(entry));
 		return {};
 	}
 
 	std::expected<void, std::string> NativeModLoader::unload(const std::filesystem::path& path)
 	{
-		const auto it = m_loaded_mods.find(path);
-		if (it == m_loaded_mods.end())
+		auto extracted = m_registry.extract(path);
+		if (!extracted.has_value())
 			return {};
 
-		auto& lm = it->second;
+		auto& lm = *extracted;
 		if (lm.instance)
 		{
 			try
@@ -113,11 +116,11 @@ namespace rml::native
 			}
 			catch (const std::exception& e)
 			{
-				LOG_ERROR("Exception during on_unload for {}: {}", path.string(), e.what());
+				RML_ERROR("Exception during on_unload for {}: {}", path.string(), e.what());
 			}
 			catch (...)
 			{
-				LOG_ERROR("Unknown exception during on_unload for {}", path.string());
+				RML_ERROR("Unknown exception during on_unload for {}", path.string());
 			}
 
 			if (lm.uninstall)
@@ -128,7 +131,7 @@ namespace rml::native
 				}
 				catch (...)
 				{
-					LOG_ERROR("Unknown exception during uninstall_mod for {}", path.string());
+					RML_ERROR("Unknown exception during uninstall_mod for {}", path.string());
 				}
 			}
 			else
@@ -144,7 +147,6 @@ namespace rml::native
 				return std::unexpected(std::format("Failed to unload native mod: {} : {}", path.string(), r.error()));
 		}
 
-		m_loaded_mods.erase(it);
 		return {};
 	}
 
@@ -157,7 +159,7 @@ namespace rml::native
 
 	void NativeModLoader::unload_all()
 	{
-		for (auto& [module, instance, uninstall] : m_loaded_mods | std::views::values)
+		for (auto& [module, instance, uninstall] : m_registry.extract_all())
 		{
 			if (instance)
 			{
@@ -167,11 +169,11 @@ namespace rml::native
 				}
 				catch (const std::exception& e)
 				{
-					LOG_ERROR("Exception during on_unload (unload_all): {}", e.what());
+					RML_ERROR("Exception during on_unload (unload_all): {}", e.what());
 				}
 				catch (...)
 				{
-					LOG_ERROR("Unknown exception during on_unload (unload_all)");
+					RML_ERROR("Unknown exception during on_unload (unload_all)");
 				}
 				if (uninstall)
 				{
@@ -181,7 +183,7 @@ namespace rml::native
 					}
 					catch (...)
 					{
-						LOG_ERROR("Unknown exception during uninstall_mod (unload_all)");
+						RML_ERROR("Unknown exception during uninstall_mod (unload_all)");
 					}
 				}
 				else
@@ -194,7 +196,6 @@ namespace rml::native
 				module->detach();
 			}
 		}
-		m_loaded_mods.clear();
 	}
 
 } // namespace rml::native

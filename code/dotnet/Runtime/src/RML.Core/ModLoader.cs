@@ -12,21 +12,17 @@ namespace RML.Core;
 
 internal static class ModLoader
 {
-    private static readonly Dictionary<string, ModInfo> _mods = new();
-    private static readonly object _lock = new();
+    private static readonly ModRegistry _registry = new();
     private static string _modsRoot = string.Empty;
 
     internal static void Initialize(string modsRoot) => _modsRoot = modsRoot;
 
     internal static void LoadMod(string path)
     {
-        lock (_lock)
+        if (_registry.Contains(path))
         {
-            if (_mods.ContainsKey(path))
-            {
-                RuntimeLog.Warn($"Mod at path {path} is already loaded.");
-                return;
-            }
+            RuntimeLog.Warn($"Mod at path {path} is already loaded.");
+            return;
         }
 
         try
@@ -66,15 +62,12 @@ internal static class ModLoader
 
             var info = new ModInfo(context, mod, loadIn, assembly);
 
-            lock (_lock)
+            if (!_registry.TryAdd(path, info))
             {
-                if (!_mods.TryAdd(path, info))
-                {
-                    RuntimeLog.Warn($"Mod at path {path} is already loaded.");
-                    ModContext.Unregister(assembly);
-                    context.Unload();
-                    return;
-                }
+                RuntimeLog.Warn($"Mod at path {path} is already loaded.");
+                ModContext.Unregister(assembly);
+                context.Unload();
+                return;
             }
 
             if (loadIn == null || loadIn.Length == 0)
@@ -82,10 +75,7 @@ internal static class ModLoader
                 try
                 {
                     mod.OnLoad();
-                    lock (_lock)
-                    {
-                        info.Initialized = true;
-                    }
+                    _registry.SetInitialized(info, true);
                 }
                 catch (Exception e)
                 {
@@ -102,14 +92,10 @@ internal static class ModLoader
 
     internal static void UnloadMod(string path)
     {
-        ModInfo? modInfo;
-        lock (_lock)
+        if (!_registry.TryRemove(path, out var modInfo) || modInfo is null)
         {
-            if (!_mods.Remove(path, out modInfo))
-            {
-                RuntimeLog.Warn($"No mod loaded from path {path}.");
-                return;
-            }
+            RuntimeLog.Warn($"No mod loaded from path {path}.");
+            return;
         }
 
         var weakContext = UnloadModCore(path, modInfo);
@@ -131,11 +117,7 @@ internal static class ModLoader
     [MethodImpl(MethodImplOptions.NoInlining)]
     private static WeakReference UnloadModCore(string path, ModInfo modInfo)
     {
-        bool wasInitialized;
-        lock (_lock)
-        {
-            wasInitialized = modInfo.Initialized;
-        }
+        var wasInitialized = _registry.GetInitialized(modInfo);
 
         try
         {
@@ -158,11 +140,7 @@ internal static class ModLoader
 
     internal static void Shutdown()
     {
-        string[] paths;
-        lock (_lock)
-        {
-            paths = _mods.Keys.ToArray();
-        }
+        var paths = _registry.Keys();
 
         foreach (var path in paths)
         {
@@ -175,11 +153,7 @@ internal static class ModLoader
         var oldModel = DataModel.FromHandle((nuint)oldDataModelPtr);
         var newModel = DataModel.FromHandle((nuint)newDataModelPtr);
 
-        ModInfo[] snapshot;
-        lock (_lock)
-        {
-            snapshot = _mods.Values.ToArray();
-        }
+        var snapshot = _registry.Snapshot();
 
         foreach (var modInfo in snapshot)
         {
@@ -192,11 +166,7 @@ internal static class ModLoader
 
             if (newModel != null)
             {
-                bool wasInitialized;
-                lock (_lock)
-                {
-                    wasInitialized = modInfo.Initialized;
-                }
+                var wasInitialized = _registry.GetInitialized(modInfo);
 
                 if (!wasInitialized)
                 {
@@ -209,10 +179,7 @@ internal static class ModLoader
                         RuntimeLog.Error($"Error while calling OnLoad for mod: {e}");
                     }
 
-                    lock (_lock)
-                    {
-                        modInfo.Initialized = true;
-                    }
+                    _registry.SetInitialized(modInfo, true);
                 }
 
                 if (modInfo.Instance is IDataModelAware aware)
@@ -241,11 +208,7 @@ internal static class ModLoader
                     }
                 }
 
-                bool wasInitialized;
-                lock (_lock)
-                {
-                    wasInitialized = modInfo.Initialized;
-                }
+                var wasInitialized = _registry.GetInitialized(modInfo);
 
                 if (wasInitialized)
                 {
@@ -258,10 +221,7 @@ internal static class ModLoader
                         RuntimeLog.Error($"Error while calling OnUnload for mod: {e}");
                     }
 
-                    lock (_lock)
-                    {
-                        modInfo.Initialized = false;
-                    }
+                    _registry.SetInitialized(modInfo, false);
                 }
             }
         }
@@ -272,14 +232,5 @@ internal static class ModLoader
         var currentAlc = AssemblyLoadContext.GetLoadContext(
             typeof(ModLoader).Assembly);
         return currentAlc?.Assemblies ?? [];
-    }
-
-    private class ModInfo(AssemblyLoadContext context, IMod instance, DataModelType[]? loadIn, Assembly modAssembly)
-    {
-        public AssemblyLoadContext Context { get; } = context;
-        public IMod Instance { get; } = instance;
-        public DataModelType[]? LoadInDataModels { get; } = loadIn;
-        public Assembly ModAssembly { get; } = modAssembly;
-        public bool Initialized { get; set; }
     }
 }

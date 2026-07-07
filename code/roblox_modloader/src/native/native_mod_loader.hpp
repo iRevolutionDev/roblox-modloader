@@ -1,6 +1,7 @@
 
 #pragma once
 #include "mod/imod_loader.hpp"
+#include "mod_registry.hpp"
 
 #include <RobloxModLoader/common.hpp>
 #include <RobloxModLoader/memory/module.hpp>
@@ -8,7 +9,6 @@
 #include <RobloxModLoader/mod/mod_base.hpp>
 #include <filesystem>
 #include <string>
-#include <unordered_map>
 
 namespace rml::native
 {
@@ -31,15 +31,7 @@ namespace rml::native
 		void unload_all() override;
 
 	private:
-		struct LoadedMod
-		{
-			std::unique_ptr<memory::module> module;
-			ModBase* instance = nullptr;
-			using uninstall_t = void (*)(const ModBase*);
-			uninstall_t uninstall = nullptr;
-		};
-
-		std::unordered_map<std::filesystem::path, LoadedMod> m_loaded_mods;
+		ModRegistry m_registry;
 		events::EventManager& m_event_manager;
 	};
 
