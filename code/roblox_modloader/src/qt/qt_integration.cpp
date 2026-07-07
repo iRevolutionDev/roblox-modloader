@@ -15,6 +15,21 @@ namespace rml::qt
 		s_instance = nullptr;
 	}
 
+	ModsMenu& QtIntegration::menu()
+	{
+		return m_menu;
+	}
+
+	void QtIntegration::on_menu_bar_built(QMenuBar* menu_bar)
+	{
+		m_menu.rebuild(menu_bar);
+	}
+
+	void QtIntegration::on_action_triggered(QAction* action) const
+	{
+		m_dispatcher.dispatch(action);
+	}
+
 	bool QtIntegration::ensure_action_hook()
 	{
 		return m_dispatcher.ensure_hook();

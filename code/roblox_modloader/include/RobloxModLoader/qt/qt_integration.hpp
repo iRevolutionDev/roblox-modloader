@@ -21,18 +21,11 @@ namespace rml::qt
 
 		[[nodiscard]] bool is_action_hook_ready() const;
 
-		[[nodiscard]] ModsMenu& menu()
-		{
-			return m_menu;
-		}
-		void on_menu_bar_built(QMenuBar* menu_bar)
-		{
-			m_menu.rebuild(menu_bar);
-		}
-		void on_action_triggered(QAction* action) const
-		{
-			m_dispatcher.dispatch(action);
-		}
+		[[nodiscard]] ModsMenu& menu();
+
+		void on_menu_bar_built(QMenuBar* menu_bar);
+
+		void on_action_triggered(QAction* action) const;
 
 		[[nodiscard]] static QtIntegration* instance();
 
