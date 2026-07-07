@@ -49,7 +49,7 @@ namespace memory {
 				m_bytes.push_back({});
 
 				// add support for double question mark sigs
-				if (ida_sig[i + 1] == '?') {
+				if (i + 1 != size && ida_sig[i + 1] == '?') {
 					++i;
 				}
 			}

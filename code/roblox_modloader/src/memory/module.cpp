@@ -23,7 +23,7 @@ namespace memory
 #endif
 	}
 
-	module::module(std::string& name) :range(nullptr, 0), m_name(std::move(name))
+	module::module(std::string_view name) :range(nullptr, 0), m_name(name)
 	{
 		std::scoped_lock lk(m_mtx);
 		try_get_module_locked();

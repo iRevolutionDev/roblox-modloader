@@ -4,8 +4,6 @@
 #include "fwddec.hpp"
 #include "handle.hpp"
 
-#include <vector>
-
 namespace memory {
 	class RML_EXPORT range {
 	public:
@@ -20,8 +18,6 @@ namespace memory {
 		bool contains(handle h) const;
 
 		std::optional<handle> scan(pattern const &sig) const;
-
-		std::vector<handle> scan_all(pattern const &sig) const;
 
 	protected:
 		handle m_base;

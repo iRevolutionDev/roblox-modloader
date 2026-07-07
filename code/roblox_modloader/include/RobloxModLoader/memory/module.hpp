@@ -7,7 +7,7 @@ namespace memory
 	class RML_EXPORT module : public range
 	{
 	public:
-		explicit module(std::string& name);
+		explicit module(std::string_view name);
 
 		explicit module(std::filesystem::path path);
 

@@ -117,7 +117,7 @@ pointers::pointers()
 {
 	g_pointers = this;
 
-	const auto roblox_region = memory::module("RobloxStudioBeta.exe");
+	const auto roblox_region = memory::module(std::string_view{"RobloxStudioBeta.exe"});
 	const auto [m_roblox_batch, m_hash] = get_roblox_batch();
 
 	constexpr cstxpr_str roblox_batch_name{"roblox"};

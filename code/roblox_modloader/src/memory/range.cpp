@@ -21,7 +21,7 @@ namespace memory {
 	}
 
 	bool range::contains(handle h) const {
-		return h.as<std::uintptr_t>() >= begin().as<std::uintptr_t>() && h.as<std::uintptr_t>() <= end().as<
+		return h.as<std::uintptr_t>() >= begin().as<std::uintptr_t>() && h.as<std::uintptr_t>() < end().as<
 			       std::uintptr_t>();
 	}
 
@@ -77,30 +77,5 @@ namespace memory {
 		}
 
 		return std::nullopt;
-	}
-
-	bool pattern_matches(uint8_t *target, const std::optional<uint8_t> *sig, std::size_t length) {
-		for (std::size_t i{}; i != length; ++i) {
-			if (sig[i] && *sig[i] != target[i]) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	std::vector<handle> range::scan_all(pattern const &sig) const {
-		std::vector<handle> result{};
-		auto data = sig.m_bytes.data();
-		auto length = sig.m_bytes.size();
-
-		const auto scan_end = m_size - length;
-		for (std::uintptr_t i{}; i != scan_end; ++i) {
-			if (pattern_matches(m_base.add(i).as<uint8_t *>(), data, length)) {
-				result.push_back(m_base.add(i));
-			}
-		}
-
-		return result;
 	}
 }
