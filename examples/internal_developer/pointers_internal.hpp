@@ -1,6 +1,5 @@
 #pragma once
 #include "RobloxModLoader/memory/batch.hpp"
-#include "RobloxModLoader/memory/byte_patch.hpp"
 #include "RobloxModLoader/memory/module.hpp"
 #include "RobloxModLoader/util/compile_time_helpers.hpp"
 #include "roblox_pointers_internal.hpp"
