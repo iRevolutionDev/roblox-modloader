@@ -38,11 +38,14 @@ namespace rml
 	class ModManager
 	{
 	public:
-		explicit ModManager();
+		ModManager() = default;
 		~ModManager();
 
 		ModManager(const ModManager&) = delete;
 		ModManager& operator=(const ModManager&) = delete;
+
+		[[nodiscard]] std::expected<void, ModManagerError> initialize();
+		void shutdown();
 
 		void register_loader(std::unique_ptr<IModLoader> loader, const std::vector<std::string>& folders);
 

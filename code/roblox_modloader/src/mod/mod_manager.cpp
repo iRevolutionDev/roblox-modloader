@@ -14,18 +14,16 @@ RML_LOG_SCOPE("ModManager");
 
 namespace rml
 {
-	ModManager::ModManager()
+	std::expected<void, ModManagerError> ModManager::initialize()
 	{
 		const auto mods_path = get_mods_dir();
 
 		if (!mods_path.has_value())
 		{
-			RML_ERROR("Failed to get mods directory: {}", mods_path.error());
-			return;
+			return std::unexpected(ModManagerError(ModManagerError::Type::DirectoryNotFound, mods_path.error()));
 		}
 
 		const auto runtime_path = utils::directory::get_runtime_directory();
-
 
 		register_loader(std::make_unique<native::NativeModLoader>(), {"native"});
 		register_loader(std::make_unique<dotnet::DotnetModLoader>(runtime_path, mods_path.value() / "dotnet"), {"dotnet"});
@@ -73,12 +71,19 @@ namespace rml
 				}
 			}
 		}
+
+		return {};
+	}
+
+	void ModManager::shutdown()
+	{
+		for (const auto& loader : m_loaders | std::views::values)
+			loader->unload_all();
 	}
 
 	ModManager::~ModManager()
 	{
-		for (const auto& loader : m_loaders | std::views::values)
-			loader->unload_all();
+		shutdown();
 	}
 
 	void ModManager::register_loader(std::unique_ptr<IModLoader> loader, const std::vector<std::string>& folders)
