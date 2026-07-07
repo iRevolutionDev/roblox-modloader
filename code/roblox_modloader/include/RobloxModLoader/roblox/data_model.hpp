@@ -21,11 +21,12 @@ namespace RBX {
     };
 
     class DataModel : public Instance {
-        char pad[0x591];
+        char m_pad_0[0x26C];
+        DataModelType m_type;
+        char m_pad_1[0x299];
+        bool m_initialized;
 
     public:
-        bool isInitialized;
-
         DataModelType get_type() const;
 
         bool is_initialized() const;
@@ -34,9 +35,8 @@ namespace RBX {
 
     private:
         RML_LAYOUT_GUARD_BEGIN()
-            RML_ASSERT_LAYOUT_SIZE(DataModel, 0x650);
-            RML_ASSERT_LAYOUT_OFFSET(DataModel, pad, 0xB8);
-            RML_ASSERT_LAYOUT_OFFSET(DataModel, isInitialized, 0x649);
+            RML_ASSERT_LAYOUT_OFFSET(DataModel, m_type, 0x324);
+            RML_ASSERT_LAYOUT_OFFSET(DataModel, m_initialized, 0x5C1);
         RML_LAYOUT_GUARD_END()
     };
 }

@@ -221,8 +221,9 @@ namespace RBX::Reflection
 		template<typename T>
 		T* find_descriptor(const char* name) const
 		{
+			constexpr std::uint64_t member_table_offset = 0x250;
 			auto atom = g_pointers->m_roblox_pointers.get_string_atom(name);
-			const auto desc = g_pointers->m_roblox_pointers.descriptor_lookup(reinterpret_cast<uint64_t>(this) + 0x250, &atom);
+			const auto desc = g_pointers->m_roblox_pointers.descriptor_lookup(reinterpret_cast<uint64_t>(this) + member_table_offset, &atom);
 			if (!desc || !*desc)
 			{
 				LOG_WARN("[ClassDescriptor::find_descriptor] Failed to find descriptor '{}' in class '{}'",
