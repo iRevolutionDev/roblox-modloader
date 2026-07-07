@@ -7,7 +7,10 @@
 
 namespace rml::qt
 {
-	constexpr std::size_t INSTANCE_SIZE = 48;
+	namespace
+	{
+		constexpr std::size_t INSTANCE_SIZE = 128;
+	}
 
 	QMessageBox* QMessageBox::create(QWidget* parent)
 	{

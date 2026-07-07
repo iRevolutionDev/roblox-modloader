@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RobloxModLoader/rml_export.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 
 #include <string_view>
 
@@ -62,7 +63,13 @@ namespace rml::qt
 
 		void destroy();
 
-		alignas(void*) unsigned char m_storage[32]{};
+		static constexpr std::size_t STORAGE_SIZE = 32;
+
+		alignas(void*) unsigned char m_storage[STORAGE_SIZE]{};
 		bool m_loaded = false;
+
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(decltype(m_storage), STORAGE_SIZE);
+		RML_LAYOUT_GUARD_END()
 	};
 }
