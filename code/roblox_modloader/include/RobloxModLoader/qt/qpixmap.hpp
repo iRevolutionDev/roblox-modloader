@@ -1,7 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/qt/qt_value_type.hpp"
 #include "RobloxModLoader/rml_export.hpp"
-#include "RobloxModLoader/util/layout_assert.hpp"
 
 #include <string_view>
 
@@ -9,7 +9,7 @@ namespace rml::qt
 {
 	class QColor;
 
-	class RML_EXPORT QPixmap
+	class RML_EXPORT QPixmap : public detail::QtValueType<32>
 	{
 	public:
 		enum class AspectMode
@@ -38,7 +38,7 @@ namespace rml::qt
 
 		[[nodiscard]] bool loaded() const
 		{
-			return m_loaded;
+			return owned();
 		}
 
 		[[nodiscard]] int width() const;
@@ -53,23 +53,9 @@ namespace rml::qt
 
 		[[nodiscard]] QPixmap blurred(double radius) const;
 
-		[[nodiscard]] void* data() const
-		{
-			return const_cast<unsigned char*>(m_storage);
-		}
-
 	private:
 		friend class QMovie;
 
 		void destroy();
-
-		static constexpr std::size_t STORAGE_SIZE = 32;
-
-		alignas(void*) unsigned char m_storage[STORAGE_SIZE]{};
-		bool m_loaded = false;
-
-		RML_LAYOUT_GUARD_BEGIN()
-			RML_ASSERT_LAYOUT_SIZE(decltype(m_storage), STORAGE_SIZE);
-		RML_LAYOUT_GUARD_END()
 	};
 }

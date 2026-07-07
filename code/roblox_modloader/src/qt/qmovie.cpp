@@ -8,20 +8,12 @@
 
 namespace rml::qt
 {
-	namespace
-	{
-		constexpr std::size_t INSTANCE_SIZE = 128;
-	}
-
 	QMovie* QMovie::create(const QString& file_name, QObject* parent)
 	{
 		static const auto construct = detail::gui<void (*)(void*, void*)>("??0QMovie@@QEAA@PEAVQObject@@@Z");
-		if (!construct)
+		auto* const movie = detail::heap_construct<QMovie>(detail::WIDGET_INSTANCE_SIZE, construct, parent);
+		if (!movie)
 			return nullptr;
-
-		void* memory = ::operator new(INSTANCE_SIZE);
-		construct(memory, parent);
-		auto* const movie = static_cast<QMovie*>(memory);
 
 		static const auto set_file_name = detail::gui<void (*)(void*, const void*)>("?setFileName@QMovie@@QEAAXAEBVQString@@@Z");
 		if (set_file_name)
@@ -32,13 +24,8 @@ namespace rml::qt
 
 	void QMovie::destroy(QMovie* movie)
 	{
-		if (!movie)
-			return;
-
 		static const auto dtor = detail::gui<void (*)(void*)>("??1QMovie@@UEAA@XZ");
-		if (dtor)
-			dtor(movie);
-		::operator delete(movie);
+		detail::heap_destroy(dtor, movie);
 	}
 
 	bool QMovie::isValid() const
@@ -74,7 +61,7 @@ namespace rml::qt
 			return result;
 
 		fn(this, result.m_storage);
-		result.m_loaded = true;
+		result.set_owned(true);
 		return result;
 	}
 

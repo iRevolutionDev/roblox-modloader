@@ -12,12 +12,12 @@ namespace rml::qt
 			return;
 
 		ctor(m_storage, texture.data());
-		m_constructed = true;
+		set_owned(true);
 	}
 
 	QBrush::~QBrush()
 	{
-		if (!m_constructed)
+		if (!owned())
 			return;
 
 		static const auto dtor = detail::gui<void (*)(void*)>("??1QBrush@@QEAA@XZ");

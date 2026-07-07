@@ -5,11 +5,6 @@
 
 namespace rml::qt
 {
-	namespace
-	{
-		constexpr std::size_t INSTANCE_SIZE = 128;
-	}
-
 	QLabel* QLabel::create(const std::string_view text, QWidget* parent)
 	{
 		static const auto construct = detail::widgets<void* (*)(void*, const void*, void*, int)>("??0QLabel@@QEAA@AEBVQString@@PEAVQWidget@@V?$QFlags@W4WindowType@Qt@@@@@Z");
@@ -17,20 +12,13 @@ namespace rml::qt
 			return nullptr;
 
 		const QString label(text);
-		void* memory = operator new(INSTANCE_SIZE);
-		construct(memory, label.data(), parent, 0);
-		return static_cast<QLabel*>(memory);
+		return detail::heap_construct<QLabel>(detail::WIDGET_INSTANCE_SIZE, construct, label.data(), parent, 0);
 	}
 
 	void QLabel::destroy(QLabel* label)
 	{
-		if (!label)
-			return;
-
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QLabel@@UEAA@XZ");
-		if (dtor)
-			dtor(label);
-		operator delete(label);
+		detail::heap_destroy(dtor, label);
 	}
 
 	void QLabel::setText(const std::string_view text)
