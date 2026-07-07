@@ -2,10 +2,11 @@
 
 #include "RobloxModLoader/common.hpp"
 
+#include "utils/file_watcher.hpp"
+
 #include <chrono>
 #include <fstream>
 #include <shared_mutex>
-#include <thread>
 #include <toml++/toml.hpp>
 #include <utility>
 
@@ -26,15 +27,7 @@ namespace rml::config
 		toml::table table;
 
 		std::function<void()> on_change;
-		std::jthread watch_thread;
-		std::filesystem::file_time_type last_write{};
-
-		[[nodiscard]] std::filesystem::file_time_type current_write_time() const
-		{
-			std::error_code ec;
-			const auto time = std::filesystem::last_write_time(config_path, ec);
-			return ec ? std::filesystem::file_time_type{} : time;
-		}
+		utils::FileWatcher watcher;
 	};
 
 	ModSettings::ModSettings(std::filesystem::path config_path) :
@@ -67,7 +60,7 @@ namespace rml::config
 
 		std::unique_lock lock(m_impl->mutex);
 		m_impl->table = std::move(result).table();
-		m_impl->last_write = m_impl->current_write_time();
+		m_impl->watcher.acknowledge(utils::read_last_write_time(m_impl->config_path));
 		return true;
 	}
 
@@ -93,8 +86,7 @@ namespace rml::config
 					return false;
 			}
 
-			std::unique_lock stamp(m_impl->mutex);
-			m_impl->last_write = m_impl->current_write_time();
+			m_impl->watcher.acknowledge(utils::read_last_write_time(m_impl->config_path));
 			return true;
 		}
 		catch (const std::exception&)
@@ -205,40 +197,21 @@ namespace rml::config
 		{
 			std::unique_lock lock(m_impl->mutex);
 			m_impl->on_change = std::move(on_change);
-			m_impl->last_write = m_impl->current_write_time();
 		}
 
-		m_impl->watch_thread = std::jthread([this](const std::stop_token& stop) {
-			while (!stop.stop_requested())
+		m_impl->watcher.start(m_impl->config_path, 1s, [this] {
+			if (!load())
+				return false;
+
+			std::function<void()> callback;
 			{
-				for (int i = 0; i < 8 && !stop.stop_requested(); ++i)
-					std::this_thread::sleep_for(125ms);
-
-				if (stop.stop_requested())
-					break;
-
-				const auto current = m_impl->current_write_time();
-
-				std::filesystem::file_time_type previous;
-				{
-					std::shared_lock lock(m_impl->mutex);
-					previous = m_impl->last_write;
-				}
-
-				if (current == std::filesystem::file_time_type{} || current == previous)
-					continue;
-
-				if (load())
-				{
-					std::function<void()> callback;
-					{
-						std::shared_lock lock(m_impl->mutex);
-						callback = m_impl->on_change;
-					}
-					if (callback)
-						callback();
-				}
+				std::shared_lock lock(m_impl->mutex);
+				callback = m_impl->on_change;
 			}
+			if (callback)
+				callback();
+
+			return true;
 		});
 	}
 
@@ -247,11 +220,7 @@ namespace rml::config
 		if (!m_impl)
 			return;
 
-		if (m_impl->watch_thread.joinable())
-		{
-			m_impl->watch_thread.request_stop();
-			m_impl->watch_thread.join();
-		}
+		m_impl->watcher.stop();
 
 		std::unique_lock lock(m_impl->mutex);
 		m_impl->on_change = nullptr;
