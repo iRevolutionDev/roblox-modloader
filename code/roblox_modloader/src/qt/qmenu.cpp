@@ -1,5 +1,6 @@
 #include "RobloxModLoader/qt/qmenu.hpp"
 
+#include "RobloxModLoader/qt/qicon.hpp"
 #include "RobloxModLoader/qt/qstring.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
 
@@ -28,5 +29,12 @@ namespace rml::qt
 		static const auto fn = detail::widgets<void (*)(void*)>("?clear@QMenu@@QEAAXXZ");
 		if (fn)
 			fn(this);
+	}
+
+	void QMenu::setIcon(const QIcon& icon)
+	{
+		static const auto fn = detail::widgets<void (*)(void*, const void*)>("?setIcon@QMenu@@QEAAXAEBVQIcon@@@Z");
+		if (fn)
+			fn(this, icon.data());
 	}
 }

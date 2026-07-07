@@ -7,6 +7,7 @@
 namespace rml::qt
 {
 	class QString;
+	class QIcon;
 
 	class RML_EXPORT QMenu : public QWidget
 	{
@@ -15,5 +16,6 @@ namespace rml::qt
 		[[nodiscard]] QMenu* addMenu(const QString& title);
 		QAction* addSeparator();
 		void clear();
+		void setIcon(const QIcon& icon);
 	};
 }

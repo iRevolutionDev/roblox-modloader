@@ -4,6 +4,8 @@
 
 namespace rml::qt
 {
+	class QIcon;
+
 	class QAction : public QObject
 	{
 	public:
@@ -16,6 +18,7 @@ namespace rml::qt
 		void setCheckable(bool checkable);
 		void setChecked(bool checked);
 		[[nodiscard]] bool isChecked() const;
+		void setIcon(const QIcon& icon);
 
 		[[nodiscard]] static void* activate_address();
 	};
