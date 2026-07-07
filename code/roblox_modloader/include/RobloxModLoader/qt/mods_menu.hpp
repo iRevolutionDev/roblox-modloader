@@ -12,6 +12,7 @@
 namespace rml::qt
 {
 	class ActionDispatcher;
+	class QMenu;
 
 	class RML_EXPORT ModsMenu
 	{
@@ -42,6 +43,7 @@ namespace rml::qt
 		std::vector<void*> m_live_actions;
 		std::unordered_map<uint64_t, void*> m_entry_actions;
 		void* m_menu_bar_handle{};
+		QMenu* m_menu{};
 		uint64_t m_next_id{1};
 	};
 }

@@ -12,5 +12,6 @@ namespace rml::qt
 	public:
 		[[nodiscard]] QAction* addAction(const QString& text);
 		QAction* addSeparator();
+		void clear();
 	};
 }

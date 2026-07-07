@@ -123,23 +123,32 @@ namespace rml::qt
 
 		std::vector<Entry> entries;
 		std::vector<void*> previous;
+		QMenu* menu = nullptr;
 		{
 			std::scoped_lock lock(m_mutex);
-			m_menu_bar_handle = menu_bar_handle;
 			entries = m_entries;
 			previous = std::move(m_live_actions);
 			m_live_actions.clear();
+			if (m_menu && m_menu_bar_handle == menu_bar_handle)
+				menu = m_menu;
 		}
 
 		for (void* stale : previous)
 			m_dispatcher.disconnect(stale);
 
-		auto* const menu_bar = static_cast<QMenuBar*>(menu_bar_handle);
-		QMenu* const menu = menu_bar->addMenu("Mods");
-		if (!menu)
+		if (menu)
 		{
-			LOG_ERROR("[qt] QMenuBar::addMenu returned null; Mods menu not added");
-			return;
+			menu->clear();
+		}
+		else
+		{
+			auto* const menu_bar = static_cast<QMenuBar*>(menu_bar_handle);
+			menu = menu_bar->addMenu("Mods");
+			if (!menu)
+			{
+				LOG_ERROR("[qt] QMenuBar::addMenu returned null; Mods menu not added");
+				return;
+			}
 		}
 
 		std::vector<void*> live;
@@ -180,6 +189,8 @@ namespace rml::qt
 
 		{
 			std::scoped_lock lock(m_mutex);
+			m_menu_bar_handle = menu_bar_handle;
+			m_menu = menu;
 			m_live_actions = std::move(live);
 			m_entry_actions = std::move(entry_actions);
 		}
