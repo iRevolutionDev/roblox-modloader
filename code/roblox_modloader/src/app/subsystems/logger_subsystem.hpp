@@ -10,7 +10,7 @@ namespace rml
 	public:
 		std::expected<void, SubsystemError> initialize() override
 		{
-			::logger::init();
+			Logger::init();
 			return {};
 		}
 

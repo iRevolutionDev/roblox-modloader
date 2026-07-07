@@ -16,12 +16,14 @@
 #include <chrono>
 #include <memory>
 #include <mutex>
-#include <shellapi.h>
 #include <spdlog/spdlog.h>
 #include <string>
 #include <thread>
 #include <utility>
+
 #include <windows.h>
+
+#include <shellapi.h>
 
 #pragma comment(lib, "shell32.lib")
 
@@ -54,7 +56,7 @@ public:
 		version = "3.0.0";
 		author = "RobloxModLoader";
 		description = "Paints a configurable, dimmed background image behind the Studio script editor.";
-		m_log = logger::get_logger("ScriptEditorBg");
+		m_log = rml::Logger::get_logger("ScriptEditorBg");
 	}
 
 	void on_load() override
@@ -144,7 +146,7 @@ private:
 		if (m_overlay)
 			m_overlay->hook_open_editors();
 	}
-	
+
 	static void arm_scan()
 	{
 		if (s_scan_hook.load(std::memory_order_acquire))
@@ -191,8 +193,7 @@ private:
 	{
 		DWORD pid = 0;
 		GetWindowThreadProcessId(hwnd, &pid);
-		if (pid != GetCurrentProcessId() || !IsWindowVisible(hwnd) || GetWindow(hwnd, GW_OWNER) != nullptr ||
-		    GetWindowTextLengthW(hwnd) == 0)
+		if (pid != GetCurrentProcessId() || !IsWindowVisible(hwnd) || GetWindow(hwnd, GW_OWNER) != nullptr || GetWindowTextLengthW(hwnd) == 0)
 			return TRUE;
 
 		*reinterpret_cast<HWND*>(lparam) = hwnd;
@@ -253,7 +254,8 @@ private:
 		if (rml::qt::QLabel* const opacity_caption = rml::qt::QLabel::create("Opacity", dialog.get()))
 			opacity_caption->setGeometry(20, 84, 120, 22);
 
-		rml::qt::QLabel* const opacity_value = rml::qt::QLabel::create(std::to_string(to_percent(snap.opacity)) + "%", dialog.get());
+		rml::qt::QLabel* const opacity_value =
+		    rml::qt::QLabel::create(std::to_string(to_percent(snap.opacity)) + "%", dialog.get());
 		if (opacity_value)
 		{
 			opacity_value->setAlignment(rml::qt::QLabel::AlignRight | rml::qt::QLabel::AlignVCenter);
@@ -421,3 +423,5 @@ extern "C"
 		delete mod;
 	}
 }
+
+RML_EXPORT_MOD_ABI_VERSION()

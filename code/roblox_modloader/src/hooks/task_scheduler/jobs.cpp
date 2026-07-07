@@ -1,5 +1,5 @@
-#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.job.hpp"
@@ -7,14 +7,14 @@
 #include <unordered_map>
 #include <utility>
 
-RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::Stats& time_metrics)
+RBX::TaskScheduler::StepResult rml::Hooks::on_job_step(void** this_ptr, const RBX::Stats& time_metrics)
 {
 	if (!this_ptr || !*this_ptr)
 	{
 		return RBX::TaskScheduler::StepResult::Stepped; // No job to step, return early.
 	}
 
-	const auto vtable        = static_cast<void**>(*this_ptr);
+	const auto vtable = static_cast<void**>(*this_ptr);
 	const auto detected_kind = [&]() -> rml::JobKind {
 		if (!rml::has_task_scheduler())
 		{
@@ -33,13 +33,10 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 	{
 		try
 		{
-			const rml::JobExecutionContext context
-			{
-				.kind = detected_kind,
+			const rml::JobExecutionContext context{.kind = detected_kind,
 			    .job = this_ptr,
 			    .stats = &time_metrics,
-			    .delta_time = time_metrics.delta_time
-			};
+			    .delta_time = time_metrics.delta_time};
 
 			rml::task_scheduler().execute_jobs_for_kind(context);
 		}
@@ -62,7 +59,7 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 	return RBX::TaskScheduler::StepResult::Stepped;
 }
 
-void hooks::on_job_destroy(void** this_ptr)
+void rml::Hooks::on_job_destroy(void** this_ptr)
 {
-	return hooking::get_original<&hooks::on_job_destroy>()(this_ptr);
+	return Hooking::get_original<&Hooks::on_job_destroy>()(this_ptr);
 }

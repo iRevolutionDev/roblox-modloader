@@ -1,58 +1,54 @@
 #pragma once
 
-#include <expected>
-#include <string>
-
 #include "RobloxModLoader/hooking/i_hook.hpp"
 #include "RobloxModLoader/rml_export.hpp"
 
-class RML_EXPORT detour_hook : public rml::IHook {
-public:
-    explicit detour_hook();
+#include <expected>
+#include <string>
 
-    explicit detour_hook(const std::string &name, void *detour);
+namespace rml
+{
+	class RML_EXPORT DetourHook : public IHook
+	{
+	public:
+		explicit DetourHook();
+		explicit DetourHook(const std::string& name, void* detour);
+		explicit DetourHook(const std::string& name, void* target, void* detour);
 
-    explicit detour_hook(const std::string &name, void *target, void *detour);
+		~DetourHook() noexcept override;
+		DetourHook(DetourHook&& that) = delete;
+		DetourHook& operator=(DetourHook&& that) = delete;
+		DetourHook(DetourHook const&) = delete;
+		DetourHook& operator=(DetourHook const&) = delete;
 
-    ~detour_hook() noexcept override;
+		void set_instance(const std::string& name, void* detour);
+		void set_instance(const std::string& name, void* target, void* detour);
+		void set_target_and_create_hook(void* target);
 
-    detour_hook(detour_hook &&that) = delete;
+		[[nodiscard]] std::expected<void, rml::HookError> enable() override;
+		[[nodiscard]] std::expected<void, rml::HookError> disable() override;
+		[[nodiscard]] bool is_enabled() const override;
 
-    detour_hook &operator=(detour_hook &&that) = delete;
+		template<typename T>
+		T get_original()
+		{
+			return static_cast<T>(m_original);
+		}
 
-    detour_hook(detour_hook const &) = delete;
+		void** get_original_ptr()
+		{
+			return &m_original;
+		}
 
-    detour_hook &operator=(detour_hook const &) = delete;
+		void fix_hook_address();
 
-    void set_instance(const std::string &name, void *detour);
+	private:
+		void create_hook();
 
-    void set_instance(const std::string &name, void *target, void *detour);
-
-    void set_target_and_create_hook(void *target);
-
-    [[nodiscard]] std::expected<void, rml::HookError> enable() override;
-
-    [[nodiscard]] std::expected<void, rml::HookError> disable() override;
-
-    [[nodiscard]] bool is_enabled() const override;
-
-    template<typename T>
-    T get_original() {
-        return static_cast<T>(m_original);
-    }
-
-    void **get_original_ptr() {
-        return &m_original;
-    }
-
-    void fix_hook_address();
-
-private:
-    void create_hook();
-
-    std::string m_name;
-    void *m_original{};
-    void *m_target{};
-    void *m_detour{};
-    bool m_enabled{};
-};
+		std::string m_name;
+		void* m_original{};
+		void* m_target{};
+		void* m_detour{};
+		bool m_enabled{};
+	};
+}

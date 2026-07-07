@@ -78,7 +78,7 @@ namespace script_editor_bg
 
 	std::size_t EditorOverlay::paint_slot()
 	{
-		static const std::size_t slot = memory::virtual_index(&rml::qt::QWidget::paintEvent);
+		static const std::size_t slot = rml::memory::virtual_index(&rml::qt::QWidget::paintEvent);
 		return slot;
 	}
 
@@ -161,7 +161,9 @@ namespace script_editor_bg
 			return false;
 
 		std::string ext = path.extension().string();
-		std::ranges::transform(ext, ext.begin(), [](const unsigned char c) { return static_cast<char>(std::tolower(c)); });
+		std::ranges::transform(ext, ext.begin(), [](const unsigned char c) {
+			return static_cast<char>(std::tolower(c));
+		});
 		return ext == ".gif" || ext == ".webp" || ext == ".apng" || ext == ".mng";
 	}
 
@@ -213,7 +215,9 @@ namespace script_editor_bg
 				if (movie->isValid() && movie->frameCount() != 1)
 				{
 					movie->setCacheMode(rml::qt::QMovie::CacheMode::All);
-					movie->on_frame_changed([this] { on_movie_frame(); });
+					movie->on_frame_changed([this] {
+						on_movie_frame();
+					});
 					movie->start();
 
 					m_frame = movie->currentPixmap();

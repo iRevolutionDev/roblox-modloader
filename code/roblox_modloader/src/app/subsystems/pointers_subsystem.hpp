@@ -12,7 +12,7 @@ namespace rml
 		{
 			try
 			{
-				m_instance = std::make_unique<::pointers>();
+				m_instance = std::make_unique<Pointers>();
 			}
 			catch (const std::exception& e)
 			{
@@ -33,6 +33,6 @@ namespace rml
 		}
 
 	private:
-		std::unique_ptr<::pointers> m_instance;
+		std::unique_ptr<Pointers> m_instance;
 	};
 }

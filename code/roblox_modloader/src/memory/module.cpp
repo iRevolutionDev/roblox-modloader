@@ -1,7 +1,7 @@
 #include "RobloxModLoader/memory/module.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
-namespace memory
+namespace rml::memory
 {
 
 	namespace
@@ -125,8 +125,8 @@ namespace memory
 		if (m_path)
 		{
 			const std::string abs_path_str = std::filesystem::absolute(*m_path).string();
-			const std::wstring abs_path_w  = std::filesystem::absolute(*m_path).wstring();
-			const std::wstring dll_dir_w   = m_path->parent_path().wstring();
+			const std::wstring abs_path_w = std::filesystem::absolute(*m_path).wstring();
+			const std::wstring dll_dir_w = m_path->parent_path().wstring();
 
 			const auto h_module = LoadLibraryExW(abs_path_w.c_str(), nullptr, LOAD_WITH_ALTERED_SEARCH_PATH);
 
@@ -147,13 +147,13 @@ namespace memory
 		}
 
 		m_attached_handle = static_cast<void*>(loaded);
-		m_attached_owner  = true;
-		m_loaded          = true;
-		m_base            = handle(loaded);
+		m_attached_owner = true;
+		m_loaded = true;
+		m_base = handle(loaded);
 
 		const auto* dos = m_base.as<const IMAGE_DOS_HEADER*>();
-		const auto* nt  = m_base.add(dos->e_lfanew).as<const IMAGE_NT_HEADERS*>();
-		m_size          = nt->OptionalHeader.SizeOfImage;
+		const auto* nt = m_base.add(dos->e_lfanew).as<const IMAGE_NT_HEADERS*>();
+		m_size = nt->OptionalHeader.SizeOfImage;
 
 		return {};
 
@@ -170,7 +170,7 @@ namespace memory
 		}
 
 		m_attached_handle = h;
-		m_attached_owner  = !already_loaded;
+		m_attached_owner = !already_loaded;
 
 		try_get_module_locked();
 		return {};
@@ -199,7 +199,7 @@ namespace memory
 #endif
 
 		m_attached_handle = nullptr;
-		m_attached_owner  = false;
+		m_attached_owner = false;
 		reset_state_locked();
 		return {};
 	}
@@ -207,8 +207,8 @@ namespace memory
 	void module::reset_state_locked() noexcept
 	{
 		m_loaded = false;
-		m_base   = handle(nullptr);
-		m_size   = 0;
+		m_base = handle(nullptr);
+		m_size = 0;
 	}
 
 #if defined(RML_LINUX)
@@ -231,9 +231,9 @@ namespace memory
 				continue;
 
 			const auto start = static_cast<std::uintptr_t>(ph.p_vaddr);
-			const auto end   = start + static_cast<std::uintptr_t>(ph.p_memsz);
-			min_vaddr        = std::min(min_vaddr, start);
-			max_vaddr        = std::max(max_vaddr, end);
+			const auto end = start + static_cast<std::uintptr_t>(ph.p_memsz);
+			min_vaddr = std::min(min_vaddr, start);
+			max_vaddr = std::max(max_vaddr, end);
 		}
 
 		if (min_vaddr == UINTPTR_MAX)
@@ -255,12 +255,12 @@ namespace memory
 		if (!mod)
 			return false;
 
-		m_base   = handle(mod);
+		m_base = handle(mod);
 		m_loaded = true;
 
 		const auto* dos = m_base.as<const IMAGE_DOS_HEADER*>();
-		const auto* nt  = m_base.add(dos->e_lfanew).as<const IMAGE_NT_HEADERS*>();
-		m_size          = nt->OptionalHeader.SizeOfImage;
+		const auto* nt = m_base.add(dos->e_lfanew).as<const IMAGE_NT_HEADERS*>();
+		m_size = nt->OptionalHeader.SizeOfImage;
 
 		return true;
 
@@ -271,8 +271,8 @@ namespace memory
 		if (ctx.found_base != 0)
 		{
 			m_loaded = true;
-			m_base   = handle(static_cast<std::uintptr_t>(ctx.found_base));
-			m_size   = ctx.found_size;
+			m_base = handle(static_cast<std::uintptr_t>(ctx.found_base));
+			m_size = ctx.found_size;
 			return true;
 		}
 
@@ -282,8 +282,8 @@ namespace memory
 
 		dlclose(h);
 		m_loaded = true;
-		m_base   = handle(nullptr);
-		m_size   = 0;
+		m_base = handle(nullptr);
+		m_size = 0;
 		return true;
 
 #elif defined(RML_MACOS)
@@ -295,7 +295,7 @@ namespace memory
 			if (!image_name || !strstr(image_name, m_name.c_str()))
 				continue;
 
-			const auto* mh       = reinterpret_cast<const mach_header_64*>(_dyld_get_image_header(i));
+			const auto* mh = reinterpret_cast<const mach_header_64*>(_dyld_get_image_header(i));
 			const intptr_t slide = _dyld_get_image_vmaddr_slide(i);
 
 			if (mh->magic != MH_MAGIC_64)
@@ -315,8 +315,8 @@ namespace memory
 					{
 						const auto start = static_cast<std::uintptr_t>(seg->vmaddr) + static_cast<std::uintptr_t>(slide);
 						const auto end = start + static_cast<std::uintptr_t>(seg->vmsize);
-						min_addr       = std::min(min_addr, start);
-						max_addr       = std::max(max_addr, end);
+						min_addr = std::min(min_addr, start);
+						max_addr = std::max(max_addr, end);
 					}
 				}
 				cmd = reinterpret_cast<const load_command*>(reinterpret_cast<const char*>(cmd) + cmd->cmdsize);
@@ -326,8 +326,8 @@ namespace memory
 				min_addr = reinterpret_cast<std::uintptr_t>(mh) + static_cast<std::uintptr_t>(slide);
 
 			m_loaded = true;
-			m_base   = handle(reinterpret_cast<void*>(min_addr));
-			m_size   = max_addr > min_addr ? (max_addr - min_addr) : 0;
+			m_base = handle(reinterpret_cast<void*>(min_addr));
+			m_size = max_addr > min_addr ? (max_addr - min_addr) : 0;
 			return true;
 		}
 

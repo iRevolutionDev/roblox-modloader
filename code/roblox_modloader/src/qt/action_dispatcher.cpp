@@ -1,7 +1,7 @@
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
 
-#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
 #include "RobloxModLoader/qt/qaction.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
@@ -19,7 +19,7 @@ namespace rml::qt
 		if (!target)
 			return false;
 
-		hooking::detour_hook_helper::add<&hooks::qt_action_activate>("QAction::activate", target);
+		Hooking::DetourHookHelper::add<&Hooks::qt_action_activate>("QAction::activate", target);
 		m_hook_installed = true;
 		LOG_INFO("[qt] hooked QAction::activate at {}", target);
 		return true;

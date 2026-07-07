@@ -12,7 +12,7 @@ namespace rml
 		{
 			try
 			{
-				m_instance = std::make_unique<::memory::rtti::rtti_manager>();
+				m_instance = std::make_unique<memory::rtti::RTTIManager>();
 			}
 			catch (const std::exception& e)
 			{
@@ -33,6 +33,6 @@ namespace rml
 		}
 
 	private:
-		std::unique_ptr<::memory::rtti::rtti_manager> m_instance;
+		std::unique_ptr<memory::rtti::RTTIManager> m_instance;
 	};
 }

@@ -1,107 +1,135 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/logger/logger.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
 #include "pointers_internal.hpp"
 
+#ifndef NOMINMAX
+	#define NOMINMAX
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+#endif
+
 #include <MinHook.h>
+#include <Windows.h>
+#include <memory>
 #include <spdlog/spdlog.h>
 
 typedef bool (*original_is_internal_t)();
 
 static original_is_internal_t original_is_internal = nullptr;
-static void *target_function = nullptr;
+static void* target_function = nullptr;
 
-namespace mod::hooks {
-    static bool is_internal() {
-        if (!g_pointers_internal) {
-            return original_is_internal();
-        }
+namespace mod::hooks
+{
+	static bool is_internal()
+	{
+		if (!g_pointers_internal)
+		{
+			return original_is_internal();
+		}
 
-        if (g_pointers_internal->m_roblox_pointers.m_is_internal_flag == 0) {
-            return original_is_internal();
-        }
+		if (g_pointers_internal->m_roblox_pointers.m_is_internal_flag == 0)
+		{
+			return original_is_internal();
+		}
 
-        *reinterpret_cast<bool *>(g_pointers_internal->m_roblox_pointers.m_is_internal_flag) = true;
+		*reinterpret_cast<bool*>(g_pointers_internal->m_roblox_pointers.m_is_internal_flag) = true;
 
-        return original_is_internal();
-    }
+		return original_is_internal();
+	}
 }
 
-class internal_developer_mod final : public ModBase {
-    std::shared_ptr<spdlog::logger> logger;
-    std::shared_ptr<pointers_internal> pointers_instance;
+class internal_developer_mod final : public ModBase
+{
+	std::shared_ptr<spdlog::logger> logger;
+	std::shared_ptr<pointers_internal> pointers_instance;
 
 public:
-    internal_developer_mod() {
-        name = "Internal Developer Mod";
-        version = "1.0.0";
-        author = "Revolution";
-        description = "This mod enables developer features for Roblox Studio.";
+	internal_developer_mod()
+	{
+		name = "Internal Developer Mod";
+		version = "1.0.0";
+		author = "Revolution";
+		description = "This mod enables developer features for Roblox Studio.";
 
-        logger = logger::get_logger("InternalDeveloperMod");
-    }
+		logger = rml::Logger::get_logger("InternalDeveloperMod");
+	}
 
-    void on_load() override {
-        logger->info("Internal Developer Mod loaded");
+	void on_load() override
+	{
+		logger->info("Internal Developer Mod loaded");
 
-        pointers_instance = std::make_shared<pointers_internal>();
+		pointers_instance = std::make_shared<pointers_internal>();
 
-        if (!pointers_instance->m_roblox_pointers.m_is_internal) {
-            logger->error("Failed to find is_internal function pointer");
-            return;
-        }
+		if (!pointers_instance->m_roblox_pointers.m_is_internal)
+		{
+			logger->error("Failed to find is_internal function pointer");
+			return;
+		}
 
-        if (pointers_instance->m_roblox_pointers.m_is_internal_flag == 0) {
-            logger->error("Failed to find is_internal_flag pointer");
-            return;
-        }
+		if (pointers_instance->m_roblox_pointers.m_is_internal_flag == 0)
+		{
+			logger->error("Failed to find is_internal_flag pointer");
+			return;
+		}
 
-        if (MH_Initialize() != MH_OK) {
-            logger->error("Failed to initialize MinHook");
-            return;
-        }
+		if (MH_Initialize() != MH_OK)
+		{
+			logger->error("Failed to initialize MinHook");
+			return;
+		}
 
-        target_function = pointers_instance->m_roblox_pointers.m_is_internal;
+		target_function = pointers_instance->m_roblox_pointers.m_is_internal;
 
-        if (MH_CreateHook(target_function, &mod::hooks::is_internal,
-                          reinterpret_cast<LPVOID *>(&original_is_internal)) != MH_OK) {
-            logger->error("Failed to create hook for is_internal");
-            MH_Uninitialize();
-            return;
-        }
+		if (MH_CreateHook(target_function, &mod::hooks::is_internal, reinterpret_cast<LPVOID*>(&original_is_internal)) != MH_OK)
+		{
+			logger->error("Failed to create hook for is_internal");
+			MH_Uninitialize();
+			return;
+		}
 
-        if (MH_EnableHook(target_function) != MH_OK) {
-            logger->error("Failed to enable hook for is_internal");
-            MH_Uninitialize();
-            return;
-        }
+		if (MH_EnableHook(target_function) != MH_OK)
+		{
+			logger->error("Failed to enable hook for is_internal");
+			MH_Uninitialize();
+			return;
+		}
 
-        logger->info("Successfully hooked is_internal function");
-    }
+		logger->info("Successfully hooked is_internal function");
+	}
 
-    void on_unload() override {
-        logger->info("Internal Developer Mod unloading");
+	void on_unload() override
+	{
+		logger->info("Internal Developer Mod unloading");
 
-        if (target_function) {
-            MH_DisableHook(target_function);
-            MH_RemoveHook(target_function);
-        }
+		if (target_function)
+		{
+			MH_DisableHook(target_function);
+			MH_RemoveHook(target_function);
+		}
 
-        MH_Uninitialize();
+		MH_Uninitialize();
 
-        pointers_instance.reset();
+		pointers_instance.reset();
 
-        logger->info("Internal Developer Mod unloaded successfully");
-    }
+		logger->info("Internal Developer Mod unloaded successfully");
+	}
 };
 
 #define INTERNAL_DEVELOPER_MOD_API __declspec(dllexport)
 
-extern "C" {
-INTERNAL_DEVELOPER_MOD_API ModBase *start_mod() {
-    return new internal_developer_mod();
+extern "C"
+{
+	INTERNAL_DEVELOPER_MOD_API ModBase* start_mod()
+	{
+		return new internal_developer_mod();
+	}
+
+	INTERNAL_DEVELOPER_MOD_API void uninstall_mod(const ModBase* mod)
+	{
+		delete mod;
+	}
 }
 
-INTERNAL_DEVELOPER_MOD_API void uninstall_mod(const ModBase *mod) {
-    delete mod;
-}
-}
+RML_EXPORT_MOD_ABI_VERSION()

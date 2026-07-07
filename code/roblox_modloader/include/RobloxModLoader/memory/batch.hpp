@@ -12,10 +12,10 @@
 	#include <Windows.h>
 #endif
 
+#include "RobloxModLoader/logger/logger.hpp"
 #include "pattern.hpp"
 #include "range.hpp"
 #include "signature.hpp"
-#include "RobloxModLoader/logger/logger.hpp"
 
 #include <array>
 #include <cstddef>
@@ -25,7 +25,7 @@
 #include <mutex>
 #include <vector>
 
-namespace memory
+namespace rml::memory
 {
 	template<size_t N>
 	struct batch
@@ -80,7 +80,7 @@ namespace memory
 	template<signature... args>
 	static inline constexpr auto make_batch(uint32_t hash = signature_hasher::FNV_OFFSET_32)
 	{
-		constexpr std::array<signature, sizeof...(args)> a1 = { args... };
+		constexpr std::array<signature, sizeof...(args)> a1 = {args...};
 
 		constexpr memory::batch<a1.size()> h(a1);
 
@@ -124,8 +124,9 @@ namespace memory
 
 					std::invoke(std::move(entry.m_on_signature_found), result.value());
 
-					LOG_INFO("Found '{}' RobloxStudioBeta.exe+0x{:X}", entry.m_name,
-						result.value().as<DWORD64>() - region.begin().as<DWORD64>());
+					LOG_INFO("Found '{}' RobloxStudioBeta.exe+0x{:X}",
+					    entry.m_name,
+					    result.value().as<DWORD64>() - region.begin().as<DWORD64>());
 
 					return true;
 				}

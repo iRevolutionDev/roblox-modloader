@@ -20,7 +20,7 @@
 #include <string>
 #include <string_view>
 
-namespace memory
+namespace rml::memory
 {
 	class RML_EXPORT module : public range
 	{
@@ -29,11 +29,11 @@ namespace memory
 
 		explicit module(std::filesystem::path path);
 
-		module(const module&)            = delete;
+		module(const module&) = delete;
 		module& operator=(const module&) = delete;
-		module(module&&)                 = delete;
-		module& operator=(module&&)      = delete;
-		~module()                        = default;
+		module(module&&) = delete;
+		module& operator=(module&&) = delete;
+		~module() = default;
 		[[nodiscard]] bool loaded() const noexcept;
 		[[nodiscard]] size_t size() const noexcept;
 
@@ -68,9 +68,9 @@ namespace memory
 #if defined(RML_LINUX)
 		struct PhdrSearchCtx
 		{
-			const char* search_name   = nullptr;
+			const char* search_name = nullptr;
 			std::uintptr_t found_base = 0;
-			std::size_t found_size    = 0;
+			std::size_t found_size = 0;
 		};
 		static int phdr_callback(struct ::dl_phdr_info*, size_t, void*) noexcept;
 #endif
@@ -79,10 +79,10 @@ namespace memory
 
 		std::string m_name;                          // base name for lookups
 		std::optional<std::filesystem::path> m_path; // full path (by-path mode)
-		
+
 		bool m_loaded = false;
 
 		void* m_attached_handle = nullptr;
-		bool m_attached_owner   = false;
+		bool m_attached_owner = false;
 	};
 }

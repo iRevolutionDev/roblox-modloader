@@ -19,7 +19,7 @@ class HashTable;
 
 // needed for serialization of the pointers cache
 #pragma pack(push, 1)
-struct roblox_pointers
+struct RobloxPointers
 {
 	PVOID m_rbx_crash;
 	PVOID m_render_prepare;
@@ -65,6 +65,6 @@ struct roblox_pointers
 	functions::build_menu_bar_from_dom build_menu_bar_from_dom;
 };
 #pragma pack(pop)
-static_assert(sizeof(roblox_pointers) % 8 == 0, "Pointers are not properly aligned");
+static_assert(sizeof(RobloxPointers) % 8 == 0, "Pointers are not properly aligned");
 
-RML_EXPORT roblox_pointers* get_roblox_pointers();
+RML_EXPORT RobloxPointers* get_roblox_pointers();

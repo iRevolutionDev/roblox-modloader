@@ -1,11 +1,13 @@
 #pragma once
-#include <optional>
-
 #include "fwddec.hpp"
 #include "handle.hpp"
 
-namespace memory {
-	class RML_EXPORT range {
+#include <optional>
+
+namespace rml::memory
+{
+	class RML_EXPORT range
+	{
 	public:
 		range(handle base, std::size_t size);
 
@@ -17,7 +19,7 @@ namespace memory {
 
 		bool contains(handle h) const;
 
-		std::optional<handle> scan(pattern const &sig) const;
+		std::optional<handle> scan(pattern const& sig) const;
 
 	protected:
 		handle m_base;

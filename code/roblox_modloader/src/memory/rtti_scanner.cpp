@@ -8,9 +8,9 @@
 
 #pragma comment(lib, "dbghelp.lib")
 
-namespace memory::rtti
+namespace rml::memory::rtti
 {
-	std::string rtti_info::get_name() const
+	std::string RTTIInfo::get_name() const
 	{
 		if (!m_type_descriptor || !m_type_descriptor->name)
 		{
@@ -19,7 +19,7 @@ namespace memory::rtti
 		return demangle_name(m_type_descriptor->name);
 	}
 
-	std::string rtti_info::demangle_name(const char* mangled_name)
+	std::string RTTIInfo::demangle_name(const char* mangled_name)
 	{
 		if (!mangled_name)
 		{
@@ -91,19 +91,19 @@ namespace memory::rtti
 		return demangled;
 	}
 
-	scanner::scanner()
+	Scanner::Scanner()
 	{
-		m_pe_parser = std::make_unique<pe::parser>();
+		m_pe_parser = std::make_unique<pe::Parser>();
 
 		LOG_DEBUG("RTTI scanner created");
 	}
 
-	scanner::~scanner()
+	Scanner::~Scanner()
 	{
 		LOG_DEBUG("RTTI scanner destroyed");
 	}
 
-	bool scanner::scan(const std::shared_ptr<pe::process_info>& process_info)
+	bool Scanner::scan(const std::shared_ptr<pe::ProcessInfo>& process_info)
 	{
 		LOG_INFO("Starting RTTI scan...");
 
@@ -147,19 +147,19 @@ namespace memory::rtti
 		}
 	}
 
-	rtti_info* scanner::get_class_rtti(std::string_view class_name) noexcept
+	RTTIInfo* Scanner::get_class_rtti(std::string_view class_name) noexcept
 	{
 		const auto it = s_class_rtti_map.find(std::string(class_name));
 		return it != s_class_rtti_map.end() ? it->second.get() : nullptr;
 	}
 
-	void scanner::clear_cache() noexcept
+	void Scanner::clear_cache() noexcept
 	{
 		s_class_rtti_map.clear();
 		LOG_DEBUG("RTTI cache cleared");
 	}
 
-	bool scanner::setup_section_data()
+	bool Scanner::setup_section_data()
 	{
 		auto* text_sections = m_pe_parser->get_sections_with_name(".text");
 		auto* data_sections = m_pe_parser->get_sections_with_name(".data");
@@ -171,13 +171,13 @@ namespace memory::rtti
 			return false;
 		}
 
-		m_section_data = std::make_unique<section_data>(text_sections, data_sections, rdata_sections);
+		m_section_data = std::make_unique<SectionData>(text_sections, data_sections, rdata_sections);
 
 		LOG_DEBUG("Section data setup complete");
 		return true;
 	}
 
-	std::size_t scanner::scan_rtti_patterns(std::uint8_t* base_address) const
+	std::size_t Scanner::scan_rtti_patterns(std::uint8_t* base_address) const
 	{
 		std::size_t found_count = 0;
 
@@ -194,8 +194,8 @@ namespace memory::rtti
 
 			LOG_DEBUG("Scanning section: {} (size: 0x{:X})", section->name, section->size);
 
-			auto* start = section->start.as<complete_object_locator**>(base_address);
-			auto* end = section->end.as<complete_object_locator**>(base_address);
+			auto* start = section->start.as<CompleteObjectLocator**>(base_address);
+			auto* end = section->end.as<CompleteObjectLocator**>(base_address);
 
 			if (!start || !end || start >= end)
 			{
@@ -226,14 +226,14 @@ namespace memory::rtti
 		return found_count;
 	}
 
-	bool scanner::validate_and_process_rtti(complete_object_locator** pointer_col, complete_object_locator* col, std::uint8_t* base_address) const
+	bool Scanner::validate_and_process_rtti(CompleteObjectLocator** pointer_col, CompleteObjectLocator* col, std::uint8_t* base_address) const
 	{
 		if (!col || !m_section_data || !base_address || !pointer_col)
 		{
 			return false;
 		}
 
-		if (!pe::parser::is_address_in_section(col, m_section_data->rdata_sections))
+		if (!pe::Parser::is_address_in_section(col, m_section_data->rdata_sections))
 		{
 			return false;
 		}
@@ -243,12 +243,12 @@ namespace memory::rtti
 			return false;
 		}
 
-		if (!pe::parser::is_ibo_in_section(col->type_descriptor_offset, m_section_data->data_sections))
+		if (!pe::Parser::is_ibo_in_section(col->type_descriptor_offset, m_section_data->data_sections))
 		{
 			return false;
 		}
 
-		auto* type_desc = col->type_descriptor_offset.as<type_descriptor*>(base_address);
+		auto* type_desc = col->type_descriptor_offset.as<TypeDescriptor*>(base_address);
 		if (!type_desc)
 		{
 			return false;
@@ -259,12 +259,12 @@ namespace memory::rtti
 			return false;
 		}
 
-		if (!pe::parser::is_ibo_in_section(col->class_hierarchy_offset, m_section_data->rdata_sections))
+		if (!pe::Parser::is_ibo_in_section(col->class_hierarchy_offset, m_section_data->rdata_sections))
 		{
 			return false;
 		}
 
-		auto* class_hierarchy = col->class_hierarchy_offset.as<class_hierarchy_descriptor*>(base_address);
+		auto* class_hierarchy = col->class_hierarchy_offset.as<ClassHierarchyDescriptor*>(base_address);
 		if (!class_hierarchy)
 		{
 			return false;
@@ -280,18 +280,18 @@ namespace memory::rtti
 			return false;
 		}
 
-		if (!pe::parser::is_ibo_in_section(class_hierarchy->base_class_array_offset, m_section_data->rdata_sections))
+		if (!pe::Parser::is_ibo_in_section(class_hierarchy->base_class_array_offset, m_section_data->rdata_sections))
 		{
 			return false;
 		}
 
-		auto* base_class = class_hierarchy->base_class_array_offset.as<base_class_descriptor*>(base_address);
+		auto* base_class = class_hierarchy->base_class_array_offset.as<BaseClassDescriptor*>(base_address);
 		if (!base_class)
 		{
 			return false;
 		}
 
-		const std::string class_name = rtti_info::demangle_name(type_desc->name);
+		const std::string class_name = RTTIInfo::demangle_name(type_desc->name);
 		if (class_name.empty())
 		{
 			return false;
@@ -310,7 +310,7 @@ namespace memory::rtti
 			return false;
 		}
 
-		auto rtti = std::make_unique<rtti_info>(vft_ptr, col, type_desc, class_hierarchy, base_class);
+		auto rtti = std::make_unique<RTTIInfo>(vft_ptr, col, type_desc, class_hierarchy, base_class);
 
 		s_class_rtti_map.emplace(class_name, std::move(rtti));
 
@@ -318,13 +318,13 @@ namespace memory::rtti
 		return true;
 	}
 
-	rtti_manager::rtti_manager()
+	RTTIManager::RTTIManager()
 	{
 		g_rtti_manager = this;
 
 		LOG_INFO("Initializing RTTI manager...");
 
-		m_scanner = std::make_unique<scanner>();
+		m_scanner = std::make_unique<Scanner>();
 
 		if (!m_scanner->scan())
 		{
@@ -335,13 +335,13 @@ namespace memory::rtti
 		LOG_INFO("RTTI manager initialized successfully");
 	}
 
-	rtti_manager::~rtti_manager()
+	RTTIManager::~RTTIManager()
 	{
 		LOG_INFO("Shutting down RTTI manager...");
 
 		g_rtti_manager = nullptr;
 		m_scanner.reset();
-		scanner::clear_cache();
+		Scanner::clear_cache();
 
 		LOG_INFO("RTTI manager shutdown complete");
 	}

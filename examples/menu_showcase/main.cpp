@@ -3,7 +3,6 @@
 #include <RobloxModLoader/logger/logger.hpp>
 #include <RobloxModLoader/qt/menu_node.hpp>
 #include <RobloxModLoader/qt/qt_integration.hpp>
-
 #include <spdlog/spdlog.h>
 
 namespace menu_showcase
@@ -17,7 +16,7 @@ namespace menu_showcase
 			version = "1.0.0";
 			author = "RobloxModLoader";
 			description = "Demonstrates the fluent mods-menu tree API: submenus, actions, separators, checkables and icons.";
-			m_log = logger::get_logger("MenuShowcase");
+			m_log = rml::Logger::get_logger("MenuShowcase");
 		}
 
 		void on_load() override

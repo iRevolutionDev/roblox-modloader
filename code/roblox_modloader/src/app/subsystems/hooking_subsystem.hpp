@@ -10,7 +10,7 @@ namespace rml
 	public:
 		std::expected<void, SubsystemError> initialize() override
 		{
-			m_instance = std::make_unique<::hooking>();
+			m_instance = std::make_unique<Hooking>();
 			return {};
 		}
 
@@ -25,6 +25,6 @@ namespace rml
 		}
 
 	private:
-		std::unique_ptr<::hooking> m_instance;
+		std::unique_ptr<Hooking> m_instance;
 	};
 }

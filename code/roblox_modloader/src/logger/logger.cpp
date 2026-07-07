@@ -220,7 +220,7 @@ namespace
 		if (!global_logger_holder::console_sink)
 		{
 			const auto root = rml::utils::directory::get_module_directory();
-			
+
 			const auto log_file = root / "RobloxModLoader" / "logs" / "roblox_modloader.log";
 
 			global_logger_holder::console_sink = std::make_shared<console_handle_sink>();
@@ -245,121 +245,125 @@ std::shared_ptr<spdlog::logger> global_logger()
 	auto logger = global_logger_holder::logger.load();
 	if (!logger)
 	{
-		logger::init();
+		rml::Logger::init();
 		logger = global_logger_holder::logger.load();
 	}
 	return logger;
 }
 
-void logger::open_console()
+namespace rml
 {
-	static bool console_allocated = false;
-
-	if (console_allocated)
+	void Logger::open_console()
 	{
-		return;
-	}
+		static bool console_allocated = false;
 
-	if (const auto& config = rml::config::get_config_manager().get_core_config(); !config.logging.enable_console)
-	{
-		return;
-	}
-
-	if (AllocConsole())
-	{
-		console_allocated = true;
-		freopen_s(reinterpret_cast<FILE**>(stdout), "CONOUT$", "w", stdout);
-		freopen_s(reinterpret_cast<FILE**>(stdin), "CONIN$", "r", stdin);
-		freopen_s(reinterpret_cast<FILE**>(stderr), "CONOUT$", "w", stderr);
-
-		SetConsoleOutputCP(CP_UTF8);
-
-		if (const HANDLE std_out = GetStdHandle(STD_OUTPUT_HANDLE); std_out != INVALID_HANDLE_VALUE)
+		if (console_allocated)
 		{
-			if (DWORD mode = 0; GetConsoleMode(std_out, &mode))
+			return;
+		}
+
+		if (const auto& config = rml::config::get_config_manager().get_core_config(); !config.logging.enable_console)
+		{
+			return;
+		}
+
+		if (AllocConsole())
+		{
+			console_allocated = true;
+			freopen_s(reinterpret_cast<FILE**>(stdout), "CONOUT$", "w", stdout);
+			freopen_s(reinterpret_cast<FILE**>(stdin), "CONIN$", "r", stdin);
+			freopen_s(reinterpret_cast<FILE**>(stderr), "CONOUT$", "w", stderr);
+
+			SetConsoleOutputCP(CP_UTF8);
+
+			if (const HANDLE std_out = GetStdHandle(STD_OUTPUT_HANDLE); std_out != INVALID_HANDLE_VALUE)
 			{
-				SetConsoleMode(std_out, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+				if (DWORD mode = 0; GetConsoleMode(std_out, &mode))
+				{
+					SetConsoleMode(std_out, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+				}
 			}
 		}
 	}
-}
 
-void logger::init()
-{
-	static bool logger_initialized = false;
-
-	if (logger_initialized)
+	void Logger::init()
 	{
-		return;
-	}
+		static bool logger_initialized = false;
+
+		if (logger_initialized)
+		{
+			return;
+		}
 
 #if IS_RML
-	open_console();
+		open_console();
 #endif
-	ensure_log_directory();
+		ensure_log_directory();
 
-	try
-	{
-		if (const auto& config = rml::config::get_config_manager().get_core_config(); config.logging.enable_async_logging)
+		try
+		{
+			if (const auto& config = rml::config::get_config_manager().get_core_config(); config.logging.enable_async_logging)
+			{
+				set_async_mode();
+			}
+		}
+		catch (...)
 		{
 			set_async_mode();
 		}
-	}
-	catch (...)
-	{
-		set_async_mode();
+
+		const auto sinks = get_shared_sinks();
+		const auto new_logger = std::make_shared<spdlog::logger>(LOGGER_NAME, sinks.begin(), sinks.end());
+
+		spdlog::register_logger(new_logger);
+
+		try
+		{
+			const auto& config = rml::config::get_config_manager().get_core_config();
+			new_logger->set_level(static_cast<spdlog::level::level_enum>(config.logging.level));
+			new_logger->flush_on(static_cast<spdlog::level::level_enum>(config.logging.level));
+		}
+		catch (...)
+		{
+			new_logger->set_level(spdlog::level::debug);
+			new_logger->flush_on(spdlog::level::debug);
+		}
+
+		global_logger_holder::logger.store(new_logger);
+		logger_initialized = true;
 	}
 
-	const auto sinks = get_shared_sinks();
-	const auto new_logger = std::make_shared<spdlog::logger>(LOGGER_NAME, sinks.begin(), sinks.end());
-
-	spdlog::register_logger(new_logger);
-
-	try
+	void Logger::set_async_mode()
 	{
-		const auto& config = rml::config::get_config_manager().get_core_config();
-		new_logger->set_level(static_cast<spdlog::level::level_enum>(config.logging.level));
-		new_logger->flush_on(static_cast<spdlog::level::level_enum>(config.logging.level));
+		spdlog::init_thread_pool(8192, 1);
 	}
-	catch (...)
+
+	std::string Logger::strip_class_prefix(const std::string& name)
 	{
+		if (const std::string prefix = "class "; name.compare(0, prefix.size(), prefix) == 0)
+		{
+			return name.substr(prefix.size());
+		}
+		return name;
+	}
+
+	std::shared_ptr<spdlog::logger> Logger::get_logger(const std::string& name)
+	{
+		if (auto existing_logger = spdlog::get(name))
+		{
+			return existing_logger;
+		}
+
+		ensure_log_directory();
+		const auto sinks = get_shared_sinks();
+		auto new_logger = std::make_shared<spdlog::logger>(name, sinks.begin(), sinks.end());
+
 		new_logger->set_level(spdlog::level::debug);
 		new_logger->flush_on(spdlog::level::debug);
+
+		spdlog::register_logger(new_logger);
+
+		return new_logger;
 	}
 
-	global_logger_holder::logger.store(new_logger);
-	logger_initialized = true;
-}
-
-void logger::set_async_mode()
-{
-	spdlog::init_thread_pool(8192, 1);
-}
-
-std::string logger::strip_class_prefix(const std::string& name)
-{
-	if (const std::string prefix = "class "; name.compare(0, prefix.size(), prefix) == 0)
-	{
-		return name.substr(prefix.size());
-	}
-	return name;
-}
-
-std::shared_ptr<spdlog::logger> logger::get_logger(const std::string& name)
-{
-	if (auto existing_logger = spdlog::get(name))
-	{
-		return existing_logger;
-	}
-
-	ensure_log_directory();
-	const auto sinks = get_shared_sinks();
-	auto new_logger = std::make_shared<spdlog::logger>(name, sinks.begin(), sinks.end());
-
-	new_logger->set_level(spdlog::level::debug);
-	new_logger->flush_on(spdlog::level::debug);
-
-	spdlog::register_logger(new_logger);
-
-	return new_logger;
 }

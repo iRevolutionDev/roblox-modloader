@@ -1,6 +1,15 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#ifndef NOMINMAX
+	#define NOMINMAX
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+#endif
+
+#include <Windows.h>
+#include <cstdint>
 
 template<typename T>
 class HashTable;

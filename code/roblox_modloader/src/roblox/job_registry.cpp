@@ -249,7 +249,7 @@ namespace rml
 
 		for (const auto& [class_name, job_kind] : known_job_classes)
 		{
-			const auto rtti = memory::rtti::rtti_manager::get_class_rtti(class_name);
+			const auto rtti = memory::rtti::RTTIManager::get_class_rtti(class_name);
 			if (!rtti)
 			{
 				RML_WARN("RTTI for '{}' not found, skipping vtable mapping", class_name);
