@@ -15,20 +15,20 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 
 	const auto vtable        = static_cast<void**>(*this_ptr);
 	const auto detected_kind = [&]() -> rml::JobKind {
-		if (!g_task_scheduler)
+		if (!rml::has_task_scheduler())
 		{
 			LOG_ERROR("[hooks::on_job_step] Task scheduler is not initialized, cannot determine job kind.");
 			return rml::JobKind::Heartbeat;
 		}
 
-		const auto kind = g_task_scheduler->get_job_kind_from_vtable(vtable);
+		const auto kind = rml::task_scheduler().get_job_kind_from_vtable(vtable);
 		if (!kind.has_value())
 			return rml::JobKind::Heartbeat;
 
 		return *kind;
 	}();
 
-	if (g_task_scheduler && !g_task_scheduler->is_shutdown())
+	if (rml::has_task_scheduler() && !rml::task_scheduler().is_shutdown())
 	{
 		try
 		{
@@ -40,7 +40,7 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 			    .delta_time = time_metrics.delta_time
 			};
 
-			g_task_scheduler->execute_jobs_for_kind(context);
+			rml::task_scheduler().execute_jobs_for_kind(context);
 		}
 		catch (const std::exception& e)
 		{

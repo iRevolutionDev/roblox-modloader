@@ -24,8 +24,8 @@ namespace rml {
 
 		m_script_manager = std::make_unique<luau::ScriptManager>();
 
-		if (jobs::g_job_manager) {
-			jobs::g_job_manager->register_job_and_ignore<jobs::LuauWaitingScriptJob>();
+		if (jobs::has_job_manager()) {
+			jobs::job_manager().register_job_and_ignore<jobs::LuauWaitingScriptJob>();
 		}
 
 		LOG_INFO("Script Subsystem initialized.");

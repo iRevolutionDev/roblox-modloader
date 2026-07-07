@@ -2,6 +2,10 @@
 
 #include "jobs/data_model_watcher_job.hpp"
 
+#include <cassert>
+
+static rml::jobs::JobManager* s_active_job_manager{};
+
 namespace rml::jobs
 {
 	class JobManager::LambdaJob final : public JobBase
@@ -87,21 +91,22 @@ namespace rml::jobs
 		std::atomic<std::chrono::steady_clock::time_point> m_last_execution;
 	};
 
-	JobManager::JobManager()
+	JobManager::JobManager(ITaskScheduler& task_scheduler) :
+	    m_task_scheduler(task_scheduler)
 	{
-		g_job_manager = this;
+		s_active_job_manager = this;
 
 		register_job_and_ignore<DataModelWatcherJob>();
 	}
 
 	JobManager::~JobManager()
 	{
-		g_job_manager = nullptr;
+		s_active_job_manager = nullptr;
 	}
 
 	std::expected<RBX::TaskScheduler::JobId, std::string> JobManager::register_lambda_job(std::string_view name, JobPriority priority, JobKind target_kind, std::function<bool(const JobExecutionContext&)> should_execute_func, std::function<void(const JobExecutionContext&)> execute_func) noexcept
 	{
-		if (!g_task_scheduler)
+		if (!has_task_scheduler())
 		{
 			return std::unexpected("TaskScheduler not initialized");
 		}
@@ -110,7 +115,7 @@ namespace rml::jobs
 		{
 			auto job = std::make_unique<LambdaJob>(name, priority, target_kind, std::move(should_execute_func), std::move(execute_func));
 
-			return g_task_scheduler->register_job(std::move(job));
+			return task_scheduler().register_job(std::move(job));
 		}
 		catch (const std::exception& e)
 		{
@@ -120,7 +125,7 @@ namespace rml::jobs
 
 	std::expected<RBX::TaskScheduler::JobId, std::string> JobManager::register_periodic_job(std::string_view name, std::chrono::milliseconds interval, JobPriority priority, JobKind target_kind, std::function<void(const JobExecutionContext&)> execute_func) noexcept
 	{
-		if (!g_task_scheduler)
+		if (!has_task_scheduler())
 		{
 			return std::unexpected("TaskScheduler not initialized");
 		}
@@ -129,7 +134,7 @@ namespace rml::jobs
 		{
 			auto job = std::make_unique<PeriodicJob>(name, interval, priority, target_kind, std::move(execute_func));
 
-			return g_task_scheduler->register_job(std::move(job));
+			return task_scheduler().register_job(std::move(job));
 		}
 		catch (const std::exception& e)
 		{
@@ -139,26 +144,37 @@ namespace rml::jobs
 
 	bool JobManager::unregister_job(const RBX::TaskScheduler::JobId job_id) noexcept
 	{
-		return g_task_scheduler && g_task_scheduler->unregister_job(job_id);
+		return has_task_scheduler() && task_scheduler().unregister_job(job_id);
 	}
 
 	bool JobManager::unregister_job(const std::string_view job_name) noexcept
 	{
-		return g_task_scheduler && g_task_scheduler->unregister_job(job_name);
+		return has_task_scheduler() && task_scheduler().unregister_job(job_name);
 	}
 
 	std::optional<RBX::TaskScheduler::JobStats> JobManager::get_job_stats(const RBX::TaskScheduler::JobId job_id) noexcept
 	{
-		return g_task_scheduler ? g_task_scheduler->get_job_stats(job_id) : std::nullopt;
+		return has_task_scheduler() ? task_scheduler().get_job_stats(job_id) : std::nullopt;
 	}
 
 	std::vector<RBX::TaskScheduler::JobId> JobManager::get_jobs_by_kind(const JobKind kind) noexcept
 	{
-		return g_task_scheduler ? g_task_scheduler->get_jobs_by_kind(kind) : std::vector<RBX::TaskScheduler::JobId>{};
+		return has_task_scheduler() ? task_scheduler().get_jobs_by_kind(kind) : std::vector<RBX::TaskScheduler::JobId>{};
 	}
 
 	std::size_t JobManager::get_job_count() noexcept
 	{
-		return g_task_scheduler ? g_task_scheduler->get_job_count() : 0;
+		return has_task_scheduler() ? task_scheduler().get_job_count() : 0;
+	}
+
+	JobManager& job_manager()
+	{
+		assert(s_active_job_manager && "JobManager accessed before Application initialized it");
+		return *s_active_job_manager;
+	}
+
+	bool has_job_manager() noexcept
+	{
+		return s_active_job_manager != nullptr;
 	}
 }

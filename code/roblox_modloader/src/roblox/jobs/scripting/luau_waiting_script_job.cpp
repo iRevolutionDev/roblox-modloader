@@ -23,11 +23,11 @@ namespace rml::jobs {
 
         const auto data_model_type = data_model->get_type();
 
-        if (!g_task_scheduler) {
+        if (!rml::has_task_scheduler()) {
             return false;
         }
 
-        const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+        const auto engine = rml::task_scheduler().get_script_engine(data_model_type);
         return engine && engine->get_scheduler().get_total_queue_size();
     }
 
@@ -40,7 +40,7 @@ namespace rml::jobs {
 
         const auto data_model_type = data_model->get_type();
 
-        if (const auto engine = g_task_scheduler->get_script_engine(data_model_type)) {
+        if (const auto engine = rml::task_scheduler().get_script_engine(data_model_type)) {
             if (auto &scheduler = const_cast<luau::ScriptScheduler &>(engine->get_scheduler()); scheduler.step()) {
                 RML_DEBUG("Processed script from queue for DataModel type: {}",
                           static_cast<int>(data_model_type));

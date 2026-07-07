@@ -1,4 +1,5 @@
 #pragma once
+#include "RobloxModLoader/roblox/i_task_scheduler.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/job_base.hpp"
 #include "RobloxModLoader/common.hpp"
@@ -6,7 +7,7 @@
 namespace rml::jobs {
     class JobManager final {
     public:
-        JobManager();
+        explicit JobManager(ITaskScheduler &task_scheduler);
 
         ~JobManager();
 
@@ -14,9 +15,9 @@ namespace rml::jobs {
 
         JobManager &operator=(const JobManager &) = delete;
 
-        JobManager(JobManager &&) noexcept = default;
+        JobManager(JobManager &&) noexcept = delete;
 
-        JobManager &operator=(JobManager &&) noexcept = default;
+        JobManager &operator=(JobManager &&) noexcept = delete;
 
         /**
          * @brief Register a job with the task scheduler
@@ -27,13 +28,9 @@ namespace rml::jobs {
          */
         template<JobImplementation JobType, typename... Args>
         std::expected<RBX::TaskScheduler::JobId, std::string> register_job(Args &&... args) noexcept {
-            if (!g_task_scheduler) {
-                return std::unexpected("TaskScheduler not initialized");
-            }
-
             try {
                 auto job = std::make_unique<JobType>(std::forward<Args>(args)...);
-                return g_task_scheduler->register_job(std::move(job));
+                return m_task_scheduler.register_job(std::move(job));
             } catch (const std::exception &e) {
                 return std::unexpected(std::format("Failed to create job: {}", e.what()));
             }
@@ -109,7 +106,11 @@ namespace rml::jobs {
     private:
         class LambdaJob;
         class PeriodicJob;
+
+        ITaskScheduler &m_task_scheduler;
     };
 
-    inline JobManager *g_job_manager{};
+    RML_EXPORT [[nodiscard]] JobManager &job_manager();
+
+    RML_EXPORT [[nodiscard]] bool has_job_manager() noexcept;
 }

@@ -1,529 +1,170 @@
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 
-#include "../mod/mod_manager.hpp"
 #include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/luau/script_engine.hpp"
-#include "RobloxModLoader/memory/rtti_scanner.hpp"
-#include "RobloxModLoader/roblox/data_model.hpp"
-#include "RobloxModLoader/roblox/job.hpp"
-#include "lstate.h"
+#include "data_model_registry.hpp"
+#include "job_registry.hpp"
 
-#include <array>
-#include <thread>
-#include <utility>
+#include <cassert>
 
 RML_LOG_SCOPE("TaskScheduler");
 
+static RBX::TaskScheduler* s_active_task_scheduler{};
+
 namespace RBX
 {
-	TaskScheduler::TaskScheduler()
+	TaskScheduler::TaskScheduler() :
+	    m_job_registry(std::make_unique<rml::JobRegistry>()),
+	    m_data_model_registry(std::make_unique<rml::DataModelRegistry>())
+#if RML_ENABLE_LUAU
+	    , m_script_engine_registry(std::make_unique<rml::luau::ScriptEngineRegistry>())
+#endif
 	{
-		g_task_scheduler = this;
+		s_active_task_scheduler = this;
 
-		initialize();
-		initialize_vtable_mappings();
+		RML_INFO("TaskScheduler initialized successfully.");
 	}
 
 	TaskScheduler::~TaskScheduler()
 	{
 		shutdown();
 
-		g_task_scheduler = nullptr;
+		s_active_task_scheduler = nullptr;
 	}
 
 	std::expected<TaskScheduler::JobId, std::string> TaskScheduler::register_job(JobPtr job) noexcept
 	{
-		if (!job)
-		{
-			return std::unexpected("Cannot register null job");
-		}
-
-		if (m_shutdown_requested.load(std::memory_order_acquire))
-		{
-			return std::unexpected("TaskScheduler is shutting down");
-		}
-
-		const auto job_name = job->get_name();
-		const auto job_id   = generate_job_id();
-
-		std::unique_lock lock(m_jobs_mutex);
-
-		if (m_name_to_id.contains(std::string(job_name)))
-		{
-			return std::unexpected(std::format("Job with name '{}' already exists", job_name));
-		}
-
-		try
-		{
-			m_jobs.emplace(job_id, JobEntry(std::move(job)));
-			m_name_to_id.emplace(job_name, job_id);
-
-			RML_DEBUG("Registered job '{}' with ID {}", job_name, job_id);
-			return job_id;
-		}
-		catch (const std::exception& e)
-		{
-			return std::unexpected(std::format("Failed to register job '{}': {}", job_name, e.what()));
-		}
+		return m_job_registry->register_job(std::move(job));
 	}
 
 	bool TaskScheduler::unregister_job(const JobId job_id) noexcept
 	{
-		std::unique_lock lock(m_jobs_mutex);
-
-		const auto it = m_jobs.find(job_id);
-		if (it == m_jobs.end())
-		{
-			return false;
-		}
-
-		const auto job_name = it->second.job->get_name();
-
-		it->second.job->destroy();
-
-		m_name_to_id.erase(std::string(job_name));
-		m_jobs.erase(it);
-
-		RML_DEBUG("Unregistered job '{}' (ID: {})", job_name, job_id);
-		return true;
+		return m_job_registry->unregister_job(job_id);
 	}
 
-	bool TaskScheduler::unregister_job(std::string_view job_name) noexcept
+	bool TaskScheduler::unregister_job(const std::string_view job_name) noexcept
 	{
-		std::shared_lock shared_lock(m_jobs_mutex);
-
-		const auto name_it = m_name_to_id.find(std::string(job_name));
-		if (name_it == m_name_to_id.end())
-		{
-			return false;
-		}
-
-		const auto job_id = name_it->second;
-		shared_lock.unlock();
-
-		return unregister_job(job_id);
+		return m_job_registry->unregister_job(job_name);
 	}
 
 	void TaskScheduler::execute_jobs_for_kind(const rml::JobExecutionContext& context) noexcept
 	{
-		if (m_shutdown_requested.load(std::memory_order_acquire))
-		{
-			return;
-		}
+		m_job_registry->execute_jobs_for_kind(context);
 
-		std::vector<std::pair<JobId, std::reference_wrapper<JobEntry> > > jobs_to_execute;
-		{
-			std::shared_lock lock(m_jobs_mutex);
-			jobs_to_execute.reserve(m_jobs.size());
-
-			for (auto& [job_id, entry] : m_jobs)
-			{
-				if (entry.job->should_execute(context))
-				{
-					jobs_to_execute.emplace_back(job_id, std::ref(entry));
-				}
-			}
-		}
-
-		std::ranges::sort(jobs_to_execute, [](const auto& a, const auto& b) {
-			const auto priority_a = a.second.get().job->get_priority();
-			const auto priority_b = b.second.get().job->get_priority();
-			return static_cast<std::int32_t>(priority_a) < static_cast<std::int32_t>(priority_b);
+#if RML_ENABLE_LUAU
+		m_script_engine_registry->maybe_cleanup_orphaned_script_engines([this](const DataModelType data_model_type) {
+			return m_data_model_registry->get_data_model_by_type(data_model_type);
 		});
-
-		for (auto& entry_ref : jobs_to_execute | std::views::values)
-		{
-			execute_job_with_stats(entry_ref.get(), context);
-		}
-
-		static std::atomic<std::uint64_t> cleanup_counter{0};
-		const auto current_count = cleanup_counter.fetch_add(1);
-
-		if (current_count % 100 == 0)
-		{
-			cleanup_finished_jobs();
-		}
-
-		if (current_count % 500 == 0)
-		{
-			cleanup_orphaned_script_engines();
-		}
+#endif
 	}
 
 	std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(const JobId job_id) const noexcept
 	{
-		std::shared_lock lock(m_jobs_mutex);
-
-		if (const auto it = m_jobs.find(job_id); it != m_jobs.end())
-		{
-			return std::ref(*it->second.job);
-		}
-
-		return std::nullopt;
+		return m_job_registry->get_job(job_id);
 	}
 
 	std::optional<std::reference_wrapper<rml::IJob> > TaskScheduler::get_job(const std::string_view job_name) const noexcept
 	{
-		std::shared_lock lock(m_jobs_mutex);
-
-		const auto name_it = m_name_to_id.find(std::string(job_name));
-		if (name_it == m_name_to_id.end())
-		{
-			return std::nullopt;
-		}
-
-		if (const auto job_it = m_jobs.find(name_it->second); job_it != m_jobs.end())
-		{
-			return std::ref(*job_it->second.job);
-		}
-
-		return std::nullopt;
+		return m_job_registry->get_job(job_name);
 	}
 
-	std::vector<TaskScheduler::JobId> TaskScheduler::get_jobs_by_kind(rml::JobKind kind) const noexcept
+	std::vector<TaskScheduler::JobId> TaskScheduler::get_jobs_by_kind(const rml::JobKind kind) const noexcept
 	{
-		std::vector<JobId> result;
-		std::shared_lock lock(m_jobs_mutex);
-
-		for (const auto& [job_id, entry] : m_jobs)
-		{
-			if (has_job_kind(entry.job->get_target_kind(), kind) || kind == rml::JobKind::Custom)
-			{
-				result.push_back(job_id);
-			}
-		}
-
-		return result;
+		return m_job_registry->get_jobs_by_kind(kind);
 	}
 
 	std::size_t TaskScheduler::get_job_count() const noexcept
 	{
-		std::shared_lock lock(m_jobs_mutex);
-		return m_jobs.size();
+		return m_job_registry->get_job_count();
 	}
 
 	std::optional<TaskScheduler::JobStats> TaskScheduler::get_job_stats(const JobId job_id) const noexcept
 	{
-		std::shared_lock lock(m_jobs_mutex);
-
-		if (const auto it = m_jobs.find(job_id); it != m_jobs.end())
-		{
-			return it->second.stats;
-		}
-
-		return std::nullopt;
+		return m_job_registry->get_job_stats(job_id);
 	}
 
 	void TaskScheduler::reset_stats() noexcept
 	{
-		std::unique_lock lock(m_jobs_mutex);
-
-		for (auto& entry : m_jobs | std::views::values)
-		{
-			entry.stats = JobStats{};
-		}
+		m_job_registry->reset_stats();
 	}
 
 	void TaskScheduler::shutdown() noexcept
 	{
 		RML_INFO("Shutting down TaskScheduler...");
 
-		m_shutdown_requested.store(true, std::memory_order_release);
+#if RML_ENABLE_LUAU
+		m_script_engine_registry->shutdown();
+#endif
 
-		shutdown_script_engines();
-
-		std::unique_lock lock(m_jobs_mutex);
-
-		for (const auto& entry : m_jobs | std::views::values)
-		{
-			entry.job->destroy();
-		}
-
-		m_jobs.clear();
-		m_name_to_id.clear();
+		m_job_registry->shutdown();
 
 		RML_INFO("Shutdown completed");
 	}
 
 	bool TaskScheduler::is_shutdown() const noexcept
 	{
-		return m_shutdown_requested.load(std::memory_order_acquire);
+		return m_job_registry->is_shutdown();
 	}
 
 	std::optional<rml::JobKind> TaskScheduler::get_job_kind_from_vtable(void** vtable) const noexcept
 	{
-		if (const auto it = m_vtable_to_kind.find(vtable); it != m_vtable_to_kind.end())
-		{
-			return it->second;
-		}
-
-		return std::nullopt;
+		return m_job_registry->get_job_kind_from_vtable(vtable);
 	}
 
 	std::optional<void**> TaskScheduler::get_vtable_for_job_kind(const rml::JobKind kind) const noexcept
 	{
-		if (const auto it = m_kind_to_vtable.find(kind); it != m_kind_to_vtable.end())
-		{
-			return it->second;
-		}
-		return std::nullopt;
+		return m_job_registry->get_vtable_for_job_kind(kind);
 	}
 
 	void TaskScheduler::set_data_model(const DataModelType type, DataModel* data_model, ScriptContext* script_context)
 	{
-		const DataModel* old_data_model = nullptr;
-		{
-			std::shared_lock lock(m_data_model_mutex);
-			if (const auto it = m_data_models.find(type); it != m_data_models.end())
-			{
-				old_data_model = it->second;
-			}
-		}
-
-		if (old_data_model && old_data_model != data_model)
-		{
-			RML_INFO("DataModel type {} changed, cleaning up old instance", static_cast<int>(type));
-			// cleanup_script_engine(type);
-		}
-
-		{
-			std::unique_lock lock(m_data_model_mutex);
-			if (data_model)
-			{
-				m_data_models[type] = data_model;
-			}
-			else
-			{
-				m_data_models.erase(type);
-			}
-		}
+		m_data_model_registry->set_data_model(type, data_model, script_context);
 	}
 
 	const DataModel* TaskScheduler::get_data_model_by_type(const DataModelType type) noexcept
 	{
-		std::shared_lock lock(m_data_model_mutex);
-
-		const auto it = m_data_models.find(type);
-		if (it == m_data_models.end())
-			return nullptr;
-
-		return it->second;
+		return m_data_model_registry->get_data_model_by_type(type);
 	}
 
-	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(DataModelType data_model_type)
+	void TaskScheduler::cleanup_data_model(const DataModelType data_model_type)
 	{
-		std::shared_lock lock(m_script_engines_mutex);
+		m_data_model_registry->cleanup_data_model(data_model_type);
+	}
 
-		if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end())
-		{
-			return it->second;
-		}
-
-		return nullptr;
+#if RML_ENABLE_LUAU
+	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(const DataModelType data_model_type)
+	{
+		return m_script_engine_registry->get_script_engine(data_model_type);
 	}
 
 	std::shared_ptr<rml::luau::ScriptEngine> TaskScheduler::get_script_engine(lua_State* L)
 	{
-#if RML_ENABLE_LUAU
-		std::shared_lock lock(m_script_engines_mutex);
-
-		for (const auto& engine : m_script_engines | std::views::values)
-		{
-			if (engine && engine->get_context().get_thread_state()->global == L->global)
-			{
-				return engine;
-			}
-		}
-#endif
-
-		return nullptr;
+		return m_script_engine_registry->get_script_engine(L);
 	}
 
-	void TaskScheduler::initialize() noexcept
+	void TaskScheduler::cleanup_script_engine(const DataModelType data_model_type)
 	{
-		RML_INFO("Initializing TaskScheduler...");
-
-		m_script_engines.clear();
-
-		RML_INFO("TaskScheduler initialized successfully.");
-	}
-
-	void TaskScheduler::shutdown_script_engines() noexcept
-	{
-		std::unique_lock lock(m_script_engines_mutex);
-
-		RML_INFO("Shutting down all ScriptEngines...");
-
-#if RML_ENABLE_LUAU
-		for (auto& [data_model_type, engine] : m_script_engines)
-		{
-			if (engine)
-			{
-				RML_INFO("Shutting down ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
-				engine->shutdown();
-			}
-		}
-#endif
-
-		m_script_engines.clear();
-
-		RML_INFO("All ScriptEngines shut down successfully.");
-	}
-
-	void TaskScheduler::initialize_vtable_mappings() noexcept
-	{
-		static constexpr std::array<std::pair<std::string_view, rml::JobKind>, 4> known_job_classes{{{"RBX::HeartbeatTask", rml::JobKind::Heartbeat}, {"RBX::PhysicsJob", rml::JobKind::Physics}, {"RBX::ScriptContextFacets::WaitingHybridScriptsJob", rml::JobKind::WaitingHybridScripts}, {"RBX::Studio::RenderJob", rml::JobKind::Render}}};
-
-		m_vtable_to_kind.reserve(known_job_classes.size());
-		m_kind_to_vtable.reserve(known_job_classes.size());
-
-		for (const auto& [class_name, job_kind] : known_job_classes)
-		{
-			const auto rtti = memory::rtti::rtti_manager::get_class_rtti(class_name);
-			if (!rtti)
-			{
-				RML_WARN("RTTI for '{}' not found, skipping vtable mapping", class_name);
-				continue;
-			}
-
-			const auto vtable = rtti->get_virtual_function_table();
-			if (!vtable)
-			{
-				RML_WARN("Failed to get vtable for '{}'", class_name);
-				continue;
-			}
-
-			m_vtable_to_kind.emplace(vtable, job_kind);
-			m_kind_to_vtable.emplace(job_kind, vtable);
-
-			RML_INFO("Mapped vtable for '{}' (kind: {}) -> 0x{:X}", class_name, std::to_underlying(job_kind), reinterpret_cast<std::uintptr_t>(vtable));
-		}
-
-		RML_INFO("Initialized vtable mappings: {}/{} job types mapped",
-		    m_vtable_to_kind.size(),
-		    known_job_classes.size());
-	}
-
-	void TaskScheduler::cleanup_finished_jobs() noexcept
-	{
-		std::unique_lock lock(m_jobs_mutex);
-
-		auto it = m_jobs.begin();
-		while (it != m_jobs.end())
-		{
-			if (it->second.job->get_state() == rml::JobState::Destroyed)
-			{
-				const auto job_name = it->second.job->get_name();
-				m_name_to_id.erase(std::string(job_name));
-				it = m_jobs.erase(it);
-				RML_DEBUG("Cleaned up destroyed job '{}'", job_name);
-			}
-			else
-			{
-				++it;
-			}
-		}
-	}
-
-	TaskScheduler::JobId TaskScheduler::generate_job_id() noexcept
-	{
-		return m_next_job_id.fetch_add(1, std::memory_order_relaxed);
-	}
-
-	void TaskScheduler::execute_job_with_stats(JobEntry& entry, const rml::JobExecutionContext& context) noexcept
-	{
-		const auto start_time = std::chrono::steady_clock::now();
-
-		try
-		{
-			entry.job->execute(context);
-			entry.stats.executions++;
-		}
-		catch (const std::exception& e)
-		{
-			entry.stats.failures++;
-			RML_ERROR("Job '{}' execution failed: {}", entry.job->get_name(), e.what());
-		}
-		catch (...)
-		{
-			entry.stats.failures++;
-			RML_ERROR("Job '{}' execution failed with unknown exception", entry.job->get_name());
-		}
-
-		const auto end_time       = std::chrono::steady_clock::now();
-		const auto execution_time = end_time - start_time;
-
-		entry.stats.total_execution_time += execution_time;
-		entry.stats.average_execution_time = entry.stats.total_execution_time / std::max(entry.stats.executions, 1ULL);
-		entry.last_execution               = end_time;
-	}
-
-	void TaskScheduler::cleanup_data_model(DataModelType data_model_type)
-	{
-		RML_INFO("Cleaning up DataModel type: {}", static_cast<int>(data_model_type));
-		//cleanup_script_engine(data_model_type);
-
-		{
-			std::unique_lock lock(m_data_model_mutex);
-			m_data_models.erase(data_model_type);
-		}
-
-		RML_INFO("DataModel type {} cleanup completed", static_cast<int>(data_model_type));
-	}
-
-	void TaskScheduler::cleanup_script_engine(DataModelType data_model_type)
-	{
-		RML_INFO("Cleaning up ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
-
-		std::shared_ptr<rml::luau::ScriptEngine> engine_to_cleanup;
-		{
-			std::unique_lock lock(m_script_engines_mutex);
-			if (const auto it = m_script_engines.find(data_model_type); it != m_script_engines.end())
-			{
-				engine_to_cleanup = it->second;
-				m_script_engines.erase(it);
-			}
-		}
-
-		if (!engine_to_cleanup)
-			return;
-
-#if RML_ENABLE_LUAU
-		std::thread([engine = std::move(engine_to_cleanup), data_model_type]() {
-			try
-			{
-				RML_INFO("Shutting down ScriptEngine for DataModel type: {}", static_cast<int>(data_model_type));
-				engine->shutdown();
-				RML_INFO("ScriptEngine shutdown completed for DataModel type: {}", static_cast<int>(data_model_type));
-			}
-			catch (const std::exception& e)
-			{
-				RML_ERROR("Error shutting down ScriptEngine for DataModel type {}: {}", static_cast<int>(data_model_type), e.what());
-			}
-		}).detach();
-#endif
+		m_script_engine_registry->cleanup_script_engine(data_model_type);
 	}
 
 	void TaskScheduler::cleanup_orphaned_script_engines()
 	{
-		std::vector<DataModelType> orphaned_types;
-		{
-			std::shared_lock engines_lock(m_script_engines_mutex);
-			std::shared_lock models_lock(m_data_model_mutex);
+		m_script_engine_registry->cleanup_orphaned_script_engines([this](const DataModelType data_model_type) {
+			return m_data_model_registry->get_data_model_by_type(data_model_type);
+		});
+	}
+#endif
+}
 
-			for (const auto& data_model_type : m_script_engines | std::views::keys)
-			{
-				if (auto it = m_data_models.find(data_model_type); it == m_data_models.end() || it->second == nullptr)
-				{
-					orphaned_types.push_back(data_model_type);
-				}
-			}
-		}
+namespace rml
+{
+	RBX::TaskScheduler& task_scheduler()
+	{
+		assert(s_active_task_scheduler && "TaskScheduler accessed before Application initialized it");
+		return *s_active_task_scheduler;
+	}
 
-		for (const auto& orphaned_type : orphaned_types)
-		{
-			RML_WARN("Found orphaned ScriptEngine for DataModel type: {}, cleaning up", static_cast<int>(orphaned_type));
-			cleanup_script_engine(orphaned_type);
-		}
+	bool has_task_scheduler() noexcept
+	{
+		return s_active_task_scheduler != nullptr;
 	}
 }

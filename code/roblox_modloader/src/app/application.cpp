@@ -143,7 +143,7 @@ namespace rml
 		{
 			try
 			{
-				m_instance = std::make_unique<memory::rtti::rtti_manager>();
+				m_instance = std::make_unique<::memory::rtti::rtti_manager>();
 			}
 			catch (const std::exception& e)
 			{
@@ -164,7 +164,7 @@ namespace rml
 		}
 
 	private:
-		std::unique_ptr<memory::rtti::rtti_manager> m_instance;
+		std::unique_ptr<::memory::rtti::rtti_manager> m_instance;
 	};
 
 	class PointersSubsystem final : public ISubsystem
@@ -217,6 +217,11 @@ namespace rml
 			return "TaskScheduler";
 		}
 
+		[[nodiscard]] ITaskScheduler& task_scheduler() const
+		{
+			return *m_instance;
+		}
+
 	private:
 		std::unique_ptr<RBX::TaskScheduler> m_instance;
 	};
@@ -224,9 +229,14 @@ namespace rml
 	class JobManagerSubsystem final : public ISubsystem
 	{
 	public:
+		explicit JobManagerSubsystem(TaskSchedulerSubsystem& task_scheduler_subsystem) :
+		    m_task_scheduler_subsystem(task_scheduler_subsystem)
+		{
+		}
+
 		std::expected<void, SubsystemError> initialize() override
 		{
-			m_instance = std::make_unique<jobs::JobManager>();
+			m_instance = std::make_unique<jobs::JobManager>(m_task_scheduler_subsystem.task_scheduler());
 			return {};
 		}
 
@@ -241,6 +251,7 @@ namespace rml
 		}
 
 	private:
+		TaskSchedulerSubsystem& m_task_scheduler_subsystem;
 		std::unique_ptr<jobs::JobManager> m_instance;
 	};
 
@@ -351,6 +362,9 @@ namespace rml
 		auto event_manager_subsystem = std::make_unique<EventManagerSubsystem>();
 		auto& event_manager_subsystem_ref = *event_manager_subsystem;
 
+		auto task_scheduler_subsystem = std::make_unique<TaskSchedulerSubsystem>();
+		auto& task_scheduler_subsystem_ref = *task_scheduler_subsystem;
+
 		m_subsystems.push_back(std::make_unique<ConfigSubsystem>());
 		m_subsystems.push_back(std::make_unique<LoggerSubsystem>());
 		m_subsystems.push_back(std::make_unique<CrashDumperSubsystem>());
@@ -358,8 +372,8 @@ namespace rml
 		m_subsystems.push_back(std::make_unique<QtIntegrationSubsystem>());
 		m_subsystems.push_back(std::make_unique<RttiManagerSubsystem>());
 		m_subsystems.push_back(std::make_unique<PointersSubsystem>());
-		m_subsystems.push_back(std::make_unique<TaskSchedulerSubsystem>());
-		m_subsystems.push_back(std::make_unique<JobManagerSubsystem>());
+		m_subsystems.push_back(std::move(task_scheduler_subsystem));
+		m_subsystems.push_back(std::make_unique<JobManagerSubsystem>(task_scheduler_subsystem_ref));
 		m_subsystems.push_back(std::make_unique<HookingSubsystem>());
 		m_subsystems.push_back(std::make_unique<ScriptSubsystemAdapter>());
 		m_subsystems.push_back(std::make_unique<ModManagerSubsystem>(event_manager_subsystem_ref));

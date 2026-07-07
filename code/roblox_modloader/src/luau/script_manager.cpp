@@ -398,13 +398,13 @@ namespace rml::luau {
 
     void ScriptManager::schedule_script(const RBX::DataModelType data_model_type,
                                         const ScriptInfo &script_info) {
-        if (!g_task_scheduler) {
+        if (!rml::has_task_scheduler()) {
             LOG_ERROR("TaskScheduler not available, cannot schedule script: {}",
                       script_info.full_path.string());
             return;
         }
 
-        const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+        const auto engine = rml::task_scheduler().get_script_engine(data_model_type);
         if (!engine) {
             return;
         }
@@ -483,7 +483,7 @@ namespace rml::luau {
     void ScriptManager::schedule_script_with_mod_thread(const RBX::DataModelType data_model_type,
                                                         const ScriptInfo &script_info,
                                                         lua_State *mod_thread) {
-        if (!g_task_scheduler) {
+        if (!rml::has_task_scheduler()) {
             LOG_ERROR("TaskScheduler not available, cannot schedule script: {}",
                       script_info.full_path.string());
             return;
@@ -495,7 +495,7 @@ namespace rml::luau {
             return;
         }
 
-        const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+        const auto engine = rml::task_scheduler().get_script_engine(data_model_type);
         if (!engine) {
             return;
         }
@@ -507,8 +507,8 @@ namespace rml::luau {
 
         LOG_INFO("DataModel type: 0x{:X}, DataModel 0x{:X}",
                  static_cast<int>(data_model_type),
-                 g_task_scheduler->get_data_model_by_type(data_model_type)
-                 ? reinterpret_cast<uintptr_t>(g_task_scheduler->get_data_model_by_type(data_model_type))
+                 rml::task_scheduler().get_data_model_by_type(data_model_type)
+                 ? reinterpret_cast<uintptr_t>(rml::task_scheduler().get_data_model_by_type(data_model_type))
                  : 0);
 
         execute_script_async_with_mod_thread(engine, script_info, chunk_name, mod_thread);
@@ -608,12 +608,12 @@ namespace rml::luau {
     lua_State *ScriptManager::create_mod_thread(RBX::DataModelType data_model_type,
                                                 const std::string &mod_name) noexcept {
         try {
-            if (!g_task_scheduler) {
+            if (!rml::has_task_scheduler()) {
                 LOG_ERROR("TaskScheduler not available, cannot create mod thread for: {}", mod_name);
                 return nullptr;
             }
 
-            const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+            const auto engine = rml::task_scheduler().get_script_engine(data_model_type);
             if (!engine) {
                 LOG_ERROR("ScriptEngine not available for DataModel type {}, cannot create mod thread for: {}",
                           static_cast<int>(data_model_type), mod_name);

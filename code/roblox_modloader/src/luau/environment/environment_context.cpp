@@ -146,13 +146,13 @@ namespace rml::luau::environment {
     }
 
     std::shared_ptr<EnvironmentContext> get_environment_context(lua_State *L) {
-        if (!L || !g_task_scheduler) {
+        if (!L || !rml::has_task_scheduler()) {
             LOG_ERROR("Invalid lua_State or task_scheduler not initialized");
             return nullptr;
         }
 
         try {
-            const auto script_engine = g_task_scheduler->get_script_engine(L);
+            const auto script_engine = rml::task_scheduler().get_script_engine(L);
             if (!script_engine) {
                 LOG_ERROR("Failed to get script engine for lua_State: {}", static_cast<void*>(L));
                 return nullptr;
