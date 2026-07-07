@@ -12,6 +12,7 @@
 namespace rml::qt
 {
 	class ActionDispatcher;
+	class MenuNode;
 	class QAction;
 	class QMenu;
 	class QMenuBar;
@@ -41,10 +42,13 @@ namespace rml::qt
 		void set_item_icon(uint64_t id, std::string path);
 		void remove(uint64_t id);
 
+		[[nodiscard]] rml::qt::MenuNode add_submenu(std::string text);
+		[[nodiscard]] rml::qt::MenuNode root_node();
+
 		void rebuild(QMenuBar* menu_bar);
 
 	private:
-		struct MenuNode
+		struct MenuItem
 		{
 			uint64_t id;
 			uint64_t parent_id;
@@ -59,8 +63,8 @@ namespace rml::qt
 
 		static void show_about();
 
-		uint64_t add_node(uint64_t parent_id, MenuNode node);
-		void build_into(QMenu* parent_menu, uint64_t node_id, const std::unordered_map<uint64_t, MenuNode>& nodes, std::vector<QAction*>& live);
+		uint64_t add_node(uint64_t parent_id, MenuItem node);
+		void build_into(QMenu* parent_menu, uint64_t node_id, const std::unordered_map<uint64_t, MenuItem>& nodes, std::vector<QAction*>& live);
 		void set_checked_state(uint64_t id, bool checked);
 		void erase_subtree(uint64_t id);
 		void trigger_rebuild();
@@ -68,7 +72,7 @@ namespace rml::qt
 		ActionDispatcher& m_dispatcher;
 
 		std::mutex m_mutex;
-		std::unordered_map<uint64_t, MenuNode> m_nodes;
+		std::unordered_map<uint64_t, MenuItem> m_nodes;
 		std::vector<uint64_t> m_root_children;
 		std::vector<QAction*> m_live_actions;
 		QMenuBar* m_menu_bar_handle{};

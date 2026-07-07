@@ -2,6 +2,7 @@
 
 #include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
+#include "RobloxModLoader/qt/menu_node.hpp"
 #include "RobloxModLoader/qt/qicon.hpp"
 #include "RobloxModLoader/qt/qmenu.hpp"
 #include "RobloxModLoader/qt/qmenubar.hpp"
@@ -81,7 +82,7 @@ namespace rml::qt
 		remove(id);
 	}
 
-	uint64_t ModsMenu::add_node(uint64_t parent_id, MenuNode node)
+	uint64_t ModsMenu::add_node(uint64_t parent_id, MenuItem node)
 	{
 		std::scoped_lock lock(m_mutex);
 		if (parent_id != 0 && !m_nodes.contains(parent_id))
@@ -120,7 +121,7 @@ namespace rml::qt
 		if (text.empty() || !on_click)
 			return 0;
 
-		MenuNode node;
+		MenuItem node;
 		node.kind = MenuItemKind::Action;
 		node.text = std::move(text);
 		node.on_click = std::move(on_click);
@@ -137,7 +138,7 @@ namespace rml::qt
 		if (text.empty())
 			return 0;
 
-		MenuNode node;
+		MenuItem node;
 		node.kind = MenuItemKind::Submenu;
 		node.text = std::move(text);
 
@@ -150,7 +151,7 @@ namespace rml::qt
 
 	uint64_t ModsMenu::add_separator(uint64_t parent_id)
 	{
-		MenuNode node;
+		MenuItem node;
 		node.kind = MenuItemKind::Separator;
 
 		const uint64_t id = add_node(parent_id, std::move(node));
@@ -165,7 +166,7 @@ namespace rml::qt
 		if (text.empty() || !on_toggle)
 			return 0;
 
-		MenuNode node;
+		MenuItem node;
 		node.kind = MenuItemKind::CheckableAction;
 		node.text = std::move(text);
 		node.checked = initial;
@@ -233,6 +234,16 @@ namespace rml::qt
 		trigger_rebuild();
 	}
 
+	rml::qt::MenuNode ModsMenu::add_submenu(std::string text)
+	{
+		return rml::qt::MenuNode{*this, add_submenu(uint64_t{0}, std::move(text))};
+	}
+
+	rml::qt::MenuNode ModsMenu::root_node()
+	{
+		return rml::qt::MenuNode{*this, 0};
+	}
+
 	void ModsMenu::set_checked_state(uint64_t id, bool checked)
 	{
 		std::scoped_lock lock(m_mutex);
@@ -240,13 +251,13 @@ namespace rml::qt
 			it->second.checked = checked;
 	}
 
-	void ModsMenu::build_into(QMenu* parent_menu, uint64_t node_id, const std::unordered_map<uint64_t, MenuNode>& nodes, std::vector<QAction*>& live)
+	void ModsMenu::build_into(QMenu* parent_menu, uint64_t node_id, const std::unordered_map<uint64_t, MenuItem>& nodes, std::vector<QAction*>& live)
 	{
 		const auto it = nodes.find(node_id);
 		if (it == nodes.end())
 			return;
 
-		const MenuNode& node = it->second;
+		const MenuItem& node = it->second;
 
 		switch (node.kind)
 		{
@@ -309,7 +320,7 @@ namespace rml::qt
 		if (!menu_bar_handle)
 			return;
 
-		std::unordered_map<uint64_t, MenuNode> nodes;
+		std::unordered_map<uint64_t, MenuItem> nodes;
 		std::vector<uint64_t> root_children;
 		std::vector<QAction*> previous;
 		QMenu* menu = nullptr;
