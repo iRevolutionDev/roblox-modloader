@@ -69,6 +69,23 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
         WriteManifest();
         ReportRenamedMembers();
         ReportDanglingBases();
+        ReportUnmappedTypes();
+    }
+
+    private static void ReportUnmappedTypes()
+    {
+        if (TypeMapper.UnmappedTypes.Count == 0)
+        {
+            return;
+        }
+
+        Console.Error.WriteLine(
+            $"warning RBXGEN003: {TypeMapper.UnmappedTypes.Count} type(s) have no dedicated C# mapping " +
+            "and were emitted as 'object'; the affected members carry no real type safety:");
+        foreach (var entry in TypeMapper.UnmappedTypes)
+        {
+            Console.Error.WriteLine($"warning RBXGEN003:   {entry}");
+        }
     }
 
     private void ReportDanglingBases()
@@ -340,8 +357,9 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
     {
         ApiDoc? memberDoc = apiDocs.GetMember(c.Name, prop.Name ?? string.Empty);
         var descFallback = metadata.ReadMemberDesc(c.Name, prop.Name ?? string.Empty);
-        var readOnly = IsReadOnly(prop);
-        var writeOnly = IsWriteOnly(prop);
+        var access = PropertyAccess.Resolve(prop);
+        var readOnly = access.IsReadOnly;
+        var writeOnly = access.IsWriteOnly;
         var csType = TypeMapper.ToCSharp(prop.ValueType);
         var newKw = hides ? "new " : string.Empty;
 
@@ -718,10 +736,6 @@ internal sealed class ClassGenerator(string outputDirectory, ReflectionMetadataR
 
         return byName.ContainsKey(s) ? s : "Instance";
     }
-
-    private static bool IsReadOnly(Property prop) => false;
-
-    private static bool IsWriteOnly(Property prop) => false;
 
     private static bool IsUsableDefault(string? value)
         => !string.IsNullOrEmpty(value)

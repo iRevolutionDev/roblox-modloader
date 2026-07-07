@@ -5,9 +5,15 @@ namespace TypeGenerator;
 internal static class TypeMapper
 {
     private static HashSet<string> _knownClasses = new(StringComparer.Ordinal);
+    private static readonly SortedSet<string> _unmappedTypes = new(StringComparer.Ordinal);
+
+    public static IReadOnlyCollection<string> UnmappedTypes => _unmappedTypes;
 
     public static void SetKnownClasses(IEnumerable<string> names)
-        => _knownClasses = new HashSet<string>(names, StringComparer.Ordinal);
+    {
+        _knownClasses = new HashSet<string>(names, StringComparer.Ordinal);
+        _unmappedTypes.Clear();
+    }
 
     public static string ToCSharp(ApiValueType? vt)
     {
@@ -32,16 +38,23 @@ internal static class TypeMapper
                 "double"        => "double",
                 "string"        => "string",
                 "void"          => "void",
-                _               => "object",
+                _               => RecordUnmapped("Primitive", vt.Name),
             },
 
             "Class"     => ResolveClassName(vt.Name),
             "Enum"      => $"Enum.{TypeSafeName(vt.Name)}",
             "DataType"  => MapDataType(vt.Name),
-            "Group"     => "object",
+            "Group"     => RecordUnmapped("Group", vt.Name),
 
-            _           => "object",
+            _           => RecordUnmapped(vt.Category, vt.Name),
         };
+    }
+
+    private static string RecordUnmapped(string category, string name)
+    {
+        var label = string.IsNullOrWhiteSpace(name) ? "<unnamed>" : name;
+        _unmappedTypes.Add($"{category}:{label}");
+        return "object";
     }
 
     public static string ReturnType(ApiValueType? returnType)
@@ -100,7 +113,7 @@ internal static class TypeMapper
         "QDir"                     => "string",
         "QFont"                    => "string",
         "Instances"                => "IReadOnlyList<Instance>",
-        _                          => "object",
+        _                          => RecordUnmapped("DataType", name),
     };
 
     private static string TypeSafeName(string name) => string.IsNullOrWhiteSpace(name) ? "object" : Utility.ToPascalIdentifier(name);
