@@ -16,6 +16,14 @@ namespace rml::qt
 	class QMenu;
 	class QMenuBar;
 
+	enum class MenuItemKind
+	{
+		Action,
+		Submenu,
+		Separator,
+		CheckableAction,
+	};
+
 	class RML_EXPORT ModsMenu
 	{
 	public:
@@ -26,24 +34,43 @@ namespace rml::qt
 		uint64_t register_action(std::string text, std::function<void()> on_click);
 		void remove_action(uint64_t id);
 
+		uint64_t add_action(uint64_t parent_id, std::string text, std::function<void()> on_click);
+		uint64_t add_submenu(uint64_t parent_id, std::string text);
+		uint64_t add_separator(uint64_t parent_id);
+		uint64_t add_checkable(uint64_t parent_id, std::string text, bool initial, std::function<void(bool)> on_toggle);
+		void set_item_icon(uint64_t id, std::string path);
+		void remove(uint64_t id);
+
 		void rebuild(QMenuBar* menu_bar);
 
 	private:
-		struct Entry
+		struct MenuNode
 		{
 			uint64_t id;
+			uint64_t parent_id;
+			MenuItemKind kind;
 			std::string text;
+			std::string icon_path;
+			bool checked{false};
 			std::function<void()> on_click;
+			std::function<void(bool)> on_toggle;
+			std::vector<uint64_t> children;
 		};
 
 		static void show_about();
 
+		uint64_t add_node(uint64_t parent_id, MenuNode node);
+		void build_into(QMenu* parent_menu, uint64_t node_id, const std::unordered_map<uint64_t, MenuNode>& nodes, std::vector<QAction*>& live);
+		void set_checked_state(uint64_t id, bool checked);
+		void erase_subtree(uint64_t id);
+		void trigger_rebuild();
+
 		ActionDispatcher& m_dispatcher;
 
 		std::mutex m_mutex;
-		std::vector<Entry> m_entries;
+		std::unordered_map<uint64_t, MenuNode> m_nodes;
+		std::vector<uint64_t> m_root_children;
 		std::vector<QAction*> m_live_actions;
-		std::unordered_map<uint64_t, QAction*> m_entry_actions;
 		QMenuBar* m_menu_bar_handle{};
 		QMenu* m_menu{};
 		uint64_t m_next_id{1};

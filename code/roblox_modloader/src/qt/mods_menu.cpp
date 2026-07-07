@@ -2,6 +2,7 @@
 
 #include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
+#include "RobloxModLoader/qt/qicon.hpp"
 #include "RobloxModLoader/qt/qmenu.hpp"
 #include "RobloxModLoader/qt/qmenubar.hpp"
 #include "RobloxModLoader/qt/qmessagebox.hpp"
@@ -67,51 +68,240 @@ namespace rml::qt
 
 	void ModsMenu::add_action(std::string text, std::function<void()> on_click)
 	{
-		if (text.empty() || !on_click)
-			return;
-
-		std::scoped_lock lock(m_mutex);
-		m_entries.push_back({m_next_id++, std::move(text), std::move(on_click)});
+		add_action(0, std::move(text), std::move(on_click));
 	}
 
 	uint64_t ModsMenu::register_action(std::string text, std::function<void()> on_click)
 	{
-		if (text.empty() || !on_click)
-			return 0;
+		return add_action(0, std::move(text), std::move(on_click));
+	}
 
+	void ModsMenu::remove_action(uint64_t id)
+	{
+		remove(id);
+	}
+
+	uint64_t ModsMenu::add_node(uint64_t parent_id, MenuNode node)
+	{
+		std::scoped_lock lock(m_mutex);
+		if (parent_id != 0 && !m_nodes.contains(parent_id))
+		{
+			LOG_ERROR("[qt] ModsMenu: unknown parent_id {}", parent_id);
+			return 0;
+		}
+
+		const uint64_t id = m_next_id++;
+		node.id = id;
+		node.parent_id = parent_id;
+
+		if (parent_id == 0)
+			m_root_children.push_back(id);
+		else
+			m_nodes[parent_id].children.push_back(id);
+
+		m_nodes.emplace(id, std::move(node));
+		return id;
+	}
+
+	void ModsMenu::trigger_rebuild()
+	{
 		QMenuBar* menu_bar = nullptr;
-		uint64_t id = 0;
 		{
 			std::scoped_lock lock(m_mutex);
-			id = m_next_id++;
-			m_entries.push_back({id, std::move(text), std::move(on_click)});
 			menu_bar = m_menu_bar_handle;
 		}
 
 		if (menu_bar)
 			rebuild(menu_bar);
+	}
+
+	uint64_t ModsMenu::add_action(uint64_t parent_id, std::string text, std::function<void()> on_click)
+	{
+		if (text.empty() || !on_click)
+			return 0;
+
+		MenuNode node;
+		node.kind = MenuItemKind::Action;
+		node.text = std::move(text);
+		node.on_click = std::move(on_click);
+
+		const uint64_t id = add_node(parent_id, std::move(node));
+		if (id != 0)
+			trigger_rebuild();
 
 		return id;
 	}
 
-	void ModsMenu::remove_action(uint64_t id)
+	uint64_t ModsMenu::add_submenu(uint64_t parent_id, std::string text)
+	{
+		if (text.empty())
+			return 0;
+
+		MenuNode node;
+		node.kind = MenuItemKind::Submenu;
+		node.text = std::move(text);
+
+		const uint64_t id = add_node(parent_id, std::move(node));
+		if (id != 0)
+			trigger_rebuild();
+
+		return id;
+	}
+
+	uint64_t ModsMenu::add_separator(uint64_t parent_id)
+	{
+		MenuNode node;
+		node.kind = MenuItemKind::Separator;
+
+		const uint64_t id = add_node(parent_id, std::move(node));
+		if (id != 0)
+			trigger_rebuild();
+
+		return id;
+	}
+
+	uint64_t ModsMenu::add_checkable(uint64_t parent_id, std::string text, bool initial, std::function<void(bool)> on_toggle)
+	{
+		if (text.empty() || !on_toggle)
+			return 0;
+
+		MenuNode node;
+		node.kind = MenuItemKind::CheckableAction;
+		node.text = std::move(text);
+		node.checked = initial;
+		node.on_toggle = std::move(on_toggle);
+
+		const uint64_t id = add_node(parent_id, std::move(node));
+		if (id != 0)
+			trigger_rebuild();
+
+		return id;
+	}
+
+	void ModsMenu::set_item_icon(uint64_t id, std::string path)
 	{
 		if (id == 0)
 			return;
 
-		QAction* live_action = nullptr;
 		{
 			std::scoped_lock lock(m_mutex);
-			std::erase_if(m_entries, [id](const Entry& entry) { return entry.id == id; });
-			if (const auto it = m_entry_actions.find(id); it != m_entry_actions.end())
+			const auto it = m_nodes.find(id);
+			if (it == m_nodes.end())
 			{
-				live_action = it->second;
-				m_entry_actions.erase(it);
+				LOG_ERROR("[qt] ModsMenu: set_item_icon unknown id {}", id);
+				return;
 			}
+			it->second.icon_path = std::move(path);
 		}
-		
-		if (live_action)
-			m_dispatcher.disconnect(live_action);
+
+		trigger_rebuild();
+	}
+
+	void ModsMenu::erase_subtree(uint64_t id)
+	{
+		const auto it = m_nodes.find(id);
+		if (it == m_nodes.end())
+			return;
+
+		const std::vector<uint64_t> children = it->second.children;
+		for (const uint64_t child_id : children)
+			erase_subtree(child_id);
+
+		m_nodes.erase(id);
+	}
+
+	void ModsMenu::remove(uint64_t id)
+	{
+		if (id == 0)
+			return;
+
+		{
+			std::scoped_lock lock(m_mutex);
+			const auto it = m_nodes.find(id);
+			if (it == m_nodes.end())
+				return;
+
+			const uint64_t parent_id = it->second.parent_id;
+			erase_subtree(id);
+
+			if (parent_id == 0)
+				std::erase(m_root_children, id);
+			else if (const auto parent_it = m_nodes.find(parent_id); parent_it != m_nodes.end())
+				std::erase(parent_it->second.children, id);
+		}
+
+		trigger_rebuild();
+	}
+
+	void ModsMenu::set_checked_state(uint64_t id, bool checked)
+	{
+		std::scoped_lock lock(m_mutex);
+		if (const auto it = m_nodes.find(id); it != m_nodes.end())
+			it->second.checked = checked;
+	}
+
+	void ModsMenu::build_into(QMenu* parent_menu, uint64_t node_id, const std::unordered_map<uint64_t, MenuNode>& nodes, std::vector<QAction*>& live)
+	{
+		const auto it = nodes.find(node_id);
+		if (it == nodes.end())
+			return;
+
+		const MenuNode& node = it->second;
+
+		switch (node.kind)
+		{
+		case MenuItemKind::Action:
+		{
+			QAction* const action = parent_menu->addAction(std::string_view{node.text});
+			if (!action)
+				return;
+
+			if (!node.icon_path.empty())
+				action->setIcon(QIcon(QString{node.icon_path}));
+
+			m_dispatcher.connect(action, node.on_click);
+			live.push_back(action);
+			break;
+		}
+		case MenuItemKind::Separator:
+		{
+			parent_menu->addSeparator();
+			break;
+		}
+		case MenuItemKind::CheckableAction:
+		{
+			QAction* const action = parent_menu->addAction(std::string_view{node.text});
+			if (!action)
+				return;
+
+			action->setCheckable(true);
+			action->setChecked(node.checked);
+			if (!node.icon_path.empty())
+				action->setIcon(QIcon(QString{node.icon_path}));
+
+			const auto on_toggle = node.on_toggle;
+			m_dispatcher.connect_toggled(action, [this, id = node.id, on_toggle](bool value) {
+				set_checked_state(id, value);
+				if (on_toggle)
+					on_toggle(value);
+			});
+			live.push_back(action);
+			break;
+		}
+		case MenuItemKind::Submenu:
+		{
+			QMenu* const submenu = parent_menu->addMenu(std::string_view{node.text});
+			if (!submenu)
+				return;
+
+			if (!node.icon_path.empty())
+				submenu->setIcon(QIcon(QString{node.icon_path}));
+
+			for (const uint64_t child_id : node.children)
+				build_into(submenu, child_id, nodes, live);
+			break;
+		}
+		}
 	}
 
 	void ModsMenu::rebuild(QMenuBar* menu_bar_handle)
@@ -119,12 +309,14 @@ namespace rml::qt
 		if (!menu_bar_handle)
 			return;
 
-		std::vector<Entry> entries;
+		std::unordered_map<uint64_t, MenuNode> nodes;
+		std::vector<uint64_t> root_children;
 		std::vector<QAction*> previous;
 		QMenu* menu = nullptr;
 		{
 			std::scoped_lock lock(m_mutex);
-			entries = m_entries;
+			nodes = m_nodes;
+			root_children = m_root_children;
 			previous = std::move(m_live_actions);
 			m_live_actions.clear();
 			if (m_menu && m_menu_bar_handle == menu_bar_handle)
@@ -149,38 +341,35 @@ namespace rml::qt
 		}
 
 		std::vector<QAction*> live;
-		std::unordered_map<uint64_t, QAction*> entry_actions;
 
-		const auto emit = [&](const std::string_view text, std::function<void()> on_click, const uint64_t id = 0) {
+		const auto emit_builtin = [&](const std::string_view text, std::function<void()> on_click) {
 			QAction* const action = menu->addAction(text);
 			if (!action)
 				return;
 
 			m_dispatcher.connect(action, std::move(on_click));
 			live.push_back(action);
-			if (id != 0)
-				entry_actions[id] = action;
 		};
 
-		emit("Open Mods Folder", [] {
+		emit_builtin("Open Mods Folder", [] {
 			utils::shell::open_folder(utils::directory::get_mod_loader_directory() / "mods");
 		});
-		emit("Open Logs Folder", [] {
+		emit_builtin("Open Logs Folder", [] {
 			utils::shell::open_folder(utils::directory::get_mod_loader_directory() / "logs");
 		});
-		emit("Open Config", [] {
+		emit_builtin("Open Config", [] {
 			utils::shell::open(utils::directory::get_mod_loader_directory() / "config.toml");
 		});
 
-		if (!entries.empty())
+		if (!root_children.empty())
 		{
 			menu->addSeparator();
-			for (auto& [id, text, on_click] : entries)
-				emit(text, on_click, id);
+			for (const uint64_t id : root_children)
+				build_into(menu, id, nodes, live);
 		}
 
 		menu->addSeparator();
-		emit("About", [] {
+		emit_builtin("About", [] {
 			show_about();
 		});
 
@@ -189,9 +378,8 @@ namespace rml::qt
 			m_menu_bar_handle = menu_bar_handle;
 			m_menu = menu;
 			m_live_actions = std::move(live);
-			m_entry_actions = std::move(entry_actions);
 		}
 
-		LOG_INFO("[qt] Mods menu rebuilt ({} mod entr(ies) + built-ins)", entries.size());
+		LOG_INFO("[qt] Mods menu rebuilt ({} root mod node(s) + built-ins)", root_children.size());
 	}
 }
