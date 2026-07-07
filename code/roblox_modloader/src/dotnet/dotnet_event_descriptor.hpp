@@ -5,6 +5,7 @@
 #include "dotnet_variant.hpp"
 #include "interop_registry.hpp"
 #include "spdlog/spdlog.h"
+#include "type_marshaler.hpp"
 
 #include <cstdint>
 #include <memory>
@@ -34,7 +35,7 @@ namespace rml::dotnet
 
 				for (const auto& arg : args)
 				{
-					interop_args.push_back(engine_variant_to_interop(arg, owned_strings));
+					interop_args.push_back(TypeMarshaler::encode_variant(arg, &owned_strings));
 				}
 
 				m_callback(m_state, interop_args.data(), static_cast<uint32_t>(interop_args.size()));

@@ -4,6 +4,7 @@
 #include "RobloxModLoader/roblox/reflection/type.hpp"
 #include "dotnet_variant.hpp"
 #include "interop_registry.hpp"
+#include "type_marshaler.hpp"
 
 #include <cstddef>
 #include <deque>
@@ -50,46 +51,7 @@ namespace rml::dotnet
 			if (!type)
 				return false;
 
-			value.set_type_and_ops(type, borrow_value_ops(type));
-
-			const auto& v = m_args[index - 1];
-			void* const storage = value.storage();
-			const auto& name = type->name;
-
-			if (name == "string")
-			{
-				::new (storage) std::string(v.as_string ? v.as_string : "");
-				return true;
-			}
-			if (name == "bool")
-			{
-				bool b = false;
-				(void) read_bool(v, b);
-				*static_cast<bool*>(storage) = b;
-				return true;
-			}
-			if (name == "float" || name == "double")
-			{
-				double d = 0.0;
-				(void) read_double(v, d);
-				if (name == "float")
-					*static_cast<float*>(storage) = static_cast<float>(d);
-				else
-					*static_cast<double*>(storage) = d;
-				return true;
-			}
-			if (type->is_number || type->is_enum || name == "int" || name == "long")
-			{
-				int64_t wide = 0;
-				(void) read_int64(v, wide);
-				if (name == "int64" || name == "long")
-					*static_cast<int64_t*>(storage) = wide;
-				else
-					*static_cast<int*>(storage) = static_cast<int>(wide);
-				return true;
-			}
-
-			return false;
+			return TypeMarshaler::decode_argument(type, m_args[index - 1], value, borrow_value_ops(type));
 		}
 
 		bool get_bool(const int index, bool& value) const override

@@ -9,6 +9,7 @@
 #include "dotnet_event_descriptor.hpp"
 #include "dotnet_variant.hpp"
 #include "dotnet_yield.hpp"
+#include "type_marshaler.hpp"
 
 #include <RobloxModLoader/qt/mods_menu.hpp>
 #include <RobloxModLoader/qt/qt_integration.hpp>
@@ -25,6 +26,17 @@ namespace rml::dotnet
 		if (!utils::memory::is_valid_pointer(handle))
 			return nullptr;
 		return reinterpret_cast<RBX::Instance*>(handle);
+	}
+
+	void invoke_reflection_function(RBX::Reflection::DescribedBase* instance, const RBX::Reflection::FunctionDescriptor& descriptor, const InteropVariant* args, const uint32_t arg_count, InteropVariant& out)
+	{
+		DotNetArguments arguments{args, arg_count};
+
+		const auto function = RBX::Function(descriptor, instance);
+		const auto ret = function.invoke(arguments);
+		const auto type = descriptor.get_signature().first_result_type();
+
+		TypeMarshaler::encode_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), out);
 	}
 
 	void RobloxInteropProvider::populate(InteropTable& table)
@@ -46,14 +58,8 @@ namespace rml::dotnet
 				if (!descriptor)
 					return;
 
-				DotNetArguments arguments{args, arg_count};
-
-				const auto function = RBX::Function(*descriptor, instance);
-				const auto ret = function.invoke(arguments);
-				const auto type = descriptor->get_signature().first_result_type();
-
-				if (out_result)
-					write_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), *out_result);
+				InteropVariant local_result{};
+				invoke_reflection_function(instance, *descriptor, args, arg_count, out_result ? *out_result : local_result);
 			}
 			catch (const std::exception& e)
 			{
@@ -94,13 +100,8 @@ namespace rml::dotnet
 					return;
 				}
 
-				DotNetArguments arguments{args, arg_count};
-				const auto function = RBX::Function(*descriptor, instance);
-				const auto ret = function.invoke(arguments);
-				const auto type = descriptor->get_signature().first_result_type();
-
 				InteropVariant result{};
-				write_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), result);
+				invoke_reflection_function(instance, *descriptor, args, arg_count, result);
 				callback(state, &result, nullptr);
 			}
 			catch (const std::exception& e)
@@ -130,33 +131,7 @@ namespace rml::dotnet
 				if (!property_descriptor)
 					return;
 
-				if (property_descriptor->type.name == "string")
-				{
-					*out_value = string_value(property_descriptor->get_string_value(instance).c_str());
-					return;
-				}
-
-				if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
-				{
-					const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
-					*out_value = instance_value(reinterpret_cast<uintptr_t>(ref_desc->get_ref_value(instance)));
-					return;
-				}
-
-				if (const auto sequence = try_sequence_property(property_descriptor, instance))
-				{
-					*out_value = *sequence;
-					return;
-				}
-
-				if (const auto blittable = try_blittable_property(property_descriptor, instance))
-				{
-					*out_value = *blittable;
-					return;
-				}
-
-				const auto property = RBX::Property(*property_descriptor, instance);
-				*out_value = int64_value(static_cast<int64_t>(property.get<uint64_t>()));
+				*out_value = TypeMarshaler::encode_property(property_descriptor, instance);
 			}
 			catch (const std::exception& e)
 			{
@@ -182,31 +157,7 @@ namespace rml::dotnet
 				if (!property_descriptor)
 					return;
 
-				if (property_descriptor->type.name == "string")
-				{
-					if (value->tag == InteropValueTag::String && value->as_string)
-						property_descriptor->set_string_value(instance, value->as_string);
-					return;
-				}
-
-				if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
-				{
-					const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
-					auto* target = value->tag == InteropValueTag::Instance ?
-					    reinterpret_cast<RBX::Reflection::DescribedBase*>(value->as_instance) :
-					    nullptr;
-					ref_desc->set_ref_value(instance, target);
-					return;
-				}
-
-				if (try_set_sequence_property(property_descriptor, instance, *value))
-					return;
-
-				if (try_set_blittable_property(property_descriptor, instance, *value))
-					return;
-
-				auto property = RBX::Property(*property_descriptor, instance);
-				property.set(value->as_uint64);
+				(void) TypeMarshaler::decode_property(property_descriptor, instance, *value);
 			}
 			catch (const std::exception& e)
 			{

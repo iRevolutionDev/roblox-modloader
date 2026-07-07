@@ -1,15 +1,10 @@
 #pragma once
-#include "RobloxModLoader/logger/logger.hpp"
-#include "RobloxModLoader/roblox/instance.hpp"
-#include "RobloxModLoader/roblox/reflection/property_descriptor.hpp"
-#include "RobloxModLoader/roblox/reflection/type.hpp"
 #include "RobloxModLoader/util/memory.hpp"
 #include "interop_registry.hpp"
 
 #include <cstdint>
-#include <memory>
-#include <optional>
-#include <string>
+#include <cstdlib>
+#include <cstring>
 #include <vector>
 
 namespace rml::dotnet
@@ -104,39 +99,6 @@ namespace rml::dotnet
 		return out;
 	}
 
-	template<size_t N>
-	struct blittable_blob
-	{
-		std::byte data[N];
-	};
-
-	[[nodiscard]] inline size_t blittable_size(const RBX::Name& type_name) noexcept
-	{
-		static constexpr std::pair<const char*, size_t> table[] = {
-		    {"Vector3", 12},
-		    {"Vector2", 8},
-		    {"Color3", 12},
-		    {"CoordinateFrame", 48},
-		    {"CFrame", 48},
-		    {"UDim", 8},
-		    {"UDim2", 16},
-		    {"Ray", 24},
-		    {"Rect", 16},
-		    {"NumberRange", 8},
-		    {"Region3", 60},
-		    {"Faces", 4},
-		    {"Axes", 4},
-		    {"BrickColor", 4},
-		};
-
-		for (const auto& [name, sz] : table)
-		{
-			if (type_name == name)
-				return sz;
-		}
-		return 0;
-	}
-
 	[[nodiscard]] inline InteropVariant blittable_value(const void* bytes, const size_t size)
 	{
 		InteropVariant out{};
@@ -153,60 +115,12 @@ namespace rml::dotnet
 		return out;
 	}
 
-	[[nodiscard]] inline std::optional<InteropVariant> try_blittable_property(const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
-	{
-		const auto size = blittable_size(descriptor->type.name);
-		if (size == 0)
-			return std::nullopt;
-
-		RBX::Reflection::Variant variant;
-		descriptor->get_variant(instance, variant);
-		if (variant.is_void())
-			return std::nullopt;
-
-		return blittable_value(variant.try_cast<std::byte>(), size);
-	}
-
-	[[nodiscard]] inline bool try_set_blittable_property(const RBX::Reflection::PropertyDescriptor* descriptor, RBX::Reflection::DescribedBase* instance, const InteropVariant& value)
-	{
-		if (value.tag != InteropValueTag::Blittable || value.as_instance == 0)
-			return false;
-
-		const auto size = blittable_size(descriptor->type.name);
-		if (size == 0)
-			return false;
-
-		const auto* bytes = reinterpret_cast<const void*>(value.as_instance);
-		RBX::Property property(*descriptor, instance);
-
-		switch (size)
-		{
-		case 4: property.set(*static_cast<const blittable_blob<4>*>(bytes)); return true;
-		case 8: property.set(*static_cast<const blittable_blob<8>*>(bytes)); return true;
-		case 12: property.set(*static_cast<const blittable_blob<12>*>(bytes)); return true;
-		case 16: property.set(*static_cast<const blittable_blob<16>*>(bytes)); return true;
-		case 24: property.set(*static_cast<const blittable_blob<24>*>(bytes)); return true;
-		case 48: property.set(*static_cast<const blittable_blob<48>*>(bytes)); return true;
-		case 60: property.set(*static_cast<const blittable_blob<60>*>(bytes)); return true;
-		default: return false;
-		}
-	}
-
 	struct engine_vector_header
 	{
 		const std::byte* begin;
 		const std::byte* end;
 		const std::byte* capacity;
 	};
-
-	[[nodiscard]] inline size_t sequence_stride(const RBX::Name& type_name) noexcept
-	{
-		if (type_name == "NumberSequence")
-			return 12;
-		if (type_name == "ColorSequence")
-			return 20;
-		return 0;
-	}
 
 	[[nodiscard]] inline InteropVariant pack_sequence(const void* vec_storage, const size_t stride)
 	{
@@ -227,180 +141,6 @@ namespace rml::dotnet
 			out.as_instance = reinterpret_cast<uintptr_t>(buf);
 		}
 		return out;
-	}
-
-	[[nodiscard]] inline std::optional<InteropVariant> try_sequence_property(const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
-	{
-		const auto stride = sequence_stride(descriptor->type.name);
-		if (stride == 0)
-			return std::nullopt;
-
-		RBX::Reflection::Variant variant;
-		descriptor->get_variant(instance, variant);
-		if (variant.is_void())
-			return std::nullopt;
-
-		return pack_sequence(variant.try_cast<std::byte>(), stride);
-	}
-
-	[[nodiscard]] inline bool try_set_sequence_property(const RBX::Reflection::PropertyDescriptor* descriptor, RBX::Reflection::DescribedBase* instance, const InteropVariant& value)
-	{
-		if (value.tag != InteropValueTag::Blittable || value.as_instance == 0)
-			return false;
-
-		const auto stride = sequence_stride(descriptor->type.name);
-		if (stride == 0)
-			return false;
-
-		const auto* buf = reinterpret_cast<const std::byte*>(value.as_instance);
-		const auto count = *reinterpret_cast<const int32_t*>(buf);
-		const auto* keys = buf + sizeof(int32_t);
-
-		engine_vector_header header{};
-		header.begin = keys;
-		header.end = keys + static_cast<size_t>(count < 0 ? 0 : count) * stride;
-		header.capacity = header.end;
-
-		RBX::Property property(*descriptor, instance);
-		property.set(*reinterpret_cast<const blittable_blob<sizeof(engine_vector_header)>*>(&header));
-		return true;
-	}
-
-	inline InteropVariant engine_variant_to_interop(const RBX::Reflection::Variant& variant, InteropStringPool& strings)
-	{
-		if (variant.is_void())
-			return null_value();
-
-		const auto& type = variant.type();
-
-		if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(type))
-		{
-			const auto* shared = variant.try_cast<std::shared_ptr<RBX::Instance>>();
-			const auto instance = shared ? reinterpret_cast<uintptr_t>(shared->get()) : 0;
-			if (!utils::memory::is_valid_pointer(instance))
-			{
-				RML_WARN_AT("Interop", "Dropping implausible instance handle {:#x} for type '{}'", instance, type.name.c_str());
-				return null_value();
-			}
-			return instance_value(instance);
-		}
-
-		if (type.name == "Instance")
-		{
-			const auto* instance = variant.try_cast<RBX::Instance*>();
-			return instance ? instance_value(reinterpret_cast<uintptr_t>(*instance)) : null_value();
-		}
-
-		if (type.name == "string")
-			return string_value(variant.try_cast<std::string>()->c_str(), strings);
-
-		if (type.name == "bool")
-			return bool_value(*variant.try_cast<bool>());
-
-		if (variant.is_enum())
-			return int64_value(*variant.try_cast<int>());
-
-		if (variant.is_float())
-			return type.name == "float" ? float_value(*variant.try_cast<float>()) : double_value(*variant.try_cast<double>());
-
-		if (variant.is_number())
-			return int64_value(type.name == "int" ? *variant.try_cast<int>() : *variant.try_cast<int64_t>());
-
-		RML_WARN_AT("Interop", "Unsupported event argument type '{}'", type.name.c_str());
-		return null_value();
-	}
-
-	[[nodiscard]] inline InteropVariant marshal_tuple(const RBX::Reflection::Tuple* tuple)
-	{
-		if (!tuple || !utils::memory::is_valid_pointer(reinterpret_cast<uintptr_t>(tuple)) || tuple->values.empty())
-			return null_value();
-
-		InteropStringPool strings;
-		std::vector<InteropVariant> values;
-		values.reserve(tuple->values.size());
-		for (const auto& value : tuple->values)
-			values.push_back(engine_variant_to_interop(value, strings));
-
-		return tuple_value(values);
-	}
-
-	inline void write_return_value(const RBX::Reflection::Type* type, const uint64_t ret, const uintptr_t ret_slot_addr, InteropVariant& out) noexcept
-	{
-		if (!type)
-		{
-			out = null_value();
-			return;
-		}
-
-		if (type->name == "Tuple")
-		{
-			auto* slot = reinterpret_cast<std::shared_ptr<const RBX::Reflection::Tuple>*>(ret_slot_addr);
-			out = marshal_tuple(slot ? slot->get() : nullptr);
-			std::destroy_at(slot);
-			return;
-		}
-
-		if (type->name == "Instances")
-		{
-			out.tag = InteropValueTag::InstanceArray;
-			out.as_instance = 0;
-
-			auto* slot = reinterpret_cast<std::shared_ptr<RBX::Instances>*>(ret_slot_addr);
-			if (const auto& instances_ptr = *slot; instances_ptr && !instances_ptr->empty())
-			{
-				const auto& instances = *instances_ptr;
-				const auto count = static_cast<uint32_t>(instances.size());
-				const auto buf_size = sizeof(uint64_t) + static_cast<size_t>(count) * sizeof(uintptr_t);
-
-				if (auto* buf = static_cast<uint8_t*>(std::malloc(buf_size)))
-				{
-					auto* count_field = reinterpret_cast<uint32_t*>(buf);
-					auto* handles = reinterpret_cast<uintptr_t*>(buf + sizeof(uint64_t));
-					uint32_t written = 0;
-
-					for (const auto& element : instances)
-					{
-						if (const auto handle = reinterpret_cast<uintptr_t>(element.get()))
-							handles[written++] = handle;
-					}
-					*count_field = written;
-					out.as_instance = reinterpret_cast<uintptr_t>(buf);
-				}
-			}
-
-			std::destroy_at(slot);
-			return;
-		}
-
-		if (type->name == "Instance" || RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*type))
-		{
-			auto* slot = reinterpret_cast<std::shared_ptr<RBX::Instance>*>(ret_slot_addr);
-			out = instance_value(reinterpret_cast<uintptr_t>(slot->get()));
-			std::destroy_at(slot);
-			return;
-		}
-
-		if (type->name == "string")
-		{
-			auto* slot = reinterpret_cast<std::string*>(ret_slot_addr);
-			out = string_value(slot->c_str());
-			std::destroy_at(slot);
-			return;
-		}
-
-		if (const auto size = blittable_size(type->name))
-		{
-			out = blittable_value(reinterpret_cast<const void*>(ret_slot_addr), size);
-			return;
-		}
-
-		if (!ret)
-		{
-			out = null_value();
-			return;
-		}
-
-		out = int64_value(static_cast<int64_t>(ret));
 	}
 
 	[[nodiscard]] inline bool read_bool(const InteropVariant& v, bool& out) noexcept

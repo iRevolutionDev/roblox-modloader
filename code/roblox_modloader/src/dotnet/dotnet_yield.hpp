@@ -4,6 +4,7 @@
 #include "RobloxModLoader/roblox/reflection/yield_function_descriptor.hpp"
 #include "dotnet_variant.hpp"
 #include "interop_registry.hpp"
+#include "type_marshaler.hpp"
 
 #include <cstddef>
 #include <memory>
@@ -36,12 +37,12 @@ namespace rml::dotnet
 				if (const RBX::Reflection::Tuple* tuple = shared ? shared->get() : nullptr)
 				{
 					for (const auto& value : tuple->values)
-						m_values.push_back(engine_variant_to_interop(value, m_strings));
+						m_values.push_back(TypeMarshaler::encode_variant(value, &m_strings));
 				}
 				return;
 			}
 
-			m_values.push_back(engine_variant_to_interop(*result, m_strings));
+			m_values.push_back(TypeMarshaler::encode_variant(*result, &m_strings));
 		}
 
 		void take_error(const RBX::Reflection::Variant* message)
