@@ -1,6 +1,7 @@
 
 #include "roblox_interop_provider.hpp"
 
+#include "RobloxModLoader/logger/logger.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
@@ -17,10 +18,40 @@
 #include <RobloxModLoader/roblox/reflection/object.hpp>
 #include <RobloxModLoader/roblox/reflection/property_descriptor.hpp>
 
+#include <cassert>
+#include <string_view>
+#include <utility>
+
 RML_LOG_SCOPE("Interop");
 
 namespace rml::dotnet
 {
+	void RobloxInteropProvider::verify_populated(const InteropTable& table)
+	{
+		const std::pair<const void*, std::string_view> members[]{
+			{reinterpret_cast<const void*>(table.reflection_invoke), "reflection_invoke"},
+			{reinterpret_cast<const void*>(table.reflection_invoke_async), "reflection_invoke_async"},
+			{reinterpret_cast<const void*>(table.reflection_get_property), "reflection_get_property"},
+			{reinterpret_cast<const void*>(table.reflection_set_property), "reflection_set_property"},
+			{reinterpret_cast<const void*>(table.reflection_event_connect), "reflection_event_connect"},
+			{reinterpret_cast<const void*>(table.reflection_event_disconnect), "reflection_event_disconnect"},
+			{reinterpret_cast<const void*>(table.object_create_by_name), "object_create_by_name"},
+			{reinterpret_cast<const void*>(table.managed_log), "managed_log"},
+			{reinterpret_cast<const void*>(table.free_string), "free_string"},
+			{reinterpret_cast<const void*>(table.free_native_ptr), "free_native_ptr"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_action), "mods_menu_add_action"},
+			{reinterpret_cast<const void*>(table.mods_menu_remove_action), "mods_menu_remove_action"},
+		};
+
+		for (const auto& [pointer, name] : members)
+		{
+			if (!pointer)
+				RML_ERROR("InteropTable::{} was never populated", name);
+
+			assert(pointer && "InteropTable member left unpopulated after populate");
+		}
+	}
+
 	[[nodiscard]] RBX::Instance* as_instance(const uintptr_t handle)
 	{
 		if (!utils::memory::is_valid_pointer(handle))
@@ -255,6 +286,24 @@ namespace rml::dotnet
 			}
 		};
 
+		table.managed_log = [](const int32_t level, const char* utf8, const int32_t len) {
+			if (!utf8 || len < 0)
+				return;
+
+			const std::string_view message{utf8, static_cast<size_t>(len)};
+
+			switch (level)
+			{
+				case 0: rml_scoped_logger()->log(spdlog::level::trace, message); break;
+				case 1: rml_scoped_logger()->log(spdlog::level::debug, message); break;
+				case 2: rml_scoped_logger()->log(spdlog::level::info, message); break;
+				case 3: rml_scoped_logger()->log(spdlog::level::warn, message); break;
+				case 4: rml_scoped_logger()->log(spdlog::level::err, message); break;
+				case 5: rml_scoped_logger()->log(spdlog::level::critical, message); break;
+				default: rml_scoped_logger()->log(spdlog::level::info, message); break;
+			}
+		};
+
 		table.free_string = [](const char* str) {
 			free(const_cast<char*>(str));
 		};
@@ -280,5 +329,7 @@ namespace rml::dotnet
 			if (auto* const integration = rml::qt::QtIntegration::instance())
 				integration->menu().remove_action(action_id);
 		};
+
+		verify_populated(table);
 	}
 } // namespace rml::dotnet

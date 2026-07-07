@@ -7,5 +7,8 @@ namespace rml::dotnet
 	{
 	public:
 		static void populate(InteropTable& table);
+
+	private:
+		static void verify_populated(const InteropTable& table);
 	};
 } // namespace rml::dotnet
