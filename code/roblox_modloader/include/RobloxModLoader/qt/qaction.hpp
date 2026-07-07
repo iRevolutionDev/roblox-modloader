@@ -13,6 +13,10 @@ namespace rml::qt
 			Hover = 1,
 		};
 
+		void setCheckable(bool checkable);
+		void setChecked(bool checked);
+		[[nodiscard]] bool isChecked() const;
+
 		[[nodiscard]] static void* activate_address();
 	};
 }

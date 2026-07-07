@@ -11,6 +11,12 @@ namespace rml::qt
 		return fn ? static_cast<QAction*>(fn(this, text.data())) : nullptr;
 	}
 
+	QMenu* QMenu::addMenu(const QString& title)
+	{
+		static const auto fn = detail::widgets<void* (*)(void*, const void*)>("?addMenu@QMenu@@QEAAPEAVQMenu@@AEBVQString@@@Z");
+		return fn ? static_cast<QMenu*>(fn(this, title.data())) : nullptr;
+	}
+
 	QAction* QMenu::addSeparator()
 	{
 		static const auto fn = detail::widgets<void* (*)(void*)>("?addSeparator@QMenu@@QEAAPEAVQAction@@XZ");

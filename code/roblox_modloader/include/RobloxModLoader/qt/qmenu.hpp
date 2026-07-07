@@ -12,6 +12,7 @@ namespace rml::qt
 	{
 	public:
 		[[nodiscard]] QAction* addAction(const QString& text);
+		[[nodiscard]] QMenu* addMenu(const QString& title);
 		QAction* addSeparator();
 		void clear();
 	};
