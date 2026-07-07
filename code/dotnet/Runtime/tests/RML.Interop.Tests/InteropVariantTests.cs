@@ -77,6 +77,14 @@ public unsafe class InteropVariantTests
     }
 
     [Fact]
+    public void FromTuple_TagsAsTuple()
+    {
+        var v = InteropVariant.FromTuple((nuint)0x3000);
+        Assert.Equal(InteropVariant.Tags.Tuple, v.Tag);
+        Assert.Equal((nuint)0x3000, v.AsPointer);
+    }
+
+    [Fact]
     public void Null_Factory_Matches_Default()
     {
         Assert.Equal(InteropVariant.Tags.Null, InteropVariant.Null.Tag);

@@ -42,6 +42,7 @@ public readonly struct InteropVariant
     public static InteropVariant FromPointer(nuint v) => new(Tags.Instance, v);
     public static InteropVariant FromString(nuint ptr) => new(Tags.String, ptr);
     public static InteropVariant FromBlittable(nuint ptr) => new(Tags.Blittable, ptr);
+    public static InteropVariant FromTuple(nuint ptr) => new(Tags.Tuple, ptr);
 }
 
 internal static unsafe class NativeInterop
