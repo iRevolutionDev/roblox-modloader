@@ -1,5 +1,6 @@
 #pragma once
 
+#include "RobloxModLoader/qt/qt_owned.hpp"
 #include "RobloxModLoader/qt/qwidget.hpp"
 
 #include <functional>
@@ -15,7 +16,8 @@ namespace rml::qt
 			Vertical = 0x2,
 		};
 
-		[[nodiscard]] static QSlider* create(Orientation orientation, QWidget* parent = nullptr);
+		[[nodiscard]] static QSlider* create(Orientation orientation, QWidget* parent);
+		[[nodiscard]] static QtOwned<QSlider> create_owned(Orientation orientation);
 
 		static void destroy(QSlider* slider);
 

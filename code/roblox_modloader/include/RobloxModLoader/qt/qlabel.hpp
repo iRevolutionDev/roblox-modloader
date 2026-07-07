@@ -1,5 +1,6 @@
 #pragma once
 
+#include "RobloxModLoader/qt/qt_owned.hpp"
 #include "RobloxModLoader/qt/qwidget.hpp"
 
 #include <string_view>
@@ -22,7 +23,8 @@ namespace rml::qt
 			AlignCenter = AlignHCenter | AlignVCenter,
 		};
 
-		[[nodiscard]] static QLabel* create(std::string_view text, QWidget* parent = nullptr);
+		[[nodiscard]] static QLabel* create(std::string_view text, QWidget* parent);
+		[[nodiscard]] static QtOwned<QLabel> create_owned(std::string_view text);
 
 		static void destroy(QLabel* label);
 

@@ -22,6 +22,11 @@ namespace rml::qt
 		return movie;
 	}
 
+	QtOwned<QMovie> QMovie::create_owned(const QString& file_name)
+	{
+		return QtOwned<QMovie>(create(file_name, nullptr));
+	}
+
 	void QMovie::destroy(QMovie* movie)
 	{
 		static const auto dtor = detail::gui<void (*)(void*)>("??1QMovie@@UEAA@XZ");

@@ -15,6 +15,11 @@ namespace rml::qt
 		return detail::heap_construct<QLabel>(detail::WIDGET_INSTANCE_SIZE, construct, label.data(), parent, 0);
 	}
 
+	QtOwned<QLabel> QLabel::create_owned(const std::string_view text)
+	{
+		return QtOwned<QLabel>(create(text, nullptr));
+	}
+
 	void QLabel::destroy(QLabel* label)
 	{
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QLabel@@UEAA@XZ");

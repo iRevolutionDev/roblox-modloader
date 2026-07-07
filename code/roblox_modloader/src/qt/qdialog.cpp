@@ -10,6 +10,11 @@ namespace rml::qt
 		return detail::heap_construct<QDialog>(detail::WIDGET_INSTANCE_SIZE, construct, parent, 0);
 	}
 
+	QtOwned<QDialog> QDialog::create_owned()
+	{
+		return QtOwned<QDialog>(create(nullptr));
+	}
+
 	void QDialog::destroy(QDialog* dialog)
 	{
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QDialog@@UEAA@XZ");

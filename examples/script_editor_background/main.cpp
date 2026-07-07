@@ -212,7 +212,7 @@ private:
 
 		const BackgroundSettings snap = snapshot();
 
-		rml::qt::QDialog* const dialog = rml::qt::QDialog::create();
+		rml::qt::QtOwned<rml::qt::QDialog> dialog = rml::qt::QDialog::create_owned();
 		if (!dialog)
 		{
 			m_log->warn("could not create settings dialog; edit config.toml instead ('{}')", m_store->path().string());
@@ -232,13 +232,13 @@ private:
 		                      "QSlider::handle:horizontal { width:16px; margin:-6px 0; border-radius:8px; background:#5b9bff; }"
 		                      "QSlider::sub-page:horizontal { background:#5b9bff; border-radius:3px; }");
 
-		if (rml::qt::QLabel* const title = rml::qt::QLabel::create("Script Editor Background", dialog))
+		if (rml::qt::QLabel* const title = rml::qt::QLabel::create("Script Editor Background", dialog.get()))
 		{
 			title->setStyleSheet("font-size:15px; font-weight:600;");
 			title->setGeometry(20, 14, 340, 22);
 		}
 
-		rml::qt::QCheckBox* const enabled = rml::qt::QCheckBox::create("Enabled", dialog);
+		rml::qt::QCheckBox* const enabled = rml::qt::QCheckBox::create("Enabled", dialog.get());
 		if (enabled)
 		{
 			enabled->setChecked(snap.enabled);
@@ -250,17 +250,17 @@ private:
 			});
 		}
 
-		if (rml::qt::QLabel* const opacity_caption = rml::qt::QLabel::create("Opacity", dialog))
+		if (rml::qt::QLabel* const opacity_caption = rml::qt::QLabel::create("Opacity", dialog.get()))
 			opacity_caption->setGeometry(20, 84, 120, 22);
 
-		rml::qt::QLabel* const opacity_value = rml::qt::QLabel::create(std::to_string(to_percent(snap.opacity)) + "%", dialog);
+		rml::qt::QLabel* const opacity_value = rml::qt::QLabel::create(std::to_string(to_percent(snap.opacity)) + "%", dialog.get());
 		if (opacity_value)
 		{
 			opacity_value->setAlignment(rml::qt::QLabel::AlignRight | rml::qt::QLabel::AlignVCenter);
 			opacity_value->setGeometry(260, 84, 100, 22);
 		}
 
-		rml::qt::QSlider* const slider = rml::qt::QSlider::create(rml::qt::QSlider::Horizontal, dialog);
+		rml::qt::QSlider* const slider = rml::qt::QSlider::create(rml::qt::QSlider::Horizontal, dialog.get());
 		if (slider)
 		{
 			slider->setRange(0, 100);
@@ -277,17 +277,17 @@ private:
 			});
 		}
 
-		if (rml::qt::QLabel* const blur_caption = rml::qt::QLabel::create("Blur", dialog))
+		if (rml::qt::QLabel* const blur_caption = rml::qt::QLabel::create("Blur", dialog.get()))
 			blur_caption->setGeometry(20, 150, 120, 22);
 
-		rml::qt::QLabel* const blur_value = rml::qt::QLabel::create(std::to_string(to_percent(snap.blur)) + "%", dialog);
+		rml::qt::QLabel* const blur_value = rml::qt::QLabel::create(std::to_string(to_percent(snap.blur)) + "%", dialog.get());
 		if (blur_value)
 		{
 			blur_value->setAlignment(rml::qt::QLabel::AlignRight | rml::qt::QLabel::AlignVCenter);
 			blur_value->setGeometry(260, 150, 100, 22);
 		}
 
-		rml::qt::QSlider* const blur_slider = rml::qt::QSlider::create(rml::qt::QSlider::Horizontal, dialog);
+		rml::qt::QSlider* const blur_slider = rml::qt::QSlider::create(rml::qt::QSlider::Horizontal, dialog.get());
 		if (blur_slider)
 		{
 			blur_slider->setRange(0, 100);
@@ -304,7 +304,7 @@ private:
 			});
 		}
 
-		rml::qt::QPushButton* const scale_button = rml::qt::QPushButton::create(scale_label(snap.scale_mode), dialog);
+		rml::qt::QPushButton* const scale_button = rml::qt::QPushButton::create(scale_label(snap.scale_mode), dialog.get());
 		if (scale_button)
 		{
 			scale_button->setGeometry(20, 216, 165, 30);
@@ -318,7 +318,7 @@ private:
 			});
 		}
 
-		rml::qt::QPushButton* const align_button = rml::qt::QPushButton::create(align_label(snap.alignment), dialog);
+		rml::qt::QPushButton* const align_button = rml::qt::QPushButton::create(align_label(snap.alignment), dialog.get());
 		if (align_button)
 		{
 			align_button->setGeometry(195, 216, 165, 30);
@@ -332,7 +332,7 @@ private:
 			});
 		}
 
-		if (rml::qt::QPushButton* const choose_button = rml::qt::QPushButton::create("Choose image...", dialog))
+		if (rml::qt::QPushButton* const choose_button = rml::qt::QPushButton::create("Choose image...", dialog.get()))
 		{
 			choose_button->setGeometry(20, 254, 340, 30);
 			choose_button->on_clicked([this] {
@@ -347,7 +347,7 @@ private:
 			});
 		}
 
-		if (rml::qt::QPushButton* const open_button = rml::qt::QPushButton::create("Open config file", dialog))
+		if (rml::qt::QPushButton* const open_button = rml::qt::QPushButton::create("Open config file", dialog.get()))
 		{
 			open_button->setGeometry(20, 292, 165, 30);
 			open_button->on_clicked([this] {
@@ -355,7 +355,7 @@ private:
 			});
 		}
 
-		if (rml::qt::QPushButton* const reset_button = rml::qt::QPushButton::create("Reset to defaults", dialog))
+		if (rml::qt::QPushButton* const reset_button = rml::qt::QPushButton::create("Reset to defaults", dialog.get()))
 		{
 			reset_button->setGeometry(195, 292, 165, 30);
 			reset_button->on_clicked([this, enabled, slider, opacity_value, blur_slider, blur_value, scale_button, align_button] {
@@ -382,16 +382,15 @@ private:
 			});
 		}
 
-		if (rml::qt::QPushButton* const close_button = rml::qt::QPushButton::create("Close", dialog))
+		if (rml::qt::QPushButton* const close_button = rml::qt::QPushButton::create("Close", dialog.get()))
 		{
 			close_button->setGeometry(20, 330, 340, 32);
-			close_button->on_clicked([dialog] {
-				dialog->close();
+			close_button->on_clicked([raw_dialog = dialog.get()] {
+				raw_dialog->close();
 			});
 		}
 
 		dialog->exec();
-		rml::qt::QDialog::destroy(dialog);
 	}
 
 	std::shared_ptr<spdlog::logger> m_log;

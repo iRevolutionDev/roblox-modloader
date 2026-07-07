@@ -11,6 +11,11 @@ namespace rml::qt
 		return detail::heap_construct<QMessageBox>(detail::WIDGET_INSTANCE_SIZE, construct, parent);
 	}
 
+	QtOwned<QMessageBox> QMessageBox::create_owned()
+	{
+		return QtOwned<QMessageBox>(create(nullptr));
+	}
+
 	void QMessageBox::destroy(QMessageBox* box)
 	{
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QMessageBox@@UEAA@XZ");

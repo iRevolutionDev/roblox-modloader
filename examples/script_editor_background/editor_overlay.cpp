@@ -170,8 +170,7 @@ namespace script_editor_bg
 		if (m_movie)
 		{
 			m_movie->stop();
-			rml::qt::QMovie::destroy(m_movie);
-			m_movie = nullptr;
+			m_movie.reset();
 		}
 		m_animated = false;
 	}
@@ -209,7 +208,7 @@ namespace script_editor_bg
 		if (is_animated_extension(image_path))
 		{
 			const rml::qt::QString qpath(key);
-			if (rml::qt::QMovie* const movie = rml::qt::QMovie::create(qpath))
+			if (rml::qt::QtOwned<rml::qt::QMovie> movie = rml::qt::QMovie::create_owned(qpath))
 			{
 				if (movie->isValid() && movie->frameCount() != 1)
 				{
@@ -217,13 +216,11 @@ namespace script_editor_bg
 					movie->on_frame_changed([this] { on_movie_frame(); });
 					movie->start();
 
-					m_movie = movie;
-					m_animated = true;
 					m_frame = movie->currentPixmap();
+					m_animated = true;
+					m_movie = std::move(movie);
 					return;
 				}
-
-				rml::qt::QMovie::destroy(movie);
 			}
 		}
 

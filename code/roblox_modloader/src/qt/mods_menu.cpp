@@ -15,7 +15,7 @@ namespace rml::qt
 {
 	void ModsMenu::show_about()
 	{
-		QMessageBox* box = QMessageBox::create();
+		QtOwned<QMessageBox> box = QMessageBox::create_owned();
 
 		if (!box)
 		{
@@ -58,8 +58,6 @@ namespace rml::qt
 		      "</div>";
 		box->setText(QString{std::string_view{html}});
 		box->exec();
-
-		QMessageBox::destroy(box);
 	}
 
 	ModsMenu::ModsMenu(ActionDispatcher& dispatcher) :

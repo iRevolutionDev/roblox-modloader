@@ -15,6 +15,11 @@ namespace rml::qt
 		return detail::heap_construct<QPushButton>(detail::WIDGET_INSTANCE_SIZE, construct, label.data(), parent);
 	}
 
+	QtOwned<QPushButton> QPushButton::create_owned(const std::string_view text)
+	{
+		return QtOwned<QPushButton>(create(text, nullptr));
+	}
+
 	void QPushButton::destroy(QPushButton* button)
 	{
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QPushButton@@UEAA@XZ");

@@ -15,6 +15,11 @@ namespace rml::qt
 		return detail::heap_construct<QCheckBox>(detail::WIDGET_INSTANCE_SIZE, construct, label.data(), parent);
 	}
 
+	QtOwned<QCheckBox> QCheckBox::create_owned(const std::string_view text)
+	{
+		return QtOwned<QCheckBox>(create(text, nullptr));
+	}
+
 	void QCheckBox::destroy(QCheckBox* box)
 	{
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QCheckBox@@UEAA@XZ");

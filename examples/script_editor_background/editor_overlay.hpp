@@ -52,7 +52,7 @@ namespace script_editor_bg
 
 		mutable std::string m_source_key;
 		mutable bool m_animated{false};
-		mutable rml::qt::QMovie* m_movie{nullptr};
+		mutable rml::qt::QtOwned<rml::qt::QMovie> m_movie;
 		mutable rml::qt::QPixmap m_frame;
 		mutable rml::qt::QPixmap m_display;
 		mutable double m_display_blur{-1.0};

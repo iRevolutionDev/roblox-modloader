@@ -13,6 +13,11 @@ namespace rml::qt
 		return detail::heap_construct<QSlider>(detail::WIDGET_INSTANCE_SIZE, construct, static_cast<int>(orientation), parent);
 	}
 
+	QtOwned<QSlider> QSlider::create_owned(const Orientation orientation)
+	{
+		return QtOwned<QSlider>(create(orientation, nullptr));
+	}
+
 	void QSlider::destroy(QSlider* slider)
 	{
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QSlider@@UEAA@XZ");

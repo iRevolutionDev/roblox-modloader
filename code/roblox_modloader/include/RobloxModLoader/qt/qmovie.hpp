@@ -2,13 +2,14 @@
 
 #include "RobloxModLoader/qt/qobject.hpp"
 #include "RobloxModLoader/qt/qpixmap.hpp"
+#include "RobloxModLoader/qt/qt_owned.hpp"
 
 #include <functional>
 
 namespace rml::qt
 {
 	class QString;
-	
+
 	class RML_EXPORT QMovie : public QObject
 	{
 	public:
@@ -18,7 +19,8 @@ namespace rml::qt
 			All = 1,
 		};
 
-		[[nodiscard]] static QMovie* create(const QString& file_name, QObject* parent = nullptr);
+		[[nodiscard]] static QMovie* create(const QString& file_name, QObject* parent);
+		[[nodiscard]] static QtOwned<QMovie> create_owned(const QString& file_name);
 
 		static void destroy(QMovie* movie);
 
