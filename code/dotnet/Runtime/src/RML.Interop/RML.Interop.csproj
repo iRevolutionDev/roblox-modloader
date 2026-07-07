@@ -12,5 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="RML.Interop.Tests" />
+    <InternalsVisibleTo Include="RML.Core.Tests" />
   </ItemGroup>
 </Project>
