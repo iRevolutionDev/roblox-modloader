@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../isubsystem.hpp"
-#include "RobloxModLoader/script_subsystem.hpp"
+#include "script_subsystem.hpp"
 
 namespace rml
 {

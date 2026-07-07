@@ -4,7 +4,6 @@ set(ROBLOX_MODLOADER_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(MODLOADER_SOURCES
         "${ROBLOX_MODLOADER_SOURCE_DIR}/main.cpp"
         "${ROBLOX_MODLOADER_SOURCE_DIR}/pointers.cpp"
-        "${ROBLOX_MODLOADER_SOURCE_DIR}/script_subsystem.cpp"
 )
 
 file(GLOB_RECURSE MODLOADER_SUBDIRS CONFIGURE_DEPENDS
@@ -195,7 +194,7 @@ if (WIN32 AND TARGET roblox_modloader AND DEFINED ENV{ROBLOX_STUDIO_PATH} AND NO
                 COMMENT "Copying nethost runtime binary to RobloxModLoader/runtime"
         )
     endif ()
-    
+
     add_custom_command(TARGET roblox_modloader POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader"
             COMMAND ${CMAKE_COMMAND} -E copy_if_different

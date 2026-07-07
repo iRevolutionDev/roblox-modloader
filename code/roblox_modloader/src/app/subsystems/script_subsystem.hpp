@@ -3,26 +3,22 @@
 #include <memory>
 
 #if RML_ENABLE_LUAU
-#include "RobloxModLoader/luau/script_manager.hpp"
+	#include "RobloxModLoader/luau/script_manager.hpp"
 #endif
 
-namespace rml {
-	class ScriptSubsystem final {
+namespace rml
+{
+	class ScriptSubsystem final
+	{
 	public:
 		ScriptSubsystem();
-
 		~ScriptSubsystem();
-
 		ScriptSubsystem(const ScriptSubsystem&) = delete;
-
 		ScriptSubsystem& operator=(const ScriptSubsystem&) = delete;
-
 		ScriptSubsystem(ScriptSubsystem&&) = delete;
-
 		ScriptSubsystem& operator=(ScriptSubsystem&&) = delete;
 
 		void initialize();
-
 		void shutdown();
 
 	private:
