@@ -2,7 +2,9 @@
 #include "RobloxModLoader/roblox/instance.hpp"
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "RobloxModLoader/roblox/reflection/type.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "dotnet_variant.hpp"
+#include "engine_scratch.hpp"
 #include "interop_registry.hpp"
 #include "type_marshaler.hpp"
 
@@ -13,9 +15,16 @@
 
 namespace rml::dotnet
 {
+	inline constexpr std::size_t kEngineReturnSlotTailBytes = 56;
+
+	static_assert(sizeof(uint64_t) + kEngineReturnSlotTailBytes >= TypeMarshaler::kMaxBlittableEngineTypeBytes,
+	    "EngineReturnSlot tail must leave enough contiguous room after Arguments::return_value for the largest blittable engine return type");
+
+	using EngineReturnSlot = EngineScratch<kEngineReturnSlotTailBytes>;
+
 	class DotNetArguments final : public RBX::Reflection::FunctionDescriptor::Arguments
 	{
-		std::byte m_return_value_tail[56]{};
+		alignas(16) EngineReturnSlot m_return_slot{};
 		const InteropVariant* m_args;
 		uint32_t m_count;
 
@@ -185,6 +194,12 @@ namespace rml::dotnet
 			out = *ptr;
 			return true;
 		}
+
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_OFFSET(DotNetArguments, m_return_slot,
+			    offsetof(RBX::Reflection::FunctionDescriptor::Arguments, return_value) +
+			        sizeof(RBX::Reflection::FunctionDescriptor::Arguments::return_value));
+		RML_LAYOUT_GUARD_END()
 	};
 
 } // namespace rml::dotnet

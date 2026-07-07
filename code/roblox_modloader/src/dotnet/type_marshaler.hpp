@@ -41,6 +41,8 @@ namespace rml::dotnet
 	class TypeMarshaler
 	{
 	public:
+		static constexpr std::size_t kMaxBlittableEngineTypeBytes = 60;
+
 		[[nodiscard]] static MarshalPlan classify(const RBX::Reflection::Type& type) noexcept;
 
 		[[nodiscard]] static InteropVariant encode_variant(const RBX::Reflection::Variant& variant, InteropStringPool* strings = nullptr);

@@ -36,6 +36,13 @@ namespace rml::dotnet
 		static_assert(sizeof(float) == 4 && sizeof(int32_t) == 4,
 		    "Ray/UDim/UDim2/NumberRange/Region3/Faces/Axes/sequence-stride sizes below are engine-ABI facts (no matching 1:1 reconstructed C++ struct in this codebase; RBX::Ray/RbxRay carries a vtable and is not wire-compatible) and assume 32-bit float and int32 engine fields");
 
+		static_assert(TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::CoordinateFrame) &&
+		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Rect2D) &&
+		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Vector3) &&
+		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Color3) &&
+		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::BrickColor),
+		    "TypeMarshaler::kMaxBlittableEngineTypeBytes must bound every reconstructed blittable engine type");
+
 		[[nodiscard]] size_t blittable_size(const RBX::Name& type_name) noexcept
 		{
 			static constexpr std::pair<const char*, size_t> table[] = {
@@ -49,7 +56,7 @@ namespace rml::dotnet
 			    {"Ray", 24},
 			    {"Rect", sizeof(RBX::Rect2D)},
 			    {"NumberRange", 8},
-			    {"Region3", 60},
+			    {"Region3", TypeMarshaler::kMaxBlittableEngineTypeBytes},
 			    {"Faces", 4},
 			    {"Axes", 4},
 			    {"BrickColor", sizeof(RBX::BrickColor)},
