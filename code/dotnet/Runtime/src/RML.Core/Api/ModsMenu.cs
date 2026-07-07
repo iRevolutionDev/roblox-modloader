@@ -17,7 +17,7 @@ public static unsafe class ModsMenu
         var handle = GCHandle.Alloc(onClick);
         var callback = (nint)(delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>)&Trampoline;
 
-        var id = InteropApi.ModsMenuAddAction(text, callback, GCHandle.ToIntPtr(handle));
+        var id = InteropApi.ModsMenuAddAction(0, text, callback, GCHandle.ToIntPtr(handle));
         if (id == 0)
         {
             handle.Free();
@@ -53,7 +53,7 @@ public static unsafe class ModsMenu
         {
             if (_id != 0)
             {
-                InteropApi.ModsMenuRemoveAction(_id);
+                InteropApi.ModsMenuRemove(_id);
                 _id = 0;
             }
 

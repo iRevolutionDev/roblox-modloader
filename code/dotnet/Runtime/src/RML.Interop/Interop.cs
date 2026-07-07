@@ -98,7 +98,7 @@ public static unsafe class Interop
         Table->FreeNativePtr((void*)ptr);
     }
 
-    public static nuint ModsMenuAddAction(string text, nint callback, nint state)
+    public static nuint ModsMenuAddAction(nuint parent, string text, nint callback, nint state)
     {
         if (!IsInitialized || Table == null || Table->ModsMenuAddAction == null || callback == nint.Zero)
         {
@@ -113,17 +113,79 @@ public static unsafe class Interop
         buffer[byteCount] = 0;
 
         var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>)callback;
-        return Table->ModsMenuAddAction((sbyte*)buffer, cb, (void*)state);
+        return Table->ModsMenuAddAction(parent, (sbyte*)buffer, cb, (void*)state);
     }
-    
-    public static void ModsMenuRemoveAction(nuint actionId)
+
+    public static nuint ModsMenuAddSubmenu(nuint parent, string text)
     {
-        if (actionId == 0 || !IsInitialized || Table == null || Table->ModsMenuRemoveAction == null)
+        if (!IsInitialized || Table == null || Table->ModsMenuAddSubmenu == null)
+        {
+            return 0;
+        }
+
+        ArgumentNullException.ThrowIfNull(text);
+
+        var byteCount = Encoding.UTF8.GetByteCount(text);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(text, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        return Table->ModsMenuAddSubmenu(parent, (sbyte*)buffer);
+    }
+
+    public static nuint ModsMenuAddSeparator(nuint parent)
+    {
+        if (!IsInitialized || Table == null || Table->ModsMenuAddSeparator == null)
+        {
+            return 0;
+        }
+
+        return Table->ModsMenuAddSeparator(parent);
+    }
+
+    public static nuint ModsMenuAddCheckable(nuint parent, string text, bool initial, nint callback, nint state)
+    {
+        if (!IsInitialized || Table == null || Table->ModsMenuAddCheckable == null || callback == nint.Zero)
+        {
+            return 0;
+        }
+
+        ArgumentNullException.ThrowIfNull(text);
+
+        var byteCount = Encoding.UTF8.GetByteCount(text);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(text, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>)callback;
+        return Table->ModsMenuAddCheckable(parent, (sbyte*)buffer, initial ? 1 : 0, cb, (void*)state);
+    }
+
+    public static void ModsMenuSetItemIcon(nuint id, string path)
+    {
+        if (id == 0 || !IsInitialized || Table == null || Table->ModsMenuSetItemIcon == null)
         {
             return;
         }
 
-        Table->ModsMenuRemoveAction(actionId);
+        ArgumentNullException.ThrowIfNull(path);
+
+        var byteCount = Encoding.UTF8.GetByteCount(path);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(path, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        Table->ModsMenuSetItemIcon(id, (sbyte*)buffer);
+    }
+
+    public static void ModsMenuRemove(nuint id)
+    {
+        if (id == 0 || !IsInitialized || Table == null || Table->ModsMenuRemove == null)
+        {
+            return;
+        }
+
+        Table->ModsMenuRemove(id);
     }
 
     public class Reflection

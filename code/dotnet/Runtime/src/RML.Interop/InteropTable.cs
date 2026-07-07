@@ -47,7 +47,7 @@ public readonly struct InteropVariant
 
 internal static unsafe class NativeInterop
 {
-    public const int InteropTableVersion = 6;
+    public const int InteropTableVersion = 7;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct InteropTable
@@ -70,10 +70,15 @@ internal static unsafe class NativeInterop
         public delegate* unmanaged[Cdecl]<sbyte*, void> FreeString;
         public delegate* unmanaged[Cdecl]<void*, void> FreeNativePtr;
 
-        public delegate* unmanaged[Cdecl]<sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
             void*, nuint> ModsMenuAddAction;
-        public delegate* unmanaged[Cdecl]<nuint, void> ModsMenuRemoveAction;
-        
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, nuint> ModsMenuAddSubmenu;
+        public delegate* unmanaged[Cdecl]<nuint, nuint> ModsMenuAddSeparator;
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, int, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
+            void*, nuint> ModsMenuAddCheckable;
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, void> ModsMenuSetItemIcon;
+        public delegate* unmanaged[Cdecl]<nuint, void> ModsMenuRemove;
+
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, uint,
             delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> ReflectionInvokeAsync;
     }
