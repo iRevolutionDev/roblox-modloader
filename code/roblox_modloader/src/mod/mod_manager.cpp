@@ -14,7 +14,7 @@ RML_LOG_SCOPE("ModManager");
 
 namespace rml
 {
-	std::expected<void, ModManagerError> ModManager::initialize()
+	std::expected<void, ModManagerError> ModManager::initialize(events::EventManager& event_manager)
 	{
 		const auto mods_path = get_mods_dir();
 
@@ -25,7 +25,7 @@ namespace rml
 
 		const auto runtime_path = utils::directory::get_runtime_directory();
 
-		register_loader(std::make_unique<native::NativeModLoader>(), {"native"});
+		register_loader(std::make_unique<native::NativeModLoader>(event_manager), {"native"});
 		register_loader(std::make_unique<dotnet::DotnetModLoader>(runtime_path, mods_path.value() / "dotnet"), {"dotnet"});
 
 		for (auto mod_dir : std::filesystem::directory_iterator(mods_path.value()))

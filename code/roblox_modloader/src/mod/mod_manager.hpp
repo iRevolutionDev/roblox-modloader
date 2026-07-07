@@ -44,7 +44,7 @@ namespace rml
 		ModManager(const ModManager&) = delete;
 		ModManager& operator=(const ModManager&) = delete;
 
-		[[nodiscard]] std::expected<void, ModManagerError> initialize();
+		[[nodiscard]] std::expected<void, ModManagerError> initialize(events::EventManager& event_manager);
 		void shutdown();
 
 		void register_loader(std::unique_ptr<IModLoader> loader, const std::vector<std::string>& folders);

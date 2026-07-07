@@ -104,6 +104,11 @@ namespace rml
 			return "EventManager";
 		}
 
+		[[nodiscard]] events::EventManager& event_manager() const
+		{
+			return *m_instance;
+		}
+
 	private:
 		std::unique_ptr<events::EventManager> m_instance;
 	};
@@ -294,11 +299,16 @@ namespace rml
 	class ModManagerSubsystem final : public ISubsystem
 	{
 	public:
+		explicit ModManagerSubsystem(EventManagerSubsystem& event_manager_subsystem) :
+		    m_event_manager_subsystem(event_manager_subsystem)
+		{
+		}
+
 		std::expected<void, SubsystemError> initialize() override
 		{
 			m_instance = std::make_unique<ModManager>();
 
-			if (const auto result = m_instance->initialize(); !result)
+			if (const auto result = m_instance->initialize(m_event_manager_subsystem.event_manager()); !result)
 			{
 				return std::unexpected(SubsystemError{std::string(name()), result.error().message});
 			}
@@ -322,6 +332,7 @@ namespace rml
 		}
 
 	private:
+		EventManagerSubsystem& m_event_manager_subsystem;
 		std::unique_ptr<ModManager> m_instance;
 	};
 
@@ -337,10 +348,13 @@ namespace rml
 
 	std::expected<void, SubsystemError> Application::initialize()
 	{
+		auto event_manager_subsystem = std::make_unique<EventManagerSubsystem>();
+		auto& event_manager_subsystem_ref = *event_manager_subsystem;
+
 		m_subsystems.push_back(std::make_unique<ConfigSubsystem>());
 		m_subsystems.push_back(std::make_unique<LoggerSubsystem>());
 		m_subsystems.push_back(std::make_unique<CrashDumperSubsystem>());
-		m_subsystems.push_back(std::make_unique<EventManagerSubsystem>());
+		m_subsystems.push_back(std::move(event_manager_subsystem));
 		m_subsystems.push_back(std::make_unique<QtIntegrationSubsystem>());
 		m_subsystems.push_back(std::make_unique<RttiManagerSubsystem>());
 		m_subsystems.push_back(std::make_unique<PointersSubsystem>());
@@ -348,7 +362,7 @@ namespace rml
 		m_subsystems.push_back(std::make_unique<JobManagerSubsystem>());
 		m_subsystems.push_back(std::make_unique<HookingSubsystem>());
 		m_subsystems.push_back(std::make_unique<ScriptSubsystemAdapter>());
-		m_subsystems.push_back(std::make_unique<ModManagerSubsystem>());
+		m_subsystems.push_back(std::make_unique<ModManagerSubsystem>(event_manager_subsystem_ref));
 
 		m_shutdown_complete = false;
 

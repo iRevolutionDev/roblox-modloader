@@ -85,11 +85,8 @@ namespace rml::jobs
 
 		LOG_INFO("New DataModel type: {}, notifying mods and scripts", static_cast<int>(data_model_type));
 
-		if (events::g_event_manager)
-		{
-			events::DataModelChangedEvent ev(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
-			events::g_event_manager->emit(ev);
-		}
+		events::DataModelChangedEvent ev(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
+		events::event_manager().emit(ev);
 
 		// Notify managed (.NET) mods about the change if the bridge is initialized
 		if (rml::dotnet::g_dotnet_mod_loader)

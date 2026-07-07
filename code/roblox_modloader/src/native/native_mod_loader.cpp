@@ -70,6 +70,7 @@ namespace rml::native
 		}
 
 		instance->set_paths(rml::mod::ModPaths(mod_root_for(path)));
+		instance->set_event_manager(m_event_manager);
 
 		try
 		{

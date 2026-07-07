@@ -28,7 +28,7 @@ public:
 	{
 	}
 
-	void set_event_manager(events::EventManager* manager);
+	void set_event_manager(rml::events::EventManager& manager);
 
 	void set_paths(rml::mod::ModPaths paths)
 	{
@@ -47,15 +47,15 @@ public:
 
 protected:
 	template<typename T>
-	void register_event_handler(events::EventManager::EventHandler<T> handler)
+	void register_event_handler(rml::events::EventManager::EventHandler<T> handler)
 	{
-		if (event_manager)
+		if (m_event_manager)
 		{
-			event_manager->registerHandler<T>(handler);
+			m_event_manager->register_handler<T>(handler);
 		}
 	}
 
 private:
-	events::EventManager* event_manager{nullptr};
+	rml::events::EventManager* m_event_manager{nullptr};
 	rml::mod::ModPaths m_paths{};
 };

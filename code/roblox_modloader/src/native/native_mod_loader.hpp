@@ -4,6 +4,7 @@
 
 #include <RobloxModLoader/common.hpp>
 #include <RobloxModLoader/memory/module.hpp>
+#include <RobloxModLoader/mod/events.hpp>
 #include <RobloxModLoader/mod/mod_base.hpp>
 #include <filesystem>
 #include <string>
@@ -14,7 +15,10 @@ namespace rml::native
 	class NativeModLoader final : public IModLoader
 	{
 	public:
-		explicit NativeModLoader() = default;
+		explicit NativeModLoader(events::EventManager& event_manager) :
+		    m_event_manager(event_manager)
+		{
+		}
 		~NativeModLoader() override;
 
 		std::expected<void, std::string> load(const std::filesystem::path& path) override;
@@ -36,6 +40,7 @@ namespace rml::native
 		};
 
 		std::unordered_map<std::filesystem::path, LoadedMod> m_loaded_mods;
+		events::EventManager& m_event_manager;
 	};
 
 } // namespace rml::native

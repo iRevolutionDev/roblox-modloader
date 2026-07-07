@@ -7,7 +7,7 @@
 #include <shared_mutex>
 #include <typeindex>
 
-namespace events {
+namespace rml::events {
     struct EventBase {
         virtual ~EventBase() = default;
 
@@ -42,21 +42,21 @@ namespace events {
         using EventHandler = std::function<void(T &)>;
 
         template<typename T>
-        void registerHandler(EventHandler<T> handler) {
-            auto wrappedHandler = [handler](EventBase &e) {
+        void register_handler(EventHandler<T> handler) {
+            auto wrapped_handler = [handler](EventBase &e) {
                 handler(static_cast<T &>(e));
             };
-            std::unique_lock lock(mutex_);
-            handlers[std::type_index(typeid(T))].push_back(std::move(wrappedHandler));
+            std::unique_lock lock(m_mutex);
+            m_handlers[std::type_index(typeid(T))].push_back(std::move(wrapped_handler));
         }
 
         template<typename T>
         void emit(T &event) {
             std::vector<HandlerFunc> snapshot;
             {
-                std::shared_lock lock(mutex_);
-                const auto it = handlers.find(std::type_index(typeid(T)));
-                if (it == handlers.end()) {
+                std::shared_lock lock(m_mutex);
+                const auto it = m_handlers.find(std::type_index(typeid(T)));
+                if (it == m_handlers.end()) {
                     return;
                 }
                 snapshot = it->second;
@@ -72,9 +72,9 @@ namespace events {
 
     private:
         using HandlerFunc = std::function<void(EventBase &)>;
-        std::unordered_map<std::type_index, std::vector<HandlerFunc> > handlers;
-        std::shared_mutex mutex_;
+        std::unordered_map<std::type_index, std::vector<HandlerFunc> > m_handlers;
+        std::shared_mutex m_mutex;
     };
 
-    inline EventManager *g_event_manager{};
+    RML_EXPORT [[nodiscard]] EventManager &event_manager();
 }
