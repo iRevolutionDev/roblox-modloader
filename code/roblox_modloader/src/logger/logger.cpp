@@ -7,6 +7,7 @@
 #include "spdlog/details/log_msg.h"
 #include "spdlog/fmt/fmt.h"
 #include "spdlog/formatter.h"
+#include "spdlog/sinks/base_sink.h"
 #include "spdlog/sinks/daily_file_sink.h"
 #include "spdlog/sinks/msvc_sink.h"
 #include "spdlog/sinks/stdout_sinks.h"
@@ -14,6 +15,7 @@
 
 #include <atomic>
 #include <filesystem>
+#include <mutex>
 #include <string>
 #include <vector>
 
@@ -22,13 +24,13 @@ namespace
 	struct global_logger_holder
 	{
 		static std::atomic<std::shared_ptr<spdlog::logger> > logger;
-		static std::shared_ptr<spdlog::sinks::stdout_sink_mt> console_sink;
+		static std::shared_ptr<spdlog::sinks::sink> console_sink;
 		static std::shared_ptr<spdlog::sinks::daily_file_sink_mt> file_sink;
 		static std::shared_ptr<spdlog::sinks::msvc_sink_mt> msvc_sink;
 	};
 
 	std::atomic<std::shared_ptr<spdlog::logger> > global_logger_holder::logger;
-	std::shared_ptr<spdlog::sinks::stdout_sink_mt> global_logger_holder::console_sink;
+	std::shared_ptr<spdlog::sinks::sink> global_logger_holder::console_sink;
 	std::shared_ptr<spdlog::sinks::daily_file_sink_mt> global_logger_holder::file_sink;
 	std::shared_ptr<spdlog::sinks::msvc_sink_mt> global_logger_holder::msvc_sink;
 
@@ -149,6 +151,43 @@ namespace
 		}
 	};
 
+	class console_handle_sink final : public spdlog::sinks::base_sink<std::mutex>
+	{
+	protected:
+		void sink_it_(const spdlog::details::log_msg& msg) override
+		{
+			if (m_handle == INVALID_HANDLE_VALUE)
+				acquire_handle();
+
+			if (m_handle == INVALID_HANDLE_VALUE)
+				return;
+
+			spdlog::memory_buf_t formatted;
+			formatter_->format(msg, formatted);
+
+			DWORD written = 0;
+			WriteFile(m_handle, formatted.data(), static_cast<DWORD>(formatted.size()), &written, nullptr);
+		}
+
+		void flush_() override
+		{
+		}
+
+	private:
+		void acquire_handle()
+		{
+			m_handle = CreateFileW(L"CONOUT$", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, 0, nullptr);
+
+			if (m_handle == INVALID_HANDLE_VALUE)
+				return;
+
+			if (DWORD mode = 0; GetConsoleMode(m_handle, &mode))
+				SetConsoleMode(m_handle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+		}
+
+		HANDLE m_handle{INVALID_HANDLE_VALUE};
+	};
+
 	void ensure_log_directory()
 	{
 		const auto root = rml::utils::directory::get_module_directory();
@@ -164,7 +203,7 @@ namespace
 			
 			const auto log_file = root / "RobloxModLoader" / "logs" / "roblox_modloader.log";
 
-			global_logger_holder::console_sink = std::make_shared<spdlog::sinks::stdout_sink_mt>();
+			global_logger_holder::console_sink = std::make_shared<console_handle_sink>();
 			global_logger_holder::file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(log_file.string(), 0, 0);
 			global_logger_holder::msvc_sink = std::make_shared<spdlog::sinks::msvc_sink_mt>();
 
