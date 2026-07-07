@@ -306,7 +306,10 @@ namespace rml::qt
 				return;
 
 			if (!node.icon_path.empty())
-				submenu->setIcon(QIcon(QString{node.icon_path}));
+			{
+				if (QAction* const submenu_action = submenu->menuAction())
+					submenu_action->setIcon(QIcon(QString{node.icon_path}));
+			}
 
 			for (const uint64_t child_id : node.children)
 				build_into(submenu, child_id, nodes, live);

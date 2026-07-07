@@ -17,5 +17,6 @@ namespace rml::qt
 		QAction* addSeparator();
 		void clear();
 		void setIcon(const QIcon& icon);
+		[[nodiscard]] QAction* menuAction() const;
 	};
 }

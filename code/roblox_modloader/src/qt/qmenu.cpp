@@ -14,7 +14,7 @@ namespace rml::qt
 
 	QMenu* QMenu::addMenu(const QString& title)
 	{
-		static const auto fn = detail::widgets<void* (*)(void*, const void*)>("?addMenu@QMenu@@QEAAPEAVQMenu@@AEBVQString@@@Z");
+		static const auto fn = detail::widgets<void* (*)(void*, const void*)>("?addMenu@QMenu@@QEAAPEAV1@AEBVQString@@@Z");
 		return fn ? static_cast<QMenu*>(fn(this, title.data())) : nullptr;
 	}
 
@@ -36,5 +36,11 @@ namespace rml::qt
 		static const auto fn = detail::widgets<void (*)(void*, const void*)>("?setIcon@QMenu@@QEAAXAEBVQIcon@@@Z");
 		if (fn)
 			fn(this, icon.data());
+	}
+
+	QAction* QMenu::menuAction() const
+	{
+		static const auto fn = detail::widgets<void* (*)(const void*)>("?menuAction@QMenu@@QEBAPEAVQAction@@XZ");
+		return fn ? static_cast<QAction*>(fn(this)) : nullptr;
 	}
 }
