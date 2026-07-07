@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RobloxModLoader/roblox/util/G3DCore.h"
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "enum_descriptor.hpp"
 #include "member.hpp"
 #include "type.hpp"
@@ -78,6 +79,16 @@ namespace RBX::Reflection
 		Kind kind;
 		void* invoke_func_ptr;
 		std::intptr_t bound_this_delta;
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(FunctionDescriptor, 0x90);
+			RML_ASSERT_LAYOUT_OFFSET(FunctionDescriptor, pad, 0x40);
+			RML_ASSERT_LAYOUT_OFFSET(FunctionDescriptor, signature, 0x48);
+			RML_ASSERT_LAYOUT_OFFSET(FunctionDescriptor, kind, 0x78);
+			RML_ASSERT_LAYOUT_OFFSET(FunctionDescriptor, invoke_func_ptr, 0x80);
+			RML_ASSERT_LAYOUT_OFFSET(FunctionDescriptor, bound_this_delta, 0x88);
+		RML_LAYOUT_GUARD_END()
 	};
 
 	class Function

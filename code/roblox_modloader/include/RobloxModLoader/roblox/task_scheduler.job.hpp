@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/util/layout_assert.hpp"
+
 namespace RBX {
     class DataModel;
 
@@ -34,5 +36,15 @@ namespace RBX {
         std::shared_ptr<DataModel> data_model;
 
         virtual void destroy(bool delete_after) = 0;
+
+    private:
+        RML_LAYOUT_GUARD_BEGIN()
+            RML_ASSERT_LAYOUT_SIZE(TaskSchedulerJob, 0x48);
+            RML_ASSERT_LAYOUT_OFFSET(TaskSchedulerJob, self, 0x8);
+            RML_ASSERT_LAYOUT_OFFSET(TaskSchedulerJob, thread_id, 0x20);
+            RML_ASSERT_LAYOUT_OFFSET(TaskSchedulerJob, start_time, 0x28);
+            RML_ASSERT_LAYOUT_OFFSET(TaskSchedulerJob, end_time, 0x30);
+            RML_ASSERT_LAYOUT_OFFSET(TaskSchedulerJob, data_model, 0x38);
+        RML_LAYOUT_GUARD_END()
     };
 }
