@@ -157,12 +157,9 @@ internal static class ModLoader
 
         foreach (var modInfo in snapshot)
         {
-            // var interested = modInfo.LoadInDataModels;
-            // if (interested == null || interested.Length == 0)
-            //     continue;
-            //
-            // if (!interested.Contains(dataModelType))
-            //     continue;
+            var interested = modInfo.LoadInDataModels;
+            if (interested is { Length: > 0 } && !interested.Contains(dataModelType))
+                continue;
 
             if (newModel != null)
             {
