@@ -15,7 +15,8 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 			return TRUE;
 
 		g_hinstance = hModule;
-		g_main_thread = CreateThread(
+
+		const HANDLE bootstrap_thread = CreateThread(
 		    nullptr,
 		    0,
 		    [](PVOID) -> DWORD {
@@ -28,14 +29,13 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 				    if (const auto result = application.initialize(); !result)
 				    {
 					    std::cerr << "[RML] Fatal error during bootstrap: " << result.error().subsystem_name << ": " << result.error().message << std::endl;
-					    CloseHandle(g_main_thread);
-					    FreeLibraryAndExitThread(g_hinstance, 0);
-					    return 1;
+					    application.shutdown();
 				    }
-
-				    application.run();
-
-				    application.shutdown();
+				    else
+				    {
+					    application.run();
+					    application.shutdown();
+				    }
 			    }
 			    catch (const std::exception& e)
 			    {
@@ -50,8 +50,17 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 			    FreeLibraryAndExitThread(g_hinstance, 0);
 		    },
 		    nullptr,
-		    0,
+		    CREATE_SUSPENDED,
 		    nullptr);
+
+		if (!bootstrap_thread)
+		{
+			std::cerr << "[RML] Failed to create the bootstrap thread" << std::endl;
+			return TRUE;
+		}
+
+		g_main_thread = bootstrap_thread;
+		ResumeThread(bootstrap_thread);
 	}
 
 	return TRUE;
