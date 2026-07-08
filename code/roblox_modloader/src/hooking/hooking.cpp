@@ -33,7 +33,8 @@ namespace rml
 
 		for (auto& detour_hook_helper : m_detour_hook_helpers)
 		{
-			detour_hook_helper.m_detour_hook->set_target_and_create_hook(detour_hook_helper.m_on_hooking_available());
+			if (detour_hook_helper.m_on_hooking_available)
+				detour_hook_helper.m_detour_hook->set_target_and_create_hook(detour_hook_helper.m_on_hooking_available());
 		}
 
 		//detour_hook_helper::add<hooks::rbx_crash>("RBX_CRASH", g_pointers->m_roblox_pointers.m_rbx_crash);
