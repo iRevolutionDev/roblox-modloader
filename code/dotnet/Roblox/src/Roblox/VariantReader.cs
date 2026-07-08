@@ -292,8 +292,9 @@ internal static unsafe class VariantReader
             throw Mismatch(variant, targetType, InteropVariant.Tags.Int64);
         }
 
-        var underlying = Convert.ChangeType(variant.AsUInt64, System.Enum.GetUnderlyingType(targetType));
-        return System.Enum.ToObject(targetType, underlying);
+        var underlyingType = System.Enum.GetUnderlyingType(targetType);
+        var raw = IsUnsigned(underlyingType) ? (object)variant.AsUInt64 : variant.AsInt64;
+        return System.Enum.ToObject(targetType, Convert.ChangeType(raw, underlyingType));
     }
 
     private static object ReadIntegral(InteropVariant variant, Type targetType)
@@ -303,7 +304,8 @@ internal static unsafe class VariantReader
             throw Mismatch(variant, targetType, InteropVariant.Tags.Int64);
         }
 
-        return Convert.ChangeType(variant.AsUInt64, targetType);
+        var raw = IsUnsigned(targetType) ? (object)variant.AsUInt64 : variant.AsInt64;
+        return Convert.ChangeType(raw, targetType);
     }
 
     private static object? ReadBlittable(InteropVariant variant, Type targetType, bool freeNativeResources)
@@ -354,6 +356,9 @@ internal static unsafe class VariantReader
         => t == typeof(byte) || t == typeof(sbyte) || t == typeof(short) || t == typeof(ushort) ||
            t == typeof(int) || t == typeof(uint) || t == typeof(long) || t == typeof(ulong) ||
            t == typeof(nint) || t == typeof(nuint);
+
+    private static bool IsUnsigned(Type t)
+        => t == typeof(byte) || t == typeof(ushort) || t == typeof(uint) || t == typeof(ulong) || t == typeof(nuint);
 
     private static NumberSequence ReadNumberSequence(nint ptr)
     {
