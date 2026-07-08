@@ -1,5 +1,6 @@
 #pragma once
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 
 namespace RBX {
     class ScriptContext;
@@ -61,5 +62,18 @@ namespace RBX::Luau {
     public:
         bool is_actor_state;
         TaskState task_state;
+
+    private:
+        RML_LAYOUT_GUARD_BEGIN()
+            RML_ASSERT_LAYOUT_SIZE(RobloxExtraSpace, 0x88);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, shared, 0x18);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities_validator, 0x28);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, context, 0x30);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, capabilities, 0x48);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, script, 0x50);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, actor, 0x68);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, is_actor_state, 0x80);
+            RML_ASSERT_LAYOUT_OFFSET(RobloxExtraSpace, task_state, 0x81);
+        RML_LAYOUT_GUARD_END()
     };
 }

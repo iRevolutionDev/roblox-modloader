@@ -1,10 +1,10 @@
 #include "RobloxModLoader/luau/script_manager.hpp"
 
 #include "../mod/mod_manager.hpp"
-#include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/config/config.hpp"
-#include "RobloxModLoader/config/config_helpers.hpp"
+#include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/config/config_serialization.hpp"
 #include "RobloxModLoader/luau/environment/environment.hpp"
+#include "config/config.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "lobject.h"
 
@@ -101,15 +101,9 @@ namespace rml::luau {
             }
 
             // Load mod configuration
-            if (const auto config_result = config::helpers::load_mod_config_from_file(mod_name, config_path); !
-                config_result) {
-                LOG_ERROR("Failed to load config for mod: {}", mod_name);
-                continue;
-            }
-
-            const auto mod_config = config::mod(mod_name);
+            const auto mod_config = load_mod_config(config_path);
             if (!mod_config) {
-                LOG_ERROR("Failed to get loaded config for mod: {}", mod_name);
+                LOG_ERROR("Failed to load config for mod: {}", mod_name);
                 continue;
             }
 
@@ -223,13 +217,13 @@ namespace rml::luau {
             return;
         }
 
-        const auto mod_config = config::mod(mod_name);
+        const auto mod_directory = it->mod_path;
+
+        const auto mod_config = load_mod_config(mod_directory / "mod.toml");
         if (!mod_config) {
             LOG_ERROR("Failed to get config for mod: {}", mod_name);
             return;
         }
-
-        const auto mod_directory = it->mod_path;
 
         cleanup_mod_thread(*it);
 
@@ -295,6 +289,33 @@ namespace rml::luau {
         } catch (const std::exception &e) {
             LOG_ERROR("Failed to load script '{}': {}", script_path.string(), e.what());
             return {};
+        }
+    }
+
+    std::optional<config::ModConfig> ScriptManager::load_mod_config(const std::filesystem::path &config_path) {
+        try {
+            if (!std::filesystem::exists(config_path)) {
+                LOG_ERROR("Mod config file does not exist: {}", config_path.string());
+                return std::nullopt;
+            }
+
+            auto parse_result = toml::parse_file(config_path.string());
+            if (!parse_result) {
+                LOG_ERROR("Failed to parse mod config '{}': {}", config_path.string(),
+                          parse_result.error().description());
+                return std::nullopt;
+            }
+
+            auto mod_config_result = config::serialization::mod_config_from_toml(parse_result.table());
+            if (!mod_config_result) {
+                LOG_ERROR("Failed to deserialize mod config: {}", config_path.string());
+                return std::nullopt;
+            }
+
+            return std::move(*mod_config_result);
+        } catch (const std::exception &e) {
+            LOG_ERROR("Exception while loading mod config '{}': {}", config_path.string(), e.what());
+            return std::nullopt;
         }
     }
 
@@ -398,13 +419,13 @@ namespace rml::luau {
 
     void ScriptManager::schedule_script(const RBX::DataModelType data_model_type,
                                         const ScriptInfo &script_info) {
-        if (!g_task_scheduler) {
+        if (!rml::has_task_scheduler()) {
             LOG_ERROR("TaskScheduler not available, cannot schedule script: {}",
                       script_info.full_path.string());
             return;
         }
 
-        const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+        const auto engine = rml::task_scheduler().get_script_engine(data_model_type);
         if (!engine) {
             return;
         }
@@ -483,7 +504,7 @@ namespace rml::luau {
     void ScriptManager::schedule_script_with_mod_thread(const RBX::DataModelType data_model_type,
                                                         const ScriptInfo &script_info,
                                                         lua_State *mod_thread) {
-        if (!g_task_scheduler) {
+        if (!rml::has_task_scheduler()) {
             LOG_ERROR("TaskScheduler not available, cannot schedule script: {}",
                       script_info.full_path.string());
             return;
@@ -495,7 +516,7 @@ namespace rml::luau {
             return;
         }
 
-        const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+        const auto engine = rml::task_scheduler().get_script_engine(data_model_type);
         if (!engine) {
             return;
         }
@@ -507,8 +528,8 @@ namespace rml::luau {
 
         LOG_INFO("DataModel type: 0x{:X}, DataModel 0x{:X}",
                  static_cast<int>(data_model_type),
-                 g_task_scheduler->get_data_model_by_type(data_model_type)
-                 ? reinterpret_cast<uintptr_t>(g_task_scheduler->get_data_model_by_type(data_model_type))
+                 rml::task_scheduler().get_data_model_by_type(data_model_type)
+                 ? reinterpret_cast<uintptr_t>(rml::task_scheduler().get_data_model_by_type(data_model_type))
                  : 0);
 
         execute_script_async_with_mod_thread(engine, script_info, chunk_name, mod_thread);
@@ -608,12 +629,12 @@ namespace rml::luau {
     lua_State *ScriptManager::create_mod_thread(RBX::DataModelType data_model_type,
                                                 const std::string &mod_name) noexcept {
         try {
-            if (!g_task_scheduler) {
+            if (!rml::has_task_scheduler()) {
                 LOG_ERROR("TaskScheduler not available, cannot create mod thread for: {}", mod_name);
                 return nullptr;
             }
 
-            const auto engine = g_task_scheduler->get_script_engine(data_model_type);
+            const auto engine = rml::task_scheduler().get_script_engine(data_model_type);
             if (!engine) {
                 LOG_ERROR("ScriptEngine not available for DataModel type {}, cannot create mod thread for: {}",
                           static_cast<int>(data_model_type), mod_name);

@@ -22,7 +22,7 @@ namespace rml::mod
 		[[nodiscard]] std::filesystem::path file(std::string_view relative) const;
 
 	private:
-		static const std::filesystem::path& ensure(const std::filesystem::path& path);
+		static std::filesystem::path ensure(const std::filesystem::path& path);
 
 		std::filesystem::path m_root;
 	};

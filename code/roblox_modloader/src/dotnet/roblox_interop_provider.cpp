@@ -1,6 +1,7 @@
 
 #include "roblox_interop_provider.hpp"
 
+#include "RobloxModLoader/logger/logger.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
@@ -9,6 +10,7 @@
 #include "dotnet_event_descriptor.hpp"
 #include "dotnet_variant.hpp"
 #include "dotnet_yield.hpp"
+#include "type_marshaler.hpp"
 
 #include <RobloxModLoader/qt/mods_menu.hpp>
 #include <RobloxModLoader/qt/qt_integration.hpp>
@@ -16,10 +18,44 @@
 #include <RobloxModLoader/roblox/reflection/object.hpp>
 #include <RobloxModLoader/roblox/reflection/property_descriptor.hpp>
 
+#include <cassert>
+#include <string_view>
+#include <utility>
+
 RML_LOG_SCOPE("Interop");
 
 namespace rml::dotnet
 {
+	void RobloxInteropProvider::verify_populated(const InteropTable& table)
+	{
+		const std::pair<const void*, std::string_view> members[]{
+			{reinterpret_cast<const void*>(table.reflection_invoke), "reflection_invoke"},
+			{reinterpret_cast<const void*>(table.reflection_invoke_async), "reflection_invoke_async"},
+			{reinterpret_cast<const void*>(table.reflection_get_property), "reflection_get_property"},
+			{reinterpret_cast<const void*>(table.reflection_set_property), "reflection_set_property"},
+			{reinterpret_cast<const void*>(table.reflection_event_connect), "reflection_event_connect"},
+			{reinterpret_cast<const void*>(table.reflection_event_disconnect), "reflection_event_disconnect"},
+			{reinterpret_cast<const void*>(table.object_create_by_name), "object_create_by_name"},
+			{reinterpret_cast<const void*>(table.managed_log), "managed_log"},
+			{reinterpret_cast<const void*>(table.free_string), "free_string"},
+			{reinterpret_cast<const void*>(table.free_native_ptr), "free_native_ptr"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_action), "mods_menu_add_action"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_submenu), "mods_menu_add_submenu"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_separator), "mods_menu_add_separator"},
+			{reinterpret_cast<const void*>(table.mods_menu_add_checkable), "mods_menu_add_checkable"},
+			{reinterpret_cast<const void*>(table.mods_menu_set_item_icon), "mods_menu_set_item_icon"},
+			{reinterpret_cast<const void*>(table.mods_menu_remove), "mods_menu_remove"},
+		};
+
+		for (const auto& [pointer, name] : members)
+		{
+			if (!pointer)
+				RML_ERROR("InteropTable::{} was never populated", name);
+
+			assert(pointer && "InteropTable member left unpopulated after populate");
+		}
+	}
+
 	[[nodiscard]] RBX::Instance* as_instance(const uintptr_t handle)
 	{
 		if (!utils::memory::is_valid_pointer(handle))
@@ -27,15 +63,19 @@ namespace rml::dotnet
 		return reinterpret_cast<RBX::Instance*>(handle);
 	}
 
+	void invoke_reflection_function(RBX::Reflection::DescribedBase* instance, const RBX::Reflection::FunctionDescriptor& descriptor, const InteropVariant* args, const uint32_t arg_count, InteropVariant& out)
+	{
+		DotNetArguments arguments{args, arg_count};
+
+		const auto function = RBX::Function(descriptor, instance);
+		const auto ret = function.invoke(arguments);
+		const auto type = descriptor.get_signature().first_result_type();
+
+		TypeMarshaler::encode_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), out);
+	}
+
 	void RobloxInteropProvider::populate(InteropTable& table)
 	{
-		table.version = RML_INTEROP_VERSION;
-		table.size = sizeof(InteropTable);
-
-		table.get_proc_address = [](const char*) -> void* {
-			return nullptr;
-		};
-
 		table.reflection_invoke = [](const uintptr_t instance_ptr, const char* function_name, const InteropVariant* args, const uint32_t arg_count, InteropVariant* out_result) {
 			if (out_result)
 			{
@@ -53,14 +93,8 @@ namespace rml::dotnet
 				if (!descriptor)
 					return;
 
-				DotNetArguments arguments{args, arg_count};
-
-				const auto function = RBX::Function(*descriptor, instance);
-				const auto ret = function.invoke(arguments);
-				const auto type = descriptor->get_signature().first_result_type();
-
-				if (out_result)
-					write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), *out_result);
+				InteropVariant local_result{};
+				invoke_reflection_function(instance, *descriptor, args, arg_count, out_result ? *out_result : local_result);
 			}
 			catch (const std::exception& e)
 			{
@@ -101,13 +135,8 @@ namespace rml::dotnet
 					return;
 				}
 
-				DotNetArguments arguments{args, arg_count};
-				const auto function = RBX::Function(*descriptor, instance);
-				const auto ret = function.invoke(arguments);
-				const auto type = descriptor->get_signature().first_result_type();
-
 				InteropVariant result{};
-				write_return_value(type, ret, arguments.return_value, reinterpret_cast<uintptr_t>(&arguments.return_value), result);
+				invoke_reflection_function(instance, *descriptor, args, arg_count, result);
 				callback(state, &result, nullptr);
 			}
 			catch (const std::exception& e)
@@ -137,33 +166,7 @@ namespace rml::dotnet
 				if (!property_descriptor)
 					return;
 
-				if (property_descriptor->type.name == "string")
-				{
-					*out_value = string_value(property_descriptor->get_string_value(instance).c_str());
-					return;
-				}
-
-				if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
-				{
-					const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
-					*out_value = instance_value(reinterpret_cast<uintptr_t>(ref_desc->get_ref_value(instance)));
-					return;
-				}
-
-				if (const auto sequence = try_sequence_property(property_descriptor, instance))
-				{
-					*out_value = *sequence;
-					return;
-				}
-
-				if (const auto blittable = try_blittable_property(property_descriptor, instance))
-				{
-					*out_value = *blittable;
-					return;
-				}
-
-				const auto property = RBX::Property(*property_descriptor, instance);
-				*out_value = int64_value(static_cast<int64_t>(property.get<uint64_t>()));
+				*out_value = TypeMarshaler::encode_property(property_descriptor, instance);
 			}
 			catch (const std::exception& e)
 			{
@@ -189,31 +192,7 @@ namespace rml::dotnet
 				if (!property_descriptor)
 					return;
 
-				if (property_descriptor->type.name == "string")
-				{
-					if (value->tag == InteropValueTag::String && value->as_string)
-						property_descriptor->set_string_value(instance, value->as_string);
-					return;
-				}
-
-				if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(*property_descriptor))
-				{
-					const auto* ref_desc = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(property_descriptor);
-					auto* target = value->tag == InteropValueTag::Instance ?
-					    reinterpret_cast<RBX::Reflection::DescribedBase*>(value->as_instance) :
-					    nullptr;
-					ref_desc->set_ref_value(instance, target);
-					return;
-				}
-
-				if (try_set_sequence_property(property_descriptor, instance, *value))
-					return;
-
-				if (try_set_blittable_property(property_descriptor, instance, *value))
-					return;
-
-				auto property = RBX::Property(*property_descriptor, instance);
-				property.set(value->as_uint64);
+				(void) TypeMarshaler::decode_property(property_descriptor, instance, *value);
 			}
 			catch (const std::exception& e)
 			{
@@ -311,6 +290,24 @@ namespace rml::dotnet
 			}
 		};
 
+		table.managed_log = [](const int32_t level, const char* utf8, const int32_t len) {
+			if (!utf8 || len < 0)
+				return;
+
+			const std::string_view message{utf8, static_cast<size_t>(len)};
+
+			switch (level)
+			{
+				case 0: rml_scoped_logger()->log(spdlog::level::trace, message); break;
+				case 1: rml_scoped_logger()->log(spdlog::level::debug, message); break;
+				case 2: rml_scoped_logger()->log(spdlog::level::info, message); break;
+				case 3: rml_scoped_logger()->log(spdlog::level::warn, message); break;
+				case 4: rml_scoped_logger()->log(spdlog::level::err, message); break;
+				case 5: rml_scoped_logger()->log(spdlog::level::critical, message); break;
+				default: rml_scoped_logger()->log(spdlog::level::info, message); break;
+			}
+		};
+
 		table.free_string = [](const char* str) {
 			free(const_cast<char*>(str));
 		};
@@ -319,7 +316,7 @@ namespace rml::dotnet
 			free(const_cast<void*>(ptr));
 		};
 
-		table.mods_menu_add_action = [](const char* text, const ManagedEventCallback callback, void* state) -> uintptr_t {
+		table.mods_menu_add_action = [](const uintptr_t parent_id, const char* text, const ManagedEventCallback callback, void* state) -> uintptr_t {
 			if (!text || !callback)
 				return 0;
 
@@ -327,14 +324,57 @@ namespace rml::dotnet
 			if (!integration)
 				return 0;
 
-			return integration->menu().register_action(text, [callback, state] {
+			return integration->menu().add_action(parent_id, text, [callback, state] {
 				callback(state, nullptr, 0);
 			});
 		};
 
-		table.mods_menu_remove_action = [](const uintptr_t action_id) {
-			if (auto* const integration = rml::qt::QtIntegration::instance())
-				integration->menu().remove_action(action_id);
+		table.mods_menu_add_submenu = [](const uintptr_t parent_id, const char* text) -> uintptr_t {
+			if (!text)
+				return 0;
+
+			auto* const integration = rml::qt::QtIntegration::instance();
+			if (!integration)
+				return 0;
+
+			return integration->menu().add_submenu(parent_id, text);
 		};
+
+		table.mods_menu_add_separator = [](const uintptr_t parent_id) -> uintptr_t {
+			auto* const integration = rml::qt::QtIntegration::instance();
+			if (!integration)
+				return 0;
+
+			return integration->menu().add_separator(parent_id);
+		};
+
+		table.mods_menu_add_checkable = [](const uintptr_t parent_id, const char* text, const int initial, const ManagedEventCallback callback, void* state) -> uintptr_t {
+			if (!text || !callback)
+				return 0;
+
+			auto* const integration = rml::qt::QtIntegration::instance();
+			if (!integration)
+				return 0;
+
+			return integration->menu().add_checkable(parent_id, text, initial != 0, [callback, state](const bool value) {
+				const InteropVariant arg = bool_value(value);
+				callback(state, &arg, 1);
+			});
+		};
+
+		table.mods_menu_set_item_icon = [](const uintptr_t id, const char* utf8_path) {
+			if (!utf8_path)
+				return;
+
+			if (auto* const integration = rml::qt::QtIntegration::instance())
+				integration->menu().set_item_icon(id, utf8_path);
+		};
+
+		table.mods_menu_remove = [](const uintptr_t id) {
+			if (auto* const integration = rml::qt::QtIntegration::instance())
+				integration->menu().remove(id);
+		};
+
+		verify_populated(table);
 	}
 } // namespace rml::dotnet

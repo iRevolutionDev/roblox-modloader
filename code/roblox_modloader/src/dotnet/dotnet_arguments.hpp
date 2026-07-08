@@ -2,8 +2,11 @@
 #include "RobloxModLoader/roblox/instance.hpp"
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "RobloxModLoader/roblox/reflection/type.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "dotnet_variant.hpp"
+#include "engine_scratch.hpp"
 #include "interop_registry.hpp"
+#include "type_marshaler.hpp"
 
 #include <cstddef>
 #include <deque>
@@ -12,9 +15,16 @@
 
 namespace rml::dotnet
 {
+	inline constexpr std::size_t kEngineReturnSlotTailBytes = 56;
+
+	static_assert(sizeof(uint64_t) + kEngineReturnSlotTailBytes >= TypeMarshaler::kMaxBlittableEngineTypeBytes,
+	    "EngineReturnSlot tail must leave enough contiguous room after Arguments::return_value for the largest blittable engine return type");
+
+	using EngineReturnSlot = EngineScratch<kEngineReturnSlotTailBytes>;
+
 	class DotNetArguments final : public RBX::Reflection::FunctionDescriptor::Arguments
 	{
-		std::byte m_return_value_tail[56]{};
+		alignas(16) EngineReturnSlot m_return_slot{};
 		const InteropVariant* m_args;
 		uint32_t m_count;
 
@@ -50,46 +60,7 @@ namespace rml::dotnet
 			if (!type)
 				return false;
 
-			value.set_type_and_ops(type, borrow_value_ops(type));
-
-			const auto& v = m_args[index - 1];
-			void* const storage = value.storage();
-			const auto& name = type->name;
-
-			if (name == "string")
-			{
-				::new (storage) std::string(v.as_string ? v.as_string : "");
-				return true;
-			}
-			if (name == "bool")
-			{
-				bool b = false;
-				(void) read_bool(v, b);
-				*static_cast<bool*>(storage) = b;
-				return true;
-			}
-			if (name == "float" || name == "double")
-			{
-				double d = 0.0;
-				(void) read_double(v, d);
-				if (name == "float")
-					*static_cast<float*>(storage) = static_cast<float>(d);
-				else
-					*static_cast<double*>(storage) = d;
-				return true;
-			}
-			if (type->is_number || type->is_enum || name == "int" || name == "long")
-			{
-				int64_t wide = 0;
-				(void) read_int64(v, wide);
-				if (name == "int64" || name == "long")
-					*static_cast<int64_t*>(storage) = wide;
-				else
-					*static_cast<int*>(storage) = static_cast<int>(wide);
-				return true;
-			}
-
-			return false;
+			return TypeMarshaler::decode_argument(type, m_args[index - 1], value, borrow_value_ops(type));
 		}
 
 		bool get_bool(const int index, bool& value) const override
@@ -223,6 +194,12 @@ namespace rml::dotnet
 			out = *ptr;
 			return true;
 		}
+
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_OFFSET(DotNetArguments, m_return_slot,
+			    offsetof(RBX::Reflection::FunctionDescriptor::Arguments, return_value) +
+			        sizeof(RBX::Reflection::FunctionDescriptor::Arguments::return_value));
+		RML_LAYOUT_GUARD_END()
 	};
 
 } // namespace rml::dotnet

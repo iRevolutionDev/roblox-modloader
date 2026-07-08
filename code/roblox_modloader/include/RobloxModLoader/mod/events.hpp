@@ -1,11 +1,15 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/rml_export.hpp"
+
+#include <cstdint>
 #include <functional>
 #include <vector>
 #include <memory>
 #include <unordered_map>
+#include <shared_mutex>
+#include <typeindex>
 
-namespace events {
+namespace rml::events {
     struct EventBase {
         virtual ~EventBase() = default;
 
@@ -40,32 +44,39 @@ namespace events {
         using EventHandler = std::function<void(T &)>;
 
         template<typename T>
-        void registerHandler(EventHandler<T> handler) {
-            auto wrappedHandler = [handler](std::shared_ptr<EventBase> e) {
-                if (auto event = std::dynamic_pointer_cast<T>(e)) {
-                    handler(*event);
-                }
+        void register_handler(EventHandler<T> handler) {
+            auto wrapped_handler = [handler](EventBase &e) {
+                handler(static_cast<T &>(e));
             };
-            handlers[typeid(T).hash_code()].push_back(wrappedHandler);
+            std::unique_lock lock(m_mutex);
+            m_handlers[std::type_index(typeid(T))].push_back(std::move(wrapped_handler));
         }
 
         template<typename T>
         void emit(T &event) {
-            auto baseEvent = std::make_shared<T>(event);
-            const auto typeHash = typeid(T).hash_code();
-            if (const auto it = handlers.find(typeHash); it != handlers.end()) {
-                for (const auto &handler: it->second) {
-                    if (!event.cancelled) {
-                        handler(baseEvent);
-                    }
+            std::vector<HandlerFunc> snapshot;
+            {
+                std::shared_lock lock(m_mutex);
+                const auto it = m_handlers.find(std::type_index(typeid(T)));
+                if (it == m_handlers.end()) {
+                    return;
                 }
+                snapshot = it->second;
+            }
+
+            for (const auto &handler: snapshot) {
+                if (event.cancelled) {
+                    break;
+                }
+                handler(event);
             }
         }
 
     private:
-        using HandlerFunc = std::function<void(std::shared_ptr<EventBase>)>;
-        std::unordered_map<size_t, std::vector<HandlerFunc> > handlers;
+        using HandlerFunc = std::function<void(EventBase &)>;
+        std::unordered_map<std::type_index, std::vector<HandlerFunc> > m_handlers;
+        std::shared_mutex m_mutex;
     };
 
-    inline EventManager *g_event_manager{};
+    RML_EXPORT [[nodiscard]] EventManager &event_manager();
 }

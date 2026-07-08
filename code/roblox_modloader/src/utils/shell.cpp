@@ -1,6 +1,6 @@
 #include "shell.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "string.hpp"
 
 #include <cstdlib>

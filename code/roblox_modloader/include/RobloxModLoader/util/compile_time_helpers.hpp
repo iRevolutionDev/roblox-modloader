@@ -1,3 +1,7 @@
+#pragma once
+
+#include <cstdint>
+
 template<uint32_t hash>
 struct compile_time_helper
 {

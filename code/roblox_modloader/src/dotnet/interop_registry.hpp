@@ -51,16 +51,12 @@ namespace rml::dotnet
 		uint32_t version;
 		uint32_t size;
 
-		void*(RML_INTEROP_CALL* get_proc_address)(const char* name);
-
 		void(RML_INTEROP_CALL* reflection_invoke)(uintptr_t instance, const char* function_name, const InteropVariant* args, uint32_t arg_count, InteropVariant* out_result);
 		void(RML_INTEROP_CALL* reflection_get_property)(uintptr_t instance, const char* property_name, InteropVariant* out_value);
 		void(RML_INTEROP_CALL* reflection_set_property)(uintptr_t instance, const char* property_name, const InteropVariant* value);
 
 		uintptr_t(RML_INTEROP_CALL* reflection_event_connect)(uintptr_t instance, const char* event_name, ManagedEventCallback callback, void* state);
 		void(RML_INTEROP_CALL* reflection_event_disconnect)(uintptr_t connection_handle);
-
-		uintptr_t(RML_INTEROP_CALL* instance_get_class_descriptor)(uintptr_t instance);
 
 		uintptr_t(RML_INTEROP_CALL* object_create_by_name)(const char* class_name, int creator_role);
 
@@ -69,13 +65,17 @@ namespace rml::dotnet
 		void(RML_INTEROP_CALL* free_string)(const char* str);
 		void(RML_INTEROP_CALL* free_native_ptr)(const void* ptr);
 		
-		uintptr_t(RML_INTEROP_CALL* mods_menu_add_action)(const char* text, ManagedEventCallback callback, void* state);
-		void(RML_INTEROP_CALL* mods_menu_remove_action)(uintptr_t action_id);
-		
+		uintptr_t(RML_INTEROP_CALL* mods_menu_add_action)(uintptr_t parent_id, const char* text, ManagedEventCallback callback, void* state);
+		uintptr_t(RML_INTEROP_CALL* mods_menu_add_submenu)(uintptr_t parent_id, const char* text);
+		uintptr_t(RML_INTEROP_CALL* mods_menu_add_separator)(uintptr_t parent_id);
+		uintptr_t(RML_INTEROP_CALL* mods_menu_add_checkable)(uintptr_t parent_id, const char* text, int initial, ManagedEventCallback callback, void* state);
+		void(RML_INTEROP_CALL* mods_menu_set_item_icon)(uintptr_t id, const char* utf8_path);
+		void(RML_INTEROP_CALL* mods_menu_remove)(uintptr_t id);
+
 		void(RML_INTEROP_CALL* reflection_invoke_async)(uintptr_t instance, const char* function_name, const InteropVariant* args, uint32_t arg_count, ManagedYieldCallback callback, void* state);
 	};
 
-	inline constexpr uint32_t RML_INTEROP_VERSION = 5;
+	inline constexpr uint32_t RML_INTEROP_VERSION = 7;
 
 	class InteropRegistry
 	{

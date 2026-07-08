@@ -3,32 +3,23 @@
 #include "RobloxModLoader/qt/qstring.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
 
-#include <new>
-
 namespace rml::qt
 {
-	constexpr std::size_t INSTANCE_SIZE = 48;
-
 	QMessageBox* QMessageBox::create(QWidget* parent)
 	{
 		static const auto construct = detail::widgets<void* (*)(void*, void*)>("??0QMessageBox@@QEAA@PEAVQWidget@@@Z");
-		if (!construct)
-			return nullptr;
+		return detail::heap_construct<QMessageBox>(detail::WIDGET_INSTANCE_SIZE, construct, parent);
+	}
 
-		void* memory = operator new(INSTANCE_SIZE);
-		construct(memory, parent);
-		return static_cast<QMessageBox*>(memory);
+	QtOwned<QMessageBox> QMessageBox::create_owned()
+	{
+		return QtOwned<QMessageBox>(create(nullptr));
 	}
 
 	void QMessageBox::destroy(QMessageBox* box)
 	{
-		if (!box)
-			return;
-
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QMessageBox@@UEAA@XZ");
-		if (dtor)
-			dtor(box);
-		::operator delete(box);
+		detail::heap_destroy(dtor, box);
 	}
 
 	void QMessageBox::setText(const QString& text)

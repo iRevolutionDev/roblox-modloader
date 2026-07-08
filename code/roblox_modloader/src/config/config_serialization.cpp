@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/config/config_serialization.hpp"
 
 namespace rml::config::serialization {

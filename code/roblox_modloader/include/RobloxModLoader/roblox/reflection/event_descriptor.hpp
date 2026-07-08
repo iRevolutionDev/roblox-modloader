@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RobloxModLoader/roblox/signals.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "member.hpp"
 #include "type.hpp"
 
@@ -87,5 +88,11 @@ namespace RBX::Reflection
 		virtual void fire_event(EventSource* source, const EventArguments& args) const = 0;
 		virtual void send_event(EventSource* source, const EventArguments& args) const;
 		virtual void disconnect_all(EventSource* source) const = 0;
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(EventDescriptor, 0x70);
+			RML_ASSERT_LAYOUT_OFFSET(EventDescriptor, signature, 0x40);
+		RML_LAYOUT_GUARD_END()
 	};
 }

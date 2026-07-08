@@ -1,6 +1,6 @@
 #pragma once
 
-namespace memory
+namespace rml::memory
 {
 	struct signature
 	{

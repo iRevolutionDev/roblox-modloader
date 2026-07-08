@@ -14,7 +14,8 @@ internal sealed class ModAssemblyContext : AssemblyLoadContext
         _resolver = new AssemblyDependencyResolver(modPath);
         _sharedAssemblies = sharedAssemblies
             .Where(a => a.GetName().Name is not null)
-            .ToDictionary(a => a.GetName().Name!, StringComparer.OrdinalIgnoreCase);
+            .GroupBy(a => a.GetName().Name!, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
     }
 
     protected override Assembly? Load(AssemblyName assemblyName)

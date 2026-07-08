@@ -1,7 +1,7 @@
 #include "data_model_watcher_job.hpp"
 
 #include "../../mod/mod_manager.hpp"
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/luau/script_manager.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
@@ -46,7 +46,7 @@ namespace rml::jobs
 			return;
 		}
 
-		const auto old_data_model = g_task_scheduler->get_data_model_by_type(new_data_model->get_type());
+		const auto old_data_model = rml::task_scheduler().get_data_model_by_type(new_data_model->get_type());
 		if (old_data_model == new_data_model)
 		{
 			return;
@@ -63,7 +63,7 @@ namespace rml::jobs
 
 	void DataModelWatcherJob::on_data_model_changed(const RBX::DataModel* old_data_model, RBX::DataModel* new_data_model, RBX::ScriptContext* script_context)
 	{
-		if (g_task_scheduler == nullptr)
+		if (!rml::has_task_scheduler())
 		{
 			LOG_ERROR("TaskScheduler is null, cannot set new DataModel.");
 			return;
@@ -79,17 +79,14 @@ namespace rml::jobs
 		    new_data_model ? reinterpret_cast<uintptr_t>(new_data_model) : 0,
 		    new_data_model ? std::to_underlying(new_data_model->get_type()) : 0);
 
-		g_task_scheduler->set_data_model(new_data_model->get_type(), new_data_model, script_context);
+		rml::task_scheduler().set_data_model(new_data_model->get_type(), new_data_model, script_context);
 
 		const auto data_model_type = new_data_model->get_type();
 
 		LOG_INFO("New DataModel type: {}, notifying mods and scripts", static_cast<int>(data_model_type));
 
-		if (events::g_event_manager)
-		{
-			events::DataModelChangedEvent ev(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
-			events::g_event_manager->emit(ev);
-		}
+		events::DataModelChangedEvent ev(reinterpret_cast<uint64_t>(old_data_model), reinterpret_cast<uint64_t>(new_data_model), static_cast<int>(data_model_type));
+		events::event_manager().emit(ev);
 
 		// Notify managed (.NET) mods about the change if the bridge is initialized
 		if (rml::dotnet::g_dotnet_mod_loader)
@@ -117,6 +114,7 @@ namespace rml::jobs
 		// }
 
 		// Execute Luau scripts that registered for this DataModel context
+#if RML_ENABLE_LUAU
 		try
 		{
 			if (luau::g_script_manager)
@@ -129,6 +127,7 @@ namespace rml::jobs
 		{
 			LOG_ERROR("Failed to execute mod scripts for DataModel type {}: {}", static_cast<int>(data_model_type), e.what());
 		}
+#endif
 	}
 
 	void DataModelWatcherJob::check_and_cleanup_stale_data_models()
@@ -147,7 +146,7 @@ namespace rml::jobs
 				continue;
 			}
 
-			const auto current_data_model = g_task_scheduler->get_data_model_by_type(data_model_type);
+			const auto current_data_model = rml::task_scheduler().get_data_model_by_type(data_model_type);
 			const auto tracked_data_model = m_data_models.find(data_model_type);
 
 			bool should_cleanup = false;
@@ -179,7 +178,7 @@ namespace rml::jobs
 
 		for (const auto& stale_type : stale_types)
 		{
-			g_task_scheduler->cleanup_data_model(stale_type);
+			rml::task_scheduler().cleanup_data_model(stale_type);
 		}
 	}
 }

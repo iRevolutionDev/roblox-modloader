@@ -8,7 +8,7 @@
 	#include <cxxabi.h>
 #endif
 
-namespace memory
+namespace rml::memory
 {
 	std::string demangle(const char* mangled)
 	{

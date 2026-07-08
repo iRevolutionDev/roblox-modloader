@@ -10,4 +10,8 @@
   <ItemGroup>
     <ProjectReference Include="../RML.Logging/RML.Logging.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="RML.Interop.Tests" />
+    <InternalsVisibleTo Include="RML.Core.Tests" />
+  </ItemGroup>
 </Project>

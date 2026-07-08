@@ -12,6 +12,11 @@ internal static class NativeHost
     private static Assembly? _coreAssembly;
     private static AssemblyLoadContext? _coreAssemblyLoadContext;
 
+    private static Action<string>? _loadModBinding;
+    private static Action<string>? _unloadModBinding;
+    private static Action<ulong, ulong, int>? _notifyDataModelChangedBinding;
+    private static Action? _shutdownBinding;
+
     private static ILogger Logger { get; } = Log.CreateLogger("RML.NativeHost");
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
@@ -34,6 +39,28 @@ internal static class NativeHost
                                    throw new InvalidOperationException(
                                        "Failed to find RML.Core.EntryPoint.Initialize method");
 
+            var loadModMethod = entryType.GetMethod("LoadMod", BindingFlags.Public | BindingFlags.Static) ??
+                                throw new InvalidOperationException(
+                                    "Failed to find RML.Core.EntryPoint.LoadMod method");
+
+            var unloadModMethod = entryType.GetMethod("UnloadMod", BindingFlags.Public | BindingFlags.Static) ??
+                                  throw new InvalidOperationException(
+                                      "Failed to find RML.Core.EntryPoint.UnloadMod method");
+
+            var notifyDataModelChangedMethod =
+                entryType.GetMethod("NotifyDataModelChanged", BindingFlags.Public | BindingFlags.Static) ??
+                throw new InvalidOperationException(
+                    "Failed to find RML.Core.EntryPoint.NotifyDataModelChanged method");
+
+            var shutdownMethod = entryType.GetMethod("Shutdown", BindingFlags.Public | BindingFlags.Static) ??
+                                 throw new InvalidOperationException(
+                                     "Failed to find RML.Core.EntryPoint.Shutdown method");
+
+            _loadModBinding = loadModMethod.CreateDelegate<Action<string>>();
+            _unloadModBinding = unloadModMethod.CreateDelegate<Action<string>>();
+            _notifyDataModelChangedBinding = notifyDataModelChangedMethod.CreateDelegate<Action<ulong, ulong, int>>();
+            _shutdownBinding = shutdownMethod.CreateDelegate<Action>();
+
             var result = (int)initializeMethod.Invoke(null, [modsRoot, interopTablePtr])!;
 
             return result;
@@ -50,20 +77,13 @@ internal static class NativeHost
     {
         try
         {
-            if (_coreAssembly is null)
+            if (_shutdownBinding is null)
             {
                 Logger.Error("Shutdown called without successful initialization");
                 return;
             }
 
-            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
-                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
-
-            var shutdownMethod = entryType.GetMethod("Shutdown", BindingFlags.Public | BindingFlags.Static) ??
-                                 throw new InvalidOperationException(
-                                     "Failed to find RML.Core.EntryPoint.Shutdown method");
-
-            shutdownMethod.Invoke(null, null);
+            _shutdownBinding();
         }
         catch (Exception ex)
         {
@@ -80,7 +100,7 @@ internal static class NativeHost
     {
         try
         {
-            if (_coreAssembly is null)
+            if (_loadModBinding is null)
             {
                 Logger.Error("LoadMod called without successful initialization");
                 return -1;
@@ -89,14 +109,7 @@ internal static class NativeHost
             var assemblyPath = Marshal.PtrToStringUTF8(assemblyPathPtr) ??
                                throw new ArgumentNullException(nameof(assemblyPathPtr));
 
-            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
-                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
-
-            var loadModMethod = entryType.GetMethod("LoadMod", BindingFlags.Public | BindingFlags.Static) ??
-                                throw new InvalidOperationException(
-                                    "Failed to find RML.Core.EntryPoint.LoadMod method");
-
-            loadModMethod.Invoke(null, [assemblyPath]);
+            _loadModBinding(assemblyPath);
 
             return 0;
         }
@@ -112,7 +125,7 @@ internal static class NativeHost
     {
         try
         {
-            if (_coreAssembly is null)
+            if (_unloadModBinding is null)
             {
                 Logger.Error("UnloadMod called without successful initialization");
                 return -1;
@@ -121,14 +134,7 @@ internal static class NativeHost
             var assemblyPath = Marshal.PtrToStringUTF8(assemblyPathPtr) ??
                                throw new ArgumentNullException(nameof(assemblyPathPtr));
 
-            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
-                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
-
-            var unloadModMethod = entryType.GetMethod("UnloadMod", BindingFlags.Public | BindingFlags.Static) ??
-                                  throw new InvalidOperationException(
-                                      "Failed to find RML.Core.EntryPoint.UnloadMod method");
-
-            unloadModMethod.Invoke(null, [assemblyPath]);
+            _unloadModBinding(assemblyPath);
 
             return 0;
         }
@@ -144,21 +150,13 @@ internal static class NativeHost
     {
         try
         {
-            if (_coreAssembly is null)
+            if (_notifyDataModelChangedBinding is null)
             {
                 Logger.Error("NotifyDataModelChanged called without successful initialization");
                 return -1;
             }
 
-            var entryType = _coreAssembly.GetType("RML.Core.EntryPoint") ??
-                            throw new InvalidOperationException("Failed to find RML.Core.EntryPoint type");
-
-            var notifyMethod =
-                entryType.GetMethod("NotifyDataModelChanged", BindingFlags.Public | BindingFlags.Static) ??
-                throw new InvalidOperationException(
-                    "Failed to find RML.Core.EntryPoint.NotifyDataModelChanged method");
-
-            notifyMethod.Invoke(null, [oldDataModelPtr, newDataModelPtr, dataModelType]);
+            _notifyDataModelChangedBinding(oldDataModelPtr, newDataModelPtr, dataModelType);
             return 0;
         }
         catch (Exception ex)
@@ -184,10 +182,4 @@ internal static class NativeHost
             return path is not null ? LoadUnmanagedDllFromPath(path) : IntPtr.Zero;
         }
     }
-
-    private delegate int InitializeDelegate(IntPtr modsRootPtr, IntPtr interopTablePtr, int interopTableSize);
-
-    private delegate int LoadModDelegate(IntPtr assemblyPathPtr);
-
-    private delegate int UnloadModDelegate(IntPtr assemblyPathPtr);
 }

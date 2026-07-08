@@ -1,30 +1,21 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/rml_export.hpp"
+#include "RobloxModLoader/version.hpp"
 #include "events.hpp"
 #include "mod_paths.hpp"
 
 #include <string>
 #include <utility>
 
-struct metadata
-{
-	const std::string name{};
-	const std::string version{};
-	const std::string author{};
-	const std::string description{};
-};
-
 class RML_EXPORT ModBase
 {
 public:
 	using start_type = ModBase* (*)();
-	using uninstall_type = void (*)();
 
 	std::string name{};
 	std::string version{};
 	std::string author{};
 	std::string description{};
-	uninstall_type uninstall_mod_func{};
 
 	ModBase();
 
@@ -38,7 +29,7 @@ public:
 	{
 	}
 
-	void set_event_manager(events::EventManager* manager);
+	void set_event_manager(rml::events::EventManager& manager);
 
 	void set_paths(rml::mod::ModPaths paths)
 	{
@@ -57,15 +48,26 @@ public:
 
 protected:
 	template<typename T>
-	void register_event_handler(events::EventManager::EventHandler<T> handler)
+	void register_event_handler(rml::events::EventManager::EventHandler<T> handler)
 	{
-		if (event_manager)
+		if (m_event_manager)
 		{
-			event_manager->registerHandler<T>(handler);
+			m_event_manager->register_handler<T>(handler);
 		}
 	}
 
 private:
-	events::EventManager* event_manager{nullptr};
+	rml::events::EventManager* m_event_manager{nullptr};
 	rml::mod::ModPaths m_paths{};
 };
+
+using rml_abi_version_type = int (*)();
+
+#if defined(_WIN32)
+	#define RML_MOD_ABI_EXPORT __declspec(dllexport)
+#else
+	#define RML_MOD_ABI_EXPORT __attribute__((visibility("default")))
+#endif
+
+#define RML_EXPORT_MOD_ABI_VERSION() \
+	extern "C" RML_MOD_ABI_EXPORT int rml_abi_version() { return RML_ABI_VERSION; }

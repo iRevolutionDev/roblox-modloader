@@ -42,17 +42,20 @@ public static class Log
 
     internal static void Dispatch(in LogEvent logEvent)
     {
+        ILogSink[] snapshot;
         lock (Gate)
         {
-            foreach (var sink in Sinks)
+            snapshot = Sinks.ToArray();
+        }
+
+        foreach (var sink in snapshot)
+        {
+            try
             {
-                try
-                {
-                    sink.Emit(logEvent);
-                }
-                catch
-                {
-                }
+                sink.Emit(logEvent);
+            }
+            catch
+            {
             }
         }
     }

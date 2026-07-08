@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "script_context.hpp"
 #include "script_scheduler.hpp"
 #include "environment/rml_provider.hpp"

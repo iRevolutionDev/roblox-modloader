@@ -1,5 +1,6 @@
 #pragma once
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "callback_descriptor.hpp"
 #include "descriptor.hpp"
 #include "event.hpp"
@@ -220,8 +221,9 @@ namespace RBX::Reflection
 		template<typename T>
 		T* find_descriptor(const char* name) const
 		{
+			constexpr std::uint64_t member_table_offset = 0x250;
 			auto atom = g_pointers->m_roblox_pointers.get_string_atom(name);
-			const auto desc = g_pointers->m_roblox_pointers.descriptor_lookup(reinterpret_cast<uint64_t>(this) + 0x250, &atom);
+			const auto desc = g_pointers->m_roblox_pointers.descriptor_lookup(reinterpret_cast<uint64_t>(this) + member_table_offset, &atom);
 			if (!desc || !*desc)
 			{
 				LOG_WARN("[ClassDescriptor::find_descriptor] Failed to find descriptor '{}' in class '{}'",
@@ -279,6 +281,15 @@ namespace RBX::Reflection
 		{
 			return MemberDescriptorContainer<T>::descriptors_end();
 		}
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(ClassDescriptor, 0x250);
+			RML_ASSERT_LAYOUT_OFFSET(ClassDescriptor, padding, 0x208);
+			RML_ASSERT_LAYOUT_OFFSET(ClassDescriptor, security, 0x220);
+			RML_ASSERT_LAYOUT_OFFSET(ClassDescriptor, base, 0x228);
+			RML_ASSERT_LAYOUT_OFFSET(ClassDescriptor, derived_classes, 0x230);
+		RML_LAYOUT_GUARD_END()
 	};
 
 	class DescribedBase : public EventSource, public std::enable_shared_from_this<DescribedBase>

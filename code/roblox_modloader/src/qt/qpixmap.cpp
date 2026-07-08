@@ -4,8 +4,6 @@
 #include "RobloxModLoader/qt/qstring.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
 
-#include <cstring>
-
 namespace rml::qt
 {
 	QPixmap::QPixmap(const std::string_view file_path)
@@ -16,7 +14,7 @@ namespace rml::qt
 
 		const QString path(file_path);
 		ctor(m_storage, path.data(), nullptr, 0);
-		m_loaded = true;
+		set_owned(true);
 	}
 
 	QPixmap::QPixmap(const int width, const int height)
@@ -25,12 +23,12 @@ namespace rml::qt
 		if (!ctor)
 			return;
 		ctor(m_storage, width, height);
-		m_loaded = true;
+		set_owned(true);
 	}
 
 	QPixmap::QPixmap(const QPixmap& other)
 	{
-		if (!other.m_loaded)
+		if (!other.owned())
 			return;
 
 		static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("??0QPixmap@@QEAA@AEBV0@@Z");
@@ -38,17 +36,15 @@ namespace rml::qt
 			return;
 
 		copy_ctor(m_storage, other.m_storage);
-		m_loaded = true;
+		set_owned(true);
 	}
 
 	QPixmap::QPixmap(QPixmap&& other) noexcept
 	{
-		if (!other.m_loaded)
+		if (!other.owned())
 			return;
 
-		std::memcpy(m_storage, other.m_storage, sizeof(m_storage));
-		m_loaded = true;
-		other.m_loaded = false;
+		adopt(other);
 	}
 
 	QPixmap& QPixmap::operator=(const QPixmap& other)
@@ -58,13 +54,13 @@ namespace rml::qt
 
 		destroy();
 
-		if (other.m_loaded)
+		if (other.owned())
 		{
 			static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("??0QPixmap@@QEAA@AEBV0@@Z");
 			if (copy_ctor)
 			{
 				copy_ctor(m_storage, other.m_storage);
-				m_loaded = true;
+				set_owned(true);
 			}
 		}
 
@@ -78,12 +74,8 @@ namespace rml::qt
 
 		destroy();
 
-		if (other.m_loaded)
-		{
-			std::memcpy(m_storage, other.m_storage, sizeof(m_storage));
-			m_loaded = true;
-			other.m_loaded = false;
-		}
+		if (other.owned())
+			adopt(other);
 
 		return *this;
 	}
@@ -95,13 +87,13 @@ namespace rml::qt
 
 	void QPixmap::destroy()
 	{
-		if (!m_loaded)
+		if (!owned())
 			return;
 
 		static const auto dtor = detail::gui<void (*)(void*)>("??1QPixmap@@UEAA@XZ");
 		if (dtor)
 			dtor(m_storage);
-		m_loaded = false;
+		set_owned(false);
 	}
 
 	int QPixmap::width() const
@@ -137,11 +129,11 @@ namespace rml::qt
 		static const auto fn = detail::gui<void (*)(const void* self, void* sret, int, int, int, int)>("?scaled@QPixmap@@QEBA?AV1@HHW4AspectRatioMode@Qt@@W4TransformationMode@3@@Z");
 
 		QPixmap result;
-		if (!fn || !m_loaded || width <= 0 || height <= 0)
+		if (!fn || !owned() || width <= 0 || height <= 0)
 			return result;
 
 		fn(m_storage, result.m_storage, width, height, static_cast<int>(aspect), static_cast<int>(transform));
-		result.m_loaded = true;
+		result.set_owned(true);
 		return result;
 	}
 
@@ -153,14 +145,14 @@ namespace rml::qt
 		static const auto image_dtor = detail::gui<void (*)(void*)>("??1QImage@@UEAA@XZ");
 
 		QPixmap result;
-		if (!to_image || !blur || !from_image || !m_loaded || radius <= 0.0)
+		if (!to_image || !blur || !from_image || !owned() || radius <= 0.0)
 			return result;
 
 		alignas(void*) unsigned char image_storage[32]{};
 		to_image(m_storage, image_storage);
 		blur(image_storage, radius, true, 0);
 		from_image(result.m_storage, image_storage, 0);
-		result.m_loaded = true;
+		result.set_owned(true);
 
 		if (image_dtor)
 			image_dtor(image_storage);

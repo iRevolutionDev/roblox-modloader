@@ -1,5 +1,6 @@
 #include "RobloxModLoader/qt/qpainter.hpp"
 
+#include "RobloxModLoader/qt/qpaintdevice.hpp"
 #include "RobloxModLoader/qt/qpixmap.hpp"
 #include "RobloxModLoader/qt/qrect.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
@@ -13,7 +14,7 @@ namespace rml::qt
 		if (!ctor)
 			return;
 		ctor(m_storage, target.data());
-		m_active = true;
+		set_owned(true);
 	}
 
 	QPainter::QPainter(const QWidget& target)
@@ -22,14 +23,14 @@ namespace rml::qt
 		if (!ctor)
 			return;
 
-		void* paint_device = reinterpret_cast<char*>(const_cast<QWidget*>(&target)) + 16;
+		auto* paint_device = static_cast<QPaintDevice*>(const_cast<QWidget*>(&target));
 		ctor(m_storage, paint_device);
-		m_active = true;
+		set_owned(true);
 	}
 
 	QPainter::~QPainter()
 	{
-		if (!m_active)
+		if (!owned())
 			return;
 
 		static const auto dtor = detail::gui<void (*)(void*)>("??1QPainter@@QEAA@XZ");
@@ -40,28 +41,28 @@ namespace rml::qt
 	void QPainter::set_render_hint(const RenderHint hint, const bool on)
 	{
 		static const auto fn = detail::gui<void (*)(void*, int, bool)>("?setRenderHint@QPainter@@QEAAXW4RenderHint@1@_N@Z");
-		if (fn && m_active)
+		if (fn && owned())
 			fn(m_storage, static_cast<int>(hint), on);
 	}
 
 	void QPainter::set_opacity(const double opacity)
 	{
 		static const auto fn = detail::gui<void (*)(void*, double)>("?setOpacity@QPainter@@QEAAXN@Z");
-		if (fn && m_active)
+		if (fn && owned())
 			fn(m_storage, opacity);
 	}
 
 	void QPainter::draw_pixmap(const int x, const int y, const QPixmap& pixmap)
 	{
 		static const auto fn = detail::gui<void (*)(void*, int, int, const void*)>("?drawPixmap@QPainter@@QEAAXHHAEBVQPixmap@@@Z");
-		if (fn && m_active)
+		if (fn && owned())
 			fn(m_storage, x, y, pixmap.data());
 	}
 
 	void QPainter::draw_pixmap(const QRect& target, const QPixmap& pixmap)
 	{
 		static const auto fn = detail::gui<void (*)(void*, const void*, const void*)>("?drawPixmap@QPainter@@QEAAXAEBVQRect@@AEBVQPixmap@@@Z");
-		if (fn && m_active)
+		if (fn && owned())
 			fn(m_storage, target.data(), pixmap.data());
 	}
 }

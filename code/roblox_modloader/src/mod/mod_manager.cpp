@@ -1,8 +1,6 @@
 #include "mod_manager.hpp"
 
-#include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/config/config.hpp"
-#include "RobloxModLoader/config/config_helpers.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "dotnet/dotnet_mod_loader.hpp"
 #include "native/native_mod_loader.hpp"
 #include "utils/directory.hpp"
@@ -14,21 +12,21 @@ RML_LOG_SCOPE("ModManager");
 
 namespace rml
 {
-	ModManager::ModManager()
+	std::expected<void, ModManagerError> ModManager::initialize(events::EventManager& event_manager)
 	{
 		const auto mods_path = get_mods_dir();
 
 		if (!mods_path.has_value())
 		{
-			RML_ERROR("Failed to get mods directory: {}", mods_path.error());
-			return;
+			return std::unexpected(ModManagerError(ModManagerError::Type::DirectoryNotFound, mods_path.error()));
 		}
 
 		const auto runtime_path = utils::directory::get_runtime_directory();
 
-
-		register_loader(std::make_unique<native::NativeModLoader>(), {"native"});
-		register_loader(std::make_unique<dotnet::DotnetModLoader>(runtime_path, mods_path.value() / "dotnet"), {"dotnet"});
+		register_loader(std::make_unique<native::NativeModLoader>(event_manager), ModKind::Native);
+		register_loader(std::make_unique<dotnet::DotnetModLoader>(runtime_path,
+		                     mods_path.value() / mod_kind_folder_name(ModKind::Dotnet)),
+		    ModKind::Dotnet);
 
 		for (auto mod_dir : std::filesystem::directory_iterator(mods_path.value()))
 		{
@@ -37,56 +35,38 @@ namespace rml
 				continue;
 			}
 
-			auto native_result = load_directory(mod_dir.path() / "native");
-			if (!native_result.has_value())
+			for (const auto& folder : kModKindFolders)
 			{
-				auto error_message = native_result.error().message;
-
-				switch (native_result.error().type)
+				auto result = load_directory(mod_dir.path() / folder.folder_name);
+				if (!result.has_value())
 				{
-				case ModManagerError::Type::DirectoryNotFound: break;
-				default: RML_ERROR("Failed to load native mods: {}", error_message); break;
-				}
-			}
-
-			auto dotnet_result = load_directory(mod_dir.path() / "dotnet");
-			if (!dotnet_result.has_value())
-			{
-				auto error_message = dotnet_result.error().message;
-
-				switch (dotnet_result.error().type)
-				{
-				case ModManagerError::Type::DirectoryNotFound: break;
-				default: RML_ERROR("Failed to load dotnet mods: {}", error_message); break;
-				}
-			}
-
-			auto scripts_result = load_directory(mod_dir.path() / "scripts");
-			if (!scripts_result.has_value())
-			{
-				auto error_message = scripts_result.error().message;
-
-				switch (scripts_result.error().type)
-				{
-				case ModManagerError::Type::DirectoryNotFound: break;
-				default: RML_ERROR("Failed to load scripts mods: {}", error_message); break;
+					switch (result.error().type)
+					{
+					case ModManagerError::Type::DirectoryNotFound: break;
+					case ModManagerError::Type::NoLoaderFound: break;
+					default: RML_ERROR("Failed to load {} mods: {}", folder.folder_name, result.error().message); break;
+					}
 				}
 			}
 		}
+
+		return {};
 	}
 
-	ModManager::~ModManager()
+	void ModManager::shutdown()
 	{
 		for (const auto& loader : m_loaders | std::views::values)
 			loader->unload_all();
 	}
 
-	void ModManager::register_loader(std::unique_ptr<IModLoader> loader, const std::vector<std::string>& folders)
+	ModManager::~ModManager()
 	{
-		for (const auto& folder : folders)
-		{
-			m_loaders[folder] = std::move(loader);
-		}
+		shutdown();
+	}
+
+	void ModManager::register_loader(std::unique_ptr<IModLoader> loader, const ModKind kind)
+	{
+		m_loaders[kind] = std::move(loader);
 	}
 
 	std::expected<void, ModManagerError> ModManager::load_directory(const std::filesystem::path& directory) const
@@ -195,16 +175,28 @@ namespace rml
 		return std::filesystem::path(mod_loader_dir);
 	}
 
+	std::optional<ModKind> ModManager::kind_for_path(const std::filesystem::path& path) const noexcept
+	{
+		std::error_code ec;
+		const bool path_is_directory = std::filesystem::is_directory(path, ec);
+		const auto& containing_folder = path_is_directory ? path.filename() : path.parent_path().filename();
+		return mod_kind_from_folder(containing_folder.string());
+	}
+
 	std::optional<IModLoader*> ModManager::find_loader_for_path(const std::filesystem::path& path) const noexcept
 	{
-		const auto& filename = path.filename().string();
-		for (const auto& [folder, loader] : m_loaders)
+		const auto kind = kind_for_path(path);
+		if (!kind.has_value())
 		{
-			if (filename.starts_with(folder))
-			{
-				return &*loader;
-			}
+			return std::nullopt;
 		}
-		return std::nullopt;
+
+		const auto it = m_loaders.find(*kind);
+		if (it == m_loaders.end())
+		{
+			return std::nullopt;
+		}
+
+		return it->second.get();
 	}
 }

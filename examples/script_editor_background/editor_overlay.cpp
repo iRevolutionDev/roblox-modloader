@@ -78,7 +78,7 @@ namespace script_editor_bg
 
 	std::size_t EditorOverlay::paint_slot()
 	{
-		static const std::size_t slot = memory::virtual_index(&rml::qt::QWidget::paintEvent);
+		static const std::size_t slot = rml::memory::virtual_index(&rml::qt::QWidget::paintEvent);
 		return slot;
 	}
 
@@ -161,7 +161,9 @@ namespace script_editor_bg
 			return false;
 
 		std::string ext = path.extension().string();
-		std::ranges::transform(ext, ext.begin(), [](const unsigned char c) { return static_cast<char>(std::tolower(c)); });
+		std::ranges::transform(ext, ext.begin(), [](const unsigned char c) {
+			return static_cast<char>(std::tolower(c));
+		});
 		return ext == ".gif" || ext == ".webp" || ext == ".apng" || ext == ".mng";
 	}
 
@@ -170,8 +172,7 @@ namespace script_editor_bg
 		if (m_movie)
 		{
 			m_movie->stop();
-			rml::qt::QMovie::destroy(m_movie);
-			m_movie = nullptr;
+			m_movie.reset();
 		}
 		m_animated = false;
 	}
@@ -209,21 +210,21 @@ namespace script_editor_bg
 		if (is_animated_extension(image_path))
 		{
 			const rml::qt::QString qpath(key);
-			if (rml::qt::QMovie* const movie = rml::qt::QMovie::create(qpath))
+			if (rml::qt::QtOwned<rml::qt::QMovie> movie = rml::qt::QMovie::create_owned(qpath))
 			{
 				if (movie->isValid() && movie->frameCount() != 1)
 				{
 					movie->setCacheMode(rml::qt::QMovie::CacheMode::All);
-					movie->on_frame_changed([this] { on_movie_frame(); });
+					movie->on_frame_changed([this] {
+						on_movie_frame();
+					});
 					movie->start();
 
-					m_movie = movie;
-					m_animated = true;
 					m_frame = movie->currentPixmap();
+					m_animated = true;
+					m_movie = std::move(movie);
 					return;
 				}
-
-				rml::qt::QMovie::destroy(movie);
 			}
 		}
 

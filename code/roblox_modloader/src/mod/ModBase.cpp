@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/mod/mod_base.hpp"
 
 ModBase::ModBase() {
@@ -10,6 +10,6 @@ ModBase::ModBase() {
 ModBase::~ModBase() {
 }
 
-void ModBase::set_event_manager(events::EventManager* manager) {
-    event_manager = manager;
+void ModBase::set_event_manager(rml::events::EventManager& manager) {
+    m_event_manager = &manager;
 }

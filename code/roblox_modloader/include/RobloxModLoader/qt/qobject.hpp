@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RobloxModLoader/rml_export.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 
 namespace rml::qt
 {
@@ -35,5 +36,11 @@ namespace rml::qt
 
 	protected:
 		void* d_ptr;
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_OFFSET(QObject, d_ptr, sizeof(void*));
+			RML_ASSERT_LAYOUT_SIZE(QObject, sizeof(void*) * 2);
+		RML_LAYOUT_GUARD_END()
 	};
 }

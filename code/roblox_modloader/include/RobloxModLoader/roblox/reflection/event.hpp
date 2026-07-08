@@ -1,6 +1,7 @@
 #pragma once
-#include "RobloxModLoader/common.hpp"
 #include "type.hpp"
+
+#include <vector>
 
 namespace RBX::Reflection
 {

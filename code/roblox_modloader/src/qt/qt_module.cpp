@@ -1,6 +1,6 @@
 #include "RobloxModLoader/qt/qt_module.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/memory/symbol_resolver.hpp"
 
 namespace rml::qt::detail

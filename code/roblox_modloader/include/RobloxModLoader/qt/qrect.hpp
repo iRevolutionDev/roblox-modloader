@@ -1,21 +1,14 @@
 #pragma once
 
+#include "RobloxModLoader/qt/qt_value_type.hpp"
 #include "RobloxModLoader/rml_export.hpp"
 
 namespace rml::qt
 {
-	class RML_EXPORT QRect
+	class RML_EXPORT QRect : public detail::QtValueType<16>
 	{
 	public:
 		QRect() = default;
 		QRect(int x, int y, int width, int height);
-
-		[[nodiscard]] void* data() const
-		{
-			return const_cast<unsigned char*>(m_storage);
-		}
-
-	private:
-		alignas(void*) unsigned char m_storage[16]{};
 	};
 }

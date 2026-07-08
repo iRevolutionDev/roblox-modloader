@@ -17,17 +17,6 @@ namespace RBX
 		return s_map;
 	}
 
-	namespace
-	{
-		struct NameMapOwner
-		{
-			~NameMapOwner()
-			{
-			}
-		};
-		NameMapOwner s_map_owner;
-	} // namespace
-
 	Name::Name(const char* s_name) :
 	    str(s_name)
 	{
@@ -111,4 +100,4 @@ namespace RBX
 		return os << name.c_str();
 	}
 
-} // namespace RBX::Reflection
+} // namespace RBX

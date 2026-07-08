@@ -1,52 +1,44 @@
-#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
+#include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.job.hpp"
 
 #include <unordered_map>
 #include <utility>
 
-RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::Stats& time_metrics)
+RBX::TaskScheduler::StepResult rml::Hooks::on_job_step(void** this_ptr, const RBX::Stats& time_metrics)
 {
 	if (!this_ptr || !*this_ptr)
 	{
 		return RBX::TaskScheduler::StepResult::Stepped; // No job to step, return early.
 	}
 
-	if (!g_hooking)
-	{
-		LOG_ERROR("[hooks::on_job_step] g_hooking is not initialized!");
-		return RBX::TaskScheduler::StepResult::Stepped;
-	}
-
-	const auto vtable        = static_cast<void**>(*this_ptr);
+	const auto vtable = static_cast<void**>(*this_ptr);
 	const auto detected_kind = [&]() -> rml::JobKind {
-		if (!g_task_scheduler)
+		if (!rml::has_task_scheduler())
 		{
 			LOG_ERROR("[hooks::on_job_step] Task scheduler is not initialized, cannot determine job kind.");
 			return rml::JobKind::Heartbeat;
 		}
 
-		const auto kind = g_task_scheduler->get_job_kind_from_vtable(vtable);
+		const auto kind = rml::task_scheduler().get_job_kind_from_vtable(vtable);
 		if (!kind.has_value())
 			return rml::JobKind::Heartbeat;
 
 		return *kind;
 	}();
 
-	if (g_task_scheduler && !g_task_scheduler->is_shutdown())
+	if (rml::has_task_scheduler() && !rml::task_scheduler().is_shutdown())
 	{
 		try
 		{
-			const rml::JobExecutionContext context
-			{
-				.kind = detected_kind,
+			const rml::JobExecutionContext context{.kind = detected_kind,
 			    .job = this_ptr,
-			    .stats = const_cast<RBX::Stats*>(&time_metrics),
-			    .delta_time = time_metrics.delta_time
-			};
+			    .stats = &time_metrics,
+			    .delta_time = time_metrics.delta_time};
 
-			g_task_scheduler->execute_jobs_for_kind(context);
+			rml::task_scheduler().execute_jobs_for_kind(context);
 		}
 		catch (const std::exception& e)
 		{
@@ -60,14 +52,14 @@ RBX::TaskScheduler::StepResult hooks::on_job_step(void** this_ptr, const RBX::St
 
 	if (const auto it = g_hooking->m_jobs_hook.find(detected_kind); it != g_hooking->m_jobs_hook.end() && it->second)
 	{
-		return it->second->get_original<decltype(&on_job_step)>(6)(this_ptr, time_metrics);
+		return it->second->get_original<decltype(&on_job_step)>(rml::JobVtable::kStepIndex)(this_ptr, time_metrics);
 	}
 
 	LOG_WARN("[hooks::on_job_step] No hook found for job kind {}, returning Stepped", std::to_underlying(detected_kind));
 	return RBX::TaskScheduler::StepResult::Stepped;
 }
 
-void hooks::on_job_destroy(void** this_ptr)
+void rml::Hooks::on_job_destroy(void** this_ptr)
 {
-	return hooking::get_original<&hooks::on_job_destroy>()(this_ptr);
+	return Hooking::get_original<&Hooks::on_job_destroy>()(this_ptr);
 }

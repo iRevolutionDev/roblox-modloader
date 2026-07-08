@@ -13,7 +13,7 @@ internal sealed class Logger(string source) : ILogger
             return;
         }
 
-        RML.Logging.Log.Dispatch(new LogEvent(level, Source, message ?? string.Empty, DateTime.Now, exception));
+        RML.Logging.Log.Dispatch(new LogEvent(level, Source, message ?? string.Empty, DateTimeOffset.UtcNow, exception));
     }
 
     public void Trace(string message) => Log(LogLevel.Trace, message);

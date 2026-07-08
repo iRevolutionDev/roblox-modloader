@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include <unordered_map>
 #include <unordered_set>
 #include <memory>

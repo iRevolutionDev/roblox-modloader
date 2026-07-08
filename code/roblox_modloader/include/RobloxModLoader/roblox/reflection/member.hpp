@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RobloxModLoader/roblox/security/script_permissions.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "descriptor.hpp"
 
 #include <string_view>
@@ -163,6 +164,8 @@ namespace RBX::Reflection
 		}
 	};
 
+	RML_ASSERT_LAYOUT_SIZE(MemberDescriptorContainer<ClassDescriptor>, 0x60);
+
 	class MemberDescriptor : public Descriptor
 	{
 	public:
@@ -174,5 +177,11 @@ namespace RBX::Reflection
 
 	protected:
 		virtual ~MemberDescriptor() = default;
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(MemberDescriptor, 0x40);
+			RML_ASSERT_LAYOUT_OFFSET(MemberDescriptor, security, 0x38);
+		RML_LAYOUT_GUARD_END()
 	};
 }

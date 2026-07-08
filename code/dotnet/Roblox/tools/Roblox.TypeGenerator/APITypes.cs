@@ -58,6 +58,14 @@ public sealed class Property : MemberBase
     public string? Default { get; set; }
     [JsonConverter(typeof(RobloxValueTypeFlexConverter))]
     public RobloxValueType? ValueType { get; set; }
+    [JsonConverter(typeof(PropertySecurityFlexConverter))]
+    public PropertySecurity? Security { get; set; }
+}
+
+public sealed class PropertySecurity
+{
+    public string? Read { get; set; }
+    public string? Write { get; set; }
 }
 
 public sealed class Class
@@ -155,6 +163,67 @@ internal sealed class RobloxValueTypeFlexConverter : JsonConverter<RobloxValueTy
         writer.WriteStartObject();
         writer.WriteString("Category", value.Category);
         writer.WriteString("Name", value.Name);
+        writer.WriteEndObject();
+    }
+}
+
+internal sealed class PropertySecurityFlexConverter : JsonConverter<PropertySecurity?>
+{
+    public override PropertySecurity? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
+        if (reader.TokenType == JsonTokenType.String)
+        {
+            var level = reader.GetString();
+            return new PropertySecurity { Read = level, Write = level };
+        }
+
+        if (reader.TokenType != JsonTokenType.StartObject)
+        {
+            reader.Skip();
+            return null;
+        }
+
+        string? read = null;
+        string? write = null;
+
+        while (reader.Read() && reader.TokenType != JsonTokenType.EndObject)
+        {
+            if (reader.TokenType != JsonTokenType.PropertyName)
+            {
+                continue;
+            }
+
+            var propName = reader.GetString();
+            reader.Read();
+
+            if (string.Equals(propName, "Read", StringComparison.OrdinalIgnoreCase))
+            {
+                read = reader.GetString();
+            }
+            else if (string.Equals(propName, "Write", StringComparison.OrdinalIgnoreCase))
+            {
+                write = reader.GetString();
+            }
+            else
+            {
+                reader.Skip();
+            }
+        }
+
+        return new PropertySecurity { Read = read, Write = write };
+    }
+
+    public override void Write(Utf8JsonWriter writer, PropertySecurity? value, JsonSerializerOptions options)
+    {
+        if (value is null) { writer.WriteNullValue(); return; }
+        writer.WriteStartObject();
+        writer.WriteString("Read", value.Read);
+        writer.WriteString("Write", value.Write);
         writer.WriteEndObject();
     }
 }

@@ -1,7 +1,7 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/memory/module_utils.hpp"
 
-namespace memory::module_utils {
+namespace rml::memory::module_utils {
     std::string get_module_name_from_address(const uintptr_t address) {
         HMODULE module_handle;
         if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,

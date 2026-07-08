@@ -4,6 +4,8 @@
 #include "member.hpp"
 #include "type.hpp"
 
+#include "RobloxModLoader/util/layout_assert.hpp"
+
 #include <cstddef>
 
 namespace RBX::Reflection
@@ -35,5 +37,12 @@ namespace RBX::Reflection
 	protected:
 		std::byte pad[0x8];
 		SignatureDescriptor signature;
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(YieldFunctionDescriptor, 0x78);
+			RML_ASSERT_LAYOUT_OFFSET(YieldFunctionDescriptor, pad, 0x40);
+			RML_ASSERT_LAYOUT_OFFSET(YieldFunctionDescriptor, signature, 0x48);
+		RML_LAYOUT_GUARD_END()
 	};
 }

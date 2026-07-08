@@ -1,5 +1,6 @@
 #pragma once
 
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "member.hpp"
 #include "type.hpp"
 
@@ -27,5 +28,12 @@ namespace RBX::Reflection
 		{
 			return async_flag;
 		}
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(CallbackDescriptor, 0x78);
+			RML_ASSERT_LAYOUT_OFFSET(CallbackDescriptor, signature, 0x40);
+			RML_ASSERT_LAYOUT_OFFSET(CallbackDescriptor, async_flag, 0x70);
+		RML_LAYOUT_GUARD_END()
 	};
 }

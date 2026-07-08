@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/config/config_types.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 
@@ -89,6 +89,9 @@ namespace rml::luau {
             const config::ModConfig &mod_config);
 
         [[nodiscard]] static std::string load_script_content(const std::filesystem::path &script_path);
+
+        [[nodiscard]] static std::optional<config::ModConfig> load_mod_config(
+            const std::filesystem::path &config_path);
 
         [[nodiscard]] static bool matches_pattern(const std::filesystem::path &file_path,
                                                   const std::string &pattern);

@@ -1,12 +1,15 @@
 #pragma once
 
+#include <expected>
 #include <memory>
 
-class vtable_hook {
+#include "RobloxModLoader/hooking/i_hook.hpp"
+
+class vtable_hook : public rml::IHook {
 public:
     explicit vtable_hook(void **vft, std::size_t num_funcs);
 
-    ~vtable_hook();
+    ~vtable_hook() override;
 
     vtable_hook(vtable_hook &&that) = delete;
 
@@ -29,14 +32,16 @@ public:
         return m_backup_table.get();
     }
 
-    void enable();
+    [[nodiscard]] std::expected<void, rml::HookError> enable() override;
 
-    void disable();
+    [[nodiscard]] std::expected<void, rml::HookError> disable() override;
+
+    [[nodiscard]] bool is_enabled() const override;
 
 private:
     std::size_t m_num_funcs;
     void **m_table;
     std::unique_ptr<void *[]> m_backup_table;
     std::unique_ptr<void *[]> m_hook_table;
-    DWORD m_old_protect;
+    bool m_enabled;
 };

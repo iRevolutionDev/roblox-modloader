@@ -1,18 +1,18 @@
 #include "RobloxModLoader/roblox/data_model.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/roblox/data_model_job.hpp"
 
 namespace RBX
 {
 	DataModelType DataModel::get_type() const
 	{
-		return static_cast<DataModelType>(*reinterpret_cast<uint32_t*>(reinterpret_cast<std::uintptr_t>(this) + 0x324));
+		return m_type;
 	}
 
 	bool DataModel::is_initialized() const
 	{
-		return *reinterpret_cast<bool*>(reinterpret_cast<std::uintptr_t>(this) + 0x5C1);
+		return m_initialized;
 	}
 
 	DataModel* DataModel::from_job(const DataModelJob* job)
@@ -28,8 +28,8 @@ namespace RBX
 			return nullptr;
 		}
 
-		// Job has fake data model then I need to offset it to the real data model.
-		const auto data_model = reinterpret_cast<uintptr_t>(fake_data_model.get()) + 0x1C0;
+		constexpr std::uintptr_t fake_job_to_real_data_model_offset = 0x1C0;
+		const auto data_model = reinterpret_cast<std::uintptr_t>(fake_data_model.get()) + fake_job_to_real_data_model_offset;
 
 		return reinterpret_cast<DataModel*>(data_model);
 	}

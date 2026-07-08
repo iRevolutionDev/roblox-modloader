@@ -69,6 +69,15 @@ The hundreds of wrapper classes in `Roblox` are not written by hand. A generator
 plus a manifest that maps each class name to its wrapper and a factory. Re-running the generator is
 how the API surface is kept current with Studio.
 
+## The Luau scripting subsystem (parked)
+
+The native core also carries a Luau-script mod path (`script_manager`, `script_engine`,
+`script_scheduler`, the environment providers, and their supporting hooks/jobs). It is currently
+disabled: Roblox reshuffled the Luau VM struct layout, and the code depends on offsets this project
+has not re-confirmed. `code/tools/dumper` is the tool being built to recover that layout; until it
+lands, the subsystem stays out of the default build behind the `RML_ENABLE_LUAU` CMake option
+(`ScriptSubsystem` is the seam the loader re-enters through once it's safe to turn back on).
+
 ## Where things live
 
 ```

@@ -1,8 +1,11 @@
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
 
-#include "RobloxModLoader/common.hpp"
 #include "RobloxModLoader/hooking/hooking.hpp"
+#include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/internal/hooking/engine_hooks.hpp"
 #include "RobloxModLoader/qt/qaction.hpp"
+#include "RobloxModLoader/qt/qt_module.hpp"
+#include "qt_connect.hpp"
 
 namespace rml::qt
 {
@@ -16,7 +19,7 @@ namespace rml::qt
 		if (!target)
 			return false;
 
-		hooking::detour_hook_helper::add<&hooks::qt_action_activate>("QAction::activate", target);
+		Hooking::DetourHookHelper::add<&Hooks::qt_action_activate>("QAction::activate", target);
 		m_hook_installed = true;
 		LOG_INFO("[qt] hooked QAction::activate at {}", target);
 		return true;
@@ -28,7 +31,7 @@ namespace rml::qt
 		return m_hook_installed;
 	}
 
-	void ActionDispatcher::connect(void* action, std::function<void()> callback)
+	void ActionDispatcher::connect(QAction* action, std::function<void()> callback)
 	{
 		if (!action || !callback)
 			return;
@@ -37,16 +40,41 @@ namespace rml::qt
 		m_callbacks[action].push_back(std::move(callback));
 	}
 
-	void ActionDispatcher::disconnect(void* action)
+	void ActionDispatcher::connect_toggled(QAction* action, std::function<void(bool)> callback)
+	{
+		if (!action || !callback)
+			return;
+
+		bool first_connection = false;
+		{
+			std::scoped_lock lock(m_callbacks_mutex);
+			auto& handlers = m_toggle_callbacks[action];
+			first_connection = handlers.empty();
+			handlers.push_back(std::move(callback));
+		}
+
+		if (!first_connection)
+			return;
+
+		static void* const signal = detail::widgets_export("?toggled@QAction@@QEAAX_N@Z");
+		static const void* const meta = detail::widgets_export("?staticMetaObject@QAction@@2UQMetaObject@@B");
+		detail::connect_function(action, signal, meta, [this, action](void** args) {
+			if (args && args[1])
+				dispatch_toggled(action, *static_cast<bool*>(args[1]));
+		});
+	}
+
+	void ActionDispatcher::disconnect(QAction* action)
 	{
 		if (!action)
 			return;
 
 		std::scoped_lock lock(m_callbacks_mutex);
 		m_callbacks.erase(action);
+		m_toggle_callbacks.erase(action);
 	}
 
-	void ActionDispatcher::dispatch(void* action) const
+	void ActionDispatcher::dispatch(QAction* action) const
 	{
 		std::vector<std::function<void()>> handlers;
 		{
@@ -68,6 +96,32 @@ namespace rml::qt
 			catch (...)
 			{
 				LOG_ERROR("[qt] action callback threw a non-standard exception");
+			}
+		}
+	}
+
+	void ActionDispatcher::dispatch_toggled(QAction* action, const bool value) const
+	{
+		std::vector<std::function<void(bool)>> handlers;
+		{
+			std::scoped_lock lock(m_callbacks_mutex);
+			if (const auto it = m_toggle_callbacks.find(action); it != m_toggle_callbacks.end())
+				handlers = it->second;
+		}
+
+		for (const auto& handler : handlers)
+		{
+			try
+			{
+				handler(value);
+			}
+			catch (const std::exception& e)
+			{
+				LOG_ERROR("[qt] toggled callback threw: {}", e.what());
+			}
+			catch (...)
+			{
+				LOG_ERROR("[qt] toggled callback threw a non-standard exception");
 			}
 		}
 	}

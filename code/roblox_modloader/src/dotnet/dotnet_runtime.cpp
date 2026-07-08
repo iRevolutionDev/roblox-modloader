@@ -1,6 +1,6 @@
 #include "dotnet_runtime.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "utils/directory.hpp"
 
 #ifdef _WIN32

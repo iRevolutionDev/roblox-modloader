@@ -11,6 +11,12 @@ file(GLOB_RECURSE MODLOADER_SUBDIRS CONFIGURE_DEPENDS
         "${ROBLOX_MODLOADER_SOURCE_DIR}/**/*.hpp"
 )
 
+if (NOT RML_ENABLE_LUAU)
+    list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/luau/")
+    list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/hooks/script_context/")
+    list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/roblox/jobs/scripting/")
+endif ()
+
 list(APPEND MODLOADER_SOURCES ${MODLOADER_SUBDIRS})
 
 file(GLOB_RECURSE MODLOADER_VENDOR_SOURCES CONFIGURE_DEPENDS
@@ -52,6 +58,7 @@ add_dependencies(roblox_modloader roblox_modloader_version)
 
 setup_compiler_flags(roblox_modloader)
 setup_compile_definitions(roblox_modloader PRIVATE)
+target_compile_definitions(roblox_modloader PRIVATE RML_ENABLE_LUAU=$<BOOL:${RML_ENABLE_LUAU}>)
 setup_core_dependencies(roblox_modloader PRIVATE)
 setup_luau_dependencies(roblox_modloader PRIVATE)
 setup_dotnet_hosting(roblox_modloader PRIVATE)
@@ -79,7 +86,7 @@ set_target_properties(roblox_modloader PROPERTIES
 )
 
 target_precompile_headers(roblox_modloader PRIVATE
-        "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/common.hpp"
+        "${ROBLOX_MODLOADER_INCLUDE_DIR}/RobloxModLoader/internal/common.hpp"
 )
 
 include(GenerateExportHeader)
@@ -187,7 +194,7 @@ if (WIN32 AND TARGET roblox_modloader AND DEFINED ENV{ROBLOX_STUDIO_PATH} AND NO
                 COMMENT "Copying nethost runtime binary to RobloxModLoader/runtime"
         )
     endif ()
-    
+
     add_custom_command(TARGET roblox_modloader POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{ROBLOX_STUDIO_PATH}/RobloxModLoader"
             COMMAND ${CMAKE_COMMAND} -E copy_if_different

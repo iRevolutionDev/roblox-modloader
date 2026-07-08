@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Collections.Concurrent;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,21 +20,23 @@ public static unsafe class Interop
             return;
         }
 
+        var table = Table;
         try
         {
-            if (IsInitialized && Table != null && Table->Log != null)
+            if (table != null && table->Log != null)
             {
                 var bytes = Encoding.UTF8.GetBytes(message);
                 fixed (byte* p = bytes)
                 {
-                    Table->Log((int)level, (sbyte*)p, bytes.Length);
+                    table->Log((int)level, (sbyte*)p, bytes.Length);
                 }
 
                 return;
             }
         }
-        catch
+        catch (NullReferenceException ex)
         {
+            Console.Error.WriteLine($"[RML/Error] Interop.Log native call failed: {ex.Message}");
         }
 
         var writer = level >= LogLevel.Warn ? Console.Error : Console.Out;
@@ -95,7 +98,7 @@ public static unsafe class Interop
         Table->FreeNativePtr((void*)ptr);
     }
 
-    public static nuint ModsMenuAddAction(string text, nint callback, nint state)
+    public static nuint ModsMenuAddAction(nuint parent, string text, nint callback, nint state)
     {
         if (!IsInitialized || Table == null || Table->ModsMenuAddAction == null || callback == nint.Zero)
         {
@@ -110,21 +113,86 @@ public static unsafe class Interop
         buffer[byteCount] = 0;
 
         var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>)callback;
-        return Table->ModsMenuAddAction((sbyte*)buffer, cb, (void*)state);
+        return Table->ModsMenuAddAction(parent, (sbyte*)buffer, cb, (void*)state);
     }
-    
-    public static void ModsMenuRemoveAction(nuint actionId)
+
+    public static nuint ModsMenuAddSubmenu(nuint parent, string text)
     {
-        if (actionId == 0 || !IsInitialized || Table == null || Table->ModsMenuRemoveAction == null)
+        if (!IsInitialized || Table == null || Table->ModsMenuAddSubmenu == null)
+        {
+            return 0;
+        }
+
+        ArgumentNullException.ThrowIfNull(text);
+
+        var byteCount = Encoding.UTF8.GetByteCount(text);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(text, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        return Table->ModsMenuAddSubmenu(parent, (sbyte*)buffer);
+    }
+
+    public static nuint ModsMenuAddSeparator(nuint parent)
+    {
+        if (!IsInitialized || Table == null || Table->ModsMenuAddSeparator == null)
+        {
+            return 0;
+        }
+
+        return Table->ModsMenuAddSeparator(parent);
+    }
+
+    public static nuint ModsMenuAddCheckable(nuint parent, string text, bool initial, nint callback, nint state)
+    {
+        if (!IsInitialized || Table == null || Table->ModsMenuAddCheckable == null || callback == nint.Zero)
+        {
+            return 0;
+        }
+
+        ArgumentNullException.ThrowIfNull(text);
+
+        var byteCount = Encoding.UTF8.GetByteCount(text);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(text, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        var cb = (delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>)callback;
+        return Table->ModsMenuAddCheckable(parent, (sbyte*)buffer, initial ? 1 : 0, cb, (void*)state);
+    }
+
+    public static void ModsMenuSetItemIcon(nuint id, string path)
+    {
+        if (id == 0 || !IsInitialized || Table == null || Table->ModsMenuSetItemIcon == null)
         {
             return;
         }
 
-        Table->ModsMenuRemoveAction(actionId);
+        ArgumentNullException.ThrowIfNull(path);
+
+        var byteCount = Encoding.UTF8.GetByteCount(path);
+        var buffer = stackalloc byte[byteCount + 1];
+        Encoding.UTF8.GetBytes(path, new Span<byte>(buffer, byteCount));
+        buffer[byteCount] = 0;
+
+        Table->ModsMenuSetItemIcon(id, (sbyte*)buffer);
+    }
+
+    public static void ModsMenuRemove(nuint id)
+    {
+        if (id == 0 || !IsInitialized || Table == null || Table->ModsMenuRemove == null)
+        {
+            return;
+        }
+
+        Table->ModsMenuRemove(id);
     }
 
     public class Reflection
     {
+        private const int StackAllocArgThreshold = 64;
+        private const int MaxArgCount = 4096;
+
         private static readonly ConcurrentDictionary<string, nint> CachedMemberNames = new(StringComparer.Ordinal);
 
         internal static void ClearCaches()
@@ -174,32 +242,54 @@ public static unsafe class Interop
                 return result;
             }
 
-            var tempPtrs = stackalloc nint[argCount];
-            var tempPtrCount = 0;
-            var argVariants = stackalloc InteropVariant[argCount];
+            ValidateArgCount(argCount);
+
+            if (argCount <= StackAllocArgThreshold)
+            {
+                var tempPtrs = stackalloc nint[argCount];
+                var argVariants = stackalloc InteropVariant[argCount];
+                var tempPtrCount = 0;
+
+                try
+                {
+                    BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                    Table->ReflectionInvoke(instance, nameS, argVariants, (uint)argCount, &result);
+                    return result;
+                }
+                finally
+                {
+                    FreeTempPtrs(tempPtrs, tempPtrCount);
+                }
+            }
+
+            var tempPtrsArr = ArrayPool<nint>.Shared.Rent(argCount);
+            var argVariantsArr = ArrayPool<InteropVariant>.Shared.Rent(argCount);
 
             try
             {
-                for (var i = 0; i < argCount; i++)
+                fixed (nint* tempPtrs = tempPtrsArr)
+                fixed (InteropVariant* argVariants = argVariantsArr)
                 {
-                    argVariants[i] = BuildVariant(args![i], tempPtrs, ref tempPtrCount);
-                }
-
-                Table->ReflectionInvoke(instance, nameS, argVariants, (uint)argCount, &result);
-                return result;
-            }
-            finally
-            {
-                for (var i = 0; i < tempPtrCount; i++)
-                {
-                    if (tempPtrs[i] != 0)
+                    var tempPtrCount = 0;
+                    try
                     {
-                        Marshal.FreeHGlobal(tempPtrs[i]);
+                        BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                        Table->ReflectionInvoke(instance, nameS, argVariants, (uint)argCount, &result);
+                        return result;
+                    }
+                    finally
+                    {
+                        FreeTempPtrs(tempPtrs, tempPtrCount);
                     }
                 }
             }
+            finally
+            {
+                ArrayPool<nint>.Shared.Return(tempPtrsArr);
+                ArrayPool<InteropVariant>.Shared.Return(argVariantsArr);
+            }
         }
-        
+
         public static void InvokeAsync(
             void* instance,
             string methodName,
@@ -224,27 +314,79 @@ public static unsafe class Interop
                 return;
             }
 
-            var tempPtrs = stackalloc nint[argCount];
-            var tempPtrCount = 0;
-            var argVariants = stackalloc InteropVariant[argCount];
+            ValidateArgCount(argCount);
+
+            if (argCount <= StackAllocArgThreshold)
+            {
+                var tempPtrs = stackalloc nint[argCount];
+                var argVariants = stackalloc InteropVariant[argCount];
+                var tempPtrCount = 0;
+
+                try
+                {
+                    BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                    Table->ReflectionInvokeAsync(instance, nameS, argVariants, (uint)argCount, callback, state);
+                }
+                finally
+                {
+                    FreeTempPtrs(tempPtrs, tempPtrCount);
+                }
+
+                return;
+            }
+
+            var tempPtrsArr = ArrayPool<nint>.Shared.Rent(argCount);
+            var argVariantsArr = ArrayPool<InteropVariant>.Shared.Rent(argCount);
 
             try
             {
-                for (var i = 0; i < argCount; i++)
+                fixed (nint* tempPtrs = tempPtrsArr)
+                fixed (InteropVariant* argVariants = argVariantsArr)
                 {
-                    argVariants[i] = BuildVariant(args![i], tempPtrs, ref tempPtrCount);
+                    var tempPtrCount = 0;
+                    try
+                    {
+                        BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                        Table->ReflectionInvokeAsync(instance, nameS, argVariants, (uint)argCount, callback, state);
+                    }
+                    finally
+                    {
+                        FreeTempPtrs(tempPtrs, tempPtrCount);
+                    }
                 }
-
-                Table->ReflectionInvokeAsync(instance, nameS, argVariants, (uint)argCount, callback, state);
             }
             finally
             {
-                for (var i = 0; i < tempPtrCount; i++)
+                ArrayPool<nint>.Shared.Return(tempPtrsArr);
+                ArrayPool<InteropVariant>.Shared.Return(argVariantsArr);
+            }
+        }
+
+        private static void ValidateArgCount(int argCount)
+        {
+            if (argCount > MaxArgCount)
+            {
+                throw new ArgumentException(
+                    $"Argument count {argCount} exceeds the maximum supported count of {MaxArgCount}.", nameof(argCount));
+            }
+        }
+
+        private static void BuildArgVariants(
+            object?[] args, int argCount, nint* tempPtrs, ref int tempPtrCount, InteropVariant* argVariants)
+        {
+            for (var i = 0; i < argCount; i++)
+            {
+                argVariants[i] = BuildVariant(args[i], tempPtrs, ref tempPtrCount);
+            }
+        }
+
+        private static void FreeTempPtrs(nint* tempPtrs, int tempPtrCount)
+        {
+            for (var i = 0; i < tempPtrCount; i++)
+            {
+                if (tempPtrs[i] != 0)
                 {
-                    if (tempPtrs[i] != 0)
-                    {
-                        Marshal.FreeHGlobal(tempPtrs[i]);
-                    }
+                    Marshal.FreeHGlobal(tempPtrs[i]);
                 }
             }
         }
@@ -361,8 +503,18 @@ public static unsafe class Interop
                 {
                 }
             }
+            else if (arg is IConvertible)
+            {
+                try
+                {
+                    return InteropVariant.FromInt64(Convert.ToInt64(arg));
+                }
+                catch (Exception ex) when (ex is InvalidCastException or FormatException or OverflowException)
+                {
+                }
+            }
 
-            return InteropVariant.FromInt64(ToInt64Fallback(arg));
+            throw new NotSupportedException($"Cannot marshal argument of type {type}");
         }
 
         private static InteropVariant BuildStringVariant(string s, nint* tempPtrs, ref int tempPtrCount)
@@ -373,18 +525,6 @@ public static unsafe class Interop
             Marshal.WriteByte(p + bytes.Length, 0);
             tempPtrs[tempPtrCount++] = p;
             return InteropVariant.FromString((nuint)(ulong)p);
-        }
-
-        private static long ToInt64Fallback(object arg)
-        {
-            try
-            {
-                return Convert.ToInt64(arg);
-            }
-            catch
-            {
-                return 0;
-            }
         }
     }
 }

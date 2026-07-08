@@ -26,6 +26,7 @@ option(ROBLOX_MODLOADER_BUILD_EXAMPLES "Build example mods" ON)
 option(ROBLOX_MODLOADER_BUILD_MANAGED_PROJECTS "Build C# projects as part of the default ALL target" ${RML_DEFAULT_BUILD_MANAGED_PROJECTS})
 option(ROBLOX_MODLOADER_USE_CMAKE_CSHARP "Use CMake's native C# project integration on Visual Studio generators" ${RML_DEFAULT_USE_CMAKE_CSHARP})
 option(ROBLOX_MODLOADER_INSTALL "Install RobloxModLoader" OFF)
+option(RML_ENABLE_LUAU "Compile the disabled Luau scripting subsystem (layout-sensitive; VM structs pending re-confirmation via code/tools/dumper)" OFF)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

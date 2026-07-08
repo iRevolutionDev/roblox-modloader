@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/util/layout_assert.hpp"
+
 #include <cstdint>
 
 namespace RBX::Signals
@@ -25,6 +27,20 @@ namespace RBX::Signals
 			void(__fastcall* destroy_fn)(Slot*);
 			void* wrapper_ptr;
 			void* wrapper_rep;
+
+		private:
+			RML_LAYOUT_GUARD_BEGIN()
+				RML_ASSERT_LAYOUT_SIZE(Slot, 0x40);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, strong, 0x0);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, weak, 0x4);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, fire_fn, 0x8);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, unk_0x10, 0x10);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, flags, 0x18);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, source, 0x20);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, destroy_fn, 0x28);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, wrapper_ptr, 0x30);
+				RML_ASSERT_LAYOUT_OFFSET(Slot, wrapper_rep, 0x38);
+			RML_LAYOUT_GUARD_END()
 		};
 
 		Connection() noexcept :

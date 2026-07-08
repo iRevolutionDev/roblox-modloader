@@ -3,6 +3,8 @@
 #include "member.hpp"
 #include "type.hpp"
 
+#include "RobloxModLoader/util/layout_assert.hpp"
+
 #include <cstdint>
 #include <memory>
 #include <string>
@@ -140,6 +142,13 @@ namespace RBX::Reflection
 
 		virtual void lua_get(lua_State* L, const DescribedBase* instance) const = 0;
 		virtual void lua_set(lua_State* L, DescribedBase* instance) const = 0;
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_SIZE(PropertyDescriptor, 0x78);
+			RML_ASSERT_LAYOUT_OFFSET(PropertyDescriptor, padding, 0x40);
+			RML_ASSERT_LAYOUT_OFFSET(PropertyDescriptor, m_is_enum, 0x70);
+		RML_LAYOUT_GUARD_END()
 	};
 
 	template<typename V>

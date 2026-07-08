@@ -1,75 +1,93 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
-
-struct DynamicLibrary
-{
-#if defined(_WIN32)
-	HMODULE handle{nullptr};
-#else
-	void* handle{nullptr};
+#ifndef NOMINMAX
+	#define NOMINMAX
 #endif
 
-	DynamicLibrary()                                 = default;
-	DynamicLibrary(const DynamicLibrary&)            = delete;
-	DynamicLibrary& operator=(const DynamicLibrary&) = delete;
+#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+#endif
 
-	DynamicLibrary(DynamicLibrary&& other) noexcept
-	{
-		handle = std::exchange(other.handle, nullptr);
-	}
+#if defined(_WIN32)
+	#include <Windows.h>
+#else
+	#include <dlfcn.h>
+#endif
 
-	DynamicLibrary& operator=(DynamicLibrary&& other) noexcept
+#include <filesystem>
+#include <utility>
+
+namespace rml::memory
+{
+	struct DynamicLibrary
 	{
-		if (this != &other)
+#if defined(_WIN32)
+		HMODULE handle{nullptr};
+#else
+		void* handle{nullptr};
+#endif
+
+		DynamicLibrary() = default;
+		DynamicLibrary(const DynamicLibrary&) = delete;
+		DynamicLibrary& operator=(const DynamicLibrary&) = delete;
+
+		DynamicLibrary(DynamicLibrary&& other) noexcept
 		{
-			unload();
 			handle = std::exchange(other.handle, nullptr);
 		}
-		return *this;
-	}
 
-	~DynamicLibrary()
-	{
-		unload();
-	}
-
-	[[nodiscard]] bool load(const std::filesystem::path& path)
-	{
-#if defined(_WIN32)
-		handle = LoadLibraryW(path.c_str());
-#else
-		handle = dlopen(path.c_str(), RTLD_LOCAL | RTLD_LAZY);
-#endif
-		return handle != nullptr;
-	}
-
-	[[nodiscard]] void* symbol(const char* name) const
-	{
-		if (!handle)
+		DynamicLibrary& operator=(DynamicLibrary&& other) noexcept
 		{
-			return nullptr;
+			if (this != &other)
+			{
+				unload();
+				handle = std::exchange(other.handle, nullptr);
+			}
+			return *this;
 		}
 
-#if defined(_WIN32)
-		return reinterpret_cast<void*>(GetProcAddress(handle, name));
-#else
-		return dlsym(handle, name);
-#endif
-	}
-
-	void unload()
-	{
-		if (!handle)
+		~DynamicLibrary()
 		{
-			return;
+			unload();
 		}
 
+		[[nodiscard]] bool load(const std::filesystem::path& path)
+		{
 #if defined(_WIN32)
-		FreeLibrary(handle);
+			handle = LoadLibraryW(path.c_str());
 #else
-		dlclose(handle);
+			handle = dlopen(path.c_str(), RTLD_LOCAL | RTLD_LAZY);
 #endif
-		handle = nullptr;
-	}
-};
+			return handle != nullptr;
+		}
+
+		[[nodiscard]] void* symbol(const char* name) const
+		{
+			if (!handle)
+			{
+				return nullptr;
+			}
+
+#if defined(_WIN32)
+			return reinterpret_cast<void*>(GetProcAddress(handle, name));
+#else
+			return dlsym(handle, name);
+#endif
+		}
+
+		void unload()
+		{
+			if (!handle)
+			{
+				return;
+			}
+
+#if defined(_WIN32)
+			FreeLibrary(handle);
+#else
+			dlclose(handle);
+#endif
+			handle = nullptr;
+		}
+	};
+}

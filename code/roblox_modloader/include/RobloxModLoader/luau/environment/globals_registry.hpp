@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 
 namespace rml::luau::environment {
     template<typename T>
@@ -30,9 +30,6 @@ namespace rml::luau::environment {
     class LuaFunctionRegistry {
     public:
         static void register_function_safe(lua_State *L, std::string_view name, lua_CFunction func) noexcept;
-
-        template<lua_CFunction Func>
-        static int safe_call_wrapper(lua_State *L) noexcept;
 
     private:
         static int handle_lua_error(lua_State *L, std::string_view function_name, const std::exception &e) noexcept;
@@ -70,20 +67,6 @@ namespace rml::luau::environment {
         static void register_function(lua_State *L, std::string_view name, lua_CFunction func) noexcept {
             LuaFunctionRegistry::register_function_safe(L, name, func);
         }
-
-        static void register_table(lua_State *L, std::string_view name) noexcept;
-
-        static void register_string(lua_State *L, std::string_view name, std::string_view value) noexcept;
-
-        static void register_number(lua_State *L, std::string_view name, lua_Number value) noexcept;
-
-        static void register_boolean(lua_State *L, std::string_view name, bool value) noexcept;
-
-        static void register_table_function(lua_State *L, std::string_view name, lua_CFunction func) noexcept;
-
-        static void begin_table_registration(lua_State *L, std::string_view table_name) noexcept;
-
-        static void end_table_registration(lua_State *L) noexcept;
     };
 
     class GlobalsRegistry final {

@@ -49,7 +49,6 @@ internal sealed class ApiDocsReader
     }
 
     private static readonly Regex _sHtmlTag = new(@"<[^>]+>", RegexOptions.Compiled);
-    private static readonly Regex _sHtmlEntity = new(@"&(?:amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);", RegexOptions.Compiled);
 
     public static string HtmlToXmlDoc(string? html)
     {

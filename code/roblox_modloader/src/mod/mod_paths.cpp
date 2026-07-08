@@ -1,4 +1,4 @@
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/mod/mod_paths.hpp"
 
 #include <system_error>
@@ -21,10 +21,15 @@ namespace rml::mod
 		return m_root;
 	}
 
-	const std::filesystem::path& ModPaths::ensure(const std::filesystem::path& path)
+	std::filesystem::path ModPaths::ensure(const std::filesystem::path& path)
 	{
 		std::error_code ec;
 		std::filesystem::create_directories(path, ec);
+		if (ec)
+		{
+			LOG_WARN("[ModPaths::ensure] Failed to create directory '{}': {}", path.string(), ec.message());
+		}
+
 		return path;
 	}
 

@@ -9,7 +9,7 @@ namespace mod::hooks {
         // Your hook logic here before the original call
 
         // Call the original function
-        auto result = hooking::get_original<&example_hook>()(instance, param1, param2);
+        auto result = rml::Hooking::get_original<&example_hook>()(instance, param1, param2);
 
         // Your hook logic here after the original call
 
@@ -26,7 +26,7 @@ public:
         version = "1.0.0";
         author = "Your Name";
         description = "A basic mod example using RobloxModLoader";
-        mod_logger = logger::get_logger("BasicMod");
+        mod_logger = rml::Logger::get_logger("BasicMod");
     }
 
     void on_load() override {
@@ -56,3 +56,5 @@ BASIC_MOD_API void uninstall_mod(const ModBase *mod) {
     delete mod;
 }
 }
+
+RML_EXPORT_MOD_ABI_VERSION()

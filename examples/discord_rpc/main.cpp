@@ -1,12 +1,12 @@
 #include "discord_sdk.hpp"
 
-#include <RobloxModLoader/common.hpp>
 #include <RobloxModLoader/logger/logger.hpp>
 #include <RobloxModLoader/luau/environment/bridge_provider.hpp>
 #include <RobloxModLoader/mod/mod_base.hpp>
 #include <chrono>
 #include <memory>
 #include <spdlog/spdlog.h>
+#include <string>
 
 using namespace rml::luau::environment;
 
@@ -174,3 +174,5 @@ DISCORD_RPC_MOD_API void uninstall_mod(const ModBase *mod) {
     delete mod;
 }
 }
+
+RML_EXPORT_MOD_ABI_VERSION()

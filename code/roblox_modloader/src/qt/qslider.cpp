@@ -7,31 +7,21 @@
 
 namespace rml::qt
 {
-	namespace
-	{
-		constexpr std::size_t INSTANCE_SIZE = 128;
-	}
-
 	QSlider* QSlider::create(const Orientation orientation, QWidget* parent)
 	{
 		static const auto construct = detail::widgets<void* (*)(void*, int, void*)>("??0QSlider@@QEAA@W4Orientation@Qt@@PEAVQWidget@@@Z");
-		if (!construct)
-			return nullptr;
+		return detail::heap_construct<QSlider>(detail::WIDGET_INSTANCE_SIZE, construct, static_cast<int>(orientation), parent);
+	}
 
-		void* memory = ::operator new(INSTANCE_SIZE);
-		construct(memory, orientation, parent);
-		return static_cast<QSlider*>(memory);
+	QtOwned<QSlider> QSlider::create_owned(const Orientation orientation)
+	{
+		return QtOwned<QSlider>(create(orientation, nullptr));
 	}
 
 	void QSlider::destroy(QSlider* slider)
 	{
-		if (!slider)
-			return;
-
 		static const auto dtor = detail::widgets<void (*)(void*)>("??1QSlider@@UEAA@XZ");
-		if (dtor)
-			dtor(slider);
-		::operator delete(slider);
+		detail::heap_destroy(dtor, slider);
 	}
 
 	void QSlider::setRange(const int minimum, const int maximum)

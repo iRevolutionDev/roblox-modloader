@@ -1,12 +1,13 @@
 #pragma once
 
+#include "RobloxModLoader/qt/qt_value_type.hpp"
 #include "RobloxModLoader/rml_export.hpp"
 
 namespace rml::qt
 {
 	class QBrush;
 
-	class RML_EXPORT QPalette
+	class RML_EXPORT QPalette : public detail::QtValueType<32>
 	{
 	public:
 		enum ColorRole
@@ -28,18 +29,10 @@ namespace rml::qt
 
 		[[nodiscard]] bool valid() const
 		{
-			return m_owned;
-		}
-
-		[[nodiscard]] void* data() const
-		{
-			return const_cast<unsigned char*>(m_storage);
+			return owned();
 		}
 
 	private:
 		void destroy();
-
-		alignas(void*) unsigned char m_storage[32]{};
-		bool m_owned = false;
 	};
 }

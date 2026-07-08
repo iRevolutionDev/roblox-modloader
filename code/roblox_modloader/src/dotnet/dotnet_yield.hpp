@@ -2,8 +2,11 @@
 #include "RobloxModLoader/roblox/reflection/function_descriptor.hpp"
 #include "RobloxModLoader/roblox/reflection/type.hpp"
 #include "RobloxModLoader/roblox/reflection/yield_function_descriptor.hpp"
+#include "RobloxModLoader/util/layout_assert.hpp"
 #include "dotnet_variant.hpp"
+#include "engine_scratch.hpp"
 #include "interop_registry.hpp"
+#include "type_marshaler.hpp"
 
 #include <cstddef>
 #include <memory>
@@ -36,12 +39,12 @@ namespace rml::dotnet
 				if (const RBX::Reflection::Tuple* tuple = shared ? shared->get() : nullptr)
 				{
 					for (const auto& value : tuple->values)
-						m_values.push_back(engine_variant_to_interop(value, m_strings));
+						m_values.push_back(TypeMarshaler::encode_variant(value, &m_strings));
 				}
 				return;
 			}
 
-			m_values.push_back(engine_variant_to_interop(*result, m_strings));
+			m_values.push_back(TypeMarshaler::encode_variant(*result, &m_strings));
 		}
 
 		void take_error(const RBX::Reflection::Variant* message)
@@ -89,10 +92,18 @@ namespace rml::dotnet
 		}
 
 	private:
+		static constexpr std::size_t kYieldEngineScratchBytes = 56;
+
 		struct alignas(16) EngineContext
 		{
 			YieldInvocation* owner{};
-			std::byte reserved[56]{};
+			EngineScratch<kYieldEngineScratchBytes> reserved{};
+
+		private:
+			RML_LAYOUT_GUARD_BEGIN()
+				RML_ASSERT_LAYOUT_OFFSET(EngineContext, owner, 0);
+				RML_ASSERT_LAYOUT_OFFSET(EngineContext, reserved, sizeof(YieldInvocation*));
+			RML_LAYOUT_GUARD_END()
 		};
 
 		EngineContext m_engine_context{};
@@ -107,9 +118,14 @@ namespace rml::dotnet
 			m_engine_context.owner = this;
 		}
 
-		[[nodiscard]] static YieldInvocation* recover(void* engine_context) noexcept
+		[[nodiscard]] static YieldInvocation* recover_from_engine_context(void* engine_context) noexcept
 		{
 			return static_cast<EngineContext*>(engine_context)->owner;
+		}
+
+		[[nodiscard]] static YieldInvocation* recover_from_error_continuation(void* error_continuation) noexcept
+		{
+			return recover_from_engine_context(*static_cast<void**>(error_continuation));
 		}
 
 		void report_and_destroy() noexcept
@@ -138,7 +154,7 @@ namespace rml::dotnet
 
 		static void on_resume(void* continuation, RBX::Reflection::Variant* result) noexcept
 		{
-			auto* const self = recover(continuation);
+			auto* const self = recover_from_engine_context(continuation);
 			try
 			{
 				self->m_result.take_values(result);
@@ -151,7 +167,7 @@ namespace rml::dotnet
 
 		static void on_error(void* continuation, RBX::Reflection::Variant* message) noexcept
 		{
-			auto* const self = recover(*static_cast<void**>(continuation));
+			auto* const self = recover_from_error_continuation(continuation);
 			try
 			{
 				self->m_result.take_error(message);

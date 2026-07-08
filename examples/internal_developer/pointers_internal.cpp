@@ -1,16 +1,25 @@
 #include "pointers_internal.hpp"
 
-#include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/memory/all.hpp"
+#ifndef NOMINMAX
+	#define NOMINMAX
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+#endif
+
+#include <Windows.h>
+#include <cstdint>
+#include <string_view>
 
 constexpr auto pointers_internal::get_roblox_batch()
 {
 	// clang-format off
-    constexpr auto batch_and_hash = memory::make_batch<
+    constexpr auto batch_and_hash = rml::memory::make_batch<
         {
             "IS_INTERNAL",
             "E8 ? ? ? ? 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? ? 84 C0 48 0F 45 CA 48 8D 05 ? ? ? ? 48 89 45 ? 48 C7 45 ? ? ? ? ? 48 8D 45",
-            [](const memory::handle ptr) {
+            [](const rml::memory::handle ptr) {
                 const auto call_offset = ptr.add(1).as<std::int32_t*>();
                 const auto target_address = ptr.add(5).add(*call_offset);
                 g_pointers_internal->m_roblox_pointers.m_is_internal = target_address.as<PVOID>();
@@ -39,7 +48,7 @@ pointers_internal::pointers_internal()
 {
 	g_pointers_internal = this;
 
-	const auto roblox_region            = memory::module("RobloxStudioBeta.exe");
+	const auto roblox_region = rml::memory::module(std::string_view{"RobloxStudioBeta.exe"});
 	const auto [m_roblox_batch, m_hash] = get_roblox_batch();
 
 	constexpr cstxpr_str roblox_batch_name{"roblox"};

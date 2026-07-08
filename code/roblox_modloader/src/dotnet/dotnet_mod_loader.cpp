@@ -1,6 +1,6 @@
 #include "dotnet_mod_loader.hpp"
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"
 #include "roblox_interop_provider.hpp"
@@ -43,11 +43,11 @@ namespace rml::dotnet
 		if (auto r = m_bridge.load_mod(path); !r)
 			return r;
 
-		if (g_task_scheduler)
+		if (rml::has_task_scheduler())
 		{
 			for (int i = 0; i <= static_cast<int>(RBX::DataModelType::Standalone); ++i)
 			{
-				const auto current = g_task_scheduler->get_data_model_by_type(static_cast<RBX::DataModelType>(i));
+				const auto current = rml::task_scheduler().get_data_model_by_type(static_cast<RBX::DataModelType>(i));
 				if (current)
 				{
 					if (auto r2 = m_bridge.notify_data_model_changed(0, reinterpret_cast<uint64_t>(current), i); !r2)

@@ -17,13 +17,17 @@ using std::chrono::time_point_cast;
 
 RML_LOG_SCOPE("CrashDumper");
 
-namespace exception_filter
+namespace rml::exception_filter
 {
-	CrashDumper::CrashDumper() = default;
+	CrashDumper::CrashDumper()
+	{
+		g_crash_dumper = this;
+	}
 
 	CrashDumper::~CrashDumper()
 	{
 		disable();
+		g_crash_dumper = nullptr;
 	}
 
 	void CrashDumper::enable()
@@ -199,7 +203,7 @@ namespace exception_filter
 		}
 	}
 
-	bool CrashDumper::create_minidump(PEXCEPTION_POINTERS exception_pointers, const std::wstring& dump_path)
+	bool CrashDumper::create_minidump(PEXCEPTION_POINTERS exception_pointers, const std::wstring& dump_path) const
 	{
 		try
 		{
@@ -217,9 +221,8 @@ namespace exception_filter
 			exception_info.ExceptionPointers = exception_pointers;
 			exception_info.ClientPointers = FALSE;
 
-			constexpr bool full_memory = false;
-			constexpr int additional_flags = full_memory ? MiniDumpWithFullMemory | MiniDumpIgnoreInaccessibleMemory : 0;
-			constexpr auto dump_type = static_cast<MINIDUMP_TYPE>(DEFAULT_DUMP_TYPE | additional_flags);
+			const int additional_flags = m_full_memory_dump ? MiniDumpWithFullMemory | MiniDumpIgnoreInaccessibleMemory : 0;
+			const auto dump_type = static_cast<MINIDUMP_TYPE>(DEFAULT_DUMP_TYPE | additional_flags);
 
 			const BOOL result = MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), file, dump_type, &exception_info, nullptr, nullptr);
 
@@ -245,7 +248,7 @@ namespace exception_filter
 	LONG WINAPI CrashDumper::vectored_exception_handler(PEXCEPTION_POINTERS exception_pointers)
 	{
 		const DWORD code = exception_pointers->ExceptionRecord->ExceptionCode;
-		constexpr DWORD NON_FATAL_CODES[] = {0xE06D7363, 0xE0434352, 0x04242420, EXCEPTION_BREAKPOINT, EXCEPTION_SINGLE_STEP, DBG_PRINTEXCEPTION_C, DBG_PRINTEXCEPTION_WIDE_C, 0x406D1388, 0x000006BA};
+		constexpr DWORD NON_FATAL_CODES[] = {0xE06D7363, 0xE0434352, 0x04242420, EXCEPTION_BREAKPOINT, EXCEPTION_SINGLE_STEP, DBG_PRINTEXCEPTION_C, DBG_PRINTEXCEPTION_WIDE_C, 0x406D1388, 0x000006BA, 0xC0000135, 0xC0000138, 0xC0000139};
 		for (const DWORD non_fatal : NON_FATAL_CODES)
 		{
 			if (code == non_fatal)
@@ -268,7 +271,10 @@ namespace exception_filter
 			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
-			create_minidump(exception_pointers, dump_path);
+			if (g_crash_dumper)
+			{
+				g_crash_dumper->create_minidump(exception_pointers, dump_path);
+			}
 			log_exception_info(exception_pointers);
 			log_register_state(exception_pointers->ContextRecord);
 			log_stack_trace();
@@ -316,7 +322,7 @@ namespace exception_filter
 			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
-			const bool dump_created = create_minidump(exception_pointers, dump_path);
+			const bool dump_created = g_crash_dumper && g_crash_dumper->create_minidump(exception_pointers, dump_path);
 
 			log_exception_info(exception_pointers);
 			log_register_state(exception_pointers->ContextRecord);

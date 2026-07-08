@@ -2,6 +2,7 @@
 
 #include "RobloxModLoader/qt/qdialog.hpp"
 #include "RobloxModLoader/qt/qpushbutton.hpp"
+#include "RobloxModLoader/qt/qt_owned.hpp"
 
 namespace rml::qt
 {
@@ -32,7 +33,8 @@ namespace rml::qt
 			Ok = 0x00000400,
 		};
 
-		[[nodiscard]] static QMessageBox* create(QWidget* parent = nullptr);
+		[[nodiscard]] static QMessageBox* create(QWidget* parent);
+		[[nodiscard]] static QtOwned<QMessageBox> create_owned();
 		static void destroy(QMessageBox* box);
 
 		void setText(const QString& text);

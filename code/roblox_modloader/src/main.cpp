@@ -1,16 +1,8 @@
-#include "RobloxModLoader/common.hpp"
-#include "RobloxModLoader/exception/crash_dumper.hpp"
-#include "RobloxModLoader/hooking/hooking.hpp"
-#include "RobloxModLoader/luau/script_manager.hpp"
-#include "RobloxModLoader/memory/rtti_scanner.hpp"
-#include "RobloxModLoader/mod/events.hpp"
-#include "RobloxModLoader/qt/qt_integration.hpp"
-#include "RobloxModLoader/roblox/job_manager.hpp"
-#include "RobloxModLoader/roblox/task_scheduler.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "RobloxModLoader/version.hpp"
-#include "mod/mod_manager.hpp"
-#include "pointers.hpp"
-#include "utils/directory.hpp"
+#include "app/application.hpp"
+
+RML_LOG_SCOPE("Bootstrap");
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_reserved)
 {
@@ -23,82 +15,27 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 			return TRUE;
 
 		g_hinstance = hModule;
-		g_main_thread = CreateThread(
+
+		const HANDLE bootstrap_thread = CreateThread(
 		    nullptr,
 		    0,
 		    [](PVOID) -> DWORD {
 			    try
 			    {
-				    const auto config_path = rml::utils::directory::get_mod_loader_directory() / "config.toml";
-				    if (const auto config_result = rml::config::initialize(config_path, true); !config_result)
+				    RML_INFO("Initializing Roblox Mod Loader {}...", rml::version::string());
+
+				    rml::Application application;
+
+				    if (const auto result = application.initialize(); !result)
 				    {
-					    std::cerr << "Failed to initialize configuration system" << std::endl;
-					    return 1;
+					    std::cerr << "[RML] Fatal error during bootstrap: " << result.error().subsystem_name << ": " << result.error().message << std::endl;
+					    application.shutdown();
 				    }
-
-				    logger::init();
-
-				    LOG_INFO("Initializing Roblox Mod Loader {}...", rml::version::string());
-
-				    auto crash_dumper_instance = std::make_shared<exception_filter::CrashDumper>();
-				    crash_dumper_instance->enable();
-				    LOG_INFO("Exception handler initialized.");
-
-				    const auto event_manager_instance = std::make_shared<events::EventManager>();
-				    LOG_INFO("Event Manager initialized.");
-
-				    const auto qt_integration = std::make_unique<rml::qt::QtIntegration>();
-				    LOG_INFO("Qt integration initialized.");
-
-				    const auto mod_manager = std::make_unique<rml::ModManager>();
-				    LOG_INFO("Mod Manager created.");
-
-				    const auto rtti_manager_instance = std::make_shared<memory::rtti::rtti_manager>();
-				    LOG_INFO("RTTI Scanner initialized.");
-
-				    const auto pointers_instance = std::make_shared<pointers>();
-				    LOG_INFO("Pointers initialized.");
-
-				    const auto rbx_task_scheduler_instance = std::make_shared<RBX::TaskScheduler>();
-				    LOG_INFO("Roblox Task Scheduler initialized.");
-
-				    const auto job_manager_instance = std::make_shared<rml::jobs::JobManager>();
-				    LOG_INFO("Job Manager initialized.");
-
-				    const auto hooking_instance = std::make_shared<hooking>();
-				    LOG_INFO("Hooking initialized.");
-
-				    // const auto script_manager = std::make_shared<rml::luau::ScriptManager>();
-				    // LOG_INFO("Script Manager initialized.");
-
-				    // const auto module_dir = directory_utils::get_module_directory();
-				    // const auto mods_directory = module_dir / "RobloxModLoader" / "mods";
-				    // script_manager->load_mod_scripts(mods_directory);
-				    // LOG_INFO("Mod scripts loaded.");
-
-				    g_hooking->enable();
-				    LOG_INFO("Hooking enabled.");
-
-				    if (qt_integration->ensure_action_hook())
-					    LOG_INFO("Qt action hook installed.");
 				    else
-					    LOG_WARN("Qt action hook not installed yet (Qt not resolvable); will retry on demand.");
-
-				    g_running = true;
-				    while (g_running)
 				    {
-					    if (!qt_integration->is_action_hook_ready())
-						    qt_integration->ensure_action_hook();
-
-					    std::this_thread::sleep_for(1s);
+					    application.run();
+					    application.shutdown();
 				    }
-
-				    // Shutdown configuration system
-				    rml::config::shutdown();
-				    LOG_INFO("Configuration system shutdown.");
-
-				    crash_dumper_instance.reset();
-				    LOG_INFO("Exception handler shutdown.");
 			    }
 			    catch (const std::exception& e)
 			    {
@@ -113,8 +50,17 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD dwReason, LPVOID lp_res
 			    FreeLibraryAndExitThread(g_hinstance, 0);
 		    },
 		    nullptr,
-		    0,
+		    CREATE_SUSPENDED,
 		    nullptr);
+
+		if (!bootstrap_thread)
+		{
+			std::cerr << "[RML] Failed to create the bootstrap thread" << std::endl;
+			return TRUE;
+		}
+
+		g_main_thread = bootstrap_thread;
+		ResumeThread(bootstrap_thread);
 	}
 
 	return TRUE;

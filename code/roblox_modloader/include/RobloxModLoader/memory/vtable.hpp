@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace memory
+namespace rml::memory
 {
 	template<typename Pmf>
 	[[nodiscard]] std::size_t virtual_index(Pmf pmf)

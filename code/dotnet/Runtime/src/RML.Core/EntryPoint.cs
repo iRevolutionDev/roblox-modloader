@@ -1,4 +1,6 @@
-﻿namespace RML.Core;
+﻿using RML.Logging;
+
+namespace RML.Core;
 
 public static class EntryPoint
 {
@@ -8,9 +10,11 @@ public static class EntryPoint
     public static int Initialize(string modsRoot, nint tablePtr)
     {
         Interop.Interop.Initialize(tablePtr);
-        
+
+        Log.AddSink(new Interop.InteropLogSink());
+
         ModLoader.Initialize(modsRoot);
-        
+
         return 0;
     }
 

@@ -1,4 +1,4 @@
-// #include "RobloxModLoader/common.hpp"
+// #include "RobloxModLoader/internal/common.hpp"
 // #include "RobloxModLoader/hooking/hooking.hpp"
 //
 // #include "tracy/TracyC.h"

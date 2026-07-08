@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RobloxModLoader/common.hpp"
+#include "RobloxModLoader/internal/common.hpp"
 #include "globals_registry.hpp"
 
 namespace rml::luau::environment {

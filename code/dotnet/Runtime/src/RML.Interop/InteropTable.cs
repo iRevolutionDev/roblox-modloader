@@ -42,19 +42,18 @@ public readonly struct InteropVariant
     public static InteropVariant FromPointer(nuint v) => new(Tags.Instance, v);
     public static InteropVariant FromString(nuint ptr) => new(Tags.String, ptr);
     public static InteropVariant FromBlittable(nuint ptr) => new(Tags.Blittable, ptr);
+    public static InteropVariant FromTuple(nuint ptr) => new(Tags.Tuple, ptr);
 }
 
 internal static unsafe class NativeInterop
 {
-    public const int InteropTableVersion = 5;
+    public const int InteropTableVersion = 7;
 
     [StructLayout(LayoutKind.Sequential)]
     public struct InteropTable
     {
         public uint Version;
         public uint Size;
-
-        public delegate* unmanaged[Cdecl]<sbyte*, void*> GetProcAddress;
 
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, uint, InteropVariant*, void> ReflectionInvoke;
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, void> ReflectionGetProperty;
@@ -65,18 +64,21 @@ internal static unsafe class NativeInterop
 
         public delegate* unmanaged[Cdecl]<nuint, void> ReflectionEventDisconnect;
 
-        public delegate* unmanaged[Cdecl]<void*, nuint> InstanceGetClassDescriptor;
-
         public delegate* unmanaged[Cdecl]<sbyte*, int, nuint> CreateInstanceByName;
 
         public delegate* unmanaged[Cdecl]<int, sbyte*, int, void> Log;
         public delegate* unmanaged[Cdecl]<sbyte*, void> FreeString;
         public delegate* unmanaged[Cdecl]<void*, void> FreeNativePtr;
 
-        public delegate* unmanaged[Cdecl]<sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
             void*, nuint> ModsMenuAddAction;
-        public delegate* unmanaged[Cdecl]<nuint, void> ModsMenuRemoveAction;
-        
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, nuint> ModsMenuAddSubmenu;
+        public delegate* unmanaged[Cdecl]<nuint, nuint> ModsMenuAddSeparator;
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, int, delegate* unmanaged[Cdecl]<void*, InteropVariant*, uint, void>,
+            void*, nuint> ModsMenuAddCheckable;
+        public delegate* unmanaged[Cdecl]<nuint, sbyte*, void> ModsMenuSetItemIcon;
+        public delegate* unmanaged[Cdecl]<nuint, void> ModsMenuRemove;
+
         public delegate* unmanaged[Cdecl]<void*, sbyte*, InteropVariant*, uint,
             delegate* unmanaged[Cdecl]<void*, InteropVariant*, sbyte*, void>, void*, void> ReflectionInvokeAsync;
     }
