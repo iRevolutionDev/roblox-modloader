@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <RootNamespace>GuiPixelNudge</RootNamespace>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\code\dotnet\Roblox\src\Roblox\Roblox.csproj" />
+        <ProjectReference Include="..\..\..\..\code\dotnet\Runtime\src\RML.Core\RML.Core.csproj" />
+        <ProjectReference Include="..\..\..\..\code\dotnet\Runtime\src\RML.Interop\RML.Interop.csproj" />
+    </ItemGroup>
+</Project>
