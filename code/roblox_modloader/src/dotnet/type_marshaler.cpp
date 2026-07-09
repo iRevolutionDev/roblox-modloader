@@ -114,6 +114,12 @@ namespace rml::dotnet
 		if (type.name == "bool")
 			return {MarshalKind::Bool, 0};
 
+		if (const auto size = blittable_size(type.name); size != 0)
+			return {MarshalKind::Blittable, size};
+
+		if (const auto stride = sequence_stride(type.name); stride != 0)
+			return {MarshalKind::Sequence, stride};
+
 		if (type.is_enum)
 			return {MarshalKind::Enum, 0};
 
@@ -122,12 +128,6 @@ namespace rml::dotnet
 
 		if (type.is_number || type.name == "int" || type.name == "long")
 			return {MarshalKind::Number, 0};
-
-		if (const auto size = blittable_size(type.name); size != 0)
-			return {MarshalKind::Blittable, size};
-
-		if (const auto stride = sequence_stride(type.name); stride != 0)
-			return {MarshalKind::Sequence, stride};
 
 		return {MarshalKind::Unsupported, 0};
 	}
