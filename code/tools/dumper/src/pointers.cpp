@@ -95,7 +95,7 @@ namespace dumper
 	{
 		g_dumper_pointers = this;
 
-		constexpr auto [m_dumper_batch, m_hash] = get_luau_batch();
+		const auto [m_dumper_batch, m_hash] = get_luau_batch();
 
 		constexpr cstxpr_str dumper_batch_name{"dumper"};
 
