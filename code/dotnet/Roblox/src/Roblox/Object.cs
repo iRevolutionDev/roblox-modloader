@@ -36,6 +36,24 @@ public partial class Object
     protected internal void RemoveEventHandler(string eventName, Delegate handler)
         => EventManager.Remove(Handle, eventName, handler);
 
+    public IReadOnlyList<EventConnection> GetConnections(string eventName)
+    {
+        var handles = EngineEvents.Slots(Handle, eventName);
+        var connections = new EventConnection[handles.Length];
+        for (var i = 0; i < handles.Length; i++)
+        {
+            connections[i] = new EventConnection(Handle, eventName, handles[i]);
+        }
+
+        return connections;
+    }
+
+    public void FireEvent(string eventName, params object?[] args)
+        => EngineEvents.Fire(Handle, eventName, args);
+
+    public void DisconnectAll(string eventName)
+        => EngineEvents.DisconnectAll(Handle, eventName);
+
     public bool IsA<T>() where T : Object
         => this is T || (RobloxTypeRegistry.ActualType(Handle) is { } actual && typeof(T).IsAssignableFrom(actual));
 

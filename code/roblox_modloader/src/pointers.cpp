@@ -107,6 +107,21 @@ namespace rml
 				[](const memory::handle ptr) {
 					g_pointers->m_roblox_pointers.build_menu_bar_from_dom = ptr.as<functions::build_menu_bar_from_dom>();
 				}
+			},
+			{
+				"SIGNAL_DISCONNECT",
+				"48 89 5C 24 ? 57 48 83 EC 30 48 8B F9 33 DB 48 89 5C 24 ? E8 ? ? ? ? 48 89 44 24 ? 88 5C 24 ? 48 8B C8 E8 ? ? ? ? 85 C0 0F 85",
+				[](const memory::handle ptr) {
+					g_pointers->m_roblox_pointers.signal_disconnect = ptr.as<functions::signal_disconnect>();
+					g_pointers->m_roblox_pointers.signal_mutex_get = ptr.add(21).rip().as<functions::signal_mutex_get>();
+				}
+			},
+			{
+				"SIGNAL_SLOT_FREE",
+				"48 89 5C 24 10 48 89 74 24 18 57 48 83 EC 20 48 8B D9 E8 ? ? ? ? 48 8D 50 10 BF FF FF FF FF 48 3B DA 0F 82",
+				[](const memory::handle ptr) {
+					g_pointers->m_roblox_pointers.signal_slot_free = ptr.as<functions::signal_slot_free>();
+				}
 			}
 	    >();
 

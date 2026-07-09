@@ -73,9 +73,17 @@ namespace rml::dotnet
 		void(RML_INTEROP_CALL* mods_menu_remove)(uintptr_t id);
 
 		void(RML_INTEROP_CALL* reflection_invoke_async)(uintptr_t instance, const char* function_name, const InteropVariant* args, uint32_t arg_count, ManagedYieldCallback callback, void* state);
+
+		void(RML_INTEROP_CALL* reflection_event_fire)(uintptr_t instance, const char* event_name, const InteropVariant* args, uint32_t arg_count);
+		void(RML_INTEROP_CALL* reflection_event_disconnect_all)(uintptr_t instance, const char* event_name);
+
+		uintptr_t*(RML_INTEROP_CALL* reflection_event_slots)(uintptr_t instance, const char* event_name, uint32_t* out_count);
+		void(RML_INTEROP_CALL* event_slot_fire)(uintptr_t instance, const char* event_name, uintptr_t slot_handle, const InteropVariant* args, uint32_t arg_count);
+		void(RML_INTEROP_CALL* event_slot_disconnect)(uintptr_t slot_handle);
+		void(RML_INTEROP_CALL* event_slot_release)(uintptr_t slot_handle);
 	};
 
-	inline constexpr uint32_t RML_INTEROP_VERSION = 7;
+	inline constexpr uint32_t RML_INTEROP_VERSION = 9;
 
 	class InteropRegistry
 	{

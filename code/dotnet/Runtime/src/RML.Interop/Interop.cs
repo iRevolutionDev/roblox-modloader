@@ -449,6 +449,184 @@ public static unsafe class Interop
             Table->ReflectionEventDisconnect(connectionHandle);
         }
 
+        public static void EventFire(void* instance, string eventName, params object?[]? args)
+        {
+            if (!IsInitialized || Table == null || Table->ReflectionEventFire == null)
+            {
+                throw new InvalidOperationException(
+                    "Interop table is not initialized or ReflectionEventFire is unavailable.");
+            }
+
+            ArgumentNullException.ThrowIfNull(eventName);
+
+            var nameS = GetCachedMemberName(eventName);
+            var argCount = args?.Length ?? 0;
+
+            if (argCount == 0)
+            {
+                Table->ReflectionEventFire(instance, nameS, null, 0);
+                return;
+            }
+
+            ValidateArgCount(argCount);
+
+            if (argCount <= StackAllocArgThreshold)
+            {
+                var tempPtrs = stackalloc nint[argCount];
+                var argVariants = stackalloc InteropVariant[argCount];
+                var tempPtrCount = 0;
+
+                try
+                {
+                    BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                    Table->ReflectionEventFire(instance, nameS, argVariants, (uint)argCount);
+                }
+                finally
+                {
+                    FreeTempPtrs(tempPtrs, tempPtrCount);
+                }
+
+                return;
+            }
+
+            var tempPtrsArr = ArrayPool<nint>.Shared.Rent(argCount);
+            var argVariantsArr = ArrayPool<InteropVariant>.Shared.Rent(argCount);
+
+            try
+            {
+                fixed (nint* tempPtrs = tempPtrsArr)
+                fixed (InteropVariant* argVariants = argVariantsArr)
+                {
+                    var tempPtrCount = 0;
+                    try
+                    {
+                        BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                        Table->ReflectionEventFire(instance, nameS, argVariants, (uint)argCount);
+                    }
+                    finally
+                    {
+                        FreeTempPtrs(tempPtrs, tempPtrCount);
+                    }
+                }
+            }
+            finally
+            {
+                ArrayPool<nint>.Shared.Return(tempPtrsArr);
+                ArrayPool<InteropVariant>.Shared.Return(argVariantsArr);
+            }
+        }
+
+        public static void EventDisconnectAll(void* instance, string eventName)
+        {
+            if (!IsInitialized || Table == null || Table->ReflectionEventDisconnectAll == null)
+            {
+                return;
+            }
+
+            ArgumentNullException.ThrowIfNull(eventName);
+            Table->ReflectionEventDisconnectAll(instance, GetCachedMemberName(eventName));
+        }
+
+        public static nuint[] EventSlots(void* instance, string eventName)
+        {
+            if (!IsInitialized || Table == null || Table->ReflectionEventSlots == null)
+            {
+                return [];
+            }
+
+            ArgumentNullException.ThrowIfNull(eventName);
+
+            var nameS = GetCachedMemberName(eventName);
+            uint count = 0;
+            var ptr = Table->ReflectionEventSlots(instance, nameS, &count);
+            if (ptr == null || count == 0)
+            {
+                return [];
+            }
+
+            try
+            {
+                var handles = new nuint[count];
+                for (uint i = 0; i < count; i++)
+                {
+                    handles[i] = ptr[i];
+                }
+
+                return handles;
+            }
+            finally
+            {
+                FreeNativeArray((nint)ptr);
+            }
+        }
+
+        public static void EventSlotFire(void* instance, string eventName, nuint slotHandle, params object?[]? args)
+        {
+            if (slotHandle == 0 || !IsInitialized || Table == null || Table->EventSlotFire == null)
+            {
+                return;
+            }
+
+            ArgumentNullException.ThrowIfNull(eventName);
+
+            var nameS = GetCachedMemberName(eventName);
+            var argCount = args?.Length ?? 0;
+
+            if (argCount == 0)
+            {
+                Table->EventSlotFire(instance, nameS, slotHandle, null, 0);
+                return;
+            }
+
+            ValidateArgCount(argCount);
+
+            var tempPtrsArr = ArrayPool<nint>.Shared.Rent(argCount);
+            var argVariantsArr = ArrayPool<InteropVariant>.Shared.Rent(argCount);
+
+            try
+            {
+                fixed (nint* tempPtrs = tempPtrsArr)
+                fixed (InteropVariant* argVariants = argVariantsArr)
+                {
+                    var tempPtrCount = 0;
+                    try
+                    {
+                        BuildArgVariants(args!, argCount, tempPtrs, ref tempPtrCount, argVariants);
+                        Table->EventSlotFire(instance, nameS, slotHandle, argVariants, (uint)argCount);
+                    }
+                    finally
+                    {
+                        FreeTempPtrs(tempPtrs, tempPtrCount);
+                    }
+                }
+            }
+            finally
+            {
+                ArrayPool<nint>.Shared.Return(tempPtrsArr);
+                ArrayPool<InteropVariant>.Shared.Return(argVariantsArr);
+            }
+        }
+
+        public static void EventSlotDisconnect(nuint slotHandle)
+        {
+            if (slotHandle == 0 || !IsInitialized || Table == null || Table->EventSlotDisconnect == null)
+            {
+                return;
+            }
+
+            Table->EventSlotDisconnect(slotHandle);
+        }
+
+        public static void EventSlotRelease(nuint slotHandle)
+        {
+            if (slotHandle == 0 || !IsInitialized || Table == null || Table->EventSlotRelease == null)
+            {
+                return;
+            }
+
+            Table->EventSlotRelease(slotHandle);
+        }
+
         public static nuint CreateInstanceByName(string className, int creatorRole)
         {
             if (!IsInitialized || Table == null || Table->CreateInstanceByName == null)

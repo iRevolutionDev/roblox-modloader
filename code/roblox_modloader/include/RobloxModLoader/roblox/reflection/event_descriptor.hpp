@@ -37,6 +37,7 @@ namespace RBX::Reflection
 	};
 
 	class Event;
+	class EventSource;
 
 	class EventDescriptor : public MemberDescriptor
 	{
@@ -45,6 +46,7 @@ namespace RBX::Reflection
 		typedef Event Member;
 
 	protected:
+		char _unk_0x40[0x8];
 		SignatureDescriptor signature;
 
 		bool operator==(const EventDescriptor& other) const
@@ -89,10 +91,24 @@ namespace RBX::Reflection
 		virtual void send_event(EventSource* source, const EventArguments& args) const;
 		virtual void disconnect_all(EventSource* source) const = 0;
 
+		[[nodiscard]] Signals::Signal* get_signal(EventSource* source) const;
+		[[nodiscard]] std::vector<Signals::Connection> snapshot_connections(EventSource* source) const;
+
 	private:
 		RML_LAYOUT_GUARD_BEGIN()
-			RML_ASSERT_LAYOUT_SIZE(EventDescriptor, 0x70);
-			RML_ASSERT_LAYOUT_OFFSET(EventDescriptor, signature, 0x40);
+			RML_ASSERT_LAYOUT_SIZE(EventDescriptor, 0x78);
+			RML_ASSERT_LAYOUT_OFFSET(EventDescriptor, signature, 0x48);
+		RML_LAYOUT_GUARD_END()
+	};
+	
+	class EventDesc : public EventDescriptor
+	{
+	public:
+		std::int32_t signal;
+
+	private:
+		RML_LAYOUT_GUARD_BEGIN()
+			RML_ASSERT_LAYOUT_OFFSET(EventDesc, signal, 0x78);
 		RML_LAYOUT_GUARD_END()
 	};
 }

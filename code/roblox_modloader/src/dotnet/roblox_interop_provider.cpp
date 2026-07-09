@@ -17,7 +17,6 @@
 #include <RobloxModLoader/roblox/instance.hpp>
 #include <RobloxModLoader/roblox/reflection/object.hpp>
 #include <RobloxModLoader/roblox/reflection/property_descriptor.hpp>
-
 #include <cassert>
 #include <string_view>
 #include <utility>
@@ -29,22 +28,28 @@ namespace rml::dotnet
 	void RobloxInteropProvider::verify_populated(const InteropTable& table)
 	{
 		const std::pair<const void*, std::string_view> members[]{
-			{reinterpret_cast<const void*>(table.reflection_invoke), "reflection_invoke"},
-			{reinterpret_cast<const void*>(table.reflection_invoke_async), "reflection_invoke_async"},
-			{reinterpret_cast<const void*>(table.reflection_get_property), "reflection_get_property"},
-			{reinterpret_cast<const void*>(table.reflection_set_property), "reflection_set_property"},
-			{reinterpret_cast<const void*>(table.reflection_event_connect), "reflection_event_connect"},
-			{reinterpret_cast<const void*>(table.reflection_event_disconnect), "reflection_event_disconnect"},
-			{reinterpret_cast<const void*>(table.object_create_by_name), "object_create_by_name"},
-			{reinterpret_cast<const void*>(table.managed_log), "managed_log"},
-			{reinterpret_cast<const void*>(table.free_string), "free_string"},
-			{reinterpret_cast<const void*>(table.free_native_ptr), "free_native_ptr"},
-			{reinterpret_cast<const void*>(table.mods_menu_add_action), "mods_menu_add_action"},
-			{reinterpret_cast<const void*>(table.mods_menu_add_submenu), "mods_menu_add_submenu"},
-			{reinterpret_cast<const void*>(table.mods_menu_add_separator), "mods_menu_add_separator"},
-			{reinterpret_cast<const void*>(table.mods_menu_add_checkable), "mods_menu_add_checkable"},
-			{reinterpret_cast<const void*>(table.mods_menu_set_item_icon), "mods_menu_set_item_icon"},
-			{reinterpret_cast<const void*>(table.mods_menu_remove), "mods_menu_remove"},
+		    {reinterpret_cast<const void*>(table.reflection_invoke), "reflection_invoke"},
+		    {reinterpret_cast<const void*>(table.reflection_invoke_async), "reflection_invoke_async"},
+		    {reinterpret_cast<const void*>(table.reflection_get_property), "reflection_get_property"},
+		    {reinterpret_cast<const void*>(table.reflection_set_property), "reflection_set_property"},
+		    {reinterpret_cast<const void*>(table.reflection_event_connect), "reflection_event_connect"},
+		    {reinterpret_cast<const void*>(table.reflection_event_disconnect), "reflection_event_disconnect"},
+		    {reinterpret_cast<const void*>(table.object_create_by_name), "object_create_by_name"},
+		    {reinterpret_cast<const void*>(table.managed_log), "managed_log"},
+		    {reinterpret_cast<const void*>(table.free_string), "free_string"},
+		    {reinterpret_cast<const void*>(table.free_native_ptr), "free_native_ptr"},
+		    {reinterpret_cast<const void*>(table.mods_menu_add_action), "mods_menu_add_action"},
+		    {reinterpret_cast<const void*>(table.mods_menu_add_submenu), "mods_menu_add_submenu"},
+		    {reinterpret_cast<const void*>(table.mods_menu_add_separator), "mods_menu_add_separator"},
+		    {reinterpret_cast<const void*>(table.mods_menu_add_checkable), "mods_menu_add_checkable"},
+		    {reinterpret_cast<const void*>(table.mods_menu_set_item_icon), "mods_menu_set_item_icon"},
+		    {reinterpret_cast<const void*>(table.mods_menu_remove), "mods_menu_remove"},
+		    {reinterpret_cast<const void*>(table.reflection_event_fire), "reflection_event_fire"},
+		    {reinterpret_cast<const void*>(table.reflection_event_disconnect_all), "reflection_event_disconnect_all"},
+		    {reinterpret_cast<const void*>(table.reflection_event_slots), "reflection_event_slots"},
+		    {reinterpret_cast<const void*>(table.event_slot_fire), "event_slot_fire"},
+		    {reinterpret_cast<const void*>(table.event_slot_disconnect), "event_slot_disconnect"},
+		    {reinterpret_cast<const void*>(table.event_slot_release), "event_slot_release"},
 		};
 
 		for (const auto& [pointer, name] : members)
@@ -192,7 +197,7 @@ namespace rml::dotnet
 				if (!property_descriptor)
 					return;
 
-				(void) TypeMarshaler::decode_property(property_descriptor, instance, *value);
+				(void)TypeMarshaler::decode_property(property_descriptor, instance, *value);
 			}
 			catch (const std::exception& e)
 			{
@@ -298,13 +303,13 @@ namespace rml::dotnet
 
 			switch (level)
 			{
-				case 0: rml_scoped_logger()->log(spdlog::level::trace, message); break;
-				case 1: rml_scoped_logger()->log(spdlog::level::debug, message); break;
-				case 2: rml_scoped_logger()->log(spdlog::level::info, message); break;
-				case 3: rml_scoped_logger()->log(spdlog::level::warn, message); break;
-				case 4: rml_scoped_logger()->log(spdlog::level::err, message); break;
-				case 5: rml_scoped_logger()->log(spdlog::level::critical, message); break;
-				default: rml_scoped_logger()->log(spdlog::level::info, message); break;
+			case 0: rml_scoped_logger()->log(spdlog::level::trace, message); break;
+			case 1: rml_scoped_logger()->log(spdlog::level::debug, message); break;
+			case 2: rml_scoped_logger()->log(spdlog::level::info, message); break;
+			case 3: rml_scoped_logger()->log(spdlog::level::warn, message); break;
+			case 4: rml_scoped_logger()->log(spdlog::level::err, message); break;
+			case 5: rml_scoped_logger()->log(spdlog::level::critical, message); break;
+			default: rml_scoped_logger()->log(spdlog::level::info, message); break;
 			}
 		};
 
@@ -373,6 +378,144 @@ namespace rml::dotnet
 		table.mods_menu_remove = [](const uintptr_t id) {
 			if (auto* const integration = rml::qt::QtIntegration::instance())
 				integration->menu().remove(id);
+		};
+
+		table.reflection_event_fire = [](const uintptr_t instance_ptr, const char* event_name, const InteropVariant* args, const uint32_t arg_count) {
+			try
+			{
+				auto* instance = as_instance(instance_ptr);
+				if (!instance || !event_name)
+					return;
+
+				const auto* descriptor = instance->get_descriptor().find_event(event_name);
+				if (!descriptor)
+					return;
+
+				const DotNetArguments arguments{args, arg_count, &descriptor->get_signature()};
+				RBX::Reflection::EventArguments event_args;
+				event_args.reserve(arg_count);
+				for (uint32_t i = 0; i < arg_count; ++i)
+				{
+					if (RBX::Reflection::Variant value; arguments.get_varint(static_cast<int>(i) + 1, value))
+						event_args.push_back(std::move(value));
+				}
+
+				descriptor->fire_event(instance, event_args);
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("event_fire('{}') failed: {}", event_name ? event_name : "?", e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("event_fire('{}') failed: unknown exception", event_name ? event_name : "?");
+			}
+		};
+
+		table.reflection_event_disconnect_all = [](const uintptr_t instance_ptr, const char* event_name) {
+			try
+			{
+				auto* instance = as_instance(instance_ptr);
+				if (!instance || !event_name)
+					return;
+
+				if (const auto* descriptor = instance->get_descriptor().find_event(event_name))
+					descriptor->disconnect_all(instance);
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("event_disconnect_all('{}') failed: {}", event_name ? event_name : "?", e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("event_disconnect_all('{}') failed: unknown exception", event_name ? event_name : "?");
+			}
+		};
+
+		table.reflection_event_slots = [](const uintptr_t instance_ptr, const char* event_name, uint32_t* out_count) -> uintptr_t* {
+			if (out_count)
+				*out_count = 0;
+
+			try
+			{
+				auto* instance = as_instance(instance_ptr);
+				if (!instance || !event_name)
+					return nullptr;
+
+				const auto* descriptor = instance->get_descriptor().find_event(event_name);
+				if (!descriptor)
+					return nullptr;
+
+				auto snapshot = descriptor->snapshot_connections(instance);
+				if (snapshot.empty())
+					return nullptr;
+
+				auto* result = static_cast<uintptr_t*>(malloc(snapshot.size() * sizeof(uintptr_t)));
+				if (!result)
+					return nullptr;
+
+				for (size_t i = 0; i < snapshot.size(); ++i)
+					result[i] = reinterpret_cast<uintptr_t>(new RBX::Signals::Connection(std::move(snapshot[i])));
+
+				if (out_count)
+					*out_count = static_cast<uint32_t>(snapshot.size());
+				return result;
+			}
+			catch (...)
+			{
+				return nullptr;
+			}
+		};
+
+		table.event_slot_fire = [](const uintptr_t instance_ptr, const char* event_name, const uintptr_t slot_handle, const InteropVariant* args, const uint32_t arg_count) {
+			try
+			{
+				const auto* connection = reinterpret_cast<RBX::Signals::Connection*>(slot_handle);
+				if (!connection)
+					return;
+
+				const auto* slot = connection->raw_slot();
+				if (!slot || !slot->source)
+					return;
+
+				auto* wrapper = static_cast<RBX::Reflection::GenericSlotWrapper*>(slot->wrapper_ptr);
+				if (!wrapper)
+					return;
+
+				RBX::Reflection::EventArguments event_args;
+				if (const auto* instance = as_instance(instance_ptr); instance && event_name)
+				{
+					if (const auto* descriptor = instance->get_descriptor().find_event(event_name))
+					{
+						const DotNetArguments arguments{args, arg_count, &descriptor->get_signature()};
+						event_args.reserve(arg_count);
+						for (uint32_t i = 0; i < arg_count; ++i)
+						{
+							if (RBX::Reflection::Variant value; arguments.get_varint(static_cast<int>(i) + 1, value))
+								event_args.push_back(std::move(value));
+						}
+					}
+				}
+
+				wrapper->deliver(event_args);
+			}
+			catch (const std::exception& e)
+			{
+				RML_ERROR("event_slot_fire failed: {}", e.what());
+			}
+			catch (...)
+			{
+				RML_ERROR("event_slot_fire failed: unknown exception");
+			}
+		};
+
+		table.event_slot_disconnect = [](const uintptr_t slot_handle) {
+			if (const auto* connection = reinterpret_cast<RBX::Signals::Connection*>(slot_handle))
+				connection->disconnect();
+		};
+
+		table.event_slot_release = [](const uintptr_t slot_handle) {
+			delete reinterpret_cast<RBX::Signals::Connection*>(slot_handle);
 		};
 
 		verify_populated(table);

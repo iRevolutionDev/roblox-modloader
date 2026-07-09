@@ -63,6 +63,10 @@ struct RobloxPointers
 	functions::object_create_by_name object_create_by_name;
 	functions::instance_bridge_push instance_bridge_push;
 	functions::build_menu_bar_from_dom build_menu_bar_from_dom;
+
+	functions::signal_disconnect signal_disconnect;
+	functions::signal_slot_free signal_slot_free;
+	functions::signal_mutex_get signal_mutex_get;
 };
 #pragma pack(pop)
 static_assert(sizeof(RobloxPointers) % 8 == 0, "Pointers are not properly aligned");
