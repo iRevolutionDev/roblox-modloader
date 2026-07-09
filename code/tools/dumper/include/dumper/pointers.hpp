@@ -17,7 +17,7 @@ namespace dumper
 		}
 
 	public:
-		explicit pointers();
+		explicit pointers(const memory::module& region);
 		~pointers();
 
 		luau m_luau_functions;

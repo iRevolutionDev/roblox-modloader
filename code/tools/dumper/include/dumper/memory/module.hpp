@@ -8,6 +8,7 @@ namespace memory
 	{
 	public:
 		explicit module(const std::string_view name);
+		explicit module(handle base);
 
 		/**
 		 * @brief Get the export address of the current module given a symbol name

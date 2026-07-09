@@ -17,12 +17,20 @@ namespace dumper
 {
 	struct luau
 	{
-		uintptr_t luaF_freeproto{};
-		uintptr_t table{};
-		uintptr_t thread{};
-		uintptr_t gc{};
-		uintptr_t page{};
-		uintptr_t propagatemark{};
 		uintptr_t luaF_newLclosure{};
+		uintptr_t luaF_newCclosure{};
+		uintptr_t luaF_newproto{};
+		uintptr_t luaF_freeproto{};
+		uintptr_t luaF_findupval{};
+		uintptr_t luaU_load{};
+		uintptr_t luaM_free{};
+		uintptr_t luaD_reallocstack{};
+		uintptr_t luaD_reallocCI{};
+		uintptr_t luaH_new{};
+		uintptr_t setnodevector{};
+		uintptr_t propagatemark{};
+		uintptr_t traversetable{};
+		uintptr_t lua_resume{};
+		uintptr_t index2addr{};
 	};
 }

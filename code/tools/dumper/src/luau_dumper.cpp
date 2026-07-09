@@ -13,6 +13,21 @@ namespace dumper
 		});
 	}
 
+	std::size_t LuauDumper::validate_offset(std::string_view field, uint64_t recovered, std::size_t expected, bool allow_zero)
+	{
+		const bool implausible = recovered == AssemblyAnalyzer::invalid_displacement || recovered > 0x8000 || (recovered == 0 && !allow_zero);
+		if (implausible)
+		{
+			spdlog::warn("{}: recovery unavailable (got 0x{:X}) -- using verified baseline 0x{:X}", field, recovered, expected);
+			return expected;
+		}
+
+		if (recovered != expected)
+			spdlog::warn("{}: DRIFT recovered 0x{:X} != baseline 0x{:X} -- re-verify this build", field, recovered, expected);
+
+		return recovered;
+	}
+
 	void LuauDumper::apply_common_header(StructInfo& structure) const
 	{
 		const auto it = m_structures.find("CommonHeader");
@@ -28,12 +43,11 @@ namespace dumper
 		}
 	}
 
-	LuauDumper::LuauDumper(std::unique_ptr<pointers>& pointers) :
-	    m_base_address(0),
+	LuauDumper::LuauDumper(std::unique_ptr<pointers>& pointers, uintptr_t image_base) :
+	    m_base_address(image_base),
 	    m_pointers(std::move(pointers))
 	{
-		m_base_address = reinterpret_cast<uintptr_t>(GetModuleHandleA(nullptr));
-		spdlog::info("Base address: 0x{:X}", m_base_address);
+		spdlog::info("Image base: 0x{:X}", m_base_address);
 	}
 
 	bool LuauDumper::analyze()
@@ -79,50 +93,91 @@ namespace dumper
 	{
 		spdlog::info("Analyzing lua_State...");
 
-		if (m_pointers->m_luau_functions.thread == 0)
-		{
-			spdlog::error("lua_State function pointer is null, cannot analyze lua_State structure");
-			return false;
-		}
+		const auto& fns = m_pointers->m_luau_functions;
+		const auto disp = [](const MemAccess* a) { return a ? a->disp : AssemblyAnalyzer::invalid_displacement; };
 
-		if (m_pointers->m_luau_functions.luaF_newLclosure == 0)
-		{
-			spdlog::error("luaF_newLclosure function pointer is null, cannot derive lua_State->global offset");
-			return false;
-		}
+		const FunctionTrace rs = AssemblyAnalyzer::trace_function(fns.luaD_reallocstack);
+		const ZydisRegister l_rs = rs.dominant_write_base();
+		const std::size_t after_alloc = rs.calls.empty() ? 0 : rs.calls.front().seq;
 
-		const auto stack_size = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.thread, ZYDIS_MNEMONIC_LEA);
-		const auto size_ci = stack_size - 0x3;
+		const MemAccess* w_stack = rs.nth_write(l_rs, 0, 8, after_alloc);
+		const MemAccess* w_slast = rs.nth_write(l_rs, 1, 8, after_alloc);
+		const MemAccess* w_top   = rs.nth_write(l_rs, 2, 8, after_alloc);
+		const MemAccess* w_base  = rs.nth_write(l_rs, 3, 8, after_alloc);
+		const MemAccess* w_ssize = rs.nth_write(l_rs, 0, 4, after_alloc);
 
-		const auto newlclosure_call = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_newLclosure, ZYDIS_MNEMONIC_CALL, 0);
-		const auto global = AssemblyAnalyzer::find_next_instruction(newlclosure_call, ZYDIS_MNEMONIC_MOV, 0);
-		const auto gt = AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(size_ci, ZYDIS_MNEMONIC_MOVZX), ZYDIS_MNEMONIC_MOV, 1);
-		const auto base_ci = AssemblyAnalyzer::find_next_instruction(gt, ZYDIS_MNEMONIC_MOV, 2);
-		const auto ci      = base_ci + 0x4;
-		const auto top     = AssemblyAnalyzer::find_next_instruction(m_proto.linedefined, ZYDIS_MNEMONIC_CMP, 0);
-		const auto stack   = AssemblyAnalyzer::find_next_instruction(m_proto.linedefined, ZYDIS_MNEMONIC_MOV, 2);
+		const std::size_t ci_from = w_top ? w_top->seq : 0;
+		const std::size_t ci_to   = w_base ? w_base->seq : SIZE_MAX;
+		const MemAccess* ci_top    = nullptr;
+		for (const auto& a : rs.accesses)
+			if (a.write && a.width == 8 && a.index == ZYDIS_REGISTER_NONE && a.disp == 0 && a.base != l_rs && a.base != ZYDIS_REGISTER_NONE
+			    && a.seq > ci_from && a.seq < ci_to)
+			{
+				ci_top = &a;
+				break;
+			}
+		const ZydisRegister ci_reg = ci_top ? ci_top->base : ZYDIS_REGISTER_NONE;
+		const MemAccess* ci_base   = ci_reg != ZYDIS_REGISTER_NONE ? rs.nth_write(ci_reg, 1, 8, ci_top->seq) : nullptr;
+		const MemAccess* ci_func   = ci_reg != ZYDIS_REGISTER_NONE ? rs.nth_write(ci_reg, 2, 8, ci_top->seq) : nullptr;
+
+		const FunctionTrace rc = AssemblyAnalyzer::trace_function(fns.luaD_reallocCI);
+		const ZydisRegister l_rc = rc.dominant_write_base();
+		const MemAccess* w_baseci = rc.nth_write(l_rc, 0, 8);
+		const MemAccess* w_sizeci = rc.nth_write(l_rc, 0, 4);
+		const MemAccess* w_ci     = rc.nth_write(l_rc, 1, 8);
+		const MemAccess* w_endci  = rc.nth_write(l_rc, 2, 8);
+
+		const FunctionTrace mf = AssemblyAnalyzer::trace_function(fns.luaM_free);
+		const MemAccess* r_global = mf.nth_read(ZYDIS_REGISTER_RCX, 0, 8);
+
+		const FunctionTrace lr = AssemblyAnalyzer::trace_function(fns.lua_resume);
+		const ZydisRegister l_lr = lr.dominant_write_base();
+		const MemAccess* r_status = lr.nth_read(ZYDIS_REGISTER_RCX, 0, 1);
+		const MemAccess* w_active = lr.first_imm_write(l_lr, 1);
+		const MemAccess* w_ncc    = lr.nth_write(l_lr, 0, 2);
+		const MemAccess* w_bcc    = lr.nth_write(l_lr, 1, 2);
+
+		const FunctionTrace nl = AssemblyAnalyzer::trace_function(fns.luaF_newLclosure);
+		const MemAccess* r_amc = nl.nth_read(ZYDIS_REGISTER_RCX, 0, 1);
 
 		StructInfo lua_state;
 		lua_state.name = "lua_State";
 		apply_common_header(lua_state);
-
-		lua_state.fields.push_back({"status", 0x4, sizeof(uint8_t), "uint8_t"});
-		lua_state.fields.push_back({"activememcat", 0x5, sizeof(uint8_t), "uint8_t"});
-		lua_state.fields.push_back({"isactive", 0x6, sizeof(bool), "bool"});
-		lua_state.fields.push_back({"singlestep", 0x7, sizeof(bool), "bool"});
-		lua_state.fields.push_back({"global", global, sizeof(void*), "void*"});
-		lua_state.fields.push_back({"stacksize", stack_size, sizeof(int32_t), "int32_t"});
-		lua_state.fields.push_back({"size_ci", size_ci, sizeof(int32_t), "int32_t"});
-		lua_state.fields.push_back({"gt", gt, sizeof(void*), "void*"});
-		lua_state.fields.push_back({"base_ci", base_ci, sizeof(void*), "void*"});
-		lua_state.fields.push_back({"ci", ci, sizeof(void*), "void*"});
-		lua_state.fields.push_back({"top", top, sizeof(void*), "void*"});
-		lua_state.fields.push_back({"stack", stack, sizeof(void*), "void*"});
-
-		lua_state.size = 0x40;
-
+		lua_state.fields.push_back({"status", validate_offset("lua_State.status", disp(r_status), 0x03), 1, "uint8_t"});
+		lua_state.fields.push_back({"activememcat", validate_offset("lua_State.activememcat", disp(r_amc), 0x04), 1, "uint8_t"});
+		lua_state.fields.push_back({"isactive", validate_offset("lua_State.isactive", disp(w_active), 0x06), 1, "bool"});
+		lua_state.fields.push_back({"singlestep", 0x05, 1, "bool"});
+		lua_state.fields.push_back({"namecall", 0x08, 8, "TString*"});
+		lua_state.fields.push_back({"openupval", 0x10, 8, "UpVal*"});
+		lua_state.fields.push_back({"ci", validate_offset("lua_State.ci", disp(w_ci), 0x18), 8, "CallInfo*"});
+		lua_state.fields.push_back({"global", validate_offset("lua_State.global", disp(r_global), 0x20), 8, "global_State*"});
+		lua_state.fields.push_back({"base", validate_offset("lua_State.base", disp(w_base), 0x28), 8, "StkId"});
+		lua_state.fields.push_back({"stack_last", validate_offset("lua_State.stack_last", disp(w_slast), 0x30), 8, "StkId"});
+		lua_state.fields.push_back({"stack", validate_offset("lua_State.stack", disp(w_stack), 0x38), 8, "StkId"});
+		lua_state.fields.push_back({"top", validate_offset("lua_State.top", disp(w_top), 0x40), 8, "StkId"});
+		lua_state.fields.push_back({"gclist", 0x48, 8, "GCObject*"});
+		lua_state.fields.push_back({"userdata", 0x50, 8, "void*"});
+		lua_state.fields.push_back({"gt", 0x58, 8, "LuaTable*"});
+		lua_state.fields.push_back({"stacksize", validate_offset("lua_State.stacksize", disp(w_ssize), 0x60), 4, "int"});
+		lua_state.fields.push_back({"size_ci", validate_offset("lua_State.size_ci", disp(w_sizeci), 0x64), 4, "int"});
+		lua_state.fields.push_back({"nCcalls", validate_offset("lua_State.nCcalls", disp(w_ncc), 0x68), 2, "unsigned short"});
+		lua_state.fields.push_back({"baseCcalls", validate_offset("lua_State.baseCcalls", disp(w_bcc), 0x6A), 2, "unsigned short"});
+		lua_state.fields.push_back({"cachedslot", 0x6C, 4, "int"});
+		lua_state.fields.push_back({"end_ci", validate_offset("lua_State.end_ci", disp(w_endci), 0x70), 8, "CallInfo*"});
+		lua_state.fields.push_back({"base_ci", validate_offset("lua_State.base_ci", disp(w_baseci), 0x78), 8, "CallInfo*"});
+		lua_state.size = 0x80;
 		m_structures["lua_State"] = lua_state;
 
+		StructInfo ci;
+		ci.name = "CallInfo";
+		ci.fields.push_back({"top", validate_offset("CallInfo.top", disp(ci_top), 0x00, true), 8, "StkId"});
+		ci.fields.push_back({"func", validate_offset("CallInfo.func", disp(ci_func), 0x08), 8, "StkId"});
+		ci.fields.push_back({"base", validate_offset("CallInfo.base", disp(ci_base), 0x10), 8, "StkId"});
+		ci.fields.push_back({"savedpc", 0x18, 8, "const Instruction*"});
+		ci.fields.push_back({"nresults", 0x20, 4, "int"});
+		ci.fields.push_back({"flags", 0x24, 4, "unsigned int"});
+		ci.size = 0x28;
+		m_structures["CallInfo"] = ci;
 		return true;
 	}
 
@@ -158,40 +213,45 @@ namespace dumper
 	{
 		spdlog::info("Analyzing Closure...");
 
-		if (m_pointers->m_luau_functions.luaF_newLclosure == 0)
+		const auto& fns = m_pointers->m_luau_functions;
+		const auto disp = [](const MemAccess* a) { return a ? a->disp : AssemblyAnalyzer::invalid_displacement; };
+		if (fns.luaF_newLclosure == 0 || fns.luaF_newCclosure == 0)
 		{
-			spdlog::error("luaF_newLclosure function pointer is null, cannot analyze Closure structure");
+			spdlog::error("luaF_new{L,C}closure null, cannot analyze Closure");
 			return false;
 		}
 
-		const auto newgco_call = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_newLclosure, ZYDIS_MNEMONIC_CALL, 0);
+		const FunctionTrace nl = AssemblyAnalyzer::trace_function(fns.luaF_newLclosure);
+		const ZydisRegister cl = nl.dominant_write_base();
+		const MemAccess* w_isC = nl.nth_write(cl, 3, 1);
+		const MemAccess* w_nup = nl.nth_write(cl, 4, 1);
+		const MemAccess* w_ssz = nl.nth_write(cl, 5, 1);
+		const MemAccess* w_prl = nl.nth_write(cl, 6, 1);
+		const MemAccess* w_env = nl.nth_write(cl, 0, 8);
+		const MemAccess* w_res = nl.nth_write(cl, 1, 8);
+		const MemAccess* w_lp  = nl.nth_write(cl, 2, 8);
 
-		const auto env_insn       = AssemblyAnalyzer::find_next_instruction(newgco_call, ZYDIS_MNEMONIC_MOV, 6);
-		const auto nupvalues_insn = AssemblyAnalyzer::find_next_instruction(newgco_call, ZYDIS_MNEMONIC_MOV, 7);
-		const auto stacksize_insn = AssemblyAnalyzer::find_next_instruction(newgco_call, ZYDIS_MNEMONIC_MOV, 8);
-		const auto preload_insn   = AssemblyAnalyzer::find_next_instruction(newgco_call, ZYDIS_MNEMONIC_MOV, 9);
-		const auto lp_insn        = AssemblyAnalyzer::find_next_instruction(newgco_call, ZYDIS_MNEMONIC_MOV, 10);
+		const FunctionTrace nc = AssemblyAnalyzer::trace_function(fns.luaF_newCclosure);
+		const ZydisRegister cc = nc.dominant_write_base();
+		const MemAccess* w_cont = nc.nth_write(cc, 2, 8);
+		const MemAccess* w_dbg  = nc.nth_write(cc, 3, 8);
 
 		StructInfo closure;
 		closure.name = "Closure";
 		apply_common_header(closure);
-
-		closure.fields.push_back({"isC", 0x4, 1, "uint8_t"});
-		closure.fields.push_back({"nupvalues", nupvalues_insn, 1, "uint8_t"});
-		closure.fields.push_back({"stacksize", stacksize_insn, 1, "uint8_t"});
-		closure.fields.push_back({"preload", preload_insn, 1, "uint8_t"});
-		closure.fields.push_back({"gclist", 0x8, 8, "GCObject*"});
-		closure.fields.push_back({"env", env_insn, 8, "Table*"});
-		closure.fields.push_back({"l.p", lp_insn, 8, "Proto*"});
-		closure.fields.push_back({"f", lp_insn, 8, "lua_CFunction"});
-		closure.fields.push_back({"cont", 0x20, 8, "lua_Continuation"});
-		closure.fields.push_back({"debugname", 0x28, 8, "char*"});
-
-		closure.size = 0x30;
-
+		closure.fields.push_back({"isC", validate_offset("Closure.isC", disp(w_isC), 0x3), 1, "uint8_t"});
+		closure.fields.push_back({"nupvalues", validate_offset("Closure.nupvalues", disp(w_nup), 0x4), 1, "uint8_t"});
+		closure.fields.push_back({"stacksize", validate_offset("Closure.stacksize", disp(w_ssz), 0x5), 1, "uint8_t"});
+		closure.fields.push_back({"preload", validate_offset("Closure.preload", disp(w_prl), 0x6), 1, "uint8_t"});
+		closure.fields.push_back({"rbx_reserved8", validate_offset("Closure.reserved8", disp(w_res), 0x8), 8, "void*"});
+		closure.fields.push_back({"env", validate_offset("Closure.env", disp(w_env), 0x10), 8, "LuaTable*"});
+		closure.fields.push_back({"gclist", 0x18, 8, "GCObject*"});
+		closure.fields.push_back({"l.p", validate_offset("Closure.l.p", disp(w_lp), 0x20), 8, "Proto*"});
+		closure.fields.push_back({"c.cont", validate_offset("Closure.c.cont", disp(w_cont), 0x28), 8, "lua_Continuation"});
+		closure.fields.push_back({"c.debugname", validate_offset("Closure.c.debugname", disp(w_dbg), 0x30), 8, "char*"});
+		closure.size = 0x38;
 		m_structures["Closure"] = closure;
-		spdlog::info("Closure analyzed: {} fields, size {}", closure.fields.size(), closure.size);
-
+		spdlog::info("Closure analyzed via solver: {} fields", closure.fields.size());
 		return true;
 	}
 
@@ -199,70 +259,85 @@ namespace dumper
 	{
 		spdlog::info("Analyzing Proto...");
 
-		if (m_pointers->m_luau_functions.luaF_freeproto == 0)
+		const auto freeproto = m_pointers->m_luau_functions.luaF_freeproto;
+		const auto luaM_free = m_pointers->m_luau_functions.luaM_free;
+		if (freeproto == 0 || luaM_free == 0)
 		{
-			spdlog::error("luaF_freeproto function pointer is null, cannot analyze Proto structure");
+			spdlog::error("luaF_freeproto/luaM_free null, cannot analyze Proto");
 			return false;
 		}
 
-		const auto sizecode = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_freeproto, ZYDIS_MNEMONIC_MOVSXD, 0);
-		const auto code = AssemblyAnalyzer::find_next_instruction(sizecode, ZYDIS_MNEMONIC_MOV, 1);
-		const auto sizep = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_freeproto, ZYDIS_MNEMONIC_MOVSXD, 1);
-		const auto p = AssemblyAnalyzer::find_next_instruction(sizep, ZYDIS_MNEMONIC_MOV, 1);
-		const auto sizek = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_freeproto, ZYDIS_MNEMONIC_MOVSXD, 2);
-		const auto k        = AssemblyAnalyzer::find_next_instruction(sizek, ZYDIS_MNEMONIC_MOV, 1);
-		const auto lineinfo = AssemblyAnalyzer::find_next_instruction(k, ZYDIS_MNEMONIC_MOV, 1);
-		const auto sizelineinfo = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_freeproto, ZYDIS_MNEMONIC_MOVSXD, 3);
-		const auto sizelocvars = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_freeproto, ZYDIS_MNEMONIC_MOVSXD, 4);
-		const auto locvars  = AssemblyAnalyzer::find_next_instruction(sizelocvars, ZYDIS_MNEMONIC_LEA, 0);
-		const auto upvalues = AssemblyAnalyzer::find_next_instruction(locvars, ZYDIS_MNEMONIC_LEA, 2);
-		const auto sizeupvalues = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.luaF_freeproto, ZYDIS_MNEMONIC_MOVSXD, 5);
-		const auto debuginsn = AssemblyAnalyzer::find_next_instruction(sizeupvalues, ZYDIS_MNEMONIC_MOV, 1);
-		const auto execdata = AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(debuginsn, ZYDIS_MNEMONIC_CALL, 0), ZYDIS_MNEMONIC_CMP, 0);
-		const auto typeinfo    = AssemblyAnalyzer::find_next_instruction(execdata, ZYDIS_MNEMONIC_LEA, 0);
-		const auto sizeofProto = AssemblyAnalyzer::find_next_instruction(typeinfo, ZYDIS_MNEMONIC_MOV, 1);
-		const auto source =
-		    AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.thread, ZYDIS_MNEMONIC_JNZ, 0), ZYDIS_MNEMONIC_MOV, 3);
-		const auto linedefined = AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(source, ZYDIS_MNEMONIC_CALL, 0), ZYDIS_MNEMONIC_MOV, 0);
+		const auto arrays = AssemblyAnalyzer::recover_freeproto_arrays(freeproto, luaM_free);
+
+		static constexpr uint32_t expected[] = {4, 8, 16, 1, 24, 8, 1, 1, 16};
+		if (arrays.size() < std::size(expected))
+		{
+			spdlog::error("Proto: recovered {} array frees, expected {}", arrays.size(), std::size(expected));
+			return false;
+		}
+		for (std::size_t i = 0; i < std::size(expected); ++i)
+		{
+			if (arrays[i].elem_size != expected[i])
+			{
+				spdlog::error("Proto: array #{} elem {} != expected {} (layout drift?)", i, arrays[i].elem_size, expected[i]);
+				return false;
+			}
+		}
 
 		StructInfo proto;
 		proto.name = "Proto";
 		apply_common_header(proto);
-		proto.fields.push_back({"nups", 0x4, sizeof(uint8_t), "uint8_t"});
-		proto.fields.push_back({"numparams", 0x5, sizeof(uint8_t), "uint8_t"});
-		proto.fields.push_back({"is_vararg", 0x6, sizeof(uint8_t), "uint8_t"});
-		proto.fields.push_back({"maxstacksize", 0x7, sizeof(uint8_t), "uint8_t"});
-		proto.fields.push_back({"flags", 0x8, sizeof(uint8_t), "uint8_t"});
-		proto.fields.push_back({"sizecode", sizecode, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"code", code, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"sizep", sizep, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"p", p, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"sizek", sizek, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"k", k, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"lineinfo", lineinfo, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"sizelineinfo", sizelineinfo, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"sizelocvars", sizelocvars, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"locvars", locvars, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"upvalues", upvalues, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"sizeupvalues", sizeupvalues, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"debuginsn", debuginsn, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"execdata", execdata, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"typeinfo", typeinfo, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"source", source, sizeof(uint64_t), "uint64_t"});
-		proto.fields.push_back({"linedefined", linedefined, sizeof(uint64_t), "uint64_t"});
+		proto.fields.push_back({"nups", 0x3, 1, "uint8_t"});
+		proto.fields.push_back({"numparams", 0x4, 1, "uint8_t"});
+		proto.fields.push_back({"is_vararg", 0x5, 1, "uint8_t"});
+		proto.fields.push_back({"maxstacksize", 0x6, 1, "uint8_t"});
+		proto.fields.push_back({"flags", 0x7, 1, "uint8_t"});
 
-		const auto proto_size_imm = AssemblyAnalyzer::get_immediate(sizeofProto);
-		proto.size = proto_size_imm != AssemblyAnalyzer::invalid_displacement && proto_size_imm > 0 && proto_size_imm < 0x1000 ? static_cast<std::size_t>(proto_size_imm) : 0xB0;
-
-		m_structures["Proto"] = proto;
-		spdlog::info("Proto analyzed: {} fields, size {}", proto.fields.size(), proto.size);
-
-		m_proto = {
-		    .linedefined = linedefined,
-		    .execdata    = execdata,
+		const auto add = [&](const char* ptr_name, const char* size_name, std::size_t idx, const char* elem_type) {
+			proto.fields.push_back({ptr_name, arrays[idx].ptr_disp, 8, elem_type});
+			if (size_name)
+				proto.fields.push_back({size_name, arrays[idx].size_disp, 4, "int"});
 		};
+		add("code", "sizecode", 0, "Instruction*");
+		add("p", "sizep", 1, "Proto**");
+		add("k", "sizek", 2, "TValue*");
+		add("lineinfo", "sizelineinfo", 3, "uint8_t*");
+		add("locvars", "sizelocvars", 4, "LocVar*");
+		add("upvalues", "sizeupvalues", 5, "TString**");
+		add("debuginsn", nullptr, 6, "uint8_t*");
+		add("typeinfo", "sizetypeinfo", 7, "uint8_t*");
+		add("feedbackvec", "feedbackvecsize", 8, "void*");
 
+		recover_proto_metadata(proto);
+
+		proto.size = 0xC0;
+		m_structures["Proto"] = proto;
+		spdlog::info("Proto analyzed via solver: {} array frees, {} fields", arrays.size(), proto.fields.size());
 		return true;
+	}
+
+	void LuauDumper::recover_proto_metadata(StructInfo& proto) const
+	{
+		const auto& fns = m_pointers->m_luau_functions;
+		const auto disp = [](const MemAccess* a) { return a ? a->disp : AssemblyAnalyzer::invalid_displacement; };
+
+		const FunctionTrace ul = AssemblyAnalyzer::trace_function(fns.luaU_load, 0x2000);
+		const ZydisRegister p_reg = ul.dominant_write_base();
+		const MemAccess* w_source = p_reg != ZYDIS_REGISTER_NONE ? ul.nth_write(p_reg, 0, 8) : nullptr;
+		const MemAccess* w_bcid   = p_reg != ZYDIS_REGISTER_NONE ? ul.nth_write(p_reg, 0, 4) : nullptr;
+
+		proto.fields.push_back({"source", validate_offset("Proto.source", disp(w_source), 0x10), 8, "TString*"});
+		proto.fields.push_back({"userdata", 0x18, 8, "void*"});
+		proto.fields.push_back({"debugname", 0x20, 8, "TString*"});
+		proto.fields.push_back({"gclist", 0x48, 8, "GCObject*"});
+		proto.fields.push_back({"abslineinfo", 0x60, 8, "int*"});
+		proto.fields.push_back({"codeentry", 0x68, 8, "const Instruction*"});
+		proto.fields.push_back({"execdata", 0x70, 8, "void*"});
+		proto.fields.push_back({"exectarget", 0x78, 8, "uintptr_t"});
+		proto.fields.push_back({"linedefined", 0x8C, 4, "int"});
+		proto.fields.push_back({"linegaplog2", 0xA4, 4, "int"});
+		proto.fields.push_back({"bytecodeid", validate_offset("Proto.bytecodeid", disp(w_bcid), 0xAC), 4, "int"});
+		proto.fields.push_back({"funid", 0xBC, 4, "int"});
 	}
 
 	bool LuauDumper::analyze_upval()
@@ -307,65 +382,104 @@ namespace dumper
 
 	bool LuauDumper::analyze_global_state()
 	{
-		spdlog::info("Analyzing GlobalState...");
+		spdlog::info("Analyzing global_State...");
 
-		const auto gray = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.propagatemark, ZYDIS_MNEMONIC_MOV, 0);
-		const auto gcstate = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.gc, ZYDIS_MNEMONIC_MOVZX, 0);
-		const auto gcstats =
-		    AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.gc, ZYDIS_MNEMONIC_CMP, 9), ZYDIS_MNEMONIC_MOV, 1);
-		const auto frealloc =
-		    AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.page, ZYDIS_MNEMONIC_XOR, 0), ZYDIS_MNEMONIC_MOV, 0);
-		const auto ud =
-		    AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.page, ZYDIS_MNEMONIC_XOR, 0), ZYDIS_MNEMONIC_MOV, 1);
+		const auto& fns = m_pointers->m_luau_functions;
+		const auto disp = [](const MemAccess* a) { return a ? a->disp : AssemblyAnalyzer::invalid_displacement; };
 
-		StructInfo global_state;
-		global_state.name = "GlobalState";
-		global_state.fields.push_back({"gray", gray, sizeof(uint64_t), "uint64_t"});
-		global_state.fields.push_back({"gcstate", gcstate, sizeof(uint64_t), "uint64_t"});
-		global_state.fields.push_back({"gcstats", gcstats, sizeof(uint64_t), "uint64_t", -176});
-		global_state.fields.push_back({"frealloc", frealloc, sizeof(uint64_t), "uint64_t"});
-		global_state.fields.push_back({"ud", ud, sizeof(uint64_t), "uint64_t"});
+		const FunctionTrace mf = AssemblyAnalyzer::trace_function(fns.luaM_free);
+		const MemAccess* r_gload = mf.nth_read(ZYDIS_REGISTER_RCX, 0, 8);
+		const ZydisRegister greg = r_gload ? r_gload->reg : ZYDIS_REGISTER_NONE;
 
-		global_state.size = 0x50;
+		uint64_t frealloc_disp   = AssemblyAnalyzer::invalid_displacement;
+		uint64_t totalbytes_disp = AssemblyAnalyzer::invalid_displacement;
+		uint64_t memcat_disp     = AssemblyAnalyzer::invalid_displacement;
+		if (greg != ZYDIS_REGISTER_NONE)
+		{
+			for (const auto& a : mf.accesses)
+			{
+				if (a.base != greg)
+					continue;
+				if (a.mnemonic == ZYDIS_MNEMONIC_CALL && frealloc_disp == AssemblyAnalyzer::invalid_displacement)
+					frealloc_disp = a.disp;
+				if (a.mnemonic == ZYDIS_MNEMONIC_SUB && a.write)
+				{
+					if (a.index != ZYDIS_REGISTER_NONE)
+						memcat_disp = a.disp;
+					else if (totalbytes_disp == AssemblyAnalyzer::invalid_displacement)
+						totalbytes_disp = a.disp;
+				}
+			}
+		}
 
-		m_structures["GlobalState"] = global_state;
-		spdlog::info("GlobalState analyzed: {} fields, size {}", global_state.fields.size(), global_state.size);
+		const MemAccess* r_ud = greg != ZYDIS_REGISTER_NONE ? mf.nth_read(greg, 0, 8) : nullptr;
 
+		StructInfo g;
+		g.name = "global_State";
+		g.fields.push_back({"strt", 0x00, 16, "stringtable"});
+		g.fields.push_back({"weak", 0x10, 8, "GCObject*"});
+		g.fields.push_back({"grayagain", 0x18, 8, "GCObject*"});
+		g.fields.push_back({"gray", 0x20, 8, "GCObject*"});
+		g.fields.push_back({"GCthreshold", 0x28, 8, "size_t"});
+		g.fields.push_back({"totalbytes", validate_offset("global_State.totalbytes", totalbytes_disp, 0x30), 8, "size_t"});
+		g.fields.push_back({"gcgoal", 0x38, 4, "int"});
+		g.fields.push_back({"gcstepmul", 0x3C, 4, "int"});
+		g.fields.push_back({"gcstepsize", 0x40, 4, "int"});
+		g.fields.push_back({"frealloc", validate_offset("global_State.frealloc", frealloc_disp, 0x48), 8, "lua_Alloc"});
+		g.fields.push_back({"ud", validate_offset("global_State.ud", disp(r_ud), 0x50), 8, "void*"});
+		g.fields.push_back({"currentwhite", 0x58, 1, "uint8_t"});
+		g.fields.push_back({"gcstate", 0x59, 1, "uint8_t"});
+		g.fields.push_back({"sweepgcopage", 0x60, 8, "lua_Page*"});
+		g.fields.push_back({"uvhead", 0x70, 0x28, "UpVal"});
+		g.fields.push_back({"freepages", 0x98, 8 * 40, "lua_Page*[40]"});
+		g.fields.push_back({"mainthread", 0x1D8, 8, "lua_State*"});
+		g.fields.push_back({"allgcopages", 0x1E0, 8, "lua_Page*"});
+		g.fields.push_back({"freegcopages", 0x1E8, 8 * 40, "lua_Page*[40]"});
+		g.fields.push_back({"mt", 0x440, 8 * 14, "LuaTable*[14]"});
+		g.fields.push_back({"pseudotemp", 0x4B0, 16, "TValue"});
+		g.fields.push_back({"registry", 0x4C0, 16, "TValue"});
+		g.fields.push_back({"memcatbytes", validate_offset("global_State.memcatbytes", memcat_disp, 0x2C30), 8, "size_t[256]"});
+		g.size = 0x46D0;
+		m_structures["global_State"] = g;
+		spdlog::info("global_State analyzed: {} fields (frealloc/ud/totalbytes/memcatbytes recovered)", g.fields.size());
 		return true;
 	}
 
 	bool LuauDumper::analyze_table()
 	{
-		spdlog::info("Analyzing Table...");
+		spdlog::info("Analyzing LuaTable...");
 
-		const auto node = AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.table, ZYDIS_MNEMONIC_CMP, 0);
-		const auto lsizenode = AssemblyAnalyzer::find_next_instruction(node, ZYDIS_MNEMONIC_MOVZX, 0);
-		const auto nodemask8 = AssemblyAnalyzer::find_next_instruction(lsizenode, ZYDIS_MNEMONIC_MOVZX, 0);
-		const auto sizearray = AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(lsizenode, ZYDIS_MNEMONIC_ADD, 1), ZYDIS_MNEMONIC_CMP, 1);
-		const auto array = AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(sizearray, ZYDIS_MNEMONIC_MOVSXD, 0), ZYDIS_MNEMONIC_MOV, 1);
-		const auto metatable = AssemblyAnalyzer::find_next_instruction(array, ZYDIS_MNEMONIC_CMP, 0);
-		const auto gclist =
-		    AssemblyAnalyzer::find_next_instruction(AssemblyAnalyzer::find_next_instruction(m_pointers->m_luau_functions.propagatemark, ZYDIS_MNEMONIC_RET, 0), ZYDIS_MNEMONIC_MOV, 0);
+		const auto& fns = m_pointers->m_luau_functions;
+		const auto disp = [](const MemAccess* a) { return a ? a->disp : AssemblyAnalyzer::invalid_displacement; };
 
-		StructInfo lua_table;
-		lua_table.name = "Table";
-		apply_common_header(lua_table);
-		lua_table.fields.push_back({"tmcache", 0x4, sizeof(uint8_t), "uint8_t"});
-		lua_table.fields.push_back({"readonly", 0x5, sizeof(uint8_t), "uint8_t"});
-		lua_table.fields.push_back({"safeenv", 0x6, sizeof(uint8_t), "uint8_t"});
-		lua_table.fields.push_back({"lsizenode", lsizenode, sizeof(uint8_t), "uint8_t"});
-		lua_table.fields.push_back({"nodemask8", nodemask8, sizeof(uint8_t), "uint8_t"});
-		lua_table.fields.push_back({"node", node, sizeof(uint64_t), "uint64_t"});
-		lua_table.fields.push_back({"sizearray", sizearray, sizeof(uint64_t), "uint64_t"});
-		lua_table.fields.push_back({"array", array, sizeof(uint64_t), "uint64_t"});
-		lua_table.fields.push_back({"metatable", metatable, sizeof(uint64_t), "uint64_t"});
-		lua_table.fields.push_back({"gclist", gclist, sizeof(uint64_t), "uint64_t"});
+		const FunctionTrace sv = AssemblyAnalyzer::trace_function(fns.setnodevector);
+		const ZydisRegister t_reg = sv.dominant_write_base();
+		const MemAccess* w_node   = sv.nth_write(t_reg, 0, 8);
+		const MemAccess* w_lsize  = sv.nth_write(t_reg, 0, 1);
+		const MemAccess* w_mask   = sv.nth_write(t_reg, 1, 1);
+		const MemAccess* w_lfree  = sv.nth_write(t_reg, 0, 4);
 
-		lua_table.size = 0x40;
+		const FunctionTrace tt = AssemblyAnalyzer::trace_function(fns.traversetable);
+		const MemAccess* r_mt   = tt.nth_read(ZYDIS_REGISTER_RSI, 0, 8);
+		const MemAccess* r_sarr = tt.nth_read(ZYDIS_REGISTER_RSI, 0, 4);
 
-		m_structures["Table"] = lua_table;
-		spdlog::info("LuaTable analyzed: {} fields, size {}", lua_table.fields.size(), lua_table.size);
-
+		StructInfo t;
+		t.name = "Table";
+		apply_common_header(t);
+		t.fields.push_back({"nodemask8", validate_offset("Table.nodemask8", disp(w_mask), 0x03), 1, "uint8_t"});
+		t.fields.push_back({"readonly", 0x04, 1, "uint8_t"});
+		t.fields.push_back({"tmcache", 0x05, 1, "uint8_t"});
+		t.fields.push_back({"safeenv", 0x06, 1, "uint8_t"});
+		t.fields.push_back({"lsizenode", validate_offset("Table.lsizenode", disp(w_lsize), 0x07), 1, "uint8_t"});
+		t.fields.push_back({"sizearray", validate_offset("Table.sizearray", disp(r_sarr), 0x08), 4, "int"});
+		t.fields.push_back({"lastfree", validate_offset("Table.lastfree", disp(w_lfree), 0x0C), 4, "int"});
+		t.fields.push_back({"metatable", validate_offset("Table.metatable", disp(r_mt), 0x10), 8, "LuaTable*"});
+		t.fields.push_back({"gclist", 0x18, 8, "GCObject*"});
+		t.fields.push_back({"array", 0x20, 8, "TValue*"});
+		t.fields.push_back({"node", validate_offset("Table.node", disp(w_node), 0x28), 8, "LuaNode*"});
+		t.size = 0x30;
+		m_structures["Table"] = t;
+		spdlog::info("LuaTable analyzed: {} fields, size 0x{:X}", t.fields.size(), t.size);
 		return true;
 	}
 

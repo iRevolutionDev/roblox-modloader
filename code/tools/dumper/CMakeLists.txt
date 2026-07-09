@@ -15,7 +15,7 @@ file(GLOB_RECURSE DUMPER_SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-add_library(dumper SHARED ${DUMPER_SOURCES})
+add_executable(dumper ${DUMPER_SOURCES})
 
 target_compile_features(dumper PRIVATE cxx_std_23)
 

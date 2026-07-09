@@ -38,7 +38,7 @@ namespace dumper
 	class LuauDumper
 	{
 	public:
-		explicit LuauDumper(std::unique_ptr<pointers>& pointers);
+		explicit LuauDumper(std::unique_ptr<pointers>& pointers, uintptr_t image_base);
 		~LuauDumper() = default;
 
 		bool analyze();
@@ -55,11 +55,14 @@ namespace dumper
 		void apply_common_header(StructInfo& structure) const;
 		static bool has_field(const StructInfo& structure, std::string_view field_name, std::size_t offset);
 
+		static std::size_t validate_offset(std::string_view field, uint64_t recovered, std::size_t expected, bool allow_zero = false);
+
 		bool analyze_lua_state();
 		bool analyze_common();
 		bool analyze_table();
 		bool analyze_closure();
 		bool analyze_proto();
+		void recover_proto_metadata(StructInfo& proto) const;
 		bool analyze_upval();
 		bool analyze_tvalue();
 		bool analyze_global_state();

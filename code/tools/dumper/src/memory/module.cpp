@@ -12,18 +12,26 @@ namespace memory
 		try_get_module();
 	}
 
+	module::module(handle base) :range(base, 0), m_name(""), m_loaded(true)
+	{
+		m_base = base;
+		const auto dosHeader = m_base.as<IMAGE_DOS_HEADER*>();
+		const auto ntHeader = m_base.add(dosHeader->e_lfanew).as<IMAGE_NT_HEADERS*>();
+		m_size = ntHeader->OptionalHeader.SizeOfImage;
+	}
+
 	handle module::get_export(std::string_view symbol_name)
 	{
 		if (!m_loaded)
 			return nullptr;
 
-		const auto dosHeader          = m_base.as<IMAGE_DOS_HEADER*>();
-		const auto ntHeader           = m_base.add(dosHeader->e_lfanew).as<IMAGE_NT_HEADERS*>();
+		const auto dosHeader = m_base.as<IMAGE_DOS_HEADER*>();
+		const auto ntHeader = m_base.add(dosHeader->e_lfanew).as<IMAGE_NT_HEADERS*>();
 		const auto imageDataDirectory = ntHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT];
-		const auto exportDirectory    = m_base.add(imageDataDirectory.VirtualAddress).as<IMAGE_EXPORT_DIRECTORY*>();
+		const auto exportDirectory = m_base.add(imageDataDirectory.VirtualAddress).as<IMAGE_EXPORT_DIRECTORY*>();
 
-		const auto nameOffsetArray     = m_base.add(exportDirectory->AddressOfNames).as<DWORD*>();
-		const auto ordinalArray        = m_base.add(exportDirectory->AddressOfNameOrdinals).as<DWORD*>();
+		const auto nameOffsetArray = m_base.add(exportDirectory->AddressOfNames).as<DWORD*>();
+		const auto ordinalArray = m_base.add(exportDirectory->AddressOfNameOrdinals).as<DWORD*>();
 		const auto functionOffsetArray = m_base.add(exportDirectory->AddressOfFunctions).as<DWORD*>();
 
 		for (std::size_t i = 0; i < exportDirectory->NumberOfFunctions; i++)
@@ -64,15 +72,15 @@ namespace memory
 	{
 		if (m_loaded)
 			return m_loaded;
-
+		
 		const auto mod = GetModuleHandleA(m_name.data());
 		if (!mod)
 			return false;
 		m_loaded = true;
 
-		m_base               = mod;
+		m_base = mod;
 		const auto dosHeader = m_base.as<IMAGE_DOS_HEADER*>();
-		const auto ntHeader  = m_base.add(dosHeader->e_lfanew).as<IMAGE_NT_HEADERS*>();
+		const auto ntHeader = m_base.add(dosHeader->e_lfanew).as<IMAGE_NT_HEADERS*>();
 
 		m_size = ntHeader->OptionalHeader.SizeOfImage;
 

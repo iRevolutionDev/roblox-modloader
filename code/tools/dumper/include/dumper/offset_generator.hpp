@@ -14,7 +14,8 @@ namespace dumper
 		CPP_Header,
 		CPP_Struct,
 		JSON,
-		Genny
+		Genny,
+		LuauShuffle
 	};
 
 	class OffsetGenerator
@@ -32,6 +33,8 @@ namespace dumper
 		static bool generate_json(const std::map<std::string, StructInfo>& structures, const std::filesystem::path& output_path);
 
 		static bool generate_genny(const std::map<std::string, StructInfo>& structures, const std::filesystem::path& output_path);
+		
+		static bool generate_luau_shuffle(const std::map<std::string, StructInfo>& structures, const std::filesystem::path& output_path);
 
 		std::string sanitize_name(const std::string& name);
 	};
