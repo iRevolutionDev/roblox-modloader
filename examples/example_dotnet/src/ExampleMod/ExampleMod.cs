@@ -73,32 +73,116 @@ public sealed class ExampleMod : ModBase, IDataModelAware
 
         if (dataModelType == DataModelType.Edit)
         {
-            workspace?.DescendantAdded += instance =>
+            workspace.DescendantAdded += instance =>
             {
                 Logger.Info(
                     $"[DOTNET]: Instance added: {instance.Name} {instance.Parent?.Name} ({instance.ClassName})");
             };
 
-            workspace?.DescendantRemoving += instance =>
+            workspace.DescendantRemoving += instance =>
             {
                 Logger.Info(
                     $"[DOTNET]: Instance removed: {instance.Name} {instance.Parent?.Name} ({instance.ClassName})");
             };
 
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    Thread.Sleep(1000);
-                    var camera = workspace?.CurrentCamera;
-                    Logger.Info($"[DOTNET]: CurrentCamera CFrame: {camera?.CFrame}");
-                }
-            });
+            RunEventDiagnostics(workspace);
         }
     }
 
     public void OnDataModelUnloaded(DataModel dataModel, DataModelType dataModelType)
     {
+    }
+
+    private static void RunEventDiagnostics(Workspace workspace)
+    {
+        try
+        {
+            var bindable = Instance.New<BindableEvent>(b =>
+            {
+                b.Parent = workspace;
+                b.Name = "RML_EventTest";
+            });
+
+            var fired = new List<string>();
+            Action<object> handlerA = arg =>
+            {
+                fired.Add("A");
+                Step($"  handler A got: {arg}");
+            };
+            Action<object> handlerB = arg =>
+            {
+                fired.Add("B");
+                Step($"  handler B got: {arg}");
+            };
+
+            void FireAll(string tag)
+            {
+                fired.Clear();
+                bindable.Fire(tag);
+                Step($"Fire('{tag}') control -> [{string.Join(",", fired)}]");
+
+                fired.Clear();
+                bindable.FireEvent("Event", tag);
+                Step($"FireEvent('{tag}') raw -> [{string.Join(",", fired)}]");
+            }
+
+            bindable.Event += handlerA;
+            bindable.Event += handlerB;
+            Step($"connect A + B -> {SlotCount(bindable)} slot(s)");
+            FireAll("all");
+
+            bindable.Event -= handlerA;
+            bindable.Event -= handlerB;
+            Step($"after -= A,B -> {SlotCount(bindable)} slot(s)");
+            FireAll("after-disconnect");
+
+            bindable.Event += handlerA;
+            var connections = bindable.GetConnections("Event");
+            Step($"GetConnections -> {connections.Count} slot(s)");
+            fired.Clear();
+            if (connections.Count > 0) connections[0].Fire("slot-fire");
+
+            Step($"slot[0].Fire -> [{string.Join(",", fired)}]");
+            foreach (var connection in connections) connection.Dispose();
+
+            bindable.Event -= handlerA;
+
+            bindable.Event += handlerA;
+            var toDrop = bindable.GetConnections("Event");
+            if (toDrop.Count > 0) toDrop[0].Disconnect();
+
+            foreach (var connection in toDrop) connection.Dispose();
+
+            Step($"after slot[0].Disconnect -> {SlotCount(bindable)} slot(s)");
+            bindable.Event -= handlerA;
+
+            bindable.Event += handlerA;
+            bindable.DisconnectAll("Event");
+            Step($"after DisconnectAll -> {SlotCount(bindable)} slot(s)");
+            bindable.Event -= handlerA;
+
+            bindable.Destroy();
+            Step("done");
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"[EVT-TEST] failed: {ex}");
+        }
+
+        return;
+
+        void Step(string message)
+        {
+            Logger.Info($"[EVT-TEST] {message}");
+        }
+    }
+
+    private static int SlotCount(Instance instance)
+    {
+        var connections = instance.GetConnections("Event");
+        foreach (var connection in connections) connection.Dispose();
+
+        return connections.Count;
     }
 
     public override int OnLoad()
