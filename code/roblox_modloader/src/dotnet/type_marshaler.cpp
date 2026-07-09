@@ -8,11 +8,13 @@
 #include "RobloxModLoader/roblox/util/G3DCore.h"
 #include "RobloxModLoader/util/layout_assert.hpp"
 #include "RobloxModLoader/util/memory.hpp"
+#include "pointers.hpp"
 
 #include <cstring>
 #include <memory>
 #include <new>
 #include <utility>
+#include <vector>
 
 RML_LOG_SCOPE("Interop");
 
@@ -33,15 +35,9 @@ namespace rml::dotnet
 		RML_ASSERT_LAYOUT_SIZE(RBX::Rect2D, 16);
 		RML_ASSERT_LAYOUT_SIZE(RBX::BrickColor, 4);
 
-		static_assert(sizeof(float) == 4 && sizeof(int32_t) == 4,
-		    "Ray/UDim/UDim2/NumberRange/Region3/Faces/Axes/sequence-stride sizes below are engine-ABI facts (no matching 1:1 reconstructed C++ struct in this codebase; RBX::Ray/RbxRay carries a vtable and is not wire-compatible) and assume 32-bit float and int32 engine fields");
+		static_assert(sizeof(float) == 4 && sizeof(int32_t) == 4, "Ray/UDim/UDim2/NumberRange/Region3/Faces/Axes/sequence-stride sizes below are engine-ABI facts (no matching 1:1 reconstructed C++ struct in this codebase; RBX::Ray/RbxRay carries a vtable and is not wire-compatible) and assume 32-bit float and int32 engine fields");
 
-		static_assert(TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::CoordinateFrame) &&
-		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Rect2D) &&
-		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Vector3) &&
-		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Color3) &&
-		                  TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::BrickColor),
-		    "TypeMarshaler::kMaxBlittableEngineTypeBytes must bound every reconstructed blittable engine type");
+		static_assert(TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::CoordinateFrame) && TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Rect2D) && TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Vector3) && TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::Color3) && TypeMarshaler::kMaxBlittableEngineTypeBytes >= sizeof(RBX::BrickColor), "TypeMarshaler::kMaxBlittableEngineTypeBytes must bound every reconstructed blittable engine type");
 
 		[[nodiscard]] size_t blittable_size(const RBX::Name& type_name) noexcept
 		{
@@ -54,7 +50,7 @@ namespace rml::dotnet
 			    {"UDim", 8},
 			    {"UDim2", 16},
 			    {"Ray", 24},
-			    {"Rect", sizeof(RBX::Rect2D)},
+			    {"Rect2D", sizeof(RBX::Rect2D)},
 			    {"NumberRange", 8},
 			    {"Region3", TypeMarshaler::kMaxBlittableEngineTypeBytes},
 			    {"Faces", 4},
@@ -92,27 +88,132 @@ namespace rml::dotnet
 
 			return tuple_value(values);
 		}
+
+		using TupleSharedPtr = std::shared_ptr<const RBX::Reflection::Tuple>;
+
+		void destroy_string_storage(void* storage)
+		{
+			static_cast<std::string*>(storage)->~basic_string();
+		}
+		void destroy_trivial_storage(void*)
+		{
+		}
+		void destroy_tuple_storage(void* storage)
+		{
+			static_cast<TupleSharedPtr*>(storage)->~shared_ptr();
+		}
+		void* copy_tuple_storage(void* dst, const void* src)
+		{
+			::new (dst) TupleSharedPtr(*static_cast<const TupleSharedPtr*>(src));
+			return dst;
+		}
+
+		const void* g_string_ops[3] = {nullptr, nullptr, reinterpret_cast<const void*>(&destroy_string_storage)};
+		const void* g_trivial_ops[3] = {nullptr, nullptr, reinterpret_cast<const void*>(&destroy_trivial_storage)};
+		const void* g_tuple_ops[3] = {reinterpret_cast<const void*>(&copy_tuple_storage), reinterpret_cast<const void*>(&copy_tuple_storage), reinterpret_cast<const void*>(&destroy_tuple_storage)};
+
+		[[nodiscard]] int tag_to_type_id(const InteropValueTag tag) noexcept
+		{
+			switch (tag)
+			{
+			case InteropValueTag::Bool: return RBX::Reflection::TypeId::Bool;
+			case InteropValueTag::Int64: return RBX::Reflection::TypeId::Int64;
+			case InteropValueTag::Float: return RBX::Reflection::TypeId::Float;
+			case InteropValueTag::Double: return RBX::Reflection::TypeId::Double;
+			case InteropValueTag::String: return RBX::Reflection::TypeId::String;
+			case InteropValueTag::Instance: return RBX::Reflection::TypeId::Instance;
+			default: return -1;
+			}
+		}
+
+		void destroy_tuple_contents(RBX::Reflection::Tuple* tuple)
+		{
+			for (auto& value : tuple->values)
+			{
+				if (const auto* const* ops = static_cast<const void* const*>(value.value_ops()); ops && ops[2])
+					reinterpret_cast<void (*)(void*)>(const_cast<void*>(ops[2]))(value.storage());
+			}
+			delete tuple;
+		}
 	} // namespace
+
+	const RBX::Reflection::Type* TypeMarshaler::find_type_by_id(const int type_id) noexcept
+	{
+		if (!g_pointers || !g_pointers->m_roblox_pointers.type_registry)
+			return nullptr;
+
+		const auto registry = g_pointers->m_roblox_pointers.type_registry;
+
+		if (!registry || registry->size() > 100000)
+			return nullptr;
+
+		for (const auto* type : *registry)
+		{
+			if (type && type->type_id == type_id)
+				return type;
+		}
+		return nullptr;
+	}
+
+	bool TypeMarshaler::build_tuple_variant(const InteropVariant* args, const uint32_t count, const RBX::Reflection::Type* tuple_type, RBX::Reflection::Variant& out)
+	{
+		if (!tuple_type)
+			return false;
+
+		std::shared_ptr<RBX::Reflection::Tuple> tuple(new RBX::Reflection::Tuple(), &destroy_tuple_contents);
+		tuple->values.reserve(count);
+
+		for (uint32_t i = 0; i < count; ++i)
+		{
+			const auto* type = find_type_by_id(tag_to_type_id(args[i].tag));
+			if (!type)
+				continue;
+
+			RBX::Reflection::Variant inner;
+			const void* ops = args[i].tag == InteropValueTag::String ? g_string_ops : g_trivial_ops;
+			if (decode_argument(type, args[i], inner, ops))
+				tuple->values.push_back(std::move(inner));
+		}
+
+		out.set_type_and_ops(tuple_type, g_tuple_ops);
+		::new (out.storage()) TupleSharedPtr(std::move(tuple));
+		return true;
+	}
 
 	MarshalPlan TypeMarshaler::classify(const RBX::Reflection::Type& type) noexcept
 	{
 		if (RBX::Reflection::RefPropertyDescriptor::is_ref_property_descriptor(type))
 			return {MarshalKind::RefInstance, 0};
 
-		if (type.name == "Instance")
-			return {MarshalKind::Instance, 0};
-
-		if (type.name == "Instances")
-			return {MarshalKind::InstanceArray, 0};
-
-		if (type.name == "Tuple")
-			return {MarshalKind::Tuple, 0};
-
-		if (type.name == "string")
-			return {MarshalKind::String, 0};
-
-		if (type.name == "bool")
-			return {MarshalKind::Bool, 0};
+		switch (type.type_id)
+		{
+		case RBX::Reflection::TypeId::Bool: return {MarshalKind::Bool, 0};
+		case RBX::Reflection::TypeId::Int:
+		case RBX::Reflection::TypeId::Int64:
+		case RBX::Reflection::TypeId::Integer: return {MarshalKind::Number, 0};
+		case RBX::Reflection::TypeId::Float: return {MarshalKind::Float, 0};
+		case RBX::Reflection::TypeId::Double: return {MarshalKind::Double, 0};
+		case RBX::Reflection::TypeId::String: return {MarshalKind::String, 0};
+		case RBX::Reflection::TypeId::Instance: return {MarshalKind::Instance, 0};
+		case RBX::Reflection::TypeId::Instances: return {MarshalKind::InstanceArray, 0};
+		case RBX::Reflection::TypeId::Tuple: return {MarshalKind::Tuple, 0};
+		case RBX::Reflection::TypeId::Vector3: return {MarshalKind::Blittable, sizeof(RBX::Vector3)};
+		case RBX::Reflection::TypeId::Vector2: return {MarshalKind::Blittable, sizeof(RBX::Vector2)};
+		case RBX::Reflection::TypeId::Color3: return {MarshalKind::Blittable, sizeof(RBX::Color3)};
+		case RBX::Reflection::TypeId::CoordinateFrame: return {MarshalKind::Blittable, sizeof(RBX::CoordinateFrame)};
+		case RBX::Reflection::TypeId::Rect2D: return {MarshalKind::Blittable, sizeof(RBX::Rect2D)};
+		case RBX::Reflection::TypeId::BrickColor: return {MarshalKind::Blittable, sizeof(RBX::BrickColor)};
+		case RBX::Reflection::TypeId::UDim: return {MarshalKind::Blittable, 8};
+		case RBX::Reflection::TypeId::UDim2: return {MarshalKind::Blittable, 16};
+		case RBX::Reflection::TypeId::Ray: return {MarshalKind::Blittable, 24};
+		case RBX::Reflection::TypeId::NumberRange: return {MarshalKind::Blittable, 8};
+		case RBX::Reflection::TypeId::Region3: return {MarshalKind::Blittable, kMaxBlittableEngineTypeBytes};
+		case RBX::Reflection::TypeId::Faces: return {MarshalKind::Blittable, 4};
+		case RBX::Reflection::TypeId::Axes: return {MarshalKind::Blittable, 4};
+		case RBX::Reflection::TypeId::NumberSequence: return {MarshalKind::Sequence, 12};
+		case RBX::Reflection::TypeId::ColorSequence: return {MarshalKind::Sequence, 20};
+		default: break;
+		}
 
 		if (const auto size = blittable_size(type.name); size != 0)
 			return {MarshalKind::Blittable, size};
@@ -124,9 +225,9 @@ namespace rml::dotnet
 			return {MarshalKind::Enum, 0};
 
 		if (type.is_float)
-			return {type.name == "float" ? MarshalKind::Float : MarshalKind::Double, 0};
+			return {MarshalKind::Double, 0};
 
-		if (type.is_number || type.name == "int" || type.name == "long")
+		if (type.is_number)
 			return {MarshalKind::Number, 0};
 
 		return {MarshalKind::Unsupported, 0};
@@ -138,9 +239,9 @@ namespace rml::dotnet
 			return null_value();
 
 		const auto& type = variant.type();
-		const auto plan = classify(type);
+		const auto [kind, byte_size] = classify(type);
 
-		switch (plan.kind)
+		switch (kind)
 		{
 		case MarshalKind::RefInstance:
 		{
@@ -159,38 +260,38 @@ namespace rml::dotnet
 			return instance ? instance_value(reinterpret_cast<uintptr_t>(*instance)) : null_value();
 		}
 		case MarshalKind::String:
-			return strings ? string_value(variant.try_cast<std::string>()->c_str(), *strings) : string_value(variant.try_cast<std::string>()->c_str());
-		case MarshalKind::Bool:
-			return bool_value(*variant.try_cast<bool>());
-		case MarshalKind::Enum:
-			return int64_value(*variant.try_cast<int>());
-		case MarshalKind::Float:
-			return float_value(*variant.try_cast<float>());
-		case MarshalKind::Double:
-			return double_value(*variant.try_cast<double>());
+			return strings ? string_value(variant.try_cast<std::string>()->c_str(), *strings) :
+			                 string_value(variant.try_cast<std::string>()->c_str());
+		case MarshalKind::Bool: return bool_value(*variant.try_cast<bool>());
+		case MarshalKind::Enum: return int64_value(*variant.try_cast<int>());
+		case MarshalKind::Float: return float_value(*variant.try_cast<float>());
+		case MarshalKind::Double: return double_value(*variant.try_cast<double>());
 		case MarshalKind::Number:
-			return int64_value(type.name == "int" ? *variant.try_cast<int>() : *variant.try_cast<int64_t>());
-		default:
-			RML_WARN("Unsupported variant type '{}'", type.name.c_str());
-			return null_value();
+			return int64_value(type.type_id == RBX::Reflection::TypeId::Int ? *variant.try_cast<int>() : *variant.try_cast<int64_t>());
+		case MarshalKind::Tuple:
+		{
+			const auto* shared = variant.try_cast<TupleSharedPtr>();
+			return marshal_tuple(shared ? shared->get() : nullptr);
+		}
+		default: RML_WARN("Unsupported variant type '{}'", type.name.c_str()); return null_value();
 		}
 	}
 
 	InteropVariant TypeMarshaler::encode_property(const RBX::Reflection::PropertyDescriptor* descriptor, const RBX::Reflection::DescribedBase* instance)
 	{
 		const auto& type = descriptor->type;
-		const auto plan = classify(type);
+		const auto [kind, byte_size] = classify(type);
 
-		if (plan.kind == MarshalKind::String)
+		if (kind == MarshalKind::String)
 			return string_value(descriptor->get_string_value(instance).c_str());
 
-		if (plan.kind == MarshalKind::RefInstance)
+		if (kind == MarshalKind::RefInstance)
 		{
 			const auto* ref_descriptor = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(descriptor);
 			return instance_value(reinterpret_cast<uintptr_t>(ref_descriptor->get_ref_value(instance)));
 		}
 
-		if (plan.kind == MarshalKind::Unsupported)
+		if (kind == MarshalKind::Unsupported)
 		{
 			RML_WARN("Unsupported property type '{}' for get_property('{}')", type.name.c_str(), descriptor->name.c_str());
 			return null_value();
@@ -201,11 +302,11 @@ namespace rml::dotnet
 		if (variant.is_void())
 			return null_value();
 
-		if (plan.kind == MarshalKind::Sequence)
-			return pack_sequence(variant.try_cast<std::byte>(), plan.byte_size);
+		if (kind == MarshalKind::Sequence)
+			return pack_sequence(variant.try_cast<std::byte>(), byte_size);
 
-		if (plan.kind == MarshalKind::Blittable)
-			return blittable_value(variant.try_cast<std::byte>(), plan.byte_size);
+		if (kind == MarshalKind::Blittable)
+			return blittable_value(variant.try_cast<std::byte>(), byte_size);
 
 		return encode_variant(variant);
 	}
@@ -225,9 +326,8 @@ namespace rml::dotnet
 		if (plan.kind == MarshalKind::RefInstance)
 		{
 			const auto* ref_descriptor = dynamic_cast<const RBX::Reflection::RefPropertyDescriptor*>(descriptor);
-			auto* target = value.tag == InteropValueTag::Instance ?
-			    reinterpret_cast<RBX::Reflection::DescribedBase*>(value.as_instance) :
-			    nullptr;
+			auto* target =
+			    value.tag == InteropValueTag::Instance ? reinterpret_cast<RBX::Reflection::DescribedBase*>(value.as_instance) : nullptr;
 			ref_descriptor->set_ref_value(instance, target);
 			return true;
 		}
@@ -306,7 +406,7 @@ namespace rml::dotnet
 				return false;
 
 			RBX::Property property(*descriptor, instance);
-			if (type.name == "int64" || type.name == "long")
+			if (type.type_id == RBX::Reflection::TypeId::Int64 || type.type_id == RBX::Reflection::TypeId::Integer)
 				property.set<int64_t>(decoded);
 			else
 				property.set<int>(static_cast<int>(decoded));
@@ -335,7 +435,7 @@ namespace rml::dotnet
 		case MarshalKind::Bool:
 		{
 			bool decoded = false;
-			(void) read_bool(value, decoded);
+			(void)read_bool(value, decoded);
 			*static_cast<bool*>(storage) = decoded;
 			return true;
 		}
@@ -344,7 +444,7 @@ namespace rml::dotnet
 		case MarshalKind::Double:
 		{
 			double decoded = 0.0;
-			(void) read_double(value, decoded);
+			(void)read_double(value, decoded);
 			if (plan.kind == MarshalKind::Float)
 				*static_cast<float*>(storage) = static_cast<float>(decoded);
 			else
@@ -356,16 +456,15 @@ namespace rml::dotnet
 		case MarshalKind::Number:
 		{
 			int64_t decoded = 0;
-			(void) read_int64(value, decoded);
-			if (type->name == "int64" || type->name == "long")
+			(void)read_int64(value, decoded);
+			if (type->type_id == RBX::Reflection::TypeId::Int64 || type->type_id == RBX::Reflection::TypeId::Integer)
 				*static_cast<int64_t*>(storage) = decoded;
 			else
 				*static_cast<int*>(storage) = static_cast<int>(decoded);
 			return true;
 		}
 
-		default:
-			return false;
+		default: return false;
 		}
 	}
 
@@ -437,8 +536,7 @@ namespace rml::dotnet
 		case MarshalKind::Blittable:
 			out = blittable_value(reinterpret_cast<const void*>(return_slot_address), plan.byte_size);
 			return;
-		default:
-			break;
+		default: break;
 		}
 
 		if (!raw_return)

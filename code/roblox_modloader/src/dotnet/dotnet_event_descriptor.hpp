@@ -35,6 +35,16 @@ namespace rml::dotnet
 
 				for (const auto& arg : args)
 				{
+					if (!arg.is_void() && arg.type().type_id == RBX::Reflection::TypeId::Tuple)
+					{
+						if (const auto* tuple = arg.try_cast<std::shared_ptr<const RBX::Reflection::Tuple>>()->get())
+						{
+							for (const auto& value : tuple->values)
+								interop_args.push_back(TypeMarshaler::encode_variant(value, &owned_strings));
+						}
+						continue;
+					}
+
 					interop_args.push_back(TypeMarshaler::encode_variant(arg, &owned_strings));
 				}
 

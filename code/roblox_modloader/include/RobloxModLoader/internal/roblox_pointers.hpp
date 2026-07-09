@@ -1,6 +1,8 @@
 #pragma once
 #include "function_types.hpp"
 
+#include <vector>
+
 #if _WIN32
 	#ifndef NOMINMAX
 		#define NOMINMAX
@@ -14,6 +16,10 @@
 
 #include "RobloxModLoader/rml_export.hpp"
 
+namespace RBX::Reflection
+{
+	class Type;
+}
 template<typename T>
 class HashTable;
 
@@ -67,6 +73,8 @@ struct RobloxPointers
 	functions::signal_disconnect signal_disconnect;
 	functions::signal_slot_free signal_slot_free;
 	functions::signal_mutex_get signal_mutex_get;
+
+	const std::vector<const RBX::Reflection::Type*>* type_registry;
 };
 #pragma pack(pop)
 static_assert(sizeof(RobloxPointers) % 8 == 0, "Pointers are not properly aligned");

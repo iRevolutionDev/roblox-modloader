@@ -10,10 +10,20 @@
 
 namespace RBX::Reflection
 {
+	namespace TypeId
+	{
+		constexpr int Bool = 1, Int = 2, Int64 = 3, Float = 4, Double = 5, String = 6;
+		constexpr int Instance = 8, Instances = 9, Ray = 10, Vector2 = 11, Vector3 = 12;
+		constexpr int Rect2D = 15, CoordinateFrame = 16, Color3 = 17, UDim = 19, UDim2 = 20;
+		constexpr int Faces = 21, Axes = 22, Region3 = 23, BrickColor = 28, Tuple = 35;
+		constexpr int ColorSequence = 42, NumberRange = 44, NumberSequence = 45, Integer = 87;
+	}
+
 	class Type : public Descriptor
 	{
 	public:
 		const Name& tag;
+		const int type_id;
 		const bool is_float;
 		const bool is_number;
 		const bool is_enum;
@@ -156,7 +166,7 @@ namespace RBX::Reflection
 				return !default_handle.is_void();
 			}
 		};
-		
+
 		struct ResultItem
 		{
 			const Type* type;

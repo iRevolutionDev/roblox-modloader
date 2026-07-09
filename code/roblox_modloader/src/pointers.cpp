@@ -122,6 +122,13 @@ namespace rml
 				[](const memory::handle ptr) {
 					g_pointers->m_roblox_pointers.signal_slot_free = ptr.as<functions::signal_slot_free>();
 				}
+			},
+			{
+				"TYPE_REGISTRY",
+				"48 8B 15 ? ? ? ? 48 8D 0D ? ? ? ? 48 3B 15 ? ? ? ? 48 89 0D ? ? ? ? 48 89 74 24",
+				[](const memory::handle ptr) {
+					g_pointers->m_roblox_pointers.type_registry = ptr.add(10).rip().as<const std::vector<const RBX::Reflection::Type*>*>();
+				}
 			}
 	    >();
 

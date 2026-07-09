@@ -79,6 +79,40 @@ namespace rml::dotnet
 		TypeMarshaler::encode_return_value(type, ret, reinterpret_cast<uintptr_t>(&arguments.return_value), out);
 	}
 
+	RBX::Reflection::EventArguments build_event_fire_args(const RBX::Reflection::EventDescriptor* descriptor, const InteropVariant* args, const uint32_t arg_count)
+	{
+		RBX::Reflection::EventArguments event_args;
+		const auto& signature = descriptor->get_signature();
+		const auto sig_args = signature.arguments();
+
+		if (sig_args.size() == 1 && sig_args[0].type && sig_args[0].type->type_id == RBX::Reflection::TypeId::Tuple)
+		{
+			RBX::Reflection::Variant tuple_variant;
+			if (TypeMarshaler::build_tuple_variant(args, arg_count, sig_args[0].type, tuple_variant))
+				event_args.push_back(std::move(tuple_variant));
+			return event_args;
+		}
+
+		const DotNetArguments arguments{args, arg_count, &signature};
+		event_args.reserve(arg_count);
+		for (uint32_t i = 0; i < arg_count; ++i)
+		{
+			RBX::Reflection::Variant value;
+			if (arguments.get_varint(static_cast<int>(i) + 1, value))
+				event_args.push_back(std::move(value));
+		}
+		return event_args;
+	}
+
+	void release_fire_args(RBX::Reflection::EventArguments& event_args)
+	{
+		for (auto& value : event_args)
+		{
+			if (!value.is_void() && value.type().type_id == RBX::Reflection::TypeId::Tuple)
+				std::destroy_at(static_cast<std::shared_ptr<const RBX::Reflection::Tuple>*>(value.storage()));
+		}
+	}
+
 	void RobloxInteropProvider::populate(InteropTable& table)
 	{
 		table.reflection_invoke = [](const uintptr_t instance_ptr, const char* function_name, const InteropVariant* args, const uint32_t arg_count, InteropVariant* out_result) {
@@ -391,16 +425,9 @@ namespace rml::dotnet
 				if (!descriptor)
 					return;
 
-				const DotNetArguments arguments{args, arg_count, &descriptor->get_signature()};
-				RBX::Reflection::EventArguments event_args;
-				event_args.reserve(arg_count);
-				for (uint32_t i = 0; i < arg_count; ++i)
-				{
-					if (RBX::Reflection::Variant value; arguments.get_varint(static_cast<int>(i) + 1, value))
-						event_args.push_back(std::move(value));
-				}
-
+				auto event_args = build_event_fire_args(descriptor, args, arg_count);
 				descriptor->fire_event(instance, event_args);
+				release_fire_args(event_args);
 			}
 			catch (const std::exception& e)
 			{
@@ -486,18 +513,11 @@ namespace rml::dotnet
 				if (const auto* instance = as_instance(instance_ptr); instance && event_name)
 				{
 					if (const auto* descriptor = instance->get_descriptor().find_event(event_name))
-					{
-						const DotNetArguments arguments{args, arg_count, &descriptor->get_signature()};
-						event_args.reserve(arg_count);
-						for (uint32_t i = 0; i < arg_count; ++i)
-						{
-							if (RBX::Reflection::Variant value; arguments.get_varint(static_cast<int>(i) + 1, value))
-								event_args.push_back(std::move(value));
-						}
-					}
+						event_args = build_event_fire_args(descriptor, args, arg_count);
 				}
 
 				wrapper->deliver(event_args);
+				release_fire_args(event_args);
 			}
 			catch (const std::exception& e)
 			{
