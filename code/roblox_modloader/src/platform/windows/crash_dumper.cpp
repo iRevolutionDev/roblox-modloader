@@ -1,4 +1,4 @@
-#include "RobloxModLoader/exception/crash_dumper.hpp"
+#include "crash_dumper.hpp"
 
 #include "RobloxModLoader/memory/module_utils.hpp"
 
@@ -21,6 +21,7 @@ namespace rml::exception_filter
 {
 	CrashDumper::CrashDumper()
 	{
+		s_instance = this;
 		g_crash_dumper = this;
 	}
 
@@ -28,6 +29,7 @@ namespace rml::exception_filter
 	{
 		disable();
 		g_crash_dumper = nullptr;
+		s_instance = nullptr;
 	}
 
 	void CrashDumper::enable()
@@ -271,9 +273,9 @@ namespace rml::exception_filter
 			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
-			if (g_crash_dumper)
+			if (s_instance)
 			{
-				g_crash_dumper->create_minidump(exception_pointers, dump_path);
+				s_instance->create_minidump(exception_pointers, dump_path);
 			}
 			log_exception_info(exception_pointers);
 			log_register_state(exception_pointers->ContextRecord);
@@ -322,7 +324,7 @@ namespace rml::exception_filter
 			RML_ERROR("Exception Address: 0x{:016X}", reinterpret_cast<uintptr_t>(exception_pointers->ExceptionRecord->ExceptionAddress));
 
 			const auto dump_path = generate_dump_filename();
-			const bool dump_created = g_crash_dumper && g_crash_dumper->create_minidump(exception_pointers, dump_path);
+			const bool dump_created = s_instance && s_instance->create_minidump(exception_pointers, dump_path);
 
 			log_exception_info(exception_pointers);
 			log_register_state(exception_pointers->ContextRecord);
@@ -567,5 +569,10 @@ namespace rml::exception_filter
 		{
 			RML_ERROR("Failed to log stack trace safely");
 		}
+	}
+
+	std::unique_ptr<ICrashHandler> create_crash_handler()
+	{
+		return std::make_unique<CrashDumper>();
 	}
 }

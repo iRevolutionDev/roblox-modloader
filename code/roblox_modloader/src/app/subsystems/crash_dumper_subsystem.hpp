@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../isubsystem.hpp"
-#include "RobloxModLoader/exception/crash_dumper.hpp"
+#include "RobloxModLoader/exception/i_crash_handler.hpp"
 
 namespace rml
 {
@@ -10,7 +10,7 @@ namespace rml
 	public:
 		std::expected<void, SubsystemError> initialize() override
 		{
-			m_instance = std::make_unique<exception_filter::CrashDumper>();
+			m_instance = exception_filter::create_crash_handler();
 			m_instance->enable();
 			return {};
 		}
@@ -26,6 +26,6 @@ namespace rml
 		}
 
 	private:
-		std::unique_ptr<exception_filter::CrashDumper> m_instance;
+		std::unique_ptr<exception_filter::ICrashHandler> m_instance;
 	};
 }
