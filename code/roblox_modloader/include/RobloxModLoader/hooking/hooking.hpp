@@ -3,9 +3,9 @@
 #include "RobloxModLoader/rml_export.hpp"
 #include "RobloxModLoader/roblox/job_types.hpp"
 #include "detour_hook.hpp"
+#include "i_hook_engine.hpp"
 #include "vtable_hook.hpp"
 
-#include <MinHook.h>
 #include <functional>
 #include <memory>
 #include <string>
@@ -15,20 +15,6 @@
 namespace rml
 {
 	struct Hooks;
-
-	class MinHookKeepAlive
-	{
-	public:
-		MinHookKeepAlive()
-		{
-			MH_Initialize();
-		}
-
-		~MinHookKeepAlive()
-		{
-			MH_Uninitialize();
-		}
-	};
 
 	class Hooking
 	{
@@ -102,7 +88,7 @@ namespace rml
 
 	private:
 		bool m_enabled{};
-		MinHookKeepAlive m_minhook_keepalive;
+		std::unique_ptr<IHookEngine> m_hook_engine;
 		std::unordered_map<rml::JobKind, std::unique_ptr<vtable_hook> > m_jobs_hook;
 
 		static inline std::vector<DetourHookHelper> m_detour_hook_helpers;
