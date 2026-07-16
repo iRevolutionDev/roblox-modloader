@@ -17,6 +17,12 @@ if (NOT RML_ENABLE_LUAU)
     list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/roblox/jobs/scripting/")
 endif ()
 
+foreach (platform_dir "windows" "macos" "linux")
+    if (NOT platform_dir STREQUAL RML_PLATFORM_ID)
+        list(FILTER MODLOADER_SUBDIRS EXCLUDE REGEX "/platform/${platform_dir}/")
+    endif ()
+endforeach ()
+
 list(APPEND MODLOADER_SOURCES ${MODLOADER_SUBDIRS})
 
 file(GLOB_RECURSE MODLOADER_VENDOR_SOURCES CONFIGURE_DEPENDS
