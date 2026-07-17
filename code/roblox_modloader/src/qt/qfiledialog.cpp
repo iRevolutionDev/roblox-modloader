@@ -7,7 +7,7 @@ namespace rml::qt
 {
 	std::string QFileDialog::get_open_file_name(QWidget* parent, const std::string_view caption, const std::string_view dir, const std::string_view filter)
 	{
-		static const auto fn = detail::widgets<void (*)(void*, void*, const void*, const void*, const void*, void*, int)>("?getOpenFileName@QFileDialog@@SA?AVQString@@PEAVQWidget@@AEBV2@11PEAV2@V?$QFlags@W4Option@QFileDialog@@@@@Z");
+		static const auto fn = detail::widgets<void (*)(void*, void*, const void*, const void*, const void*, void*, int)>("QFileDialog::getOpenFileName(QWidget*, QString const&, QString const&, QString const&, QString*, QFlags<QFileDialog::Option>)");
 		if (!fn)
 			return {};
 

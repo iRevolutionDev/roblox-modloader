@@ -7,7 +7,7 @@ namespace rml::qt
 {
 	QBrush::QBrush(const QPixmap& texture)
 	{
-		static const auto ctor = detail::gui<void (*)(void*, const void*)>("??0QBrush@@QEAA@AEBVQPixmap@@@Z");
+		static const auto ctor = detail::gui<void (*)(void*, const void*)>("QBrush::QBrush(QPixmap const&)");
 		if (!ctor)
 			return;
 
@@ -20,7 +20,7 @@ namespace rml::qt
 		if (!owned())
 			return;
 
-		static const auto dtor = detail::gui<void (*)(void*)>("??1QBrush@@QEAA@XZ");
+		static const auto dtor = detail::gui<void (*)(void*)>("QBrush::~QBrush()");
 		if (dtor)
 			dtor(m_storage);
 	}

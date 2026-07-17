@@ -1,5 +1,7 @@
 #include "RobloxModLoader/qt/qstring.hpp"
 
+#include "RobloxModLoader/memory/foreign_call.hpp"
+#include "RobloxModLoader/qt/qarray_data.hpp"
 #include "RobloxModLoader/qt/qt_module.hpp"
 
 
@@ -7,9 +9,12 @@ namespace rml::qt
 {
 	QString::QString(const std::string_view utf8)
 	{
-		static const auto from_utf8 = detail::core<void* (*)(void*, const char*, int)>("?fromUtf8@QString@@SA?AV1@PEBDH@Z");
-		if (from_utf8)
-			from_utf8(&m_storage, utf8.data(), static_cast<int>(utf8.size()));
+		static void* const from_utf8 = detail::core_export({
+		    "QString::fromUtf8(char const*, int)",
+		    "QString::fromUtf8_helper(char const*, int)",
+		});
+
+		memory::call_returning(from_utf8, m_storage, utf8.data(), static_cast<int>(utf8.size()));
 	}
 
 	QString::QString(const char* utf8) :
@@ -19,12 +24,7 @@ namespace rml::qt
 
 	QString::~QString()
 	{
-		if (!m_storage)
-			return;
-
-		static const auto destroy = detail::core<void (*)(void*)>("??1QString@@QEAA@XZ");
-		if (destroy)
-			destroy(&m_storage);
+		detail::destroy_qstring(m_storage);
 	}
 
 	std::string QString::to_utf8() const
@@ -32,7 +32,7 @@ namespace rml::qt
 		if (!m_storage)
 			return {};
 		
-		static const auto utf16 = detail::core<const unsigned short* (*)(const void*)>("?utf16@QString@@QEBAPEBGXZ");
+		static const auto utf16 = detail::core<const unsigned short* (*)(const void*)>("QString::utf16() const");
 		if (!utf16)
 			return {};
 

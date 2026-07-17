@@ -7,7 +7,7 @@ namespace rml::qt
 {
 	QMessageBox* QMessageBox::create(QWidget* parent)
 	{
-		static const auto construct = detail::widgets<void* (*)(void*, void*)>("??0QMessageBox@@QEAA@PEAVQWidget@@@Z");
+		static const auto construct = detail::widgets<void* (*)(void*, void*)>("QMessageBox::QMessageBox(QWidget*)");
 		return detail::heap_construct<QMessageBox>(detail::WIDGET_INSTANCE_SIZE, construct, parent);
 	}
 
@@ -18,34 +18,34 @@ namespace rml::qt
 
 	void QMessageBox::destroy(QMessageBox* box)
 	{
-		static const auto dtor = detail::widgets<void (*)(void*)>("??1QMessageBox@@UEAA@XZ");
+		static const auto dtor = detail::widgets<void (*)(void*)>("QMessageBox::~QMessageBox()");
 		detail::heap_destroy(dtor, box);
 	}
 
 	void QMessageBox::setText(const QString& text)
 	{
-		static const auto fn = detail::widgets<void (*)(void*, const void*)>("?setText@QMessageBox@@QEAAXAEBVQString@@@Z");
+		static const auto fn = detail::widgets<void (*)(void*, const void*)>("QMessageBox::setText(QString const&)");
 		if (fn)
 			fn(this, text.data());
 	}
 
 	void QMessageBox::setIcon(const Icon icon)
 	{
-		static const auto fn = detail::widgets<void (*)(void*, int)>("?setIcon@QMessageBox@@QEAAXW4Icon@1@@Z");
+		static const auto fn = detail::widgets<void (*)(void*, int)>("QMessageBox::setIcon(QMessageBox::Icon)");
 		if (fn)
 			fn(this, icon);
 	}
 
 	void QMessageBox::setTextFormat(const TextFormat format)
 	{
-		static const auto fn = detail::widgets<void (*)(void*, int)>("?setTextFormat@QMessageBox@@QEAAXW4TextFormat@Qt@@@Z");
+		static const auto fn = detail::widgets<void (*)(void*, int)>("QMessageBox::setTextFormat(Qt::TextFormat)");
 		if (fn)
 			fn(this, static_cast<int>(format));
 	}
 
 	QPushButton* QMessageBox::addButton(const StandardButton button)
 	{
-		static const auto fn = detail::widgets<void* (*)(void*, int)>("?addButton@QMessageBox@@QEAAPEAVQPushButton@@W4StandardButton@1@@Z");
+		static const auto fn = detail::widgets<void* (*)(void*, int)>("QMessageBox::addButton(QMessageBox::StandardButton)");
 		return fn ? static_cast<QPushButton*>(fn(this, button)) : nullptr;
 	}
 }

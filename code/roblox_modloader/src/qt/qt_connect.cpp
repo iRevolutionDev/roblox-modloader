@@ -51,7 +51,7 @@ namespace rml::qt::detail
 		if (!sender || !signal_addr || !sender_meta)
 			return false;
 
-		static const auto connect = reinterpret_cast<connect_impl_fn>(core_export("?connectImpl@QObject@@CA?AVConnection@QMetaObject@@PEBV1@PEAPEAX01PEAVQSlotObjectBase@QtPrivate@@W4ConnectionType@Qt@@PEBHPEBU3@@Z"));
+		static const auto connect = reinterpret_cast<connect_impl_fn>(core_export("QObject::connectImpl(QObject const*, void**, QObject const*, void**, QtPrivate::QSlotObjectBase*, Qt::ConnectionType, int const*, QMetaObject const*)"));
 		if (!connect)
 			return false;
 

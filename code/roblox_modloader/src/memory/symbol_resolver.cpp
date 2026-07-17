@@ -1,6 +1,10 @@
 #include "RobloxModLoader/memory/symbol_resolver.hpp"
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #if defined(RML_WINDOWS)
+	#include <windows.h>
+
 	#include <dbghelp.h>
 	#pragma comment(lib, "dbghelp.lib")
 #else
@@ -8,8 +12,15 @@
 	#include <cxxabi.h>
 #endif
 
+#include <array>
+
 namespace rml::memory
 {
+	static bool is_itanium_mangled(const char* mangled)
+	{
+		return mangled[0] == '_' && mangled[1] == 'Z';
+	}
+
 	std::string demangle(const char* mangled)
 	{
 		if (!mangled || !*mangled)
@@ -28,7 +39,54 @@ namespace rml::memory
 		const DWORD written = UnDecorateSymbolName(mangled, buffer, sizeof(buffer), flags);
 		return written != 0 ? std::string{buffer, written} : std::string{};
 #else
-		if (mangled[0] != '_' || mangled[1] != 'Z')
+		if (!is_itanium_mangled(mangled))
+		{
+			return mangled;
+		}
+
+		std::string demangled = demangle_signature(mangled);
+
+		if (const auto paren = demangled.find('('); paren != std::string::npos)
+		{
+			demangled.resize(paren);
+		}
+		return demangled;
+#endif
+	}
+
+	std::string demangle_signature(const char* mangled)
+	{
+		if (!mangled || !*mangled)
+		{
+			return {};
+		}
+
+#if defined(RML_WINDOWS)
+		if (mangled[0] != '?')
+		{
+			return mangled;
+		}
+
+		char buffer[4096];
+		constexpr DWORD flags = UNDNAME_NO_FUNCTION_RETURNS | UNDNAME_NO_ACCESS_SPECIFIERS
+		                      | UNDNAME_NO_MS_KEYWORDS | UNDNAME_NO_MEMBER_TYPE
+		                      | UNDNAME_NO_LEADING_UNDERSCORES | UNDNAME_NO_THROW_SIGNATURES;
+		const DWORD written = UnDecorateSymbolName(mangled, buffer, sizeof(buffer), flags);
+		if (written == 0)
+		{
+			return {};
+		}
+
+		std::string demangled{buffer, written};
+
+		if (demangled.find('(') == std::string::npos)
+		{
+			return demangle(mangled);
+		}
+
+		return demangled;
+#else
+		if (!is_itanium_mangled(mangled))
 		{
 			return mangled;
 		}
@@ -43,45 +101,47 @@ namespace rml::memory
 
 		std::string demangled{result};
 		std::free(result);
-
-		if (const auto paren = demangled.find('('); paren != std::string::npos)
-		{
-			demangled.resize(paren);
-		}
 		return demangled;
 #endif
 	}
 
-	void* resolve_export_exact(void* module, const char* mangled_name)
+	std::string normalize_signature(std::string_view demangled)
 	{
-		if (!module || !mangled_name)
-		{
-			return nullptr;
-		}
-#if defined(RML_WINDOWS)
-		return reinterpret_cast<void*>(GetProcAddress(static_cast<HMODULE>(module), mangled_name));
-#else
-		return dlsym(module, mangled_name);
-#endif
-	}
+		static constexpr std::array<std::string_view, 5> noise{"class ", "struct ", "enum ", "union ", "__ptr64"};
 
-	void* loaded_module(std::initializer_list<std::string_view> names)
-	{
-		for (const auto name : names)
+		std::string result;
+		result.reserve(demangled.size());
+
+		for (std::size_t i = 0; i < demangled.size();)
 		{
-			const std::string n{name};
-#if defined(RML_WINDOWS)
-			if (HMODULE module = GetModuleHandleA(n.c_str()))
+			const std::string_view rest = demangled.substr(i);
+
+			if (rest.starts_with("(void)"))
 			{
-				return module;
+				result += "()";
+				i += 6;
+				continue;
 			}
-#else
-			if (void* handle = dlopen(n.c_str(), RTLD_NOLOAD | RTLD_NOW))
+
+			bool skipped = false;
+			for (const auto word : noise)
 			{
-				return handle;
+				if (rest.starts_with(word))
+				{
+					i += word.size();
+					skipped = true;
+					break;
+				}
 			}
-#endif
+			if (skipped)
+				continue;
+
+			if (!std::isspace(static_cast<unsigned char>(demangled[i])))
+				result += demangled[i];
+
+			++i;
 		}
-		return nullptr;
+
+		return result;
 	}
 }

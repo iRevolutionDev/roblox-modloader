@@ -56,8 +56,8 @@ namespace rml::qt
 		if (!first_connection)
 			return;
 
-		static void* const signal = detail::widgets_export("?toggled@QAction@@QEAAX_N@Z");
-		static const void* const meta = detail::widgets_export("?staticMetaObject@QAction@@2UQMetaObject@@B");
+		static void* const signal = detail::widgets_export("QAction::toggled(bool)");
+		static const void* const meta = detail::widgets_export("QAction::staticMetaObject");
 		detail::connect_function(action, signal, meta, [this, action](void** args) {
 			if (args && args[1])
 				dispatch_toggled(action, *static_cast<bool*>(args[1]));

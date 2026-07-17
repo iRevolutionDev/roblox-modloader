@@ -267,6 +267,7 @@ namespace rml::qt
 			if (!action)
 				return;
 
+			action->setMenuRole(QAction::NoRole); // Without this, macOS hoists "About" out of here and into the application menu idk why
 			if (!node.icon_path.empty())
 				action->setIcon(QIcon(QString{node.icon_path}));
 
@@ -285,6 +286,7 @@ namespace rml::qt
 			if (!action)
 				return;
 
+			action->setMenuRole(QAction::NoRole);
 			action->setCheckable(true);
 			action->setChecked(node.checked);
 			if (!node.icon_path.empty())
@@ -360,6 +362,9 @@ namespace rml::qt
 			QAction* const action = menu->addAction(text);
 			if (!action)
 				return;
+
+			// Without this, macOS hoists "About" out of here and into the application menu.
+			action->setMenuRole(QAction::NoRole);
 
 			m_dispatcher.connect(action, std::move(on_click));
 			live.push_back(action);

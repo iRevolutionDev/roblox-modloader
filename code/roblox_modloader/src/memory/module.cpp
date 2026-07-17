@@ -1,8 +1,58 @@
 #include "RobloxModLoader/memory/module.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/memory/symbol_resolver.hpp"
+
+#if defined(RML_MACOS)
+	#include <mach-o/nlist.h>
+#endif
+
 namespace rml::memory
 {
+	static std::pair<std::string_view, std::string_view> split_qualified_name(std::string_view signature)
+	{
+		const auto name = signature.substr(0, signature.find('('));
+
+		const auto separator = name.rfind("::");
+		if (separator == std::string_view::npos)
+			return {{}, name};
+
+		const auto scope = name.substr(0, separator);
+		const auto scope_separator = scope.rfind("::");
+
+		return {scope_separator == std::string_view::npos ? scope : scope.substr(scope_separator + 2),
+		    name.substr(separator + 2)};
+	}
+	
+	static int itanium_variant_rank(std::string_view mangled, std::string_view signature)
+	{
+		const auto [class_name, name] = split_qualified_name(signature);
+
+		const auto rank_of = [mangled](const std::string_view (&tags)[3], const int (&ranks)[3]) {
+			for (std::size_t i = 0; i < 3; ++i)
+			{
+				if (mangled.find(tags[i]) != std::string_view::npos)
+					return ranks[i];
+			}
+			return 0;
+		};
+
+		if (name.starts_with('~'))
+		{
+			static constexpr std::string_view tags[]{"D1E", "D2E", "D0E"};
+			static constexpr int ranks[]{0, 1, 100};
+			return rank_of(tags, ranks);
+		}
+
+		if (!class_name.empty() && class_name == name)
+		{
+			static constexpr std::string_view tags[]{"C1E", "C2E", "C3E"};
+			static constexpr int ranks[]{0, 1, 2};
+			return rank_of(tags, ranks);
+		}
+
+		return 0;
+	}
 
 	namespace
 	{
@@ -83,6 +133,133 @@ namespace rml::memory
 		}
 
 		return handle(sym);
+#endif
+	}
+
+	handle module::find_export(std::string_view signature) const
+	{
+		std::scoped_lock lk(m_mtx);
+
+		if (!m_loaded)
+			return handle(nullptr);
+
+		build_export_index_locked();
+
+		const auto it = m_export_index.find(normalize_signature(signature));
+		return it != m_export_index.end() ? handle(it->second) : handle(nullptr);
+	}
+
+	void module::build_export_index_locked() const
+	{
+		if (m_export_index_built)
+			return;
+
+		m_export_index_built = true;
+
+		std::unordered_map<std::string, int> ranks;
+
+		const auto insert = [&](const char* mangled, void* address) {
+			const std::string signature = demangle_signature(mangled);
+			if (signature.empty())
+				return;
+
+			std::string key = normalize_signature(signature);
+			if (key.empty())
+				return;
+
+			const int rank = itanium_variant_rank(mangled, signature);
+
+			if (const auto it = ranks.find(key); it != ranks.end() && it->second <= rank)
+				return;
+
+			ranks.insert_or_assign(key, rank);
+			m_export_index.insert_or_assign(std::move(key), address);
+		};
+
+#if defined(RML_WINDOWS)
+		const auto* dos = m_base.as<const IMAGE_DOS_HEADER*>();
+		const auto* nt = m_base.add(dos->e_lfanew).as<const IMAGE_NT_HEADERS*>();
+
+		const auto& directory = nt->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT];
+		if (!directory.VirtualAddress || !directory.Size)
+			return;
+
+		const auto* exports = m_base.add(directory.VirtualAddress).as<const IMAGE_EXPORT_DIRECTORY*>();
+		const auto* names = m_base.add(exports->AddressOfNames).as<const DWORD*>();
+		const auto* ordinals = m_base.add(exports->AddressOfNameOrdinals).as<const WORD*>();
+		const auto* functions = m_base.add(exports->AddressOfFunctions).as<const DWORD*>();
+
+		for (DWORD i = 0; i < exports->NumberOfNames; ++i)
+		{
+			const DWORD rva = functions[ordinals[i]];
+
+			// An RVA inside the export directory is a forwarder string, not code.
+			if (rva >= directory.VirtualAddress && rva < directory.VirtualAddress + directory.Size)
+				continue;
+
+			insert(m_base.add(names[i]).as<const char*>(), m_base.add(rva).as<void*>());
+		}
+
+#elif defined(RML_MACOS)
+		const auto* mh = m_base.as<const mach_header_64*>();
+		if (!mh || mh->magic != MH_MAGIC_64)
+			return;
+
+		const symtab_command* symtab = nullptr;
+		const segment_command_64* linkedit = nullptr;
+
+		std::uintptr_t text_vmaddr = 0;
+		bool found_text = false;
+
+		const auto* cmd = reinterpret_cast<const load_command*>(mh + 1);
+		for (uint32_t i = 0; i < mh->ncmds; ++i)
+		{
+			if (cmd->cmd == LC_SYMTAB)
+			{
+				symtab = reinterpret_cast<const symtab_command*>(cmd);
+			}
+			else if (cmd->cmd == LC_SEGMENT_64)
+			{
+				const auto* seg = reinterpret_cast<const segment_command_64*>(cmd);
+				if (std::strncmp(seg->segname, SEG_LINKEDIT, sizeof(seg->segname)) == 0)
+					linkedit = seg;
+				else if (std::strncmp(seg->segname, SEG_TEXT, sizeof(seg->segname)) == 0)
+				{
+					text_vmaddr = static_cast<std::uintptr_t>(seg->vmaddr);
+					found_text = true;
+				}
+			}
+
+			cmd = reinterpret_cast<const load_command*>(reinterpret_cast<const char*>(cmd) + cmd->cmdsize);
+		}
+
+		if (!symtab || !linkedit || !found_text)
+			return;
+
+		const auto slide = m_base.as<std::uintptr_t>() - text_vmaddr;
+		const auto linkedit_base = slide + static_cast<std::uintptr_t>(linkedit->vmaddr) - static_cast<std::uintptr_t>(linkedit->fileoff);
+
+		const auto* symbols = reinterpret_cast<const nlist_64*>(linkedit_base + symtab->symoff);
+		const auto* strings = reinterpret_cast<const char*>(linkedit_base + symtab->stroff);
+
+		for (uint32_t i = 0; i < symtab->nsyms; ++i)
+		{
+			const nlist_64& symbol = symbols[i];
+
+			if (symbol.n_type & N_STAB)
+				continue;
+			if ((symbol.n_type & N_TYPE) != N_SECT || !(symbol.n_type & N_EXT))
+				continue;
+			if (!symbol.n_value || !symbol.n_un.n_strx)
+				continue;
+
+			const char* name = strings + symbol.n_un.n_strx;
+
+			if (*name == '_')
+				++name;
+
+			insert(name, reinterpret_cast<void*>(static_cast<std::uintptr_t>(symbol.n_value) + slide));
+		}
 #endif
 	}
 
@@ -209,6 +386,8 @@ namespace rml::memory
 		m_loaded = false;
 		m_base = handle(nullptr);
 		m_size = 0;
+		m_export_index.clear();
+		m_export_index_built = false;
 	}
 
 #if defined(RML_LINUX)

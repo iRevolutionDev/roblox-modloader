@@ -7,7 +7,7 @@ namespace rml::qt
 {
 	QPalette::QPalette(const void* source)
 	{
-		static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("??0QPalette@@QEAA@AEBV0@@Z");
+		static const auto copy_ctor = detail::gui<void (*)(void*, const void*)>("QPalette::QPalette(QPalette const&)");
 		if (!copy_ctor || !source)
 			return;
 
@@ -40,7 +40,7 @@ namespace rml::qt
 		if (!owned())
 			return;
 
-		static const auto dtor = detail::gui<void (*)(void*)>("??1QPalette@@QEAA@XZ");
+		static const auto dtor = detail::gui<void (*)(void*)>("QPalette::~QPalette()");
 		if (dtor)
 			dtor(m_storage);
 		set_owned(false);
@@ -48,8 +48,10 @@ namespace rml::qt
 
 	void QPalette::set_brush(const ColorRole role, const QBrush& brush)
 	{
-		static const auto fn = detail::gui<void (*)(void*, int, const void*)>("?setBrush@QPalette@@QEAAXW4ColorRole@1@AEBVQBrush@@@Z");
+		constexpr int all_color_groups = 5;
+
+		static const auto fn = detail::gui<void (*)(void*, int, int, const void*)>("QPalette::setBrush(QPalette::ColorGroup, QPalette::ColorRole, QBrush const&)");
 		if (fn && owned())
-			fn(m_storage, static_cast<int>(role), brush.data());
+			fn(m_storage, all_color_groups, static_cast<int>(role), brush.data());
 	}
 }
