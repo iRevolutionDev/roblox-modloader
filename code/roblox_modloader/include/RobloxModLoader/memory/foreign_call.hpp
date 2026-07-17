@@ -50,7 +50,7 @@ namespace rml::memory
 		std::memcpy(std::addressof(result), value.m_storage, sizeof(Result));
 #endif
 	}
-	
+
 	template<IndirectlyReturnable Result, typename Self, typename... Args>
 	    requires ForeignArguments<Self, Args...>
 	void call_returning_member(void* fn, Result& result, Self self, Args... args)
