@@ -32,6 +32,10 @@ function(setup_compile_definitions target_name access_level)
             IS_RML=1
             $<$<CONFIG:Debug>:DEBUG>
     )
+
+    if (NOT RML_PLATFORM_WINDOWS)
+        target_compile_definitions(${target_name} ${access_level} SPDLOG_USE_STD_FORMAT)
+    endif ()
 endfunction()
 
 function(setup_luau_dependencies target_name access_level)
@@ -56,20 +60,34 @@ endfunction()
 function(setup_core_dependencies target_name access_level)
     target_link_libraries(${target_name} ${access_level}
             spdlog::spdlog
-            minhook
             ZLIB::ZLIB
             #Tracy::TracyClient
             nlohmann_json::nlohmann_json
-            PolyHook_2
     )
 
     target_include_directories(${target_name} ${access_level}
             "${spdlog_SOURCE_DIR}"
-            "${minhook_SOURCE_DIR}/include"
             "${zlib_SOURCE_DIR}"
             "${tomlplusplus_SOURCE_DIR}/include"
             #"${tracy_SOURCE_DIR}/public"
             "${nlohmann_json_SOURCE_DIR}/include"
-            "${polyhook2_SOURCE_DIR}"
     )
+
+    if (RML_PLATFORM_WINDOWS)
+        target_link_libraries(${target_name} ${access_level}
+                minhook
+                PolyHook_2
+        )
+
+        target_include_directories(${target_name} ${access_level}
+                "${minhook_SOURCE_DIR}/include"
+                "${polyhook2_SOURCE_DIR}"
+        )
+    else ()
+        target_link_libraries(${target_name} ${access_level} dobby_static)
+
+        target_include_directories(${target_name} ${access_level}
+                "${dobby_SOURCE_DIR}/include"
+        )
+    endif ()
 endfunction()

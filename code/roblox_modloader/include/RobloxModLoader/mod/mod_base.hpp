@@ -1,4 +1,6 @@
 #pragma once
+
+#include "RobloxModLoader/internal/platform.hpp"
 #include "RobloxModLoader/rml_export.hpp"
 #include "RobloxModLoader/version.hpp"
 #include "events.hpp"
@@ -63,7 +65,7 @@ private:
 
 using rml_abi_version_type = int (*)();
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 	#define RML_MOD_ABI_EXPORT __declspec(dllexport)
 #else
 	#define RML_MOD_ABI_EXPORT __attribute__((visibility("default")))

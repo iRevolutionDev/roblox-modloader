@@ -1,7 +1,7 @@
 #include "job_registry.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
-#include "RobloxModLoader/internal/memory/rtti_scanner.hpp"
+#include "RobloxModLoader/memory/i_rtti_provider.hpp"
 
 #include <array>
 
@@ -247,26 +247,25 @@ namespace rml
 		m_vtable_to_kind.reserve(known_job_classes.size());
 		m_kind_to_vtable.reserve(known_job_classes.size());
 
+		if (!g_rtti_provider)
+		{
+			RML_WARN("Job vtable mapping skipped: no RTTI provider available");
+			return;
+		}
+
 		for (const auto& [class_name, job_kind] : known_job_classes)
 		{
-			const auto rtti = memory::rtti::RTTIManager::get_class_rtti(class_name);
-			if (!rtti)
+			const auto vtable = g_rtti_provider->find_class_vtable(class_name);
+			if (!vtable)
 			{
 				RML_WARN("RTTI for '{}' not found, skipping vtable mapping", class_name);
 				continue;
 			}
 
-			const auto vtable = rtti->get_virtual_function_table();
-			if (!vtable)
-			{
-				RML_WARN("Failed to get vtable for '{}'", class_name);
-				continue;
-			}
+			m_vtable_to_kind.emplace(*vtable, job_kind);
+			m_kind_to_vtable.emplace(job_kind, *vtable);
 
-			m_vtable_to_kind.emplace(vtable, job_kind);
-			m_kind_to_vtable.emplace(job_kind, vtable);
-
-			RML_INFO("Mapped vtable for '{}' (kind: {}) -> 0x{:X}", class_name, std::to_underlying(job_kind), reinterpret_cast<std::uintptr_t>(vtable));
+			RML_INFO("Mapped vtable for '{}' (kind: {}) -> 0x{:X}", class_name, std::to_underlying(job_kind), reinterpret_cast<std::uintptr_t>(*vtable));
 		}
 
 		RML_INFO("Initialized vtable mappings: {}/{} job types mapped",

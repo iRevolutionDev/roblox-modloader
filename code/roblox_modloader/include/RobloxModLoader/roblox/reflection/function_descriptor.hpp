@@ -70,7 +70,7 @@ namespace RBX::Reflection
 		template<typename T>
 		[[nodiscard]] T* native_func_ptr() const noexcept
 		{
-			return static_cast<T*>(invoke_func_ptr);
+			return reinterpret_cast<T*>(invoke_func_ptr);
 		}
 
 	protected:

@@ -1,8 +1,10 @@
 #pragma once
+
+#include "RobloxModLoader/internal/platform.hpp"
 #include <cstddef>
 #include <cstdint>
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 	#define RML_INTEROP_CALL __cdecl
 #else
 	#define RML_INTEROP_CALL

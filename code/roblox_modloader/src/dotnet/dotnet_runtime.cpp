@@ -1,9 +1,11 @@
 #include "dotnet_runtime.hpp"
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #include "RobloxModLoader/internal/common.hpp"
 #include "utils/directory.hpp"
 
-#ifdef _WIN32
+#if defined(RML_WINDOWS)
 	#include <Windows.h>
 	#define RML_LOAD_LIB(p) LoadLibraryW(p)
 	#define RML_GET_PROC(h, s) GetProcAddress(static_cast<HMODULE>(h), s)
@@ -64,9 +66,9 @@ namespace rml::dotnet
 		using get_hostfxr_path_fn = int (*)(char_t*, size_t*, const get_hostfxr_parameters*);
 
 		void* nethost_lib = nullptr;
-#ifdef _WIN32
+#if defined(RML_WINDOWS)
 		nethost_lib = RML_LOAD_LIB((runtime_path / "nethost.dll").c_str());
-#elif defined(__APPLE__)
+#elif defined(RML_MACOS)
 		nethost_lib = RML_LOAD_LIB((runtime_path / "libnethost.dylib").c_str());
 #else
 		nethost_lib = RML_LOAD_LIB((runtime_path / "libnethost.so").c_str());

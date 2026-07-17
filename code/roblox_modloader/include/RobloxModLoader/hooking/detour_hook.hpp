@@ -32,7 +32,7 @@ namespace rml
 		template<typename T>
 		T get_original()
 		{
-			return static_cast<T>(m_original);
+			return reinterpret_cast<T>(m_original);
 		}
 
 		void** get_original_ptr()

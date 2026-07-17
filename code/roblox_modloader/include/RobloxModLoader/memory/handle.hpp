@@ -54,7 +54,10 @@ namespace rml::memory
 	template<typename T>
 	inline std::enable_if_t<std::is_pointer_v<T>, T> handle::as() const
 	{
-		return static_cast<T>(ptr);
+		if constexpr (std::is_function_v<std::remove_pointer_t<T>>)
+			return reinterpret_cast<T>(ptr);
+		else
+			return static_cast<T>(ptr);
 	}
 
 	template<typename T>

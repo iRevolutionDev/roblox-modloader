@@ -1,27 +1,26 @@
 #include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/memory/module.hpp"
 #include "RobloxModLoader/memory/module_utils.hpp"
+#include "RobloxModLoader/platform/memory/host_image.hpp"
 
 namespace rml::memory::module_utils {
     std::string get_module_name_from_address(const uintptr_t address) {
-        HMODULE module_handle;
-        if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-                               reinterpret_cast<LPCSTR>(address), &module_handle)) {
-            char module_name[MAX_PATH];
-            if (GetModuleFileNameA(module_handle, module_name, MAX_PATH)) {
-                const std::filesystem::path path(module_name);
-                return path.filename().string();
-            }
+        const auto module_path = platform::module_path_containing(reinterpret_cast<const void *>(address));
+
+        if (module_path.empty()) {
+            return "Unknown";
         }
-        return "Unknown";
+
+        return module_path.filename().string();
     }
 
     uintptr_t get_module_base_address(const std::string &module_name) {
-        const auto module_handle = GetModuleHandleA(module_name.c_str());
-        return reinterpret_cast<uintptr_t>(module_handle);
+        const memory::module target{std::string_view(module_name)};
+        return target.loaded() ? target.begin().as<std::uintptr_t>() : 0;
     }
 
     uintptr_t get_roblox_studio_base() {
-        return get_module_base_address("RobloxStudioBeta.exe");
+        return get_module_base_address(std::string(platform::studio_image_name()));
     }
 
     uintptr_t get_roblox_studio_rebased_address(const uintptr_t address, uintptr_t studio_base) {
@@ -33,6 +32,6 @@ namespace rml::memory::module_utils {
             return 0;
         }
 
-        return address - studio_base + 0x140000000;
+        return address - studio_base + platform::studio_preferred_image_base();
     }
 }

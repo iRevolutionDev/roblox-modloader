@@ -8,7 +8,7 @@
 #include <string>
 
 namespace rml
-{]
+{
 	class RML_EXPORT IHookEngine
 	{
 	public:

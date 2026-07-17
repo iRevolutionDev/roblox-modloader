@@ -1,5 +1,7 @@
 #pragma once
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #ifndef NOMINMAX
 	#define NOMINMAX
 #endif
@@ -8,7 +10,7 @@
 	#define WIN32_LEAN_AND_MEAN
 #endif
 
-#if defined(_WIN32)
+#if defined(RML_WINDOWS)
 	#include <Windows.h>
 #endif
 
@@ -63,15 +65,10 @@ namespace rml::memory
 			return hash;
 		}
 
-		template<signature sig, signature... rest_sigs>
+		template<signature... sigs>
 		static inline constexpr uint32_t add(uint32_t hash = FNV_OFFSET_32)
 		{
-			hash = compute_hash<sig>(hash);
-
-			if constexpr (sizeof...(rest_sigs) > 0)
-			{
-				hash = add<rest_sigs...>(hash);
-			}
+			((hash = compute_hash<sigs>(hash)), ...);
 
 			return hash;
 		}
@@ -126,7 +123,7 @@ namespace rml::memory
 
 					LOG_INFO("Found '{}' RobloxStudioBeta.exe+0x{:X}",
 					    entry.m_name,
-					    result.value().as<DWORD64>() - region.begin().as<DWORD64>());
+					    result.value().as<std::uintptr_t>() - region.begin().as<std::uintptr_t>());
 
 					return true;
 				}

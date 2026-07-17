@@ -29,7 +29,7 @@ namespace rml
 			}
 
 			auto job_hook = std::make_unique<vtable_hook>(*vtable, rml::JobVtable::kSlotCount);
-			job_hook->hook(rml::JobVtable::kStepIndex, &Hooks::on_job_step);
+			job_hook->hook(rml::JobVtable::kStepIndex, reinterpret_cast<void*>(&Hooks::on_job_step));
 			m_jobs_hook[kind] = std::move(job_hook);
 			RML_DEBUG("Hooked job kind {} with vtable 0x{:X}", std::to_underlying(kind), reinterpret_cast<std::uintptr_t>(*vtable));
 		}
@@ -45,9 +45,9 @@ namespace rml
 		// detour_hook_helper::add<hooks::render_perform>("RENDER_PERFORM", g_pointers->m_roblox_pointers.m_render_perform);
 		// detour_hook_helper::add<hooks::render_view>("RENDER_VIEW", g_pointers->m_roblox_pointers.m_render_view);
 #if RML_ENABLE_LUAU
-		DetourHookHelper::add<Hooks::luau_load>("LUAU_LOAD", g_pointers->m_roblox_pointers.luau_load);
+		DetourHookHelper::add<Hooks::luau_load>("LUAU_LOAD", reinterpret_cast<void*>(g_pointers->m_roblox_pointers.luau_load));
 #endif
-		DetourHookHelper::add<Hooks::build_menu_bar_from_dom>("MENU_BUILD_FROM_DOM", g_pointers->m_roblox_pointers.build_menu_bar_from_dom);
+		DetourHookHelper::add<Hooks::build_menu_bar_from_dom>("MENU_BUILD_FROM_DOM", reinterpret_cast<void*>(g_pointers->m_roblox_pointers.build_menu_bar_from_dom));
 
 		g_hooking = this;
 	}

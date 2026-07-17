@@ -79,7 +79,7 @@
 #endif
 
 // SIMM include
-#if !defined(G3D_IOS) && !defined(G3D_ANDROID)// ROBLOX
+#if !defined(G3D_IOS) && !defined(G3D_ANDROID) && (defined(__i386__) || defined(__x86_64__) || defined(_M_IX86) || defined(_M_X64))
 #include <xmmintrin.h>
 #endif
 
@@ -277,22 +277,27 @@ namespace G3D {
 #if defined(G3D_OSX) // ROBLOX
 
         // Operating System:
-        SInt32 macVersion;
-        Gestalt(gestaltSystemVersion, &macVersion);
-
-        int major = (macVersion >> 8) & 0xFF;
-        int minor = (macVersion >> 4) & 0xF;
-        int revision = macVersion & 0xF;
-
         {
-            char c[1000];
-            sprintf(c, "OS X %x.%x.%x", major, minor, revision);
-            m_operatingSystem = c;
+            char version[256];
+            size_t versionLength = sizeof(version);
+            if (sysctlbyname("kern.osproductversion", version, &versionLength, NULL, 0) != 0) {
+                strcpy(version, "unknown");
+            }
+
+            m_operatingSystem = std::string("OS X ") + version;
         }
 
         // Clock Cycle Timing Information:
-        Gestalt('pclk', &m_OSXCPUSpeed);
-        m_cpuSpeed = iRound((double)m_OSXCPUSpeed / (1024 * 1024));
+        {
+            uint64_t cpuFrequency = 0;
+            size_t cpuFrequencyLength = sizeof(cpuFrequency);
+            if (sysctlbyname("hw.cpufrequency", &cpuFrequency, &cpuFrequencyLength, NULL, 0) != 0) {
+                cpuFrequency = 0;
+            }
+
+            m_OSXCPUSpeed = (SInt32)(cpuFrequency);
+            m_cpuSpeed = iRound((double)m_OSXCPUSpeed / (1024 * 1024));
+        }
         m_secondsPerNS = 1.0 / 1.0e9;
 #else // ROBLOX
     mach_timebase_info( &m_info ); // ROBLOX

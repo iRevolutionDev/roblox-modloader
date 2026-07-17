@@ -1,41 +1,34 @@
 #include "directory.hpp"
 
 #include "RobloxModLoader/internal/common.hpp"
+#include "RobloxModLoader/platform/memory/host_image.hpp"
 
 namespace rml::utils
 {
 	std::filesystem::path directory::get_module_directory()
 	{
-		HMODULE hModule = nullptr;
+		const auto module_path = platform::module_path_containing(reinterpret_cast<const void*>(&get_module_directory));
 
-		if (!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, reinterpret_cast<LPCWSTR>(&get_module_directory), &hModule))
+		if (module_path.empty())
 		{
-			std::cerr << "Failed to get module handle: " << GetLastError() << std::endl;
+			std::cerr << "Failed to resolve the loader module path" << std::endl;
 			return std::filesystem::current_path();
 		}
 
-		wchar_t module_path[MAX_PATH];
-		if (GetModuleFileNameW(hModule, module_path, MAX_PATH) == 0)
-		{
-			std::cerr << "Failed to get module filename: " << GetLastError() << std::endl;
-			return std::filesystem::current_path();
-		}
-
-		std::filesystem::path module_dir = std::filesystem::path(module_path).parent_path();
-		return module_dir;
+		return module_path.parent_path();
 	}
 
 	std::filesystem::path directory::get_executable_directory()
 	{
-		wchar_t exe_path[MAX_PATH];
-		if (GetModuleFileNameW(nullptr, exe_path, MAX_PATH) == 0)
+		const auto exe_path = platform::executable_path();
+
+		if (exe_path.empty())
 		{
-			std::cerr << "Failed to get executable filename: " << GetLastError() << std::endl;
+			std::cerr << "Failed to resolve the executable path" << std::endl;
 			return std::filesystem::current_path();
 		}
 
-		std::filesystem::path exe_dir = std::filesystem::path(exe_path).parent_path();
-		return exe_dir;
+		return exe_path.parent_path();
 	}
 
 	std::filesystem::path directory::get_mod_loader_directory()

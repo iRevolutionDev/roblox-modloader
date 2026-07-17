@@ -1,5 +1,7 @@
 #include "crash_dumper.hpp"
 
+#include "RobloxModLoader/internal/platform.hpp"
+
 #include "RobloxModLoader/memory/module_utils.hpp"
 
 #include <chrono>
@@ -144,7 +146,7 @@ namespace rml::exception_filter
 			fs::create_directories(crash_dir, ec);
 
 			bool use_local_time = true;
-#ifdef _WIN32
+#if defined(RML_WINDOWS)
 			if (const auto module = GetModuleHandleW(L"ntdll.dll"); module && GetProcAddress(module, "wine_get_version"))
 			{
 				use_local_time = false;

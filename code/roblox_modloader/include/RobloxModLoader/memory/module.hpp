@@ -1,12 +1,6 @@
 #pragma once
 
-#if defined(_WIN32)
-	#define RML_WINDOWS
-#elif defined(__linux__)
-	#define RML_LINUX
-#elif defined(__APPLE__)
-	#define RML_MACOS
-#endif
+#include "RobloxModLoader/internal/platform.hpp"
 
 #include "RobloxModLoader/rml_export.hpp"
 #include "range.hpp"

@@ -52,13 +52,18 @@ set(ROBLOX_MODLOADER_INCLUDE_DIR "code/roblox_modloader/include")
 set(LUAU_SOURCE_DIR "${ROBLOX_MODLOADER_ROOT_DIR}/libs/third_party/luau")
 
 include(cmake/spdlog.cmake)
-include(cmake/minhook.cmake)
 include(cmake/zlib.cmake)
 include(cmake/toml.cmake)
 #include(cmake/tracy.cmake)
 include(cmake/luau.cmake)
 include(cmake/json.cmake)
-include(cmake/polyhooks.cmake)
+
+if (RML_PLATFORM_WINDOWS)
+    include(cmake/minhook.cmake)
+    include(cmake/polyhooks.cmake)
+else ()
+    include(cmake/dobby.cmake)
+endif ()
 
 include(cmake/dotnet_hosting.cmake)
 

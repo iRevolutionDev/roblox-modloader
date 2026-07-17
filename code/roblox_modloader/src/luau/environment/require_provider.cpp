@@ -8,6 +8,8 @@
 #include "ltable.h"
 #include "pointers.hpp"
 #include "utils/directory.hpp"
+#include <Luau/CodeGen.h>
+#include <Luau/Compiler.h>
 
 
 namespace rml::luau::environment

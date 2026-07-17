@@ -2,7 +2,9 @@
 
 #include "../../mod/mod_manager.hpp"
 #include "RobloxModLoader/internal/common.hpp"
-#include "RobloxModLoader/luau/script_manager.hpp"
+#if RML_ENABLE_LUAU
+	#include "RobloxModLoader/luau/script_manager.hpp"
+#endif
 #include "RobloxModLoader/roblox/data_model.hpp"
 #include "RobloxModLoader/roblox/script_context.hpp"
 #include "RobloxModLoader/roblox/task_scheduler.hpp"

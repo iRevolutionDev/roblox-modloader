@@ -21,3 +21,4 @@ version.cpp
 cmake-build-debug
 cmake-build-release
 cmake-build-*
+CMakeUserPresets.json

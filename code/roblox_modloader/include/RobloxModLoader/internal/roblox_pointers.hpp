@@ -1,9 +1,11 @@
 #pragma once
+
+#include "RobloxModLoader/internal/platform.hpp"
 #include "function_types.hpp"
 
 #include <vector>
 
-#if _WIN32
+#if defined(RML_WINDOWS)
 	#ifndef NOMINMAX
 		#define NOMINMAX
 	#endif
@@ -27,22 +29,22 @@ class HashTable;
 #pragma pack(push, 1)
 struct RobloxPointers
 {
-	PVOID m_rbx_crash;
-	PVOID m_render_prepare;
-	PVOID m_render_perform;
-	PVOID m_render_pass_2d;
-	PVOID m_render_pass_3d;
+	void* m_rbx_crash;
+	void* m_render_prepare;
+	void* m_render_perform;
+	void* m_render_pass_2d;
+	void* m_render_pass_3d;
 	functions::print print;
 
-	PVOID m_profile_log;
+	void* m_profile_log;
 
 	// Scene Manager Render View
-	PVOID m_render_view;
+	void* m_render_view;
 
 	functions::get_scheduler get_scheduler;
 
 	// Script Context
-	PVOID resume_waiting_scripts;
+	void* resume_waiting_scripts;
 
 	functions::get_string_atom get_string_atom;
 	functions::descriptor_lookup descriptor_lookup;

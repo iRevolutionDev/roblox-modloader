@@ -95,7 +95,7 @@ namespace RBX {
 }
 
 namespace rml {
-    RML_EXPORT [[nodiscard]] RBX::TaskScheduler &task_scheduler();
+    [[nodiscard]] RML_EXPORT RBX::TaskScheduler &task_scheduler();
 
-    RML_EXPORT [[nodiscard]] bool has_task_scheduler() noexcept;
+    [[nodiscard]] RML_EXPORT bool has_task_scheduler() noexcept;
 }

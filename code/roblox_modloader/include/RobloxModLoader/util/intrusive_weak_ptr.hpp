@@ -1,6 +1,6 @@
 #pragma once
 
-#include <intrin.h>
+#include <atomic>
 #include <utility>
 
 namespace rml::utils
@@ -87,12 +87,12 @@ namespace rml::utils
 		void acquire() const noexcept
 		{
 			if (m_ptr)
-				_InterlockedIncrement(&m_ptr->weak);
+				std::atomic_ref(m_ptr->weak).fetch_add(1, std::memory_order_seq_cst);
 		}
 
 		static void release(T* ptr) noexcept
 		{
-			if (ptr && _InterlockedExchangeAdd(&ptr->weak, -1) == 1)
+			if (ptr && std::atomic_ref(ptr->weak).fetch_sub(1, std::memory_order_seq_cst) == 1)
 				Deleter{}(ptr);
 		}
 

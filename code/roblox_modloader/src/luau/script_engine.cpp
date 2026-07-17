@@ -4,6 +4,8 @@
 #include "RobloxModLoader/luau/script_context.hpp"
 #include "RobloxModLoader/luau/script_scheduler.hpp"
 #include "RobloxModLoader/luau/environment/environment.hpp"
+#include <Luau/CodeGen.h>
+#include <Luau/Compiler.h>
 
 namespace rml::luau {
     ScriptEngine::ScriptEngine(ScriptContext::Context context)
