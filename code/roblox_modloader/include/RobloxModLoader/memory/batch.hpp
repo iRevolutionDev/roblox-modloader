@@ -60,7 +60,7 @@ namespace rml::memory
 		template<signature sig>
 		static inline constexpr uint32_t compute_hash(uint32_t hash)
 		{
-			hash = fnv1a_32(sig.m_ida, hash);
+			hash = fnv1a_32(sig.m_ida.c_str(), hash);
 
 			return hash;
 		}
@@ -113,7 +113,7 @@ namespace rml::memory
 
 		inline static bool scan_pattern_and_execute_callback(range region, signature entry)
 		{
-			if (auto result = region.scan(entry.m_ida); result.has_value())
+			if (auto result = region.scan(entry.m_ida.c_str()); result.has_value())
 			{
 				if (entry.m_on_signature_found)
 				{
@@ -122,14 +122,14 @@ namespace rml::memory
 					std::invoke(std::move(entry.m_on_signature_found), result.value());
 
 					LOG_INFO("Found '{}' RobloxStudioBeta.exe+0x{:X}",
-					    entry.m_name,
+					    entry.m_name.c_str(),
 					    result.value().as<std::uintptr_t>() - region.begin().as<std::uintptr_t>());
 
 					return true;
 				}
 			}
 
-			LOG_INFO("Failed to find '{}'.", entry.m_name);
+			LOG_INFO("Failed to find '{}'.", entry.m_name.c_str());
 
 			return false;
 		}

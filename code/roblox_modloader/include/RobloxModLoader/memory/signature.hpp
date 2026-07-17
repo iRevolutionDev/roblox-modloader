@@ -1,11 +1,13 @@
 #pragma once
 
+#include "RobloxModLoader/util/compile_time_helpers.hpp"
+
 namespace rml::memory
 {
 	struct signature
 	{
-		const char* m_name;
-		const char* m_ida;
+		cstxpr_capped_str<64> m_name;
+		cstxpr_capped_str<256> m_ida;
 		void (*m_on_signature_found)(memory::handle ptr);
 	};
 }

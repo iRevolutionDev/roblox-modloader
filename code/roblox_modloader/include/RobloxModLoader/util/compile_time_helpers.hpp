@@ -21,3 +21,25 @@ struct cstxpr_str
             str[i] = literal[i];
     }
 };
+
+template<std::size_t Capacity>
+struct cstxpr_capped_str
+{
+    char str[Capacity]{};
+
+    constexpr cstxpr_capped_str() = default;
+
+    template<std::size_t N>
+    consteval cstxpr_capped_str(const char (&literal)[N])
+    {
+        static_assert(N <= Capacity, "literal is longer than the capacity; raise it rather than truncating");
+
+        for (std::size_t i = 0; i < N; ++i)
+            str[i] = literal[i];
+    }
+
+    [[nodiscard]] constexpr const char* c_str() const
+    {
+        return str;
+    }
+};

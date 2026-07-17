@@ -10,6 +10,7 @@ readonly LOAD_PATH="@executable_path/${LOADER_NAME}"
 readonly BACKUP_SUFFIX=".rml-backup"
 readonly DISABLE_LIBRARY_VALIDATION="com.apple.security.cs.disable-library-validation"
 readonly GET_TASK_ALLOW="com.apple.security.get-task-allow"
+readonly DISABLE_PAGE_PROTECTION="com.apple.security.cs.disable-executable-page-protection"
 
 STUDIO_APP="/Applications/RobloxStudio.app"
 DYLIB=""
@@ -64,6 +65,7 @@ resign() {
 
   if [ "$mode" = "unlock" ]; then
     plist_set_true "$entitlements" "$DISABLE_LIBRARY_VALIDATION"
+    plist_set_true "$entitlements" "$DISABLE_PAGE_PROTECTION"
     [ "$DEBUG" -eq 1 ] && plist_set_true "$entitlements" "$GET_TASK_ALLOW"
   fi
 

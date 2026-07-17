@@ -311,7 +311,9 @@ namespace rml::memory
 				if (cmd->cmd == LC_SEGMENT_64)
 				{
 					const auto* seg = reinterpret_cast<const segment_command_64*>(cmd);
-					if (seg->vmsize > 0)
+					const bool is_page_zero = std::strncmp(seg->segname, SEG_PAGEZERO, sizeof(seg->segname)) == 0;
+
+					if (!is_page_zero && seg->vmsize > 0)
 					{
 						const auto start = static_cast<std::uintptr_t>(seg->vmaddr) + static_cast<std::uintptr_t>(slide);
 						const auto end = start + static_cast<std::uintptr_t>(seg->vmsize);
