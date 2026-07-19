@@ -1,6 +1,7 @@
 #include "editor_overlay.hpp"
 
 #include <RobloxModLoader/memory/vtable.hpp>
+#include <RobloxModLoader/platform/memory/memory_protection.hpp>
 #include <RobloxModLoader/qt/qapplication.hpp>
 #include <RobloxModLoader/qt/qobject.hpp>
 #include <RobloxModLoader/qt/qpainter.hpp>
@@ -11,7 +12,6 @@
 #include <cmath>
 #include <string_view>
 #include <utility>
-#include <windows.h>
 
 namespace script_editor_bg
 {
@@ -25,7 +25,7 @@ namespace script_editor_bg
 	bool is_script_editor(const rml::qt::QObject* widget)
 	{
 		const std::string_view name = widget->class_name();
-		return name == "StudioScriptEditor" || name == "RBX::ScriptEditor::ScriptEditor";
+		return name.find("ScriptEditor") != std::string_view::npos;
 	}
 
 	std::pair<int, int> anchor(const Alignment alignment, const int w, const int h, const int vw, const int vh)
@@ -64,7 +64,7 @@ namespace script_editor_bg
 	EditorOverlay::EditorOverlay(std::filesystem::path mod_directory) :
 	    m_mod_directory(std::move(mod_directory))
 	{
-		m_settings.store(std::make_shared<const BackgroundSettings>(), std::memory_order_release);
+		m_settings.store(std::make_shared<const BackgroundSettings>());
 		g_active = this;
 	}
 
@@ -84,13 +84,26 @@ namespace script_editor_bg
 
 	void EditorOverlay::apply(const BackgroundSettings& settings)
 	{
-		m_settings.store(std::make_shared<const BackgroundSettings>(settings), std::memory_order_release);
+		m_settings.store(std::make_shared<const BackgroundSettings>(settings));
+	}
+
+	static bool has_valid_viewport(const rml::qt::QWidget* widget)
+	{
+		const rml::qt::QWidget* const viewport = widget->viewport();
+		if (!viewport || viewport == widget)
+			return false;
+
+		for (const rml::qt::QWidget* known : rml::qt::QApplication::all_widgets())
+			if (known == viewport)
+				return true;
+
+		return false;
 	}
 
 	void EditorOverlay::hook_open_editors()
 	{
 		for (rml::qt::QWidget* editor : rml::qt::QApplication::all_widgets())
-			if (is_script_editor(editor))
+			if (is_script_editor(editor) && has_valid_viewport(editor))
 				hook_editor_class(editor->handle());
 	}
 
@@ -111,13 +124,13 @@ namespace script_editor_bg
 			return;
 
 		void** const slot = vtable + paint_slot();
-		DWORD protection = 0;
-		if (!VirtualProtect(slot, sizeof(void*), PAGE_READWRITE, &protection))
+		const auto protection = rml::platform::set_protection(slot, sizeof(void*), rml::utils::MemoryProtection::ReadWrite);
+		if (!protection)
 			return;
 
 		m_originals.emplace(vtable, reinterpret_cast<paint_fn>(*slot));
 		*slot = reinterpret_cast<void*>(&paint_detour);
-		VirtualProtect(slot, sizeof(void*), protection, &protection);
+		rml::platform::restore_protection(slot, sizeof(void*), *protection);
 	}
 
 	void EditorOverlay::unhook_all()
@@ -125,11 +138,11 @@ namespace script_editor_bg
 		for (const auto& [vtable, original] : m_originals)
 		{
 			void** const slot = vtable + paint_slot();
-			DWORD protection = 0;
-			if (!VirtualProtect(slot, sizeof(void*), PAGE_READWRITE, &protection))
+			const auto protection = rml::platform::set_protection(slot, sizeof(void*), rml::utils::MemoryProtection::ReadWrite);
+			if (!protection)
 				continue;
 			*slot = reinterpret_cast<void*>(original);
-			VirtualProtect(slot, sizeof(void*), protection, &protection);
+			rml::platform::restore_protection(slot, sizeof(void*), *protection);
 		}
 		m_originals.clear();
 	}
@@ -274,7 +287,7 @@ namespace script_editor_bg
 
 	void EditorOverlay::render(void* editor) const
 	{
-		const std::shared_ptr<const BackgroundSettings> settings = m_settings.load(std::memory_order_acquire);
+		const std::shared_ptr<const BackgroundSettings> settings = m_settings.load();
 		if (!settings || !settings->enabled)
 			return;
 

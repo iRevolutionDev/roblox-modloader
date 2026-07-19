@@ -29,10 +29,6 @@ namespace rml::dotnet
 			if (!m_callback)
 				return;
 
-			static const bool trace = std::getenv("RML_TRACE_INTEROP") != nullptr;
-			if (trace)
-				RML_INFO_AT("ManagedEventSlot", "[trace] deliver entered, args.size()={}", args.size());
-
 			try
 			{
 				std::vector<char*> owned_strings;

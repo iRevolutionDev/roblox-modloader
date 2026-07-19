@@ -2,7 +2,13 @@
 
 #include "RobloxModLoader/qt/action_dispatcher.hpp"
 #include "RobloxModLoader/qt/mods_menu.hpp"
+#include "RobloxModLoader/qt/qt_owned.hpp"
+#include "RobloxModLoader/qt/qtimer.hpp"
 #include "RobloxModLoader/rml_export.hpp"
+
+#include <functional>
+#include <mutex>
+#include <vector>
 
 namespace rml::qt
 {
@@ -27,11 +33,19 @@ namespace rml::qt
 
 		void on_action_triggered(QAction* action) const;
 
+		void run_on_gui_thread(std::function<void()> task);
+
 		[[nodiscard]] static QtIntegration* instance();
 
 	private:
+		void drain_tasks();
+
 		ActionDispatcher m_dispatcher;
 		ModsMenu m_menu;
+
+		std::mutex m_tasks_mutex;
+		std::vector<std::function<void()>> m_tasks;
+		QtOwned<QTimer> m_dispatch_timer;
 
 		static QtIntegration* s_instance;
 	};

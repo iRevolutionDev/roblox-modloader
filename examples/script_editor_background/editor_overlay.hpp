@@ -4,7 +4,7 @@
 
 #include <RobloxModLoader/qt/qmovie.hpp>
 #include <RobloxModLoader/qt/qpixmap.hpp>
-#include <atomic>
+#include <mutex>
 #include <filesystem>
 #include <memory>
 #include <string>
@@ -46,7 +46,27 @@ namespace script_editor_bg
 		void hook_editor_class(void* editor_handle);
 
 		std::filesystem::path m_mod_directory;
-		std::atomic<std::shared_ptr<const BackgroundSettings>> m_settings;
+		class SettingsHolder
+		{
+		public:
+			void store(std::shared_ptr<const BackgroundSettings> value)
+			{
+				const std::lock_guard guard{m_mutex};
+				m_value = std::move(value);
+			}
+
+			[[nodiscard]] std::shared_ptr<const BackgroundSettings> load() const
+			{
+				const std::lock_guard guard{m_mutex};
+				return m_value;
+			}
+
+		private:
+			mutable std::mutex m_mutex;
+			std::shared_ptr<const BackgroundSettings> m_value;
+		};
+
+		SettingsHolder m_settings;
 
 		std::unordered_map<void**, paint_fn> m_originals;
 

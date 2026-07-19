@@ -6,7 +6,11 @@
 
 namespace rml::utils
 {
-	enum class MemoryProtection;
+	enum class MemoryProtection
+	{
+		ReadWrite,
+		ExecuteReadWrite,
+	};
 }
 
 namespace rml::platform

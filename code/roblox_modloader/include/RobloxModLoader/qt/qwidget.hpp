@@ -11,6 +11,8 @@ namespace rml::qt
 	class RML_EXPORT QWidget : public QObject, public QPaintDevice
 	{
 	public:
+		virtual int devType() const = 0;
+		virtual void* paintEngine() const = 0;
 		virtual void setVisible(bool visible) = 0;
 		virtual void* sizeHint() const = 0;
 		virtual void* minimumSizeHint() const = 0;

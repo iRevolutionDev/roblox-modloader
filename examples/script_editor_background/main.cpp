@@ -14,6 +14,7 @@
 #include <RobloxModLoader/qt/qt_integration.hpp>
 #include <atomic>
 #include <chrono>
+#include <cstdlib>
 #include <memory>
 #include <mutex>
 #include <spdlog/spdlog.h>
@@ -21,11 +22,15 @@
 #include <thread>
 #include <utility>
 
-#include <windows.h>
+#if defined(RML_WINDOWS)
+	#include <windows.h>
+#endif
 
-#include <shellapi.h>
+#if defined(RML_WINDOWS)
+	#include <shellapi.h>
 
-#pragma comment(lib, "shell32.lib")
+	#pragma comment(lib, "shell32.lib")
+#endif
 
 using namespace script_editor_bg;
 
@@ -96,7 +101,10 @@ public:
 		m_scanner = std::thread([this] {
 			while (m_running.load(std::memory_order_acquire))
 			{
-				arm_scan();
+				if (rml::qt::QtIntegration* const qt = rml::qt::QtIntegration::instance())
+					qt->run_on_gui_thread([this] {
+						run_scan_on_gui();
+					});
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 			}
 		});
@@ -111,8 +119,6 @@ public:
 			m_scanner.join();
 
 		s_active.store(nullptr, std::memory_order_release);
-		if (const HHOOK hook = s_scan_hook.exchange(nullptr, std::memory_order_acq_rel))
-			UnhookWindowsHookEx(hook);
 
 		if (m_store)
 			m_store->stop_watching();
@@ -147,64 +153,16 @@ private:
 			m_overlay->hook_open_editors();
 	}
 
-	static void arm_scan()
+
+	static void open_in_default_editor(const std::filesystem::path& path)
 	{
-		if (s_scan_hook.load(std::memory_order_acquire))
-			return;
-
-		const HWND window = find_studio_window();
-		if (!window)
-			return;
-
-		const DWORD gui_thread = GetWindowThreadProcessId(window, nullptr);
-		if (gui_thread == 0)
-			return;
-
-		const HHOOK hook = SetWindowsHookExW(WH_GETMESSAGE, &scan_hook_proc, nullptr, gui_thread);
-		if (!hook)
-			return;
-
-		HHOOK expected = nullptr;
-		if (!s_scan_hook.compare_exchange_strong(expected, hook, std::memory_order_acq_rel))
-		{
-			UnhookWindowsHookEx(hook);
-			return;
-		}
-
-		PostThreadMessageW(gui_thread, WM_NULL, 0, 0);
-	}
-
-	static LRESULT CALLBACK scan_hook_proc(const int code, const WPARAM wparam, const LPARAM lparam)
-	{
-		if (code != HC_ACTION)
-			return CallNextHookEx(s_scan_hook.load(std::memory_order_acquire), code, wparam, lparam);
-
-		const HHOOK hook = s_scan_hook.exchange(nullptr, std::memory_order_acq_rel);
-		if (hook)
-			UnhookWindowsHookEx(hook);
-
-		if (ScriptEditorBackground* const self = s_active.load(std::memory_order_acquire))
-			self->run_scan_on_gui();
-
-		return CallNextHookEx(hook, code, wparam, lparam);
-	}
-
-	static BOOL CALLBACK enum_windows_proc(const HWND hwnd, const LPARAM lparam)
-	{
-		DWORD pid = 0;
-		GetWindowThreadProcessId(hwnd, &pid);
-		if (pid != GetCurrentProcessId() || !IsWindowVisible(hwnd) || GetWindow(hwnd, GW_OWNER) != nullptr || GetWindowTextLengthW(hwnd) == 0)
-			return TRUE;
-
-		*reinterpret_cast<HWND*>(lparam) = hwnd;
-		return FALSE;
-	}
-
-	[[nodiscard]] static HWND find_studio_window()
-	{
-		HWND found = nullptr;
-		EnumWindows(&enum_windows_proc, reinterpret_cast<LPARAM>(&found));
-		return found;
+#if defined(RML_WINDOWS)
+		ShellExecuteW(nullptr, L"open", path.wstring().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+#elif defined(RML_MACOS)
+		std::system(("open \"" + path.string() + "\"").c_str());
+#else
+		std::system(("xdg-open \"" + path.string() + "\"").c_str());
+#endif
 	}
 
 	void open_panel()
@@ -353,7 +311,7 @@ private:
 		{
 			open_button->setGeometry(20, 292, 165, 30);
 			open_button->on_clicked([this] {
-				ShellExecuteW(nullptr, L"open", m_store->path().wstring().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+				open_in_default_editor(m_store->path());
 			});
 		}
 
@@ -406,19 +364,16 @@ private:
 	std::atomic<bool> m_running{false};
 
 	static inline std::atomic<ScriptEditorBackground*> s_active{nullptr};
-	static inline std::atomic<HHOOK> s_scan_hook{nullptr};
 };
-
-#define SCRIPT_EDITOR_BACKGROUND_MOD_API __declspec(dllexport)
 
 extern "C"
 {
-	SCRIPT_EDITOR_BACKGROUND_MOD_API ModBase* start_mod()
+	RML_MOD_ABI_EXPORT ModBase* start_mod()
 	{
 		return new ScriptEditorBackground();
 	}
 
-	SCRIPT_EDITOR_BACKGROUND_MOD_API void uninstall_mod(const ModBase* mod)
+	RML_MOD_ABI_EXPORT void uninstall_mod(const ModBase* mod)
 	{
 		delete mod;
 	}

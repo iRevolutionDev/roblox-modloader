@@ -1,17 +1,13 @@
 #pragma once
 
+#include "RobloxModLoader/platform/memory/memory_protection.hpp"
+
 #include <cstddef>
 #include <expected>
 #include <system_error>
 
 namespace rml::utils
 {
-	enum class MemoryProtection
-	{
-		ReadWrite,
-		ExecuteReadWrite,
-	};
-
 	class MemoryProtectionGuard
 	{
 	public:

@@ -45,14 +45,13 @@ public:
     }
 };
 
-#define BASIC_MOD_API __declspec(dllexport)
 
 extern "C" {
-BASIC_MOD_API ModBase *start_mod() {
+RML_MOD_ABI_EXPORT ModBase *start_mod() {
     return new basic_mod();
 }
 
-BASIC_MOD_API void uninstall_mod(const ModBase *mod) {
+RML_MOD_ABI_EXPORT void uninstall_mod(const ModBase *mod) {
     delete mod;
 }
 }
