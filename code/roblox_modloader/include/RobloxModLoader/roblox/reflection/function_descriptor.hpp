@@ -103,51 +103,38 @@ namespace RBX::Reflection
 
 		static constexpr std::size_t engine_return_bytes = 64;
 
-#if !defined(RML_WINDOWS)
-		static constexpr std::intptr_t itanium_virtual_flag = 1;
-
-		[[nodiscard]] void* resolve_target(DescribedBase*& self) const noexcept
+		class EngineCallable
 		{
-			const auto adjustment = m_descriptor->bound_this_delta;
-			auto* const base = reinterpret_cast<std::byte*>(self) + (adjustment >> 1);
+		};
 
-			self = reinterpret_cast<DescribedBase*>(base);
-
-			if ((adjustment & itanium_virtual_flag) == 0)
-				return m_descriptor->invoke_func_ptr;
-
-			const auto vtable_offset = reinterpret_cast<std::intptr_t>(m_descriptor->invoke_func_ptr);
-			auto* const vtable = *reinterpret_cast<std::byte* const*>(base);
-
-			return *reinterpret_cast<void* const*>(vtable + vtable_offset);
+		template<typename MemberPointer>
+		[[nodiscard]] MemberPointer load_member_pointer() const noexcept
+		{
+			MemberPointer member{};
+			std::memcpy(&member, &m_descriptor->invoke_func_ptr, sizeof(member));
+			return member;
 		}
-#endif
 
 		template<std::size_t... I>
-		uint64_t invoke_fixed(FunctionDescriptor::Arguments& arguments, const bool indirect_result, std::index_sequence<I...>) const
+		u64 invoke_fixed(FunctionDescriptor::Arguments& arguments, const bool indirect_result, std::index_sequence<I...>) const
 		{
-#if defined(RML_WINDOWS)
-			(void)indirect_result;
-			using fn_t = uint64_t(DescribedBase*, uint64_t&, arg_slot<I>...);
-			return m_descriptor->native_func_ptr<fn_t>()(m_instance, arguments.return_value, arguments.get(static_cast<int>(I) + 1)...);
-#else
-			DescribedBase* self = m_instance;
-			void* const target = resolve_target(self);
+			auto* const self = reinterpret_cast<EngineCallable*>(m_instance);
+
+			// cursed ABI voodoo, don't ask, just trust me :)
 
 			if (!indirect_result)
 			{
-				using direct_fn_t = uint64_t(DescribedBase*, arg_slot<I>...);
-				return reinterpret_cast<direct_fn_t*>(target)(self, arguments.get(static_cast<int>(I) + 1)...);
+				using DirectMember = u64 (EngineCallable::*)(arg_slot<I>...);
+				return (self->*load_member_pointer<DirectMember>())(arguments.get(static_cast<int>(I) + 1)...);
 			}
 
 			using Slot = rml::memory::detail::IndirectResult<engine_return_bytes>;
-			using fn_t = Slot(DescribedBase*, arg_slot<I>...);
+			using IndirectMember = Slot (EngineCallable::*)(arg_slot<I>...);
 
-			const Slot value = reinterpret_cast<fn_t*>(target)(self, arguments.get(static_cast<int>(I) + 1)...);
+			const Slot value = (self->*load_member_pointer<IndirectMember>())(arguments.get(static_cast<int>(I) + 1)...);
 
 			std::memcpy(&arguments.return_value, value.m_storage, engine_return_bytes);
 			return arguments.return_value;
-#endif
 		}
 
 	public:
